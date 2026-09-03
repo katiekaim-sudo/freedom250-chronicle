@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stablecoin Law — Charter × Reserve × Rail</title>
+<style>
+:root{--ink:#ece9e1;--muted:#aaa59c;--paper:#101318;--panel:#171b22;--line:#343943;
+--gold:#d4a017;--green:#3dbd7d;--blue:#4a9eda;--red:#e05252}
+*{box-sizing:border-box} html{background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif}
+body{margin:0} a{color:#9bc9ef} .shell{max-width:1180px;margin:auto;padding:44px 24px 80px}
+.eyebrow{font:700 11px/1.2 ui-monospace,monospace;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+h1{font-family:Georgia,serif;font-size:clamp(38px,7vw,76px);line-height:.94;margin:14px 0 18px;max-width:940px}
+.subtitle{font-family:Georgia,serif;font-style:italic;color:#d0cbc0;font-size:20px;margin:0 0 22px}
+.thesis{max-width:900px;color:#c8c3b9;font-size:17px;line-height:1.65;border-left:3px solid var(--gold);padding-left:18px}
+.controls{position:sticky;top:0;z-index:5;background:#101318ee;backdrop-filter:blur(10px);border-block:1px solid var(--line);padding:12px 0;margin:30px 0}
+.filters{display:flex;gap:8px;flex-wrap:wrap} .filter{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer}
+.search{width:100%;margin-top:10px;background:#0d1015;border:1px solid var(--line);border-radius:7px;padding:10px 12px;color:#fff}
+.timeline{position:relative} .timeline:before{content:"";position:absolute;left:111px;top:0;bottom:0;width:1px;background:var(--line)}
+.entry{display:grid;grid-template-columns:92px 1fr;gap:38px;margin:0 0 28px} .date{font:700 12px/1.4 ui-monospace,monospace;color:var(--muted);padding-top:17px;text-align:right}
+.card{background:linear-gradient(145deg,#1a1e26,#14181e);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:10px;padding:19px 22px;box-shadow:0 14px 45px #0004}
+.card:before{content:"";position:absolute} .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font:700 10px/1.2 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.05em}
+.meta span{border:1px solid var(--line);border-radius:999px;padding:5px 8px} .meta .track{font-weight:800} .status{color:#e9e3d5!important}
+h2{font:700 27px/1.12 Georgia,serif;margin:14px 0 8px} .lead{font:italic 17px/1.5 Georgia,serif;color:#ddd4c3;margin:0 0 17px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px} .quick div{background:#0e1116;border:1px solid #292e37;border-radius:7px;padding:11px}
+.quick b,.layers b{display:block;color:#d8af47;font:800 10px/1.2 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.quick span,.layers p{font-size:13px;line-height:1.55;color:#c6c2ba;margin:0} details{border-top:1px solid var(--line);margin-top:17px;padding-top:12px}
+summary{cursor:pointer;color:#d9b968;font:700 12px/1.2 ui-monospace,monospace} .layers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px}
+.layers>div{background:#11151a;border:1px solid #2d323b;border-radius:7px;padding:12px} .layers .caveat{border-color:#6b3b3b}
+.sources{font-size:11px;line-height:1.55;margin-top:14px;color:var(--muted)} .hidden{display:none}
+.key{margin:46px 0 0;border:1px solid var(--line);background:#12161c;border-radius:10px;padding:22px} .key h3{font:700 24px Georgia,serif;margin:0 0 10px}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:17px} .flow span{padding:9px;border:1px solid var(--line);border-radius:6px;color:#ccc;font-size:12px;text-align:center}
+.foot{margin-top:30px;color:#827e76;font-size:11px}
+.t-active .card{border-left-color:#3dbd7d}.t-active .track{color:#3dbd7d;border-color:#3dbd7d88;background:#3dbd7d16}button[data-track="active"].on{color:#fff;border-color:#3dbd7d;background:#3dbd7d2d}
+.t-enacted .card{border-left-color:#d4a017}.t-enacted .track{color:#d4a017;border-color:#d4a01788;background:#d4a01716}button[data-track="enacted"].on{color:#fff;border-color:#d4a017;background:#d4a0172d}
+.t-watch .card{border-left-color:#e05252}.t-watch .track{color:#e05252;border-color:#e0525288;background:#e0525216}button[data-track="watch"].on{color:#fff;border-color:#e05252;background:#e052522d}
+.t-adjacent .card{border-left-color:#4a9eda}.t-adjacent .track{color:#4a9eda;border-color:#4a9eda88;background:#4a9eda16}button[data-track="adjacent"].on{color:#fff;border-color:#4a9eda;background:#4a9eda2d}
+@media(max-width:760px){.shell{padding-inline:14px}.timeline:before{left:0}.entry{grid-template-columns:1fr;gap:7px;padding-left:15px}.date{text-align:left;padding:0}.quick,.layers{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+</head>
+<body><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Research Atlas</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="shell">
+<div class="eyebrow">Freedom 250 Observatory · Money architecture · as of 2026-07-28</div>
+<h1>Stablecoin Law — Charter × Reserve × Rail</h1>
+<p class="subtitle">A comparative card plot for the legal objects now forming behind familiar payment surfaces</p>
+<p class="thesis">The terminal transition and the stablecoin-law transition rhyme because both separate what the customer presents from who owes the money, what backs it, who routes it, and what finally settles. The laws widen the adapter layer; they do not make every NFC terminal a native crypto terminal.</p>
+<section class="key">
+  <h3>The common adapter stack</h3>
+  <p class="lead">Each law assigns a different constitution to the same six jobs. The terminal touches only one edge.</p>
+  <div class="flow"><span>licensed issuer</span><span>reserve asset</span><span>wallet / distributor</span><span>merchant / acquirer</span><span>token transfer</span><span>redemption / bank finality</span></div>
+</section>
+<div class="controls">
+  <div class="filters"><button class="filter on" data-track="active">Active law</button><button class="filter on" data-track="enacted">Enacted · clock running</button><button class="filter on" data-track="watch">Policy watch</button><button class="filter on" data-track="adjacent">Adjacent rail law</button></div>
+  <input id="search" class="search" placeholder="Search Japan, reserves, merchant, GENIUS, checks…">
+</div>
+<section class="timeline">
+<article class="entry t-active" data-track="active"
+  data-search="eu_mica active european union eur / referenced fiat 2024-06-30 30 jun 2024 mica turns stablecoins into licensed e-money or asset-reference objects active stablecoin titles apply from 30 jun 2024; remaining mica regime from 30 dec 2024. an e-money-token issuer must be a credit institution or electronic-money institution. asset-referenced tokens use a separate authorized issuer regime. reserve, liquidity, segregation, custody and permanent redemption duties vary by class. holders of e-money tokens have a par-redemption claim; interest is prohibited. crypto-asset service providers operate inside a harmonized eu authorization and conduct perimeter. the token may move on-chain, but issuer redemption and bank/central-bank money remain separate finality clocks. strong adapter foundation; no claim that emv contactless kernels natively understand mica tokens. the euro architecture prioritizes monetary singleness and regulated private claims rather than an unbounded token market. europe regulates by legal token class. it is the clearest taxonomy-first model. mica authorization is not an ecb guarantee, deposit insurance, or universal merchant acceptance.">
+  <div class="date">30 Jun 2024</div>
+  <section class="card">
+    <div class="meta">
+      <span class="track">Active law</span>
+      <span>European Union</span>
+      <span>EUR / referenced fiat</span>
+      <span class="status">active</span>
+    </div>
+    <h2>MiCA turns stablecoins into licensed e-money or asset-reference objects</h2>
+    <p class="lead">Europe regulates by legal token class. It is the clearest taxonomy-first model.</p>
+    <div class="quick">
+      <div><b>Issuer</b><span>An e-money-token issuer must be a credit institution or electronic-money institution. Asset-referenced tokens use a separate authorized issuer regime.</span></div>
+      <div><b>Reserve</b><span>Reserve, liquidity, segregation, custody and permanent redemption duties vary by class. Holders of e-money tokens have a par-redemption claim; interest is prohibited.</span></div>
+      <div><b>Terminal join</b><span>Strong adapter foundation; no claim that EMV contactless kernels natively understand MiCA tokens.</span></div>
+    </div>
+    <details>
+      <summary>open legal object + rail reading</summary>
+      <div class="layers">
+        <div><b>Legal clock</b><p>Stablecoin titles apply from 30 Jun 2024; remaining MiCA regime from 30 Dec 2024.</p></div>
+        <div><b>Distribution</b><p>Crypto-asset service providers operate inside a harmonized EU authorization and conduct perimeter.</p></div>
+        <div><b>Settlement boundary</b><p>The token may move on-chain, but issuer redemption and bank/central-bank money remain separate finality clocks.</p></div>
+        <div><b>Currency Watch join</b><p>The euro architecture prioritizes monetary singleness and regulated private claims rather than an unbounded token market.</p></div>
+        <div class="caveat"><b>Counterweight</b><p>MiCA authorization is not an ECB guarantee, deposit insurance, or universal merchant acceptance.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1114" target="_blank" rel="noopener">EUR-Lex — Regulation (EU) 2023/1114</a> · <a href="https://www.eba.europa.eu/regulation-and-policy/asset-referenced-and-e-money-tokens-mica" target="_blank" rel="noopener">EBA — MiCA regulatory products</a></div>
+  </section>
+</article>
+<article class="entry t-active" data-track="active"
+  data-search="uae_payment_tokens active united arab emirates aed / registered foreign payment tokens 2024-08-31 31 aug 2024 the uae writes the merchant endpoint into the token law active the cbuae payment token services regulation has been in force since 31 aug 2024. a uae entity may be licensed to issue a dirham payment token; a bank uses a subsidiary or affiliate. foreign-token issuance, conversion, custody and transfer have distinct permissions. the default is 100% same-currency cash in a segregated escrow account at an unrelated uae bank. a qualifying bank-owned issuer may use at least 50% cash with the balance in short uae government or cbuae instruments, with added capital and controls. issuance, custody/transfer and conversion are separate regulated services. the wallet transfer is the customer leg; reserve cash and redemption remain separate commercial-bank or directed central-bank custody legs. this is the sharpest terminal comparator: an ordinary uae merchant may accept only a licensed dirham payment token, while registered foreign tokens are confined to virtual-asset purchases. the law protects the dirham payment perimeter by controlling the legal token at the merchant endpoint—not by controlling the radio hardware. uae proves that the decisive stablecoin acceptance layer is legal routing and merchant permission, not nfc capability. generic contactless support does not satisfy token licensing, conversion, custody, merchant or redemption rules.">
+  <div class="date">31 Aug 2024</div>
+  <section class="card">
+    <div class="meta">
+      <span class="track">Active law</span>
+      <span>United Arab Emirates</span>
+      <span>AED / registered foreign payment tokens</span>
+      <span class="status">active</span>
+    </div>
+    <h2>The UAE writes the merchant endpoint into the token law</h2>
+    <p class="lead">UAE proves that the decisive stablecoin acceptance layer is legal routing and merchant permission, not NFC capability.</p>
+    <div class="quick">
+      <div><b>Issuer</b><span>A UAE entity may be licensed to issue a Dirham Payment Token; a bank uses a subsidiary or affiliate. Foreign-token issuance, conversion, custody and transfer have distinct permissions.</span></div>
+      <div><b>Reserve</b><span>The default is 100% same-currency cash in a segregated escrow account at an unrelated UAE bank. A qualifying bank-owned issuer may use at least 50% cash with the balance in short UAE government or CBUAE instruments, with added capital and controls.</span></div>
+      <div><b>Terminal join</b><span>This is the sharpest terminal comparator: an ordinary UAE merchant may accept only a licensed Dirham Payment Token, while registered foreign tokens are confined to virtual-asset purchases.</span></div>
+    </div>
+    <details>
+      <summary>open legal object + rail reading</summary>
+      <div class="layers">
+        <div><b>Legal clock</b><p>The CBUAE Payment Token Services Regulation has been in force since 31 Aug 2024.</p></div>
+        <div><b>Distribution</b><p>Issuance, custody/transfer and conversion are separate regulated services.</p></div>
+        <div><b>Settlement boundary</b><p>The wallet transfer is the customer leg; reserve cash and redemption remain separate commercial-bank or directed central-bank custody legs.</p></div>
+        <div><b>Currency Watch join</b><p>The law protects the dirham payment perimeter by controlling the legal token at the merchant endpoint—not by controlling the radio hardware.</p></div>
+        <div class="caveat"><b>Counterweight</b><p>Generic contactless support does not satisfy token licensing, conversion, custody, merchant or redemption rules.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://rulebook.centralbank.ae/en/rulebook/payment-token-services-regulation" target="_blank" rel="noopener">CBUAE — Payment Token Services Regulation</a> · <a href="https://rulebook.centralbank.ae/en/rulebook/article-22-management-and-safekeeping-reserve-assets" target="_blank" rel="noopener">CBUAE — reserve assets</a> · <a href="https://rulebook.centralbank.ae/en/rulebook/article-21-issuance-and-redemption-payment-tokens" target="_blank" rel="noopener">CBUAE — issuance and redemption</a></div>
+  </section>
+</article>
+<article class="entry t-enacted" data-track="enacted"
+  data-search="us_genius enacted united states usd 2025-07-18 18 jul 2025 genius writes a private-dollar issuer constitution enacted · not generally operative public law 119-27 was signed 18 jul 2025. final implementing rules were due 18 jul 2026; none was located on official final-rule pages through this 28 jul cutoff. the outside general effective date remains 18 jan 2027 unless final rules start the earlier 120-day clock. permitted issuers are insured-depository subsidiaries, federal qualified issuers, or state qualified issuers under the statutory split and threshold. one-to-one reserves in cash, central-bank balances, insured deposits, treasury bills of 93 days or less, qualifying repo, government money funds and related liquid government assets. monthly reporting; no holder interest; no holder fdic insurance. wallets, card networks, processors and distributors can remain separate from the legal issuer. a 2028 service-provider restriction creates a later market-access clock. on-chain transfer, card-network obligation, mint/redemption, bank deposit movement and central-bank finality remain distinct. genius supplies the lawful issuer and reserve object that a card, wallet or acquirer can route. it does not itself update a terminal. the reserve schedule creates a direct short-treasury demand channel while preserving the dollar unit and private distribution. genius is the strongest sovereign-debt-reserve flywheel in the set—and the cleanest proof that stablecoin law is also banking architecture. enacted is not effective. a proposal, charter application or occ conditional approval is not a live genius issuer authorization.">
+  <div class="date">18 Jul 2025</div>
+  <section class="card">
+    <div class="meta">
+      <span class="track">Enacted · clock running</span>
+      <span>United States</span>
+      <span>USD</span>
+      <span class="status">enacted · not generally operative</span>
+    </div>
+    <h2>GENIUS writes a private-dollar issuer constitution</h2>
+    <p class="lead">GENIUS is the strongest sovereign-debt-reserve flywheel in the set—and the cleanest proof that stablecoin law is also banking architecture.</p>
+    <div class="quick">
+      <div><b>Issuer</b><span>Permitted issuers are insured-depository subsidiaries, federal qualified issuers, or state qualified issuers under the statutory split and threshold.</span></div>
+      <div><b>Reserve</b><span>One-to-one reserves in cash, central-bank balances, insured deposits, Treasury bills of 93 days or less, qualifying repo, government money funds and related liquid government assets. Monthly reporting; no holder interest; no holder FDIC insurance.</span></div>
+      <div><b>Terminal join</b><span>GENIUS supplies the lawful issuer and reserve object that a card, wallet or acquirer can route. It does not itself update a terminal.</span></div>
+    </div>
+    <details>
+      <summary>open legal object + rail reading</summary>
+      <div class="layers">
+        <div><b>Legal clock</b><p>Public Law 119-27 was signed 18 Jul 2025. Final implementing rules were due 18 Jul 2026; none was located on official final-rule pages through this 28 Jul cutoff. The outside general effective date remains 18 Jan 2027 unless final rules start the earlier 120-day clock.</p></div>
+        <div><b>Distribution</b><p>Wallets, card networks, processors and distributors can remain separate from the legal issuer. A 2028 service-provider restriction creates a later market-access clock.</p></div>
+        <div><b>Settlement boundary</b><p>On-chain transfer, card-network obligation, mint/redemption, bank deposit movement and central-bank finality remain distinct.</p></div>
+        <div><b>Currency Watch join</b><p>The reserve schedule creates a direct short-Treasury demand channel while preserving the dollar unit and private distribution.</p></div>
+        <div class="caveat"><b>Counterweight</b><p>Enacted is not effective. A proposal, charter application or OCC conditional approval is not a live GENIUS issuer authorization.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.congress.gov/119/plaws/publ27/PLAW-119publ27.pdf" target="_blank" rel="noopener">Congress — Public Law 119-27</a> · <a href="https://www.occ.treas.gov/topics/laws-and-regulations/occ-regulations/proposed-issuances/occ-proposed-issuances-2026.html" target="_blank" rel="noopener">OCC — 2026 proposed issuances</a> · <a href="https://www.occ.treas.gov/topics/laws-and-regulations/occ-regulations/final-issuances/occ-final-issuances-2026.html" target="_blank" rel="noopener">OCC — 2026 final issuances</a></div>
+  </section>
+</article>
+<article class="entry t-active" data-track="active"
+  data-search="hk_ordinance active hong kong hkd / referenced fiat 2025-08-01 1 aug 2025 hong kong makes fiat-referenced issuance an hkma-licensed activity active the stablecoins ordinance and hkma supervisory framework took effect 1 aug 2025. a license is required for in-scope fiat-referenced stablecoin issuance in hong kong and for specified hong kong-linked issuance or offering activity. hkma supervision centers reserve-asset management, redemption, risk management, governance, aml/cft and disclosure. only specified regulated institutions may offer in-scope stablecoins to retail investors; the issuer license and distribution permission remain separate. the ordinance governs the issuer and token promise, not the merchant acquirer or the final bank-money leg. a licensed issue can become a funding or settlement asset behind an existing wallet or card surface; the legal bridge still needs an authorized distributor and processor. hong kong protects the monetary perimeter through licensing and local supervisory control rather than by treating every token as bank money. hong kong is a regulator-gate model: a tight issuer doorway around an international financial center. a sandbox participant, application, or public announcement is not a license.">
+  <div class="date">1 Aug 2025</div>
+  <section class="card">
+    <div class="meta">
+      <span class="track">Active law</span>
+      <span>Hong Kong</span>
+      <span>HKD / referenced fiat</span>
+      <span class="status">active</span>
+    </div>
+    <h2>Hong Kong makes fiat-referenced issuance an HKMA-licensed activity</h2>
+    <p class="lead">Hong Kong is a regulator-gate model: a tight issuer doorway around an international financial center.</p>
+    <div class="quick">
+      <div><b>Issuer</b><span>A license is required for in-scope fiat-referenced stablecoin issuance in Hong Kong and for specified Hong Kong-linked issuance or offering activity.</span></div>
+      <div><b>Reserve</b><span>HKMA supervision centers reserve-asset management, redemption, risk management, governance, AML/CFT and disclosure.</span></div>
+      <div><b>Terminal join</b><span>A licensed issue can become a funding or settlement asset behind an existing wallet or card surface; the legal bridge still needs an authorized distributor and processor.</span></div>
+    </div>
+    <details>
+      <summary>open legal object + rail reading</summary>
+      <div class="layers">
+        <div><b>Legal clock</b><p>The Stablecoins Ordinance and HKMA supervisory framework took effect 1 Aug 2025.</p></div>
+        <div><b>Distribution</b><p>Only specified regulated institutions may offer in-scope stablecoins to retail investors; the issuer license and distribution permission remain separate.</p></div>
+        <div><b>Settlement boundary</b><p>The ordinance governs the issuer and token promise, not the merchant acquirer or the final bank-money leg.</p></div>
+        <div><b>Currency Watch join</b><p>Hong Kong protects the monetary perimeter through licensing and local supervisory control rather than by treating every token as bank money.</p></div>
+        <div class="caveat"><b>Counterweight</b><p>A sandbox participant, application, or public announcement is not a license.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.hkma.gov.hk/eng/key-functions/international-financial-centre/stablecoin-issuers/" target="_blank" rel="noopener">HKMA — stablecoin issuer framework</a> · <a href="https://www.hkma.gov.hk/media/eng/doc/key-functions/ifc/stablecoin-issuers/Guideline_on_supervision_of_licensed_stablecoin_issuers_eng.pdf" target="_blank" rel="noopener">HKMA — supervision guideline</a></div>
+  </section>
+</article>
+<article class="entry t-enacted" data-track="enacted"
+  data-search="uk_regime enacted united kingdom gbp / qualifying referenced fiat 2026-02-05 feb 2026 the uk creates a qualifying-stablecoin activity but stages payments reform law made · regime scheduled the 2026 cryptoassets regulations create regulated issuing and safeguarding activities; the broader regime is expected to begin in late 2027, with fca rules and application steps still required. issuing a uk qualifying stablecoin becomes a regulated activity. systemic payment stablecoins add bank of england oversight to fca supervision. qualifying stablecoins reference fiat and hold backing assets; detailed fca rules are expected to provide full backing and redemption rights. safeguarding and other crypto activities have separate permissions. the government is still rationalizing dealing and payment-service perimeters. the uk is explicitly designing stablecoins as both cryptoassets and potential payment instruments, with separate systemic oversight. promising adapter law, but the payment-services bridge is still being completed. the uk is sequencing perimeter first, payment assimilation second, tax treatment third. britain is the best example of an enacted legal doorway whose operational room is still under construction. do not label the late-2027 regime live; current policy notes explicitly describe additional rules and payments reform.">
+  <div class="date">Feb 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="track">Enacted · clock running</span>
+      <span>United Kingdom</span>
+      <span>GBP / qualifying referenced fiat</span>
+      <span class="status">law made · regime scheduled</span>
+    </div>
+    <h2>The UK creates a qualifying-stablecoin activity but stages payments reform</h2>
+    <p class="lead">Britain is the best example of an enacted legal doorway whose operational room is still under construction.</p>
+    <div class="quick">
+      <div><b>Issuer</b><span>Issuing a UK qualifying stablecoin becomes a regulated activity. Systemic payment stablecoins add Bank of England oversight to FCA supervision.</span></div>
+      <div><b>Reserve</b><span>Qualifying stablecoins reference fiat and hold backing assets; detailed FCA rules are expected to provide full backing and redemption rights.</span></div>
+      <div><b>Terminal join</b><span>Promising adapter law, but the payment-services bridge is still being completed.</span></div>
+    </div>
+    <details>
+      <summary>open legal object + rail reading</summary>
+      <div class="layers">
+        <div><b>Legal clock</b><p>The 2026 cryptoassets regulations create regulated issuing and safeguarding activities; the broader regime is expected to begin in late 2027, with FCA rules and application steps still required.</p></div>
+        <div><b>Distribution</b><p>Safeguarding and other crypto activities have separate permissions. The government is still rationalizing dealing and payment-service perimeters.</p></div>
+        <div><b>Settlement boundary</b><p>The UK is explicitly designing stablecoins as both cryptoassets and potential payment instruments, with separate systemic oversight.</p></div>
+        <div><b>Currency Watch join</b><p>The UK is sequencing perimeter first, payment assimilation second, tax treatment third.</p></div>
+        <div class="caveat"><b>Counterweight</b><p>Do not label the late-2027 regime live; current policy notes explicitly describe additional rules and payments reform.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.gov.uk/government/publications/regulatory-regime-for-cryptoassets-regulated-activities-draft-si-and-policy-note" target="_blank" rel="noopener">HM Treasury — cryptoasset regime</a> · <a href="https://www.gov.uk/government/publications/policy-note-draft-statutory-instrument-amending-the-cryptoasset-regulations/draft-statutory-instrument-amending-the-financial-services-and-markets-act-2000-cryptoassets-regulations-2026-policy-note" target="_blank" rel="noopener">HM Treasury — April 2026 stablecoin payments note</a> · <a href="https://www.gov.uk/government/publications/tax-treatment-of-stablecoins/taxation-of-stablecoins" target="_blank" rel="noopener">HMRC — stablecoin tax treatment</a></div>
+  </section>
+</article>
+<article class="entry t-watch" data-track="watch"
+  data-search="korea_watch watch south korea krw 2026-03-04 4 mar 2026 korea debates a bank-centered won-stablecoin model policy deliberation · not enacted the financial services commission’s digital asset committee discussed the government review draft; legislation and final issuer design remain unresolved. a bank-centered model, including a debated 50%+1 bank consortium structure, was discussed rather than adopted. not final. not final. existing bank token and wholesale-settlement pilots are separate from a won-stablecoin statute. bank of korea work prioritizes central-bank and commercial-bank money, with stablecoins as a supplementary lane. korea has advanced payment and token pilots, but no enacted native merchant-stablecoin bridge follows from them. the live institutional object is bank-deposit tokenization and wholesale settlement experimentation; the stablecoin issuer constitution remains open. korea is the comparison control: strong technical readiness does not equal settled law. a committee discussion or bank proof of concept is not a won-stablecoin law.">
+  <div class="date">4 Mar 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="track">Policy watch</span>
+      <span>South Korea</span>
+      <span>KRW</span>
+      <span class="status">policy deliberation · not enacted</span>
+    </div>
+    <h2>Korea debates a bank-centered won-stablecoin model</h2>
+    <p class="lead">Korea is the comparison control: strong technical readiness does not equal settled law.</p>
+    <div class="quick">
+      <div><b>Issuer</b><span>A bank-centered model, including a debated 50%+1 bank consortium structure, was discussed rather than adopted.</span></div>
+      <div><b>Reserve</b><span>Not final.</span></div>
+      <div><b>Terminal join</b><span>Korea has advanced payment and token pilots, but no enacted native merchant-stablecoin bridge follows from them.</span></div>
+    </div>
+    <details>
+      <summary>open legal object + rail reading</summary>
+      <div class="layers">
+        <div><b>Legal clock</b><p>The Financial Services Commission’s Digital Asset Committee discussed the government review draft; legislation and final issuer design remain unresolved.</p></div>
+        <div><b>Distribution</b><p>Not final. Existing bank token and wholesale-settlement pilots are separate from a won-stablecoin statute.</p></div>
+        <div><b>Settlement boundary</b><p>Bank of Korea work prioritizes central-bank and commercial-bank money, with stablecoins as a supplementary lane.</p></div>
+        <div><b>Currency Watch join</b><p>The live institutional object is bank-deposit tokenization and wholesale settlement experimentation; the stablecoin issuer constitution remains open.</p></div>
+        <div class="caveat"><b>Counterweight</b><p>A committee discussion or bank proof of concept is not a won-stablecoin law.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.fsc.go.kr/po010106/86373" target="_blank" rel="noopener">FSC — Digital Asset Committee, 4 Mar 2026</a></div>
+  </section>
+</article>
+<article class="entry t-active" data-track="active"
+  data-search="japan_psa active japan jpy / qualifying referenced fiat 2026-06-01 1 jun 2026 japan opens a bounded sovereign-debt reserve lane active the 2022 electronic-payment-instrument regime has applied since 1 jun 2023. act no. 66 of 2025 and its final implementing package took principal effect 1 jun 2026. banks, registered funds-transfer providers, and trust companies or trust banks issue different legal claims. a lighter non-custodial intermediary may broker for a full provider. covered trust stablecoins may place up to 50% in qualifying government bonds of no more than three months or callable term deposits without principal loss; at least 50% remains in demand deposits. daily fair-value and shortfall-cure rules apply. full epi providers handle sale, exchange, intermediation or custody. the lighter intermediary cannot hold customer assets. trust redemption, deposit-token settlement, bank reserves and a public-chain transfer are different objects and clocks. japan is building the issuer, intermediary and redemption adapter. a psp could preserve the tap while changing funding or payout behind it. jpy currency watch: underlying order b; exchange order b; current-payment usability a; systemic service a. this is orderly absorption, not evidence of a broken payment system. japan’s debt-funding rhyme with genius is real but narrower: only the trust lane gets bounded short-sovereign reserve flexibility. jpysc’s controlled-venue production is not open-wallet merchant circulation. tokenized bank deposits are not trust stablecoins.">
+  <div class="date">1 Jun 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="track">Active law</span>
+      <span>Japan</span>
+      <span>JPY / qualifying referenced fiat</span>
+      <span class="status">active</span>
+    </div>
+    <h2>Japan opens a bounded sovereign-debt reserve lane</h2>
+    <p class="lead">Japan’s debt-funding rhyme with GENIUS is real but narrower: only the trust lane gets bounded short-sovereign reserve flexibility.</p>
+    <div class="quick">
+      <div><b>Issuer</b><span>Banks, registered funds-transfer providers, and trust companies or trust banks issue different legal claims. A lighter non-custodial intermediary may broker for a full provider.</span></div>
+      <div><b>Reserve</b><span>Covered trust stablecoins may place up to 50% in qualifying government bonds of no more than three months or callable term deposits without principal loss; at least 50% remains in demand deposits. Daily fair-value and shortfall-cure rules apply.</span></div>
+      <div><b>Terminal join</b><span>Japan is building the issuer, intermediary and redemption adapter. A PSP could preserve the tap while changing funding or payout behind it.</span></div>
+    </div>
+    <details>
+      <summary>open legal object + rail reading</summary>
+      <div class="layers">
+        <div><b>Legal clock</b><p>The 2022 electronic-payment-instrument regime has applied since 1 Jun 2023. Act No. 66 of 2025 and its final implementing package took principal effect 1 Jun 2026.</p></div>
+        <div><b>Distribution</b><p>Full EPI providers handle sale, exchange, intermediation or custody. The lighter intermediary cannot hold customer assets.</p></div>
+        <div><b>Settlement boundary</b><p>Trust redemption, deposit-token settlement, bank reserves and a public-chain transfer are different objects and clocks.</p></div>
+        <div><b>Currency Watch join</b><p>JPY Currency Watch: underlying order B; exchange order B; current-payment usability A; systemic service A. This is orderly absorption, not evidence of a broken payment system.</p></div>
+        <div class="caveat"><b>Counterweight</b><p>JPYSC’s controlled-venue production is not open-wallet merchant circulation. Tokenized bank deposits are not trust stablecoins.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.fsa.go.jp/news/r7/sonota/20260522/20260522.html" target="_blank" rel="noopener">FSA — final implementing package, 22 May 2026</a> · <a href="https://www.fsa.go.jp/common/diet/217/02/gaiyou.pdf" target="_blank" rel="noopener">FSA — 2025 bill overview</a> · <a href="https://www.fsa.go.jp/en/news/2018/20180717.html" target="_blank" rel="noopener">FSA — stablecoin Q&amp;A</a></div>
+  </section>
+</article>
+<article class="entry t-adjacent" data-track="adjacent"
+  data-search="japan_fiea adjacent japan crypto market perimeter 2026-07-15 15 jul 2026 japan moves crypto markets—not stablecoins—toward securities-style law enacted · not yet operative the diet enacted the fiea/psa reform 15 jul 2026; principal commencement awaits a cabinet-set date within the statutory window. this is not a new stablecoin issuer charter. stablecoin electronic payment instruments stay under the payment services act. no stablecoin reserve change on this card. trading, offerings, lending, management, advice, disclosure, intermediary duties and unfair-trading controls move into a financial instruments and exchange act perimeter. market regulation and payment-money settlement remain deliberately separated. the law helps institutions classify crypto investment activity but does not make crypto a contactless tender. japan is building two doors: a payments-law door for redeemable money claims and a market-law door for investable cryptoassets. the split itself is the signal. japan is refusing to collapse ‘crypto,’ ‘stablecoin,’ and ‘bank deposit’ into one object. do not say japan made every cryptoasset a security, legal tender, or bank deposit.">
+  <div class="date">15 Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="track">Adjacent rail law</span>
+      <span>Japan</span>
+      <span>Crypto market perimeter</span>
+      <span class="status">enacted · not yet operative</span>
+    </div>
+    <h2>Japan moves crypto markets—not stablecoins—toward securities-style law</h2>
+    <p class="lead">The split itself is the signal. Japan is refusing to collapse ‘crypto,’ ‘stablecoin,’ and ‘bank deposit’ into one object.</p>
+    <div class="quick">
+      <div><b>Issuer</b><span>This is not a new stablecoin issuer charter. Stablecoin electronic payment instruments stay under the Payment Services Act.</span></div>
+      <div><b>Reserve</b><span>No stablecoin reserve change on this card.</span></div>
+      <div><b>Terminal join</b><span>The law helps institutions classify crypto investment activity but does not make crypto a contactless tender.</span></div>
+    </div>
+    <details>
+      <summary>open legal object + rail reading</summary>
+      <div class="layers">
+        <div><b>Legal clock</b><p>The Diet enacted the FIEA/PSA reform 15 Jul 2026; principal commencement awaits a Cabinet-set date within the statutory window.</p></div>
+        <div><b>Distribution</b><p>Trading, offerings, lending, management, advice, disclosure, intermediary duties and unfair-trading controls move into a Financial Instruments and Exchange Act perimeter.</p></div>
+        <div><b>Settlement boundary</b><p>Market regulation and payment-money settlement remain deliberately separated.</p></div>
+        <div><b>Currency Watch join</b><p>Japan is building two doors: a payments-law door for redeemable money claims and a market-law door for investable cryptoassets.</p></div>
+        <div class="caveat"><b>Counterweight</b><p>Do not say Japan made every cryptoasset a security, legal tender, or bank deposit.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.fsa.go.jp/common/diet/" target="_blank" rel="noopener">FSA — Diet bills</a> · <a href="https://www.fsa.go.jp/common/diet/221/02/02.pdf" target="_blank" rel="noopener">FSA — 2026 reform overview</a></div>
+  </section>
+</article>
+<article class="entry t-adjacent" data-track="adjacent"
+  data-search="japan_checks adjacent japan jpy bank payments 2027-04-01 fy2027 start japan plans to close the paper-check exchange official industry-government transition plan the plan targets zero paper bills and checks through the electronic clearinghouse by fy2026 end and abolition of exchange from fy2027 start. banks remain the obligors; the payment instruction changes form. no stablecoin reserve rule. electronic recorded monetary claims and internet transfers replace paper presentment. this is a direct cash/check-to-electronic-rail transition, separate from stablecoin law. it is the cleanest historical echo in the set: the paper instrument disappears while the bank relationship survives. a mature currency system can retire an old instrument without changing the unit of account. japan is modernizing both ends at once: retiring paper claims while legalizing new tokenized claims. this is an official transition plan, not a stablecoin statute and not proof every check disappears on one day.">
+  <div class="date">FY2027 start</div>
+  <section class="card">
+    <div class="meta">
+      <span class="track">Adjacent rail law</span>
+      <span>Japan</span>
+      <span>JPY bank payments</span>
+      <span class="status">official industry-government transition plan</span>
+    </div>
+    <h2>Japan plans to close the paper-check exchange</h2>
+    <p class="lead">Japan is modernizing both ends at once: retiring paper claims while legalizing new tokenized claims.</p>
+    <div class="quick">
+      <div><b>Issuer</b><span>Banks remain the obligors; the payment instruction changes form.</span></div>
+      <div><b>Reserve</b><span>No stablecoin reserve rule.</span></div>
+      <div><b>Terminal join</b><span>It is the cleanest historical echo in the set: the paper instrument disappears while the bank relationship survives.</span></div>
+    </div>
+    <details>
+      <summary>open legal object + rail reading</summary>
+      <div class="layers">
+        <div><b>Legal clock</b><p>The plan targets zero paper bills and checks through the electronic clearinghouse by FY2026 end and abolition of exchange from FY2027 start.</p></div>
+        <div><b>Distribution</b><p>Electronic recorded monetary claims and internet transfers replace paper presentment.</p></div>
+        <div><b>Settlement boundary</b><p>This is a direct cash/check-to-electronic-rail transition, separate from stablecoin law.</p></div>
+        <div><b>Currency Watch join</b><p>A mature currency system can retire an old instrument without changing the unit of account.</p></div>
+        <div class="caveat"><b>Counterweight</b><p>This is an official transition plan, not a stablecoin statute and not proof every check disappears on one day.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.fsa.go.jp/policy/tegatakogitte/tegatakogitte.html" target="_blank" rel="noopener">FSA — bills and checks transition</a></div>
+  </section>
+</article></section>
+<div class="foot">Facts lead. “Active,” “enacted,” and “watch” are deliberately distinct. This card plot does not treat legal authorization, technical capability, product announcement, merchant acceptance and settlement finality as one event.</div>
+</main>
+<script>
+const buttons=[...document.querySelectorAll('.filter')];
+const entries=[...document.querySelectorAll('.entry')];
+const search=document.querySelector('#search');
+function update(){
+  const active=new Set(buttons.filter(b=>b.classList.contains('on')).map(b=>b.dataset.track));
+  const q=search.value.trim().toLowerCase();
+  entries.forEach(e=>e.classList.toggle('hidden',!active.has(e.dataset.track)||(q&&!e.dataset.search.includes(q))));
+}
+buttons.forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('on');update()}));
+search.addEventListener('input',update);
+</script>
+</body></html>

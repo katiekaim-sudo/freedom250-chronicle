@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stablecoin Constitutions — Issuer × Reserve × GENIUS Gate</title>
+<style>
+:root{--ink:#ece9e1;--muted:#aaa59c;--paper:#101318;--panel:#171b22;--line:#343943;--gold:#d4a017}
+*{box-sizing:border-box} html{background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif}
+body{margin:0} a{color:#9bc9ef} .shell{max-width:1240px;margin:auto;padding:44px 24px 80px}
+.eyebrow{font:700 11px/1.2 ui-monospace,monospace;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+h1{font-family:Georgia,serif;font-size:clamp(38px,7vw,75px);line-height:.95;margin:14px 0 18px;max-width:1060px}
+.subtitle{font-family:Georgia,serif;font-style:italic;color:#d0cbc0;font-size:20px;margin:0 0 22px}
+.thesis{max-width:980px;color:#c8c3b9;font-size:17px;line-height:1.65;border-left:3px solid var(--gold);padding-left:18px}
+.clock{margin:34px 0 0;border:1px solid var(--line);background:#12161c;border-radius:10px;padding:22px}
+.clock h3{font:700 24px Georgia,serif;margin:0 0 15px} .clock-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.clock-grid div{background:#0e1116;border:1px solid #2e333c;border-radius:7px;padding:12px}
+.clock-grid b{display:block;color:#d8af47;font:800 10px/1.2 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.clock-grid span{font-size:12px;line-height:1.5;color:#c1bdb5}
+.controls{position:sticky;top:0;z-index:5;background:#101318ee;backdrop-filter:blur(10px);border-block:1px solid var(--line);padding:12px 0;margin:30px 0}
+.filter-row{display:grid;grid-template-columns:88px 1fr;gap:10px;align-items:start;margin-bottom:8px}
+.filter-label{font:800 10px/1.2 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#8f8a81;padding-top:9px}
+.filters{display:flex;gap:8px;flex-wrap:wrap} .filter{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer}
+.control-bottom{display:flex;gap:10px;align-items:center;margin-top:10px} .search{flex:1;background:#0d1015;border:1px solid var(--line);border-radius:7px;padding:10px 12px;color:#fff}
+.result-count{white-space:nowrap;color:#a8a39a;font:700 11px/1.2 ui-monospace,monospace}
+.timeline{position:relative} .timeline:before{content:"";position:absolute;left:111px;top:0;bottom:0;width:1px;background:var(--line)}
+.entry{display:grid;grid-template-columns:92px 1fr;gap:38px;margin:0 0 28px} .date{font:700 12px/1.4 ui-monospace,monospace;color:var(--muted);padding-top:17px;text-align:right}
+.card{background:linear-gradient(145deg,#1a1e26,#14181e);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:10px;padding:19px 22px;box-shadow:0 14px 45px #0004}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font:700 10px/1.2 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.05em}
+.meta span{border:1px solid var(--line);border-radius:999px;padding:5px 8px} .meta .symbol{font-size:13px;color:#fff;border-color:#d4a01788;background:#d4a01716} .status{color:#e9e3d5!important}
+h2{font:700 27px/1.12 Georgia,serif;margin:14px 0 17px} .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.quick div,.layers>div,.boundary{background:#0e1116;border:1px solid #292e37;border-radius:7px;padding:11px}
+.quick b,.layers b,.boundary b{display:block;color:#d8af47;font:800 10px/1.2 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.quick span,.layers p,.boundary p{font-size:13px;line-height:1.55;color:#c6c2ba;margin:0}
+details{border-top:1px solid var(--line);margin-top:17px;padding-top:12px} summary{cursor:pointer;color:#d9b968;font:700 12px/1.2 ui-monospace,monospace}
+.layers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px} .boundary{margin-top:10px;border-color:#6b3b3b;background:#1b1214}
+.sources{font-size:11px;line-height:1.55;margin-top:14px;color:var(--muted)} .hidden{display:none}
+.foot{margin-top:30px;color:#827e76;font-size:11px;line-height:1.55}
+.r-uninsured-national-bank .card{border-left-color:#4a9eda}.r-uninsured-national-bank .route-chip{color:#4a9eda;border-color:#4a9eda88;background:#4a9eda16}button[data-route="uninsured-national-bank"].on{color:#fff;border-color:#4a9eda;background:#4a9eda2d}
+.r-state-qualified .card{border-left-color:#9a7be8}.r-state-qualified .route-chip{color:#9a7be8;border-color:#9a7be888;background:#9a7be816}button[data-route="state-qualified"].on{color:#fff;border-color:#9a7be8;background:#9a7be82d}
+.r-idi-subsidiary .card{border-left-color:#3dbd7d}.r-idi-subsidiary .route-chip{color:#3dbd7d;border-color:#3dbd7d88;background:#3dbd7d16}button[data-route="idi-subsidiary"].on{color:#fff;border-color:#3dbd7d;background:#3dbd7d2d}
+.r-foreign .card{border-left-color:#dd8b43}.r-foreign .route-chip{color:#dd8b43;border-color:#dd8b4388;background:#dd8b4316}button[data-route="foreign"].on{color:#fff;border-color:#dd8b43;background:#dd8b432d}
+.r-unresolved .card{border-left-color:#827e76}.r-unresolved .route-chip{color:#827e76;border-color:#827e7688;background:#827e7616}button[data-route="unresolved"].on{color:#fff;border-color:#827e76;background:#827e762d}
+.e-attested-live{color:#3dbd7d!important;border-color:#3dbd7d88!important;background:#3dbd7d16!important}button[data-evidence="attested-live"].on{color:#fff;border-color:#3dbd7d;background:#3dbd7d2d}
+.e-disclosed-live{color:#4a9eda!important;border-color:#4a9eda88!important;background:#4a9eda16!important}button[data-evidence="disclosed-live"].on{color:#fff;border-color:#4a9eda;background:#4a9eda2d}
+.e-marketing-watch{color:#827e76!important;border-color:#827e7688!important;background:#827e7616!important}button[data-evidence="marketing-watch"].on{color:#fff;border-color:#827e76;background:#827e762d}
+@media(max-width:900px){.clock-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.shell{padding-inline:14px}.timeline:before{left:0}.entry{grid-template-columns:1fr;gap:7px;padding-left:15px}.date{text-align:left;padding:0}.quick,.layers,.clock-grid{grid-template-columns:1fr}.filter-row{grid-template-columns:1fr;gap:3px}.filter-label{padding-top:0}.control-bottom{align-items:stretch;flex-direction:column}.result-count{text-align:right}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+</head>
+<body><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Research Atlas</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="shell">
+<div class="eyebrow">Freedom 250 Observatory · monetary constitutions · as of 2026-07-28</div>
+<h1>Stablecoin Constitutions — Issuer × Reserve × GENIUS Gate</h1>
+<p class="subtitle">Nine dollar tokens, nine present-day promises, five statutory doorways</p>
+<p class="thesis">GENIUS does not make a blockchain or wallet lawful. It makes a particular issuer-and-reserve constitution eligible for U.S. issuance and later intermediary distribution. Existing payment adapters can survive the transition, but the token placed inside them must pass the issuer, reserve, redemption and lawful-order gates.</p>
+<section class="clock">
+  <h3>The two-stage statutory switch</h3>
+  <div class="clock-grid">
+    <div><b>18 Jul 2025</b><span>GENIUS enacted. Present charters and licenses continue to be the current authority.</span></div>
+    <div><b>General effective date</b><span>Earlier of 18 Jan 2027 or 120 days after final implementing regulations.</span></div>
+    <div><b>At effectiveness</b><span>U.S. issuance becomes a permitted-issuer activity; non-permitted coins lose specified institutional money treatment.</span></div>
+    <div><b>18 Jul 2028</b><span>U.S. service providers may carry only permitted coins or coins satisfying the foreign exception.</span></div>
+  </div>
+</section>
+<div class="controls">
+  <div class="filter-row"><div class="filter-label">Doorway</div><div class="filters"><button class="filter route-filter on" data-route="uninsured-national-bank">Uninsured national bank</button><button class="filter route-filter on" data-route="state-qualified">State-qualified</button><button class="filter route-filter on" data-route="idi-subsidiary">IDI subsidiary</button><button class="filter route-filter on" data-route="foreign">Foreign issuer</button><button class="filter route-filter on" data-route="unresolved">Issuer unresolved</button></div></div>
+  <div class="filter-row"><div class="filter-label">Evidence</div><div class="filters"><button class="filter evidence-filter on" data-evidence="attested-live">Live + attested</button><button class="filter evidence-filter on" data-evidence="disclosed-live">Live + disclosed</button><button class="filter evidence-filter on" data-evidence="marketing-watch">Marketing / watch</button></div></div>
+  <div class="control-bottom"><input id="search" class="search" placeholder="Search issuer, reserve, redemption, SoFi, Tether, foreign, subsidiary…"><span id="resultCount" class="result-count"></span></div>
+</div>
+<section class="timeline">
+<article class="entry r-foreign" data-route="foreign"
+  data-evidence="attested-live" data-search="usdt usd₮ tether foreign attested-live 2014-10-06 2014 → 28 jul 2026 usd₮ is the scale test—and the reserve-fit problem genius makes visible live global scale · quarterly bdo attestation tether international, s.a. de c.v. is the cnad-authorized usd₮ issuer, dasp and customer redemption counterparty. tether operations s.a. de c.v. is a separate owner/brand/site entity. tether reports token-related liabilities and reserves exceeding them; direct redemption is governed through eligible tether customer relationships. treasury-heavy but broader than the genius list: q1 2026 disclosure includes about $141 billion of direct and indirect treasury-bill exposure, about $20 billion of physical gold and about $7 billion of bitcoin, alongside other assets. gold and bitcoin are not genius permitted reserve categories. the current portfolio therefore cannot be assumed to satisfy the act without restructuring, segregation or a different product. the issuer&#x27;s regulatory document describes reserve assets held with multiple third-party banks and licensed financial institutions rather than one public custodian; it does not establish the u.s.-located liquidity reserve required by the foreign exception. direct primary redemption is permissioned; most holders use exchanges, market makers and wallets. the world&#x27;s deepest stablecoin distribution network is the asset&#x27;s strength—and becomes its exposure to the 2028 intermediary gate. foreign route: home-regime comparability, occ registration, u.s. customer liquidity reserves and lawful-order capability. reserve composition remains an additional substantive hurdle. either qualify usd₮ through the foreign route with a genius-compliant reserve constitution or shift u.s. distribution toward usa₮ while usd₮ remains global. u.s. wallets and exchanges cannot offer or sell the coin to u.s. persons after july 18, 2028 unless the foreign exception is satisfied. usd₮ is already a major offshore conduit into u.s. treasury demand; genius makes continued u.s. distribution conditional on bringing the issuer and reserve constitution inside a recognized supervisory perimeter. reserve assets exceeding liabilities is not the same test as every reserve asset falling within genius&#x27;s permitted list.">
+  <div class="date">2014 → 28 Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="symbol">USD₮</span>
+      <span class="route-chip">Foreign issuer</span>
+      <span class="evidence-chip e-attested-live">Live + attested</span>
+      <span>Tether</span>
+      <span class="status">live global scale · quarterly BDO attestation</span>
+    </div>
+    <h2>USD₮ is the scale test—and the reserve-fit problem GENIUS makes visible</h2>
+    <div class="quick">
+      <div><b>Who owes the dollar?</b><span>Tether International, S.A. de C.V. is the CNAD-authorized USD₮ issuer, DASP and customer redemption counterparty. Tether Operations S.A. de C.V. is a separate owner/brand/site entity.</span></div>
+      <div><b>What backs it?</b><span>Treasury-heavy but broader than the GENIUS list: Q1 2026 disclosure includes about $141 billion of direct and indirect Treasury-bill exposure, about $20 billion of physical gold and about $7 billion of Bitcoin, alongside other assets.</span></div>
+      <div><b>GENIUS gate</b><span>Foreign route: home-regime comparability, OCC registration, U.S. customer liquidity reserves and lawful-order capability. Reserve composition remains an additional substantive hurdle.</span></div>
+    </div>
+    <details>
+      <summary>open the stablecoin constitution</summary>
+      <div class="layers">
+        <div><b>Issuer obligation</b><p>Tether reports token-related liabilities and reserves exceeding them; direct redemption is governed through eligible Tether customer relationships.</p></div>
+        <div><b>Reserve fit</b><p>Gold and Bitcoin are not GENIUS permitted reserve categories. The current portfolio therefore cannot be assumed to satisfy the Act without restructuring, segregation or a different product.</p></div>
+        <div><b>Custody / segregation</b><p>The issuer&#x27;s regulatory document describes reserve assets held with multiple third-party banks and licensed financial institutions rather than one public custodian; it does not establish the U.S.-located liquidity reserve required by the foreign exception.</p></div>
+        <div><b>Primary redemption</b><p>Direct primary redemption is permissioned; most holders use exchanges, market makers and wallets.</p></div>
+        <div><b>Distribution surface</b><p>The world&#x27;s deepest stablecoin distribution network is the asset&#x27;s strength—and becomes its exposure to the 2028 intermediary gate.</p></div>
+        <div><b>Required structural move</b><p>Either qualify USD₮ through the foreign route with a GENIUS-compliant reserve constitution or shift U.S. distribution toward USA₮ while USD₮ remains global.</p></div>
+        <div><b>18 July 2028</b><p>U.S. wallets and exchanges cannot offer or sell the coin to U.S. persons after July 18, 2028 unless the foreign exception is satisfied.</p></div>
+        <div><b>Treasury channel</b><p>USD₮ is already a major offshore conduit into U.S. Treasury demand; GENIUS makes continued U.S. distribution conditional on bringing the issuer and reserve constitution inside a recognized supervisory perimeter.</p></div>
+      </div>
+      <div class="boundary"><b>Do not overclaim</b><p>Reserve assets exceeding liabilities is not the same test as every reserve asset falling within GENIUS&#x27;s permitted list.</p></div>
+    </details>
+    <div class="sources"><a href="https://tether.io/news/tether-posts-1-04b-q1-2026-profit-despite-highly-volatile-global-markets-reaches-all-time-highs-8-23b-reserve-buffer-and-maintains-u-s-treasury-heavy-backing/" target="_blank" rel="noopener">Tether — Q1 2026 reserve report summary</a> · <a href="https://tether.to/public/Relevant_Information_Document_-_Tether_International%2C_S.A._de_C.V..pdf" target="_blank" rel="noopener">Tether International — regulatory entity document</a> · <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title12-section5902" target="_blank" rel="noopener">U.S. Code — distribution and treatment gates</a> · <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title12-section5916" target="_blank" rel="noopener">U.S. Code — foreign exception</a></div>
+  </section>
+</article>
+<article class="entry r-uninsured-national-bank" data-route="uninsured-national-bank"
+  data-evidence="attested-live" data-search="usdp usdp pax dollar uninsured-national-bank attested-live 2018-09-10 2018 → 28 jul 2026 usdp is the clean control: the issuer and the brand sit in one house live · monthly reserve reporting current paxos terms identify paxos trust company, n.a. as the issuer and manager of usdp. paxos represents usdp as fully backed, legally protected and redeemable 1:1. paxos describes u.s.-dollar stablecoin reserves as cash and cash-equivalent instruments, with reserve reports and attestations. the asset mix is directionally aligned; a formal genius approval and rule-conformance review remain necessary. reserve and customer assets are described as segregated and bankruptcy remote under the paxos framework. paxos customers can convert usdp to dollars; secondary holders may need an eligible paxos account or intermediary. ethereum and solana distribution, with a smaller branded-wallet surface than pyusd. the same uninsured-national-bank federal-qualified-issuer route as pyusd. paxos can seek one federal issuer operating model across multiple branded coins, but each reserve, disclosure and redemption program still needs controlled reporting. approval of the actual issuer is what protects exchange and wallet access; the ticker&#x27;s age does not grandfather it. usdp supplies the same narrow-reserve demand channel without a separate consumer-wallet brand. older paxos documents identify a new york llc. this card uses the current june 2026 terms naming paxos trust company, n.a.; historical documents should not silently overwrite the current issuer record.">
+  <div class="date">2018 → 28 Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="symbol">USDP</span>
+      <span class="route-chip">Uninsured national bank</span>
+      <span class="evidence-chip e-attested-live">Live + attested</span>
+      <span>Pax Dollar</span>
+      <span class="status">live · monthly reserve reporting</span>
+    </div>
+    <h2>USDP is the clean control: the issuer and the brand sit in one house</h2>
+    <div class="quick">
+      <div><b>Who owes the dollar?</b><span>Current Paxos terms identify Paxos Trust Company, N.A. as the issuer and manager of USDP.</span></div>
+      <div><b>What backs it?</b><span>Paxos describes U.S.-dollar stablecoin reserves as cash and cash-equivalent instruments, with reserve reports and attestations.</span></div>
+      <div><b>GENIUS gate</b><span>The same uninsured-national-bank Federal-qualified-issuer route as PYUSD.</span></div>
+    </div>
+    <details>
+      <summary>open the stablecoin constitution</summary>
+      <div class="layers">
+        <div><b>Issuer obligation</b><p>Paxos represents USDP as fully backed, legally protected and redeemable 1:1.</p></div>
+        <div><b>Reserve fit</b><p>The asset mix is directionally aligned; a formal GENIUS approval and rule-conformance review remain necessary.</p></div>
+        <div><b>Custody / segregation</b><p>Reserve and customer assets are described as segregated and bankruptcy remote under the Paxos framework.</p></div>
+        <div><b>Primary redemption</b><p>Paxos customers can convert USDP to dollars; secondary holders may need an eligible Paxos account or intermediary.</p></div>
+        <div><b>Distribution surface</b><p>Ethereum and Solana distribution, with a smaller branded-wallet surface than PYUSD.</p></div>
+        <div><b>Required structural move</b><p>Paxos can seek one federal issuer operating model across multiple branded coins, but each reserve, disclosure and redemption program still needs controlled reporting.</p></div>
+        <div><b>18 July 2028</b><p>Approval of the actual issuer is what protects exchange and wallet access; the ticker&#x27;s age does not grandfather it.</p></div>
+        <div><b>Treasury channel</b><p>USDP supplies the same narrow-reserve demand channel without a separate consumer-wallet brand.</p></div>
+      </div>
+      <div class="boundary"><b>Do not overclaim</b><p>Older Paxos documents identify a New York LLC. This card uses the current June 2026 terms naming Paxos Trust Company, N.A.; historical documents should not silently overwrite the current issuer record.</p></div>
+    </details>
+    <div class="sources"><a href="https://www.paxos.com/terms-and-conditions/stablecoin-terms-conditions" target="_blank" rel="noopener">Paxos — current stablecoin terms</a> · <a href="https://www.paxos.com/regulation-and-transparency/" target="_blank" rel="noopener">Paxos — regulation and transparency</a> · <a href="https://support.paxos.com/articles/3639591263-pax-dollar-usdp" target="_blank" rel="noopener">Paxos — USDP support record</a></div>
+  </section>
+</article>
+<article class="entry r-state-qualified" data-route="state-qualified"
+  data-evidence="attested-live" data-search="usdc usdc usd coin state-qualified attested-live 2018-09-26 2018 → 28 jul 2026 usdc now has a disclosed three-box transition plan live current issuer · planned ny issuer handoff · federal reserve bank circle internet financial, llc remains the current issuer outside the eea. circle represented to occ that it plans to transition usdc issuance to a separate proposed new york limited-purpose trust, circle internet trust company, llc. circle internet financial europe sas remains the eea issuer. eligible circle mint customers may mint and redeem 1:1. a holder&#x27;s direct claim is conditional on becoming an eligible mint customer; individuals generally reach usdc through wallets, exchanges and neobanks. highly liquid fiat reserves held separately for holders: bank deposits, short-dated treasuries and overnight treasury repo, principally through the blackrock-managed circle reserve fund. strong asset-category alignment with the genius schedule is visible, but no public ppsi reserve determination exists. circle&#x27;s own disclosure remains the evidence. the circle reserve fund is managed by blackrock and bny is primary reserve custodian. circle national trust is designed for future reserve management, collateral trusteeship and digital-asset custody; it expressly does not issue usdc. direct 1:1 redemption is institutional through circle mint; everyday holders normally sell or redeem through an intermediary. broad wallet, exchange, bank, card-network and processor distribution. the adapter layer is already mature. circle&#x27;s represented path is a true issuer handoff to circle internet trust company, llc, followed by the state-qualified ppsi route under a certified new york regime. the current cif llc federal-nonbank route remains only a fallback if the plan changes. obtain nydfs charter/stablecoin approval for circle internet trust; obtain the required genius state certification and issuer approval; execute assignment/assumption or new terms; align token administration, reserve-control agreements and attestations to the new issuer. if the issuer becomes permitted, u.s. digital-asset service providers can continue carrying the coin. existing integrations do not themselves satisfy the issuer gate. usdc already converts circulation into deposits, treasury bills and treasury repo; genius would standardize that private-dollar-to-public-debt channel. circle national trust is not the planned issuer. circle internet trust company, llc is a separate proposed ny entity, and no operative novation or ny approval was located.">
+  <div class="date">2018 → 28 Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="symbol">USDC</span>
+      <span class="route-chip">State-qualified</span>
+      <span class="evidence-chip e-attested-live">Live + attested</span>
+      <span>USD Coin</span>
+      <span class="status">live current issuer · planned NY issuer handoff · federal reserve bank</span>
+    </div>
+    <h2>USDC now has a disclosed three-box transition plan</h2>
+    <div class="quick">
+      <div><b>Who owes the dollar?</b><span>Circle Internet Financial, LLC remains the current issuer outside the EEA. Circle represented to OCC that it plans to transition USDC issuance to a separate proposed New York limited-purpose trust, Circle Internet Trust Company, LLC. Circle Internet Financial Europe SAS remains the EEA issuer.</span></div>
+      <div><b>What backs it?</b><span>Highly liquid fiat reserves held separately for holders: bank deposits, short-dated Treasuries and overnight Treasury repo, principally through the BlackRock-managed Circle Reserve Fund.</span></div>
+      <div><b>GENIUS gate</b><span>Circle&#x27;s represented path is a true issuer handoff to Circle Internet Trust Company, LLC, followed by the State-qualified PPSI route under a certified New York regime. The current CIF LLC federal-nonbank route remains only a fallback if the plan changes.</span></div>
+    </div>
+    <details>
+      <summary>open the stablecoin constitution</summary>
+      <div class="layers">
+        <div><b>Issuer obligation</b><p>Eligible Circle Mint customers may mint and redeem 1:1. A holder&#x27;s direct claim is conditional on becoming an eligible Mint customer; individuals generally reach USDC through wallets, exchanges and neobanks.</p></div>
+        <div><b>Reserve fit</b><p>Strong asset-category alignment with the GENIUS schedule is visible, but no public PPSI reserve determination exists. Circle&#x27;s own disclosure remains the evidence.</p></div>
+        <div><b>Custody / segregation</b><p>The Circle Reserve Fund is managed by BlackRock and BNY is primary reserve custodian. Circle National Trust is designed for future reserve management, collateral trusteeship and digital-asset custody; it expressly does not issue USDC.</p></div>
+        <div><b>Primary redemption</b><p>Direct 1:1 redemption is institutional through Circle Mint; everyday holders normally sell or redeem through an intermediary.</p></div>
+        <div><b>Distribution surface</b><p>Broad wallet, exchange, bank, card-network and processor distribution. The adapter layer is already mature.</p></div>
+        <div><b>Required structural move</b><p>Obtain NYDFS charter/stablecoin approval for Circle Internet Trust; obtain the required GENIUS state certification and issuer approval; execute assignment/assumption or new terms; align token administration, reserve-control agreements and attestations to the new issuer.</p></div>
+        <div><b>18 July 2028</b><p>If the issuer becomes permitted, U.S. digital-asset service providers can continue carrying the coin. Existing integrations do not themselves satisfy the issuer gate.</p></div>
+        <div><b>Treasury channel</b><p>USDC already converts circulation into deposits, Treasury bills and Treasury repo; GENIUS would standardize that private-dollar-to-public-debt channel.</p></div>
+      </div>
+      <div class="boundary"><b>Do not overclaim</b><p>Circle National Trust is not the planned issuer. Circle Internet Trust Company, LLC is a separate proposed NY entity, and no operative novation or NY approval was located.</p></div>
+    </details>
+    <div class="sources"><a href="https://www.circle.com/usdc" target="_blank" rel="noopener">Circle — USDC and redemption</a> · <a href="https://www.circle.com/transparency" target="_blank" rel="noopener">Circle — reserve transparency</a> · <a href="https://www.circle.com/legal/usdc-terms" target="_blank" rel="noopener">Circle — USDC terms</a> · <a href="https://www.circle.com/circle-mint" target="_blank" rel="noopener">Circle — Mint and National Trust roles</a> · <a href="https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-actions/2026/ca1356.pdf" target="_blank" rel="noopener">OCC — Circle three-box business plan</a> · <a href="https://www.dfs.ny.gov/reports-and-publications/weekly-bulletins/wb20260227" target="_blank" rel="noopener">NYDFS — Circle Internet Trust filing</a></div>
+  </section>
+</article>
+<article class="entry r-uninsured-national-bank" data-route="uninsured-national-bank"
+  data-evidence="attested-live" data-search="pyusd pyusd paypal usd uninsured-national-bank attested-live 2023-08-07 2023 → 28 jul 2026 paypal owns the distribution surface; paxos owns the dollar promise live · monthly reserve reports + kpmg attestations paxos trust company, n.a. issues and redeems pyusd. paypal digital, inc. carries the customer crypto contract and wallet/omnibus-custody relationship; paypal brands and distributes the coin. paxos manages issuance and redemption; pyusd is represented as fully backed and redeemable 1:1 for u.s. dollars. paxos reports reserves composed of u.s. dollar deposits, u.s. treasury instruments and cash equivalents, with monthly composition reports and third-party attestations. the disclosed reserve categories are close to the genius schedule. exact maturity, custody, diversification and operating requirements remain for final-rule and supervisory review. paxos holds the pyusd reserve custody obligation. paypal digital holds customer tokens as agent in omnibus accounts directly or through a service provider; customer-token custody is not reserve custody. paxos customers can convert pyusd to dollars; paypal and other platforms provide secondary access and conversion. paypal/venmo and public-blockchain distribution create a very large wallet adapter without moving the issuer obligation to paypal. paxos trust company, n.a., as an uninsured national bank, fits the federal-qualified-issuer application route and must obtain occ approval to issue under genius. obtain ppsi approval and conform the existing reserve, reporting, redemption, capital, risk and lawful-order programs to final rules. a permitted paxos issuer preserves pyusd&#x27;s u.s. wallet and exchange access. paypal&#x27;s distribution strength cannot substitute for paxos&#x27;s approval. pyusd turns paypal-scale wallet balances into demand for cash, treasury instruments and treasury-backed liquidity. paxos&#x27;s national trust-bank status is current authority; it is not a completed genius ppsi approval.">
+  <div class="date">2023 → 28 Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="symbol">PYUSD</span>
+      <span class="route-chip">Uninsured national bank</span>
+      <span class="evidence-chip e-attested-live">Live + attested</span>
+      <span>PayPal USD</span>
+      <span class="status">live · monthly reserve reports + KPMG attestations</span>
+    </div>
+    <h2>PayPal owns the distribution surface; Paxos owns the dollar promise</h2>
+    <div class="quick">
+      <div><b>Who owes the dollar?</b><span>Paxos Trust Company, N.A. issues and redeems PYUSD. PayPal Digital, Inc. carries the customer crypto contract and wallet/omnibus-custody relationship; PayPal brands and distributes the coin.</span></div>
+      <div><b>What backs it?</b><span>Paxos reports reserves composed of U.S. dollar deposits, U.S. Treasury instruments and cash equivalents, with monthly composition reports and third-party attestations.</span></div>
+      <div><b>GENIUS gate</b><span>Paxos Trust Company, N.A., as an uninsured national bank, fits the Federal-qualified-issuer application route and must obtain OCC approval to issue under GENIUS.</span></div>
+    </div>
+    <details>
+      <summary>open the stablecoin constitution</summary>
+      <div class="layers">
+        <div><b>Issuer obligation</b><p>Paxos manages issuance and redemption; PYUSD is represented as fully backed and redeemable 1:1 for U.S. dollars.</p></div>
+        <div><b>Reserve fit</b><p>The disclosed reserve categories are close to the GENIUS schedule. Exact maturity, custody, diversification and operating requirements remain for final-rule and supervisory review.</p></div>
+        <div><b>Custody / segregation</b><p>Paxos holds the PYUSD reserve custody obligation. PayPal Digital holds customer tokens as agent in omnibus accounts directly or through a service provider; customer-token custody is not reserve custody.</p></div>
+        <div><b>Primary redemption</b><p>Paxos customers can convert PYUSD to dollars; PayPal and other platforms provide secondary access and conversion.</p></div>
+        <div><b>Distribution surface</b><p>PayPal/Venmo and public-blockchain distribution create a very large wallet adapter without moving the issuer obligation to PayPal.</p></div>
+        <div><b>Required structural move</b><p>Obtain PPSI approval and conform the existing reserve, reporting, redemption, capital, risk and lawful-order programs to final rules.</p></div>
+        <div><b>18 July 2028</b><p>A permitted Paxos issuer preserves PYUSD&#x27;s U.S. wallet and exchange access. PayPal&#x27;s distribution strength cannot substitute for Paxos&#x27;s approval.</p></div>
+        <div><b>Treasury channel</b><p>PYUSD turns PayPal-scale wallet balances into demand for cash, Treasury instruments and Treasury-backed liquidity.</p></div>
+      </div>
+      <div class="boundary"><b>Do not overclaim</b><p>Paxos&#x27;s national trust-bank status is current authority; it is not a completed GENIUS PPSI approval.</p></div>
+    </details>
+    <div class="sources"><a href="https://www.paxos.com/pyusd-transparency" target="_blank" rel="noopener">Paxos — PYUSD transparency</a> · <a href="https://www.paxos.com/terms-and-conditions/stablecoin-terms-conditions" target="_blank" rel="noopener">Paxos — current stablecoin terms</a> · <a href="https://docs.paxos.com/guides/stablecoin/pyusd" target="_blank" rel="noopener">Paxos — PYUSD documentation</a> · <a href="https://www.paypal.com/us/legalhub/paypal/cryptocurrencies-tnc?locale.x=en_US" target="_blank" rel="noopener">PayPal — customer, custody and Paxos roles</a></div>
+  </section>
+</article>
+<article class="entry r-foreign" data-route="foreign"
+  data-evidence="attested-live" data-search="usdg usdg global dollar foreign attested-live 2024-11-01 2024 → 28 jul 2026 usdg can be reserve-clean and still face the foreign-country gate live · mas issuer · monthly attestations paxos digital singapore pte. ltd. and paxos issuance europe oy jointly manage/issue usdg under separate foreign supervisory regimes; the u.s. foreign-route analysis must identify the actual issuing branch for each token. usdg is available for purchase and redemption from paxos 1:1, with reserves held in segregated accounts. cash and cash equivalents, including disclosed u.s. treasury bills in reserve reports. the asset constitution appears close, but genius tests the foreign regulatory regime, u.s. liquidity reserve and registration—not only the portfolio. reserve assets are held in segregated accounts under the applicable singapore or eea issuer framework; global dollar network participants distribute but do not become the redemption obligor. paxos provides direct institutional mint/redeem and conversion channels. global dollar network partners, wallets, exchanges and processor integrations distribute the coin. foreign route, evaluated issuer-by-issuer: treasury must determine the relevant home regime comparable; that issuer must register with occ, hold sufficient u.s. reserves and comply with lawful orders. select and disclose the issuer serving u.s. distribution, win comparability for its home regime, register that entity and document u.s. liquidity reserves and lawful-order capability. without the foreign exception, u.s. service providers must stop offering or selling usdg to u.s. persons on july 18, 2028. usdg already translates foreign platform demand into dollar cash and treasury bills; genius would add a specifically u.s.-located liquidity layer. a comparable home regime has to be affirmatively determined; mas supervision is not self-executing u.s. recognition.">
+  <div class="date">2024 → 28 Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="symbol">USDG</span>
+      <span class="route-chip">Foreign issuer</span>
+      <span class="evidence-chip e-attested-live">Live + attested</span>
+      <span>Global Dollar</span>
+      <span class="status">live · MAS issuer · monthly attestations</span>
+    </div>
+    <h2>USDG can be reserve-clean and still face the foreign-country gate</h2>
+    <div class="quick">
+      <div><b>Who owes the dollar?</b><span>Paxos Digital Singapore Pte. Ltd. and Paxos Issuance Europe Oy jointly manage/issue USDG under separate foreign supervisory regimes; the U.S. foreign-route analysis must identify the actual issuing branch for each token.</span></div>
+      <div><b>What backs it?</b><span>Cash and cash equivalents, including disclosed U.S. Treasury bills in reserve reports.</span></div>
+      <div><b>GENIUS gate</b><span>Foreign route, evaluated issuer-by-issuer: Treasury must determine the relevant home regime comparable; that issuer must register with OCC, hold sufficient U.S. reserves and comply with lawful orders.</span></div>
+    </div>
+    <details>
+      <summary>open the stablecoin constitution</summary>
+      <div class="layers">
+        <div><b>Issuer obligation</b><p>USDG is available for purchase and redemption from Paxos 1:1, with reserves held in segregated accounts.</p></div>
+        <div><b>Reserve fit</b><p>The asset constitution appears close, but GENIUS tests the foreign regulatory regime, U.S. liquidity reserve and registration—not only the portfolio.</p></div>
+        <div><b>Custody / segregation</b><p>Reserve assets are held in segregated accounts under the applicable Singapore or EEA issuer framework; Global Dollar Network participants distribute but do not become the redemption obligor.</p></div>
+        <div><b>Primary redemption</b><p>Paxos provides direct institutional mint/redeem and conversion channels.</p></div>
+        <div><b>Distribution surface</b><p>Global Dollar Network partners, wallets, exchanges and processor integrations distribute the coin.</p></div>
+        <div><b>Required structural move</b><p>Select and disclose the issuer serving U.S. distribution, win comparability for its home regime, register that entity and document U.S. liquidity reserves and lawful-order capability.</p></div>
+        <div><b>18 July 2028</b><p>Without the foreign exception, U.S. service providers must stop offering or selling USDG to U.S. persons on July 18, 2028.</p></div>
+        <div><b>Treasury channel</b><p>USDG already translates foreign platform demand into dollar cash and Treasury bills; GENIUS would add a specifically U.S.-located liquidity layer.</p></div>
+      </div>
+      <div class="boundary"><b>Do not overclaim</b><p>A comparable home regime has to be affirmatively determined; MAS supervision is not self-executing U.S. recognition.</p></div>
+    </details>
+    <div class="sources"><a href="https://docs.paxos.com/guides/stablecoin/usdg" target="_blank" rel="noopener">Paxos — USDG documentation</a> · <a href="https://www.paxos.com/terms-and-conditions/stablecoin-terms-conditions" target="_blank" rel="noopener">Paxos — current stablecoin terms</a> · <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title12-section5916" target="_blank" rel="noopener">U.S. Code — foreign exception</a></div>
+  </section>
+</article>
+<article class="entry r-state-qualified" data-route="state-qualified"
+  data-evidence="attested-live" data-search="rlusd rlusd ripple usd state-qualified attested-live 2024-12-17 2024 → 28 jul 2026 rlusd&#x27;s legal center is standard custody, not the ripple software stack live · nydfs trust issuer · monthly attestations standard custody &amp; trust company, llc issues rlusd and is supervised by nydfs as a limited-purpose trust company. the issuer represents rlusd as backed by segregated reserves and subject to redemption procedures with service-level controls. u.s. dollars and other cash equivalents, held in segregated accounts; ripple reports monthly independent attestations. the disclosed liquid-reserve design is compatible in concept, but exact permitted-asset composition and the state regime&#x27;s genius certification remain controlling. bny is the primary reserve custodian and supplies transaction banking. ripple&#x27;s network and enterprise software roles remain separate from standard custody&#x27;s issuer obligation. institutional redemption is governed through the issuer/distribution program; public retail direct-access terms are less prominent than the reserve attestations. ripple supplies enterprise distribution and ledger integrations while standard custody carries the issuance obligation. likely path: become a state qualified payment stablecoin issuer under a certified new york regime while below the $10 billion federal-supervision threshold, or transition to a federal route. preserve standard custody as the issuer, bny as reserve custodian and ripple as brand/distributor; obtain state approval under a certified regime and monitor the $10 billion consolidated-issuance trigger. the coin remains distributable through u.s. intermediaries only if the issuer is permitted by then. rlusd&#x27;s short-term liquid reserve design channels institutional token demand toward cash and government liquidity instruments. ripple&#x27;s corporate licenses, ledgers and prospective federal entities do not replace the current issuer named in the reserve disclosures.">
+  <div class="date">2024 → 28 Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="symbol">RLUSD</span>
+      <span class="route-chip">State-qualified</span>
+      <span class="evidence-chip e-attested-live">Live + attested</span>
+      <span>Ripple USD</span>
+      <span class="status">live · NYDFS trust issuer · monthly attestations</span>
+    </div>
+    <h2>RLUSD&#x27;s legal center is Standard Custody, not the Ripple software stack</h2>
+    <div class="quick">
+      <div><b>Who owes the dollar?</b><span>Standard Custody &amp; Trust Company, LLC issues RLUSD and is supervised by NYDFS as a limited-purpose trust company.</span></div>
+      <div><b>What backs it?</b><span>U.S. dollars and other cash equivalents, held in segregated accounts; Ripple reports monthly independent attestations.</span></div>
+      <div><b>GENIUS gate</b><span>Likely path: become a State qualified payment stablecoin issuer under a certified New York regime while below the $10 billion federal-supervision threshold, or transition to a federal route.</span></div>
+    </div>
+    <details>
+      <summary>open the stablecoin constitution</summary>
+      <div class="layers">
+        <div><b>Issuer obligation</b><p>The issuer represents RLUSD as backed by segregated reserves and subject to redemption procedures with service-level controls.</p></div>
+        <div><b>Reserve fit</b><p>The disclosed liquid-reserve design is compatible in concept, but exact permitted-asset composition and the state regime&#x27;s GENIUS certification remain controlling.</p></div>
+        <div><b>Custody / segregation</b><p>BNY is the primary reserve custodian and supplies transaction banking. Ripple&#x27;s network and enterprise software roles remain separate from Standard Custody&#x27;s issuer obligation.</p></div>
+        <div><b>Primary redemption</b><p>Institutional redemption is governed through the issuer/distribution program; public retail direct-access terms are less prominent than the reserve attestations.</p></div>
+        <div><b>Distribution surface</b><p>Ripple supplies enterprise distribution and ledger integrations while Standard Custody carries the issuance obligation.</p></div>
+        <div><b>Required structural move</b><p>Preserve Standard Custody as the issuer, BNY as reserve custodian and Ripple as brand/distributor; obtain state approval under a certified regime and monitor the $10 billion consolidated-issuance trigger.</p></div>
+        <div><b>18 July 2028</b><p>The coin remains distributable through U.S. intermediaries only if the issuer is permitted by then.</p></div>
+        <div><b>Treasury channel</b><p>RLUSD&#x27;s short-term liquid reserve design channels institutional token demand toward cash and government liquidity instruments.</p></div>
+      </div>
+      <div class="boundary"><b>Do not overclaim</b><p>Ripple&#x27;s corporate licenses, ledgers and prospective federal entities do not replace the current issuer named in the reserve disclosures.</p></div>
+    </details>
+    <div class="sources"><a href="https://ripple.com/solutions/stablecoin/transparency/" target="_blank" rel="noopener">Ripple — RLUSD transparency</a> · <a href="https://ripple.com/ripple-press/ripple-selects-bny-to-custody-ripple-usd-reserves/" target="_blank" rel="noopener">Ripple — BNY reserve-custody role</a> · <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title12-section5906" target="_blank" rel="noopener">U.S. Code — State-qualified issuer</a></div>
+  </section>
+</article>
+<article class="entry r-unresolved" data-route="unresolved"
+  data-evidence="marketing-watch" data-search="fiusd fiusd fiserv fiusd unresolved marketing-watch 2025-06-23 2025 announcement → watch fiusd proves the processor can be ready before the money constitution is public marketed · issuer and launch evidence incomplete fiserv markets fiusd, but the public product page reviewed for this package does not name the legal issuer or redemption obligor. the page says fiusd is fully reserved, usd-backed and always redeemable at $1; the contract and entity carrying that promise were not located. described only at marketing level as fully reserved and usd-backed. cannot be assessed without reserve categories, custodian, reports and the entity legally obligated to redeem. not publicly specified in the product page. a 1:1 promise is marketed; eligibility, timing, fees and direct-holder rights are not publicly established in the reviewed record. fiserv&#x27;s bank, processor and merchant footprint could make distribution extremely powerful once the issuer constitution is real. unresolved until the issuer is named. possible structures include an approved bank subsidiary, federal qualified nonbank/uninsured national bank, state issuer or a partner-issued coin. publish the issuer, charter, reserve schedule, custodian, attestation, redemption terms, networks and launch state before assigning a genius route. fiserv&#x27;s software and merchant relationships survive; a coin with no permitted or qualifying foreign issuer cannot be carried through u.s. service-provider distribution after the cutoff. the claimed reserve channel cannot be quantified or classified from the product page. processor reach is not issuer evidence. this is a watch card, not a finding that fiusd is currently circulating.">
+  <div class="date">2025 announcement → watch</div>
+  <section class="card">
+    <div class="meta">
+      <span class="symbol">FIUSD</span>
+      <span class="route-chip">Issuer unresolved</span>
+      <span class="evidence-chip e-marketing-watch">Marketing / watch</span>
+      <span>Fiserv FIUSD</span>
+      <span class="status">marketed · issuer and launch evidence incomplete</span>
+    </div>
+    <h2>FIUSD proves the processor can be ready before the money constitution is public</h2>
+    <div class="quick">
+      <div><b>Who owes the dollar?</b><span>Fiserv markets FIUSD, but the public product page reviewed for this package does not name the legal issuer or redemption obligor.</span></div>
+      <div><b>What backs it?</b><span>Described only at marketing level as fully reserved and USD-backed.</span></div>
+      <div><b>GENIUS gate</b><span>Unresolved until the issuer is named. Possible structures include an approved bank subsidiary, Federal qualified nonbank/uninsured national bank, state issuer or a partner-issued coin.</span></div>
+    </div>
+    <details>
+      <summary>open the stablecoin constitution</summary>
+      <div class="layers">
+        <div><b>Issuer obligation</b><p>The page says FIUSD is fully reserved, USD-backed and always redeemable at $1; the contract and entity carrying that promise were not located.</p></div>
+        <div><b>Reserve fit</b><p>Cannot be assessed without reserve categories, custodian, reports and the entity legally obligated to redeem.</p></div>
+        <div><b>Custody / segregation</b><p>Not publicly specified in the product page.</p></div>
+        <div><b>Primary redemption</b><p>A 1:1 promise is marketed; eligibility, timing, fees and direct-holder rights are not publicly established in the reviewed record.</p></div>
+        <div><b>Distribution surface</b><p>Fiserv&#x27;s bank, processor and merchant footprint could make distribution extremely powerful once the issuer constitution is real.</p></div>
+        <div><b>Required structural move</b><p>Publish the issuer, charter, reserve schedule, custodian, attestation, redemption terms, networks and launch state before assigning a GENIUS route.</p></div>
+        <div><b>18 July 2028</b><p>Fiserv&#x27;s software and merchant relationships survive; a coin with no permitted or qualifying foreign issuer cannot be carried through U.S. service-provider distribution after the cutoff.</p></div>
+        <div><b>Treasury channel</b><p>The claimed reserve channel cannot be quantified or classified from the product page.</p></div>
+      </div>
+      <div class="boundary"><b>Do not overclaim</b><p>Processor reach is not issuer evidence. This is a watch card, not a finding that FIUSD is currently circulating.</p></div>
+    </details>
+    <div class="sources"><a href="https://www.fiserv.com/en/solutions/embedded-finance/fiusd-stablecoin.html" target="_blank" rel="noopener">Fiserv — FIUSD product page</a> · <a href="https://investors.fiserv.com/news-releases/news-release-details/fiserv-launches-new-fiusd-stablecoin-financial-institutions" target="_blank" rel="noopener">Fiserv — 2025 launch announcement</a> · <a href="https://investors.fiserv.com/static-files/9e20ef73-0abc-4550-a6b3-95c26b30719f" target="_blank" rel="noopener">Fiserv — 2026 Form 10-K</a></div>
+  </section>
+</article>
+<article class="entry r-idi-subsidiary" data-route="idi-subsidiary"
+  data-evidence="disclosed-live" data-search="sofid sofid sofiusd idi-subsidiary disclosed-live 2025-12-18 2025 → 28 jul 2026 the direct bank issuer is the surprise restructuring case live · issued directly by an insured national bank sofi bank, n.a., an occ-regulated insured depository institution, says it directly issues sofid. sofi describes sofid as intended to be redeemable 1:1 and explicitly says it is not a deposit, not fdic-insured, not bank-guaranteed and may lose value. primarily cash; launch material says fully reserved 1:1 for immediate redemption capability and points to central-bank cash as an advantage. cash is the cleanest permitted reserve category, but the legal-entity route is the harder issue. sofi&#x27;s bank infrastructure controls issuance, app distribution and reserve operations; a separate approved issuer subsidiary is not identified in the public product record. sofi provides the 1:1 conversion channel for eligible users and partners. sofi app, enterprise infrastructure and prospective white-label bank/fintech integrations. genius defines the permitted bank pathway as an approved subsidiary of an insured depository institution, not the insured bank itself. move or novate issuance, redemption and the reserve obligation into an approved sofi bank subsidiary. sofi&#x27;s terms already allow it to designate a substitute issuer and assign obligations in response to a new stablecoin framework. the consumer app can remain the wallet surface, but the token carried by it must be issued by the permitted entity. a cash-heavy reserve emphasizes federal reserve/bank liquidity rather than treasury-bill yield, though final reserve allocation can change. this is a statutory-structure inference, not a finding that current sofi issuance is unlawful before genius becomes effective.">
+  <div class="date">2025 → 28 Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="symbol">SOFID</span>
+      <span class="route-chip">IDI subsidiary</span>
+      <span class="evidence-chip e-disclosed-live">Live + disclosed</span>
+      <span>SoFiUSD</span>
+      <span class="status">live · issued directly by an insured national bank</span>
+    </div>
+    <h2>The direct bank issuer is the surprise restructuring case</h2>
+    <div class="quick">
+      <div><b>Who owes the dollar?</b><span>SoFi Bank, N.A., an OCC-regulated insured depository institution, says it directly issues SOFID.</span></div>
+      <div><b>What backs it?</b><span>Primarily cash; launch material says fully reserved 1:1 for immediate redemption capability and points to central-bank cash as an advantage.</span></div>
+      <div><b>GENIUS gate</b><span>GENIUS defines the permitted bank pathway as an approved subsidiary of an insured depository institution, not the insured bank itself.</span></div>
+    </div>
+    <details>
+      <summary>open the stablecoin constitution</summary>
+      <div class="layers">
+        <div><b>Issuer obligation</b><p>SoFi describes SOFID as intended to be redeemable 1:1 and explicitly says it is not a deposit, not FDIC-insured, not bank-guaranteed and may lose value.</p></div>
+        <div><b>Reserve fit</b><p>Cash is the cleanest permitted reserve category, but the legal-entity route is the harder issue.</p></div>
+        <div><b>Custody / segregation</b><p>SoFi&#x27;s bank infrastructure controls issuance, app distribution and reserve operations; a separate approved issuer subsidiary is not identified in the public product record.</p></div>
+        <div><b>Primary redemption</b><p>SoFi provides the 1:1 conversion channel for eligible users and partners.</p></div>
+        <div><b>Distribution surface</b><p>SoFi app, enterprise infrastructure and prospective white-label bank/fintech integrations.</p></div>
+        <div><b>Required structural move</b><p>Move or novate issuance, redemption and the reserve obligation into an approved SoFi Bank subsidiary. SoFi&#x27;s terms already allow it to designate a substitute issuer and assign obligations in response to a new stablecoin framework.</p></div>
+        <div><b>18 July 2028</b><p>The consumer app can remain the wallet surface, but the token carried by it must be issued by the permitted entity.</p></div>
+        <div><b>Treasury channel</b><p>A cash-heavy reserve emphasizes Federal Reserve/bank liquidity rather than Treasury-bill yield, though final reserve allocation can change.</p></div>
+      </div>
+      <div class="boundary"><b>Do not overclaim</b><p>This is a statutory-structure inference, not a finding that current SoFi issuance is unlawful before GENIUS becomes effective.</p></div>
+    </details>
+    <div class="sources"><a href="https://www.sofi.com/crypto/sofiusd/" target="_blank" rel="noopener">SoFi — SOFID product disclosure</a> · <a href="https://investors.sofi.com/news/news-details/2025/SoFi-Launches-Fully-Reserved-Stablecoin-to-Power-Financial-Infrastructure-for-Banks-Fintechs-and-Enterprise-Partners/default.aspx" target="_blank" rel="noopener">SoFi — launch and reserve description</a> · <a href="https://www.sofi.com/crypto/legal/sofid-terms/" target="_blank" rel="noopener">SoFi — SOFID issuer-substitution terms</a> · <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title12-section5901" target="_blank" rel="noopener">U.S. Code — permitted issuer definition</a> · <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title12-section5904" target="_blank" rel="noopener">U.S. Code — IDI subsidiary applications</a></div>
+  </section>
+</article>
+<article class="entry r-uninsured-national-bank" data-route="uninsured-national-bank"
+  data-evidence="attested-live" data-search="usat usa₮ usa₮ / usat uninsured-national-bank attested-live 2026-01-27 27 jan 2026 → live tether&#x27;s u.s. answer is a different issuer and a different reserve box live · monthly big four attestations anchorage digital bank, n.a. is the sole issuer and redemption obligor. tether operations s.a. de c.v. licenses the usa₮ trademark but does not issue the coin. anchorage issues and redeems only for bank clients, 1:1 net of disclosed fees. the usa₮ reserve trust, a south dakota express trust with anchorage as trustee, owns and segregates reserve assets. anchorage publishes monthly attestations. the product is expressly designed for the genius era, but final ppsi approval and statutory reserve conformance remain future legal steps. anchorage is trustee of the usa₮ reserve trust; cantor fitzgerald is the designated reserve custodian and preferred primary dealer. tether supplies the trademark, not the holder obligation. direct redemption is limited to eligible anchorage clients; secondary users rely on market and distribution intermediaries. built for u.s. institutional distribution while the global tether network remains centered on usd₮. anchorage digital bank, as an uninsured national bank, can seek approval as a federal qualified payment stablecoin issuer. obtain the specific occ ppsi approval and conform reporting, capital, risk, lawful-order and reserve operations to final rules. usa₮ is positioned to preserve u.s. intermediary access even if usd₮ uses or fails the foreign-issuer route. a u.s.-segregated reserve product lets tether keep the global brand network while creating a narrower domestic public-debt channel. the reserve trust is the asset-segregation vehicle, not a second redemption obligor. “built for genius” and a national bank charter are not proof that the genius approval regime has already acted.">
+  <div class="date">27 Jan 2026 → live</div>
+  <section class="card">
+    <div class="meta">
+      <span class="symbol">USA₮</span>
+      <span class="route-chip">Uninsured national bank</span>
+      <span class="evidence-chip e-attested-live">Live + attested</span>
+      <span>USA₮ / USAT</span>
+      <span class="status">live · monthly Big Four attestations</span>
+    </div>
+    <h2>Tether&#x27;s U.S. answer is a different issuer and a different reserve box</h2>
+    <div class="quick">
+      <div><b>Who owes the dollar?</b><span>Anchorage Digital Bank, N.A. is the sole issuer and redemption obligor. Tether Operations S.A. de C.V. licenses the USA₮ trademark but does not issue the coin.</span></div>
+      <div><b>What backs it?</b><span>The USA₮ Reserve Trust, a South Dakota express trust with Anchorage as trustee, owns and segregates reserve assets. Anchorage publishes monthly attestations.</span></div>
+      <div><b>GENIUS gate</b><span>Anchorage Digital Bank, as an uninsured national bank, can seek approval as a Federal qualified payment stablecoin issuer.</span></div>
+    </div>
+    <details>
+      <summary>open the stablecoin constitution</summary>
+      <div class="layers">
+        <div><b>Issuer obligation</b><p>Anchorage issues and redeems only for bank clients, 1:1 net of disclosed fees.</p></div>
+        <div><b>Reserve fit</b><p>The product is expressly designed for the GENIUS era, but final PPSI approval and statutory reserve conformance remain future legal steps.</p></div>
+        <div><b>Custody / segregation</b><p>Anchorage is trustee of the USA₮ Reserve Trust; Cantor Fitzgerald is the designated reserve custodian and preferred primary dealer. Tether supplies the trademark, not the holder obligation.</p></div>
+        <div><b>Primary redemption</b><p>Direct redemption is limited to eligible Anchorage clients; secondary users rely on market and distribution intermediaries.</p></div>
+        <div><b>Distribution surface</b><p>Built for U.S. institutional distribution while the global Tether network remains centered on USD₮.</p></div>
+        <div><b>Required structural move</b><p>Obtain the specific OCC PPSI approval and conform reporting, capital, risk, lawful-order and reserve operations to final rules.</p></div>
+        <div><b>18 July 2028</b><p>USA₮ is positioned to preserve U.S. intermediary access even if USD₮ uses or fails the foreign-issuer route.</p></div>
+        <div><b>Treasury channel</b><p>A U.S.-segregated reserve product lets Tether keep the global brand network while creating a narrower domestic public-debt channel.</p></div>
+      </div>
+      <div class="boundary"><b>Do not overclaim</b><p>The reserve trust is the asset-segregation vehicle, not a second redemption obligor. “Built for GENIUS” and a national bank charter are not proof that the GENIUS approval regime has already acted.</p></div>
+    </details>
+    <div class="sources"><a href="https://www.anchorage.com/usat-policies-disclosures" target="_blank" rel="noopener">Anchorage — USA₮ policies</a> · <a href="https://www.anchorage.com/platform/usat-reserve-attestations" target="_blank" rel="noopener">Anchorage — USA₮ reserve attestations</a> · <a href="https://tether.io/news/tether-announces-the-launch-of-usat-the-federally-regulated-dollar-backed-stablecoin-made-in-america/" target="_blank" rel="noopener">Tether — USA₮ launch</a></div>
+  </section>
+</article></section>
+<div class="foot">Route labels are research classifications derived from the disclosed current issuer type and the statutory definitions. They are not approval findings. “Live + attested” describes present issuer disclosure, not GENIUS authorization. No complete public final-rule set or PPSI approval was located through the cutoff.</div>
+</main>
+<script>
+const routeButtons=[...document.querySelectorAll('.route-filter')];
+const evidenceButtons=[...document.querySelectorAll('.evidence-filter')];
+const entries=[...document.querySelectorAll('.entry')];
+const search=document.querySelector('#search');
+const resultCount=document.querySelector('#resultCount');
+function update(){
+  const routes=new Set(routeButtons.filter(b=>b.classList.contains('on')).map(b=>b.dataset.route));
+  const evidence=new Set(evidenceButtons.filter(b=>b.classList.contains('on')).map(b=>b.dataset.evidence));
+  const q=search.value.trim().toLowerCase(); let visible=0;
+  entries.forEach(e=>{
+    const show=routes.has(e.dataset.route)&&evidence.has(e.dataset.evidence)&&(!q||e.dataset.search.includes(q));
+    e.classList.toggle('hidden',!show); if(show) visible++;
+  });
+  resultCount.textContent=`${visible} of ${entries.length} shown`;
+}
+[...routeButtons,...evidenceButtons].forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('on');update()}));
+search.addEventListener('input',update); update();
+</script>
+</body></html>

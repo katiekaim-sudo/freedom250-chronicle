@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stablecoin Adapter Stack — Wallet × Processor × Acquirer</title>
+<style>
+:root{--ink:#ece9e1;--muted:#aaa59c;--paper:#101318;--panel:#171b22;--line:#343943;
+--gold:#d4a017;--green:#3dbd7d;--blue:#4a9eda;--red:#e05252;--orange:#dd8b43}
+*{box-sizing:border-box} html{background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif}
+body{margin:0} a{color:#9bc9ef} .shell{max-width:1220px;margin:auto;padding:44px 24px 80px}
+.eyebrow{font:700 11px/1.2 ui-monospace,monospace;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+h1{font-family:Georgia,serif;font-size:clamp(38px,7vw,76px);line-height:.94;margin:14px 0 18px;max-width:1020px}
+.subtitle{font-family:Georgia,serif;font-style:italic;color:#d0cbc0;font-size:20px;margin:0 0 22px}
+.thesis{max-width:950px;color:#c8c3b9;font-size:17px;line-height:1.65;border-left:3px solid var(--gold);padding-left:18px}
+.key{margin:34px 0 0;border:1px solid var(--line);background:#12161c;border-radius:10px;padding:22px}
+.key h3{font:700 24px Georgia,serif;margin:0 0 8px} .key .lead{margin:0 0 17px}
+.stack{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.stack span{position:relative;padding:11px 8px;border:1px solid var(--line);border-radius:7px;background:#0e1116;color:#ccc;font-size:11px;text-align:center}
+.stack span:not(:last-child):after{content:"→";position:absolute;right:-10px;color:#736f68;z-index:2}
+.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}
+.paths div{border:1px solid #2e333c;border-radius:7px;padding:11px;background:#0f1318}
+.paths b{display:block;color:#d8af47;font:800 10px/1.2 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.paths span{font-size:12px;line-height:1.5;color:#bdb9b1}
+.controls{position:sticky;top:0;z-index:5;background:#101318ee;backdrop-filter:blur(10px);border-block:1px solid var(--line);padding:12px 0;margin:30px 0}
+.filter-row{display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:start;margin-bottom:8px} .filter-label{font:800 10px/1.2 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#8f8a81;padding-top:9px}
+.filters{display:flex;gap:8px;flex-wrap:wrap} .filter{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer}
+.control-bottom{display:flex;gap:10px;align-items:center;margin-top:10px} .search{flex:1;background:#0d1015;border:1px solid var(--line);border-radius:7px;padding:10px 12px;color:#fff}
+.result-count{white-space:nowrap;color:#a8a39a;font:700 11px/1.2 ui-monospace,monospace}
+.timeline{position:relative} .timeline:before{content:"";position:absolute;left:111px;top:0;bottom:0;width:1px;background:var(--line)}
+.entry{display:grid;grid-template-columns:92px 1fr;gap:38px;margin:0 0 28px} .date{font:700 12px/1.4 ui-monospace,monospace;color:var(--muted);padding-top:17px;text-align:right}
+.card{background:linear-gradient(145deg,#1a1e26,#14181e);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:10px;padding:19px 22px;box-shadow:0 14px 45px #0004}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font:700 10px/1.2 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.05em}
+.meta span{border:1px solid var(--line);border-radius:999px;padding:5px 8px} .meta .path-chip,.meta .evidence-chip{font-weight:800} .status{color:#e9e3d5!important}
+h2{font:700 27px/1.12 Georgia,serif;margin:14px 0 8px} .lead{font:italic 17px/1.5 Georgia,serif;color:#ddd4c3;margin:0 0 17px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px} .quick div{background:#0e1116;border:1px solid #292e37;border-radius:7px;padding:11px}
+.quick b,.layer-grid b,.reading-grid b{display:block;color:#d8af47;font:800 10px/1.2 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.quick span,.layer-grid p,.reading-grid p{font-size:13px;line-height:1.55;color:#c6c2ba;margin:0} details{border-top:1px solid var(--line);margin-top:17px;padding-top:12px}
+summary{cursor:pointer;color:#d9b968;font:700 12px/1.2 ui-monospace,monospace} .layer-grid,.reading-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px}
+.layer-grid>div,.reading-grid>div{background:#11151a;border:1px solid #2d323b;border-radius:7px;padding:12px} .reading-grid .change{border-color:#4d704f} .reading-grid .caveat{border-color:#6b3b3b}
+.sources{font-size:11px;line-height:1.55;margin-top:14px;color:var(--muted)} .hidden{display:none}
+.foot{margin-top:30px;color:#827e76;font-size:11px;line-height:1.5}
+.p-t1 .card{border-left-color:#d4a017}.p-t1 .path-chip{color:#d4a017;border-color:#d4a01788;background:#d4a01716}button[data-path="t1"].on{color:#fff;border-color:#d4a017;background:#d4a0172d}
+.p-t2 .card{border-left-color:#3dbd7d}.p-t2 .path-chip{color:#3dbd7d;border-color:#3dbd7d88;background:#3dbd7d16}button[data-path="t2"].on{color:#fff;border-color:#3dbd7d;background:#3dbd7d2d}
+.p-t4 .card{border-left-color:#9a7be8}.p-t4 .path-chip{color:#9a7be8;border-color:#9a7be888;background:#9a7be816}button[data-path="t4"].on{color:#fff;border-color:#9a7be8;background:#9a7be82d}
+.p-t5 .card{border-left-color:#4a9eda}.p-t5 .path-chip{color:#4a9eda;border-color:#4a9eda88;background:#4a9eda16}button[data-path="t5"].on{color:#fff;border-color:#4a9eda;background:#4a9eda2d}
+.p-fabric .card{border-left-color:#dd8b43}.p-fabric .path-chip{color:#dd8b43;border-color:#dd8b4388;background:#dd8b4316}button[data-path="fabric"].on{color:#fff;border-color:#dd8b43;background:#dd8b432d}
+.e-production{color:#3dbd7d!important;border-color:#3dbd7d88!important;background:#3dbd7d16!important}button[data-evidence="production"].on{color:#fff;border-color:#3dbd7d;background:#3dbd7d2d}
+.e-limited-production{color:#4a9eda!important;border-color:#4a9eda88!important;background:#4a9eda16!important}button[data-evidence="limited-production"].on{color:#fff;border-color:#4a9eda;background:#4a9eda2d}
+.e-pilot{color:#9a7be8!important;border-color:#9a7be888!important;background:#9a7be816!important}button[data-evidence="pilot"].on{color:#fff;border-color:#9a7be8;background:#9a7be82d}
+.e-rollout{color:#d4a017!important;border-color:#d4a01788!important;background:#d4a01716!important}button[data-evidence="rollout"].on{color:#fff;border-color:#d4a017;background:#d4a0172d}
+.e-beta{color:#e05252!important;border-color:#e0525288!important;background:#e0525216!important}button[data-evidence="beta"].on{color:#fff;border-color:#e05252;background:#e052522d}
+.e-agreement{color:#dd8b43!important;border-color:#dd8b4388!important;background:#dd8b4316!important}button[data-evidence="agreement"].on{color:#fff;border-color:#dd8b43;background:#dd8b432d}
+.e-marketing{color:#827e76!important;border-color:#827e7688!important;background:#827e7616!important}button[data-evidence="marketing"].on{color:#fff;border-color:#827e76;background:#827e762d}
+@media(max-width:900px){.stack{grid-template-columns:1fr;gap:13px}.stack span:not(:last-child):after{content:"↓";right:auto;left:50%;bottom:-15px;top:auto}.paths{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.shell{padding-inline:14px}.timeline:before{left:0}.entry{grid-template-columns:1fr;gap:7px;padding-left:15px}.date{text-align:left;padding:0}.quick,.layer-grid,.reading-grid,.paths{grid-template-columns:1fr}.filter-row{grid-template-columns:1fr;gap:3px}.filter-label{padding-top:0}.control-bottom{align-items:stretch;flex-direction:column}.result-count{text-align:right}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+</head>
+<body><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Research Atlas</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="shell">
+<div class="eyebrow">Freedom 250 Observatory · private rails · as of 2026-07-28</div>
+<h1>Stablecoin Adapter Stack — Wallet × Processor × Acquirer</h1>
+<p class="subtitle">The conversion layer forming behind cards, checkout pages, merchant payouts and network settlement</p>
+<p class="thesis">Stablecoin adoption is entering commerce through controlled adapters, not through a universal crypto terminal. The firms that already own the wallet, merchant contract, payout instruction, network obligation or reconciliation ledger can change the funding or settlement asset while preserving the familiar checkout surface.</p>
+<section class="key">
+  <h3>The controlled adapter stack</h3>
+  <p class="lead">A payment is not one rail. Each product assigns these jobs to different companies and different legal clocks.</p>
+  <div class="stack"><span>credential / tender</span><span>wallet / custody</span><span>payment adapter</span><span>processor / network</span><span>merchant contract</span><span>conversion / payout</span><span>issuer / bank finality</span></div>
+  <div class="paths"><div><b>T1 · funded card</b><span>Stablecoin balance funds a familiar card credential; merchant usually receives ordinary card settlement.</span></div><div><b>T2 · wallet checkout</b><span>Customer sends stablecoin; processor preserves order/refund/reconciliation and pays merchant fiat or stablecoin.</span></div><div><b>T4 · network settlement</b><span>Customer still pays by card; issuer/acquirer obligation settles with a stablecoin behind the network.</span></div><div><b>T5 · merchant payout</b><span>Customer tender stays ordinary; processor converts merchant proceeds to a stablecoin wallet.</span></div><div><b>Adapter fabric</b><span>Wallet, compliance, issuance, conversion or chain middleware; necessary but not sufficient for merchant acceptance.</span></div><div><b>Evidence rule</b><span>Production, limited production, pilot, rollout, beta, announced acquisition and product marketing are not interchangeable.</span></div></div>
+</section>
+<div class="controls">
+  <div class="filter-row"><div class="filter-label">Architecture</div><div class="filters"><button class="filter path-filter on" data-path="t1">T1 · funded card</button><button class="filter path-filter on" data-path="t2">T2 · wallet checkout</button><button class="filter path-filter on" data-path="t4">T4 · network settlement</button><button class="filter path-filter on" data-path="t5">T5 · merchant payout</button><button class="filter path-filter on" data-path="fabric">Adapter fabric</button></div></div>
+  <div class="filter-row"><div class="filter-label">Evidence</div><div class="filters"><button class="filter evidence-filter on" data-evidence="production">Production</button><button class="filter evidence-filter on" data-evidence="limited-production">Limited production</button><button class="filter evidence-filter on" data-evidence="pilot">Pilot</button><button class="filter evidence-filter on" data-evidence="rollout">Rollout / onboarding</button><button class="filter evidence-filter on" data-evidence="beta">Beta</button><button class="filter evidence-filter on" data-evidence="agreement">Agreement / acquisition</button><button class="filter evidence-filter on" data-evidence="marketing">Marketing / launch target</button></div></div>
+  <div class="control-bottom"><input id="search" class="search" placeholder="Search Stripe, Visa, wallet, terminal, merchant payout, beta…"><span id="resultCount" class="result-count"></span></div>
+</div>
+<section class="timeline">
+<article class="entry p-t5" data-path="t5"
+  data-evidence="production"
+  data-search="worldpay_circle_bvnk t5 production 2022-04-06 2022 → 2026 worldpay × circle × bvnk merchant acquiring + treasury payout the acquirer changes what the merchant receives production worldpay can preserve ordinary customer tender while paying an eligible merchant in usdc or usdg. current worldpay material also says cross-border stablecoin payouts are supported, although public proof of the named bvnk integration&#x27;s production scale is limited. ordinary card or other supported tender can remain unchanged. worldpay&#x27;s merchant settlement election and enterprise payout integration adapt the processor payable to a wallet endpoint. merchant / beneficiary merchant-controlled stablecoin wallet or payout beneficiary wallet. worldpay processes the underlying merchant or payout flow. worldpay owns the acquiring or enterprise payout relationship. circle supplies usdc issuance/redemption infrastructure. bvnk was named for fiat/stablecoin payout infrastructure, but current public worldpay material does not isolate the provider on every supported payout. merchant or beneficiary receives usdc, usdg or a supported stablecoin. circle issues usdc; paxos digital singapore issues usdg. on-chain receipt and issuer redemption are separate from the original card settlement. the payout election itself requires no terminal change; this does not establish in-person availability. the payout asset and treasury clock changed; the point-of-sale credential did not. merchant stablecoin settlement is not proof that the customer paid in stablecoin or that an emv terminal parsed a blockchain asset. the live worldpay settlement product and the later bvnk beneficiary-payout relationship have different evidence clocks.">
+  <div class="date">2022 → 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T5 · merchant payout</span>
+      <span class="evidence-chip e-production">Production</span>
+      <span>Worldpay × Circle × BVNK</span>
+      <span>merchant acquiring + treasury payout</span>
+      <span class="status">production</span>
+    </div>
+    <h2>The acquirer changes what the merchant receives</h2>
+    <p class="lead">Worldpay can preserve ordinary customer tender while paying an eligible merchant in USDC or USDG. Current Worldpay material also says cross-border stablecoin payouts are supported, although public proof of the named BVNK integration&#x27;s production scale is limited.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Ordinary card or other supported tender can remain unchanged.</span></div>
+      <div><b>Merchant / beneficiary receives</b><span>Merchant or beneficiary receives USDC, USDG or a supported stablecoin.</span></div>
+      <div><b>Terminal effect</b><span>The payout election itself requires no terminal change; this does not establish in-person availability.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Ordinary card or other supported tender can remain unchanged.</p></div>
+        <div><b>Wallet / custody</b><p>Merchant-controlled stablecoin wallet or payout beneficiary wallet.</p></div>
+        <div><b>Payment adapter</b><p>Worldpay&#x27;s merchant settlement election and enterprise payout integration adapt the processor payable to a wallet endpoint.</p></div>
+        <div><b>Processor / network</b><p>Worldpay processes the underlying merchant or payout flow.</p></div>
+        <div><b>Merchant contract</b><p>Worldpay owns the acquiring or enterprise payout relationship.</p></div>
+        <div><b>Conversion / routing</b><p>Circle supplies USDC issuance/redemption infrastructure. BVNK was named for fiat/stablecoin payout infrastructure, but current public Worldpay material does not isolate the provider on every supported payout.</p></div>
+        <div><b>Issuer + finality</b><p>Circle issues USDC; Paxos Digital Singapore issues USDG. On-chain receipt and issuer redemption are separate from the original card settlement.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>The payout asset and treasury clock changed; the point-of-sale credential did not.</p></div>
+        <div class="caveat"><b>Boundary</b><p>Merchant stablecoin settlement is not proof that the customer paid in stablecoin or that an EMV terminal parsed a blockchain asset. The live Worldpay settlement product and the later BVNK beneficiary-payout relationship have different evidence clocks.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://worldpay.com/en-GB/insights/articles/usdc-stablecoin-circle" target="_blank" rel="noopener">Worldpay — USDC settlement</a> · <a href="https://www.worldpay.com/en-GB/insights/articles/what-were-building-next-rethink-product-update" target="_blank" rel="noopener">Worldpay — 2026 product update</a> · <a href="https://worldpay.com/en-GB/insights/articles/worldpay-solana-stablecoin-partnership" target="_blank" rel="noopener">Worldpay — USDG settlement</a> · <a href="https://bvnk.com/blog/worldpay-bvnk-enable-stablecoin-payouts" target="_blank" rel="noopener">BVNK — Worldpay collaboration</a></div>
+  </section>
+</article>
+<article class="entry p-t2" data-path="t2"
+  data-evidence="production"
+  data-search="shopify_usdc t2 production 2025-06-12 12 jun 2025 → live shopify × stripe × coinbase on-chain usdc ecommerce checkout stablecoin becomes a payment method inside an existing order system production · region gated shopify payments merchants in supported regions can activate usdc checkout, accept hundreds of wallets and choose local-currency or usdc payout without rebuilding order management. usdc on base, ethereum, optimism, polygon or arbitrum from a supported wallet. the usdc payment method lives inside shopify payments order, capture, payout and refund workflows. merchant shopify says 480 wallets are supported; the customer connects a crypto wallet. shopify payments preserves checkout, capture, order, refund and merchant-admin workflows; stripe and coinbase supplied the original payment infrastructure. the merchant enables usdc inside shopify payments. the merchant can receive the chosen payout currency or, where available, claim usdc to a connected wallet. local-currency shopify payout or usdc balance/payout, depending on region and election. circle is the usdc issuer. supported-chain confirmation, shopify order finality, refund funding and issuer redemption remain distinct. this is ecommerce checkout, not ordinary emv contactless. it proves software-level acceptance can be added to a familiar merchant surface. a stablecoin payment method was inserted into the processor and order stack. regional exclusions, identity checks, no subscriptions, no partial capture and no customer disputes make this materially different from card acceptance.">
+  <div class="date">12 Jun 2025 → live</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T2 · wallet checkout</span>
+      <span class="evidence-chip e-production">Production</span>
+      <span>Shopify × Stripe × Coinbase</span>
+      <span>on-chain USDC ecommerce checkout</span>
+      <span class="status">production · region gated</span>
+    </div>
+    <h2>Stablecoin becomes a payment method inside an existing order system</h2>
+    <p class="lead">Shopify Payments merchants in supported regions can activate USDC checkout, accept hundreds of wallets and choose local-currency or USDC payout without rebuilding order management.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>USDC on Base, Ethereum, Optimism, Polygon or Arbitrum from a supported wallet.</span></div>
+      <div><b>Merchant receives</b><span>Local-currency Shopify payout or USDC balance/payout, depending on region and election.</span></div>
+      <div><b>Terminal effect</b><span>This is ecommerce checkout, not ordinary EMV contactless. It proves software-level acceptance can be added to a familiar merchant surface.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>USDC on Base, Ethereum, Optimism, Polygon or Arbitrum from a supported wallet.</p></div>
+        <div><b>Wallet / custody</b><p>Shopify says 480 wallets are supported; the customer connects a crypto wallet.</p></div>
+        <div><b>Payment adapter</b><p>The USDC payment method lives inside Shopify Payments order, capture, payout and refund workflows.</p></div>
+        <div><b>Processor / network</b><p>Shopify Payments preserves checkout, capture, order, refund and merchant-admin workflows; Stripe and Coinbase supplied the original payment infrastructure.</p></div>
+        <div><b>Merchant contract</b><p>The merchant enables USDC inside Shopify Payments.</p></div>
+        <div><b>Conversion / routing</b><p>The merchant can receive the chosen payout currency or, where available, claim USDC to a connected wallet.</p></div>
+        <div><b>Issuer + finality</b><p>Circle is the USDC issuer. Supported-chain confirmation, Shopify order finality, refund funding and issuer redemption remain distinct.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>A stablecoin payment method was inserted into the processor and order stack.</p></div>
+        <div class="caveat"><b>Boundary</b><p>Regional exclusions, identity checks, no subscriptions, no partial capture and no customer disputes make this materially different from card acceptance.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://help.shopify.com/en/manual/payments/shopify-payments/local-payment-methods/usdc-payments" target="_blank" rel="noopener">Shopify Help — USDC</a> · <a href="https://www.shopify.com/news/stablecoins-on-shopify" target="_blank" rel="noopener">Shopify — original launch</a></div>
+  </section>
+</article>
+<article class="entry p-t4" data-path="t4"
+  data-evidence="pilot"
+  data-search="visa_usdc_settlement t4 pilot 2025-12-16 16 dec 2025 → production pilot visa × circle × select banks × nine-chain pilot issuer/acquirer network settlement the card experience stays fixed while visa changes its settlement asset live pilot / regional rollout · $7b annualized company-reported run rate select u.s. issuer and acquirer partners became eligible for usdc settlement; cross river bank and lead bank were the named initial banks using usdc on solana. by april 2026 visa&#x27;s global pilot supported nine blockchains and reported a $7 billion overall annualized run rate, without a chain-level allocation. the consumer still presents a visa credential; visa says no change to the consumer card experience. visa&#x27;s stablecoin settlement program maps network obligations into approved institutional usdc settlement legs. merchant institutional treasury/custody wallets operated by participating banks and infrastructure providers. visa authorization, clearing and network rules remain the commercial spine. the acquirer still credits the merchant under existing acquiring arrangements. participating issuers or acquirers source or receive approved stablecoins for network obligations. the merchant can still receive ordinary merchant settlement even when an institutional visa leg moves in usdc. circle issuance/redemption plus blockchain finality sit behind a continuing visa obligation and bank liquidity process. no checkout change is implied by the settlement feature; the consumer card experience and terminal transaction can remain ordinary. the inter-institution settlement instrument and operating window changed; the credential, authorization message and merchant acceptance contract survived. visa continues to call the program a pilot. annualized run rate is not total settled volume, universal issuer/acquirer availability or proof that the volume was distributed across all nine supported chains.">
+  <div class="date">16 Dec 2025 → production pilot</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T4 · network settlement</span>
+      <span class="evidence-chip e-pilot">Pilot</span>
+      <span>Visa × Circle × select banks × nine-chain pilot</span>
+      <span>issuer/acquirer network settlement</span>
+      <span class="status">live pilot / regional rollout · $7B annualized company-reported run rate</span>
+    </div>
+    <h2>The card experience stays fixed while Visa changes its settlement asset</h2>
+    <p class="lead">Select U.S. issuer and acquirer partners became eligible for USDC settlement; Cross River Bank and Lead Bank were the named initial banks using USDC on Solana. By April 2026 Visa&#x27;s global pilot supported nine blockchains and reported a $7 billion overall annualized run rate, without a chain-level allocation.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>The consumer still presents a Visa credential; Visa says no change to the consumer card experience.</span></div>
+      <div><b>Merchant receives</b><span>The merchant can still receive ordinary merchant settlement even when an institutional Visa leg moves in USDC.</span></div>
+      <div><b>Terminal effect</b><span>No checkout change is implied by the settlement feature; the consumer card experience and terminal transaction can remain ordinary.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>The consumer still presents a Visa credential; Visa says no change to the consumer card experience.</p></div>
+        <div><b>Wallet / custody</b><p>Institutional treasury/custody wallets operated by participating banks and infrastructure providers.</p></div>
+        <div><b>Payment adapter</b><p>Visa&#x27;s stablecoin settlement program maps network obligations into approved institutional USDC settlement legs.</p></div>
+        <div><b>Processor / network</b><p>Visa authorization, clearing and network rules remain the commercial spine.</p></div>
+        <div><b>Merchant contract</b><p>The acquirer still credits the merchant under existing acquiring arrangements.</p></div>
+        <div><b>Conversion / routing</b><p>Participating issuers or acquirers source or receive approved stablecoins for network obligations.</p></div>
+        <div><b>Issuer + finality</b><p>Circle issuance/redemption plus blockchain finality sit behind a continuing Visa obligation and bank liquidity process.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>The inter-institution settlement instrument and operating window changed; the credential, authorization message and merchant acceptance contract survived.</p></div>
+        <div class="caveat"><b>Boundary</b><p>Visa continues to call the program a pilot. Annualized run rate is not total settled volume, universal issuer/acquirer availability or proof that the volume was distributed across all nine supported chains.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://investor.visa.com/news/news-details/2025/Visa-Launches-Stablecoin-Settlement-in-the-United-States-Marking-a-Breakthrough-for-Stablecoin-Integration/default.aspx" target="_blank" rel="noopener">Visa — U.S. USDC settlement</a> · <a href="https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22336.html" target="_blank" rel="noopener">Visa — nine-chain expansion</a></div>
+  </section>
+</article>
+<article class="entry p-t5" data-path="t5"
+  data-evidence="production"
+  data-search="shift4_settlement t5 production 2025-12-22 22 dec 2025 shift4 merchant acquiring + stablecoin payout stablecoin payout becomes a setting on a global acquiring platform production shift4 launched merchant settlement in usdc, usdt, eurc or dai across several chains for its global merchant base. not specified as stablecoin; the product concerns merchant settlement. a shift4 merchant settlement election maps the processor payable to a supported wallet, stablecoin and chain. merchant merchant nominates a compatible stablecoin wallet. shift4 continues processing and reconciling the underlying merchant payments. shift4 already owns the merchant settlement instruction. shift4 converts or routes the payable merchant balance into the elected stablecoin. merchant receives the selected stablecoin on a supported chain. multiple issuers and chains create separate token, custody, redemption and bank-funding dependencies. the payout election itself requires no terminal change and may sit behind existing acceptance; it does not prove an in-person method is enabled. the merchant settlement endpoint became a wallet address. a broad product launch does not disclose enabled-merchant count, volume, liquidity providers or the exact legal entity on every corridor.">
+  <div class="date">22 Dec 2025</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T5 · merchant payout</span>
+      <span class="evidence-chip e-production">Production</span>
+      <span>Shift4</span>
+      <span>merchant acquiring + stablecoin payout</span>
+      <span class="status">production</span>
+    </div>
+    <h2>Stablecoin payout becomes a setting on a global acquiring platform</h2>
+    <p class="lead">Shift4 launched merchant settlement in USDC, USDT, EURC or DAI across several chains for its global merchant base.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Not specified as stablecoin; the product concerns merchant settlement.</span></div>
+      <div><b>Merchant receives</b><span>Merchant receives the selected stablecoin on a supported chain.</span></div>
+      <div><b>Terminal effect</b><span>The payout election itself requires no terminal change and may sit behind existing acceptance; it does not prove an in-person method is enabled.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Not specified as stablecoin; the product concerns merchant settlement.</p></div>
+        <div><b>Wallet / custody</b><p>Merchant nominates a compatible stablecoin wallet.</p></div>
+        <div><b>Payment adapter</b><p>A Shift4 merchant settlement election maps the processor payable to a supported wallet, stablecoin and chain.</p></div>
+        <div><b>Processor / network</b><p>Shift4 continues processing and reconciling the underlying merchant payments.</p></div>
+        <div><b>Merchant contract</b><p>Shift4 already owns the merchant settlement instruction.</p></div>
+        <div><b>Conversion / routing</b><p>Shift4 converts or routes the payable merchant balance into the elected stablecoin.</p></div>
+        <div><b>Issuer + finality</b><p>Multiple issuers and chains create separate token, custody, redemption and bank-funding dependencies.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>The merchant settlement endpoint became a wallet address.</p></div>
+        <div class="caveat"><b>Boundary</b><p>A broad product launch does not disclose enabled-merchant count, volume, liquidity providers or the exact legal entity on every corridor.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://investors.shift4.com/news-events/press-releases/detail/288/shift4-launches-global-stablecoin-settlement-platform-unlocking-faster-payments-for-merchants" target="_blank" rel="noopener">Shift4 — stablecoin settlement launch</a></div>
+  </section>
+</article>
+<article class="entry p-fabric" data-path="fabric"
+  data-evidence="agreement"
+  data-search="checkout_blue_emi fabric agreement 2026-01-27 27 jan 2026 checkout.com × blue emi acquirer/processor acquires issuer license the merchant processor buys a regulated euro-token issuer acquisition announced · relevant approvals obtained checkout.com announced its acquisition of blue emi after receiving relevant approvals, adding an eu electronic-money issuer authorized to issue euro stablecoins. no customer payment method follows automatically. no live merchant payment adapter is specified; this card records an issuer capability entering the same corporate stack. product-specific endpoint a wallet/distribution layer still has to be specified for a product. checkout.com supplies merchant processing, acquiring and reconciliation. checkout.com already controls enterprise merchant relationships. the acquired issuer capability could connect euro bank money, token issuance/redemption and merchant flows in a product-specific implementation. product-specific; this card maps ownership, not a merchant launch. blue emi carries regulated issuance authority; reserve-bank money and any separate payment-system connection remain the fiat side of finality. none by itself. one company now spans merchant processing and a regulated stablecoin-issuance doorway. owning an authorized issuer does not prove a particular coin, wallet, merchant route or volume is live.">
+  <div class="date">27 Jan 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">Adapter fabric</span>
+      <span class="evidence-chip e-agreement">Agreement / acquisition</span>
+      <span>Checkout.com × Blue EMI</span>
+      <span>acquirer/processor acquires issuer license</span>
+      <span class="status">acquisition announced · relevant approvals obtained</span>
+    </div>
+    <h2>The merchant processor buys a regulated euro-token issuer</h2>
+    <p class="lead">Checkout.com announced its acquisition of Blue EMI after receiving relevant approvals, adding an EU electronic-money issuer authorized to issue euro stablecoins.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>No customer payment method follows automatically.</span></div>
+      <div><b>Product-specific endpoint receives</b><span>Product-specific; this card maps ownership, not a merchant launch.</span></div>
+      <div><b>Terminal effect</b><span>None by itself.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>No customer payment method follows automatically.</p></div>
+        <div><b>Wallet / custody</b><p>A wallet/distribution layer still has to be specified for a product.</p></div>
+        <div><b>Payment adapter</b><p>No live merchant payment adapter is specified; this card records an issuer capability entering the same corporate stack.</p></div>
+        <div><b>Processor / network</b><p>Checkout.com supplies merchant processing, acquiring and reconciliation.</p></div>
+        <div><b>Merchant contract</b><p>Checkout.com already controls enterprise merchant relationships.</p></div>
+        <div><b>Conversion / routing</b><p>The acquired issuer capability could connect euro bank money, token issuance/redemption and merchant flows in a product-specific implementation.</p></div>
+        <div><b>Issuer + finality</b><p>Blue EMI carries regulated issuance authority; reserve-bank money and any separate payment-system connection remain the fiat side of finality.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>One company now spans merchant processing and a regulated stablecoin-issuance doorway.</p></div>
+        <div class="caveat"><b>Boundary</b><p>Owning an authorized issuer does not prove a particular coin, wallet, merchant route or volume is live.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.checkout.com/newsroom/checkout-com-acquires-blue-emi-a-licensed-issuer-of-euro-stablecoins-and-establishes-lithuania-technology-centre" target="_blank" rel="noopener">Checkout.com — Blue EMI acquisition</a></div>
+  </section>
+</article>
+<article class="entry p-fabric" data-path="fabric"
+  data-evidence="agreement"
+  data-search="mastercard_bvnk fabric agreement 2026-03-17 17 mar 2026 mastercard × bvnk network acquires conversion/orchestration layer mastercard moves to own the fiat–stablecoin bridge definitive agreement · not yet closed mastercard agreed to acquire bvnk for up to $1.8 billion, explicitly pairing a global card network with infrastructure that sends, receives, stores and converts fiat and stablecoins across 130+ countries. product-dependent: card, bank money or stablecoin. no single live merchant adapter follows from the agreement; bvnk would add reusable fiat/stablecoin account, conversion and payout modules. product-specific endpoint bvnk supports enterprise wallets and beneficiary endpoints. mastercard supplies card-network and money-movement infrastructure. could arrive through mastercard partners, acquirers, psps or bvnk enterprise integrations. bvnk is the proposed owned bridge across fiat accounts, stablecoin balances and chains. product-dependent merchant, platform or beneficiary payout. bvnk does not collapse stablecoin issuers, blockchains, banking partners or mastercard settlement into one legal object. no terminal change follows from the deal. the network announced vertical integration into the conversion and orchestration layer. the transaction was still subject to closing conditions at this cutoff. treat expected synergies as announced, not delivered.">
+  <div class="date">17 Mar 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">Adapter fabric</span>
+      <span class="evidence-chip e-agreement">Agreement / acquisition</span>
+      <span>Mastercard × BVNK</span>
+      <span>network acquires conversion/orchestration layer</span>
+      <span class="status">definitive agreement · not yet closed</span>
+    </div>
+    <h2>Mastercard moves to own the fiat–stablecoin bridge</h2>
+    <p class="lead">Mastercard agreed to acquire BVNK for up to $1.8 billion, explicitly pairing a global card network with infrastructure that sends, receives, stores and converts fiat and stablecoins across 130+ countries.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Product-dependent: card, bank money or stablecoin.</span></div>
+      <div><b>Product-specific endpoint receives</b><span>Product-dependent merchant, platform or beneficiary payout.</span></div>
+      <div><b>Terminal effect</b><span>No terminal change follows from the deal.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Product-dependent: card, bank money or stablecoin.</p></div>
+        <div><b>Wallet / custody</b><p>BVNK supports enterprise wallets and beneficiary endpoints.</p></div>
+        <div><b>Payment adapter</b><p>No single live merchant adapter follows from the agreement; BVNK would add reusable fiat/stablecoin account, conversion and payout modules.</p></div>
+        <div><b>Processor / network</b><p>Mastercard supplies card-network and money-movement infrastructure.</p></div>
+        <div><b>Merchant contract</b><p>Could arrive through Mastercard partners, acquirers, PSPs or BVNK enterprise integrations.</p></div>
+        <div><b>Conversion / routing</b><p>BVNK is the proposed owned bridge across fiat accounts, stablecoin balances and chains.</p></div>
+        <div><b>Issuer + finality</b><p>BVNK does not collapse stablecoin issuers, blockchains, banking partners or Mastercard settlement into one legal object.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>The network announced vertical integration into the conversion and orchestration layer.</p></div>
+        <div class="caveat"><b>Boundary</b><p>The transaction was still subject to closing conditions at this cutoff. Treat expected synergies as announced, not delivered.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.mastercard.com/global/en/news-and-trends/press/2026/march/Mastercard-to-acquire-BVNK-to-connect-on-chain-payments-and-fiat-rails.html" target="_blank" rel="noopener">Mastercard — BVNK acquisition agreement</a></div>
+  </section>
+</article>
+<article class="entry p-fabric" data-path="fabric"
+  data-evidence="rollout"
+  data-search="circle_cpn_managed fabric rollout 2026-04-08 8 apr 2026 circle internet financial × cpn managed payments institutional cross-border orchestration the stablecoin issuer packages mint, burn, compliance and chain routing launched · collaborative use cases; production scale undisclosed cpn managed payments lets approved banks, psps and fintechs interact through fiat-facing workflows while circle handles usdc mint/burn, compliance orchestration and blockchain operations. usually institutional fiat funding rather than consumer checkout. cpn managed payments packages participant instructions, compliance orchestration, token operations and fiat-facing settlement workflows. institution / beneficiary participant and managed institutional wallet infrastructure. circle internet financial provides managed payments. circle technology services operates the underlying cpn technology and rules. participants such as psps and cross-border payout firms retain their customer relationships. circle packages fiat-to-usdc and usdc-to-fiat legs for approved flows. beneficiary may receive local fiat through a payout partner; participant flows may settle in usdc. usdc is issued by regulated circle affiliates. cpn rules state participants settle with each other and circle technology services is not automatically the transaction principal or funds holder. none. this is an institutional back-end rail. the issuer expanded from supplying the asset to supplying an operating system around it. launch collaborators were described as exploring use cases; public production volume is undisclosed. circle internet financial provides managed payments, while circle technology services operates cpn technology and is not the principal in participant transactions.">
+  <div class="date">8 Apr 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">Adapter fabric</span>
+      <span class="evidence-chip e-rollout">Rollout / onboarding</span>
+      <span>Circle Internet Financial × CPN Managed Payments</span>
+      <span>institutional cross-border orchestration</span>
+      <span class="status">launched · collaborative use cases; production scale undisclosed</span>
+    </div>
+    <h2>The stablecoin issuer packages mint, burn, compliance and chain routing</h2>
+    <p class="lead">CPN Managed Payments lets approved banks, PSPs and fintechs interact through fiat-facing workflows while Circle handles USDC mint/burn, compliance orchestration and blockchain operations.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Usually institutional fiat funding rather than consumer checkout.</span></div>
+      <div><b>Institution / beneficiary receives</b><span>Beneficiary may receive local fiat through a payout partner; participant flows may settle in USDC.</span></div>
+      <div><b>Terminal effect</b><span>None. This is an institutional back-end rail.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Usually institutional fiat funding rather than consumer checkout.</p></div>
+        <div><b>Wallet / custody</b><p>Participant and managed institutional wallet infrastructure.</p></div>
+        <div><b>Payment adapter</b><p>CPN Managed Payments packages participant instructions, compliance orchestration, token operations and fiat-facing settlement workflows.</p></div>
+        <div><b>Processor / network</b><p>Circle Internet Financial provides Managed Payments. Circle Technology Services operates the underlying CPN technology and rules.</p></div>
+        <div><b>Merchant contract</b><p>Participants such as PSPs and cross-border payout firms retain their customer relationships.</p></div>
+        <div><b>Conversion / routing</b><p>Circle packages fiat-to-USDC and USDC-to-fiat legs for approved flows.</p></div>
+        <div><b>Issuer + finality</b><p>USDC is issued by regulated Circle affiliates. CPN rules state participants settle with each other and Circle Technology Services is not automatically the transaction principal or funds holder.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>The issuer expanded from supplying the asset to supplying an operating system around it.</p></div>
+        <div class="caveat"><b>Boundary</b><p>Launch collaborators were described as exploring use cases; public production volume is undisclosed. Circle Internet Financial provides Managed Payments, while Circle Technology Services operates CPN technology and is not the principal in participant transactions.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.circle.com/pressroom/circle-launches-cpn-managed-payments-a-full-stack-platform-for-seamless-stablecoin-settlement" target="_blank" rel="noopener">Circle — CPN Managed Payments launch</a> · <a href="https://www.circle.com/cpn" target="_blank" rel="noopener">Circle — CPN roles and rules</a></div>
+  </section>
+</article>
+<article class="entry p-t2" data-path="t2"
+  data-evidence="rollout"
+  data-search="ppro_coinbase t2 rollout 2026-05-27 27 may 2026 ppro × coinbase psp-distributed wallet checkout a local-payment-method aggregator makes usdc look like another checkout method documented integration · merchant onboarding; public production deployment not evidenced ppro exposes coinbase-powered usdc as a global api payment method, with redirect/qr wallet handoff, standard refunds and merchant settlement in fiat or usdc. usdc from a coinbase account or compatible wallet. ppro exposes the coinbase-powered stablecoin method through its global api transaction, status and refund model. merchant coinbase or passthrough wallet flow after redirect or qr. ppro provides the psp-facing api, transaction object, status model and refund interface. the merchant may be reached through ppro&#x27;s psp customer rather than a direct coinbase integration. coinbase payment infrastructure routes and converts the stablecoin flow. merchant-side settlement can be fiat or usdc. circle issues usdc; wallet transfer, ppro payment state, merchant payout and redemption remain separate. online redirect/qr flow. it does not turn a generic contactless terminal into a native usdc terminal. ppro gives a psp one integration point from which it can configure the method for eligible merchant integrations. ppro documents disputes as “no.” refunds are supported, but the guide includes sandbox and pre-go-live steps and settlement configuration through an account manager; no named production merchant or volume is disclosed.">
+  <div class="date">27 May 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T2 · wallet checkout</span>
+      <span class="evidence-chip e-rollout">Rollout / onboarding</span>
+      <span>PPRO × Coinbase</span>
+      <span>PSP-distributed wallet checkout</span>
+      <span class="status">documented integration · merchant onboarding; public production deployment not evidenced</span>
+    </div>
+    <h2>A local-payment-method aggregator makes USDC look like another checkout method</h2>
+    <p class="lead">PPRO exposes Coinbase-powered USDC as a Global API payment method, with redirect/QR wallet handoff, standard refunds and merchant settlement in fiat or USDC.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>USDC from a Coinbase account or compatible wallet.</span></div>
+      <div><b>Merchant receives</b><span>Merchant-side settlement can be fiat or USDC.</span></div>
+      <div><b>Terminal effect</b><span>Online redirect/QR flow. It does not turn a generic contactless terminal into a native USDC terminal.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>USDC from a Coinbase account or compatible wallet.</p></div>
+        <div><b>Wallet / custody</b><p>Coinbase or passthrough wallet flow after redirect or QR.</p></div>
+        <div><b>Payment adapter</b><p>PPRO exposes the Coinbase-powered stablecoin method through its Global API transaction, status and refund model.</p></div>
+        <div><b>Processor / network</b><p>PPRO provides the PSP-facing API, transaction object, status model and refund interface.</p></div>
+        <div><b>Merchant contract</b><p>The merchant may be reached through PPRO&#x27;s PSP customer rather than a direct Coinbase integration.</p></div>
+        <div><b>Conversion / routing</b><p>Coinbase payment infrastructure routes and converts the stablecoin flow.</p></div>
+        <div><b>Issuer + finality</b><p>Circle issues USDC; wallet transfer, PPRO payment state, merchant payout and redemption remain separate.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>PPRO gives a PSP one integration point from which it can configure the method for eligible merchant integrations.</p></div>
+        <div class="caveat"><b>Boundary</b><p>PPRO documents disputes as “No.” Refunds are supported, but the guide includes sandbox and pre-go-live steps and settlement configuration through an account manager; no named production merchant or volume is disclosed.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.ppro.com/news/ppro-and-coinbase-announce-strategic-collaboration-to-bring-stablecoin-payments-to-merchants/" target="_blank" rel="noopener">PPRO — Coinbase collaboration</a> · <a href="https://developerhub.ppro.com/global-api/docs/stablecoins" target="_blank" rel="noopener">PPRO developer docs — stablecoins</a></div>
+  </section>
+</article>
+<article class="entry p-t2" data-path="t2"
+  data-evidence="rollout"
+  data-search="checkout_coinbase t2 rollout 2026-06-02 2 jun 2026 checkout.com × coinbase payments enterprise stablecoin checkout the acquirer adds wallet-funded checkout while preserving merchant usd settlement launched capability · partner onboarding; production deployment undisclosed eligible checkout.com enterprise merchants can add coinbase-powered stablecoin acceptance while continuing to settle in usd through checkout.com&#x27;s existing rails. usdc from a coinbase account or supported self-custody wallet; coinbase&#x27;s current acceptance documentation lists usdt as coming soon. coinbase payment acceptance apis sit behind the checkout.com merchant payment and reconciliation surface. merchant coinbase says its acceptance layer can connect hundreds of wallets. coinbase exposes acceptance apis; checkout.com keeps the merchant payment and reconciliation surface. checkout.com remains the merchant-facing processor/acquirer. coinbase handles stablecoin payment orchestration; checkout.com preserves fiat settlement to the merchant. usd through existing checkout.com settlement rails. the stablecoin issuer and chain sit on the customer side; merchant finality still lands in conventional banking rails. no in-store terminal claim. this is enterprise digital checkout. the funding instrument changed while the merchant&#x27;s contractual and treasury experience was intentionally held constant. eligibility, geography, supported assets and exact merchant terms remain controlled product boundaries. coinbase&#x27;s generic usd/usdc settlement options do not by themselves establish the exact checkout.com configuration, counterparty or a named production merchant.">
+  <div class="date">2 Jun 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T2 · wallet checkout</span>
+      <span class="evidence-chip e-rollout">Rollout / onboarding</span>
+      <span>Checkout.com × Coinbase Payments</span>
+      <span>enterprise stablecoin checkout</span>
+      <span class="status">launched capability · partner onboarding; production deployment undisclosed</span>
+    </div>
+    <h2>The acquirer adds wallet-funded checkout while preserving merchant USD settlement</h2>
+    <p class="lead">Eligible Checkout.com enterprise merchants can add Coinbase-powered stablecoin acceptance while continuing to settle in USD through Checkout.com&#x27;s existing rails.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>USDC from a Coinbase account or supported self-custody wallet; Coinbase&#x27;s current acceptance documentation lists USDT as coming soon.</span></div>
+      <div><b>Merchant receives</b><span>USD through existing Checkout.com settlement rails.</span></div>
+      <div><b>Terminal effect</b><span>No in-store terminal claim. This is enterprise digital checkout.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>USDC from a Coinbase account or supported self-custody wallet; Coinbase&#x27;s current acceptance documentation lists USDT as coming soon.</p></div>
+        <div><b>Wallet / custody</b><p>Coinbase says its acceptance layer can connect hundreds of wallets.</p></div>
+        <div><b>Payment adapter</b><p>Coinbase Payment Acceptance APIs sit behind the Checkout.com merchant payment and reconciliation surface.</p></div>
+        <div><b>Processor / network</b><p>Coinbase exposes acceptance APIs; Checkout.com keeps the merchant payment and reconciliation surface.</p></div>
+        <div><b>Merchant contract</b><p>Checkout.com remains the merchant-facing processor/acquirer.</p></div>
+        <div><b>Conversion / routing</b><p>Coinbase handles stablecoin payment orchestration; Checkout.com preserves fiat settlement to the merchant.</p></div>
+        <div><b>Issuer + finality</b><p>The stablecoin issuer and chain sit on the customer side; merchant finality still lands in conventional banking rails.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>The funding instrument changed while the merchant&#x27;s contractual and treasury experience was intentionally held constant.</p></div>
+        <div class="caveat"><b>Boundary</b><p>Eligibility, geography, supported assets and exact merchant terms remain controlled product boundaries. Coinbase&#x27;s generic USD/USDC settlement options do not by themselves establish the exact Checkout.com configuration, counterparty or a named production merchant.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.checkout.com/newsroom/checkout-com-enables-stablecoin-acceptance-for-merchants-in-partnership-with-coinbase" target="_blank" rel="noopener">Checkout.com — Coinbase acceptance</a> · <a href="https://docs.cdp.coinbase.com/payments/payment-acceptance/overview" target="_blank" rel="noopener">Coinbase — Payment Acceptance APIs</a></div>
+  </section>
+</article>
+<article class="entry p-fabric" data-path="fabric"
+  data-evidence="limited-production"
+  data-search="fireblocks_flow fabric limited-production 2026-06-02 2 jun 2026 fireblocks flow psp acceptance middleware wallet verification, chain intake and reconciliation become one psp module launched · production customer named fireblocks flow lets psps and fintechs accept from exchange accounts and hundreds of wallet types while outsourcing wallet verification, compliance, asset conversion and reconciliation. supported stablecoin from an exchange account or external wallet. flow is the reusable crypto-intake module between a psp checkout and the configured wallet, compliance and protocol endpoints. configured merchant endpoint fireblocks says flow covers exchange sources and roughly 800 wallet types across evm, solana and bitcoin environments. the psp owns checkout and merchant processing; flow supplies the crypto-specific adapter. the psp keeps its licenses and merchant relationship. flow coordinates compliance and reconciliation; conversion, swap, bridge and routing counterparties depend on the psp and integrated protocols. configured fiat or stablecoin path through the psp and its partners. fireblocks states it is not in the flow of funds; licenses, issuers, exchanges and settlement partners remain independent. no automatic terminal change. the product is acceptance infrastructure for psp-controlled surfaces. the hard crypto intake jobs became a reusable middleware module. fireblocks says it is not in the flow of funds and does not control underlying swap, bridge or routing protocols. blipply is the explicitly named production user; other launch relationships have different states.">
+  <div class="date">2 Jun 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">Adapter fabric</span>
+      <span class="evidence-chip e-limited-production">Limited production</span>
+      <span>Fireblocks Flow</span>
+      <span>PSP acceptance middleware</span>
+      <span class="status">launched · production customer named</span>
+    </div>
+    <h2>Wallet verification, chain intake and reconciliation become one PSP module</h2>
+    <p class="lead">Fireblocks Flow lets PSPs and fintechs accept from exchange accounts and hundreds of wallet types while outsourcing wallet verification, compliance, asset conversion and reconciliation.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Supported stablecoin from an exchange account or external wallet.</span></div>
+      <div><b>Configured merchant endpoint receives</b><span>Configured fiat or stablecoin path through the PSP and its partners.</span></div>
+      <div><b>Terminal effect</b><span>No automatic terminal change. The product is acceptance infrastructure for PSP-controlled surfaces.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Supported stablecoin from an exchange account or external wallet.</p></div>
+        <div><b>Wallet / custody</b><p>Fireblocks says Flow covers exchange sources and roughly 800 wallet types across EVM, Solana and Bitcoin environments.</p></div>
+        <div><b>Payment adapter</b><p>Flow is the reusable crypto-intake module between a PSP checkout and the configured wallet, compliance and protocol endpoints.</p></div>
+        <div><b>Processor / network</b><p>The PSP owns checkout and merchant processing; Flow supplies the crypto-specific adapter.</p></div>
+        <div><b>Merchant contract</b><p>The PSP keeps its licenses and merchant relationship.</p></div>
+        <div><b>Conversion / routing</b><p>Flow coordinates compliance and reconciliation; conversion, swap, bridge and routing counterparties depend on the PSP and integrated protocols.</p></div>
+        <div><b>Issuer + finality</b><p>Fireblocks states it is not in the flow of funds; licenses, issuers, exchanges and settlement partners remain independent.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>The hard crypto intake jobs became a reusable middleware module.</p></div>
+        <div class="caveat"><b>Boundary</b><p>Fireblocks says it is not in the flow of funds and does not control underlying swap, bridge or routing protocols. Blipply is the explicitly named production user; other launch relationships have different states.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.fireblocks.com/blog/introducing-fireblocks-flow" target="_blank" rel="noopener">Fireblocks — Flow launch</a></div>
+  </section>
+</article>
+<article class="entry p-t5" data-path="t5"
+  data-evidence="limited-production"
+  data-search="checkout_fireblocks t5 limited-production 2026-06-03 3 jun 2026 checkout.com × fireblocks merchant stablecoin settlement the same merchant processor now supports the opposite conversion direction production · eligible u.s. merchants checkout.com can accept ordinary payment flows and settle eligible u.s. merchants to a preferred stablecoin wallet through fireblocks. unchanged ordinary tender; stablecoin customer funding is not required. checkout.com&#x27;s merchant settlement configuration invokes fireblocks-connected conversion and wallet payout infrastructure. merchant merchant supplies a preferred eligible stablecoin wallet. checkout.com processes and reconciles merchant transactions. checkout.com controls merchant eligibility and payout configuration. fireblocks supplies regulated conversion and payout infrastructure. stablecoin in the merchant&#x27;s selected wallet. merchant wallet receipt sits after the processor payable; issuer redemption and banking legs remain separate. the payout feature itself requires no terminal change; the cited source does not establish in-person availability. the merchant payout rail changed while the customer&#x27;s payment method could remain exactly the same. the initial u.s. footprint excludes several jurisdictions and is limited to eligible merchants. the release does not identify the fireblocks group legal entity, conversion counterparty or custody arrangement for every flow.">
+  <div class="date">3 Jun 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T5 · merchant payout</span>
+      <span class="evidence-chip e-limited-production">Limited production</span>
+      <span>Checkout.com × Fireblocks</span>
+      <span>merchant stablecoin settlement</span>
+      <span class="status">production · eligible U.S. merchants</span>
+    </div>
+    <h2>The same merchant processor now supports the opposite conversion direction</h2>
+    <p class="lead">Checkout.com can accept ordinary payment flows and settle eligible U.S. merchants to a preferred stablecoin wallet through Fireblocks.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Unchanged ordinary tender; stablecoin customer funding is not required.</span></div>
+      <div><b>Merchant receives</b><span>Stablecoin in the merchant&#x27;s selected wallet.</span></div>
+      <div><b>Terminal effect</b><span>The payout feature itself requires no terminal change; the cited source does not establish in-person availability.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Unchanged ordinary tender; stablecoin customer funding is not required.</p></div>
+        <div><b>Wallet / custody</b><p>Merchant supplies a preferred eligible stablecoin wallet.</p></div>
+        <div><b>Payment adapter</b><p>Checkout.com&#x27;s merchant settlement configuration invokes Fireblocks-connected conversion and wallet payout infrastructure.</p></div>
+        <div><b>Processor / network</b><p>Checkout.com processes and reconciles merchant transactions.</p></div>
+        <div><b>Merchant contract</b><p>Checkout.com controls merchant eligibility and payout configuration.</p></div>
+        <div><b>Conversion / routing</b><p>Fireblocks supplies regulated conversion and payout infrastructure.</p></div>
+        <div><b>Issuer + finality</b><p>Merchant wallet receipt sits after the processor payable; issuer redemption and banking legs remain separate.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>The merchant payout rail changed while the customer&#x27;s payment method could remain exactly the same.</p></div>
+        <div class="caveat"><b>Boundary</b><p>The initial U.S. footprint excludes several jurisdictions and is limited to eligible merchants. The release does not identify the Fireblocks group legal entity, conversion counterparty or custody arrangement for every flow.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.checkout.com/newsroom/checkout-com-scales-stablecoin-settlement-for-us-merchants-in-partnership-with-fireblocks" target="_blank" rel="noopener">Checkout.com — Fireblocks settlement</a></div>
+  </section>
+</article>
+<article class="entry p-t1" data-path="t1"
+  data-evidence="rollout"
+  data-search="stripe_deel t1 rollout 2026-06-03 3 jun 2026 stripe × bridge × privy × tempo × deel embedded wallet + payroll + forthcoming card one vendor stack now spans funding, issuance, wallet, chain and spend wallet live in argentina · regional rollout announced · deel card forthcoming deel&#x27;s live argentina wallet combines employer bank funding, bridge conversion and dlusd through open issuance with privy embedded wallets and tempo transfer infrastructure; the deel card was described as forthcoming. employer funds through ordinary bank debit; contractor holds a dollar stablecoin balance. conventional card spend is a forthcoming layer in the cited release. the live adapter is the deel embedded wallet; the t1 bridge would be the forthcoming deel card linked to that balance. contractor privy-powered embedded wallet inside deel. stripe supplies employer payment processing and fraud controls; bridge supplies stablecoin orchestration and issuance infrastructure. if and when the cited deel card layer launches, the eventual merchant would see a conventional card transaction through the network/acquirer. bridge converts employer usd into dlusd through open issuance. contractor holds dlusd. the forthcoming card layer is intended to let that balance reach ordinary merchant card acceptance. the release says dlusd is issued through bridge&#x27;s open issuance but does not identify the legal issuer/redemption obligor or reserve custodian. tempo finality and any future card authorization/settlement remain distinct. the live wallet does not establish a terminal path. the forthcoming conventional network card could preserve ordinary merchant acceptance, but no apple pay provisioning or specific contactless-terminal support is established. a live embedded payroll wallet now holds a stablecoin balance; the conventional card-spend adapter remains forthcoming in the cited release. launch geography and rollout are limited. the card is forward-looking, and legal issuer, reserve custodian, redemption terms, apple pay provisioning and specific contactless-terminal support are not established.">
+  <div class="date">3 Jun 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T1 · funded card</span>
+      <span class="evidence-chip e-rollout">Rollout / onboarding</span>
+      <span>Stripe × Bridge × Privy × Tempo × Deel</span>
+      <span>embedded wallet + payroll + forthcoming card</span>
+      <span class="status">wallet live in Argentina · regional rollout announced · Deel Card forthcoming</span>
+    </div>
+    <h2>One vendor stack now spans funding, issuance, wallet, chain and spend</h2>
+    <p class="lead">Deel&#x27;s live Argentina wallet combines employer bank funding, Bridge conversion and DLUSD through Open Issuance with Privy embedded wallets and Tempo transfer infrastructure; the Deel Card was described as forthcoming.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Employer funds through ordinary bank debit; contractor holds a dollar stablecoin balance. Conventional card spend is a forthcoming layer in the cited release.</span></div>
+      <div><b>Contractor receives</b><span>Contractor holds DLUSD. The forthcoming card layer is intended to let that balance reach ordinary merchant card acceptance.</span></div>
+      <div><b>Terminal effect</b><span>The live wallet does not establish a terminal path. The forthcoming conventional network card could preserve ordinary merchant acceptance, but no Apple Pay provisioning or specific contactless-terminal support is established.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Employer funds through ordinary bank debit; contractor holds a dollar stablecoin balance. Conventional card spend is a forthcoming layer in the cited release.</p></div>
+        <div><b>Wallet / custody</b><p>Privy-powered embedded wallet inside Deel.</p></div>
+        <div><b>Payment adapter</b><p>The live adapter is the Deel embedded wallet; the T1 bridge would be the forthcoming Deel Card linked to that balance.</p></div>
+        <div><b>Processor / network</b><p>Stripe supplies employer payment processing and fraud controls; Bridge supplies stablecoin orchestration and issuance infrastructure.</p></div>
+        <div><b>Merchant contract</b><p>If and when the cited Deel Card layer launches, the eventual merchant would see a conventional card transaction through the network/acquirer.</p></div>
+        <div><b>Conversion / routing</b><p>Bridge converts employer USD into DLUSD through Open Issuance.</p></div>
+        <div><b>Issuer + finality</b><p>The release says DLUSD is issued through Bridge&#x27;s Open Issuance but does not identify the legal issuer/redemption obligor or reserve custodian. Tempo finality and any future card authorization/settlement remain distinct.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>A live embedded payroll wallet now holds a stablecoin balance; the conventional card-spend adapter remains forthcoming in the cited release.</p></div>
+        <div class="caveat"><b>Boundary</b><p>Launch geography and rollout are limited. The card is forward-looking, and legal issuer, reserve custodian, redemption terms, Apple Pay provisioning and specific contactless-terminal support are not established.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://stripe.com/newsroom/news/deel-and-stripe" target="_blank" rel="noopener">Stripe — Deel stablecoin wallet</a> · <a href="https://stripe.com/blog/everything-we-announced-at-sessions-2026" target="_blank" rel="noopener">Stripe — Sessions 2026 product map</a></div>
+  </section>
+</article>
+<article class="entry p-t4" data-path="t4"
+  data-evidence="rollout"
+  data-search="mastercard_settlement t4 rollout 2026-06-03 3 jun 2026 mastercard × issuers × acquirers × multiple stablecoins network settlement rollout mastercard announces a multi-token, multi-chain settlement menu early live flows + 2026 rollout mastercard plans intraday, weekend and holiday settlement using several regulated stablecoins across eight named chains; usdc already supports early on-chain flows while other assets and partners remain in rollout. the customer card experience remains conventional. mastercard is adding a configurable stablecoin settlement option alongside existing network settlement processes. issuer / acquirer institutional settlement wallets for participating issuers and acquirers. mastercard&#x27;s global card network remains the authorization, clearing and dispute framework. acquirers continue the merchant relationship and merchant credit. participating institutions select fiat or supported stablecoin settlement options. institutional network settlement; merchant payout can remain fiat. each stablecoin and blockchain adds its own issuer, reserve, redemption and finality dependencies. no terminal change follows from the network-settlement feature. settlement timing and asset choice are becoming configurable inside the existing card network. the release deliberately mixes already-live usdc flows, expected first participants and future global rollout; those states must not be collapsed.">
+  <div class="date">3 Jun 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T4 · network settlement</span>
+      <span class="evidence-chip e-rollout">Rollout / onboarding</span>
+      <span>Mastercard × issuers × acquirers × multiple stablecoins</span>
+      <span>network settlement rollout</span>
+      <span class="status">early live flows + 2026 rollout</span>
+    </div>
+    <h2>Mastercard announces a multi-token, multi-chain settlement menu</h2>
+    <p class="lead">Mastercard plans intraday, weekend and holiday settlement using several regulated stablecoins across eight named chains; USDC already supports early on-chain flows while other assets and partners remain in rollout.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>The customer card experience remains conventional.</span></div>
+      <div><b>Issuer / acquirer receives</b><span>Institutional network settlement; merchant payout can remain fiat.</span></div>
+      <div><b>Terminal effect</b><span>No terminal change follows from the network-settlement feature.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>The customer card experience remains conventional.</p></div>
+        <div><b>Wallet / custody</b><p>Institutional settlement wallets for participating issuers and acquirers.</p></div>
+        <div><b>Payment adapter</b><p>Mastercard is adding a configurable stablecoin settlement option alongside existing network settlement processes.</p></div>
+        <div><b>Processor / network</b><p>Mastercard&#x27;s global card network remains the authorization, clearing and dispute framework.</p></div>
+        <div><b>Merchant contract</b><p>Acquirers continue the merchant relationship and merchant credit.</p></div>
+        <div><b>Conversion / routing</b><p>Participating institutions select fiat or supported stablecoin settlement options.</p></div>
+        <div><b>Issuer + finality</b><p>Each stablecoin and blockchain adds its own issuer, reserve, redemption and finality dependencies.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>Settlement timing and asset choice are becoming configurable inside the existing card network.</p></div>
+        <div class="caveat"><b>Boundary</b><p>The release deliberately mixes already-live USDC flows, expected first participants and future global rollout; those states must not be collapsed.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.mastercard.com/global/en/news-and-trends/press/2026/june/mastercard-expands-settlement-capabilities-to-include-stablecoin.html" target="_blank" rel="noopener">Mastercard — settlement expansion</a></div>
+  </section>
+</article>
+<article class="entry p-t2" data-path="t2"
+  data-evidence="production"
+  data-search="paypal_crypto_checkout t2 production 2026-07-01 current docs · jul 2026 paypal crypto payments wallet/exchange checkout adapter paypal absorbs the crypto flow and presents local currency to the merchant production · u.s. merchants paypal&#x27;s crypto payment method connects many wallets and exchanges, manages the digital-asset leg, converts the purchase and settles the merchant&#x27;s paypal account in local currency. supported crypto or stablecoin through a connected wallet or exchange. paypal crypto payments is an alternative payment method inside paypal&#x27;s multiparty checkout, conversion and refund model. merchant paypal says the experience reaches roughly 100 supported crypto wallets and exchanges. paypal owns checkout state, conversion, merchant credit and refunds. eligible u.s. merchant uses paypal multiparty checkout. paypal converts the crypto-funded payment into merchant local currency. merchant paypal balance in local currency. paypal&#x27;s documentation says refunds are issued in pyusd. paxos, not paypal, is the pyusd issuer and custodian; original-asset liquidation, paypal balance credit and bank withdrawal are separate. no generic nfc or apple pay effect; this is paypal-hosted digital checkout. the wallet asset is hidden behind a familiar paypal merchant settlement object. the method does not support authorization/capture, billing agreements, subscriptions or card-style chargebacks.">
+  <div class="date">current docs · Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">T2 · wallet checkout</span>
+      <span class="evidence-chip e-production">Production</span>
+      <span>PayPal Crypto Payments</span>
+      <span>wallet/exchange checkout adapter</span>
+      <span class="status">production · U.S. merchants</span>
+    </div>
+    <h2>PayPal absorbs the crypto flow and presents local currency to the merchant</h2>
+    <p class="lead">PayPal&#x27;s crypto payment method connects many wallets and exchanges, manages the digital-asset leg, converts the purchase and settles the merchant&#x27;s PayPal account in local currency.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Supported crypto or stablecoin through a connected wallet or exchange.</span></div>
+      <div><b>Merchant receives</b><span>Merchant PayPal balance in local currency.</span></div>
+      <div><b>Terminal effect</b><span>No generic NFC or Apple Pay effect; this is PayPal-hosted digital checkout.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Supported crypto or stablecoin through a connected wallet or exchange.</p></div>
+        <div><b>Wallet / custody</b><p>PayPal says the experience reaches roughly 100 supported crypto wallets and exchanges.</p></div>
+        <div><b>Payment adapter</b><p>PayPal Crypto Payments is an alternative payment method inside PayPal&#x27;s multiparty checkout, conversion and refund model.</p></div>
+        <div><b>Processor / network</b><p>PayPal owns checkout state, conversion, merchant credit and refunds.</p></div>
+        <div><b>Merchant contract</b><p>Eligible U.S. merchant uses PayPal multiparty checkout.</p></div>
+        <div><b>Conversion / routing</b><p>PayPal converts the crypto-funded payment into merchant local currency.</p></div>
+        <div><b>Issuer + finality</b><p>PayPal&#x27;s documentation says refunds are issued in PYUSD. Paxos, not PayPal, is the PYUSD issuer and custodian; original-asset liquidation, PayPal balance credit and bank withdrawal are separate.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>The wallet asset is hidden behind a familiar PayPal merchant settlement object.</p></div>
+        <div class="caveat"><b>Boundary</b><p>The method does not support authorization/capture, billing agreements, subscriptions or card-style chargebacks.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://developer.paypal.com/docs/multiparty/checkout/apm/crypto/" target="_blank" rel="noopener">PayPal developer docs — crypto payments</a> · <a href="https://www.paypal.com/us/digital-wallet/manage-money/crypto/pyusd" target="_blank" rel="noopener">PayPal — PYUSD</a></div>
+  </section>
+</article>
+<article class="entry p-fabric" data-path="fabric"
+  data-evidence="marketing"
+  data-search="fiserv_fiusd fabric marketing 2026-07-15 summer 2026 watch fiserv × fiusd × finxact × clover ecosystem core + processor + acquirer + issuer platform fiserv is positioning stablecoin inside the bank-and-merchant operating core commercial page + launch target · no launch proof located fiserv now markets fiusd as a fully reserved, programmable digital dollar for banks and businesses, connected to core banking and payment systems; a may statement said go-live was expected in summer 2026. not fixed; proposed uses include payment, loyalty, cross-border and treasury flows. fiusd is marketed as an interoperable layer for fiserv core, embedded-finance and payment systems; no named general-production merchant adapter is public. product-specific endpoint product-specific bank, business or embedded-finance experience. fiserv owns core processing, merchant acquiring, issuer processing and clover distribution surfaces. potentially fiserv or clover, but no universal merchant enablement is documented. fiserv describes interoperability with fiat and other major stablecoins; partners include paxos, circle, paypal and mastercard. product-specific bank or merchant stablecoin/fiat flow. public materials do not yet resolve every issuer, custodian, reserve-bank and redemption role for every fiusd or white-label deployment. no proof located that existing clover terminals automatically accept a native stablecoin payment. fiserv is building token infrastructure adjacent to its core and merchant distribution stack; no clover acceptance follows from this announcement. a product page and launch target are stronger than a concept but weaker than named production institutions, transaction documents and observed volume.">
+  <div class="date">summer 2026 watch</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">Adapter fabric</span>
+      <span class="evidence-chip e-marketing">Marketing / launch target</span>
+      <span>Fiserv × FIUSD × Finxact × Clover ecosystem</span>
+      <span>core + processor + acquirer + issuer platform</span>
+      <span class="status">commercial page + launch target · no launch proof located</span>
+    </div>
+    <h2>Fiserv is positioning stablecoin inside the bank-and-merchant operating core</h2>
+    <p class="lead">Fiserv now markets FIUSD as a fully reserved, programmable digital dollar for banks and businesses, connected to core banking and payment systems; a May statement said go-live was expected in summer 2026.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Not fixed; proposed uses include payment, loyalty, cross-border and treasury flows.</span></div>
+      <div><b>Product-specific endpoint receives</b><span>Product-specific bank or merchant stablecoin/fiat flow.</span></div>
+      <div><b>Terminal effect</b><span>No proof located that existing Clover terminals automatically accept a native stablecoin payment.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Not fixed; proposed uses include payment, loyalty, cross-border and treasury flows.</p></div>
+        <div><b>Wallet / custody</b><p>Product-specific bank, business or embedded-finance experience.</p></div>
+        <div><b>Payment adapter</b><p>FIUSD is marketed as an interoperable layer for Fiserv core, embedded-finance and payment systems; no named general-production merchant adapter is public.</p></div>
+        <div><b>Processor / network</b><p>Fiserv owns core processing, merchant acquiring, issuer processing and Clover distribution surfaces.</p></div>
+        <div><b>Merchant contract</b><p>Potentially Fiserv or Clover, but no universal merchant enablement is documented.</p></div>
+        <div><b>Conversion / routing</b><p>Fiserv describes interoperability with fiat and other major stablecoins; partners include Paxos, Circle, PayPal and Mastercard.</p></div>
+        <div><b>Issuer + finality</b><p>Public materials do not yet resolve every issuer, custodian, reserve-bank and redemption role for every FIUSD or white-label deployment.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>Fiserv is building token infrastructure adjacent to its core and merchant distribution stack; no Clover acceptance follows from this announcement.</p></div>
+        <div class="caveat"><b>Boundary</b><p>A product page and launch target are stronger than a concept but weaker than named production institutions, transaction documents and observed volume.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://www.fiserv.com/en/solutions/embedded-finance/fiusd-stablecoin.html" target="_blank" rel="noopener">Fiserv — FIUSD product page</a> · <a href="https://investors.fiserv.com/static-files/af17ec6f-4ca7-4261-804c-2fb24b9d2430" target="_blank" rel="noopener">Fiserv — May 2026 shareholder statement</a></div>
+  </section>
+</article>
+<article class="entry p-fabric" data-path="fabric"
+  data-evidence="beta"
+  data-search="visa_vsp fabric beta 2026-07-16 16 jul 2026 visa stablecoin platform × open usd wallet-as-a-service + mint/burn + network connection visa adds the wallet and issuer-operation layers beside its network select-client beta visa&#x27;s new platform packages wallet infrastructure, bank-account connection, controls, audit logs and open usd mint/burn/transfer access alongside visa settlement, cards and money movement. future product-specific card, wallet, treasury or money-movement flow. vsp is a visa-managed institutional control plane for wallets, bank accounts and open usd operations alongside existing visa products. institution / product endpoint visa-managed wallet-as-a-service or connected institutional wallet. visa links the platform to its existing network, risk, fraud, treasury and settlement tools. not a merchant acceptance launch; distribution would come through participating institutions and acquirers. clients can link bank accounts and mint, redeem, hold or transfer open usd. institutional wallet or downstream product endpoint. visa attributes open usd to open standard; the reviewed visa source does not establish the exact issuer, redemption obligor, reserve owner or custodian. visa packages access and controls but does not turn every visa transaction into an on-chain transfer. none at beta launch. visa is no longer only adapting stablecoins at card settlement; it is building the institutional wallet and mint/burn control plane too. the entire vsp and wallet-as-a-service package is initially beta with select clients. broader availability is expressly future.">
+  <div class="date">16 Jul 2026</div>
+  <section class="card">
+    <div class="meta">
+      <span class="path-chip">Adapter fabric</span>
+      <span class="evidence-chip e-beta">Beta</span>
+      <span>Visa Stablecoin Platform × Open USD</span>
+      <span>wallet-as-a-service + mint/burn + network connection</span>
+      <span class="status">select-client beta</span>
+    </div>
+    <h2>Visa adds the wallet and issuer-operation layers beside its network</h2>
+    <p class="lead">Visa&#x27;s new platform packages wallet infrastructure, bank-account connection, controls, audit logs and Open USD mint/burn/transfer access alongside Visa settlement, cards and money movement.</p>
+    <div class="quick">
+      <div><b>Customer presents</b><span>Future product-specific card, wallet, treasury or money-movement flow.</span></div>
+      <div><b>Institution / product endpoint receives</b><span>Institutional wallet or downstream product endpoint.</span></div>
+      <div><b>Terminal effect</b><span>None at beta launch.</span></div>
+    </div>
+    <details>
+      <summary>open the seven-layer adapter reading</summary>
+      <div class="layer-grid">
+        <div><b>Credential / tender</b><p>Future product-specific card, wallet, treasury or money-movement flow.</p></div>
+        <div><b>Wallet / custody</b><p>Visa-managed Wallet-as-a-Service or connected institutional wallet.</p></div>
+        <div><b>Payment adapter</b><p>VSP is a Visa-managed institutional control plane for wallets, bank accounts and Open USD operations alongside existing Visa products.</p></div>
+        <div><b>Processor / network</b><p>Visa links the platform to its existing network, risk, fraud, treasury and settlement tools.</p></div>
+        <div><b>Merchant contract</b><p>Not a merchant acceptance launch; distribution would come through participating institutions and acquirers.</p></div>
+        <div><b>Conversion / routing</b><p>Clients can link bank accounts and mint, redeem, hold or transfer Open USD.</p></div>
+        <div><b>Issuer + finality</b><p>Visa attributes Open USD to Open Standard; the reviewed Visa source does not establish the exact issuer, redemption obligor, reserve owner or custodian. Visa packages access and controls but does not turn every Visa transaction into an on-chain transfer.</p></div>
+      </div>
+      <div class="reading-grid">
+        <div class="change"><b>What actually changed</b><p>Visa is no longer only adapting stablecoins at card settlement; it is building the institutional wallet and mint/burn control plane too.</p></div>
+        <div class="caveat"><b>Boundary</b><p>The entire VSP and Wallet-as-a-Service package is initially beta with select clients. Broader availability is expressly future.</p></div>
+      </div>
+    </details>
+    <div class="sources"><a href="https://investor.visa.com/news/news-details/2026/Visa-Introduces-Platform-for-Stablecoin-Minting-Movement-and-Management/" target="_blank" rel="noopener">Visa — Stablecoin Platform beta</a></div>
+  </section>
+</article></section>
+<div class="foot">T3 direct wallet-to-merchant transfer remains a valid path but is not the dominant institutional pattern in this card set. “Acquirer” is used only where the firm actually owns the merchant-acquiring relationship; stablecoin acceptance middleware may perform an acquirer-like routing function without becoming the card acquirer of record.</div>
+</main>
+<script>
+const pathButtons=[...document.querySelectorAll('.path-filter')];
+const evidenceButtons=[...document.querySelectorAll('.evidence-filter')];
+const entries=[...document.querySelectorAll('.entry')];
+const search=document.querySelector('#search');
+const resultCount=document.querySelector('#resultCount');
+function update(){
+  const activePaths=new Set(pathButtons.filter(b=>b.classList.contains('on')).map(b=>b.dataset.path));
+  const activeEvidence=new Set(evidenceButtons.filter(b=>b.classList.contains('on')).map(b=>b.dataset.evidence));
+  const q=search.value.trim().toLowerCase();
+  let visible=0;
+  entries.forEach(e=>{
+    const show=activePaths.has(e.dataset.path)&&activeEvidence.has(e.dataset.evidence)&&(!q||e.dataset.search.includes(q));
+    e.classList.toggle('hidden',!show); if(show) visible++;
+  });
+  resultCount.textContent=`${visible} of ${entries.length} shown`;
+}
+[...pathButtons,...evidenceButtons].forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('on');update()}));
+search.addEventListener('input',update);
+update();
+</script>
+</body></html>

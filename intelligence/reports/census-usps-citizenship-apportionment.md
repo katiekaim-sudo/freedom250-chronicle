@@ -19,7 +19,7 @@ is public promotion of an existing test, not a new nationwide authorization.
 | 2026-04-10 | OIRA approved the collection with change | [Reginfo approved-ICR search](https://www.reginfo.gov/public/do/PRASearch?agencyCode=0600&icrStatus=AC&operation=2&sortColumn=5&subAgencyCode=0607) | Approval permits collection; it is not a result |
 | 2026-05-01 | English-only internet self-response began | [Respond-now release](https://www.census.gov/newsroom/press-releases/2026/respond-now-to-2026-census-test.html) | No paper or telephone response option |
 | 2026-06-01 | Postal and ordinary enumerators began nonresponse follow-up | [Enumeration release](https://www.census.gov/newsroom/press-releases/2026/2026-census-test-enumeration-begins.html) | Operative test, not an official population count |
-| 2026-08-31 | Scheduled collection endpoint | [Live test page](https://www.census.gov/programs-surveys/2026-census-test.html) | Analysis and 2030 design decisions occur later |
+| 2026-08-31 | Census confirms the Huntsville and Spartanburg test concluded | [Live test page](https://www.census.gov/programs-surveys/2026-census-test.html) | Closure is not a response, completed-case, cost, quality, productivity, USPS-comparison or 2030-design result |
 
 GAO reports that Commerce eliminated four sites and removed or reduced 10 of 19
 planned operational activities. A proposed change to administrative-record

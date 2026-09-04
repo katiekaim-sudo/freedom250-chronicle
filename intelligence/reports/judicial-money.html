@@ -41,19 +41,27 @@ box-shadow:0 0 18px rgba(86,212,216,.9)}
 .f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
 @media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
 </style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
 </head>
-<body><nav class="f250-share-nav" aria-label="Shared site">
+<body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><nav class="f250-share-nav" aria-label="Shared site">
 <a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
 <span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
 </nav><main class="reader"><header class="reader-head"><div class="kicker">Identity, oversight and law · full research · current</div>
-<h1>Judicial Money</h1><p class="deck">Governed Research Desk file · evidence cutoff 2026-07-25</p>
+<h1>Judicial Money</h1><p class="deck">Governed Research Desk file · evidence cutoff 2026-09-03</p>
 <div class="report-actions"><a class="report-action primary" href="judicial-money.md">Open source text</a><a class="report-action" href="../library/judicial-money.html">Back to summary</a></div></header>
 <article class="content"><blockquote>
-<p><strong>Provenance &amp; audit (Claude, 2026-07-11; Custodia status refreshed 2026-07-25).</strong> This map was produced by ChatGPT and audited before ingestion. Every pre-2025 fact checkable against training knowledge verified correct (~30 checked: dates, courts, judges, holdings, procedural effects). Flags: (1) JM-02 docket inconsistency — registry says No. 25-332, opinion URL says 25-322; (2) NTEU v. Vought complaint date given as 2025-02-13 — the original complaint may have been filed 2025-02-09 (verify on PACER before load-bearing use); (3) several "primary sources" are Justia/casemine mirrors, not official court PDFs — the JM-20 merits opinion (casemine) is the weakest link; (4) JM-16's source is the oral-argument audio page, not the opinion; (5) no mandate dates anywhere (acknowledged in §11); (6) JM-06 is now on the merits docket as Supreme Court No. 26-62: petition filed 2026-07-10, docketed 2026-07-14, response due 2026-08-13 absent waiver or extension; docketing is not a cert grant; (7) the map's own no-noon-charts rule is superseded by Katie's judicial charting ruling of 2026-07-11 (see the Factual Timeline note). Everything below is the map verbatim except the dated JM-06 status correction.</p>
+<p><strong>Provenance &amp; audit (Claude, 2026-07-11; Custodia status targeted refresh 2026-09-03).</strong> This map was produced by ChatGPT and audited before ingestion. Every pre-2025 fact checkable against training knowledge verified correct (~30 checked: dates, courts, judges, holdings, procedural effects). Flags: (1) JM-02 docket inconsistency — registry says No. 25-332, opinion URL says 25-322; (2) NTEU v. Vought complaint date given as 2025-02-13 — the original complaint may have been filed 2025-02-09 (verify on PACER before load-bearing use); (3) several "primary sources" are Justia/casemine mirrors, not official court PDFs — the JM-20 merits opinion (casemine) is the weakest link; (4) JM-16's source is the oral-argument audio page, not the opinion; (5) no mandate dates anywhere (acknowledged in §11); (6) JM-06 is on Supreme Court merits docket No. 26-62: petition filed 2026-07-10, docketed 2026-07-14, and the August 13 response deadline extended on August 10 through September 11 for all respondents; docketing and briefing are not a cert grant or account access; (7) the map's own no-noon-charts rule is superseded by Katie's judicial charting ruling of 2026-07-11 (see the Factual Timeline note). Everything below is the map verbatim except dated JM-06 status corrections.</p>
 <p><strong>v2 (final version, delivered by Katie later 2026-07-11).</strong> The map grew from 45 cases / 112 events to 72 cases / 159 events (E-127 unused): the FDIC resolution estates (JM-46–54), the market-utility case law (JM-55–61: Whistler, DTC global lock, Susquehanna, USFE, MF Global, Merit Management, Alpine), the Fedwire/Article 4A transaction line (JM-62–66: Donmar, Grain Traders, Banque Worms, Citibank/Revlon, Sheerbonnet), the blocked-EFT seam (JM-67–69: Consarc, Calderon-Cardona vs Levin — a live methodological split), and the federal-benefits trilogy (JM-70–72). Several transaction events carry verified clock times (Banque Worms 12:36 AM; Donmar 1:39 PM; BCCI seizure 9:00 AM EDT; Revlon 4:54 PM). Body below replaced verbatim with v2.</p>
 </blockquote>
 <h1>Judicial Money Map — Freedom 250</h1>
 <p><strong>Status date:</strong> 2026-07-11 (America/New_York)<br>
+<strong>Targeted Custodia refresh:</strong> 2026-09-03 — Supreme Court No. 26-62 was docketed July 14; the August 13 response deadline was extended on August 10 through September 11 for all respondents. No certiorari grant, merits disposition or master-account access followed.<br>
 <strong>Scope:</strong> federal and state litigation that controls, restrains, or defines the monetary transition<br>
 <strong>Unit of record:</strong> one legally or operationally meaningful case event, not one docket filing<br>
 <strong>Source rule:</strong> primary opinions, orders, dockets, transcripts, and agency implementation materials control; authoritative docket mirrors are used where a court does not expose a stable public docket<br>
@@ -218,10 +226,10 @@ box-shadow:0 0 18px rgba(86,212,216,.9)}
 <td>JM-06</td>
 <td><strong>Custodia</strong></td>
 <td><em>Custodia Bank, Inc. v. Federal Reserve Board of Governors and Federal Reserve Bank of Kansas City</em></td>
-<td>D. Wyo. No. 1:22-cv-00125-SWS; 10th Cir. No. 24-8024; Supreme Court No. 26-62; extension No. 25A1320</td>
+<td>D. Wyo. No. 1:22-cv-00125-SWS; 10th Cir. No. 24-8024; Supreme Court No. 26-62; linked extension No. 25A1320</td>
 <td>Skavdahl, J.; Tymkovich, Phillips, McHugh (Tymkovich dissenting in panel merits opinion)</td>
 <td>Reserve account access</td>
-<td>Published Tenth Circuit opinion affirmed judgment for Fed defendants: eligibility is not an automatic right to an account; Reserve Banks retain discretion. Cert petition filed <strong>2026-07-10</strong> and docketed <strong>2026-07-14</strong> as No. 26-62; response due <strong>2026-08-13</strong> absent waiver or extension. No cert grant or merits disposition.</td>
+<td>Published Tenth Circuit opinion affirmed judgment for Fed defendants: eligibility is not an automatic right to an account; Reserve Banks retain discretion. Cert petition filed <strong>2026-07-10</strong> and docketed <strong>2026-07-14</strong>. On <strong>2026-08-10</strong>, the Court extended the response deadline for all respondents through <strong>2026-09-11</strong>. No cert grant, merits disposition or master-account access. <a href="https://www.supremecourt.gov/docket/docketfiles/html/public/26-62.html">Supreme Court docket</a></td>
 </tr>
 <tr>
 <td>JM-07</td>
@@ -4176,8 +4184,8 @@ box-shadow:0 0 18px rgba(86,212,216,.9)}
 <td>JM-01, JM-02, JM-03, JM-05, JM-11, JM-15, JM-17, JM-22, JM-24, JM-25</td>
 </tr>
 <tr>
-<td>Cert petition pending / imminent</td>
-<td>JM-06 (deadline 2026-07-11; petition not located at check), JM-11 (No. 25-1313 pending)</td>
+<td>Cert petitions pending</td>
+<td>JM-06 (No. 26-62; respondent briefs due 2026-09-11 after extension), JM-11 (No. 25-1313 pending)</td>
 </tr>
 <tr>
 <td>Open en banc/appellate litigation</td>
@@ -4568,9 +4576,9 @@ box-shadow:0 0 18px rgba(86,212,216,.9)}
 <tr>
 <td>Critical</td>
 <td>Custodia, JM-06</td>
-<td><strong>2026-07-11 extended cert petition deadline</strong></td>
-<td>Supreme Court review could reopen the statutory account-entitlement question; absent review, Tenth Circuit rule stands</td>
-<td><a href="https://www.supremecourt.gov/docket/docketfiles/html/public/25A1320.html">No. 25A1320</a></td>
+<td><strong>2026-09-11 respondent briefs due in No. 26-62</strong> after the Court's August 10 extension</td>
+<td>Supreme Court review could reopen the statutory account-entitlement question; a response filing is not a cert grant or account access</td>
+<td><a href="https://www.supremecourt.gov/docket/docketfiles/html/public/26-62.html">No. 26-62</a></td>
 </tr>
 <tr>
 <td>Critical</td>

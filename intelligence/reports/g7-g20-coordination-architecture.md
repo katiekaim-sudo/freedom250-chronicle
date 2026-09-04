@@ -1,5 +1,14 @@
 # G7 and G20 — Coordination Architecture Deep Dive, 2025–2026
 
+> **Targeted outcome refresh — September 3, 2026.** Treasury published the
+> Asheville Finance Ministers and Central Bank Governors Chair's Statement on
+> September 1. It records work on digital assets, cross-border payments, fraud
+> and financial literacy, but China objected to paragraphs 4, 10, 11 and 13.
+> Those passages are not universal G20 consensus, and the statement is not
+> domestic implementation or an operating result. The broad evidence cutoff
+> below remains August 31; read
+> `G20_ASHEVILLE_FMCBG_CHAIRS_STATEMENT_DELTA_2026-09-01.md` for the receipt.
+
 ## Bottom line
 
 Freedom 250 is missing a consequential layer: not the subject matter of the G7

@@ -11,6 +11,17 @@
 
 ---
 
+### September 3 targeted charter refresh — World Liberty
+
+OCC Conditional Approval 1385, dated August 14, grants **preliminary
+conditional approval** to proposed World Liberty Trust Company, N.A., charter
+25407. The bank cannot commence business before final approval and satisfaction
+of preopening requirements. Its plan is to assume USD1 issuance, redemption and
+reserve functions from BitGo after establishment; it does not currently plan to
+seek a Federal Reserve master account. This is a charter-stage change, not proof
+that the bank opened, USD1 functions moved or a new settlement rail became
+operational. [OCC decision](https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-decisions/2026/cd1385.pdf)
+
 ## The story in one line
 
 The private market is not converging on one magic coin or one chain. It is assembling a **federated permission stack** in which public networks, private ledgers, banks, trust companies, custodians, tokenizers, card networks, Swift, and market utilities each keep a different gate—and the firms are racing to own the adapters between them.

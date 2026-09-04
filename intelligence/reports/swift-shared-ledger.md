@@ -1,10 +1,18 @@
 # SWIFT ledger — activation, legal constitution and finality
 
-**Research cutoff:** 2026-07-21  
-**Status:** ready for initial use; named banks preparing live pilots; no first completed SWIFT-ledger transaction publicly established  
+**Research cutoff:** 2026-07-21; targeted activation-state refresh 2026-09-03  
+**Status:** ready for initial controlled use; 17 named banks are preparing live pilots; no completed SWIFT-ledger transaction, external-cash finality event or public participant rulebook is established  
 **Control:** hypotheses are marked. A product announcement, transaction execution, customer credit, external cash settlement and legal finality are separate states.
 
 ## Executive ruling
+
+**September 3 status refresh.** SWIFT's July 9 announcement resolves two
+questions previously described too cautiously: SWIFT is the operator of the
+ledger within its infrastructure stack, and 17 named banks are preparing to
+pilot live transactions using bank-issued tokenised deposits. This is
+activation/readiness evidence, not proof of a completed transaction, production
+scale, a named corridor, final cash settlement or legal finality. [SWIFT
+activation announcement](https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure)
 
 The ledger's strategic object is not a SWIFT coin. It is a **funded interbank commitment** that SWIFT records, validates, synchronises and—in the March 2026 Payments Market Practice Group description—notarises across bank-controlled liabilities.
 

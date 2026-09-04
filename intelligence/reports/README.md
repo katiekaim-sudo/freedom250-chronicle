@@ -18,7 +18,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Federal Strategic Plans](federal-strategic-plans.md) — cutoff 2026-07-22
 - [Fraud and Payment Integrity](fraud-payment-integrity.md) — cutoff 2026-07-31
 - [House Oversight Corpus](house-oversight-corpus.md) — cutoff 2026-07-22
-- [Judicial Money](judicial-money.md) — cutoff 2026-07-25
+- [Judicial Money](judicial-money.md) — cutoff 2026-09-03
 - [Office of Personnel Management Structural Change Audit — 2025–2026](opm-structural-change-audit-2025-2026.md) — cutoff 2026-08-29T20:10:53-04:00
 - [PRWORA State Reporting and Eligibility Architecture — 1996–2026](prwora-state-reporting-eligibility-architecture.md) — cutoff 2026-09-02
 - [Treasury Do Not Pay — Governmentwide Structural Map](treasury-do-not-pay-governmentwide-map.md) — cutoff 2026-08-29
@@ -38,7 +38,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Ripple, XRP and the Invisible Conversion Layer](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-09-01
 - [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](route-anchor-inventory.md) — cutoff 2026-08-31T14:43:21-04:00
 - [SEC Transfer Agent Modernization — 2026 Proposal](sec-transfer-agent-modernization.md) — cutoff 2026-09-01
-- [SWIFT Shared Ledger](swift-shared-ledger.md) — cutoff 2026-07-21
+- [SWIFT Shared Ledger](swift-shared-ledger.md) — cutoff 2026-09-03
 - [The Overall Monetary Play — July 2026 Interpretation](overall-monetary-play.md) — cutoff 2026-07-13
 - [Wholesale Metals Infrastructure](wholesale-metals.md) — cutoff 2026-08-23
 - [COVID Authority and Disclosure Record](covid-authority-disclosures.md) — cutoff 2026-07-29
@@ -49,16 +49,17 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Data Center Federal Legal Spine 2025–2026](data-center-federal-legal-spine.md) — cutoff 2026-08-20
 - [Federal Science Operating System](federal-science-operating-system.md) — cutoff 2026-08-17
 - [NSSTS Technology-to-Company Map](nssts-technology-company-map.md) — cutoff 2026-08-19
+- [New York Manufacturing and Innovation Map — 2026](new-york-manufacturing-innovation-map-2026.md) — cutoff 2026-09-04
 - [Permanent Magnets](permanent-magnets.md) — cutoff 2026-07-22
 - [Scientific Trust Stack](scientific-trust-stack.md) — cutoff 2026-08-17
 - [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](us-inbound-investment-industrial-capex.md) — cutoff 2026-08-10
 - [Cuba Pressure and Counter-Influence](cuba-pressure-counter-influence.md) — cutoff 2026-07-20
 - [Economic Institution Legitimacy Crisis — 2025–2026](economic-institution-legitimacy-crisis.md) — cutoff 2026-09-02
 - [G20 Currency Watch](currency-watch.md) — cutoff 2026-07-31
-- [G7 and G20 Coordination Architecture — 2025–2026](g7-g20-coordination-architecture.md) — cutoff 2026-08-31T12:08:12-04:00
+- [G7 and G20 Coordination Architecture — 2025–2026](g7-g20-coordination-architecture.md) — cutoff 2026-09-03T19:41:23-04:00
 - [Gold Balance of Payments & Currency Adjustment](gold-bop-currency-adjustment.md) — cutoff 2026-08-23
 - [International Monetary Transition](international-monetary-transition.md) — cutoff 2026-08-04
-- [Iran Financial Pressure and Banking-System Isolation](iran-financial-pressure.md) — cutoff 2026-08-24T14:47:00-04:00
+- [Iran Financial Pressure and Banking-System Isolation](iran-financial-pressure.md) — cutoff 2026-09-03T19:41:23-04:00
 - [Iraq Oil Provenance and Logistics](iraq-oil-logistics.md) — cutoff 2026-07-15
 - [Japan August 2026 — State, Monetary, Industrial and Digital Delta](japan-august-2026-delta.md) — cutoff 2026-08-31T23:10:00+09:00
 - [Trump Davos Address — January 21, 2026](trump-davos-address-2026-01-21.md) — cutoff 2026-07-31
@@ -69,6 +70,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Federal Government Weekly Delta — August 13–20, 2026](federal-government-weekly-delta-2026-08-20.md) — cutoff 2026-08-20T12:19:33-04:00
 - [Federal Government Weekly Delta — August 20–21, 2026](federal-government-weekly-delta-2026-08-21.md) — cutoff 2026-08-21T15:00:00-04:00
 - [Federal Government Weekly Delta — August 2–8, 2026](federal-government-weekly-delta-2026-08-08.md) — cutoff 2026-08-08T11:50:27-04:00
+- [Federal Government Weekly Delta — August 31–September 3, 2026](federal-government-weekly-delta-2026-09-03.md) — cutoff 2026-09-03T20:09:34-04:00
 - [Federal Government Weekly Delta — August 8–13, 2026](federal-government-weekly-delta-2026-08-13.md) — cutoff 2026-08-13T21:25:45-04:00
 - [Federal Whole-Site Recertification — August 2026](government-wide-recertification-august-2026.md) — cutoff 2026-08-04T17:48:00-04:00
 - [Government-Wide Audit — July 2026](government-wide-audit-july-2026.md) — cutoff 2026-07-18

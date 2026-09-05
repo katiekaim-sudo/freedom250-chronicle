@@ -1,0 +1,596 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Corporate Accounting Cycles, GAAP, and Automation Deep Dive · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Corporate Accounting Cycles, GAAP, and Automation Deep Dive</h1><p class="deck">Collection evidence cutoff: 2026-08-26</p><p><a href="corporate-accounting-cycles-gaap-and-automation-deep-dive-2026-07-ed9e10bad552.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="corporate-accounting-cycles-gaap-and-automation-deep-dive">Corporate Accounting Cycles, GAAP, and Automation Deep Dive</h1>
+<p><strong>Research date:</strong> 2026-07-30<br />
+<strong>Scope:</strong> Nongovernmental U.S. corporate accounting. Primary sources only: FASB, SEC, PCAOB, and IRS where tax-basis accounting must be distinguished from financial reporting.<br />
+<strong>Status convention:</strong> “Current GAAP” means the FASB Accounting Standards Codification as amended by effective guidance. FASB Concepts Statements are explicitly nonauthoritative. Proposed ASUs, research projects, and tentative Board decisions are identified separately and do not change current GAAP.</p>
+<h2 id="executive-finding">Executive finding</h2>
+<p>Blockchain and smart-contract systems can radically change the <strong>bookkeeping, evidence, control, reconciliation, and reporting machinery</strong> of accounting without eliminating the <strong>recognition, measurement, presentation, and disclosure judgments</strong> that U.S. GAAP exists to govern.</p>
+<p>The most useful distinction is:</p>
+<ol>
+<li><strong>Business-event layer:</strong> what happened, to whom, under what authority, when, with what asset or obligation, and with what counterparty evidence.</li>
+<li><strong>Accounting-policy layer:</strong> which reporting rule transforms that event into recognized assets, liabilities, revenue, expense, equity, tax, and disclosures.</li>
+<li><strong>Judgment layer:</strong> estimates, classifications, forecasts, legal interpretations, control determinations, materiality, and management assumptions.</li>
+<li><strong>Assurance layer:</strong> evidence that the event population is complete, the data reliable, the rules correctly applied, judgments supportable, controls effective, and reports not materially misstated.</li>
+</ol>
+<p>A signed, append-only event record can make layer 1 far more complete and layers 2–4 more inspectable. It cannot make layers 2–4 disappear.</p>
+<p>This follows directly from the FASB’s conceptual description of accrual accounting: accrual accounting depicts economic effects in the periods in which they occur even when cash receipts and payments occur in another period. Cash-only information is therefore not a substitute for GAAP financial performance. The SEC likewise requires public-company records and controls sufficient to prepare GAAP financial statements, while PCAOB standards continue to require sufficient appropriate audit evidence and specific work over subjective estimates.</p>
+<p>The practical opportunity is not “replace double-entry with blockchain.” It is:</p>
+<blockquote>
+<p><strong>Replace fragmented journals and reconciliations with a common, signed event record; preserve double-entry as one deterministic projection of those events; and make policy, judgment, override, correction, and assurance metadata inspectable.</strong></p>
+</blockquote>
+<p>The often-used label “triple-entry accounting” should therefore be handled carefully. A counterparty-signed shared receipt can be a powerful third evidence object, but it is not a third balancing side added to debit and credit. The accounting equation and double-entry projection remain; the shared receipt improves agreement, provenance, and assurance.</p>
+<h2 id="1-what-is-actually-automatable">1. What is actually automatable</h2>
+<h3 id="a-deterministic-functions-high-automation-potential">A. Deterministic functions — high automation potential</h3>
+<ul>
+<li>identity and authorization checks;</li>
+<li>timestamping and sequence;</li>
+<li>order, invoice, receipt, shipment, payroll, custody, and settlement state changes;</li>
+<li>three-way match and exception routing;</li>
+<li>arithmetic, allocation formulas, interest schedules, and depreciation schedules once assumptions are approved;</li>
+<li>subledger-to-general-ledger posting;</li>
+<li>intercompany matching and routine eliminations;</li>
+<li>bank, custodian, and on-chain reconciliation;</li>
+<li>covenant and threshold alerts;</li>
+<li>evidence attachment, signature verification, and version history;</li>
+<li>XBRL tagging and report assembly;</li>
+<li>population-wide exception analytics;</li>
+<li>append-only correction through reversal and supersession rather than silent overwrite.</li>
+</ul>
+<h3 id="b-rules-that-can-be-encoded-but-still-require-governance">B. Rules that can be encoded but still require governance</h3>
+<ul>
+<li>revenue allocation and recognition schedules after contract interpretation;</li>
+<li>expense versus capitalization rules after the unit of account and asset conclusion are approved;</li>
+<li>cost-flow and overhead-allocation rules;</li>
+<li>lease amortization;</li>
+<li>tax-rate application and jurisdictional mapping;</li>
+<li>foreign-currency translation;</li>
+<li>debt amortization and selected hedge-accounting calculations;</li>
+<li>consolidation eliminations after the reporting-entity boundary is decided;</li>
+<li>disclosure thresholds;</li>
+<li>close checklists and certification routing.</li>
+</ul>
+<p>Encoding these rules does not make them self-validating. Someone must control the rule version, effective date, exception authority, data source, and upgrade process.</p>
+<h3 id="c-judgment-intensive-functions-technology-can-support-not-decide-autonomously">C. Judgment-intensive functions — technology can support, not decide autonomously</h3>
+<ul>
+<li>identifying contract terms, side agreements, enforceable rights, and performance obligations;</li>
+<li>principal-versus-agent and control determinations;</li>
+<li>variable consideration and returns;</li>
+<li>collectibility and expected credit losses;</li>
+<li>asset-versus-expense classification and the unit of account;</li>
+<li>useful lives, residual values, impairment triggers, and forecast cash flows;</li>
+<li>inventory obsolescence and net realizable value;</li>
+<li>fair value when markets or inputs are unobservable;</li>
+<li>litigation, warranty, restructuring, environmental, and other contingencies;</li>
+<li>debt-versus-equity and embedded-derivative analysis;</li>
+<li>hedge designation, forecast probability, and effectiveness judgments;</li>
+<li>pension and other actuarial assumptions;</li>
+<li>deferred-tax realization and uncertain tax positions;</li>
+<li>voting-interest, variable-interest-entity, and de facto control analysis;</li>
+<li>functional currency, segment identification, going concern, subsequent events, and materiality;</li>
+<li>whether an oracle proves the real-world condition the code claims it proves.</li>
+</ul>
+<h2 id="2-operating-cycle-map">2. Operating-cycle map</h2>
+<h2 id="order-to-cash">Order to cash</h2>
+<h3 id="canonical-events">Canonical events</h3>
+<p>Customer identity and authority → contract accepted → performance obligations/rights mapped → goods shipped or service milestones completed → customer acceptance/return window → invoice/contract asset → cash receipt → refund, credit memo, write-off, or recovery.</p>
+<h3 id="what-an-event-sourced-or-smart-contract-system-can-automate">What an event-sourced or smart-contract system can automate</h3>
+<ul>
+<li>preserve the executed contract, amendments, approvals, signatures, and side-letter references;</li>
+<li>issue a persistent contract and performance-obligation ID;</li>
+<li>obtain signed delivery, acceptance, usage, or milestone attestations;</li>
+<li>trigger billing or escrow release when approved conditions are met;</li>
+<li>post receivable, contract asset/liability, revenue schedule, cash receipt, refund, and sales-tax entries;</li>
+<li>reconcile processor, bank, custodian, and general-ledger records;</li>
+<li>maintain a complete chronology of contract modifications, credits, returns, and collections;</li>
+<li>surface cut-off exceptions and transactions with missing external evidence.</li>
+</ul>
+<h3 id="what-gaap-still-requires">What GAAP still requires</h3>
+<p>Topic 606 is not a cash-receipt rule. It requires analysis of the contract, promised goods and services, performance obligations, transaction price, allocation, and satisfaction of obligations. Judgment remains in:</p>
+<ul>
+<li>whether a contract exists and rights are enforceable;</li>
+<li>whether promises are distinct performance obligations;</li>
+<li>whether the entity is principal or agent;</li>
+<li>estimation and constraint of variable consideration;</li>
+<li>material rights, options, warranties, returns, bill-and-hold, consignment, and contract modifications;</li>
+<li>whether control transferred over time or at a point in time;</li>
+<li>collectibility and the expected-credit-loss allowance on receivables and contract assets.</li>
+</ul>
+<p>Topic 326 expressly requires expected credit losses based on historical experience, current conditions, and reasonable and supportable forecasts; the FASB does not prescribe one method and acknowledges judgment.</p>
+<h3 id="residual-manipulation-surface">Residual manipulation surface</h3>
+<p>Shared, signed delivery and acceptance records can narrow fictitious sales and period-end cut-off games. Manipulation can migrate to contract drafting, undisclosed side concessions, control of the acceptance oracle, related-party customers, estimates of returns or rebates, and collectibility assumptions.</p>
+<p><strong>Primary authority:</strong> <a href="https://fasb.org/projects/recently-completed-projects/revenue-recognition-summary">FASB Topic 606 project summary</a>; <a href="https://fasb.org/projects/recently-completed-projects/accounting-standards-update-2016-13-financial-instrument-credit-losses">FASB Topic 326 project summary</a>; <a href="https://fasb.org/page/PageContent?pageId=%2Fprojects%2Frecently-completed-projects%2Fcredit-losses-topic-606-receivables.html">FASB ASU 2025-05 on current Topic 606 receivables and contract assets</a>.</p>
+<h2 id="procure-to-pay">Procure to pay</h2>
+<h3 id="canonical-events_1">Canonical events</h3>
+<p>Vendor identity → budget/authority → requisition → purchase order → contract → goods/service receipt → inspection/acceptance → invoice → three-way match → payable/accrual → payment authorization → settlement → return, dispute, credit, or recovery.</p>
+<h3 id="what-can-be-automated">What can be automated</h3>
+<ul>
+<li>approved-vendor and beneficial-ownership checks;</li>
+<li>segregation-of-duties and authorization thresholds;</li>
+<li>purchase-order/invoice/receipt three-way match;</li>
+<li>duplicate invoice and split-purchase detection;</li>
+<li>signed receipt and quality-inspection evidence;</li>
+<li>posting to AP, inventory, prepaid, fixed-asset construction, or expense queues;</li>
+<li>discount, due-date, withholding, and payment execution;</li>
+<li>settlement and vendor-statement reconciliation;</li>
+<li>exception routing and immutable approval history.</li>
+</ul>
+<h3 id="what-gaap-still-requires_1">What GAAP still requires</h3>
+<ul>
+<li>determining when goods or services have been received and an obligation incurred;</li>
+<li>classifying the acquired item as expense, prepaid, inventory, PP&amp;E, software/intangible, lease right-of-use asset, or another asset;</li>
+<li>separating lease and nonlease components and identifying embedded leases;</li>
+<li>accruing unbilled services, bonuses, warranties, rebates, litigation, and other obligations;</li>
+<li>estimating loss contingencies when loss is probable and reasonably estimable;</li>
+<li>distinguishing a liability extinguishment from a payment instruction or disputed claim;</li>
+<li>assessing related-party terms and disclosures.</li>
+</ul>
+<p>A payment contract can prove that money moved. It does not determine what was acquired, whether the service occurred, whether the expenditure should be capitalized, or whether an off-chain obligation exists.</p>
+<h3 id="residual-manipulation-surface_1">Residual manipulation surface</h3>
+<p>Duplicate invoices and unauthorized payments can fall sharply. Games can move to sham vendors, collusive acceptance, false receiving data, misclassification of expenses as assets, undisclosed commitments, and oracle or administrator control.</p>
+<p><strong>Primary authority:</strong> <a href="https://fasb.org/page/PageContent?bcpath=tff&amp;pageId=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-5.html">FASB summary of loss contingencies carried into Topic 450</a>; <a href="https://fasb.org/projects/current-projects/leases-398331">FASB Topic 842 leases summary</a>; <a href="https://www.sec.gov/spotlight/fcpa/fcpa-recordkeeping.pdf">SEC Exchange Act Section 13(b) books-and-records and internal-control provisions</a>.</p>
+<h2 id="payroll-and-employee-compensation">Payroll and employee compensation</h2>
+<h3 id="canonical-events_2">Canonical events</h3>
+<p>Worker identity/classification → approved employment terms → time or service record → gross pay → bonus/commission entitlement → benefit elections → withholding → payroll liability → payment and remittance → equity-award grant, vesting, exercise, forfeiture, or settlement → pension/postretirement service and actuarial remeasurement.</p>
+<h3 id="what-can-be-automated_1">What can be automated</h3>
+<ul>
+<li>time, rate, commission, and approved-benefit calculations;</li>
+<li>withholding and remittance mechanics;</li>
+<li>approved payroll posting and settlement;</li>
+<li>accrual reversal upon payment;</li>
+<li>equity-award cap-table state, vesting conditions, exercises, forfeitures, and settlement;</li>
+<li>service-period schedules and disclosure data;</li>
+<li>exception flags for ghost employees, duplicate identities, incompatible bank accounts, or unauthorized rate changes.</li>
+</ul>
+<h3 id="what-gaap-still-requires_2">What GAAP still requires</h3>
+<ul>
+<li>employee versus contractor conclusions and the economic substance of arrangements;</li>
+<li>accrual of earned but unpaid compensation and leave;</li>
+<li>estimation of discretionary bonuses and other contingent compensation;</li>
+<li>classification and measurement of stock compensation under Topic 718, including valuation inputs and award modifications;</li>
+<li>pension and postretirement measurement using actuarial present values, discount rates, participant behavior, expected future benefits, and plan-asset values;</li>
+<li>disclosure of significant assumptions and funded status.</li>
+</ul>
+<p>The underlying grant and vesting events may be machine-verifiable. Option value, liability-versus-equity classification, probability conditions, actuarial assumptions, and modification accounting are not simply payment facts.</p>
+<p><strong>Primary authority:</strong> <a href="https://fasb.org/Page/Document?pdf=ASU+2024-01.pdf&amp;title=ACCOUNTING+STANDARDS+UPDATE+2024-01%E2%80%94Compensation%E2%80%94Stock+Compensation+%28Topic+718%29%3A+Scope+Application+of+Profits+Interest+and+Similar+Awards">FASB ASU 2024-01, Topic 718 scope for profits interests and similar awards</a>; <a href="https://storage.fasb.org/ASU%202017-07.pdf">FASB Topic 715 pension-cost presentation, ASU 2017-07</a>; <a href="https://fasb.org/page/PageContent?bcpath=tff&amp;pageId=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-158.html">FASB summary of recognized pension funded status</a>.</p>
+<h2 id="inventory-and-cost-of-sales">Inventory and cost of sales</h2>
+<h3 id="canonical-events_3">Canonical events</h3>
+<p>Purchase/production authority → material receipt → custody/location → consumption into work in process → labor/overhead attachment → completion → transfer or consignment → shipment/delivery → return/scrap/shrinkage → count adjustment → obsolescence or write-down.</p>
+<h3 id="what-can-be-automated_2">What can be automated</h3>
+<ul>
+<li>unique lot, serial, batch, custody, and location histories;</li>
+<li>signed handoffs across suppliers, warehouses, manufacturers, and customers;</li>
+<li>perpetual quantity records and physical-count exception lists;</li>
+<li>standard/actual-cost accumulation and approved overhead formulas;</li>
+<li>FIFO/average-cost layers and routine cost-of-sales release;</li>
+<li>recall provenance and damaged/expired inventory controls;</li>
+<li>cut-off testing against shipping, receiving, and acceptance evidence.</li>
+</ul>
+<h3 id="what-gaap-still-requires_3">What GAAP still requires</h3>
+<ul>
+<li>determining title, control, consignment, bill-and-hold, and goods in transit;</li>
+<li>selecting and consistently applying the cost-flow method;</li>
+<li>identifying inventoriable costs and normal versus abnormal production costs;</li>
+<li>deciding the unit of account;</li>
+<li>assessing shrinkage, excess/obsolete stock, estimated selling price, completion costs, and disposal/transportation costs;</li>
+<li>applying lower-of-cost-and-net-realizable-value to inventory within ASU 2015-11’s scope, while LIFO and retail-method inventory retain separate guidance.</li>
+</ul>
+<p>Token existence is not evidence of physical existence, condition, salability, ownership, or lack of obsolescence unless trusted real-world controls support those assertions.</p>
+<p><strong>Primary authority:</strong> <a href="https://storage.fasb.org/ASU%202015-11.pdf">FASB ASU 2015-11, Inventory (Topic 330)</a>; <a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS1105">PCAOB AS 1105, including observation and evidence reliability</a>.</p>
+<h2 id="fixed-assets-intangibles-software-and-leases">Fixed assets, intangibles, software, and leases</h2>
+<h3 id="canonical-events_4">Canonical events</h3>
+<p>Project authorization → acquisition/construction costs → asset component and location → ready/placed in service → maintenance versus improvement → depreciation/amortization → impairment indicator → valuation or recoverability test → transfer, retirement, sale, or abandonment → asset-retirement performance.</p>
+<h3 id="what-can-be-automated_3">What can be automated</h3>
+<ul>
+<li>project and asset IDs, custody, component, location, and maintenance history;</li>
+<li>approved cost accumulation and capitalization queues;</li>
+<li>placed-in-service attestations;</li>
+<li>depreciation/amortization after policy inputs are approved;</li>
+<li>lease payment schedules and right-of-use/liability rollforwards;</li>
+<li>impairment-trigger alerts from operational data;</li>
+<li>disposal proceeds, derecognition, and gain/loss arithmetic;</li>
+<li>asset-retirement funding or settlement mechanics.</li>
+</ul>
+<h3 id="what-gaap-still-requires_4">What GAAP still requires</h3>
+<ul>
+<li>asset versus expense and repair versus improvement;</li>
+<li>unit of account and componentization;</li>
+<li>useful life, residual value, depreciation method, and changes in estimate;</li>
+<li>whether software capitalization criteria are met;</li>
+<li>recoverability, forecast cash flows, fair value, and impairment;</li>
+<li>goodwill reporting-unit identification and impairment;</li>
+<li>whether a contract contains a lease, lease classification, term, options, and discount rate;</li>
+<li>existence, timing, probability, and fair value of an asset-retirement obligation.</li>
+</ul>
+<p>The FASB’s final ASU 2025-06 modernizes internal-use-software capitalization by requiring capitalization when management has authorized and committed funding and completion/use is probable, considering significant development uncertainty. It is <strong>issued final guidance but not mandatorily effective until annual periods beginning after December 15, 2027</strong>; early adoption is permitted. It is evidence that technology changes can cause GAAP to update, but the update still centers on recognition thresholds and judgment.</p>
+<p><strong>Primary authority:</strong> <a href="https://storage.fasb.org/ASU%202025-06.pdf">FASB ASU 2025-06 / internal-use software</a>; <a href="https://fasb.org/projects/current-projects/leases-398331">FASB Topic 842 leases summary</a>; <a href="https://fasb.org/page/pageContent?isPrintView=true&amp;pageId=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-144.html">FASB long-lived asset impairment summary</a>; <a href="https://fasb.org/page/PageContent?bcpath=tff&amp;pageId=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-143.html">FASB asset-retirement-obligation summary</a>.</p>
+<h2 id="treasury-cash-debt-equity-derivatives-and-crypto-assets">Treasury, cash, debt, equity, derivatives, and crypto assets</h2>
+<h3 id="canonical-events_5">Canonical events</h3>
+<p>Bank/custodian/wallet authorization → deposit/withdrawal/transfer → trade or issuance → confirmation → settlement → interest/dividend → collateral or covenant state → modification/exchange → maturity/extinguishment → equity issuance/repurchase/distribution → derivative designation and valuation → digital-asset custody, transfer, or restriction.</p>
+<h3 id="what-can-be-automated_4">What can be automated</h3>
+<ul>
+<li>authorized signer/key policies and multisignature release;</li>
+<li>near-real-time bank, custodian, wallet, and general-ledger reconciliation;</li>
+<li>interest, fee, premium/discount, and amortized-cost schedules;</li>
+<li>covenant calculations and breach alerts;</li>
+<li>collateral and restricted-asset tracking;</li>
+<li>cap-table updates and distribution calculations;</li>
+<li>trade confirmation, settlement, and digital-asset quantity/ownership evidence;</li>
+<li>market-price feeds and selected Level 1 valuation updates;</li>
+<li>exception controls for unexplained transfers, dormant accounts, and incompatible duties.</li>
+</ul>
+<h3 id="what-gaap-still-requires_5">What GAAP still requires</h3>
+<ul>
+<li>cash versus cash-equivalent, restricted-cash, investment, or crypto-asset classification;</li>
+<li>debt versus equity and liability-versus-equity-classified instruments;</li>
+<li>modification versus extinguishment;</li>
+<li>control and derecognition;</li>
+<li>embedded derivative and Topic 815 scope analysis;</li>
+<li>hedge designation, probability of forecast transactions, effectiveness, and discontinuation;</li>
+<li>fair value hierarchy and valuation when markets are inactive or inputs unobservable;</li>
+<li>crypto-asset scope under Subtopic 350-60, restrictions, related parties, and issuer/customer rights;</li>
+<li>safeguarding contingencies and bankruptcy/legal-control analysis.</li>
+</ul>
+<p>ASU 2023-08 currently requires qualifying in-scope crypto assets to be measured at fair value each reporting period with changes in net income and additional disclosures; it is effective for fiscal years beginning after December 15, 2024. The SEC’s SAB 122, effective January 30, 2025, rescinded SAB 121 and directs safeguarding entities to assess loss-contingency recognition under Topic 450 rather than automatically recognizing the former safeguarding asset and liability.</p>
+<p>A token transfer is excellent settlement evidence but does not by itself establish legal ownership, whether control was transferred, whether the token represents another asset or claim, or which reporting category applies.</p>
+<p><strong>Primary authority:</strong> <a href="https://storage.fasb.org/ASU%202023-08.pdf">FASB ASU 2023-08 / crypto assets</a>; <a href="https://www.sec.gov/rules-regulations/staff-guidance/staff-accounting-bulletins/staff-accounting-bulletin-122">SEC SAB 122</a>; <a href="https://fasb.org/page/pagecontent?bcpath=tff&amp;isPrintView=true&amp;pageid=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-157.html">FASB Topic 820 fair-value summary</a>; <a href="https://fasb.org/projects/current-projects/accounting-for-debt-exchanges-420130">FASB debt-exchange project, including description of current modification/extinguishment analysis</a>.</p>
+<h2 id="income-tax">Income tax</h2>
+<h3 id="canonical-events_6">Canonical events</h3>
+<p>Tax identity/jurisdiction → taxable transaction tag → book/tax basis difference → current liability/payment → carryforward/credit → deferred tax asset/liability → valuation allowance → uncertain position/examination → settlement → rate-law change → jurisdictional disclosure.</p>
+<h3 id="what-can-be-automated_5">What can be automated</h3>
+<ul>
+<li>transaction-level jurisdiction and tax-code tagging;</li>
+<li>sales, payroll, withholding, and selected excise calculations;</li>
+<li>book-to-tax mapping and temporary-difference rollforwards;</li>
+<li>enacted-rate updates with controlled effective dates;</li>
+<li>current-tax payable and remittance;</li>
+<li>return workpapers and jurisdictional payment disclosures;</li>
+<li>expiration alerts for losses and credits.</li>
+</ul>
+<h3 id="what-gaap-and-tax-law-still-require">What GAAP and tax law still require</h3>
+<ul>
+<li>separating tax-basis accounting from GAAP financial reporting;</li>
+<li>identifying temporary versus permanent differences;</li>
+<li>deciding whether deferred-tax assets are more likely than not realizable and measuring valuation allowances;</li>
+<li>uncertain-tax-position recognition and measurement;</li>
+<li>interpreting tax law, nexus, entity classification, and cross-border arrangements;</li>
+<li>estimating future taxable income and tax-planning strategies;</li>
+<li>determining the effect of enacted versus proposed law.</li>
+</ul>
+<p>IRS cash or combination-method eligibility is a <strong>tax rule</strong>, not permission to call cash-basis financial statements GAAP. IRS Publication 334 states that qualifying taxpayers can generally use combinations of cash, accrual, and special methods subject to consistency and clear-reflection restrictions; it also describes inventory exceptions for qualifying small businesses. This is a different reporting objective from GAAP.</p>
+<p><strong>Primary authority:</strong> <a href="https://fasb.org/news-and-meetings/in-the-news/fasb-issues-standard-that-enhances-income-tax-disclosures-398823">FASB ASU 2023-09 income-tax disclosure standard</a>; <a href="https://xbrl.fasb.org/impdocs/IT_TIG/incometaxes.htm">FASB Topic 740 GAAP Taxonomy implementation guide</a>; <a href="https://www.irs.gov/publications/p334">IRS Publication 334 (2025), cash, accrual, combination methods and small-business inventory</a>; <a href="https://www.irs.gov/publications/p538">IRS Publication 538</a>.</p>
+<h2 id="consolidation-and-close">Consolidation and close</h2>
+<h3 id="canonical-events_7">Canonical events</h3>
+<p>Entity/control relationship → chart-of-accounts mapping → subledger close → accrual/estimate entries → intercompany confirmation and elimination → foreign-currency remeasurement/translation → consolidation → top-side adjustment → subsequent-event update → management certification → period lock/restatement.</p>
+<h3 id="what-can-be-automated_6">What can be automated</h3>
+<ul>
+<li>continuous subledger reconciliation and close status;</li>
+<li>period cut-off exception reports;</li>
+<li>standard accrual reversals;</li>
+<li>intercompany invoice, balance, and settlement matching;</li>
+<li>routine eliminations and ownership allocations;</li>
+<li>approved currency-rate ingestion and translation;</li>
+<li>journal provenance, preparer/reviewer separation, and period locks;</li>
+<li>automated rollforwards and disclosure checklists;</li>
+<li>restatement through linked reversal/supersession events.</li>
+</ul>
+<h3 id="what-gaap-still-requires_6">What GAAP still requires</h3>
+<ul>
+<li>identifying the reporting entity and which entities must be consolidated;</li>
+<li>voting-interest, variable-interest, primary-beneficiary, power, economics, related-party, and de facto-agent analyses;</li>
+<li>whether a transaction is a business combination, asset acquisition, or common-control transaction;</li>
+<li>purchase-price allocation, identifiable intangibles, goodwill, and contingent consideration;</li>
+<li>functional currency and highly inflationary conclusions;</li>
+<li>segment identification, subsequent events, going concern, materiality, and disclosure sufficiency;</li>
+<li>evaluating estimates and management bias.</li>
+</ul>
+<p>This is one of the clearest limits of a legal-entity ledger: the on-chain legal wrapper is not necessarily the GAAP reporting boundary. Economic control and exposure can require consolidation beyond formal voting ownership.</p>
+<p><strong>Primary authority:</strong> <a href="https://fasb.org/page/pagecontent?bcpath=tff&amp;isPrintView=true&amp;pageid=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-interpretation-no-46-revised-december-2003.html">FASB summary of the VIE model’s control/economic characteristics</a>; <a href="https://fasb.org/projects/current-projects/objective-research">FASB current consolidation research</a>; <a href="https://fasb.org/page/PageContent?bcpath=tff&amp;pageId=%2Fnews_and_meetings%2Fpast-meetings%2F01-28-26.html">FASB January 28, 2026 tentative consolidation decisions</a>.</p>
+<h2 id="external-reporting-and-audit">External reporting and audit</h2>
+<h3 id="canonical-events_8">Canonical events</h3>
+<p>Trial balance → financial statements → note population → management review/certification → XBRL tagging → audit evidence and testing → audit adjustments → filing/publication → subsequent correction/restatement.</p>
+<h3 id="what-can-be-automated_7">What can be automated</h3>
+<ul>
+<li>generation of statements and notes from the same controlled event/rule set;</li>
+<li>lineage from each reported number to transactions, rules, estimates, and approvals;</li>
+<li>XBRL/Inline XBRL tagging and validation;</li>
+<li>reconciliations and disclosure rollforwards;</li>
+<li>continuous-control monitoring and full-population anomaly analysis;</li>
+<li>auditor read-only access to authorized evidence;</li>
+<li>reproducible reports at any valid policy version and reporting date.</li>
+</ul>
+<h3 id="what-still-requires-management-and-auditor-judgment">What still requires management and auditor judgment</h3>
+<ul>
+<li>completeness: omitted off-chain contracts do not appear merely because the ledger is immutable;</li>
+<li>relevance and reliability of internal and external electronic information;</li>
+<li>authenticity and authority of the source event;</li>
+<li>management estimates and bias;</li>
+<li>materiality and aggregation;</li>
+<li>control design, override, key management, access, and rule-upgrade governance;</li>
+<li>physical existence, condition, performance, and legal enforceability;</li>
+<li>contradictory evidence and exceptions;</li>
+<li>sufficient appropriate audit evidence and the auditor’s independent opinion.</li>
+</ul>
+<p>PCAOB AS 1105 states that the auditor must obtain sufficient appropriate evidence and that electronic information is more reliable when relevant controls, including IT general and automated application controls, are effective. AS 2501 defines accounting estimates as recognition or measurement involving subjective assumptions and measurement uncertainty and requires auditors to test management’s process, develop an independent expectation, and/or evaluate later evidence. The PCAOB’s technology-assisted-analysis amendments, effective for audits of fiscal years beginning on or after December 15, 2025, modernize audit procedures but retain evidence-reliability and investigation responsibilities.</p>
+<p>Inline XBRL demonstrates a current, functioning form of machine-readable reporting. It structures filed financial statements, footnotes, and schedules; it is not a public transaction ledger and does not independently verify the underlying facts.</p>
+<p><strong>Primary authority:</strong> <a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS1105">PCAOB AS 1105</a>; <a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS2501">PCAOB AS 2501</a>; <a href="https://pcaobus.org/oversight/standards/standard-setting-research-projects/amendments-related-to-certain-aspects-of-designing-and-performing-audit-procedures-that-involve-technology-assisted-data-analysis">PCAOB technology-assisted-analysis amendments</a>; <a href="https://www.sec.gov/data-research/structured-data/inline-xbrl">SEC Inline XBRL</a>.</p>
+<h2 id="3-the-modified-cash-thesis-where-it-is-right-and-where-it-breaks">3. The modified-cash thesis: where it is right and where it breaks</h2>
+<h3 id="what-is-right">What is right</h3>
+<p>For a simple, owner-managed service business, an operational system centered on:</p>
+<ul>
+<li>cash receipts and payments;</li>
+<li>outstanding customer invoices;</li>
+<li>outstanding vendor bills;</li>
+<li>payroll and taxes due;</li>
+<li>signed contracts;</li>
+<li>bank reconciliation; and</li>
+<li>a small fixed-asset register</li>
+</ul>
+<p>may provide most day-to-day management information. IRS rules may also allow some qualifying taxpayers to use a cash or combination method for tax.</p>
+<p>An event-sourced system can make this much better than traditional “modified cash” bookkeeping because AR/AP are not informal side schedules: they are first-class rights and obligations tied to contracts, acceptance, and settlement.</p>
+<h3 id="why-it-is-not-gaap">Why it is not GAAP</h3>
+<p>The FASB’s nonauthoritative but foundational Concepts Statement says accrual accounting reports economic effects when they occur, not merely when cash moves, because that gives a better basis for assessing performance than cash receipts and payments alone. Current Codification topics then require recognition and measurement of noncash assets and liabilities such as:</p>
+<ul>
+<li>receivables and expected credit losses;</li>
+<li>contract assets and liabilities;</li>
+<li>inventory and cost of sales;</li>
+<li>prepaid and accrued expenses;</li>
+<li>property, software, depreciation, and impairment;</li>
+<li>right-of-use assets and lease liabilities;</li>
+<li>warranties and other contingencies;</li>
+<li>debt premium/discount, derivatives, and equity compensation;</li>
+<li>pension obligations;</li>
+<li>deferred taxes;</li>
+<li>consolidation of controlled entities;</li>
+<li>fair-value changes for applicable instruments and qualifying crypto assets.</li>
+</ul>
+<p>If a “modified cash” system faithfully adds these modules, it is converging toward accrual accounting. If it omits them, it cannot produce GAAP statements where those omitted items are material.</p>
+<p>Public-company law reinforces the distinction. Regulation S-X requires filed financial statements to comply with GAAP, and Exchange Act Section 13(b) requires books, records, and internal accounting controls sufficient to permit GAAP preparation. The law does not prescribe a particular ledger technology.</p>
+<p><strong>Primary authority:</strong> <a href="https://storage.fasb.org/Concepts_Statement_8-Chapter_1_%28As_Amended%29.pdf">FASB Concepts Statement 8, Chapter 1, paragraph OB17</a>; <a href="https://fasb.org/standards">FASB official standards page</a>; <a href="https://www.sec.gov/about/divisions-offices/division-corporation-finance/financial-reporting-manual/frm-topic-1">SEC Financial Reporting Manual, Topic 1</a>; <a href="https://www.sec.gov/spotlight/fcpa/fcpa-recordkeeping.pdf">SEC Exchange Act Section 13(b)</a>.</p>
+<h2 id="4-a-more-powerful-replacement-model-one-event-log-multiple-accounting-views">4. A more powerful replacement model: one event log, multiple accounting views</h2>
+<p>The strongest design is an <strong>event constitution</strong>, not one journal:</p>
+<h3 id="canonical-event-object">Canonical event object</h3>
+<ul>
+<li>unique event ID;</li>
+<li>event type and effective time;</li>
+<li>legal entities and authorized actors;</li>
+<li>contract/right/obligation ID;</li>
+<li>asset, service, or performance object;</li>
+<li>quantity and consideration;</li>
+<li>jurisdiction and currency;</li>
+<li>external evidence and signatures;</li>
+<li>parent, causal, reversal, and supersession links;</li>
+<li>oracle/source identity and confidence;</li>
+<li>privacy/classification permissions;</li>
+<li>rule-set version;</li>
+<li>accounting outputs by basis;</li>
+<li>estimate/judgment record and approver;</li>
+<li>audit/control status;</li>
+<li>settlement/correction/recovery state.</li>
+</ul>
+<h3 id="derived-views">Derived views</h3>
+<ol>
+<li><strong>Cash view:</strong> actual receipts, payments, and settlement.</li>
+<li><strong>GAAP view:</strong> accrual recognition, measurement, presentation, and disclosure.</li>
+<li><strong>Tax view:</strong> federal, state, local, and foreign tax methods and timing.</li>
+<li><strong>Management view:</strong> budgets, unit economics, commitments, forecasts, and operating metrics.</li>
+<li><strong>Regulatory/statutory view:</strong> industry-specific capital, solvency, or statutory reporting.</li>
+</ol>
+<p>This architecture makes non-equivalences explicit:</p>
+<blockquote>
+<p>order ≠ contract ≠ performance ≠ invoice ≠ receivable ≠ cash receipt ≠ revenue<br />
+purchase order ≠ receipt ≠ payable ≠ expense ≠ cash payment ≠ settlement<br />
+token transfer ≠ legal ownership ≠ control ≠ derecognition ≠ revenue</p>
+</blockquote>
+<p>The same facts can legitimately generate different outputs under different bases. Transparency comes from publishing the transformation rules and preserving the judgment record—not from forcing every purpose into cash timing.</p>
+<h2 id="5-how-accounting-games-change">5. How “accounting games” change</h2>
+<h3 id="games-that-become-harder">Games that become harder</h3>
+<ul>
+<li>backdated or deleted entries;</li>
+<li>untraceable top-side journals;</li>
+<li>duplicate payments;</li>
+<li>missing three-way match;</li>
+<li>unexplained reconciliation differences;</li>
+<li>inconsistent intercompany records;</li>
+<li>period-end cut-off without delivery/acceptance evidence;</li>
+<li>silent policy changes;</li>
+<li>altered supporting documents;</li>
+<li>restatements that overwrite rather than supersede history.</li>
+</ul>
+<h3 id="games-that-remain-or-migrate">Games that remain or migrate</h3>
+<ul>
+<li>omitting a contract or side agreement from the system;</li>
+<li>collusive counterparties or validators;</li>
+<li>false physical or performance attestations;</li>
+<li>sham related-party entities;</li>
+<li>manipulating oracle inputs;</li>
+<li>classifying expense as asset;</li>
+<li>choosing favorable units of account;</li>
+<li>optimistic credit, impairment, useful-life, return, warranty, pension, or tax assumptions;</li>
+<li>controlling the code upgrade, emergency pause, permission, or private key;</li>
+<li>drafting legal terms to obtain a preferred accounting result;</li>
+<li>keeping economically important activity outside the shared record.</li>
+</ul>
+<p>An immutable ledger preserves a false authorized assertion just as faithfully as a true one. Fraud prevention therefore depends on identity, authority, segregation of duties, counterparty evidence, real-world verification, correction, recovery, and independent assurance.</p>
+<p>The SEC’s books-and-records framework is compatible with this conclusion: controls must provide <strong>reasonable</strong>, not absolute, assurance; records must accurately and fairly reflect transactions in reasonable detail; and transaction authorization and asset accountability matter alongside GAAP reporting.</p>
+<h2 id="6-what-may-actually-change-in-gaap">6. What may actually change in GAAP</h2>
+<h3 id="likely">Likely</h3>
+<ul>
+<li>new recognition, classification, measurement, derecognition, and disclosure rules for digital assets and tokenized rights;</li>
+<li>more machine-readable and disaggregated disclosures;</li>
+<li>standards that assume better access to granular data and reduce cost-based practical limitations;</li>
+<li>clearer accounting for code-executed rights, custody, transfers, and programmable settlement;</li>
+<li>audit standards that accommodate full-population analysis while strengthening data reliability and IT-control requirements;</li>
+<li>more explicit provenance for estimates and rule versions.</li>
+</ul>
+<h3 id="less-likely">Less likely</h3>
+<ul>
+<li>GAAP becoming cash basis for general-purpose external reporting;</li>
+<li>elimination of accrual assets and liabilities;</li>
+<li>elimination of management estimates;</li>
+<li>removal of consolidation analysis merely because legal entities have separate ledgers;</li>
+<li>treating code execution as sufficient evidence of economic substance;</li>
+<li>replacing independent audit with consensus validation.</li>
+</ul>
+<p>The crypto example is instructive: FASB changed the measurement model for qualifying crypto assets to fair value because the prior cost-less-impairment result did not reflect the economics. It did <strong>not</strong> discard recognition, scope, measurement, disclosure, or judgment.</p>
+<h2 id="7-current-standard-setting-watchlist-not-current-gaap-unless-stated">7. Current standard-setting watchlist — not current GAAP unless stated</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Status at 2026-07-30</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crypto assets, ASU 2023-08</td>
+<td><strong>Final and effective</strong> for fiscal years beginning after 2024-12-15</td>
+<td>Demonstrates a GAAP measurement change prompted by a new asset class.</td>
+</tr>
+<tr>
+<td>SEC SAB 122</td>
+<td><strong>Effective 2025-01-30</strong></td>
+<td>Rescinded SAB 121; safeguarding loss risk returns to contingency analysis.</td>
+</tr>
+<tr>
+<td>Internal-use software, ASU 2025-06</td>
+<td><strong>Final; mandatory 2027+, early adoption permitted</strong></td>
+<td>Modernizes recognition for iterative software development but retains probable-completion judgment.</td>
+</tr>
+<tr>
+<td>Expense disaggregation, ASU 2024-03/2025-01</td>
+<td><strong>Final; annual 2027, interim 2028 for PBEs</strong></td>
+<td>Uses more granular expense data without replacing the income statement.</td>
+</tr>
+<tr>
+<td>Crypto transfers, wrapped/receipt tokens</td>
+<td><strong>Technical-agenda project; initial deliberations/tentative</strong></td>
+<td>FASB is considering scope expansion and derecognition guidance. No current-GAAP change yet.</td>
+</tr>
+<tr>
+<td>Certain digital assets as cash equivalents</td>
+<td><strong>Project; Board directed staff to draft a proposed ASU in April 2026</strong></td>
+<td>Stablecoin classification is under active consideration. No current-GAAP change yet.</td>
+</tr>
+<tr>
+<td>Consolidation for business entities</td>
+<td><strong>Research/tentative</strong></td>
+<td>Board directed research on harmonizing VIE and voting-interest models. No current-GAAP change yet.</td>
+</tr>
+<tr>
+<td>Statement of cash flows</td>
+<td><strong>Research project</strong></td>
+<td>FASB is considering improvements and disclosures; no current-GAAP change yet.</td>
+</tr>
+<tr>
+<td>Accounting for and disclosure of intangibles</td>
+<td><strong>Research project</strong></td>
+<td>Could affect internally developed intangible recognition; no current-GAAP change yet.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Primary project sources:</strong> <a href="https://fasb.org/projects/current-projects/projects-history/cash-equivalents%E2%80%94disclosure-enhancement-and-classification-of-certain-digital-assets-423255">FASB cash-equivalents/digital-assets project history</a>; <a href="https://fasb.org/news-and-meetings/past-meetings">FASB April 2026 crypto-transfer meeting listing</a>; <a href="https://fasb.org/about-us/Advisory-Groups/pmac/pmac-meeting-materials/pmac-meeting-recap-may-14-2026">FASB May 2026 PMAC crypto-transfer recap</a>; <a href="https://fasb.org/projects/current-projects/objective-research">FASB objective research projects</a>; <a href="https://storage.fasb.org/ASU%202024-03.pdf">FASB ASU 2024-03 expense disclosures</a>.</p>
+<h2 id="8-research-conclusion">8. Research conclusion</h2>
+<p>The user’s intuition is strongest when reframed this way:</p>
+<ul>
+<li>Most accounting labor is not the economic theory of GAAP; it is capturing fragmented facts, reconciling incompatible systems, posting repetitive entries, documenting controls, and rebuilding lineage at close.</li>
+<li>Event-sourced, cryptographically signed systems can collapse much of that labor and make correction, authorization, and provenance visible.</li>
+<li>A small company may operate on a cash-centered interface with AR/AP and a few modules, while the system derives accrual, tax, and management views underneath.</li>
+<li>Open-source accounting rules can make transformations inspectable and challengeable.</li>
+<li>But GAAP remains necessary wherever cash timing fails to represent economic resources, obligations, performance, uncertainty, or control.</li>
+</ul>
+<p>The true revolution is therefore not a return from accrual to cash. It is the separation of:</p>
+<blockquote>
+<p><strong>shared facts → published accounting rules → signed judgments → reproducible reports → independent assurance</strong></p>
+</blockquote>
+<p>That could make the system far more understandable without pretending that every difficult accounting question is merely a bookkeeping problem.</p>
+<h2 id="primary-source-ledger">Primary-source ledger</h2>
+<h3 id="fasb-foundations-and-authority">FASB foundations and authority</h3>
+<ul>
+<li><a href="https://fasb.org/standards">FASB Standards page — Codification is the single official source of authoritative nongovernmental U.S. GAAP; Concepts Statements are nonauthoritative</a></li>
+<li><a href="https://storage.fasb.org/Concepts_Statement_8-Chapter_1_%28As_Amended%29.pdf">Concepts Statement 8, Chapter 1 — accrual accounting and reporting objective</a></li>
+<li><a href="https://storage.fasb.org/Concepts_Statement_8-Chapter_4-Elements.pdf">Concepts Statement 8, Chapter 4 — assets, liabilities, revenues, expenses, and other elements</a></li>
+<li><a href="https://storage.fasb.org/Conceptual%20Framework%20for%20Financial%20Reporting%20%28September%202024%29.pdf">Conceptual Framework for Financial Reporting, September 2024</a></li>
+</ul>
+<h3 id="fasb-operating-topics">FASB operating topics</h3>
+<ul>
+<li><a href="https://fasb.org/projects/recently-completed-projects/revenue-recognition-summary">Topic 606 revenue recognition</a></li>
+<li><a href="https://fasb.org/projects/recently-completed-projects/accounting-standards-update-2016-13-financial-instrument-credit-losses">Topic 326 credit losses</a></li>
+<li><a href="https://storage.fasb.org/ASU%202015-11.pdf">ASU 2015-11 inventory</a></li>
+<li><a href="https://fasb.org/projects/current-projects/leases-398331">Topic 842 leases and Topic 326 summary</a></li>
+<li><a href="https://storage.fasb.org/ASU%202025-06.pdf">ASU 2025-06 internal-use software</a></li>
+<li><a href="https://fasb.org/page/PageContent?bcpath=tff&amp;pageId=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-5.html">Topic 450 loss-contingency summary</a></li>
+<li><a href="https://fasb.org/page/pagecontent?bcpath=tff&amp;isPrintView=true&amp;pageid=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-157.html">Topic 820 fair-value measurement summary</a></li>
+<li><a href="https://storage.fasb.org/ASU%202023-08.pdf">ASU 2023-08 crypto assets</a></li>
+<li><a href="https://fasb.org/news-and-meetings/in-the-news/fasb-issues-standard-that-enhances-income-tax-disclosures-398823">ASU 2023-09 income-tax disclosures</a></li>
+<li><a href="https://storage.fasb.org/ASU%202024-03.pdf">ASU 2024-03 expense disaggregation</a></li>
+<li><a href="https://fasb.org/page/pagecontent?bcpath=tff&amp;isPrintView=true&amp;pageid=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-interpretation-no-46-revised-december-2003.html">VIE/consolidation model summary</a></li>
+</ul>
+<h3 id="sec-reporting-records-and-crypto">SEC reporting, records, and crypto</h3>
+<ul>
+<li><a href="https://www.sec.gov/spotlight/fcpa/fcpa-recordkeeping.pdf">Exchange Act Section 13(b) books, records, and internal accounting controls</a></li>
+<li><a href="https://www.sec.gov/about/divisions-offices/division-corporation-finance/financial-reporting-manual/frm-topic-1">SEC Financial Reporting Manual, Topic 1</a></li>
+<li><a href="https://www.sec.gov/data-research/structured-data/inline-xbrl">SEC Inline XBRL</a></li>
+<li><a href="https://www.sec.gov/rules-regulations/staff-guidance/staff-accounting-bulletins/staff-accounting-bulletin-122">SEC SAB 122</a></li>
+</ul>
+<h3 id="pcaob-assurance">PCAOB assurance</h3>
+<ul>
+<li><a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS1105">AS 1105, Audit Evidence</a></li>
+<li><a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS2501">AS 2501, Auditing Accounting Estimates, Including Fair Value Measurements</a></li>
+<li><a href="https://pcaobus.org/oversight/standards/standard-setting-research-projects/amendments-related-to-certain-aspects-of-designing-and-performing-audit-procedures-that-involve-technology-assisted-data-analysis">Technology-assisted-analysis amendments to AS 1105 and AS 2301</a></li>
+</ul>
+<h3 id="irs-tax-basis-distinction">IRS tax-basis distinction</h3>
+<ul>
+<li><a href="https://www.irs.gov/publications/p334">IRS Publication 334 (2025), Tax Guide for Small Business</a></li>
+<li><a href="https://www.irs.gov/publications/p538">IRS Publication 538, Accounting Periods and Methods</a></li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

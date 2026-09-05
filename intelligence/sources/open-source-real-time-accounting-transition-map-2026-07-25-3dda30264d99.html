@@ -1,0 +1,1593 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Transaction-native accounting — open-source, real-time hypothesis map · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/money-in-motion.html#the-system-underneath" class="" >Start with the money underneath <span class="meta">— How money moves, and what is changing</span></a><a href="../stories/money-rights-and-records.html#records-that-can-explain" class="" >A transaction record must explain more than movement <span class="meta">— Who gets in, which record counts, and when payment is complete</span></a><a href="../stories/reading-the-transition.html#how-the-question-evolved" class="" >The early synthesis found a federation, then the details sharpened it <span class="meta">— How our picture of the transition keeps changing</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Transaction-native accounting — open-source, real-time hypothesis map</h1><p class="deck">Collection evidence cutoff: 2026-07-30</p><p><a href="open-source-real-time-accounting-transition-map-2026-07-25-3dda30264d99.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="transaction-native-accounting-open-source-real-time-hypothesis-map">Transaction-native accounting — open-source, real-time hypothesis map</h1>
+<p><strong>Cutoff:</strong> 2026-07-25<br />
+<strong>State:</strong> interpretation-grade hypothesis; integrated into the Observatory
+Research Desk; not promoted into a factual vault spine<br />
+<strong>Research Desk role:</strong> interpretation-grade cross-cut; every component claim
+must remain tied to its factual package<br />
+<strong>Scope:</strong> business transactions, payments, asset title, accounting,
+continuous assurance, financing and public-money transparency<br />
+<strong>Boundary:</strong> this file maps a possible future architecture and the evidence
+needed to recognize its arrival. It does not claim that blockchain has
+replaced GAAP, that smart-contract bookkeeping is generally live, or that
+current tokenization projects have removed banks, clearinghouses, custodians,
+auditors or financial statements.<br />
+<strong>Dollar rule:</strong> every monetary amount is written in full nominal dollars.  </p>
+<hr />
+<h2 id="1-thesis">1. Thesis</h2>
+<p>The deepest monetary transition may not be a new currency. It may be a change
+in the <strong>source of accounting truth</strong>:</p>
+<pre><code class="language-text">FROM
+
+business event
+    → separately entered into many private ledgers
+    → reconciled after the fact
+    → sampled by auditors
+    → summarized periodically
+    → delivered too late for many decisions
+
+TO
+
+authorized executable transaction
+    → payment and asset state change
+    → one signed canonical event
+    → accounting views compiled automatically
+    → every objective rule tested continuously
+    → authorized users receive current decision information
+</code></pre>
+<p>The target is not merely "accounting on a blockchain." It is
+<strong>transaction-native accounting</strong>:</p>
+<blockquote>
+<p>The transaction contains or references the contract, authority, business
+evidence, payment, asset, accounting rule and reporting permissions needed
+to produce its own bookkeeping.</p>
+</blockquote>
+<p>In that model, accounting stops being a delayed reconstruction of business.
+It becomes a continuously reproducible view of business while it is happening.</p>
+<hr />
+<h2 id="research-desk-reading">Research Desk reading</h2>
+<h3 id="the-hypothesis-in-one-sentence">The hypothesis in one sentence</h3>
+<blockquote>
+<p>Accounting may migrate from institution-maintained journals that reconstruct
+transactions after the fact to shared transaction objects that continuously
+generate accounting, assurance and reporting views.</p>
+</blockquote>
+<h3 id="the-strongest-present-inference">The strongest present inference</h3>
+<p>The current evidence does <strong>not</strong> point to one public blockchain replacing
+every ledger. It points more strongly to a transitional architecture:</p>
+<pre><code class="language-text">open or standardized transaction schema
+  + verified parties and authority
+  + several legally controlling institutional ledgers
+  + common event identifiers
+  + programmable conditions
+  + public or permissioned proof surfaces
+  + machine-generated accounting views
+</code></pre>
+<p>That is still a major change. It can reduce duplicate entry and reconciliation
+without immediately removing banks, clearinghouses, ERP systems, auditors or
+legal registries.</p>
+<h3 id="the-load-bearing-question">The load-bearing question</h3>
+<p>The decisive object is not the wallet, token or journal entry. It is the
+<strong>canonical business event</strong>:</p>
+<pre><code class="language-text">who agreed
+  → under what authority
+  → to do what
+  → what actually happened
+  → which money, asset or claim changed
+  → when each legal and settlement state became effective
+  → how each accounting view was generated
+  → how an error, dispute or reversal changed the record
+</code></pre>
+<p>If independent systems can reproduce that chain, accounting becomes
+transaction-native. If the chain still depends on hidden reconciliations and a
+private controlling ledger that cannot be tested, the system remains a faster
+version of the present architecture.</p>
+<hr />
+<h2 id="hypothesis-ledger">Hypothesis ledger</h2>
+<p>The grades below describe the <strong>state of the hypothesis</strong>, not the desirability
+of the outcome.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Hypothesis</th>
+<th>Current grade</th>
+<th>What supports it now</th>
+<th>What would materially advance it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H1</td>
+<td>the source of accounting truth will move from separately prepared ledgers toward signed transaction events</td>
+<td>bounded inference</td>
+<td>payment rails, depositories, public-payment feeds and accounting systems are becoming more machine-readable and continuous</td>
+<td>one production transaction accepted by every party as the common source for payment, title and books</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>general ledgers will become authorized views compiled from shared events rather than the first place a transaction becomes intelligible</td>
+<td>design hypothesis</td>
+<td>rules engines and automated journals already exist, but the controlling source records remain fragmented</td>
+<td>independent systems reproduce the same complete books from the same event population</td>
+</tr>
+<tr>
+<td>H3</td>
+<td>audit will move from periodic sample-centered reconstruction toward continuous population testing plus human review of judgment and exceptions</td>
+<td>strong functional hypothesis; weak adoption proof</td>
+<td>deterministic authorization, duplicate, limit and reconciliation tests can be applied to every event</td>
+<td>an independent assurer relies on the event population and compiler rather than a separately prepared management schedule</td>
+</tr>
+<tr>
+<td>H4</td>
+<td>materiality will move upward from whether an objective transaction is tested to how exceptions, estimates and disclosures affect decisions</td>
+<td>logical consequence of H3</td>
+<td>continuous rules can test small and large events alike</td>
+<td>standards and assurance reports distinguish full-population control testing from material financial-statement judgment</td>
+</tr>
+<tr>
+<td>H5</td>
+<td>reconciliation-only intermediaries will shrink, but institutions that supply credit, liquidity, custody, adjudication or loss-bearing will remain</td>
+<td>strong inference from the current payment stack</td>
+<td>payment and token systems still depend on account access, settlement banks, CCP resources, custodians and courts</td>
+<td>production architecture retires a reconciliation function while explicitly preserving and pricing the surviving risk functions</td>
+</tr>
+<tr>
+<td>H6</td>
+<td>banks will become less important as duplicate-book operators and more visibly important as balance-sheet, liquidity and legal-risk providers</td>
+<td>conditional inference</td>
+<td>continuous rails do not themselves supply credit or absorb a failed settlement</td>
+<td>transaction-native financing advances against verified events while identifying the institution that bears default and liquidity risk</td>
+</tr>
+<tr>
+<td>H7</td>
+<td>accounting and audit standards must become machine-readable, versioned and executable</td>
+<td>necessary condition; not established as a regime</td>
+<td>present manuals and standards describe rules for humans and can support internal rules engines</td>
+<td>an authoritative standard setter publishes executable logic, test cases and version governance</td>
+</tr>
+<tr>
+<td>H8</td>
+<td>the first durable deployments will occur in bounded transaction families rather than the entire economy at once</td>
+<td>strongest adoption-path hypothesis</td>
+<td>depository tokenization, public-payment feeds and shared-ledger pilots begin with controlled participants and defined assets</td>
+<td>a bounded production lane completes contract, performance, settlement, accounting and assurance from one event</td>
+</tr>
+<tr>
+<td>H9</td>
+<td>public money is most likely to use a public-proof/private-record design</td>
+<td>strongest governance hypothesis</td>
+<td>public access, protected data, authoritative agency records and correction rights cannot be collapsed into one visibility rule</td>
+<td>a live system exposes independently verifiable public commitments while authorized reviewers can inspect protected supporting records</td>
+</tr>
+<tr>
+<td>H10</td>
+<td>open-source code will matter only if governance, schemas, test cases and exit rights are also open and attributable</td>
+<td>design requirement</td>
+<td>inspectable code alone does not determine access, upgrades, legal finality or data rights</td>
+<td>multiple implementations reproduce the ledger and can continue operation after the original operator exits</td>
+</tr>
+<tr>
+<td>H11</td>
+<td>verified transaction-native collateral can compress lending and approval time</td>
+<td>plausible economic hypothesis</td>
+<td>current underwriting repeatedly re-verifies invoices, receivables, title and payment state</td>
+<td>a lender advances against a current verified event without rebuilding the evidence chain manually</td>
+</tr>
+<tr>
+<td>H12</td>
+<td>financial statements will survive as standardized snapshots even if bookkeeping becomes continuous</td>
+<td>leading counterweight to the replacement thesis</td>
+<td>estimates, consolidation, performance interpretation, tax periods and legal reporting still require bounded views</td>
+<td>users rely primarily on live reproducible views while dated statements become archival or legal snapshots</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-would-count-as-a-regime-event">What would count as a regime event</h3>
+<p>No single announcement is enough. A regime event requires several gates to
+move together:</p>
+<ol>
+<li>the contract or authority is legally valid;</li>
+<li>the performance evidence is attributable;</li>
+<li>money and any asset or title reach specified final states;</li>
+<li>the same event generates each party's accepted accounting;</li>
+<li>corrections propagate without erasing history;</li>
+<li>an independent party can reproduce the rules and balances;</li>
+<li>courts, regulators, tax authorities or lenders accept the record; and</li>
+<li>a material duplicate-ledger or reconciliation process is retired.</li>
+</ol>
+<hr />
+<h2 id="causal-dependency-map">Causal dependency map</h2>
+<p>The hypothesis fails if any load-bearing layer remains disconnected:</p>
+<pre><code class="language-text">identity
+  → authority
+      → enforceable terms
+          → performance evidence
+              → money / asset / title finality
+                  → canonical event
+                      → accounting compiler
+                          → continuous controls
+                              → live reporting
+                                  → faster decisions and financing
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Dependency</th>
+<th>Why it is load-bearing</th>
+<th>Failure state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>identity</td>
+<td>the system must know the legal person behind an account, wallet or agent</td>
+<td>valid signature attached to the wrong or unauthorized person</td>
+</tr>
+<tr>
+<td>authority</td>
+<td>a real person or automated agent needs power to bind the entity</td>
+<td>technically valid event that the entity can legally disavow</td>
+</tr>
+<tr>
+<td>contract</td>
+<td>recognition and settlement depend on rights and obligations</td>
+<td>payment without a reliable obligation or performance rule</td>
+</tr>
+<tr>
+<td>performance</td>
+<td>most business value occurs outside the ledger</td>
+<td>immutable false invoice, nonexistent delivery or corrupted oracle</td>
+</tr>
+<tr>
+<td>settlement</td>
+<td>instruction is not the same as discharged obligation</td>
+<td>books update while cash, asset or title remains pending</td>
+</tr>
+<tr>
+<td>event history</td>
+<td>every party must reference the same state transition and correction chain</td>
+<td>faster bilateral records that still require multilateral reconciliation</td>
+</tr>
+<tr>
+<td>policy compiler</td>
+<td>different entities need cash, accrual, tax, regulatory and consolidation views</td>
+<td>one shared event but incompatible or opaque journals</td>
+</tr>
+<tr>
+<td>assurance</td>
+<td>code, identities, evidence providers and overrides must be tested</td>
+<td>automation scales a bad rule or compromised credential</td>
+</tr>
+<tr>
+<td>governance</td>
+<td>someone controls upgrades, pauses, corrections and access</td>
+<td>hidden administrator recreates the old middleman with stronger power</td>
+</tr>
+</tbody>
+</table>
+<p>The technical ledger sits in the middle of this chain. It cannot manufacture
+the legal and physical truth on either side of it.</p>
+<hr />
+<h2 id="four-truths-inside-one-transaction">Four truths inside one transaction</h2>
+<p>The phrase “everything is a journal entry” captures an important feature of
+modern money, but it needs one accounting correction. A journal entry is not
+necessarily the real-world event. It is one entity's classified representation
+of that event.</p>
+<table>
+<thead>
+<tr>
+<th>Truth</th>
+<th>Question</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>economic truth</td>
+<td>what resource, service, risk or control actually changed?</td>
+<td>equipment was delivered and control passed</td>
+</tr>
+<tr>
+<td>legal truth</td>
+<td>which obligation, title, entitlement or remedy became enforceable?</td>
+<td>buyer obtained title subject to the purchase agreement</td>
+</tr>
+<tr>
+<td>settlement truth</td>
+<td>which account or asset record became final, and under whose rules?</td>
+<td>reserve-account cash settled; custodian or registry updated</td>
+</tr>
+<tr>
+<td>accounting truth</td>
+<td>how must each reporting entity recognize, measure and present the event?</td>
+<td>buyer records equipment and cash; seller records revenue, cost and cash</td>
+</tr>
+</tbody>
+</table>
+<p>Transaction-native accounting tries to bind these four truths without pretending
+they are identical. Its promise is not that the journal entry becomes reality.
+Its promise is that every journal can be reproduced from an attributable chain
+back to the economic, legal and settlement events.</p>
+<hr />
+<h2 id="competing-architectures">Competing architectures</h2>
+<p>These are not merely implementation choices. They lead to different control
+systems.</p>
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th>Architecture</th>
+<th>Current fit</th>
+<th>What it preserves</th>
+<th>What it risks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>incumbent digitization</td>
+<td>strongest near-term fit</td>
+<td>banks, depositories, ERP systems and auditors add faster interfaces around their own controlling records</td>
+<td>reconciliation improves but hidden authority and duplicate truth remain</td>
+</tr>
+<tr>
+<td>B</td>
+<td>synchronized private ledgers</td>
+<td>strong transition fit</td>
+<td>each institution keeps its legal ledger while signed events and common IDs synchronize them</td>
+<td>one participant can still hold the controlling record or correction power</td>
+</tr>
+<tr>
+<td>C</td>
+<td>public-proof/private-record</td>
+<td>strongest public-money fit</td>
+<td>protected records remain with authorized institutions; public commitments and revision lineage are independently testable</td>
+<td>public proof may be too thin to establish performance or value</td>
+</tr>
+<tr>
+<td>D</td>
+<td>transaction-native regulated network</td>
+<td>plausible bounded end state</td>
+<td>authorized parties share the canonical event; compilers create entity-specific books</td>
+<td>protocol governor, credential issuer or operator becomes a concentrated gate</td>
+</tr>
+<tr>
+<td>E</td>
+<td>public-chain business accounting</td>
+<td>weak present evidence</td>
+<td>common public ordering, portability and independent verification</td>
+<td>privacy, commercial confidentiality, identity, reversibility and legal-title conflicts</td>
+</tr>
+<tr>
+<td>F</td>
+<td>no structural transition</td>
+<td>live falsifier</td>
+<td>current ERP, bank and audit system absorbs better APIs without retiring duplicate books</td>
+<td>speed gains plateau and reconciliation rents remain</td>
+</tr>
+</tbody>
+</table>
+<p>The current record favors <strong>A → B or C → bounded D</strong>, not a direct jump to E.</p>
+<hr />
+<h2 id="the-institutional-reckoning">The institutional reckoning</h2>
+<h3 id="functions-likely-to-contract">Functions likely to contract</h3>
+<ul>
+<li>duplicate transaction entry;</li>
+<li>routine bank and counterparty confirmation;</li>
+<li>manual matching of purchase order, invoice, receipt and payment;</li>
+<li>population sampling for deterministic rules;</li>
+<li>manual intercompany elimination where common event IDs exist;</li>
+<li>periodic assembly of ledgers that can be reproduced continuously; and</li>
+<li>data-room production that merely copies already attributable records.</li>
+</ul>
+<h3 id="functions-likely-to-survive-or-become-more-visible">Functions likely to survive or become more visible</h3>
+<ul>
+<li>credit underwriting;</li>
+<li>liquidity provision;</li>
+<li>custody and key recovery;</li>
+<li>valuation of uncertain or illiquid assets;</li>
+<li>legal interpretation;</li>
+<li>tax policy and jurisdiction mapping;</li>
+<li>estimates, impairment and going-concern judgment;</li>
+<li>dispute resolution and due process;</li>
+<li>insurance, guarantees and loss allocation;</li>
+<li>cybersecurity and identity governance;</li>
+<li>oracle and performance-evidence assurance; and</li>
+<li>protocol governance and operator resolution.</li>
+</ul>
+<h3 id="the-new-assurance-object">The new assurance object</h3>
+<p>The assurer would no longer ask only whether management's statements are fairly
+presented. The work would split into four objects:</p>
+<ol>
+<li><strong>event assurance</strong> — are identity, authority, contract, performance and
+   settlement evidence attributable?</li>
+<li><strong>compiler assurance</strong> — do the accounting rules generate the required
+   entity views?</li>
+<li><strong>governance assurance</strong> — who can change code, credentials, permissions,
+   corrections and finality?</li>
+<li><strong>judgment assurance</strong> — are estimates, valuations, disclosures and
+   exceptions reasonable?</li>
+</ol>
+<p>This does not eliminate assurance. It removes much of the need to rebuild the
+ordinary transaction population from samples and confirmations.</p>
+<hr />
+<h2 id="2-five-objects-that-must-not-be-collapsed">2. Five objects that must not be collapsed</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Meaning</th>
+<th>Does not automatically provide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>open-source code</td>
+<td>the public can inspect the program and rule logic</td>
+<td>public transaction data, decentralized control or legally valid settlement</td>
+</tr>
+<tr>
+<td>open protocol/schema</td>
+<td>independent systems can construct and interpret the same transaction object</td>
+<td>open-source implementation or permission to participate</td>
+</tr>
+<tr>
+<td>shared ledger</td>
+<td>authorized participants reference the same event history</td>
+<td>public access, correct accounting or legal title</td>
+</tr>
+<tr>
+<td>real-time accounting</td>
+<td>authorized views update as valid events occur</td>
+<td>real-time cash settlement or error-free estimates</td>
+</tr>
+<tr>
+<td>blockchain</td>
+<td>a particular method of ordering, signing and preserving records</td>
+<td>valid identity, truthful off-chain evidence, privacy, reversibility or legal finality</td>
+</tr>
+</tbody>
+</table>
+<p>The system can be:</p>
+<ul>
+<li>open-source but privately permissioned;</li>
+<li>publicly viewable but closed-source;</li>
+<li>real-time but centrally administered;</li>
+<li>distributed but legally controlled by one institution;</li>
+<li>cryptographically consistent but economically wrong; or</li>
+<li>technically final but legally reversible.</li>
+</ul>
+<p>The desired architecture must state which combination it uses.</p>
+<hr />
+<h2 id="3-three-operating-states">3. Three operating states</h2>
+<h3 id="state-a-current-periodic-and-institution-centered-accounting">State A — current periodic and institution-centered accounting</h3>
+<pre><code class="language-text">contract system
+purchase-order system
+invoice system
+receiving system
+bank ledger
+custodian ledger
+general ledger
+tax ledger
+regulatory report
+auditor workpaper
+</code></pre>
+<p>Each record is useful, but the same transaction is repeatedly re-entered,
+mapped and reconciled. Control is institution-centered: each party maintains
+its own version and later proves enough agreement for a periodic report.</p>
+<p><strong>Primary costs</strong></p>
+<ul>
+<li>duplicate entry;</li>
+<li>reconciliation;</li>
+<li>confirmation;</li>
+<li>delayed close;</li>
+<li>manual classification;</li>
+<li>sample-based examination;</li>
+<li>stale analysis;</li>
+<li>hidden intercompany flows;</li>
+<li>inconsistent counterparties and identifiers; and</li>
+<li>loss of provenance inside aggregation and consolidation.</li>
+</ul>
+<h3 id="state-b-transitional-linked-ledger-accounting">State B — transitional linked-ledger accounting</h3>
+<p>The transition is likely to combine:</p>
+<ul>
+<li>APIs and standardized messages;</li>
+<li>24/7 payment rails;</li>
+<li>tokenized representations of existing assets;</li>
+<li>shared transaction identifiers;</li>
+<li>programmable payment conditions;</li>
+<li>continuous-control tests;</li>
+<li>linked contract, invoice and settlement records;</li>
+<li>accounting rules engines; and</li>
+<li>legacy ledgers that remain legally controlling.</li>
+</ul>
+<p>This can reduce latency without yet creating one authoritative transaction
+record. Much of today's work is in this state: modern interfaces sit above
+separate legal ledgers.</p>
+<h3 id="state-c-target-transaction-native-accounting">State C — target transaction-native accounting</h3>
+<pre><code class="language-text">executable business agreement
+        +
+verified identity and authority
+        +
+delivery or performance evidence
+        +
+atomic money and asset settlement
+        +
+versioned accounting policies
+        =
+signed canonical business event
+</code></pre>
+<p>Every authorized reporting view is generated from the event and subsequent
+state changes. Humans investigate exceptions, estimates and economic meaning
+instead of keying and reconciling ordinary entries.</p>
+<hr />
+<h2 id="4-target-architecture">4. Target architecture</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;Business agreement&lt;br/&gt;price, asset, deliverable, dates&quot;] --&gt; B[&quot;Identity and authority&lt;br/&gt;legal entity, signer, limits, approvals&quot;]
+    B --&gt; C[&quot;Performance evidence&lt;br/&gt;delivery, acceptance, usage, oracle&quot;]
+    C --&gt; D[&quot;Settlement&lt;br/&gt;money, asset, title, collateral&quot;]
+    D --&gt; E[&quot;Canonical signed event&lt;br/&gt;immutable history plus governed corrections&quot;]
+    E --&gt; F[&quot;Accounting policy compiler&lt;br/&gt;recognition, classification, measurement&quot;]
+    F --&gt; G[&quot;Authorized live views&lt;br/&gt;cash, accrual, tax, regulatory, investor&quot;]
+    G --&gt; H[&quot;Decisions and capital&lt;br/&gt;pricing, hiring, purchasing, lending&quot;]
+    H --&gt; A
+    E --&gt; I[&quot;Continuous assurance&lt;br/&gt;100% rule tests and exception queue&quot;]
+    I --&gt; F
+</code></pre>
+<h3 id="layer-1-legal-entity-identity-and-authority">Layer 1 — legal entity, identity and authority</h3>
+<p>Every transaction must name:</p>
+<ul>
+<li>each legal person;</li>
+<li>the wallet or account controlled by that person;</li>
+<li>beneficial owner or related-party status where required;</li>
+<li>authorized signer or automated agent;</li>
+<li>authority source;</li>
+<li>approval limit;</li>
+<li>delegation;</li>
+<li>governing jurisdiction; and</li>
+<li>identity-credential issuer.</li>
+</ul>
+<p>A wallet address alone is not an accounting entity.</p>
+<h3 id="layer-2-executable-commercial-terms">Layer 2 — executable commercial terms</h3>
+<p>The transaction object should contain or securely reference:</p>
+<ul>
+<li>goods, services, asset or financing object;</li>
+<li>quantity;</li>
+<li>price;</li>
+<li>currency or settlement asset;</li>
+<li>payment timetable;</li>
+<li>delivery and acceptance conditions;</li>
+<li>warranties;</li>
+<li>return or cancellation rights;</li>
+<li>collateral;</li>
+<li>interest;</li>
+<li>late and default terms;</li>
+<li>modification procedure;</li>
+<li>dispute process; and</li>
+<li>governing contract version.</li>
+</ul>
+<p>The code must distinguish a proposed agreement, executed agreement,
+performance, acceptance, settlement, amendment, dispute and termination.</p>
+<h3 id="layer-3-performance-and-off-chain-evidence">Layer 3 — performance and off-chain evidence</h3>
+<p>Smart contracts cannot observe most physical events unaided. Evidence can
+include:</p>
+<ul>
+<li>signed delivery receipt;</li>
+<li>sensor record;</li>
+<li>title registry;</li>
+<li>shipping record;</li>
+<li>customer acceptance;</li>
+<li>employee time record;</li>
+<li>inventory scan;</li>
+<li>independent inspection;</li>
+<li>price oracle;</li>
+<li>court order; or</li>
+<li>regulatory approval.</li>
+</ul>
+<p>Each evidence provider becomes a control actor. The system must record:</p>
+<ul>
+<li>who supplied the fact;</li>
+<li>what the source could actually know;</li>
+<li>whether the source can amend it;</li>
+<li>the confidence or dispute state; and</li>
+<li>who bears loss if the fact was wrong.</li>
+</ul>
+<h3 id="layer-4-money-asset-and-title-settlement">Layer 4 — money, asset and title settlement</h3>
+<p>The system must separately identify:</p>
+<ul>
+<li>payment instruction;</li>
+<li>payment authorization;</li>
+<li>funds availability;</li>
+<li>clearing;</li>
+<li>legal finality;</li>
+<li>asset delivery;</li>
+<li>title or entitlement update;</li>
+<li>collateral pledge;</li>
+<li>custody;</li>
+<li>reversal rights; and</li>
+<li>failure or insolvency treatment.</li>
+</ul>
+<p>Wallet-to-wallet movement is not enough if the token does not convey the
+relevant legal claim or if another ledger controls title.</p>
+<h3 id="layer-5-canonical-event-ledger">Layer 5 — canonical event ledger</h3>
+<p>The canonical event should preserve:</p>
+<ul>
+<li>globally unique transaction ID;</li>
+<li>legal parties;</li>
+<li>exact timestamps and time zone;</li>
+<li>contract and code version;</li>
+<li>authority;</li>
+<li>linked evidence;</li>
+<li>cash leg;</li>
+<li>asset leg;</li>
+<li>status;</li>
+<li>accounting-policy version;</li>
+<li>corrections;</li>
+<li>superseded events; and</li>
+<li>disclosure permissions.</li>
+</ul>
+<p>"Immutable" should mean that history cannot be silently rewritten. It should
+not mean that fraud, court orders, mistakes and commercial disputes can never
+be corrected.</p>
+<h3 id="layer-6-accounting-policy-compiler">Layer 6 — accounting policy compiler</h3>
+<p>The compiler converts verified events into accounting states.</p>
+<pre><code class="language-text">event
+    + legal rights and obligations
+    + accounting policy version
+    + estimates or oracle inputs
+    = journal state and reporting classifications
+</code></pre>
+<p>The policy engine must distinguish:</p>
+<ul>
+<li>cash movement;</li>
+<li>asset recognition;</li>
+<li>liability recognition;</li>
+<li>revenue or expense;</li>
+<li>capitalization;</li>
+<li>depreciation or amortization;</li>
+<li>inventory and cost of sales;</li>
+<li>interest;</li>
+<li>taxes;</li>
+<li>foreign-currency measurement;</li>
+<li>fair-value changes;</li>
+<li>impairment;</li>
+<li>contingencies;</li>
+<li>consolidation;</li>
+<li>intercompany elimination; and</li>
+<li>disclosure.</li>
+</ul>
+<p>One canonical event can produce different authorized views without creating
+different underlying facts:</p>
+<pre><code class="language-text">cash basis
+accrual basis
+tax basis
+regulatory basis
+management basis
+investor basis
+public-money basis
+</code></pre>
+<h3 id="layer-7-continuous-assurance">Layer 7 — continuous assurance</h3>
+<p>Every objectively testable transaction can be checked at execution:</p>
+<ul>
+<li>valid identity;</li>
+<li>valid authority;</li>
+<li>contract active;</li>
+<li>funds available;</li>
+<li>asset exists in the authoritative registry;</li>
+<li>duplicate invoice absent;</li>
+<li>amount within limit;</li>
+<li>required bidding completed;</li>
+<li>related party disclosed;</li>
+<li>accounting rule current;</li>
+<li>payment and delivery agree;</li>
+<li>prohibited counterparty absent;</li>
+<li>sanctions or other legal restriction checked where applicable; and</li>
+<li>required evidence attached.</li>
+</ul>
+<p>Continuous assurance does not eliminate all audit. It shifts audit toward:</p>
+<ul>
+<li>source-code and upgrade controls;</li>
+<li>identity governance;</li>
+<li>oracle reliability;</li>
+<li>physical existence;</li>
+<li>valuation and estimation;</li>
+<li>related parties;</li>
+<li>management override;</li>
+<li>exceptions and disputes;</li>
+<li>cybersecurity and keys;</li>
+<li>legal enforceability; and</li>
+<li>whether the system's rules reflect the required accounting framework.</li>
+</ul>
+<h3 id="layer-8-reporting-analysis-and-capital">Layer 8 — reporting, analysis and capital</h3>
+<p>Authorized users could receive live:</p>
+<ul>
+<li>cash and committed cash;</li>
+<li>revenue, cost and margin;</li>
+<li>receivables and collections;</li>
+<li>payables and payment timing;</li>
+<li>inventory and turnover;</li>
+<li>fixed assets and placed-in-service dates;</li>
+<li>software-development cost;</li>
+<li>debt and covenant capacity;</li>
+<li>collateral availability;</li>
+<li>pension assets and fees;</li>
+<li>project commitments and change orders;</li>
+<li>tax exposure;</li>
+<li>related-party activity; and</li>
+<li>unresolved exceptions.</li>
+</ul>
+<p>Financial statements become standardized, timestamped views of the ledger
+rather than separately assembled sources of truth.</p>
+<hr />
+<h2 id="5-example-a-500000-equipment-purchase">5. Example: a <code>$500,000</code> equipment purchase</h2>
+<h3 id="current-system">Current system</h3>
+<pre><code class="language-text">purchase approved
+    → contract stored
+    → purchase order entered
+    → vendor ships
+    → receiving record entered
+    → invoice arrives
+    → accounts payable matches documents
+    → bank payment approved
+    → payment settles
+    → accountant capitalizes asset
+    → fixed-asset register updated
+    → depreciation begins
+    → auditor may or may not select it
+</code></pre>
+<p>The transaction can appear differently in every system for weeks.</p>
+<h3 id="transaction-native-system">Transaction-native system</h3>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Smart-contract state</th>
+<th>Automatic accounting state</th>
+<th>Human exception</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>agreement signed</td>
+<td>authorized commitment for <code>$500,000</code></td>
+<td>purchase commitment view updates; no cash or asset yet</td>
+<td>unauthorized signer or missing approval</td>
+</tr>
+<tr>
+<td>equipment shipped</td>
+<td>in transit</td>
+<td>optional commitment/in-transit disclosure</td>
+<td>shipment evidence disputed</td>
+</tr>
+<tr>
+<td>equipment received</td>
+<td>custody obtained</td>
+<td>receipt state updates</td>
+<td>quantity or condition exception</td>
+</tr>
+<tr>
+<td>acceptance completed</td>
+<td>obligation payable and payment condition satisfied</td>
+<td>equipment asset and payable recognized under applicable policy</td>
+<td>capitalization policy or control disputed</td>
+</tr>
+<tr>
+<td><code>$500,000</code> settles</td>
+<td>payment final</td>
+<td>cash decreases <code>$500,000</code>; payable decreases <code>$500,000</code></td>
+<td>failed or reversed payment</td>
+</tr>
+<tr>
+<td>asset placed in service</td>
+<td>productive-use state</td>
+<td>depreciation begins using approved life and method</td>
+<td>useful-life judgment</td>
+</tr>
+<tr>
+<td>asset modified or sold</td>
+<td>amendment/disposal state</td>
+<td>cost, accumulated depreciation and gain or loss update</td>
+<td>valuation or title dispute</td>
+</tr>
+</tbody>
+</table>
+<p>The transaction is not "booked" later. Its verified state changes compile the
+bookkeeping.</p>
+<h3 id="why-fixed-assets-are-the-ideal-proving-ground">Why fixed assets are the ideal proving ground</h3>
+<p>The Federal Reserve fixed-asset and renovation inquiry exposes nearly every
+problem the hypothesis must solve without requiring a speculative new asset
+class.</p>
+<p>One project can contain:</p>
+<pre><code class="language-text">legal authority
+  → approved capital budget
+  → procurement
+  → contract
+  → change order
+  → certified work
+  → invoice
+  → cash payment
+  → construction in progress
+  → placed-in-service event
+  → depreciation
+  → impairment, transfer or disposal
+</code></pre>
+<p>The present public record usually exposes only selected pieces on different
+clocks. A transaction-native pilot would preserve one project and transaction
+key across all of them.</p>
+<table>
+<thead>
+<tr>
+<th>Evidence object</th>
+<th>Event it should prove</th>
+<th>Accounting result it should drive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabling authority and approved budget</td>
+<td>institution may undertake the project and commit funds</td>
+<td>commitment and remaining-authority view</td>
+</tr>
+<tr>
+<td>solicitation, award and contract</td>
+<td>named parties, scope, price and terms became binding</td>
+<td>executory commitment; no automatic asset yet</td>
+</tr>
+<tr>
+<td>change order</td>
+<td>scope, price or completion terms changed</td>
+<td>revised commitment and forecast</td>
+</tr>
+<tr>
+<td>architect, engineer or owner certification</td>
+<td>specified work was completed and accepted</td>
+<td>construction-in-progress addition and payable</td>
+</tr>
+<tr>
+<td>payment instruction and settlement</td>
+<td>payable was discharged on the relevant cash ledger</td>
+<td>cash and payable reduction</td>
+</tr>
+<tr>
+<td>placed-in-service record</td>
+<td>the asset became available for intended use</td>
+<td>classification out of construction in progress; depreciation begins</td>
+</tr>
+<tr>
+<td>impairment, sale or retirement evidence</td>
+<td>future benefit or control changed</td>
+<td>impairment, gain or loss, or asset retirement</td>
+</tr>
+</tbody>
+</table>
+<p>This is also a clean audit test. For every dollar added to the fixed-asset
+balance, the system should identify:</p>
+<ul>
+<li>the originating transaction events;</li>
+<li>noncash acquisitions;</li>
+<li>transfers between construction in progress and completed assets;</li>
+<li>depreciation and impairment;</li>
+<li>disposals and proceeds;</li>
+<li>internal labor or software allocations;</li>
+<li>who approved each state change; and</li>
+<li>the surviving asset, location, custodian and legal owner.</li>
+</ul>
+<p>The resulting rollforward would not be inferred from a year-end balance:</p>
+<pre><code class="language-text">beginning fixed assets
+  + verified additions
+  + qualifying noncash acquisitions
+  + governed transfers
+  - depreciation
+  - impairment
+  - cost and accumulated depreciation of disposals
+  = ending fixed assets
+</code></pre>
+<p>Each line would be reproducible from the event population. That directly
+answers the original renovation question more faithfully than comparing cash
+spending with the net balance-sheet change.</p>
+<hr />
+<h2 id="6-other-transaction-compilers">6. Other transaction compilers</h2>
+<table>
+<thead>
+<tr>
+<th>Business object</th>
+<th>Trigger</th>
+<th>Core automatic accounting</th>
+<th>Judgment that remains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product sale</td>
+<td>delivery and acceptance</td>
+<td>receivable or cash, revenue, inventory reduction, cost of sale</td>
+<td>variable consideration, returns, collectibility</td>
+</tr>
+<tr>
+<td>service contract</td>
+<td>verified performance milestone</td>
+<td>contract asset/receivable, revenue, cost</td>
+<td>measure of progress and acceptance dispute</td>
+</tr>
+<tr>
+<td>internally developed software</td>
+<td>qualifying development work</td>
+<td>eligible labor and vendor cost added to software asset</td>
+<td>preliminary versus development stage, useful life, impairment</td>
+</tr>
+<tr>
+<td>pension investment</td>
+<td>trade and custody settlement</td>
+<td>plan asset, cash, fees and realized activity</td>
+<td>valuation, actuarial obligation, beneficial ownership through pooled vehicles</td>
+</tr>
+<tr>
+<td>repo</td>
+<td>execution, novation, collateral and settlement</td>
+<td>financing asset/liability, collateral state, interest</td>
+<td>legal netting, default exposure and balance-sheet presentation</td>
+</tr>
+<tr>
+<td>construction</td>
+<td>approved change order, certified work and payment</td>
+<td>construction in progress, payable, cash</td>
+<td>percentage complete, impairment, placed-in-service date</td>
+</tr>
+<tr>
+<td>grant or public contract</td>
+<td>authority, deliverable and payment</td>
+<td>obligation, expenditure, asset or expense, recipient</td>
+<td>public purpose, performance quality and downstream ownership</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-materiality-changes-role">7. Materiality changes role</h2>
+<p>Current audit economics use materiality partly to allocate scarce human
+attention. A transaction-native system can test every transaction against
+objective rules regardless of amount.</p>
+<p>The questions separate:</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Future treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Was the transaction authorized and correctly executed?</td>
+<td>test 100 percent of transactions</td>
+</tr>
+<tr>
+<td>Did the payment and asset states agree?</td>
+<td>test 100 percent of linked settlement events</td>
+</tr>
+<tr>
+<td>Was the accounting rule applied consistently?</td>
+<td>compile and test automatically</td>
+</tr>
+<tr>
+<td>Is an estimate reasonable?</td>
+<td>human/model assurance remains</td>
+</tr>
+<tr>
+<td>Is a smaller fraud or related-party transaction qualitatively important?</td>
+<td>continuous exception logic; not excluded merely because it is numerically small</td>
+</tr>
+<tr>
+<td>Is the combined misstatement material to a standardized report?</td>
+<td>materiality still informs reporting opinion and correction priority</td>
+</tr>
+</tbody>
+</table>
+<p>The future principle should be:</p>
+<blockquote>
+<p>Materiality may affect the interpretation of a financial report. It should
+not decide whether an objectively testable transaction is checked at all.</p>
+</blockquote>
+<hr />
+<h2 id="8-what-happens-to-the-middlemen">8. What happens to the middlemen</h2>
+<table>
+<thead>
+<tr>
+<th>Present function</th>
+<th>Automation potential</th>
+<th>Function that survives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data entry</td>
+<td>very high</td>
+<td>exception correction and master-data governance</td>
+</tr>
+<tr>
+<td>invoice matching</td>
+<td>very high when transaction and delivery objects are linked</td>
+<td>disputed quantity, quality and fraud</td>
+</tr>
+<tr>
+<td>bank payment approval</td>
+<td>high for pre-authorized rules</td>
+<td>credit allocation, unusual risk and legal holds</td>
+</tr>
+<tr>
+<td>reconciliation</td>
+<td>very high if parties share the authoritative event</td>
+<td>cross-ledger and off-chain exception resolution</td>
+</tr>
+<tr>
+<td>confirmation</td>
+<td>high through signed shared events</td>
+<td>identity and authority disputes</td>
+</tr>
+<tr>
+<td>clearing</td>
+<td>partial</td>
+<td>netting, liquidity, guaranty and default management unless redesigned</td>
+</tr>
+<tr>
+<td>custody</td>
+<td>partial</td>
+<td>legal title, safekeeping, key recovery and insolvency protection</td>
+</tr>
+<tr>
+<td>external bookkeeping</td>
+<td>very high for ordinary transactions</td>
+<td>policy, exceptions, estimates and advice</td>
+</tr>
+<tr>
+<td>financial-statement audit sampling</td>
+<td>high for deterministic rules</td>
+<td>system assurance, estimates, fraud, physical evidence and governance</td>
+</tr>
+<tr>
+<td>regulatory reporting</td>
+<td>high</td>
+<td>rule design, supervisory judgment and enforcement</td>
+</tr>
+<tr>
+<td>lending underwriting</td>
+<td>high for verified history and collateral</td>
+<td>risk appetite, forward uncertainty and loss-bearing capital</td>
+</tr>
+</tbody>
+</table>
+<p>The architecture does not eliminate every intermediary. It separates:</p>
+<ol>
+<li>intermediaries paid because records cannot agree; and</li>
+<li>intermediaries that actually provide credit, liquidity, custody, insurance,
+   adjudication or loss-bearing capacity.</li>
+</ol>
+<p>The first category can shrink dramatically. The second must be made explicit
+and priced honestly.</p>
+<hr />
+<h2 id="9-business-at-the-speed-of-money">9. Business at the speed of money</h2>
+<p>Real-time accounting can shorten the decision chain:</p>
+<pre><code class="language-text">verified order
+    → current inventory and margin
+    → current committed cash
+    → current collateral and debt capacity
+    → automatic policy checks
+    → immediate approved action or named exception
+</code></pre>
+<p>For financing:</p>
+<pre><code class="language-text">eligible receivable created
+    → borrowing base updates
+    → programmable advance becomes available
+    → customer payment settles
+    → advance automatically repays
+</code></pre>
+<p>The business no longer waits for a lender to reconstruct its condition from
+old bank statements and manually prepared financials.</p>
+<h3 id="the-speed-stack">The speed stack</h3>
+<p>Business can move only as fast as the slowest necessary state:</p>
+<table>
+<thead>
+<tr>
+<th>Clock</th>
+<th>Blocking question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>identity</td>
+<td>do we know the party and beneficial controller?</td>
+</tr>
+<tr>
+<td>authority</td>
+<td>may this person or agent bind the entity?</td>
+</tr>
+<tr>
+<td>commercial</td>
+<td>have enforceable terms been agreed?</td>
+</tr>
+<tr>
+<td>performance</td>
+<td>was the good, service or milestone actually delivered?</td>
+</tr>
+<tr>
+<td>credit</td>
+<td>who will advance funds and bear nonpayment risk?</td>
+</tr>
+<tr>
+<td>liquidity</td>
+<td>is the settlement asset available now?</td>
+</tr>
+<tr>
+<td>settlement</td>
+<td>when is the cash, asset or title transfer final?</td>
+</tr>
+<tr>
+<td>accounting</td>
+<td>which recognition and measurement rules now apply?</td>
+</tr>
+<tr>
+<td>compliance</td>
+<td>is a regulatory, tax, sanctions or legal hold unresolved?</td>
+</tr>
+<tr>
+<td>dispute</td>
+<td>can the event be paused, corrected or reversed lawfully?</td>
+</tr>
+</tbody>
+</table>
+<p>Faster payment removes only one clock. Transaction-native accounting matters
+because it can expose all of the clocks simultaneously and identify the exact
+exception preventing the next state.</p>
+<h3 id="speed-warning">Speed warning</h3>
+<p>Instant gross settlement can increase immediate liquidity needs by removing
+time for netting:</p>
+<pre><code class="language-text">legacy net settlement:
+owe $100, receive $90, settle $10
+
+instant gross settlement:
+fund $100 before receiving $90
+</code></pre>
+<p>The target system therefore needs:</p>
+<ul>
+<li>atomic delivery-versus-payment;</li>
+<li>programmable intraday credit;</li>
+<li>intelligent netting;</li>
+<li>real-time collateral;</li>
+<li>liquidity limits;</li>
+<li>queued execution when safe;</li>
+<li>clear failure states; and</li>
+<li>emergency pause and recovery rules.</li>
+</ul>
+<p>Business can move at the speed of money, but operational failure, fraud and
+insolvency can move at that speed too.</p>
+<hr />
+<h2 id="10-public-money-and-information-fairness">10. Public money and information fairness</h2>
+<p>"Real time" does not require universal exposure of private transactions.
+Access should follow legal entitlement and public purpose.</p>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Appropriate view</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>management</td>
+<td>full operating and financial detail</td>
+</tr>
+<tr>
+<td>transaction counterparty</td>
+<td>its contract, performance and settlement</td>
+</tr>
+<tr>
+<td>employee</td>
+<td>compensation and benefit rights relevant to that employee</td>
+</tr>
+<tr>
+<td>lender</td>
+<td>agreed cash, collateral, covenant and risk proofs</td>
+</tr>
+<tr>
+<td>regulator</td>
+<td>legally required transaction and risk fields</td>
+</tr>
+<tr>
+<td>investor</td>
+<td>standardized current reporting and governed material events</td>
+</tr>
+<tr>
+<td>auditor</td>
+<td>evidence, code version, controls, exceptions and full authorized trail</td>
+</tr>
+<tr>
+<td>public</td>
+<td>public-money authority, recipient, purpose, deliverable, modifications and payment, subject to lawful privacy and security limits</td>
+</tr>
+</tbody>
+</table>
+<p>Cryptographic proofs can show that a rule was met without publishing every
+private field. The fairness objective is:</p>
+<blockquote>
+<p>A person entitled to reliable information should not wait months merely
+because another institution controls the process of assembling it.</p>
+</blockquote>
+<hr />
+<h2 id="11-governance-constitution-for-open-accounting">11. Governance constitution for open accounting</h2>
+<p>Open-source code is necessary but insufficient. The system needs a public and
+versioned constitution covering:</p>
+<ol>
+<li><strong>identity:</strong> who can create an entity, wallet or credential;</li>
+<li><strong>authority:</strong> who can approve which transaction;</li>
+<li><strong>code:</strong> who can propose, review and deploy changes;</li>
+<li><strong>accounting policy:</strong> who translates law and standards into executable
+   rules;</li>
+<li><strong>oracles:</strong> which outside facts are accepted;</li>
+<li><strong>privacy:</strong> who can see each field and under what authority;</li>
+<li><strong>keys:</strong> recovery, rotation, theft and institutional succession;</li>
+<li><strong>corrections:</strong> append-only reversal, restatement and dispute states;</li>
+<li><strong>finality:</strong> when payment, title and accounting become legally effective;</li>
+<li><strong>insolvency:</strong> which claim survives and which ledger controls;</li>
+<li><strong>audit:</strong> reproducibility, control testing and public exception records;</li>
+<li><strong>forks:</strong> what happens when code, law or communities diverge; and</li>
+<li><strong>exit:</strong> portability and continuity if an operator fails.</li>
+</ol>
+<p>An open codebase with closed upgrades and a privileged administrator can
+automate centralized control more efficiently than the present system. Every
+privileged function must be visible and attributable.</p>
+<hr />
+<h2 id="12-error-fraud-and-dispute-state-machine">12. Error, fraud and dispute state machine</h2>
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; Proposed
+    Proposed --&gt; Authorized
+    Authorized --&gt; Executed
+    Executed --&gt; Settled
+    Settled --&gt; Reported
+    Authorized --&gt; Rejected
+    Executed --&gt; Failed
+    Settled --&gt; Disputed
+    Disputed --&gt; Confirmed
+    Disputed --&gt; Corrected
+    Disputed --&gt; Reversed
+    Reported --&gt; Restated
+    Corrected --&gt; Reported
+    Reversed --&gt; Reported
+    Restated --&gt; Reported
+</code></pre>
+<p>No correction should erase the original event. The record should show:</p>
+<ul>
+<li>original state;</li>
+<li>challenged field;</li>
+<li>challenger;</li>
+<li>authority to correct;</li>
+<li>evidence;</li>
+<li>correction or reversal;</li>
+<li>affected accounting periods and reports; and</li>
+<li>who absorbed any loss.</li>
+</ul>
+<hr />
+<h2 id="13-current-signals-versus-the-proposed-regime">13. Current signals versus the proposed regime</h2>
+<table>
+<thead>
+<tr>
+<th>Observed signal at the cutoff</th>
+<th>What it proves</th>
+<th>What it does not prove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>instant central-bank payment services operate continuously within their rules</td>
+<td>final central-bank-money settlement can operate outside traditional business hours</td>
+<td>universal wallet settlement or business-contract accounting</td>
+</tr>
+<tr>
+<td>DTC processed limited production transactions using tokenized representations of DTC-held securities on 2026-07-15</td>
+<td>a regulated depository can connect controlled entitlements to blockchain-based workflows</td>
+<td>open accounting, replacement of DTC, independent on-chain title or general service launch</td>
+</tr>
+<tr>
+<td>DTC describes an October 2026 service-launch target</td>
+<td>a production expansion is scheduled</td>
+<td>the target has occurred</td>
+</tr>
+<tr>
+<td>Federal Reserve and central-bank researchers have built or studied programmable monetary-policy and tokenized-finance tools</td>
+<td>smart-contract workflows are technically and institutionally under study</td>
+<td>live autonomous monetary policy or public real-time accounting</td>
+</tr>
+<tr>
+<td>clearinghouses extend hours and modernize matching, margin and settlement</td>
+<td>the authoritative middle is becoming more continuous</td>
+<td>clearinghouses or settlement banks have been eliminated</td>
+</tr>
+<tr>
+<td>accounting manuals contain software-capitalization and ownership rules</td>
+<td>present institutions can account for new systems</td>
+<td>those rules are machine-readable or applied transparently transaction by transaction</td>
+</tr>
+</tbody>
+</table>
+<p>The present record is a <strong>transition signal</strong>, not the target architecture.
+Tokenization currently appears at least as capable of strengthening incumbent
+depositories and clearing utilities as of dismantling them.</p>
+<hr />
+<h2 id="14-transition-roadmap-and-gates">14. Transition roadmap and gates</h2>
+<h3 id="phase-0-common-identifiers-and-schemas">Phase 0 — common identifiers and schemas</h3>
+<p><strong>Build</strong></p>
+<ul>
+<li>legal-entity and wallet identity;</li>
+<li>transaction IDs;</li>
+<li>contract, asset, invoice and settlement schemas;</li>
+<li>rule-version metadata; and</li>
+<li>authority credentials.</li>
+</ul>
+<p><strong>Gate:</strong> two independent systems reproduce the same transaction object.</p>
+<h3 id="phase-1-signed-event-ledger-beside-existing-books">Phase 1 — signed event ledger beside existing books</h3>
+<p><strong>Build</strong></p>
+<ul>
+<li>signed contract and performance events;</li>
+<li>immutable history with governed corrections;</li>
+<li>links to bank settlement and asset registries; and</li>
+<li>read-only accounting views.</li>
+</ul>
+<p><strong>Gate:</strong> shared events reconcile to existing legal books across a complete
+reporting period.</p>
+<h3 id="phase-2-accounting-compiler-in-shadow-mode">Phase 2 — accounting compiler in shadow mode</h3>
+<p><strong>Build</strong></p>
+<ul>
+<li>machine-readable recognition and classification policies;</li>
+<li>automated journals;</li>
+<li>consolidation and intercompany provenance;</li>
+<li>tax and regulatory views; and</li>
+<li>exception queue.</li>
+</ul>
+<p><strong>Gate:</strong> compiled accounts reproduce approved financial statements and expose
+all differences.</p>
+<h3 id="phase-3-continuous-assurance">Phase 3 — continuous assurance</h3>
+<p><strong>Build</strong></p>
+<ul>
+<li>100 percent deterministic rule tests;</li>
+<li>code and oracle control reports;</li>
+<li>real-time related-party and authorization checks;</li>
+<li>immutable exception disposition; and</li>
+<li>auditor/regulator interfaces.</li>
+</ul>
+<p><strong>Gate:</strong> an independent assurer can reproduce the ledger, tests and exception
+population without relying on management's separately prepared schedule.</p>
+<h3 id="phase-4-programmable-settlement-and-financing">Phase 4 — programmable settlement and financing</h3>
+<p><strong>Build</strong></p>
+<ul>
+<li>atomic cash and asset settlement;</li>
+<li>real-time collateral;</li>
+<li>programmable credit;</li>
+<li>netting and liquidity controls;</li>
+<li>bankruptcy treatment; and</li>
+<li>interoperable wallets.</li>
+</ul>
+<p><strong>Gate:</strong> a legally enforceable transaction settles, books and finances from
+one event without manual reconciliation.</p>
+<h3 id="phase-5-statutory-and-standards-recognition">Phase 5 — statutory and standards recognition</h3>
+<p><strong>Build</strong></p>
+<ul>
+<li>legal recognition of authoritative records;</li>
+<li>machine-readable accounting and audit standards;</li>
+<li>privacy and public-access law;</li>
+<li>correction, dispute and court procedures; and</li>
+<li>operator resolution and portability.</li>
+</ul>
+<p><strong>Gate:</strong> courts, regulators, tax authorities, lenders and auditors accept the
+same canonical event without requiring a separate controlling paper or legacy
+ledger.</p>
+<h3 id="phase-6-retire-duplicate-ledgers-and-periodic-assembly">Phase 6 — retire duplicate ledgers and periodic assembly</h3>
+<p><strong>Build</strong></p>
+<ul>
+<li>migration and archival proof;</li>
+<li>public reproducibility;</li>
+<li>continuous reporting;</li>
+<li>standardized snapshot views; and</li>
+<li>operator-exit plans.</li>
+</ul>
+<p><strong>Gate:</strong> ordinary business no longer requires duplicated entry,
+reconciliation and manual financial-statement assembly.</p>
+<hr />
+<h2 id="15-evidence-that-would-show-the-regime-is-becoming-real">15. Evidence that would show the regime is becoming real</h2>
+<p>Strong evidence would include:</p>
+<ol>
+<li>an open transaction schema linking contract, authority, performance,
+   settlement and accounting;</li>
+<li>a production business transaction that automatically generates accepted
+   cash, accrual, tax and regulatory records;</li>
+<li>independent reproduction of balances from public or permissioned event
+   data;</li>
+<li>a legal ruling or statute recognizing the canonical event as controlling
+   title and obligation;</li>
+<li>continuous assurance over the full transaction population;</li>
+<li>a lender advancing immediately against verified transaction-native
+   collateral;</li>
+<li>a public agency publishing contract, modification, delivery, payment and
+   asset provenance in one trace;</li>
+<li>financial restatements represented as governed event corrections rather
+   than overwritten reports;</li>
+<li>an operator failure in which another implementation reconstructs and
+   continues the ledger; and</li>
+<li>retirement of a material legacy reconciliation process.</li>
+</ol>
+<hr />
+<h2 id="16-falsifiers-and-failure-modes">16. Falsifiers and failure modes</h2>
+<p>The thesis weakens if:</p>
+<ul>
+<li>"open source" refers only to a client interface while the controlling ledger
+  and upgrades remain closed;</li>
+<li>tokens remain representations whose legally controlling records sit
+  elsewhere and cannot be independently reconciled;</li>
+<li>accounting views cannot handle amendments, estimates, consolidation,
+  impairment or insolvency;</li>
+<li>smart contracts require more manual exception processing than they remove;</li>
+<li>faster settlement creates liquidity costs greater than the reconciliation
+  savings;</li>
+<li>privacy rules make ordinary business unusable or public money untraceable;</li>
+<li>oracle and identity failures repeatedly corrupt the canonical record;</li>
+<li>courts require separate legacy records for enforcement;</li>
+<li>institutions recreate the current middlemen as private protocol governors;
+  or</li>
+<li>no business retires its duplicate ledger, periodic close or manual audit
+  process.</li>
+</ul>
+<hr />
+<h2 id="17-research-routing-across-the-observatory">17. Research routing across the Observatory</h2>
+<table>
+<thead>
+<tr>
+<th>Existing track</th>
+<th>Question introduced by this map</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Federal Reserve entity and software map</td>
+<td>which Reserve Bank controls the source code, accounting compiler and authoritative System record?</td>
+</tr>
+<tr>
+<td>Fed uses-of-money ledger</td>
+<td>can every external payment retain recipient, purpose, contract and asset provenance after consolidation?</td>
+</tr>
+<tr>
+<td>pensions</td>
+<td>can the System expose current beneficial holdings, fees, managers and valuation without waiting for annual aggregation?</td>
+</tr>
+<tr>
+<td>fixed assets and renovations</td>
+<td>can contract, change order, certified work, payment, construction-in-progress and placed-in-service events remain linked?</td>
+</tr>
+<tr>
+<td>payment-stack audit</td>
+<td>which event is legal finality, which ledger wins, and where does a correction propagate?</td>
+</tr>
+<tr>
+<td>centrally cleared repo</td>
+<td>can programmable bilateral or multilateral settlement preserve netting without adding another private control layer?</td>
+</tr>
+<tr>
+<td>DTC tokenization</td>
+<td>does the token become the authoritative title record or remain a controlled representation of the depository entitlement?</td>
+</tr>
+<tr>
+<td>government-wide audit</td>
+<td>can every public-dollar transaction be tested while preventing estimates of waste, fraud and improper payments from being collapsed?</td>
+</tr>
+<tr>
+<td>congressional monetary infrastructure</td>
+<td>when do blockchain books and records become legally recognized rather than merely permitted for a pilot?</td>
+</tr>
+<tr>
+<td>judicial money</td>
+<td>which court recognizes which record in ownership, insolvency, attachment, forfeiture and remedy?</td>
+</tr>
+<tr>
+<td>emergency monetary policy</td>
+<td>how does the ledger pause, recover, reconstruct and allocate loss during a cyber or liquidity event?</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="18-bottom-line">18. Bottom line</h2>
+<p>The proposed end state is:</p>
+<pre><code class="language-text">open code
++ open standards
++ verified legal identity
++ executable business terms
++ linked performance evidence
++ atomic money and asset state
++ canonical signed event history
++ machine-readable accounting policies
++ continuous rule testing
++ permissioned live reporting
++ governed corrections and legal finality
+</code></pre>
+<p>Its promise is not merely faster bookkeeping. It is:</p>
+<ul>
+<li>fewer duplicate ledgers;</li>
+<li>fewer institutions paid only to reconcile records;</li>
+<li>every objective transaction rule tested;</li>
+<li>provenance preserved through consolidation;</li>
+<li>faster business and financing decisions;</li>
+<li>clearer public-money accountability; and</li>
+<li>financial statements that can be reproduced rather than trusted as a
+  delayed institutional assertion.</li>
+</ul>
+<p>The central control question remains:</p>
+<blockquote>
+<p>Who may define, change, observe, correct and legally enforce the canonical
+event?</p>
+</blockquote>
+<p>If that answer is open, attributable and contestable, real-time accounting can
+reduce institutional opacity. If it is not, the same technology can automate
+the present concentration of power.</p>
+<hr />
+<h2 id="current-primary-anchors">Current primary anchors</h2>
+<ul>
+<li><a href="https://www.federalreserve.gov/paymentsystems/fednow-additional-questions-and-answers.htm">Federal Reserve FedNow questions and answers — continuous processing and master-account settlement</a></li>
+<li><a href="https://www.dtcc.com/news/2026/july/15/dtcc-turns-tokenization-into-reality">DTCC limited-production tokenized transactions, 2026-07-15</a></li>
+<li><a href="https://www.sec.gov/files/tm/no-action/dtc-nal-121125.pdf">SEC no-action letter for the DTC tokenization service, 2025-12-11</a></li>
+<li><a href="https://www.federalreserve.gov/federal-reserve-banks/fam/appendix-d-software.htm">Federal Reserve Financial Accounting Manual — internal-use software</a></li>
+<li><a href="https://www.newyorkfed.org/medialibrary/media/research/staff_reports/sr1177.pdf">New York Fed — Composable Finance, January 2026</a></li>
+</ul>
+<h2 id="controlling-workbench-context">Controlling workbench context</h2>
+<ul>
+<li><code>Research Packages/Monetary Cross-Cuts/THE_OVERALL_MONETARY_PLAY.md</code></li>
+<li><code>Research Packages/Fed, Clearing and Treasury/FED_PAYMENT_STACK_CONTROL_FINALITY_AND_COST_AUDIT_2026-07-25.md</code></li>
+<li><code>Research Packages/Fed, Clearing and Treasury/FED_CENTRALLY_CLEARED_REPO_ACCOUNTING_AND_CONTROL_CASE_STUDY_2026-07-25.md</code></li>
+<li><code>Research Packages/Fed, Clearing and Treasury/FEDERAL_RESERVE_SYSTEM_ENTITY_TRANSACTION_AND_SOFTWARE_MAP.md</code></li>
+<li><code>Research Packages/Fed, Clearing and Treasury/FEDERAL_RESERVE_USES_OF_MONEY_LEDGER_2025.md</code></li>
+<li><code>Research Packages/Congressional Monetary Infrastructure/DTC_TOKENIZATION_SOFT_LAUNCH_STATUS_2026-07-15.md</code></li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

@@ -1,0 +1,449 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Wave 4 — Mechanisms, Rivals, Falsifiers, and Visual Logic · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/reading-the-transition.html#when-control-and-responsibility-separate" class="" >The living thesis asks whether authority can keep up with capability <span class="meta">— How our picture of the transition keeps changing</span></a><a href="../stories/reading-the-transition.html#what-would-change-our-minds" class="" >A useful story must let successful adaptation count <span class="meta">— How our picture of the transition keeps changing</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Wave 4 — Mechanisms, Rivals, Falsifiers, and Visual Logic</h1><p class="deck">Collection evidence cutoff: 2026-09-02</p><p><a href="wave-4-mechanisms-rivals-falsifiers-and-visual-logic-2026-09-02-a37133a4a06c.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="wave-4-mechanisms-rivals-falsifiers-and-visual-logic">Wave 4 — Mechanisms, Rivals, Falsifiers, and Visual Logic</h1>
+<p><strong>Project:</strong> Economic Institution Legitimacy Crisis<br />
+<strong>Status:</strong> working red team; unreviewed<br />
+<strong>Date:</strong> 2026-09-02 ET<br />
+<strong>Evidence basis:</strong> existing local component owners and Waves 1–3 only<br />
+<strong>Authority:</strong> Freedom 250 Research Workbench only<br />
+<strong>Boundary:</strong> this file tests the overarching analytic lens; it does not promote
+an interpretation into the live vault, assign a system-wide crisis verdict, or
+replace any component factual owner</p>
+<h2 id="controlling-analytic-rule">Controlling analytic rule</h2>
+<blockquote>
+<p><strong>The Economic Institution Legitimacy Crisis lens does not require an
+institution, company, market, government, or affected public to diagnose
+itself publicly with a “legitimacy crisis.”</strong></p>
+</blockquote>
+<p>Institutions ordinarily describe consequential change through narrower
+languages: modernization, efficiency, statutory authority, resilience,
+innovation, risk, national interest, consumer protection, reform, capacity, or
+public value. Legitimacy dynamics may therefore be inferred from observable
+behavior and institutional state: practical authority moving, reliance
+shifting, records competing, burdens becoming difficult to justify,
+performance failing, remedies breaking, or ordinary correction becoming
+unable to settle which decision should govern.</p>
+<p>The inference must remain separate from the facts supporting it. Technology,
+restructuring, litigation, output failure, and criticism are not themselves
+proof of legitimacy loss. The current corpus supports a connected
+<strong>legitimacy-risk architecture</strong> more strongly than it proves a system-wide
+legitimacy crisis.</p>
+<h2 id="1-strongest-connected-mechanisms">1. Strongest connected mechanisms</h2>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Cross-domain connection</th>
+<th>Current support</th>
+<th>Red-team judgment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Control–responsibility–remedy decoupling</strong></td>
+<td>Stablecoin distributors, AI vendors, shared services, standards bodies, private payment operators, and receiving agencies can shape outcomes while issuers, statutory agencies, central banks, or courts retain formal responsibility.</td>
+<td>Strong structural support across GENIUS, federal AI/NARA, Do Not Pay, Education/USAID, Fed accounts, and private rails.</td>
+<td>Best overarching mechanism. A legitimacy problem emerges when the practical controller cannot be held responsible and the legally responsible institution cannot reconstruct or correct the action.</td>
+</tr>
+<tr>
+<td><strong>2. Capability outruns its constitution</strong></td>
+<td>Technical capability and adoption can advance before law, supervision, authoritative records, failure rules, and accepted legitimacy.</td>
+<td>Strong for stablecoins, linked-DLT securities, AI, shared ledgers, digital identity, and reporting automation; operational scale varies.</td>
+<td>The gap itself is not crisis. It becomes legitimacy evidence when provisional private or technical rules repeatedly determine consequential outcomes before accountable public structure catches up.</td>
+</tr>
+<tr>
+<td><strong>3. Authoritative-record conflict</strong></td>
+<td>Fed account books, transfer-agent master files, blockchain states, Do Not Pay source records, AI logs, taxpayer records, accounting classifications, and court-recognized records can disagree.</td>
+<td>Strong conceptual and legal support; fewer observed end-to-end failures.</td>
+<td>Potentially decisive. An institution's legitimacy is tested most sharply when it must say which record governs, explain why, correct it, and compensate affected parties.</td>
+</tr>
+<tr>
+<td><strong>4. Functional hollowing with legal survival</strong></td>
+<td>Education, USAID, HHS/AHA, Treasury/IRS, OPM, and other agencies may retain legal identity while staff, systems, money, data, and execution move elsewhere.</td>
+<td>Strong state-change evidence in selected federal cases; thinner outcome and acceptance evidence.</td>
+<td>This supports a legitimacy lens without proving collapse. Crisis strengthens only if the surviving institution cannot supervise the migrated function, explain responsibility, preserve service, or supply remedy.</td>
+</tr>
+<tr>
+<td><strong>5. Access and eligibility become upstream control points</strong></td>
+<td>Fed accounts, IMF financing, stablecoin approval, Do Not Pay screening, personnel systems, benefits, tax administration, and identity rails all move consequential decisions earlier into classification and admission.</td>
+<td>Strong authority architecture; uneven evidence on false positives, consistency, burden, and appeal.</td>
+<td>The legitimacy question is not merely who makes the final decision, but who defines the admissible record and whether exclusion can be understood and contested.</td>
+</tr>
+<tr>
+<td><strong>6. Output failure converges with representation or burden conflict</strong></td>
+<td>IMF conditionality, G20/FSB payment targets, government service transfers, AI screening, and international standards can produce output shortfalls while affected parties have limited voice or unequal burdens.</td>
+<td>Direct evidence is strongest in IMF legitimacy documents and FSB payment KPIs; thinner elsewhere.</td>
+<td>Output failure alone is not illegitimacy. It becomes much stronger when failure persists, burdens concentrate, affected parties cannot alter the design, and remedy does not work.</td>
+</tr>
+<tr>
+<td><strong>7. Private control with public residual rescue</strong></td>
+<td>Private adapters may control routing, liquidity, records, or interfaces while central banks, governments, insurance systems, or courts remain responsible for systemic failure and loss allocation.</td>
+<td>Structurally plausible; the current corpus lacks a decisive new-stack stress event.</td>
+<td>Important hypothesis, not established fact. A real stablecoin, tokenized-market, AI, or shared-ledger failure would be the decisive test.</td>
+</tr>
+</tbody>
+</table>
+<p>The most defensible connected chain is:</p>
+<pre><code class="language-text">new capability
+  -&gt; practical reliance
+  -&gt; provisional operator or standard gains de facto rule-setting power
+  -&gt; formal responsibility remains elsewhere
+  -&gt; records, supervision, and remedy lag
+  -&gt; affected parties encounter exclusion, burden, failure, or opacity
+  -&gt; inherited processes either absorb the change successfully
+     or fail to produce an accepted correction
+</code></pre>
+<p>The final fork—not the existence of the technology—determines whether the
+pattern is modernization, governance lag, legitimacy strain, or crisis.</p>
+<h2 id="2-rival-explanations-that-genuinely-compete">2. Rival explanations that genuinely compete</h2>
+<table>
+<thead>
+<tr>
+<th>Rival explanation</th>
+<th>What it explains well</th>
+<th>Decisive discriminator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Incumbent absorption</strong></td>
+<td>Established institutions can adopt new technology while retaining mandate, supervision, authoritative records, and remedy. Fedwire ISO 20022 and the SEC transfer-agent proposal are strong controls.</td>
+<td>Do incumbents remain capable of supervising, correcting, and explaining the new function under real operation and stress?</td>
+</tr>
+<tr>
+<td><strong>Ordinary capacity reform</strong></td>
+<td>Centralization, automation, shared services, and private interfaces may respond to backlog, fraud, cost, fragmentation, or obsolete infrastructure.</td>
+<td>Independent before/after performance, error, access, cost, continuity, and appeal evidence.</td>
+</tr>
+<tr>
+<td><strong>Designed constitutional tension</strong></td>
+<td>Conflict among executive, legislature, courts, agencies, States, shareholders, staff, and members may be the intended correction mechanism.</td>
+<td>Do disputes reach timely, accepted settlements that institutions actually implement?</td>
+</tr>
+<tr>
+<td><strong>Plural resilience</strong></td>
+<td>Multiple rails, operators, and records may add redundancy, competition, jurisdictional choice, and graceful failure.</td>
+<td>Are interoperability, exit, correction, and loss rules clear, or does pluralism create unresolved authority and record conflicts?</td>
+</tr>
+<tr>
+<td><strong>Technology-forced adaptation</strong></td>
+<td>Similar changes may arise because AI, cryptography, market speed, and cyber risk force many institutions to adjust independently.</td>
+<td>Direct coordination or common authority is needed before describing a coherent successor regime.</td>
+</tr>
+<tr>
+<td><strong>Executive consolidation</strong></td>
+<td>Function migration and shared services may reflect movement within public authority toward presidential, OMB, or Treasury control rather than transfer to private institutions.</td>
+<td>Track actual decision rights, appropriations, supervision, statutory leashes, and judicial compliance—not merely vendor participation.</td>
+</tr>
+<tr>
+<td><strong>Industry capture or rent transfer</strong></td>
+<td>Private actors may gain chokepoints because they benefit from rule complexity, access scarcity, or public outsourcing.</td>
+<td>Look for privileged rule influence, durable rents, exclusion, public loss absorption, and weak accountability—not adoption alone.</td>
+</tr>
+<tr>
+<td><strong>Localized legitimacy crises</strong></td>
+<td>IMF conditionality, one agency transfer, one access regime, or one payment failure may genuinely be in crisis without describing the economic order as a whole.</td>
+<td>The overarching lens needs repeated mechanisms across independent functions, not thematic similarity alone.</td>
+</tr>
+<tr>
+<td><strong>Narrative selection</strong></td>
+<td>The Observatory naturally preserves contested, changing, and high-stakes cases, which may overrepresent institutional strain.</td>
+<td>Add ordinary successful adaptations, stable incumbents, resolved disputes, and unchanged functions as explicit comparison controls.</td>
+</tr>
+</tbody>
+</table>
+<p>The strongest rival is <strong>incumbent absorption</strong>. If institutions repeatedly
+integrate new capability while preserving clear decision rights,
+authoritative records, measurable performance, and effective remedy, the
+crisis interpretation weakens substantially.</p>
+<p>Several rivals can coexist. Capacity reform can also produce executive
+consolidation; technology-forced adaptation can also enable rent transfer;
+plural resilience can coexist with localized legitimacy crises.</p>
+<h2 id="3-strengtheners-weakeners-and-falsifiers">3. Strengtheners, weakeners, and falsifiers</h2>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Would strengthen</th>
+<th>Would weaken</th>
+<th>Would substantially falsify</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control–responsibility–remedy decoupling</strong></td>
+<td>Repeated decisions are shaped by operators or vendors that formal authorities cannot audit or correct; losses are routed back to the public.</td>
+<td>Enforceable delegation, inspectable logs, named accountable officers, and successful correction.</td>
+<td>Operators remain bounded service providers and cannot independently alter consequential outcomes.</td>
+</tr>
+<tr>
+<td><strong>Capability outruns its constitution</strong></td>
+<td>Recurring adoption precedes settled law and provisional private rules govern access, classification, or finality.</td>
+<td>Law, supervision, records, and remedy converge before consequential scale.</td>
+<td>The technology remains pilot-scale or is fully absorbed before becoming operationally important.</td>
+</tr>
+<tr>
+<td><strong>Authoritative-record conflict</strong></td>
+<td>Forks, overissuance, duplicate title, AI-record gaps, mismatched eligibility records, or accounting/legal disagreement produce unresolved harm.</td>
+<td>Published record hierarchy, routine reconciliation, correction, and accepted finality.</td>
+<td>Conflicts are consistently resolved through a known hierarchy without material delay or harm.</td>
+</tr>
+<tr>
+<td><strong>Functional hollowing</strong></td>
+<td>The legal owner lacks staff, data, money, expertise, or control while service deteriorates and responsibility remains disputed.</td>
+<td>Lawful agreements improve service while ownership, supervision, notice, and appeal remain clear.</td>
+<td>Authority transfer is enacted, transparent, operationally complete, and paired with effective continuity and remedy.</td>
+</tr>
+<tr>
+<td><strong>Upstream access and eligibility control</strong></td>
+<td>Opaque or inconsistent admission rules, unexplained denials, false positives, selective exceptions, or no meaningful appeal.</td>
+<td>Clear criteria, comparable treatment, written reasons, human review, reversal, and cross-institution consistency.</td>
+<td>Screening or classification has no independent decisional weight and adverse outcomes remain fully reviewable.</td>
+</tr>
+<tr>
+<td><strong>Output, voice, and burden convergence</strong></td>
+<td>Persistent KPI failure joins exit, refusal, repricing, noncompliance, asymmetric waivers, concentrated loss, or ineffective participation.</td>
+<td>Measured improvement, even-handed application, visible stakeholder traction, and voluntary continued reliance.</td>
+<td>Apparent failures disappear under valid comparison, affected parties accept the outcome, and remedies correct remaining errors.</td>
+</tr>
+<tr>
+<td><strong>Private control with public residual rescue</strong></td>
+<td>A stress event reveals private gains, opaque loss allocation, and ad hoc central-bank, fiscal, insurance, or judicial rescue.</td>
+<td>Private capital bears losses under known rules and public intervention is limited and conditional.</td>
+<td>No meaningful public externality or rescue occurs when the private system fails.</td>
+</tr>
+</tbody>
+</table>
+<p>A system-level crisis finding would become materially stronger if at least
+three independent domains showed the same sequence:</p>
+<ol>
+<li>practical authority displacement;</li>
+<li>consequential adverse behavior or performance;</li>
+<li>failed ordinary correction;</li>
+<li>continued unresolved operation; and</li>
+<li>substitution, refusal, repricing, or emergency re-founding.</li>
+</ol>
+<p>This is not a requirement for an explicit public statement. It is a
+requirement for convergent observable evidence.</p>
+<h2 id="4-false-positives-to-avoid">4. False positives to avoid</h2>
+<ul>
+<li>Technology advance is not legitimacy loss.</li>
+<li>Adoption is not acceptance; compelled or monopoly use is especially weak
+  evidence of trust.</li>
+<li>A private operator is not automatically the sovereign decision-maker.</li>
+<li>A technical ledger state is not legal title, accounting recognition, or
+  unassailable finality.</li>
+<li>A standard is not law; conformance is not supervision.</li>
+<li>A pilot, sandbox, proposal, or named participant is not recurring operation.</li>
+<li>A lawsuit is evidence of contest, not proof of crisis.</li>
+<li>An adverse preliminary ruling is not institutional collapse.</li>
+<li>Fed operational unbundling is not proof of “castration” or lost monetary
+  legitimacy.</li>
+<li>A surviving legal person with migrated functions is not necessarily hollowed
+  beyond repair.</li>
+<li>A missing public rulebook does not prove that no rulebook exists.</li>
+<li>Output failure does not establish illegitimacy without credible attribution,
+  persistence, and behavior or remedy evidence.</li>
+<li>Public criticism, comments, testimony, or institutional rhetoric are not
+  representative perception measures.</li>
+<li>Market repricing is not legitimacy evidence without a defensible causal
+  link.</li>
+<li>Transparent records can increase surveillance or opacity elsewhere;
+  “on-chain” is not synonymous with accountable.</li>
+<li>Shared timing is not common authorship or coordination.</li>
+<li>One jurisdictional or functional crisis cannot carry the system-wide
+  thesis.</li>
+<li>Network usage does not establish native-token value capture.</li>
+<li>A governance gap may be temporary sequencing rather than durable
+  institutional failure.</li>
+</ul>
+<h2 id="5-proposed-interactive-visual-logic">5. Proposed interactive visual logic</h2>
+<p>The interactive surface should be <strong>function-centered</strong>, rather than assigning
+one legitimacy verdict to an entire institution. It should make three
+epistemic layers impossible to confuse:</p>
+<ol>
+<li>sourced factual state;</li>
+<li>the project's analytic inference; and</li>
+<li>counterevidence, rival explanation, and falsifier.</li>
+</ol>
+<h3 id="case-anatomy">Case anatomy</h3>
+<pre><code class="language-text">┌──────────────────────────────────────────────────────────────────┐
+│ FUNCTION: Who may admit an institution to central-bank money?    │
+├──────────────────────────────────────────────────────────────────┤
+│ FACTUAL CLOCKS                                                   │
+│ Capability │ Adoption │ Law │ Supervision │ Record │ Remedy │ Acceptance │
+│     ■      │    ■     │  ◐  │      ◐      │   ■    │   ?    │     ?      │
+├──────────────────────────────────────────────────────────────────┤
+│ AUTHORITY CHAIN                                                  │
+│ Congress → Board → District Bank → Account terms → Appeal ?      │
+├──────────────────────────────────────────────────────────────────┤
+│ SOURCE SAYS          PROJECT INFERS        COUNTER-RECORD         │
+│ solid blue cards     dashed purple links   green control cards    │
+├──────────────────────────────────────────────────────────────────┤
+│ WHAT WOULD CHANGE OUR MIND                                      │
+│ final rule · operating result · denial reasons · appeal          │
+└──────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="visual-grammar">Visual grammar</h3>
+<ul>
+<li><strong>Solid blue object:</strong> sourced fact or observed state.</li>
+<li><strong>Solid blue arrow:</strong> source-established relationship such as <code>authorizes</code>,
+  <code>implements</code>, <code>constrains</code>, or <code>corrects</code>.</li>
+<li><strong>Dashed purple arrow:</strong> project inference or proposed causal mechanism.</li>
+<li><strong>Amber border:</strong> active authority contest.</li>
+<li><strong>Green object:</strong> successful adaptation, resilience, or other
+  counterevidence.</li>
+<li><strong>Gray hollow object:</strong> unknown or missing evidence.</li>
+<li><strong>Red marker:</strong> observed failure, unresolved harm, or failed remedy—not
+  merely disagreement.</li>
+<li>Every inference visibly carries the label <code>PROJECT INFERENCE</code>.</li>
+<li>Every factual card displays source owner, evidence cutoff, lifecycle, and
+  exact date state.</li>
+<li><code>same_period_only</code> uses a gray bracket and can never visually resemble a
+  causal arrow.</li>
+</ul>
+<p>Color must be reinforced by line style, shape, icon, and text label so that the
+evidence distinctions remain available without color perception.</p>
+<h3 id="required-view-toggles">Required view toggles</h3>
+<ol>
+<li><strong>Facts only</strong> — hides every inferred mechanism.</li>
+<li><strong>Legitimacy lens</strong> — adds dashed mechanism connections.</li>
+<li><strong>Strongest rival</strong> — replaces the thesis overlay with the best competing
+   explanation.</li>
+<li><strong>Falsifiers</strong> — displays the observations that would weaken or overturn
+   the interpretation.</li>
+</ol>
+<h3 id="required-case-fields">Required case fields</h3>
+<p>Each case view should expose:</p>
+<ul>
+<li>the seven capability–structure clocks;</li>
+<li>the legal and practical authority chains side by side;</li>
+<li>the authoritative record and failure bearer;</li>
+<li>direct evidence versus mechanism and context;</li>
+<li>affected parties, voice, practical exit, and remedy;</li>
+<li>counterevidence;</li>
+<li>unresolved next return; and</li>
+<li>a provisional function-level state that is never aggregated into a single
+  system-wide legitimacy score.</li>
+</ul>
+<h3 id="clock-ribbon">Clock ribbon</h3>
+<p>The seven clocks must remain separately visible:</p>
+<table>
+<thead>
+<tr>
+<th>Clock</th>
+<th>Visual question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technical capability</td>
+<td>What can the system demonstrably do?</td>
+</tr>
+<tr>
+<td>Adoption or reliance</td>
+<td>Who uses it, at what scale and recurrence?</td>
+</tr>
+<tr>
+<td>Legal authority</td>
+<td>Who may lawfully decide, compel, deny, record, or settle?</td>
+</tr>
+<tr>
+<td>Standard and supervision</td>
+<td>Which rulebook governs, and who monitors the operator?</td>
+</tr>
+<tr>
+<td>Authoritative record</td>
+<td>Which record controls when systems disagree?</td>
+</tr>
+<tr>
+<td>Failure, correction, and remedy</td>
+<td>Who can pause, correct, compensate, appeal, adjudicate, or absorb loss?</td>
+</tr>
+<tr>
+<td>Accepted legitimacy</td>
+<td>What behavior shows reliance, refusal, exit, substitution, compliance, or recognition?</td>
+</tr>
+</tbody>
+</table>
+<p>The surface should highlight the distance among clocks without turning that
+distance into a numerical legitimacy score. A widened gap is an observation;
+its meaning remains an inference subject to rivals and falsifiers.</p>
+<h2 id="6-wave-4-red-team-ruling">6. Wave 4 red-team ruling</h2>
+<p>The corpus's strongest connected mechanism is not “new technology replaces old
+institutions.” It is that practical control can move faster than legal
+responsibility, authoritative records, supervision, and remedy. That pattern
+can create interim de facto rule-setters and expose whether inherited
+institutions remain competent to authorize, absorb, correct, and justify the
+new capability.</p>
+<p>The strongest counter-reading is equally real: incumbents may be successfully
+absorbing new capability through law, accountable recordkeeping, supervision,
+and preserved remedy. Fedwire ISO 20022 and the proposed SEC transfer-agent
+model must remain visible as controls against a one-way crisis narrative.</p>
+<p>The project should therefore distinguish:</p>
+<pre><code class="language-text">capability advance
+  ≠ legitimacy loss
+
+governance lag
+  ≠ legitimacy crisis
+
+authority contest + adverse consequence
+  ≠ failed institutional settlement
+
+sustained cross-domain conflict
+  + observable behavior, burden, performance, or remedy failure
+  + ordinary processes unable to produce an accepted correction
+  = materially stronger legitimacy-crisis evidence
+</code></pre>
+<p>The eventual reader must be able to remove every inference and still see the
+complete factual architecture, then restore the legitimacy lens one mechanism
+at a time. That is the minimum visual and epistemic standard for Wave 5.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

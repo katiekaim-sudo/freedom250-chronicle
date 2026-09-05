@@ -5,6 +5,34 @@
 **Status:** active workbench research; exposed in the Observatory Research Desk as Workbench evidence, not vault doctrine  
 **Scope:** forecast which private companies are positioned to supply, integrate, finance, operate or validate the capabilities implied by the National Security Science and Technology Strategy and its operative federal implementation lanes
 
+## Who gets a project accepted?
+
+A project moves through people and records as well as equipment. One company may supply a component, another create the test evidence, and an owner, regulator or contracting official make the final decision. These studies follow those separate roles from site and financing through delivery, testing and operation. Start with the question below. Each chapter keeps its own cases and evidence boundaries; a candidate, comparable project or certificate does not establish a target contract or accepted system.
+
+### Choose a chapter
+
+1. Who can advance or delay the project? — The five kinds of control: formal gates, delegated work, acceptance evidence, advice and critical-path supply.
+2. Who sits behind the headline supplier? — Specialist suppliers, operating environments and qualified evidence across technology sectors.
+3. Who creates and controls the evidence? — Ownership, testing roles, raw-data custody and independent challenge.
+4. Which commercial agreements are still missing? — Downstream orders, installation, capital, permits and custody behind public announcements.
+5. What record changes the project's state? — Land control, procurement, acceptance, failure and return-to-service instruments.
+6. How do quantum and cryptographic systems pass? — The separate calibration, validation and authorization paths for quantum capability and cryptographic systems.
+
+This is a reading guide to the existing studies. Their original evidence dates, candidate states, case registries and limits remain in the chapters. Shared company names do not make their case counts additive.
+
+---
+
+## Research history and original package documentation
+
+The original package documentation follows intact, including its governing ruling, wave history, files and research boundaries.
+
+# NSSTS Technology-to-Company Map
+
+**Started:** 2026-08-18  
+**Evidence cutoff:** 2026-08-19  
+**Status:** active workbench research; exposed in the Observatory Research Desk as Workbench evidence, not vault doctrine  
+**Scope:** forecast which private companies are positioned to supply, integrate, finance, operate or validate the capabilities implied by the National Security Science and Technology Strategy and its operative federal implementation lanes
+
 ## Governing ruling
 
 This is a standalone research object. It is **not** part of the Federal Group

@@ -1,0 +1,320 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Insurance and Reinsurance — Master Claim Audit · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/claims-collateral-and-loss.html#permission-through-risk" class="" >Insurance can determine whether the underlying activity happens <span class="meta">— What we own, what we owe, and who absorbs the loss</span></a><a href="../stories/claims-collateral-and-loss.html#correction-and-loss" class="" >Failure reveals which promise the system will enforce <span class="meta">— What we own, what we owe, and who absorbs the loss</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Insurance and Reinsurance — Master Claim Audit</h1><p class="deck">Collection evidence cutoff: 2026-07-15</p><p><a href="insurance-reinsurance-claim-audit-6c96e2125d61.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="insurance-and-reinsurance-master-claim-audit">Insurance and Reinsurance — Master Claim Audit</h1>
+<p><strong>Status date:</strong> 2026-07-12<br />
+<strong>Scope:</strong> consolidated audit of claims tested across the strategic/digital, life/annuity-capital, and property-catastrophe source-first sweeps.</p>
+<h2 id="boundary">Boundary</h2>
+<p>This ledger tests what the cited record can support. It does not determine whether a named insurer is solvent, whether a specific unfiled treaty transfers risk, or whether a policy covers a particular loss. Company releases prove what a company announced or reported, not adoption, claims performance or regulatory validation. A brand, holding company, licensed carrier, syndicate, managing agent, P&amp;I club, reinsurer, retrocessionaire, asset manager, collateral account and public backstop remain separate entities unless the legal record proves otherwise.</p>
+<p><strong>Verdicts:</strong> <strong>Confirmed—narrow</strong> = supported only in the stated form · <strong>Weakened</strong> = materially overbroad or contradicted · <strong>Unsupported</strong> = the reviewed primary record does not establish it · <strong>False</strong> = inconsistent with the governing structure or official record.</p>
+<hr />
+<h2 id="a-marine-hormuz-and-public-backstops">A. Marine, Hormuz and public backstops</h2>
+<h3 id="ca-01-lloyds-controls-world-trade">CA-01 — “Lloyd’s controls world trade.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Weakened.</li>
+<li><strong>Record:</strong> Lloyd’s is a regulated marketplace comprising separately managed syndicates and members underwriting on a several basis. The International Group is a separate system of twelve independent P&amp;I mutuals covering about 87% of ocean-going tonnage. Both are concentrated shipping-permission layers, but neither is a single universal insurer or voyage authority.</li>
+<li><strong>Safe wording:</strong> “The London insurance ecosystem and International Group P&amp;I system are concentrated permission layers for global shipping; their pricing, territorial terms, certificates and reinsurance capacity can enable or disable commercial voyages.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.lloyds.com/about-lloyds/our-market/lloyds-market">Lloyd’s market structure</a> · <a href="https://www.lloyds.com/market-resources/member-services/about/what-is-a-member">Lloyd’s members</a> · <a href="https://www.igpandi.org/article/about/">International Group</a></li>
+</ul>
+<h3 id="ca-02-twelve-london-insurers-stopped-hormuz">CA-02 — “Twelve London insurers stopped Hormuz.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Weakened in categorical form.</li>
+<li><strong>Record:</strong> The International Group says its mutual cover, including access to Excess War P&amp;I reinsurance, was not amended after the attacks. It says separate underlying Primary War P&amp;I insurers amended the listed area and arranged new voyage rates. IMO independently verified physical attacks and unsafe passage. No primary record found substantiates simultaneous cancellation by all twelve clubs.</li>
+<li><strong>Safe wording:</strong> “After the attacks, listed-area notices, primary-war repricing and capacity constraints interacted with physical danger, charterparty duties, lender requirements and P&amp;I dependencies to suppress traffic; the official Group record says mutual P&amp;I excess-war protection remained unchanged.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.igpandi.org/article/iranpersian-gulf-update-on-cover/">International Group Iran update</a> · <a href="https://www.imo.org/en/mediacentre/pressbriefings/pages/statement--on-us-iran-agreement.aspx">IMO 15 June 2026 statement</a></li>
+</ul>
+<h3 id="ca-03-a-jwc-listed-area-decision-cancels-cover">CA-03 — “A JWC listed-area decision cancels cover.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Weakened.</li>
+<li><strong>Record:</strong> JWLA-033 identifies affected geography. Its consequence depends on the policy’s notice, cancellation, reinstatement, declaration, additional-premium and exclusion terms; the notice is not proof of uniform cancellation.</li>
+<li><strong>Safe wording:</strong> “The JWC listed the Gulf area for war-risk purposes; each policy and insurer notice determines whether cover continued, was repriced, narrowed, cancelled or reinstated.”</li>
+<li><strong>Primary sources:</strong> <a href="https://lmalloyds.com/wp-content/uploads/2026/03/JWLA-033_Iran.pdf">JWC notice JWLA-033</a> · <a href="https://www.igpandi.org/article/iranpersian-gulf-update-on-cover/">International Group Iran update</a></li>
+</ul>
+<h3 id="ca-04-dfc-replaced-or-displaced-lloyds-at-hormuz">CA-04 — “DFC replaced or displaced Lloyd’s at Hormuz.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Weakened; a strategic public-backstop event is confirmed.</li>
+<li><strong>Record:</strong> DFC announced a $20 billion rolling reinsurance facility with Chubb as lead policy issuer, initially focused on hull/machinery and cargo for eligible vessels. Lloyd’s later announced a separate Chubb-led consortium with stated hull, P&amp;I and cargo capacity. The systems can layer together.</li>
+<li><strong>Safe wording:</strong> “DFC announced a U.S.-government-backed reinsurance facility behind private underwriting; the announcement did not prove bound exposure and did not replace the Lloyd’s market or the International Group P&amp;I system.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.dfc.gov/media/press-releases/dfc-announces-chubb-lead-insurance-partner-maritime-reinsurance-plan">DFC, 11 March 2026</a> · <a href="https://www.lloyds.com/insights/media-centre/press-releases/press-release-19062026">Lloyd’s, 19 June 2026</a></li>
+</ul>
+<h3 id="ca-05-reinsurance-transferred-the-hormuz-risk-completely">CA-05 — “Reinsurance transferred the Hormuz risk completely.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> The relevant structures contain eligibility rules, retentions, attachment points, limits, exclusions, aggregates, pooling and sanctions conditions. DFC’s $20 billion figure is a rolling facility ceiling, not proof of $20 billion of bound or paid-in exposure available to every vessel and peril.</li>
+<li><strong>Safe wording:</strong> “Defined portions and layers of eligible Hormuz risks were offered or structured for reinsurance; pending policy and treaty evidence, bound exposure remains unestablished.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.dfc.gov/media/press-releases/dfc-announces-chubb-lead-insurance-partner-maritime-reinsurance-plan">DFC facility</a> · <a href="https://www.igpandi.org/reinsurance/">International Group 2026/27 reinsurance structure</a> · <a href="https://www.lloyds.com/insights/media-centre/press-releases/press-release-19062026">Lloyd’s consortium</a></li>
+</ul>
+<h3 id="ca-06-solvency-ii-forced-insurers-to-cancel-hormuz-cover">CA-06 — “Solvency II forced insurers to cancel Hormuz cover.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Unsupported.</li>
+<li><strong>Record:</strong> No PRA, FCA, Lloyd’s or named-insurer primary record reviewed says Solvency II mechanically required cancellation. Capital requirements can affect appetite, but the asserted causal chain needs a named firm, regulatory direction, model result or board action.</li>
+<li><strong>Safe wording:</strong> “Capital treatment may have influenced risk appetite; no reviewed primary source establishes that Solvency II compelled Hormuz cancellation.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.lloyds.com/market-resources/market-oversight">Lloyd’s 2026 market oversight</a> · <a href="https://www.igpandi.org/article/iranpersian-gulf-update-on-cover/">International Group Iran update</a></li>
+</ul>
+<h3 id="ca-07-tria-automatically-covers-a-catastrophic-cyberattack">CA-07 — “TRIA automatically covers a catastrophic cyberattack.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> Eligible cyber policies can fall within TRIP only if the incident satisfies the statute and is certified as terrorism. GAO says catastrophic attacks may fail the violence, coercion or territorial tests; Treasury and CISA had not completed the recommended dedicated-response assessment as of April 2026.</li>
+<li><strong>Safe wording:</strong> “TRIP may share insured cyber losses from a certified act of terrorism; catastrophe scale alone does not trigger the federal backstop.”</li>
+<li><strong>Primary sources:</strong> <a href="https://files.gao.gov/reports/GAO-25-108748/index.html">GAO-25-108748</a> · <a href="https://www.gao.gov/products/gao-22-104256">GAO-22-104256</a> · <a href="https://home.treasury.gov/policy-issues/financial-markets-financial-institutions-and-fiscal-service/federal-insurance-office/terrorism-risk-insurance-program/statutes-regulations-and-interim-guidance">Treasury TRIP rules</a></li>
+</ul>
+<hr />
+<h2 id="b-digital-insurance-ai-and-parametric-claims">B. Digital insurance, AI and parametric claims</h2>
+<h3 id="ca-08-blockchain-insurance-means-the-policy-and-bond-are-on-chain">CA-08 — “Blockchain insurance means the policy and bond are on-chain.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> Aon’s event was a stablecoin premium-payment proof of concept. Kyobo Life’s announced work concerned tokenized government-bond settlement. Tokenized reinsurance securities concern an investment interest. None proves that the policy, reserve, beneficial title, claims file and adjudication all share one on-chain legal record.</li>
+<li><strong>Safe wording:</strong> “Identify which object is tokenized or settled on-chain—premium, security, asset register, certificate or payout—without implying that the entire insurance contract and claims process are on-chain.”</li>
+<li><strong>Primary sources:</strong> <a href="https://aon.mediaroom.com/2026-03-09-Aon-Announces-First-Stablecoin-Insurance-Premium-Payment">Aon premium-settlement POC</a> · <a href="https://ripple.com/ripple-press/ripple-and-kyobo-life-insurance-partner-to-pioneer-korea-s-first-tokenised-government-bond-settlement-on-blockchain/">Ripple/Kyobo announcement</a> · <a href="https://www.globenewswire.com/news-release/2025/6/16/3099756/0/en/Oxbridge-SurancePlus-Announces-Partnership-with-Midnight-Foundation-to-Launch-Privacy-Enabled-Tokenized-Reinsurance-Offering-on-the-Midnight-Network.html">Oxbridge/SurancePlus issuer announcement</a></li>
+</ul>
+<h3 id="ca-09-an-exchange-emergency-or-insurance-fund-is-insurance">CA-09 — “An exchange emergency or insurance fund is insurance.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Unsupported without the legal wrapper.</li>
+<li><strong>Record:</strong> A self-funded recovery pool does not automatically create a regulated policy, direct beneficiary right, fixed coverage obligation or licensed risk bearer.</li>
+<li><strong>Safe wording:</strong> “Describe it as an exchange-funded recovery reserve unless a policy, licensed underwriter, named insured, beneficiary, limit and claims obligation are established.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/insurance-topics/cryptocurrency">NAIC cryptocurrency overview</a> · <a href="https://content.naic.org/sites/default/files/genius-act-comment-letter.pdf">NAIC GENIUS Act comment</a></li>
+</ul>
+<h3 id="ca-10-custodian-crime-insurance-protects-every-customers-full-balance">CA-10 — “Custodian crime insurance protects every customer’s full balance.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False as a general claim.</li>
+<li><strong>Record:</strong> Crime insurance may insure the company’s specified loss rather than give every customer a direct claim; shared limits and exclusions can distinguish hot-wallet, insider, protocol, lost-key, price and insolvency losses.</li>
+<li><strong>Safe wording:</strong> “The custodian reports crime coverage for specified losses; customer protection depends on the named insured, covered property and wallets, beneficiary rights, exclusions and aggregate limit.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/insurance-topics/cryptocurrency">NAIC cryptocurrency overview</a> · <a href="https://content.naic.org/sites/default/files/genius-act-comment-letter.pdf">NAIC GENIUS Act comment</a></li>
+</ul>
+<h3 id="ca-11-insuring-an-ai-product-proves-the-model-is-safe-or-approved">CA-11 — “Insuring an AI product proves the model is safe or approved.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> Munich Re markets aiSure for specified AI performance failures and contractual liabilities, with product-specific underwriting, exclusions, limits and jurisdictional availability. Coverage transfers defined financial risk; it is not a safety certification or regulatory approval.</li>
+<li><strong>Safe wording:</strong> “A named insurer offers cover for specified AI errors or liabilities under defined terms; this does not validate all outputs, compliance or safety.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.munichre.com/en/solutions/for-industry-clients/insure-ai.html">Munich Re aiSure</a> · <a href="https://www.munichre.com/content/dam/munichre/contentlounge/website-pieces/documents/AI-Insurance-for-Providers.pdf/_jcr_content/renditions/original./AI-Insurance-for-Providers.pdf">aiSure provider terms summary</a> · <a href="https://content.naic.org/sites/default/files/2023-12-4%252520Model%252520Bulletin_Adopted_0.pdf">NAIC AI Model Bulletin</a></li>
+</ul>
+<h3 id="ca-12-a-parametric-or-smart-contract-policy-eliminates-claims-risk">CA-12 — “A parametric or smart-contract policy eliminates claims risk.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> Parametric cover replaces some loss adjustment with a defined external trigger but creates basis risk between measured event, payout and actual loss. Sensor, data-vendor, model, timestamp, geography, oracle, correction and settlement failures remain.</li>
+<li><strong>Safe wording:</strong> “A parametric policy can accelerate a formula-based payout after a verified trigger; it does not ensure full indemnification or eliminate basis, data, oracle, legal or settlement risk.”</li>
+<li><strong>Primary sources:</strong> <a href="https://assets.lloyds.com/media/a94000b7-8320-492d-a2e9-0f0f6337f84f/Using_Parametric_Microinsurance_in_the_United_States.pdf">Lloyd’s-hosted parametric research</a> · <a href="https://thedocs.worldbank.org/en/doc/818931507749581180-0340022017/original/euromoneyhandbook2011worldbankmulticatprogram.pdf">World Bank catastrophe-bond trigger discussion</a></li>
+</ul>
+<hr />
+<h2 id="c-life-annuity-capital-and-offshore-reinsurance">C. Life, annuity, capital and offshore reinsurance</h2>
+<h3 id="ca-13-private-equity-owns-the-life-insurance-industry">CA-13 — “Private equity owns the life-insurance industry.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False at industry scale; directionally important in selected platforms.</li>
+<li><strong>Record:</strong> NAIC identified 137 PE-owned U.S. insurers with $704.3 billion of cash and invested assets at year-end 2024, 7.8% of the industry total. Influence also travels through asset-management mandates, origination, sidecars and reinsurance without direct ownership.</li>
+<li><strong>Safe wording:</strong> “PE/asset-manager-linked insurers are a material minority; report the exact ownership, advisory, origination, sidecar or reinsurance relationship rather than attributing the whole industry to PE.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/insurance-topics/private-equity">NAIC private-equity overview</a> · <a href="https://home.treasury.gov/system/files/261/FSOC2025AnnualReport.pdf">FSOC 2025 Annual Report</a></li>
+</ul>
+<h3 id="ca-14-reinsurance-moves-the-policyholders-contract-offshore">CA-14 — “Reinsurance moves the policyholder’s contract offshore.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Generally misleading.</li>
+<li><strong>Record:</strong> Economic risks and statutory reserves can be ceded while the licensed direct writer remains the policy counterparty. A novation, assumption or transfer of direct obligation requires separate proof.</li>
+<li><strong>Safe wording:</strong> “The direct writer ceded specified reserves and risks to the named offshore reinsurer under a reinsurance treaty; the direct policy obligation remained with the writer unless a separate legal transfer occurred.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/sites/default/files/publication-rec-bu-receivers-handbook-insolvencies.pdf">NAIC Receiver’s Handbook</a> · <a href="https://cdn.bma.bm/documents/2025-03-21-20-47-46-Insights--Reflections-on-Asset-Intensive-Reinsurance-in-Bermuda.pdf">BMA asset-intensive reinsurance report</a></li>
+</ul>
+<h3 id="ca-15-funds-withheld-means-no-risk-left-the-us-carrier">CA-15 — “Funds withheld means no risk left the U.S. carrier.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> The cedant can retain asset custody while treaty accounting transfers investment variability and other economics. ModCo can leave assets and statutory reserves with the cedant while passing specified risks.</li>
+<li><strong>Safe wording:</strong> “The cedant retained custody under FWH/ModCo; map legal ownership, investment discretion, valuation, collateral rights and economic risk separately.”</li>
+<li><strong>Primary sources:</strong> <a href="https://cdn.bma.bm/documents/2024-09-06-12-10-21-Bermuda-Long-Term-Insurance-Collateral-Structures.pdf">BMA collateral structures</a> · <a href="https://content.naic.org/sites/default/files/call_materials/BWG%2005.29.25%20Materials_0.pdf">NAIC ModCo/FWH reporting materials</a></li>
+</ul>
+<h3 id="ca-16-fully-collateralized-means-fully-protected">CA-16 — “Fully collateralized means fully protected.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Too strong.</li>
+<li><strong>Record:</strong> Protection depends on asset eligibility, valuation, haircuts, concentration, maintenance, substitution, control, wrong-way risk, enforceability and remedies. Collateral equal to one reserve measure need not remain equivalent under stress or another accounting regime.</li>
+<li><strong>Safe wording:</strong> “The treaty reports collateral equal to the specified measure as of the stated date; protection still depends on collateral quality, control, maintenance and enforceability.”</li>
+<li><strong>Primary sources:</strong> <a href="https://cdn.bma.bm/documents/2024-09-06-12-10-21-Bermuda-Long-Term-Insurance-Collateral-Structures.pdf">BMA collateral structures</a> · <a href="https://content.naic.org/sites/default/files/inline-files/AG%2055%28adopted%29_1.pdf">NAIC AG 55</a></li>
+</ul>
+<h3 id="ca-17-investment-grade-clo-exposure-is-low-risk">CA-17 — “Investment-grade CLO exposure is low risk.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Incomplete.</li>
+<li><strong>Record:</strong> NAIC reported 80% of insurer CLO holdings investment grade or higher and 39% AAA at year-end 2024, while emphasizing transparency, valuation, capital treatment, complexity and concentration. Ratings and tranche seniority allocate risk; they do not eliminate underlying credit, correlation, downgrade or liquidity risk.</li>
+<li><strong>Safe wording:</strong> “Most reported insurer CLO holdings are investment grade, but risk depends on tranche, collateral quality, manager, structure, valuation, concentration and stress behavior.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/sites/default/files/government-affairs-private-credit-issue-brief.pdf">NAIC private-credit/CLO brief</a> · <a href="https://cdn.bma.bm/documents/2024-09-05-11-50-00-Private-Credit---Deep-dive-on-Direct-Loans-CLOs-and-Private-Placements.pdf">BMA private-credit study</a></li>
+</ul>
+<h3 id="ca-18-private-credit-is-inherently-unsafe-for-insurers">CA-18 — “Private credit is inherently unsafe for insurers.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Unsupported.</li>
+<li><strong>Record:</strong> NAIC says private credit can match long-duration liabilities and earn an illiquidity premium, while being less liquid, transparent and easy to price than public debt. Fitness depends on underwriting, valuation, liability behavior, liquidity, governance and capital.</li>
+<li><strong>Safe wording:</strong> “Private credit can be suitable for predictable long-duration liabilities; evaluate the specific asset, valuation, concentration, liquidity and liability match.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/insurance-topics/private-credit">NAIC private-credit overview</a> · <a href="https://content.naic.org/sites/default/files/government-affairs-private-credit-issue-brief.pdf">NAIC private-credit/CLO brief</a></li>
+</ul>
+<h3 id="ca-19-a-high-rbc-ratio-proves-an-insurer-is-safe">CA-19 — “A high RBC ratio proves an insurer is safe.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> NAIC defines RBC as a regulatory intervention framework and expressly says it is inappropriate for ranking insurers. The figure is affected by legal entity, formula vintage, asset designations, reinsurance, permitted practices and assumptions.</li>
+<li><strong>Safe wording:</strong> “The named legal insurer reported an RBC ratio of X on date Y, above the specified intervention threshold; this is one regulatory diagnostic, not a general safety score.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/insurance-topics/risk-based-capital">NAIC risk-based capital</a> · <a href="https://content.naic.org/sites/default/files/government-affairs-private-credit-issue-brief.pdf">NAIC private-credit/CLO brief</a></li>
+</ul>
+<h3 id="ca-20-financial-strength-ratings-are-regulatory-approval">CA-20 — “Financial-strength ratings are regulatory approval.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> An insurer financial-strength rating is a private claims-paying opinion on a named legal carrier. A security or private-credit rating is an opinion on an instrument and may feed an NAIC designation, statutory reporting, investment limits and RBC. Neither is state regulatory approval, and the two rating objects are not interchangeable.</li>
+<li><strong>Safe wording:</strong> “The named carrier holds the stated financial-strength rating, or the named security holds the stated instrument rating, as of date Y; neither is a state solvency finding or approval.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/insurance-topics/private-credit">NAIC private-credit overview</a> · <a href="https://content.naic.org/sites/default/files/capital-markets-special-reports-private-ratings-report-statement_1.pdf">NAIC withdrawn-rating-statistic warning</a> · <a href="https://content.naic.org/about/security-update">NAIC security update</a></li>
+</ul>
+<h3 id="ca-21-state-guaranty-associations-make-annuities-equivalent-to-bank-cds">CA-21 — “State guaranty associations make annuities equivalent to bank CDs.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> Life/health guaranty associations are state-law mechanisms funded principally by assessments on surviving member insurers. Liquidation with insolvency is the usual trigger, but state statutes can differ and some mechanisms can respond to impairment or rehabilitation. Coverage, caps, products, timing, transfer powers and exclusions differ from FDIC deposit insurance.</li>
+<li><strong>Safe wording:</strong> “The annuity may qualify for capped state guaranty-association protection after the applicable state-law trigger; it is not an FDIC-insured deposit.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/insurance-topics/guaranty-associations-and-funds">NAIC guaranty associations and funds</a> · <a href="https://content.naic.org/sites/default/files/publication-rec-bu-receivers-handbook-insolvencies.pdf">NAIC Receiver’s Handbook</a></li>
+</ul>
+<h3 id="ca-22-offshore-reinsurance-is-just-regulatory-arbitrage">CA-22 — “Offshore reinsurance is just regulatory arbitrage.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Unsupported as a universal claim.</li>
+<li><strong>Record:</strong> Cross-border differences can create capital, reserve, tax, asset and accounting incentives. Asset-intensive reinsurance also supplies capacity, diversification and third-party capital. Transaction-level before/after data are needed to distinguish capacity from arbitrage or establish both.</li>
+<li><strong>Safe wording:</strong> “The transaction uses offshore reinsurance and may create regulatory or capital advantages; quantify reserve, capital, asset, collateral and risk changes before characterizing the purpose or effect as arbitrage.”</li>
+<li><strong>Primary sources:</strong> <a href="https://home.treasury.gov/system/files/261/FSOC2025AnnualReport.pdf">FSOC 2025 Annual Report</a> · <a href="https://cdn.bma.bm/documents/2025-03-21-20-47-46-Insights--Reflections-on-Asset-Intensive-Reinsurance-in-Bermuda.pdf">BMA asset-intensive reinsurance report</a> · <a href="https://content.naic.org/sites/default/files/inline-files/AG%2055%28adopted%29_1.pdf">NAIC AG 55</a></li>
+</ul>
+<h3 id="ca-23-bermudas-reported-solvency-proves-no-systemic-risk">CA-23 — “Bermuda’s reported solvency proves no systemic risk.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Too strong.</li>
+<li><strong>Record:</strong> BMA’s reported solvency and liquidity aggregates are relevant microprudential evidence but do not resolve firm-level tails, common assets, operational dependencies, funding, legal enforceability or cross-border coordination. A median does not describe every reinsurer.</li>
+<li><strong>Safe wording:</strong> “BMA reports strong aggregate/median solvency or liquidity under its methodology; this does not by itself rule out firm-specific or system-level concentration and coordination risks.”</li>
+<li><strong>Primary sources:</strong> <a href="https://cdn.bma.bm/documents/2026-04-30-14-50-57-Liquidity-Risk-in-the-Bermuda-Long-term-Insurance-Market-Year-End-2024.pdf">BMA liquidity study, year-end 2024</a> · <a href="https://cdn.bma.bm/documents/2025-03-21-20-47-46-Insights--Reflections-on-Asset-Intensive-Reinsurance-in-Bermuda.pdf">BMA asset-intensive reinsurance report</a> · <a href="https://home.treasury.gov/system/files/261/FSOC2025AnnualReport.pdf">FSOC 2025 Annual Report</a></li>
+</ul>
+<h3 id="ca-24-an-enron-scale-private-credit-crisis-is-already-visible-in-life-insurers">CA-24 — “An Enron-scale private-credit crisis is already visible in life insurers.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Not established by the reviewed primary record.</li>
+<li><strong>Record:</strong> Official sources document rapid growth, opacity, valuation and private-rating concerns, affiliate complexity, offshore cessions and new supervisory work. They do not document widespread hidden insolvency or a current systemwide claims failure.</li>
+<li><strong>Safe wording:</strong> “Life-insurer private-credit and offshore-reinsurance growth create material transparency, valuation, liquidity and concentration watches; an Enron-scale crisis remains a hypothesis, not an established fact.”</li>
+<li><strong>Primary sources:</strong> <a href="https://home.treasury.gov/system/files/261/FSOC2025AnnualReport.pdf">FSOC 2025 Annual Report</a> · <a href="https://content.naic.org/sites/default/files/government-affairs-private-credit-issue-brief.pdf">NAIC private-credit/CLO brief</a> · <a href="https://home.treasury.gov/news/press-releases/sb0493">Treasury–state regulator convening</a> · <a href="https://content.naic.org/sites/default/files/inline-files/AG%2055%28adopted%29_1.pdf">NAIC AG 55</a></li>
+</ul>
+<hr />
+<h2 id="d-property-catastrophe-residual-markets-and-public-backstops">D. Property catastrophe, residual markets, and public backstops</h2>
+<h3 id="ca-25-reinsurance-transfers-catastrophe-risk-completely">CA-25 — “Reinsurance transfers catastrophe risk completely.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False as a general statement.</li>
+<li><strong>Record:</strong> The cedent retains the retail policy obligation, treaty retention, exclusions, basis and collectability risk, reinstatement costs, unplaced or exhausted layers, and liquidity timing. Public filings expressly state that the primary carrier remains responsible if its reinsurer does not perform.</li>
+<li><strong>Safe wording:</strong> “The carrier transferred defined catastrophe layers to named reinsurers or ILS vehicles while retaining the policy promise and the stated retention, exclusions and counterparty risk.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.sec.gov/Archives/edgar/data/1828105/000182810526000008/hippo-20251231.htm">Hippo 2025 Form 10-K</a> · <a href="https://www.sec.gov/Archives/edgar/data/60086/000006008626000008/l-20251231.htm">CNA 2025 Form 10-K</a></li>
+</ul>
+<h3 id="ca-26-a-1-in-100-tower-means-the-plan-cannot-fail-for-100-years">CA-26 — “A 1-in-100 tower means the plan cannot fail for 100 years.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> A return period is a modeled annual-probability concept under a stated model, exposure set and assumptions. It is not a recurrence schedule or a guarantee of solvency, liquidity, placement or claims payment.</li>
+<li><strong>Safe wording:</strong> “The plan sized a tower to a modeled 1% annual-loss benchmark under the named model and exposure date; actual loss, liquidity and recovery can differ.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/research/catastrophe-modeling-center-of-excellence">NAIC Catastrophe Risk Management Center of Excellence</a> · <a href="https://www.twia.org/wp-content/uploads/2025-TWIA-Annual-Report.pdf">TWIA 2025 Annual Report</a></li>
+</ul>
+<h3 id="ca-27-cat-bonds-make-taxpayers-the-insurer">CA-27 — “Cat bonds make taxpayers the insurer.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Usually backwards.</li>
+<li><strong>Record:</strong> Cat bonds transfer a defined loss layer to collateralized investors whose principal can be impaired after the contractual trigger. A public sponsor can remain exposed below, above, or outside that layer, but the bond itself adds private risk-bearing capital.</li>
+<li><strong>Safe wording:</strong> “The public or private sponsor transferred a defined layer to cat-bond investors while retaining the layers outside the trigger and limit.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/insurance-topics/insurance-linked-securities">NAIC insurance-linked securities</a> · <a href="https://www.fema.gov/es/flood-insurance/work-with-nfip/reinsurance">FEMA NFIP reinsurance programme</a></li>
+</ul>
+<h3 id="ca-28-fair-plans-are-state-funded-insurers">CA-28 — “FAIR Plans are state-funded insurers.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Overbroad.</li>
+<li><strong>Record:</strong> Structures vary. California's FAIR Plan is an insurance-industry association under state law and DOI oversight with member assessments and regulated recoupment; it is not an ordinary general-fund agency. Other residual plans have different debt, assessment and public-credit powers.</li>
+<li><strong>Safe wording:</strong> “The named residual plan is funded through its statutory premium, member-assessment, reinsurance, debt and public-support waterfall; identify that sequence before calling it state-funded.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.insurance.ca.gov/0250-insurers/0500-legal-info/0700-commissioners-orders/upload/Order-No-2025-1-Approving-the-California-FAIR-Plan-Association-s-Request-to-Issue-Assessment.pdf">California FAIR Plan assessment order</a> · <a href="https://files.gao.gov/reports/GAO-26-107867/index.html">GAO-26-107867</a></li>
+</ul>
+<h3 id="ca-29-californias-fair-plan-had-71-billion-of-reinsurance">CA-29 — “California's FAIR Plan had $7.1 billion of reinsurance.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Misleading.</li>
+<li><strong>Record:</strong> The DOI examination described a theoretical programme to $7.1 billion, a $1.25 billion retention, and only about $3.46 billion of placed cover, leaving retention and unplaced layers. A tower top is not the same as executed limit.</li>
+<li><strong>Safe wording:</strong> “The FAIR Plan designed a structure reaching $7.1 billion but the examined programme had about $3.46 billion placed above a $1.25 billion retention.”</li>
+<li><strong>Primary source:</strong> <a href="https://www.insurance.ca.gov/0250-insurers/0300-insurers/0400-reports-examination/upload/California-Fair-Plan-Association-Exam-Report-Final-as-of-9-30-2023.pdf">California FAIR Plan examination report</a></li>
+</ul>
+<h3 id="ca-30-florida-citizens-depopulation-proves-the-market-is-fixed">CA-30 — “Florida Citizens depopulation proves the market is fixed.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Not established.</li>
+<li><strong>Record:</strong> Depopulation proves that policies and exposure left Citizens for approved private carriers. It does not prove durable private retention, stronger carrier capital, lower household cost, broader terms, or resilience after the next catastrophe.</li>
+<li><strong>Safe wording:</strong> “Citizens reduced its policy count and exposure through private assumptions; the quality and durability of the transfer remain separate watches.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.citizensfla.com/-/20251231-policies-in-force">Florida Citizens policies-in-force dashboard</a> · <a href="https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&amp;URL=0600-0699%2F0627%2F0627.html">Florida Citizens depopulation statute</a></li>
+</ul>
+<h3 id="ca-31-insurer-withdrawal-proves-insolvency">CA-31 — “Insurer withdrawal proves insolvency.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> A solvent carrier can stop new business, nonrenew selected policies, reduce concentration or exit a territory for rate, reinsurance, capital-allocation, strategy or risk-appetite reasons. Insolvency requires financial/regulatory evidence.</li>
+<li><strong>Safe wording:</strong> “The carrier reduced or stopped the named business; its solvency status must be established separately through statutory filings, RBC action, ratings, receivership or regulator orders.”</li>
+<li><strong>Primary source:</strong> <a href="https://www.sec.gov/Archives/edgar/data/899051/000089905126000031/all-20251231.htm">Allstate 2025 Form 10-K</a></li>
+</ul>
+<h3 id="ca-32-a-nonrenewal-moratorium-guarantees-permanent-coverage">CA-32 — “A nonrenewal moratorium guarantees permanent coverage.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> California's catastrophe moratoria delay specified cancellations or nonrenewals for a stated territory and period. They do not necessarily create permanent renewal rights, freeze price or prevent every lawful property-specific action.</li>
+<li><strong>Safe wording:</strong> “The moratorium temporarily bars specified nonrenewals or cancellations in the named area; coverage after expiration and renewal price remain separate.”</li>
+<li><strong>Primary source:</strong> <a href="https://www.insurance.ca.gov/01-consumers/140-catastrophes/MandatoryOneYearMoratoriumNonRenewals.cfm">California DOI mandatory moratoriums</a></li>
+</ul>
+<h3 id="ca-33-standard-homeowners-insurance-covers-flood">CA-33 — “Standard homeowners insurance covers flood.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Usually false.</li>
+<li><strong>Record:</strong> Ordinary homeowners forms generally exclude flood; NFIP or private flood cover is commonly separate. Many federally connected mortgages in mapped Special Flood Hazard Areas require acceptable flood insurance.</li>
+<li><strong>Safe wording:</strong> “The homeowners policy and flood policy are separate unless a named endorsement or form says otherwise.”</li>
+<li><strong>Primary sources:</strong> <a href="https://www.fema.gov/flood-insurance">FEMA flood-insurance overview</a> · <a href="https://www.fema.gov/hy/floodplain-management/manage-risk/individuals">FEMA floodplain/mortgage requirement</a></li>
+</ul>
+<h3 id="ca-34-guaranty-funds-guarantee-every-property-policy-and-claim">CA-34 — “Guaranty funds guarantee every property policy and claim.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> State guaranty mechanisms generally require a qualifying insurer insolvency/liquidation trigger and cover only stated licensed-insurer policies, lines, residents, claim types and caps. Surplus-lines and excess claims can be outside protection.</li>
+<li><strong>Safe wording:</strong> “The claim may receive capped state guaranty-fund protection after the applicable statutory trigger; exact eligibility and limits require the state's law.”</li>
+<li><strong>Primary source:</strong> <a href="https://content.naic.org/insurance-topics/guaranty-associations-and-funds">NAIC guaranty associations and funds</a></li>
+</ul>
+<h3 id="ca-35-higher-homeowners-premiums-caused-home-values-to-fall">CA-35 — “Higher homeowners premiums caused home values to fall.”</h3>
+<ul>
+<li><strong>Verdict:</strong> Plausible mechanism, unproven without local causal evidence.</li>
+<li><strong>Record:</strong> Insurance cost and availability can affect mortgage qualification, escrow and transactions, but disaster damage, mortgage rates, supply, income, construction cost and migration also move values.</li>
+<li><strong>Safe wording:</strong> “Insurance stress can transmit into housing and municipal finance; attribute a measured value effect only with dated local transaction, lending and control evidence.”</li>
+<li><strong>Primary source:</strong> <a href="https://files.gao.gov/reports/GAO-26-107867/index.html">GAO-26-107867</a></li>
+</ul>
+<h3 id="ca-36-mitigation-automatically-lowers-the-premium">CA-36 — “Mitigation automatically lowers the premium.”</h3>
+<ul>
+<li><strong>Verdict:</strong> False.</li>
+<li><strong>Record:</strong> Mitigation can reduce modeled or observed loss. The household premium changes only if the carrier recognizes the measure through eligibility, underwriting or a filed credit and other rate components do not overwhelm it.</li>
+<li><strong>Safe wording:</strong> “The mitigation measure is expected or modeled to reduce loss; verify the insurer's filed credit and the policy's actual before/after premium separately.”</li>
+<li><strong>Primary sources:</strong> <a href="https://content.naic.org/article/naic-catastrophe-risk-management-center-excellence-shows-how-resilient-rebuilding-can-strengthen">NAIC resilient-rebuilding analysis</a> · <a href="https://ldi.la.gov/fortifyhomes">Louisiana Fortify Homes</a></li>
+</ul>
+<hr />
+<h2 id="use-rule">Use rule</h2>
+<p>When a Chronicle event relies on one of these propositions, cite the claim ID and carry the safe wording or a still narrower formulation. Promotion from “unsupported/weakened” requires the missing primary object—policy, endorsement, treaty, regulatory order, statutory filing, claims record or audited transaction evidence—not repetition in secondary reporting.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

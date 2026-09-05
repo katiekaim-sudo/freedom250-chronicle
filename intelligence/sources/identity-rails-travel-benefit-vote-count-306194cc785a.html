@@ -1,0 +1,501 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Identity Rails — Travel, Benefit, Vote, Count · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Identity Rails — Travel, Benefit, Vote, Count</h1><p class="deck">Source created: 2026-08-15 · Source updated: 2026-08-15 · Source evidence cutoff: 2026-08-15</p><p><a href="identity-rails-travel-benefit-vote-count-306194cc785a.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="identity-rails-travel-benefit-vote-count">Identity Rails — Travel, Benefit, Vote, Count</h1>
+<p>Updated: 2026-08-15<br />
+Status: factual legal map<br />
+Rule: Four clocks. REAL ID is not citizenship. USCIS SAVE is not the SAVE Act. A House-passed bill is not a law. An EO is not the NVRA. A 2026 Census Test is not the 2030 questionnaire. <em>Barbara</em> is a different object — <a href="../sources/citizenship-operating-clock-barbara-and-eo-14418-635122ac1943.html">Citizenship Operating Clock — Barbara and EO 14418</a>.</p>
+<p>The fraud machine is identity → eligibility → <strong>payment</strong>. This stack is identity → presence → <strong>travel / benefit / vote / count</strong>. Same graph, different door. Do not braid them until a primary object joins them.</p>
+<h2 id="short-answer">Short answer</h2>
+<p>Four rails. Four legal persons. None of them is the Citizenship Clause.</p>
+<ol>
+<li>
+<p><strong>REAL ID</strong> is a 2005 <strong>federal-acceptance</strong> statute, not a State mandate. A federal agency may not accept a State driver’s license or ID for official purposes unless the State meets the Act’s issuance standards. Official purposes: boarding a commercial aircraft, entering a federal facility, entering a nuclear power plant. TSA began <strong>full</strong> card-based enforcement <strong>May 7, 2025</strong>. Other agencies may phase through <strong>May 5, 2027</strong> (6 C.F.R. § 37.5(d)). ConfirmID ($45, Feb. 1, 2026) is a TSA off-ramp, not a new deadline. The Act’s lawful-status list includes many <strong>noncitizens</strong>. A star on a license is not citizenship.</p>
+</li>
+<li>
+<p><strong>USCIS SAVE</strong> is the Systematic Alien Verification for Entitlements program. USCIS’s own page: registered government agencies query it to verify immigration status and U.S. citizenship of benefit or license applicants. <strong>SAVE does not determine eligibility.</strong> The querying agency does. The 2025 overhaul (natural-born-citizen records, SSA/SSN access, bulk upload) was vacated in the District of Columbia on <strong>June 22, 2026</strong>. The Northern District of Florida, <strong>July 7, 2026</strong>, ordered DHS to restore bulk-upload and SSN search for four plaintiff States under a November 2025 settlement. Two district courts. Two orders. USCIS says it has suspended SSN and bulk-upload processing “until further notice.”</p>
+</li>
+<li>
+<p><strong>The SAVE Act, H.R. 22</strong>, passed the House <strong>220–208</strong> on April 10, 2025, and was <strong>received in the Senate the same day</strong>. It is <strong>not law</strong>. A later vehicle, <strong>S. 1383</strong> with House-substituted SAVE America Act text, passed the House <strong>218–213</strong> on February 11, 2026; Senate cloture failed <strong>53–47</strong> on March 26, 2026 (60 needed). Still not law. Already-illegal noncitizen voting (18 U.S.C. § 611) is a different object.</p>
+</li>
+<li>
+<p><strong>Census / apportionment.</strong> 2 U.S.C. § 2a still says the President transmits “the <strong>whole number of persons</strong> in each State, excluding Indians not taxed.” EO 14148 (Jan. 20, 2025) <strong>revoked</strong> EO 13986. Revocation is not a rewrite of § 2a. The official <strong>2026 Census Test</strong> asks citizenship among other questions. A test is not the 2030 questionnaire. The statutory 2030 questionnaire clocks are 13 U.S.C. § 141(f): <strong>subjects</strong> report by <strong>April 1, 2027</strong>; <strong>questions</strong> report by <strong>April 1, 2028</strong>. No 2025–26 FR adopting a 2030 citizenship question or changing the apportionment base was retrieved.</p>
+</li>
+</ol>
+<p><strong>Executive overlays, not statutes.</strong> EO 14248 (Mar. 25, 2025) tells the Election Assistance Commission to put documentary proof — including a REAL ID that indicates citizenship — on the national mail voter-registration form, and tells DHS to give States fee-free access to status systems. EO 14399 (Mar. 31, 2026) tells DHS/USCIS, with SSA, to compile and transmit a <strong>State Citizenship List</strong> before each federal election and tells USPS to write a mail-ballot rule. Neither order is H.R. 22. Neither amends 2 U.S.C. § 2a.</p>
+<h2 id="1-entity-control-table">1. Entity / control table</h2>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Rail it holds</th>
+<th>What the charter gives</th>
+<th>What it does not give</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Congress</strong></td>
+<td>All four, if it writes a statute</td>
+<td>REAL ID Act; PRWORA / 42 U.S.C. § 1320b-7; NVRA; 2 U.S.C. § 2a; 13 U.S.C. census; 18 U.S.C. § 611</td>
+<td>A House-passed bill. An EO.</td>
+</tr>
+<tr>
+<td><strong>DHS / TSA</strong></td>
+<td>REAL ID acceptance at the airport and federal door</td>
+<td>Enforce 6 C.F.R. pt. 37 for official purposes. ConfirmID is an agency off-ramp, not a statute.</td>
+<td>Cannot make a state license into a citizenship certificate.</td>
+</tr>
+<tr>
+<td><strong>DHS / USCIS</strong></td>
+<td>SAVE</td>
+<td>Operate the verification service for registered user agencies. Respond to status inquiries under 8 U.S.C. § 1373(c) and 42 U.S.C. § 1320b-7.</td>
+<td>Cannot decide SNAP, Medicaid, a license, or a voter roll. The user agency decides.</td>
+</tr>
+<tr>
+<td><strong>SSA</strong></td>
+<td>Numident / SSN verification</td>
+<td>Records. Limited statutory sharing.</td>
+<td>Cannot rewrite SAVE’s charter. Cannot register voters.</td>
+</tr>
+<tr>
+<td><strong>Election Assistance Commission</strong></td>
+<td>National mail voter-registration form (52 U.S.C. § 20508)</td>
+<td>Prescribe the federal form under the NVRA.</td>
+<td>Cannot amend the NVRA. An EO directing documentary proof is not an enacted amendment.</td>
+</tr>
+<tr>
+<td><strong>States / DMVs / election officials</strong></td>
+<td>Issue licenses; keep voter rolls; query SAVE if registered</td>
+<td>State creatures. Cooperative-federalism counterparties.</td>
+<td>Do not own FMAP, REAL ID standards, or the Census.</td>
+</tr>
+<tr>
+<td><strong>Commerce / Census</strong></td>
+<td>Enumeration and the apportionment file</td>
+<td>13 U.S.C.; 2 U.S.C. § 2a</td>
+<td>An EO cannot change “whole number of persons.” A test questionnaire is not the 2030 form.</td>
+</tr>
+<tr>
+<td><strong>USPS</strong></td>
+<td>Mail, and (if a rule issues) mail-ballot envelopes under EO 14399</td>
+<td>39 U.S.C. § 401 rulemaking as directed. Title 13 oath if used as a 2026 Census Test enumerator.</td>
+<td>Not the Census Bureau. Not an election official.</td>
+</tr>
+<tr>
+<td><strong>Article III</strong></td>
+<td>SAVE overhaul; EO pieces</td>
+<td><em>League of Women Voters</em> vacated the 2025 SORNs and the modified SAVE system. <em>Florida</em> ordered four States’ SSN/bulk access restored.</td>
+<td>A district order is not a statute. Two districts do not cancel each other. A circuit or the Court has not spoken at cutoff.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-rail-1-real-id-travel-federal-facility">2. Rail 1 — REAL ID (travel / federal facility)</h2>
+<p><strong>Statute.</strong> REAL ID Act of 2005, P.L. 109-13, Div. B, Title II (49 U.S.C. § 30301 note). Implemented at 6 C.F.R. part 37. The load-bearing sentence is an <strong>acceptance prohibition</strong>, not a command that States issue a card:</p>
+<blockquote>
+<p>Beginning 3 years after the date of the enactment of this division, a Federal agency may not accept, for any official purpose, a driver's license or identification card issued by a State to any person unless the State is meeting the requirements of this section.<br />
+— REAL ID Act § 202(a)(1)</p>
+</blockquote>
+<p>Official purposes, § 201(3): accessing federal facilities, boarding federally regulated commercial aircraft, entering nuclear power plants, and any other purpose the Secretary determines.</p>
+<p>If a State wants its cards accepted, it must verify named source documents, including <strong>evidence of lawful status</strong> in a listed class (citizen/national; LPR; asylee/refugee; valid nonimmigrant; pending asylum; TPS; deferred action; pending adjustment; FAS compact citizen; and the rest of the statutory list). For a person <strong>other than a U.S. citizen</strong>, the State must enter an MOU to use <strong>SAVE</strong> (§ 202(c)(4)(C)). The State may still issue a <strong>noncompliant</strong> card if it says so on its face and uses a unique design or color (§ 202(d)(11)). That clause is the statute’s own limit. The Act does <strong>not</strong> contain a sentence that reads “this is not a national identification card.” Do not invent that quote.</p>
+<p>P.L. 116-260, Div. U, Title X (REAL ID Modernization Act, Dec. 27, 2020) authorized electronic/mobile cards and dropped the requirement to <em>present</em> an SSN document (the number is still collected and verified with SSA).</p>
+<p>A traveler may still use another acceptable ID (passport, military ID, and the rest of TSA’s published list).</p>
+<p><strong>It is not</strong> a citizenship determination. Lawful status ≠ citizenship. <strong>It is not</strong> the SAVE Act. <strong>It is not</strong> a voter-registration statute.</p>
+<p><strong>Clock.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Object</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2005-05-11</td>
+<td>P.L. 109-13, Div. B</td>
+<td>The statute. Three-year statutory start, later extended by regulation and § 205(b) State extensions.</td>
+</tr>
+<tr>
+<td>2008-01-29</td>
+<td>73 FR 5272</td>
+<td>Original 6 C.F.R. pt. 37.</td>
+</tr>
+<tr>
+<td>2020-12-27</td>
+<td>P.L. 116-260, Div. U, Title X</td>
+<td>Modernization: mobile cards; SSN <em>document</em> no longer required.</td>
+</tr>
+<tr>
+<td>2023-03-09</td>
+<td>88 FR 14473</td>
+<td>Card-based date moved to <strong>May 7, 2025</strong>.</td>
+</tr>
+<tr>
+<td>2025-01-14</td>
+<td>TSA final rule, 90 FR 3472</td>
+<td><strong>Does not extend</strong> May 7, 2025. Adds 6 C.F.R. § 37.5(d)–(e): other agencies may phase if they determine it appropriate, coordinate with DHS, publish the plan, and reach <strong>full enforcement no later than May 5, 2027</strong>. Default remains immediate full enforcement on May 7, 2025.</td>
+</tr>
+<tr>
+<td><strong>2025-05-07</strong></td>
+<td>TSA full enforcement</td>
+<td>Official TSA pages: enforcement began. Travelers 18+ need a REAL ID-compliant state card <strong>or another acceptable ID</strong> to board. TSA itself is not on a phase plan.</td>
+</tr>
+<tr>
+<td><strong>2026-02-01</strong></td>
+<td>TSA ConfirmID</td>
+<td>$45 identity-verification path for travelers without acceptable ID, 10-day travel period. Overlay. Not a REAL ID. Not citizenship. Not a deadline change.</td>
+</tr>
+<tr>
+<td><strong>2027-05-05</strong></td>
+<td>6 C.F.R. § 37.5(d)(4)</td>
+<td>Last day of any lawful phased plan. After that date, agencies may not accept noncompliant-marked or legacy State cards for official purposes.</td>
+</tr>
+</tbody>
+</table>
+<p>A passport still flies. A noncompliant state license does not at TSA, unless ConfirmID or another listed ID is used. EO 14248’s use of a REAL ID that <em>indicates citizenship</em> as a voter-form document does not amend 6 C.F.R. part 37.</p>
+<h2 id="3-rail-2-uscis-save-benefit-license-status">3. Rail 2 — USCIS SAVE (benefit / license status)</h2>
+<p><strong>What USCIS says the thing is</strong> (official SAVE landing page, retrieved 2026-08-15):</p>
+<blockquote>
+<p>SAVE is an online service for registered federal, state, territorial, tribal, and local government agencies to verify immigration status and U.S. citizenship of applicants seeking benefits or licenses.</p>
+<p>SAVE does not determine an applicant’s eligibility for a specific benefit or license. The benefit-granting or licensing agency determines eligibility for each benefit they administer.</p>
+</blockquote>
+<p><strong>Statutory hooks — do not collapse.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Instrument</th>
+<th>What it does</th>
+<th>What it is not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IRCA § 121</strong>, P.L. 99-603 (1986)</td>
+<td>Required INS to build the verification system; amended SSA § 1137. Note: the system “shall not be used by [INS] for administrative (non-criminal) immigration enforcement purposes.”</td>
+<td>Not E-Verify. Not a voter statute.</td>
+</tr>
+<tr>
+<td><strong>42 U.S.C. § 1320b-7(d)</strong></td>
+<td>State IEVS programs must take a citizenship/status declaration and verify non-citizen status through the DHS automated system.</td>
+<td>Broader wage/income IEVS is a different machine.</td>
+</tr>
+<tr>
+<td><strong>PRWORA § 432</strong>, 8 U.S.C. § 1642</td>
+<td>DHS shall issue regulations requiring verification that a person applying for a <strong>federal public benefit</strong> is a qualified alien and is eligible.</td>
+<td>Not a national voter list.</td>
+</tr>
+<tr>
+<td><strong>IIRIRA § 642(c)</strong>, 8 U.S.C. § 1373(c)</td>
+<td>DHS <strong>shall respond</strong> to a federal, State, or local inquiry seeking to verify or ascertain citizenship or immigration status for any purpose authorized by law.</td>
+<td><strong>Not</strong> the SAVE-creation statute. A response duty.</td>
+</tr>
+<tr>
+<td><strong>REAL ID Act § 202(c)(4)(C)</strong></td>
+<td>State shall use SAVE to verify legal presence of a person <strong>other than a U.S. citizen</strong> applying for a DL/ID.</td>
+<td>Does not make SAVE a citizenship card.</td>
+</tr>
+</tbody>
+</table>
+<p>EO 14399 cites § 1320b-7. <em>Florida</em> cites § 1373(c). Those are status-inquiry statutes. They are not a voter-registration statute.</p>
+<p><strong>What SAVE is not.</strong> Not H.R. 22. Not REAL ID. Not a citizenship adjudication. Not a payment determination. Not E-Verify (employment). USCIS: employers go to e-verify.gov.</p>
+<p><strong>2025 operating expansion (before the court split).</strong> EO 14248 § 2(b)(i) told DHS to give State and local officials <strong>fee-free</strong> access to status systems. USCIS (April–May 2025) eliminated charges for state/local/tribal/territorial agencies and, on May 22, 2025, announced SSN as an enumerator and multi-case (list) submission, framed as voter-verification support under that order. The October/November 2025 SORNs hosted that expansion. Then the two district courts.</p>
+<p><strong>The 2025 overhaul and the split court.</strong></p>
+<p>EO 14248 § 2(b) told DHS to give State and local officials fee-free access to systems for verifying citizenship or immigration status of people registering or already registered. The D.C. opinion describes the 2025 SAVE overhaul as three modifications: (1) include records of <strong>natural-born citizens</strong>, (2) access <strong>SSA records, including Social Security numbers</strong>, (3) permit <strong>bulk searches</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Object</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-10-31</td>
+<td>DHS SORN, 90 FR 48948</td>
+<td>Notice of the modified SAVE system of records.</td>
+</tr>
+<tr>
+<td>2025-11 (approx.)</td>
+<td>SSA SORN, 90 FR 50879</td>
+<td>Companion SSA notice.</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td><em>Florida v. DHS</em> settlement (N.D. Fla. No. 3:24-cv-509)</td>
+<td>Parties agree to modernize SAVE: full-SSN search, last-four SSN search, bulk upload. Court approved Dec. 1, 2025; retained enforcement jurisdiction 20 years. Plaintiffs: Florida, later Ohio, Iowa, Indiana.</td>
+</tr>
+<tr>
+<td><strong>2026-06-22</strong></td>
+<td><em>League of Women Voters v. DHS</em>, No. 25-3501 (D.D.C.) (Sooknanan, J.)</td>
+<td>Grants plaintiffs’ summary judgment. <strong>Vacates</strong> the 2025 DHS and SSA SORNs. <strong>Vacates</strong> the SAVE “modified system” described in the DHS SORN. Statutory grounds (APA; Social Security Act; Privacy Act). Does <strong>not</strong> reach the constitutional claims. Holds 8 U.S.C. § 1373(a) is a <strong>prohibition</strong>, not an affirmative grant to build a new system of records.</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>DHS/USCIS operating response (as recited in <em>Florida</em>)</td>
+<td>Disabled bulk-upload and SSN-search.</td>
+</tr>
+<tr>
+<td><strong>2026-07-07</strong></td>
+<td><em>Florida v. DHS</em>, Doc. 45 (Wetherell, J.)</td>
+<td>Grants emergency motion to <strong>enforce the settlement</strong>. Orders DHS to <strong>immediately</strong> reinstate the four plaintiff States’ access to bulk-upload and SSN-search. Explicitly disagrees with Sooknanan on the Social Security Act and the Privacy Act. Two contradictory district orders.</td>
+</tr>
+<tr>
+<td>At cutoff</td>
+<td>USCIS SAVE landing page</td>
+<td>“On June 22, 2026, a Federal Judge ruled that the DHS System of Records Notices issued in October 2025, and the Social Security System of Records Notice issued in November 2025 are invalid. To comply with this court order, SAVE is suspending the processing of cases which utilize social security numbers and bulk upload processes until further notice.”</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control cut.</strong> The old SAVE — agency-by-agency status check for a named applicant — is the statutory person. The 2025 bulk/SSN/natural-born overlay is the fought object. D.C. vacated the overlay. Florida restored it for four States under a settlement. USCIS’s public line still tracks the D.C. vacatur. How DHS is actually serving those four States at cutoff is an <strong>operating fact not retrieved</strong> from an agency instrument after July 7.</p>
+<p>A D.C. Circuit ruling on the <em>League of Women Voters</em> appeal was <strong>not retrieved</strong>.</p>
+<h2 id="4-rail-3-save-act-hr-22-vote">4. Rail 3 — SAVE Act, H.R. 22 (vote)</h2>
+<p><strong>Status at cutoff.</strong> H.R. 22, 119th Cong. Sponsor: Rep. Chip Roy. Introduced 2025-01-03. House passed <strong>April 10, 2025, 220–208</strong> (Roll 102; recommit failed 211–215, Roll 101). Received in the Senate the same day. Tracker: <strong>Passed House</strong>. No Senate passage, no presentment, no public law. <strong>Not enacted.</strong></p>
+<p>Name-collision family — <strong>none enacted:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>What it is</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H.R. 22</strong></td>
+<td>SAVE <strong>Act</strong>. House-passed NVRA amendment.</td>
+<td>Senate received 2025-04-10. <strong>Not law.</strong></td>
+</tr>
+<tr>
+<td><strong>S. 128</strong></td>
+<td>Lee companion, same short title.</td>
+<td>Introduced 2025-01-16. <strong>Introduced only.</strong></td>
+</tr>
+<tr>
+<td><strong>H.R. 7296</strong></td>
+<td>Roy, <strong>SAVE America Act</strong>.</td>
+<td>Introduced 2026-01-30. <strong>Not law.</strong></td>
+</tr>
+<tr>
+<td><strong>S. 3752</strong></td>
+<td>Lee, <strong>SAVE America Act</strong>.</td>
+<td>Introduced 2026-01-29. <strong>Not law.</strong></td>
+</tr>
+<tr>
+<td><strong>S. 1383</strong></td>
+<td>Born as a veterans bill (Senate passed Dec. 18, 2025). House substituted SAVE America Act text Feb. 11, 2026, <strong>218–213</strong> (Roll 69). Senate cloture on the photo-ID amendment <strong>rejected 53–47</strong>, March 26, 2026 (Vote 73; 60 needed).</td>
+<td><strong>Not presented. Not law.</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Do not confuse any of these with <strong>USCIS SAVE</strong>. A White House page reprints H.R. 22 under a “SAVE America Act” label. That page is not a statute.</p>
+<p><strong>If it had been enacted</strong> (engrossed text, GovInfo BILLS-119hr22eh) it would amend the NVRA, 52 U.S.C. §§ 20502–20511, to:</p>
+<ul>
+<li>Define “documentary proof of United States citizenship”: a REAL ID that <strong>indicates the applicant is a citizen</strong>; U.S. passport; military ID <strong>plus</strong> a U.S. birth-place service record; government photo ID showing U.S. birth; or other government photo ID <strong>plus</strong> a certified birth certificate / hospital record / adoption decree / Consular Report of Birth Abroad / naturalization or citizenship certificate / DHS KIC card. A REAL ID card is lawful-status evidence. The Act’s lawful-status list includes many noncitizens. H.R. 22’s first proof category therefore <strong>only works if the State card indicates citizenship</strong>. That indication is not a REAL ID Act requirement.</li>
+<li>Bar a State from accepting and processing a federal-election registration <strong>unless</strong> the applicant presents that proof.</li>
+<li>Require in-person presentation for mail forms (or at the polling place in States that allow election-day / early registration).</li>
+<li>Create a State process, under EAC guidance, for applicants who cannot produce the documents (attestation + other evidence + official affidavit).</li>
+<li>Require States to run an ongoing program that may use <strong>SAVE</strong>, <strong>SSA SSNVS</strong>, State DMV citizenship confirmations, or other databases.</li>
+<li>Require federal agencies, on a State official’s request, to respond <strong>within 24 hours</strong>, including <strong>batched</strong> information, at <strong>no fee</strong>. DHS may use the § 1320b-7 system.</li>
+<li>Require States to remove a noncitizen from the federal-election roll on documentary proof or verified information.</li>
+<li>Add criminal penalties for an official who registers an applicant without the documents, and for an executive-branch officer who materially assists a noncitizen in attempting to register or vote.</li>
+<li>Effective <strong>on enactment</strong>, for applications submitted on or after that date. EAC guidance due in 10 days.</li>
+</ul>
+<p><strong>What already exists without H.R. 22.</strong> 18 U.S.C. § 611 already makes it a crime for an alien to vote in a federal election. 18 U.S.C. § 1015(f) already reaches false citizenship claims in registration. The NVRA already requires States to maintain accurate lists (52 U.S.C. § 20507). Already-illegal is not this bill.</p>
+<p><strong>EO 14248 is not the Act.</strong> Section 2(a) directs the EAC, within 30 days, to require documentary proof on the national mail form — passport, REAL ID that indicates citizenship, military ID that indicates citizenship, or other government photo ID that indicates citizenship or is accompanied by proof. The instruction says this is “consistent with 52 U.S.C. § 20508(b)(3).” That subsection says the national form <strong>may not</strong> include any requirement for notarization or other <strong>formal authentication</strong>. Whether documentary proof is “formal authentication” is a litigation question. No controlling merits holding on that clause was retrieved. Section 4(a) tells the EAC to condition HAVA funds on States using that form, including the documentary-proof requirement. The Sooknanan opinion recites that “courts across the country have since enjoined various aspects of that Executive Order.” Those other injunctions were <strong>not retrieved as slip opinions in this pass</strong>. The order remains an executive instruction. It is not an NVRA amendment.</p>
+<p><strong>EO 14399 is not the Act either.</strong> It builds a <strong>State Citizenship List</strong> from federal citizenship and naturalization records, SSA records, SAVE data, and other federal databases, to be transmitted to each chief State election official no fewer than 60 days before a regular federal election. Identification on the list “does not indicate that the individual has been properly registered.” It also directs a USPS mail-ballot NPRM within 60 days and a final rule within 120 days (statutory calendar: NPRM ~May 30, 2026; final ~July 29, 2026). Implementation of those lists and of any final USPS rule is <strong>not retrieved</strong> as a completed operating object at cutoff.</p>
+<h2 id="5-rail-4-census-2030-citizenship-question-apportionment-count">5. Rail 4 — Census 2030 / citizenship question / apportionment (count)</h2>
+<p><strong>The statute.</strong> 2 U.S.C. § 2a(a): after the decennial census, the President “shall transmit to the Congress a statement showing the <strong>whole number of persons</strong> in each State, excluding Indians not taxed,” and the resulting reapportionment. Fourteenth Amendment § 2 uses the same “whole number of persons in each State” phrase. An EO cannot rewrite that sentence.</p>
+<p><strong>EO 14148</strong> (Jan. 20, 2025; 90 FR 8237) § 2(b) <strong>revokes</strong> EO 13986 of January 20, 2021. What 13986 had been: a directive to Commerce to report the § 141 tabulations “without regard to immigration status,” and a revocation of EO 13880 (2019) plus the July 21, 2020 memorandum that had tried to exclude “illegal aliens” from the 2020 apportionment base. <strong>14148’s revocation removes that 2021 instruction. It does not quote 13880 or the 2020 memorandum back into force. It does not amend 2 U.S.C. § 2a.</strong></p>
+<p><strong>EO 13880</strong> (July 11, 2019) told Commerce to “consider initiating any administrative process necessary to include a citizenship question on the 2030 decennial census.” That is a <strong>consider</strong> instruction from 2019. It is not a 2030 questionnaire. 13986 had revoked it; 14148 revoked 13986. Neither move is a 2030 form.</p>
+<p><strong>Department of Commerce v. New York</strong>, 588 U.S. 752 (2019), set aside the 2020 citizenship-question addition as arbitrary and capricious on the administrative record then before the Court. It is the last Supreme Court object on a census citizenship question. It does not decide 2030.</p>
+<p><strong>Statutory 2030 questionnaire clocks.</strong> 13 U.S.C. § 141(f): Commerce shall report to the census committees the <strong>subjects</strong> proposed for the 2030 census <strong>not later than 3 years before</strong> the census date → <strong>April 1, 2027</strong>; and the <strong>questions</strong> <strong>not later than 2 years before</strong> → <strong>April 1, 2028</strong>. Those reports — not a test page, not an EO — are the legal 2030 questionnaire objects.</p>
+<p><strong>2026 Census Test</strong> (official Census Bureau page, revised July 29, 2026). Operational test in support of 2030. Sites: Huntsville, AL and Spartanburg, SC. Online response May 1–August 31, 2026. Official text: “Questions include name, sex, age, Hispanic origin, race, <strong>citizenship</strong> and education.” USPS postal workers assist as enumerators under Title 13. <strong>A test is not the 2030 form.</strong> Census Bureau’s own 2030 Federal Register Notices page (revised April 30, 2025) lists test, redistricting-program, and race/ethnicity-code notices. <strong>No notice on that official list proposes a 2030 citizenship question or a change to the apportionment base.</strong> No later 2025–26 FR adopting either was retrieved.</p>
+<p><strong>EO 14418</strong> does not name Commerce, Census, USPS, enumeration, or apportionment. Do not join it here.</p>
+<p><strong>EO 14399 § 4(a)</strong> tells DHS, SSA, and the Postmaster to coordinate with Commerce in implementing <strong>that</strong> order (State Citizenship Lists / mail ballots). That is a join to Commerce for the election-list machine. It is not a census questionnaire.</p>
+<h2 id="6-claim-audit">6. Claim audit</h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Official object</th>
+<th>Adjudication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“REAL ID is a national ID / a citizenship card.”</td>
+<td>Acceptance prohibition on federal agencies. States may still issue marked noncompliant cards (§ 202(d)(11)). Lawful-status list includes LPRs, asylees, nonimmigrants, TPS. Other acceptable IDs remain. The Act does not contain a “this is not a national ID” sentence.</td>
+<td><strong>Not established</strong> as a statutory national-ID creation. <strong>False</strong> as a citizenship holding.</td>
+</tr>
+<tr>
+<td>“REAL ID was delayed past May 7, 2025.”</td>
+<td>TSA official pages: TSA full enforcement began May 7, 2025. 90 FR 3472 did not move that start. Other agencies may phase through <strong>May 5, 2027</strong>. ConfirmID is an off-ramp, not a delay.</td>
+<td><strong>False as to the start date.</strong> Established as to an optional agency phase through 2027-05-05.</td>
+</tr>
+<tr>
+<td>“SAVE decides who gets the benefit.”</td>
+<td>USCIS: the user agency determines eligibility.</td>
+<td><strong>Not established</strong></td>
+</tr>
+<tr>
+<td>“The SAVE Act became law.”</td>
+<td>H.R. 22: Passed House, received Senate. No public law. S. 1383 cloture failed 53–47.</td>
+<td><strong>Not established</strong></td>
+</tr>
+<tr>
+<td>“SAVE Act = SAVE America Act = USCIS SAVE.”</td>
+<td>Three objects. Confirm number and chamber.</td>
+<td><strong>Different object</strong></td>
+</tr>
+<tr>
+<td>“Noncitizen voting was legal until H.R. 22.”</td>
+<td>18 U.S.C. § 611 already criminalizes alien voting in federal elections.</td>
+<td><strong>Different object</strong></td>
+</tr>
+<tr>
+<td>“EO 14248 is the SAVE Act.”</td>
+<td>An EO directing the EAC and DHS. Not an NVRA amendment.</td>
+<td><strong>Different object</strong></td>
+</tr>
+<tr>
+<td>“SAVE now legally includes bulk SSN voter matching nationwide.”</td>
+<td>D.C. vacated the 2025 SORNs and the modified system (June 22, 2026). USCIS says SSN/bulk processing is suspended. Florida ordered four States’ access restored (July 7).</td>
+<td><strong>Split. Not a single nationwide legal state.</strong></td>
+</tr>
+<tr>
+<td>“8 U.S.C. § 1373 created SAVE / authorizes the 2025 overhaul.”</td>
+<td>§ 1373(c) is the duty to <strong>respond</strong>. Creation is IRCA § 121 / 42 U.S.C. § 1320b-7(d). Sooknanan: § 1373(a) is a prohibition, not an affirmative grant. Wetherell: the “notwithstanding” overrides other federal law. Two district readings. No circuit holding retrieved.</td>
+<td><strong>Not the creation hook. Not established as settled on the overhaul.</strong></td>
+</tr>
+<tr>
+<td>“The 2030 census will ask citizenship / will exclude noncitizens from apportionment.”</td>
+<td>No retrieved 2025–26 FR adopting either. § 2a still says whole number of persons. A 2026 <strong>test</strong> asks citizenship.</td>
+<td><strong>Not established</strong></td>
+</tr>
+<tr>
+<td>“EO 14148 changed the apportionment base.”</td>
+<td>It revoked EO 13986. It did not amend 2 U.S.C. § 2a.</td>
+<td><strong>Not established</strong></td>
+</tr>
+<tr>
+<td>“EO 14418 strips Census / voter rolls.”</td>
+<td>14418 does not name them.</td>
+<td><strong>Not established.</strong> See the citizenship map.</td>
+</tr>
+<tr>
+<td>“This note decides who is a citizen.”</td>
+<td><em>Barbara</em> is the Clause. This note is the rails.</td>
+<td><strong>Different object</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-entity-theory-read">7. Entity Theory read</h2>
+<p>The federal group does not hold one identity. It holds a <strong>travel credential standard</strong> (DHS/TSA + State DMVs), a <strong>status-verification service</strong> (USCIS SAVE + user agencies), a <strong>registration statute that has not been amended</strong> (NVRA, still live; H.R. 22 still a bill), two <strong>executive attempts</strong> to run documentary proof and a citizenship list without that amendment (EO 14248, EO 14399), and a <strong>count statute</strong> that still says persons (2 U.S.C. § 2a).</p>
+<p>Control is not ownership. DHS does not own the State voter roll. A State does not own SAVE. Commerce does not own the apportionment formula. A district court does not own the other district’s settlement.</p>
+<p>The 2025 SAVE overhaul is the tell. The old person (applicant-level status check for a benefit or license) was stretched into a bulk citizenship file that States could run against voter rolls. That stretch needed either a statute (H.R. 22, not enacted) or an organic hook the D.C. court said was not there. Florida says the hook is there and a settlement binds. Until a court of appeals or the Congress writes one object, the group is running <strong>two SAVE machines under two orders</strong>.</p>
+<p>Do not collapse “the government built a citizen database” into one sentence. Name the instrument.</p>
+<h2 id="8-bind">8. Bind</h2>
+<ul>
+<li><strong>Person / Clause:</strong> <a href="../sources/citizenship-operating-clock-barbara-and-eo-14418-635122ac1943.html">Citizenship Operating Clock — Barbara and EO 14418</a>. <em>CASA</em> was the remedy. <em>Barbara</em> was the Clause. 14418 is residual documentary machinery. This note is the parallel stack that map named and left.</li>
+<li><strong>Benefit door / payment integrity:</strong> <a href="../sources/obbb-eligibility-and-fiscal-federalism-companion-35a40a201a22.html">OBBB — Eligibility and Fiscal-Federalism Companion</a> and <a href="../sources/obbb-fraud-improper-payment-and-error-rate-legal-map-0938f4722658.html">OBBB — Fraud, Improper-Payment and Error-Rate Legal Map</a>. SAVE may be queried for a benefit. It does not decide the benefit.</li>
+<li><strong>Events:</strong> Election Fraud / Voter rolls &amp; ballots. This note is the leash, not the plot.</li>
+<li><strong>Do not</strong> file this as a birthright note, a fraud-rate note, or a Census conspiracy note.</li>
+</ul>
+<h2 id="9-open-clocks">9. Open clocks</h2>
+<ol>
+<li><strong>D.C. Circuit</strong> on <em>League of Women Voters v. DHS</em>. Appeal docket noise (No. 26-5243) is a clock, not a holding. Mandate not retrieved.</li>
+<li><strong>2027-05-05</strong> last day of any 6 C.F.R. § 37.5(d) phased REAL ID plan. TSA itself is already at full enforcement.</li>
+<li><strong>How DHS is actually serving Florida / Ohio / Iowa / Indiana</strong> after the July 7 order, given USCIS’s public “suspended until further notice” line. Need an agency instrument, not a recap.</li>
+<li><strong>Other district injunctions</strong> against pieces of EO 14248. Recited by Sooknanan; slips not retrieved here.</li>
+<li><strong>EO 14399 State Citizenship Lists</strong> — whether any list was actually transmitted. 90-day infrastructure clock ran ~June 29, 2026.</li>
+<li><strong>USPS final mail-ballot rule</strong> under EO 14399 § 3. Due ~July 29, 2026. Not retrieved as a final rule in this pass. A June 2, 2026 NPRM (91 FR 32915) is named in other litigation; full text not extracted here.</li>
+<li><strong>Any later public law</strong> that is actually H.R. 22, S. 128, S. 1383, H.R. 7296, or a successor. Watch presentment, not the press title. S. 1383 is live until sine die of the 119th; cloture already failed once.</li>
+<li><strong>13 U.S.C. § 141(f)</strong> — subjects report <strong>April 1, 2027</strong>; questions report <strong>April 1, 2028</strong>. Those are the 2030 questionnaire clocks. A later FR after the April 30, 2025 Census notices page is <strong>not retrieved</strong>.</li>
+<li><strong>September 5, 2026</strong> 14418 agency guidance — on the citizenship map, not here, unless a guidance names Census or elections.</li>
+</ol>
+<h2 id="10-sources">10. Sources</h2>
+<p>All retrieved <strong>2026-08-15</strong>. Primary only.</p>
+<ul>
+<li>REAL ID Act of 2005, P.L. 109-13, Div. B; 6 C.F.R. pt. 37</li>
+<li>TSA final rule, 90 FR 3472 (Jan. 14, 2025): https://www.govinfo.gov/app/details/FR-2025-01-14/2025-00484</li>
+<li>TSA REAL ID: https://www.tsa.gov/realid</li>
+<li>TSA ConfirmID / $45 fee (Dec. 1, 2025 and Jan. 15, 2026 releases; identification page)</li>
+<li>REAL ID Act § 202(a)(1), (c)(4)(C), (d)(11) (acceptance prohibition; SAVE for non-citizens; marked noncompliant cards)</li>
+<li>P.L. 116-260, Div. U, Title X (REAL ID Modernization Act)</li>
+<li>8 U.S.C. § 1642 (PRWORA § 432); IRCA § 121 note under 42 U.S.C. § 1320b-7</li>
+<li>USCIS, May 22, 2025 (SSN enumerator / multi-case): https://www.uscis.gov/newsroom/news-releases/uscis-deploys-common-sense-tools-to-verify-voters</li>
+<li>42 U.S.C. § 1320b-7; 8 U.S.C. § 1373</li>
+<li>USCIS SAVE: https://www.uscis.gov/save</li>
+<li>DHS SORN, 90 FR 48948 (Oct. 31, 2025); SSA SORN, 90 FR 50879</li>
+<li>H.R. 22 engrossed: https://www.govinfo.gov/content/pkg/BILLS-119hr22eh/html/BILLS-119hr22eh.htm</li>
+<li>H.R. 22 status: https://www.congress.gov/bill/119th-congress/house-bill/22</li>
+<li>House Roll 102 (220–208): https://clerk.house.gov/Votes/2025102</li>
+<li>S. 128; H.R. 7296; S. 3752 — Congress.gov bill pages</li>
+<li>S. 1383: https://www.congress.gov/bill/119th-congress/senate-bill/1383</li>
+<li>House Roll 69 (218–213, Feb. 11, 2026): https://clerk.house.gov/Votes/202669</li>
+<li>Senate Vote 73, cloture rejected 53–47 (March 26, 2026): https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00073.htm</li>
+<li>52 U.S.C. § 20508(b)(3) (no notarization / formal authentication on the national form)</li>
+<li>13 U.S.C. § 141(f): https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title13-section141</li>
+<li>Census 2030 FR-notice index (rev. April 30, 2025): https://www.census.gov/programs-surveys/decennial-census/decade/2030/planning-management/plan/public-notices.html</li>
+<li>18 U.S.C. § 611; 52 U.S.C. §§ 20501–20511 (NVRA)</li>
+<li>EO 14248, 90 FR 14005 — vault EO file</li>
+<li>EO 14399, 91 FR 17125 — vault EO file</li>
+<li>EO 14148 § 2(b) (revoking EO 13986) — vault EO file</li>
+<li>EO 13880 (2019) § 3(c) — vault EO file (consider 2030 question)</li>
+<li><em>League of Women Voters v. DHS</em>, No. 25-3501, Doc. 111 (D.D.C. June 22, 2026)</li>
+<li><em>Florida v. DHS</em>, No. 3:24-cv-509, Doc. 45 (N.D. Fla. July 7, 2026)</li>
+<li>2 U.S.C. § 2a; U.S. Const. amend. XIV, § 2</li>
+<li><em>Department of Commerce v. New York</em>, 588 U.S. 752 (2019)</li>
+<li>2026 Census Test: https://www.census.gov/programs-surveys/2026-census-test.html</li>
+</ul>
+<p><strong>Not used as law:</strong> news recaps; Ballotpedia; member press; CRS.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

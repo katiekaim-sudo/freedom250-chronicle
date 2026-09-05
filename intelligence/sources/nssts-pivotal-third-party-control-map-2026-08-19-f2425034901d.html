@@ -1,0 +1,343 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>NSSTS Pivotal Third-Party Control Map · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/science-to-capability.html#ambitions" class="" >What are the ambitions? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#scientific-work" class="" >What has to work together? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#physical-system" class="" >Where does the ambition meet the physical world? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#financing" class="" >Who pays for the buildout—and carries the risk? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#accepted-operation" class="" >What would count as success? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/companies-in-context.html#the-supporting-cast" class="" >Find the work behind the headline company <span class="meta">— What does this company actually do?</span></a><a href="../stories/companies-in-context.html#rights-and-obligations" class="" >Ask who holds the right—and the responsibility <span class="meta">— What does this company actually do?</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>NSSTS Pivotal Third-Party Control Map</h1><p class="deck">Collection evidence cutoff: 2026-08-19</p><p><a href="nssts-pivotal-third-party-control-map-2026-08-19-f2425034901d.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="nssts-pivotal-third-party-control-map">NSSTS Pivotal Third-Party Control Map</h1>
+<p><strong>Evidence cutoff:</strong> 2026-08-19<br />
+<strong>Status:</strong> active Workbench research; not vault doctrine; not an investment screen<br />
+<strong>Controlling registry:</strong> <code>NSSTS_PIVOTAL_THIRD_PARTY_CONTROL_REGISTRY_2026-08-19.json</code></p>
+<h2 id="ruling">Ruling</h2>
+<p>The most consequential company on a Science Strategy project may never be the
+headline awardee. A third party can still determine whether the project:</p>
+<ul>
+<li>receives an interconnection agreement;</li>
+<li>reaches financial close;</li>
+<li>clears environmental and site-risk review;</li>
+<li>passes electrical and integrated-systems testing;</li>
+<li>receives insurance capacity or a facility certification;</li>
+<li>produces traceable, qualified scientific or manufacturing data; or</li>
+<li>becomes staffed, dispatchable and operable after construction.</li>
+</ul>
+<p>This phase therefore maps <strong>decision rights and control records</strong>, not just
+technical products.</p>
+<pre><code class="language-text">site and capital proposal
+  -&gt; independent study / due diligence / permitting
+  -&gt; design and construction
+  -&gt; inspection / calibration / commissioning
+  -&gt; certification / insurance / owner acceptance
+  -&gt; operating authority / market execution
+</code></pre>
+<p>The registry adds 30 candidate entities or contracting-entity seams. For every
+one, the public-record conclusion is the same: <strong>no named award, task, study or
+engagement was found for the target set at the cutoff.</strong> That is a negative
+research boundary, not proof that the company is uninvolved. Private
+subcontracts, insurer assignments, confidential interconnection work and
+pre-award advisory engagements may not be public.</p>
+<h2 id="five-distinct-kinds-of-power">Five distinct kinds of power</h2>
+<table>
+<thead>
+<tr>
+<th>Control type</th>
+<th>What the company can actually do</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Formal gate</strong></td>
+<td>Issue or condition a certification, insurance position, lender reliance record or milestone certificate</td>
+<td>E3, Uptime Institute, Intertek, UL, FM</td>
+</tr>
+<tr>
+<td><strong>Delegated execution</strong></td>
+<td>Perform a study, solicitation, market function or operating role under authority delegated by an owner, utility or lender</td>
+<td>Qualus, Pearl Street, GDS, CAMS, TEA</td>
+</tr>
+<tr>
+<td><strong>Acceptance evidence</strong></td>
+<td>Produce the test, calibration, inspection or qualification record used by the formal decision maker</td>
+<td>Doble, EPS, Shermco, MBP, Transcat, Micross, Element</td>
+</tr>
+<tr>
+<td><strong>Advisory influence</strong></td>
+<td>Shape models, requirements, specifications and risks without issuing final approval</td>
+<td>Danovo, PowerGEM, EnerNex</td>
+</tr>
+<tr>
+<td><strong>Critical-path supply</strong></td>
+<td>Move, connect, clean or supply equipment and utilities without which installation or stable operation stops</td>
+<td>MEI, ChemTreat, Matheson, Barnhart</td>
+</tr>
+</tbody>
+</table>
+<p>These roles should not be collapsed. A testing company can be pivotal without
+holding energization authority. An insurer can materially change a design
+without issuing a government acceptance. A utility consultant can determine
+the upgrades in a study while the utility retains formal approval.</p>
+<h2 id="highest-priority-targets">Highest-priority targets</h2>
+<h3 id="1-qualus-llc-the-best-large-load-analogue">1. Qualus, LLC — the best large-load analogue</h3>
+<p>NYISO commissioned Qualus for the January 2025 System Impact Study of Micron
+New York Semiconductor Manufacturing LLC's White Pine Phase 1 load project.
+That study addressed the reliability model, affected systems, required
+facilities and applicable NERC, NPCC and NYSRC criteria.</p>
+<p>This is the closest public analogue found for a large science or AI load moving
+through an actual utility study. Qualus is not thereby assigned to Argonne or a
+DOE campus. Promotion requires the target campus, utility, task, completed model
+and accepted output.</p>
+<h3 id="2-e3-consulting-services-llc-a-financing-permission-layer">2. E3 Consulting Services, LLC — a financing permission layer</h3>
+<p>E3, within the NAES family, serves lenders and investors as an independent
+engineer. Its work includes fatal-flaw analysis, technical and commercial due
+diligence, environmental and NERC review, construction monitoring and milestone
+reporting.</p>
+<p>This is a different NAES-family role from O&amp;M. If private infrastructure
+financing enters a federal AI or power project, an independent engineer can
+condition drawdowns and financial close without appearing in the public
+technology announcement. The decisive evidence would be the lender assignment,
+reliance letter, report and milestone certificate.</p>
+<h3 id="3-uptime-institute-intertek-and-ul-overlapping-but-different-acceptance-paths">3. Uptime Institute, Intertek and UL — overlapping but different acceptance paths</h3>
+<p><strong>Uptime Institute, LLC</strong> independently evaluates data-center design,
+constructed facilities and operations against its Tier system. Its constructed
+facility process includes live demonstrations and applies to the installed
+configuration, not merely the drawings.</p>
+<p><strong>Intertek Testing Services NA, Inc.</strong> is an OSHA-recognized NRTL. Intertek's
+data-center services also span electrical load and power-quality testing,
+cooling, enclosure, ICT, cybersecurity and integrated commissioning.</p>
+<p><strong>UL Solutions Inc. / UL LLC</strong> requires an explicit contracting-entity seam.
+The public parent, certification entities and task-specific contracting parties
+must not be treated as interchangeable. UL can test facilities, modular systems,
+electrical equipment, batteries and cooling fluids, but component certification
+does not certify a whole facility.</p>
+<p>These firms could all be present on the same project while performing different
+functions. None currently has a public target engagement.</p>
+<h3 id="4-factory-mutual-insurance-company-design-influence-through-underwriting">4. Factory Mutual Insurance Company — design influence through underwriting</h3>
+<p>FM reports protecting about 1,100 data centers representing approximately
+$250 billion of insurable value. Its current data-center loss-prevention
+material addresses utility failure, standby generation, UPS systems, batteries,
+power isolation and liquid cooling.</p>
+<p>FM's engineers do not issue the government's project acceptance. But their
+findings can become conditions for insurance capacity, lender comfort and
+owner risk decisions. That makes underwriting a practical design gate. FM
+Approvals LLC must remain separate from Factory Mutual Insurance Company.</p>
+<h3 id="5-transcat-inc-the-defensibility-of-the-measurement-itself">5. Transcat, Inc. — the defensibility of the measurement itself</h3>
+<p>Transcat is a particularly strong cross-sector node because it can touch
+autonomous laboratories, biomanufacturing and industrial qualification.
+ISO/IEC 17025 calibration, NIST traceability, instrument asset management and
+IQ/OQ/PQ validation create the evidence that an instrument, utility or facility
+was fit for intended use.</p>
+<p>A Charles River case documents building-management-system IQ/OQ/PQ, facility
+and equipment qualification and clean-gas validation. For any target assignment,
+the exact calibration center, method and accreditation scope would still have
+to match the required measurement.</p>
+<h3 id="6-mei-industrial-solutions-the-physical-handoff-nobody-announces">6. MEI Industrial Solutions — the physical handoff nobody announces</h3>
+<p>MEI Rigging &amp; Crating, LLC d/b/a MEI Industrial Solutions handles cleanroom
+tool moves, rigging, millwrighting, industrial storage, powered test space and
+prebuilt utility-module installation. This is the seam between an equipment
+purchase and a facility that can actually begin site acceptance testing.</p>
+<p>For Natcast, an MEI-like company could surface only after the construction
+contract and tool list become visible. Moving a tool into place does not qualify
+the process; OEM authorization, cleanroom protocol, utility hookup and SAT are
+separate gates.</p>
+<h3 id="7-chemtreat-inc-operational-cooling-chemistry">7. ChemTreat, Inc. — operational cooling chemistry</h3>
+<p>ChemTreat reports supporting more than 200 North American data centers and
+documents direct-to-chip cooling treatment at an unnamed DOE national
+laboratory. Its work includes pre-operational cleaning, corrosion and fouling
+control, biological control, coolant compatibility, monitoring and water reuse.</p>
+<p>This is an excellent example of a company that may not build the chiller or
+cooling distribution unit but can still determine whether heat transfer and
+materials remain reliable after turnover. The unnamed national-lab case cannot
+be assigned to Argonne.</p>
+<h3 id="8-micross-components-inc-packaging-transition-and-trusted-qualification">8. Micross Components, Inc. — packaging transition and trusted qualification</h3>
+<p>DMEA lists the Micross Advanced Interconnect Technology facility for trusted
+post-processing and packaging/assembly, while DLA records qualified
+manufacturing and environmental test operations. Micross could bridge
+experimental package flows to trusted high-reliability use.</p>
+<p>Accreditation is facility- and flow-specific. A Natcast role would require a
+Project Agreement or order, selected baseline-flow interface, test vehicle,
+acceptance limits and a government-approved report.</p>
+<h3 id="9-ips-integrated-project-services-llc-making-dbpc-operable">9. IPS-Integrated Project Services, LLC — making DBPC operable</h3>
+<p>DBPC will not become an accepted pilot merely because fermentation equipment is
+installed. IPS's factory/site acceptance, validation master planning, IQ/OQ/PQ,
+SOP, controls and utility-qualification capabilities sit between construction
+and fit-for-intended-use operation.</p>
+<p>The public evidence supports biopharma and biotech CQV. It does not yet prove a
+Hawaii DBPC team or that the same methods translate cleanly into an austere,
+deployable bioindustrial environment.</p>
+<h3 id="10-doble-eps-and-shermco-electrical-permission-to-energize">10. Doble, EPS and Shermco — electrical permission to energize</h3>
+<ul>
+<li><strong>Doble Engineering Company</strong> produces transformer, bushing, breaker and
+  relay diagnostic evidence.</li>
+<li><strong>Electric Power Systems International, Inc.</strong> performs NETA-style startup,
+  ATS, relay, switchgear and substation acceptance testing.</li>
+<li><strong>Shermco Industries, Inc.</strong> performs LV/MV/HV calibration, repair and field
+  verification.</li>
+</ul>
+<p>These firms do not generally hold the utility's formal energization decision.
+They produce the record the owner or utility uses to decide whether equipment
+is safe and ready. No target site order or commissioning package is public.</p>
+<h3 id="11-terracon-consultants-inc-the-pre-award-site-veto">11. Terracon Consultants, Inc. — the pre-award site veto</h3>
+<p>Terracon reports more than 3,100 data-center projects and combines parcel
+screening, environmental review, geotechnical exploration, thermal-resistivity
+testing, wetlands/NEPA work, construction materials QA and building-envelope
+commissioning.</p>
+<p>This is a pivotal <em>before-the-award</em> role: soil, water, environmental or routing
+conditions can eliminate a site before the headline technology partners are
+selected. Portfolio statistics are company-authored, so target promotion needs
+a named parcel, authorization and accepted report.</p>
+<h3 id="12-cams-the-alternative-operator-comparator">12. CAMS — the alternative operator comparator</h3>
+<p>Consolidated Asset Management Services reports responsibility for more than
+100 North American power facilities totaling about 72 GW. Hallador's SEC filing
+confirms continuing CAMS O&amp;M and asset-management duties at the 1,080 MW Merom
+plant. CAMS also markets a data-center-power lifecycle spanning permitting,
+commissioning, mobilization, market participation and 24/7 O&amp;M.</p>
+<p>CAMS is the clearest non-NAES comparator for operator insertion after visible
+construction. The public record does not connect it to a federal science or
+target data-center site.</p>
+<h2 id="other-high-value-nodes">Other high-value nodes</h2>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Hidden role</th>
+<th>Main boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pearl Street Technologies, LLC</strong></td>
+<td>MISO interconnection modeling and mitigation automation through SUGAR</td>
+<td>Generator-queue use does not establish a target large-load study</td>
+</tr>
+<tr>
+<td><strong>PowerGEM, LLC</strong></td>
+<td>TARA power-flow and cluster-study workflow</td>
+<td>Software vendor is not approval authority</td>
+</tr>
+<tr>
+<td><strong>Quanta Technology, LLC d/b/a Danovo Energy Solutions</strong></td>
+<td>Large-load models, protection/control testing and utility coordination</td>
+<td>Quanta-family ownership and brand transition require exact independence and entity checks</td>
+</tr>
+<tr>
+<td><strong>Electric Power Engineers, LLC</strong></td>
+<td>Affected-system and HVDC reliability studies</td>
+<td>Public comparators concern generation/transmission</td>
+</tr>
+<tr>
+<td><strong>GDS Associates, Inc.</strong></td>
+<td>Utility resource-solicitation administration and computational-load planning</td>
+<td>Utility retains award and approval authority</td>
+</tr>
+<tr>
+<td><strong>Environmental Resources Management, Inc.</strong></td>
+<td>Environmental record supporting agency authorization</td>
+<td>Agency retains NEPA responsibility</td>
+</tr>
+<tr>
+<td><strong>McDonough Bolyard Peck, Inc.</strong></td>
+<td>Owner controls, QA and integrated commissioning for secure/lab facilities</td>
+<td>Target task and exact technical scope are absent</td>
+</tr>
+<tr>
+<td><strong>TSS, Inc.</strong></td>
+<td>AI-rack integration, liquid-cooling validation and burn-in</td>
+<td>No national-lab engagement; extreme customer concentration</td>
+</tr>
+<tr>
+<td><strong>EAG, Inc.</strong></td>
+<td>Advanced package contamination and failure analysis</td>
+<td>General laboratory capability is not target qualification</td>
+</tr>
+<tr>
+<td><strong>Element Materials Technology Holding USA Inc.</strong></td>
+<td>Independent AM materials/NDT testing</td>
+<td>Exact performing lab and accredited method scope unresolved</td>
+</tr>
+<tr>
+<td><strong>Matheson Tri-Gas, Inc.</strong></td>
+<td>Electronic-grade gases and point-of-use handling</td>
+<td>No Natcast tool/chemistry specification or order</td>
+</tr>
+<tr>
+<td><strong>Barnhart Crane &amp; Rigging Co.</strong></td>
+<td>Transformer/equipment heavy haul, permitting and final setting</td>
+<td>Transport completion is not electrical acceptance</td>
+</tr>
+<tr>
+<td><strong>EnerNex, LLC</strong></td>
+<td>National-lab grid models, requirements and technology validation</td>
+<td>Partner status and adjacent projects do not create a target task</td>
+</tr>
+<tr>
+<td><strong>The Energy Authority, Inc.</strong></td>
+<td>Delegated public-power fuel, trading and settlement</td>
+<td>No utility serving a target site has appointed it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-records-will-expose-this-layer">What records will expose this layer</h2>
+<p>The next pass should search for documents that appear <em>after strategy and before
+acceptance</em>:</p>
+<ol>
+<li>interconnection study scopes, consultant appendices and CEII-safe cover
+   filings;</li>
+<li>lender technical-advisor appointments, reliance letters and draw
+   certificates;</li>
+<li>environmental, geotechnical and constructability reports tied to a parcel;</li>
+<li>commissioning plans, issues logs, FAT/SAT protocols and integrated-system
+   test scripts;</li>
+<li>NRTL, Tier, insurer and AHJ findings tied to a particular configuration;</li>
+<li>tool-move, rigging, high-purity utility and cooling-water packages;</li>
+<li>calibration scopes, QML/Nadcap records, witness plans and accepted test
+   reports; and</li>
+<li>operator mobilization, NERC registration, market-service and fuel-management
+   agreements.</li>
+</ol>
+<p>Those records answer the real question: not merely who is capable, but <strong>who is
+allowed to examine, condition, certify, move, energize or operate the thing</strong>.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

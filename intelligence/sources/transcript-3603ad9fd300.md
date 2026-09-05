@@ -1,0 +1,712 @@
+# President Trump at the 2026 White House Correspondents' Association Dinner
+
+> **Transcript status:** Timestamped working transcript, not an official verbatim
+> White House transcript. The authoritative record is the official White House
+> video. Text and speech-relative timing are derived from Roll Call Factba.se;
+> only conservative, logged repairs have been applied. Verify against the video
+> before publishing an exact quotation.
+
+## Event record
+
+- **Speaker:** President Donald J. Trump
+- **Event:** Rescheduled 2026 White House Correspondents' Association Dinner
+- **Date:** July 24, 2026
+- **Venue:** Waldorf Astoria Washington DC, Washington, D.C.
+- **Speech-relative boundary:** 00:00:00–01:04:03
+- **Official replay:** https://www.youtube.com/watch?v=2EFpaUNGFeE
+- **Timestamped text source:** https://rollcall.com/factbase/trump/transcript/donald-trump-speech-white-house-correspondents-dinner-july-24-2026/
+- **Captured source SHA-256:** `a9e50cffa094b760750d6a2346da177f7af603a597f70f4070533e6745424cc2`
+
+## Transcript
+
+### [00:00:00–00:00:34] Donald Trump
+
+Wow, that was very beautiful, but this has not been an easy evening, all these awards. [Laughter] Do I have a say in those awards or those awards? But it's great to be back at a place that I know very well because I built it. [Laughter] And I'm very proud of it because I built it for $2.9 billion less than the Federal Reserve Building, which is a lot smaller, by the way.
+
+### [00:00:34–00:01:08] Donald Trump
+
+Figure that one out. But I am delighted to be here at the White House Correspondents' Dinner. Amazing people. A lot of people that I like. Some I don't like at all. [Laughter] But I respect most of them. I must say that you do a great job, amazing job, and, uh, it's an honor. As I said three months ago, the show must go on. We were back, we were backstage and we both wanted to just have it go on, whether it was 2:00, 3:00 in the morning, it didn't matter.
+
+### [00:01:08–00:01:27] Donald Trump
+
+But in the end, it made more sense to do it the way we're doing it. And we had a great news conference at the White House in a very important room. And, uh, you did very well. I think we all did very well. It was a hell of an evening, I can tell you that. Won't soon be forgotten. And I think a lot was learned from that evening.
+
+### [00:01:27–00:01:59] Donald Trump
+
+A tremendous amount was learned about security and about other things, the dangers of what we all do. But just like my presidency, the second time is always better. It's always better. And the third time will be better yet. [Laughter] I'm only, I'm only kidding. From the earliest moments after the attack on our dinner last April, I knew we had to reschedule this event as soon as possible.
+
+### [00:01:59–00:02:22] Donald Trump
+
+We had to do it very quickly, and we met very quickly. And we figured something out, but the attempted mass murder at the Washington Hilton, that's what it could have been, was an assault on our democracy itself, very serious situation. Many of you were there with me and some showed extreme bravery like Pete Hegseth, Steve Miller, Tom Homan.
+
+### [00:02:22–00:02:42] Donald Trump
+
+Really? They were standing on tables and most of you were under the tables, okay? But they did. They showed. I saw every one of them that were standing up in those tables. I didn't know they were, if they were brave, if they were smart, if they were stupid as hell. But they were on those tables in some cases.
+
+### [00:02:42–00:03:09] Donald Trump
+
+And, uh, there were a lot of different feelings going on in the room at that moment. But after hearing the gunshots, many people yelled, "Get down. Get down" which caused Nicki Minaj to start twerking. Do you believe it? [Laughs] Get down. She's the only one that really understood what that meant. [Laughter] It's quite an evening.
+
+### [00:03:09–00:03:39] Donald Trump
+
+But tonight we come back together to answer that heinous attack with unwavering resolve and every one of us here this evening to show that in America, we do not yield to political violence. We don't, we can't do that. Can't do it. So in this country, we believe in freedom of speech. We settle our differences not with bullets, but with open and vigorous debate.
+
+### [00:03:39–00:04:04] Donald Trump
+
+And no deranged loser with a gun will ever change that. We can't let that ever happen. There are a lot of very dangerous people out there. We can't let it happen. I wanna begin by expressing our gratitude to the incredible men and women who put their lives on the line every day to protect my family and myself, all presidents, and lots of others.
+
+### [00:04:04–00:04:26] Donald Trump
+
+That's the United States Secret Service. So I appreciate it very much. And Sean and the whole group, amazing job. Amazing job. In recent months, they've repeatedly responded to threats with speed and professionalism and extraordinary courage. And there is no better example of that than Officer Victor Gonzales, who we just met.
+
+### [00:04:26–00:04:43] Donald Trump
+
+It was amazing. He, what he did was amazing. When the would-be assassin charged, the checkpoint at speed, he was fast. You know, when you looked at that, you had to look at it about 10 times before you really saw what was going on. He was quick. Nasty. The gun made him nasty, actually. But Officer Gonzales engaged the attacker without hesitation and took a bullet to the chest after his ballistic vest fortunately was on, it saved his life.
+
+### [00:04:43–00:04:57] Donald Trump
+
+And Victor did not even wanna go to the hospital for a checkup. We insisted, really, we wanted him to do it. We insisted, but he didn't wanna go. So, to Officer Gonzales, Secret Service, Metropolitan Police, law enforcement generally, and even all of the militaries around us in the room tonight, we salute you and we thank you with all of our hearts.
+
+### [00:04:57–00:05:11] Donald Trump
+
+Thank you very much. Great job, great job. Great job. These are great people. So, this evening, we're picking up right where we left off, so let's have a little bit of fun, you know? I said, "What do we do here? Is this supposed to be fun? Am I supposed to be serious? Am I supposed to be a comedian?" So, I guess he said, "Maybe a little bit of everything." I know one thing I could never have done, the speech that I had ready, just a short while.
+
+### [00:05:11–00:05:19] Donald Trump
+
+Oh, that was gonna be a doozy. I was so psyched. I was gonna rip people. And I don't know, just something changed. And it, really for the better, but I just wouldn't wanna do that, but we'll do a little ripping if you don't mind. But it is true, I said, "How do we handle this? It's gonna be a different kind of an evening," and it is. And in many ways, it's a more beautiful evening, actually.
+
+### [00:05:19–00:06:01] Donald Trump
+
+Everyone's looking, uh, really good tonight. And I know it was not easy finding shoes to go along with your bulletproof vests, which many people didn't wanna wear because they'd rather die than look 20 pounds heavier. You know that, right? We have that a lot. They put a, they put one on me. I said, "Are you sure?
+
+### [00:06:01–00:06:03] Donald Trump
+
+I'm not wearing this."
+
+### [00:06:03–00:06:33] Donald Trump
+
+No, you gain, you look exactly 20. They say, "Sir, it's about 21 pounds." I said, "Not good." But I wanna thank the outgoing President of the White House Correspondents' Association. Now, she won't admit it and she should not admit it, but we sort of became friendly. You know, in times of stress, on occasion, you become friendly.
+
+### [00:06:33–00:06:50] Donald Trump
+
+I have a lot of respect for Weijia. And I tell you, we, uh, we went through a little bit of a war together. It turned out pretty good. It turned out pretty good because of a lot of good people. They, they stopped a tragedy, so I wanna thank you very much. Fantastic, yeah. And Weijia worked extremely hard to ensure this dinner was, uh, rescheduled.
+
+### [00:06:50–00:07:12] Donald Trump
+
+And we wanna just thank her family. I just met her parents, her children, her husband, what a perfect family. So, it's, uh, really great. Thank you very much all for, for putting up with this, for putting up with this, right? But let me also thank the incoming President of the Correspondents Association, Jacqui Heinrich.
+
+### [00:07:12–00:07:34] Donald Trump
+
+She can be very tough as a reporter, I will tell you. She can be nasty. She looks so beautiful, but she can be so nasty. How could that happen? But she just got married to a very successful congressman, very good congressman. I'd like to have a couple of more votes from it. That's okay. On occasion, he chose a little independence.
+
+### [00:07:34–00:07:59] Donald Trump
+
+We don't like that. But now, he's a very professional guy and he's a very, he loves our country. But, uh, that's a big thing. I, I just see what takes place. We're talking about what takes place to be in the position that you're leaving and that Jacqui's coming into. And it's a lot of work, it's a lot of friendships, a lot of talent.
+
+### [00:07:59–00:08:02] Donald Trump
+
+And so, Jacqui, congratulations.
+
+### [00:08:02–00:08:02] Jacqui Heinrich
+
+Thank you.
+
+### [00:08:02–00:08:28] Donald Trump
+
+Great. And congratulations are also in order for our favorite White S- -- White House Press Secretary, Karoline Leavitt, who just had her second child, you and your husband. She's great. She's done a fantastic job. We all love her. She's done a fantastic job. She is another one. She can be nasty. But sometimes she has no choice, right?
+
+### [00:08:28–00:08:58] Donald Trump
+
+But Karoline may have one of the hardest jobs in the White House. She has to deal with all of you all of the time, and you could be very difficult. You can be very, very difficult people but I'm probably being a little bit oversensitive. Sometimes I really do think that some of you don't like me. [Laughter] In fact, I read a report, I get 93% negative publicity. 93, I said, "How the hell did I win the election by so much?" Think of it, I don't think that's true.
+
+### [00:08:58–00:09:23] Donald Trump
+
+I can't believe it's 93. In the 80s maybe, but not 93. But this place is the, really, the largest group of Trump derangement syndrome people. Ever put together at one time, I suspect. Some of you are lucky that our last dinner was cut short because I had brought with me what would possibly have been, I'm telling you, I had, uh, I had something.
+
+### [00:09:23–00:09:51] Donald Trump
+
+I was gonna go after you. I was gonna, I feel so badly doing this. It's gotta be such a let-down. Oh, yay, yay. But your lives were really in danger the last time for an opposite reason. But on the plus side, your careers were saved and, we have a, uh, we really do. We have a complete and total, you know, I love the words complete and total.
+
+### [00:09:51–00:10:14] Donald Trump
+
+They say, "But it means almost the same thing." I said, "It doesn't matter when you say it. It's called emphasis. It's called emphasis." But everyone is now really warming up the new White House military center, drone port, highly-protected ballroom. It's, we have our ballroom. The windows are this thick.
+
+### [00:10:14–00:10:42] Donald Trump
+
+I said to the people, "Well, if a bullet hits, what happens?" "Nothing. Nothing. It bounces right off, sir. This is the greatest bulletproof glass." I said, "AK-47," that's supposed to be a big one. I don't know so much about the guns. My sons know a lot. But I said, "A, I know it's big. What would happen?" They go up, meaning it can take more.
+
+### [00:10:42–00:11:03] Donald Trump
+
+I said, "So if I'm making a speech and I hear that pinging sound at a window, what would I do?" "Sir, uh, leave the room right away but, but you're gonna be safe. We're building something that's gonna be amazing." And in light of what we went through, I think, uh, people understand it. It's gonna be amazing.
+
+### [00:11:03–00:11:26] Donald Trump
+
+A phenomenal, one of the biggest drone ports anywhere in the world, right on the roof, right, protecting the White House, not only the ballroom. And what's underneath, you know, is supposed to be a top military secret, what's underneath. But then, you get sued as usual and you have to reveal that you're building this unbelievable situation downstairs with room after room of very complex stuff.
+
+### [00:11:26–00:11:53] Donald Trump
+
+It was the military's dream to have it built. I wanted to have a ballroom because for 150 years, they wanted it. And then, the generals came to see me and they said, "Sir, you're building something. This gives us an opportunity to do something that will be so unbelievab- -- never happen again. 'Cause there's very little built under the White House, very hard to build under a very fragile building like that.
+
+### [00:11:53–00:12:14] Donald Trump
+
+It's very fragile. It's old and a little different construction standards, frankly, and, uh, this is an opportunity for us to build something very powerful." I said, "Let's keep it secret." They said, "No, no. We're telling you, sir, let's keep it secret." And then, we get sued and we revealed every room, every, ay yay yay. [Laughter] We told the people that did the suit they're not good people.
+
+### [00:12:14–00:12:38] Donald Trump
+
+We told them, we said, "You know, you're being very unpatriotic when you bring a suit like this but it is what it is. But it's gonna be --" It's really going, it's moving fast. We're ahead of schedule, we're right on budget, and it's gonna be something like I think no, no country has. I just visited China.
+
+### [00:12:38–00:12:57] Donald Trump
+
+They have this magnificent room, The Great Room. They call it The Great Room. It's a great room but what we have is gonna blow, there won't be anything like it. It's gonna be fantastic. And with all of the things that are going along with it for safety and security of future presidents. You know, I'm only gonna be using it for about six months, assuming we finish it right on time.
+
+### [00:12:57–00:13:24] Donald Trump
+
+I get to use it. Somebody said, "He's building it for himself." I'm building it for the future. I'm not buil, like, I'll use it. Now, had it not gone down six or seven stories, then, in that case, I would have been able to get a couple of years out of it. But that was far more complex, what we did downstairs than what we do upstairs so, uh, we're very proud of it. That is gonna be amazing.
+
+### [00:13:24–00:13:50] Donald Trump
+
+And I think I was just telling, uh, the whole group sitting at the table, we were talking about it. I said, "I think, you know, it's White House correspondence so I don't see any reason why you wouldn't be able to use that. It's gonna be very large and very beautiful and very safe and that's what you need." So I was thrilled to see that after witnessing the attack, even Democrat Senator John Fetterman told his fellow Democrats to drop the Trump derangement syndrome and build the White House ballroom, but it's much more than that.
+
+### [00:13:50–00:14:21] Donald Trump
+
+It's something that you're gonna use. I predict that you're gonna end up using it and, uh, a lot of people are gonna end up using it. They're gonna be as safe as you can possibly be. But despite everything that happened at the previous dinner and all of the dangers involved, I'm told that this is still the hottest ticket in town, this ticket to get in tonight, because it's a smaller room, it's a beautiful room, it's a luxury room.
+
+### [00:14:21–00:14:42] Donald Trump
+
+See those beautiful chandeliers? I can tell you everything about them if you'd like to know. [Laughter] See that beautiful capital above? See the beautiful capital? See the, everything, the brass. Uh, those chandeliers are great. I, I'm looking at them saying, "I wonder if I could --" You know, I sold this building.
+
+### [00:14:42–00:15:01] Donald Trump
+
+And, uh, they're doing a nice job, but they're nice people. But I'll tell you, I'm looking at them saying, "I wonder if I could walk out with those chandeliers" because you can't buy them. They're very special. I won't tell you the fact. I won't mention that they're Czech crystal, because I'd like to say everything's made here, but they are Czech crystal. [Laughter] And they are beautiful.
+
+### [00:15:01–00:15:18] Donald Trump
+
+And the Waldorf people are doing a really nice job. We're proud of them, actually, because, you know, when I left town, I was angry. I was a little bit angry. I was offered a nice price. I said, "I'm getting out of that place." And then I said, "Let's make a comeback." And, uh, but I was very proud of this building.
+
+### [00:15:18–00:15:38] Donald Trump
+
+This building was hot. Remember the lobby floor? 82,000 feet. For those in the real estate business, 82,000 feet. That's a major, that's a major floor. That thing was packed every single night. It was packed mostly Republicans, I would say, but it was packed every single night. It almost brings back memories.
+
+### [00:15:38–00:15:57] Donald Trump
+
+But, uh, I left town and, uh, I have just had nothing but good experience. And this might be the best experience of all, having all of these incredible people in this room. It's a great, it's a great feeling, frankly. It's a great feeling. But tonight's event, thank you. Thank you. But tonight's event is even crazier than the last time.
+
+### [00:15:57–00:16:20] Donald Trump
+
+In fact, it's so successful that I've been informed by CBS News's David Ellison, who's gonna do a fantastic job. He's the owner. He's the owner. He bought it, spent a lot of money, and he's gonna make, I think, fantastic changes and keep some of the great stuff going. But the next year, they're going to call it the Trump White House Correspondence Center.
+
+### [00:16:20–00:16:42] Donald Trump
+
+He told me that. And I like that very much. We're gonna change the name of it, okay? Well, it's gonna be so hot, just like our country is hot. We are hot, by the way. But to be honest, it's just about the only way that they're gonna ever get me back here. You're gonna have to change the name of the dinner.
+
+### [00:16:42–00:17:03] Donald Trump
+
+But how's that one going? Not too good. I hope that everyone finally got to enjoy their entire very delicious beef tenderloins, very special beef. And I want you all to know that Bobby Kennedy, who's right here, personally ran over the cow in his car. [Laughter] Boom. And he cut it up and he brought it here for you to eat tonight, so it's very fresh.
+
+### [00:17:03–00:17:34] Donald Trump
+
+And Bobby also suggested an appetizer featuring his favorite cut of male raccoon roadkill. [Laughter] But we drew the line at that, Cheryl. We said, "No, we're not gonna do that." We're not doing that. We love Bobby. I'll tell you. He's a piece of work. You think it's, it is fun, but he is a very different kind of a person, I will tell you. [Laughter] But he has what it takes and he's smart.
+
+### [00:17:34–00:17:59] Donald Trump
+
+And he loves the country. And he wants people to be made to feel good. Do you agree with that, Bobby? He wants people to feel good. And, uh, he's doing a fantastic job. Thank you, Bobby. Thank you. We can joke all we want, but thank you. A lot's happened since the last time we were all together. Last month, we hosted one of the most incredible sporting events in world history at the White House.
+
+### [00:17:59–00:18:23] Donald Trump
+
+The UFC Freedom 250 fight, the UFC fight. When I announced that we're gonna build a boxing ring right outside of the front door of the White House, that took a lot of heat. But it turned out that was, they say, about the most viewed fight in history. It was incre- -- it was beautiful. So many things happened.
+
+### [00:18:23–00:18:50] Donald Trump
+
+It was supposed to rain. We're gonna do it the week before and the weather was beautiful. And the weather came and it went. And now we came up to Wednesdays. They said, "Sir," this was on a Sunday night, replacing 60 Minutes, which is nice and unusual because usually it's Saturday night. And they said, "Sir, it's --" This was from Wednesday on. Tell me about weather, right? "Sir, it's gonna rain.
+
+### [00:18:50–00:19:09] Donald Trump
+
+I think you're gonna have to, it's gonna be one of the worst storms that we've seen in a long time. It's coming up the coast. It's gonna hit you on Sunday night. It's gonna be a disaster." I said, "Can you believe?" And you saw the ring we built, Dana White, the great Dana White? And everything, we had the best fighters in the world.
+
+### [00:19:09–00:19:30] Donald Trump
+
+Turned out we had the best fights that we, that most people have ever seen, including me. It was just a miracle. But what happened is we're waiting for this rain to come all day long and it's coming and it's horrible. And it's 8:00 and we say, "I think we're gonna shoot but it hasn't rained yet." I said, "Maybe we should postpone it an hour.
+
+### [00:19:30–00:19:59] Donald Trump
+
+Maybe you sh- -- we should make it the next day." We didn't know what to do. And finally we just said, "Let's just have it." And it never rained. It was perfect. In fact, the week before, it was 92 degrees. It was nice, but it was, this was like 72 degrees. And the rain was coming and it came right over the White House and it was like, "Thank you very much." It went like this.
+
+### [00:19:59–00:20:23] Donald Trump
+
+And other areas were drenched a few miles away. We didn't have a drop of rain. And it was absolutely one of the most incredible things anybody's ever since. People said it's, uh, one of the most incredible nights of their lives. So just remember before I came along, if you wanted to see someone lose consciousness on the South Lawn of the White House -- all you had to do is ask Joe Biden a question.
+
+### [00:20:23–00:20:45] Donald Trump
+
+D- -- remember that. Oh, you think I'm kidding? But the big fight was such an amazing success that tonight I'm pleased to announce that we're going to host an even bigger one right in front of the White House. Every Friday night, every Saturday night, we're gonna have fights in front of the White House. Uh, but we do have something coming that's, and I'm only kidding.
+
+### [00:20:45–00:21:07] Donald Trump
+
+You know, the one thing about the press that I learned, don't be sarcastic. [Laughter] When, because I'm a very sarcastic person and I get sarcastic. And most people know that, but you have some bad people that will write it exactly like I say it. [Laughter] And I said, "I was only kidding." But we are gonna have, uh, Indy 500. Roger Penske's coming in mid-August.
+
+### [00:21:07–00:21:28] Donald Trump
+
+And they're gonna have it all throughout Washington, the greatest cars, the greatest drivers in the world. And that's gonna be something. Already they have over 350,000 people signed up going down Pennsylvania Avenue, round the Capitol. And Roger, who's incredibly, he won the Indianapolis 500 20 times. Think of it. Germany, Japan, all these countries.
+
+### [00:21:28–00:21:46] Donald Trump
+
+They spend billions and billions of dollars trying to win the Indy 500 and Roger wins it. He literally won it 20 times. On the 18th time, I said, "You know, that's amazing. I'm gonna give him the Presidential Medal of Freedom." And I had him up. And then he won it two times after that. The guy's amazing.
+
+### [00:21:46–00:22:13] Donald Trump
+
+And he lost the last one by about six inches, if anybody watched it. So they're coming here and it's gonna be something really exciting. We have unbelievable events. Like, it's an unbelievable country. And on July 4th, we were over at the mall and it was raining. It was supposed to be really bad again. And we had 450,000 people show up, and that's a light number.
+
+### [00:22:13–00:22:40] Donald Trump
+
+And I was told, "Sir, we're gonna have to cancel the event." This was not good. And it was drizzling a little bit, not raining very hard. And people are calling me, friends of mine were calling me. And I got a call from Bret Baier. Bret Baier said, "Uh, it's not raining." I said, "Where are you?" I was standing at the mall and I'm waiting to go in the White House.
+
+### [00:22:40–00:23:02] Donald Trump
+
+Then others called up. They said the same thing. And I said, "You know, this is terrible," but there was lightning. Not big lightning, but you don't have to have big lightning. Just have to, it takes just a little bit to do some big damage. So they said, "Everybody must leave, everyb ---" 450,000 people were forced to leave and they left.
+
+### [00:23:02–00:23:31] Donald Trump
+
+And then I said to myself, I said, "Let me call up and find out what the hell's going on." And I called up and I spoke to a brilliant young man. He said, "Don't worry about it, sir. We can do it in a couple of weeks." I said, "You can't do it in a couple of weeks. This is the 250th birthday. In two weeks, what are we gonna do? Say, 'Let's go. We're gonna have a redo'? No." I said, "I'll speak if I have to speak at three o'clock in the morning.
+
+### [00:23:31–00:24:06] Donald Trump
+
+Two o'clock, one o'clock, I don't care. Call them all back. They're all gone." 450,000. And most of them were in cars or heading back to Texas and it was sad. And we said, "The show must go on." Very much like here, we said the same term, right? The show, it's a great term. It's true in life. The show has to go on. The show must go on. And I said, "The show must go on." I put it out on Truth. "The show must go on." And we had probably, Peter, 150,000 people come back, come back up higher, maybe.
+
+### [00:24:06–00:24:23] Donald Trump
+
+Thank you. Let's, let's stand up, Peter. Tell them. More, right? It might've been more, but it was amazing. It was, it was just an amazing crowd. And actually worked out better, a little like this, it worked out better than if it, we had done it at the normal seven o'clock, eight o'clock time. It was incredible.
+
+### [00:24:23–00:24:44] Donald Trump
+
+We started speaking at 11 o'clock in the evening, but tremendous numbers of people. Tens, I mean, thousands and thousands came roaring back. And it was a great evening. And it was a celebration. And we didn't do it the following day, and we didn't do it two weeks later. We did it when we were supposed to do it. It was a fantastic, uh, celebration.
+
+### [00:24:44–00:25:08] Donald Trump
+
+Uh, but I can exclusively reveal to you this evening that for the heaviest of the heavyweights, we will have sloppy Chris Christie, one of the sloppiest human beings you'll ever meet, fighting, uh, I would say, I could mention the Governor of Chicago, but I'm gonna mention instead Jerry Nadler. And they're fighting for a big piece of cheesecake, big fat piece of cheesecake.
+
+### [00:25:08–00:25:29] Donald Trump
+
+Who the hell wrote that line? But it is true. And then you have a Congresswoman, Alexandria Ocasio-Cortez, AOC plus three. That's her three friends, right? AOC plus three, and I watched her give that answer when she was over in Europe. It was not a good answer. If I ever gave that answer, I would be out of politics.
+
+### [00:25:29–00:25:51] Donald Trump
+
+Remember, you cannot have a 19-second wait time to answer a sic- -- really, a very, quite simple question. But we'll then have a rematch against an extreme, simple question on her foreign policy from Munich Security Conference. It was a big security conference, and this was her first time up in terms of that.
+
+### [00:25:51–00:26:08] Donald Trump
+
+And, uh, we had a sort of little preview. And then Anderson Cooper was going to fight Lawrence O'Donnell, not a, I'm not a fan of Lawrence O'Donnell. I like Anderson, actually, because he's covered me well for many years. Then he went bad as soon as I went for politics. But, but for years, he l- -- loved to interview.
+
+### [00:26:08–00:26:32] Donald Trump
+
+I did so many interviews with him and he was great. But, you know, he's got a little different persuasion than me in many ways, actually. And Lawrence O'Donnell, never liked him, never though he had any talent, but he's still making a living, so I can't knock it. But we had a, uh, contest for who had the lowest ratings and the lowest IQ on television.
+
+### [00:26:32–00:26:52] Donald Trump
+
+And that was actually Don Lemon, I think. You know, when I said that he's the dumbest man on television, I said, "You know, when you say some things, you never make a comeback." It's not like, "Oh gee, hey, Don, let's have dinner some night." But I know what I'm saying. And then you have Bette Midler and Jane Fonda actually held a concert to protest the first UFC fight.
+
+### [00:26:52–00:27:14] Donald Trump
+
+They didn't wanna see the fight and very few people want. They had a, they held a, an event. Like three people showed up. And given the choice between seeing some of the really beat up faces of the UFC, almost everyone chose the people in the UFC. It was between the two of them of the UFC. And what about Bruce Springsteen?
+
+### [00:27:14–00:27:36] Donald Trump
+
+What the hell happened to that guy? He looks like hell. I don't care what anyone says. I'm not supposed to say. I'm sure he doesn't like the way I look, but I don't look so bad. But at a recent concert, Bruce, all he did was talk politics. He ought to run for office. That'd be interesting. But all he talked about, he made four political speeches in his three-hour show.
+
+### [00:27:36–00:28:03] Donald Trump
+
+The tour has been renamed Bored in the USA. And his new song was so bad that Chris Christie, who's like a fan, you know, he goes out and tells everybody how he hates Chris Christie, "Keep that guy out of my --" and I see Chris Christie there again, high-fiving Bruce Springsteen in the aisle. And Bruce Springsteen saw him and didn't even lift his hand up. And I just wanted, because I used to be friendly with Chris, Chris, when somebody doesn't like you, write them off.
+
+### [00:28:03–00:28:23] Donald Trump
+
+Forget it. You got billions of people in the world. You don't have to make a jerk out of yourself. But, usually, a comedian hosts this dinner and I think we sort of changed it. So now we're gonna have somebody who I think is really spectacular. But I've watched comedians get up for the dinner because I have been here actually quite a few times, people don't realize.
+
+### [00:28:23–00:28:44] Donald Trump
+
+And there's one time in particular when Barack Hussein Obama hosted it. Do you know who that is? And he hit me hard. But actually he hit me with respect. I was sitting with Melania at a table and you had Brooklyn Decker, supermodel, at a table right next to her. And she, I, I really always will like her.
+
+### [00:28:44–00:29:08] Donald Trump
+
+She's married to a great tennis player, Andy. And she was at the table, not at my table. And I have watched this clip thousands of times. They keep playing it because they think that was evening I decided to run for President. It was not. In fact, I loved the evening. I looked at my wife, I said, "Can you believe it? All these people, that's all they're doing is talking about me. I love this dinner." [Laughter] It's true.
+
+### [00:29:08–00:29:26] Donald Trump
+
+And Obama was nice. He, you know, it's amazing how things work out. He actually showed a picture of the White House with a big Trump on top, like I put a sign. And you know, I'm sort of doing that when you think about it, right? I mean, think, he wasn't really wrong. But no, he was respectful. He was good.
+
+### [00:29:26–00:29:47] Donald Trump
+
+And, and it had, but it had nothing to do, it had nothing to do, I just decided that I wanted to make America great again. This had nothing to do with that dinner. I've gotten so many, yeah. I've gotten so many calls and for years they've been saying, "Was that the moment you decided to run?" Really?
+
+### [00:29:47–00:30:05] Donald Trump
+
+No. Uh, I left that night and the press was there, a lot of the same people that I see. They said, "Did you have a good time?" "Unbelievable." And some thought I didn't have, but I did have. And, uh, I really- I always remember though Brooklyn, she was so angry. She was much angrier than me. She was angry.
+
+### [00:30:05–00:30:28] Donald Trump
+
+She thought they were mocking me. And they really weren't. It was just one of those things. And I had a great time. But I left and I thought of, thought, I was there three or four times before that, but I sort of though, wow, that dinner is really something special. And then I ran. I got elected. I thought the press treated me very, very unfairly.
+
+### [00:30:28–00:30:45] Donald Trump
+
+And I don't know. I think I made the right decision because you hate to go where maybe you're not wanted, but they did want me. They wanted me for ratings and they wanted me for other reasons, but not for love. And I said, "You know, I'm not gonna go." First time that ever happened, I think. Was that the first time?
+
+### [00:30:45–00:31:09] Donald Trump
+
+Just about. Presidents always came. And I didn't go for four years because I got treated terribly by the press. And in, you know, in my opinion, unfairly. Uh, I know unfairly because I know the facts, but I got treated unfairly. I didn't go. And this year, I was called by your president and your chairman and all of the people and they said, "We'd like to do it." And I said, "You know what?
+
+### [00:31:09–00:31:25] Donald Trump
+
+With time, time goes by, time passes, and you sort of look at life a little bit differently." I said, "Let's do it." And I didn't know it was gonna turn out the way it did. It turned out to be the biggest event in the history of your day. That was that, by far the biggest, right? For all the wrong reasons.
+
+### [00:31:25–00:31:49] Donald Trump
+
+But as I said before, a lot was learned from that evening. So much having to do with so many different things, including security. But it's an honor to do it. This is my first. I mean, I've been to it numerous times, but as president, I haven't been here and I'm glad. And I said, they said, "Would you do it next year?" I said, "I will be back next year." Now, if you get really, really nasty, maybe not.
+
+### [00:31:49–00:32:12] Donald Trump
+
+I don't know. But we're gonna be back next year. And, uh, or Jackie will treat me very badly. But this year, the association decided not to have a comedian, so they considered using Jimmy Kimmel. [Laughter] Jimmy Fallon. These guys, they, they're terrible. They're terrible. Stephen Colbert, these are people without talent.
+
+### [00:32:12–00:32:29] Donald Trump
+
+They get a lot, they have talent. You know who has talent? Their agent getting them them out, the money they get. They have no talent. But they are not comedians. They're not funny people. They're angry people. They're sick people. But the association, really, uh, put on a big show and they have somebody very special.
+
+### [00:32:29–00:32:47] Donald Trump
+
+I look forward to seeing them. And so they thought about going with a professional clown for entertainment, but Adam Shifty Schiff was not available. You know, he's known. I called him, I, I hate some people, you know? I shouldn't say this. I'm president. I'm not supposed to hate. I'm supposed to love everybody.
+
+### [00:32:47–00:33:08] Donald Trump
+
+But he is a terrible person. He's a liar. And, uh, I called him watermelon head because he has the largest head I've ever seen with the smallest neck, pencil neck. How does that big, fat, ugly head stand on a, on a little pencil, pencil, pencil neck? And then I'm told that even Rosie O'Donnell reached out from Ireland.
+
+### [00:33:08–00:33:29] Donald Trump
+
+She really wanted to be here in order to honor me. She loves me very much, and she was desperate to come back to the United States and pay her respect to Donald J. Trump. But that didn't work out, unfortunately, because, uh, nobody wanted her to come back. She actually, but she's a, one of the greatest sufferers of Trump derangement syndrome.
+
+### [00:33:29–00:33:54] Donald Trump
+
+She's a sick young woman. Sick older woman, I guess now I have to say. So instead, we're honored to have, for entertainment, the very talented mentalist, Oz Pearlman. Oz Pearlman. [Applause] And everything, everybody, they said, "Are you gonna stay?" I said, "Yeah, I'll stay." I mean, I think I'll say, "What the hell else am I gonna do? I've got Iran.
+
+### [00:33:54–00:34:22] Donald Trump
+
+I've got this. I've got that." Which is all going extremely well. Don't believe the fake news. You know, it's the only thing I've ever, we were talking before, I said, "So we've hit Iran very hard. There are, navy is gone. Air F, air Force is gone. 250 jets no longer. 159 boats. Good boats." In fact, I said, "Why the hell didn't we keep 'em? We could've used them." But 159, but all at the bottom of the sea.
+
+### [00:34:22–00:34:39] Donald Trump
+
+They have no radar. They have very few drones left despite what you see. And every once in a while, they're gonna set some things up, but they don't have much left. And by the way, they are talking to us right now. They'd love to make a deal. I don't think they're ready to. I don't think it's time yet, but I'm willing to listen.
+
+### [00:34:39–00:35:05] Donald Trump
+
+But they cannot have a nuclear weapon. We don't wanna see Washington, D.C. Or any of our cities or Israel or frankly, the Middle East destroyed with a nuclear weapon because I know the power of nuclear weapons. I see it. I get to see it. We're not gonna let that happen. So this is all about we will not let them have a nuclear weapon.
+
+### [00:35:05–00:35:24] Donald Trump
+
+And they would use it. They would use it if they had it. But Oz, I do have one question about what happened that time, because he was there. How the hell did you not see that coming? He sees everything. He sees everything. He's telling me about, uh, your grandmother and your this. Why the hell didn't you, we gotta ask him that question when he gets up here.
+
+### [00:35:24–00:35:44] Donald Trump
+
+Why didn't he see that coming? But of course, this evening, it's really all about the fake news media and your handling of prizes and writing and producing and performing made up stories like the Academy Awards. You know, Academy Awards used to be the, the epitome of ratings outside of the Super Bowl. It got the second most ratings.
+
+### [00:35:44–00:36:03] Donald Trump
+
+Now it's down in the dumps. Nobody wants to watch it anymore because they took on Trump. They hit me all night long and they hit me. Uh, the winner is so-and-so. I wanna talk about Donald Trump. I hate this man. Nobody wants to hear this stuff. Right, Peter? Nobody wants to, you ever see the ratings? They used to have 48 million people.
+
+### [00:36:03–00:36:28] Donald Trump
+
+Now they have two people watching. But they'll learn their lesson. But I wanna personally congratulate CNN's Kaitlan Collins on receiving her award. Was all about me. It's a fake, she shouldn't get the award. It was a fake, but I didn't mind. I said, "Kaitlan, congratulations." But it was fake. There's no question about it. But she's a young, attractive woman.
+
+### [00:36:28–00:36:55] Donald Trump
+
+She never smiles. I said, "Kaitlan, do you ever smile? Smile. You have a nice position. You're at CNN Fake News. You should be a happy person. So smile, Kaitlan, just smile." But, uh, we attack and I though Kaitlan had really made it big with a major new sponsorship, but then I informed her that it wasn't her on the Bud Light can, it was Dylan Mulvaney.
+
+### [00:36:55–00:37:18] Donald Trump
+
+And Dylan Mulvaney cost Bud Light $35 billion in market cap. That was the worst commercial ever made, by the way, for those few people that wanna hear that. Most people don't care, but I would. I wouldn't wanna hire Dylan anytime soon. Think of it. They hired Dylan Mulvaney and their market cap has gone down by $35 billion.
+
+### [00:37:18–00:37:39] Donald Trump
+
+Who wrote that commercial? And then you have writer Josh Dorsey. He also received, he's been killing me for years. No, he's been, and yet, tonight he shakes my hand, he hugs me, everything nice. He kills me. Josh is amazing. He writes more stories than any human being. There's nobody that writes more than Josh.
+
+### [00:37:39–00:37:58] Donald Trump
+
+He'll write four stories about me a day, all different subjects. [Laughter] I mean, I had the other day three stories and one on the, but he was upset about this. One was on page seven, three were on page one. They were all written by Josh. But he's hit the big time and he's a workhorse. And yet, he's almost unhireable.
+
+### [00:37:58–00:38:19] Donald Trump
+
+You know, you hired, he's just one of these guys. Wall Street Journal's lucky to have him. But you really, it's like, it's unbelievable. He's almost unhireable. CNN is also here, and I'm very disappointed they didn't bring Fake Tapper because he's had a rough couple of years, Fake has. You know, he calls me up every once in a while.
+
+### [00:38:19–00:38:37] Donald Trump
+
+If I pick it up, you know, I pick up my phone. I used to go to this young lady. I'd say, "Any calls from the press?" "No, sir." I said, "Oh, now I'm the President of the United States, right?" I'd say to Steven Cheung, is Steven here someplace? Where's Steven? He's one of the toughest human beings I've ever met.
+
+### [00:38:37–00:38:57] Donald Trump
+
+Don't ever wrestle, Steven, you'll be in big trouble. But I'd say, "Steven, let me ask you, did the press call?" "No, sir." Oh. You know, when I was a developer, I'd get a call every half an hour for I, for whatever reason, I always got disproportionate press. So I said, "Steven, nobody called?" "No, sir." Uh, two hours later I say, "Hi, Steve.
+
+### [00:38:57–00:39:19] Donald Trump
+
+How we doing? Everything good? Anybody call?" "No, sir. No press calls." I said, "I'm president." Nope, they never call. So this went on for about a week. I'd say, "Karoline, did the press call?" "No, sir, no calls." I said, "Nothing. It's over a week. I haven't received a call." So I said, "You know what I'll do? I'm gonna give the press my phone number." That was the stupidest thing I ever did.
+
+### [00:39:19–00:39:47] Donald Trump
+
+I'm getting a call every 3.7 minutes. Steven, I don't know where the hell you've been. But the press calls, I'm getting calls, ring, ring. I was with somebody today. They said, "I've never heard a phone ring as much as this." Now, I look at the thing and usually just delete, delete, delete. Every once in a while, it'll be one of the people in this room that I like, and I'll pick it up. Like this one right here calls me on occasion, right?
+
+### [00:39:47–00:40:15] Donald Trump
+
+She'll call me, she says, "Hello, sir. How are you?" Uh, we wanna talk about some horrible subject, like a horrible, depressing subject. I say, "Jacqui, I don't wanna talk about, congratulations, however, on your new marriage." [Laughter] "But I don't wanna talk about it." But it's true. And people call me now and, and so for weeks I go, "No calls." And I learned then that, uh, both of them, they feel that I'm doing a great job and they feel I'm above it all.
+
+### [00:40:15–00:40:34] Donald Trump
+
+And that no person, hundreds of people call, no person is good enough to talk to Trump. And so we don't even bother telling you. That's not the way it works, Karoline. You have to let me know because sometimes I do want. I do like to speak to the press, but now I have the best system I've ever had. It rings.
+
+### [00:40:34–00:40:59] Donald Trump
+
+And just so you understand, you're much better at putting your name because if there's no name, I just, uh, I just can't do that. You know, I pick up every once in a while, "Hello, I'm from Reno, Nevada. We're a startup paper. We're calling, it's the Reno Express." I said, "Do you believe I'm, I'm the President of the United States?" "Mr. President, could I have your views on Iran?" And I just hang up. No, I get the craziest calls.
+
+### [00:40:59–00:41:15] Donald Trump
+
+I mean, some of them, my wife said, "I can't believe you do this. This is a hell of a way to live." But sometimes they get calls from very important, sometimes I can straighten out stories that are gonna be fake, and I can make them from a fake story to a good story. I always find that when you don't speak to the press, you always get a bad story.
+
+### [00:41:15–00:41:34] Donald Trump
+
+When you do speak to the press, you have a shot at getting a good story. Oh, look. No, bec- -- uh, look, if I were a reporter, and let's say I'm a big reporter, I work for the failing New York Times or I work for one, well, I don't know, do they ever come to these dinners? Didn't they cancel out a long time ago?
+
+### [00:41:34–00:41:52] Donald Trump
+
+Big mistake. They sh- -- they should be here. But I get a call. I've always found that, you know, speaking to them, you just do better. You do better. When you can, when you have the time, you speak to the reporter, you treat the reporter with respect. Sometimes now there are reporters where it doesn't matter.
+
+### [00:41:52–00:42:17] Donald Trump
+
+You can be so nice to them, it doesn't matter, you get treated unfairly. But you have a lot of great reporters where when you speak to them, you can get your point across. And that's a, that's a good thing. But some people say that Jake Tapper is a great investigative reporter in DC, and that's why after moderating our debate, it only took him one year to break the story that Joe Biden might possibly have suffered from cognitive decline.
+
+### [00:42:17–00:42:36] Donald Trump
+
+It took him one year. He wrote a book about how great he was mentally, not, not too good. And I don't like Biden because Biden was very unfair to a lot of people. But Jill Biden insists that Joe would've beat me in 2024, even though he was way down. She said he was way behind in the polls because he was seriously ahead.
+
+### [00:42:36–00:42:58] Donald Trump
+
+She felt he was gonna win because he was seriously ahead on deceased voters. He was leading on the deceased crowd, and there were a lot of them. You're finding out there's a lot of them. Look at the numbers that just came out yesterday. And it's traditional that at least one or two potential presidential hopefuls attend the Correspondence Dinner, but many of them seem to have really chickened out.
+
+### [00:42:58–00:43:20] Donald Trump
+
+I was disappointed that Gavin New-scum didn't show up. He didn't show up. He should be here. But I heard that he recently said that we will lose our country if we don't fight fire with fire. And to be fair, there's only one thing we know about Gavin, and that's that he definitely doesn't wanna fight fire with water.
+
+### [00:43:20–00:43:44] Donald Trump
+
+He's got a lot of water he never uses. What a disaster. That should have never happened. But Gavin New-scum recently did a career threatening, one of the worst interviews I've ever seen where he said that he can't read a speech. He's incapable of reading a speech. He's a low IQ person. He's smarter, however, than all of the people in the room.
+
+### [00:43:44–00:44:11] Donald Trump
+
+And then he gets sued for being a racist, okay, when he said that. But he basically said he has various mental incapacities. He has difficulty in various other ailments mentally. And I'm looking at him saying, "This is the worst interview." I'm watching this interview. I said, "This is the worst interview I've ever seen given by a professional politician." I've been watching politicians for a long time, mostly on the previous side, because I haven't been doing this too long.
+
+### [00:44:11–00:44:39] Donald Trump
+
+How am I doing? Not, not bad for the number of, for the number of minutes spent, not bad. But with Gavin, so he said that, all these things, and I said, "Anybody running against him, all they have to do is take that one interview and you can't lose." I actually put out a statement that Gavin Newsom has come out and said he will not be running for President because nobody can say what he said about himself and survive.
+
+### [00:44:39–00:45:14] Donald Trump
+
+Uh, Newsom was in big trouble when he openly admitted that Kamala was smarter than him. She said, "Kamala is smarter." If Kamala is smarter than someone, you don't want that person to be President of the United States of America. Between California's policies of enabling wildfires, paying drug addicts to be homeless, giving free sex changes to illegals, and telling rich people they're going to take away, all of your money is gonna be taken away, people are fleeing and they're fleeing in droves.
+
+### [00:45:14–00:45:43] Donald Trump
+
+We can't have that in this country. It's becoming such a horrible and dangerous location that Ilhan Omar, one of my favorites, and her brother are thinking about moving together. Very much in love. The video has surfaced recently of Ilhan giving a speech referring to World War Two as World War 11. And, uh, they issue about that, she still thought, she thought she got it right.
+
+### [00:45:43–00:46:04] Donald Trump
+
+But I'm not surprised because she's a low IQ person. And she's also a very dishonest person. And she ought to get the hell out of our country. She shouldn't be here. She shouldn't be in our country. She also calls her brother-husband, "Number one." Omar is reportedly being investigated for fraud. She revised her net worth.
+
+### [00:46:04–00:46:31] Donald Trump
+
+I was shocked to see that she was worth much more than $30 million. And then when the press got on her, she revised it slightly downward to less than 18,000. So she went from much more than 30 million to 18,000. And I know Democrats, and the word Democrat is something that's come into fashion. I changed the E with a U, and most people don't know that dumb has a B, so we don't have to worry about that.
+
+### [00:46:31–00:46:49] Donald Trump
+
+It's very quiet. I though it was quite good, but, uh, I haven't gotten much credit for that. Fake news, good. Pocahontas, good. I won't say Lying Ted because he's on my side. I don't talk about past conquests, but we have a lot of them I won't talk about. That got a whole table full of Republicans there.
+
+### [00:46:49–00:47:11] Donald Trump
+
+They're saying, "No, don't mention my fricking name, will you, please?" But we've had a lot of good names. But the Dumocrats, uh, are there to destroy wealth. And, honestly, they've gone absolutely crazy. Gavin New-scum's not only a man who really wants to run for President. He's doing a bad job running his state.
+
+### [00:47:11–00:47:33] Donald Trump
+
+You can't have somebody like a J.B. Pritzker, who I understand is not present, sadly, but, uh, you know, some people say, "Never use the fat word." And I don't. I would never call anybody fat. I have my own problems, you know? It's not like I'm perfect. Sir, in the back, don't call him a fat pig, okay? That's, I'm sticking up for him.
+
+### [00:47:33–00:47:54] Donald Trump
+
+Don't call him, you. You can't do that, sir. You can't call J.B. Pritzker a fat pig, please. All right? Thank you very much. I appreciate it. Everyone's trying to figure out, who is that guy? Does he exist? But the nice part is, when you do that, the press can't get you because I'm defending a man who, obviously, has a problem.
+
+### [00:47:54–00:48:13] Donald Trump
+
+Actually, he's lost a lot of weight. I saw him recently. He lost quite a bit of weight. I don't know what the hell. He's got no chance, believe me, anything he does, a family threw him out of the business. A number of other potential Democrat contenders sadly refused to show up tonight. We invited Elizabeth Pocahontas Warren.
+
+### [00:48:13–00:48:44] Donald Trump
+
+She's referred to Pocahontas because, in fact, I had to apologize. People came up and they said, "Uh, "We want you to apologize to Elizabeth Warren for calling her Pocahontas." And I ended up apologizing to the real Pocahontas. But Elizabeth Warren was, uh, supposedly of Indian heritage. And then she took the test and she only had 1,024th Native American.
+
+### [00:48:44–00:49:04] Donald Trump
+
+And I said, "You know what? I have, I think I'm more of an Indian than she is." So this is what we have to deal with. But Senator Warren did not accept our invitation to debate. I wanted to debate her on various and sundry things, and she decided not to do it. And I decided to bury the hatchet. It doesn't matter.
+
+### [00:49:04–00:49:23] Donald Trump
+
+And she, well, I'm not gonna say this next one. Do you wanna hear this one? How, how bad? She wasn't high up on her totem pole. Who the hell wrote that? Now, she's bad news. I wanted to make sure that Jack Smith, deranged Jack Smith, remember, he went after me for about two years. How did he do? Not too good.
+
+### [00:49:23–00:49:45] Donald Trump
+
+I'm in the White House and he's not doing as well. I was gonna say he's in a different kind of a house, but he's a deranged human being. He's a bad prosecutor. You know, prosecutors are very important. A, a great prosecutor, a fair prosecutor, but that's a great prosecutors, the ones that are fair. They're very important to a country, but this guy was a deranged lunatic.
+
+### [00:49:45–00:50:11] Donald Trump
+
+Uh, saw his invitation tonight. He was invited because, you know, but I put it in a private text to Chuck Grassley. And, uh, Chuck saw him and he did a certain thing. And then you, one, one man that we had who should be here, he turned Palestinian. This was a man who was 100% for Israel. 100%. Chuck Schumer, crying Chuck.
+
+### [00:50:11–00:50:35] Donald Trump
+
+Remember he cried at the airport over illegal immigrants. They were the fakest tears. There were people throwing water in his face. But now he's a proud, very proud Palestinian. In fact, I'm going to send him a beautiful Palestinian outfit tomorrow so he can greet Bibi Netanyahu when he comes to town next week, along with the mayor who I'm sure would love to meet Bibi.
+
+### [00:50:35–00:50:55] Donald Trump
+
+Uh, they're not treating Bibi too well, but Chuck wanted to join us tonight, but he didn't wanna be violating many parts of the Palestinian rules, regulations, and certainly he didn't want to violate Sharia law, his new, his new founding. And all joking aside, I do think we need term limits in Congress.
+
+### [00:50:55–00:51:18] Donald Trump
+
+I think term limits are very important because I see what's happening. I see what's happening. The other day, a senator I knew got a text, a great guy, from his wife. And she said, "When you get home, I wanna have you immediately come up the stairs and make love to me." And he said, "I can't do both." You know what the -- [Laughs] You know?
+
+### [00:51:18–00:51:36] Donald Trump
+
+In other words, [Laughs] can't go up the stairs and make love. He, does anybody get that one? I though that was actually pretty good. That was actually the only thing I though was good in this whole fricking stupid speech that they wrote. [Laughter] That was the only good one. And that went down with not exactly great laughter.
+
+### [00:51:36–00:51:57] Donald Trump
+
+I think, you know, in other words, you can't go up the stairs and make love too, you know. So we're looking for term limits. Does anybody understand this stuff? [Laughter] But I really do wonder whether the Democrats are trying to lose the midterms. In Maine, they nominated a guy with a Nazi tattoo. But don't worry, Democrats.
+
+### [00:51:57–00:52:16] Donald Trump
+
+Where it is that Platner's replacement, he throws bottles at women. This guy throws bottles. This guy's another lunatic, by the way. Although I think Platner might have done surprisingly well, because we're in the age of Trump. [Laughs] Let's call it what you want. People can do well today. Platner, I don't know.
+
+### [00:52:16–00:52:42] Donald Trump
+
+But you know, people don't have the guts to stick it out, but it looked like he was guilty of a lot of stuff. He certainly didn't defend himself very well. In Texas, the Democrats are running a candidate named James Talafrico, who hates guns, hates oil, hates sex, hates women, and who said he is, quote, "a Christian who hates Christianity." Other than that, his, I think his platform is quite good.
+
+### [00:52:42–00:53:01] Donald Trump
+
+And that means that he's not gonna do very well against Ken Paxton, who've hopefully in Texas is gonna win. But Talafrico, he's Alf- -- You know what it looks like to me? Alfred E. Neuman. Do you remember Alfred E. Neuman, MAD Magazine? I said, "That guy is Alfred E. Neuman. Can't imagine he'd win." Well, I have all of the press here in one place.
+
+### [00:53:01–00:53:24] Donald Trump
+
+I have to say that we're having an amazing load of accomplishments that the media never talks about. For example, under my administration, a once-feared and powerful regime that relentlessly attacked America has finally been toppled. Their former leaders have been removed and they're now being run by a gay dictator facing internal divisions.
+
+### [00:53:24–00:53:51] Donald Trump
+
+But I, for one, wish Bari Weiss all the best at CBS News. She's a wonderful woman. Most of the press lives here in Washington, D.C., and you should be thankful for me for what my administration and I have done to make our nation's capital, which was one of the most dangerous and unsafe cities anywhere in the world, one of the safest cities in the United States.
+
+### [00:53:51–00:54:19] Donald Trump
+
+Crime is down 88%, and our Capitol is shining again with 62 monument, statues, water fountains looking more beautiful. The graffiti is all gone. The tents are all moved out of the parks. The fences are all done. Our capitol looks like it's really in good shape. And people coming here, people in the White House, they work in the White House, they all say, young women, young guys walk up, they say, "Thank you, sir.
+
+### [00:54:19–00:54:40] Donald Trump
+
+Two years ago, we lived in a dangerous city. We lived in a city where 150 people were killed a year. And now we are, we have a, almost a crime-free city." Our National Guard has done an incredible job, and we've removed over 5,000 career criminals. You know, we removed, there's one stat. I think it's a great stat.
+
+### [00:54:40–00:55:07] Donald Trump
+
+It's, uh, it's to me, it's fantastic. 2% of the people create 91% of the crime. That's something you can fix, and we fix it. We moved out over 5,000 career criminals out of Washington, D.C. and we have the greatest capital in the world. Again, it's beautiful. It's thriving. The restaurants are thriving. Uh, you couldn't get into a restaurant 'cause they didn't have, all the restaurants were closing.
+
+### [00:55:07–00:55:28] Donald Trump
+
+And if you even got in, you felt unsafe. People were getting into Ubers, and they were being attacked when they were in a, an Uber. It's not happening anymore. We have tough, smart people, and they have done a fantastic job. Washington, D.C. is safe again. You can't get into a restaurant. The restaurants are opening up. They're opening up all over the city.
+
+### [00:55:28–00:55:50] Donald Trump
+
+They can't get, it's the exact opposite. They can't get space. But mostly I've given up on you and the media so that now I just gave up on you, and I'm number one on TikTok. Did you see that I'm number one, Stephen? Is that true? I'm number one on TikTok. So how could they be so bad? 525. Think of this. 425 billion views.
+
+### [00:55:50–00:56:12] Donald Trump
+
+Can you believe that, Peter? I mean, let's go, Peter. I gave up on you, people. I gave up on traditional press. And it obviously worked 'cause we did win in a landslide. I mean, somebody's gotta be saying something good about me. But TikTok, good old TikTok. And I was able to get it sold to a group of very wealthy people, mostly Americans, I were told.
+
+### [00:56:12–00:56:29] Donald Trump
+
+President Xi, who's a man that I get along with very well, he was a hard no for the sale of TikTok. They all said he's a hard no. I said, "Well, let's call, put your group together." They put it together, billions, hundreds of billions of dollars. I called up President Xi. "As their president, look, these are American people.
+
+### [00:56:29–00:56:52] Donald Trump
+
+They're wonderful people. In fact, one of them happens to own CBS, actually." I mentioned his name. I said, "These are wonderful people. And it'll be a good thing." "Does it mean anything, President? It's nothing. It's nothing. They love your country. We'd love to see you approve the deal." And he goes, "All right." That was it. It was done.
+
+### [00:56:52–00:57:16] Donald Trump
+
+And we sold TikTok. And he's a friend of mine. And he's not contributing to problems like other people contribute to problems. So we get along, but we made the deal. But number one on TikTok is Trump, and that's probably why we won. But for all of the trouble that you give me, you give me a lot of trouble, a lot of heartache, I hope all of you know that I believe in the free press more than anyone in this room does.
+
+### [00:57:16–00:57:34] Donald Trump
+
+Meh, maybe not quite. [Laughter] But that's why I'm proud to be the most open and transparent president in history. They call me that. You know who calls me that, Karoline. That's about it. So for, would anybody else call me that? I think Peter would call me that. Am I the most transparent? Biden never used to answer your questions.
+
+### [00:57:34–00:57:56] Donald Trump
+
+He'd ask Biden 20 questions. He'd never get an answer. Who's the most transparent president, Peter? [Audience member responds, inaudibly] Who? Who? [Laughs] Oh, look at him, Mike. It's the first time he's, he's tongue-tied. I cannot believe it. [Laughs] Oh, he's not gonna be happy tomorrow. But you people have no idea how lucky you are when I'm gone.
+
+### [00:57:56–00:58:18] Donald Trump
+
+You're all gonna be broke. Your business model is gonna be finished. No, it's true. When I'm not around, you're gonna be broke. There's not gonna be anybody to report on. Nobody gives a damn about anybody else. The New York Times the other day had five stories about me. You know, before I got into politics, in my whole life, I had seven front-page stories.
+
+### [00:58:18–00:58:38] Donald Trump
+
+This is years of success. I think six were good, [Laughs] one was bad. I had five stories, seven, five good. Yeah, I had a total of seven stories on the front page of the New York Times. It's not bad. Now I average about three or four a day. All different topics. All bad. Everything bad. But here we are.
+
+### [00:58:38–00:59:07] Donald Trump
+
+I mean, here we are. In fact, when I'm finished, I'm going right back to the Oval Office, so I have to be doing okay. But we are all doing good together. That's why tonight to show just how much I care about the press and, uh, I wanna save your ratings, I'm pleased to announce my intention to, and this is a somewhat of a scoop, my intention to run for a fourth term as President of the United States.
+
+### [00:59:07–00:59:32] Donald Trump
+
+I will be doing that. I will be having an official, in fact, I think I have, yeah. I won, I won three times. Now I'm gonna do it again. Thank you. I'm gonna do it again. It should be easy. I'm getting very good at running for president. Now, I won three times. Did very well the second time, by the way.
+
+### [00:59:32–00:59:48] Donald Trump
+
+It's a rigged election, but we don't have to talk about it. You know, it's interesting, when you come back and you do a good job like we did, and you don't care about it so much, but we do have to tighten up these elections because they really are in seriously bad shape. But on a serious note, I wanna say once again, I just wanna thank you all.
+
+### [00:59:48–01:00:05] Donald Trump
+
+It's been an interesting evening. I didn't really know what to expect. And, uh, it's far worse than I actually thought -- but if you wanna know that too. But I didn't know exactly what to expect. And, uh, I've made a lot of friends tonight. I've made a lot of good friends tonight, probably made some enemies also.
+
+### [01:00:05–01:00:25] Donald Trump
+
+But, uh, it's been an experience that is, uh, something that we've all shared together because we're all in this room tonight because most of us went through a period of, of, uh, trauma from just a short while ago. And, you know, some people said they wanted to come, but they were afraid to come, and you people weren't afraid to come.
+
+### [01:00:25–01:00:44] Donald Trump
+
+There were a lot of people that said, Jackie, they don't really, you know, they didn't have the courage to come. And we don't want that to happen. And I'm sure it's not going to happen. We're gonna do things. Again, I want to thank our law enforcement. Keeps us safe. All law enforcement. It's, uh, we have the greatest people on Earth.
+
+### [01:00:44–01:01:04] Donald Trump
+
+You know, we had, uh, two years ago, we had the worst record of recruitment in, as an example, the military, Army, Navy, Air Force, Marines, the Coast Guard. Space Force, I love Space Force. Look at all that shooting we're able to do from space. That was my baby. But all of the branches of, you couldn't get people to join.
+
+### [01:01:04–01:01:29] Donald Trump
+
+This was two years ago. And last week, you probably saw, some of you wrote the story, we have the single best recruiting of people into our armed forces than we have ever had in the history of our country. We have, they are brimming over with great people. And that's a big statement. And that also goes for the police departments where they were having a tremendous problem recruiting.
+
+### [01:01:29–01:01:50] Donald Trump
+
+You can't get into a police department now. If you're looking for a job, it's very tough. And that also includes our great fire departments because people forget about them. They're unbelievable, the job they do. So I just wanna thank you. Look, we're on the, uh, cusp of something big, and I call it, and this, I'm being very serious when I say this, that this is the golden age of America.
+
+### [01:01:50–01:02:16] Donald Trump
+
+We have $19.2 trillion being spent in our country. A record was China. I think it was 10 years ago. Three trillion. Trillion is a lot. Four years, they went less than one trillion under Biden. And we have 19 tr- -- 2 trillion. And this is a period of actually 13 months, not even current, because we're here a little bit longer than that.
+
+### [01:02:16–01:02:38] Donald Trump
+
+But that was as of reporting dates. $19.2 trillion is being spent. Factories are coming. Toyota just announced they're gonna be building the biggest car plant in the world. They're leaving Mexico. They're coming here. Tariffs did that. Tariffs did that. And maybe November 5th did that too, the election. But our country is doing things that nobody's ever seen before.
+
+### [01:02:38–01:03:01] Donald Trump
+
+And it is true. We were, and you've heard me say this, we were a, a dead country two years ago. Other leaders would see me, and they'd say it's a miracle. President Xi told me that a few weeks ago in China, and he's coming here on September, I think, 24th, coming in September, the end of September. Gonna be exciting.
+
+### [01:03:01–01:03:16] Donald Trump
+
+But he said the same thing. The King of Saudi Arabia said it. Everyone said almost the same words. We thought you were a dead country. We never though you had a chance. You were never gonna make it back. And in a period of year, a period of one year, you made it the hottest country anywhere in the world.
+
+### [01:03:16–01:03:33] Donald Trump
+
+We all did that together. It's not me. We all did it together. And we do. We have the hottest country anywhere in the world, and we're gonna keep it going. And I just wanna say, it is a room, I have tremendous respect for the people in this room. Sometimes I don't feel you treat me fair. Maybe you do. I don't know.
+
+### [01:03:33–01:03:49] Donald Trump
+
+I don't feel that, but sometimes you treat me very fairly. And I have a lot of respect for your profession. Your profession, it's amazing. And I just wanna thank you for having me. And it's been fun, and I've met a lot of great people. And, uh, you know, I used an expression and I've used it right from the beginning.
+
+### [01:03:49–01:04:03] Donald Trump
+
+I did this for one reason, to make America great again. And that's what's happening right before your very eyes. We have made America great again, and it's gonna get a lot greater. So thank you all very much. It's an honor to be with you. Thank you. Thank you very much. Thank you.

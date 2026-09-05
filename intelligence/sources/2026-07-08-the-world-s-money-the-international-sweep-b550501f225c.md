@@ -1,0 +1,55 @@
+> This research edition omits the original’s separate astrological passages and local app controls. The full original remains in the private Observatory. Government, monetary and institutional interpretations retain their original status and dates; this is not a fresh factual audit.
+
+> Source date: 2026-07-08
+
+# The World's Money — the International Sweep
+
+*Sister note to [Money From Below](../sources/2026-07-08-money-from-below-the-state-sweep-b34b64df7309.html) and the Money Machine deep dive. Above, below — and now abroad. The trilogy's third panel. Folded into the whole in [2026-07-08 - The Whole World's Money — the World Ring Folded In](../sources/2026-07-08-the-whole-world-s-money-the-world-ring-folded-in-72614fd1fcac.html).*
+
+The question this sweep asked: if the two-poles reading is right — the belt building metal, the feds building the token — does the rest of the world show the same fight on the same clock? It does. Every economy swept either picked a pole or built both and let them fight in public. 162 dated events filed under **The world's money** (Crypto), tagged with the State Machine's own taxonomy raised to world scale: **TOKEN** (dollar/private stablecoin rails), **STATE-LEDGER** (CBDC), **METAL** (gold), **WALL** (bans, licenses, sanctions), **PLUMBING** (clearing, messaging, settlement).
+
+## The six findings
+
+**1. The state ledger is losing everywhere it isn't forced.** In eighteen months nearly every retail CBDC on Earth retreated: the eNaira pulled offline and demoted to "infrastructure" (Africa's first CBDC, functionally dead); the digital rand ruled out in a position paper; the digital pound "on ice"; Korea's Han River paused in June 2025 *because the banks walked out to build stablecoins* — it survived only by becoming the government's own disbursement clerk; Brazil's DREX dropped blockchain entirely; the BoJ still "no plans." The two that advance are the two most anti-dollar-token blocs, and both advance by decree: the **digital ruble** (mandatory for big banks Sep 1, 2026) and the **digital euro** (Parliament committee cleared Jun 23, 2026; issuance ~2029, stated purpose: reduce US dominance in payments).
+
+**2. The dollar token is a weapon, and it fired.** Bessent stated the doctrine Jun 11, 2025: a $2 trillion dollar-stablecoin market is "reasonable" — a Treasury-demand machine exported by market force. In January 2026 **Tether froze $182M of Venezuela's money** — ~80% of PDVSA's oil revenue settles in USDT, so a private company under US law can now switch off a sovereign's oil income with a database write. The IMF says Nigeria has **dollarized on USDT** ($59B/yr inflows, 88.5% of stablecoin activity). Bolivia's state oil company pays for fuel in Tether because its central bank ran out of dollars. The unbanked world never waited for a CBDC; it picked the dollar token off the street.
+
+**3. The metal pole is the quiet consensus.** The same day Bessent named the number — Jun 11, 2025 — the ECB confirmed **gold passed the euro as the world's #2 reserve asset** (20% vs 16%; the dollar down to 46%). The PBoC's buying streak reached 20 straight months. Brazil added 43t in three months and doubled gold's reserve share. **Ghana built a state gold monopoly and the cedi became the world's best currency (+41%)** — the metal pole's cleanest win anywhere. France quietly moved *all* its gold out of New York; German lawmakers want the Bundesbank's 1,236t home; ~393t physically ran from the Bank of England's vault to Comex in the winter of 2025. The one reversal proves the rule: **Russia now sells its gold** — war finance eating the hoard, a 24-year low in sight.
+
+**4. The empire strikes at rival plumbing, not rival currencies.** One Trump sentence (100% tariff threat) killed the BRICS common currency — the Rio declaration doesn't contain the word "de-dollarization." But Brazil's **Pix** — a payment rail — drew a Section 301 investigation and a proposed **25% tariff on all Brazilian goods** (statutory deadline **Jul 15, 2026**). Argentina got the carrot: the **ESF** (the standing ESF watch line!) bought pesos outright, opened a $20B swap conditioned publicly on Milei's midterms, and was repaid at a profit by January. El Salvador's Bitcoin Law was gutted by IMF conditionality. Carrot, stick, leash.
+
+**5. Japan found the third way: absorption.** The June 2025 PSA amendment lets stablecoin issuers hold **50% of reserves in JGBs** — the token conscripted to fund the sovereign's debt, the GENIUS logic copied for the yen. Then the floodgates: JPYC (first yen stablecoin), the three megabanks' single joint coin, RLUSD's Type-4 approval, Japan Post's deposit token, and a 40-institution program to put the **$1.6T JGB repo market on-chain by end-2026** — the same Ledger-track move the DTC made, in Tokyo. Korea meanwhile is stuck in a knife-fight over *who holds the license* (BOK vs FSC; the bill died until after the June elections). Same fight as the US states — Metal vs Token vs Wall — fought inside every capital.
+
+**6. The institutions picked the state pole — and are losing.** BIS AER 2025: stablecoins fail the three tests of money. AER 2026 (Jun 23): **doubled down** — "innovation beyond stablecoins," EM stablecoin-dollarization named a sovereignty threat. Bailey took the FSB chair Jul 1, 2025 and made stablecoin-skepticism the agenda in week one — then his own Bank of England **capitulated Jun 22, 2026**, dropping the holding caps entirely. Basel is expediting a review of its own crypto wall, which took effect Jan 1, 2026 pre-breached (the US simply refused to implement). The US **boycotted the G20 in Johannesburg**; the next G20 is **Miami, Dec 2026, Trump chairing**. And SWIFT — the wall that cut Russia off in 2022 — is **tokenizing itself** (blockchain shared ledger, 40+ banks, real-value 2026) while retiring the MT messages after 48 years. Incumbents don't die; they absorb.
+
+## The clock
+
+- **The June 2026 cluster** — Japan's FIEA bill (6/11), the megabank coin MOU (6/10), the BoE climbdown (6/22), the EU Parliament digital-euro vote (6/23), BIS doubling down (6/23), RLUSD Japan (6/24), JPYSC (6/24), Bolivia killing its 15-year peg (6/26).
+- **The autumn calendar:** digital ruble mandatory Sep 1 · SWIFT shared-ledger real-value H2 · Qivalis first issuance H2 · Pontes pilot end-Q3 · Basel review verdict late 2026 · BRICS Pay pilot end-2026 · BoE final stablecoin Code end-2026 · Progmat's on-chain JGB repo end-2026 · G20 Miami December.
+
+## The regime anchors (pre-2025, in the synthesis, not filed as events)
+
+MiCA adopted May 2023 (stablecoin titles applying Jun 2024, full Dec 2024) · Japan's PSA stablecoin statute Jun 2022 (world's first) · the digital ruble law Jul 2023 and Russia's crypto-in-foreign-trade law Aug 2024 · the 2021 ten-agency China crypto ban · BIS leaving mBridge Oct 2024 (it's now effectively a China–Gulf RMB rail, ~95% e-CNY) · Project Agorá launched Apr 2024 · Basel SCO60 finalized Dec 2022 · the SWIFT cutoff of Mar 2022 — the wound the whole rewiring answers · El Salvador's Bitcoin Law 2021 · Pix Nov 2020 · Milei's Dec 2023 shock · Bolivia lifting its crypto ban Jun 2024 · eNaira Oct 2021 · PAPSS Jan 2022 · ZiG Apr 2024.
+
+## Watch calendar (calendar facts)
+
+**This month:** Jul 15 — USTR statutory deadline on Brazil/Pix; Jul 18 — GENIUS final-rules statutory deadline (verify what published); Korea's 24-hour FX trading begins; Japan's Upper House FIEA vote (weeks away).
+**Q3:** BoE stablecoin Code feedback closes Sep 22; digital ruble mandatory Sep 1 (Nabiullina: "everything is ready"); Pontes pilot end-Q3; MAS tokenized-bills pilot + stablecoin bill; WGC H1 gold demand (~late July).
+**Q4:** digital-euro trilogues (autumn); Qivalis first issuance; HKMA second license batch; Anchorpoint/HSBC HKD stablecoins live; BRICS Pay pilot; Basel review update; Vietnam's first exchange license + 6-month onshore migration clock; BNM ringgit-token clarity; G20 Miami (Dec); end-2026 Progmat JGB repo target.
+**2027:** regulated sterling stablecoins live; ECOWAS Eco July 1 (fifth deadline); EU/UK T+1 both Oct 11; UK crypto perimeter commences Oct 25; digital-euro pilot mid-year; first DIGIT issuance (est.); TX electronic gold currency May 1.
+**Standing:** PBoC gold streak (~7th monthly); Russia's gold sales pace; Tether's next Venezuela freeze; the CNB bitcoin test portfolio; El Salvador's disputed BTC buys vs IMF reviews; whether China's Feb 2026 Notice becomes the approval channel for a state-blessed offshore CNH stablecoin; the never-published State Council stablecoin roadmap; Transatlantic Taskforce 180-day report (due ~Mar 2026, not found — hunt it); Nigeria's naira-stablecoin task force report (overdue).
+
+## Honesty ledger
+
+- **Dates flagged unverified in their notes:** Ant/JD suspension (~Oct 19, 2025); Nigeria ISA signing (Mar 25 vs 29); CBN task force (announced at IMF meetings ~Oct 17); DREX blockchain exit (during Blockchain Rio, Aug 5–7); ECOWAS Eco announcement (~Aug 6); Bailey's first FSB letter (~Jul 14); RLUSD Japan (Jun 24 vs 25 — Ripple's own page wins).
+- **Contested claims filed with flags:** the "BRICS Unit" (a research institute's pilot, not a BRICS launch — filed because the hype is the signal); El Salvador's reserve growth (Bitcoin Office says buys, IMF says consolidation — both on the record).
+- **Known events NOT filed (no exact day):** France's gold repatriation completion (129t, reported Apr 2026 — hunt the report date); the eNaira's formal demotion (June 2026 Payments Vision — no day); ESMA's USDT delisting order (~Jan 17, 2025); the MiCA review consultation launch (June 2026); WGC annual/quarterly totals (release-window dates only); Basel SCO60 adoption dates in Japan/Korea (nothing dated found); Nexus Global Payments incorporation (March 2025); Pesalink-PAPSS (Feb 2026).
+- **Empty hunts worth recording:** no petroyuan pricing deal anywhere; no mBridge members added since 2024 (multilateral CBDC interoperability pronounced dead — it narrowed to a China–Gulf rail); no African state BTC reserve; no CFA exit executed; no SDR changes; no state-issued ruble stablecoin (A7A5 was private and got crushed); no EU bitcoin reserve (Lagarde killed it in a day); the gold "Basel III HQLA reclassification" story is a debunked rumor — filed nowhere, noted here because its spread is itself a metal-pole signal; Japan/Korea have NO metal pole at all — their hedge is tokenized sovereign debt, not gold. Chile and Peru: nothing found in-window.
+
+## What this changes
+
+The Thesis gains its widest ring: the re-founding fight over what money *is* — token, ledger, or metal — is not an American argument the world is watching; it is one argument the whole world is having at once. The US didn't export a policy; it exported the fight. And the fight's referee — the BIS tower, the Fund, the G20 table — has already picked a side and is already losing to the street.
+
+## Sweep log
+
+Previous sweep: [2026-07-08 - Money From Below — The State Sweep](../sources/2026-07-08-money-from-below-the-state-sweep-b34b64df7309.html) · Machine: The Money Machine

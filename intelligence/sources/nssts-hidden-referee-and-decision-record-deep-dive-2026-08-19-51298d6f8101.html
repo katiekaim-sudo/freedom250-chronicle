@@ -1,0 +1,540 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>NSSTS hidden referee and decision-record deep dive · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>NSSTS hidden referee and decision-record deep dive</h1><p class="deck">Collection evidence cutoff: 2026-08-19</p><p><a href="nssts-hidden-referee-and-decision-record-deep-dive-2026-08-19-51298d6f8101.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="nssts-hidden-referee-and-decision-record-deep-dive">NSSTS hidden referee and decision-record deep dive</h1>
+<p><strong>As of:</strong> 2026-08-19<br />
+<strong>Status:</strong> pending Workbench evidence<br />
+<strong>Automatic monitoring:</strong> false<br />
+<strong>Investment use:</strong> false<br />
+<strong>Vault or Observatory promotion:</strong> not authorized</p>
+<h2 id="controlling-finding">Controlling finding</h2>
+<p>The less-obvious companies are not merely small suppliers. They frequently sit
+at one of four more consequential seams:</p>
+<ol>
+<li>they render the stimulus against which a system is judged;</li>
+<li>they create or custody the raw evidence needed to reproduce a result;</li>
+<li>they write the technical record on which capital, permitting or
+   procurement decisions rely; or</li>
+<li>they operate the range, shipment, waste, calibration or insurance rail
+   without holding the final public decision.</li>
+</ol>
+<p>The most important risk is therefore <strong>role compression</strong>, not ordinary
+ownership by itself. A corporate family may help specify, supply, calibrate,
+test, interpret and later implement. That is a structural concern to control,
+not proof of bias or misconduct. No public evidence reviewed in this wave shows
+that any named firm falsified a result or improperly influenced a Science
+Strategy decision.</p>
+<p>The registry adds <strong>38 cases across five waves</strong>. Named range task orders are
+real adjacent assignments. Technical reports are real project records. Current
+licenses and package certificates are real capabilities. None of those facts,
+without the target join and final disposition, becomes a Science Strategy award
+or accepted capability.</p>
+<h2 id="what-a-defensible-acceptance-chain-requires">What a defensible acceptance chain requires</h2>
+<pre><code class="language-text">requirement / official scenario
+  -&gt; exact authorized party
+  -&gt; calibrated execution environment
+  -&gt; raw evidence and transformation custody
+  -&gt; independent challenge or witness
+  -&gt; named decision authority
+  -&gt; signed disposition
+</code></pre>
+<p>The first five questions for any hidden company are:</p>
+<ul>
+<li>What exact legal entity and facility performed the work on that date?</li>
+<li>Did it design, supply, install, calibrate, test, analyze or accept?</li>
+<li>Who owned the source data, models, scripts, uncertainty budget and audit log?</li>
+<li>Was the result independently reproducible or witnessed?</li>
+<li>Who had the legal or contractual right to accept, reject, waive or pay?</li>
+</ul>
+<h2 id="wave-1-who-owns-the-referees">Wave 1 — who owns the referees?</h2>
+<h3 id="highest-consequence-seams">Highest-consequence seams</h3>
+<table>
+<thead>
+<tr>
+<th>Referee family</th>
+<th>What changed</th>
+<th>Why it matters</th>
+<th>Required control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spirent Federal / Keysight / VIAVI</td>
+<td>Keysight closed the Spirent acquisition on 2025-10-15; VIAVI acquired specified Ethernet, network-security and RF-channel-emulation lines on 2025-10-16, while PNT remained with Keysight</td>
+<td>The brand no longer identifies a single current product owner</td>
+<td>Lock the exact product, seller, support entity, data custodian and acquisition date</td>
+</tr>
+<tr>
+<td>Quanta Technology / Danovo</td>
+<td>Danovo is a Quanta Technology trade name, while Quanta's subsidiary list also contains separately named Danovo entities</td>
+<td>An adviser can sit inside a family capable of later implementation</td>
+<td>Obtain the W-9, affiliate-role matrix, OCI disclosure and utility disposition</td>
+</tr>
+<tr>
+<td>EN Engineering / ENTRUST / Leidos</td>
+<td>Leidos acquired ENTRUST's parent on 2026-03-27</td>
+<td>Utility engineering is now inside a large federal integrator</td>
+<td>Separate requirements, integration, implementation and owner-acceptance scopes</td>
+</tr>
+<tr>
+<td>NSI-MI / AMETEK</td>
+<td>The same company can design a range, supply its measurement chain, calibrate it, run tests and analyze results</td>
+<td>A turnkey range can otherwise become its own referee</td>
+<td>Use an external golden reference, owner-controlled raw data and separate acceptance authority</td>
+</tr>
+<tr>
+<td>NTS / Element / Temasek</td>
+<td>Element acquired NTS; Temasek reported 88% ownership of Element at 2026-03-31</td>
+<td>Exact lab identity, accreditation and sensitive-data control matter more than the legacy NTS brand</td>
+<td>Name the performing NTS Labs or Element entity, site, scope and security approval</td>
+</tr>
+</tbody>
+</table>
+<p>Three corrections are particularly important:</p>
+<ul>
+<li><strong>Spirent PNT did not move to VIAVI.</strong> The current owner is on the Keysight
+  side of the divestiture boundary.</li>
+<li><strong>Temasek's link is an ownership/control review object, not proof of state
+  direction.</strong> Temasek says Singapore's government does not direct its
+  portfolio companies.</li>
+<li><strong>Danovo cannot yet be reduced to one clean legal identity for award
+  attribution.</strong> The trade-name record and the subsidiary exhibit must be
+  reconciled to the actual contract.</li>
+</ul>
+<h3 id="certification-calibration-and-insurance-families">Certification, calibration and insurance families</h3>
+<ul>
+<li><strong>Intertek Testing Services NA, Inc.</strong> is the exact U.S. NRTL entity. The
+  Intertek group can also advise, commission and test, so each scope and team
+  must be separated before an ETL mark is treated as independent project
+  evidence.</li>
+<li><strong>FM Approvals LLC</strong> is legally distinct from Factory Mutual's risk
+  engineering and insurance activity. Keep the product approval, the insurer's
+  recommendation, the owner's response and the bound policy as four records.</li>
+<li><strong>Transcat, Inc.</strong> is a calibration roll-up that also distributes and rents
+  instruments and subcontracts some specialist work. The target must receive
+  the exact lab/scope, subcontractor, CMC, decision rule and as-found/as-left
+  data.</li>
+<li><strong>Schellman Compliance, LLC</strong> remains the FedRAMP assessment entity. Goldman
+  Sachs Alternatives announced a March 2026 strategic investment and Lightyear
+  became a minority investor, but the public record does not establish
+  Goldman's percentage or sole control.</li>
+<li><strong>Lake Shore Cryotronics, LLC</strong> entered the DwyerOmega/Arcline family in June
+  2026. The first post-acquisition check is accreditation continuity and the
+  exact LLC name, not an assumption that the older Inc. certificate silently
+  migrated.</li>
+</ul>
+<h3 id="minimum-referee-control-package">Minimum referee-control package</h3>
+<ol>
+<li>Exact entity, site, W-9/CAGE/UEI, parent and effective date.</li>
+<li>Exact accreditation, method, range, standard version and exclusions.</li>
+<li>Role matrix: design, supply, install, calibrate, test, witness and accept.</li>
+<li>Affiliate bids, prior advisory work and a written OCI disposition.</li>
+<li>Owner access to raw data, models, scripts, uncertainties and audit trail.</li>
+<li>Golden reference, split sample, replicate lab, witness or peer review.</li>
+<li>Vendor report kept separate from agency, utility, AHJ or owner decision.</li>
+<li>Recheck on acquisition, divestiture, trade name, lab move or scope expiry.</li>
+<li>A real second source, not a generic list of companies.</li>
+<li>Label the state as <code>structural concern</code>, <code>controlled seam</code> or
+    <code>demonstrated conflict</code>; do not collapse them.</li>
+</ol>
+<h2 id="wave-2-pnt-test-truth-is-a-constitution-not-a-vendor">Wave 2 — PNT test truth is a constitution, not a vendor</h2>
+<p>No private company owns PNT test truth. A defensible result is assembled by
+separate authorities:</p>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Controlling authority</th>
+<th>Private-company role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Official threat vignette</td>
+<td>DIA and NGA, coordinated with Military Departments, JNWC, DOT&amp;E and Combatant Commands</td>
+<td>Encode a government-furnished scenario or build a clearly labeled engineering surrogate</td>
+</tr>
+<tr>
+<td>M-Code / protected-signal access</td>
+<td>DoD CIO policy, NSA/COMSEC and cryptonet authorities, GPS/Space Force program and security authorities</td>
+<td>Supply an approved generator and operate under authorization</td>
+</tr>
+<tr>
+<td>RF/GNSS scenario generation</td>
+<td>Authorized OEM or government lab/range</td>
+<td>Render the scenario into RF, I/Q, HIL, antenna-wavefront or record/replay stimuli</td>
+</tr>
+<tr>
+<td>Live-sky hostile-range truth</td>
+<td>746th Test Squadron/CIGTF and authorized ranges</td>
+<td>Furnish equipment, operators and technical support</td>
+</tr>
+<tr>
+<td>Position, velocity, attitude and time</td>
+<td>CIGTF validated truth systems; USNO for DoD/GPS time; NIST for UTC(NIST) traceability</td>
+<td>Supply clocks, analyzers and calibration services</td>
+</tr>
+<tr>
+<td>Blind execution and independent evaluation</td>
+<td>Government developmental tester, operational test agency and DOT&amp;E where applicable</td>
+<td>Support the event without becoming the sole judge</td>
+</tr>
+<tr>
+<td>Contract acceptance</td>
+<td>Program/Service decision authority and contracting officer or authorized representative</td>
+<td>Submit evidence and cure deficiencies; never self-accept</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ranked-less-obvious-companies">Ranked less-obvious companies</h3>
+<ol>
+<li><strong>Talen-X, Inc. d.b.a. Safran Federal Systems</strong> is the strongest public
+   alternative to Spirent for protected-signal, CRPA/wavefront, jamming,
+   spoofing and I/Q scenario rendering. Its DCSA proxy structure permits cleared
+   work; it does not confer authority over the threat, cryptography or result.</li>
+<li><strong>Spirent Federal Systems, Inc. / Keysight</strong> has the strongest incumbent-tool
+   trail. It can render authorized signals but cannot approve the threat,
+   validate itself as the operational truth source or accept the tested system.</li>
+<li><strong>NAVSYS Corporation</strong> is the genuinely hidden challenger. It has historical
+   746th Test Squadron simulator adjacency and current alternate-PNT activity,
+   but the age of the public simulator award must remain visible.</li>
+<li><strong>Rohde &amp; Schwarz USA, Inc.</strong> is an instrumentation and calibration path.
+   Public M-noise capability must not be described as authorized encrypted
+   operational M-Code.</li>
+<li><strong>VIAVI Solutions Inc. / Jackson Labs</strong> is more likely to control timing,
+   holdover, transcoding, record/replay or a red effect source. Its GPSG-1000 is
+   explicitly for non-encrypted receivers; a jammer/effect source is not the
+   independent judge.</li>
+</ol>
+<h3 id="the-actual-custody-packet">The actual custody packet</h3>
+<p>The target must preserve the government-furnished threat parameters; security
+and encryption-material authority; simulator configuration and seed/state;
+motion truth; RF-channel settings; generated I/Q; raw receiver observables;
+calibration, phase and power corrections; event logs; analyst transformations;
+and the final signed government disposition.</p>
+<p>DoDI 4650.08 assigns official threat, cryptographic, operational-test and NAVWAR
+compliance roles across government authorities. DoDI 5000.89 permits integrated
+government/contractor evidence but preserves independent evaluation and does not
+let integrated testing replace IOT&amp;E. NIST's rule is equally important:
+traceability belongs to a measurement result and its uncertainty-bearing chain,
+not to the instrument brand or calibration sticker.</p>
+<h2 id="wave-3-range-task-order-shadows">Wave 3 — range task-order shadows</h2>
+<p>The prior sector map found the operating rails. This wave looked below the
+parent contract. FPDS and USAspending order descriptions expose funded support
+objects that were invisible at the vehicle level.</p>
+<h3 id="netcentric-clois-iii">NetCentric / CLOIS III</h3>
+<p>Under FA2521-23-D-0004, current orders name:</p>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th style="text-align: right;">Public potential value</th>
+<th>Named object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FA2521-26-F-0111</td>
+<td style="text-align: right;">$35,500</td>
+<td>Next-Generation OPIR GEO</td>
+</tr>
+<tr>
+<td>FA2521-26-F-0114</td>
+<td style="text-align: right;">$16,500</td>
+<td>GE Aerospace Hypersonic and High-Cadence Airborne Testing</td>
+</tr>
+<tr>
+<td>FA2521-24-F-0200</td>
+<td style="text-align: right;">$1,044,500</td>
+<td>NOTU Conventional Prompt Strike</td>
+</tr>
+<tr>
+<td>FA2521-24-F-0195 / -0196</td>
+<td style="text-align: right;">$728,955.80 / $1,122,129.60</td>
+<td>Orbital Test Vehicle</td>
+</tr>
+<tr>
+<td>FA2521-24-F-0226</td>
+<td style="text-align: right;">$691,000</td>
+<td>Stoke Space</td>
+</tr>
+<tr>
+<td>FA2521-25-F-0301</td>
+<td style="text-align: right;">$15,000</td>
+<td>NRO Launch 77</td>
+</tr>
+<tr>
+<td>FA2521-24-F-0329</td>
+<td style="text-align: right;">$19,000</td>
+<td>NRO Launch 64</td>
+</tr>
+<tr>
+<td>FA2521-25-F-0250</td>
+<td style="text-align: right;">$146,000</td>
+<td>Atlantic Navy Commander Evaluation Test 7</td>
+</tr>
+<tr>
+<td>FA2521-26-F-0190</td>
+<td style="text-align: right;">$60,000</td>
+<td>NOTU mid-course radar site</td>
+</tr>
+<tr>
+<td>FA2521-26-F-0067</td>
+<td style="text-align: right;">$26,500</td>
+<td>NASA launch-stage vehicle adapter</td>
+</tr>
+</tbody>
+</table>
+<p>These are real funded support records. Small amounts can represent incremental
+or chargeback support, and the public descriptions omit the PWS, readiness
+record, range green, payload-processing acceptance and flight result.</p>
+<h3 id="metis-pssc-ii">Metis / PSSC II</h3>
+<p>Current FY26 pad-safety orders name Stoke, Phantom, ABL, Astra, Relativity, Blue
+Origin, SpaceX, MDA and Navy Joint Flight Campaign 5. This is strong evidence
+that Metis is producing vehicle- or customer-specific safety work. It does not
+show that a hazardous operation occurred, that the analysis was accepted or
+that the vehicle was cleared to fly.</p>
+<h3 id="amentum-jacobs-sfrc">Amentum / Jacobs / SFRC</h3>
+<p>The parent Space Force Range Contract was awarded to <strong>Jacobs Technology Inc.</strong>;
+current orders name <strong>Amentum Technology, Inc.</strong> The novation or public
+name-change instrument remains unresolved. Western Range orders name
+Stratolaunch Mach-TB, Sentinel, Firefly, Minotaur IV, X-37B OTV, Minotaur I
+MK21-2B, Booster Test Program, NST-Trident, Space Safari and Minuteman III.</p>
+<p>This is unusually rich adjacency evidence. It is not a launch manifest, flight
+readiness review, FTS acceptance, airspace approval or successful mission.</p>
+<h3 id="other-rails-now-resolved">Other rails now resolved</h3>
+<ul>
+<li><strong>Full Spectrum Operations, LLC / EWOCS:</strong> current dynamic-communications
+  orders name Next Gen GEO, OTV, NOTU Joint Flight Campaign and RAD Federation.</li>
+<li><strong>ARCTOS Technology Solutions, LLC / SHARP III:</strong> the current $20.147 million
+  flight- and risk-analysis instrument runs through June 2031. The prior SHARP
+  II ended in January 2026. No public current task names a vehicle.</li>
+<li><strong>BAE Systems Technology Solutions &amp; Services Inc. / IRSP III:</strong> current
+  orders prove active range instrumentation, but remain largely range-level and
+  generic rather than vehicle-specific.</li>
+<li><strong>Southwest Range Services, LLC / WSMR:</strong> the 2026 successor award overlaps a
+  predecessor performance clock. The public definitive contract does not expose
+  target task orders.</li>
+<li><strong>Beyond New Horizons, LLC / AEDC TOS II:</strong> the current operator has public
+  facility factory-acceptance activity, but no named hypersonic vehicle or
+  program test in this wave.</li>
+<li><strong>Curtiss-Wright DS, Inc. / HSDAS:</strong> current orders expose a proprietary
+  flight-data and analysis rail, while the parent award used the Teletronics
+  Technology Corp. d.b.a. name. The legal-recipient transition remains a gate.</li>
+</ul>
+<p>The operative restrictions here are classified material, CUI,
+export-controlled technical data, range-safety records, procurement-sensitive
+attachments and omitted subcontract reporting—not CEII.</p>
+<h2 id="wave-4-the-critical-minerals-qualified-person-network">Wave 4 — the critical-minerals qualified-person network</h2>
+<p>A qualified person is generally retained by the issuer. The QP may write or
+approve technical sections and consent to disclosure; it is not appointed by
+the SEC, the permitting agency, the lender or the federal funding office, and it
+does not accept construction or production.</p>
+<h3 id="current-network-map">Current network map</h3>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Current technical-record network</th>
+<th>Hidden seam</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MP Materials / Mountain Pass</td>
+<td>SRK Consulting (U.S.), Inc.</td>
+<td>One integrator spans geology, reserve, process, mine plan and economics; MP retained it</td>
+</tr>
+<tr>
+<td>Lithium Americas / Thacker Pass</td>
+<td>SGS Canada, Sawtooth Mining, NewFields, EXP</td>
+<td>Older third-party authors coexist with current employee supervision; do not merge the clocks</td>
+</tr>
+<tr>
+<td>Graphite One / Graphite Creek</td>
+<td>Barr Engineering, Hatch, Alaska Earth Sciences</td>
+<td>The current feasibility team replaced the 2022 JDS-led PFS team; DPA support does not appoint the QPs</td>
+</tr>
+<tr>
+<td>Perpetua / Stibnite</td>
+<td>Internal Perpetua QPs plus BBA Consultants International; Hatch on a separate EPCM rail</td>
+<td>Current report is PFS-level and predominantly issuer-led; screen QP evidence separately from EPCM implementation</td>
+</tr>
+<tr>
+<td>NioCorp / Elk Creek</td>
+<td>Dahrouge, Understood, Optimize, Tetra Tech, Adrian Brown, MCS, Magemi, L3, Olsson, A2GC, Dumas and an internal QP</td>
+<td>The 2025 filing/consent clock still points to a 2022-06-30 study effective date</td>
+</tr>
+<tr>
+<td>Energy Fuels projects</td>
+<td>SLR on Pinyon Plain; different teams on Bullfrog and Vara Mada</td>
+<td>Asset, report date, effective date, signature date and QP team all have to stay joined</td>
+</tr>
+<tr>
+<td>USA Rare Earth / Round Top</td>
+<td>Future PFS author unresolved; Commerce may use unnamed Department consultants</td>
+<td>The most consequential referee is currently missing from the public record</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usa-rare-earths-unusually-revealing-agreement-seam">USA Rare Earth's unusually revealing agreement seam</h3>
+<p>Commerce's Direct Funding Agreement AP-2026-0044 allows the Department to
+consult unnamed advisers when evaluating disbursement conditions. Public
+conditions also point to implementation of a Wheat Ridge safety review,
+third-party validation of nuclear-material licensing and a power-infrastructure
+plan for Magnet Project 2. The public 8-K describes milestones such as
+feasibility studies, design, facility completion, equipment installation,
+technology transfer, production qualification, customer agreements and target
+volumes.</p>
+<p>But the agreement expressly says disbursement is not approval or acceptance of
+the work. The Department's consultants are unnamed, the future Round Top PFS QP
+firm is unnamed, and the omitted milestone schedule prevents a public reader
+from knowing which evidence object controls the next draw. This is one of the
+best live examples of a <strong>missing referee that matters more than the visible
+award headline</strong>.</p>
+<h2 id="wave-5-commercial-fusion-after-the-reactor-headline">Wave 5 — commercial fusion after the reactor headline</h2>
+<p>The current U.S. fusion pathway is still moving through an NRC byproduct-
+materials framework. The NRC proposed its fusion rule on 2026-02-26; the comment
+period closed 2026-05-27 and the final rule remains a future object. Agreement
+States are already material: Massachusetts regulates CFS/SPARC material,
+Virginia the ARC path, Tennessee Type One, and Washington Helion.</p>
+<h3 id="downstream-chain">Downstream chain</h3>
+<pre><code class="language-text">Agreement State or NRC license
+  -&gt; applicant / RSO / material-control program
+  -&gt; tritium source and assay
+  -&gt; dispensing and custody transfer
+  -&gt; authorized package and carrier
+  -&gt; receiving survey and accountancy
+  -&gt; waste characterization and WAC
+  -&gt; manifest, transport and authorized disposal
+  -&gt; decommissioning funding assurance
+  -&gt; insurer / broker / lender reliance
+</code></pre>
+<h3 id="companies-that-become-pivotal-downstream">Companies that become pivotal downstream</h3>
+<ul>
+<li><strong>Ontario Power Generation Inc.</strong> is the strongest public commercial tritium
+  source node. Its Darlington system extracts and stores CANDU-produced tritium.
+  A Canadian supply capability is not a U.S. target procurement.</li>
+<li><strong>Canadian Nuclear Laboratories Ltd.</strong> is the custody/dispensing node in the
+  clearest public chain: OPG-owned tritium for JET was dispensed, packaged and
+  shipped by CNL. That is a strong comparator, not a U.S. target contract.</li>
+<li><strong>EnergySolutions, LLC / Clive</strong> and <strong>Waste Control Specialists LLC</strong> are
+  plausible disposal endpoints only after classification, WAC, contract,
+  manifest and compact/license conditions are met. A license is not a promise
+  to accept novel fusion waste.</li>
+<li><strong>NAC International, Inc.</strong> holds the OPTIMUS-L package certificate. A
+  certificate holder is not automatically the carrier, approved user or target
+  contractor, and the certificate may not cover a proposed content package.</li>
+<li><strong>Marsh LLC</strong> is the most important hidden insurance node found. Its current
+  nuclear-construction practice explicitly addresses fusion, and it participated
+  in Lloyd's fusion-insurance work. No named target placement or binder was
+  found.</li>
+<li><strong>Beazley, Oak Re, Northcourt/NC Fusion and Newfront</strong> are market-capacity or
+  intermediary signals. Event participation and white papers are not bound
+  coverage.</li>
+<li><strong>American Nuclear Insurers</strong> belongs on the legal-pathway watch, but
+  Price-Anderson coverage must not be assumed. Materials-license fusion is not
+  automatically a utilization facility; treatment may differ by license and
+  final rule.</li>
+</ul>
+<p>The NRC's draft application guidance makes several hidden commercial roles
+explicit. Most facilities are expected to need a decommissioning funding plan;
+financial assurance can involve prepayment, surety, insurance, sinking funds or
+third-party guarantees. Calibration work must be authorized and traceable.
+Licensees must control receipt, transfer, use, storage and disposal records.
+Transport must satisfy NRC/DOT package and carrier requirements. Waste must go
+to an authorized recipient under its acceptance criteria and manifest system.
+Novel fusion waste may require site-specific disposal analysis.</p>
+<p>The tritium market is also a hard physical disconfirmer. The IAEA says existing
+CANDU-derived supply is far too small for a commercial-scale fusion economy.
+DOE's roadmap therefore treats larger U.S. tritium loop/stand capacity and
+eventual breeding as separate development objectives, not as solved supply.</p>
+<h2 id="ranked-next-return-objects">Ranked next return objects</h2>
+<ol>
+<li>USA Rare Earth: identity and scope of the Department's consultants; future
+   Round Top PFS QP firm; first signed milestone validation.</li>
+<li>Space Force NAVWAR: the COCO/GOGO decision, government-furnished threat-data
+   architecture and first simulator/range task under Objective Force Design
+   2040.</li>
+<li>Amentum/Jacobs SFRC: novation or name-change instrument plus any task-specific
+   accepted range evidence.</li>
+<li>SHARP III: first vehicle-specific ARCTOS data load and government risk
+   disposition.</li>
+<li>PNT: a target CDRL requiring raw I/Q, configuration, calibration and
+   independent evaluation.</li>
+<li>Fusion: first target-specific tritium procurement and custody record, waste
+   WAC determination, transport package/carrier chain, and bound construction or
+   liability coverage.</li>
+<li>Referee acquisitions: post-change accreditation continuity for Lake Shore,
+   current NTS Labs performing entity, and a contract-resolved Danovo legal name.</li>
+<li>Critical minerals: current report-effective dates and QP/employer matrices
+   for projects receiving new federal capital or disbursements.</li>
+</ol>
+<h2 id="primary-authority-and-source-set">Primary authority and source set</h2>
+<ul>
+<li><a href="https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/465008p.pdf">DoDI 4650.08 — Positioning, Navigation, and Timing and Navigation Warfare</a></li>
+<li><a href="https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/500089p.PDF?ver=Plc85E0-NVNide91K3XQLA%3D%3D">DoDI 5000.89 — Test and Evaluation</a></li>
+<li><a href="https://www.nist.gov/metrology/metrological-traceability">NIST — Metrological Traceability</a></li>
+<li><a href="https://www.holloman.af.mil/About/Units/704th-Test-Group/746-TS/">746th Test Squadron / CIGTF</a></li>
+<li><a href="https://www.nrc.gov/materials/fusion">NRC — Fusion Energy</a></li>
+<li><a href="https://www.nrc.gov/materials/fusion/rulemaking-status">NRC — Fusion Rulemaking Status</a></li>
+<li><a href="https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr1556/v22/index">NRC — NUREG-1556 Volume 22 draft guidance</a></li>
+<li><a href="https://www.nrc.gov/materials/fusion/fusion-activities-agreement-states">NRC — Fusion Activities in Agreement States</a></li>
+<li><a href="https://www.energy.gov/documents/fusion-st-roadmap-060926pdf">DOE — Fusion Science and Technology Roadmap</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1970622/000121390026064453/ea029340201ex10-1.htm">USA Rare Earth Direct Funding Agreement AP-2026-0044</a></li>
+</ul>
+<h2 id="boundary">Boundary</h2>
+<p>This is a research and evidence-control map, not an allegation, procurement
+forecast, investment recommendation or current target-award ledger. Absence of a
+public assignment does not prove non-involvement; confidential subcontracts,
+protected range records, insurer mandates and pre-award advisory engagements
+may remain undisclosed. Promotion requires the exact target, entity, scope,
+instrument, evidence object and signed decision.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

@@ -1,0 +1,495 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>COVID Plot Orientation and July 29 Delta · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/claims-records-and-accountability.html#reconstruct-the-health-response" class="" >Rebuild the response before judging its history <span class="meta">— How a public claim becomes something we can examine</span></a><a href="../stories/claims-records-and-accountability.html#read-the-disclosure" class="" >Read the documents and the release around them <span class="meta">— How a public claim becomes something we can examine</span></a><a href="../stories/claims-records-and-accountability.html#change-the-next-decision" class="" >Ask what the record changes going forward <span class="meta">— How a public claim becomes something we can examine</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>COVID Plot Orientation and July 29 Delta</h1><p class="deck">Source cutoff: 2026-07-29T12:00:00-04:00 · Collection evidence cutoff: 2026-07-29</p><p><a href="covid-plot-orientation-and-july-29-delta-9cf4fe6cec40.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="covid-plot-orientation-and-july-29-delta">COVID Plot Orientation and July 29 Delta</h1>
+<h2 id="bottom-line">Bottom line</h2>
+<p>The July 29 White House post is best recorded as a <strong>social activation event</strong>
+inside an already-running COVID accountability and revisionism sequence. It
+points to an existing but subsequently extended White House page, which
+principally repackages a December 2024 House majority report. Its timing
+overlaps the July 29 Senate Fauci hearing. The post adds executive
+amplification and a precise event clock; it does not close the COVID-origin
+proof chain.</p>
+<h2 id="1-where-covid-lives-in-freedom-250">1. Where COVID lives in Freedom 250</h2>
+<p>Freedom 250 keeps a factual event layer separate from plot aggregation
+and interpretation. For COVID work, the controlling method is to
+preserve one source object at a time, keep exact clocks, and refuse to let an
+announcement carrier inherit the evidentiary status of the document it links.</p>
+<p>Current live-vault structure:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Live role</th>
+<th>Current reading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arc</td>
+<td><code>Fringe, Disclosure &amp; Health</code></td>
+<td>Broad thematic container</td>
+</tr>
+<tr>
+<td>Plotline</td>
+<td><code>Covid</code></td>
+<td>Active factual rollup</td>
+</tr>
+<tr>
+<td>Subplot</td>
+<td><code>Covid revisionism</code></td>
+<td>Broad memory-and-rewrite lane: origin, mandates, censorship, vaccines and institutional record</td>
+</tr>
+<tr>
+<td>Subplot</td>
+<td><code>Fauci &amp; the Covid reckoning</code></td>
+<td>Narrower accountability lane: records, testimony, referrals and procedural states</td>
+</tr>
+<tr>
+<td>Parallel plotline</td>
+<td><code>Health</code></td>
+<td>Home for prospective public-health and research-governance actions</td>
+</tr>
+</tbody>
+</table>
+<p>The July 29 pre-research scan found 106 event notes routed to COVID by primary
+or secondary plot tag, including 68 notes in <code>Covid revisionism</code> and 20 in
+<code>Fauci &amp; the Covid reckoning</code>. The generated <code>Covid</code> rollup text displayed 97,
+so its prose count was behind the underlying tagged corpus at this cutoff.
+This is a maintenance/retrieval observation, not a claim about the story.</p>
+<h2 id="2-the-existing-evidence-stack">2. The existing evidence stack</h2>
+<h3 id="authority-spine">Authority spine</h3>
+<p>The 2020 authority package keeps separate:</p>
+<ul>
+<li>HHS public-health-emergency authority;</li>
+<li>the national-emergency and section 1135 route;</li>
+<li>Stafford/FEMA emergency authority;</li>
+<li>PREP Act liability protection;</li>
+<li>changing CDC and White House guidance;</li>
+<li>FDA EUA, revision, revocation and approval states;</li>
+<li>intelligence/origin hypotheses;</li>
+<li>grants, subawards and foreign-component reporting; and</li>
+<li>CARES Act enactment and implementation.</li>
+</ul>
+<h3 id="june-2026-odni-release">June 2026 ODNI release</h3>
+<p>The ODNI packet supports a real NIH/NIAID-to-EcoHealth award chain, a Wuhan
+Institute of Virology foreign-component/principal-laboratory role, Fauci
+consultation with intelligence officials, whistleblower/inspector-general
+handling allegations and federal support for overseas laboratory work.</p>
+<p>It does not by itself complete any of these chains:</p>
+<ol>
+<li>total award → exact dollars received by WIV;</li>
+<li>consultation → control or manipulation of a finished intelligence judgment;</li>
+<li>funded research → SARS-CoV-2 identity;</li>
+<li>virus identity → release event; or</li>
+<li>release event → pandemic causation.</li>
+</ol>
+<p>The existing audit also preserves the independent GAO finding of $1,413,720
+disbursed to WIV across NIH and USAID chains and the May 2020 Lawrence
+Livermore assessment that gave equal weight to three hypotheses. These do not
+support the compressed slogan “Fauci gave millions to create COVID.”</p>
+<h3 id="july-2026-prospective-control-lane">July 2026 prospective control lane</h3>
+<p>The July 20-dated, July 28-publicized government-wide high-risk
+life-sciences policy prohibits federal support for dangerous
+gain-of-function research and creates review gates for other covered
+research. It has 90-, 120- and 180-day implementation clocks and expressly
+leaves a private-funding gap requiring additional action. It is a prospective
+control object, not retrospective origin proof.</p>
+<h2 id="3-exact-july-29-event-chain">3. Exact July 29 event chain</h2>
+<table>
+<thead>
+<tr>
+<th>Clock (EDT)</th>
+<th>Object/state</th>
+<th>What the source establishes</th>
+<th>What it does not establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8:30 a.m.</td>
+<td>Scheduled HSGAC hearing, <code>Testimony of Anthony Fauci</code>, SD-342</td>
+<td>Official hearing date, time, place and named witness</td>
+<td>Actual start second, every question, or final procedural disposition</td>
+</tr>
+<tr>
+<td>10:05:45 a.m.</td>
+<td>White House X post</td>
+<td>“The truth. COVID.GOV 👀” and its exact posting clock</td>
+<td>A new report, declassification, order, scientific finding or case state</td>
+</tr>
+<tr>
+<td>During/after hearing</td>
+<td>HSGAC chair statements</td>
+<td>Chair Rand Paul's account that Fauci invoked the Fifth Amendment and his announced intent to seek a committee contempt vote</td>
+<td>Transcript, independent question census, committee approval, Senate action, prosecution or guilt</td>
+</tr>
+</tbody>
+</table>
+<p>The White House post came 1 hour 35 minutes 45 seconds after the hearing's
+scheduled start. An official Senate video archive supports that the hearing
+occurred. The sources therefore establish <strong>temporal alignment</strong> and
+amplification during the hearing. They do not establish a documented
+coordination agreement between the White House and committee chair.</p>
+<h2 id="4-what-covidgov-is">4. What COVID.gov is</h2>
+<p><code>https://covid.gov/</code> currently returns an HTTP 301 redirect to:</p>
+<p><code>https://www.whitehouse.gov/lab-leak-true-origins-of-covid-19/</code></p>
+<p>The White House page, <em>Lab Leak: The True Origins of Covid-19</em>, advances five
+lab-origin arguments and sections concerning EcoHealth Alliance, gain-of-
+function research, public-health guidance and alleged censorship. The page
+identifies the House Select Subcommittee majority's 2024 after-action report
+as its principal source and hosts a copy of that report. Its footer says the
+page content is sourced from the House Oversight Committee website.</p>
+<p>The White House had already used the same <code>COVID.gov</code> destination in an April
+18, 2025 post, “DEFINITELY DON'T VISIT COVID.GOV 🤭.” The July 29, 2026 post
+is therefore a replay/reactivation of an existing page and domain route—not
+the page's first publication.</p>
+<p>The current page is also not merely a frozen April 2025 object. It now:</p>
+<ul>
+<li>asserts that DOJ opened an investigation into EcoHealth's pandemic-era
+  activities, without linking the operative DOJ source; and</li>
+<li>embeds or links a later HSGAC “lab-leak cover-up” video.</li>
+</ul>
+<p>Those are material post-launch extensions. A complete archived HTML diff was
+not completed, so the exact addition clocks and any smaller copy or image
+changes remain unresolved.</p>
+<h3 id="institutional-counter-record">Institutional counter-record</h3>
+<p>The House majority's report and the Democratic minority's official final
+report are separate source objects. The majority concluded that a
+lab-related incident was the most likely origin and made findings about Fauci,
+EcoHealth, research oversight and pandemic policy. The minority said the
+origin remained unknown, described natural spillover and a laboratory accident
+as plausible and disputed the claim that Fauci orchestrated the <em>Proximal
+Origin</em> paper. The minority also documented its own concerns about EcoHealth
+and research oversight.</p>
+<p>Correct Freedom 250 treatment:</p>
+<ul>
+<li>preserve both reports;</li>
+<li>attribute each finding to its issuing committee faction;</li>
+<li>test underlying exhibits and independent authorities claim by claim; and</li>
+<li>leave the origin chain open unless a later primary object resolves a
+  specific step.</li>
+</ul>
+<h2 id="5-july-2029-emerging-cadence">5. July 20–29 emerging cadence</h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Official object</th>
+<th>Evidence lane</th>
+<th>State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jul 20</td>
+<td>HSGAC release and 23-page package about a proposed CBP questioning/search of Peter Daszak and an FBI stand-down request</td>
+<td>Accountability / records</td>
+<td>Records support a planned examination and FBI request; reason, informant status, obstruction and origin implications remain unresolved</td>
+</tr>
+<tr>
+<td>Jul 20</td>
+<td>Senator Paul's COVID Origins Reading Room</td>
+<td>Disclosure infrastructure</td>
+<td>Durable official portal; each volume/package remains a separate evidence object</td>
+</tr>
+<tr>
+<td>Jul 21–22</td>
+<td>Two <em>Proximal Origin</em> Slack sets and HSGAC announcement</td>
+<td>Origins / scientific communications</td>
+<td>Internal uncertainty, numerical probabilities, scientific debate, IC/NIH contact and FOIA discussion; not proof of engineering, release or Fauci control</td>
+</tr>
+<tr>
+<td>Jul 22</td>
+<td>NIH public-comment filtering package</td>
+<td>Public communications / moderation</td>
+<td>Supports inquiry into keyword filtering; not proof that every filtered item was valid speech or removed by binding order</td>
+</tr>
+<tr>
+<td>Jul 23</td>
+<td>Ralph Baric transcribed interview, conducted Apr 10, 2026</td>
+<td>Testimony / research record</td>
+<td>High-value witness testimony; distinguish recollection and committee summary from protocols, notebooks and causation evidence</td>
+</tr>
+<tr>
+<td>Jul 24</td>
+<td>Fauci awards/prize records</td>
+<td>Accountability / disclosure</td>
+<td>Prize records are not themselves evidence of an origin decision or quid pro quo</td>
+</tr>
+<tr>
+<td>Jul 24</td>
+<td>CBP biological-material interception package</td>
+<td>Border / research network</td>
+<td>Establishes interceptions and investigative leads; not SARS-CoV-2 identity, origin proof or criminal disposition</td>
+</tr>
+<tr>
+<td>Jul 25</td>
+<td>Official “Tony's Diary” PDF package</td>
+<td>Accountability / records</td>
+<td>Reviewable official package; completeness, selection and chain of custody still require audit</td>
+</tr>
+<tr>
+<td>Jul 27</td>
+<td>465-page “Tony's Diary: The Prequel”</td>
+<td>Biodefense / institutional history</td>
+<td>Pre-2015 relationship spine; cannot itself prove later COVID origin or concealment</td>
+</tr>
+<tr>
+<td>Jul 28</td>
+<td>Reading Room Volume 1</td>
+<td>Disclosure / investigation record</td>
+<td>Large additional release object; do not collapse into diary or Slack sets</td>
+</tr>
+<tr>
+<td>Jul 28</td>
+<td>Government-wide high-risk life-sciences policy publicized</td>
+<td>Prospective control</td>
+<td>Policy announced; implementation clocks open</td>
+</tr>
+<tr>
+<td>Jul 29</td>
+<td>Fauci hearing, chair claims, contemplated contempt vote and White House COVID.gov post</td>
+<td>Testimony / procedure / amplification</td>
+<td>Hearing occurred; later procedural states remain open</td>
+</tr>
+</tbody>
+</table>
+<p>This is a verified <strong>release cadence</strong> across accountability, narrative and
+prospective-control lanes. A single coordinated campaign is an inference until
+an official planning, instruction or communications record establishes it.
+The genuinely new evidence surface is the rolling Senate reading room and its
+underlying packages—not the White House post.</p>
+<h2 id="6-claim-state-ledger">6. Claim-state ledger</h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>State at cutoff</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The White House posted about COVID.gov on Jul 29</td>
+<td>Verified</td>
+<td>Exact official post and timestamp</td>
+</tr>
+<tr>
+<td>COVID.gov now routes to a White House lab-leak page</td>
+<td>Verified</td>
+<td>Live HTTP redirect</td>
+</tr>
+<tr>
+<td>The page was newly created Jul 29</td>
+<td>Contradicted</td>
+<td>White House promoted the same destination in Apr 2025</td>
+</tr>
+<tr>
+<td>The current page is byte-for-byte the Apr 2025 page</td>
+<td>Not established and unlikely</td>
+<td>Later DOJ language and Senate video are present; full archive diff pending</td>
+</tr>
+<tr>
+<td>The Jul 29 post announced new origin evidence</td>
+<td>Not established</td>
+<td>Post links an existing editorial/report surface</td>
+</tr>
+<tr>
+<td>The post was timed during the Fauci hearing</td>
+<td>Verified as timing</td>
+<td>Official schedule, post clock and archived hearing video</td>
+</tr>
+<tr>
+<td>The White House and HSGAC coordinated the timing</td>
+<td>Unresolved</td>
+<td>No planning/communications source located</td>
+</tr>
+<tr>
+<td>Fauci invoked the Fifth Amendment</td>
+<td>Supported by official chair/hearing record</td>
+<td>Full transcript and independent question count pending</td>
+</tr>
+<tr>
+<td>Fauci invoked it exactly 111 times</td>
+<td>Chair claim pending source census</td>
+<td>No published line-by-line transcript/count reviewed at cutoff</td>
+</tr>
+<tr>
+<td>A committee contempt vote is scheduled</td>
+<td>Announced by chair</td>
+<td>Notice, resolution text and business-meeting record pending</td>
+</tr>
+<tr>
+<td>Fauci has been held in contempt</td>
+<td>False at cutoff</td>
+<td>Announced future vote is not completed committee/Senate action</td>
+</tr>
+<tr>
+<td>The White House page proves a lab origin</td>
+<td>Not established</td>
+<td>Executive framing relies on a disputed congressional evidentiary record</td>
+</tr>
+<tr>
+<td>DOJ opened an EcoHealth investigation</td>
+<td>White House assertion pending operative source</td>
+<td>No primary DOJ object is linked on-page</td>
+</tr>
+<tr>
+<td>The July policy bans all U.S. DGOF research</td>
+<td>Contradicted</td>
+<td>It directly governs federal support and identifies a private-funding gap</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-bounded-primary-source-watchboard">7. Bounded primary-source watchboard</h2>
+<table>
+<thead>
+<tr>
+<th>Watch</th>
+<th>Exact trigger</th>
+<th>State change it could support</th>
+<th>Falsifier / retirement condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HSGAC hearing record</td>
+<td>Transcript, captions, exhibits or official question index</td>
+<td>Verify testimony wording and the claimed 111 invocations</td>
+<td>No transcript/index after archive completion; preserve chair claim only</td>
+</tr>
+<tr>
+<td>Contempt procedure</td>
+<td>Published business-meeting notice and resolution text</td>
+<td>Announced vote → scheduled committee business</td>
+<td>Meeting passes without item or item is withdrawn</td>
+</tr>
+<tr>
+<td>Committee vote</td>
+<td>Official roll call and adopted resolution</td>
+<td>Scheduled → committee-approved contempt step</td>
+<td>Vote fails or no quorum</td>
+</tr>
+<tr>
+<td>Later contempt action</td>
+<td>Senate Journal/Calendar action and any certification/referral record</td>
+<td>Distinguish committee, chamber and prosecutorial clocks</td>
+<td>No chamber/certification action</td>
+</tr>
+<tr>
+<td>Fauci diary corpus</td>
+<td>Audit official diary PDF against index, production letter, omitted ranges and chain-of-custody statement</td>
+<td>Published package → completeness/selection finding</td>
+<td>Package is demonstrably selective; keep conclusions entry-specific</td>
+</tr>
+<tr>
+<td>CBP/FBI record</td>
+<td>Full underlying CBP targeting material and FBI communication</td>
+<td>Test committee characterization against records</td>
+<td>Records do not show requested intervention or show a different reason</td>
+</tr>
+<tr>
+<td><em>Proximal Origin</em> records</td>
+<td>Complete Slack/email export with metadata and linked IC/NIH communications</td>
+<td>Test chronology, authorship and influence claims</td>
+<td>Missing context reverses quoted meaning or no operative intervention appears</td>
+</tr>
+<tr>
+<td>COVID.gov page history</td>
+<td>Archived launch/current captures and a reproducible diff</td>
+<td>Date the later DOJ/video extensions and identify other changes</td>
+<td>No reliable archived pair; record only verified current content</td>
+</tr>
+<tr>
+<td>EcoHealth investigation</td>
+<td>DOJ release, filing, subpoena disclosure or docket object</td>
+<td>Executive assertion → identifiable investigative/legal state</td>
+<td>No operative object; retain as White House claim only</td>
+</tr>
+<tr>
+<td>High-risk policy</td>
+<td>Agency guidance at 90/120/180-day clocks; award terms and review decisions</td>
+<td>Policy announcement → implementation/enforcement</td>
+<td>Deadlines pass without required object or scope is narrowed</td>
+</tr>
+<tr>
+<td>Origin chain</td>
+<td>New underlying lab records, samples, genomic records or finished IC/scientific assessment</td>
+<td>Resolve a specific causation step</td>
+<td>Source is commentary or repeats existing committee framing</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-promotion-posture">8. Promotion posture</h2>
+<p>The narrow July 29 event can land after human review as a COVID event with:</p>
+<ul>
+<li>the exact White House post;</li>
+<li>the redirect destination;</li>
+<li>the fact that the destination predates the post and has later extensions;</li>
+<li>the hearing's scheduled time and archived occurrence;</li>
+<li>an explicitly labeled temporal relationship; and</li>
+<li>the open contempt-procedure watch.</li>
+</ul>
+<p>The full workbench analysis should not be copied into a vault event. The House
+majority/minority report comparison, origin proof-chain audit, diary corpus
+audit and prospective-policy implementation belong in their respective source
+or research packages.</p>
+<h2 id="9-policy-clocks-requiring-source-state-discipline">9. Policy clocks requiring source-state discipline</h2>
+<p>If the July 20 policy issuance date is controlling, the 90-, 120- and 180-day
+targets fall on October 18, November 17, 2026, and January 16, 2027. If an
+implementing agency starts those clocks from the July 28 public-release date,
+the alternates are October 26, November 25, 2026, and January 24, 2027.
+Preserve both calculations until an agency charter, list, guidance document,
+implementation plan or award term identifies the operative basis.</p>
+<p>No new official Fauci charge, referral disposition or primary DOJ EcoHealth
+investigation object was located in the July 20–29 sweep. No new PREP Act or
+vaccine-mandate action was located in this lane.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

@@ -1,0 +1,188 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Federal Science Operating System · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/science-to-capability.html#ambitions" class="" >What are the ambitions? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#scientific-work" class="" >What has to work together? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#financing" class="" >Who pays for the buildout—and carries the risk? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#accepted-operation" class="" >What would count as success? <span class="meta">— From scientific ambition to things that work</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Federal Science Operating System</h1><p class="deck">Collection evidence cutoff: 2026-08-17</p><p><a href="readme-afb8768af3df.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="federal-science-operating-system">Federal Science Operating System</h1>
+<p><strong>Evidence cutoff:</strong> 2026-08-17
+<strong>Status:</strong> pending workbench package; the NSSTS full-reading is selectively incorporated into the live vault
+<strong>Scope:</strong> the federal funding, infrastructure, workforce, data, experimental and transaction architecture proposed for an AI-native scientific-industrial economy</p>
+<h2 id="short-answer">Short answer</h2>
+<p>The July 21, 2026 White House report does not itself create a new legal system. It supplies the design doctrine for reorganizing American science around individuals, mission portfolios, shared compute and laboratories, AI agents, industrial translation and new reward mechanisms.</p>
+<p>The architecture becomes more concrete when four distinct objects are read together:</p>
+<ol>
+<li><strong><code>Science: A New Golden Age</code></strong> — a presidential advisory report and design map.</li>
+<li><strong>The National Security Science &amp; Technology Strategy</strong> — the mission-selection, resilience and protection layer supporting the 2025 National Security Strategy.</li>
+<li><strong>NSTM-5 / OMB M-26-16</strong> — FY2028 budget guidance plus 90-day implementation-plan instructions for agencies meeting the stated R&amp;D threshold.</li>
+<li><strong>Executive Order 14363</strong> — the operative charter for the Genesis Mission and its American Science and Security Platform.</li>
+</ol>
+<p>The NSSTS makes the system explicitly national-security-facing without merging
+these instruments. It defines a <code>focused, resilient, agile, secure</code> posture and
+promises later OSTP/NSC technology-specific plans. It does not itself supply
+funding, agency owners, deadlines, metrics or operating capability.</p>
+<p>Existing education, grant-oversight, energy-emergency, data-center permitting, grid-mobilization and tribal-development authorities form adjacent implementation lanes. They do not merge into one blanket authority.</p>
+<p>DOE's finalized Fusion Science and Technology Roadmap supplies the first
+sector-specific vertical in this package. It joins appropriated research,
+national laboratories, public-private milestone programs, AI/HPC and digital
+twins, facilities, supply chains, regulation and an eventual grid-delivery
+target. DOE's August 15 <code>Energy Without Limits</code> thread is a communications
+activation of that June 9 roadmap, not a new scientific result.</p>
+<p>The project/capital/regulatory registry resolves the roadmap into named
+machines, sites and instruments. It shows that the eight Milestone companies
+are one federal funding cohort, not eight equivalent U.S. power plants, and
+tracks each object from agreement and obligation through hardware, licensing,
+commercial contracts and the still-unmet net-electricity and grid gates.</p>
+<p>The fusion date/time/place ledger preserves the physical, publication, legal,
+effective and future-target clocks separately for later astrology. It records
+exact times, timezones and loci when primary evidence supports them, preserves
+unknowns when it does not and applies the live one-capital D.C. chart convention
+only in a separate chart-readiness overlay.</p>
+<h2 id="read-in-this-order">Read in this order</h2>
+<ol>
+<li><a href="../sources/federal-science-operating-system-factual-spine-2025-2026-c98d15f74567.html"><code>FEDERAL_SCIENCE_OPERATING_SYSTEM_FACTUAL_SPINE_2025-2026.md</code></a> — dated legal and policy objects.</li>
+<li><a href="../sources/national-security-science-and-technology-strategy-2026-e86541703238.html"><code>NATIONAL_SECURITY_SCIENCE_AND_TECHNOLOGY_STRATEGY_2026.md</code></a> — full-document factual outline, authority boundary, national-security layer and implementation delta.</li>
+<li><code>NSSTS_MEMBRANE_MAP_2026-08-17.md</code> — same-day join of Pillar 4, the 30-university action, 1260H/1286/CHIPS list split, COINS vs part 850, and OSC versus “passive investment.” Strategy names the perimeter; this file says which gates are already machines.</li>
+<li><a href="../sources/readme-243d6cdfb65e.html"><code>Scientific Trust Stack 2026-08-17/README.md</code></a> — identity, research-security, agent, provenance, cryptographic, capital and remedy gates; read as a federated permission system, never one trust score.</li>
+<li><a href="../sources/federal-fusion-commercialization-bridge-2020-2035-187110145b91.html"><code>FEDERAL_FUSION_COMMERCIALIZATION_BRIDGE_2020-2035.md</code></a> — DOE fusion as a domain-specific implementation vertical, with gain, licensing and electricity clocks kept separate.</li>
+<li><a href="../sources/federal-fusion-project-capital-regulatory-registry-2022-2035-47346c8a435e.html"><code>FEDERAL_FUSION_PROJECT_CAPITAL_REGULATORY_REGISTRY_2022-2035.md</code></a> — eight-company machine/site registry, Milestone award accounting, public-capital ladder, Genesis/DCP implementation objects and regulatory/grid states.</li>
+<li><code>FEDERAL_FUSION_DATE_TIME_PLACE_LEDGER_2020-2035.md</code> — factual clocks, source loci, precision defects and D.C. chart-readiness metadata for later astrology; no chart calculation or interpretation.</li>
+<li><a href="../sources/federal-science-operating-system-control-surface-map-3937d109efe4.html"><code>FEDERAL_SCIENCE_OPERATING_SYSTEM_CONTROL_SURFACE_MAP.md</code></a> — the joined education, physical-infrastructure and scientific-rail architecture.</li>
+<li><code>FEDERAL_SCIENCE_OPERATING_SYSTEM_CLAIM_AUDIT.md</code> — what the record does and does not establish.</li>
+<li><code>FEDERAL_SCIENCE_OPERATING_SYSTEM_IMPLEMENTATION_WATCHBOARD.md</code> — exact evidence that moves proposals into operation.</li>
+<li><a href="../sources/readme-814cc85d1bbe.html"><code>NSSTS Technology-to-Company Map 2026-08-18/README.md</code></a> — standalone, evidence-graded company map spanning twelve sector lanes, exact-entity dependencies, 12 priority-company dossiers, a 33-record monitoring queue and a Phase 5 program-centered layer covering ten acquisition objects, 13 facilities and four calibration cases; explicitly outside the Federal Group and not an active automation.</li>
+</ol>
+<h2 id="the-three-control-surfaces">The three control surfaces</h2>
+<table>
+<thead>
+<tr>
+<th>Control surface</th>
+<th>What is being made portable or callable</th>
+<th>Controlling gates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Capital follows capability</strong></td>
+<td>fellowships, grants, prizes, compute access, research placements</td>
+<td>appropriation, agency authority, award terms, metrics, accreditation or Title IV where applicable</td>
+</tr>
+<tr>
+<td><strong>Speed-to-power</strong></td>
+<td>land, generation, transmission, substations, data centers, user facilities</td>
+<td>site control, tribal or landowner consent, interconnection, permits, financing, environmental and cultural review</td>
+</tr>
+<tr>
+<td><strong>Scientific rails</strong></td>
+<td>identity, data, models, instruments, experiments, provenance, credit, IP and rewards</td>
+<td>platform rules, access authorization, cybersecurity, export controls, authoritative records, appropriations, payment law</td>
+</tr>
+</tbody>
+</table>
+<p>The NSSTS adds a <strong>national-security membrane</strong> around all three surfaces:
+research security, participant and capital screening, export and data controls,
+supply-chain assurance, cryptography and trusted-partner rules. The membrane is
+strategy until a named legal or technical implementation assigns access,
+restriction, monitoring or mitigation to a specific object.</p>
+<h2 id="core-boundary">Core boundary</h2>
+<blockquote>
+<p>The federal government is building an operating environment in which scientific capacity can be discovered, accessed, measured and coordinated more like a platform. The record does not yet establish a mature federal blockchain, a federal scientific token, unrestricted AI-agent spending, blanket preemption of opposition, or the elimination of universities.</p>
+</blockquote>
+<h2 id="package-joins">Package joins</h2>
+<ul>
+<li><strong>Sovereign Compute:</strong> land, power, tribal counterparties, large-load integration and project clocks.</li>
+<li><strong>Emergency Monetary Policy:</strong> authority-specific activation; no single emergency switch.</li>
+<li><strong>Fintech and Private Rails:</strong> wallets, programmable payments, identity and settlement remain separate legal objects.</li>
+<li><strong>Federal Cryptographic Trust Stack:</strong>
+  Genesis identity, provenance and PQC bridge
+  preserves the operating
+  Globus/ModCon identity and provenance rail, the DOE-published cryptographic
+  attestation proposal, adjacent PQC mandates and the missing system-level join.</li>
+<li><strong>Scientific Trust Stack:</strong>
+  <a href="../sources/scientific-trust-stack-architecture-and-evidence-map-2026-08-17-b9b86dfc5e76.html"><code>architecture and evidence map</code></a>
+  joins that cryptographic base to research-security disclosures, human and
+  agent authorization, scientific provenance, authority-specific capital and
+  partner gates, continuing eligibility, correction and appeal. Its governing
+  object is a typed, scoped and expiring eligibility receipt—never a permanent
+  <code>trusted: true</code> flag.</li>
+<li><strong>Military Modernization:</strong> national-security compute, test ranges, autonomous systems and industrial mobilization.</li>
+<li><strong>Insurance and Reinsurance:</strong> physical, cyber, performance and liability risk for autonomous laboratories and critical infrastructure.</li>
+<li><strong>Education:</strong> researchers and credentials become more portable while institutional funding becomes more performance- and mission-sensitive.</li>
+<li><strong>Energy / fusion:</strong> the roadmap instantiates capital, physical infrastructure
+  and scientific rails in one commercialization chain; route official fusion
+  events to <code>Energy dominance &amp; the nuclear revival</code> and use Technology/AI only
+  when compute, models, data, digital twins or autonomous control are the object.</li>
+</ul>
+<h2 id="primary-source-set">Primary source set</h2>
+<ul>
+<li><a href="https://www.whitehouse.gov/science/">White House — Science: A New Golden Age</a></li>
+<li><a href="https://www.whitehouse.gov/wp-content/uploads/2026/08/NSSTS-082026.pdf">White House/OSTP — National Security Science &amp; Technology Strategy</a></li>
+<li><a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;req=granuleid%3AUSC-prelim-title42-chapter163">42 U.S.C. § 19221 — strategy and findings-report requirement</a></li>
+<li><a href="https://www.whitehouse.gov/wp-content/uploads/2026/07/White-House-Fiscal-Year-2028-RD-Priorities-Memorandum.pdf">White House — FY2028 R&amp;D Priorities Memorandum, NSTM-5 / M-26-16</a></li>
+<li><a href="https://www.federalregister.gov/documents/2025/11/28/2025-21665/launching-the-genesis-mission">Federal Register — Executive Order 14363, Launching the Genesis Mission</a></li>
+<li><a href="https://www.whitehouse.gov/presidential-actions/2025/08/improving-oversight-of-federal-grantmaking/">White House — Executive Order 14332, Improving Oversight of Federal Grantmaking</a></li>
+<li><a href="https://www.whitehouse.gov/presidential-actions/2025/07/accelerating-federal-permitting-of-data-center-infrastructure/">White House — Executive Order 14318, Accelerating Federal Permitting of Data Center Infrastructure</a></li>
+<li><a href="https://www.whitehouse.gov/presidential-actions/2025/01/declaring-a-national-energy-emergency/">White House — Executive Order 14156, Declaring a National Energy Emergency</a></li>
+<li><a href="https://www.whitehouse.gov/presidential-actions/2026/04/presidential-determination-pursuant-to-section-303-of-the-defense-production-act-of-1950-as-amended-on-grid-infrastructure-equipment-and-supply-chain-capacity/">White House — DPA section 303 grid-infrastructure determination</a></li>
+<li><a href="https://www.nsf.gov/news/nsf-announces-15b-nsf-x-labs-initiative-pursue-generational">NSF — X-Labs initiative</a></li>
+<li><a href="https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration">FERC — large-load integration orders</a></li>
+<li><a href="https://www.bia.gov/service/HEARTH-Act">BIA — HEARTH Act leasing</a></li>
+<li><a href="https://www.energy.gov/indianenergy/articles/data-centers-exploring-opportunity-tribes">DOE — Data Centers: Exploring the Opportunity for Tribes</a></li>
+<li><a href="https://www.energy.gov/articles/energy-department-releases-finalized-fusion-science-and-technology-roadmap-accelerate">DOE — finalized Fusion Science and Technology Roadmap release</a></li>
+<li><a href="https://www.energy.gov/documents/fusion-st-roadmap-060926pdf">DOE — complete Fusion Science and Technology Roadmap</a></li>
+<li><a href="https://www.energy.gov/fusion/office-fusion">DOE — Office of Fusion</a></li>
+<li><a href="https://science.osti.gov/-/media/funding/pdf/Awards-Lists/2809-FES-Fusion-Milestone-Awards-List.pdf">DOE — 2023 Milestone Program award list</a></li>
+<li><a href="https://www.energy.gov/documents/fy-2027-fusion-energy-sciences-budget-request">DOE — FY2027 Fusion Energy Sciences budget request</a></li>
+<li><a href="https://science.osti.gov/fes/Public-Private-Partnerships">DOE — FES public-private partnerships</a></li>
+<li><a href="https://www.nrc.gov/materials/fusion/rulemaking-status">NRC — fusion-machine rulemaking status</a></li>
+<li><a href="https://www.nrc.gov/materials/fusion/faq">NRC — fusion FAQ and Agreement State boundary</a></li>
+<li><a href="https://www.govinfo.gov/app/details/PLAW-118publ67">Public Law 118-67 — ADVANCE Act</a></li>
+<li><a href="https://typeoneenergy.com/insights-announcements/type-one-energy-initial-licensing-application-bull-run/">Type One — initial Bull Run licensing application</a></li>
+<li><a href="https://lasers.llnl.gov/science/achieving-fusion-ignition">LLNL — fusion ignition record</a></li>
+<li><a href="https://www.iter.org/fusion-energy/advantages-fusion">ITER — fusion energy-density and commercialization qualifications</a></li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

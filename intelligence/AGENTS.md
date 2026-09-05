@@ -1,3 +1,7 @@
+# Start with the connected research
+
+Use [CONNECTED-RESEARCH.md](CONNECTED-RESEARCH.md) for the explanatory chapter map and [connected-index.json](connected-index.json) for subjects, company investigations, exact source URLs and chapter relationships. The same Catalog drives the private app. Older room, report and library links remain valid.
+
 # Freedom 250 AI Research Guide
 
 This repository is the direct-link publication of two connected surfaces:

@@ -1,0 +1,537 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>New York Indigenous territories and sovereign compute — deep-dive field brief · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/national-change-local-life.html#who-has-authority" class="" >A place also has owners and governments <span class="meta">— Where national change becomes local</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>New York Indigenous territories and sovereign compute — deep-dive field brief</h1><p class="deck">Collection evidence cutoff: 2026-07-15</p><p><a href="new-york-sovereign-compute-deep-dive-974543dab906.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="new-york-indigenous-territories-and-sovereign-compute-deep-dive-field-brief">New York Indigenous territories and sovereign compute — deep-dive field brief</h1>
+<p>Updated: 2026-07-11<br />
+Status: first deep research pass; active collection<br />
+Scope: data centers, AI/HPC, cloud and cybersecurity platforms, fiber, power, land authority, environmental review, and large-load projects on or materially affecting Indigenous territories in New York.</p>
+<h2 id="bottom-line-up-front">Bottom line up front</h2>
+<p>New York is not a blank map.</p>
+<ol>
+<li><strong>Oneida Indian Nation already has an operating tribal-enterprise compute layer.</strong> Oneida Innovations Group states that it architectures and operates <strong>four Tier III data centers</strong> for the Nation's commercial system. The same enterprise manages a <strong>230-mile private dark-fiber ring</strong>, performs data-center and cloud migrations, and holds federal IT and defense contract vehicles. The exact locations, parcel status, electrical loads, customers, and whether any capacity is sold as third-party colocation remain undisclosed.</li>
+<li><strong>Tonawanda Seneca territory is beside one of the most advanced hyperscale proposals in New York.</strong> Stream U.S. Data Centers' Project Double Reed at STAMP is a proposed <strong>500-MW, 2.2-million-square-foot, $19.46 billion</strong> campus on 90 permanent acres, intended for one unnamed Fortune 50 tenant. It is not on Tonawanda Seneca land. The Nation has been engaged in a long consultation and opposition record concerning cultural resources, wetlands, water, noise, energy, and the adequacy of the environmental review.</li>
+<li><strong>Akwesasne is beside an existing and proposed large-load cluster at Massena.</strong> North Country Collocation Services/NYDIG already operates at the former Alcoa East/Reynolds site and is proposing a <strong>635-MW, roughly 1.5-million-square-foot</strong> expansion. The Mohawk Council of Akwesasne formally opposed the proposal on 2026-05-22. The Saint Regis Mohawk Tribe separately owns an unusually mature fiber enterprise and previously sought trust status for a 140-acre infrastructure parcel. These are separate facts; no tribal data-center partnership is established.</li>
+<li><strong>Seneca, Shinnecock, Saint Regis Mohawk, and Oneida already possess technology or energy enterprises that could become counterparties without a greenfield hyperscale lease.</strong> Seneca Technologies sells cloud, cybersecurity and responsible-AI services; Shinnecock Power is the Nation's renewable-energy and telecommunications parent; Mohawk Networks operates tribal fiber and federal-contracting infrastructure; Oneida already operates internal Tier III facilities.</li>
+<li><strong>New York is a regulation-heavy, not regulation-free, theater.</strong> Land status and jurisdiction vary by Nation and parcel. Federal lease law, tribal law, New York's unusual civil/criminal jurisdiction statutes, Clean Air Act and Clean Water Act requirements, NYISO interconnection, utility tariffs, SEQR, local land-use authority, and government-to-government consultation can all appear in different combinations. “On a reservation” is not a sufficient legal conclusion.</li>
+<li><strong>The state regulatory clock is moving quickly.</strong> The Legislature passed A11560/S10642, which would place a one-year pause on new Department of Environmental Conservation approvals for data centers with peak load of at least 20 MW, while establishing hearings, rate classes, efficiency goals, labor rules, and host-community benefits. As of this update the bill has been delivered to the Governor but is not shown as signed. Its application to any particular tribal parcel would require parcel- and permit-specific analysis.</li>
+</ol>
+<h2 id="1-new-york-entity-and-territory-map">1. New York entity and territory map</h2>
+<p>New York identifies nine resident Indigenous Nations for state consultation. Eight are federally recognized; Unkechaug is state-recognized. The physical land map is not one-reservation-per-Nation.</p>
+<table>
+<thead>
+<tr>
+<th>Nation</th>
+<th>Federal status</th>
+<th>Principal present New York land relationship</th>
+<th>Compute relevance found in this pass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cayuga Nation</td>
+<td>Federally recognized</td>
+<td>Historic reservation and reacquired parcels; Interior approved a Cayuga County trust acquisition in 2023</td>
+<td>No Nation-linked data-center project located. Do not confuse the Nation with the unrelated Cayuga Operating Company/TeraWulf project in Lansing.</td>
+</tr>
+<tr>
+<td>Oneida Indian Nation</td>
+<td>Federally recognized</td>
+<td>Oneida reservation/trust and Nation-controlled parcels in central New York</td>
+<td>Four Tier III data centers, 230-mile private dark-fiber ring, data-center/cloud operations, federal IT and cyber platform; no public hyperscale campus instrument located.</td>
+</tr>
+<tr>
+<td>Onondaga Nation</td>
+<td>Federally recognized</td>
+<td>Onondaga Nation territory south of Syracuse</td>
+<td>No Nation-linked project located. A separate 300-MW proposal in Lysander is a regional/consultation watch, not an Onondaga project.</td>
+</tr>
+<tr>
+<td>Saint Regis Mohawk Tribe</td>
+<td>Federally recognized</td>
+<td>St. Regis Mohawk Reservation/Akwesasne; additional land-claim and trust questions</td>
+<td>Tribally owned fiber and telecom enterprise; 140-acre infrastructure land-to-trust application; adjacent Massena large-load cluster; no tribal data-center deal located.</td>
+</tr>
+<tr>
+<td>Seneca Nation of Indians</td>
+<td>Federally recognized</td>
+<td>Allegany, Cattaraugus and Oil Springs reservations plus Nation territories in Buffalo and Niagara Falls</td>
+<td>Tribal cloud/AI/cyber contractor, broadband buildout and energy enterprise; no Nation-site data-center announcement located. Multiple western New York projects require proximity and grid review.</td>
+</tr>
+<tr>
+<td>Shinnecock Indian Nation</td>
+<td>Federally recognized</td>
+<td>Shinnecock state reservation/restricted-fee land in Southampton; Westwoods and other land interests require separate treatment</td>
+<td>$8.197 million fiber deployment; tribal renewable-energy and telecommunications parent; no data-center project located.</td>
+</tr>
+<tr>
+<td>Tonawanda Seneca Nation</td>
+<td>Federally recognized</td>
+<td>Tonawanda Reservation across Genesee, Erie and Niagara counties</td>
+<td>Active consultation/opposition timeline concerning the immediately adjacent STAMP/Stream project; not a tribal development project.</td>
+</tr>
+<tr>
+<td>Tuscarora Nation</td>
+<td>Federally recognized</td>
+<td>Tuscarora Reservation in Niagara County</td>
+<td>19-mile tribal fiber deployment; direct history with the Niagara Power Project and current NYPA environmental-justice work; no data-center project located.</td>
+</tr>
+<tr>
+<td>Unkechaug Indian Nation</td>
+<td>State-recognized</td>
+<td>Poospatuck state reservation on Long Island</td>
+<td>No public data-center, tribal cloud or large-load development signal located in this pass. Federal HEARTH and federal tribal contracting pathways cannot be assumed.</td>
+</tr>
+</tbody>
+</table>
+<p>Primary map anchors: <a href="https://dec.ny.gov/about/dei/indian-nation-affairs/consultation">NYSDEC consultation list</a>; <a href="https://www.bia.gov/regional-office/eastern-region">BIA Eastern Region tribal list</a>; <a href="https://www2.census.gov/geo/maps/cong_dist/cd119/st_based/CD119_NY.pdf">U.S. Census New York reservation map</a>.</p>
+<h2 id="2-priority-intelligence-assessment">2. Priority intelligence assessment</h2>
+<h3 id="priority-1-oneida-indian-nation-confirmed-operating-compute-platform">Priority 1 — Oneida Indian Nation: confirmed operating compute platform</h3>
+<p><strong>What is verified</strong></p>
+<ul>
+<li>Oneida Innovations Group says its commercial/gaming technology operations include the <strong>architecture and operation of four Tier III data centers</strong>.</li>
+<li>Its network foundation includes a <strong>230-mile private dark-fiber ring</strong> connecting more than 40 properties.</li>
+<li>Oneida Network Infrastructure designs, implements and operates network, data-center and telecommunications infrastructure and performs data-center and cloud migrations.</li>
+<li>Oneida Technical Solutions and Oneida Network Infrastructure hold federal contract vehicles; ONI advertises eligibility for tribally owned 8(a) sole-source awards up to $100 million.</li>
+<li>Interior approved Oneida Indian Nation <strong>business HEARTH regulations on 2015-01-28</strong> and residential regulations on 2016-06-14. HEARTH authority can streamline covered surface leases under approved tribal rules, but it does not prove a new data-center lease.</li>
+<li>Oneida reported record 2025 investment of $855 million across workforce, capital and regional vendors. That weakens a simple “gaming distress forces a data-center pivot” explanation for Oneida.</li>
+</ul>
+<p><strong>What is not verified</strong></p>
+<ul>
+<li>addresses, parcel ownership, trust/restricted/fee status, MW, cooling systems, backup generation, tenants, colocation sales, cloud workload identity, or expansion plans for the four Tier III facilities;</li>
+<li>any large-load interconnection request filed in the Oneida Nation's name;</li>
+<li>any external developer approach, hyperscale lease, or AI-campus resolution.</li>
+</ul>
+<p><strong>Analytic judgment</strong></p>
+<p>Oneida is the most mature New York sovereign-compute entity, but its likely path is not necessarily a raw-land lease. It could expand from internal enterprise data centers and defense-grade IT into sovereign cloud, managed colocation, secure federal workloads, or a joint venture. The decisive question is whether the four facilities are internal operational assets or the beginning of a market-facing compute platform.</p>
+<p>Sources: <a href="https://www.oneidainnovations.com/who-we-serve/hospitality-gaming">Oneida hospitality and gaming technology capabilities</a>; <a href="https://www.oneidainnovations.com/what-we-do/network-telecom">Oneida network and telecom capabilities</a>; <a href="https://www.oneidainnovations.com/about-us/our-businesses/oneida-network-infrastructure">Oneida Network Infrastructure</a>; <a href="https://www.oneidainnovations.com/contract-vehicles">federal contract vehicles</a>; <a href="https://www.bia.gov/service/HEARTH-Act/approved-regulations">BIA HEARTH registry</a>; <a href="https://www.oneidaindiannation.com/oneida-indian-nation-invests-record-breaking-855-million-in-workforce-capital-projects-and-spending-with-regional-businesses-in-2025">2025 Oneida economic-impact statement</a>.</p>
+<h3 id="priority-2-tonawanda-seneca-nation-active-adjacent-hyperscale-conflict">Priority 2 — Tonawanda Seneca Nation: active adjacent hyperscale conflict</h3>
+<p><strong>Project clock — STAMP / Project Double Reed</strong></p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Event</th>
+<th>State change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2010–2012</td>
+<td>GCEDC develops STAMP environmental record and begins Nation consultation</td>
+<td>Regional industrial site established beside Tonawanda territory</td>
+</tr>
+<tr>
+<td>2016–2020</td>
+<td>Buffer, wastewater routing, archaeology and cultural-resource procedures negotiated</td>
+<td>Mitigation/consultation architecture grows</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>Plug Power becomes tenant; later settlement expands preserved buffer</td>
+<td>STAMP becomes an operating industrial campus; dispute continues</td>
+</tr>
+<tr>
+<td>Fall 2024</td>
+<td>Three data-center applicants seek the same general parcel: Potentia/Project Hydroscale, Project Rampart, and Stream/Project Double Reed</td>
+<td>Multiple-developer competition becomes public</td>
+</tr>
+<tr>
+<td>2025-01-30</td>
+<td>Nation sends comments on the three proposals</td>
+<td>Formal Nation objection/questions enter SEQRA record</td>
+</tr>
+<tr>
+<td>2025-03-06</td>
+<td>GCEDC approves the earlier Stream version</td>
+<td>Project advances, then later changes</td>
+</tr>
+<tr>
+<td>2025-09-18</td>
+<td>Stream says it can obtain more power and will enlarge the project; earlier approval is rescinded</td>
+<td>Project resets at larger scale</td>
+</tr>
+<tr>
+<td>2025-12-12 to 2026-01-30</td>
+<td>Revised 2.2-million-square-foot application and SEQRA process become public</td>
+<td>Current project configuration established</td>
+</tr>
+<tr>
+<td>2026-03-19</td>
+<td>Public hearing held; recording problems lead to extended comments and promise of another hearing</td>
+<td>Incentive decision remains open</td>
+</tr>
+<tr>
+<td>2026-05-07</td>
+<td>Emergency-services technical coordination meeting</td>
+<td>Design diligence deepens</td>
+</tr>
+<tr>
+<td>2026-06-02</td>
+<td>Acoustic and wildlife consultants report ongoing review</td>
+<td>SEQRA remains active</td>
+</tr>
+<tr>
+<td>2026-06-25/26</td>
+<td>Geotechnical responses and site-plan resubmission posted</td>
+<td>Project remains in active design/review</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Current configuration</strong></p>
+<ul>
+<li>developer: Stream U.S. Data Centers LLC;</li>
+<li>location: STAMP, west of Crosby Road, Town of Alabama, immediately near Tonawanda Seneca territory but not on Nation land;</li>
+<li>campus: three two-story buildings, approximately 2.2 million square feet;</li>
+<li>permanent development: approximately 90 acres plus temporary construction and telecom easements;</li>
+<li>electrical use: 500 MW of a planned 600-MW STAMP substation;</li>
+<li>capital: $19.46 billion;</li>
+<li>customer: one unnamed Fortune 50 tenant with a stated investment-grade rating;</li>
+<li>operations employment: approximately 125–170 direct jobs depending on the project document;</li>
+<li>water claim: 20,000 gallons per day from the STAMP allocation;</li>
+<li>public benefits proposal: $285 million over 30 years in PILOT/host payments;</li>
+<li>current stage: site-plan and environmental review; no construction or energization verified.</li>
+</ul>
+<p><strong>Why this file matters</strong></p>
+<p>This is the clearest New York example of a data-center build interlocking with Indigenous territory without being a tribal project. It tests consultation, cultural landscapes, wetlands, wildlife, water routing, noise, emergency response, grid allocation and whether an old generic environmental impact statement can support a new hyperscale use.</p>
+<p>Sources: <a href="https://www.gcedc.com/projects">GCEDC projects library</a>; <a href="https://www.gcedc.com/file-library/100346/STAMP.SEQR.2025Update.ResponseLettertoTSN.2.28.25.pdf">2025 GCEDC response to Tonawanda Seneca comments</a>; <a href="https://www.gcedc.com/stamptsnconsultation">GCEDC consultation history</a>; <a href="https://www.gcedc.com/file-library/100319/STREAMUSDataCentersLLC.StakeholderProjectOverview.pdf">Stream stakeholder overview</a>; <a href="https://www.gcedc.com/file-library/100319/STREAMUSDataCentersLLC.SEQRDevelopmentApplication.4.6.26.IandII.IntroductionandProjectDescription.pdf">current project description</a>; <a href="https://www.gcedc.com/file-library/100322/6.2.26.GCEDC.STAMP.MeetingMinutes.Draft.pdf">June 2026 STAMP committee minutes</a>.</p>
+<h3 id="priority-3-saint-regis-mohawkakwesasne-fiber-strength-beside-the-massena-load-cluster">Priority 3 — Saint Regis Mohawk/Akwesasne: fiber strength beside the Massena load cluster</h3>
+<p><strong>Tribal capacity clock</strong></p>
+<ul>
+<li>2009 onward: the Saint Regis Mohawk Tribe begins building a tribally controlled broadband platform.</li>
+<li>By 2015: roughly 70 miles of fiber is reported complete and operating.</li>
+<li>2017-03-01/06: the Tribe submits a 140-acre land-to-trust application for a parcel intended to combine connectivity, sustainable energy and construction resources; Mohawk Networks already owns a 400-foot communications tower.</li>
+<li>2017-11-20: subsidiary North Country Broadband activates a 10-gigabit network in Massena, fed through the Development Authority of the North Country.</li>
+<li>2024-05: Verizon begins nine miles of additional fiber along NY-37 to improve service and high-speed connectivity to companies in Akwesasne.</li>
+<li>2026: Mohawk Networks describes a strategy of using its fiber base, tribal 8(a) status and HUBZone status to pursue federal IT and telecommunications work.</li>
+</ul>
+<p><strong>Adjacent Massena data-center clock</strong></p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Event</th>
+<th>State change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>NCCS/related digital operations begin at the former Alcoa East/Reynolds site</td>
+<td>Existing compute load established near Akwesasne</td>
+</tr>
+<tr>
+<td>2022–2025</td>
+<td>Company says load studies, infrastructure work and feasibility analysis are completed</td>
+<td>Expansion enters advanced pre-application work</td>
+</tr>
+<tr>
+<td>2026-04/05</td>
+<td>Massena and county planning records begin reviewing a 635-MW expansion concept</td>
+<td>Local planning clock becomes public</td>
+</tr>
+<tr>
+<td>2026-05-21</td>
+<td>NCCS/NYDIG presents to Massena Planning Board; no vote and no complete formal site-plan submission at that meeting</td>
+<td>Public diligence; project not approved</td>
+</tr>
+<tr>
+<td>2026-05-22</td>
+<td>Mohawk Council of Akwesasne formally opposes the proposal</td>
+<td>Cross-border Indigenous resistance clock becomes formal</td>
+</tr>
+<tr>
+<td>2026-06-25 onward</td>
+<td>Planning review begins amid threshold zoning, environmental and public-process questions</td>
+<td>Earliest formal review stage</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Current proposed configuration</strong></p>
+<ul>
+<li>applicant/developer chain: Massena Development LLC / North Country Collocation Services / NYDIG-related interests; exact ownership and control should be fixed from the application and corporate records;</li>
+<li>site: 182 and 194 County Road 45, former Alcoa East/Reynolds industrial property;</li>
+<li>project: three buildings totaling about 1.45–1.5 million square feet;</li>
+<li>power: 435 MW described as previously approved plus 200 MW pending, for 635 MW total;</li>
+<li>generators: company materials reviewed in local records describe 115 backup generators after design reduction;</li>
+<li>stage: engineering, site design and environmental/regulatory review; no expansion construction verified;</li>
+<li>proximity issue: Akwesasne governments and community members identify risks to land, water, health, noise, emissions, grid resources and meaningful consultation.</li>
+</ul>
+<p><strong>Analytic judgment</strong></p>
+<p>Akwesasne is simultaneously one of the best-equipped New York Nations to participate in digital infrastructure and one of the clearest current centers of resistance to an adjacent mega-campus. Do not collapse the Mohawk Council of Akwesasne, Saint Regis Mohawk Tribal Council, Mohawk Nation Council of Chiefs, or community organizations into a single actor. The May 22 opposition statement located in this pass is MCA's; a matching SRMT data-center resolution has not yet been located.</p>
+<p>Sources: <a href="https://www.srmt-nsn.gov/news/saint_regis_mohawk_tribe_submits_140_acre_land_in_trust_applicatiton">SRMT 140-acre trust application</a>; <a href="https://www.srmt-nsn.gov/news/north-country_broadband_lights_up_fiber_in_massena">North Country Broadband 10-gigabit build</a>; <a href="https://broadbandusa.ntia.gov/funding-programs/tribal-broadband-connectivity-program-round-1/awardee/mohawk-broadband-infrastructure-expansion-digital-inclusion">NTIA Mohawk Networks award</a>; <a href="https://www.massenany.gov/AgendaCenter/ViewFile/Minutes/_05212026-1205">Massena Planning Board May 21 minutes</a>; <a href="https://www.nccs.one/massena">NCCS project timeline</a>; <a href="https://www.akwesasne.ca/news/posts/mca-opposes-proposed-data-center-development/">MCA opposition statement</a>.</p>
+<h3 id="priority-4-seneca-nation-cloud-ai-energy-and-broadband-without-a-public-campus">Priority 4 — Seneca Nation: cloud, AI, energy and broadband without a public campus</h3>
+<p><strong>Verified platform</strong></p>
+<ul>
+<li>Seneca Technologies, a wholly owned Seneca Holdings subsidiary, markets cloud transformation, cloud computing, migration, hybrid/multicloud, cybersecurity, DevSecOps, responsible AI, data analytics and emerging-technology services to federal civilian, defense and intelligence customers.</li>
+<li>Seneca Energy states a mission of energy security and independence through wind and solar.</li>
+<li>An NTIA award supports the remaining Cattaraugus Territory broadband buildout, two fiber huts, public Wi-Fi and use of the Nation's 2.5-GHz spectrum.</li>
+<li>Seneca Gaming Corporation operates three major Class III gaming properties and described a 2026 organizational strategy focused on revenue growth and operating efficiency; this pass did not locate evidence of a “terrible year” or a formal pivot from gaming to data centers.</li>
+</ul>
+<p><strong>Unverified but important</strong></p>
+<ul>
+<li>whether Seneca Technologies operates Nation-owned physical data centers or resells/manages third-party cloud;</li>
+<li>whether Seneca Energy has modeled power sales to large loads;</li>
+<li>whether any Cattaraugus, Allegany, Oil Springs, Buffalo or Niagara Falls territory parcel has been screened for compute;</li>
+<li>whether regional Niagara and western New York data-center developers have approached the Nation.</li>
+</ul>
+<p>Sources: <a href="https://senecanationgroup.com/our-companies/seneca-technologies/">Seneca Technologies</a>; <a href="https://sni.org/community-services/seneca-energy/">Seneca Energy</a>; <a href="https://broadbandusa.ntia.gov/funding-programs/tribal-broadband-connectivity-program-round-1/awardee/seneca-nation-tribal-broadband-connectivity-program">NTIA Seneca broadband award</a>; <a href="https://senecacasinos.com/about-us/">Seneca Gaming overview</a>.</p>
+<h3 id="priority-5-shinnecock-indian-nation-small-land-base-strong-telecomenergy-intent">Priority 5 — Shinnecock Indian Nation: small land base, strong telecom/energy intent</h3>
+<p><strong>Verified platform</strong></p>
+<ul>
+<li>Sovereign Energy and Telecommunications of Long Island/Shinnecock Power identifies itself as the Nation's renewable-energy and telecommunications parent.</li>
+<li>NTIA awarded $8,197,449.36 for fiber connecting 301 unserved reservation households, 60 near-territory households, government buildings and anchor institutions, with service up to 1-Gbps symmetrical.</li>
+<li>Shinnecock's present reservation is a state reservation/restricted-fee land base; it should not be described as ordinary fee land or assumed to follow another Nation's trust-land process.</li>
+</ul>
+<p><strong>Constraints and watch points</strong></p>
+<ul>
+<li>small, environmentally sensitive land base;</li>
+<li>Long Island power and water constraints and LIPA tariff exposure;</li>
+<li>land-status sensitivity and unresolved broader land claims;</li>
+<li>no public HEARTH approval or data-center project located in this pass.</li>
+</ul>
+<p><strong>Analytic judgment</strong></p>
+<p>Shinnecock's more plausible near-term compute path is a small sovereign-cloud, edge, telecom or managed-services node tied to its fiber and energy enterprise—not a 500-MW greenfield campus on the current Southampton reservation. A larger project would likely require a different parcel and a long land, power and environmental clock.</p>
+<p>Sources: <a href="https://www.shinnecockpower.com/about">Shinnecock Power</a>; <a href="https://broadbandusa.ntia.gov/funding-programs/tribal-broadband-connectivity-program/awardee/tribal-broadband-connectivity-program-43">NTIA Shinnecock award</a>; <a href="https://www.bia.gov/as-ia/opa/online-press-release/department-interior-proposes-acknowledge-shinnecock-indian-nation">BIA recognition history</a>.</p>
+<h3 id="priority-6-tuscarora-nation-new-fiber-in-a-historically-contested-power-landscape">Priority 6 — Tuscarora Nation: new fiber in a historically contested power landscape</h3>
+<p><strong>Verified platform</strong></p>
+<ul>
+<li>A $1.5 million NTIA/Haudenosaunee Environmental Task Force project funds a 19-mile fiber-to-the-premises network for 440 households and two anchor institutions.</li>
+<li>NYPA completed water filtration and electric heating improvements at the Tuscarora Nation School in 2024 under its Niagara environmental-justice program.</li>
+<li>The Nation's relationship to the Niagara Power Project is historically defined by the taking of reservation land for the reservoir. Any “cheap Niagara hydropower” siting narrative must account for that history rather than treating geography as consent.</li>
+<li>No Tuscarora data-center project, developer approach, HEARTH approval or large-load filing was located in this pass.</li>
+</ul>
+<p>Sources: <a href="https://broadbandusa.ntia.gov/funding-programs/tribal-broadband-connectivity-program-round-1/awardee/haudenosaunee-environmental-task-force">NTIA Tuscarora fiber award</a>; <a href="https://nypa.gov/news/press-releases/2024/20240327-tuscarora">NYPA Tuscarora school project</a>.</p>
+<h3 id="priority-7-onondaga-nation-regional-build-pressure-no-project-tie">Priority 7 — Onondaga Nation: regional build pressure, no project tie</h3>
+<p><strong>Verified regional facts</strong></p>
+<ul>
+<li>A separate 300-MW data-center proposal emerged in the Town of Lysander in Onondaga County.</li>
+<li>The Town adopted a six-month moratorium running through 2026-11-06 and formed a data-center advisory process.</li>
+<li>New York's Legislature cited the Lysander proposal during passage of the statewide data-center bill.</li>
+</ul>
+<p><strong>Boundary</strong></p>
+<p>The Lysander proposal is not located on Onondaga Nation territory and no Nation ownership, lease, partnership or formal response was located in this pass. It belongs in the Onondaga regional consultation and watershed/cultural-interest watch only after the actual area of interest and affected resources are verified.</p>
+<p>Sources: <a href="https://www.nysenate.gov/newsroom/video/rachel-may/senator-may-votes-one-year-statewide-moratorium-new-data-centers">New York Senate statement on Lysander and the statewide bill</a>; <a href="https://townoflysander.org/">Town of Lysander</a>.</p>
+<h3 id="priority-8-cayuga-nation-land-reassembly-high-risk-of-name-confusion">Priority 8 — Cayuga Nation: land reassembly, high risk of name confusion</h3>
+<p><strong>Verified facts</strong></p>
+<ul>
+<li>Interior approved a Cayuga County trust acquisition in 2023 within or contiguous to reservation boundaries.</li>
+<li>No Cayuga Nation data-center, cloud, AI, power or fiber project was located in this pass.</li>
+</ul>
+<p><strong>Critical disambiguation</strong></p>
+<p>“Cayuga Load,” “Cayuga Compute,” Cayuga Operating Company, and TeraWulf's Lake Hawkeye project are a private brownfield redevelopment at the former Cayuga power plant in Lansing. They are not evidence of Cayuga Nation participation. TeraWulf has an 80-year lease for approximately 183 acres and describes up to 400 MW of gross capacity, but the name is geographic/corporate, not tribal.</p>
+<p>Sources: <a href="https://www.bia.gov/as-ia/oig/gaming-compacts/2023-03-29/cayuga-indian-nation-new-york-decision">Interior Cayuga trust decision</a>; <a href="https://www.terawulf.com/our-sites">TeraWulf Cayuga lease announcement</a>; <a href="https://www.sec.gov/Archives/edgar/data/1083301/000110465925078086/tm2523008d1_ex10-1.htm">SEC-filed lease</a>.</p>
+<h3 id="priority-9-unkechaug-indian-nation-separate-state-recognition-track">Priority 9 — Unkechaug Indian Nation: separate state-recognition track</h3>
+<p>Unkechaug/Poospatuck appears on New York's consultation list and Census state-reservation map but not the BIA federally recognized list. No compute, cloud, power-development, fiber-enterprise or developer approach was located in this pass. Federal tribal leasing, tax and 8(a) pathways must not be imputed from the federally recognized Nations.</p>
+<h2 id="3-new-york-regulatory-battlespace">3. New York regulatory battlespace</h2>
+<h3 id="tribal-land-does-not-erase-regulation">Tribal land does not erase regulation</h3>
+<ul>
+<li><strong>HEARTH:</strong> only the Oneida Indian Nation of New York appears in the current BIA registry with approved business regulations (2015) and residential regulations (2016). HEARTH allows covered leases under approved tribal rules without later deal-by-deal Interior approval. It does not eliminate the environmental review required by the HEARTH statute or other federal, power, water, air, safety and right-of-way requirements.</li>
+<li><strong>New York jurisdiction statutes:</strong> 25 U.S.C. §232 grants New York criminal jurisdiction over reservation offenses; §233 grants state courts civil jurisdiction in defined actions while protecting reservation land from taxation, judgment execution and unauthorized alienation. These statutes make New York structurally different from many western Indian-country jurisdictions but do not convert reservation land into ordinary municipal land.</li>
+<li><strong>Environmental review:</strong> New York agencies apply SEQR to their discretionary actions. DEC's CP-42 requires early government-to-government consultation when projects may affect a Nation's environmental, cultural or subsistence interests. Federal permits can add NEPA, Section 106, Army Corps, EPA or other consultation clocks.</li>
+<li><strong>Grid:</strong> NYISO's queue is a power-path lead, not proof of land control, construction or a tenant. NYISO warned that queue projects may be deferred or withdrawn even after studies.</li>
+<li><strong>State legislation:</strong> A11560/S10642 passed both chambers in June 2026 and was delivered to the Governor. Until signed, it is not law. If enacted, it pauses certain new DEC approvals for large data centers while adding public-hearing, rate, efficiency, labor and community-benefit rules.</li>
+</ul>
+<p>Sources: <a href="https://www.bia.gov/service/HEARTH-Act">BIA HEARTH overview</a>; <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title25-section232">25 U.S.C. §232</a>; <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title25-section233">25 U.S.C. §233</a>; <a href="https://dec.ny.gov/about/dei/indian-nation-affairs">NYSDEC consultation policy</a>; <a href="https://www.nysenate.gov/legislation/bills/2025/A11560">A11560 status and text</a>; <a href="https://www.nyiso.com/connecting-to-the-grid">NYISO large-load queue context</a>.</p>
+<h2 id="4-regional-large-load-ring-around-indigenous-territories">4. Regional large-load ring around Indigenous territories</h2>
+<table>
+<thead>
+<tr>
+<th>Regional project</th>
+<th>Public scale/stage</th>
+<th>Indigenous relationship</th>
+<th>Correct classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stream / Project Double Reed, STAMP</td>
+<td>500 MW; 2.2M sq. ft.; site-plan and SEQRA review</td>
+<td>Immediately adjacent to Tonawanda Seneca territory; long consultation and opposition record</td>
+<td>Adjacent-impact project, not tribal development</td>
+</tr>
+<tr>
+<td>NCCS/NYDIG Massena expansion</td>
+<td>635 MW; ~1.5M sq. ft.; earliest local planning/environmental stage</td>
+<td>Near Akwesasne; MCA formal opposition</td>
+<td>Adjacent-impact project, not tribal development</td>
+</tr>
+<tr>
+<td>Existing Massena/North Country loads</td>
+<td>Existing and queued digital loads in NYISO Zone D</td>
+<td>Same regional grid and industrial landscape as Akwesasne</td>
+<td>Regional power/consultation watch; ownership and current status must be fixed project by project</td>
+</tr>
+<tr>
+<td>Niagara Digital Campus</td>
+<td>140 MW; PUD/zoning path cleared 2026-06-04</td>
+<td>In Niagara Falls, within the wider Seneca/Tuscarora regional landscape; no tribal tie located</td>
+<td>Regional project only</td>
+</tr>
+<tr>
+<td>Blockfusion Niagara Falls campus</td>
+<td>LOI announced for up to 300 MW critical IT, including 85 MW take-or-pay component; definitive documents pending</td>
+<td>Same regional landscape; no tribal tie located</td>
+<td>Regional commercial lead only</td>
+</tr>
+<tr>
+<td>Lysander proposal</td>
+<td>300 MW; town moratorium/study</td>
+<td>Onondaga County but not Onondaga Nation territory; Nation interest not yet established</td>
+<td>Regional consultation watch only</td>
+</tr>
+<tr>
+<td>TeraWulf Lake Hawkeye/Cayuga</td>
+<td>Up to 400 MW gross; permitting</td>
+<td>No Cayuga Nation relationship located</td>
+<td>Private brownfield project; name collision</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-public-company-overlay">5. Public-company overlay</h2>
+<table>
+<thead>
+<tr>
+<th>Public company</th>
+<th>New York relationship</th>
+<th>Indigenous relationship established?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TeraWulf Inc. (NASDAQ: WULF)</td>
+<td>Lake Mariner in Barker and Lake Hawkeye/Cayuga in Lansing</td>
+<td>No tribal ownership or partnership located; Cayuga name is not Cayuga Nation</td>
+</tr>
+<tr>
+<td>Alcoa Corp. (NYSE: AA)</td>
+<td>Former Massena East property and continuing Massena operations; potential site-sale and power history</td>
+<td>Adjacent environmental and land history involving Akwesasne, but no tribal data-center partnership located</td>
+</tr>
+<tr>
+<td>Verizon Communications (NYSE: VZ)</td>
+<td>Nine-mile 2024 fiber build in Akwesasne region; 2026 state broadband award includes Tonawanda Reservation</td>
+<td>Connectivity vendor/infrastructure relationship, not data-center developer</td>
+</tr>
+<tr>
+<td>Charter Communications (NASDAQ: CHTR)</td>
+<td>State broadband award includes Tuscarora Nation</td>
+<td>Connectivity build, not data-center project</td>
+</tr>
+<tr>
+<td>SpaceX is privately held</td>
+<td>State broadband award covers Allegany, Oneida and St. Regis reservations by satellite</td>
+<td>Connectivity service only</td>
+</tr>
+<tr>
+<td>Blue Acquisition Corp. (NASDAQ: BACC), a SPAC</td>
+<td>Proposed combination with Blockfusion; June 2026 Niagara Falls AI-customer and financing LOIs</td>
+<td>No tribal relationship located</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-priority-intelligence-requirements">6. Priority intelligence requirements</h2>
+<h3 id="pir-1-oneidas-four-tier-iii-facilities">PIR-1 — Oneida's four Tier III facilities</h3>
+<ul>
+<li>exact addresses and parcel IDs;</li>
+<li>land status for each facility;</li>
+<li>MW, backup generation, cooling and fiber routes;</li>
+<li>internal-only versus third-party colocation;</li>
+<li>expansion capital, procurement notices and NYISO/utility records;</li>
+<li>whether Oneida Innovations Group is positioning sovereign cloud or federal classified workloads on Nation-controlled infrastructure.</li>
+</ul>
+<h3 id="pir-2-akwesasnemassena-ownership-and-approval-chain">PIR-2 — Akwesasne/Massena ownership and approval chain</h3>
+<ul>
+<li>complete Massena Development/NCCS/NYDIG/Stone Ridge/Coinmint ownership chain;</li>
+<li>property sale status with Alcoa;</li>
+<li>435-MW and additional 200-MW power instruments and queue identifiers;</li>
+<li>formal site-plan submission, SEQR lead agency and zoning ruling;</li>
+<li>DEC air, water, wetlands and brownfield records;</li>
+<li>SRMT, MCA and Mohawk Nation Council of Chiefs positions kept separate;</li>
+<li>all other “ten proposals” reportedly under consideration in the Massena area.</li>
+</ul>
+<h3 id="pir-3-tonawandastream-decisive-gates">PIR-3 — Tonawanda/STREAM decisive gates</h3>
+<ul>
+<li>rescheduled public hearing and final comment deadline;</li>
+<li>Tonawanda Seneca January 2026 letter and later responses;</li>
+<li>final SEQRA consistency/supplemental-EIS determination;</li>
+<li>500-MW interconnection and substation construction instruments;</li>
+<li>Fortune 50 tenant identity;</li>
+<li>final land sale, PILOT/host agreement and construction notice;</li>
+<li>air permit for emergency generators and final water/wastewater path.</li>
+</ul>
+<h3 id="pir-4-tribal-technology-enterprises">PIR-4 — Tribal technology enterprises</h3>
+<ul>
+<li>Seneca Technologies physical hosting footprint and cloud partners;</li>
+<li>Seneca Energy large-load or PPA studies;</li>
+<li>Shinnecock Power fiber completion, NOC, carrier interconnect and power plans;</li>
+<li>Mohawk Networks federal-contract pipeline, NOC capacity and 140-acre parcel status;</li>
+<li>Tuscarora fiber completion and ownership/operations model.</li>
+</ul>
+<h3 id="pir-5-statewide-regulation">PIR-5 — statewide regulation</h3>
+<ul>
+<li>Governor's action on A11560;</li>
+<li>PSC Case 26-E-0045 technical conference and white paper;</li>
+<li>NYISO and utility large-load tariffs;</li>
+<li>whether DEC explicitly addresses permits on tribal trust/restricted/reservation lands;</li>
+<li>Nation submissions to the PSC, DEC, NYPA, NYISO or the Governor.</li>
+</ul>
+<h2 id="7-collection-order">7. Collection order</h2>
+<ol>
+<li><strong>Exploit the Oneida discovery first.</strong> It is the only confirmed New York tribal-enterprise data-center operation found so far.</li>
+<li><strong>Build the Massena cluster as a project family.</strong> Separate every operator, queue number, parcel and proposed expansion; then overlay Akwesasne governments and environmental records.</li>
+<li><strong>Maintain STREAM as a military-style campaign timeline.</strong> Every hearing, site-plan revision, consultant report, Nation letter, grid document and permit should be an event.</li>
+<li><strong>Run corporate and procurement searches across the tribal enterprises.</strong> Search project LLCs, UCC filings, equipment suppliers, EPC firms, law firms, carrier contracts and federal contracting vehicles.</li>
+<li><strong>Interweave only after entity clocks are complete.</strong> New York's strongest overlaps are fiber + federal contracting + energy + adjacent large-load pressure—not yet a single coordinated tribal-land hyperscale campaign.</li>
+</ol>
+<h2 id="8-confidence-statement">8. Confidence statement</h2>
+<p><strong>High confidence:</strong> Oneida's stated four Tier III facilities; Oneida HEARTH approvals; Stream's current project configuration and review stage; Massena's May 2026 presentation and 635-MW concept; MCA opposition; tribal broadband awards; New York bill status.</p>
+<p><strong>Moderate confidence:</strong> corporate relationships inside the Massena developer chain pending primary corporate and transaction documents; the precise present status of each older NYISO Zone D queue entry; whether every “Tier III” Oneida facility is physically on Nation-controlled land.</p>
+<p><strong>Not established:</strong> a coordinated program to site hyperscale centers on New York reservations; any direct tribal partnership with Stream, NCCS/NYDIG, TeraWulf, Niagara Digital Campus or Blockfusion; a causal shift from weak casino revenue into data-center development across New York Nations.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

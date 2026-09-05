@@ -1,0 +1,281 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Open Government Accounting — From Appropriation to Outcome · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Open Government Accounting — From Appropriation to Outcome</h1><p class="deck">Collection evidence cutoff: 2026-08-26</p><p><a href="open-government-accounting-from-appropriation-to-outcome-2026-07--2152f7f26edb.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="open-government-accounting-from-appropriation-to-outcome">Open Government Accounting — From Appropriation to Outcome</h1>
+<p>Evidence cutoff: 2026-07-30</p>
+<h2 id="ruling">Ruling</h2>
+<p>The federal government already has many components of machine-readable,
+standardized and partly open accounting. It does not yet have one public,
+joined event record from legal authority through downstream use, correction
+and recovery.</p>
+<p>The relevant transition is therefore not “put the federal budget on a public
+blockchain.” It is:</p>
+<pre><code class="language-text">open standards and rule code
+  + protected authoritative records
+  + persistent cross-system identifiers
+  + event-level publication and correction
+  + downstream reporting duties
+  + independent replay and assurance
+</code></pre>
+<p>A blockchain is one possible integrity and coordination component. It is not
+the public-accountability objective itself.</p>
+<h2 id="1-open-source-accounting-has-five-separate-meanings">1. “Open-source accounting” has five separate meanings</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Meaning</th>
+<th>Current federal example</th>
+<th>What it does not prove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>open code</td>
+<td>public can inspect software</td>
+<td>open-source DATA Act Broker</td>
+<td>source data are true or complete</td>
+</tr>
+<tr>
+<td>open standard</td>
+<td>public definitions and schemas</td>
+<td>USSGL; GSDM</td>
+<td>every system uses one transaction ID</td>
+</tr>
+<tr>
+<td>open data</td>
+<td>public records can be downloaded or queried</td>
+<td>USAspending; Fiscal Data</td>
+<td>complete downstream expenditure chain</td>
+</tr>
+<tr>
+<td>verifiable record</td>
+<td>signed or anchored chronology can be independently checked</td>
+<td>prototype / design branch</td>
+<td>legality, allowability or performance</td>
+</tr>
+<tr>
+<td>open governance</td>
+<td>rule versions, changes and administrators are visible</td>
+<td>partial through standards and public process</td>
+<td>no discretionary or protected decisions</td>
+</tr>
+</tbody>
+</table>
+<p>Confusing these layers produces false transparency claims. Publishing code is
+not the same as publishing the ledger. Publishing an award is not the same as
+publishing a payment. Publishing a payment is not the same as proving what a
+recipient purchased or achieved.</p>
+<h2 id="2-the-public-money-event-chain">2. The public-money event chain</h2>
+<pre><code class="language-text">appropriation / legal authority
+  → apportionment and allotment
+  → commitment
+  → obligation / award
+  → draw or payment request
+  → certification
+  → Treasury release and settlement
+  → recipient receipt
+  → subaward / contract / payroll / provider expenditure
+  → delivery / service / beneficiary / milestone
+  → accounting and public reporting
+  → correction / questioned cost / debt
+  → refund / offset / collection / discharge
+</code></pre>
+<p>These are not equivalent amounts or clocks:</p>
+<pre><code class="language-text">budget authority ≠ obligation
+obligation ≠ outlay
+payment instruction ≠ settlement
+settlement ≠ allowable recipient expenditure
+expenditure ≠ successful outcome
+deobligation ≠ cash refund
+audit finding ≠ final debt
+debt referral ≠ collection
+</code></pre>
+<p>The existing vault's <code>Federal Transaction Record</code> note controls the detailed
+system and identifier map.</p>
+<h2 id="3-what-should-be-public">3. What should be public</h2>
+<p>A minimum public event spine could expose:</p>
+<ul>
+<li>legal authority and Treasury account;</li>
+<li>program, award and recipient legal entity;</li>
+<li>event type and amount;</li>
+<li>event time, recorded time and publication time;</li>
+<li>certifying authority;</li>
+<li>parent, causal and supersession IDs;</li>
+<li>downstream recipient or vendor organization where law permits;</li>
+<li>performance category or milestone;</li>
+<li>correction reason and effect;</li>
+<li>debt, refund, recovery or discharge state;</li>
+<li>rule and schema version; and</li>
+<li>integrity proof for protected supporting records.</li>
+</ul>
+<p>That would let the public distinguish an original payment, correction,
+reallocation, refund and collection instead of reading every negative number
+as fraud recovery.</p>
+<h2 id="4-what-should-remain-protected">4. What should remain protected</h2>
+<p>Public accountability does not require publishing:</p>
+<ul>
+<li>beneficiary personal information;</li>
+<li>bank account and authentication data;</li>
+<li>protected tax information;</li>
+<li>medical and education records;</li>
+<li>classified or security-sensitive detail;</li>
+<li>procurement information whose disclosure would harm competition or safety;</li>
+<li>active investigative methods or sealed evidence; or</li>
+<li>private keys and operational security controls.</li>
+</ul>
+<p>A hybrid design can keep authoritative details in protected systems while
+publishing a public event, disclosure-safe attributes and a cryptographic
+commitment to supporting evidence.</p>
+<p>A hash or anchor proves that a particular data object existed in a particular
+form when committed. It does not prove that the invoice was honest, the
+beneficiary eligible or the service performed.</p>
+<h2 id="5-current-federal-building-blocks">5. Current federal building blocks</h2>
+<h3 id="fasab">FASAB</h3>
+<p>Federal GAAP is maintained through the FASAB Handbook. Its objectives include:</p>
+<ul>
+<li>budgetary integrity;</li>
+<li>operating performance;</li>
+<li>stewardship; and</li>
+<li>systems and controls.</li>
+</ul>
+<p>FASAB explicitly treats accrual financial-position indicators as a starting
+point that must be supplemented. Its systems-and-control objective asks
+whether transactions comply with authority, assets are safeguarded, and
+performance information is adequately supported.</p>
+<h3 id="treasury-ussgl-and-gtas">Treasury USSGL and GTAS</h3>
+<p>The U.S. Standard General Ledger provides a uniform chart of accounts,
+definitions, transaction guidance, attributes, validations and crosswalks.
+GTAS is a government-wide reporting and validation system. These are core
+standardization and consolidation components, not a public transaction
+chronology.</p>
+<h3 id="gsdm-data-act-broker-and-usaspending">GSDM, DATA Act Broker and USAspending</h3>
+<p>Treasury calls the Governmentwide Spending Data Model the authoritative source
+for hundreds of spending-data terms, definitions, formats and structures.
+Validation occurs through the open-source DATA Act Broker. USAspending joins
+agency budget-execution, agency financial, award and authoritative reference
+systems and publishes data and APIs.</p>
+<p>USAspending remains a federation of submissions and extracts. Its award and
+account data do not by themselves show every downstream invoice, payroll
+payment, beneficiary event, correction and recovery.</p>
+<h3 id="treasury-and-jfmip-blockchain-work">Treasury and JFMIP blockchain work</h3>
+<p>Treasury's NSF grant prototype reported:</p>
+<ul>
+<li>greater visibility as funding moved from prime to subrecipient;</li>
+<li>potential reduction in recipient reporting;</li>
+<li>standardization and near-real-time transaction potential; and</li>
+<li>possible internal-control improvement.</li>
+</ul>
+<p>It did not process real grant payments. Treasury identified legal, technical,
+governance, legacy-integration and infrastructure barriers.</p>
+<p>The multi-agency JFMIP follow-up discussed one integrated, validated data
+source, reduced reconciliation and read-only auditor nodes, while retaining
+existing audit methodologies and cybersecurity/authority-to-operate
+requirements.</p>
+<p>This is the strongest primary-source precedent in the package for the user's
+open-accounting thesis. It is a prototype and learning record, not an adopted
+government-wide architecture.</p>
+<h3 id="gao-controls-and-audit">GAO controls and audit</h3>
+<p>The 2025 Green Book requires management to design, implement and operate
+controls for operations, reporting and compliance. A public ledger can support
+information, communication, monitoring and some control activities. It cannot
+replace the control environment, risk assessment, segregation of duties,
+eligibility decisions or responses to identified risk.</p>
+<p>Auditing also remains bounded. A shared ledger can make complete populations
+available, but auditors still must assess relevance, reliability, rights,
+obligations, valuation and controls.</p>
+<h2 id="6-fraud-what-the-architecture-changes">6. Fraud: what the architecture changes</h2>
+<h3 id="it-can-make-these-questions-easier">It can make these questions easier</h3>
+<ul>
+<li>Was the payee or recipient the approved legal entity?</li>
+<li>Did the required approval sequence occur?</li>
+<li>Was the same invoice paid twice?</li>
+<li>Did a payment exceed an award or budget rule?</li>
+<li>Which downstream organization received the funds?</li>
+<li>Was an event changed after publication?</li>
+<li>Was a correction a reclassification, refund or recovery?</li>
+<li>Do agency, Treasury and recipient records reconcile?</li>
+</ul>
+<h3 id="it-cannot-answer-these-alone">It cannot answer these alone</h3>
+<ul>
+<li>Was the identity synthetic or controlled by a nominee?</li>
+<li>Was the invoice false?</li>
+<li>Did colluding officials approve a sham vendor?</li>
+<li>Did the service actually occur?</li>
+<li>Was the price reasonable?</li>
+<li>Was the expenditure legally allowable?</li>
+<li>Did the program achieve its outcome?</li>
+<li>Was a judgment corrupt but formally authorized?</li>
+</ul>
+<p>An immutable ledger can preserve an authorized fraudulent transaction
+perfectly. Fraud prevention still depends on identity, eligibility, authority,
+performance evidence, independent data, segregation of duties and recovery
+powers.</p>
+<h2 id="7-a-plausible-adoption-ladder">7. A plausible adoption ladder</h2>
+<ol>
+<li><strong>Machine-readable reports</strong> — already operating through XBRL, USSGL,
+   GSDM and USAspending.</li>
+<li><strong>Common event identifiers and correction semantics</strong> — partly operating,
+   incomplete across agency, Treasury, State and recipient systems.</li>
+<li><strong>Continuous reconciliations and control checks</strong> — feasible and partly
+   present inside systems.</li>
+<li><strong>Mandatory downstream event flow-down</strong> — legal and contractual change
+   required.</li>
+<li><strong>Public transaction and correction spine</strong> — bounded pilots and feeds,
+   incomplete.</li>
+<li><strong>Protected evidence with public integrity proofs</strong> — architecture branch.</li>
+<li><strong>Multi-agency shared ledger used for real payments</strong> — not established by
+   the reviewed record.</li>
+<li><strong>Government-wide public blockchain</strong> — forecast only.</li>
+</ol>
+<p>The likely endpoint is hybrid: authoritative protected records, public
+disclosure-safe events, open rule/schema layers and cryptographic integrity
+proofs where they add value.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

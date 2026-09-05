@@ -1,0 +1,380 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Data-center “war” landscape — a fresh legal orientation · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/national-change-local-life.html#who-has-authority" class="" >A place also has owners and governments <span class="meta">— Where national change becomes local</span></a><a href="../stories/science-to-capability.html#physical-system" class="" >Where does the ambition meet the physical world? <span class="meta">— From scientific ambition to things that work</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Data-center “war” landscape — a fresh legal orientation</h1><p class="deck">Source cutoff: 2026-08-20 · Collection evidence cutoff: 2026-08-20</p><p><a href="data-center-war-landscape-fresh-orientation-2026-08-20-b479f2e4e3de.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="data-center-war-landscape-a-fresh-legal-orientation">Data-center “war” landscape — a fresh legal orientation</h1>
+<h2 id="controlling-reframe">Controlling reframe</h2>
+<p>The conflict is not best understood as a single pro-data-center coalition
+fighting a single anti-data-center coalition. It is a contest over <strong>which
+government can exercise which gate, at what stage, and who must absorb the
+resulting cost or risk</strong>.</p>
+<p>The most useful questions are therefore:</p>
+<ol>
+<li>Who can allow or withhold land use?</li>
+<li>Who can connect, delay, curtail or condition electric service?</li>
+<li>Who pays for generation, transmission, distribution and stranded capacity?</li>
+<li>Who sets air, water, wetlands, species and environmental-review conditions?</li>
+<li>Who grants or withdraws tax advantages?</li>
+<li>Who can sue, intervene, vacate, remand or preserve a project approval?</li>
+<li>Which sovereign—federal, state, local or Tribal—owns the relevant decision?</li>
+</ol>
+<p>This is a <strong>representative orientation</strong>, not a fifty-state census. It selects
+operative objects that reveal the architecture of the field. Every example
+retains its own legal and project state.</p>
+<h2 id="the-landscape-in-one-matrix">The landscape in one matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Power being contested</th>
+<th>Federal</th>
+<th>State / utility commission</th>
+<th>Local / Tribal</th>
+<th>Courts and enforcement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accelerate buildout</td>
+<td>EO 14318; federal land; FAST-41; NWP 39</td>
+<td>State economic-development programs and utility-service pathways</td>
+<td>Rezoning, special exceptions, development agreements, Tribal lease/energy authority</td>
+<td>Expedited review proposals; limits on vacatur remain mostly proposed federally</td>
+</tr>
+<tr>
+<td>Pause or stop</td>
+<td>Direct federal moratorium bills remain proposed</td>
+<td>New York EO 62 creates a bounded permit abeyance; Illinois paused new incentive applications</td>
+<td>Moratoria, zoning denials, special-exception votes, Tribal resolutions</td>
+<td>Rezonings or permits can be challenged; relief is project-specific</td>
+</tr>
+<tr>
+<td>Allocate grid cost</td>
+<td>FERC section 206 proceedings across six RTO/ISOs</td>
+<td>Texas SB 6; Oregon HB 3546; Virginia GS-5; Georgia PSC tariffs/orders</td>
+<td>Municipal/co-op contracts and local utility agreements</td>
+<td>Commission orders and tariffs can be reviewed; no headline substitutes for the operative tariff</td>
+</tr>
+<tr>
+<td>Control environmental effects</td>
+<td>EPA/USACE/FWS/NEPA framework</td>
+<td>State air, water, SEQRA and delegated permit programs</td>
+<td>Local noise, water, stormwater, zoning and health powers</td>
+<td>Citizen suits, government intervention, injunction requests and permit appeals</td>
+</tr>
+<tr>
+<td>Subsidize or recapture value</td>
+<td>Federal financing/tax proposals; no consolidated EO §3 program located</td>
+<td>Sales/use-tax exemptions, credits, qualification agreements, application pauses or repeal proposals</td>
+<td>PILOTs, abatements, community-benefit agreements, infrastructure commitments</td>
+<td>Clawback and contract enforcement depend on exact instrument</td>
+</tr>
+<tr>
+<td>Define the community bargain</td>
+<td>Federal labor/community proposals remain mostly bills or guidance</td>
+<td>State community-investment frameworks and wage/benefit conditions</td>
+<td>Host-community agreements, public hearings, rezoning proffers; Tribal ownership/revenue architecture</td>
+<td>Courts police authority and procedure, not the political slogan surrounding the project</td>
+</tr>
+</tbody>
+</table>
+<h2 id="front-1-federal-acceleration-is-real-but-it-does-not-occupy-every-gate">Front 1 — federal acceleration is real, but it does not occupy every gate</h2>
+<p>EO 14318 supplies an operative federal acceleration policy. Its returned
+objects include federal-land solicitations and selections, a publicly confirmed
+Portsmouth DOE lease, FAST-41 coverage, EPA implementation resources and a
+reissued Army nationwide-permit framework. The order cannot itself create a
+state utility rate, local rezoning, state water right or completed project
+permit.</p>
+<p>This produces the first structural tension: <strong>federal agencies can accelerate
+their own procedures and property, while many decisive retail-power, water and
+land-use decisions remain state or local.</strong></p>
+<p>Primary federal spine: <a href="https://www.federalregister.gov/documents/2025/07/28/2025-14212/accelerating-federal-permitting-of-data-center-infrastructure">EO 14318</a>; Wave 1 return audit.</p>
+<h2 id="front-2-the-grid-front-is-becoming-the-operative-center-of-gravity">Front 2 — the grid front is becoming the operative center of gravity</h2>
+<h3 id="ferc-regional-tariff-reform-not-one-final-national-code">FERC: regional tariff reform, not one final national code</h3>
+<p>On June 18, 2026, FERC opened six separate Federal Power Act section 206
+proceedings covering every RTO/ISO under its jurisdiction. Each grid operator
+and its transmission owners received 60 days to justify existing tariffs or
+file reforms. The common issues include:</p>
+<ul>
+<li>cost-recovery agreements and protection against speculative load;</li>
+<li>large-load study and interconnection procedures;</li>
+<li>transmission-service and cost-shifting rules;</li>
+<li>co-located generation and behind-the-meter arrangements;</li>
+<li>flexible or interruptible service; and</li>
+<li>forecasting and public transparency.</li>
+</ul>
+<p>These are <strong>orders to justify or reform</strong>, not final uniform tariff provisions.
+FERC deliberately selected region-specific section 206 cases rather than a
+single proposed final rule. The earlier RM26-4 ANOPR remains a pre-proposal
+record that helped build the evidentiary base.</p>
+<p>Primary routes: <a href="https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration">FERC June 18 action</a>; <a href="https://www.ferc.gov/rm26-4">RM26-4</a>.</p>
+<h3 id="texas-reliability-financial-commitment-and-curtailment">Texas: reliability, financial commitment and curtailment</h3>
+<p>Texas <strong>SB 6 became law and took effect June 20, 2025</strong>. It directs PUCT to
+create ERCOT large-load interconnection standards, using a 75 MW threshold
+unless the Commission sets a lower one. The statute includes:</p>
+<ul>
+<li>recovery of utility interconnection costs from the large load;</li>
+<li>disclosure of duplicative service requests;</li>
+<li>on-site backup-generation disclosure;</li>
+<li>possible emergency deployment of backup generation or curtailment;</li>
+<li>an initial study fee of at least $100,000;</li>
+<li>site-control proof and uniform financial commitments;</li>
+<li>ERCOT study and PUCT review of specified co-location arrangements; and</li>
+<li>a demand-management service for qualifying large loads.</li>
+</ul>
+<p>The statute preserves applicable emissions and environmental limits. It also
+delegates significant implementation to PUCT and ERCOT, so enactment does not
+mean every standard and protocol was complete on the signature date.</p>
+<p>Primary routes: <a href="https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00006F.HTM">Texas SB 6 enrolled text</a>; <a href="https://capitol.texas.gov/billlookup/History.aspx?Bill=SB6&amp;LegSess=89R">official history</a>.</p>
+<h3 id="oregon-a-statutory-beneficiary-pays-retail-framework">Oregon: a statutory “beneficiary pays” retail framework</h3>
+<p>Oregon <strong>HB 3546 became Chapter 323</strong> and took effect on passage. It directs
+the Oregon PUC to establish a separate service classification for large energy
+use facilities, allocate serving costs to that class, mitigate risks to other
+retail customers and require qualifying electric-service contracts. The act
+sunsets January 2, 2035.</p>
+<p>This is enacted state law, but the operative retail terms still depend on PUC
+tariff and contract implementation.</p>
+<p>Primary route: <a href="https://olis.oregonlegislature.gov/liz/2025r1/Measures/Overview/HB3546">Oregon HB 3546</a>.</p>
+<h3 id="virginia-commission-made-rate-safeguards">Virginia: commission-made rate safeguards</h3>
+<p>The Virginia State Corporation Commission approved Dominion's <strong>GS-5</strong> class
+for customers at or above 25 MW, effective January 1, 2027. The approved package
+includes a fourteen-year take-and-pay obligation for specified new contracts,
+minimum monthly payment requirements equal to 85 percent of contracted
+transmission/distribution demand and 60 percent of generation demand, plus
+credit/collateral protections and future cost-allocation work.</p>
+<p>This is an operative commission order with a future effective date—not merely a
+bill, company proposal or pledge.</p>
+<p>Primary route: <a href="https://www.scc.virginia.gov/about-the-scc/scc-facts/">Virginia SCC data-center initiatives</a>.</p>
+<h3 id="georgia-tariffs-contract-visibility-and-generation-backstops">Georgia: tariffs, contract visibility and generation backstops</h3>
+<p>Georgia PSC records show a sequence rather than one “data-center law”:</p>
+<ul>
+<li>a January 2025 large-load rule allowing minimum billing and longer contracts
+  for new customers above the applicable threshold;</li>
+<li>Commission access to new data-center contracts before execution;</li>
+<li>April 2025 large-load price-structure changes;</li>
+<li>a July 2025 base-rate freeze through 2028; and</li>
+<li>a December 2025 generation agreement that includes financial backstop and
+  remediation mechanisms if forecast data-center contracts do not materialize.</li>
+</ul>
+<p>The exact tariffs and orders control. The PSC's summary is a router, not a
+substitute for those underlying instruments.</p>
+<p>Primary route: <a href="https://psc.ga.gov/site/downloads/datacenterfactsheet.pdf">Georgia PSC March 2026 fact sheet</a>.</p>
+<h2 id="front-3-new-york-is-the-clearest-operative-state-pause">Front 3 — New York is the clearest operative state pause</h2>
+<p>New York <strong>Executive Order 62</strong>, signed July 14, 2026, creates a real but
+bounded moratorium while a Generic Environmental Impact Statement is prepared.</p>
+<p>The order applies to defined data centers capable of consuming <strong>50 MW or
+more</strong>. It directs DEC to hold in abeyance applications for discretionary state
+permits, approvals or licenses for construction or expansion when the
+application:</p>
+<ol>
+<li>is or later becomes pending before DEC; and</li>
+<li>had not been determined complete before July 14, 2026.</li>
+</ol>
+<p>The order does <strong>not</strong> directly suspend local permits. It excludes facilities
+primarily used for manufacturing, research—including specified quantum and
+biomedical research—education or medical care. The pause lasts until DPS submits
+the final GEIS report and findings statement, rather than an unconditional fixed
+calendar year.</p>
+<p>It also creates a much broader implementation program:</p>
+<ul>
+<li>DPS large-load proceeding Case 26-E-0045;</li>
+<li>GEIS public process under SEQRA;</li>
+<li>ESD Community Investment Framework within 60 days;</li>
+<li>consideration of a Grid Acceleration Fund and dedicated clean generation;</li>
+<li>Data Center Interconnection Working Group within 60 days;</li>
+<li>transmission-owner review and DPS report within 90 days; and</li>
+<li>DEC water-withdrawal assessment/report within twelve months.</li>
+</ul>
+<p>The state's separately discussed repeal of sales-tax exemptions and possible
+Grid Acceleration Fund remain proposals or delegated consideration until the
+relevant legislation, regulation or commission order issues.</p>
+<p>Primary authority: <a href="https://www.governor.ny.gov/executive-order/no-62-establishing-temporary-moratorium-data-centers-new-york-while-state-develops">New York Executive Order 62</a>.</p>
+<h2 id="front-4-local-land-use-power-can-still-decide-whether-the-site-exists">Front 4 — local land-use power can still decide whether the site exists</h2>
+<h3 id="loudoun-county-removing-the-by-right-route">Loudoun County: removing the by-right route</h3>
+<p>On March 18, 2025, Loudoun County adopted plan and zoning amendments that made
+data centers conditional or Special Exception uses in areas where they had been
+allowed by right. A separate grandfathering resolution protects qualifying
+applications accepted before the stated cutoff, subject to its conditions.</p>
+<p>This is a procedural-power shift: the project must obtain a discretionary public
+approval rather than only demonstrate compliance with ministerial standards.
+It is not a countywide moratorium.</p>
+<p>Primary route: <a href="https://www.loudoun.gov/5990/Data-Center-Standards-Locations">Loudoun Data Center Standards and Locations</a>.</p>
+<h3 id="prince-william-digital-gateway-plan-approval-and-rezoning-can-separate">Prince William Digital Gateway: plan approval and rezoning can separate</h3>
+<p>The Virginia Court of Appeals' July 29, 2026 order left the Digital Gateway
+Comprehensive Plan amendment in place but rendered the challenged rezonings
+void, returning the parcels to their prior zoning. Any new rezoning effort must
+run through the ordinary application, staff-review and public-hearing process.</p>
+<p>This is not a general judicial ban on data centers. It is a project-specific
+example of how a plan-level policy can survive while the parcel-level legal
+authorization fails.</p>
+<p>Primary route: <a href="https://www.pwcva.gov/department/planning-office/pw-digital-gateway">Prince William County project and court-status page</a>.</p>
+<h2 id="front-5-environmental-law-is-both-a-permit-system-and-a-litigation-system">Front 5 — environmental law is both a permit system and a litigation system</h2>
+<p>Wave 1 already establishes that NWP 39's express data-center coverage does not
+replace individual CWA permitting for larger impacts. Project Skye's individual
+permit notice is the clean example: an application and comment period are not an
+issued permit.</p>
+<p>The litigation front adds another clock. In the Southaven, Mississippi xAI/MZX
+Tech case, private plaintiffs allege Clean Air Act permitting violations. On
+June 15, 2026, DOJ moved to intervene and dismiss. That filing establishes the
+federal government's litigation position; it does <strong>not</strong> establish that the
+court granted dismissal or that the facility is exempt from the Clean Air Act.</p>
+<p>Primary route: <a href="https://www.justice.gov/opa/pr/justice-department-files-intervene-and-dismiss-lawsuit-would-hamper-americas-ai-innovation">DOJ intervention and dismissal filing announcement</a>.</p>
+<p>The environmental front therefore contains at least four distinct objects:</p>
+<p><code>permit application -&gt; agency permit decision -&gt; administrative/judicial challenge -&gt; final disposition</code></p>
+<p>No earlier object inherits the later result.</p>
+<h2 id="front-6-incentives-are-regulatory-gates-not-background-economics">Front 6 — incentives are regulatory gates, not background economics</h2>
+<p>The buildout landscape is shaped not only by prohibitions and permits, but by
+conditional tax law:</p>
+<ul>
+<li>Virginia's sales-tax exemption currently requires qualifying Virginia
+  location, investment, job/wage and VEDP MOU conditions.</li>
+<li>Georgia's high-technology data-center equipment exemption requires statutory
+  investment and job evidence and a state application/certificate process.</li>
+<li>Illinois' statutory program offers state/local tax exemptions and an
+  underserved-area construction-wage credit, but DCEO states that, under a June
+  5, 2026 gubernatorial directive, it stopped processing new applications on
+  July 1, 2026.</li>
+</ul>
+<p>The Illinois action is an <strong>incentive-application pause</strong>, not a construction or
+environmental-permit moratorium. New York's announced effort to repeal sales-tax
+exemptions is not operative until legislation is enacted.</p>
+<p>Primary routes: <a href="https://www.tax.virginia.gov/sales-tax-exemptions">Virginia Tax</a>; <a href="https://dor.georgia.gov/high-technology-data-center-equipment-exemption">Georgia Department of Revenue</a>; <a href="https://dceo.illinois.gov/expandrelocate/incentives/datacenters.html">Illinois DCEO</a>.</p>
+<h2 id="front-7-tribal-sovereignty-is-a-separate-authority-system-not-a-loophole-label">Front 7 — Tribal sovereignty is a separate authority system, not a loophole label</h2>
+<p>The existing Sovereign Compute package shows why “move it to Tribal land” is
+legally unusable shorthand. The controlling objects may include:</p>
+<ul>
+<li>trust, restricted-fee, fee-simple or allotted parcel status;</li>
+<li>BIA-approved HEARTH leasing regulations or an individual Part 162 approval;</li>
+<li>a TERA, TEDO or Section 17 corporation;</li>
+<li>Tribal council authorization, citizen procedure and any waiver terms;</li>
+<li>federal rights-of-way, environmental review and cultural consultation;</li>
+<li>utility/interconnection agreements and state/federal environmental permits;
+  and</li>
+<li>lease, power, tax, ownership and revenue-sharing instruments.</li>
+</ul>
+<p>Some Tribes operate compute or digital infrastructure; some are studying or
+marketing projects; some oppose adjacent development; and some reported
+moratoria or proposals still lack the primary instrument. Those states cannot
+be collapsed into “Tribes support” or “Tribes oppose” data centers.</p>
+<p>Controlling workbench route: Tribal Data Center Field Registry.</p>
+<h2 id="what-the-war-is-actually-about">What the “war” is actually about</h2>
+<p>Across the selected objects, the repeated disputes are:</p>
+<table>
+<thead>
+<tr>
+<th>Dispute</th>
+<th>Legal expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Speed versus deliberation</td>
+<td>FAST-41 and federal land on one side; GEIS, special exceptions and public hearings on the other</td>
+</tr>
+<tr>
+<td>Who bears speculative-load risk</td>
+<td>Study fees, site control, security, minimum bills, take-or-pay terms, collateral, cost-recovery agreements and insurance pools</td>
+</tr>
+<tr>
+<td>Whether generation stays public</td>
+<td>Co-location studies, behind-the-meter rules, islanded-generation interpretation, emergency curtailment and dedicated-power proposals</td>
+</tr>
+<tr>
+<td>Who controls the parcel</td>
+<td>Federal lease/ROW, state environmental approval, local zoning, Tribal land/lease authority and judicial review</td>
+</tr>
+<tr>
+<td>Who controls scarce water and air capacity</td>
+<td>State withdrawal rules, CWA/CAA permits, SEQRA/NEPA, local health/noise controls and citizen suits</td>
+</tr>
+<tr>
+<td>Who captures public value</td>
+<td>Tax exemptions, clawbacks, community funds, local proffers, prevailing-wage/PLA terms and Tribal revenue architecture</td>
+</tr>
+<tr>
+<td>Who can say “not yet”</td>
+<td>A legislature, governor, commission, locality, Tribal government, permit agency or court—but only within its authority</td>
+</tr>
+</tbody>
+</table>
+<h2 id="a-better-research-architecture-from-here">A better research architecture from here</h2>
+<p>The broad landscape should proceed in four linked but independent books:</p>
+<ol>
+<li><strong>Grid and rate book</strong> — FERC's six proceedings, each RTO/ISO tariff, state
+   PUC large-load classes and named service agreements.</li>
+<li><strong>State legal book</strong> — enacted statutes, executive orders, GEIS/rulemaking,
+   water/air regimes and tax-incentive changes, state by state.</li>
+<li><strong>Local and judicial book</strong> — zoning text, moratoria, rezoning/CUP/SPEX,
+   court cases and project-specific permit appeals.</li>
+<li><strong>Sovereign and federal-land book</strong> — federal realty instruments, Tribal land
+   status, lease authority, power/revenue architecture and consultation.</li>
+</ol>
+<p>They should join only through a named project or a named legal object. A national
+headline should never overwrite a state tariff, a local parcel or a Tribal
+authority record.</p>
+<h2 id="immediate-watch-objects">Immediate watch objects</h2>
+<ul>
+<li>New York: final GEIS/finding, Case 26-E-0045 orders, 60/90-day returns, ESD
+  Community Investment Framework and twelve-month DEC water report.</li>
+<li>FERC: the six RTO/ISO section 206 responses and later Commission dispositions.</li>
+<li>Texas: PUCT/ERCOT final SB 6 interconnection, co-location, forecasting,
+  curtailment and cost-allocation rules.</li>
+<li>Oregon: PUC tariff/classification and contract implementation under Chapter
+  323.</li>
+<li>Virginia: GS-5 January 1, 2027 effectiveness, alternative allocation filings
+  and Dominion large-load interconnection process.</li>
+<li>Georgia: underlying tariff/order revisions and project-specific contract or
+  generation-cost recovery.</li>
+<li>Prince William: any fresh Digital Gateway rezoning applications after the
+  challenged rezonings were voided.</li>
+<li>Southaven xAI: the court's ruling on intervention/dismissal and any later
+  permit or merits disposition.</li>
+<li>Illinois: the legal duration and replacement framework, if any, for the new
+  incentive-application pause.</li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

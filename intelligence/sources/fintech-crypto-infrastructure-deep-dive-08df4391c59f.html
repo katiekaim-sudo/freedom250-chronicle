@@ -1,0 +1,450 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>The Private Monetary Stack · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/money-in-motion.html#the-system-underneath" class="" >Start with the money underneath <span class="meta">— How money moves, and what is changing</span></a><a href="../stories/money-in-motion.html#different-ambitions" class="" >Several ambitions, several kinds of money <span class="meta">— How money moves, and what is changing</span></a><a href="../stories/money-in-motion.html#where-change-happens" class="" >Follow the change one job at a time <span class="meta">— How money moves, and what is changing</span></a><a href="../stories/money-rights-and-records.html#records-that-can-explain" class="" >A transaction record must explain more than movement <span class="meta">— Who gets in, which record counts, and when payment is complete</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>The Private Monetary Stack</h1><p class="deck">Source created: 2026-07-12 · Collection evidence cutoff: 2026-08-26</p><p><a href="fintech-crypto-infrastructure-deep-dive-08df4391c59f.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><blockquote>
+<p><strong>Start here. The seven-layer stack, the 12 findings, the transition sequence, the forward tells.</strong>
+<em>Verbatim as delivered. Audit + provenance: <a href="../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html">Private Monetary Stack — Source Documents</a>.</em></p>
+</blockquote>
+<h1 id="the-private-monetary-stack">The Private Monetary Stack</h1>
+<h2 id="what-the-fintech-and-crypto-companies-are-actually-building">What the fintech and crypto companies are actually building</h2>
+<p><strong>Status:</strong> primary-source company sweep and synthesis<br />
+<strong>As of:</strong> 2026-07-11<br />
+<strong>Companions:</strong> <code>FINTECH_CRYPTO_COMPANY_REGISTRY.md</code>; <code>FINTECH_CRYPTO_CLAIM_AUDIT.md</code>; <code>FINTECH_CRYPTO_TRANSITION_TIMELINE.md</code>; the four company-family research annexes</p>
+<hr />
+<h3 id="september-3-targeted-charter-refresh-world-liberty">September 3 targeted charter refresh — World Liberty</h3>
+<p>OCC Conditional Approval 1385, dated August 14, grants <strong>preliminary
+conditional approval</strong> to proposed World Liberty Trust Company, N.A., charter
+25407. The bank cannot commence business before final approval and satisfaction
+of preopening requirements. Its plan is to assume USD1 issuance, redemption and
+reserve functions from BitGo after establishment; it does not currently plan to
+seek a Federal Reserve master account. This is a charter-stage change, not proof
+that the bank opened, USD1 functions moved or a new settlement rail became
+operational. <a href="https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-decisions/2026/cd1385.pdf">OCC decision</a></p>
+<h2 id="the-story-in-one-line">The story in one line</h2>
+<p>The private market is not converging on one magic coin or one chain. It is assembling a <strong>federated permission stack</strong> in which public networks, private ledgers, banks, trust companies, custodians, tokenizers, card networks, Swift, and market utilities each keep a different gate—and the firms are racing to own the adapters between them.</p>
+<h3 id="july-29-extension-the-card-constitution-becomes-product-line-modular">July 29 extension — the card constitution becomes product-line modular</h3>
+<p>The follow-on card-network audit sharpens the adapter finding without replacing
+it. Visa, Mastercard, processors and acquirers are adding at least six distinct
+objects: stablecoin-funded card credentials, wallet checkout, native point of
+sale, network settlement, payout/treasury and minting-orchestration platforms.
+They do not share one customer tender, one merchant receipt, one finality rule
+or one production clock.</p>
+<p>The historical rhyme is now explicit. Bank cards separated the consumer loan,
+merchant relationship, authorization, clearing and settlement. Apple Pay
+changed the exposed credential while leaving the card constitution in place.
+Stablecoins can now enter the funding or settlement layer without becoming the
+merchant-facing payment method. Square Bitcoin is the live counterexample: a
+supported merchant surface can also host a genuinely non-card instruction.</p>
+<p>Read the controlling extension: Card Networks — Stablecoin Product Lines.
+Exact roles and flows: <a href="../sources/card-networks-entity-and-flow-map-d2b978d0ade2.html">Card Networks — Entity and Flow Map</a>. Corrections:
+Card Networks — Claim Audit. The chart layer remains parallel and
+non-evidentiary: Card Networks — Money × Sky.</p>
+<h3 id="august-26-extension-the-no-cost-implementation-lane">August 26 extension — the no-cost implementation lane</h3>
+<p>Howard Lutnick described a “gratis vendor” model in the March 20, 2025
+All-In interview: a company gives software to the government rather than
+selling it, and the government becomes the reference customer for later sales.
+That is evidence of an intended <strong>no-price entry lane</strong>, not a general rule
+that free software needs no approval or disclosure. The Antideficiency Act
+generally bars acceptance of voluntary services; GAO distinguishes properly
+documented gratuitous services and no-cost contracts; and Commerce's own gift
+order requires authorized acceptance, conflict review and a CD-210 record for
+in-kind goods or services. A zero-dollar implementation may disappear from
+USAspending while still leaving legal, security and operational records.</p>
+<p>The bounded company refresh finds quiet government integration, but not a
+named donated federal crypto rail:</p>
+<table>
+<thead>
+<tr>
+<th>Company / family</th>
+<th>Public federal-facing receipt</th>
+<th>What it establishes</th>
+<th>What it does not establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coinbase</td>
+<td>says it works with more than 150 government entities and provides some services outside government contracts; a separate U.S. Marshals managed-services award is visible in USAspending at about $7 million</td>
+<td>government custody, trading, education and technical support can exist through more than one legal channel</td>
+<td>“outside a contract” does not mean donated software; the Marshals custody object is paid</td>
+</tr>
+<tr>
+<td>Tether</td>
+<td>DOJ repeatedly credits Tether with freezing or transferring USDT into government-controlled wallets</td>
+<td>the issuer's key and lawful-order controls are operationally integrated into federal seizure workflows</td>
+<td>case cooperation is not a donated payment, accounting or settlement rail</td>
+</tr>
+<tr>
+<td>Anchorage Digital</td>
+<td>markets custody, seizure, training, strategic-reserve and stablecoin-issuance capabilities directly to government</td>
+<td>the regulated custody/issuer adapter is being packaged for public-sector use</td>
+<td>a marketing surface is not a named agency deployment, award or donation</td>
+</tr>
+<tr>
+<td>Circle</td>
+<td>publicly urged Treasury to use payment stablecoins in federal-payment modernization</td>
+<td>USDC is being offered as a government-payment component</td>
+<td>an RFI response or policy pitch is not acceptance, pilot or production use</td>
+</tr>
+<tr>
+<td>Ripple, Stellar, Hedera, Chainlink, Fireblocks and the other mapped adapters</td>
+<td>no named U.S. federal gratis deployment located in this bounded pass</td>
+<td>keep them in the implementation watch because their payment, identity, oracle, wallet-policy and network roles fit the architecture</td>
+<td>silence is not proof of absence, but it cannot be promoted to adoption</td>
+</tr>
+</tbody>
+</table>
+<p>The likely quiet path is not “the government secretly chose one coin.” It is
+an adapter entering through a no-cost pilot, open-source component, technical
+assistance, lawful-order integration or gift/no-cost agreement, followed later
+by an authority, security or paid operating object. The receipt ladder is:</p>
+<pre><code class="language-text">company claim / public code
+  -&gt; written gift, gratuitous-service, no-cost-contract, MOU or pilot record
+  -&gt; government security authorization and system identity
+  -&gt; named agency workflow and accountable operator
+  -&gt; transaction, custody or settlement evidence
+  -&gt; paid follow-on award or durable operating authority
+</code></pre>
+<p>Do not collapse those rungs. For this research, the best hidden-implementation
+search is therefore broader than USAspending: gift records, no-cost agreements,
+ATO/system inventories, privacy and records notices, identity/certificate
+profiles, code repositories, agency technical documentation and later
+follow-on procurements.</p>
+<p>Sources: <a href="https://www.youtube.com/watch?v=182ckTL2KBA">All-In interview</a> ·
+<a href="https://uscode.house.gov/view.xhtml?req=%28title%3A31+section%3A1342+edition%3Aprelim%29">31 U.S.C. § 1342</a> ·
+<a href="https://www.gao.gov/products/b-324214">GAO, Treasury acceptance of voluntary services</a> ·
+<a href="https://www.commerce.gov/opog/directives/DAO_203-9">Commerce DAO 203-9</a> ·
+<a href="https://www.coinbase.com/blog/Coinbase-is-helping-governments-engage-with-crypto">Coinbase government services</a> ·
+<a href="https://www.usaspending.gov/award/CONT_AWD_15M50024FA4400016_1544_15M50024DA4400010_1544">Coinbase U.S. Marshals award</a> ·
+<a href="https://www.justice.gov/opa/pr/united-states-files-civil-forfeiture-complaint-against-225m-funds-involved-cryptocurrency">DOJ Tether seizure assistance</a> ·
+<a href="https://www.anchorage.com/who-we-serve/government">Anchorage Digital for government</a> ·
+<a href="https://www.circle.com/pt-br/blog/circle-supports-treasurys-vision-for-smarter-safer-government-payments">Circle on federal-payment modernization</a>.</p>
+<h2 id="1-what-this-layer-adds-to-the-banking-and-judicial-maps">1. What this layer adds to the banking and judicial maps</h2>
+<p>The banking sweep found that the brand, legal counterparty, processor, servicer, data holder, receivable owner, and customer agreement can all belong to different entities.</p>
+<p>The Judicial Money Map found that control, ownership, custody, liability, finality, and asset state are related but not interchangeable.</p>
+<p>The company sweep brings those two findings into the on-chain build. A single “crypto payment” may involve:</p>
+<ul>
+<li>a wallet or exchange brand;</li>
+<li>a state or national trust company;</li>
+<li>a stablecoin issuer;</li>
+<li>a reserve custodian;</li>
+<li>a public blockchain;</li>
+<li>a permissioned synchronization network;</li>
+<li>an oracle or cross-chain messenger;</li>
+<li>a transfer agent or depository retaining the authoritative record;</li>
+<li>a card network, Swift, or bank rail carrying the instruction;</li>
+<li>and a bank or central-bank account where final cash settlement occurs.</li>
+</ul>
+<p>The token is the visible object. The company map shows the legal and operational chain beneath it.</p>
+<h2 id="2-first-correction-there-is-no-iso-coin-club">2. First correction: there is no ISO coin club</h2>
+<p>Ripple, Stellar, Hedera, Algorand, XDC, IOTA, and Quant are often grouped online as “ISO 20022 coins.” That label is not an ISO status. The ISO 20022 Registration Authority says cryptocurrencies are not inherently compliant, are not managed or registered by ISO 20022, and that no official certification authority exists.</p>
+<p>The real question is more interesting:</p>
+<blockquote>
+<p>Which company, gateway, or product can translate a regulated institution's business intent into the messages, identity checks, asset records, and settlement steps used across old and new rails?</p>
+</blockquote>
+<p>That moves the story away from token destiny and toward adapters, message models, orchestration, and legal eligibility. <a href="https://www.iso20022.org/frequently-asked-questions">ISO 20022 FAQ</a></p>
+<h2 id="3-the-seven-layer-private-stack">3. The seven-layer private stack</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Function</th>
+<th>Leading company families in this sweep</th>
+<th>Governing question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Customer gate</strong></td>
+<td>wallet, exchange, merchant, app, agentic interface</td>
+<td>Coinbase, Kraken, PayPal, Stripe, Visa, Mastercard</td>
+<td>Who can reach the user and set the contract?</td>
+</tr>
+<tr>
+<td><strong>2. Licensed gate</strong></td>
+<td>charter, custody, brokerage, transfer agency, stablecoin issuance</td>
+<td>Circle, Paxos, Ripple entities, Anchorage, BitGo, Coinbase, Kraken, Zero Hash, Securitize</td>
+<td>Which legal person may act, and under whose supervision?</td>
+</tr>
+<tr>
+<td><strong>3. Asset wrapper</strong></td>
+<td>stablecoin, deposit token, fund share, security token, digital twin</td>
+<td>USDC, RLUSD, PYUSD, tokenized funds/stocks/Treasuries, bank deposit tokens</td>
+<td>What legal claim does the token represent?</td>
+</tr>
+<tr>
+<td><strong>4. Record and lifecycle</strong></td>
+<td>issuance, ownership record, corporate actions, mint/burn/freeze/correction</td>
+<td>DTC/DTCC, Securitize, Paxos settlement entities, fund transfer agents, Ondo structures</td>
+<td>Which ledger is authoritative when records conflict?</td>
+</tr>
+<tr>
+<td><strong>5. Network and synchronization</strong></td>
+<td>public chain, permissioned ledger, privacy domain, transaction ordering</td>
+<td>XRPL, Stellar, Hedera, Canton, Corda, Besu-based systems</td>
+<td>Who operates the network and who may join?</td>
+</tr>
+<tr>
+<td><strong>6. Orchestration and interoperability</strong></td>
+<td>messages, data, cross-chain instructions, proof, workflow</td>
+<td>Swift, Chainlink, Quant, card networks, Fireblocks, Digital Asset</td>
+<td>Who sees and coordinates the whole transaction?</td>
+</tr>
+<tr>
+<td><strong>7. Final cash and collateral</strong></td>
+<td>reserve account, settlement bank, central-bank money, clearing margin</td>
+<td>Fed/Reserve Banks, settlement banks, Fnality systems, Kinexys, clearinghouses</td>
+<td>What asset discharges the obligation, and where?</td>
+</tr>
+</tbody>
+</table>
+<p>No company owns all seven. The strategic firms are trying to occupy two or three adjacent layers so that every transaction must cross their boundary.</p>
+<h2 id="4-the-grouped-company-story">4. The grouped company story</h2>
+<h3 id="finding-1-the-market-is-moving-from-chain-competition-to-orchestration-competition">Finding 1 — The market is moving from chain competition to orchestration competition</h3>
+<p>The loud retail story asks which chain wins. The institutional build assumes many chains, many money forms, and several authoritative records will coexist.</p>
+<p>DTCC calls its approach multi-chain. Visa expanded a multi-chain stablecoin settlement pilot. Mastercard named several stablecoins and networks in one settlement program. Swift is building a ledger while also orchestrating transactions across blockchain and conventional systems. Canton emphasizes synchronized but private applications rather than one shared global state.</p>
+<p>The scarce layer is therefore not raw blockspace. It is the trusted system that can express the instruction, prove the asset and identity state, coordinate both legs, and recover when one leg fails.</p>
+<h3 id="finding-2-the-crypto-companies-are-becoming-regulated-legal-bodies">Finding 2 — The crypto companies are becoming regulated legal bodies</h3>
+<p>The charter race is not a side story. Circle, Ripple, Paxos, BitGo, Coinbase, Kraken/Payward, Zero Hash, Anchorage, Fidelity Digital Assets, and others have pursued or obtained federal or state trust/bank status in different forms.</p>
+<p>This is the private-rail version of Entity Theory: the function migrates into a new legal body before the public fully notices the change. But the status words matter. Application, conditional approval, final approval, consummation, deposit insurance, and Federal Reserve account access are separate events.</p>
+<p>The leading firms want the public chain's reach <strong>and</strong> the charter's legal standing. The likely winner is not “decentralized” or “regulated” in the abstract; it is the entity that can bridge both without losing the users on one side or the account access on the other.</p>
+<h3 id="finding-3-public-chains-are-being-admitted-at-the-edge-while-authoritative-control-stays-inside">Finding 3 — Public chains are being admitted at the edge while authoritative control stays inside</h3>
+<p>DTC's Stellar plan is the cleanest example. DTC-tokenized assets are expected to become available on Stellar, but DTCC describes the connection as part of a multi-chain service and says the tokenized assets keep the same entitlements and safeguards as conventional DTC holdings.</p>
+<p>That is not the national securities record being handed to a public chain. It is a regulated depository allowing controlled public-chain representations of assets whose eligibility, lifecycle, and investor rights remain inside the DTC perimeter. <a href="https://www.dtcc.com/news/2026/may/27/tokenization-service-to-connect-with-stellar-public-blockchain-as-dtc-advances-multi-chain-strategy">DTCC and Stellar</a></p>
+<p>The structural pattern is likely to recur: openness in transport and distribution; permission at issuance, identity, custody, redemption, and correction.</p>
+<h3 id="finding-4-permissioned-networks-are-not-losing-to-public-chains-they-are-becoming-the-institutional-interior">Finding 4 — Permissioned networks are not losing to public chains; they are becoming the institutional interior</h3>
+<p>Canton, Corda, Kinexys, Fnality, Partior, Broadridge DLR, and bank-led tokenized-deposit systems solve a different problem from open retail networks. They let regulated parties coordinate cash, securities, collateral, and privacy without revealing every position or workflow to every participant.</p>
+<p>Public and permissioned networks are therefore more complementary than the winner-take-all framing suggests:</p>
+<ul>
+<li>public networks widen distribution and composability;</li>
+<li>permissioned systems synchronize regulated balance sheets and private data;</li>
+<li>depositories, custodians, and transfer agents bind the token to legal title;</li>
+<li>adapters and messaging systems bridge the domains;</li>
+<li>central-bank and commercial-bank money still close the cash leg.</li>
+</ul>
+<h3 id="finding-5-stablecoins-are-becoming-a-settlement-option-inside-incumbent-networks">Finding 5 — Stablecoins are becoming a settlement option inside incumbent networks</h3>
+<p>Visa, Mastercard, PayPal, Fiserv, Stripe/Bridge, Circle, Paxos, Ripple, and bank issuers are not all trying to abolish card or bank rails. Several are inserting stablecoins as one settlement, treasury, payout, or cross-border option behind familiar networks.</p>
+<p>Mastercard's June 2026 announcement named USDC, Paxos-issued coins, RLUSD, and SoFiUSD across several chains while keeping Mastercard's fraud, dispute, rulebook, and acceptance perimeter. Visa likewise expanded its pilot across nine chains. The incumbent network can therefore adopt tokenized cash without yielding the customer relationship or operating constitution. <a href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-expands-settlement-capabilities-to-include-stablecoin.html">Mastercard</a>; <a href="https://investor.visa.com/news/news-details/2026/Visa-Accelerates-Stablecoin-Momentum-Adding-Five-Blockchains-for-Settlement/default.aspx">Visa</a></p>
+<h3 id="finding-6-the-asset-wrapper-is-becoming-more-programmable-while-title-remains-stubbornly-conventional">Finding 6 — The asset wrapper is becoming more programmable while title remains stubbornly conventional</h3>
+<p>Tokenized Treasuries, funds, stocks, bonds, repo collateral, and deposits often remain claims on assets held by a conventional custodian or issuer. The token may support faster transfer, longer hours, composability, or collateral mobility, but it does not answer on its own:</p>
+<ul>
+<li>who owns the underlying asset;</li>
+<li>whether the token holder has a direct property right or a contractual claim;</li>
+<li>who may correct the record;</li>
+<li>what happens in the issuer's bankruptcy;</li>
+<li>whether a transfer agent or depository can freeze, burn, or replace the token;</li>
+<li>or which court and law govern the result.</li>
+</ul>
+<p>This is the Judicial Money Story expressed in product architecture: technical finality and legal finality remain separate clocks.</p>
+<h3 id="finding-7-custody-and-key-policy-are-becoming-the-hidden-constitution">Finding 7 — Custody and key policy are becoming the hidden constitution</h3>
+<p>Fireblocks, Anchorage, BitGo, Coinbase Custody, Paxos, Standard Custody, Metaco, and other custody stacks decide who may sign, recover, pause, route, or segregate an asset. In institutional systems, “self-executing” code often sits behind multi-party approvals, allowlists, policy engines, recovery procedures, and legal orders.</p>
+<p>The control question is not simply who has the private key. It is who defines the signing policy, who can change it, which legal person owes the asset, and which outside body can compel action.</p>
+<h3 id="finding-8-acquisitions-are-building-vertical-stacks-faster-than-protocols-are-merging">Finding 8 — Acquisitions are building vertical stacks faster than protocols are merging</h3>
+<p>The important consolidation is occurring at the company level: payment firms buy stablecoin infrastructure; crypto firms buy custodians, prime brokers, treasury software, licensing footprints, and distribution; incumbents buy the adapters that let them add on-chain settlement without rebuilding the whole network.</p>
+<p>The acquisition map may reveal the end state faster than chain metrics. Each deal should be read as a missing layer being pulled inside the group.</p>
+<h3 id="finding-9-the-same-few-dependencies-sit-under-the-appearance-of-diversity">Finding 9 — The same few dependencies sit under the appearance of diversity</h3>
+<p>Many networks still depend on:</p>
+<ul>
+<li>a small set of reserve custodians and settlement banks;</li>
+<li>cloud and key-management providers;</li>
+<li>stablecoin issuers and redemption banks;</li>
+<li>oracles and interoperability software;</li>
+<li>depositories and transfer agents;</li>
+<li>the OCC, SEC, state regulators, and Federal Reserve account gate;</li>
+<li>and the same large broker-dealers and asset managers supplying volume.</li>
+</ul>
+<p>Twenty ledgers can still rest on five legal or operational chokepoints. The company map must show shared dependencies, not merely node count.</p>
+<h3 id="finding-10-always-on-has-three-clocks">Finding 10 — “Always on” has three clocks</h3>
+<p>The payment-orchestrator sweep makes 24/7 language much more exact. There are at least three clocks:</p>
+<ol>
+<li><strong>token clock</strong> — the on-chain transfer reaches protocol finality;</li>
+<li><strong>network clock</strong> — Visa, Mastercard, Swift, an exchange, or another rulebook recognizes the participant obligation;</li>
+<li><strong>balance-sheet clock</strong> — reserves are minted or redeemed, the deposit ledger changes, or final commercial-bank/central-bank settlement occurs.</li>
+</ol>
+<p>A service can make the first clock continuous while leaving the second or third on older cycles. Swift says its shared ledger synchronizes tokenized-deposit commitments while final settlement still completes through existing systems. Cross River describes converting an on-chain settlement event into a dollar ledger balance. “24/7” therefore needs the object and clock named.</p>
+<h3 id="finding-11-coin-proliferation-can-hide-adapter-concentration">Finding 11 — Coin proliferation can hide adapter concentration</h3>
+<p>M0, Brale, Bridge, Fiserv, Galileo, BVNK, Fireblocks, Zero Hash, Cross River, and Lead Bank can sit beneath many visible brands. The customer may see a bespoke stablecoin or fintech app while a small set of companies supplies issuance logic, reserve routing, wallets, liquidity, compliance, bank accounts, and network settlement.</p>
+<p>This repeats the banking website finding in a new form: more brands do not necessarily mean more independent pipes. The adapter may be the true consolidating entity.</p>
+<h3 id="finding-12-stablecoin-and-tokenized-deposit-are-different-legal-states">Finding 12 — Stablecoin and tokenized deposit are different legal states</h3>
+<p>SoFiUSD is issued by an FDIC-insured national bank but is not itself an insured deposit. SoFi separately describes a future tokenized deposit that would carry deposit status. Swift's first ledger use case coordinates bank-issued tokenized deposits, while Visa and Mastercard accept selected stablecoins as participant settlement options. Fiserv is exploring both.</p>
+<p>The issuer's charter does not settle the asset's legal nature. Each token needs its own liability, reserve, redemption, insurance, and insolvency map.</p>
+<h2 id="5-the-publicprivate-seam-by-company-type">5. The public/private seam by company type</h2>
+<table>
+<thead>
+<tr>
+<th>Company type</th>
+<th>Private power</th>
+<th>Public-law source of force</th>
+<th>Main fault line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stablecoin issuer</td>
+<td>mint, burn, freeze, redeem, choose reserve/custodian</td>
+<td>charter/license, reserve rules, sanctions, account access</td>
+<td>token holder versus issuer/custodian claim</td>
+</tr>
+<tr>
+<td>Public network sponsor/foundation</td>
+<td>software roadmap, grants, treasury, validator influence</td>
+<td>securities/commodities law, sanctions, licensed gateways</td>
+<td>“neutral” network versus sponsor concentration</td>
+</tr>
+<tr>
+<td>Institutional ledger operator</td>
+<td>admission, privacy domains, synchronization, software control</td>
+<td>member regulation, contract, market-utility approvals</td>
+<td>private rulebook carrying market-wide effect</td>
+</tr>
+<tr>
+<td>Exchange/broker</td>
+<td>listing, access, margin, liquidation, custody</td>
+<td>SEC/CFTC/state/OCC permissions</td>
+<td>platform balance sheet versus customer property</td>
+</tr>
+<tr>
+<td>Tokenizer/transfer agent</td>
+<td>create representation, maintain holder record, corporate actions</td>
+<td>securities law and transfer-agent duties</td>
+<td>on-chain transfer versus authoritative register</td>
+</tr>
+<tr>
+<td>Custodian/key platform</td>
+<td>signing, recovery, segregation, policy engine</td>
+<td>trust/bank charter, custody rules, court orders</td>
+<td>cryptographic control versus legal title</td>
+</tr>
+<tr>
+<td>Card/message network</td>
+<td>routing, acceptance, fraud/dispute rules, data</td>
+<td>bank/network regulation and contract</td>
+<td>tokenized settlement beneath unchanged network power</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-the-strongest-continuity-with-the-five-poles">6. The strongest continuity with the five poles</h2>
+<p>The company layer cuts across all five monetary poles:</p>
+<ul>
+<li><strong>TOKEN:</strong> Circle, Paxos, Ripple, PayPal, Fiserv, SoFi, Stripe/Bridge, M0/Brale-style infrastructure;</li>
+<li><strong>STATE-LEDGER:</strong> central-bank and state pilots using private software, including Project Acacia use cases and Wyoming FRNT infrastructure;</li>
+<li><strong>METAL:</strong> still a thinner company layer, but tokenizers, custodians, exchanges, and state platforms can wrap specie claims;</li>
+<li><strong>WALL:</strong> charters, licensing, sanctions compliance, identity, freeze/burn powers, geofencing, and listing rules;</li>
+<li><strong>PLUMBING:</strong> Swift, card networks, Canton, Corda, Chainlink, Quant, Fnality, Partior, Broadridge, Kinexys, DTCC connectivity, and public L1s.</li>
+</ul>
+<p>The company field therefore does not add a sixth pole. It shows <strong>who is trying to own each gate inside the five</strong>.</p>
+<h2 id="7-what-this-strengthens-in-the-existing-story">7. What this strengthens in the existing story</h2>
+<ol>
+<li><strong>The pipes matter more than the unit.</strong> Most firms assume dollars, deposits, stablecoins, securities, and multiple networks coexist.</li>
+<li><strong>Private bodies are becoming public-law franchises.</strong> Trust charters, transfer-agent status, clearing registration, and depository connections give private systems legal force.</li>
+<li><strong>The transition is additive and accretive.</strong> Incumbents absorb the new rails instead of vanishing.</li>
+<li><strong>Permission is the operating grammar.</strong> Allowlist, certify, charter, custody, validate, mint, redeem, freeze, connect, and settle are the decisive verbs.</li>
+<li><strong>Collateral is the meeting point.</strong> Tokenized cash and assets converge most clearly where institutions need intraday liquidity, repo, margin, and DvP.</li>
+</ol>
+<h2 id="8-what-this-corrects-or-restrains">8. What this corrects or restrains</h2>
+<ol>
+<li><strong>No ISO-certified coin list exists.</strong> Messaging compatibility does not certify a token.</li>
+<li><strong>Institutional selection of a network does not make its native token the settlement asset.</strong> The fee token, represented security, and cash leg may be different things.</li>
+<li><strong>A public-chain connection does not prove that the public chain becomes the authoritative ownership record.</strong> DTC and transfer agents can remain in control.</li>
+<li><strong>A pilot is not adoption.</strong> Real-value tests, limited production, and announced targets need separate labels.</li>
+<li><strong>A trust charter is not a full commercial bank or automatic Fed access.</strong> Each permission has its own clock.</li>
+<li><strong>More chains do not necessarily mean more independent infrastructure.</strong> Shared custodians, banks, clouds, oracles, and regulators can re-centralize the stack.</li>
+</ol>
+<h2 id="9-transition-sequence">9. Transition sequence</h2>
+<h3 id="phase-1-crypto-firms-prove-the-primitive">Phase 1 — crypto firms prove the primitive</h3>
+<p>Public chains, stablecoins, exchanges, and custody systems show that programmable, continuously available value can move outside bank hours.</p>
+<h3 id="phase-2-institutions-isolate-the-useful-parts">Phase 2 — institutions isolate the useful parts</h3>
+<p>Banks and market utilities adopt permissioned ledgers, tokenized deposits, controlled public-chain pilots, and digital-asset custody while retaining conventional title and supervision.</p>
+<h3 id="phase-3-the-legal-bodies-move-into-place">Phase 3 — the legal bodies move into place</h3>
+<p>Trust charters, clearing registrations, transfer-agent structures, account applications, and stablecoin statutes turn technical capability into legal permission.</p>
+<h3 id="phase-4-incumbent-networks-become-multi-rail-orchestrators">Phase 4 — incumbent networks become multi-rail orchestrators</h3>
+<p>Swift, Visa, Mastercard, DTCC, settlement banks, and clearinghouses accept several assets and chains while keeping the rulebook, identity, and recovery layer.</p>
+<h3 id="phase-5-collateral-and-cash-converge">Phase 5 — collateral and cash converge</h3>
+<p>Tokenized securities, funds, deposits, stablecoins, and central-bank money become usable across repo, margin, treasury, payments, and DvP workflows. This is the point where the new stack becomes load-bearing rather than decorative.</p>
+<h2 id="10-forward-tells">10. Forward tells</h2>
+<ol>
+<li>DTC's first live tokenized asset, the exact authoritative-record design, and the first public-chain connection used in production.</li>
+<li>Whether the Stellar target reaches production in H1 2027 and which asset classes are eligible.</li>
+<li>Which Canton, Corda, Besu, or public-chain workflows process sustained production volume rather than pilots.</li>
+<li>Final and consummated status for the OCC crypto trust-bank queue.</li>
+<li>Federal Reserve account decisions for Kraken Financial, Ripple/Standard Custody, and other limited-purpose institutions.</li>
+<li>Whether stablecoin settlement at Visa and Mastercard becomes material production volume and which settlement banks close the fiat leg.</li>
+<li>Swift's initial ledger pilots: tokenized-deposit liability, off-ledger settlement mechanism, participant rulebook, and production volume.</li>
+<li>Paxos Securities Settlement Company's temporary registration: eligible securities, participant growth, cash leg, and route toward permanent status.</li>
+<li>Bank tokenized-deposit networks versus nonbank stablecoins: whether they interoperate, compete, or divide wholesale and retail use cases.</li>
+<li>Acquisitions that pull custody, licensing, treasury, prime brokerage, or tokenization inside one group.</li>
+<li>The first insolvency, sanctions order, mistaken transfer, or custody dispute to test the new stack's legal recovery path.</li>
+<li>Any new asset or money form that fails to fit TOKEN / STATE-LEDGER / METAL / WALL / PLUMBING.</li>
+<li>Whether “24/7” programs close all three clocks—token, network, and balance sheet—or merely move the delay.</li>
+<li>FIUSD's actual issuer/redemption obligor and the first production banks or merchants.</li>
+<li>Mastercard's BVNK acquisition closing and whether asset/chain neutrality survives integration.</li>
+<li>Any gift record, no-cost agreement, ATO, system inventory, identity profile, code repository or follow-on award that turns a crypto-company government claim into a named federal implementation receipt.</li>
+</ol>
+<h2 id="11-research-coverage-and-reading-order">11. Research coverage and reading order</h2>
+<p>The sweep contains 35 distinct core company/system portraits, with overlap retained where one group occupies several functions.</p>
+<ol>
+<li><strong>Start here:</strong> this synthesis.</li>
+<li><strong>Use <code>FINTECH_CRYPTO_COMPANY_REGISTRY.md</code></strong> for the entity/function census and the field schema for future additions.</li>
+<li><strong>Use <code>FINTECH_CRYPTO_CLAIM_AUDIT.md</code></strong> before carrying old private-rail claims into new synthesis.</li>
+<li><strong>Use <code>FINTECH_CRYPTO_TRANSITION_TIMELINE.md</code></strong> for the selected 2025–2027 factual spine and watchboard.</li>
+<li><strong>Use the four detailed annexes for portraits and primary sources:</strong>
+   - <code>FINTECH_SWEEP_ISO_NETWORKS.md</code> — Ripple/XRPL, Stellar, Hedera, Algorand, XDC, IOTA, Quant;
+   - <code>FINTECH_SWEEP_INSTITUTIONAL_RAILS.md</code> — Digital Asset/Canton, R3/Corda, Chainlink, Fnality, Partior, Broadridge DLR, Kinexys, Paxos;
+   - <code>FINTECH_SWEEP_MARKET_ACCESS.md</code> — Coinbase, Kraken, Circle, Securitize, Ondo, Fireblocks, Anchorage, BitGo, Zero Hash, Stripe/Bridge;
+   - <code>FINTECH_SWEEP_PAYMENT_ORCHESTRATORS.md</code> — Swift, Visa, Mastercard/BVNK, Fiserv/FIUSD, PayPal/PYUSD, SoFi/Galileo/SoFiUSD, M0, Brale, Cross River, Lead Bank.</li>
+</ol>
+<h2 id="bottom-line">Bottom line</h2>
+<p>The private build does not show the old financial system being cleanly replaced by crypto. It shows the old system learning to speak to public chains, the crypto firms learning to become banks and market utilities, and both sides meeting in a layered architecture built around permission, custody, and interoperability.</p>
+<p>The deepest company-level question is therefore not “which token wins?” It is:</p>
+<blockquote>
+<p>Which legal group controls the adapter between the asset, the ledger, the customer, and final settlement—and can that adapter survive regulation, failure, and a court order?</p>
+</blockquote>
+<p>That is where the next chapter of the monetary story lives.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

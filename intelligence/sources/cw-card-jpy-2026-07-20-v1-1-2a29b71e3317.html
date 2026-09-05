@@ -1,0 +1,465 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Currency Watch — JPY Blind Pilot Card v1.1 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Currency Watch — JPY Blind Pilot Card v1.1</h1><p class="deck">Collection evidence cutoff: 2026-07-31</p><p><a href="cw-card-jpy-2026-07-20-v1-1-2a29b71e3317.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="currency-watch-jpy-blind-pilot-card-v11">Currency Watch — JPY Blind Pilot Card v1.1</h1>
+<p><strong>Card ID:</strong> <code>CW-CARD-JPY-2026-07-20-V1_1</code><br />
+<strong>Rubric:</strong> <code>CURRENCY_WATCH_PILOT_RUBRIC_FROZEN_V1.md</code><br />
+<strong>Execution control:</strong> <code>CURRENCY_WATCH_PILOT_EXECUTION_ANNEX_V1_1.md</code><br />
+<strong>Source freeze:</strong> <code>CURRENCY_WATCH_PILOT_SOURCE_MANIFEST_2026-07-20.md</code><br />
+<strong>Grade state:</strong> <code>SEALED-V1_1</code></p>
+<h2 id="a-identity-and-authority">A. Identity and authority</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Currency object</td>
+<td>Japanese yen, ISO 4217 <code>JPY</code>; legal monetary unit of Japan</td>
+</tr>
+<tr>
+<td>Linked IMF member record(s)</td>
+<td>Japan</td>
+</tr>
+<tr>
+<td>Monetary-policy authority</td>
+<td>Bank of Japan Policy Board; BOJ issues banknotes and implements monetary policy</td>
+</tr>
+<tr>
+<td>FX/intervention authority</td>
+<td>Minister of Finance holds legal intervention authority; BOJ executes intervention as MOF’s agent</td>
+</tr>
+<tr>
+<td>Trade/customs authority</td>
+<td>METI for broad trade policy and controls; MOF Customs and Tariff Bureau for tariff/customs planning and administration</td>
+</tr>
+<tr>
+<td>Shared-authority overlay</td>
+<td><code>NONE</code></td>
+</tr>
+<tr>
+<td>Regime stress class</td>
+<td>De jure and de facto free floating; reserve and international funding currency</td>
+</tr>
+<tr>
+<td>International role tags</td>
+<td><code>DOMESTIC</code>, <code>RESERVE</code>, <code>FUNDING</code>, <code>VEHICLE</code>, <code>SDR-BASKET</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-controlling-source-clocks">B. Controlling source clocks</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV/common report</td>
+<td>IMF Country Report 26/75, <em>Japan: 2026 Article IV Consultation—Press Release; Staff Report; and Statement by the Executive Director</em></td>
+</tr>
+<tr>
+<td>Discussions end</td>
+<td><code>2026-02-05</code></td>
+</tr>
+<tr>
+<td>Staff cutoff</td>
+<td><code>2026-03-02</code></td>
+</tr>
+<tr>
+<td>Datum vintages</td>
+<td>Inflation/activity: annual 2022–25, with 2025 estimated; FSI: Q1 observations through 2025; external position: 2025 annual and 2025Q3 NIIP/reserves; Fund Relations/legal state: 2026-01-31; BIS FX/IRD turnover: April 2025, final June 2026; IMF COFER: 2026Q1, published 2026-07-01</td>
+</tr>
+<tr>
+<td>Post-cutoff statement</td>
+<td><code>2026-03-27</code> — separate staff statement covering later releases and the Middle East energy shock; not backdated into the March 2 staff report</td>
+</tr>
+<tr>
+<td>Board date</td>
+<td><code>2026-03-27</code></td>
+</tr>
+<tr>
+<td>Publication date</td>
+<td><code>2026-04-03</code></td>
+</tr>
+<tr>
+<td>ESR vintage</td>
+<td>2025 ESR, assessing 2024; Article IV’s 2025 assessment remains preliminary pending the 2026 ESR</td>
+</tr>
+<tr>
+<td>National-data cutoff</td>
+<td><code>2026-03-19</code> for observations incorporated through the March 27 staff statement; no later Japanese national series substituted</td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-authority-response">C. Authority response</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Response state</td>
+<td><code>PARTIAL</code></td>
+</tr>
+<tr>
+<td>Exact proposition answered</td>
+<td>The Japanese authorities shared staff’s overall economic assessment and broad policy direction, broadly concurred with the preliminary external-sector assessment, agreed that inflation risks were balanced, and indicated continued conditional monetary normalization. They qualified staff’s monetary prescription by warning against undue reliance on point estimates of neutral rates. They remained committed to market-determined exchange rates while stressing concern over one-sided, rapid yen depreciation and reserving action against disorderly movements.</td>
+</tr>
+<tr>
+<td>Source/page/date</td>
+<td>IMF CR 26/75, staff-report authorities’ views, PDF pp.18, 20–21 and 30; Statement by the Executive Director for Japan, PDF pp.101–103, dated <code>2026-03-27</code></td>
+</tr>
+<tr>
+<td>Attribution boundary</td>
+<td>Staff assessment, Executive Board assessment, BOJ views, MOF views and the Executive Director’s member-authority statement remain separate. The March 27 staff update is staff—not member-authority—material.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-categorical-legal-card">D. Categorical legal card</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Controlled state</th>
+<th>Source/page</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV general status</td>
+<td><code>NO-ADVERSE-FINDING-LOCATED</code></td>
+<td>IMF CR 26/75, Board assessment pp.2–3; staff appraisal pp.34–35</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Manipulation status</td>
+<td><code>NO-ADVERSE-FINDING-LOCATED</code> — not a declaration of full compliance</td>
+<td>IMF CR 26/75, preliminary external assessment p.54; exchange-arrangement annex p.97</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §2 current-payment restrictions</td>
+<td><code>NONE-LOCATED</code>; notified security restrictions kept separate</td>
+<td>IMF CR 26/75 p.97</td>
+<td><code>A-OPERATIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §3 MCP/discriminatory practice</td>
+<td><code>NONE-LOCATED</code></td>
+<td>IMF CR 26/75 p.97</td>
+<td><code>A-OPERATIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §4 foreign-held balances</td>
+<td><code>NO-FUND-CONCERN-LOCATED</code></td>
+<td>Article VIII §§2/3/4 acceptance, IMF CR 26/75 p.97; no adverse §4 finding in the package</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §5 information duty</td>
+<td><code>NO-FUND-BREACH-LOCATED</code></td>
+<td>IMF CR 26/75, Data Issues pp.77–78; SDDS Plus adherence p.78</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article XIV</td>
+<td><code>NOT-APPLICABLE—ARTICLE-VIII-OBLIGATIONS-ACCEPTED</code></td>
+<td>IMF CR 26/75 pp.96–97</td>
+<td><code>A-OPERATIVE</code></td>
+</tr>
+<tr>
+<td>Capital controls / CFMs</td>
+<td>Open capital account described; no material CFM identified in the controlling package</td>
+<td>IMF CR 26/75 p.15</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Security restrictions</td>
+<td>Security-preservation restrictions notified under Executive Board Decision 144-(52/51); transaction-level scope not itemized</td>
+<td>IMF CR 26/75 p.97</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+</tbody>
+</table>
+<p>No categorical state is converted numerically.</p>
+<h2 id="e-linked-event-records">E. Linked event records</h2>
+<table>
+<thead>
+<tr>
+<th>Event ID</th>
+<th>Legal/operating state</th>
+<th>Proposed transmission</th>
+<th>Evidence state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TP-USJP-2025-TARIFF-FRAMEWORK</code></td>
+<td>Bilateral framework operating through product-specific schedules: most U.S. tariffs on Japanese exports capped at 15%; steel/aluminum-related exports excluded; investment pledge separate</td>
+<td>Export margins and outward FDI first; staff found exporters absorbed part of the tariff through margins while volumes and market share held, with no material medium-term external deterioration established</td>
+<td><code>OBSERVED</code></td>
+</tr>
+<tr>
+<td><code>TP-US-2026-SECTION122</code></td>
+<td>Operative for covered entries at the source freeze, with separate <code>2026-07-24</code> expiry clock</td>
+<td>Staff’s preliminary assessment was that the alternative U.S. surcharge left the effective tariff rate on Japanese exports broadly unchanged; no independent grade transmission established</td>
+<td><code>INFERENCE</code></td>
+</tr>
+<tr>
+<td><code>TP-CNJP-2026-DUALUSE</code></td>
+<td>Measures targeting 20 Japanese firms, with 20 more on a watch list; scope and implementation unresolved</td>
+<td>Possible supply-chain, price and export effects; no observed monetary or BOP transmission sufficient for grading</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="f-six-lane-worksheet">F. Six-lane worksheet</h2>
+<table>
+<thead>
+<tr>
+<th>Lane</th>
+<th style="text-align: right;">Proposed grade</th>
+<th>One-sentence reason</th>
+<th>Primary evidence + vintage</th>
+<th>Persistence evidence</th>
+<th>Shock evidence</th>
+<th>Competing explanation</th>
+<th>Confidence</th>
+<th>Legal/event link</th>
+<th>Data gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 Domestic anchor</td>
+<td style="text-align: right;"><strong>C</strong></td>
+<td>The 2% anchor remains credible and adjustment capacity is clear, but more than three and a half years of above-target inflation, repeated upside surprises and a roughly 6% cumulative real-wage loss since 2022 constitute a material persistent impairment.</td>
+<td>IMF CR 26/75 pp.10–11: 2025 headline inflation 3.2%, core 3.0%, broad price pressure and declining real wages; Table 1 p.47.</td>
+<td>Headline CPI: 2.5%, 3.2%, 2.7%, 3.2% in 2022–25; core: 1.1%, 3.9%, 2.4%, 3.0%. Expectations rose toward target and BOJ normalization began, preserving an identifiable repair path.</td>
+<td>Separate March 27 staff statement, pp.99–100: Middle East energy shock adds an estimated 0.3 percentage point to 2026 headline inflation, to 2.2%, with modest expected second-round effects. This post-cutoff estimate does not rewrite the March 2 record.</td>
+<td>Much of the overshoot reflected rice, food and import-price shocks; January inflation moderated sharply and medium-term expectations were aligning with target, which could support <code>B</code>. Persistence and purchasing-power loss keep the call at <code>C</code>.</td>
+<td><code>HIGH</code></td>
+<td>Article IV: <code>NO-ADVERSE-FINDING-LOCATED</code>; <code>TP-CNJP-2026-DUALUSE</code> unresolved and not scored</td>
+<td>Final 2026 inflation/expectations outcomes, actual real-wage turn, and 2026 ESR are outside the freeze</td>
+</tr>
+<tr>
+<td>L2 Underlying order</td>
+<td style="text-align: right;"><strong>B</strong></td>
+<td>Banking, liquidity and market functions remain broadly resilient, with bounded pockets of regional-bank, FX-funding, CRE and JGB-market strain but no generalized disorder or core-function impairment.</td>
+<td>IMF CR 26/75 Table 5 p.51, 2025Q1: regulatory capital 16.7%, Tier 1 15.2%, NPL ratio 1.1%, liquid assets 32.9% of assets and 49.8% of short-term liabilities; staff assessment pp.25–30.</td>
+<td>Capital and liquidity remained robust through 2019–25; NPLs stayed around 1.1–1.3%. Staff and authorities judged systemic risk materially unchanged, though sources shifted and FSAP implementation was uneven.</td>
+<td>A severe stagflation stress test kept aggregate CET ratios above regulatory requirements, but exposed institution-level pockets. The March 2026 external shock produced sharp market moves without evidence in the frozen package of banking fracture or payment disorder.</td>
+<td>Gross public debt above 200% of GDP, sizable FX/cross-currency exposures, thin regional-bank buffers and rising JGB volatility could justify <code>C</code> if they begin impairing funding or intermediation. Current operating evidence does not show that transmission.</td>
+<td><code>HIGH</code></td>
+<td>Article IV general status; no event promoted into this lane</td>
+<td>Institution-level stress-test dispersion, significant-currency liquidity ratios, FX-derivative positions and shinkin-bank coverage remain incomplete</td>
+</tr>
+<tr>
+<td>L3 Exchange order</td>
+<td style="text-align: right;"><strong>B</strong></td>
+<td>The free float operates through a deep market without intervention since July 2024 or documented fracture, but persistent one-sided depreciation, partial decoupling from yield differentials and official concern constitute bounded exchange-order strain.</td>
+<td>IMF CR 26/75 pp.15–16 and 20–21; de jure/de facto free float and no intervention since July 2024, p.97; 2025 external assessment p.54.</td>
+<td>Average JPY/USD moved from 131.5 in 2022 to 140.5 in 2023, 151.4 in 2024 and 149.7 in 2025. End-2025 REER was about 25% below its 2021 average, yet the 2025 CA-based REER gap midpoint was only +0.1%.</td>
+<td>April/May/July 2024 intervention episodes were isolated; none occurred in 2025. The separate March 27 shock statement recorded 1.8% yen depreciation amid the Middle East risk-off episode but did not identify disorder or intervention.</td>
+<td>Market depth, full flexibility, no recent intervention and an external position broadly in line could support <code>A</code>; the unexplained one-sided move and MOF concern support the bounded-strain <code>B</code>. Reserve change is not treated as the central test for this free-floating reserve currency.</td>
+<td><code>MEDIUM</code></td>
+<td><code>TP-US-2026-SECTION122</code> and <code>TP-USJP-2025-TARIFF-FRAMEWORK</code> are context only; no exchange-grade transmission</td>
+<td>Frozen packet lacks current bid/ask, realized-volatility and post-March intervention data; final 2026 ESR unavailable</td>
+</tr>
+<tr>
+<td>L4 External adjustment</td>
+<td style="text-align: right;"><strong>A</strong></td>
+<td>The external position is broadly in line across both completed and preliminary assessments, supported by a near-zero CA gap, very large positive NIIP and contained liability vulnerabilities.</td>
+<td>2025 ESR, Japan assessment, PDF p.19: 2024 position broadly in line, CA gap +0.6% GDP, REER gap midpoint −3.3%, NIIP 89.8%; IMF CR 26/75 p.54: preliminary 2025 CA gap 0.0%, REER gap +0.1%, NIIP 82% at 2025Q3.</td>
+<td>CA surplus rose from 3.8% GDP in 2023 to 4.8% in 2024 and 2025, mainly from investment income; strong positive NIIP and diversified foreign assets persisted, while medium-term adjustment projects a gradual surplus decline.</td>
+<td>Higher U.S. tariffs were absorbed partly through exporter margins and had not materially altered medium-term export trends. The separate March 27 energy shock reduces the projected 2026 CA surplus from 4.6% to 3.8%, still without an assessed external imbalance.</td>
+<td>A high headline surplus, investment bottlenecks and much larger REER-model undervaluation estimates could imply a stronger-than-desirable position. IMF staff reconciled these through the CA approach and retained the broadly-in-line finding.</td>
+<td><code>HIGH</code></td>
+<td><code>TP-USJP-2025-TARIFF-FRAMEWORK</code>; <code>TP-US-2026-SECTION122</code>; <code>TP-CNJP-2026-DUALUSE</code> unresolved</td>
+<td>Final 2026 ESR, full product-level tariff instruments and measured China-event trade effects remain unavailable</td>
+</tr>
+<tr>
+<td>L5 Current-payment usability</td>
+<td style="text-align: right;"><strong>A</strong></td>
+<td>Bona fide current payments remain usable with no located MCP, current-payment restriction, arrears or material transfer delay, apart from separately notified security restrictions.</td>
+<td>IMF CR 26/75 p.97, Fund Relations as of 2026-01-31: Article VIII §§2/3/4 accepted; exchange system free of MCPs and current-payment/transfer restrictions except notified security measures.</td>
+<td>No contrary operating finding appears across the persistence window; Japan’s open capital account and deep convertible FX market provide corroborating operating evidence.</td>
+<td><code>NOT-APPLICABLE</code> — no current-payment restriction or transfer shock identified in the frozen JPY packet.</td>
+<td>The notified security restrictions may affect selected transactions, and the package does not itemize their scope; without transaction-level evidence, they cannot be treated as a general usability impairment.</td>
+<td><code>MEDIUM</code></td>
+<td>Legal card §§2–4; trade measures remain legally separate</td>
+<td>Itemized security-restriction scope and transaction-level transfer-delay evidence</td>
+</tr>
+<tr>
+<td>L6 Systemic service</td>
+<td style="text-align: right;"><strong>A</strong></td>
+<td>JPY continues to perform its actual reserve, vehicle, hedge and funding jobs through deep FX, derivatives and cross-border funding markets without evidence of systemic-service failure.</td>
+<td>BIS 2025 Triennial Survey, April 2025: JPY on one side of 16.8% of global FX turnover, third most traded; JPY OTC interest-rate derivatives averaged $411 billion daily, 5.2% of global turnover. IMF COFER 2026Q1: JPY remained a separately identified reserve currency with a 5.44% share.</td>
+<td>JPY’s FX-turnover share remained broadly stable against the prior triennial survey; yen IRD turnover rose 684% from 2022. BIS global-liquidity data recorded ¥65.6 trillion in yen credit to non-Japanese borrowers at 2025Q1, up 6% y/y after double-digit prior growth.</td>
+<td>The April 2025 FX survey occurred amid tariff-driven volatility and still documented deep turnover. Carry-trade unwinds transmitted volatility, but the evidence shows continued market operation rather than loss of funding or hedging service.</td>
+<td>The COFER share fell from 5.84% in 2025Q4 to 5.44% in 2026Q1, and reliance on yen-funded carry trades can amplify shocks; these are role risks, not evidence that the service failed.</td>
+<td><code>HIGH</code></td>
+<td>International-role overlay; trade events show no observed systemic-role impairment</td>
+<td>Current invoice/payment share, the precise funding-versus-speculative use of yen borrowing, and confidential COFER-holder composition are unavailable</td>
+</tr>
+</tbody>
+</table>
+<h2 id="g-primary-lane-collision-check">G. Primary-lane collision check</h2>
+<table>
+<thead>
+<tr>
+<th>Fact/source</th>
+<th>Primary lane</th>
+<th>Context links</th>
+<th>Separate second mechanism evidenced?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Persistent above-target inflation and real-wage erosion</td>
+<td>L1</td>
+<td>L2 activity context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Bank capital, NPLs, liquidity and institution-level vulnerabilities</td>
+<td>L2</td>
+<td>L3/L6 market context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>One-sided depreciation, yield-differential decoupling and isolated intervention history</td>
+<td>L3</td>
+<td>L1 import-price channel</td>
+<td><code>YES</code> — L1 uses separately observed CPI and import-price pass-through, not depreciation alone</td>
+</tr>
+<tr>
+<td>CA gap, REER assessment, NIIP and external-income structure</td>
+<td>L4</td>
+<td>L3 context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Article VIII restrictions/MCP and operating-payment evidence</td>
+<td>L5</td>
+<td>Legal card</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>COFER, global FX turnover, IRD turnover and cross-border yen credit</td>
+<td>L6</td>
+<td>L3 market-depth context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>March 2026 energy shock</td>
+<td>L1 and L4</td>
+<td>Headline inflation and energy-import bill</td>
+<td><code>YES</code> — distinct price and BOP mechanisms</td>
+</tr>
+<tr>
+<td>Frozen trade events</td>
+<td>Event ledger</td>
+<td>L1/L3/L4/L6</td>
+<td><code>NO</code> grade movement unless separately observed transmission is stated above</td>
+</tr>
+</tbody>
+</table>
+<h2 id="h-seal">H. Seal</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grader</td>
+<td><code>BLIND-JPY-GRADER</code></td>
+</tr>
+<tr>
+<td>Started</td>
+<td><code>2026-07-20T21:26:43-04:00</code></td>
+</tr>
+<tr>
+<td>Sealed</td>
+<td><code>2026-07-20T21:27:08-04:00</code></td>
+</tr>
+<tr>
+<td>Other provisional cards visible?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Source substitutions made?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Composite calculated?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Card state</td>
+<td><code>SEALED-V1_1</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Source note:</strong> Controlling evidence is the frozen <a href="https://www.imf.org/-/media/files/publications/cr/2026/english/1jpnea2026001.pdf">IMF Japan Country Report 26/75</a> and <a href="https://www.imf.org/-/media/files/publications/esr/2025/english/ch3.pdf">2025 ESR Japan assessment</a>. Missing decisive L6 evidence was filled only from official pre-freeze releases: <a href="https://www.bis.org/statistics/rpfx25.htm">BIS 2025 Triennial Survey</a>, <a href="https://www.bis.org/statistics/gli2507.htm">BIS yen global-liquidity data</a>, and <a href="https://data.imf.org/en/news/imf%20data%20brief%20july%201">IMF COFER 2026Q1</a>. No newer Article IV, ESR or Japanese national series was substituted.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

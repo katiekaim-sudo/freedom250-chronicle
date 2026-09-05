@@ -1,0 +1,181 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Annex entity addition audit — 2026-08-15 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Annex entity addition audit — 2026-08-15</h1><p class="deck">Source created: 2026-08-15</p><p><a href="2026-08-15-annex-entity-addition-audit-tfi-ofac-and-usitc-41304d95e186.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="annex-entity-addition-audit-2026-08-15">Annex entity addition audit — 2026-08-15</h1>
+<p>The monetary Annex pass exposed two real gaps in the Federal Group projection:</p>
+<ol>
+<li>Treasury's sanctions and illicit-finance operating chain existed in the Entity Theory registry but was not visible in the structural tree.</li>
+<li>The U.S. International Trade Commission was absent even though tariff Annexes repeatedly route technical Harmonized Tariff Schedule work through it.</li>
+</ol>
+<p>The governing admission rule remains unchanged: a node is a legal or accounting entity with a verifiable organizational position. A person, foreign target, sanctions-list entry, security, HTS line, position description, private intermediary, or transaction is an object or overlay—not a new federal entity. Consultation, coordination, publication, and payment handoffs do not become parentage.</p>
+<h2 id="structural-changes-applied">Structural changes applied</h2>
+<h3 id="treasury-tfi">Treasury → TFI</h3>
+<p>The complete current Treasury subtree is now visible:</p>
+<pre><code class="language-text">Department of the Treasury
+└─ Office of Terrorism &amp; Financial Intelligence (TFI)
+   ├─ Office of Foreign Assets Control (OFAC)
+   ├─ Office of Intelligence &amp; Analysis (OIA)
+   ├─ Office of Terrorist Financing and Financial Crimes (TFFC)
+   ├─ Treasury Executive Office for Asset Forfeiture (TEOAF)
+   │  └─ Treasury Forfeiture Fund
+   └─ FinCEN
+</code></pre>
+<p>Treasury describes TFI as its national-security arm and identifies exactly one bureau and four offices as its five components. Treasury Order 105-17 also places OFAC, OIA, the terrorist-financing office, TEOAF, and FinCEN under TFI's leadership. FinCEN therefore moved from a direct Treasury child to its current TFI position; it was not duplicated.</p>
+<p>The subtree deliberately preserves three different legal states:</p>
+<ul>
+<li><strong>OFAC blocking:</strong> covered property is frozen and reported; title does not transfer merely because it is blocked.</li>
+<li><strong>FinCEN/BSA controls:</strong> reporting, analysis, rulemaking, and advisories are not sanctions designations or criminal adjudications.</li>
+<li><strong>TEOAF/Treasury Forfeiture Fund:</strong> the special-fund path begins only through the separate seizure/forfeiture process and deposit authorities. It is not a downstream consequence of every OFAC block.</li>
+</ul>
+<h3 id="independent-agencies-usitc">Independent agencies → USITC</h3>
+<p><code>United States International Trade Commission (USITC)</code> is now an independent-agency node in the existing regulator cluster. It is not nested under Commerce, USTR, DHS, or Treasury.</p>
+<p>USITC describes itself as an independent, nonpartisan, quasi-judicial federal agency. Its functions include adjudication, trade research and analysis, and maintenance of the Harmonized Tariff Schedule. Its Tariff Affairs office compiles and publishes the HTS, keeps it under review, recommends changes to the President, and supplies technical work to USTR. CBP remains the customs assessment and collection entity.</p>
+<h2 id="money-flow-edge-applied">Money-flow edge applied</h2>
+<p>The money overlay now includes:</p>
+<pre><code class="language-text">CBP ⇄ Department of the Treasury
+customs receipts / approved refunds
+</code></pre>
+<p>The forward direction represents CBP assessment, collection, and liquidation reaching government-wide customs-revenue accounting. The reverse direction represents the approved-refund instruction/accounting handoff: after CBP review, Treasury issues the claimant's refund. It does not mean Treasury pays CBP, and it does not claim a specific electronic route into the Treasury General Account.</p>
+<p>The proposed External Revenue Service remains separately labeled proposed; it does not stand in for the existing CBP–Treasury chain.</p>
+<h2 id="founding-clock-and-accounting-fields">Founding-clock and accounting fields</h2>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Legal form / parent</th>
+<th>Clock encoded</th>
+<th>Clock note</th>
+<th>SFFAS field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TFI</td>
+<td>Treasury office / Treasury</td>
+<td>2004-12-17</td>
+<td>Existing chart convention uses statutory establishment; Treasury Order 105-17 stood it up 2004-04-28.</td>
+<td>consolidation</td>
+</tr>
+<tr>
+<td>OFAC</td>
+<td>TFI office</td>
+<td>1950-12</td>
+<td>OFAC's official history supports December 1950, not an exact day. The former <code>1950-12-01</code> precision was removed.</td>
+<td>consolidation</td>
+</tr>
+<tr>
+<td>OIA</td>
+<td>TFI office and IC component</td>
+<td>2004-12-17</td>
+<td>Existing statutory clock retained; the April 2004 organizational-order clock remains a documented alternative.</td>
+<td>consolidation</td>
+</tr>
+<tr>
+<td>TFFC</td>
+<td>TFI office</td>
+<td>2004</td>
+<td>Current-office lineage is verified to 2004; no exact day is encoded.</td>
+<td>consolidation</td>
+</tr>
+<tr>
+<td>TEOAF</td>
+<td>TFI office</td>
+<td>1992</td>
+<td>Treasury's official page identifies the year only. The former unsupported <code>1992-10-28</code> precision was removed.</td>
+<td>consolidation</td>
+</tr>
+<tr>
+<td>Treasury Forfeiture Fund</td>
+<td>statutory special fund / administered by TEOAF</td>
+<td>1992-10-06</td>
+<td>Treasury Forfeiture Fund Act of 1992 enactment clock.</td>
+<td>consolidation</td>
+</tr>
+<tr>
+<td>USITC</td>
+<td>independent agency</td>
+<td>1916-09-08</td>
+<td>Revenue Act created the U.S. Tariff Commission; later name change preserves entity lineage.</td>
+<td>consolidation</td>
+</tr>
+</tbody>
+</table>
+<p>USITC's consolidation field is independently corroborated by the FY 2025 Financial Report's Appendix A, which lists the International Trade Commission among additional consolidation entities.</p>
+<h2 id="objects-deliberately-not-added-as-structural-nodes">Objects deliberately not added as structural nodes</h2>
+<ul>
+<li>foreign persons and companies named in sanctions Annexes;</li>
+<li>SDN, NS-CMIC, and other list entries;</li>
+<li>securities, derivatives, index products, HTS headings, product exceptions, and country-rate rows;</li>
+<li>importers, brokers, banks, exchanges, custodians, and other private intermediaries;</li>
+<li>EO 14410 position descriptions and personnel designations;</li>
+<li>a direct OFAC → DOJ/Treasury Fund → Strategic Bitcoin Reserve path without case-specific seizure, forfeiture, title, disposition, and deposit evidence.</li>
+</ul>
+<p>Those belong in typed transaction, authority, personnel, or object overlays. Treating them as subsidiaries would erase the legal distinctions the tree is meant to show.</p>
+<h2 id="primary-sources">Primary sources</h2>
+<ul>
+<li><a href="https://home.treasury.gov/about/general-information/orders-and-directives/treasury-order-105-17">Treasury Order 105-17 — Establishment of TFI</a></li>
+<li><a href="https://home.treasury.gov/about/offices/terrorism-and-financial-intelligence">Treasury — TFI organization and five components</a></li>
+<li><a href="https://ofac.treasury.gov/about-ofac">OFAC — official history</a></li>
+<li><a href="https://home.treasury.gov/policy-issues/terrorism-and-illicit-finance/treasury-executive-office-for-asset-forfeiture-teoaf">Treasury — TEOAF and Treasury Forfeiture Fund</a></li>
+<li><a href="https://uscode.house.gov/view.xhtml?req=%28title%3A31%20section%3A9705%20edition%3Aprelim%29">31 U.S.C. § 9705 — Department of the Treasury Forfeiture Fund</a></li>
+<li><a href="https://www.usitc.gov/press_room/about_usitc.htm">USITC — agency form, mission, and 1916 founding</a></li>
+<li><a href="https://www.usitc.gov/offices/tata">USITC Tariff Affairs — HTS functions</a></li>
+<li><a href="https://fiscal.treasury.gov/system/files/2026-03/appendix-a-2025.pdf">FY 2025 Financial Report, Appendix A — reporting entities</a></li>
+<li><a href="https://content.govdelivery.com/accounts/USDHSCBP/bulletins/415c8e9">CBP — CAPE review and Treasury ACH refund states</a></li>
+<li><a href="https://fiscal.treasury.gov/accounting/us-financial-report/statements-operations-changes-in-net-position">Fiscal Service — customs duties in government-wide revenue</a></li>
+</ul>
+<h2 id="files-changed">Files changed</h2>
+<ul>
+<li><code>04 - Synthesis/Cross-cuts/The Federal Group.html</code></li>
+<li><code>04 - Synthesis/Entity Theory/entity_founding_dates.json</code></li>
+<li>generated <code>entity_charts.json</code> and <code>entity_progressions.json</code></li>
+</ul>
+<p>Validation and app-install receipts are recorded in the implementation session; the structural names in the tree and registry remain exact join keys.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

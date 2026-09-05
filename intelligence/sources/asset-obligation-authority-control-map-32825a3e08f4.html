@@ -1,0 +1,266 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Asset–Obligation–Authority — Control Map · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/keeping-systems-working.html#events-and-payments" class="" >When does an operating event become money owed? <span class="meta">— How systems keep working under pressure</span></a><a href="../stories/keeping-systems-working.html#surviving-the-interruption" class="" >What remains usable when one link stops working? <span class="meta">— How systems keep working under pressure</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Asset–Obligation–Authority — Control Map</h1><p class="deck">Source evidence cutoff: 2026-08-09 · Collection evidence cutoff: 2026-08-09</p><p><a href="asset-obligation-authority-control-map-32825a3e08f4.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="assetobligationauthority-control-map">Asset–Obligation–Authority — Control Map</h1>
+<h2 id="controlling-conclusion">Controlling conclusion</h2>
+<p>Atomic settlement can reframe energy-asset management when an operational record becomes an approved predicate for a commercial state transition. It cannot make every technical fact legally conclusive or collapse safety, contract, compliance, funding, accounting and legal-discharge authority into one clock.</p>
+<p>The durable unit is not a token. It is an <strong>asset + obligation + authority</strong> graph:</p>
+<pre><code class="language-text">identified physical asset
+  -&gt; governed measurement or inspection
+  -&gt; authorized technical or contractual determination
+  -&gt; obligation, claim, credit or hold
+  -&gt; approved payment instruction
+  -&gt; funded settlement
+  -&gt; entity-specific accounting
+  -&gt; correction, dispute and legal discharge
+</code></pre>
+<p>The target is <strong>bounded straight-through processing with a constitutional exception path</strong>, not unconditional autonomy.</p>
+<h2 id="control-constitution">Control constitution</h2>
+<table>
+<thead>
+<tr>
+<th>Clock</th>
+<th>Controlling object</th>
+<th>Current authority</th>
+<th>Safe automation</th>
+<th>Non-collapse rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>physical safety</td>
+<td>turbine, protection logic, plant and grid state</td>
+<td>operator, certified controls and reliability authorities</td>
+<td>detect, recommend, simulate and execute bounded control logic</td>
+<td>a financial rule may not override a trip, reliability instruction or safe-return decision</td>
+</tr>
+<tr>
+<td>identity/configuration</td>
+<td>asset, component, sensor, software and model version</td>
+<td>owner/OEM records and configuration management</td>
+<td>bind evidence to the correct object and version</td>
+<td>identity does not prove condition, ownership, origin or sanctions state</td>
+</tr>
+<tr>
+<td>measurement/evidence</td>
+<td>SCADA, historian, revenue meter, test and inspection record</td>
+<td>approved meter/test procedure, engineer, operator, ISO/RTO or contract administrator</td>
+<td>collect, normalize, sign provenance and detect anomalies</td>
+<td>raw telemetry and model output are not automatically contractual truth</td>
+</tr>
+<tr>
+<td>diagnosis/work</td>
+<td>alert, diagnosis, work order, permit and technician action</td>
+<td>owner/OEM engineering and operating process</td>
+<td>recommend work, reserve parts, schedule labor and assemble records</td>
+<td>an AI alert is not causation, warranty coverage or return-to-service approval</td>
+</tr>
+<tr>
+<td>contractual obligation</td>
+<td>LTSA, EPC, PPA, tariff, SLA and warranty</td>
+<td>parties, tariff administrator, court or arbitrator</td>
+<td>calculate objective fees, credits, penalties and claims from approved evidence</td>
+<td>force majeure, causation, exclusions and disputed acceptance remain governed judgments</td>
+</tr>
+<tr>
+<td>compliance</td>
+<td>origin, ECCN, ownership, counterparty, sanctions and license state</td>
+<td>law, licenses, public authorities and compliance officers</td>
+<td>screen continuously, apply time-versioned policies and impose preflight holds</td>
+<td>ledger confirmation cannot make a prohibited export, service or payment lawful</td>
+</tr>
+<tr>
+<td>payment instruction</td>
+<td>invoice, claim, debit, credit and escrow release</td>
+<td>contract and treasury permissions</td>
+<td>create or release an instruction when predicates pass</td>
+<td>instruction is not funding or settlement</td>
+</tr>
+<tr>
+<td>funding/settlement</td>
+<td>deposit, reserve balance, token, prefunded balance and collateral</td>
+<td>banks, issuers, central banks and platform rules</td>
+<td>reserve liquidity, link transfers and shorten exposure/reconciliation</td>
+<td>atomicity cannot create liquidity, credit, loss-bearing capacity or legal discharge</td>
+</tr>
+<tr>
+<td>accounting/tax</td>
+<td>revenue, expense, capital asset, reserve, impairment and tax basis</td>
+<td>entity policies, auditors, regulators and law</td>
+<td>generate consistent entity-specific entries from a canonical event</td>
+<td>cash movement does not determine recognition, capitalization, valuation or consolidation</td>
+</tr>
+<tr>
+<td>correction/enforcement</td>
+<td>dispute, reversal, freeze, seizure, forfeiture and judgment</td>
+<td>contract governors, courts, regulators and sanctions administrators</td>
+<td>pause, preserve evidence, route exceptions and execute authorized corrections</td>
+<td>protocol finality is not legal unassailability</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-the-primary-record-already-establishes">What the primary record already establishes</h2>
+<h3 id="physical-events-already-create-financial-obligations">Physical events already create financial obligations</h3>
+<p>A Guernsey Power filing describes a GE service agreement with a monthly fixed fee and a variable fee tied to gas-turbine fired hours. A separate SEC-filed GE equipment contract makes delivery delay, output, heat rate and emissions performance financially operative through governed tests and specified operating conditions.</p>
+<p><strong>Boundary:</strong> these are deployed contractual mechanisms. They do not show a raw sensor tick or token transfer settling the obligation automatically.</p>
+<h3 id="grid-measurements-already-drive-financial-calculations">Grid measurements already drive financial calculations</h3>
+<p>FERC Order 825 aligns real-time dispatch and financial settlement at five-minute intervals. PJM's capacity-market rules use metered performance to calculate shortfalls, charges and bonuses, with validation, substitution and correction procedures.</p>
+<p><strong>Boundary:</strong> physical-to-financial calculation exists. Market calculation, invoice, collateral movement, bank payment and final cash settlement remain different states.</p>
+<h3 id="eam-already-creates-bills-credits-and-claims">EAM already creates bills, credits and claims</h3>
+<p>IBM Maximo supports work-order and service billing, SLA penalties and credits, warranty claims, project milestones, customer review, disputed lines and transfer to accounts-payable systems. Maximo 9.2 adds asset-first AI, condition insight and agentic workflow across EAM, ERP and IoT.</p>
+<p><strong>Boundary:</strong> EAM can create the commercial object. The recovered product documentation does not show Maximo supplying the final settlement asset or turning turbine telemetry into irrevocable cash.</p>
+<h3 id="programmable-commercial-bank-money-is-live">Programmable commercial-bank money is live</h3>
+<p>JPMorgan's Kinexys materials describe predefined cash movement triggered by external data and operational events; Siemens is an operating programmable-payments client. Citi's tokenized-deposit cash service is live, while its Maersk trade-finance use was a pilot.</p>
+<p><strong>Boundary:</strong> programmable cash rails exist, but no official source recovered in this research joins a named production turbine, LTSA or EAM state to those rails.</p>
+<h3 id="physical-data-linked-instruments-remain-a-precedent-not-the-final-join">Physical-data-linked instruments remain a precedent, not the final join</h3>
+<p>EnergyTag uses verified hourly meter data for granular energy certificates with correction and withdrawal rules. BIS Project Genesis 2.0 prototyped IoT-linked environmental instruments, and BIS unified-ledger work describes real-world contingencies entering atomic asset/cash transitions through oracles and APIs.</p>
+<p><strong>Boundary:</strong> the pieces exist separately. A named production turbine event-to-final-money deployment is not established.</p>
+<h2 id="best-first-uses">Best first uses</h2>
+<table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Governing fact</th>
+<th>Suitable automation posture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fired-hour or cycle LTSA fee</td>
+<td>approved usage meter, asset identity and correction rule</td>
+<td>calculate automatically; release after an exception window</td>
+</tr>
+<tr>
+<td>availability/SLA credit</td>
+<td>governed outage state, duration and exclusions</td>
+<td>create a provisional credit; preserve adjudication</td>
+</tr>
+<tr>
+<td>performance bonus or liquidated damages</td>
+<td>approved acceptance test and corrected report</td>
+<td>settle from the approved result, not live SCADA</td>
+</tr>
+<tr>
+<td>warranty reimbursement</td>
+<td>coverage, causation, authorized repair and completed work</td>
+<td>assemble the claim automatically; retain coverage approval</td>
+</tr>
+<tr>
+<td>parts acceptance escrow</td>
+<td>part identity/origin, title, license, shipment, inspection and rejection rights</td>
+<td>strong conditional-release candidate</td>
+</tr>
+<tr>
+<td>construction or inspection milestone</td>
+<td>signed engineer/inspector record and defined acceptance criteria</td>
+<td>strong conditional-release candidate</td>
+</tr>
+<tr>
+<td>low-risk consumables</td>
+<td>approved vendor, inventory threshold, spend limit and compliance screen</td>
+<td>bounded machine authority with a human exception queue</td>
+</tr>
+<tr>
+<td>energy attribute</td>
+<td>approved revenue meter and certificate correction/cancellation rule</td>
+<td>automate certificate state; do not equate it with cash settlement</td>
+</tr>
+</tbody>
+</table>
+<h2 id="minimum-production-design">Minimum production design</h2>
+<p>Every joined system should preserve:</p>
+<ol>
+<li>unique asset, component and event identifiers;</li>
+<li>the source system and signed actor identity;</li>
+<li>calibration and configuration versions;</li>
+<li>the effective contract, tariff or policy version;</li>
+<li>counterparty and beneficial-owner screening;</li>
+<li>origin, ECCN and export-license state where relevant;</li>
+<li>funding and settlement-asset reservation;</li>
+<li>an explicit pause and exception authority;</li>
+<li>correction, clawback, setoff and dispute rules;</li>
+<li>separate owner, OEM, regulator, bank and accounting views; and</li>
+<li>a hard rule preventing financial agents from writing into safety-critical OT controls.</li>
+</ol>
+<h2 id="return-gates">Return gates</h2>
+<p>Reopen and strengthen this map when the primary record supplies:</p>
+<ul>
+<li>a named production site, asset, event schema, governing contract, settlement rail and transaction record linking a turbine event to money;</li>
+<li>an operative LTSA/EPC/PPA showing meter authority, formulas, exclusions, setoff, force majeure, sanctions, dispute and correction terms;</li>
+<li>an identity/signature architecture covering credential issuance, revocation, calibration, configuration and compromise;</li>
+<li>a rule deciding which model controls when owner and OEM diagnoses disagree;</li>
+<li>account/issuer rules naming the settlement asset, liquidity provider, prefunding, insolvency treatment and loss allocation; or</li>
+<li>production correction rules covering holds, setoff, clawback, compensating payments, disputes, appeals and accounting restatement.</li>
+</ul>
+<p>The joined-management thesis weakens if authoritative operational events cannot be agreed across owner/OEM boundaries, correction costs exceed reconciliation savings, liquidity requirements erase the benefit, institutional users reject the shared record, or OT safety requires a permanent separation that prevents operational evidence from authorizing any commercial state.</p>
+<h2 id="primary-sources">Primary sources</h2>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1622536/000162253625000013/ex994guernseypowerholdings.htm">Guernsey Power filing describing GE fired-hour service fees</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1023734/000110465908069377/a08-25613_1ex10d11.htm">SEC-filed GE equipment contract</a></li>
+<li><a href="https://www.ferc.gov/sites/default/files/2020-05/settlement825.pdf">FERC Order 825</a></li>
+<li><a href="https://learn.pjm.com/-/media/DotCom/documents/manuals/m18.ashx">PJM Manual 18</a></li>
+<li><a href="https://www.pjm.com/markets-and-operations/billing-settlements-and-credit.aspx">PJM billing, settlements and credit</a></li>
+<li><a href="https://www.ibm.com/docs/en/maximo-for-aviation/7.6.8?topic=applications-service-provider-module">IBM Maximo service-provider module</a></li>
+<li><a href="https://www.ibm.com/docs/en/maximo-for-aviation/cd?topic=billing-services">IBM Maximo billing</a></li>
+<li><a href="https://www.ibm.com/support/pages/how-can-i-optimize-benefits-my-asset-warranties-aka-saving-money-asset-maintenance">IBM Maximo warranty workflow</a></li>
+<li><a href="https://www.ibm.com/new/announcements/introducing-maximo-application-suite-9-2">IBM Maximo Application Suite 9.2</a></li>
+<li><a href="https://www.jpmorgan.com/kinexys/programmable-payments">JPMorgan programmable payments</a></li>
+<li><a href="https://www.jpmorgan.com/payments/newsroom/kinexys-siemens-b2c2-blockchain-fx-mandates">JPMorgan Siemens deployment</a></li>
+<li><a href="https://www.citigroup.com/global/news/press-release/2025/citi-integrates-citi-token-services-with-24-7-usd-clearing-real-time-cross-border-payments-liquidity-management">Citi Token Services integration</a></li>
+<li><a href="https://energytag.org/projects/global-hourly-energy-accounting-initiative/">EnergyTag hourly-energy accounting initiative</a></li>
+<li><a href="https://www.bis.org/publ/othp58.htm">BIS Project Genesis 2.0</a></li>
+<li><a href="https://www.bis.org/publ/arpdf/ar2023e3.htm">BIS unified-ledger blueprint</a></li>
+</ul>
+<h2 id="related-research">Related research</h2>
+<ul>
+<li>DLT Energy-Finance Convergence Timeline</li>
+<li>Iran Energy Settlement — Stress Test</li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

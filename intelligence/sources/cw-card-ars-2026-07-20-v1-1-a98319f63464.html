@@ -1,0 +1,697 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Currency Watch — Sealed Blind Pilot Card v1.1 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Currency Watch — Sealed Blind Pilot Card v1.1</h1><p class="deck">Collection evidence cutoff: 2026-07-31</p><p><a href="cw-card-ars-2026-07-20-v1-1-a98319f63464.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><p>No files were edited.</p>
+<h1 id="currency-watch-sealed-blind-pilot-card-v11">Currency Watch — Sealed Blind Pilot Card v1.1</h1>
+<p><strong>Card ID:</strong> <code>CW-CARD-ARS-2026-07-20-V1_1</code><br />
+<strong>Rubric:</strong> <code>CURRENCY_WATCH_PILOT_RUBRIC_FROZEN_V1.md</code><br />
+<strong>Execution control:</strong> <code>CURRENCY_WATCH_PILOT_EXECUTION_ANNEX_V1_1.md</code><br />
+<strong>Source freeze:</strong> <code>CURRENCY_WATCH_PILOT_SOURCE_MANIFEST_2026-07-20.md</code><br />
+<strong>Grade state:</strong> <code>SEALED-V1_1</code></p>
+<h2 id="a-identity-and-authority">A. Identity and authority</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Currency object</td>
+<td>Argentine peso (<code>ARS</code>)</td>
+</tr>
+<tr>
+<td>Linked IMF member record</td>
+<td>Argentine Republic</td>
+</tr>
+<tr>
+<td>Monetary-policy authority</td>
+<td>Banco Central de la República Argentina (<code>BCRA</code>), within national law and EFF commitments</td>
+</tr>
+<tr>
+<td>FX/intervention authority</td>
+<td>BCRA</td>
+</tr>
+<tr>
+<td>Trade/customs authority</td>
+<td>Ministry of Economy foreign-trade units; ARCA–Customs</td>
+</tr>
+<tr>
+<td>Shared-authority overlay</td>
+<td>No shared monetary authority. MERCOSUR is a treaty/common-tariff overlay only.</td>
+</tr>
+<tr>
+<td>Regime stress class</td>
+<td>Other managed / program country / exchange-restricted</td>
+</tr>
+<tr>
+<td>De jure / de facto arrangement</td>
+<td>Both <code>other managed</code>; de facto reclassified from crawling peg effective 2025-04-14; market rate operates within a widening band</td>
+</tr>
+<tr>
+<td>International role tags</td>
+<td><code>DOMESTIC</code>; no frozen official evidence supports <code>RESERVE</code>, <code>FUNDING</code>, <code>VEHICLE</code>, <code>PEG-ANCHOR</code>, or a quantified regional role</td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-controlling-source-and-clocks">B. Controlling source and clocks</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV/program report</td>
+<td>IMF Country Report 26/105, <em>Argentina: 2026 Article IV Consultation; Second Review Under the Extended Arrangement Under the EFF…</em> (<a href="https://www.imf.org/-/media/files/publications/cr/2026/english/1argea2026001.pdf">official PDF</a>)</td>
+</tr>
+<tr>
+<td>Discussions end</td>
+<td><code>NOT-STATED</code>; discussions occurred January–April 2026</td>
+</tr>
+<tr>
+<td>Staff cutoff</td>
+<td><code>NOT-STATED</code></td>
+</tr>
+<tr>
+<td>Datum vintages</td>
+<td>Common surveillance indicators: 2026-04-28; GIR observation: 2026-04-21; principal annual macro outturn: 2025; staff report/MEFP/TMU: 2026-05-08; informational annex: 2026-05-11</td>
+</tr>
+<tr>
+<td>Post-cutoff statement</td>
+<td>2026-05-21 Executive Board assessment and Executive Director statement</td>
+</tr>
+<tr>
+<td>Board date</td>
+<td>2026-05-21</td>
+</tr>
+<tr>
+<td>Publication date</td>
+<td>2026-05-22</td>
+</tr>
+<tr>
+<td>ESR vintage</td>
+<td>2025 ESR assessing 2024: <code>WEAKER</code>, critically low NIR; CR 26/105 preliminary 2025 assessment also <code>WEAKER</code></td>
+</tr>
+<tr>
+<td>National-data cutoff</td>
+<td>2026-04-28, with individual table vintages retained</td>
+</tr>
+<tr>
+<td>Mutable-page retrieval</td>
+<td>2026-07-20 freeze</td>
+</tr>
+</tbody>
+</table>
+<h3 id="imf-program-review-and-purchase-clocks">IMF program, review, and purchase clocks</h3>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Exact state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Facility</td>
+<td>48-month EFF approved 2025-04-11 for SDR 15.267 billion; expires 2029-04-10</td>
+</tr>
+<tr>
+<td>Second review</td>
+<td>Completed by the Board 2026-05-21; immediate <code>IMF-GRA-PURCHASE</code> of SDR 0.763 billion enabled; total EFF purchases then SDR 11.452 billion</td>
+</tr>
+<tr>
+<td>Third-review test date</td>
+<td>End-June 2026 performance criteria and corresponding structural benchmarks</td>
+</tr>
+<tr>
+<td>Third-review meeting clock</td>
+<td>Tentatively September 2026, not July 31</td>
+</tr>
+<tr>
+<td>Next purchase clock</td>
+<td>SDR 636 million is <strong>available on or after 2026-07-31 only after completion of the third review and satisfaction/waiver of the end-June PCs</strong>. July 31 is neither an automatic disbursement nor the review date. <a href="https://www.imf.org/-/media/files/publications/cr/2026/english/1argea2026001.pdf">CR 26/105, Table 13, PDF p.64; MEFP p.108</a></td>
+</tr>
+<tr>
+<td>Instrument firewall</td>
+<td>These are EFF reviews and <code>IMF-GRA-PURCHASE</code> clocks, not a central-bank swap line. Repurchase/debt-service clocks remain separate.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-authority-response">C. Authority response</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Response state</td>
+<td><code>PARTIAL</code></td>
+</tr>
+<tr>
+<td>Exact propositions answered</td>
+<td>The authorities broadly concurred with much of staff’s analysis and agreed on the need to rebuild external buffers, but rejected the view that insufficient reserve accumulation constrained disinflation and growth. They characterized the 2025 NIR miss as the result of an exceptional risk-off episode rather than a policy setback, defended the calibration and performance of the exchange-rate band, and rejected inflation targeting as feasible in the near to medium term.</td>
+</tr>
+<tr>
+<td>Source/page/date</td>
+<td>Executive Director statement, 2026-05-21, PDF pp.132–135. <a href="https://www.imf.org/-/media/files/publications/cr/2026/english/1argea2026001.pdf">Official report</a></td>
+</tr>
+<tr>
+<td>Attribution boundary</td>
+<td>Member-authority position above; staff separately assessed the external position as weaker and the Board agreed with the thrust of staff’s appraisal.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-categorical-legal-card">D. Categorical legal card</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Controlled state</th>
+<th>Source/page</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV general status</td>
+<td><code>BOARD-CONCERN</code> — remaining vulnerabilities and required external-buffer, monetary-framework, governance, and market-access repairs; no formal nonobservance finding</td>
+<td>Board assessment, PDF pp.3–5</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Manipulation status</td>
+<td><code>NO-ADVERSE-FINDING-LOCATED</code>; not a declaration of full compliance. Staff specifically found that the MCP did not confer unfair competitive advantage.</td>
+<td>PDF p.31</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §2 current-payment restrictions</td>
+<td><code>UNRESOLVED</code> approval state. Restrictions are officially reported; authorities requested temporary approval and staff supported it, but the public Board release does not enumerate the formal decision wording.</td>
+<td>PDF pp.31, 89–93, 99, 126–127</td>
+<td><code>U-UNRESOLVED</code></td>
+</tr>
+<tr>
+<td>Article VIII §3 MCP/discriminatory practice</td>
+<td><code>UNRESOLVED</code> approval state. One MCP is officially reported; temporary approval requested and staff-supported, but final Board wording is not public in the controlling package.</td>
+<td>PDF pp.31, 90, 99, 127</td>
+<td><code>U-UNRESOLVED</code></td>
+</tr>
+<tr>
+<td>Article VIII §4 foreign-held balances</td>
+<td><code>NO-FUND-CONCERN-LOCATED</code>; obligations accepted 1968-05-14. This does not erase separately reported §2 restrictions.</td>
+<td>PDF p.126</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §5 information duty</td>
+<td><code>NO-FUND-BREACH-LOCATED</code>; data adequacy rating <code>A</code>, with outdated CPI weights, national-accounts limitations, delayed non-goods external data, incomplete swap-line reporting, and fiscal gaps disclosed.</td>
+<td>PDF pp.31, 92–94</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article XIV</td>
+<td><code>NOT-APPLICABLE—ARTICLE-VIII-ACCEPTED</code></td>
+<td>PDF p.126</td>
+<td><code>A-OPERATIVE</code></td>
+</tr>
+<tr>
+<td>Capital controls / CFMs</td>
+<td>Separate descriptive object: CFMs have operated since 2019 over financial-account transactions, securities participation, surrender/repatriation, and some resident transactions; more than seventy adjustments in 2023–25, mainly liberalizing.</td>
+<td>PDF pp.91, 94</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Security restrictions</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE</code>; no separate security-restriction statement was located in the controlling package</td>
+<td>Controlling package</td>
+<td><code>U-UNRESOLVED</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="current-paymentmcp-operating-objects">Current-payment/MCP operating objects</h3>
+<p>The reported §2 restrictions include resident-firm MULC/CCL/MEP cross-use, limits on advance import payments, a 90-day delay for related-party services, soybean-import sequencing, legacy dividends/profits, and specified interest/amortization payments. The MCP is the 30% withholding exchange tax on FX used for certain credit-card settlements by users other than resident individuals. <a href="https://www.imf.org/-/media/files/publications/cr/2026/english/1argea2026001.pdf">CR 26/105, PDF pp.89–91</a></p>
+<h2 id="e-linked-event-records">E. Linked event records</h2>
+<table>
+<thead>
+<tr>
+<th>Event ID</th>
+<th>Legal/operating state at freeze</th>
+<th>Proposed transmission</th>
+<th>Evidence state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TP-AR-2026-EXPORT-DUTY-REDUCTIONS</code></td>
+<td>Staged export-duty reductions; exact decree/item clocks remain controlling</td>
+<td>Export incentives, fiscal receipts, trade volumes, current account</td>
+<td><code>UNRESOLVED</code> for grade transmission; no lane movement assigned</td>
+</tr>
+<tr>
+<td><code>TP-EUMERC-2026-PROVISIONAL</code></td>
+<td>MERCOSUR–EU agreement provisionally applied 2026-05-01; product/TRQ clocks separate</td>
+<td>Trade prices, quantities, investment, current account</td>
+<td><code>INFERENCE</code>; no lane movement assigned</td>
+</tr>
+<tr>
+<td><code>TP-ARUS-2026-SIGNED-NOT-IMPLEMENTED</code></td>
+<td>Signed 2026-02-05; congressional/implementation clock open</td>
+<td>Future trade, investment, and FX receipts</td>
+<td><code>UNRESOLVED</code>; no lane movement assigned</td>
+</tr>
+<tr>
+<td><code>TP-US-2026-SECTION122</code></td>
+<td>U.S. surcharge operative for covered entries at cutoff; scheduled 2026-07-24 clock; Argentina-specific product transmission not established</td>
+<td>Possible Argentine export-demand and BOP effects</td>
+<td><code>UNRESOLVED</code>; no lane movement assigned</td>
+</tr>
+<tr>
+<td><code>ER-ARS-IMPORT-PAYMENT</code></td>
+<td>Operative exchange restrictions on specified import payments; exchange-law object, not tariff</td>
+<td>Direct impairment of current-payment access and operating cost for covered trade</td>
+<td><code>OBSERVED</code>; primary link to L5 only</td>
+</tr>
+</tbody>
+</table>
+<h2 id="f-six-lane-worksheet">F. Six-lane worksheet</h2>
+<h3 id="l1-domestic-anchor-d">L1 — Domestic anchor: <code>D</code></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-sentence reason</td>
+<td>Inflation fell dramatically but remained persistently high, the disinflation process had stalled around the cutoff, and the nominal/operational framework still required substantial repair while tight credit imposed an activity cost.</td>
+</tr>
+<tr>
+<td>Primary evidence + vintage</td>
+<td>End-period CPI: 117.8% in 2024 and 31.5% in 2025; annual inflation about 32½% in early 2026; March 2026 monthly inflation 3.4%; staff called for clarification of the monetary-aggregate anchor and eventual evolution toward greater exchange-rate flexibility and interest-rate tools.</td>
+</tr>
+<tr>
+<td>Persistence evidence</td>
+<td>Inflation exceeded 200% in late 2023 before falling to double digits; the improvement is large but the remaining level and institutional fragility are persistent. Real GDP was -1.3% in 2024 and +4.4% in 2025, with activity slowing and uneven through the second half of 2025.</td>
+</tr>
+<tr>
+<td>Shock evidence</td>
+<td>2025 political uncertainty produced a sharp money-demand/dollarization shock and depreciation, tightening financial conditions and slowing disinflation; Middle East fuel/regulated-price shocks remained live.</td>
+</tr>
+<tr>
+<td>Competing explanation</td>
+<td>Fiscal discipline, a large cumulative disinflation, more stable expectations, lower pass-through, and renewed 2026 growth could support <code>C</code>.</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>MEDIUM</code></td>
+</tr>
+<tr>
+<td>Legal/event link</td>
+<td>Article IV <code>BOARD-CONCERN</code>; trade events not scored</td>
+</tr>
+<tr>
+<td>Data gap</td>
+<td>CPI weights remain outdated; current-consumption weights and a longer post-shock expectations series could move the grade.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="l2-underlying-order-c">L2 — Underlying order: <code>C</code></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-sentence reason</td>
+<td>The banking system remained liquid, capitalized, and operational, but acute dollarization, shallow domestic finance, rising consumer NPLs, weak peso demand, and large resident assets outside the system materially impair underlying monetary order.</td>
+</tr>
+<tr>
+<td>Primary evidence + vintage</td>
+<td>At February–April 2026 vintages, banks remained liquid and well capitalized with adequate provisioning and comfortable FX liquidity, but credit had stagnated since 2025Q3 and consumer NPLs were rising; the authorities described the financial system as “resilient but shallow.”</td>
+</tr>
+<tr>
+<td>Persistence evidence</td>
+<td>The dollar served as the primary hedge and exceeded 50% of M2 during the 2025 shock; authorities estimated resident U.S.-dollar holdings above US$200 billion, while domestic capital markets remained underdeveloped.</td>
+</tr>
+<tr>
+<td>Shock evidence</td>
+<td>The pre-election dollarization wave stayed substantially inside banks rather than becoming a generalized bank run; no banking fracture or generalized domestic-payment breakdown was reported.</td>
+</tr>
+<tr>
+<td>Competing explanation</td>
+<td>Strong bank liquidity/capital and retained FX deposits could support <code>B</code>; the shock did not break intermediation.</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>MEDIUM</code></td>
+</tr>
+<tr>
+<td>Legal/event link</td>
+<td>CFMs are contextual only; §2 restrictions score in L5, not again here.</td>
+</tr>
+<tr>
+<td>Data gap</td>
+<td>Current deposit-currency shares, NPL migration, liquidity stress tests, and peso-payment share after April 2026.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="l3-exchange-order-c">L3 — Exchange order: <code>C</code></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-sentence reason</td>
+<td>The widening managed band was functioning and accumulating reserves at the current cutoff, but the regime’s recent stress, policy-driven segmentation, and incomplete buffer restoration remain material persistent impairments.</td>
+</tr>
+<tr>
+<td>Primary evidence + vintage</td>
+<td>De jure/de facto <code>other managed</code>; BCRA bought about US$7.5 billion from January through the report cutoff, roughly 20% of traded volume; the peso stabilized, appreciated about 13% in real terms from end-2025, and futures were about 20% below the band ceiling.</td>
+</tr>
+<tr>
+<td>Persistence evidence</td>
+<td>The regime changed from a crawling peg in April 2025; the 2025 risk-off episode pushed the rate toward the upper band and caused major reserve loss before the 2026 purchase program stabilized operation.</td>
+</tr>
+<tr>
+<td>Shock evidence</td>
+<td>Authorities report that the band survived the late-2025 speculative episode and returned to its inner range, but acknowledge decisive Fund and U.S. official support.</td>
+</tr>
+<tr>
+<td>Competing explanation</td>
+<td>Current band operation, two-way flexibility, purchases rather than defensive sales, and subdued futures could support <code>B</code>; conversely thin buffers could justify <code>D</code>, but that mechanism is assigned primarily to L4.</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>MEDIUM</code></td>
+</tr>
+<tr>
+<td>Legal/event link</td>
+<td>MCP is legally recorded but primary performance effect assigned to L5; capital controls remain separate.</td>
+</tr>
+<tr>
+<td>Data gap</td>
+<td>Accessible-market/official-rate spread series, forward-intervention stock, intervention disclosure, and post-April volatility.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="l4-external-adjustment-e">L4 — External adjustment: <code>E</code></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-sentence reason</td>
+<td>The external position remained weaker, with very precarious reserve coverage, negative NIR, no durable market access, large FX obligations, and continuing reliance on exceptional official financing despite an identifiable export-led repair path.</td>
+</tr>
+<tr>
+<td>Primary evidence + vintage</td>
+<td>Preliminary 2025 assessment: <code>WEAKER</code>; staff CA gap -1.5% to -3.5% of GDP, midpoint -2.5%; implied REER overvaluation midpoint 15.8%; end-2025 GIR US$27.552 billion and NIR about -US$11.7 billion. The 2025 current account shifted to -1.1% of GDP. <a href="https://www.imf.org/-/media/files/publications/cr/2026/english/1argea2026001.pdf">External-sector assessment, PDF p.65</a></td>
+</tr>
+<tr>
+<td>Persistence evidence</td>
+<td>2025 NIR fell roughly US$9 billion; the external position lacked sustained capital-market access and carried large public-sector FX obligations. The EFF, BIS/PBoC-related financing, repos, and extraordinary U.S. ESF support remained part of the financing architecture.</td>
+</tr>
+<tr>
+<td>Shock evidence</td>
+<td>Since end-2025, agricultural/energy exports, portfolio inflows, and BCRA purchases produced an incipient reserve recovery; GIR reached US$31.9 billion by 2026-04-21 and NIR improved materially but remained negative.</td>
+</tr>
+<tr>
+<td>Competing explanation</td>
+<td>Positive NIIP (+7.1% GDP), strong export prospects, a fiscal anchor, and rapid 2026 reserve purchases could support <code>D</code>; however, operation still depended on exceptional support and controls.</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Legal/event link</td>
+<td>EFF is not itself a failure; the <code>E</code> rests on operating buffers/market access. Trade events remain unscored pending observed transmission.</td>
+</tr>
+<tr>
+<td>Data gap</td>
+<td>Usable versus gross reserves, encumbrances, complete bilateral/repo liabilities, 2026 CA outturn, and durable market-access evidence.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="l5-current-payment-usability-d">L5 — Current-payment usability: <code>D</code></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-sentence reason</td>
+<td>Current international payments remained materially restricted across several transaction classes and one MCP persisted, although access had been substantially liberalized and the system was not generally unusable.</td>
+</tr>
+<tr>
+<td>Primary evidence + vintage</td>
+<td>Officially reported restrictions cover resident-firm cross-use of MULC/CCL/MEP, advance import payments, 90-day related-party service delays, soybean import sequencing, legacy dividends/profits, and specified interest/amortization payments; one 30% withholding-tax MCP remained.</td>
+</tr>
+<tr>
+<td>Persistence evidence</td>
+<td>Restrictions and CFMs date from 2019, though 2023–25 changes largely eased them; virtually all current-payment restrictions for resident individuals were removed, while firm and legacy-flow restrictions persisted.</td>
+</tr>
+<tr>
+<td>Shock evidence</td>
+<td>Liberalization raised trade/capital flows, but staff still found prohibited operations, operating costs, and policy uncertainty; temporary Board approval was requested for BOP reasons.</td>
+</tr>
+<tr>
+<td>Competing explanation</td>
+<td>The remaining restrictions are narrower, temporary, non-discriminatory in staff’s view, and focused on legacy/outflow risks; this argues against <code>E</code> or <code>F</code>.</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>HIGH</code> on operating impairment; <code>MEDIUM</code> on formal approval status</td>
+</tr>
+<tr>
+<td>Legal/event link</td>
+<td>Article VIII §2 <code>UNRESOLVED</code>; §3 <code>UNRESOLVED</code>; <code>ER-ARS-IMPORT-PAYMENT</code></td>
+</tr>
+<tr>
+<td>Data gap</td>
+<td>Formal Board approval wording, transaction-level delay/rejection rates, the share of current payments affected, and subsequent removal clocks.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="l6-systemic-service-nr">L6 — Systemic service: <code>NR</code></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-sentence reason</td>
+<td>The frozen packet does not provide the minimum official evidence needed to measure the peso’s actual cross-border reserve, invoice, payment, funding, hedge, swap-market, or regional-service role.</td>
+</tr>
+<tr>
+<td>Primary evidence + vintage</td>
+<td>No quantified ARS international-role series appears in the frozen manifest or controlling IMF package.</td>
+</tr>
+<tr>
+<td>Persistence evidence</td>
+<td><code>NOT-AVAILABLE</code></td>
+</tr>
+<tr>
+<td>Shock evidence</td>
+<td><code>NOT-APPLICABLE</code></td>
+</tr>
+<tr>
+<td>Competing explanation</td>
+<td>ARS clearly continues to serve domestic payment and denomination functions; its limited international role should not be treated as failure.</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>HIGH</code> that <code>NR</code> is required</td>
+</tr>
+<tr>
+<td>Legal/event link</td>
+<td><code>NONE</code></td>
+</tr>
+<tr>
+<td>Data gap</td>
+<td>Official invoice/payment-currency shares, BIS cross-border ARS positions, regional settlement use, derivatives/funding depth, and reserve holdings.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="g-primary-lane-collision-check">G. Primary-lane collision check</h2>
+<table>
+<thead>
+<tr>
+<th>Fact/source</th>
+<th>Primary lane</th>
+<th>Context links</th>
+<th>Separate second mechanism evidenced?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Persistently high inflation and incomplete nominal anchor</td>
+<td>L1</td>
+<td>L2/L3 context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Acute 2025 dollarization and shallow domestic intermediation</td>
+<td>L2</td>
+<td>L1/L3 context</td>
+<td><code>YES</code> only for distinct reserve-loss mechanism in L4</td>
+</tr>
+<tr>
+<td>Widening managed band and late-2025 band stress</td>
+<td>L3</td>
+<td>L1/L4 context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Negative NIR, weak market access, exceptional official financing</td>
+<td>L4</td>
+<td>L3 context</td>
+<td><code>NO</code>; not used to lower L3 again</td>
+</tr>
+<tr>
+<td>Current-payment restrictions and MCP</td>
+<td>L5</td>
+<td>Trade-operation context</td>
+<td><code>NO</code>; not used to lower L2/L3</td>
+</tr>
+<tr>
+<td>Capital controls / CFMs</td>
+<td>Legal descriptive card</td>
+<td>L2/L3 context</td>
+<td><code>NO</code>; not treated as current-payment restrictions</td>
+</tr>
+<tr>
+<td>Export duties, trade agreements, Section 122</td>
+<td>Event ledger</td>
+<td>L4 context</td>
+<td><code>NO</code>; transmission not demonstrated</td>
+</tr>
+<tr>
+<td>IMF EFF participation</td>
+<td>Program clock</td>
+<td>L4 context</td>
+<td><code>NO</code>; program status itself did not determine a grade</td>
+</tr>
+<tr>
+<td>Missing international-role metrics</td>
+<td>L6</td>
+<td>None</td>
+<td><code>NO</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="h-seal">H. Seal</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grader</td>
+<td>Codex blind grader <code>/root/blind_sar/blind_ars</code></td>
+</tr>
+<tr>
+<td>Started</td>
+<td><code>2026-07-20T21:34:27-04:00</code></td>
+</tr>
+<tr>
+<td>Sealed</td>
+<td><code>2026-07-20T21:34:54-04:00</code></td>
+</tr>
+<tr>
+<td>Other provisional cards visible?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Source substitutions made?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Composite calculated?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Card state</td>
+<td><code>SEALED-V1_1</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sealed lane profile:</strong> <code>L1 D · L2 C · L3 C · L4 E · L5 D · L6 NR</code><br />
+<strong>Composite:</strong> none calculated or implied.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

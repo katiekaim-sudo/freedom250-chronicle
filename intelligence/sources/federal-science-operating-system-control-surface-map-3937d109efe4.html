@@ -1,0 +1,500 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Federal Science Operating System — control-surface map · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/science-to-capability.html#ambitions" class="" >What are the ambitions? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#scientific-work" class="" >What has to work together? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#financing" class="" >Who pays for the buildout—and carries the risk? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#accepted-operation" class="" >What would count as success? <span class="meta">— From scientific ambition to things that work</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Federal Science Operating System — control-surface map</h1><p class="deck">Collection evidence cutoff: 2026-08-17</p><p><a href="federal-science-operating-system-control-surface-map-3937d109efe4.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="federal-science-operating-system-control-surface-map">Federal Science Operating System — control-surface map</h1>
+<p><strong>As of:</strong> 2026-08-17
+<strong>Status:</strong> analytical synthesis over the separate factual spine<br />
+<strong>Thesis label:</strong> proposed constitution of an AI-native scientific-industrial economy</p>
+<h2 id="bluf">BLUF</h2>
+<p>The emerging system treats public scientific capital less as a stream of grants to stable institutions and more as a portfolio of callable capabilities: people, compute, data, instruments, laboratories, land, power, manufacturing capacity and verified results.</p>
+<p>The report's architecture is best read through three joined control surfaces.</p>
+<h2 id="control-surface-1-capital-follows-capability">Control surface 1 — capital follows capability</h2>
+<h3 id="the-old-bundle">The old bundle</h3>
+<p><code>agency -&gt; university -&gt; principal investigator -&gt; project grant -&gt; paper -&gt; possible later translation</code></p>
+<p>The institution holds much of the relationship: facilities, indirect costs, employment, equipment, credentialing, publication and technology transfer.</p>
+<h3 id="the-proposed-route">The proposed route</h3>
+<p><code>national gap or mission -&gt; selected person/team/model -&gt; portable capital and shared infrastructure -&gt; measured milestone -&gt; continuation, redirection, prize or transition</code></p>
+<h3 id="what-changes">What changes</h3>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Direction of travel</th>
+<th>Evidence already present</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Researcher support</td>
+<td>more direct and portable</td>
+<td>memo directs institution-agnostic programs modeled on NSF GRFP</td>
+</tr>
+<tr>
+<td>Institutional eligibility</td>
+<td>broader performer set</td>
+<td>X-Labs, independent organizations, consortia, companies and federal facilities</td>
+</tr>
+<tr>
+<td>Award logic</td>
+<td>portfolio and milestone logic</td>
+<td>long-duration grants with reviews; fast grants; prizes; outcome-based challenges</td>
+</tr>
+<tr>
+<td>Institutional overhead</td>
+<td>more scrutiny</td>
+<td>grant order and report target facilities-and-administration burden</td>
+</tr>
+<tr>
+<td>Talent signal</td>
+<td>demonstrated ability over pedigree</td>
+<td>technical work, portfolios, competitions and quantitative assessments</td>
+</tr>
+<tr>
+<td>Career path</td>
+<td>cross-sector</td>
+<td>academia, industry, national laboratories, defense industry and skilled technical work</td>
+</tr>
+<tr>
+<td>Training</td>
+<td>hands-on and place-based</td>
+<td>lab placements, apprenticeships, community-college hubs and industry co-funding</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-education-split">The education split</h3>
+<p>There are at least four different funding clocks:</p>
+<table>
+<thead>
+<tr>
+<th>Clock</th>
+<th>Recipient or object</th>
+<th>Main gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student aid / Title IV</td>
+<td>eligible students and institutions</td>
+<td>statute, program rules, accreditation</td>
+</tr>
+<tr>
+<td>Research grant</td>
+<td>institution, team or individual</td>
+<td>agency authority, solicitation, merit and policy review, award terms</td>
+</tr>
+<tr>
+<td>Workforce funding</td>
+<td>provider, employer or learner</td>
+<td>Pell/workforce/apprenticeship program rules and outcomes</td>
+</tr>
+<tr>
+<td>Infrastructure funding</td>
+<td>facility, equipment or consortium</td>
+<td>appropriation, contract/cooperative agreement/OTA, cost share, access and utilization</td>
+</tr>
+</tbody>
+</table>
+<p>The combined pressure is real, but “prove value” will not initially be one score. It will appear as multiple proof objects: completion, placement, technical skill, milestone delivery, data quality, reproducibility, facility use, private match, manufacturing transition and national-mission fit.</p>
+<h3 id="structural-implication">Structural implication</h3>
+<p>Universities are not abolished. Their monopoly over the research bundle weakens. The strongest institutions become nodes that can attract portable people, open equipment to outside users, integrate with industry and federal facilities, and demonstrate outcomes. A university may retain teaching and credentials while losing default control of a research relationship.</p>
+<h2 id="control-surface-2-speed-to-power">Control surface 2 — speed-to-power</h2>
+<h3 id="physical-dependency-chain">Physical dependency chain</h3>
+<p><code>mission demand -&gt; compute requirement -&gt; site -&gt; power supply -&gt; grid equipment -&gt; transmission/interconnection -&gt; cooling/water -&gt; fiber -&gt; permits -&gt; construction -&gt; secure operation</code></p>
+<p>The scientific operating system cannot be purely digital. Foundation models, simulations, cloud laboratories, autonomous instruments and domestic manufacturing require energy, land, equipment and skilled operators.</p>
+<h3 id="authority-lanes">Authority lanes</h3>
+<table>
+<thead>
+<tr>
+<th>Lane</th>
+<th>Existing object</th>
+<th>Actual effect</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emergency</td>
+<td>EO 14156</td>
+<td>accelerates lawful energy actions and emergency processes</td>
+<td>not blanket approval or universal preemption</td>
+</tr>
+<tr>
+<td>Industrial capacity</td>
+<td>DPA section 303 grid determination</td>
+<td>purchases, commitments and financial support for grid capability</td>
+<td>does not itself site a project</td>
+</tr>
+<tr>
+<td>Data-center priority</td>
+<td>EO 14318</td>
+<td>finance, federal land and expedited federal permitting for qualifying projects</td>
+<td>each project still needs its own site and approvals</td>
+</tr>
+<tr>
+<td>Grid tariff</td>
+<td>FERC large-load cases</td>
+<td>reforms access, cost allocation, co-location and flexible-load rules</td>
+<td>no automatic queue position or power contract</td>
+</tr>
+<tr>
+<td>Science platform</td>
+<td>EO 14363</td>
+<td>integrates federal and commercial compute, data and instruments</td>
+<td>bounded by appropriations and security law</td>
+</tr>
+</tbody>
+</table>
+<h3 id="protest-and-opposition">Protest and opposition</h3>
+<p>The likely mechanism is not legal erasure of protest. It is displacement of the decision point:</p>
+<table>
+<thead>
+<tr>
+<th>Original friction</th>
+<th>Possible federal response</th>
+<th>What remains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>local zoning resistance</td>
+<td>federal or military land; brownfield or Superfund reuse</td>
+<td>federal land process, lease terms, applicable environmental law</td>
+</tr>
+<tr>
+<td>project-specific review delay</td>
+<td>categorical exclusion or programmatic consultation where lawful</td>
+<td>eligibility for the exclusion; judicial review and statutory compliance</td>
+</tr>
+<tr>
+<td>bespoke water authorization</td>
+<td>nationwide or emergency process where legally available</td>
+<td>actual coverage, conditions, water source and enforcement</td>
+</tr>
+<tr>
+<td>grid queue delay</td>
+<td>tariff reform, co-location or flexible-load service</td>
+<td>studies, cost allocation, reliability and ratepayer protection</td>
+</tr>
+<tr>
+<td>capital shortage</td>
+<td>loan, guarantee, offtake or DPA support</td>
+<td>appropriations, underwriting, milestones and repayment/loss allocation</td>
+</tr>
+</tbody>
+</table>
+<p>The correct synthesis is <strong>procedural compression and jurisdictional relocation</strong>, not “all protests are null.”</p>
+<h3 id="tribal-sovereignty-branch">Tribal sovereignty branch</h3>
+<p>Tribal land is not vacant federal land. A Tribe can be a sovereign counterparty controlling several layers at once:</p>
+<p><code>government + land authority + energy enterprise + fiber/compute company + workforce institution + federal contractor + equity partner</code></p>
+<p>HEARTH-approved leasing rules can remove case-by-case Interior approval for covered tribal surface leases. They do not remove tribal environmental review; the approved rules must include effects analysis, public notice and response to relevant comments. Other federal, tribal, state, water, cultural-resource and grid requirements depend on the project and land object.</p>
+<p>Two separate plotlines must remain separate:</p>
+<ul>
+<li><strong>consenting sovereign-development model:</strong> a Tribe chooses the project and captures land, power, fiber, operations or equity value;</li>
+<li><strong>adjacent external-development conflict:</strong> an outside project creates water, cultural, transmission or environmental effects for a neighboring Tribal Nation.</li>
+</ul>
+<h2 id="control-surface-3-scientific-rails">Control surface 3 — scientific rails</h2>
+<h3 id="the-route-change">The route change</h3>
+<p><code>mission or bounty -&gt; credentialed human/agent team -&gt; data and compute access -&gt; instrument or cloud-lab call -&gt; signed result -&gt; verification -&gt; credit -&gt; IP/license state -&gt; authorized payment -&gt; final settlement</code></p>
+<h3 id="seven-rails-that-must-not-be-collapsed">Seven rails that must not be collapsed</h3>
+<table>
+<thead>
+<tr>
+<th>Rail</th>
+<th>Required authoritative object</th>
+<th>Failure if omitted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity</td>
+<td>verified person, organization, device or agent credential</td>
+<td>no accountable actor</td>
+</tr>
+<tr>
+<td>Access</td>
+<td>permission to a dataset, model, compute environment or instrument</td>
+<td>capability exists but cannot be lawfully called</td>
+</tr>
+<tr>
+<td>Provenance</td>
+<td>record of inputs, code, model, instrument, time and creator</td>
+<td>result cannot be audited or reproduced</td>
+</tr>
+<tr>
+<td>Verification</td>
+<td>replication, benchmark, expert judgment or acceptance test</td>
+<td>milestone has no defensible finality</td>
+</tr>
+<tr>
+<td>Rights</td>
+<td>ownership, license, trade secret, patent and commercialization terms</td>
+<td>contribution cannot safely move into use</td>
+</tr>
+<tr>
+<td>Payment</td>
+<td>lawful award, contract, prize or other obligation and release condition</td>
+<td>smart contract has no federal spending authority</td>
+</tr>
+<tr>
+<td>Settlement</td>
+<td>recognized money, account, intermediary and finality rule</td>
+<td>token movement is not final legal payment</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-blockchain-changes">What blockchain changes</h3>
+<p>The report gives high-level policy legitimacy to blockchain attribution, DAOs, distributed ledgers, smart contracts and microtransactions as possible components of future science coordination. It does not select:</p>
+<ul>
+<li>a chain;</li>
+<li>a token;</li>
+<li>a wallet standard;</li>
+<li>a federal settlement asset;</li>
+<li>a legal-finality rule;</li>
+<li>an appropriation mechanism;</li>
+<li>an AI-agent contracting authority.</li>
+</ul>
+<p>The near-term rails are likelier to appear first as standardized identity, metadata, provenance, data formats, instrument APIs, access portals, award milestones and IP agreements. A ledger or programmable payment system can attach later.</p>
+<h3 id="scientific-liquidity">Scientific liquidity</h3>
+<p>“Instantly available” is best translated as <strong>machine-addressable scientific capacity</strong>:</p>
+<ul>
+<li>datasets discoverable and permissioned through an API;</li>
+<li>compute allocated through a common portal;</li>
+<li>instrument time bookable across facilities;</li>
+<li>autonomous laboratories accepting structured experimental jobs;</li>
+<li>results returned with signed provenance;</li>
+<li>replication and negative results assigned economic value;</li>
+<li>funds released after an authorized acceptance event.</li>
+</ul>
+<p>This is scientific liquidity before it is monetary liquidity. Legal ownership, appropriations, sanctions, export controls, cybersecurity and final settlement still run on their own clocks.</p>
+<h2 id="the-joined-operating-chain">The joined operating chain</h2>
+<pre><code class="language-text">federal mission or gap map
+        |
+        v
+portfolio allocator selects mechanism
+        |
+        +--&gt; portable fellow / independent team / university node / consortium / company
+        |
+        v
+secure compute + curated data + callable instrument or autonomous lab
+        |
+        v
+signed result + replication + human judgment where needed
+        |
+        v
+milestone decision -&gt; continue / redirect / terminate / prize / procure
+        |
+        v
+license + manufacturing + regional workforce + national capability
+</code></pre>
+<h2 id="national-security-membrane-the-nssts-layer">National-security membrane — the NSSTS layer</h2>
+<p>The August 2026 National Security Science &amp; Technology Strategy surrounds the
+three control surfaces with a fourth function that is better read as a membrane
+than as a separate rail.</p>
+<table>
+<thead>
+<tr>
+<th>NSSTS pillar</th>
+<th>Operating-system effect</th>
+<th>Required proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Focus competition</strong></td>
+<td>selects missions and CET portfolios according to battlefield, homeland and cost-imposition value</td>
+<td>agency plan, budget shift, solicitation, procurement or program closure tied to the priority</td>
+</tr>
+<tr>
+<td><strong>Build resilience</strong></td>
+<td>distributes and hardens energy, compute, networks, supply chains, biology and response capacity</td>
+<td>named architecture, site, funding, operator, test and measured degradation/recovery result</td>
+</tr>
+<tr>
+<td><strong>Accelerate innovation</strong></td>
+<td>changes funding, contracting, clearance, waiver, IP-transfer and acquisition tempo</td>
+<td>operative rule, process, award term, cycle-time evidence and transition result</td>
+</tr>
+<tr>
+<td><strong>Protect S&amp;T</strong></td>
+<td>screens participants, capital, data, technology and supply chains</td>
+<td>authority, criteria, accountable actor, system, decision record, mitigation and appeal/correction path</td>
+</tr>
+</tbody>
+</table>
+<p>This changes the package thesis in one bounded way:</p>
+<blockquote>
+<p>capital follows mission-relevant capability that demonstrates performance and
+passes security-eligibility gates.</p>
+</blockquote>
+<p>Autonomous-agent authentication, digital identity, post-quantum cryptography,
+component provenance, distributed ledgers and digital assets are listed as
+relevant CET subfields. No listed subfield is thereby adopted, funded or
+implemented in Genesis or another named system.</p>
+<p>The report names no data center, Tribe, site, project, interconnection or
+financing vehicle. Advanced-nuclear microgrids and spatial redundancy support
+the distributed-resilience hypothesis without advancing a specific sovereign-
+compute or energy project.</p>
+<h2 id="fusion-vertical-the-operating-system-instantiated">Fusion vertical — the operating system instantiated</h2>
+<p>DOE's finalized Fusion Science and Technology Roadmap is the first domain in
+this package where all three control surfaces appear in one official operating
+design.</p>
+<p>The companion
+<a href="../sources/federal-fusion-project-capital-regulatory-registry-2022-2035-47346c8a435e.html"><code>FEDERAL_FUSION_PROJECT_CAPITAL_REGULATORY_REGISTRY_2022-2035.md</code></a>
+supplies the named-machine, site, award-accounting, license, contract and grid
+states behind this synthesis.</p>
+<table>
+<thead>
+<tr>
+<th>Federal Science surface</th>
+<th>Fusion object</th>
+<th>State at cutoff</th>
+<th>Proof still needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Capital follows capability</td>
+<td>Milestone Program, INFUSE, FIRE Collaboratives and planned Fusion BRIDGE</td>
+<td>eight Milestone TIAs show $110.685M obligations and $28.490M linked outlays; other program rungs vary</td>
+<td>amendment-level milestone, verification, obligation, invoice, outlay, output and closeout join</td>
+</tr>
+<tr>
+<td>Speed-to-power</td>
+<td>materials, neutron, high-heat-flux, tritium, blanket, fuel-cycle and plant-integration infrastructure</td>
+<td>existing, enhanced, under-construction, planned and gap-identified objects mixed in one roadmap</td>
+<td>site, funding, construction authority, equipment, commissioning and completed test for each facility</td>
+</tr>
+<tr>
+<td>Scientific rails</td>
+<td>AI-Fusion Digital Convergence Platform, American Science Cloud, codes, foundation and surrogate models, digital twins and autonomous control</td>
+<td>RFA and named July 22 fusion selections make work packages concrete; all remain selections for negotiation</td>
+<td>executed OTA/FWP, production access, standards, logged cross-resource job, physical experiment and traceable result</td>
+</tr>
+<tr>
+<td>Industrial translation</td>
+<td>supply chains, industrial heats, magnets, lasers, diagnostics, remote maintenance and codes/standards</td>
+<td>milestones and desired capabilities</td>
+<td>qualified domestic production, accepted code or standard, repeat order and delivered component</td>
+</tr>
+<tr>
+<td>Regulation</td>
+<td>ADVANCE Act definitions/deadline; NRC proposal; CFS-reported Massachusetts SPARC license; Tennessee framework and Type One initial Bull Run package</td>
+<td>federal proposal, one research-machine license claim, effective state framework and unresolved project filing</td>
+<td>operative records, federal final/effective rule and project-specific completeness, disposition, inspection and operating authorization</td>
+</tr>
+<tr>
+<td>Market/grid</td>
+<td>pilot-plant, interconnection, offtake and grid-delivery pathway</td>
+<td>CFS has local approval, PPAs and a PJM application; Type One has a conditional TVA LOI; no operating plant</td>
+<td>completed studies, executed interconnection agreement, installed generator, gross/net electricity, metered export and sustained delivery</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fusion-operating-architecture">Fusion operating architecture</h3>
+<pre><code class="language-text">appropriated research capital
+        |
+        v
+national-lab data + compute + instruments + test facilities
+        |
+        v
+AI-Fusion DCP + verified public-private milestones
+        |
+        v
+materials + components + fuel cycle + blanket + integrated plant
+        +-------------------------------+
+                                        |
+federal rulemaking ---------------------|   (parallel legal clock)
+Agreement State framework -&gt; project license  (parallel project clock)
+site control -&gt; permits -&gt; construction ------+--&gt; commissioning
+queue -&gt; studies -&gt; agreement -&gt; upgrades ----+         |
+                                                          v
+                                heat -&gt; gross electricity -&gt; net electricity
+                                                          |
+                                                          v
+                              synchronization -&gt; meter -&gt; sustained grid delivery
+</code></pre>
+<p>The chain is analytically useful only while each object and clock remains
+separate. DOE's August 15 <code>Energy Without Limits</code> campaign adds federal
+narrative intensity; the June 9 roadmap supplies the architecture; neither
+proves the downstream plant.</p>
+<h3 id="why-the-ai-join-matters">Why the AI join matters</h3>
+<p>The AI-Fusion Digital Convergence Platform is not a generic claim that AI will
+accelerate science. The roadmap intends it to join American Science Cloud
+workflows and metadata, HPC codes, shared data, foundation and surrogate models,
+device-linked digital twins, experiment design, real-time control and
+regulator-credible evidence packages across the six fusion challenge areas.</p>
+<p>That is a domain-specific promotion test for scientific rails:</p>
+<blockquote>
+<p>a named authorized user or system obtains access, executes a logged workflow
+across data, compute and a physical experimental capability, and receives a
+result with traceable model, data, instrument, time, identity and correction
+state.</p>
+</blockquote>
+<p>Roadmap publication alone does not meet the test.</p>
+<h3 id="gain-is-not-electricity-and-export-is-not-net-generation">Gain is not electricity, and export is not net generation</h3>
+<p>The science-to-market record must preserve at least seven boundaries:</p>
+<ol>
+<li>ignition as a self-heating or burning-plasma condition;</li>
+<li>target gain as a stated fusion-yield/driver-to-target ratio;</li>
+<li>plasma scientific gain under its own input boundary;</li>
+<li>engineering or facility gain;</li>
+<li>captured heat and power conversion;</li>
+<li>gross generation and net generation after internal/recirculating load;</li>
+<li>the separate grid lane: studies, agreement, upgrades, synchronization,
+   metered export and sustained commercial delivery.</li>
+</ol>
+<p>The roadmap's long-term milestone of U.S. pilot plants operating and delivering
+electrons to the grid is therefore a destination, not present operating evidence.</p>
+<h2 id="freedom-250-thesis">Freedom 250 thesis</h2>
+<blockquote>
+<p>Public scientific capital is being reorganized into a national platform economy of people, compute, energy, instruments, data, verified results and programmable rewards.</p>
+</blockquote>
+<p>This is an analytical description, not the government's name for the system. It becomes stronger only as agency plans, solicitations, platform standards, awards, facilities and payment mechanisms instantiate each layer.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

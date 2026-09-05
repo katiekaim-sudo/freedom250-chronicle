@@ -1,0 +1,490 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>White House Research Hub — corpus and action-coverage audit · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/claims-records-and-accountability.html#the-public-argument" class="" >Start with the argument being made <span class="meta">— How a public claim becomes something we can examine</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>White House Research Hub — corpus and action-coverage audit</h1><p class="deck">Collection evidence cutoff: 2026-07-21</p><p><a href="white-house-research-hub-audit-2026-07-21-258f33990a67.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="white-house-research-hub-corpus-and-action-coverage-audit">White House Research Hub — corpus and action-coverage audit</h1>
+<p><strong>Evidence cutoff:</strong> 2026-07-21<br />
+<strong>Status:</strong> incorporated 2026-07-21<br />
+<strong>Source class:</strong> White House-hosted Council of Economic Advisers research<br />
+<strong>Machine authorities:</strong> <code>WHITE_HOUSE_RESEARCH_INVENTORY.generated.json</code>,
+<code>PDF_TEXT_INVENTORY.generated.json</code>, <code>LOCAL_COVERAGE_AUDIT.generated.json</code></p>
+<h2 id="short-answer">Short answer</h2>
+<p>Yes: this is a missing Freedom 250 evidence lane. But it is not mainly a set of
+missing executive orders.</p>
+<p>The active White House Research index contains 26 PDF papers spanning 349
+physical pages. None of the 26 paper titles appears in active vault Markdown or
+JSON at the cutoff. The site's live <code>Related</code> graph exposes 164 distinct
+presidential-action pages. Of those, 123 resolve to the vault's generated
+Executive Orders corpus; the remaining 41 are a mix of proclamations,
+presidential memoranda, permits, determinations and uncategorized presidential
+pages. Exact-title absence is not proof of substantive absence, but it gives us
+the right next audit lane.</p>
+<p><strong>The real gap:</strong> the vault has the orders, but not the administration's own
+economic models, implementation arguments and forward-policy signals that make
+those orders legible as a program.</p>
+<h2 id="evidence-firewalls">Evidence firewalls</h2>
+<ol>
+<li><strong>CEA paper is not executive action.</strong> It is an Executive Office research
+   product. It can explain, defend or signal policy; it does not create legal
+   authority.</li>
+<li><strong>Model output is not observed effect.</strong> Dollar, GDP, lending, price and
+   welfare estimates remain model-dependent claims until matched to later data.</li>
+<li><strong>Site adjacency is not legal linkage.</strong> The <code>Related</code> carousel is dynamic
+   and, at the cutoff, includes actions published after many of the papers.</li>
+<li><strong>Paper publication is not the policy clock.</strong> Keep action signature,
+   Federal Register publication, effective date, agency rule, litigation,
+   voluntary agreement and production state separate.</li>
+<li><strong>The White House is the issuer, not an independent validator.</strong> These are
+   primary sources for administration framing and methods, not neutral proof
+   that the estimated benefits or costs occurred.</li>
+</ol>
+<h2 id="highest-value-joins">Highest-value joins</h2>
+<h3 id="1-balance-of-payments-the-section-122-tariff-theory">1. Balance of payments → the Section 122 tariff theory</h3>
+<p><strong>Paper:</strong> <code>Measuring Balance of Payments Deficits</code> (2026-07-15)<br />
+<strong>Route:</strong> Currency Watch → U.S. Section 122 episode → tariff/BOP transmission</p>
+<p>This is the most time-sensitive paper in the corpus. CEA argues that a
+current-account deficit remains a valid balance-of-payments deficit under a
+floating exchange-rate regime, notes the 2024 current-account deficit at 4.1%
+of GDP, and compares it with the much smaller deficit visible when Congress
+enacted Trade Act section 122. It also treats many modern securities as liquid,
+money-like claims rather than durable long-term capital.</p>
+<p><strong>Why it matters:</strong> the paper was released while the February 20, 2026 section
+122 temporary import surcharge was still on its stated expiry clock. It is an
+economic/legal-rationale object for the proclamation, not a new tariff action.</p>
+<p><strong>Audit limit:</strong> the paper does not cure a statutory defect by itself. The
+operative proclamation, section 122 text, customs implementation, litigation
+and expiry/extension clocks continue to control.</p>
+<h3 id="2-stablecoin-yield-geniusclarity-and-the-deposit-demand-fight">2. Stablecoin yield → GENIUS/CLARITY and the deposit-demand fight</h3>
+<p><strong>Paper:</strong> <code>Effects of Stablecoin Yield Prohibition on Bank Lending</code>
+(2026-04-08)<br />
+<strong>Route:</strong> Congressional Monetary Infrastructure → banking/deposits → fintech
+rails → monetary cross-cuts</p>
+<p>CEA models the GENIUS Act's issuer-yield prohibition and the proposed CLARITY
+variants that would reach affiliate or third-party yield. Its baseline estimate
+is that eliminating yield adds only $2.1 billion of bank lending, including
+$500 million at community banks, while imposing an $800 million net welfare
+cost. CEA's stated conclusion is that a broad yield prohibition does little to
+protect lending and sacrifices consumer returns.</p>
+<p><strong>Why it matters:</strong> this is not merely a defense of the enacted GENIUS rule. It
+is an administration-side argument against closing the affiliate/third-party
+yield channel. That makes it a live legislative signal for CLARITY and for the
+bank-versus-token deposit fight.</p>
+<p><strong>Audit limit:</strong> the result depends on reserve allocation, deposit
+re-intermediation, stablecoin scale and the Fed's abundant-reserves framework.
+The paper's extreme case expressly assumes several conditions CEA calls
+implausible.</p>
+<h3 id="3-cfpb-cost-paper-the-institutional-dismantling-record">3. CFPB cost paper → the institutional dismantling record</h3>
+<p><strong>Paper:</strong> <code>Estimating the Cost of the Consumer Financial Protection Bureau to
+Consumers</code> (2026-02-17)<br />
+<strong>Route:</strong> Fed/clearing/Treasury → government-wide CFPB audit → judicial money</p>
+<p>CEA estimates cumulative consumer costs of $237-$369 billion from 2011-2024,
+including higher borrowing costs, reduced originations and fiscal cost. The
+paper derives a mortgage cost wedge from a claimed natural experiment, then
+extends the wedge to auto loans and credit cards.</p>
+<p><strong>Why it matters:</strong> this is the administration's quantitative case for shrinking
+or restructuring the CFPB. It belongs next to staffing, injunction,
+appropriation, director-confirmation and statutory-floor clocks.</p>
+<p><strong>Audit limit:</strong> extrapolation across unlike credit products is the load-bearing
+method choice. The paper must not be used as an observed $237-$369 billion loss
+ledger, and its cost comparison does not itself resolve the CFPB's legal status.</p>
+<h3 id="4-retirement-alternatives-private-assets-as-a-retail-demand-rail">4. Retirement alternatives → private assets as a retail demand rail</h3>
+<p><strong>Paper:</strong> <code>Retail Access to Alternative Investments Via Defined Contribution
+Plans</code> (2025-08-12)<br />
+<strong>Route:</strong> EO 14330 → On-Chain State → retirement/asset-demand layer</p>
+<p>Published five days after EO 14330, the paper argues that defined-contribution
+plans can provide a large, diversified and sticky capital base for private
+markets. It estimates up to $35 billion of GDP benefit from private-equity
+access and models gains in risk-adjusted return and lifetime retirement income.</p>
+<p><strong>Why it matters:</strong> EO 14330 is already present in the vault. The missing paper
+supplies the demand-side theory: retirement pools are not only beneficiaries;
+they are a capital base for private assets.</p>
+<p><strong>Audit limit:</strong> the analysis is a modeled private-equity case, not proof that
+all alternatives improve participant outcomes. Fees, valuation, liquidity,
+manager selection, litigation risk and ERISA fiduciary duties remain live.</p>
+<h3 id="5-deregulation-the-papers-own-action-table">5. Deregulation → the paper's own action table</h3>
+<p><strong>Paper:</strong> <code>The Economic Benefits of Current Deregulatory Efforts</code> (2025-06-19)<br />
+<strong>Route:</strong> Executive Orders → government-shape track → digital finance/AI/energy</p>
+<p>The report contains a first-party table of 20 executive orders plus four
+memorandum/proclamation objects cited in its analysis. The EO set is already in
+the vault. The report itself and the non-EO objects are the gap.</p>
+<p>The four non-EO objects named in the paper's table are:</p>
+<ul>
+<li><code>Delivering Emergency Price Relief for American Families and Defeating the
+  Cost-of-Living Crisis</code> (2025-01-20);</li>
+<li><code>Regulatory Freeze Pending Review</code> (2025-01-20);</li>
+<li><code>Regulatory Relief for Certain Stationary Sources to Promote American Energy</code>
+  (2025-04-08);</li>
+<li><code>Directing the Repeal of Unlawful Regulations</code> (2025-04-09).</li>
+</ul>
+<p>CEA estimates up to $907 billion in regulatory relief and 0.29-0.78 percentage
+points of additional annual GDP growth under its modeled assumptions.</p>
+<p><strong>Audit limit:</strong> the paper's counterfactual treats estimated regulatory costs
+as potentially translating one-for-one into GDP effects and cannot be read as a
+measured savings ledger.</p>
+<h3 id="6-ai-divergence-the-computeenergyexport-program-in-one-paper">6. AI divergence → the compute/energy/export program in one paper</h3>
+<p><strong>Paper:</strong> <code>Artificial Intelligence and the Great Divergence</code> (2026-01-21)<br />
+<strong>Route:</strong> Sovereign Compute → Federal Science Operating System → AI/data-center
+EO track</p>
+<p>CEA joins Public Law 119-21 investment expensing, the 2025 AI Action Plan,
+federal data-center permitting, state-law preemption, federal procurement and
+technology exports into one growth strategy. It explicitly frames OBBB's bonus
+depreciation as support for data centers, power infrastructure and chip
+manufacturing.</p>
+<p><strong>Why it matters:</strong> the vault has much of the operating stack, but not this
+White House-authored statement of how tax, energy, permitting, procurement and
+exports are meant to work together.</p>
+<p><strong>Audit limit:</strong> cross-country investment, adoption and benchmark indicators do
+not establish future productivity, state preemption or operating capacity.</p>
+<h3 id="7-mfn-drugs-and-hospital-contracts-health-policy-moving-through-contracts">7. MFN drugs and hospital contracts → health policy moving through contracts</h3>
+<p><strong>Papers:</strong> <code>Savings from Most-Favored-Nation Drug Pricing Policy</code> (2026-05-05)
+and <code>Effects of Banning Anti-Competitive Hospital Contracts</code> (2026-06-18)<br />
+<strong>Route:</strong> health/MAHA → insurance/reinsurance → trade/contract enforcement</p>
+<p>The MFN paper says the administration had reached voluntary agreements with 17
+large pharmaceutical manufacturers and was seeking statutory codification. It
+separates future launches, existing drugs, Medicaid and direct-to-consumer
+channels. The hospital paper estimates effects from a nationwide ban on
+anti-steering, anti-tiering and all-or-nothing contract clauses while pointing
+to pending DOJ complaints against OhioHealth and New York-Presbyterian.</p>
+<p><strong>Why it matters:</strong> these papers show policy being built through private
+agreements, purchasing terms, Medicaid conditions and antitrust cases before or
+alongside legislation.</p>
+<p><strong>Audit limit:</strong> voluntary agreement, proposed statute, pending complaint and
+nationwide ban are four different states. The paper summaries do not provide a
+complete public contract set for the 17 claimed manufacturer agreements.</p>
+<h2 id="full-corpus-triage">Full corpus triage</h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Paper</th>
+<th>Class</th>
+<th>Freedom 250 route</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-07-15</td>
+<td>Measuring Balance of Payments Deficits</td>
+<td>current legal/economic rationale</td>
+<td>Currency Watch; section 122</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2026-06-18</td>
+<td>Effects of Banning Anti-Competitive Hospital Contracts</td>
+<td>forward policy/enforcement model</td>
+<td>Health; insurance; antitrust</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2026-05-05</td>
+<td>Savings from Most-Favored-Nation Drug Pricing Policy</td>
+<td>implementation/status claim</td>
+<td>Health; trade; Medicaid</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2026-04-08</td>
+<td>Effects of Stablecoin Yield Prohibition on Bank Lending</td>
+<td>live legislative signal</td>
+<td>GENIUS; CLARITY; banking</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2026-02-17</td>
+<td>Estimating the Cost of the CFPB to Consumers</td>
+<td>restructuring rationale</td>
+<td>CFPB; judicial money</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2026-01-28</td>
+<td>Economic Impact of State Income Tax Elimination</td>
+<td>state fiscal model</td>
+<td>State money/fiscal policy</td>
+<td>C</td>
+</tr>
+<tr>
+<td>2026-01-21</td>
+<td>Artificial Intelligence and the Great Divergence</td>
+<td>program synthesis</td>
+<td>Compute; AI; energy; exports</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2025-12-23</td>
+<td>Year-Over-Year Inflation Across Conservative and Liberal States</td>
+<td>political/macro comparison</td>
+<td>Inflation narrative</td>
+<td>C</td>
+</tr>
+<tr>
+<td>2025-12-03</td>
+<td>Savings from Resetting CAFE Standards</td>
+<td>deregulatory model</td>
+<td>Autos; energy; regulation</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2025-10-01</td>
+<td>Economic Consequences of a Government Shutdown</td>
+<td>fiscal scenario</td>
+<td>Government continuity</td>
+<td>C</td>
+</tr>
+<tr>
+<td>2025-09-26</td>
+<td>Expansion of HSA Eligibility Under OBBB</td>
+<td>enacted-law explanation</td>
+<td>OBBB; health accounts</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2025-08-29</td>
+<td>Trump Accounts Give the Next Generation a Jump Start on Saving</td>
+<td>enacted-program rationale</td>
+<td>Fiscal rails; household savings</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2025-08-12</td>
+<td>Retail Access to Alternative Investments Via DC Plans</td>
+<td>post-EO demand model</td>
+<td>EO 14330; private assets</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2025-07-12</td>
+<td>Economic Benefits of Unleashing American Energy</td>
+<td>multi-action program model</td>
+<td>Energy; critical minerals; shipping</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2025-07-07</td>
+<td>Imported Goods Have Been Getting Cheaper Relative to Domestic Goods</td>
+<td>tariff-incidence argument</td>
+<td>Trade; prices; FX</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2025-07-01</td>
+<td>OBBB Chart Book: Deficits and Debt</td>
+<td>pre-signature fiscal case</td>
+<td>OBBB; debt</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2025-06-30</td>
+<td>OBBB and No Tax on Social Security</td>
+<td>pre-signature tax case</td>
+<td>OBBB; Social Security</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2025-06-25</td>
+<td>OBBB: Prosperity and Deficit Reduction</td>
+<td>pre-signature omnibus case</td>
+<td>OBBB</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2025-06-19</td>
+<td>Economic Benefits of Current Deregulatory Efforts</td>
+<td>action-program crosswalk</td>
+<td>EO/government shape</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2025-06-12</td>
+<td>Deterioration of Housing Affordability in Rural America</td>
+<td>problem definition</td>
+<td>Housing/credit</td>
+<td>C</td>
+</tr>
+<tr>
+<td>2025-06-10</td>
+<td>Medicaid Community Engagement Requirements and the Value of Work</td>
+<td>benefit-gate rationale</td>
+<td>OBBB; Medicaid</td>
+<td>B</td>
+</tr>
+<tr>
+<td>2025-06-04</td>
+<td>Igniting a Second Blue-Collar Boom with Tax Cuts</td>
+<td>pre-enactment advocacy</td>
+<td>OBBB; labor</td>
+<td>C</td>
+</tr>
+<tr>
+<td>2025-06-04</td>
+<td>Ramifications of Not Passing OBBB</td>
+<td>pre-enactment counterfactual</td>
+<td>OBBB</td>
+<td>C</td>
+</tr>
+<tr>
+<td>2025-05-19</td>
+<td>Preserving and Expanding Low Tax Rates</td>
+<td>pre-enactment tax model</td>
+<td>OBBB; TCJA</td>
+<td>C</td>
+</tr>
+<tr>
+<td>2025-05-17</td>
+<td>Health Insurance Opportunity Cost if Reconciliation Fails</td>
+<td>pre-enactment counterfactual</td>
+<td>OBBB; health</td>
+<td>C</td>
+</tr>
+<tr>
+<td>2025-04-03</td>
+<td>Economic Impact of Extending Expiring TCJA Provisions</td>
+<td>pre-enactment tax model</td>
+<td>TCJA; OBBB</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="non-eo-action-lane-relevant-exact-title-gaps">Non-EO action lane: relevant exact-title gaps</h2>
+<p>The generated coverage audit finds 41 research-adjacent presidential-action
+pages that do not resolve to the EO corpus. Most are outside the core project or
+already covered under variant wording. The following are the highest-value
+objects for an instrument-level follow-up:</p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Object</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-01-20</td>
+<td>America First Trade Policy</td>
+<td>foundational trade investigation and report clock; already mentioned in the vault but needs instrument routing</td>
+</tr>
+<tr>
+<td>2025-01-20</td>
+<td>Regulatory Freeze Pending Review</td>
+<td>first-day regulatory-state clock</td>
+</tr>
+<tr>
+<td>2025-02-21</td>
+<td>America First Investment Policy</td>
+<td>foreign-capital and national-security investment gate</td>
+</tr>
+<tr>
+<td>2025-04-09</td>
+<td>Directing the Repeal of Unlawful Regulations</td>
+<td>agency repeal instruction outside the EO lane</td>
+</tr>
+<tr>
+<td>2025-06-06</td>
+<td>Eliminating Waste, Fraud, and Abuse in Medicaid</td>
+<td>direct join to benefit-integrity and payment-control work</td>
+</tr>
+<tr>
+<td>2025-09-18</td>
+<td>U.S.-UK Technology Prosperity Deal MOU</td>
+<td>compute/export/standards agreement object</td>
+</tr>
+<tr>
+<td>2026-01-14</td>
+<td>Processed Critical Minerals import proclamation</td>
+<td>metals, tariffs and defense supply chain</td>
+</tr>
+<tr>
+<td>2026-02-20</td>
+<td>Temporary Import Surcharge proclamation</td>
+<td>already tracked; this paper supplies the missing BOP rationale</td>
+</tr>
+<tr>
+<td>2026-04-20</td>
+<td>DPA section 303 natural-gas determination</td>
+<td>emergency authority and industrial capacity</td>
+</tr>
+<tr>
+<td>2026-05-29</td>
+<td>Critical-position pay for national-security investment workforce</td>
+<td>implementation capacity for the investment-security state</td>
+</tr>
+<tr>
+<td>2026-07-13</td>
+<td>Chemical-manufacturing security regulatory-relief proclamation</td>
+<td>industrial policy and emergency/regulatory authority</td>
+</tr>
+<tr>
+<td>2026-07-20</td>
+<td>Three Canada discrimination duty proclamations</td>
+<td>new trade-pressure objects; outside the research-paper publication clocks</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vault-landing-completed">Vault landing completed</h2>
+<p>The corpus landed as a source layer, not 26 narrative syntheses:</p>
+<ol>
+<li>one vault source index plus 26 compact source cards under
+   <code>05 - Sources/Executive Office/White House Research/</code>;</li>
+<li>all 26 official PDFs, hash-matched to this package, under its <code>PDFs/</code>
+   subfolder;</li>
+<li>a searchable <code>White House Research.html</code> view that exposes class, route and
+   priority while keeping the issuer/model boundary visible;</li>
+<li>an <code>Executive Office.html</code> wrapper that keeps Executive Orders and White
+   House Research as separate sublayers under the existing <code>obs-eo</code> shell ID;</li>
+<li>registered builders and stale-scan coverage for both new views.</li>
+</ol>
+<p>The physical <code>03 - Executive Orders/</code> folder and its builder remain unchanged
+for compatibility. The non-EO presidential-instrument registry and standing
+delta watch remain follow-up lanes; neither was implied by merely preserving
+the complete research corpus. Stablecoin, CFPB, MFN and balance-of-payments
+estimates still require claim audits before their numbers enter synthesis.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

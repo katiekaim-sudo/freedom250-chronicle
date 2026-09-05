@@ -1,0 +1,461 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Currency Watch — Sealed USD Blind Card v1.1 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Currency Watch — Sealed USD Blind Card v1.1</h1><p class="deck">Collection evidence cutoff: 2026-07-31</p><p><a href="cw-card-usd-2026-07-20-v1-1-20548a78ee2d.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="currency-watch-sealed-usd-blind-card-v11">Currency Watch — Sealed USD Blind Card v1.1</h1>
+<p><strong>Card ID:</strong> <code>CW-CARD-USD-2026-07-20-V1_1</code><br />
+<strong>Rubric:</strong> <code>CURRENCY_WATCH_PILOT_RUBRIC_FROZEN_V1.md</code><br />
+<strong>Execution control:</strong> <code>CURRENCY_WATCH_PILOT_EXECUTION_ANNEX_V1_1.md</code><br />
+<strong>Source freeze:</strong> <code>CURRENCY_WATCH_PILOT_SOURCE_MANIFEST_2026-07-20.md</code><br />
+<strong>Grade state:</strong> <code>SEALED-V1_1</code></p>
+<h2 id="a-identity-and-authority">A. Identity and authority</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Currency object</td>
+<td>U.S. dollar (<code>USD</code>), legal monetary unit</td>
+</tr>
+<tr>
+<td>Linked IMF member record(s)</td>
+<td>United States; IMF member since 1945-12-27</td>
+</tr>
+<tr>
+<td>Monetary-policy authority</td>
+<td>Federal Open Market Committee; Federal Reserve System</td>
+</tr>
+<tr>
+<td>FX/intervention authority</td>
+<td>U.S. Treasury/Secretary for U.S. FX policy and Treasury intervention; Federal Reserve Bank of New York executes authorized Treasury/FOMC operations</td>
+</tr>
+<tr>
+<td>Trade/customs authority</td>
+<td>Congress and President under the applicable statute; USTR develops and coordinates trade policy; CBP administers entries and collections</td>
+</tr>
+<tr>
+<td>Shared-authority overlay</td>
+<td><code>NONE</code></td>
+</tr>
+<tr>
+<td>Regime stress class</td>
+<td>Free float / global reserve and funding currency</td>
+</tr>
+<tr>
+<td>International role tags</td>
+<td><code>DOMESTIC</code>, <code>RESERVE</code>, <code>FUNDING</code>, <code>VEHICLE</code>, <code>TRADE-INVOICE</code>, <code>SDR-BASKET</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-controlling-source-clocks">B. Controlling source clocks</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV/common report</td>
+<td>IMF Country Report 26/76, <em>United States: 2026 Article IV Consultation—Press Release; Staff Report; and Statement by the Executive Director</em></td>
+</tr>
+<tr>
+<td>Discussions end</td>
+<td><code>2026-02-25</code></td>
+</tr>
+<tr>
+<td>Staff cutoff</td>
+<td><code>2026-02-25</code> — information available at the concluding discussions</td>
+</tr>
+<tr>
+<td>Datum vintages</td>
+<td>IMF macro table: 2025 estimates with 2020–25 persistence series; Fund Relations annex: <code>2026-02-28</code>; preliminary 2025 external assessment: 2025 data, NIIP through 2025Q3; final ESR: 2025 publication assessing 2024; BEA current account/NIIP: 2026Q1, released 2026-06-24 and corrected 2026-06-30; BEA/Census trade: May 2026; BLS CPI: June 2026, released 2026-07-14; BLS import prices: June 2026, released 2026-07-17; Fed broad dollar index: through 2026-07-17; Treasury customs cash: June/FY2026 through June; IMF COFER: 2026Q1, published 2026-07-01; BIS FX turnover: April 2025, final release June 2026</td>
+</tr>
+<tr>
+<td>Post-cutoff statement</td>
+<td><code>2026-04-01</code> — Executive Director/Advisor statement</td>
+</tr>
+<tr>
+<td>Board date</td>
+<td><code>2026-04-01</code></td>
+</tr>
+<tr>
+<td>Publication date</td>
+<td><code>2026-04-02</code></td>
+</tr>
+<tr>
+<td>ESR vintage</td>
+<td>2025 ESR, final assessment of 2024; 2026 Article IV assessment of 2025 remains preliminary pending the 2026 ESR</td>
+</tr>
+<tr>
+<td>National-data cutoff</td>
+<td><code>2026-07-17</code>; event/legal review frozen <code>2026-07-20 ET</code></td>
+</tr>
+</tbody>
+</table>
+<p>IMF conclusions retain their stated vintages. Post-cutoff national releases do not revise the IMF legal card or the 2024 ESR finding.</p>
+<h2 id="c-authority-response">C. Authority response</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Response state</td>
+<td><code>PARTIAL</code></td>
+</tr>
+<tr>
+<td>Exact proposition answered</td>
+<td>The authorities concurred that the economy performed well in 2025 and acknowledged inflation remained above 2 percent. They disputed important parts of staff’s tariff, distributional, fiscal and adjustment diagnosis: the statement said tariff-inflation fears “have not materialized,” strongly disagreed with the poverty assessment, projected stronger growth and debt improvement from administration policies, and argued that adjustment relying only on deficit-country fiscal consolidation would be harmful without action by surplus economies.</td>
+</tr>
+<tr>
+<td>Source/page/date</td>
+<td>IMF CR26/76, PDF pp. 89–93, Executive Director/Advisor statement dated <code>2026-04-01</code></td>
+</tr>
+<tr>
+<td>Attribution boundary</td>
+<td>Staff’s “moderately weaker” external assessment and tariff modeling remain staff judgments; the Board separately expressed concern about the current account, tariffs, fiscal trajectory and financial vulnerabilities; the cited disagreement is the U.S. Executive Director/member-authority response.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-categorical-legal-card">D. Categorical legal card</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Controlled state</th>
+<th>Source/page</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV general status</td>
+<td><code>BOARD-CONCERN</code> — concerns on fiscal imbalance, tariff spillovers, persistent current-account deficit and financial vulnerabilities; no formal non-observance finding</td>
+<td>CR26/76, PDF pp. 3–4</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Manipulation status</td>
+<td><code>NO-ADVERSE-FINDING-LOCATED</code> — no formal Fund manipulation finding or two-part prohibited-intent determination located</td>
+<td>CR26/76, PDF pp. 3–4, 68</td>
+<td><code>MEDIUM</code></td>
+</tr>
+<tr>
+<td>Article VIII §2 current-payment restrictions</td>
+<td><code>NONE-LOCATED</code>, except separately recorded security measures</td>
+<td>CR26/76, PDF p. 87; Fund Relations as of 2026-02-28</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Article VIII §3 MCP/discriminatory practice</td>
+<td><code>NONE-LOCATED</code></td>
+<td>CR26/76, PDF p. 87</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Article VIII §4 foreign-held balances</td>
+<td><code>NO-FUND-CONCERN-LOCATED</code></td>
+<td>Article VIII §§2/3/4 acceptance and annex statement, CR26/76 p. 87</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Article VIII §5 information duty</td>
+<td><code>NO-FUND-BREACH-LOCATED</code>; surveillance data rated broadly adequate, with intersectoral-consistency limitations rather than a breach finding</td>
+<td>CR26/76, PDF p. 69</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Article XIV</td>
+<td><code>NOT-APPLICABLE—ARTICLE-VIII-ACCEPTED</code></td>
+<td>CR26/76, PDF p. 87</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Capital controls / CFMs</td>
+<td>Separate descriptive object: open capital account; no general capital-control impairment scored</td>
+<td>CR26/76, PDF p. 68</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Security restrictions</td>
+<td>Notified security-related measures are excepted from the annex’s otherwise clean statement; last notification printed as <code>2024-02-26</code>; current itemized scope, approval and continuing legality are <code>NOT-PUBLICLY-DETERMINABLE</code> from the frozen record</td>
+<td>CR26/76, PDF p. 87</td>
+<td><code>MEDIUM</code></td>
+</tr>
+</tbody>
+</table>
+<p>No categorical state is converted numerically. Section 122 is a tariff/customs measure, not an Article VIII restriction or MCP.</p>
+<h2 id="e-linked-event-records">E. Linked event records</h2>
+<table>
+<thead>
+<tr>
+<th>Event ID</th>
+<th>Legal/operating state at 2026-07-20 cutoff</th>
+<th>Proposed transmission</th>
+<th>Evidence state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TP-US-2026-SECTION122</code></td>
+<td>Trade Act §122 permits a surcharge up to 15 percent for no more than 150 days absent an Act of Congress; Proclamation 11012 imposed 10 percent on covered entries from <code>2026-02-24 00:01 EST</code> through scheduled <code>2026-07-24 00:01 EDT</code>. CBP implemented HTSUS 9903.03.01 and exclusions. CIT held the proclamation unauthorized on 2026-05-07 and granted plaintiff-specific relief; Federal Circuit stayed that relief on 2026-06-11 pending appeal without reversing the merits judgment. No enacted extension was located by cutoff. Collection, litigation, refunds, drawback and FTZ residue remain separate clocks.</td>
+<td>Possible import-volume, goods-balance, price, FX and fiscal-cash effects. Observed macro movements remain unattributed; no USD lane transmission is promoted.</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+</tbody>
+</table>
+<p>The June BLS import-price index—+0.3 percent m/m, +7.1 percent y/y; nonfuel +0.4 percent m/m and +4.2 percent y/y—is explicitly <strong>duty-exclusive</strong>. It cannot establish the duty-inclusive landed price paid by importers.</p>
+<h2 id="f-six-lane-worksheet">F. Six-lane worksheet</h2>
+<table>
+<thead>
+<tr>
+<th>Lane</th>
+<th>Proposed grade</th>
+<th>One-sentence reason</th>
+<th>Primary evidence + vintage</th>
+<th>Persistence evidence</th>
+<th>Shock evidence</th>
+<th>Strongest alternative</th>
+<th>Confidence</th>
+<th>Legal/event link</th>
+<th>Data gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 Domestic anchor</td>
+<td><strong>B</strong></td>
+<td>The 2 percent anchor and long-run expectations remain credible and activity remains positive, but inflation has persisted moderately above target without yet constituting material credibility failure.</td>
+<td>BLS June 2026 CPI: −0.4% m/m SA, +3.5% y/y; core 0.0% m/m, +2.6% y/y. The Executive Director statement reported February PCE 2.8% and core PCE 3.0%, while most longer-term expectations remained consistent with 2%; CR26/76 pp. 91–92.</td>
+<td>CR26/76 Table 1, p. 50: core PCE q4/q4 3.3% in 2023, 3.0% in 2024 and 2.9% in 2025; real GDP growth 2.9%, 2.8% and 2.1%, respectively. The deviation is persistent but bounded, with no disproportionate activity loss.</td>
+<td>Tariff-related goods inflation and the 2026 energy shock complicate the path. June’s headline fall was energy-led. Section 122 cannot be isolated; its duty-exclusive import-price context is not landed-cost evidence.</td>
+<td><strong>A</strong> is plausible if recent core disinflation and anchored long-term expectations establish that the above-target interval is purely transitory; three consecutive above-target core-PCE years keep the sealed call at B.</td>
+<td><code>HIGH</code></td>
+<td>Article IV <code>BOARD-CONCERN</code>; <code>TP-US-2026-SECTION122</code></td>
+<td>Current official PCE and expectations vintages after June; duty-inclusive landed-cost/pass-through decomposition; evidence separating Section 122 from energy, FX and other tariff measures.</td>
+</tr>
+<tr>
+<td>L2 Underlying order</td>
+<td><strong>B</strong></td>
+<td>Banking, funding, payment and settlement functions remain resilient with strong reported capital and liquidity, but fiscal/Treasury-market tail risk and incomplete visibility into NBFIs are material bounded strains.</td>
+<td>CR26/76 Table 5, p. 54: 2025Q3 regulatory capital/RWA 16.86%, NPLs 0.94% of loans, liquid assets 30.90% of assets; pp. 3–4 and 49 identify elevated valuations, NBFI visibility and supervisory gaps.</td>
+<td>Table 5 shows capital rising from 15.54% in 2022 to 16.86% in 2025Q3, NPLs staying below 1%, and liquidity near 29–31%; household and corporate leverage measures generally declined. Public debt and short-maturity exposure nevertheless rose persistently.</td>
+<td>U.S. authorities report that core markets and payment, clearing and settlement systems remained operational through the short April 2025 volatility episode; CR26/76 pp. 91–92.</td>
+<td><strong>C</strong> is plausible if the rising sovereign-debt trajectory, market concentration and opaque leveraged NBFIs are treated as a present systemic impairment; the frozen evidence describes tail vulnerability, not fracture or extraordinary-support dependence.</td>
+<td><code>HIGH</code></td>
+<td>Article IV <code>BOARD-CONCERN</code>; event link <code>NONE</code> for the primary grade</td>
+<td>2026 FSAP findings; current NBFI leverage/liquidity and Treasury-market concentration; current mid-sized-bank and commercial-real-estate stress; updated 2026 FSIs.</td>
+</tr>
+<tr>
+<td>L3 Exchange order</td>
+<td><strong>A</strong></td>
+<td>The freely floating USD operates without a parallel market, reserve-defense pressure or evidenced exchange-market fracture; ordinary reserve-adequacy tests are inapposite to the global reserve issuer.</td>
+<td>De jure and de facto free floating; rate determined freely in the FX market, CR26/76 p. 87. Fed broad dollar index rose 2.2% from 117.9463 on 2026-02-24 to 120.5315 on 2026-07-17 without evidence of disorder.</td>
+<td>The report records free-floating operation and no MCP; its external annex notes more than 10% REER appreciation over five years but identifies no exchange-market dysfunction or unsustainable intervention pressure, p. 68.</td>
+<td>During the Section 122 window the broad dollar appreciated, but no official source attributes the move to the surcharge or identifies disorder. The CIT/Federal Circuit clocks concern collection authority, not the FX regime.</td>
+<td><strong>B/C</strong> could be argued from the assessed REER overvaluation, but that is an external-adjustment deviation assigned to L4, not exchange-market disorder.</td>
+<td><code>MEDIUM</code></td>
+<td>Manipulation <code>NO-ADVERSE-FINDING-LOCATED</code>; <code>TP-US-2026-SECTION122</code> context only</td>
+<td>Consistent official spot/forward intervention disclosures and high-frequency volatility/liquidity measures through cutoff; attribution of the observed dollar move.</td>
+</tr>
+<tr>
+<td>L4 External adjustment</td>
+<td><strong>C</strong></td>
+<td>A material, persistent current-account/REER deviation leaves the external position moderately weaker, while reserve-currency funding capacity and a clear fiscal/private-saving adjustment route prevent a D call.</td>
+<td>Final 2025 ESR assessment of 2024: “moderately weaker,” CA-gap midpoint −1.4% GDP, REER overvaluation midpoint 11.9%, NIIP −89.9% GDP. Separately, the preliminary 2025 Article IV assessment gives CA −3.7%, gap midpoint −1.1%, REER overvaluation midpoint 10%, and NIIP −88.8% at 2025Q3; CR26/76 p. 68.</td>
+<td>CR26/76 Table 1, p. 50: current account −3.3% GDP in 2023, −4.0% in 2024 and −3.7% in 2025; NIIP −73.4%, −90.6% and −90.4%. The 2024 ESR and preliminary 2025 assessment independently retain the “moderately weaker” classification.</td>
+<td>BEA 2026Q1 national clock: deficit $226.8bn/2.9% GDP and NIIP −$21.27tn. May trade deficit widened to $77.6bn, while Jan–May remained narrower y/y. These later national data do not update the IMF finding or isolate Section 122.</td>
+<td><strong>B</strong> is plausible because dollar-denominated liabilities, foreign-currency assets, deep markets and reserve status mitigate funding risk, and 2026Q1 CA was below the 2025 annual ratio; valuation effects and one quarter do not erase the persistent assessed gap.</td>
+<td><code>HIGH</code></td>
+<td>Article IV <code>BOARD-CONCERN</code>; <code>TP-US-2026-SECTION122</code></td>
+<td>Final 2026 ESR; full 2026 current-account components; saving/investment decomposition; revised NIIP valuation effects; a completed pre/post-Section-122 real-trade and causal attribution window.</td>
+</tr>
+<tr>
+<td>L5 Current-payment usability</td>
+<td><strong>A</strong></td>
+<td>Bona fide current international payments remain usable without an IMF-identified MCP, general exchange restriction, arrears or transfer delay; notified security measures are a bounded legal caveat rather than evidenced operating impairment.</td>
+<td>Fund Relations as of 2026-02-28: Article VIII §§2/3/4 accepted; system free of MCPs and current-payment/transfer restrictions except security measures; freely determined FX rate, CR26/76 p. 87.</td>
+<td>The 2026 annex records continuing Article VIII status and refers to the security-notification process, with the last printed notification dated 2024-02-26; no persistent operating arrears or generalized transfer impairment is identified.</td>
+<td>Section 122 is a customs surcharge and remains legally separate from exchange availability or transfer delay; no current-payment impairment is promoted from the event.</td>
+<td><strong>B/NR</strong> could be argued because the security measures are not itemized and the public packet contains limited transaction-level delay evidence; the official annex is sufficiently direct for a grade and contains no evidence of material impairment.</td>
+<td><code>MEDIUM</code></td>
+<td>VIII §2 <code>NONE-LOCATED</code>; VIII §3 <code>NONE-LOCATED</code>; VIII §4 <code>NO-FUND-CONCERN-LOCATED</code>; <code>TP-US-2026-SECTION122</code> firewall only</td>
+<td>Current AREAER/itemized security-measure scope and approval status; direct official transfer-delay and external-arrears series.</td>
+</tr>
+<tr>
+<td>L6 Systemic service</td>
+<td><strong>A</strong></td>
+<td>The USD continues to perform its actual reserve, funding, vehicle and hedging roles at dominant scale with deep markets and no observed service failure.</td>
+<td>IMF COFER: USD 57.13% of world FX reserves in 2026Q1, up from 56.42% in 2025Q4. BIS 2025 Triennial Survey: USD on one side of 89.2% of April 2025 FX trades. CR26/76 p. 68 identifies dominant reserve status, strong institutions and deep, liquid, diverse asset markets.</td>
+<td>BIS reports the USD FX-turnover share rising from 88.4% in 2022 to 89.2% in 2025. COFER describes the reserve share as broadly stable into 2026Q1.</td>
+<td>April 2025 volatility caused temporary tightening but core Treasury, funding, payment, clearing and settlement functions remained operational; Section 122 produced no evidenced loss of international monetary service.</td>
+<td><strong>B</strong> is plausible because fiscal tail risk, secular reserve diversification and settlement risk could weaken future service; at the frozen cutoff they are vulnerabilities, not a material impairment of the role.</td>
+<td><code>HIGH</code></td>
+<td>Article IV <code>BOARD-CONCERN</code> is contextual; <code>TP-US-2026-SECTION122</code> has no promoted role transmission</td>
+<td>Comparable longitudinal invoicing, payments and cross-border dollar-credit shares; valuation-adjusted COFER decomposition; current swap-market and FX-settlement-risk measures; evidence of whether fiscal risk is changing user behavior.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="g-primary-lane-collision-check">G. Primary-lane collision check</h2>
+<table>
+<thead>
+<tr>
+<th>Fact/source</th>
+<th>Primary lane</th>
+<th>Context links</th>
+<th>Separate second mechanism evidenced?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Above-target PCE/CPI and anchored expectations</td>
+<td>L1</td>
+<td>Section 122 price-transmission event</td>
+<td><code>NO</code> — tariff attribution is unresolved</td>
+</tr>
+<tr>
+<td>Bank capital, liquidity and NPL ratios</td>
+<td>L2</td>
+<td>L6 resilience context</td>
+<td><code>NO</code> — no second grade reduction</td>
+</tr>
+<tr>
+<td>Fiscal debt and short-maturity trajectory</td>
+<td>L2</td>
+<td>L4 saving/investment context</td>
+<td><code>YES</code> — IMF separately estimates the relative fiscal-policy gap contributes about −0.5% GDP to the external gap; L4 nevertheless rests primarily on the observed CA/REER/NIIP assessment</td>
+</tr>
+<tr>
+<td>Free-floating classification and broad-dollar movement</td>
+<td>L3</td>
+<td>L4 valuation context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Current account, CA gap, REER gap and NIIP</td>
+<td>L4</td>
+<td>L2/L6 vulnerability context</td>
+<td><code>NO</code> — no duplicate grade reduction</td>
+</tr>
+<tr>
+<td>Article VIII clean annex statement and operating transfer usability</td>
+<td>L5</td>
+<td>L2 payments-system context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>COFER share, BIS FX turnover and global market role</td>
+<td>L6</td>
+<td>L3 market-depth context</td>
+<td><code>NO</code> — international service is the primary scoring use</td>
+</tr>
+<tr>
+<td>Duty-exclusive BLS import-price index</td>
+<td><code>EVENT-ONLY</code></td>
+<td>L1/L4 contextual observation</td>
+<td><code>NO</code> — not duty-inclusive landed cost and not attributed to Section 122</td>
+</tr>
+<tr>
+<td>Section 122 legal/customs, judicial, cash and macro observations</td>
+<td><code>EVENT-ONLY</code></td>
+<td>L1, L3 and L4</td>
+<td><code>NO</code> — no transmission promoted</td>
+</tr>
+</tbody>
+</table>
+<h2 id="h-seal">H. Seal</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grader</td>
+<td><code>blind_usd</code></td>
+</tr>
+<tr>
+<td>Started</td>
+<td><code>2026-07-21T01:43:36Z</code></td>
+</tr>
+<tr>
+<td>Sealed</td>
+<td><code>2026-07-21T01:44:22Z</code></td>
+</tr>
+<tr>
+<td>Other provisional cards visible?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Source substitutions made?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Composite calculated?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Card state</td>
+<td><code>SEALED-V1_1</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Source note:</strong> Controlling authority is <a href="https://www.imf.org/-/media/files/publications/cr/2026/english/1usaea2026001.pdf">IMF Country Report 26/76</a>, with the frozen <a href="https://www.imf.org/en/publications/esr/issues/2025/07/22/external-sector-report-2025">2025 ESR</a>, official BLS/BEA/Federal Reserve/Treasury data, and the frozen Section 122 statutory, proclamation, CBP and court record. L6 is supplemented—not substituted—with official <a href="https://data.imf.org/en/news/imf%20data%20brief%20july%201">IMF 2026Q1 COFER</a> and <a href="https://www.bis.org/statistics/rpfx25_fx.pdf">BIS 2025 Triennial Survey</a> evidence available by the 2026-07-20 freeze.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

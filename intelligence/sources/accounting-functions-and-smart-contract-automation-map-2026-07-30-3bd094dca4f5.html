@@ -1,0 +1,369 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Accounting Functions and Smart-Contract Automation Map · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Accounting Functions and Smart-Contract Automation Map</h1><p class="deck">Collection evidence cutoff: 2026-07-30</p><p><a href="accounting-functions-and-smart-contract-automation-map-2026-07-30-3bd094dca4f5.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="accounting-functions-and-smart-contract-automation-map">Accounting Functions and Smart-Contract Automation Map</h1>
+<p>Evidence cutoff: 2026-07-30</p>
+<h2 id="ruling">Ruling</h2>
+<p>Double-entry bookkeeping and blockchain solve different problems.</p>
+<ul>
+<li>Double entry represents the effect of an event on an entity's accounts and
+  forces debits and credits to balance.</li>
+<li>A shared or distributed ledger can make multiple parties rely on one
+  time-ordered, signed record of state changes.</li>
+<li>A smart contract can execute a specified rule when specified inputs arrive.</li>
+</ul>
+<p>The technical opportunity is to put them in layers:</p>
+<pre><code class="language-text">real-world event and evidence
+  → signed canonical event
+  → authorization and control checks
+  → versioned recognition / measurement rules
+  → derived journals and subledgers
+  → cash, GAAP, tax, regulatory and management views
+  → disclosures, assurance, correction and recovery
+</code></pre>
+<p>The shared event is not a third debit or credit. “Triple-entry accounting” is
+useful shorthand for a mutually verifiable receipt, but the external receipt
+does not replace the entity-level double-entry representation.</p>
+<h2 id="1-what-accounting-actually-does">1. What accounting actually does</h2>
+<p>Accounting is not one function. It is a stack of operational, legal,
+measurement, control and communication functions.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Question answered</th>
+<th style="text-align: right;">Automatable from reliable events?</th>
+<th>Irreducible or off-chain issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>entity and perimeter</td>
+<td>Whose assets, liabilities and activity are reported?</td>
+<td style="text-align: right;">partly</td>
+<td>control, beneficial ownership, VIEs, agents, related parties</td>
+</tr>
+<tr>
+<td>identity</td>
+<td>Which legal person or account acted?</td>
+<td style="text-align: right;">strongly</td>
+<td>stolen credentials, nominees, beneficial owner</td>
+</tr>
+<tr>
+<td>authority</td>
+<td>Was the transaction permitted?</td>
+<td style="text-align: right;">strongly</td>
+<td>validity of law/contract, delegation, collusion</td>
+</tr>
+<tr>
+<td>occurrence / existence</td>
+<td>Did the event or asset exist?</td>
+<td style="text-align: right;">partly</td>
+<td>physical delivery, service performance, inventory existence</td>
+</tr>
+<tr>
+<td>rights and obligations</td>
+<td>Who owns the asset or owes the duty?</td>
+<td style="text-align: right;">partly</td>
+<td>title, side agreements, liens, legal interpretation</td>
+</tr>
+<tr>
+<td>classification</td>
+<td>What kind of economic event is it?</td>
+<td style="text-align: right;">strongly when facts are complete</td>
+<td>novel instruments, substance over form</td>
+</tr>
+<tr>
+<td>recognition</td>
+<td>When does it enter the accounts?</td>
+<td style="text-align: right;">partly</td>
+<td>performance obligations, contingencies, control transfer</td>
+</tr>
+<tr>
+<td>measurement</td>
+<td>At what amount?</td>
+<td style="text-align: right;">mixed</td>
+<td>fair value, impairment, useful life, probability, model inputs</td>
+</tr>
+<tr>
+<td>allocation</td>
+<td>Which period, product, award or program bears the cost?</td>
+<td style="text-align: right;">strongly for fixed rules</td>
+<td>causal allocation and policy choices</td>
+</tr>
+<tr>
+<td>settlement</td>
+<td>When and how did money or an asset move?</td>
+<td style="text-align: right;">strongly</td>
+<td>off-chain bank finality, reversals, custody perimeter</td>
+</tr>
+<tr>
+<td>internal control</td>
+<td>Who approved, segregated and reviewed it?</td>
+<td style="text-align: right;">strongly</td>
+<td>override, coercion, shared keys, corrupt approvals</td>
+</tr>
+<tr>
+<td>reconciliation</td>
+<td>Do subledgers, banks and counterparties agree?</td>
+<td style="text-align: right;">strongly</td>
+<td>missing or unreliable source systems</td>
+</tr>
+<tr>
+<td>close and consolidation</td>
+<td>What adjustments and eliminations produce the reporting entity?</td>
+<td style="text-align: right;">partly</td>
+<td>estimates, intercompany perimeter, late information</td>
+</tr>
+<tr>
+<td>reporting and disclosure</td>
+<td>What must users be told?</td>
+<td style="text-align: right;">strongly after judgments</td>
+<td>materiality, aggregation, narrative context</td>
+</tr>
+<tr>
+<td>assurance</td>
+<td>Is evidence sufficient and appropriate?</td>
+<td style="text-align: right;">partly</td>
+<td>source reliability, physical facts, estimates, professional judgment</td>
+</tr>
+<tr>
+<td>correction and recovery</td>
+<td>How is an error, reversal, restatement or collection preserved?</td>
+<td style="text-align: right;">strongly</td>
+<td>legal cause, responsibility, collectibility</td>
+</tr>
+</tbody>
+</table>
+<p>The closer a function is to <strong>identity, authorization, arithmetic, sequencing
+and reconciliation</strong>, the more programmable it is. The closer it is to
+<strong>economic substance, legal rights, uncertain measurement and materiality</strong>,
+the more judgment remains.</p>
+<h2 id="2-operating-cycle-map">2. Operating-cycle map</h2>
+<h3 id="order-to-cash">Order to cash</h3>
+<pre><code class="language-text">customer / credit approval
+  → order
+  → delivery or service performance
+  → invoice
+  → receivable
+  → collection
+  → refund / dispute / credit loss
+</code></pre>
+<p>Smart contracts can verify approved customers, match orders to delivery
+receipts, issue invoices, age receivables, apply cash and enforce discounts.
+They cannot know that a service was genuinely performed unless a trustworthy
+person, device or external system supplies that fact. They also cannot remove
+the need to estimate collectibility or interpret multi-part performance
+obligations.</p>
+<h3 id="procure-to-pay">Procure to pay</h3>
+<pre><code class="language-text">requisition
+  → budget / authority check
+  → purchase order
+  → receipt
+  → vendor invoice
+  → three-way match
+  → payable
+  → payment
+  → return / recovery
+</code></pre>
+<p>This is one of the strongest automation candidates. A signed purchase order,
+receipt and invoice can form the payable and release payment only after
+required approvals. The residual risks are false vendors, collusive approvals,
+false receipt/performance evidence, change-order manipulation and compromised
+oracle or identity systems.</p>
+<h3 id="payroll">Payroll</h3>
+<p>Identity, employment status, approved time, rate, withholding, benefits and
+bank instructions can be joined into a reproducible payroll event. Judgment
+and law remain around worker classification, incentive accruals, equity
+compensation, pension obligations and disputes.</p>
+<h3 id="inventory-and-cost-of-sales">Inventory and cost of sales</h3>
+<p>Provenance, custody transfers, lot identity and counts can be recorded as
+events. Accounting still must determine cost-flow assumptions, overhead
+allocation, net realizable value, obsolescence and whether physical inventory
+matches the digital record.</p>
+<h3 id="long-lived-assets">Long-lived assets</h3>
+<p>Acquisition, location, custody, maintenance and disposal can be tracked.
+Capitalization, useful life, componentization, impairment and residual value
+remain accounting judgments. A cash purchase is not automatically a current
+expense.</p>
+<h3 id="treasury-debt-and-equity">Treasury, debt and equity</h3>
+<p>Cash movements, debt service, collateral calls and cap-table changes can be
+automated. Classification as debt or equity, embedded features, covenant
+interpretation, hedge accounting, control of digital assets and fair-value
+inputs remain complex.</p>
+<h3 id="tax">Tax</h3>
+<p>An event log can produce a tax view from separate rules. Tax basis is not the
+same as book basis; timing differences, uncertain tax positions,
+jurisdictional allocation and changes in law still require distinct logic and
+judgment.</p>
+<h3 id="consolidation-and-close">Consolidation and close</h3>
+<p>Shared identifiers can make intercompany matching, eliminations,
+foreign-currency translation and cut-off testing faster. They do not decide
+which entities must be consolidated or whether an arrangement transfers
+control in substance.</p>
+<h2 id="3-the-event-sourced-accounting-model">3. The event-sourced accounting model</h2>
+<p>The most useful accounting primitive is not a manual journal entry. It is a
+business event with provenance.</p>
+<h3 id="minimum-event-object">Minimum event object</h3>
+<pre><code class="language-yaml">event_id:
+event_type:
+event_time:
+recorded_time:
+legal_entities:
+counterparties:
+economic_object:
+quantity:
+currency_and_amount:
+contract_or_authority:
+performance_or_receipt_evidence:
+cash_or_asset_settlement_reference:
+approvals_and_signatures:
+source_systems:
+rule_version:
+privacy_class:
+parent_and_causal_events:
+supersedes_or_reverses:
+supporting_evidence_hashes:
+</code></pre>
+<p>Rules then produce views:</p>
+<pre><code class="language-text">canonical event log
+  ├─ cash receipts and disbursements
+  ├─ U.S. GAAP accrual journals
+  ├─ tax-basis books
+  ├─ regulatory capital / prudential reports
+  ├─ managerial product and project costing
+  └─ federal budgetary and proprietary accounting
+</code></pre>
+<p>This is simpler at the user interface even when the rule system remains
+sophisticated. A small operator can record “delivered,” “invoiced,” “paid” or
+“equipment placed in service.” The system can derive the appropriate journals,
+provided the facts, rules and entity context are complete.</p>
+<h3 id="judgment-as-a-first-class-object">Judgment as a first-class object</h3>
+<p>The design should not hide estimates inside an unexplained adjusting entry.
+It should record:</p>
+<pre><code class="language-yaml">judgment_id:
+subject:
+accounting_question:
+authoritative_rule:
+inputs:
+assumptions:
+method:
+range:
+selected_amount:
+approver:
+effective_period:
+review_date:
+supersedes:
+</code></pre>
+<p>That does not remove judgment. It makes its author, rule, inputs, clock and
+revision history visible.</p>
+<h2 id="4-what-happens-to-the-accounting-games">4. What happens to the “accounting games”</h2>
+<h3 id="games-this-architecture-can-constrain">Games this architecture can constrain</h3>
+<ul>
+<li>backdated or silently overwritten entries;</li>
+<li>duplicate invoices and payments;</li>
+<li>orphan journal entries;</li>
+<li>missing approval or segregation-of-duties evidence;</li>
+<li>unreconciled intercompany balances;</li>
+<li>inconsistent versions of the same transaction;</li>
+<li>hidden post-close changes;</li>
+<li>weak lineage between disclosure totals and source events.</li>
+</ul>
+<h3 id="games-it-does-not-inherently-stop">Games it does not inherently stop</h3>
+<ul>
+<li>recording a false delivery or performance event;</li>
+<li>channel stuffing and side agreements;</li>
+<li>manipulating useful lives, reserves, probabilities or valuations;</li>
+<li>concealing related parties or controlling interests;</li>
+<li>structuring transactions to achieve a desired classification;</li>
+<li>corrupt approvals or shared private keys;</li>
+<li>controlling the oracle, administrator, upgrade key or permission set;</li>
+<li>keeping material activity outside the ledger.</li>
+</ul>
+<p>The games therefore move:</p>
+<blockquote>
+<p>from arithmetic and reconciliation toward classification, perimeter,
+assumptions, oracle truth and governance.</p>
+</blockquote>
+<p>That is still progress. It narrows the contest and makes many interventions
+traceable. It is not an automatic end to manipulation.</p>
+<h2 id="5-what-current-standards-and-systems-already-show">5. What current standards and systems already show</h2>
+<ul>
+<li>FASB's conceptual framework says accrual accounting records financial effects
+  in the periods in which transactions and other events occur and supplies
+  asset, liability and performance information not available from cash
+  receipts and outlays alone.</li>
+<li>SEC Inline XBRL already makes public-company statements and notes both human-
+  and machine-readable. It is a reporting taxonomy, not a transaction ledger.</li>
+<li>Treasury's USSGL supplies a uniform federal chart of accounts and transaction
+  guidance.</li>
+<li>Treasury's Governmentwide Spending Data Model supplies authoritative terms,
+  structures and validation rules for federal spending submissions.</li>
+<li>Treasury's grant-blockchain proof of concept reported improved
+  prime-to-subrecipient visibility, less reporting and possible control gains,
+  but did not process real payments and identified legal, governance,
+  infrastructure and legacy-system barriers.</li>
+<li>The JFMIP multi-agency follow-up found potential value in real-time shared
+  data, reduced reconciliation and auditor read-only nodes while stressing
+  cybersecurity, authority-to-operate, coordination and existing assurance
+  requirements.</li>
+</ul>
+<h2 id="6-bottom-line">6. Bottom line</h2>
+<p>The revolutionary change is not a new debit-credit rule. It is the possible
+separation of:</p>
+<ol>
+<li>the <strong>event</strong>;</li>
+<li>the <strong>rule applied to the event</strong>;</li>
+<li>the <strong>judgment added by a responsible party</strong>; and</li>
+<li>the <strong>view produced for a particular user</strong>.</li>
+</ol>
+<p>If those layers become reproducible and inspectable, accounting can become
+easier to operate without pretending that economic substance is simple.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

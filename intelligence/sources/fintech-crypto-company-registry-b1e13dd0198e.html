@@ -1,0 +1,370 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Fintech and crypto company registry · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Fintech and crypto company registry</h1><p class="deck">Source created: 2026-07-12 · Collection evidence cutoff: 2026-08-26</p><p><a href="fintech-crypto-company-registry-b1e13dd0198e.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><blockquote>
+<p><strong>The entity census + the five-layer rule (parent / licensed person / network / asset / customer). The field schema for future additions.</strong>
+<em>Verbatim as delivered. Audit + provenance: <a href="../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html">Private Monetary Stack — Source Documents</a>.</em></p>
+</blockquote>
+<h1 id="fintech-and-crypto-company-registry">Fintech and crypto company registry</h1>
+<p><strong>Status:</strong> working company census for the Freedom 250 monetary-infrastructure track<br />
+<strong>As of:</strong> 2026-07-11<br />
+<strong>Purpose:</strong> map the private firms trying to issue, route, record, custody, settle, tokenize, or govern the new monetary pipes</p>
+<hr />
+<h2 id="governing-rule">Governing rule</h2>
+<p>This registry does not treat a token ticker, protocol, foundation, software company, licensed financial institution, and customer-facing brand as the same entity.</p>
+<p>For every company family, keep five layers separate:</p>
+<ol>
+<li><strong>parent and capital layer</strong> — the company, foundation, consortium, shareholders, and material investors;</li>
+<li><strong>licensed legal person</strong> — the bank, trust company, broker-dealer, transfer agent, exchange, custodian, money transmitter, or stablecoin issuer that may lawfully act;</li>
+<li><strong>network and software layer</strong> — the ledger, protocol, messaging adapter, smart-contract system, validator set, or orchestration software;</li>
+<li><strong>asset and liability layer</strong> — the token, stablecoin, tokenized deposit, fund share, security entitlement, reserve asset, or settlement claim;</li>
+<li><strong>customer and contract layer</strong> — the branded interface, user agreement, custody terms, redemption promise, freeze/burn power, and bankruptcy treatment.</li>
+</ol>
+<p>The same branded product may cross several legal persons. The same company may occupy several functions. Record the role for each dated action rather than assigning one permanent label to the group.</p>
+<h2 id="iso-20022-rule">ISO 20022 rule</h2>
+<p>Do not call XRP, XLM, HBAR, ALGO, XDC, IOTA, QNT, or any other cryptocurrency an “ISO 20022-compliant coin.” The ISO 20022 Registration Authority says cryptocurrencies are not inherently ISO 20022 compliant, are not managed or registered by ISO 20022, and that there is no official ISO 20022 certification authority. A blockchain company, exchange, payment processor, gateway, or software product can implement ISO 20022 messages or connect its system to an ISO 20022-using community. That is an interoperability fact about the implementation—not a certification of the native token. <a href="https://www.iso20022.org/frequently-asked-questions">ISO 20022 FAQ</a></p>
+<p>Use one of these factual labels instead:</p>
+<ul>
+<li><strong>registered ISO 20022 message or repository role</strong>;</li>
+<li><strong>documented ISO 20022 messaging support</strong>;</li>
+<li><strong>documented integration with an ISO 20022 rail or institution</strong>;</li>
+<li><strong>company claim not independently confirmed</strong>;</li>
+<li><strong>community label only / unsupported as an ISO status</strong>.</li>
+</ul>
+<h2 id="functional-groups">Functional groups</h2>
+<h3 id="a-public-and-interoperability-networks-core-portraits">A. Public and interoperability networks — core portraits</h3>
+<table>
+<thead>
+<tr>
+<th>Company / ecosystem</th>
+<th>Entity distinction to preserve</th>
+<th>Main functions to test</th>
+<th>Initial priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ripple / XRP Ledger</td>
+<td>Ripple companies; Ripple National Trust Bank; Standard Custody; XRPL governance/validators; XRP; RLUSD</td>
+<td>cross-border payments, stablecoin issuance, custody, prime brokerage, treasury, public-chain asset layer</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Stellar Development Foundation / Stellar</td>
+<td>nonprofit foundation; network validators; XLM; third-party anchors and issuers</td>
+<td>payments, remittances, token issuance, public-chain asset layer, DTC connection</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Hedera / Hashgraph</td>
+<td>Hedera Council; Hedera Foundation; Hashgraph company/software; HBAR; issuers such as Wyoming FRNT</td>
+<td>governed public network, token service, identity, state stable token</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Algorand ecosystem</td>
+<td>Algorand Foundation; Algorand Technologies; validator/consensus layer; ALGO</td>
+<td>public-chain payments and tokenization</td>
+<td>Tier 2</td>
+</tr>
+<tr>
+<td>XDC Network</td>
+<td>foundation/company/operator roles; validators; XDC</td>
+<td>trade finance, tokenization, messaging adapters</td>
+<td>Tier 2</td>
+</tr>
+<tr>
+<td>IOTA ecosystem</td>
+<td>IOTA Foundation; network/governance; IOTA token</td>
+<td>public infrastructure, identity, trade/logistics, tokenization</td>
+<td>Tier 2</td>
+</tr>
+<tr>
+<td>Quant / Overledger</td>
+<td>Quant Network company; Overledger software; QNT utility role</td>
+<td>enterprise interoperability and gateway/orchestration</td>
+<td>Tier 2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-institutional-ledgers-and-wholesale-market-infrastructure-core-portraits">B. Institutional ledgers and wholesale-market infrastructure — core portraits</h3>
+<table>
+<thead>
+<tr>
+<th>Company / system</th>
+<th>Entity distinction to preserve</th>
+<th>Main functions to test</th>
+<th>Initial priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Digital Asset / Canton Network</td>
+<td>Digital Asset company; Canton Foundation; Global Synchronizer operators; Canton Coin; application providers</td>
+<td>privacy-preserving institutional ledger, synchronized markets, collateral and securities</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>R3 / Corda</td>
+<td>R3 company/owners; Corda software; operator-specific networks</td>
+<td>enterprise DLT, regulated asset and payment workflows</td>
+<td>Tier 2</td>
+</tr>
+<tr>
+<td>Chainlink</td>
+<td>Chainlink Labs; foundation/ecosystem; oracle operators; LINK</td>
+<td>data, proof of reserve, cross-chain messaging, workflow/orchestration</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Fnality International</td>
+<td>company; shareholder banks; national payment systems; settlement asset and central-bank account arrangements</td>
+<td>tokenized wholesale cash and DvP/PvP settlement</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Partior</td>
+<td>company; bank shareholders; network participants; settlement claims</td>
+<td>multi-bank wholesale clearing and settlement</td>
+<td>Tier 2</td>
+</tr>
+<tr>
+<td>Broadridge DLR</td>
+<td>Broadridge parent; DLR platform; participating banks and settlement agents</td>
+<td>repo workflow, tokenized collateral, intraday liquidity</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>J.P. Morgan Kinexys</td>
+<td>JPMorgan Chase entities; Kinexys brand/platform; JPM Coin or deposit-token liabilities</td>
+<td>bank-led payments, deposit tokens, programmable wholesale settlement</td>
+<td>Tier 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c-market-access-custody-issuance-and-tokenization-core-portraits">C. Market access, custody, issuance, and tokenization — core portraits</h3>
+<table>
+<thead>
+<tr>
+<th>Company / group</th>
+<th>Entity distinction to preserve</th>
+<th>Main functions to test</th>
+<th>Initial priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coinbase</td>
+<td>public parent; exchange/broker entities; Coinbase Custody; proposed national trust; Base; USDC economics</td>
+<td>exchange, custody, distribution, chain, payments, institutional access</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Kraken</td>
+<td>Payward parent/exchange; Kraken Financial SPDI; proposed national trust; limited Fed account; Ink/xStocks roles</td>
+<td>exchange, banking gate, custody, tokenized assets</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Circle</td>
+<td>public parent; stablecoin issuers; First National Digital Currency Bank/Circle National Trust; USDC/EURC; Arc</td>
+<td>stablecoin issuance, reserve management, custody, payment network</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Paxos</td>
+<td>parent; trust-bank entities; stablecoin issuers; partner-branded coins; custody/brokerage</td>
+<td>regulated issuance, tokenization, custody, settlement</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Securitize</td>
+<td>parent; broker-dealer, transfer agent, ATS, fund administration entities</td>
+<td>tokenized securities issuance, transfer agency, distribution, lifecycle control</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Ondo</td>
+<td>corporate/foundation/protocol layers; product issuers and custodians; tokenized-security platform</td>
+<td>tokenized Treasuries/stocks, distribution, cross-chain liquidity</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Fireblocks</td>
+<td>software company; wallet/custody control stack; network participants</td>
+<td>wallet policy, key orchestration, settlement connectivity</td>
+<td>Tier 2</td>
+</tr>
+<tr>
+<td>Anchorage Digital</td>
+<td>parent; Anchorage Digital Bank N.A.; custody and institutional platform entities</td>
+<td>federally chartered custody, staking, settlement and bank access</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>BitGo</td>
+<td>parent; state trust; national-bank conversion; custody and settlement entities</td>
+<td>qualified custody, stablecoin support, prime services</td>
+<td>Tier 1</td>
+</tr>
+<tr>
+<td>Zero Hash</td>
+<td>parent and regulated subsidiaries; proposed national trust; partner-facing embedded rails</td>
+<td>embedded crypto/stablecoin infrastructure, settlement and custody</td>
+<td>Tier 2</td>
+</tr>
+<tr>
+<td>Stripe / Bridge</td>
+<td>Stripe parent; Bridge entities; proposed Bridge National Trust Bank; Tempo links</td>
+<td>merchant payments, stablecoin orchestration, issuance infrastructure</td>
+<td>Tier 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="d-incumbent-orchestrators-and-the-expansion-ring">D. Incumbent orchestrators and the expansion ring</h3>
+<p>These bodies are required comparison points even when they are not crypto-native. They can absorb the new asset and keep the old gate.</p>
+<table>
+<thead>
+<tr>
+<th>Entity / company</th>
+<th>Why it belongs</th>
+<th>Status anchor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swift</td>
+<td>ISO 20022 Registration Authority, global messaging, tokenized-asset orchestration, blockchain shared ledger</td>
+<td>Its ledger moved from design to initial-use readiness in July 2026; 17 banks were preparing live pilots. <a href="https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure">Swift, 2026-07-09</a></td>
+</tr>
+<tr>
+<td>Visa</td>
+<td>card-network settlement, stablecoin settlement, multi-chain reach</td>
+<td>Visa said its stablecoin settlement pilot supported nine chains and reached a $7 billion annualized run rate in April 2026. <a href="https://investor.visa.com/news/news-details/2026/Visa-Accelerates-Stablecoin-Momentum-Adding-Five-Blockchains-for-Settlement/default.aspx">Visa, 2026-04-29</a></td>
+</tr>
+<tr>
+<td>Mastercard</td>
+<td>card-network settlement, Multi-Token Network, stablecoins and tokenized deposits</td>
+<td>Mastercard announced regulated-stablecoin settlement across multiple chains and a planned acquisition of BVNK in 2026. <a href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-expands-settlement-capabilities-to-include-stablecoin.html">Mastercard settlement</a>; <a href="https://www.mastercard.com/global/en/news-and-trends/press/2026/march/Mastercard-to-acquire-BVNK-to-connect-on-chain-payments-and-fiat-rails.html">BVNK acquisition</a></td>
+</tr>
+<tr>
+<td>Fiserv / FIUSD</td>
+<td>core-bank and merchant distribution, configurable stablecoin infrastructure</td>
+<td>Fiserv markets FIUSD as a bank- and merchant-facing stablecoin layer integrated into existing systems. <a href="https://www.fiserv.com/en/solutions/embedded-finance/fiusd-stablecoin.html">Fiserv FIUSD</a></td>
+</tr>
+<tr>
+<td>PayPal / PYUSD</td>
+<td>consumer wallet and merchant distribution; Paxos-issued liability</td>
+<td>PYUSD runs through PayPal/Venmo distribution while Paxos remains the issuer; the network/product and legal issuer must stay separate. <a href="https://developer.paypal.com/dev-center/pyusd/">PayPal PYUSD developer center</a></td>
+</tr>
+<tr>
+<td>SoFi / Galileo / SoFiUSD</td>
+<td>insured national bank issuer plus fintech distribution platform</td>
+<td>Mastercard described SoFiUSD as issued by SoFi Bank, N.A., with planned card-settlement and Galileo distribution uses. <a href="https://www.mastercard.com/sea/en/news-and-trends/press/2026/march/sofi-and-mastercard-partner-to-enable-sofiusd-settlement-across-.html">Mastercard and SoFi</a></td>
+</tr>
+<tr>
+<td>DTCC / DTC</td>
+<td>authoritative securities record, tokenization eligibility, collateral and clearing interface</td>
+<td>Reference utility; covered in the Clearing-House Transition records.</td>
+</tr>
+<tr>
+<td>The Clearing House</td>
+<td>bank-owned payment and tokenized-deposit coordination layer</td>
+<td>Reference utility; compare with Swift, Fnality, Kinexys, and public stablecoin rails.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="e-charter-and-surveillance-ring">E. Charter and surveillance ring</h3>
+<p>The company census must not stop at the best-known names. The OCC's public digital-asset application list showed a much wider 2026 queue, including World Liberty Trust Company, PAYO Digital Bank, zerohash national trust bank, Revolut Bank US, EDX Trust, Bastion Platforms National Trust Company, Lorum National Trust Bank, OpenReserve Bank, Agora National Trust Bank, Catena Trust Bank, Payward National Trust Company, and CBW Bank. <a href="https://www.occ.gov/topics/charters-and-licensing/digital-assets-licensing-applications/index-digital-assets-licensing-applications.html">OCC digital-asset licensing applications</a></p>
+<p>The broader approval record also includes or references Ripple National Trust Bank, First National Digital Currency Bank, Paxos Trust Company N.A., BitGo Bank &amp; Trust N.A., Fidelity Digital Assets N.A., Coinbase National Trust Company, National Digital Trust Company, Foris DAX National Trust Bank, Laser Digital National Trust Bank, Morgan Stanley Digital Trust N.A., and Connectia Trust N.A. <a href="https://www.occ.gov/topics/charters-and-licensing/interpretations-and-decisions/index-interpretations-and-decisions.html">OCC interpretations and decisions</a></p>
+<p>These entities form a surveillance ring because a charter application is not the same as an operating bank, a conditional approval is not final approval, and a trust charter is not deposit insurance or automatic Federal Reserve account access.</p>
+<h2 id="required-fields-for-each-full-portrait">Required fields for each full portrait</h2>
+<ul>
+<li>company family and brands;</li>
+<li>legal parent and material subsidiaries;</li>
+<li>nonprofit foundation, consortium, or governance council;</li>
+<li>licensed entity and regulator;</li>
+<li>charter/application/approval/consummation status;</li>
+<li>deposit insurance and central-bank-account status;</li>
+<li>native token, stablecoin, tokenized deposit, or settlement asset;</li>
+<li>reserve owner and reserve custodian;</li>
+<li>software/network and validator/operator control;</li>
+<li>issuance, mint, burn, freeze, pause, correction, and recovery powers;</li>
+<li>customer-property and bankruptcy posture;</li>
+<li>products and monetary function;</li>
+<li>production, limited production, pilot, test, announced, or proposed status;</li>
+<li>named banks, central banks, clearinghouses, depositories, card networks, asset managers, and government partners;</li>
+<li>acquisitions, investments, and key counterparties;</li>
+<li>dated action timeline;</li>
+<li>public/private seam;</li>
+<li>single points of failure and shared dependencies;</li>
+<li>source facts, company claims, inference, and speculation;</li>
+<li>confirmation markers, weakening markers, and open watches.</li>
+</ul>
+<h2 id="two-clocks">Two clocks</h2>
+<p>Each company should carry two clocks, adapted from the Judicial Money Map:</p>
+<ol>
+<li><strong>company build clock</strong> — incorporation/founding → product → partnership → pilot → production → acquisition or integration;</li>
+<li><strong>legal operating clock</strong> — application → conditional approval → final approval/consummation → account access → rule effective date → litigation or supervisory constraint.</li>
+</ol>
+<p>A press release can move the first clock while leaving the second untouched. A charter can move the legal clock while the advertised product remains unlaunched. Keep both.</p>
+<h2 id="status-vocabulary">Status vocabulary</h2>
+<ul>
+<li><strong>LIVE — PRODUCTION:</strong> real customer or institutional transactions are occurring.</li>
+<li><strong>LIVE — LIMITED:</strong> production exists but only for named participants, assets, chains, or windows.</li>
+<li><strong>PILOT / TEST:</strong> controlled transactions; do not call this adoption.</li>
+<li><strong>ANNOUNCED:</strong> a dated plan or target without a live service.</li>
+<li><strong>PROPOSED / APPLIED:</strong> an application or design request, not an approval.</li>
+<li><strong>CONDITIONAL APPROVAL:</strong> legal permission subject to conditions; not consummation.</li>
+<li><strong>FINAL / CONSUMMATED:</strong> the legal entity or authority is operative.</li>
+<li><strong>COMPANY CLAIM:</strong> not independently confirmed by a regulator or counterparty.</li>
+<li><strong>COMMUNITY CLAIM:</strong> unsupported marketing or social-media label.</li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

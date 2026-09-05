@@ -1,0 +1,569 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Education Grant Administration and Ledger Interlock — 2026-07-30 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Education Grant Administration and Ledger Interlock — 2026-07-30</h1><p class="deck">Source cutoff: 2026-07-30 · Collection evidence cutoff: 2026-08-26</p><p><a href="education-grant-administration-and-ledger-interlock-2026-07-30-acce8473e0aa.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="education-grant-administration-and-ledger-interlock-2026-07-30">Education Grant Administration and Ledger Interlock — 2026-07-30</h1>
+<h2 id="controlling-finding">Controlling finding</h2>
+<p>The education-grant transition is a concrete test of the accounting architecture
+described in this package.</p>
+<p>The evidenced change is not that Congress has generally repealed the education
+programs, converted them into unrestricted block grants, or transferred all
+legal authority out of the Department of Education (ED). The evidenced change
+is that ED has used Economy Act interagency agreements (IAAs) to place parts of
+grant administration, personnel, systems and payment operations at the
+Departments of Labor (DOL), Health and Human Services (HHS), Interior (DOI) and
+State while retaining specified statutory, policy, oversight or final-authority
+functions.</p>
+<p>That separates functions that a conventional agency-level report can compress:</p>
+<pre><code class="language-text">Congress and program statute
+  → ED appropriation and statutory responsibility
+  → Economy Act IAA
+  → Form 7600B obligation and/or IPAC interagency transfer
+  → servicing agency administration
+  → grant-management and payment system
+  → State, LEA, university or other recipient
+  → subrecipient, vendor, payroll or beneficiary use
+  → performance evidence
+  → audit finding, correction, debt or recovery
+</code></pre>
+<p>The architecture can reduce duplicate interfaces for recipients while
+increasing the importance of a joined government record. Without stable
+identifiers and explicit responsibility fields, the appropriation owner,
+ordering agency, servicing agency, award issuer, payment-system operator,
+recipient-facing official, performance reviewer and audit-resolution owner can
+appear to describe different transactions.</p>
+<h2 id="1-relationship-to-existing-observatory-research">1. Relationship to existing Observatory research</h2>
+<p>This note extends rather than replaces the July 28, 2026 package:</p>
+<p><code>Education/University Funding and Programmable Compliance 2026-07-28</code></p>
+<p>That package already established:</p>
+<ul>
+<li>a university is a multi-entity funding junction rather than one ledger
+  object;</li>
+<li>Title IV aid, research grants, State support, tax-exempt debt, clinical
+  revenue and donations use different legal paths and identifiers;</li>
+<li>Form 990, IPEDS, Single Audit, USAspending and agency payment systems operate
+  on different objects and clocks;</li>
+<li>Treasury and GAO built a permissioned research-grant blockchain prototype,
+  but it moved no real grant money and did not become policy or production;</li>
+<li>federal controls are moving toward recipient identity, award identity,
+  eligibility and payment-purpose evidence before disbursement.</li>
+</ul>
+<p>The new contribution is the <strong>interagency administration seam</strong>: the same
+legally authorized education program can now be owned, administered, paid,
+reported, audited and corrected through more than one federal entity or system.</p>
+<h2 id="2-what-changed-by-pathway">2. What changed, by pathway</h2>
+<p>Status words in this table are deliberately narrow. “Announced” is not
+“operating”; an IAA is not proof that every covered award has migrated.</p>
+<table>
+<thead>
+<tr>
+<th>Pathway</th>
+<th>Located operative object</th>
+<th>Administration and system state</th>
+<th>Authority retained by ED</th>
+<th>Evidence state at cutoff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Perkins V and WIOA Title II</td>
+<td>May 2025 ED-DOL workforce-development IAA and July 2025 implementation announcement</td>
+<td>DOL performs day-to-day administration; ED reported all grantees onboarded to GrantSolutions and PMS. The January 2026 K-12 fact sheet reports 1,627 payment requests totaling $575 million from 51 States and territories under this predecessor partnership.</td>
+<td>ED states it retains statutory responsibility, policy authority and oversight.</td>
+<td><strong>Operating, with quantified payment activity reported by ED</strong></td>
+</tr>
+<tr>
+<td>K-12 ESEA and related programs</td>
+<td>November 2025 ED-DOL IAA and official four-page fact sheet</td>
+<td>DOL is to provide grant-administration services for Title I Parts A-D, Title II-A, Title III-A, Title IV-A/B, rural programs, Impact Aid and listed competitive programs. ED says States will receive covered formula funds from DOL. Program-by-program migration timing remains an implementation question.</td>
+<td>ED maintains statutory responsibilities and oversight; statutory eligibility is stated to remain unchanged.</td>
+<td><strong>IAA established; servicing model specified; full program migration not demonstrated by one aggregate record</strong></td>
+</tr>
+<tr>
+<td>OPE postsecondary grants</td>
+<td>November 2025 ED-DOL IAA, January 2026 staff-detail announcement and official fact sheet</td>
+<td>ED Higher Education Programs staff began detail to DOL in the week of January 20. FY2025 and earlier awards use ED G5; FY2026 and later awards use DOL GrantSolutions and HHS PMS for drawdowns.</td>
+<td>ED retains responsibility, policy authority, civil-rights jurisdiction for ED statutes and oversight.</td>
+<td><strong>Implementation underway; award-cohort system split expressly documented</strong></td>
+</tr>
+<tr>
+<td>Native education</td>
+<td>November 2025 ED-DOI IAA and fact sheet</td>
+<td>DOI takes a greater role in elementary, secondary, higher, career-technical and vocational-rehabilitation program administration for Native students and Tribes.</td>
+<td>ED retains statutory responsibility and policymaking/oversight as described by the partnership.</td>
+<td><strong>IAA established; program implementation must be tested by award and system</strong></td>
+</tr>
+<tr>
+<td>CCAMPIS</td>
+<td>November 2025 ED-HHS partnership</td>
+<td>HHS is to manage existing competitions and technical assistance and integrate the program with HHS child-care grant expertise.</td>
+<td>The source describes ED oversight but does not support treating the Higher Education Act authority as repealed or transferred by statute.</td>
+<td><strong>Partnership established; transaction-level migration evidence not yet joined here</strong></td>
+</tr>
+<tr>
+<td>Family engagement and school support</td>
+<td>February 20, 2026 ED-HHS IAA, with July 23 addendum</td>
+<td>HHS supports monitoring, drawdown oversight, program administration, technology and new awards. ED transfers funding; IPAC may be used; quarterly reconciliation and written issue resolution are required.</td>
+<td>ED retains program leadership, internal-control monitoring, audit resolution, GPRA/Congress reporting, annual report review, certain State award operations and final statutory authority.</td>
+<td><strong>Executed IAA with unusually detailed funding, reconciliation and responsibility clauses</strong></td>
+</tr>
+<tr>
+<td>Foreign-language and international education</td>
+<td>November 2025 ED-State partnership</td>
+<td>State takes a greater role in Fulbright-Hays administration and related funding/data coordination.</td>
+<td>Program law and ED functions must be read from the operative agreement and award terms; the press release alone does not prove complete legal transfer.</td>
+<td><strong>Partnership announced; exact operating handoff requires program-level instruments</strong></td>
+</tr>
+<tr>
+<td>Workforce Pell</td>
+<td>Final rule effective July 1, 2026</td>
+<td>Expands Pell eligibility to qualifying short-term workforce programs. This is a Title IV student-aid change, not evidence that the OPE grant IAA moved Pell administration to DOL.</td>
+<td>ED/Federal Student Aid authority and Title IV systems remain the relevant starting point unless a separate operative instrument says otherwise.</td>
+<td><strong>Final program rule; separate from the grant-administration IAA path</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-the-most-revealing-documents">3. The most revealing documents</h2>
+<h3 id="a-opes-award-cohort-split">A. OPE's award-cohort split</h3>
+<p>The postsecondary fact sheet says the intended recipient experience is a single
+administering agency, but the actual system of record depends on the award's
+initial fiscal year:</p>
+<pre><code class="language-text">FY2025 or earlier award → ED G5
+FY2026 or later award   → DOL GrantSolutions + HHS Payment Management System
+</code></pre>
+<p>This is not described as duplicative reporting because each award cohort uses
+one path. It is still a major accounting fact: the same recipient and statutory
+program can have concurrent awards on two system stacks. Entity-level totals,
+draw histories, receivables, advances, closeout status and audit samples must
+retain the award vintage and source system.</p>
+<h3 id="b-the-ed-hhs-agreements-internal-federal-ledger">B. The ED-HHS agreement's internal federal ledger</h3>
+<p>The February 2026 ED-HHS agreement makes the hidden interagency layer visible:</p>
+<ul>
+<li>ED transfers appropriated amounts and carryover needed for the covered work;</li>
+<li>HHS performs reimbursable services and makes/administers new awards;</li>
+<li>ED initiates any agreed IPAC transfer as provider; HHS is receiver;</li>
+<li>the agencies reconcile revenue and expense balances at least quarterly;</li>
+<li>reconciliation issues must be written and their resolution documented within
+  30 calendar days;</li>
+<li>the umbrella IAA itself obligates no funds; individual Form 7600B orders do;</li>
+<li>ED may send lump sums for grants and contracts;</li>
+<li>personnel details are governed and paid under separate agreements;</li>
+<li>each agency remains responsible for liability arising from its own conduct.</li>
+</ul>
+<p>That is already a multi-party event model, even though it is not a blockchain.
+The federal accounting objects are not interchangeable:</p>
+<pre><code class="language-text">IAA authority
+≠ Form 7600B obligation
+≠ IPAC transfer
+≠ HHS revenue/expense recognition
+≠ recipient award
+≠ recipient cash draw
+≠ allowable expenditure
+≠ program outcome
+≠ audit resolution
+</code></pre>
+<h2 id="4-the-responsibility-matrix">4. The responsibility matrix</h2>
+<p>The accounting system should not force one agency label to carry every meaning.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Required responsible-party field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Program statute and policy</td>
+<td>statutory owner / policy authority</td>
+</tr>
+<tr>
+<td>Appropriation and budget execution</td>
+<td>Treasury account and budgetary owner</td>
+</tr>
+<tr>
+<td>Interagency ordering</td>
+<td>ordering agency and ordering official</td>
+</tr>
+<tr>
+<td>Servicing work</td>
+<td>servicing agency and program office</td>
+</tr>
+<tr>
+<td>Obligation</td>
+<td>obligating instrument, Form 7600B or award action and official</td>
+</tr>
+<tr>
+<td>Interagency settlement</td>
+<td>IPAC sender, receiver, amount, date and reference</td>
+</tr>
+<tr>
+<td>Recipient award</td>
+<td>awarding agency shown to recipient, FAIN, UEI and program</td>
+</tr>
+<tr>
+<td>Grant administration</td>
+<td>grants officer, system and award cohort</td>
+</tr>
+<tr>
+<td>Cash draw</td>
+<td>payment system, draw request, approval, release and settlement</td>
+</tr>
+<tr>
+<td>Program performance</td>
+<td>reporting recipient, reviewer and acceptance state</td>
+</tr>
+<tr>
+<td>Internal control</td>
+<td>control owner and operating evidence</td>
+</tr>
+<tr>
+<td>Civil rights / privacy</td>
+<td>enforcing office and protected-data authority</td>
+</tr>
+<tr>
+<td>Single Audit / finding</td>
+<td>cognizant or oversight agency and finding owner</td>
+</tr>
+<tr>
+<td>Corrective action / recovery</td>
+<td>decision authority, collector and superseded event</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-minimum-event-schema-for-an-education-grant">5. Minimum event schema for an education grant</h2>
+<p>The record should preserve one chronology without pretending all fields belong
+on a public chain.</p>
+<table>
+<thead>
+<tr>
+<th>Event class</th>
+<th>Minimum fields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>appropriation_authorized</code></td>
+<td>public law, program authority, Treasury account, period of availability, amount</td>
+</tr>
+<tr>
+<td><code>interagency_service_authorized</code></td>
+<td>IAA ID, Economy Act determination, ordering agency, servicing agency, scope, start/end, version</td>
+</tr>
+<tr>
+<td><code>interagency_order_obligated</code></td>
+<td>Form 7600B/order ID, appropriation, amount, purpose, obligating official</td>
+</tr>
+<tr>
+<td><code>ipac_transfer_posted</code></td>
+<td>IPAC reference, sender, receiver, amount, date, accounting treatment</td>
+</tr>
+<tr>
+<td><code>award_created_or_modified</code></td>
+<td>FAIN, assistance listing, UEI, recipient, award cohort, funding source, servicing agency, award terms</td>
+</tr>
+<tr>
+<td><code>draw_requested</code></td>
+<td>award ID, amount, purpose category, requester, source system, timestamp</td>
+</tr>
+<tr>
+<td><code>draw_approved_or_rejected</code></td>
+<td>decision, official/control, reason code, available balance, supersession link</td>
+</tr>
+<tr>
+<td><code>cash_settled</code></td>
+<td>Treasury/payment reference, settlement date, amount, receiving account token or protected reference</td>
+</tr>
+<tr>
+<td><code>downstream_commitment</code></td>
+<td>subaward/contract/payroll class, downstream UEI/vendor/employee token, amount, flow-down rule</td>
+</tr>
+<tr>
+<td><code>cost_incurred</code></td>
+<td>cost class, service period, source evidence, allowability rule version, related obligation</td>
+</tr>
+<tr>
+<td><code>performance_submitted</code></td>
+<td>metric, period, population, methodology, submitter, protected evidence reference</td>
+</tr>
+<tr>
+<td><code>performance_accepted_or_challenged</code></td>
+<td>reviewer, decision, exception, remediation clock</td>
+</tr>
+<tr>
+<td><code>audit_finding_opened</code></td>
+<td>audit/report ID, questioned cost, criteria, responsible entity, response due</td>
+</tr>
+<tr>
+<td><code>correction_or_recovery</code></td>
+<td>original event, corrected state, debt/return amount, authority, cash settlement, public explanation</td>
+</tr>
+</tbody>
+</table>
+<p>Every material amendment should append a superseding event. Silent overwrites
+destroy the chronology needed to decide which agency, rule, system and award
+state controlled at the time.</p>
+<h2 id="6-public-protected-and-restricted-layers">6. Public, protected and restricted layers</h2>
+<p>Education is a strong argument for a hybrid record, not for publishing student
+files.</p>
+<h3 id="public-transaction-and-authority-layer">Public transaction and authority layer</h3>
+<ul>
+<li>program and appropriation authority;</li>
+<li>ordering and servicing agencies;</li>
+<li>IAA and Form 7600B identifiers;</li>
+<li>award, recipient UEI and public FAIN;</li>
+<li>amount, purpose category, draw status and settlement date;</li>
+<li>program-level performance metrics and methodology;</li>
+<li>audit findings, questioned costs, corrections and recoveries;</li>
+<li>event hashes and supersession links.</li>
+</ul>
+<h3 id="protected-evidence-layer">Protected evidence layer</h3>
+<ul>
+<li>student-level eligibility and enrollment;</li>
+<li>FAFSA and tax-derived identity attributes;</li>
+<li>disability and individualized education records;</li>
+<li>grades, attendance and personally identifiable performance records;</li>
+<li>employee payroll and bank information;</li>
+<li>investigative leads and fraud models;</li>
+<li>commercially or security-sensitive vendor information.</li>
+</ul>
+<p>Public proof can show that a protected record existed, was signed by an
+authorized party, satisfied a named rule version and was later corrected,
+without publishing the underlying student data. FERPA and other program-specific
+privacy rules remain legal constraints; a hash is not a waiver of those rules.</p>
+<h2 id="7-what-smart-contracts-could-and-could-not-do-here">7. What smart contracts could and could not do here</h2>
+<h3 id="strong-automation-candidates">Strong automation candidates</h3>
+<ul>
+<li>reject a draw above the available award balance;</li>
+<li>route a request to the servicing agency while preserving ED as statutory
+  owner;</li>
+<li>require the applicable award cohort and payment-system identifier;</li>
+<li>enforce period-of-availability and matching requirements whose inputs are
+  objective;</li>
+<li>require a subaward flow-down event before release of a later tranche;</li>
+<li>open reconciliation exceptions when IPAC, award and payment totals diverge;</li>
+<li>carry the exact program-rule and award-term version used for a decision;</li>
+<li>publish a correction that points to, rather than erases, the original event.</li>
+</ul>
+<h3 id="judgment-and-evidence-that-remain-outside-the-code">Judgment and evidence that remain outside the code</h3>
+<ul>
+<li>whether a student, school or cost is legally eligible when facts are disputed;</li>
+<li>whether services were actually delivered or educational performance occurred;</li>
+<li>whether a cost is reasonable, allocable and adequately documented;</li>
+<li>whether a disability, privacy or civil-rights rule permits a particular use;</li>
+<li>whether a side agreement changes the economic substance;</li>
+<li>whether colluding parties submitted false but internally consistent evidence;</li>
+<li>whether an outcome measure is valid rather than merely computable;</li>
+<li>how final authority is exercised when ED and a servicing agency disagree.</li>
+</ul>
+<p>The code can execute the rule it was given. It cannot prove that the rule was
+lawful, the oracle was truthful, the entity perimeter was complete or the
+educational claim was real.</p>
+<h2 id="8-accounting-and-audit-consequences">8. Accounting and audit consequences</h2>
+<h3 id="reconciliation-may-move-rather-than-disappear">Reconciliation may move rather than disappear</h3>
+<p>The administration can simplify the grantee's interface while adding an
+ED-to-servicing-agency reconciliation. The ED-HHS agreement expressly requires
+quarterly balance reconciliation. A common event spine could make that
+reconciliation continuous, but only if the agencies share identifiers,
+definitions and correction rules.</p>
+<h3 id="award-vintage-becomes-a-control-field">Award vintage becomes a control field</h3>
+<p>For affected postsecondary grants, FY2025-and-earlier awards and FY2026-and-
+later awards occupy different stacks. An audit population that queries only G5
+or only GrantSolutions/PMS can be incomplete without appearing mathematically
+wrong.</p>
+<h3 id="the-legal-owner-and-operational-actor-must-remain-separable">The legal owner and operational actor must remain separable</h3>
+<p>Reporting a covered payment simply as “DOL education spending” can obscure ED's
+appropriation and statutory role. Reporting it only as “ED spending” can
+obscure which agency administered, approved and paid the award. Both identities
+belong in the event.</p>
+<h3 id="single-audit-does-not-close-the-whole-chain">Single Audit does not close the whole chain</h3>
+<p>A recipient audit can test compliance and selected major programs but does not
+by itself reconcile ED's appropriation, the interagency order, IPAC settlement,
+the servicing agency's award record, every downstream payment, protected
+student evidence and later federal recovery. The federal and recipient records
+need a join key.</p>
+<h2 id="9-claim-audit">9. Claim audit</h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Ruling</th>
+<th>Factual correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“The Department of Education has been abolished.”</td>
+<td><strong>False at cutoff</strong></td>
+<td>Only Congress can repeal the department's statutory existence. Functions and staff have been shifted, but ED remains a legal entity with retained duties.</td>
+</tr>
+<tr>
+<td>“Education funding was sent directly to States with no federal intermediary.”</td>
+<td><strong>Not generally supported</strong></td>
+<td>For covered K-12 programs ED says States will receive formula funds from DOL, while ED retains statutory responsibilities and DOL becomes the servicing federal agency.</td>
+</tr>
+<tr>
+<td>“The partnerships changed program eligibility.”</td>
+<td><strong>Not supported by the cited fact sheets</strong></td>
+<td>ED states statutory requirements and eligibility remain in effect; later rules or award terms must be assessed separately.</td>
+</tr>
+<tr>
+<td>“All education grants moved from G5 to PMS.”</td>
+<td><strong>False</strong></td>
+<td>The documented OPE transition is cohort-based: FY2025/prior awards remain in G5; FY2026/future awards use GrantSolutions and PMS. Pell/Title IV should not be swept into this grant list without a separate instrument.</td>
+</tr>
+<tr>
+<td>“The handoffs decentralize federal control.”</td>
+<td><strong>Mixed</strong></td>
+<td>They redistribute administration among federal agencies and may simplify recipient contact. ED retains enumerated policy, oversight and final-authority functions; shared federal systems may also centralize payment data.</td>
+</tr>
+<tr>
+<td>“The agreements are a blockchain program.”</td>
+<td><strong>False</strong></td>
+<td>The located agreements use conventional federal agreements, IPAC, GrantSolutions, G5 and PMS. They create a use case for joined event accounting but do not select DLT.</td>
+</tr>
+<tr>
+<td>“A public ledger should expose student transactions.”</td>
+<td><strong>Reject</strong></td>
+<td>Public authority, organization-level payment, correction and audit events can be disclosed while protected student evidence remains access-controlled.</td>
+</tr>
+<tr>
+<td>“A single payment-system total proves the whole transition is operating.”</td>
+<td><strong>False</strong></td>
+<td>The reported 1,627 requests/$575 million concerns the predecessor workforce partnership and cannot be imputed to every K-12, OPE, HHS, DOI or State program.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-watchboard">10. Watchboard</h2>
+<p>Promote the education-grant transition only on a new operative object or
+observed system consequence.</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Promotion object</th>
+<th>Exact question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ED/DOL K-12</td>
+<td>grantee notice, award document, system guide or first quantified payment set</td>
+<td>Which named ESEA programs have actually begun award and draw activity through DOL?</td>
+</tr>
+<tr>
+<td>ED/DOL OPE</td>
+<td>award notices and system records by fiscal-year cohort</td>
+<td>Do FY2026 awards consistently show DOL administration, GrantSolutions and PMS while preserving ED program authority?</td>
+</tr>
+<tr>
+<td>ED/HHS</td>
+<td>Form 7600B, IPAC/reconciliation evidence, award notice or annual report</td>
+<td>Can an ED appropriation be joined to the HHS interagency receipt, recipient award, draw and ED audit-resolution record?</td>
+</tr>
+<tr>
+<td>ED/DOI and ED/State</td>
+<td>operative IAAs, notices and system instructions</td>
+<td>Which programs, personnel, awards and payment systems have actually migrated?</td>
+</tr>
+<tr>
+<td>USAspending</td>
+<td>agency/program/award attribution changes</td>
+<td>Does public data identify both statutory/ordering and servicing agencies or collapse the relationship?</td>
+</tr>
+<tr>
+<td>Treasury/GSDM</td>
+<td>new interagency and award lineage fields</td>
+<td>Are IAA, Form 7600B, IPAC, FAIN, payment and correction IDs joined in the governmentwide model?</td>
+</tr>
+<tr>
+<td>FAC / Single Audit</td>
+<td>audit-guidance and cognizant-agency changes</td>
+<td>Who resolves findings for awards administered by a servicing agency under ED authority?</td>
+</tr>
+<tr>
+<td>Privacy</td>
+<td>FERPA/program guidance for cross-agency processing</td>
+<td>What is the lawful basis, access model, retention rule and correction procedure for protected education data shared with servicing agencies?</td>
+</tr>
+<tr>
+<td>Workforce Pell</td>
+<td>FSA implementation records</td>
+<td>Keep Title IV student-aid eligibility and disbursement separate from the OPE grant-administration migration unless an operative document joins them.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-bottom-line-for-the-accounting-transition-thesis">11. Bottom line for the accounting-transition thesis</h2>
+<p>Education grants expose why “one public ledger” cannot mean one undifferentiated
+table of payments.</p>
+<p>The useful object is a <strong>federated, append-only transaction record</strong> that keeps
+legal authority, budget ownership, servicing work, payment, protected evidence,
+performance, audit and correction distinct but joinable.</p>
+<p>This case strengthens the broader thesis:</p>
+<blockquote>
+<p>The revolutionary change is not replacing every accounting basis with cash.
+It is replacing repeated, lossy reconstruction with a common signed event
+history from which budgetary, proprietary, cash, compliance, performance and
+public-accountability views can be reproduced.</p>
+</blockquote>
+<h2 id="primary-sources">Primary sources</h2>
+<ul>
+<li><a href="https://www.ed.gov/about/news/press-release/us-department-of-education-announces-six-new-agency-partnerships-break-federal-bureaucracy">ED — Six new agency partnerships, November 18, 2025</a></li>
+<li><a href="https://www.ed.gov/about/news/press-release/us-department-of-education-and-us-department-of-labor-implement-workforce-development-partnership">ED-DOL — Workforce partnership implementation, July 15, 2025</a></li>
+<li><a href="https://www.ed.gov/about/news/press-release/us-department-of-education-and-us-department-of-labor-take-next-steps-implement-postsecondary-education-partnership">ED-DOL — Postsecondary implementation steps, January 15, 2026</a></li>
+<li><a href="https://www.ed.gov/media/document/fact-sheet-department-of-education-ed-and-department-of-labor-dol-elementary-and-secondary-education-partnership-112465.pdf">ED-DOL — Elementary and Secondary Education Partnership fact sheet</a></li>
+<li><a href="https://www.ed.gov/media/document/fact-sheet-department-of-education-ed-and-department-of-labor-dol-postsecondary-education-partnership-112464.pdf">ED-DOL — Postsecondary Education Partnership fact sheet</a></li>
+<li><a href="https://www.ed.gov/media/document/fact-sheet-department-of-education-ed-and-department-of-interior-doi-partnership-112463.pdf">ED-DOI — Indian Education Partnership fact sheet</a></li>
+<li><a href="https://www.ed.gov/media/document/interagency-agreement-ed-and-hhs-family-engagement-and-school-support-february-23-2026-113311.pdf">ED-HHS — Family Engagement and School Support IAA and July 23 addendum</a></li>
+<li><a href="https://www.ed.gov/about/news/press-release/us-department-of-education-announces-additional-partnerships-strengthen-coordination-individuals-disabilities-programs-bolster-civil-rights">ED — Four additional agency partnerships, June 16, 2026</a></li>
+<li><a href="https://fsapartners.ed.gov/knowledge-center/fsa-handbook/2025-2026/vol4/ch1-requesting-and-managing-title-iv-funds">Federal Student Aid — 2025–2026 Handbook, requesting and managing Title IV funds</a></li>
+<li><a href="https://www.ed.gov/about/news/press-release/us-department-of-education-issues-final-rule-create-new-workforce-pell-grant-program">ED — Workforce Pell final rule</a></li>
+<li><a href="https://fsapartners.ed.gov/knowledge-center/library/electronic-announcements/2026-06-04/effective-dates-workforce-pell-and-federal-pell-grant-ineligibility-provisions">Federal Student Aid — Workforce Pell effective dates</a></li>
+<li><a href="https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title31-section1535">31 U.S.C. § 1535 — Economy Act</a></li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

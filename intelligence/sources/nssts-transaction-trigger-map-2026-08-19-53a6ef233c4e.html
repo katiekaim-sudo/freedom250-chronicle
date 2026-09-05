@@ -1,0 +1,307 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>NSSTS Transaction, Failure and Return-to-Service Trigger Map · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>NSSTS Transaction, Failure and Return-to-Service Trigger Map</h1><p class="deck">Collection evidence cutoff: 2026-08-19</p><p><a href="nssts-transaction-trigger-map-2026-08-19-53a6ef233c4e.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="nssts-transaction-failure-and-return-to-service-trigger-map">NSSTS Transaction, Failure and Return-to-Service Trigger Map</h1>
+<p><strong>Evidence cutoff:</strong> 2026-08-19<br />
+<strong>Status:</strong> pending Workbench evidence; not vault doctrine<br />
+<strong>Scope:</strong> 31 cases across four trigger layers<br />
+<strong>Automatic monitoring:</strong> false</p>
+<h2 id="governing-finding">Governing finding</h2>
+<p>The next useful company search is not another capability sweep. It is a search
+for the instruments that appear when a planned facility becomes controlled
+land, a partner becomes a seller, a system becomes accepted, or a failed asset
+becomes eligible to return to service.</p>
+<pre><code class="language-text">announcement
+  -&gt; binding land / capital / utility instrument
+  -&gt; exact buyer and seller
+  -&gt; delivery and evidence custody
+  -&gt; permit / commissioning / claim / bond disposition
+  -&gt; owner, AHJ, regulator or contracting-officer decision
+  -&gt; accepted operation
+</code></pre>
+<p>The new registry adds <strong>31 cases across four trigger layers</strong>. It does not rank
+companies as likely award winners. It ranks the evidence objects that would
+allow a company to move from adjacent capability into a defensible target role.</p>
+<h2 id="1-arizona-the-hidden-object-is-site-control">1. Arizona: the hidden object is site control</h2>
+<p>NIST's public announcement remains unusually precise about what it does <em>not</em>
+establish: Natcast accepted a <strong>nonbinding</strong> letter of intent from ASU and the
+Arizona Commerce Authority, while the final site contract remained subject to
+diligence and negotiation. The $1.1 billion Natcast operating award funds the
+PPF capability; it does not itself execute a lease.</p>
+<p>The exact land chain is therefore pivotal:</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Public role</th>
+<th>What is still missing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arizona Board of Regents</td>
+<td>University-property controller and master lessor</td>
+<td>Parcel-specific disposition or delegated approval</td>
+</tr>
+<tr>
+<td>Arizona State University Research Park, Inc.</td>
+<td>Legally separate nonprofit component unit and master lessee through 2101</td>
+<td>PPF sublease/development instrument and improvement owner</td>
+</tr>
+<tr>
+<td>Natcast, Inc.</td>
+<td>Federally funded operator and prospective site counterparty</td>
+<td>Executed site contract</td>
+</tr>
+<tr>
+<td>Arizona State University</td>
+<td>Named construction, launch and operating partner</td>
+<td>Exact procurement and acceptance delegation</td>
+</tr>
+<tr>
+<td>Sunbelt Holdings</td>
+<td>Park asset manager</td>
+<td>Exact legal entity and PPF-specific scope</td>
+</tr>
+<tr>
+<td>SRP / Air Products / Southwest Gas</td>
+<td>Park-level utility presence</td>
+<td>Reserved PPF capacity and accepted service</td>
+</tr>
+</tbody>
+</table>
+<p>This creates a clean promotion sequence:</p>
+<ol>
+<li>legal description or parcel/APN;</li>
+<li>executed lease, sublease, development or facility-use agreement;</li>
+<li>named improvement owner and permitting authority;</li>
+<li>electric, gas, water and discharge commitments;</li>
+<li>design, construction and tool contracts;</li>
+<li>occupancy, tool SAT and qualified baseline-flow evidence.</li>
+</ol>
+<h3 id="same-campus-false-positives">Same-campus false positives</h3>
+<p>The Materials-to-Fab renovation is real and names <strong>JE Dunn Construction
+Company</strong> and <strong>Diamondback Design Group, LLC</strong>. The MTW partnership renovation
+is also real and names <strong>Applied Materials, Inc.</strong> in the approved scope. These
+are valuable delivery comparators, but neither project is the Natcast PPF. A
+shared campus cannot substitute for a target contract.</p>
+<h2 id="2-argonne-use-aurora-as-the-acceptance-standard">2. Argonne: use Aurora as the acceptance standard</h2>
+<p>The Genesis Center RFI closes on 2026-08-21 at 3:00 p.m. CDT. It asks about
+equipment, software, infrastructure, use, reserved capacity and private
+financing, but expressly creates no award commitment. Its category mirrors are
+distribution paths for one inquiry, not separate competitions.</p>
+<p>Aurora supplies the mature comparison:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Aurora public evidence</th>
+<th>Genesis Center public evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buyer</td>
+<td>UChicago Argonne, LLC under DOE M&amp;O</td>
+<td>Same procurement node is likely, but exact vehicle unannounced</td>
+</tr>
+<tr>
+<td>Seller</td>
+<td>Intel Federal LLC; Cray Inc. lower tier</td>
+<td>No Center seller disclosed</td>
+</tr>
+<tr>
+<td>Instrument</td>
+<td>CORAL2 Subcontract 8F-30005</td>
+<td>RFI only</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Exascale benchmark and operational reporting</td>
+<td>No accepted Center configuration</td>
+</tr>
+<tr>
+<td>Use</td>
+<td>Opened to users; more than 60 million first-year node-hours</td>
+<td>No Center user opening</td>
+</tr>
+<tr>
+<td>Closeout</td>
+<td>Project reported closed</td>
+<td>No system-level IOC or closeout</td>
+</tr>
+</tbody>
+</table>
+<p>This comparison changes the evidentiary bar. A collaboration announcement,
+active endpoint or GPU count may be important, but it is not equivalent to the
+Aurora chain.</p>
+<h3 id="current-commercial-shadows">Current commercial shadows</h3>
+<ul>
+<li><strong>World Wide Technology LLC</strong> is a named Minerva integration collaborator;
+  Minerva is active, but the Argonne order is not public.</li>
+<li><strong>SambaNova Systems, Inc.</strong> supplies the active Metis platform; its procurement
+  and enterprise AmSC acceptance records are not public.</li>
+<li><strong>Commonwealth Edison Company</strong> is the physical 138-kV service gatekeeper;
+  no Genesis load study, service upgrade or capacity reservation is public.</li>
+<li><strong>Oracle</strong> and <strong>NVIDIA</strong> are formal Solstice/Equinox partners; Argonne still
+  calls both systems early-stage, and the exact commercial affiliate, price,
+  commissioning criteria and IOC are not public.</li>
+</ul>
+<p>The Argonne M&amp;O clock also requires care. DOE's July 2026 public table lists
+2026-09-30 as the current and ultimate end date for DE-AC02-06CH11357. That live
+record supersedes older shorthand that treated the contract as already running
+to 2031; a successor or extension action must be captured separately.</p>
+<h2 id="3-the-acquisition-to-award-entity-clock-test">3. The acquisition-to-award entity-clock test</h2>
+<p>The strongest new calibration is the NIST silane-distribution purchase.</p>
+<ol>
+<li>CVD Equipment Corporation signed an asset sale for Stainless Design
+   Concepts on 2026-03-23.</li>
+<li><strong>Edwards Semiconductor Solutions LLC</strong> acquired the SDC business on
+   2026-04-01; Atlas Copco placed it in its Semiconductor Equipment division.</li>
+<li>NIST changed the intended source after the acquisition.</li>
+<li>NIST awarded Edwards Semiconductor Solutions LLC notice
+   <code>1333ND26PNB680185</code> on 2026-07-31 for $125,505.</li>
+</ol>
+<p>The business being purchased—ultra-high-purity gas delivery, gas cabinets,
+panels, valve manifold boxes and liquid chemical delivery—did not disappear,
+but the award-date legal seller changed. The case proves why a pre-award brand
+or market-research vendor cannot be copied into the final registry without an
+entity-clock check. It also requires keeping <strong>Edwards Semiconductor Solutions
+LLC</strong> separate from <strong>Edwards Vacuum LLC</strong>.</p>
+<p>Other 2026 NIST and federal orders—SkyWater CMOS wafers, a Teledyne in-vacuum
+EUV camera, a Laserspec mid-IR laser and a Xenturis cleanroom modification—show
+how an operating laboratory stack fragments into modest exact purchase orders.
+They are current delivery comparators, not Natcast assignments.</p>
+<h2 id="4-failure-reveals-a-second-company-map">4. Failure reveals a second company map</h2>
+<p>When a project slips, equipment fails or a contractor defaults, another supply
+chain becomes visible:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Representative companies</th>
+<th>Evidence produced</th>
+<th>Final decision remains with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insurance / loss prevention</td>
+<td>Factory Mutual Insurance Company; HSB</td>
+<td>Policy response, survey, inspection, cause and loss record</td>
+<td>Carrier under wording; court/arbitrator if disputed</td>
+</tr>
+<tr>
+<td>Claims / forensics</td>
+<td>Sedgwick Claims Management Services; EFI Global; Exponent</td>
+<td>Custody, origin/cause, remediation and quantum</td>
+<td>Carrier/self-insured owner/tribunal</td>
+</tr>
+<tr>
+<td>Surety completion</td>
+<td>Zurich American; F&D; Travelers Casualty and Surety</td>
+<td>Bond remedy, completion estimate and takeover agreement</td>
+<td>Owner or federal contracting officer</td>
+</tr>
+<tr>
+<td>Qualification</td>
+<td>NTS within Element Materials Technology</td>
+<td>Accredited test result and raw data</td>
+<td>Customer or government program</td>
+</tr>
+<tr>
+<td>Electrical recommissioning</td>
+<td>Electrical Reliability Services</td>
+<td>NETA and functional-performance dossier</td>
+<td>Owner switching authority, utility and AHJ</td>
+</tr>
+<tr>
+<td>Delay / prudence</td>
+<td>J.S. Held</td>
+<td>Critical-path, allocation and damage analysis</td>
+<td>Commission, owner, insurer or tribunal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="role-compression">Role compression</h3>
+<p>Several corporate families can occupy multiple steps. Sedgwick owns EFI
+Global; HSB combines equipment-breakdown expertise with inspection functions;
+FM combines insurance with loss-prevention engineering; Element owns NTS and a
+large testing network. This is a structural fact, not evidence of misconduct.
+It raises four concrete controls:</p>
+<ol>
+<li>identify the exact retaining and reporting entity;</li>
+<li>preserve raw data and joint evidence access;</li>
+<li>state who may perform destructive testing;</li>
+<li>name the independent owner/AHJ/regulator who authorizes return.</li>
+</ol>
+<h2 id="what-now-deserves-the-closest-watch">What now deserves the closest watch</h2>
+<ol>
+<li><strong>Executed PPF site-control instrument.</strong> This would resolve parcel,
+   counterparty, improvement owner and likely procurement/AHJ path.</li>
+<li><strong>Genesis RFI disposition after 2026-08-21.</strong> Watch for a respondent list,
+   solicitation, capacity agreement, private-finance vehicle or subcontract.</li>
+<li><strong>ComEd load/capacity object.</strong> A study or service agreement would be much
+   stronger than another computing partnership announcement.</li>
+<li><strong>Solstice/Equinox delivery and IOC dossier.</strong> Require exact affiliates,
+   configuration, utility boundary, security acceptance and user release.</li>
+<li><strong>PPF builder's-risk, performance bonds and commissioning contracts.</strong> These
+   can reveal the real construction team before a promotional announcement.</li>
+<li><strong>Any loss, default or delay record.</strong> The adjuster, surety, forensic expert
+   and recommissioning firm may expose the project's actual dependency chain.</li>
+</ol>
+<h2 id="sources">Sources</h2>
+<p>Primary sources are stored case by case in
+<code>NSSTS_TRANSACTION_TRIGGER_REGISTRY_2026-08-19.json</code>. The controlling public
+objects include NIST/ASU announcements, ABOR capital and lease reporting, DOE
+M&amp;O and Argonne procurement records, SAM.gov notices, SEC acquisition filings,
+state contracts, FAR/DEAR authorities, court records and official operator
+pages.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

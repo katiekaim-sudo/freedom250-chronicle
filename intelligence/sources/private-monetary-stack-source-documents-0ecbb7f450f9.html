@@ -1,0 +1,226 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Private Monetary Stack — Source Documents · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Private Monetary Stack — Source Documents</h1><p class="deck">Source created: 2026-07-12 · Source updated: 2026-09-01</p><p><a href="private-monetary-stack-source-documents-0ecbb7f450f9.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="private-monetary-stack-source-documents">Private Monetary Stack — Source Documents</h1>
+<blockquote>
+<p><strong>Provenance &amp; audit (Claude, 2026-07-12; SWIFT activation addendum 2026-07-21; Circle–IBM patent Waves 0–2, portfolio landscape and transfer-membership test, 2026-08-05; continuous-underwriting extension 2026-08-09; SEC transfer-agent-modernization extension 2026-09-01).</strong> Eight original company-layer documents, one canonical SWIFT activation dossier, five Circle–IBM source-first patent artifacts, one cross-sector lending source document and one transfer-agent rulemaking/control map. The suite maps the private firms and operator constitutions trying to issue, route, record, custody, settle, tokenize, lend through or govern the new monetary pipes.</p>
+<p><strong>Grade: high.</strong> The set is unusually disciplined. It carries its own correction ledger (<code>CLAIM_AUDIT</code>), refuses to collapse a brand into a legal person, and independently reinvents the vault's decree-vs-diary rule as <strong>two clocks</strong> — a <em>company build clock</em> (founding → product → pilot → production) and a <em>legal operating clock</em> (application → conditional approval → final approval → account access → rule effective date). A press release moves the first while the second sits still. That rule is now house doctrine for this corpus.</p>
+<p><strong>Verified independently by Claude, 2026-07-12:</strong> the audit's CA-08 (Fed research did <strong>not</strong> validate XRP/XLM/HBAR). Claude fetched the primary source — <em>Heraclius: A Byzantine Fault Tolerant Database System with Potential for Modern Payments Systems</em>, FEDS 2025-012, Feb 2025 — and read all fourteen pages. <strong>The paper does not mention Ripple, Stellar, XRP, XLM, or Hedera once.</strong> Its Prior Work section covers Project Hamilton, PArSEC, HotStuff, BFT-SMaRt and Bitcoin. The only "ripple" in the document is the phrase <em>"a serious ripple effect throughout the economy"</em> in the abstract. The audit is correct and the claim is dead. See the corrections applied in §3 below.</p>
+<p><strong>Flags (carry these):</strong>
+1. <strong>No incorporation dates for the orchestrator ring.</strong> The <code>PAYMENT_ORCHESTRATORS</code> annex supplies zero corporate founding dates (Swift, Visa, Mastercard, PayPal, SoFi Bank, M0, Brale, Cross River, Lead Bank) — only product-launch dates. Any Entity-Theory chart-casting on that ring needs a separate sourcing pass (state charters, SEC filings). <strong>Do not cast from this document.</strong>
+2. <strong>Company metrics are not audited totals.</strong> Visa's $7B annualized run rate, Canton's "$350B daily," Kinexys's "&gt;$3T processed," R3's "$17B tokenized," Ondo's "$370M TVL," Fireblocks' "2,400+ institutions" — all self-reported program metrics. The docs flag every one. Never promote them to fact.
+3. <strong>"Live" collapses five meanings</strong> (mainnet available / asset issued / one completed regulated transaction / pilot with real value / recurring production service). The <code>ISO_NETWORKS</code> annex is explicit about this. Use the status vocabulary in the Registry.
+4. <strong>XDC Foundation's legal transparency is an open gap</strong> the document itself flags — jurisdiction, incorporation number, directors, treasury all unstated.
+5. <strong>Cutoffs are document-specific.</strong> The original company suite ends 2026-07-11. The SWIFT activation dossier carries a 2026-07-21 cutoff. Do not silently project either snapshot forward.
+6. <strong>Continuous underwriting is not public-wallet lending.</strong> The 2026-08-09 extension distinguishes platform cash-flow underwriting, tokenized collateral, executed digital-currency loan controls, DLT loan records and still-unproven DLT-native enterprise credit.</p>
+</blockquote>
+<hr />
+<h2 id="1-the-canonical-suite-reading-order">1. The canonical suite (reading order)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Document</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="../sources/fintech-crypto-infrastructure-deep-dive-08df4391c59f.html">FINTECH_CRYPTO_INFRASTRUCTURE_DEEP_DIVE</a></td>
+<td><strong>Start here.</strong> The synthesis: the seven-layer stack, 12 findings, the five-phase transition sequence, 15 forward tells.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="../sources/fintech-crypto-company-registry-b1e13dd0198e.html">FINTECH_CRYPTO_COMPANY_REGISTRY</a></td>
+<td>The entity census. The <strong>five-layer rule</strong> (parent / licensed legal person / network / asset / customer) and the status vocabulary.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>FINTECH_CRYPTO_CLAIM_AUDIT</td>
+<td><strong>CA-01 → CA-18.</strong> The correction ledger. Read before carrying any private-rail claim into synthesis.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>FINTECH_CRYPTO_TRANSITION_TIMELINE</td>
+<td>The 2025–2027 factual spine — gate-changing events only — plus the 12-item watchboard.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>FINTECH_SWEEP_ISO_NETWORKS</td>
+<td>Ripple/XRPL, Stellar, Hedera, Algorand, XDC, IOTA, Quant.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>FINTECH_SWEEP_INSTITUTIONAL_RAILS</td>
+<td>Digital Asset/Canton, R3/Corda, Chainlink, Fnality, Partior, Broadridge DLR, Kinexys, Paxos.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>FINTECH_SWEEP_MARKET_ACCESS</td>
+<td>Coinbase, Kraken, Circle, Securitize, Ondo, Fireblocks, Anchorage, BitGo, Zero Hash, Stripe/Bridge. <strong>Holds the charter queue.</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td>FINTECH_SWEEP_PAYMENT_ORCHESTRATORS</td>
+<td>Swift, Visa, Mastercard/BVNK, Fiserv/FIUSD, PayPal/PYUSD, SoFi/SoFiUSD, M0, Brale, Cross River, Lead Bank.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="../sources/swift-ledger-activation-dossier-2026-07-21-43b4c82f3551.html">SWIFT_LEDGER_ACTIVATION_DOSSIER_2026-07-21</a></td>
+<td><strong>SWIFT addendum.</strong> Funded interbank commitments, four clocks, participant constitution, Belgian disclosure law, finality and stablecoin boundary.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Circle–IBM Blockchain Patent Portfolio — Disclosure Audit</td>
+<td><strong>Circle–IBM Wave 0.</strong> Buyer and seller SEC disclosure, assignment-record checks, Maximo boundary, and the Wave 1–5 recovery plan.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Circle–IBM Patent Universe — Wave 1 Recovery</td>
+<td><strong>Circle–IBM Wave 1, partial.</strong> Reproducible assignment API negative, ODP/PASDL access gate, SEC materiality and funding clocks, public candidate brackets, and Maximo/EAM seed register.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Circle–IBM Patent Claims — Wave 2 Taxonomy</td>
+<td><strong>Circle–IBM Wave 2, tranche 1.</strong> Independent-claim review of 13 U.S. records across Maximo/EAM, digital twins, transfer, privacy, audit, netting, HTLC, secure containers and key lifecycle.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Circle–IBM Patent Portfolio — Landscape and Cluster Map</td>
+<td><strong>Circle–IBM portfolio landscape.</strong> Broad and conservative official-USPTO brackets, provisional eight-cluster map, inventor programs, Circle architecture crosswalk and Maximo boundary.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Circle–IBM Transfer Membership Test — Maximo versus Financial Controls</td>
+<td><strong>Original-question return gate.</strong> Seven Maximo/EAM candidates versus five financial/security controls; no reviewed property has an indexed Circle assignment.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Continuous Underwriting and Programmable Credit — Source Document</td>
+<td><strong>Lending extension.</strong> Production platform cash-flow underwriting, tokenized secured finance, stablecoin funding, borrower-evidence clocks, GAAP/assurance boundary and exact DLT-native credit return gates.</td>
+</tr>
+<tr>
+<td>16</td>
+<td>SEC Transfer Agent Modernization — Source Document</td>
+<td><strong>Record/control extension.</strong> Proposed electronic and DLT master-securityholder-file rules, one accountable recordkeeping transfer agent, multichain reconciliation, company-chain firewalls and exact Federal Register/comment clocks.</td>
+</tr>
+</tbody>
+</table>
+<p>Files live in <code>02 - Research/Private Monetary Stack/</code>.</p>
+<h2 id="2-what-it-adds-to-the-vault-and-what-it-takes-away">2. What it adds to the vault — and what it takes away</h2>
+<p><strong>Adds:</strong> the <em>institutional interior</em>. The vault already carried the retail-facing names (RLUSD, Custodia, Mastercard, Securitize, Hedera, Paxos, Canton, Anchorage, Chainlink, BitGo). It barely carried the permissioned bank rails that actually settle the money — <strong>Fnality (2 mentions), Partior (2), Digital Asset (1), Broadridge (6), Fiserv (5)</strong>. That was the hole. It is now filled.</p>
+<p><strong>Takes away:</strong> the assumption that the private build is a <em>bypass</em>. See the derived reading — the incumbents are absorbing the new rails, and <strong>the Fed's gate has not opened for anyone.</strong></p>
+<h2 id="3-corrections-applied-to-the-vault-2026-07-12">3. Corrections applied to the vault (2026-07-12)</h2>
+<p>Katie's ruling: <em>"if we have official documentation from these primary sources overriding a tweet — let's correct."</em> Method — <strong>annotate, never delete.</strong> The bookmark's quoted text and title stay verbatim (a bookmark carrying a false claim is a true fact about what was being said, and it is evidence in the Information War). What changes is a <code>claim_status: disputed</code> frontmatter field plus a <strong>Correction</strong> block naming the primary source, so nothing downstream — the Subplot Map, global search, the story threads — can mistake the claim for fact.</p>
+<p>Three claim families corrected:</p>
+<ul>
+<li><strong>The "ISO 20022-compliant coin"</strong> — the ISO 20022 Registration Authority states cryptocurrencies are not inherently ISO 20022 compliant, are not managed or registered by ISO 20022, and that <strong>no ISO 20022 certification authority exists</strong>. (CA-01.)</li>
+<li><strong>"Fed research validated BFT for XRP, XLM, HBAR"</strong> — false; verified against FEDS 2025-012 in full. (CA-08.)</li>
+<li><strong>"DTCC chose Stellar" / "the record moves to a blockchain"</strong> — overstated. Stellar is one named chain in an explicitly multi-chain program targeting <strong>H1 2027</strong>; DTC/Cede &amp; Co. remain the authoritative record and XLM is not the settlement asset. (CA-02, CA-05, CA-11, CA-13.)</li>
+</ul>
+<p><strong>Note for future Claudes: the vault's <em>analysis</em> layer was already clean.</strong> <code>BRIEFING (ANNEX D) — The Interoperability Layer</code> treats ISO 20022 correctly as a messaging standard and explicitly flags the XRP-as-bridge thesis as <em>"strong in the vault's sources but motivated."</em> Past-Claude caught the selection bias. The leak was confined to bookmark <strong>titles</strong>, which read in the vault's own voice.</p>
+<hr />
+<p>Related: <a href="../sources/swift-ledger-activation-dossier-2026-07-21-43b4c82f3551.html">SWIFT_LEDGER_ACTIVATION_DOSSIER_2026-07-21</a> · 2026-07-12 - The Private Stack — Who Owns the Gates · <a href="../sources/judicial-money-map-source-document-d2f844afe3d8.html">Judicial Money Map — Source Document</a> · DTCC Timeline — Jan 2025 to Jul 2026 · <a href="../sources/2026-07-08-the-whole-money-story-a-full-corpus-reading-0b5b82bb67f1.html">2026-07-08 - The Whole Money Story — A Full-Corpus Reading</a></p>
+<h2 id="2026-08-05-circleibm-patent-extension">2026-08-05 Circle–IBM patent extension</h2>
+<p>Circle–IBM Blockchain Patent Portfolio — Disclosure Audit adds the buyer's
+$20 million / 13-year accounting record, IBM's aggregate-only seller record,
+dated USPTO assignment searches, and the Maximo legal-object boundary. It is a
+Wave 0 disclosure audit, not a reconstructed patent schedule.</p>
+<p>Circle–IBM Patent Universe — Wave 1 Recovery strengthens the named-party
+negative through the public Assignment Center API, records the authenticated
+ODP/PASDL bulk-data gate, and permits claim classification to begin on an
+explicitly candidate-only corpus. The transferred schedule is still unknown.</p>
+<p>Circle–IBM Patent Claims — Wave 2 Taxonomy shows why titles and keyword
+hits are insufficient: the tranche splits into independent blockchain claims,
+dependent-only blockchain, specification-only deployment language and
+Maximo/EAM adjacency without a blockchain limitation. Every property remains
+candidate-only until the Wave 1 transfer-proof gate fires.</p>
+<p>Circle–IBM Patent Portfolio — Landscape and Cluster Map supplies the
+controlling bigger picture: a 1,329-record broad discovery bracket, a
+401-grant exact-assignee/title corpus, eight provisional technical clusters and
+the finding that Maximo/EAM is a real but separate branch rather than the
+likely portfolio center.</p>
+<p>Circle–IBM Transfer Membership Test — Maximo versus Financial Controls
+returns to the original question. Every reviewed property still terminates
+publicly at IBM or an original co-assignee. Because both Maximo and financial
+controls fail the Circle-transfer test, Maximo membership remains unresolved,
+not disproved.</p>
+<h2 id="2026-07-31-transparency-extension">2026-07-31 transparency extension</h2>
+<p><a href="../sources/2026-07-31-the-visible-ledger-and-the-hidden-constitution-from-ca-3eb1a2bcb2e6.html">2026-07-31 - The Visible Ledger and the Hidden Constitution — From Cash to Stablecoins</a>
+reads the private stack against the historical cash, check, card and Apple Pay
+sequence. Its control rule is audience-specific: user, operator, authority and
+public visibility must be recorded separately. A public token ledger does not
+by itself disclose beneficial owners, reserve custody, direct-redemption
+eligibility, full conversion cost, legal finality or remedy.</p>
+<h2 id="2026-08-09-continuous-underwriting-extension">2026-08-09 continuous-underwriting extension</h2>
+<p>Continuous Underwriting and Programmable Credit — Source Document separates
+the parts of lending that are already continuous from the parts that remain
+projected. Square, Shopify and Stripe demonstrate production cash-flow
+underwriting inside controlled platform perimeters. Tokenized collateral,
+electronic loan records and filed digital-currency loan agreements demonstrate
+real DLT use in the secured-credit and servicing stack. No located primary
+record shows a regulated U.S. bank replacing ordinary commercial underwriting
+or enterprise-wide GAAP reporting with a stablecoin history or DLT ledger.</p>
+<p>The controlling constitution is <code>borrower + governed evidence + cash or
+collateral control + lender balance sheet + correction and enforcement</code>. The
+companion energy application begins at <a href="../sources/energy-infrastructure-read-first-2eb3c3598d3b.html">ENERGY INFRASTRUCTURE — READ FIRST</a>.</p>
+<h2 id="2026-09-01-transfer-agent-modernization-extension">2026-09-01 transfer-agent modernization extension</h2>
+<p>SEC Transfer Agent Modernization — Source Document adds the legal and
+operational record layer. The proposal permits multiple linked electronic
+systems, including blockchain/DLT components, while retaining one registered
+recordkeeping transfer agent responsible for each fungible issue. It connects
+the Ripple, Securitize, Wormhole and multichain research without converting
+investment, integration or interoperability into corporate control, transfer-
+agent status, legal title or XRP value capture.</p>
+<p>The Commission proposal is online; Federal Register publication, the exact
+comment close, final disposition, effectiveness and production use remain
+separate future clocks.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

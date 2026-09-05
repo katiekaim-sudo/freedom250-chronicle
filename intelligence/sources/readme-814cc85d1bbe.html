@@ -1,0 +1,434 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>NSSTS Technology-to-Company Map · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/science-to-capability.html#ambitions" class="" >What are the ambitions? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#scientific-work" class="" >What has to work together? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#physical-system" class="" >Where does the ambition meet the physical world? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#financing" class="" >Who pays for the buildout—and carries the risk? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#accepted-operation" class="" >What would count as success? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/companies-in-context.html#the-supporting-cast" class="" >Find the work behind the headline company <span class="meta">— What does this company actually do?</span></a><a href="../stories/companies-in-context.html#rights-and-obligations" class="" >Ask who holds the right—and the responsibility <span class="meta">— What does this company actually do?</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>NSSTS Technology-to-Company Map</h1><p class="deck">Collection evidence cutoff: 2026-08-19</p><p><a href="readme-814cc85d1bbe.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="nssts-technology-to-company-map">NSSTS Technology-to-Company Map</h1>
+<p><strong>Started:</strong> 2026-08-18<br />
+<strong>Evidence cutoff:</strong> 2026-08-19<br />
+<strong>Status:</strong> active workbench research; exposed in the Observatory Research Desk as Workbench evidence, not vault doctrine<br />
+<strong>Scope:</strong> forecast which private companies are positioned to supply, integrate, finance, operate or validate the capabilities implied by the National Security Science and Technology Strategy and its operative federal implementation lanes</p>
+<h2 id="who-gets-a-project-accepted">Who gets a project accepted?</h2>
+<p>A project moves through people and records as well as equipment. One company may supply a component, another create the test evidence, and an owner, regulator or contracting official make the final decision. These studies follow those separate roles from site and financing through delivery, testing and operation. Start with the question below. Each chapter keeps its own cases and evidence boundaries; a candidate, comparable project or certificate does not establish a target contract or accepted system.</p>
+<h3 id="choose-a-chapter">Choose a chapter</h3>
+<ol>
+<li><a href="../sources/nssts-pivotal-third-party-control-map-2026-08-19-f2425034901d.html">Who can advance or delay the project?</a> — The five kinds of control: formal gates, delegated work, acceptance evidence, advice and critical-path supply.</li>
+<li><a href="../sources/nssts-pivotal-third-party-sector-expansion-map-2026-08-19-4104df1f8b8d.html">Who sits behind the headline supplier?</a> — Specialist suppliers, operating environments and qualified evidence across technology sectors.</li>
+<li><a href="../sources/nssts-hidden-referee-and-decision-record-deep-dive-2026-08-19-51298d6f8101.html">Who creates and controls the evidence?</a> — Ownership, testing roles, raw-data custody and independent challenge.</li>
+<li><a href="../sources/nssts-hidden-acceptance-economy-map-2026-08-19-6f576d3133fc.html">Which commercial agreements are still missing?</a> — Downstream orders, installation, capital, permits and custody behind public announcements.</li>
+<li><a href="../sources/nssts-transaction-trigger-map-2026-08-19-53a6ef233c4e.html">What record changes the project's state?</a> — Land control, procurement, acceptance, failure and return-to-service instruments.</li>
+<li><a href="../sources/nssts-quantum-cryptographic-acceptance-map-2026-08-19-141341f745ad.html">How do quantum and cryptographic systems pass?</a> — The separate calibration, validation and authorization paths for quantum capability and cryptographic systems.</li>
+</ol>
+<p>This is a reading guide to the existing studies. Their original evidence dates, candidate states, case registries and limits remain in the chapters. Shared company names do not make their case counts additive.</p>
+<hr />
+<h2 id="research-history-and-original-package-documentation">Research history and original package documentation</h2>
+<p>The original package documentation follows intact, including its governing ruling, wave history, files and research boundaries.</p>
+<h1 id="nssts-technology-to-company-map_1">NSSTS Technology-to-Company Map</h1>
+<p><strong>Started:</strong> 2026-08-18<br />
+<strong>Evidence cutoff:</strong> 2026-08-19<br />
+<strong>Status:</strong> active workbench research; exposed in the Observatory Research Desk as Workbench evidence, not vault doctrine<br />
+<strong>Scope:</strong> forecast which private companies are positioned to supply, integrate, finance, operate or validate the capabilities implied by the National Security Science and Technology Strategy and its operative federal implementation lanes</p>
+<h2 id="governing-ruling">Governing ruling</h2>
+<p>This is a standalone research object. It is <strong>not</strong> part of the Federal Group
+and company candidates must not be rendered as children of federal entities.</p>
+<p>The map follows this chain:</p>
+<pre><code class="language-text">NSSTS CET family
+  -&gt; mission or use case
+  -&gt; required capability or bottleneck
+  -&gt; federal owner / program / facility
+  -&gt; acquisition, funding or collaboration path
+  -&gt; company role
+  -&gt; exact legal entity
+</code></pre>
+<p>The company edge may be confirmed, inferred or unresolved. Technical fit and
+acquisition proximity are graded separately so a famous or technically capable
+company is never silently presented as a likely awardee.</p>
+<h2 id="wave-1">Wave 1</h2>
+<p>Wave 1 covers the buildout layer most likely to make the rest of the strategy
+callable:</p>
+<ol>
+<li>AI models, secure cloud, high-performance computing and platform integration;</li>
+<li>semiconductors, accelerators, memory, advanced packaging and photonics;</li>
+<li>scientific data, identity, provenance, engineering software and digital twins;</li>
+<li>robotics, autonomous laboratories, instruments, test and measurement; and</li>
+<li>physical compute infrastructure, cooling, power coordination and facility modernization.</li>
+</ol>
+<h2 id="wave-2">Wave 2</h2>
+<p>Wave 2 resolves the physical industrial buildout into three additional lanes:</p>
+<ol>
+<li>energy systems, grid hardware, advanced fission and fusion infrastructure;</li>
+<li>critical-mineral processing, qualified materials and component supply chains;</li>
+<li>advanced manufacturing, industrial digital twins, robotics, metrology,
+   non-destructive evaluation and supplier qualification.</li>
+</ol>
+<p>The governing acceptance objects are energized and field-qualified equipment,
+licensed and fueled nuclear systems, origin-compliant material delivered to
+specification, and manufacturing processes or parts accepted by a transition
+user.</p>
+<h2 id="wave-3">Wave 3</h2>
+<p>Wave 3 adds three acceptance-gated national-security technology lanes:</p>
+<ol>
+<li>biotechnology, biosecurity and biomanufacturing;</li>
+<li>quantum computing, networking, sensing, atomic timing and resilient PNT;</li>
+<li>space launch and logistics, hypersonics, missile defense and advanced
+   sensing.</li>
+</ol>
+<p>Biotechnology ends at validated screening, scale, cGMP lots or mission and
+regulatory acceptance. Quantum and PNT end at government-reproduced benchmarks,
+quantitative field results or certified production. Space and hypersonics end
+at accepted delivery, checkout, landing, flight, lot or intercept—not at an
+award or launch announcement alone.</p>
+<h2 id="wave-4">Wave 4</h2>
+<p>Wave 4 closes the three remaining principal dedicated NSSTS technology lanes:</p>
+<ol>
+<li>communications and networking;</li>
+<li>directed energy;</li>
+<li>information management and cybersecurity.</li>
+</ol>
+<p>Communications ends at accepted on-orbit, field or recurring-service
+performance rather than design, production or demonstration alone. Directed
+energy ends at accepted live-target, endurance, integration and transition
+evidence rather than installation or field assessment. Cyber and information
+management end at a funded task, deployed workload, authorization and accepted
+operation rather than a vehicle, ceiling, agreement or policy signal.</p>
+<h2 id="cross-sector-dependency-phase">Cross-sector dependency phase</h2>
+<p>The completed twelve-sector sweep now supports a second analytical layer:</p>
+<ol>
+<li>16 normalized exact-entity recurrence nodes;</li>
+<li>15 verified, typed or supported shared rails;</li>
+<li>18 bounded propagation scenarios with warning indicators and recheck gates.</li>
+</ol>
+<p>This layer distinguishes a real shared capability from corporate portfolio
+adjacency, a verified shared rail from a recurring rail type, and a supported
+upstream/downstream cross-link from a named supplier contract. Reach is not a
+probability score, and no scenario is an investment recommendation.</p>
+<h2 id="priority-company-dossier-and-monitoring-phase">Priority-company dossier and monitoring phase</h2>
+<p>The cross-sector layer now feeds two governed operating views:</p>
+<ol>
+<li>12 exact-entity priority-company dossiers that preserve program roles,
+   ownership seams, maturity, adverse evidence, competitors and dated gates;</li>
+<li>33 bottleneck monitors covering all 15 shared rails and 18 propagation
+   scenarios, with explicit promotion, downgrade and expiry tests.</li>
+</ol>
+<p>The dossiers are not a ranking. They identify companies that recur at
+high-leverage integration, infrastructure, production or transition points.
+The monitoring registry is a durable return queue, not an active automation;
+<code>automatic_monitoring_active</code> remains <code>false</code> until separately authorized.</p>
+<h2 id="phase-5-program-facility-and-contender-layer">Phase 5 — program, facility and contender layer</h2>
+<p>Phase 5 reverses the company lens. Ten priority federal demand and acquisition
+objects now control the analysis, joined to 37 typed company positions, 13
+facility records and four historical calibration cases.</p>
+<p>The program chain is:</p>
+<pre><code class="language-text">federal demand
+  -&gt; program office and instrument
+  -&gt; public performer / contender field
+  -&gt; facility and capacity join
+  -&gt; eligibility, test and authorization gates
+  -&gt; accepted operation or production
+</code></pre>
+<p>This layer distinguishes an operating performer, production awardee, prototype
+awardee, R&amp;D awardee, design-pool member, supported candidate and discovery-only
+company. It also keeps a verified program site separate from a general company
+capability site. The PTS-G design-to-production sequence is the strongest
+current back-test: public evidence bounded five serious design teams but did not
+publish enough evaluation evidence to rank the two later production selectees
+without false precision.</p>
+<h2 id="hidden-supply-chain-and-naes-expansion">Hidden supply-chain and NAES expansion</h2>
+<p>The 2026-08-19 expansion adds 27 exact candidate or control nodes concentrated
+at the seams a headline-vendor map tends to miss: laboratory A/E and cooling,
+federal electrical construction, commissioning, grid control centers,
+transformer protection, scientific storage, modular biomanufacturing,
+advanced-packaging operation and additive-manufacturing qualification.</p>
+<p>NAES is resolved as an acceptance-and-operation membrane rather than an asset
+owner, utility, equipment OEM or general transmission builder. Its subsidiaries
+remain exact and separate: Olsson carries the active federal electrical and
+commissioning evidence; Gridforce carries the operating BA/TOP control-plane
+evidence; and Greenberry carries the DOE/NNSA qualified-facility evidence.</p>
+<p>The expansion also corrects two Phase 5 states. Natcast holds the final operator
+award for NAPMP piloting capabilities, planned for ASU Research Park in Tempe,
+while construction, tool installation and qualification remain open. The DBPC
+prototype is required to operate in Hawaii in an INDOPACOM-representative
+environment, but the selected team, exact site and operator remain undisclosed.</p>
+<h2 id="pivotal-third-party-control-phase">Pivotal third-party control phase</h2>
+<p>The third-party phase adds 30 entities or contracting-entity seams that may not
+win a headline technology or construction award but can still condition whether
+a project advances. The controlling objects are decision rights and acceptance
+records: large-load studies, lender engineering, environmental review,
+commissioning, certification, insurance, calibration, tool move-in, cooling
+chemistry, qualification and delegated operation.</p>
+<p>Five control types remain distinct: formal gates, delegated execution,
+acceptance evidence, advisory influence and critical-path supply. No public
+target award or engagement was found for any of the 30 at the cutoff. That is a
+negative public-record boundary, not proof of non-involvement; confidential
+interconnection work, subcontracts, insurer assignments and pre-award advisory
+engagements may remain undisclosed.</p>
+<h2 id="pivotal-third-party-sector-expansion">Pivotal third-party sector expansion</h2>
+<p>The sector-expansion phase adds 40 further exact candidates in four balanced
+waves: quantum/PNT; space, hypersonics and test ranges; communications and
+directed energy; and cyber/information assurance plus critical-minerals,
+nuclear and fusion control chains.</p>
+<p>The new controlling insight is that most candidates do not hold the final
+government decision. They operate the environment, preserve custody, or produce
+the calibrated evidence on which that decision depends. The expansion therefore
+keeps a formal gate separate from delegated execution, acceptance evidence,
+advisory influence and critical-path supply. It also corrects stale range and
+test-facility incumbency, including the replacement of RGNext on the East/West
+range rail and National Aerospace Solutions at AEDC.</p>
+<p>No public Science Strategy target assignment was found for the 40 candidates.
+PATH grades are relative to the Science Strategy target, not to an adjacent
+federal award or operating contract.</p>
+<h2 id="transaction-failure-and-return-to-service-phase">Transaction, failure and return-to-service phase</h2>
+<p>The 2026-08-19 transaction-trigger phase adds 31 cases across four layers:
+Natcast/ASU land and utility control, Argonne/Genesis commercial shadows,
+acquisition-to-award entity clocks, and insurance/surety/forensic/restart
+controls.</p>
+<p>The principal correction is that the planned Natcast PPF site remains publicly
+supported by a nonbinding LOI rather than an exposed final site contract. The
+land chain runs through ABOR and the legally separate Arizona State University
+Research Park, Inc.; Sunbelt Holdings is the park asset manager. Same-campus
+JE Dunn, Diamondback Design Group and Applied Materials projects remain
+comparators, not PPF assignments.</p>
+<p>Aurora supplies the mature Argonne acceptance comparison: an exact subcontract,
+seller and lower-tier entity, benchmark, user opening, delivered node-hours and
+project closeout. The Genesis Center RFI, Minerva/Metis operating systems and
+Solstice/Equinox partnership announcements stop at different earlier states.</p>
+<p>The phase also treats failure as a discovery surface. Insurers, adjusters,
+forensic engineers, sureties, laboratories and recommissioning firms produce
+different evidence and do not inherit one another's decision rights. Shared
+ownership is recorded as a structural independence question, not misconduct.</p>
+<h2 id="observatory-research-desk-preservation">Observatory Research Desk preservation</h2>
+<p>The Workbench package remains the editable authority. The Research Desk now
+catalogs this work under the stable ID <code>nssts-technology-company-map</code>, renders
+the principal Markdown syntheses in its reader and opens six Registry-backed
+interactive HTML projections in its visual viewer. On each Research Desk build,
+the HTML sources are copied into the Research Desk Assets directory with their
+source SHA-256 values recorded in the generated Research Desk data file.</p>
+<p>The saved visual set is:</p>
+<ol>
+<li>the complete twelve-sector technology-to-company map;</li>
+<li>the cross-sector dependency map;</li>
+<li>the priority-company dossier and bottleneck monitor;</li>
+<li>the program, facility and contender explorer;</li>
+<li>the compact program-to-acceptance overview; and</li>
+<li>the combined Science Strategy structural map joining the hidden supply,
+   pivotal-third-party, referee, acceptance-economy, transaction-trigger and
+   quantum/cryptographic layers.</li>
+</ol>
+<p>Editing or expanding a visual begins from this Workbench package and its
+builders, never from the Research Desk copy. The installed macOS app remains a
+separate frozen build until its governed rebuild and installation are explicitly
+authorized.</p>
+<h2 id="read-in-this-order">Read in this order</h2>
+<ol>
+<li><code>NSSTS_COMPANY_INFERENCE_CONSTITUTION_2026-08-18.md</code> — scoring, evidence, legal-entity and visual rules.</li>
+<li><code>NSSTS_WAVE_1_COMPANY_CAPABILITY_REGISTRY_2026-08-18.json</code> — canonical, time-versioned company and edge records.</li>
+<li><code>NSSTS_WAVE_1_AI_COMPUTE_SCIENTIFIC_INFRASTRUCTURE_MAP_2026-08-18.md</code> — human-readable research synthesis.</li>
+<li><code>NSSTS_WAVE_1_CLAIM_AUDIT_AND_WATCHBOARD_2026-08-18.md</code> — unsafe compressions, missing gates and promotion clocks.</li>
+<li><code>NSSTS_WAVE_2_ENERGY_MANUFACTURING_CRITICAL_MATERIALS_REGISTRY_2026-08-18.json</code> — 43 canonical Wave 2 company edges and 37 source objects.</li>
+<li><code>NSSTS_WAVE_2_ENERGY_MANUFACTURING_CRITICAL_MATERIALS_MAP_2026-08-18.md</code> — energy, materials and industrial-qualification synthesis.</li>
+<li><code>NSSTS_WAVE_2_CLAIM_AUDIT_AND_WATCHBOARD_2026-08-18.md</code> — Wave 2 disconfirmers, missing gates and return clocks.</li>
+<li><code>NSSTS_WAVE_3_BIOTECH_QUANTUM_SPACE_REGISTRY_2026-08-18.json</code> — 50 canonical Wave 3 company edges and 43 source objects.</li>
+<li><code>NSSTS_WAVE_3_BIOTECH_QUANTUM_SPACE_MAP_2026-08-18.md</code> — biotechnology, quantum/PNT and space/hypersonics synthesis.</li>
+<li><code>NSSTS_WAVE_3_CLAIM_AUDIT_AND_WATCHBOARD_2026-08-18.md</code> — Wave 3 claim firewall, adverse performance and return gates.</li>
+<li><code>NSSTS_WAVE_4_COMMUNICATIONS_DIRECTED_ENERGY_CYBER_REGISTRY_2026-08-18.json</code> — 57 canonical Wave 4 company edges and 87 source objects.</li>
+<li><code>NSSTS_WAVE_4_COMMUNICATIONS_DIRECTED_ENERGY_CYBER_MAP_2026-08-18.md</code> — communications, directed-energy and cybersecurity synthesis.</li>
+<li><code>NSSTS_WAVE_4_CLAIM_AUDIT_AND_WATCHBOARD_2026-08-18.md</code> — Wave 4 claim firewall, adverse evidence and dated return gates.</li>
+<li><code>NSSTS_CROSS_SECTOR_DEPENDENCY_REGISTRY_2026-08-18.json</code> — canonical recurrence, shared-rail and propagation-scenario records.</li>
+<li><code>NSSTS_CROSS_SECTOR_BOTTLENECK_AND_DEPENDENCY_MAP_2026-08-18.md</code> — human-readable cross-sector synthesis and exact-entity normalization rules.</li>
+<li><code>NSSTS_CROSS_SECTOR_DEPENDENCY_CLAIM_AUDIT_AND_WATCHBOARD_2026-08-18.md</code> — overclaim firewall, adverse states and dated bottleneck watches.</li>
+<li><code>NSSTS_PRIORITY_COMPANY_DOSSIER_REGISTRY_2026-08-18.json</code> — 12 exact-entity dossiers joined back to canonical company edges, rails, scenarios and dated evidence gates.</li>
+<li><code>NSSTS_PRIORITY_COMPANY_DOSSIERS_2026-08-18.md</code> — human-readable company-by-company synthesis and cross-dossier findings.</li>
+<li><code>NSSTS_BOTTLENECK_MONITORING_REGISTRY_2026-08-18.json</code> — 33 monitor records covering every shared rail and propagation scenario; automatic monitoring is off.</li>
+<li><code>NSSTS_BOTTLENECK_MONITORING_RUNBOOK_2026-08-18.md</code> — recheck cadence, official return surfaces, evidence promotion, downgrade, expiry and dossier joins.</li>
+<li><code>outputs/NSSTS Priority Company Dossiers and Bottleneck Monitor.html</code> — deterministic dossier and monitoring workbench generated from the canonical registries.</li>
+<li><code>NSSTS_PHASE_5_PROGRAM_DOSSIER_CONSTITUTION_2026-08-18.md</code> — controlling program, contender, facility, acquisition, eligibility and calibration rules.</li>
+<li><code>NSSTS_PRIORITY_PROGRAM_DOSSIER_REGISTRY_2026-08-18.json</code> — canonical ten-program registry with 37 company positions, 13 facilities and four calibration cases.</li>
+<li><code>NSSTS_PHASE_5_PROGRAM_FACILITY_CONTENDER_MAP_2026-08-18.md</code> — program-by-program synthesis, facility joins, acquisition gates, calibration rulings and return queue.</li>
+<li><code>outputs/NSSTS Program Acquisition Facility and Contender Explorer.html</code> — interactive program-centered explorer with program, facility and calibration views.</li>
+<li><code>outputs/NSSTS Cross-Sector Dependency Map.html</code> — deterministic dependency explorer generated from the cross-sector and Wave 1–4 registries.</li>
+<li><code>outputs/NSSTS Technology to Company Map.html</code> — deterministic combined company visual generated from all wave registries.</li>
+<li><code>outputs/NSSTS Program to Acceptance Overview.html</code> — compact selectable orientation visual preserved from the Phase 5 conversation view; the Phase 5 registry and full explorer remain authoritative.</li>
+<li><code>NSSTS_HIDDEN_SUPPLY_CHAIN_CANDIDATE_REGISTRY_2026-08-19.json</code> — canonical 27-node expansion with exact entities, corporate seams, FIT/PATH/EVID grades, missing gates and disconfirmers.</li>
+<li><code>NSSTS_HIDDEN_SUPPLY_CHAIN_AND_NAES_EXPANSION_2026-08-19.md</code> — synthesis of the NAES family, lab infrastructure, grid, Argonne, packaging, qualification and Hawaii biomanufacturing seams.</li>
+<li><code>NSSTS_HIDDEN_SUPPLY_CHAIN_CLAIM_AUDIT_AND_WATCHBOARD_2026-08-19.md</code> — overclaim firewall, exact-entity controls and manual return queue.</li>
+<li><code>validate_nssts_hidden_supply_chain.py</code> — registry governance, schema, grade, source and prose-join validator.</li>
+<li><code>NSSTS_PIVOTAL_THIRD_PARTY_CONTROL_REGISTRY_2026-08-19.json</code> — canonical 30-node map of companies that may condition finance, permitting, interconnection, certification, commissioning, qualification or operation without a public target award.</li>
+<li><code>NSSTS_PIVOTAL_THIRD_PARTY_CONTROL_MAP_2026-08-19.md</code> — decision-right-centered synthesis distinguishing formal gates, delegated execution, acceptance evidence, advisory influence and critical-path supply.</li>
+<li><code>NSSTS_PIVOTAL_THIRD_PARTY_CLAIM_AUDIT_AND_WATCHBOARD_2026-08-19.md</code> — no-award boundary, exact-entity controls and ranked evidence-return queue.</li>
+<li><code>validate_nssts_pivotal_third_parties.py</code> — candidate count, governance, control-type, grade, source and prose-join validator.</li>
+<li><code>NSSTS_PIVOTAL_THIRD_PARTY_SECTOR_EXPANSION_REGISTRY_2026-08-19.json</code> — canonical 40-node, four-wave extension into quantum/PNT, range/test infrastructure, communications/directed energy, assurance, minerals and nuclear/fusion control chains.</li>
+<li><code>NSSTS_PIVOTAL_THIRD_PARTY_SECTOR_EXPANSION_MAP_2026-08-19.md</code> — synthesis of the hidden operating environment, calibrated-evidence, delegated-review and government-decision architecture plus entity-clock corrections.</li>
+<li><code>NSSTS_PIVOTAL_THIRD_PARTY_SECTOR_EXPANSION_CLAIM_AUDIT_2026-08-19.md</code> — overclaim firewall, exact-entity controls, stale-name traps and manual return queue for all four waves.</li>
+<li><code>validate_nssts_pivotal_sector_expansion.py</code> — four-wave balance, candidate count, governance, grade, control-type, source and prose-join validator.</li>
+<li><code>NSSTS_HIDDEN_REFEREE_AND_DECISION_RECORD_DEEP_DIVE_REGISTRY_2026-08-19.json</code> — canonical 38-case deep dive across referee ownership, PNT test truth, range task-order shadows, critical-minerals QP networks and commercial-fusion downstream rails.</li>
+<li><code>NSSTS_HIDDEN_REFEREE_AND_DECISION_RECORD_DEEP_DIVE_2026-08-19.md</code> — synthesis of role compression, evidence custody, government decision rights, named range orders, missing technical referees and fusion custody/insurance/waste pathways.</li>
+<li><code>NSSTS_HIDDEN_REFEREE_AND_DECISION_RECORD_CLAIM_AUDIT_2026-08-19.md</code> — overclaim firewall, exact-entity rulings, adverse record and manual promotion queue.</li>
+<li><code>validate_nssts_hidden_referee_deep_dive.py</code> — five-wave count, governance, role-seam, grade, source and prose-join validator.</li>
+<li><code>NSSTS_HIDDEN_ACCEPTANCE_ECONOMY_REGISTRY_2026-08-19.json</code> — canonical 50-case registry covering target subcontract shadows, semiconductor facility acceptance, commercial custody/calibration/logistics controls and capital/failure decision support.</li>
+<li><code>NSSTS_HIDDEN_ACCEPTANCE_ECONOMY_MAP_2026-08-19.md</code> — synthesis of the public-record-to-commercial-instrument gap, CHIPS support layer, ASU permit architecture, acceptance-control stack, LPO adviser constellations and recommissioning path.</li>
+<li><code>NSSTS_HIDDEN_ACCEPTANCE_ECONOMY_CLAIM_AUDIT_2026-08-19.md</code> — claim firewall, entity-clock rulings, independence tests and ranked manual return board for target instruments and dispositions.</li>
+<li><code>validate_nssts_hidden_acceptance_economy.py</code> — four-layer count, governance, exact-entity, grade, source and prose-join validator.</li>
+<li><code>NSSTS_TRANSACTION_TRIGGER_REGISTRY_2026-08-19.json</code> — canonical 31-case registry following site-control, procurement, acquisition, insurance, surety, forensic, qualification and restart instruments.</li>
+<li><code>NSSTS_TRANSACTION_TRIGGER_MAP_2026-08-19.md</code> — synthesis of the unresolved Natcast land chain, Aurora acceptance standard, acquisition-to-award entity clock and post-failure company map.</li>
+<li><code>NSSTS_TRANSACTION_TRIGGER_CLAIM_AUDIT_2026-08-19.md</code> — claim firewall, exact-entity rulings, decision-right matrix and manual return board.</li>
+<li><code>validate_nssts_transaction_triggers.py</code> — four-layer count, governance, exact-entity, source, grade and prose-join validator.</li>
+<li><code>NSSTS_QUANTUM_CRYPTOGRAPHIC_ACCEPTANCE_REGISTRY_2026-08-19.json</code> — canonical 40-case registry mapping quantum calibration, components, V&amp;V and manufacturing alongside PQC inventory, algorithm, module, PKI and authorization chains.</li>
+<li><code>NSSTS_QUANTUM_CRYPTOGRAPHIC_ACCEPTANCE_MAP_2026-08-19.md</code> — human-readable synthesis of the hidden quantum bill of materials, scarce validation economy, Genesis operating trust rails and firm public PQC no-join.</li>
+<li><code>NSSTS_QUANTUM_CRYPTOGRAPHIC_ACCEPTANCE_CLAIM_AUDIT_2026-08-19.md</code> — claim firewall, exact-entity rulings, decision-right matrix and manual clocks from QBI IV&amp;V through CMVP and agency ATO.</li>
+<li><code>validate_nssts_quantum_crypto_acceptance.py</code> — forty-case, four-wave governance, grade, source, evidence-authority and prose-join validator.</li>
+<li><code>outputs/NSSTS Science Strategy Structural Map.html</code> — combined selectable map of eight program corridors from federal signal through site/vehicle, hidden delivery, evidence/referee, decision authority and accepted operation or restart.</li>
+</ol>
+<p>The generated views preserve each time-versioned source registry and keep the
+cross-sector inference layer separate from the canonical company edges. The
+dossier view likewise preserves exact company identity and keeps a monitoring
+trigger distinct from proof that an award, acceptance or supplier relationship
+exists.</p>
+<h2 id="the-newly-visible-official-layer">The newly visible official layer</h2>
+<p>The public record is already richer than a simple speculative field map:</p>
+<ul>
+<li>DOE now identifies an official Genesis Mission Consortium and technical
+  working groups for models, data, HPC/cloud, robotics and workforce.</li>
+<li>DOE reported more than $800 million in partner commitments, but the public
+  aggregate mixes compute, credits, models, infrastructure, expertise,
+  partnerships and direct funding. It is not a company-by-company award ledger.</li>
+<li>The consortium member page names private-sector participants and describes
+  proposed or contributed roles. Membership is a formal position signal, not a
+  procurement award.</li>
+<li>DOE selected 278 Genesis RFA projects for award negotiations, including 19
+  company-led selections and 157 participating companies. Selection for
+  negotiation is not an issued award or obligation.</li>
+<li>NNSA's AWS Secret/Restricted Data environment houses inaugural Genesis
+  workloads. That is an operating relationship, while the public notice still
+  omits the full contract and security architecture.</li>
+<li>Argonne's National Genesis Mission Supercomputing Center of Innovation RFI is
+  market research for infrastructure, software, services, testbeds and private
+  financing. It is not a solicitation or award.</li>
+<li>Direct DLA magnet orders, AFRL contracts, America Makes selections, DPA
+  capacity awards, HALEU task orders and advanced-reactor permits now expose a
+  concrete industrial field beyond official partnership rosters.</li>
+<li>Federal AI-campus announcements still do not identify turbine or cooling
+  OEMs. Those supplier edges remain unresolved.</li>
+<li>SMART USA is a closed historical path: Commerce terminated the award and
+  withdrew federal funding.</li>
+<li>DBIMP planning awards, quantum CHIPS letters of intent and QBI Stage B
+  selections expose important candidates but remain pre-build, pre-final-award
+  or pre-validation objects.</li>
+<li>Space and hypersonic lanes contain dense live awards and tests, while launch,
+  landing, reusable flight and production award remain distinct from operational
+  acceptance.</li>
+<li>Protected SATCOM and space networking expose direct production and prototype
+  orders, while launch, checkout, accepted service and recurring operations
+  remain future objects for most new systems.</li>
+<li>Directed-energy JLWS awards establish a live 150-to-500-kW prototype race,
+  but GAO transition warnings and the absence of a public unclassified program
+  of record prevent demonstration or installation from becoming production.</li>
+<li>Cyber and information-management lanes contain operating zero-trust, cloud,
+  data and training incumbents alongside prototype, vehicle and policy signals;
+  task, obligation, ATO and acceptance remain separate.</li>
+</ul>
+<p>These distinct objects create a useful evidence ladder:</p>
+<pre><code class="language-text">general capability
+  -&gt; consortium membership / stated contribution
+  -&gt; named RFA team or selection for negotiation
+  -&gt; operative agreement or award
+  -&gt; delivered and accepted capability
+  -&gt; production use at a named mission or facility
+</code></pre>
+<h2 id="quantum-and-cryptographic-acceptance-phase">Quantum and cryptographic acceptance phase</h2>
+<p>The new acceptance phase follows two different but structurally parallel chains:</p>
+<pre><code class="language-text">quantum component -&gt; traceable measurement -&gt; government V&amp;V
+                  -&gt; manufacturing instrument -&gt; accepted system
+
+PQC implementation -&gt; CAVP -&gt; entropy -&gt; accredited laboratory
+                   -&gt; CMVP / FIPS 140-3 -&gt; product mapping
+                   -&gt; interoperability -&gt; ATO -&gt; production custody
+</code></pre>
+<p>It adds the companies that create calibration, component, module-test, PKI and
+authorization evidence without incorrectly treating those evidence producers as
+the final government decision authority. Its strongest hidden nodes are Rydberg
+Technologies' Quantum Calibration Lab, SRI's Quantum Manufacturing Engineering
+Center, the cryogenic and photonic component cohort, Entrust and WidePoint's
+federal PKI positions, Crypto4A and SafeLogic's validation transitions, and the
+finite NVLAP cryptographic-testing laboratory base.</p>
+<p>The phase also preserves a firm public-record no-join: Globus and AWS have
+operating Genesis relationships, but no public Genesis-specific PQC
+configuration, CBOM, certificate profile, HSM/KMS mapping or ATO evidence was
+located as of August 19, 2026.</p>
+<h2 id="parent-joins">Parent joins</h2>
+<ul>
+<li><a href="../sources/national-security-science-and-technology-strategy-2026-e86541703238.html"><code>../NATIONAL_SECURITY_SCIENCE_AND_TECHNOLOGY_STRATEGY_2026.md</code></a> supplies the CET and strategy layer; it names no companies or procurements.</li>
+<li><code>../NSSTS_MEMBRANE_MAP_2026-08-17.md</code> supplies research-security, ownership, capital and eligibility gates.</li>
+<li><a href="../sources/readme-243d6cdfb65e.html"><code>../Scientific Trust Stack 2026-08-17/README.md</code></a> supplies identity, authorization, provenance, capital and remedy layers.</li>
+<li><code>../../Fintech and Private Rails/Federal Cryptographic Trust Stack 2026-08-11/GENESIS_IDENTITY_PROVENANCE_PQC_BRIDGE_2026-08-11.md</code> supplies the operating Globus/ModCon/AWS baseline and the PQC boundary.</li>
+<li>Military Modernization supplies JWCC, classified-AI and defense acquisition adjacency without converting defense access into a DOE/Genesis award.</li>
+<li>Sovereign Compute and inbound-capex packages supply land, power, data-center and financing objects without converting announced capacity into federal use.</li>
+</ul>
+<h2 id="primary-entry-points">Primary entry points</h2>
+<ul>
+<li><a href="https://www.energy.gov/undersecretaryforscience/genesis-mission/genesis-mission">DOE — Genesis Mission</a></li>
+<li><a href="https://www.energy.gov/undersecretaryforscience/genesis-mission/genesis-mission-collaboration">DOE — Genesis Mission Collaboration</a></li>
+<li><a href="https://genesismissionconsortium.org/our-members">Genesis Mission Consortium — members</a></li>
+<li><a href="https://www.energy.gov/undersecretaryforscience/articles/us-department-energy-announces-more-800-million-partner">DOE — more than $800 million in partner commitments</a></li>
+<li><a href="https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate">DOE — first Genesis RFA selections</a></li>
+<li><a href="https://science.osti.gov/-/media/funding/pdf/Awards-Lists/2026/GM-RFA-Awards-List.pdf">DOE Office of Science — Genesis RFA selection list</a></li>
+<li><a href="https://www.energy.gov/undersecretaryforscience/genesis-mission/american-science-and-security-platform">DOE — American Science and Security Platform</a></li>
+<li><a href="https://www.energy.gov/documents/infrastructure-team-fact-sheet">DOE — Genesis Infrastructure Team</a></li>
+<li><a href="https://www.energy.gov/nnsa/articles/nnsa-launches-secretrestricted-data-enterprise-cloud-environment-collaboration-amazon">NNSA — AWS Secret/Restricted Data environment</a></li>
+<li><a href="https://sam.gov/opp/e526498e24924e268dfc64c44d243276/view">SAM.gov — Argonne Genesis supercomputing-center RFI, current action</a></li>
+<li><a href="https://www.nist.gov/chips/research-development-programs/national-advanced-packaging-manufacturing-program">NIST — National Advanced Packaging Manufacturing Program</a></li>
+</ul>
+<h2 id="promotion-boundary">Promotion boundary</h2>
+<p>This package is retrievable in the Observatory Research Desk as explicitly
+labeled <strong>Workbench evidence</strong>. That projection does not make it vault canon,
+an Observatory tab, a Federal Group overlay or an investment recommendation.</p>
+<h3 id="return-governance-reconciliation-2026-08-27">Return-governance reconciliation — 2026-08-27</h3>
+<p>All 33 bottleneck-monitor records are <code>package_context_only</code>. Their
+<code>next_check</code> values route manual review inside this package; they do not create
+Return Ledger rows, canonical watches or active automation, and they do not
+advance the 2026-08-19 Catalog evidence cutoff.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

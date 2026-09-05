@@ -1,0 +1,447 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>District Fed technology and operating-foundation refresh — August 29, 2026 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>District Fed technology and operating-foundation refresh — August 29, 2026</h1><p class="deck">Collection evidence cutoff: 2026-08-29</p><p><a href="district-fed-technology-and-operating-foundation-refresh-2026-08--26de24a480da.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="district-fed-technology-and-operating-foundation-refresh-august-29-2026">District Fed technology and operating-foundation refresh — August 29, 2026</h1>
+<p><strong>Status:</strong> pending workbench research; complete for human review; admitted as
+supporting evidence under Research Desk object <code>fed-clearing-treasury</code>; not
+promoted to the vault, Observatory, wrapper, or installed app</p>
+<p><strong>Prepared:</strong> 2026-08-29 ET</p>
+<p><strong>Delta window:</strong> 2026-08-15 18:55 EDT exclusive through public reachability on
+2026-08-29 America/New_York</p>
+<p><strong>Baseline:</strong> <code>FEDERAL_RESERVE_BANKS_REENTRY_DELTA_2026-08-15.md</code>,
+<code>RICHMOND_NATIONAL_IT_GOVERNANCE_AND_CONTROL_RACI_2026-08-15.md</code>, and the
+August 1 twelve-Bank/FRFS operating-constitution RACI</p>
+<p><strong>Question:</strong> What has changed in the technological and operating foundations of
+the twelve Reserve Banks, and what does the current structure imply for a dollar
+system whose private clearing and token routes are expanding?</p>
+<h2 id="short-answer">Short answer</h2>
+<p>The operating constitution survives the refresh.</p>
+<p>The Federal Reserve is becoming <strong>more centralized inside while it faces the
+possibility of becoming less central outside</strong>.</p>
+<p>Inside the System, the twelve Banks remain separate legal corporations, but
+payments, information technology, AI, accounting, procurement, and other shared
+operations are moving toward common standards, single-System platforms, and
+specialized contractor-Bank control. The public record establishes a
+presidents-led FRFS enterprise, a Payments Committee and Chief Payments
+Executive, ITOC technology governance, and Richmond-hosted National IT under
+Board/RBOPS oversight. It does not disclose the full decision rules, service
+agreements, vendor register, application RACI, chargebacks, or incident chain.</p>
+<p>Outside the System, stablecoins, tokenized deposits, private clearinghouses,
+longer-hour market utilities, and programmable collateral can carry dollar
+claims without making the Federal Reserve the visible route for every transfer.
+The district Banks are not responding by building twelve separate replacements.
+They are consolidating their own machinery into a national operating system.</p>
+<p>The fresh August 15–29 window produced <strong>no new constitutional transfer</strong> and
+only a few bounded state changes:</p>
+<ol>
+<li>FRFS moved a planned Fedwire Funds standards release from November 2026 to
+   November 2027 after Swift changed its own schedule.</li>
+<li>The New York Fed added Morgan Stanley Private Bank, N.A. to the reverse-repo
+   counterparty list, effective August 21, subject to legal, operational, and
+   technical setup before actual trading.</li>
+<li>Boston installed a new general counsel and Executive Committee member,
+   effective August 19.</li>
+<li>Philadelphia announced a new research director and Executive Leadership Team
+   member on August 21, effective November 1.</li>
+</ol>
+<p>Jackson Hole, Richmond's new FedNow analysis, Dallas's tokenized-deposit paper,
+and the other district AI and payments publications are research or public
+position objects. They do not establish a pilot, rail change, or control
+transfer.</p>
+<h2 id="1-the-foundation-already-in-place">1. The foundation already in place</h2>
+<h3 id="a-twelve-legal-banks-one-increasingly-integrated-operating-system">A. Twelve legal Banks, one increasingly integrated operating system</h3>
+<p>The Federal Reserve is not a normal parent-subsidiary group. Each Reserve Bank
+remains a separate legal entity with its own board. The Board of Governors is a
+federal agency with separate books. The FOMC is a statutory policy committee,
+not a holding company. FRFS and National IT are shared Reserve Bank operating
+structures, not a thirteenth Bank.</p>
+<p>The modern control chain is:</p>
+<pre><code class="language-text">twelve Reserve Bank boards and presidents
+        -&gt; Conference of Presidents / Payments Committee
+        -&gt; Chief Payments Executive / FRFS
+        -&gt; service operations and product management
+        -&gt; Richmond-hosted National IT and other Bank operating nodes
+        -&gt; Board / RBOPS supervision, examination, budget, price,
+           rule, major-initiative and material-change gates
+</code></pre>
+<p>The 2025 Fedwire PFMI disclosures say every Reserve Bank president and board
+approved the FRFS enterprise arrangement in mid-2022. The public descriptions
+establish the existence and broad scope of the <strong>FRFS Enterprise Principles</strong>.
+They do not publish the operative text, voting rule, reserved matters,
+amendments, or twelve approval records.</p>
+<p>Sources: <a href="https://www.frbservices.org/binaries/content/assets/crsocms/financial-services/wires/funds-service-disclosure.pdf">Fedwire Funds PFMI disclosure</a>,
+<a href="https://www.frbservices.org/binaries/content/assets/crsocms/financial-services/securities/securities-service-disclosure.pdf">Fedwire Securities PFMI disclosure</a>,
+and <a href="https://www.frbservices.org/about/leadership">FRFS leadership</a>.</p>
+<h3 id="b-richmond-is-a-technology-host-and-control-node-not-the-owner-of-the-fed">B. Richmond is a technology host and control node, not the owner of the Fed</h3>
+<p>Richmond hosts National IT, the System CIO, national infrastructure, and a local
+board committee that oversees the Bank's National IT responsibilities. ITOC
+sets national IT direction, standards, and security policy. National IT supplies
+shared infrastructure under inter-Bank agreements and performance measures.
+FRFS controls the payment-service business requirements; the twelve Banks remain
+the legal service providers; the Board retains public oversight gates.</p>
+<p>Richmond's published inter-Bank computing and support reimbursement is an
+accounting allocation through its books, not proof that Richmond owns every
+application, contract, payment rail, or dollar of System technology.</p>
+<p>Sources: <a href="https://www.richmondfed.org/about_us/our_governance/charters_memberships">Richmond governance and charters</a>,
+<a href="https://www.richmondfed.org/-/media/RichmondFedOrg/about_us/our_governance/charters_memberships/pdf/it.pdf">National IT Committee charter</a>,
+and the two Fedwire PFMI disclosures above.</p>
+<h3 id="c-ai-has-already-crossed-from-experiment-to-internal-production">C. AI has already crossed from experiment to internal production</h3>
+<p>Governor Waller's February 24 speech provides the strongest public operational
+evidence. It says the System has:</p>
+<ul>
+<li>a common internal general-purpose AI platform for Reserve Bank employees;</li>
+<li>Fed-approved AI tools available to every employee;</li>
+<li>coding assistants used by hundreds of developers;</li>
+<li>AI-assisted synthesis of regional qualitative intelligence;</li>
+<li>AI embedded in existing legal, risk, procurement, operations, and other
+  enterprise workflows; and</li>
+<li>baseline AI literacy and application incorporated into employee performance
+  goals across the System.</li>
+</ul>
+<p>That is an occurred internal deployment, not merely a conference theme. The
+public record still does not name the complete model/vendor stack, application
+inventory, data boundary, validation framework, security standard, performance
+measure, or district-by-district implementation ledger.</p>
+<p>Source: <a href="https://www.federalreserve.gov/newsevents/speech/waller20260224a.htm">Waller, Operationalizing AI at the Federal Reserve, February 24, 2026</a>.</p>
+<h3 id="d-back-office-centralization-is-partly-foundation-and-partly-unfinished">D. Back-office centralization is partly foundation and partly unfinished</h3>
+<p>Waller's April 21 proposal separated locally necessary work from scale-driven
+operations. He put monetary-policy voice, regional research and outreach,
+supervision, and discount-window work on the local side. He put payments, IT,
+fiscal agency, HR, finance, accounting, procurement, vendor management, and
+facilities on the System side.</p>
+<p>On May 8, he said the presidents had developed a framework in which contractor
+Banks would centrally lead functions for the others under service-level
+agreements. Individual Banks would give up some day-to-day decisions, the
+contractor Bank would receive operating authority, and the Board would oversee
+rather than run the function. He also said details remained unfinished.</p>
+<p>The proper ruling is therefore split:</p>
+<ul>
+<li>the <strong>financial-services enterprise</strong> is already institutionalized;</li>
+<li>National IT is already a shared infrastructure arrangement;</li>
+<li>the common AI platform is already in use;</li>
+<li>a wider contractor-Bank model for every back-office function is a confirmed
+  framework and direction of travel; but</li>
+<li>the full assignment schedule, authority delegations, and implementation
+  clocks are not public.</li>
+</ul>
+<p>Sources: <a href="https://www.federalreserve.gov/newsevents/speech/waller20260421a.htm">Waller, Modernizing Federal Reserve Operations, April 21, 2026</a>
+and <a href="https://www.federalreserve.gov/newsevents/speech/waller20260508a.htm">Waller, Update on Federal Reserve Bank Operations, May 8, 2026</a>.</p>
+<h2 id="2-the-district-map-after-the-refresh">2. The district map after the refresh</h2>
+<p>The table distinguishes a Bank's publicly established specialization or current
+research identity from legal ownership of a national service.</p>
+<table>
+<thead>
+<tr>
+<th>Reserve Bank</th>
+<th>Publicly established operating or technology identity</th>
+<th>Control limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boston</td>
+<td>Historical FedNow development leadership; payments and stablecoin/tokenization research; February host of the System's operational-AI disclosure</td>
+<td>Historical development does not prove current FedNow application ownership, cloud contract, or production host</td>
+</tr>
+<tr>
+<td>New York</td>
+<td>SOMA market execution; FedTrade Plus; market-technology experiments; Innovation Center research; counterparty administration</td>
+<td>FOMC direction governs SOMA; New York does not own the national FRFS payment portfolio</td>
+</tr>
+<tr>
+<td>Philadelphia</td>
+<td>Consumer Finance Institute, payment-data and stablecoin research; future Research/Financial Statistics leadership change effective November 1</td>
+<td>Research leadership is not a payment-service or supervisory-rule change</td>
+</tr>
+<tr>
+<td>Cleveland</td>
+<td>One of the principal Treasury fiscal-agency centers identified in the System's consolidation history</td>
+<td>Fiscal-agency concentration does not disclose the application, vendor, or authority RACI</td>
+</tr>
+<tr>
+<td>Richmond</td>
+<td>National IT host, System CIO and shared infrastructure; payments-system research</td>
+<td>Hosting and accounting do not equal legal operation, product control, or unilateral rail authority</td>
+</tr>
+<tr>
+<td>Atlanta</td>
+<td>System retirement-plan accounting/administrative functions and disclosed payment-service revenue roles; current presidential search</td>
+<td>The presidency remains open; no new OEB, FRFS, or payment-control action was located</td>
+</tr>
+<tr>
+<td>Chicago</td>
+<td>Reserve Bank participation in the national FRFS enterprise and recurring financial/data research</td>
+<td>No exclusive current rail or application control was established in this window</td>
+</tr>
+<tr>
+<td>St. Louis</td>
+<td>Treasury fiscal-agency concentration; FRED public-data infrastructure; district intelligence</td>
+<td>FRED and advisory councils do not control payment rails or monetary policy</td>
+</tr>
+<tr>
+<td>Minneapolis</td>
+<td>Host billing and inter-Bank revenue-recognition roles identified in the Financial Accounting Manual</td>
+<td>Billing host is not service operator, account holder, or software owner</td>
+</tr>
+<tr>
+<td>Kansas City</td>
+<td>Treasury fiscal-agency concentration; account-access decisions; payments research and Jackson Hole convening</td>
+<td>Symposium papers are not Kansas City or System policy; account decisions remain bounded by law and Board guidance</td>
+</tr>
+<tr>
+<td>Dallas</td>
+<td>Public design work on reserves, repo, central clearing, tokenized deposits, and payment liquidity</td>
+<td>Dallas proposes and studies; New York/FOMC/FRFS or other actors implement under their own authority</td>
+</tr>
+<tr>
+<td>San Francisco</td>
+<td>Emerging-technology, AI, and regional economic research</td>
+<td>Research output is not an internal AI-production or payment-service announcement</td>
+</tr>
+</tbody>
+</table>
+<p>This map is deliberately asymmetric. The public record is strong for New York,
+Richmond, and portions of the fiscal-agent and accounting topology. It is weak
+for the current service-by-service location of software control, contract
+signature, production hosting, incident command, recovery, and cost allocation.
+Silence is not filled with legacy product-office assumptions.</p>
+<h2 id="3-fresh-delta-august-15-exclusive-through-august-29">3. Fresh delta — August 15 exclusive through August 29</h2>
+<h3 id="a-common-system-frfs-layer">A. Common System / FRFS layer</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Object</th>
+<th>Status</th>
+<th>Ruling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-18</td>
+<td>FRFS highlighted an X9 dynamic-QR standard, requested demonstrations of FedNow-connected private solutions, and promoted an existing exception-resolution guide</td>
+<td>ecosystem outreach / education</td>
+<td>X9, not the Fed, issued the QR standard; no Fed mandate, certification, pilot, participant approval, or rail change</td>
+</tr>
+<tr>
+<td>2026-08-19 14:00 EDT</td>
+<td>July 28–29 FOMC minutes released</td>
+<td>later disclosure of earlier deliberation</td>
+<td>participants discussed AI cybersecurity and an unnamed settlement disruption, but the minutes identify no service, operator, cause, outage, remediation, or National IT control change</td>
+</tr>
+<tr>
+<td>2026-08-24</td>
+<td>RBOPS and FedNow research-staff pages show a new last-update date</td>
+<td>roster/page refresh</td>
+<td>no disclosed reorganization, appointment, delegation, or transfer of FedNow control</td>
+</tr>
+<tr>
+<td>2026-08-26</td>
+<td>Board staff note on cross-border payments</td>
+<td>research/current-state synthesis</td>
+<td>Regulation J comments were still under evaluation; FedNow had not become a cross-border rail</td>
+</tr>
+<tr>
+<td>2026-08-27</td>
+<td>Fedwire November standards release moved from 2026 to 2027</td>
+<td><strong>adopted release-schedule change</strong></td>
+<td>material schedule shift to remain aligned with Swift; not an ISO 20022 rollback, Operating Circular change, outage, or change to access, finality, prices, or hours</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="https://www.frbservices.org/news/fed360/archive.html">FRFS August 18 archive</a>,
+<a href="https://www.federalreserve.gov/monetarypolicy/fomcminutes20260729.htm">July FOMC minutes</a>,
+<a href="https://www.federalreserve.gov/econres/rbopsfocs-staff.htm">RBOPS FedNow Oversight Coordination and Strategy</a>,
+<a href="https://www.federalreserve.gov/econres/notes/feds-notes/a-decade-of-u-s-cross-border-payments-efforts-20260826.html">Board cross-border payments note</a>,
+and <a href="https://www.frbservices.org/news/communications/082726-fedwire-november-release-rescheduled">Fedwire release reschedule</a>.</p>
+<p>The Fedwire delay is the most revealing new technology fact. The Reserve Banks
+control Fedwire, yet global interoperability with Swift constrained their
+release calendar. That is network dependence, not a loss of legal authority.</p>
+<h3 id="b-twelve-bank-window">B. Twelve-Bank window</h3>
+<table>
+<thead>
+<tr>
+<th>Bank</th>
+<th>Qualifying in-window object</th>
+<th>Clock and classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boston</td>
+<td>Erin Devereaux became senior vice president, general counsel, senior legal officer, Legal Department head, and Executive Committee member</td>
+<td>Aug. 19; effective immediately; occurred internal control-personnel change</td>
+</tr>
+<tr>
+<td>New York</td>
+<td>Morgan Stanley Private Bank, N.A. added to reverse-repo counterparty list</td>
+<td>Aug. 21; eligibility occurred, actual trading remains conditional on legal/operational/technical setup</td>
+</tr>
+<tr>
+<td>Philadelphia</td>
+<td>Skander Van den Heuvel named EVP and director of Research, Financial Statistics, and Consumer Finance Institute</td>
+<td>announced Aug. 21; scheduled effective Nov. 1; not operative at cutoff</td>
+</tr>
+<tr>
+<td>Cleveland</td>
+<td>No qualifying technology, payment, governance, or control object located</td>
+<td>bounded negative; routine research only</td>
+</tr>
+<tr>
+<td>Richmond</td>
+<td>FedNow adoption and U.S. fast-payments brief</td>
+<td>August issue; research only; no National IT, SLA, RACI, or rail change</td>
+</tr>
+<tr>
+<td>Atlanta</td>
+<td>Presidential search remained underway; Cheryl Venable remained interim</td>
+<td>continuing state; no finalist, appointment, Board approval, or revised timetable</td>
+</tr>
+<tr>
+<td>Chicago</td>
+<td>No qualifying object located</td>
+<td>bounded negative; recurring data releases only</td>
+</tr>
+<tr>
+<td>St. Louis</td>
+<td>Two industry-advisory-council appointments</td>
+<td>Aug. 17; occurred advisory-composition changes, not Bank-board or operating control</td>
+</tr>
+<tr>
+<td>Minneapolis</td>
+<td>No qualifying object located</td>
+<td>bounded negative; research and outreach only</td>
+</tr>
+<tr>
+<td>Kansas City</td>
+<td>New monthly trimmed-import/export research series; Jackson Hole symposium</td>
+<td>Aug. 18 data-product publication; Aug. 27–29 research convening; no Bank operating change</td>
+</tr>
+<tr>
+<td>Dallas</td>
+<td>Senior advisor for energy programs appointed; tokenized-deposit research published</td>
+<td>Aug. 25; staff-capacity and research objects, not a payment pilot or rule</td>
+</tr>
+<tr>
+<td>San Francisco</td>
+<td>AI, natural-rate, dual-mandate, and housing research/commentary</td>
+<td>research only; no internal AI deployment, rail, or governance change</td>
+</tr>
+</tbody>
+</table>
+<p>Primary district sources: <a href="https://www.bostonfed.org/news-and-events/press-releases/2026/devereaux-named-boston-fed-senior-vice-president-and-general-counsel.aspx">Boston appointment</a>,
+<a href="https://www.newyorkfed.org/markets/rrp_counterparties">New York RRP counterparties</a>,
+<a href="https://www.philadelphiafed.org/about-us/260821-philadelphia-fed-names-skander-van-den-heuvel-director-of-research">Philadelphia appointment</a>,
+<a href="https://www.richmondfed.org/publications/research/economic_brief/2026/eb_26-28">Richmond FedNow brief</a>,
+<a href="https://www.stlouisfed.org/news-releases/2026/08/barnett-and-peyton-appointed-to-industry-councils">St. Louis advisory appointments</a>,
+<a href="https://www.kansascityfed.org/research/research-working-papers/introducing-trimmed-imports-and-exports/">Kansas City trade series</a>,
+<a href="https://www.kansascityfed.org/research/jackson-hole-economic-symposium/2026/">Kansas City Jackson Hole page</a>,
+<a href="https://www.dallasfed.org/news/releases/2026/nr260825faucher">Dallas appointment</a>,
+and <a href="https://www.dallasfed.org/research/economics/2026/0825">Dallas tokenized-deposit analysis</a>.</p>
+<h2 id="4-what-the-refresh-changes-in-the-larger-reading">4. What the refresh changes in the larger reading</h2>
+<h3 id="stronger">Stronger</h3>
+<ul>
+<li>The Fed is not merely discussing AI. It has put a common platform, coding
+  assistants, and embedded enterprise use into internal production.</li>
+<li>District operational independence is being converted into collective
+  Reserve-Bank control, specialized contractor-Bank authority, and shared
+  infrastructure.</li>
+<li>Fedwire's calendar can be constrained by the external standards network even
+  though the Reserve Banks remain its legal operators.</li>
+<li>The New York RRP roster change shows that narrow access-state movement still
+  occurs through a specialized district operating node.</li>
+</ul>
+<h3 id="not-established">Not established</h3>
+<ul>
+<li>a merger of the twelve Banks;</li>
+<li>a Board takeover of daily Reserve Bank operations;</li>
+<li>a new FRFS Enterprise Principle, Payments Committee or ITOC charter;</li>
+<li>a public contractor-Bank assignment schedule for HR, finance, procurement,
+  vendor management, facilities, or all IT functions;</li>
+<li>a new Fed tokenized-reserve pilot;</li>
+<li>a FedNow, FedACH, NSS, FedLine, or current Fedwire functionality change in the
+  window;</li>
+<li>a final Payment Account rule or new master-account decision;</li>
+<li>a central-clearing authorization for Federal Reserve market operations; or</li>
+<li>proof that Jackson Hole's academic proposals were adopted by Kansas City,
+  FRFS, the Board, or the FOMC.</li>
+</ul>
+<h2 id="5-exact-records-that-still-matter">5. Exact records that still matter</h2>
+<ol>
+<li>FRFS Enterprise Principles, amendments, and twelve approval records.</li>
+<li>Payments Committee, AFRC, and ITOC charters, voting rules, reserved matters,
+   and delegated-authority schedules.</li>
+<li>Contractor-Bank assignment map for HR, finance, procurement, vendor
+   management, facilities, IT, and fiscal agency.</li>
+<li>Richmond/National IT inter-Bank agreements, service catalog, SLA,
+   performance scorecards, chargebacks, and escalation/remedy rules.</li>
+<li>Application-level RACI for Fedwire, FedNow, FedACH, NSS, FedLine, EASy,
+   RFARS, WTB, CASPR, the Systemwide ERP, and FedTrade Plus.</li>
+<li>System AI platform inventory: model and vendor, contract Bank, data boundary,
+   validation, security, logging, human-review standard, production use cases,
+   cost, and performance measures.</li>
+<li>The unnamed transaction-settlement incident record referenced in the July
+   FOMC minutes, with operator, affected service, cause, response, and closure.</li>
+<li>Fedwire November 2027 release scope, exact date, approval path, and revised
+   readiness milestones.</li>
+</ol>
+<h2 id="disposition">Disposition</h2>
+<p>This refresh is complete for the stated window and remains <strong>pending</strong> in the
+workbench. Katie admitted it to the Research Desk on August 29 as supporting
+evidence under <code>fed-clearing-treasury</code>. That visibility does not authorize a
+vault, watch-calendar, Observatory, wrapper, or installed-app promotion.</p>
+<p>The bounded conclusion is:</p>
+<blockquote>
+<p>The twelve Reserve Banks are becoming specialized nodes of one national
+operating system. That makes the Fed harder to fragment internally at the
+same moment private rails make it easier to route dollars around the Fed's
+daily clearing machinery.</p>
+</blockquote></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

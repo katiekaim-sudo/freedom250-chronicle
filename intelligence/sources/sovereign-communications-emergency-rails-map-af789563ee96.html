@@ -1,0 +1,377 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Sovereign Communications — Emergency Rails Map · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/keeping-systems-working.html#signals-and-rights" class="" >Start with the connection and the right to use it <span class="meta">— How systems keep working under pressure</span></a><a href="../stories/keeping-systems-working.html#surviving-the-interruption" class="" >What remains usable when one link stops working? <span class="meta">— How systems keep working under pressure</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Sovereign Communications — Emergency Rails Map</h1><p class="deck">Collection evidence cutoff: 2026-07-15</p><p><a href="sovereign-communications-emergency-rails-map-af789563ee96.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="sovereign-communications-emergency-rails-map">Sovereign Communications — Emergency Rails Map</h1>
+<p><strong>Status:</strong> <code>pending</code><br />
+<strong>Cutoff:</strong> 2026-07-15<br />
+<strong>Scope:</strong> congestion, outage, disaster, public warning, restoration, continuity, national emergency and war</p>
+<h2 id="1-the-activation-ladder">1. The activation ladder</h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Condition</th>
+<th>Main legal/operating change</th>
+<th>What does not automatically happen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 — standing readiness</td>
+<td>normal operations</td>
+<td>WPS/GETS enrollment, TSP coding, FirstNet priority, EAS/IPAWS tests, PACE planning, SHARES readiness</td>
+<td>no declared incident; no public takeover</td>
+</tr>
+<tr>
+<td>1 — congestion/local outage</td>
+<td>network is busy or impaired</td>
+<td>WPS/GETS call priority; carrier repair; NORS if thresholds are met; local mutual aid</td>
+<td>no Stafford declaration required for standing priority tools</td>
+</tr>
+<tr>
+<td>2 — FCC/state disaster activation</td>
+<td>FCC activates DIRS/MDRI or qualifying state/ESF trigger occurs</td>
+<td>mandatory covered-provider DIRS reports; mobile disaster roaming/mutual aid; restoration status</td>
+<td>no transfer of network title</td>
+</tr>
+<tr>
+<td>3 — federal incident response</td>
+<td>Stafford or other federal response; ESF #2 activation</td>
+<td>FEMA/CISA government-industry coordination, tactical support, deployables, infrastructure restoration help</td>
+<td>CISA does not become the owner of private networks</td>
+</tr>
+<tr>
+<td>4 — NSEP/national emergency</td>
+<td>executive NSEP functions and formal priority/resource tools</td>
+<td>national coordination, priority communications, possible DPA-rated orders or allocations under the proper authority</td>
+<td>not every emergency invokes DPA or 47 U.S.C. § 606</td>
+</tr>
+<tr>
+<td>5 — war/threat of war and statutory findings</td>
+<td>President invokes the required §606 conditions</td>
+<td>priority directions and, within statutory bounds, closing/use/control of specified radio or wire facilities with compensation</td>
+<td>not a permanent title transfer; scope and trigger matter</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-standing-rails-available-before-a-declaration">2. Standing rails: available before a declaration</h2>
+<h3 id="government-emergency-telecommunications-service-gets">Government Emergency Telecommunications Service — GETS</h3>
+<p><strong>Function:</strong> priority treatment for authorized calls through landline and long-distance network segments during congestion or degradation.<br />
+<strong>User object:</strong> an enrolled person with a PIN; calls can originate from ordinary phones.<br />
+<strong>Operator:</strong> participating service-provider networks under the federal priority-services structure.<br />
+<strong>Limit:</strong> priority raises completion odds; it does not repair a cut cable or guarantee the call.</p>
+<p>Source: <a href="https://www.cisa.gov/sites/default/files/publications/pts-fact-sheet-022022-508.pdf">CISA Priority Telecommunications Services</a>.</p>
+<h3 id="wireless-priority-service-wps">Wireless Priority Service — WPS</h3>
+<p><strong>Function:</strong> priority calling for authorized cellular devices, invoked with the service code or supported dialer.<br />
+<strong>Manager/rules:</strong> CISA manages; FCC rules and categories govern; carriers participate.<br />
+<strong>Important limit:</strong> WPS calls do not pre-empt calls already in progress and do not deny public use. All WPS calls outrank ordinary calls in congestion; categories allocate priority among WPS users in extreme cases.<br />
+<strong>Declaration:</strong> not required; WPS is a standing capability.</p>
+<p>Source: <a href="https://www.cisa.gov/resources-tools/services/wireless-priority-service-wps">CISA WPS</a>.</p>
+<h3 id="telecommunications-service-priority-tsp">Telecommunications Service Priority — TSP</h3>
+<p><strong>Function:</strong> priority provisioning and restoration of enrolled critical voice and data circuits.<br />
+<strong>Object:</strong> the circuit/service, not merely a person or phone.<br />
+<strong>Effect:</strong> service vendors must put coded work ahead of lower-priority work, including ordinary service-level commitments.<br />
+<strong>Limit:</strong> TSP does not create a spare physical route; route diversity and power still matter.</p>
+<p>Sources: <a href="https://www.gwids.cisa.gov/WPSWelcome/">CISA WPS portal description of TSP</a>; <a href="https://www.cisa.gov/sites/default/files/publications/Priority%20Telecommunications%20Services%20Brochure_0.pdf">CISA priority-services brochure</a>.</p>
+<h3 id="firstnet-priority-and-pre-emption">FirstNet priority and pre-emption</h3>
+<p><strong>Function:</strong> eligible public-safety traffic uses a dedicated core, always-on priority and pre-emption within the FirstNet service architecture.<br />
+<strong>Difference from WPS:</strong> FirstNet can include pre-emption of lower-priority traffic; WPS does not drop calls already in progress.<br />
+<strong>Operator:</strong> AT&amp;T under FirstNet Authority oversight.<br />
+<strong>Limit:</strong> radio-site power, backhaul, device condition and coverage can still fail.</p>
+<p>Source: <a href="https://firstnet.gov/about">FirstNet Authority</a>.</p>
+<h2 id="3-outage-visibility-rails">3. Outage visibility rails</h2>
+<h3 id="network-outage-reporting-system-nors">Network Outage Reporting System — NORS</h3>
+<p><strong>Function:</strong> covered communications providers report service disruptions that meet FCC Part 4 thresholds.<br />
+<strong>Information:</strong> notification, initial and final outage data; filings are generally protected because they expose network vulnerabilities.<br />
+<strong>Use:</strong> FCC reliability analysis, situational awareness and emergency decisions.<br />
+<strong>Clock:</strong> incident threshold and reporting deadlines, not a general emergency declaration.</p>
+<p>Source: <a href="https://docs.fcc.gov/public/attachments/FCC-12-22A1.pdf">FCC NORS description</a>.</p>
+<h3 id="disaster-information-reporting-system-dirs">Disaster Information Reporting System — DIRS</h3>
+<p><strong>Function:</strong> daily infrastructure and restoration status in an FCC-defined disaster area.<br />
+<strong>Trigger:</strong> FCC Public Safety and Homeland Security Bureau activates DIRS for stated geographies, on its own or in coordination with state emergency agencies, FEMA and CISA.<br />
+<strong>Current duty:</strong> since 2025-02-20, covered cable, wireless, wireline and interconnected-VoIP providers must file daily when DIRS is activated where they serve, plus a final report after deactivation. NORS duties are suspended for qualifying outages reported in DIRS.<br />
+<strong>Separate rail:</strong> DIRS Lite remains an informal voluntary process.</p>
+<p>Sources: <a href="https://docs.fcc.gov/public/attachments/DA-25-74A1.pdf">FCC compliance date</a>; <a href="https://docs.fcc.gov/public/attachments/FCC-25-45A1_Rcd.pdf">FCC 25-45</a>.</p>
+<p>DIRS gives the government a status picture. It does not itself give the government operational possession of the network.</p>
+<h2 id="4-mobile-network-disaster-rail-mdri">4. Mobile-network disaster rail — MDRI</h2>
+<p>The Mandatory Disaster Response Initiative applies to facilities-based mobile wireless providers when one of its activation conditions is met.</p>
+<h3 id="triggers">Triggers</h3>
+<ul>
+<li>an authorized entity activates ESF #2 for the incident;</li>
+<li>the FCC activates DIRS; or</li>
+<li>the FCC Public Safety and Homeland Security Bureau activates MDRI after a qualifying state request and state action.</li>
+</ul>
+<h3 id="required-functions">Required functions</h3>
+<ol>
+<li>reasonable roaming under disaster arrangements when technically feasible;</li>
+<li>mutual-aid arrangements among facilities-based mobile providers;</li>
+<li>reasonable measures for municipal preparedness and restoration;</li>
+<li>reasonable measures for consumer readiness;</li>
+<li>public and stakeholder information on service and restoration.</li>
+</ol>
+<p>Source: <a href="https://docs.fcc.gov/public/attachments/FCC-22-50A1_Rcd.pdf">FCC MDRI rule</a>.</p>
+<h3 id="rights-and-limits">Rights and limits</h3>
+<ul>
+<li>A failed-network subscriber may roam on another provider only within the rule's feasibility and capacity conditions.</li>
+<li>The host provider keeps its own-subscriber protection.</li>
+<li>The rule creates a temporary disaster operating duty, not permanent interconnection or network ownership.</li>
+<li>Post-event performance reporting is separate from the live roaming/aid duty.</li>
+</ul>
+<h2 id="5-federal-response-rail-esf-2-communications">5. Federal response rail — ESF #2 Communications</h2>
+<p><strong>Framework:</strong> Emergency Support Function #2 under the National Response Framework.<br />
+<strong>Federal coordination:</strong> CISA coordinates national-level communications infrastructure and service restoration; FEMA coordinates the wider federal incident structure and support.<br />
+<strong>Partners:</strong> FCC, other federal agencies, state/local/tribal/territorial bodies and private communications firms.<br />
+<strong>Functions:</strong> restore critical communications, support incident command, provide tactical communications, assess infrastructure, coordinate industry and government resources, and stabilize cyber/communications services.</p>
+<p>Sources: <a href="https://training.fema.gov/is/courseoverview.aspx?amp=&amp;code=IS-802.a&amp;lang=en">FEMA ESF #2 course</a>; <a href="https://www.fema.gov/sites/default/files/documents/fema_NRF-ESF-2-annex_102021.pdf">FEMA ESF #2 annex</a>.</p>
+<h3 id="incident-chain">Incident chain</h3>
+<blockquote>
+<p>local/tribal/state need -&gt; EOC and incident command -&gt; state/federal request or activation -&gt; FEMA coordination -&gt; CISA communications coordination -&gt; FCC regulatory/reporting support -&gt; private operator repair/deployables -&gt; restoration and demobilization</p>
+</blockquote>
+<p>Private firms still normally dispatch crews, reroute traffic, fuel generators and restore facilities. ESF #2 coordinates the field and fills gaps.</p>
+<h2 id="6-national-coordinating-center-and-industry-interface">6. National Coordinating Center and industry interface</h2>
+<p>The CISA National Coordinating Center for Communications maintains a 24-hour watch and a trusted government-industry environment. Federal agencies and private communications/IT firms share incident information and advice for the NSEP mission. It also links sector coordination, SHARES and mutual-aid tools. Source: <a href="https://www.cisa.gov/resources-tools/programs/national-coordinating-center-communications">CISA NCC</a>.</p>
+<p>This is the public-private switchboard of the emergency system. It is not a federal network-operations centre for all private carriers.</p>
+<h2 id="7-public-to-responder-rail-911-and-ng911">7. Public-to-responder rail — 911 and NG911</h2>
+<p>911 is an inbound emergency rail: the public reaches a public-safety answering point or emergency communications centre, which then routes the incident into dispatch and field response.</p>
+<p>47 U.S.C. § 615a-1 requires IP-enabled voice providers to provide 911 and enhanced 911 under FCC rules. It also gives such a provider a defined right of access to needed 911 capabilities, including interconnection, on parity terms for the sole purpose of meeting that duty. This is a rare example where an emergency service creates both a provider duty and a narrow infrastructure-access right. Source: <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title47-section615a-1">47 U.S.C. § 615a-1</a>.</p>
+<p>Next Generation 911 replaces legacy analog call delivery with an IP-based system built from Emergency Services IP Networks, NG911 core services, geographic data, call-taking systems and policy/operating procedures. The national goal is an interoperable “system of systems,” not one federally operated call centre. State, local, tribal, carrier and vendor entities retain distinct roles. Sources: <a href="https://www.911.gov/issues/ng911/">National 911 Program — NG911</a>; <a href="https://www.911.gov/projects/ng911-roadmap/">NG911 roadmap</a>.</p>
+<h3 id="emergency-sequence">Emergency sequence</h3>
+<blockquote>
+<p>caller/device -&gt; originating service provider -&gt; 911 selective routing/NG911 core -&gt; correct PSAP/ECC -&gt; CAD/dispatcher -&gt; responder network -&gt; field unit</p>
+</blockquote>
+<h3 id="failure-and-emergency-rights">Failure and emergency rights</h3>
+<ul>
+<li>Covered service providers have 911 routing/location and outage-notification duties under FCC rules.</li>
+<li>PSAPs/ECCs control call taking and local dispatch under state/local/tribal governance.</li>
+<li>NG911 interconnection and data-sharing rights depend on statute, state plans, standards and contracts.</li>
+<li>TSP may prioritize restoration of 911 circuits; FirstNet and land-mobile radio carry responder traffic after dispatch.</li>
+<li>IPAWS warns a population; it does not replace the public's ability to request aid through 911.</li>
+</ul>
+<h2 id="8-public-warning-rails">8. Public warning rails</h2>
+<h3 id="ipaws-operating-chain">IPAWS operating chain</h3>
+<blockquote>
+<p>authorized alerting authority -&gt; approved alert-origination software -&gt; authenticated Common Alerting Protocol message -&gt; IPAWS-OPEN -&gt; channel distributors -&gt; public</p>
+</blockquote>
+<p>An alerting authority needs a FEMA memorandum of agreement, a Collaborative Operating Group identity and digital certificate. State/local/tribal law and plans determine who in the jurisdiction may originate which alerts. Sources: <a href="https://www.fema.gov/sites/default/files/2020-07/fema_ipaws_form-007-0-25_moa-application.pdf">FEMA IPAWS MOA application</a>; <a href="https://www.fema.gov/vi/emergency-managers/practitioners/integrated-public-alert-warning-system/public-safety-officials/toolkit">FEMA IPAWS toolkit</a>.</p>
+<h3 id="emergency-alert-system-eas">Emergency Alert System — EAS</h3>
+<p><strong>Path:</strong> broadcast, cable and other EAS participants relay encoded alerts under FCC technical and participation rules.<br />
+<strong>National rail:</strong> a National Emergency Message takes priority and pre-empts an alert already in progress. Primary Entry Point stations are private/commercial broadcasters that cooperate with FEMA and receive hardened backup communications and power.<br />
+<strong>Boundary:</strong> national presidential activation and state/local alert use have different legal/operating rules.</p>
+<p>Source: <a href="https://docs.fcc.gov/public/attachments/DOC-387026A1.pdf">FCC EAS rule update and National Public Warning System description</a>.</p>
+<h3 id="wireless-emergency-alerts-wea">Wireless Emergency Alerts — WEA</h3>
+<p><strong>Path:</strong> authenticated alerts are geographically broadcast by participating commercial mobile providers to compatible devices.<br />
+<strong>Object:</strong> one-to-many cell broadcast, not a person-to-person call or ordinary text message.<br />
+<strong>Boundary:</strong> alert origination, FEMA authentication and carrier delivery are separate entities and clocks.</p>
+<h3 id="noaa-weather-radio-all-hazards-nwr">NOAA Weather Radio All Hazards — NWR</h3>
+<p><strong>Operator:</strong> National Weather Service.<br />
+<strong>Path:</strong> VHF broadcast with SAME/geographic coding and tone-alert capability; carries weather and specified non-weather hazards in coordination with emergency authorities and EAS.<br />
+<strong>Strength:</strong> independent radio receiving path with battery-capable consumer receivers; does not require a working household broadband subscription.</p>
+<p>Source: <a href="https://www.weather.gov/nwr/">NOAA Weather Radio</a>.</p>
+<h2 id="9-alternate-and-last-resort-rails">9. Alternate and last-resort rails</h2>
+<h3 id="shares-hf-radio">SHARES HF Radio</h3>
+<p>The SHAred RESources High Frequency Radio program gives the NSEP community another path when landline and cellular systems are down. It uses interoperable HF resources and procedures across participating government and industry entities. Source: <a href="https://www.cisa.gov/resources-tools/programs/national-coordinating-center-communications">CISA NCC/SHARES</a>.</p>
+<h3 id="public-safety-land-mobile-radio">Public-safety land-mobile radio</h3>
+<p>Local, tribal, state and federal public-safety bodies operate radio systems that may function apart from the public Internet, though modern dispatch, backhaul and interoperability gateways can still create shared dependencies. Statewide Interoperability Coordinators and CISA programs build plans and shared procedures. Source: <a href="https://www.cisa.gov/resources-tools/programs/emergency-communications-state-local-tribal-and-territorial-coordination">CISA SLTT coordination</a>.</p>
+<h3 id="satellite-and-deployable-systems">Satellite and deployable systems</h3>
+<p>Deployable cells, portable satellite terminals, mobile command vehicles, microwave, temporary fiber and generator-backed sites can restore an access island. They still require spectrum authority, equipment, trained crews, power and backhaul.</p>
+<h3 id="amateur-and-auxiliary-radio">Amateur and auxiliary radio</h3>
+<p>Volunteer and amateur resources may support health-and-welfare, local coordination or agency auxiliary missions under FCC rules and incident arrangements. They do not replace authenticated classified or public-safety command systems.</p>
+<h2 id="10-pace-continuity-method">10. PACE continuity method</h2>
+<p>PACE means Primary, Alternate, Contingency and Emergency. The key rule is path independence: a backup that shares the failed dependency is not a real backup. If IP data is down, VoIP over the same data path is weak as the alternate. If terrestrial fiber is cut, a separately powered satellite or HF path may be stronger.</p>
+<p>Source: <a href="https://www.cisa.gov/sites/default/files/2023-05/23_0426_ncswic_PACE-Plan_508.pdf">CISA PACE guide</a>.</p>
+<h3 id="example-sovereign-pace-stack">Example sovereign PACE stack</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Illustrative path</th>
+<th>Hidden dependency to test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary</td>
+<td>domestic fiber + commercial mobile + secure IP core</td>
+<td>grid, shared conduit, cloud identity, DNS</td>
+</tr>
+<tr>
+<td>Alternate</td>
+<td>second carrier on physically diverse fiber</td>
+<td>common bridge, building entry, exchange or power feed</td>
+</tr>
+<tr>
+<td>Contingency</td>
+<td>satellite/LEO service with separate gateway route</td>
+<td>shared cloud/core, terminal power, gateway geography, spectrum</td>
+</tr>
+<tr>
+<td>Emergency</td>
+<td>HF/land-mobile radio and preplanned message forms</td>
+<td>trained operators, antennas, propagation, key/call-sign control</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-defense-production-act-priority-rail">11. Defense Production Act priority rail</h2>
+<p>50 U.S.C. § 4511 lets the President require priority performance of contracts or orders needed for national defense and, under its limits, allocate materials, services and facilities. Executive delegation and agency regulations determine which department rates or allocates the object. This can accelerate equipment, services, construction materials or other scarce inputs; it is not a free-standing Internet takeover power. Source: <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title50-section4511">50 U.S.C. § 4511</a>.</p>
+<p>Keep these separate:</p>
+<ul>
+<li>TSP prioritizes telecom provisioning/restoration;</li>
+<li>DPA prioritizes contracts/orders or allocates resources after proper invocation;</li>
+<li>emergency procurement buys services;</li>
+<li>§606 can reach facility use/control at the highest trigger.</li>
+</ul>
+<h2 id="12-presidential-waremergency-communications-power">12. Presidential war/emergency communications power</h2>
+<p>47 U.S.C. § 606 contains several powers with different triggers:</p>
+<table>
+<thead>
+<tr>
+<th>Subsection</th>
+<th>Trigger</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>§606(a)</td>
+<td>war in which the United States is engaged plus national-defense finding</td>
+<td>direct essential communications to receive preference or priority</td>
+</tr>
+<tr>
+<td>§606(b)</td>
+<td>war</td>
+<td>use armed forces to prevent physical obstruction of interstate/foreign wire or radio communications when public interest requires</td>
+</tr>
+<tr>
+<td>§606(c)</td>
+<td>proclaimed war/threat, public peril/disaster/other national emergency, or neutrality condition plus necessity finding</td>
+<td>suspend/amend rules for certain emitting stations/devices; close or authorize government use/control of specified radio stations/devices with compensation</td>
+</tr>
+<tr>
+<td>§606(d)</td>
+<td>proclaimed state or threat of war involving the United States plus necessity finding</td>
+<td>suspend/amend rules, close, or authorize government use/control of wire facilities with compensation for the statutory period</td>
+</tr>
+</tbody>
+</table>
+<p>Source: <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title47-section606">47 U.S.C. § 606</a>.</p>
+<h3 id="boundary">Boundary</h3>
+<p>There is no single statutory “Internet kill switch” sentence. The law speaks in older communications categories and ties different powers to different findings. Any modern application would require exact analysis of the facility, subsection, proclamation, delegation, compensation and constitutional limits.</p>
+<h2 id="13-rights-during-an-emergency">13. Rights during an emergency</h2>
+<p>Emergency status does not, by itself, erase ordinary rights.</p>
+<ul>
+<li>Property use/control under §606 requires the statute's trigger and just compensation language.</li>
+<li>Lawful interception still needs the authority required by the Wiretap Act, Stored Communications Act, FISA or other applicable law; infrastructure emergency status is not itself an intercept order.</li>
+<li>Public alerts must come through an authorized originator and authenticated channel.</li>
+<li>WPS creates priority, not disconnection of ordinary calls in progress.</li>
+<li>MDRI roaming is bounded by technical feasibility and host-network protection.</li>
+<li>DIRS supplies protected infrastructure reporting, not public title.</li>
+<li>First Amendment and judicial-review limits continue to apply to government acts.</li>
+</ul>
+<h2 id="14-scenario-chains">14. Scenario chains</h2>
+<h3 id="a-hurricane-destroys-cell-sites-and-fiber">A. Hurricane destroys cell sites and fiber</h3>
+<ol>
+<li>Operators detect alarms and dispatch crews.</li>
+<li>NORS obligations attach if thresholds are met.</li>
+<li>FCC activates DIRS for named counties; covered providers file daily.</li>
+<li>DIRS activation also triggers MDRI for mobile providers.</li>
+<li>Disaster roaming and mutual-aid arrangements turn on where feasible.</li>
+<li>TSP-coded circuits move ahead in provisioning/restoration queues.</li>
+<li>FirstNet priority/pre-emption and deployables support eligible responders.</li>
+<li>FEMA/CISA ESF #2 coordinates federal help, fuel/power and tactical support.</li>
+<li>IPAWS channels warn the public.</li>
+<li>DIRS/MDRI deactivate by public notice; final/restoration reports follow.</li>
+</ol>
+<h3 id="b-cyberattack-disables-a-carrier-core">B. Cyberattack disables a carrier core</h3>
+<ol>
+<li>Carrier isolates and restores under its incident plan.</li>
+<li>Regulatory and contractual reporting clocks attach according to the service and incident.</li>
+<li>NORS/DIRS may supply outage status; CISA/NCC shares sector intelligence.</li>
+<li>Traffic shifts to alternate carriers/routes if contracts and capacity permit.</li>
+<li>GETS/WPS help with congestion; TSP helps restore coded services.</li>
+<li>ESF #2 may activate if incident scale requires federal response.</li>
+<li>Law enforcement/intelligence response runs on its own legal clock.</li>
+</ol>
+<p>As of the cutoff, CISA's general CIRCIA reporting rule remains in rulemaking rather than being treated here as a final operative duty. Source: <a href="https://public-inspection.federalregister.gov/2026-02948.pdf">2026 CISA town-hall notice</a>.</p>
+<h3 id="c-undersea-cable-cut">C. Undersea cable cut</h3>
+<ol>
+<li>Cable operator confirms fault and shifts capacity under network agreements.</li>
+<li>Consortia/maintenance authority mobilizes a repair vessel and permits.</li>
+<li>Carriers reroute through other cables, terrestrial paths or satellite where capacity exists.</li>
+<li>TSP can prioritize affected coded services, but cannot create unused international capacity.</li>
+<li>FCC/CISA/NCC coordinate if national impact warrants.</li>
+<li>Landing-license or national-security action is separate from physical marine repair.</li>
+</ol>
+<h3 id="d-national-warning-without-network-takeover">D. National warning without network takeover</h3>
+<ol>
+<li>authorized national originator creates the message;</li>
+<li>FEMA/IPAWS authenticates and distributes;</li>
+<li>EAS/PEP, WEA and other paths relay;</li>
+<li>NWR and local systems carry relevant warning;</li>
+<li>responders use FirstNet, LMR, GETS/WPS and other command paths;</li>
+<li>private carrier title and ordinary operation remain in place.</li>
+</ol>
+<h2 id="15-real-sovereign-resilience-test">15. Real sovereign-resilience test</h2>
+<p>A network is not sovereign merely because the satellite or fiber owner is American. Test whether the system has:</p>
+<ul>
+<li>separate physical routes and landing/gateway sites;</li>
+<li>domestic operational control;</li>
+<li>independent power and fuel;</li>
+<li>owned or enforceable capacity rights;</li>
+<li>government-defined identity and access;</li>
+<li>government-controlled encryption/signing keys where required;</li>
+<li>route and DNS recovery authority;</li>
+<li>enrolled priority circuits and users;</li>
+<li>public-warning authentication;</li>
+<li>cross-carrier roaming and mutual aid;</li>
+<li>trained PACE fallbacks;</li>
+<li>a clear statutory activation and deactivation chain.</li>
+</ul>
+<p>That is the difference between an American transport vendor and a resilient sovereign communications plane.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

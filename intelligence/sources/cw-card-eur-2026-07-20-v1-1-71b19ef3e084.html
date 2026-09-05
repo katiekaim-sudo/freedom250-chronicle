@@ -1,0 +1,568 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Currency Watch — Sealed EUR Pilot Card v1.1 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Currency Watch — Sealed EUR Pilot Card v1.1</h1><p class="deck">Collection evidence cutoff: 2026-07-31</p><p><a href="cw-card-eur-2026-07-20-v1-1-71b19ef3e084.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="currency-watch-sealed-eur-pilot-card-v11">Currency Watch — Sealed EUR Pilot Card v1.1</h1>
+<p><strong>Card ID:</strong> <code>CW-CARD-EUR-2026-07-20-V1_1</code><br />
+<strong>Rubric:</strong> <code>CURRENCY_WATCH_PILOT_RUBRIC_FROZEN_V1.md</code><br />
+<strong>Execution control:</strong> <code>CURRENCY_WATCH_PILOT_EXECUTION_ANNEX_V1_1.md</code><br />
+<strong>Source freeze:</strong> <code>CURRENCY_WATCH_PILOT_SOURCE_MANIFEST_2026-07-20.md</code><br />
+<strong>Grade state:</strong> <code>SEALED-V1_1</code></p>
+<h2 id="a-identity-and-authority">A. Identity and authority</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Currency object</td>
+<td>Euro; ISO 4217 <code>EUR</code>; shared legal monetary unit, not a sovereign-country proxy</td>
+</tr>
+<tr>
+<td>Linked IMF member records</td>
+<td>Austria, Belgium, Bulgaria, Croatia, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Portugal, Slovakia, Slovenia and Spain. The common-policy report is integral to each member’s Article IV consultation; member legal/fiscal records remain separate.</td>
+</tr>
+<tr>
+<td>Issuer / note authority</td>
+<td>ECB and euro-area national central banks within the Eurosystem</td>
+</tr>
+<tr>
+<td>Monetary-policy authority</td>
+<td>ECB Governing Council</td>
+</tr>
+<tr>
+<td>FX/intervention authority</td>
+<td>ECB/Eurosystem for common market operations; EU Council treaty authority over formal exchange-rate agreements or general orientations remains separate under TFEU Article 219</td>
+</tr>
+<tr>
+<td>Trade/customs authority</td>
+<td>EU institutions under exclusive common-commercial-policy competence; European Commission administers/negotiates common policy, with EU legislation and national customs implementation kept distinct</td>
+</tr>
+<tr>
+<td>Shared-authority overlay</td>
+<td>ECB/Eurosystem common monetary authority plus EU common-policy institutions; no fictional euro-area sovereign</td>
+</tr>
+<tr>
+<td>Regime stress class</td>
+<td>Shared free float / reserve, funding and vehicle currency</td>
+</tr>
+<tr>
+<td>International role tags</td>
+<td><code>REGIONAL</code>, <code>RESERVE</code>, <code>TRADE-INVOICE</code>, <code>FUNDING</code>, <code>VEHICLE</code>, <code>HEDGE</code>, <code>PAYMENT</code>, <code>SDR-BASKET</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-controlling-source-clocks">B. Controlling source clocks</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV/common report</td>
+<td><em>Euro Area Policies: 2026 Annual Consultation</em>, IMF Country Report 26/177</td>
+</tr>
+<tr>
+<td>Discussions end</td>
+<td><code>2026-05-13</code></td>
+</tr>
+<tr>
+<td>Staff cutoff</td>
+<td><code>NOT-STATED</code></td>
+</tr>
+<tr>
+<td>Report completed</td>
+<td><code>2026-06-26</code></td>
+</tr>
+<tr>
+<td>Datum vintages</td>
+<td>Real GDP/inflation/current account: calendar 2025; NIIP and gross external debt: end-2025/end-2025Q4; NPL dispersion: 2024Q4 and 2025Q4; Bank Lending Survey: 2026-04; REER: 2025 and 2026-03; yields/spreads: early 2026 through early June; authority-statement inflation: 2026-06; international-role indicators: principally 2025/Q4 2025, with selected early-2026 observations</td>
+</tr>
+<tr>
+<td>Post-cutoff statement</td>
+<td><code>2026-07-13</code> — Executive Director statement on behalf of euro-area authorities</td>
+</tr>
+<tr>
+<td>Board date</td>
+<td><code>2026-07-13</code></td>
+</tr>
+<tr>
+<td>Publication date</td>
+<td><code>2026-07-16</code></td>
+</tr>
+<tr>
+<td>ESR vintage</td>
+<td>2025 ESR, assessing 2024; newer CR26/177 assessment of 2025 remains preliminary pending the 2026 ESR</td>
+</tr>
+<tr>
+<td>National-data cutoff</td>
+<td><code>NOT-APPLICABLE</code> for common lanes. No national aggregate was substituted; member-dispersion observations retain their stated datum vintages.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-authority-response">C. Authority response</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Response state</td>
+<td><code>PARTIAL</code></td>
+</tr>
+<tr>
+<td>Exact proposition answered</td>
+<td>Euro-area authorities stated broad agreement on the outlook, sustainable public finances, productivity reforms, single-market deepening and financial stability. They independently assessed the external position as broadly in line, reported anchored long-term inflation expectations and defended the ECB’s data-dependent response. They expressly “take issue with Staff’s assessment” of the Industrial Accelerator Act.</td>
+</tr>
+<tr>
+<td>Source/page/date</td>
+<td>CR26/177, Executive Director statement, PDF pp.90–93, dated <code>2026-07-13</code></td>
+</tr>
+<tr>
+<td>Attribution boundary</td>
+<td>IMF staff assessment, Executive Board summing-up, ECB/EU regional-authority views, national-member records and the grader’s lane judgments remain separate. The statement is an authority response, not a Board finding.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-categorical-legal-card">D. Categorical legal card</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Controlled state</th>
+<th>Source/page</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV general status</td>
+<td><code>NO-ADVERSE-FINDING-LOCATED</code>; not a declaration of full compliance</td>
+<td>CR26/177, Board assessment pp.2–3</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Manipulation status</td>
+<td><code>NO-ADVERSE-FINDING-LOCATED</code>; no formal Fund Article IV §1(iii) finding located</td>
+<td>CR26/177, especially external assessment pp.45/49</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §2 current-payment restrictions</td>
+<td><code>UNRESOLVED</code> at EUR level; membership and restrictions attach to sovereign members</td>
+<td>Frozen manifest EUR legal row</td>
+<td><code>U-UNRESOLVED</code></td>
+</tr>
+<tr>
+<td>Article VIII §3 MCP/discriminatory practice</td>
+<td><code>UNRESOLVED</code> at EUR level; no currency-wide status may be inferred</td>
+<td>Frozen manifest EUR legal row</td>
+<td><code>U-UNRESOLVED</code></td>
+</tr>
+<tr>
+<td>Article VIII §4 foreign-held balances</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE</code> as a currency-level object</td>
+<td>Member jurisdiction rule</td>
+<td><code>U-UNRESOLVED</code></td>
+</tr>
+<tr>
+<td>Article VIII §5 information duty</td>
+<td><code>NO-FUND-BREACH-LOCATED</code> in the common surveillance record; this does not replace member legal statuses</td>
+<td>CR26/177, Data Adequacy Assessment pp.85–89</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article XIV</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE</code> at EUR level; cited France/Germany/Italy annexes record Article VIII acceptance</td>
+<td>Frozen manifest EUR legal row</td>
+<td><code>U-UNRESOLVED</code></td>
+</tr>
+<tr>
+<td>Capital controls / CFMs</td>
+<td>Separate member/EU-law object; no EUR-wide CFM status asserted</td>
+<td>Frozen manifest and constitutional firewall</td>
+<td><code>U-UNRESOLVED</code></td>
+</tr>
+<tr>
+<td>Security restrictions</td>
+<td>France, Germany and Italy annexes separately note notified security restrictions; scope, approval and legality may not be averaged or extended currency-wide</td>
+<td>France p.72; Germany p.88; Italy p.81</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code> for cited members; otherwise unresolved</td>
+</tr>
+</tbody>
+</table>
+<h3 id="eur-member-subcards-for-l5-jurisdiction">EUR member subcards for L5 jurisdiction</h3>
+<table>
+<thead>
+<tr>
+<th>IMF member</th>
+<th>Frozen categorical subcard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>France</td>
+<td>Article VIII §§2/3/4 accepted; latest frozen annex reports no MCP/current-payment restriction except separately notified security restrictions. Scope/approval remains unresolved.</td>
+</tr>
+<tr>
+<td>Germany</td>
+<td>Article VIII §§2/3/4 accepted; latest frozen annex reports no MCP/current-payment restriction except separately notified security restrictions. Scope/approval remains unresolved.</td>
+</tr>
+<tr>
+<td>Italy</td>
+<td>Article VIII §§2/3/4 accepted; latest frozen annex reports no MCP/current-payment restriction except separately notified security restrictions. Scope/approval remains unresolved.</td>
+</tr>
+<tr>
+<td>Austria</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Belgium</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Bulgaria</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Croatia</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Cyprus</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Estonia</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Greece</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Latvia</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Lithuania</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Luxembourg</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Malta</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Portugal</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Slovakia</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Slovenia</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+<tr>
+<td>Spain</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE-IN-FROZEN-MANIFEST</code>; no adverse inference</td>
+</tr>
+</tbody>
+</table>
+<p>These categorical subcards are not averaged. Their incomplete coverage is the reason for L5 <code>NR</code>, not evidence of impaired usability.</p>
+<h2 id="e-linked-event-records">E. Linked event records</h2>
+<table>
+<thead>
+<tr>
+<th>Event ID</th>
+<th>Legal/operating state at freeze</th>
+<th>Proposed transmission</th>
+<th>Evidence state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TP-US-2026-SECTION122</code></td>
+<td>Operative for covered entries; scheduled <code>2026-07-24</code> clock and court appeal separate</td>
+<td>Potential price, trade-volume and current-account effects; no isolated EUR lane transmission demonstrated</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>TP-EUUS-2025-TURNBERRY</code></td>
+<td>Framework and product-specific implementation objects</td>
+<td>Higher effective U.S. tariffs contributed, alongside euro appreciation, to weaker net exports; no standalone grade movement assigned</td>
+<td><code>OBSERVED</code> for the combined context; framework-specific incidence unresolved</td>
+</tr>
+<tr>
+<td><code>TP-EU-2026-CBAM</code></td>
+<td>Effective from January 2026; trade/climate instrument, not monetary policy</td>
+<td>Potential trade-price, sourcing and BOP effects; no decisive lane transmission in frozen evidence</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>TP-EUMERC-2026-PROVISIONAL</code></td>
+<td>Provisional application from May 2026; tariff/TRQ schedules separate</td>
+<td>Staff projects broader diversification and export support, but near-term GDP impact is modest and not yet observed</td>
+<td><code>INFERENCE</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="f-six-lane-worksheet">F. Six-lane worksheet</h2>
+<table>
+<thead>
+<tr>
+<th>Lane</th>
+<th style="text-align: right;">Grade</th>
+<th>One-sentence reason</th>
+<th>Primary evidence + vintage</th>
+<th>Persistence evidence</th>
+<th>Shock evidence</th>
+<th>Competing explanation</th>
+<th>Confidence</th>
+<th>Legal/event link</th>
+<th>Data gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 Domestic anchor</td>
+<td style="text-align: right;"><strong>B</strong></td>
+<td>The common monetary system retains a credible 2% anchor with bounded shock-driven inflation strain and no disproportionate activity collapse.</td>
+<td>CR26/177 pp.7, 44 and authority statement p.91: 2025 inflation 2.1%, GDP growth 1.4%, unemployment 6.3%; June 2026 headline/core inflation 2.8%/2.4%; long-term expectations anchored; ECB raised rates 25 bp on June 11.</td>
+<td>Inflation declined from 5.4% in 2023 to 2.4% in 2024 and 2.1% in 2025, with output returning near potential. The 2023 deviation prevents an <code>A</code> across the full persistence window.</td>
+<td>2026 Middle East energy shock lifted inflation and reduced projected growth to 0.9%, but no second-round wage effects were reported and expectations remained anchored.</td>
+<td>The current overshoot is principally a temporary terms-of-trade shock; faster energy normalization could restore target without further activity cost.</td>
+<td><code>HIGH</code></td>
+<td>Article IV: <code>NO-ADVERSE-FINDING-LOCATED</code>; frozen trade events are context only</td>
+<td><code>STAFF_CUTOFF=NOT-STATED</code>; June inflation and policy evidence comes from the dated post-cutoff authority statement</td>
+</tr>
+<tr>
+<td>L2 Underlying order</td>
+<td style="text-align: right;"><strong>B</strong></td>
+<td>Common banking and monetary architecture remains functional, while NBFI opacity, incomplete safety nets and visible member stress dispersion create bounded—not generalized—strain.</td>
+<td>CR26/177 pp.13, 32–38: banks resilient in aggregate, with adequate capital/liquidity, low NPLs and profits; macroprudential buffers broadly appropriate.</td>
+<td>2024Q4/2025Q4 NPL chart discloses sixteen member rows; residential pressure is identified in Bulgaria, Croatia, Cyprus, Greece, Ireland, Portugal, Lithuania and Spain; longstanding 2018/2025 FSAP backstop recommendations remain incomplete.</td>
+<td>Early-2026 shock: German ten-year yield +40 bp; French, Italian and Spanish spreads widened only 0–15 bp; no generalized banking, sovereign-funding or payments fracture.</td>
+<td>Aggregate strength could mask local fiscal/banking weakness, while unmeasured bank–NBFI and offshore-hedge-fund exposures may be larger than observed.</td>
+<td><code>MEDIUM</code></td>
+<td><code>NONE</code> as a primary trade-event mechanism</td>
+<td>Full 21-member banking/fiscal matrix and granular NBFI/off-balance-sheet exposures are absent; current report itself identifies those data gaps</td>
+</tr>
+<tr>
+<td>L3 Exchange order</td>
+<td style="text-align: right;"><strong>A</strong></td>
+<td>The free-floating euro absorbed appreciation and geopolitical terms-of-trade moves without report-identified disorder, parallel-market fracture or unsustainable reserve/intervention pressure.</td>
+<td>Frozen regime sources: de jure/de facto free floating; CR26/177 pp.6–7 and 44: NEER appreciated about 6% February–July 2025, then remained broadly flat; latest 2026 table observations show USD/EUR 1.2 and NEER 100.2.</td>
+<td>Table history for 2022–2026 and the 2025–26 NEER path show continuous market operation rather than a broken or concealed regime.</td>
+<td>The early-2026 energy shock caused market repricing and euro depreciation attributable partly to adverse terms of trade, without exchange-market fracture.</td>
+<td>Bilateral depreciation or appreciation may reflect relative shocks and risk sentiment, not loss of exchange-order credibility.</td>
+<td><code>HIGH</code></td>
+<td>Trade-event IDs checked; no separately evidenced exchange-order impairment</td>
+<td>Exact high-frequency volatility, intervention and market-depth series are not itemized in CR26/177; ordinary reserve adequacy is not the central test for this free float</td>
+</tr>
+<tr>
+<td>L4 External adjustment</td>
+<td style="text-align: right;"><strong>B</strong></td>
+<td>The aggregate external position is currently broadly in line and adjusting, but the persistence window contains a moderately stronger assessment and substantial member imbalance dispersion.</td>
+<td>CR26/177 Table 2, p.45/49: 2025 CA 1.7% GDP, NIIP +11.0%, staff CA gap +0.9%, REER gap −2.6%; overall position “broadly in line.” Creditor states retain large assets while debtor states carry elevated liabilities and sudden-stop exposure.</td>
+<td>2025 ESR assessment of 2024: “moderately stronger,” CA 2.8%, NIIP 10.9%, CA gap +1.0%, REER gap midpoint −3.1%. The 2025 CA narrowed from 2.7% to 1.7%, moving toward balance.</td>
+<td>Energy and trade shocks weakened services/income and net exports; the 2026 CA is projected at 1.1%, still within a credible aggregate adjustment path.</td>
+<td>MNE activity, SPEs, retained-earnings adjustments and valuation effects distort CA/NIIP measures; the aggregate can conceal opposing creditor/debtor positions.</td>
+<td><code>MEDIUM</code></td>
+<td><code>TP-EUUS-2025-TURNBERRY</code>; <code>TP-EUMERC-2026-PROVISIONAL</code>; <code>TP-US-2026-SECTION122</code>; <code>TP-EU-2026-CBAM</code>—context only unless transmission is observed</td>
+<td>Final 2026 ESR unavailable; common table does not enumerate each member’s CA/NIIP/REER gap</td>
+</tr>
+<tr>
+<td>L5 Current-payment usability</td>
+<td style="text-align: right;"><strong>NR</strong></td>
+<td>Currency-wide grading would overclaim because Article VIII restriction/MCP jurisdiction belongs to each sovereign member and the frozen packet does not cover every euro-area member.</td>
+<td>Execution Annex v1.1 §3 and frozen manifest EUR legal row; France/Germany/Italy subcards are categorical only.</td>
+<td><code>NOT-APPLICABLE</code>—coverage failure, not adverse persistence evidence.</td>
+<td><code>NOT-APPLICABLE</code></td>
+<td>The available member evidence suggests ordinary usability in the three cited records, but it cannot lawfully or evidentially be generalized to the currency area.</td>
+<td><code>HIGH</code></td>
+<td>Member legal subcards above; trade measures and capital controls kept separate</td>
+<td>Current official Article VIII/XIV/restriction/MCP coverage for all 21 euro-area IMF members</td>
+</tr>
+<tr>
+<td>L6 Systemic service</td>
+<td style="text-align: right;"><strong>A</strong></td>
+<td>The euro reliably performs its established reserve, funding, invoicing and payment roles across multiple independently measured channels without material operating impairment.</td>
+<td>ECB, <em>International Role of the Euro</em>, June 2026, Table 1/§§1.1–1.4: approximately 20% across broad international-use indicators; 20.2% of reserves, 24.6% of narrow international debt securities, 21.7% of international loans, 17.3% of international deposits; almost 60%/64% of extra-area goods/services export invoicing.</td>
+<td>Broad role was around 19% in 2024 and around 20% in 2025; constant-exchange-rate share rose roughly 1.5 percentage points from 2014 through 2025.</td>
+<td>Mixed risk-off exchange behavior in 2025/early 2026 and the Middle East depreciation did not interrupt reserve, funding, payment or invoicing service.</td>
+<td>Fragmented highly rated sovereign debt supply and a 2025 decline in the FX-trading share may constrain future expansion, even though current functions remain broad and reliable.</td>
+<td><code>HIGH</code></td>
+<td>Frozen trade events checked; none demonstrates systemic-service impairment</td>
+<td>A same-vintage complete hedge/derivatives, BIS turnover and payment-method matrix would sharpen market-depth attribution</td>
+</tr>
+</tbody>
+</table>
+<h2 id="g-primary-lane-collision-check">G. Primary-lane collision check</h2>
+<table>
+<thead>
+<tr>
+<th>Fact/source</th>
+<th>Primary lane</th>
+<th>Context links</th>
+<th>Separate second mechanism evidenced?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026 energy-driven inflation overshoot</td>
+<td>L1</td>
+<td>L2 financial conditions; L4 energy import bill</td>
+<td><code>YES</code> for L2 only through separately observed yields/spreads and NBFI channels; no duplicate L4 reduction</td>
+</tr>
+<tr>
+<td>Member banking/NBFI and safety-net evidence</td>
+<td>L2</td>
+<td>L6 funding role</td>
+<td><code>NO</code> second grade reduction</td>
+</tr>
+<tr>
+<td>NEER appreciation/free-float operation</td>
+<td>L3</td>
+<td>L1 imported inflation; L4 trade/current account</td>
+<td><code>NO</code>; explanatory context only</td>
+</tr>
+<tr>
+<td>CA, NIIP, CA/REER gaps and member external dispersion</td>
+<td>L4</td>
+<td>L3 exchange-rate context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Article VIII coverage gap</td>
+<td>L5</td>
+<td>Legal card only</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Reserve/funding/invoicing/payment shares</td>
+<td>L6</td>
+<td>L3 market depth</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Trade-event ledger</td>
+<td>L4 context</td>
+<td>L1/L3 potential transmission</td>
+<td><code>NO</code>; no extra grade movement without observed mechanism</td>
+</tr>
+</tbody>
+</table>
+<h2 id="h-seal">H. Seal</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grader</td>
+<td><code>EUR-ISOLATED-GRADER</code></td>
+</tr>
+<tr>
+<td>Started</td>
+<td><code>2026-07-20T21:53:08-04:00</code></td>
+</tr>
+<tr>
+<td>Sealed</td>
+<td><code>2026-07-20T21:54:11-04:00</code></td>
+</tr>
+<tr>
+<td>Other provisional cards visible?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Source substitutions made?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Composite calculated?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Card state</td>
+<td><code>SEALED-V1_1</code></td>
+</tr>
+</tbody>
+</table>
+<p>Source note: The decisive official objects were <a href="https://www.imf.org/-/media/files/publications/cr/2026/english/1eurea2026001.pdf">IMF Country Report 26/177</a>, the <a href="https://www.imf.org/-/media/files/publications/esr/2025/english/ch3.pdf">2025 IMF ESR economy assessments</a>, and the ECB’s <a href="https://www.ecb.europa.eu/press/other-publications/ire/html/ecb.ire202606.en.html">June 2026 international-role report</a>. Member legal states were limited to the France, Germany and Italy annexes frozen in the source manifest; no missing member status was inferred.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

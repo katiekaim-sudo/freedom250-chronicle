@@ -1,0 +1,640 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Currency Watch — TRY Blind Card v1.2A Rerun 1 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Currency Watch — TRY Blind Card v1.2A Rerun 1</h1><p class="deck">Collection evidence cutoff: 2026-07-31</p><p><a href="cw-card-try-2026-07-20-v1-2a-r1-a85e222a1266.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="currency-watch-try-blind-card-v12a-rerun-1">Currency Watch — TRY Blind Card v1.2A Rerun 1</h1>
+<p><strong>Card ID:</strong> <code>CW-CARD-TRY-2026-07-20-V1_2A_R1</code><br />
+<strong>Rubric:</strong> <code>CURRENCY_WATCH_PILOT_RUBRIC_FROZEN_V1.md</code><br />
+<strong>Execution controls:</strong> <code>CURRENCY_WATCH_PILOT_EXECUTION_ANNEX_V1_1.md</code>, <code>CURRENCY_WATCH_EXTENSION_EXECUTION_ANNEX_V1_2.md</code>, and <code>CURRENCY_WATCH_WAVE_1_SEQUENTIAL_RERUN_CONTROL_V1_2A.md</code><br />
+<strong>L6 control:</strong> <code>CURRENCY_WATCH_L6_ROLE_PERIMETER_REPAIR_V1_2.md</code><br />
+<strong>Source freeze:</strong> <code>CURRENCY_WATCH_G20_EXTENSION_SOURCE_MANIFEST_2026-07-20.md</code>, TRY row and shared BIS spine only, as supplemented by <code>CURRENCY_WATCH_WAVE_1_RERUN_SOURCE_ADDENDUM_V1_2A_2026-07-20.md</code><br />
+<strong>Event freeze:</strong> <code>CURRENCY_WATCH_WAVE_1_EVENT_MANIFEST_2026-07-20.md</code><br />
+<strong>Grade state:</strong> <code>SEALED-V1_2A_R1</code></p>
+<h2 id="a-identity-and-authority">A. Identity and authority</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Currency object</td>
+<td>Turkish lira (<code>TRY</code>)</td>
+</tr>
+<tr>
+<td>Linked IMF member record(s)</td>
+<td>Republic of Türkiye; IMF Country Report 26/43</td>
+</tr>
+<tr>
+<td>Monetary-policy authority</td>
+<td>Central Bank of the Republic of Türkiye (<code>CBRT</code>)</td>
+</tr>
+<tr>
+<td>FX/intervention authority</td>
+<td><code>CBRT</code>; the Bank may conduct FX auctions or direct intervention when necessary</td>
+</tr>
+<tr>
+<td>Trade/customs authority</td>
+<td>Republic of Türkiye Ministry of Trade</td>
+</tr>
+<tr>
+<td>Shared-authority overlay</td>
+<td><code>NONE</code></td>
+</tr>
+<tr>
+<td>Regime stress class</td>
+<td>de jure free floating / de facto crawl-like; reserve-quality and CFM stress</td>
+</tr>
+<tr>
+<td>International role tags</td>
+<td><code>FX-hedge</code></td>
+</tr>
+<tr>
+<td>Blind wave</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-controlling-source-clocks">B. Controlling source clocks</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manifest row</td>
+<td><code>TRY</code></td>
+</tr>
+<tr>
+<td>Article IV/common report or controlled stale state</td>
+<td>Türkiye IMF Country Report 26/43</td>
+</tr>
+<tr>
+<td>Discussions end</td>
+<td>2025-11-14</td>
+</tr>
+<tr>
+<td>Staff cutoff</td>
+<td><code>NOT-STATED</code></td>
+</tr>
+<tr>
+<td>Datum vintages</td>
+<td>GDP, inflation, reserve and current-account observations: 2025; bank CAR: 2025Q2; March lira-asset-sales observation: March 2025; BIS FX turnover: April 2019, April 2022 and April 2025; 2026 inflation value is a projection; preliminary external assessment concerns 2025</td>
+</tr>
+<tr>
+<td>Post-cutoff statement</td>
+<td><code>NONE</code></td>
+</tr>
+<tr>
+<td>Board date</td>
+<td>2026-02-06</td>
+</tr>
+<tr>
+<td>Publication date</td>
+<td>2026-02-13</td>
+</tr>
+<tr>
+<td>ESR vintage</td>
+<td>2025 ESR is the last completed ESR and principally assesses 2024; the TRY-row 2025 assessment is preliminary</td>
+</tr>
+<tr>
+<td>National-data cutoff</td>
+<td><code>NOT-STATED</code> as a universal cutoff; decisive observations retain the vintages above</td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-authority-response">C. Authority response</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Response state</td>
+<td><code>PARTIAL</code></td>
+</tr>
+<tr>
+<td>Exact proposition answered</td>
+<td>The Turkish authorities emphasize disinflation progress, reserve rebuilding, policy normalization and financial-system resilience; staff and Board concerns over reanchoring and reserve quality remain separately attributed.</td>
+</tr>
+<tr>
+<td>Source/page/date</td>
+<td>Statement by Executive Director Yigit Korkmaz Yaşar and Advisor Murat Erinc Bayrakci on behalf of the Turkish authorities, IMF CR 26/43 PDF pp.110–115, especially pp.113–114 for monetary, exchange and reserve views; 2026-02-06</td>
+</tr>
+<tr>
+<td>Attribution boundary</td>
+<td>Staff / Board / member authority kept separate</td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-categorical-legal-card">D. Categorical legal card</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Controlled state</th>
+<th>Source/page</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV general status</td>
+<td><code>CONSULTATION-COMPLETED</code></td>
+<td>IMF CR 26/43; completed 2026-01-26, Board 2026-02-06</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Manipulation status</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE</code></td>
+<td>No frozen formal finding or two-part intent analysis</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Article VIII §2 current-payment restrictions</td>
+<td><code>NONE-IDENTIFIED-EXCEPT-SECURITY-RESTRICTIONS</code></td>
+<td>IMF CR 26/43 PDF p.106</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Article VIII §3 MCP/discriminatory practice</td>
+<td><code>NONE-IDENTIFIED</code></td>
+<td>IMF CR 26/43 PDF p.106</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Article VIII §4 foreign-held balances</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE</code></td>
+<td>Not resolved in the frozen TRY row</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Article VIII §5 information duty</td>
+<td><code>NOT-PUBLICLY-DETERMINABLE</code></td>
+<td>Not resolved in the frozen TRY row</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Article XIV</td>
+<td><code>NOT-APPLICABLE-ARTICLE-VIII-ACCEPTED</code></td>
+<td>IMF CR 26/43 PDF p.106</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Capital controls / CFMs</td>
+<td><code>SEPARATE-DESCRIPTIVE-OBJECT</code></td>
+<td>IMF CR 26/43 PDF pp.58, 106; itemized controls missing</td>
+<td><code>MEDIUM</code></td>
+</tr>
+<tr>
+<td>Security restrictions</td>
+<td><code>SEPARATE-DESCRIPTIVE-OBJECT</code></td>
+<td>IMF CR 26/43 PDF p.106</td>
+<td><code>HIGH</code></td>
+</tr>
+<tr>
+<td>Tariff / sanction / export-control objects</td>
+<td><code>SEPARATE-EVENT-RECORDS</code></td>
+<td>Wave 1 event manifest</td>
+<td><code>HIGH</code></td>
+</tr>
+</tbody>
+</table>
+<p>No categorical legal state is converted numerically.</p>
+<h2 id="e-linked-event-records">E. Linked event records</h2>
+<p>Every Wave 1 event-manifest row is accounted for below. A link is contextual and does not establish transmission.</p>
+<table>
+<thead>
+<tr>
+<th>Event ID</th>
+<th>Link state</th>
+<th>Legal/operating clock</th>
+<th>Proposed transmission</th>
+<th>Evidence state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TP-US-2026-SECTION122</code></td>
+<td><code>LINKED</code></td>
+<td>Operative for covered entries at the 2026-07-20 freeze; scheduled 2026-07-24 clock and court appeal separate</td>
+<td>No observed TRY-lane transmission frozen</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>TP-US-SECTION232-PRODUCT-SET</code></td>
+<td><code>LINKED</code></td>
+<td><code>PRODUCT-SPECIFIC</code>; operative schedules and stacking require instrument-level retrieval</td>
+<td>No observed TRY-lane transmission frozen</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>TP-TR-EU-CUSTOMS-UNION</code></td>
+<td><code>LINKED</code></td>
+<td><code>FRAMEWORK-EXISTS</code>; product coverage and operative schedule unresolved</td>
+<td>No monetary-performance transmission frozen</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>TP-EU-2026-CBAM</code></td>
+<td><code>LINKED</code></td>
+<td>Effective in 2026; product and compliance incidence separate</td>
+<td>No observed trade, price, FX or external transmission frozen</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>TP-US-TR-PRODUCT-SET</code></td>
+<td><code>LINKED</code></td>
+<td><code>CLOCK-UNRESOLVED</code></td>
+<td>No rate, scope or grade inference</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>TP-BR-MERCOSUR-TRADE-SET</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>INSTRUMENT-SPECIFIC</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>TP-BR-TRADE-REMEDY-SET</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>CLOCK-UNRESOLVED</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>SAN-RU-MULTIJURISDICTION-SET</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>INSTRUMENT-AND-JURISDICTION-SPECIFIC</code>; clocks unresolved</td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>CFM-RU-NATIONAL-CONTROL-SET</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>INSTRUMENT-SPECIFIC</code>; clocks unresolved</td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>EC-RU-EXPORT-LICENSE-SET</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>INSTRUMENT-AND-JURISDICTION-SPECIFIC</code>; clocks unresolved</td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>PAY-RU-PAYMENT-RESTRICTION-SET</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>TRANSACTION-LEVEL-EVIDENCE-MISSING</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>CM-RU-COUNTERMEASURE-SET</code></td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>INSTRUMENT-SPECIFIC</code>; clocks unresolved</td>
+<td><code>NOT-LINKED-IN-FROZEN-CURRENCY-ROW</code></td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="f-binding-lane-readiness-gate">F. Binding lane-readiness gate</h2>
+<p>This gate is completed before grading. Under v1.2A, <code>FAIL</code> maps to <code>NR</code>; only <code>PASS</code> may receive <code>A–F</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Lane</th>
+<th>Readiness result</th>
+<th>Frozen reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 Domestic anchor</td>
+<td><code>FAIL</code></td>
+<td>Target/framework, core inflation and expectations, stance and persistence evidence are incomplete.</td>
+</tr>
+<tr>
+<td>L2 Underlying order</td>
+<td><code>FAIL</code></td>
+<td>Local-currency use, arrears, liquidity/asset quality and persistence evidence are incomplete.</td>
+</tr>
+<tr>
+<td>L3 Exchange order</td>
+<td><code>FAIL</code></td>
+<td>Accessible exchange path, volatility/premium and intervention series are incomplete.</td>
+</tr>
+<tr>
+<td>L4 External adjustment</td>
+<td><code>FAIL</code></td>
+<td>Current-account components, NIIP/debt, saving-investment drivers and persistence evidence are incomplete.</td>
+</tr>
+<tr>
+<td>L5 Current-payment usability</td>
+<td><code>FAIL</code></td>
+<td>Operating FX access, delay, arrears and transfer evidence are incomplete.</td>
+</tr>
+<tr>
+<td>L6 International systemic service</td>
+<td><code>PASS</code></td>
+<td>Frozen BIS current use, persistence, market operation and foreign-dealer boundary satisfy all four v1.2 gates.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="g-l6-eligibility-gate">G. L6 eligibility gate</h2>
+<table>
+<thead>
+<tr>
+<th>Required gate</th>
+<th>Evidence + vintage</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current official quantitative international use</td>
+<td>BIS 2025 Triennial Survey: TRY average daily OTC FX turnover $50bn, 0.5% share, April 2025</td>
+<td><code>PASS</code></td>
+</tr>
+<tr>
+<td>Comparable persistence observation</td>
+<td>BIS: $71bn/1.1% in April 2019; $27bn/0.4% in April 2022; $50bn/0.5% in April 2025</td>
+<td><code>PASS</code></td>
+</tr>
+<tr>
+<td>Operating reliability/liquidity/access evidence</td>
+<td>BIS global reporting-dealer turnover supplies market-activity and liquidity evidence; the role remained active in 2025 after the 2022 trough</td>
+<td><code>PASS</code></td>
+</tr>
+<tr>
+<td>Named foreign users, markets or jurisdictions</td>
+<td>Global reporting dealers in the international OTC FX market</td>
+<td><code>PASS</code></td>
+</tr>
+<tr>
+<td>Qualifying role</td>
+<td><code>FX-hedge</code></td>
+<td><code>PASS</code></td>
+</tr>
+<tr>
+<td>Eligibility result</td>
+<td>All four gates pass</td>
+<td><code>GRADEABLE</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="h-six-lane-worksheet">H. Six-lane worksheet</h2>
+<table>
+<thead>
+<tr>
+<th>Lane</th>
+<th>Proposed grade</th>
+<th>One-sentence reason</th>
+<th>Primary evidence + vintage</th>
+<th>Persistence evidence</th>
+<th>Shock evidence</th>
+<th>Competing explanation</th>
+<th>Confidence</th>
+<th>Legal/event link</th>
+<th>Data gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 Domestic anchor</td>
+<td><code>NR</code></td>
+<td>The domestic-anchor job cannot be graded because the binding frozen packet lacks complete target/framework, core/expectations, stance and persistence evidence.</td>
+<td>v1.2A TRY readiness gate: <code>FAIL</code>; 2025 average/end inflation 34.9%/30.9%, 2025 GDP +4.1% and 2026 end-inflation projection 23% are context only.</td>
+<td><code>MISSING</code></td>
+<td><code>NOT-APPLICABLE</code></td>
+<td>Falling inflation and positive growth could indicate progress, but fragments cannot replace the missing minimum evidence.</td>
+<td><code>HIGH</code></td>
+<td><code>NONE</code>; legal and trade objects do not set this grade.</td>
+<td>Target/framework, core inflation, expectations, stance and comparable persistence series.</td>
+</tr>
+<tr>
+<td>L2 Underlying order</td>
+<td><code>NR</code></td>
+<td>The underlying-order job cannot be graded because local-currency use, arrears, liquidity/asset-quality and persistence evidence are incomplete.</td>
+<td>v1.2A TRY readiness gate: <code>FAIL</code>; bank CAR 18% at 2025Q2 is context only.</td>
+<td><code>MISSING</code></td>
+<td><code>NOT-APPLICABLE</code></td>
+<td>The reported CAR and authority claim of resilient banks may indicate functioning, but they do not cover the lane minimum.</td>
+<td><code>HIGH</code></td>
+<td><code>NONE</code>; CFMs and payment usability remain separate objects.</td>
+<td>Local-currency use, arrears, generalized liquidity, asset quality and comparable persistence.</td>
+</tr>
+<tr>
+<td>L3 Exchange order</td>
+<td><code>NR</code></td>
+<td>The exchange-order job cannot be graded because the accessible exchange path, volatility or premium, and intervention series are incomplete.</td>
+<td>v1.2A TRY readiness gate: <code>FAIL</code>; gross reserves $184bn/79.5% ARA with quality and short-liability concerns are context only.</td>
+<td><code>MISSING</code></td>
+<td>March 2025 lira-asset sales of about $18bn are general shock context only; no frozen FX/intervention mechanism is supplied.</td>
+<td>Gross reserves and CBRT's intervention capacity could support order, while reserve-quality concerns could imply strain; neither resolves the missing operating series.</td>
+<td><code>HIGH</code></td>
+<td><code>TP-US-2026-SECTION122</code>, <code>TP-US-SECTION232-PRODUCT-SET</code>, <code>TP-TR-EU-CUSTOMS-UNION</code>, <code>TP-EU-2026-CBAM</code>, <code>TP-US-TR-PRODUCT-SET</code>: no observed L3 transmission.</td>
+<td>Accessible exchange-rate path, volatility/premium, net/usable reserves and intervention persistence.</td>
+</tr>
+<tr>
+<td>L4 External adjustment</td>
+<td><code>NR</code></td>
+<td>The external-adjustment job cannot be graded because current-account components, NIIP/debt, saving-investment drivers and persistence evidence are incomplete.</td>
+<td>v1.2A TRY readiness gate: <code>FAIL</code>; preliminary 2025 assessment <code>WEAKER</code>, CA -1.4%, gap -2.2% and REER overvaluation +8.7% are context only.</td>
+<td><code>MISSING</code></td>
+<td><code>NOT-APPLICABLE</code></td>
+<td>The modest current-account deficit may look bounded, but the preliminary weaker assessment and high financing needs point the other way; the missing structure prevents a call.</td>
+<td><code>HIGH</code></td>
+<td>TRY-linked trade objects are context only; no observed L4 transmission.</td>
+<td>Current-account components, NIIP/external debt, saving-investment drivers, final ESR and persistence series.</td>
+</tr>
+<tr>
+<td>L5 Current-payment usability</td>
+<td><code>NR</code></td>
+<td>The current-payment-usability job cannot be graded because operating FX access, delays, arrears and transfer evidence are incomplete.</td>
+<td>v1.2A TRY readiness gate: <code>FAIL</code>; the affirmative Article VIII restriction/MCP record is categorical only.</td>
+<td><code>MISSING</code></td>
+<td><code>NOT-APPLICABLE</code></td>
+<td>The clean treaty statement could be consistent with usability, but formal status cannot substitute for operating transaction evidence.</td>
+<td><code>HIGH</code></td>
+<td>Article VIII §2/§3 record; security restrictions and CFMs remain separate; no trade-event grade transmission.</td>
+<td>Operating FX access, transaction delays, arrears and transfer evidence.</td>
+</tr>
+<tr>
+<td>L6 International systemic service</td>
+<td><code>C</code></td>
+<td>TRY continues to perform a documented international OTC FX and hedging role, but its 2025 turnover share remained materially below 2019 after a sharp 2022 contraction, a persistent scale impairment despite partial recovery.</td>
+<td>BIS 2025 Triennial Survey: $50bn/day and 0.5% of global OTC FX turnover in April 2025 among global reporting dealers.</td>
+<td>BIS: $71bn/1.1% in 2019, $27bn/0.4% in 2022, $50bn/0.5% in 2025.</td>
+<td><code>NOT-APPLICABLE</code></td>
+<td>The strong rebound from 2022 and continuing liquidity could support <code>B</code>; the still-more-than-halved share versus 2019 supports a material-persistent-deviation call.</td>
+<td><code>MEDIUM</code></td>
+<td><code>NONE</code>; no frozen event transmission to international FX service.</td>
+<td>Instrument-level liquidity/access and settlement-continuity metrics, user composition, and evidence explaining the 2019–2025 scale loss would sharpen the call.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="i-primary-lane-collision-check">I. Primary-lane collision check</h2>
+<table>
+<thead>
+<tr>
+<th>Fact/source</th>
+<th>Primary lane</th>
+<th>Context links</th>
+<th>Separate second mechanism evidenced?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025 inflation and GDP observations</td>
+<td>L1</td>
+<td>Authority-response progress claim</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>2025Q2 bank CAR</td>
+<td>L2</td>
+<td>Authority-response resilience claim</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Gross reserves, ARA ratio, reserve-quality concerns and March lira-asset-sales observation</td>
+<td>L3</td>
+<td>L4 financing context only</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Preliminary external assessment, current account, gap and REER</td>
+<td>L4</td>
+<td>L3 context only</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Article VIII restriction/MCP statement</td>
+<td>L5 categorical legal context</td>
+<td>Security restrictions and CFMs separate</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>BIS 2019/2022/2025 global reporting-dealer turnover</td>
+<td>L6</td>
+<td>No other lane</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Wave 1 tariff/customs/product events</td>
+<td>Event ledger only</td>
+<td>L3/L4 context without transmission</td>
+<td><code>NO</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="j-seal">J. Seal</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grader</td>
+<td><code>TRY-RERUN-ISOLATED-GRADER</code></td>
+</tr>
+<tr>
+<td>Blind wave</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Started</td>
+<td>2026-07-20T23:01:22-0400</td>
+</tr>
+<tr>
+<td>Sealed</td>
+<td>2026-07-20T23:01:29-0400</td>
+</tr>
+<tr>
+<td>Other provisional cards visible?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Source substitutions made?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Composite calculated?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Card state</td>
+<td><code>SEALED-V1_2A_R1</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-seal-wording-clarification">Post-seal wording clarification</h2>
+<p><strong>Logged:</strong> 2026-07-20 ET<br />
+<strong>Grade effect:</strong> <code>NONE</code></p>
+<p>The L5 primary-evidence phrase “affirmative Article VIII restriction/MCP
+record” means an affirmative official <strong>status record</strong>: no ordinary
+current-payment restriction or MCP was identified, apart from separately
+routed security restrictions. It does not mean that an affirmative
+restriction or MCP finding exists. No lane grade changes.</p>
+<p>After sealing, corrections append; they do not overwrite this card.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

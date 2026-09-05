@@ -1,0 +1,325 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Congressional Monetary Infrastructure — Research Package · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/money-rights-and-records.html#permission-to-participate" class="" >A working network still needs a right to participate <span class="meta">— Who gets in, which record counts, and when payment is complete</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Congressional Monetary Infrastructure — Research Package</h1><p class="deck">Collection evidence cutoff: 2026-09-02</p><p><a href="congressional-monetary-infrastructure-research-package-fbcfe344359b.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="congressional-monetary-infrastructure-research-package">Congressional Monetary Infrastructure — Research Package</h1>
+<p><strong>Read first.</strong><br />
+<strong>Cutoff:</strong> 2026-07-18<br />
+<strong>State:</strong> <code>pending workspace research; no live-vault files changed</code><br />
+<strong>Scope:</strong> DTC/DTCC tokenization, House Financial Services hearings, cross-committee market-structure work, PACE, sovereign digital reserves, prudential regulation, consumer/AML controls and the existing Freedom 250 monetary corpus.</p>
+<h2 id="short-answer">Short answer</h2>
+<p>Yes: a large financial re-architecture is moving, but it is not one bill or one launch. It is a coordinated-looking convergence of separately authorized systems:</p>
+<ul>
+<li>DTC completed limited production transactions using tokenized securities while retaining the authoritative entitlement record; the participant-facing service launch remains scheduled for October;</li>
+<li>NSCC is already operating 24x5 and the Treasury-clearing build continues through FICC and competing infrastructures;</li>
+<li>Congress is constructing private payment-issuer and payment-provider lanes while resisting a direct retail CBDC model;</li>
+<li>the Fed, OCC, FDIC, NCUA, SEC, CFTC, CFPB, FinCEN and Treasury are each being assigned different pieces;</li>
+<li>Treasury digital-asset custody is moving from executive policy toward a proposed statutory structure;</li>
+<li>the congressional task force studying the Fed and Treasury market has been reauthorized, so the nine-hearing series is entering a second phase.</li>
+</ul>
+<p>The vault already understood most of the machine. The newly exposed gap was the <strong>congressional assembly layer</strong> connecting these systems.</p>
+<h3 id="july-18-audit-delta">July 18 audit delta</h3>
+<p><code>Research Packages/Government-Wide Audit 2026-07-18/</code> closes the prior July
+14–17 hearing-capture gap. It preserves official caption corpora for the House
+and Senate Fed and CFPB hearings, the House CLARITY field hearing and HSGAC's
+fraud hearing, with source records, hashes and a cross-agency rule/watchdog
+delta. No hearing itself changed a statute, Fed operating framework, CFPB
+structure or digital-asset bill state.</p>
+<h2 id="1-strongest-findings">1. Strongest findings</h2>
+<h3 id="a-july-15-is-an-occurred-dtc-production-milestone-with-one-important-caveat">A. July 15 is an occurred DTC production milestone, with one important caveat</h3>
+<p>DTCC's July 15 press release says DTC-custodied assets were converted into tokens and used in real production trades involving more than 30 firms. It names collateral pledge, securities lending, Treasury/repo DVP, equity DVP, equity DVD, token transfer and CCP-margin workflows on Hyperledger Besu and Canton.</p>
+<p>The correct state is:</p>
+<p><code>limited production trades occurred / October participant-service launch scheduled</code></p>
+<p>not:</p>
+<p><code>full commercial service launched</code>.</p>
+<p>The release names the participating-firm roster and workflow classes but does not publish transaction-level CUSIPs, matched counterparties, values or on-chain identifiers. The October 2026 preliminary service launch remains a separate announced target.</p>
+<h3 id="b-dtc-tokenization-centralizes-the-legal-record-while-distributing-the-interface">B. DTC tokenization centralizes the legal record while distributing the interface</h3>
+<p>DTC's model is not issuer-native stock appearing independently on a blockchain. It is a controlled token representation of a DTC participant's existing security entitlement.</p>
+<p>The chain layer can become multi-network and continuously available, but DTC retains:</p>
+<ul>
+<li>the final entitlement record;</li>
+<li>wallet and network approval;</li>
+<li>mint/burn, freeze, pause, clawback and force-transfer controls;</li>
+<li>corporate-action and reconciliation authority;</li>
+<li>restrictions on eligible assets and participants.</li>
+</ul>
+<p>That is best understood as <strong>federated technical rails around a centralized legal record</strong>.</p>
+<h3 id="c-the-march-25-tokenization-hearing-is-the-largest-missing-congressional-bridge">C. The March 25 tokenization hearing is the largest missing congressional bridge</h3>
+<p>HFSC's 2026-03-25 <em>Tokenization and the Future of Securities</em> hearing put DTCC, SIFMA, Nasdaq, the Blockchain Association and Plume into the same record and attached two discussion drafts.</p>
+<p>It bridges:</p>
+<ul>
+<li>SEC staff's entity-specific no-action relief;</li>
+<li>DTC's controlled production service;</li>
+<li>exchange tokenized-trading proposals;</li>
+<li>wider statutory recognition of blockchain records;</li>
+<li>possible joint SEC/CFTC tokenization study and rules.</li>
+</ul>
+<p>The infrastructure is already well mapped in the vault. The missing object is the complete hearing source packet and bill-to-rule comparison.</p>
+<h3 id="d-pace-is-a-two-gate-federal-payments-architecture">D. PACE is a two-gate federal payments architecture</h3>
+<p>H.R. 8395 would allow a qualifying payment provider to seek OCC registration and then separately apply to the Federal Reserve Board for a payments reserve account supporting Fedwire, FedNow and FedACH.</p>
+<p>PACE is not automatic Fed access, a bank charter, FDIC insurance, discount-window access or an entitlement to credit. Its importance is that it creates a possible national nonbank payment-provider lane with:</p>
+<ul>
+<li>a 40-state-license or qualifying state-charter entry test;</li>
+<li>1:1 reserve assets and segregation;</li>
+<li>OCC supervision of the provider and critical vendors;</li>
+<li>a special resolution regime outside ordinary Chapters 7 and 11;</li>
+<li>statutory agency clocks and deemed approvals;</li>
+<li>a second Board account gate followed by Reserve Bank onboarding.</li>
+</ul>
+<p>The two approval gates can move faster than ordinary open-ended account processes, but only if Congress enacts the bill and agency/technical implementation follows.</p>
+<h3 id="e-arma-is-the-largest-newly-exposed-sovereign-asset-bill">E. ARMA is the largest newly exposed sovereign-asset bill</h3>
+<p>H.R. 8957, the American Reserve Modernization Act, would convert the executive-order Strategic Bitcoin Reserve and Digital Asset Stockpile into Treasury statutory structures if enacted.</p>
+<p>It combines:</p>
+<ul>
+<li>federal digital-asset inventory and transfer;</li>
+<li>a 20-year Bitcoin holding floor;</li>
+<li>quarterly cryptographic proof-of-reserve;</li>
+<li>independent audit and GAO oversight;</li>
+<li>segregated Treasury custody for state-owned Bitcoin with state title retained;</li>
+<li>management of non-Bitcoin federal assets;</li>
+<li>ESF Bitcoin reporting;</li>
+<li>a Treasury-Commerce study of budget-neutral acquisition routes including forfeitures, taxes/tariffs, gifts, Reserve Bank remittances and gold-certificate revaluation.</li>
+</ul>
+<p>The last item is a <strong>study mandate</strong>, not present authority to revalue gold, compel Fed remittances, accept Bitcoin taxes or purchase Bitcoin.</p>
+<h3 id="f-the-story-requires-four-congressional-committees">F. The story requires four congressional committees</h3>
+<p>The legal assembly line is:</p>
+<pre><code class="language-text">House Financial Services + House Agriculture
+                    |
+             House product
+                    |
+Senate Banking + Senate Agriculture
+                    |
+       reconciled Senate product
+                    |
+    identical House/Senate text
+</code></pre>
+<p>GENIUS completed this process and became law. CLARITY has not. The House passed H.R. 3633 on 2025-07-17; Senate Agriculture and Senate Banking later advanced different committee products that still require reconciliation.</p>
+<h3 id="g-the-monetary-policy-hearing-series-is-continuing">G. The monetary-policy hearing series is continuing</h3>
+<p>HFSC agreed on 2026-06-30 to reauthorize the Task Force on Monetary Policy, Treasury Market Resilience, and Economic Prosperity. The resolution takes effect July 23, 2026 and authorizes more hearings, investigations, reports and recommended legislation.</p>
+<p>The vault's nine-hearing sequence should therefore be preserved as <strong>Act I</strong>, with post-reauthorization work captured as <strong>Act II</strong>.</p>
+<h3 id="h-the-june-30-markup-is-the-control-plane-prequel-to-programmable-finance">H. The June 30 markup is the control-plane prequel to programmable finance</h3>
+<p>The complete June 30 “Various Measures” record joins regulatory process, product
+classification, identity, fraud friction, data flow, liability and federal
+preemption in one committee action. H.R. 9329 would constrain SEC rulemaking and
+restructure the agency; H.R. 9330 would place qualifying earned-wage access
+outside federal credit and lending classifications; H.R. 9331 would authorize
+temporary availability holds on suspect checks and wires; and H.R. 1483 would
+remove direct identity fields from CAT reports while preserving transaction
+telemetry.</p>
+<p>The rejected amendments are part of the finding. The committee declined to
+hard-code crypto, stablecoin, digital-asset and AI/algorithm risks into H.R.
+9329's cost-benefit framework; declined a federal EWA fee/tip ceiling and
+stronger preservation of state law; and declined consumer opt-in for expanded
+rent, utility and telecom reporting. It adopted a narrower bipartisan
+protection requiring that an EWA advance not exceed wages actually earned.</p>
+<p>This is not a crypto bill package and it is not enacted law. It is the legal
+workmanship around the private stack: define the category, decide who sees
+identity, choose where delay is lawful, shape the regulator, allocate remedy
+and decide whether states may differ. Read first:
+HFSC Various Measures Markup 2026-06-30/README.md.</p>
+<h2 id="2-what-the-existing-vault-already-does-exceptionally-well">2. What the existing vault already does exceptionally well</h2>
+<p>No baseline rebuild is needed for:</p>
+<ul>
+<li>Federal Reserve Board versus FOMC versus twelve Reserve Banks;</li>
+<li>Treasury debt, cash, gold-certificate and ESF mechanics;</li>
+<li>DTC versus DTCC parent versus NSCC and FICC;</li>
+<li>Treasury clearing, dealer balance sheets, repo, margin and collateral;</li>
+<li>GENIUS issuer/reserve/insolvency/regulator structure;</li>
+<li>bank, fintech, stablecoin and crypto company legal entities;</li>
+<li>judicial account-access, agency-authority, forfeiture and property boundaries;</li>
+<li>the private monetary adapter stack.</li>
+</ul>
+<p>The vault's central method—legal person first, then authority, status and clock—is exactly the right method for the current wave.</p>
+<h2 id="3-genuine-gaps-not-duplicate-research">3. Genuine gaps, not duplicate research</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Priority</th>
+<th>Gap</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">P0</td>
+<td>March 25 tokenization hearing packet</td>
+<td>direct DTC-to-legislation bridge</td>
+</tr>
+<tr>
+<td style="text-align: right;">P0</td>
+<td>June 4 prudential-regulator testimony</td>
+<td>current Fed/OCC/FDIC/NCUA positions in one record</td>
+</tr>
+<tr>
+<td style="text-align: right;">P0</td>
+<td>May 20 bank-fintech hearing and H.R. 6552</td>
+<td>defines sponsor-bank partnership model that may compete with PACE</td>
+</tr>
+<tr>
+<td style="text-align: right;">closed Jul 18</td>
+<td>July 14 House and July 15 Senate Warsh records</td>
+<td>captured in the government-wide audit package; current Fed commitments remain review/communications clocks</td>
+</tr>
+<tr>
+<td style="text-align: right;">closed Jul 18</td>
+<td>July 15/16 CFPB records</td>
+<td>captured in the government-wide audit package; consumer-redress, fraud and payment-rights counterweight preserved</td>
+</tr>
+<tr>
+<td style="text-align: right;">closed Jul 18</td>
+<td>July 17 CLARITY/ARMA field-hearing packet</td>
+<td>captured in the government-wide audit package; H.R. 8957 remained introduced and unadvanced</td>
+</tr>
+<tr>
+<td style="text-align: right;">P0</td>
+<td>July 21 FinCEN and FHLBank hearings</td>
+<td>AML/control perimeter and a thinly mapped liquidity system</td>
+</tr>
+<tr>
+<td style="text-align: right;">P1</td>
+<td>equity order-execution stack</td>
+<td>exchanges, wholesalers, retail brokers, best execution, CAT and market data</td>
+</tr>
+<tr>
+<td style="text-align: right;">P1</td>
+<td>FinCEN/BSA modernization</td>
+<td>new providers and tokens expand the surveillance/compliance perimeter</td>
+</tr>
+<tr>
+<td style="text-align: right;">P1</td>
+<td>PACE applicant census</td>
+<td>must be built at the exact subsidiary/license/charter level</td>
+</tr>
+<tr>
+<td style="text-align: right;">P1</td>
+<td>tokenized-reserve opinion tree</td>
+<td>DTC Treasury entitlement is not automatically an accepted GENIUS/PACE reserve asset</td>
+</tr>
+<tr>
+<td style="text-align: right;">P1</td>
+<td>CFTC authority-versus-capacity map</td>
+<td>expanded spot jurisdiction and agency staffing/appropriation are separate clocks</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-corrections-to-carry-into-the-vault">4. Corrections to carry into the vault</h2>
+<ol>
+<li><strong>CLARITY House passage:</strong> 2025-07-17, not 2025-07-15.</li>
+<li><strong>CLARITY state:</strong> passed House, later processed separately by Senate Agriculture and Senate Banking; not enacted and the jurisdictional assembly is not over.</li>
+<li><strong>Warsh July 15:</strong> Senate semiannual monetary-policy testimony, not a nomination hearing.</li>
+<li><strong>H.R. 6552:</strong> ordered reported amended by HFSC; not passed House.</li>
+<li><strong>Price Stability:</strong> the hearing discussion draft became H.R. 5396; preserve draft and introduced dates separately.</li>
+<li><strong>March tokenization texts:</strong> still discussion drafts; do not assign them numbered-bill or enacted status.</li>
+<li><strong>June 24/25 hearings:</strong> marked aired but still mechanically stored as <code>UPCOMING</code> in <code>The Hearings.html</code>.</li>
+<li><strong>Machine Spine:</strong> its frozen hearing/filing totals are stale and internally inconsistent.</li>
+<li><strong>Watch calendar:</strong> add the July 17 HFSC field hearing and separate July 21 FinCEN, FHLBank and House Agriculture events.</li>
+</ol>
+<p>No live-vault corrections were made in this research pass.</p>
+<h2 id="5-how-fast-could-the-chain-move">5. How fast could the chain move?</h2>
+<p>Faster than a normal single-bill reading suggests, because many prerequisites are already moving in parallel:</p>
+<ul>
+<li>DTC has conditional SEC staff relief and is testing before the broader service launch;</li>
+<li>exchanges are filing their own tokenized-trading rules;</li>
+<li>stablecoin law is already in implementation;</li>
+<li>nonbank Fed-access rules and PACE legislation can move on separate administrative and statutory tracks;</li>
+<li>NSCC 24x5 and Treasury central clearing are operational/in-progress independent of tokenization;</li>
+<li>Congress can combine committee products or insert provisions into a larger financial package;</li>
+<li>reauthorization keeps the Fed/Treasury task-force record open for additional bills.</li>
+</ul>
+<p>The limiting sequence is still legal and operational:</p>
+<pre><code class="language-text">authority -&gt; rule/relief -&gt; entity approval -&gt; onboarding -&gt; production -&gt; collateral/settlement use
+</code></pre>
+<p>The system can compress the calendar by running adjacent steps in parallel. It cannot safely skip the controlling legal person, asset-title, cash-leg, failure/finality and operational-readiness questions.</p>
+<h2 id="6-the-leading-indicators-that-matter-most">6. The leading indicators that matter most</h2>
+<p>Watch these instead of headline volume:</p>
+<ol>
+<li>DTC's first named production transaction and written launch notice to SEC staff;</li>
+<li>DTC's approved-network list, participant terms, fees and wallet standards;</li>
+<li>whether tokenized entitlements receive collateral or settlement value;</li>
+<li>whether a regulated stablecoin or tokenized deposit supplies the cash/distribution leg;</li>
+<li>PACE markup, Senate companion and exact OCC/Fed account language;</li>
+<li>first PACE-qualified legal entity, if enacted—not the parent brand;</li>
+<li>GENIUS final rules, exact effective trigger and first issuer approval;</li>
+<li>CLARITY reconciliation between Senate Banking and Senate Agriculture;</li>
+<li>ARMA amendment/markup and any independent Treasury operational-reserve publication;</li>
+<li>Fed Payment Account final rule and first approval;</li>
+<li>FICC/NSCC/DTC/OCC/CME/ICE notices that accept tokenized assets into margin, repo, lending or clearing;</li>
+<li>CFPB, FinCEN, OFAC and prudential rules defining fraud, privacy, sanctions, BSA and customer-redress duties;</li>
+<li>the first post-July-23 monetary-policy task-force hearing or report;</li>
+<li>failure events: lost key, clawback, chain outage, participant default, cash-leg failure, insolvency or litigation.</li>
+</ol>
+<h2 id="7-package-reading-order">7. Package reading order</h2>
+<ol>
+<li><code>CONGRESSIONAL_MONETARY_EXISTING_CORPUS_AUDIT.md</code> — what is already deep, partial, thin or absent.</li>
+<li><code>HFSC Various Measures Markup 2026-06-30/README.md</code> — Event 119430 control-plane analysis and rejected-protection record.</li>
+<li><code>DTC_TOKENIZATION_SOFT_LAUNCH_STATUS_2026-07-15.md</code> — today's event and the refreshed public operating model.</li>
+<li><code>HFSC_MONETARY_INFRASTRUCTURE_HEARING_REGISTRY.md</code> — the expanded House Financial Services record.</li>
+<li><code>CONGRESSIONAL_MONETARY_CROSS_COMMITTEE_MAP.md</code> — the four-committee assembly line.</li>
+<li><code>MONETARY_HEARING_ENTITY_BILL_CROSSWALK.md</code> — exact legal entities and bill states.</li>
+<li><code>PACE_ACT_LEGAL_MAP.md</code> — the payment-provider/Fed-account architecture.</li>
+<li><code>AMERICAN_RESERVE_MODERNIZATION_ACT_LEGAL_MAP.md</code> — sovereign reserve-asset proposal.</li>
+<li><code>CONGRESSIONAL_MONETARY_SOURCE_WATCHBOARD.md</code> — where each next state change will appear.</li>
+</ol>
+<h2 id="8-primary-official-anchors">8. Primary official anchors</h2>
+<ul>
+<li>DTCC July/October tokenization timeline: https://www.dtcc.com/news/2026/may/04/dtcc-advances-development-of-new-tokenization-service</li>
+<li>DTCC July 15 soft-launch statement: https://www.dtcc.com/dtcc-connection/articles/2026/may/19/tokenization-moves-from-theory-to-reality</li>
+<li>SEC staff/DTC no-action record: https://www.sec.gov/files/tm/no-action/dtc-nal-121125.pdf</li>
+<li>HFSC tokenization hearing: https://financialservices.house.gov/calendar/eventsingle.aspx?EventID=411038</li>
+<li>HFSC Future of Payments/PACE hearing: https://financialservices.house.gov/calendar/eventsingle.aspx?EventID=411134</li>
+<li>PACE introduced text: https://www.govinfo.gov/app/details/BILLS-119hr8395ih</li>
+<li>HFSC task-force reauthorization: https://financialservices.house.gov/calendar/eventsingle.aspx?EventID=411136</li>
+<li>Task-force resolution: https://docs.house.gov/meetings/BA/BA00/20260630/119430/BILLS-119pih-ReauthorizetheTaskForce.pdf</li>
+<li>July 17 field hearing: https://financialservices.house.gov/calendar/eventsingle.aspx?EventID=411176</li>
+<li>H.R. 8957 introduced text: https://docs.house.gov/meetings/BA/BA21/20260717/119461/BILLS-119HR8957ih.pdf</li>
+<li>House Agriculture CLARITY passage record: https://agriculture.house.gov/news/documentsingle.aspx?documentid=7973</li>
+<li>Senate Banking hearings: https://www.banking.senate.gov/hearings</li>
+<li>Senate Agriculture hearings: https://www.agriculture.senate.gov/hearings</li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

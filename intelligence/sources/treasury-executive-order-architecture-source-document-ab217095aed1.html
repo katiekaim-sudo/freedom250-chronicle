@@ -1,0 +1,346 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Treasury Executive-Order Architecture — Source Document · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Treasury Executive-Order Architecture — Source Document</h1><p class="deck">Source updated: 2026-08-24 · Source evidence cutoff: 2026-08-24 ET</p><p><a href="treasury-executive-order-architecture-source-document-ab217095aed1.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="treasury-executive-order-architecture-source-document">Treasury Executive-Order Architecture — Source Document</h1>
+<h2 id="bottom-line">Bottom line</h2>
+<p>The current Executive-Order stack does <strong>not</strong> establish a Treasury currency, a
+Treasury-issued stablecoin, an IMF or World Bank exit, a separation of the
+Federal Reserve from the dollar system, a gold revaluation, or a new Treasury
+bond-buyback authority.</p>
+<p>It does establish a broader Treasury-centered control architecture than the
+money storyline previously foregrounded. Treasury is being used as a common
+gate for:</p>
+<ul>
+<li>international financial-institution voice, vote, contribution,
+  energy-finance, and procurement policy;</li>
+<li>federal payment verification, classification, accounting, and disbursement
+  centralization;</li>
+<li>digital-asset infrastructure, GENIUS Act implementation, and Strategic
+  Bitcoin Reserve support;</li>
+<li>tax-credit eligibility and prohibited-foreign-entity supply-chain tests;</li>
+<li>housing-market definitions, rulemaking, enforcement, and tax-advantaged
+  construction capital;</li>
+<li>separate-fund custody for private gifts under the Gold Card program; and</li>
+<li>sanctions, illicit-finance, investment-security, and foreign-transaction
+  controls.</li>
+</ul>
+<p>The strongest factual reading is <strong>Treasury as a shared eligibility, routing,
+accounting, and enforcement layer</strong>. That is not the same legal or operational
+object as Treasury replacing the Federal Reserve or international financial
+institutions.</p>
+<h2 id="census-and-corpus-diagnosis">Census and corpus diagnosis</h2>
+<p>A live-vault text census found <strong>71 second-term Executive Order notes from
+2025–2026 that mention Treasury</strong>. The monetary Executive Order surface
+foregrounds <strong>35 mapped orders</strong>. The difference is not 36 absent maps: many
+Treasury assignments were captured in other topical waves and therefore did not
+rise into the main monetary-control story.</p>
+<p>Three examples sit in <code>eo_entity_maps_wave10_ceremonial.json</code>, whose label is
+“Second-term ceremonial and thin orders”:</p>
+<ul>
+<li>EO 14162 — international climate-finance withdrawal;</li>
+<li>EO 14376 — institutional-homebuyer definitions and rule review; and</li>
+<li>EO 14394 — Opportunity Zone and New Markets Tax Credit housing-capital
+  alignment.</li>
+</ul>
+<p>EO 14261, EO 14299, and EO 14315 sit under energy. EO 14351's separate Treasury
+fund sits under immigration. The underlying legal objects were mostly captured;
+their joined Treasury storyline and later operating returns were
+under-promoted.</p>
+<h2 id="architecture-lanes">Architecture lanes</h2>
+<h3 id="1-international-development-finance-reset">1. International development-finance reset</h3>
+<h4 id="eo-14162-withdrawal-and-financial-commitment-cease">EO 14162 — withdrawal and financial-commitment cease</h4>
+<p>EO 14162 directed the United States Ambassador to the United Nations,
+collaborating with State and Treasury, to cease or revoke purported U.S.
+financial commitments under the United Nations Framework Convention on Climate
+Change. It revoked the U.S. International Climate Finance Plan and required
+Treasury and other agencies to report the policies they rescinded.</p>
+<p>This is a climate-finance withdrawal object. It is <strong>not</strong> withdrawal from the
+IMF, World Bank, or the United Nations Framework Convention itself.</p>
+<p>Primary source: <a href="https://www.whitehouse.gov/presidential-actions/2025/01/putting-america-first-in-international-environmental-agreements/">https://www.whitehouse.gov/presidential-actions/2025/01/putting-america-first-in-international-environmental-agreements/</a></p>
+<h4 id="eo-14261-reversal-of-the-us-multilateral-development-bank-energy-posture">EO 14261 — reversal of the U.S. multilateral-development-bank energy posture</h4>
+<p>EO 14261 identified Treasury's 2021 Fossil Fuel Energy Guidance for Multilateral
+Development Banks as rescinded. It directed agencies with loans, guarantees,
+grants, equity, offtake, or other energy-financing tools to remove discretionary
+policies discouraging coal finance where legally permitted.</p>
+<p>Primary source: <a href="https://www.whitehouse.gov/presidential-actions/2025/04/reinvigorating-americas-beautiful-clean-coal-industry-and-amending-executive-order-14241/">https://www.whitehouse.gov/presidential-actions/2025/04/reinvigorating-americas-beautiful-clean-coal-industry-and-amending-executive-order-14241/</a></p>
+<h4 id="eo-14299-affirmative-nuclear-financing-strategy">EO 14299 — affirmative nuclear-financing strategy</h4>
+<p>EO 14299 gave Treasury a 90-day strategy assignment to use U.S. participation
+in multilateral development banks to:</p>
+<ul>
+<li>provide financial and technical assistance for nuclear generation,
+  distribution, and fuel supply;</li>
+<li>make support available on competitive terms;</li>
+<li>build institutional capacity to assess and implement nuclear projects; and</li>
+<li>support U.S.- or allied-standard technology and fuel-supply chains.</li>
+</ul>
+<p>Primary source: <a href="https://www.whitehouse.gov/presidential-actions/2025/05/deploying-advanced-nuclear-reactor-technologies-for-national-security/">https://www.whitehouse.gov/presidential-actions/2025/05/deploying-advanced-nuclear-reactor-technologies-for-national-security/</a></p>
+<h4 id="operating-return-treasury-strategic-plan-20262030">Operating return — Treasury Strategic Plan 2026–2030</h4>
+<p>Treasury's current Strategic Plan converts the three-order sequence into an
+operating program. Its stated strategies include:</p>
+<ul>
+<li>leveraging U.S. voice and vote at international financial institutions;</li>
+<li>pursuing reforms that Treasury considers necessary to justify continued U.S.
+  contributions, subject to appropriations and authorization;</li>
+<li>increasing U.S. procurement in multilateral-development-bank projects;</li>
+<li>removing the World Bank prohibition on nuclear-energy support;</li>
+<li>building nuclear-financing capacity at MDBs; and</li>
+<li>identifying procurement opportunities for U.S. firms.</li>
+</ul>
+<p>The plan identifies World Bank and IMF leadership as a critical Treasury
+program. The evidence therefore supports <strong>institutional repurposing through
+U.S. leverage</strong>, not separation or exit.</p>
+<p>Primary source: <a href="https://home.treasury.gov/system/files/266/Treasury_Strategic_Plan_2026-2030.pdf">https://home.treasury.gov/system/files/266/Treasury_Strategic_Plan_2026-2030.pdf</a></p>
+<h3 id="2-payment-accounting-and-data-centralization">2. Payment, accounting, and data centralization</h3>
+<p>The previously mapped payment-control braid remains:</p>
+<p><code>EO 14222 payment justification → EO 14247 electronic rails → EO 14249 Treasury screening → EO 14332 grant-draw controls → EO 14395 fraud coordination</code></p>
+<p>Treasury's Strategic Plan supplies the higher-maturity operating intent. It
+names the Enterprise Data Platform, Payment Integrity, Electronic Federal Tax
+Payment System modernization, Taxpayer 360, and Core Financial Management
+Consolidation. Its success criteria include:</p>
+<ul>
+<li>verifying all Treasury-made federal disbursements before agency certification;</li>
+<li>expanding Do Not Pay data and federal-program use;</li>
+<li>classifying federal payments in centralized Treasury accounting systems daily;</li>
+<li>tying Treasury Account Symbols to all federal payments;</li>
+<li>verifying funds availability for all federal payments; and</li>
+<li>migrating non-Treasury disbursing offices with delegated authority to
+  Treasury disbursement.</li>
+</ul>
+<p>The plan also asks how effective AI is in taxpayer programs and how effective
+Do Not Pay is in preventing improper payments. AI and the Enterprise Data
+Platform are implementation substrates for the payment-control architecture;
+they do not themselves prove automated payment denial, a public ledger,
+blockchain settlement, or agent spending authority.</p>
+<h3 id="3-housing-market-definition-rulemaking-and-enforcement">3. Housing-market definition, rulemaking, and enforcement</h3>
+<h4 id="eo-14376-original-definition-leash">EO 14376 — original definition leash</h4>
+<p>EO 14376 directed Treasury to define “large institutional investor” and
+“single-family home” within 30 days. Other agencies could adopt those
+definitions when restricting federal approval, insurance, guarantees,
+securitization, facilitation, and asset sales involving institutional
+purchasers. Treasury was also directed to review its rules and guidance
+concerning institutional acquisition or holding of single-family homes.</p>
+<p>Primary source: <a href="https://www.whitehouse.gov/presidential-actions/2026/01/stopping-wall-street-from-competing-with-main-street-homebuyers/">https://www.whitehouse.gov/presidential-actions/2026/01/stopping-wall-street-from-competing-with-main-street-homebuyers/</a></p>
+<h4 id="phase-change-public-law-119-101">Phase change — Public Law 119-101</h4>
+<p>Public Law 119-101 became law without the President's signature on July 11,
+2026. It supersedes the old map boundary that EO 14376 had not created a
+private-market purchase-ban statute.</p>
+<p>The enacted regime:</p>
+<ul>
+<li>generally defines a large institutional investor at 350 controlled
+  single-family homes;</li>
+<li>prohibits covered purchases, subject to detailed statutory exceptions;</li>
+<li>authorizes Treasury rulemaking in consultation with HUD, FHFA, and SEC;</li>
+<li>authorizes Treasury, or the Attorney General at Treasury's request, to enforce
+  the prohibition;</li>
+<li>permits a civil penalty up to $1,000,000 per violation or three times the
+  property's purchase price, whichever is greater; and</li>
+<li>permits appropriated penalty receipts to be transferred to HUD homeownership
+  programs beginning in fiscal year 2027.</li>
+</ul>
+<p>The purchase prohibition and enforcement provisions take effect 180 days after
+enactment: <strong>January 7, 2027</strong>. They are repealed 15 years after that effective
+date.</p>
+<p>Primary source: <a href="https://www.govinfo.gov/content/pkg/PLAW-119publ101/pdf/PLAW-119publ101.pdf">https://www.govinfo.gov/content/pkg/PLAW-119publ101/pdf/PLAW-119publ101.pdf</a></p>
+<h4 id="cbdc-adjacency-in-the-same-statute">CBDC adjacency in the same statute</h4>
+<p>Title XI of Public Law 119-101 amended the Federal Reserve Act to prohibit the
+Board and Reserve Banks from issuing or creating a retail central-bank digital
+currency, directly or indirectly through an intermediary. It states an
+exception for dollar-denominated currency that is open, permissionless, private,
+and preserves the privacy protections of coins and physical currency. The
+provision sunsets December 31, 2030.</p>
+<p>This is a material legal separation between a Fed retail CBDC and private dollar
+instruments. It does <strong>not</strong> create a Treasury stablecoin, authorize a named
+issuer, provide reserve assets, establish redemption, or create settlement
+finality.</p>
+<h3 id="4-treasury-tax-and-industrial-eligibility-gates">4. Treasury tax and industrial-eligibility gates</h3>
+<p>EO 14315 directed Treasury to strictly enforce termination rules for Internal
+Revenue Code §§ 45Y and 48E wind and solar credits and to implement enhanced
+prohibited-foreign-entity restrictions.</p>
+<p>Primary source: <a href="https://www.whitehouse.gov/presidential-actions/2025/07/ending-market-distorting-subsidies-for-unreliable-foreign%E2%80%91controlled-energy-sources/">https://www.whitehouse.gov/presidential-actions/2025/07/ending-market-distorting-subsidies-for-unreliable-foreign%E2%80%91controlled-energy-sources/</a></p>
+<p>Public operating returns include:</p>
+<ul>
+<li>IRS Notice 2025-42, which generally removed the Five Percent Safe Harbor for
+  the relevant deadline and made the Physical Work Test the principal route for
+  covered projects whose construction had not begun before September 2, 2025;
+  and</li>
+<li>Notice 2026-15, which established interim prohibited-foreign-entity and
+  material-assistance rules while identifying later regulations and safe-harbor
+  tables as separate objects.</li>
+</ul>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.irs.gov/irb/2025-36_IRB">https://www.irs.gov/irb/2025-36_IRB</a></li>
+<li><a href="https://www.irs.gov/newsroom/treasury-irs-provide-guidance-for-certain-energy-tax-credits-regarding-material-assistance-provided-by-prohibited-foreign-entities-under-the-one-big-beautiful-bill">https://www.irs.gov/newsroom/treasury-irs-provide-guidance-for-certain-energy-tax-credits-regarding-material-assistance-provided-by-prohibited-foreign-entities-under-the-one-big-beautiful-bill</a></li>
+</ul>
+<p>Treasury is therefore operating as a project- and supply-chain-eligibility gate
+for economically material tax support. A notice is not a project-level credit
+denial; the next evidence is taxpayer, examination, ruling, litigation, or
+project-financing impact.</p>
+<h3 id="5-separate-treasury-fund-for-gold-card-gifts">5. Separate Treasury fund for Gold Card gifts</h3>
+<p>EO 14351 requires Commerce to deposit $1,000,000 individual and $2,000,000
+corporate gifts into a separate Treasury fund for Commerce's use in promoting
+commerce and American industry.</p>
+<p>Primary source: <a href="https://www.whitehouse.gov/presidential-actions/2025/09/the-gold-card/">https://www.whitehouse.gov/presidential-actions/2025/09/the-gold-card/</a></p>
+<p>Commerce reported on January 20, 2026 that $1,300,000,000 had been “committed”
+through the program. Commitment must remain separate from application, vetting,
+gift request, receipt, Treasury deposit, obligation, and expenditure.</p>
+<p>Primary source: <a href="https://www.commerce.gov/news/press-releases/2026/01/first-year-accomplishments-under-secretary-howard-w-lutnick">https://www.commerce.gov/news/press-releases/2026/01/first-year-accomplishments-under-secretary-howard-w-lutnick</a></p>
+<p>The likely preexisting accounting substrate is Commerce's gifts-and-bequests
+fund-symbol system under 15 U.S.C. § 1522, including 13X8501-family receipt and
+expenditure accounts. The exact Gold Card fund symbol, SF-133, Treasury account
+statement, receipts, obligations, and expenditures remain unresolved.</p>
+<h3 id="6-opportunity-zone-and-new-markets-tax-credit-housing-capital-route">6. Opportunity Zone and New Markets Tax Credit housing-capital route</h3>
+<p>EO 14394 directed Treasury and HUD to evaluate linking federal grants,
+financing tools, and other incentives to Qualified Opportunity Funds developing
+and selling single-family homes, and to coordinate Opportunity Zone incentives
+with the New Markets Tax Credit.</p>
+<p>Primary source: <a href="https://www.whitehouse.gov/presidential-actions/2026/03/removing-regulatory-barriers-to-affordable-home-construction/">https://www.whitehouse.gov/presidential-actions/2026/03/removing-regulatory-barriers-to-affordable-home-construction/</a></p>
+<p>Treasury opened the 2027 Opportunity Zone designation cycle on July 1, 2026
+after the program was made permanent and rural incentives were added.</p>
+<p>Primary source: <a href="https://home.treasury.gov/news/press-releases/sb0550">https://home.treasury.gov/news/press-releases/sb0550</a></p>
+<p>Joined with EO 14376 and Public Law 119-101, the policy architecture is:</p>
+<p><code>restrict covered institutional acquisition of existing homes → steer tax-advantaged capital toward construction of additional homes</code></p>
+<p>That is a supported policy join. It is not proof of a particular Qualified
+Opportunity Fund, grant, loan, construction start, home sale, or affordability
+result.</p>
+<h2 id="architecture-map">Architecture map</h2>
+<pre><code class="language-text">PRESIDENT / CONGRESS
+        |
+        +-- international finance --&gt; Treasury voice, vote, contribution and MDB finance posture
+        |
+        +-- federal payments -------&gt; pre-certification screen, account classification,
+        |                              funds check, centralized disbursement
+        |
+        +-- tax eligibility --------&gt; project and foreign-supply-chain qualification
+        |
+        +-- housing ----------------&gt; definition, rulemaking, enforcement,
+        |                              Opportunity Zone and tax-credit routing
+        |
+        +-- digital assets ---------&gt; GENIUS implementation, market infrastructure,
+        |                              SBR support; Fed retail-CBDC prohibition is separate
+        |
+        +-- private gifts ----------&gt; Commerce program --&gt; separate Treasury fund
+        |
+        +-- national security ------&gt; sanctions, illicit-finance and investment gates
+</code></pre>
+<p>No edge in this map should be promoted into ownership, cash receipt, settlement
+finality, completed enforcement, or system replacement without the corresponding
+primary record.</p>
+<h2 id="standing-return-gates">Standing return gates</h2>
+<p>Promote only a material state change supported by a primary record.</p>
+<h3 id="international-finance">International finance</h3>
+<ul>
+<li>Treasury, World Bank, IMF, MDB, G7, or G20 voting instructions, board records,
+  contribution conditions, trust-fund changes, procurement rules, or
+  nuclear/coal project-finance decisions.</li>
+<li>A named nuclear or coal project with institution, borrower, amount, financing
+  instrument, vote, approval, commitment, disbursement, procurement award, or
+  operating result.</li>
+<li>Any formal change in U.S. IMF or World Bank membership, quota, voting,
+  contribution, or treaty/statutory status. Speeches about reform are not exit.</li>
+</ul>
+<h3 id="housing">Housing</h3>
+<ul>
+<li>Treasury rulemaking, guidance, forms, definitions, compliance systems, or
+  enforcement preparation under Public Law 119-101.</li>
+<li>January 7, 2027 effective-state evidence, covered-investor notifications,
+  investigations, complaints, penalties, or HUD transfers.</li>
+<li>Opportunity Zone maps, Qualified Opportunity Fund projects, linked grants or
+  financing, New Markets Tax Credit coordination, construction starts, and
+  sales.</li>
+</ul>
+<h3 id="tax-and-industrial-eligibility">Tax and industrial eligibility</h3>
+<ul>
+<li>Final prohibited-foreign-entity regulations and safe-harbor tables.</li>
+<li>Project-level tax rulings, examinations, denied or allowed credits, financing
+  changes, litigation, or supply-chain substitutions attributable to the rules.</li>
+</ul>
+<h3 id="gold-card-fund">Gold Card fund</h3>
+<ul>
+<li>Exact Treasury fund symbol and account title.</li>
+<li>Cash receipts rather than commitments, SF-133 or Treasury account reporting,
+  obligations, expenditures, procurement, audits, refunds, or litigation.</li>
+</ul>
+<h3 id="payment-and-ai-control-plane">Payment and AI control plane</h3>
+<ul>
+<li>Enterprise Data Platform contracts, architecture, interfaces,
+  identity/provenance controls, model use, evaluation, error, appeal, privacy,
+  or audit records.</li>
+<li>Attributable Do Not Pay and pre-certification results, including false
+  positives, returns, agency reversals, recovery, and measured improper-payment
+  reduction.</li>
+<li>A demonstrated join to Reserve Banks, payment FMIs, settlement banks, card
+  networks, stablecoins, or Treasury securities. Shared vocabulary or parallel
+  timing is not an operating join.</li>
+</ul>
+<h3 id="monetary-regime-hypothesis">Monetary-regime hypothesis</h3>
+<ul>
+<li>A Treasury-issued or expressly Treasury-sponsored stablecoin, reserve vehicle,
+  redemption system, issuer designation, or settlement rule.</li>
+<li>A statutory or operative transfer of currency issuance, monetary-policy,
+  Reserve Bank, master-account, or settlement authority.</li>
+<li>A formal IMF/World Bank withdrawal or contribution termination.</li>
+<li>A gold valuation, title, custody, convertibility, collateral, reserve, or
+  settlement change.</li>
+<li>A new Treasury buyback authority or executed operation must remain separate
+  from debt cancellation, QE, monetary issuance, or Fed asset purchases.</li>
+</ul>
+<h2 id="provenance-and-disposition">Provenance and disposition</h2>
+<ul>
+<li><strong>Evidence cutoff:</strong> August 24, 2026 ET.</li>
+<li><strong>Workbench provenance:</strong> <code>Research Packages/Fed, Clearing and Treasury/TREASURY_EXECUTIVE_ORDER_ARCHITECTURE_AUDIT_2026-08-24.md</code>.</li>
+<li><strong>Vault state:</strong> incorporated as the controlling source document for this
+  dated research; its standing return gate remains in the canonical watch
+  calendar.</li>
+<li><strong>Observatory/app:</strong> no installed-app build is implied by this vault landing.</li>
+<li><strong>Next state:</strong> update only when a named return gate changes legal,
+  accounting, operating, or result state.</li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

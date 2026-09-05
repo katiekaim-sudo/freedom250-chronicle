@@ -1,0 +1,459 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Currency Watch — Sealed Pilot Card v1.1 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Currency Watch — Sealed Pilot Card v1.1</h1><p class="deck">Collection evidence cutoff: 2026-07-31</p><p><a href="cw-card-sar-2026-07-20-v1-1-9715a80f9e33.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="currency-watch-sealed-pilot-card-v11">Currency Watch — Sealed Pilot Card v1.1</h1>
+<p><strong>Card ID:</strong> <code>CW-CARD-SAR-2026-07-20-V1_1</code><br />
+<strong>Rubric:</strong> <code>CURRENCY_WATCH_PILOT_RUBRIC_FROZEN_V1.md</code><br />
+<strong>Execution control:</strong> <code>CURRENCY_WATCH_PILOT_EXECUTION_ANNEX_V1_1.md</code><br />
+<strong>Source freeze:</strong> <code>CURRENCY_WATCH_PILOT_SOURCE_MANIFEST_2026-07-20.md</code><br />
+<strong>Grade state:</strong> <code>SEALED-V1_1</code></p>
+<h2 id="a-identity-and-authority">A. Identity and authority</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Currency object</td>
+<td>Saudi riyal (<code>SAR</code>)</td>
+</tr>
+<tr>
+<td>Linked IMF member record(s)</td>
+<td>Kingdom of Saudi Arabia</td>
+</tr>
+<tr>
+<td>Monetary-policy authority</td>
+<td>Saudi Central Bank (<code>SAMA</code>)</td>
+</tr>
+<tr>
+<td>FX/intervention authority</td>
+<td>SAMA; monetary and FX operations support the USD peg</td>
+</tr>
+<tr>
+<td>Trade/customs authority</td>
+<td>General Authority for Foreign Trade (<code>GAFT</code>); Zakat, Tax and Customs Authority (<code>ZATCA</code>)</td>
+</tr>
+<tr>
+<td>Shared-authority overlay</td>
+<td>GCC customs framework; no shared monetary authority</td>
+</tr>
+<tr>
+<td>Regime stress class</td>
+<td>Conventional USD peg / commodity exporter</td>
+</tr>
+<tr>
+<td>International role tags</td>
+<td><code>DOMESTIC</code>; USD-linked domestic anchor. No global reserve or vehicle-currency role assigned.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-controlling-source-clocks">B. Controlling source clocks</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV/common report</td>
+<td><em>Saudi Arabia: 2025 Article IV Consultation—Press Release; and Staff Report</em>, IMF Country Report 25/223</td>
+</tr>
+<tr>
+<td>Discussions end</td>
+<td><code>2025-05-26</code></td>
+</tr>
+<tr>
+<td>Staff cutoff</td>
+<td><code>2025-05-26</code></td>
+</tr>
+<tr>
+<td>Datum vintages</td>
+<td>Tables: 2022–24 actuals and 2025–30 projections; market/price observations through April–May 2025; Fund Relations <code>2025-05-31</code>; common-indicator table <code>2025-06-30</code>; 2025 ESR assessment of 2024; preliminary 2026 mission observations through <code>2026-05-13</code>; GASTAT CPI <code>2026-06</code>; frozen trade-event state <code>2026-07-20</code></td>
+</tr>
+<tr>
+<td>Post-cutoff statement</td>
+<td><code>2026-06-03</code> — preliminary IMF staff end-of-mission statement; not a Board conclusion</td>
+</tr>
+<tr>
+<td>Board date</td>
+<td><code>2025-07-28</code></td>
+</tr>
+<tr>
+<td>Publication date</td>
+<td><code>2025-08-04</code></td>
+</tr>
+<tr>
+<td>ESR vintage</td>
+<td>2025 ESR, assessing 2024</td>
+</tr>
+<tr>
+<td>National-data cutoff</td>
+<td><code>2026-06</code> for the frozen GASTAT inflation observation; other national series retain their stated report vintages</td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-authority-response">C. Authority response</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Response state</td>
+<td><code>PARTIAL</code></td>
+</tr>
+<tr>
+<td>Exact proposition answered</td>
+<td>The authorities stated that “monetary policy should continue to be anchored in the exchange rate peg” and that “overall liquidity remains adequate.” This agrees with staff on the peg and present liquidity adequacy, but does not expressly answer staff’s specific reserve-requirement, term-repo and SAMA-bill reforms.</td>
+</tr>
+<tr>
+<td>Source/page/date</td>
+<td>IMF CR25/223, paragraph 30, PDF p.29; staff report completed <code>2025-07-14</code>, following discussions ending <code>2025-05-26</code></td>
+</tr>
+<tr>
+<td>Attribution boundary</td>
+<td>Saudi authorities’ view only. Staff separately recommended liquidity-tool reforms; the Executive Board separately judged the peg appropriate.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-categorical-legal-card">D. Categorical legal card</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Controlled state</th>
+<th>Source/page</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Article IV general status</td>
+<td><code>NO-ADVERSE-FINDING-LOCATED</code></td>
+<td>IMF CR25/223, Board assessment, PDF pp.2–4</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Manipulation status</td>
+<td><code>NO-ADVERSE-FINDING-LOCATED</code>; not a declaration of full compliance</td>
+<td>IMF CR25/223, Board assessment and monetary/external assessment, PDF pp.3, 28–29, 56–57</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §2 current-payment restrictions</td>
+<td><code>NONE-LOCATED</code>; Fund annex states the exchange system is free of current-payment and transfer restrictions</td>
+<td>IMF CR25/223, Fund Relations as of <code>2025-05-31</code>, PDF p.94</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §3 MCP/discriminatory practice</td>
+<td><code>NONE-LOCATED</code>; system stated free of MCPs</td>
+<td>IMF CR25/223, PDF p.94</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §4 foreign-held balances</td>
+<td><code>NO-FUND-CONCERN-LOCATED</code>; §4 obligations accepted</td>
+<td>IMF CR25/223, PDF pp.93–94</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article VIII §5 information duty</td>
+<td><code>NO-FUND-BREACH-LOCATED</code>; data have shortcomings but are broadly adequate for surveillance</td>
+<td>IMF CR25/223, Annex XI, PDF p.90</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Article XIV</td>
+<td><code>NOT-APPLICABLE—ARTICLE-VIII-MEMBER</code>; no transitional status reported</td>
+<td>IMF CR25/223, Fund Relations, PDF p.93</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Capital controls / CFMs</td>
+<td>Separate descriptive object: report describes an open capital account; no general CFM finding entered</td>
+<td>IMF CR25/223, paragraph 27, PDF p.28</td>
+<td><code>B-OFFICIAL-DESCRIPTIVE</code></td>
+</tr>
+<tr>
+<td>Security restrictions</td>
+<td><code>PRESENT-SEPARATE</code>: restrictions pursuant to UNSCR 1267 and 1373; Fund approval, Decision 144 notification and continuing legality are not established by the cited text</td>
+<td>IMF CR25/223, PDF p.94</td>
+<td>Existence <code>B-OFFICIAL-DESCRIPTIVE</code>; legal/notification state <code>U-UNRESOLVED</code></td>
+</tr>
+</tbody>
+</table>
+<p>No categorical state is converted numerically.</p>
+<h2 id="e-linked-event-records">E. Linked event records</h2>
+<table>
+<thead>
+<tr>
+<th>Event ID</th>
+<th>Legal/operating state</th>
+<th>Proposed transmission</th>
+<th>Evidence state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TP-GCC-2025-INTEGRATED-TARIFF</code></td>
+<td>GCC 12-digit integrated tariff effective <code>2025-01-01</code>; amendments effective <code>2025-06-01</code>; item-level schedule</td>
+<td>Import cost, trade-volume and customs-cash channels; no aggregate Saudi tariff rate or monetary effect inferred</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+<tr>
+<td><code>TP-US-2026-SECTION122</code></td>
+<td>Operative at freeze for covered Saudi non-oil entries; energy products exempt; scheduled <code>2026-07-24</code> clock separate</td>
+<td>Bounded non-oil export-price/volume channel; no demonstrated transmission to inflation, reserves, exchange order or external adjustment</td>
+<td><code>UNRESOLVED</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="f-six-lane-worksheet">F. Six-lane worksheet</h2>
+<table>
+<thead>
+<tr>
+<th>Lane</th>
+<th style="text-align: right;">Proposed grade</th>
+<th>One-sentence reason</th>
+<th>Primary evidence + vintage</th>
+<th>Persistence evidence</th>
+<th>Shock evidence</th>
+<th>Competing explanation</th>
+<th>Confidence</th>
+<th>Legal/event link</th>
+<th>Data gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 Domestic anchor</td>
+<td style="text-align: right;"><strong>A</strong></td>
+<td>The USD-linked anchor has delivered low, stable aggregate inflation without a disproportionate activity cost, despite localized rent pressure and an exogenous conflict shock.</td>
+<td>CPI averaged 1.7% in 2024; May 2025 inflation was 2.2%, while non-oil GDP grew 4.5% in 2024 and unemployment reached record lows. IMF CR25/223, PDF pp.12, 48. Frozen June 2026 national CPI: 1.8%.</td>
+<td>Average CPI: 2.5% in 2022, 2.3% in 2023, 1.7% in 2024; non-oil growth: 10.9%, 5.8%, 4.5%. IMF CR25/223, Table 1, PDF p.48.</td>
+<td>The 2026 Hormuz disruption raised shipping and insurance costs; preliminary staff still found inflation below 2% entering 2026 and projected about 2.3% for 2026. IMF mission statement, <code>2026-06-03</code>.</td>
+<td>Low headline inflation may partly reflect administered prices, subsidies, import composition and high real rates; rent inflation remained 8% in May 2025.</td>
+<td><code>HIGH</code></td>
+<td>Article IV general status; no trade event scored</td>
+<td>Updated core/trimmed inflation, expectations and distributional housing-cost evidence would test whether the clean headline anchor masks material internal adjustment costs.</td>
+</tr>
+<tr>
+<td>L2 Underlying order</td>
+<td style="text-align: right;"><strong>B</strong></td>
+<td>The banking and monetary system remains strongly capitalized and profitable, but rapid credit growth, tighter funding and greater short-term external reliance create bounded, persistent strain.</td>
+<td>2024 regulatory capital ratio 19.6%, NPL ratio 1.2%, ROA 2.2%; systemic vulnerabilities assessed low. IMF CR25/223, PDF pp.29, 53.</td>
+<td>Capital stayed near 20% and NPLs declined from 1.8% in 2022 to 1.2% in 2024, but private credit growth ran 12.6%, 10.0% and 13.4%; bank NFA turned negative in 2024 and external liabilities reached SAR486 billion by April 2025. PDF pp.30, 52–53.</td>
+<td>Preliminary 2026 staff judged banks well positioned for the regional-conflict shock because of strong capital and liquidity buffers, while supporting intensified monitoring and completion of resolution/ELA reforms. Statement <code>2026-06-03</code>.</td>
+<td>Strong credit growth may represent productive Vision 2030 financial deepening rather than generalized overheating; SAMA stress tests show resilience to low oil prices and slowdown.</td>
+<td><code>HIGH</code></td>
+<td>Article IV general status</td>
+<td>Current bank-level maturity, currency and concentration data; updated NPLs; implemented ELA framework; and post-shock stress-test results could move the grade.</td>
+</tr>
+<tr>
+<td>L3 Exchange order</td>
+<td style="text-align: right;"><strong>A</strong></td>
+<td>The conventional peg remains credible and operationally well backed by SAMA reserves, with no reported exchange-market fracture or unsustainable reserve loss.</td>
+<td>SAR 3.75/USD; IMF calls the peg appropriate and credible. End-2024 SAMA NFA was $415 billion, about 15 months of imports and 187% of ARA. IMF CR25/223, PDF pp.28, 56–57.</td>
+<td>The rate remained 3.75; SAMA NFA moved from $440.5 billion in 2022 to $417.1 billion in 2023 and $414.5 billion in 2024, while import cover remained 18.2, 15.8 and 14.9 months. Table 1, PDF p.48. The peg has operated at 3.75 since 1986.</td>
+<td>During the 2026 regional conflict and shipping disruption, preliminary staff continued to describe the peg as a credible anchor supporting financial stability and reported ample reserves. Statement <code>2026-06-03</code>.</td>
+<td>Reserve strength is partly oil-linked and the peg imports U.S. monetary conditions; declining import cover, persistent future deficits or costly internal adjustment could weaken the present call. PIF and Aramco assets are not treated as SAMA-usable reserves.</td>
+<td><code>HIGH</code></td>
+<td>Article IV/Manipulation status; <code>TP-US-2026-SECTION122</code> and <code>TP-GCC-2025-INTEGRATED-TARIFF</code> linked but unscored</td>
+<td>Updated SAMA usable/encumbered reserve composition, intervention flows, forward positions and high-frequency peg-market pressure would test the <code>A</code>.</td>
+</tr>
+<tr>
+<td>L4 External adjustment</td>
+<td style="text-align: right;"><strong>B</strong></td>
+<td>The external position is broadly in line and backed by a very strong net asset position, but lower oil receipts, investment imports, falling public saving and rising external borrowing create a credible yet weakening adjustment path.</td>
+<td>2024 external position “broadly in line”; CA −0.46% of GDP, staff CA gap −0.97% with a −3% to +1% range, NIIP about 59% of GDP, REER gap 4.8%. IMF CR25/223, PDF pp.56–57; 2025 ESR p.106 gives closely aligned −0.95%/4.7% estimates.</td>
+<td>CA: 12.1% of GDP in 2022, 2.9% in 2023, −0.5% in 2024; NIIP: 62.8%, 62.8%, 59.3%; external debt: 21.3%, 24.5%, 30.1%. IMF CR25/223, Tables 1 and 3, PDF pp.48, 51.</td>
+<td>OPEC+ cuts and a 6.2% terms-of-trade decline moved the 2024 CA into deficit. In the 2026 conflict shock, higher oil prices were preliminarily expected to offset shipment-volume losses and narrow 2026 deficits—cyclical support, not structural repair.</td>
+<td>Investment-linked imports can represent productive diversification, and commodity-model uncertainty is unusually large; strong sovereign external assets give substantial adjustment capacity.</td>
+<td><code>HIGH</code></td>
+<td>Article IV/Manipulation status; both trade events linked but unscored</td>
+<td>Detailed financial-flow and foreign-asset composition, current SAMA BOP/IIP series, and evidence that medium-term fiscal consolidation is occurring could move the call.</td>
+</tr>
+<tr>
+<td>L5 Current-payment usability</td>
+<td style="text-align: right;"><strong>A</strong></td>
+<td>The Fund’s current annex reports no MCP or restriction on bona fide current payments and transfers, while security restrictions remain separately classified.</td>
+<td>Article VIII §§2(a), 3 and 4 accepted; exchange system stated free of MCPs and current-payment/transfer restrictions. IMF CR25/223, Fund Relations as of <code>2025-05-31</code>, PDF p.94.</td>
+<td>The frozen record shows an established Article VIII system and no contrary current-payment, MCP, arrears or undue-delay finding; the report also describes an open capital account.</td>
+<td><code>NOT-APPLICABLE</code> to grading: the 2026 shipping disruption impaired physical trade routes, not documented FX availability or legal transfer of current payments.</td>
+<td>Security restrictions may affect particular transactions, and their notification/approval status is not public in the cited text; that does not establish generalized payment impairment.</td>
+<td><code>MEDIUM</code></td>
+<td>Article VIII §§2–4; security-restriction subcard; trade events not payment restrictions</td>
+<td>Current AREAER transaction-level coverage, bank transfer-delay data and exact security-measure scope would strengthen the persistence call.</td>
+</tr>
+<tr>
+<td>L6 Systemic service</td>
+<td style="text-align: right;"><strong>A</strong></td>
+<td>The riyal reliably performs its actual narrow role as the dominant domestic monetary and funding unit under a USD anchor, without being penalized for lacking a global reserve role.</td>
+<td>In 2024, foreign-currency shares were only 8.7% of bank assets, 9.1% of deposits and 9.4% of loans; domestic money, credit and deposits continued expanding. IMF CR25/223, Financial Soundness Indicators, PDF p.53.</td>
+<td>FX shares remained bounded over 2022–24: deposits 11.2%→9.8%→9.1%; loans 7.6%→8.2%→9.4%. The peg and predominantly riyal-based domestic intermediation continued through the period.</td>
+<td>Preliminary 2026 staff found the peg and banking buffers continued underpinning financial stability during the regional conflict; no currency-substitution or domestic service failure was reported.</td>
+<td>The available packet documents domestic intermediation better than retail/cross-border payment shares; stability partly reflects the credibility of the USD anchor rather than an autonomous international SAR role.</td>
+<td><code>MEDIUM</code></td>
+<td>No separate legal impairment; no trade event scored</td>
+<td>Direct SAR payment, invoice, settlement, hedge and cross-border-funding shares—and current dollarization measures—would test the full service claim.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="g-primary-lane-collision-check">G. Primary-lane collision check</h2>
+<table>
+<thead>
+<tr>
+<th>Fact/source</th>
+<th>Primary lane</th>
+<th>Context links</th>
+<th>Separate second mechanism evidenced?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low CPI with rent pressure and continued non-oil growth</td>
+<td>L1</td>
+<td>Peg context in L3</td>
+<td><code>YES</code> — L1 tests price/activity performance; L3 relies on reserve backing and exchange operation</td>
+</tr>
+<tr>
+<td>Rapid credit growth, external wholesale funding and negative bank NFA</td>
+<td>L2</td>
+<td>External funding context in L4</td>
+<td><code>NO</code> — used to reduce only L2</td>
+</tr>
+<tr>
+<td>SAMA NFA, import cover and ARA ratio</td>
+<td>L3</td>
+<td>Buffer context in L4</td>
+<td><code>NO</code> — L4 grade rests on CA/NIIP/debt/saving, not a second reserve penalty</td>
+</tr>
+<tr>
+<td>CA gap, NIIP decline, external debt and investment-import path</td>
+<td>L4</td>
+<td>Commodity-exporter regime context</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Article VIII restriction/MCP statement</td>
+<td>L5</td>
+<td>Legal card</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Low FX shares in deposits, loans and bank assets</td>
+<td>L6</td>
+<td>Dollarization context in L2</td>
+<td><code>YES</code> — L6 uses currency-role dominance; L2 uses capital, credit and funding-pressure evidence</td>
+</tr>
+<tr>
+<td>2026 regional conflict/Hormuz disruption</td>
+<td>Shock context only</td>
+<td>L1–L4 and L6</td>
+<td><code>YES</code> — distinct observed mechanisms are shipping-cost inflation, bank resilience, peg continuity, oil-volume/price BOP effects and continued domestic monetary service</td>
+</tr>
+<tr>
+<td>GCC tariff and U.S. Section 122 events</td>
+<td>Event ledger only</td>
+<td>Potential L1/L4 transmission</td>
+<td><code>NO</code> — no grade movement without observed transmission</td>
+</tr>
+</tbody>
+</table>
+<h2 id="h-seal">H. Seal</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grader</td>
+<td><code>Codex isolated grader /root/blind_sar</code></td>
+</tr>
+<tr>
+<td>Started</td>
+<td><code>2026-07-20T21:25:25-04:00</code> — formal worksheet assembly</td>
+</tr>
+<tr>
+<td>Sealed</td>
+<td><code>2026-07-20T21:27:04-04:00</code></td>
+</tr>
+<tr>
+<td>Other provisional cards visible?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Source substitutions made?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Composite calculated?</td>
+<td><code>NO</code></td>
+</tr>
+<tr>
+<td>Card state</td>
+<td><code>SEALED-V1_1</code></td>
+</tr>
+</tbody>
+</table>
+<p>Source note: The controlling object is the frozen <a href="https://www.imf.org/-/media/files/publications/cr/2025/english/1sauea2025001-source-pdf.pdf">IMF Country Report 25/223</a>, supplemented only by the frozen-vintage <a href="https://www.imf.org/-/media/files/publications/esr/2025/english/text.pdf">2025 External Sector Report</a> and the separately clocked <a href="https://www.imf.org/en/news/articles/2026/06/03/pr26181-saudi-arabia-imf-staff-completes-2026-article-iv-mission">June 3, 2026 IMF mission statement</a>. The latter remains preliminary staff material, not a completed Board consultation.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

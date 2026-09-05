@@ -1,0 +1,1123 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Federal Reserve payment stack — control, finality and cost audit · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/money-in-motion.html#the-system-underneath" class="" >Start with the money underneath <span class="meta">— How money moves, and what is changing</span></a><a href="../stories/money-rights-and-records.html#records-that-can-explain" class="" >A transaction record must explain more than movement <span class="meta">— Who gets in, which record counts, and when payment is complete</span></a><a href="../stories/reading-the-transition.html#how-the-question-evolved" class="" >The early synthesis found a federation, then the details sharpened it <span class="meta">— How our picture of the transition keeps changing</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Federal Reserve payment stack — control, finality and cost audit</h1><p class="deck">Collection evidence cutoff: 2026-07-30</p><p><a href="fed-payment-stack-control-finality-and-cost-audit-2026-07-25-42694c28bdc5.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="federal-reserve-payment-stack-control-finality-and-cost-audit">Federal Reserve payment stack — control, finality and cost audit</h1>
+<p><strong>Cutoff:</strong> 2026-07-25<br />
+<strong>Status:</strong> pending workbench research; not promoted to the vault<br />
+<strong>Scope:</strong> Federal Reserve account access, Federal Reserve payment rails, NSCC,
+DTC, FICC, ICE Clear Credit, CME Securities Clearing, settlement banks,
+Federal Reserve Financial Services, Federal Reserve Information Technology,
+Treasury fiscal-agent technology and related software-cost allocation<br />
+<strong>Method:</strong> review the existing Observatory payment corpus as one architecture,
+then test its most important unanswered questions against current primary
+sources<br />
+<strong>Dollar rule:</strong> every monetary amount is written in full nominal dollars. When
+the official source reports in rounded millions, the added zeros are
+presentation rather than added precision.</p>
+<hr />
+<h2 id="i-bottom-line">I. Bottom line</h2>
+<p>The existing research raised the right question, but the object needed to be
+split more finely. There is no single “payments stack.” There are at least five
+different control layers:</p>
+<ol>
+<li><strong>access control</strong> — who may hold a Reserve Bank account or use a service;</li>
+<li><strong>operating control</strong> — which Reserve Bank, product office, shared-service
+   organization or vendor runs the application;</li>
+<li><strong>credit and liquidity control</strong> — who must prefund, who may borrow and who
+   absorbs an intraday shortfall;</li>
+<li><strong>record and finality control</strong> — which ledger is authoritative and when a
+   cash or securities transfer becomes final; and</li>
+<li><strong>cost control</strong> — which entity contracts, capitalizes, pays, reallocates and
+   ultimately recovers the cost.</li>
+</ol>
+<p>Those controls can belong to different institutions and operate on different
+clocks.</p>
+<p>The strongest new finding is the <strong>clock gap</strong>. Market infrastructure is
+extending execution, clearing, guarantee and digital-ledger hours faster than
+the underlying securities-transfer and central-bank cash-settlement hours.
+During the gap, liquidity does not automatically come from the Federal Reserve.
+It comes first from prefunded cash and collateral, member balance sheets,
+sponsors, commercial banks, clearing banks and committed private facilities.</p>
+<p>The second finding is the <strong>access paradox</strong>. The proposed Federal Reserve
+Payment Account could reduce an eligible institution's dependence on a
+correspondent bank, but it would itself be a strictly prefunded account: no
+intraday credit, no discount window, no interest, no FedACH, no Fedwire
+Securities delivery-versus-payment and a proposed closing-balance ceiling of
+$1,000,000,000. It gives direct entry to selected rails without giving the
+holder the full balance-sheet powers of a conventional master-account bank.</p>
+<p>The third finding is the <strong>accounting-control gap</strong>. Public reports disclose
+large software and payment-service amounts, but they do not provide a complete
+application-level map linking the contracting Bank, controlling product office,
+developer or cloud host, capitalized asset owner, cost-allocation recipients
+and customer-recovery mechanism.</p>
+<hr />
+<h2 id="ii-the-architecture-the-existing-research-implies">II. The architecture the existing research implies</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;Legal eligibility and access request&quot;] --&gt; B[&quot;Reserve Bank account decision&quot;]
+    B --&gt; C[&quot;Master Account, proposed Payment Account, or correspondent access&quot;]
+    C --&gt; D[&quot;FedNow, Fedwire Funds, NSS, FedACH, or Fedwire Securities&quot;]
+    D --&gt; E[&quot;Reserve-account cash settlement&quot;]
+
+    F[&quot;Trade or payment instruction&quot;] --&gt; G[&quot;Venue, processor, CCP, or depository&quot;]
+    G --&gt; H[&quot;Guarantee, novation, netting, margin, and collateral&quot;]
+    H --&gt; I[&quot;DTC, Fedwire Securities, or settlement-bank securities record&quot;]
+    I --&gt; E
+
+    J[&quot;FRFS product office&quot;] --&gt; D
+    K[&quot;FRIT, host Bank, developer, and vendor&quot;] --&gt; D
+    L[&quot;Principal or controlling Bank&quot;] --&gt; M[&quot;Inter-Bank cost allocation&quot;]
+    M --&gt; N[&quot;Priced-service fees, Treasury reimbursement, or System expense&quot;]
+</code></pre>
+<p>The diagram is deliberately not an ownership chart. The System is federated.
+A Bank can host a national office, another Bank can control a product, another
+Bank or vendor can develop or physically host the software, and all 12 Banks or
+an outside principal can bear the final cost.</p>
+<hr />
+<h2 id="iii-questions-raised-by-the-existing-payment-corpus">III. Questions raised by the existing payment corpus</h2>
+<h3 id="priority-1-questions-that-determine-who-actually-controls-settlement">Priority 1 — questions that determine who actually controls settlement</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Why it matters</th>
+<th>Current answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Where does finality occur when a trade is guaranteed, a token moves and the cash rail is closed?</td>
+<td>“Cleared,” “recorded,” “delivered” and “paid” are not synonyms.</td>
+<td>Finality remains layer-specific. A CCP guarantee does not itself create securities delivery or reserve-account cash finality.</td>
+</tr>
+<tr>
+<td>Who supplies liquidity during the evening, Sunday and holiday gaps?</td>
+<td>Longer clearing hours can create obligations before the normal settlement assets can move.</td>
+<td>First-line bridges are private and prefunded. Federal Reserve credit reaches eligible account holders, not every market participant or wallet.</td>
+</tr>
+<tr>
+<td>Who receives direct Reserve Bank access, and what powers come with each account?</td>
+<td>Account form determines credit, services, correspondent dependence and competitive position.</td>
+<td>Existing-access data combine own-account and correspondent access. The proposed Payment Account is a narrower, no-credit account.</td>
+</tr>
+<tr>
+<td>Which record wins if a blockchain record, a depository's digital record and its legacy books diverge?</td>
+<td>Legal ownership and operational state can separate.</td>
+<td>DTC remains the controller and retains correction powers. The precise conflict-of-record procedure still needs a public operating-rule test.</td>
+</tr>
+<tr>
+<td>Which institution is the indispensable settlement bank for each CCP?</td>
+<td>“Central clearing” can still depend on a small private-bank layer.</td>
+<td>BNY Mellon is publicly identified in important FICC and ICE Treasury-settlement roles. Backup, portability and outage routes remain incomplete.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="priority-2-questions-that-determine-the-economic-subsidy-and-concentration">Priority 2 — questions that determine the economic subsidy and concentration</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Why it matters</th>
+<th>Current answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>When and how is FedNow expected to recover its cost?</td>
+<td>Mature priced services are measured against cost-recovery requirements; FedNow was excluded while costs and volumes stabilized.</td>
+<td>Public sources show the exclusion and costs, but not a complete service-specific recovery horizon.</td>
+</tr>
+<tr>
+<td>Does a payment-service price recover only current operating expense, or also prior development, capital and imputed private-sector costs?</td>
+<td>A service can appear inexpensive if development and shared infrastructure sit elsewhere.</td>
+<td>Mature-service reporting includes operating and imputed costs. The application-level allocation and FedNow development-recovery bridge remain incomplete.</td>
+</tr>
+<tr>
+<td>Which applications depend on the same cloud provider, region, network vendor or host Bank?</td>
+<td>Different rails can share one operational failure point.</td>
+<td>The corpus names several provider/platform relationships, but not a complete provider-application-region-contract register.</td>
+</tr>
+<tr>
+<td>What collateral value will tokenized DTC assets receive?</td>
+<td>A transferable entitlement is not automatically usable funding collateral.</td>
+<td>Initial value is zero in DTC's Collateral Monitor and Net Debit Cap calculations. Future eligibility and haircuts are open.</td>
+</tr>
+<tr>
+<td>What happens when several CCPs demand cash from the same firm at the same time?</td>
+<td>Cross-margining can reduce normal-period collateral while increasing dependency among default-management systems.</td>
+<td>Each CCP has its own waterfall and calls. The combined participant-level liquidity demand is not publicly mapped.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="priority-3-questions-that-determine-auditability">Priority 3 — questions that determine auditability</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Why it matters</th>
+<th>Current answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What common identifier follows an obligation through clearing, payment, correction and recovery?</td>
+<td>A payment message is not the same object as the government's authoritative accounting record.</td>
+<td>The existing federal-transaction-record research shows no publicly established universal key across the full chain.</td>
+</tr>
+<tr>
+<td>Which Bank contracted, which Bank controls, which entity hosts and who ultimately paid for each material application?</td>
+<td>A Bank-level software balance can reflect national accounting ownership rather than local use.</td>
+<td>The Financial Accounting Manual supplies the rule; public statements do not supply the full application ledger.</td>
+</tr>
+<tr>
+<td>Which Treasury fiscal-agent applications account for the published payment, debt, accounting and technology costs?</td>
+<td>Treasury reimbursement can hide the operational scale if it is viewed only as net Fed expense.</td>
+<td>Functional totals are public; named application, vendor, host and invoice detail are incomplete.</td>
+</tr>
+<tr>
+<td>Which clearing and tokenization incidents are disclosed publicly, and on what clock?</td>
+<td>Continuous operation makes outage, reversal and reconciliation evidence central.</td>
+<td>Public release and rule records exist, but no unified incident, correction and finality register was found.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="iv-settlement-clocks-and-points-of-finality">IV. Settlement clocks and points of finality</h2>
+<h3 id="a-one-transaction-can-have-five-different-final-moments">A. One transaction can have five different “final” moments</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Binding event</th>
+<th>Controller</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>execution</td>
+<td>buyer and seller enter a trade or payment instruction</td>
+<td>venue or bilateral contract</td>
+</tr>
+<tr>
+<td>guarantee or novation</td>
+<td>clearinghouse becomes responsible under its rules</td>
+<td>NSCC, FICC, ICE Clear Credit or another CCP</td>
+</tr>
+<tr>
+<td>securities record</td>
+<td>ownership or entitlement changes on the authoritative ledger</td>
+<td>DTC, Fedwire Securities or a settlement bank</td>
+</tr>
+<tr>
+<td>cash settlement</td>
+<td>the cash obligation is discharged</td>
+<td>Fedwire Funds, NSS or an authorized private settlement bank</td>
+</tr>
+<tr>
+<td>customer entitlement</td>
+<td>broker or custodian records the customer's claim</td>
+<td>broker or custodian</td>
+</tr>
+</tbody>
+</table>
+<p>A guarantee can become binding before margin is collected. A securities token
+can move while central-bank cash is unavailable. A customer can see a position
+before the market utility's end-of-day net cash settlement is complete.</p>
+<h3 id="b-nscc-now-clears-beyond-the-fedwire-settlement-window">B. NSCC now clears beyond the Fedwire settlement window</h3>
+<p>NSCC's extended service became live on 2026-06-28/29 and processes continuously
+from Sunday at 8:00 p.m. through Friday at 8:00 p.m. Eastern Time. Its guarantee
+generally attaches when the trade is validated.</p>
+<p>The exact current seams are:</p>
+<ul>
+<li>Sunday: NSCC opens at 8:00 p.m.; Fedwire Funds opens at 9:00 p.m. — a
+  one-hour gap.</li>
+<li>Monday through Thursday: Fedwire Funds closes at 7:00 p.m. and reopens at
+  9:00 p.m. while NSCC remains open — a two-hour daily gap.</li>
+<li>Fedwire Securities begins transfer processing at 8:30 a.m.; important
+  securities and repositioning cutoffs occur from 3:15 p.m. through 4:30 p.m.</li>
+<li>Federal Reserve holidays create larger mismatches.</li>
+<li>NSCC's added 3:00–5:45 a.m. risk calculations monitor positions; they do not
+  prove that cash can be collected over a 24-hour rail every fifteen minutes.</li>
+<li>DTC did not extend its ordinary deposit deadlines merely because NSCC
+  extended clearing.</li>
+</ul>
+<p>The announced future Fedwire Funds/NSS extension is no earlier than 2028 and
+could be 2029. It would still retain approximately 26 hours of weekend
+downtime, and the announcement does not extend Fedwire Securities.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.sec.gov/files/rules/sro/nscc/2026/34-105565.pdf">SEC NSCC extended-hours approval order</a></li>
+<li><a href="https://www.dtcc.com/news/2026/june/29/nscc-now-live-with-clearing-hours-extended">DTCC live announcement</a></li>
+<li><a href="https://www.frbservices.org/resources/financial-services/wires/operating-hours.html">Fedwire Funds operating hours</a></li>
+<li><a href="https://www.frbservices.org/resources/financial-services/securities/operating-hours">Fedwire Securities operating hours</a></li>
+<li><a href="https://www.federalreserve.gov/newsevents/pressreleases/other20251009a.htm">Federal Reserve future Fedwire expansion announcement</a></li>
+</ul>
+<h3 id="c-the-liquidity-ladder">C. The liquidity ladder</h3>
+<p>When clearing or margin obligations arise outside the relevant settlement
+window, the public rule structure points to this ladder:</p>
+<ol>
+<li>prepositioned member cash and eligible collateral;</li>
+<li>the member's own treasury balance sheet;</li>
+<li>commercial-bank credit, repo funding and custody-bank arrangements;</li>
+<li>sponsor or agent-clearer funding, but only where the contract provides it;</li>
+<li>CCP prefunded resources and committed bank facilities after a failure;</li>
+<li>Federal Reserve intraday credit to an eligible institution with the
+   necessary Reserve Bank account;</li>
+<li>final settlement when Fedwire Funds, NSS, Fedwire Securities or the
+   designated private-bank books are available; or</li>
+<li>a pending, rejected or failed transaction.</li>
+</ol>
+<p>An NSCC settling bank is not required merely by acting as settlement agent to
+guarantee or advance the customer's money. If it refuses a debit, the member
+remains liable and must fund through the permitted route.</p>
+<p>No authoritative evidence reviewed here shows NSCC, FICC or DTC accepting
+FedNow as an alternative rail for ordinary margin or end-of-day settlement.</p>
+<h3 id="d-fednow-proves-247-central-bank-settlement-but-not-securities-dvp">D. FedNow proves 24/7 central-bank settlement, but not securities DVP</h3>
+<p>FedNow operates continuously and provides final central-bank-money settlement
+for payments processed under its own rules. Since 2025-11-12, the maximum
+customer credit transfer, return and liquidity-management transfer is
+$10,000,000.</p>
+<p>That does not make FedNow a general-purpose NSCC, FICC, DTC or CCP-margin rail.
+Its liquidity-management transfer supports instant-payment liquidity among
+qualifying accounts. The clearinghouse use case would require separate rules,
+messages, participant eligibility, risk controls and integration.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.frbservices.org/resources/financial-services/fednow/operating-hours">FedNow operating hours</a></li>
+<li><a href="https://www.frbservices.org/news/communications/111225-fednow-transaction-limit-increase">FedNow transfer-limit change</a></li>
+<li><a href="https://www.frbservices.org/binaries/content/assets/crsocms/resources/rules-regulations/062425-fednow-service-operating-procedures.pdf">FedNow operating procedures</a></li>
+</ul>
+<h3 id="e-dtc-tokenization-currently-moves-an-entitlement-not-settlement-money">E. DTC tokenization currently moves an entitlement, not settlement money</h3>
+<p>The status clocks must remain separate:</p>
+<ul>
+<li>2025-12-11: SEC staff conditional no-action position;</li>
+<li>2026-07-15: limited activity in DTC's production environment involving more
+  than 30 firms;</li>
+<li>October 2026: participant-facing preliminary base-version launch remains a
+  future target.</li>
+</ul>
+<p>In the base design, DTC-custodied assets can receive a tokenized entitlement,
+while DTC remains the central controller. DTC retains freeze, reversal,
+force-transfer, clawback, pause and reconciliation powers. The tokenized asset
+initially receives <strong>zero value</strong> for DTC Collateral Monitor and Net Debit Cap
+purposes.</p>
+<p>DTCC described July 15 workflows including delivery-versus-payment, repo,
+securities lending, collateral pledge and CCP margin. The public release did
+not identify:</p>
+<ul>
+<li>the cash settlement asset or rail;</li>
+<li>the cash-finality rule;</li>
+<li>transaction CUSIPs and full-dollar values;</li>
+<li>matched counterparties;</li>
+<li>chain transaction identifiers;</li>
+<li>execution, ledger and cash-finality timestamps; or</li>
+<li>whether transactions remained live or were reversed after the event.</li>
+</ul>
+<p>“Delivery-versus-payment” in the release therefore does not prove
+central-bank-cash delivery-versus-payment.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.sec.gov/files/tm/no-action/dtc-nal-121125.pdf">SEC staff no-action letter</a></li>
+<li><a href="https://www.dtcc.com/news/2026/july/15/dtcc-turns-tokenization-into-reality">DTCC July 15 limited-production announcement</a></li>
+<li><a href="https://www.dtcc.com/digital-assets/tokenization/live-production-trades">DTCC production-event page</a></li>
+</ul>
+<h3 id="f-treasury-ccps-still-depend-on-bank-and-securities-settlement-layers">F. Treasury CCPs still depend on bank and securities-settlement layers</h3>
+<table>
+<thead>
+<tr>
+<th>Utility</th>
+<th>Current state</th>
+<th>Settlement/control seam</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FICC Government Securities Division</td>
+<td>current and expanding; mandatory cash-Treasury compliance remains 2026-12-31 and repo compliance remains 2027-06-30</td>
+<td>novation at comparison; securities through Fedwire Securities or designated clearing-bank books; funds-only settlement through NSS; disclosed clearing-bank infrastructure is concentrated at BNY Mellon</td>
+</tr>
+<tr>
+<td>ICE Clear Credit Treasury</td>
+<td>cash-Treasury service described as launched; repo service not established here as live</td>
+<td>BNY Mellon identified as initial settlement bank; published minimum participant guaranty-fund contribution is $20,000,000; ICE initial contribution is $100,000,000</td>
+</tr>
+<tr>
+<td>CME Securities Clearing</td>
+<td>SEC-registered/design published; current CME page still says the service “will launch”</td>
+<td>designed Sunday 5:00 p.m. through Friday 8:00 p.m.; finality occurs when designated bank accounts are actually debited and credited</td>
+</tr>
+</tbody>
+</table>
+<p>FICC's scheduled Government Securities Division calls at 9:30 a.m. and
+2:45 p.m., plus possible one-hour ad hoc calls, expose the securities-hours
+problem directly: a participant can owe cash while its preferred Treasury
+collateral cannot move through Fedwire Securities.</p>
+<hr />
+<h2 id="v-the-access-gate">V. The access gate</h2>
+<h3 id="a-the-public-database-does-not-identify-every-master-account-holder">A. The public database does not identify every master-account holder</h3>
+<p>The Board's Existing Access database includes both:</p>
+<ul>
+<li>institutions with their own Reserve Bank master account; and</li>
+<li>institutions accessing services by settling through another depository
+  institution's master account.</li>
+</ul>
+<p>The presence of an institution in that database therefore does not prove it
+has its own account. The Access Requests database uses the same own-account or
+correspondent-access boundary. It covers requests submitted after 2022-12-23
+and requests still pending on that date. The Board says it updates the database
+quarterly; the current records are through 2026-05-31.</p>
+<p>Primary source:
+<a href="https://www.federalreserve.gov/paymentsystems/master-account-and-services-database-about.htm">Federal Reserve Master Account and Services Database — About</a>.</p>
+<h3 id="b-kraken-is-the-concrete-tier-3-test-case">B. Kraken is the concrete Tier 3 test case</h3>
+<p>The live Federal Reserve CSV records show:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Record</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>institution</td>
+<td>Kraken Financial</td>
+</tr>
+<tr>
+<td>request submitted</td>
+<td>2020-10-06</td>
+</tr>
+<tr>
+<td>federal deposit insurance</td>
+<td>not federally insured</td>
+</tr>
+<tr>
+<td>initial tier</td>
+<td>Tier 3</td>
+</tr>
+<tr>
+<td>action</td>
+<td>approved</td>
+</tr>
+<tr>
+<td>action date</td>
+<td>2026-01-28</td>
+</tr>
+<tr>
+<td>access-effective date</td>
+<td>2026-01-28</td>
+</tr>
+<tr>
+<td>Reserve Bank</td>
+<td>Federal Reserve Bank of Kansas City</td>
+</tr>
+</tbody>
+</table>
+<p>Kansas City publicly described the institution as Payward Financial, doing
+business as Kraken Financial, a Wyoming Special Purpose Depository Institution.
+It approved a limited-purpose account for an initial one-year term with
+undisclosed restrictions tailored to Kraken's business model and risk profile.</p>
+<p>That example proves that “approved” does not mean “unrestricted,” and that the
+public database does not reveal the exact service set or tailored controls.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.kansascityfed.org/newsroom/2026-news-releases/federal-reserve-bank-of-kansas-city-approves-limited-account/">Kansas City Fed limited-account announcement</a></li>
+<li><a href="https://www.federalreserve.gov/paymentsystems/account-and-access-disclosure/holder-data.csv">Existing Access CSV</a></li>
+<li><a href="https://www.federalreserve.gov/paymentsystems/account-and-access-disclosure/requestor-data.csv">Access Requests CSV</a></li>
+</ul>
+<h3 id="c-the-proposed-payment-account">C. The proposed Payment Account</h3>
+<p>The Board's proposal is not final. Comments close 2026-07-27. It would not
+change statutory eligibility, and the individual Reserve Bank would continue
+to decide access under Board guidelines.</p>
+<table>
+<thead>
+<tr>
+<th>Proposed term</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>intraday credit</td>
+<td>none</td>
+</tr>
+<tr>
+<td>discount-window access</td>
+<td>none</td>
+</tr>
+<tr>
+<td>interest on balances</td>
+<td>none</td>
+</tr>
+<tr>
+<td>overdrafts</td>
+<td>automated rejection</td>
+</tr>
+<tr>
+<td>permitted services</td>
+<td>Fedwire Funds, FedNow, NSS and Fedwire Securities free transfers</td>
+</tr>
+<tr>
+<td>unavailable services</td>
+<td>FedACH, Check, Currency and Fedwire Securities delivery-versus-payment</td>
+</tr>
+<tr>
+<td>correspondent activity</td>
+<td>holder may not act as correspondent and may not use the account to settle a respondent's activity</td>
+</tr>
+<tr>
+<td>closing balance</td>
+<td>based on expected payment activity, capped at $1,000,000,000, subject to narrow temporary-exceedance provisions</td>
+</tr>
+<tr>
+<td>review expectation</td>
+<td>generally 90 calendar days after all requested documentation for a Tier 2 or Tier 3 Payment Account request</td>
+</tr>
+</tbody>
+</table>
+<p>The Board also encouraged Reserve Banks to pause decisions on Tier 3 account
+requests while the policy process remains open.</p>
+<p>This design moves the access frontier without moving the credit frontier. A
+holder can reach real-time rails directly but must maintain enough cash to
+avoid rejection, especially across weekends and holidays. The result may
+reduce ordinary correspondent dependence while increasing the importance of
+private liquidity providers.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.federalreserve.gov/newsevents/pressreleases/other20260520a.htm">Board May 20 proposal release</a></li>
+<li><a href="https://www.federalregister.gov/documents/2026/05/26/2026-10375/proposed-revisions-to-the-federal-reserve-policy-on-payment-system-risk-and-the-guidelines-for">Federal Register notice, Docket OP-1878</a></li>
+</ul>
+<hr />
+<h2 id="vi-operating-control-and-cost">VI. Operating control and cost</h2>
+<h3 id="a-current-payment-service-control-stack">A. Current payment-service control stack</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Current public answer</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>legal owner/operator</td>
+<td>the 12 Federal Reserve Banks collectively</td>
+<td>FRFS is a national business line, not a separately identified thirteenth Bank or subsidiary</td>
+</tr>
+<tr>
+<td>day-to-day business manager</td>
+<td>Federal Reserve Financial Services, led by the chief payments executive</td>
+<td>management is performed on behalf of all 12 Banks</td>
+</tr>
+<tr>
+<td>strategic oversight</td>
+<td>Conference of Presidents through its Payments Committee</td>
+<td>Reserve Bank boards and presidents retain legal responsibility for activities performed by their Banks</td>
+</tr>
+<tr>
+<td>national IT policy</td>
+<td>Conference of Presidents' Information Technology and Operations Committee</td>
+<td>the complete approval matrix between business and technology control is not public</td>
+</tr>
+<tr>
+<td>infrastructure</td>
+<td>Federal Reserve Bank of Richmond / National IT supplies national hosting and the infrastructure used by Fedwire Securities</td>
+<td>infrastructure responsibility does not identify every contracting or asset-owning Bank</td>
+</tr>
+<tr>
+<td>business requirements and customer access</td>
+<td>FRFS defines business requirements and specifications and supplies customer-access solutions</td>
+<td>application-level owner, developer and invoice payer remain undisclosed</td>
+</tr>
+<tr>
+<td>federal supervision</td>
+<td>Board Division of Reserve Bank Operations and Payment Systems</td>
+<td>Board supervision and price approval are not Board ownership of the service assets</td>
+</tr>
+</tbody>
+</table>
+<p>The former Wholesale Product Office at the New York Fed is not the current
+enterprise manager. It was dissolved when the new FRFS structure took effect
+on 2022-07-01. New York still performs specific operational and
+securities-account functions, but that is different from owning or managing
+Fedwire Funds, Fedwire Securities or NSS for the enterprise.</p>
+<p>The legal layer is being consolidated too. Effective 2026-01-05, FRFS began
+moving common contractual terms into Operating Circular 5, renamed <em>General
+Financial Service Provisions</em>.</p>
+<p>Current product attribution:</p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Legal operator</th>
+<th>Business controller</th>
+<th>Remaining seam</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fedwire Funds</td>
+<td>12 Reserve Banks</td>
+<td>FRFS</td>
+<td>National IT supplies infrastructure; application owner and invoice-paying Bank are not public</td>
+</tr>
+<tr>
+<td>Fedwire Securities</td>
+<td>12 Reserve Banks</td>
+<td>FRFS</td>
+<td>Richmond/National IT runs infrastructure; New York and Chicago keep specified securities accounts but are not thereby enterprise product owners</td>
+</tr>
+<tr>
+<td>NSS</td>
+<td>12 Reserve Banks</td>
+<td>FRFS</td>
+<td>application owner and contracting Bank are not public</td>
+</tr>
+<tr>
+<td>FedACH</td>
+<td>12 Reserve Banks</td>
+<td>FRFS</td>
+<td>historical product-office hosts should not be treated as current without a post-2022 source</td>
+</tr>
+<tr>
+<td>Check</td>
+<td>12 Reserve Banks</td>
+<td>FRFS</td>
+<td>Atlanta processing instructions do not prove Atlanta records every service asset or vendor invoice</td>
+</tr>
+<tr>
+<td>FedNow</td>
+<td>12 Reserve Banks</td>
+<td>FRFS through its chief FedNow executive</td>
+<td>Boston's development role is historical evidence; current asset owner, cloud contractor and payable holder are not public</td>
+</tr>
+<tr>
+<td>FedLine</td>
+<td>12 Reserve Banks; access principally through Operating Circular 5</td>
+<td>FRFS</td>
+<td>Chicago administers FRBservices.org, but that does not prove Chicago owns the FedLine asset or pays its network vendors</td>
+</tr>
+</tbody>
+</table>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.frbservices.org/binaries/content/assets/crsocms/financial-services/securities/securities-service-disclosure.pdf">2025 Fedwire Securities PFMI disclosure</a></li>
+<li><a href="https://www.frbservices.org/about/leadership">FRFS leadership</a></li>
+<li><a href="https://www.frbservices.org/binaries/content/assets/crsocms/resources/rules-regulations/010526-summary-of-changes.pdf">2026 Operating Circular changes</a></li>
+</ul>
+<h3 id="b-public-cost-surface">B. Public cost surface</h3>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th style="text-align: right;">Public amount</th>
+<th>Accounting state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024 Reserve Bank operating software cost</td>
+<td style="text-align: right;">$548,800,000</td>
+<td>actual</td>
+</tr>
+<tr>
+<td>2025 Reserve Bank operating software</td>
+<td style="text-align: right;">$662,200,000</td>
+<td>budget; not actual</td>
+</tr>
+<tr>
+<td>Reserve Bank capitalized software, net, 2024 year-end</td>
+<td style="text-align: right;">$597,000,000</td>
+<td>actual balance</td>
+</tr>
+<tr>
+<td>Reserve Bank capitalized software, net, 2025 year-end</td>
+<td style="text-align: right;">$646,000,000</td>
+<td>actual balance</td>
+</tr>
+<tr>
+<td>change in net capitalized software</td>
+<td style="text-align: right;">$49,000,000</td>
+<td>balance-sheet change; not cash additions</td>
+</tr>
+<tr>
+<td>2025 Reserve Bank software amortization</td>
+<td style="text-align: right;">$193,000,000</td>
+<td>actual expense</td>
+</tr>
+<tr>
+<td>2025 Board Information Technology operating expense</td>
+<td style="text-align: right;">$209,900,000</td>
+<td>budget</td>
+</tr>
+<tr>
+<td>2025 Board operating software expense</td>
+<td style="text-align: right;">$47,177,950</td>
+<td>actual</td>
+</tr>
+<tr>
+<td>2025 Board software in use and in process, gross</td>
+<td style="text-align: right;">$90,483,117</td>
+<td>actual balance</td>
+</tr>
+<tr>
+<td>2025 Board hosting-arrangement implementation cost, gross</td>
+<td style="text-align: right;">$28,008,654</td>
+<td>actual balance</td>
+</tr>
+<tr>
+<td>2025 FRIT positions</td>
+<td style="text-align: right;">1,789</td>
+<td>budgeted positions, not dollars</td>
+</tr>
+<tr>
+<td>2025 Board Information Technology positions</td>
+<td style="text-align: right;">438</td>
+<td>budgeted positions, not dollars</td>
+</tr>
+</tbody>
+</table>
+<p>The $49,000,000 increase in net Reserve Bank capitalized software cannot be
+called “cash spent.” Additions, transfers among Banks, amortization, impairment
+and disposals are not separately rolled forward in the combined note.</p>
+<h3 id="c-public-payment-service-economics">C. Public payment-service economics</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th style="text-align: right;">2024 operating and imputed cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FedNow</td>
+<td style="text-align: right;">$231,100,000</td>
+</tr>
+<tr>
+<td>FedACH</td>
+<td style="text-align: right;">$166,500,000</td>
+</tr>
+<tr>
+<td>Fedwire Funds and National Settlement</td>
+<td style="text-align: right;">$151,700,000</td>
+</tr>
+<tr>
+<td>Check</td>
+<td style="text-align: right;">$104,500,000</td>
+</tr>
+<tr>
+<td>Fedwire Securities</td>
+<td style="text-align: right;">$41,600,000</td>
+</tr>
+</tbody>
+</table>
+<p>FedNow's reported implementation spending through launch was $545,000,000.</p>
+<p>For mature priced services in 2024:</p>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th style="text-align: right;">Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>revenue from operations</td>
+<td style="text-align: right;">$524,300,000</td>
+</tr>
+<tr>
+<td>operating and imputed costs</td>
+<td style="text-align: right;">$464,200,000</td>
+</tr>
+<tr>
+<td>net income</td>
+<td style="text-align: right;">$60,100,000</td>
+</tr>
+<tr>
+<td>reported cost recovery</td>
+<td style="text-align: right;">110.6%</td>
+</tr>
+</tbody>
+</table>
+<p>FedNow was excluded from the mature-service projection because its volume,
+cost and revenue were not considered stable. The exact unanswered accounting
+question is how its past development cost, current operating cost, shared
+infrastructure and imputed private-sector adjustments will enter its eventual
+recovery requirement and price schedule.</p>
+<p>The current pricing record adds two future objects that must not be mistaken
+for audited actuals:</p>
+<table>
+<thead>
+<tr>
+<th>Mature priced-service object</th>
+<th style="text-align: right;">2025 forecast</th>
+<th style="text-align: right;">2026 budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>revenue</td>
+<td style="text-align: right;">$543,800,000</td>
+<td style="text-align: right;">$556,000,000</td>
+</tr>
+<tr>
+<td>operating/imputed or total expense</td>
+<td style="text-align: right;">$493,700,000</td>
+<td style="text-align: right;">$502,100,000</td>
+</tr>
+<tr>
+<td>net income</td>
+<td style="text-align: right;">$50,400,000</td>
+<td style="text-align: right;">$53,900,000</td>
+</tr>
+<tr>
+<td>targeted return on equity</td>
+<td style="text-align: right;">$10,800,000</td>
+<td style="text-align: right;">$12,600,000</td>
+</tr>
+<tr>
+<td>recovery after targeted return</td>
+<td style="text-align: right;">107.8%</td>
+<td style="text-align: right;">108.0%</td>
+</tr>
+</tbody>
+</table>
+<p>The four mature-service rail rows sum to $464,300,000 while the published
+aggregate is $464,200,000. The $100,000 difference is source rounding rather
+than evidence of a missing program.</p>
+<p>The Board expects FedNow's first long-run recovery to fall outside the ordinary
+ten-year window. The public record does not show which mature-service surplus,
+Reserve Bank earnings or internal allocation funded each annual FedNow
+shortfall or its present cumulative recovery balance.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.federalreserve.gov/publications/2024-ar-payment-system-and-reserve-bank-oversight.htm">2024 Payment System and Reserve Bank Oversight</a></li>
+<li><a href="https://www.federalreserve.gov/newsevents/pressreleases/files/other20251204a1.pdf">2026 Federal Reserve service-pricing notice</a></li>
+</ul>
+<h3 id="d-host-bank-accounting-can-conceal-the-real-control-chain">D. Host-Bank accounting can conceal the real control chain</h3>
+<p>Federal Reserve Financial Services manages Check, FedACH, Fedwire Funds,
+Fedwire Securities, NSS, FedNow and electronic access across the Banks.
+Federal Reserve Information Technology supplies national infrastructure.</p>
+<p>The Financial Accounting Manual allows this arrangement:</p>
+<ul>
+<li>one Bank can pay or contract for development;</li>
+<li>another Bank or outside vendor can develop or physically host the system;</li>
+<li>a product office hosted by a third Bank can control requirements, operation
+  and retirement;</li>
+<li>the controlling Bank can record the whole software asset; and</li>
+<li>the costs can be allocated to all benefiting Banks or to an outside
+  principal.</li>
+</ul>
+<p>Richmond's 2025 statements illustrate the scale. Richmond received
+$1,135,000,000 from the other Reserve Banks for computing and System-support
+costs. That is an internal redistribution, not a loan, donation or additional
+external System expense. It also is not, by itself, the external vendor total.</p>
+<p>The minimum application ledger therefore needs these fields:</p>
+<table>
+<thead>
+<tr>
+<th>Required field</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contracting entity</td>
+<td>Which Bank or Board office signed the agreement and paid the invoice?</td>
+</tr>
+<tr>
+<td>controlling entity</td>
+<td>Which product or function office sets requirements, operation and retirement?</td>
+</tr>
+<tr>
+<td>development and physical host</td>
+<td>Which Bank, FRIT facility, cloud provider or other vendor builds and runs it?</td>
+</tr>
+<tr>
+<td>accounting owner</td>
+<td>Which Bank capitalizes and amortizes the asset?</td>
+</tr>
+<tr>
+<td>benefiting recipients</td>
+<td>Which Banks, Treasury functions or business lines receive the cost allocation?</td>
+</tr>
+<tr>
+<td>revenue or reimbursement</td>
+<td>Is the cost recovered through priced-service fees, Treasury reimbursement, Board assessment or System expense?</td>
+</tr>
+</tbody>
+</table>
+<p>The individual-Bank service entries are estimated monthly through the
+Interdistrict Settlement Account and trued to actual cost in the next month.
+Customer revenue is recorded gross. In the 12-Bank combined statements, the
+reciprocal receivables, payables and allocations disappear or net, while
+external payroll and vendor expense remain.</p>
+<h3 id="e-treasury-is-a-major-payment-technology-principal">E. Treasury is a major payment-technology principal</h3>
+<p>The latest public functional detail is 2024:</p>
+<table>
+<thead>
+<tr>
+<th>Treasury fiscal-agent function</th>
+<th style="text-align: right;">Expense</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>payment services</td>
+<td style="text-align: right;">$339,597,000</td>
+</tr>
+<tr>
+<td>debt financing and securities services</td>
+<td style="text-align: right;">$244,194,000</td>
+</tr>
+<tr>
+<td>financial accounting and reporting</td>
+<td style="text-align: right;">$86,550,000</td>
+</tr>
+<tr>
+<td>technology infrastructure</td>
+<td style="text-align: right;">$177,052,000</td>
+</tr>
+<tr>
+<td><strong>Treasury subtotal</strong></td>
+<td style="text-align: right;"><strong>$847,392,000</strong></td>
+</tr>
+<tr>
+<td>other reimbursable entities</td>
+<td style="text-align: right;">$11,930,000</td>
+</tr>
+<tr>
+<td><strong>total reimbursable expense</strong></td>
+<td style="text-align: right;"><strong>$859,322,000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The Reserve Banks recognized $934,000,000 of reimbursable government-agency
+service income in 2025, but the audited statement does not publish the same
+functional breakout.</p>
+<p>This lane should not be described as the Fed “funding research for Treasury.”
+It is statutory fiscal-agent operating work: government payments, public-debt
+issuance and servicing, accounting/reporting and technology infrastructure.
+Treasury is the principal and reimburses the Reserve Banks. The remaining
+question is which named applications, Banks and vendors sit inside each
+function.</p>
+<h3 id="f-vendor-boundary">F. Vendor boundary</h3>
+<p>No official Federal Reserve source located in this pass assigns a
+payment-system dollar payment to Amazon Web Services or another cloud vendor.</p>
+<ul>
+<li>A vendor's statement that its cloud is important to FedNow does not turn
+  FedNow's $545,000,000 implementation total into that vendor's award.</li>
+<li>A FedLine pricing notice identifies a new network vendor without naming it.</li>
+<li>Reserve Bank public statements do not disclose FRFS or National IT accounts
+  payable by vendor.</li>
+<li>Named Board enterprise platforms do not establish a FedNow, Fedwire, FedACH
+  or FedLine vendor-payment ledger.</li>
+</ul>
+<p>The correct state is therefore <code>named technology relationship in some cases /
+payment and contract value not publicly established</code>, not <code>vendor received the
+service or project total</code>.</p>
+<hr />
+<h2 id="vii-what-is-answered-partly-answered-and-still-open">VII. What is answered, partly answered and still open</h2>
+<h3 id="answered-strongly-enough-for-the-factual-spine">Answered strongly enough for the factual spine</h3>
+<ul>
+<li>The payment stack has several legal and operating points of finality.</li>
+<li>Longer clearing and token-transfer hours do not themselves extend Fedwire
+  Securities or prove continuous central-bank-cash delivery-versus-payment.</li>
+<li>Private and prefunded liquidity bridges the first gap.</li>
+<li>FedNow is a continuous central-bank payment rail, but it is not currently
+  established as a general CCP margin or securities-settlement rail.</li>
+<li>DTC remains the authority over its tokenized entitlement system and initially
+  gives tokenized assets zero DTC collateral/risk-control value.</li>
+<li>The Existing Access database cannot distinguish every own master account
+  from correspondent access.</li>
+<li>The proposed Payment Account would separate direct rail access from Federal
+  Reserve credit.</li>
+<li>Bank-level software balances do not identify local use or cash spending.</li>
+<li>Richmond's $1,135,000,000 is inter-Bank cost redistribution.</li>
+<li>Treasury reimbursement is an external-principal relationship, not an
+  eliminated Reserve Bank intercompany flow.</li>
+</ul>
+<h3 id="partly-answered">Partly answered</h3>
+<ul>
+<li>The finality and cash-leg design of DTC's July 15 tokenized transactions.</li>
+<li>BNY Mellon's concentration across FICC and ICE Treasury settlement.</li>
+<li>FICC's collateral and cash response when Fedwire Securities is closed.</li>
+<li>FedNow's eventual full-cost recovery and pricing path.</li>
+<li>The service and restriction set attached to Kraken's one-year account.</li>
+<li>Cloud and network concentration across national Federal Reserve services.</li>
+</ul>
+<h3 id="still-open">Still open</h3>
+<ol>
+<li>Exact cash asset, rail, full-dollar value and timestamps for each DTC July 15
+   delivery-versus-payment transaction.</li>
+<li>NSCC treatment of a one-hour margin deadline that falls inside a Fedwire
+   closure or holiday.</li>
+<li>Actual lending commitments, not merely settlement-agent status, for NSCC
+   settling banks and FICC sponsor/agent relationships.</li>
+<li>FICC backup if BNY Mellon is unavailable.</li>
+<li>ICE Treasury participant roster, daily volume and direct-versus-settlement-
+   bank Federal Reserve account structure.</li>
+<li>Evidence that CME Securities Clearing has cleared and settled its first live
+   trade.</li>
+<li>Rule and haircut that would give tokenized DTC assets positive collateral or
+   settlement value.</li>
+<li>Conflict-of-record procedure across blockchain, LedgerScan and legacy DTC
+   systems.</li>
+<li>Whether and when Fedwire Securities hours will expand.</li>
+<li>Discount-window operating arrangements for future Sunday or holiday
+    Fedwire days.</li>
+<li>Application-level FRFS/FRIT/Treasury contract, controller, host, vendor,
+    capitalized-asset and allocation ledger.</li>
+<li>FedNow development-to-recovery bridge and the date it enters the mature
+    priced-service aggregate.</li>
+<li>Common transaction/supersession key across obligation, payment, reversal,
+    correction and recovery.</li>
+<li>Unified public incident and correction register across the linked rails.</li>
+<li>Nonpublic FRFS Enterprise Principles and the exact delegation among the
+    chief payments executive, Payments Committee and individual Bank boards.</li>
+<li>Richmond's $1,135,000,000 allocation by Bank, service, payroll, vendor and
+    capital project.</li>
+<li>Whether benefits, Board assessments and nationally provided support are
+    allocated to each priced service before statutory recovery is measured.</li>
+<li>Which pre-2022 product-office host relationships survived only as
+    operational nodes and which authority assignments ended with the FRFS
+    reorganization.</li>
+<li>Bank-to-Bank elimination entries that reconcile each individual Bank's
+    service revenue and expense to the combined statements.</li>
+</ol>
+<hr />
+<h2 id="viii-research-triggers-and-falsifiers">VIII. Research triggers and falsifiers</h2>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>What it would change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Board adopts, revises or withdraws the Payment Account proposal</td>
+<td>changes the access and prefunding lane</td>
+</tr>
+<tr>
+<td>Tier 3 decision pause ends</td>
+<td>reopens the high-scrutiny account clock</td>
+</tr>
+<tr>
+<td>Kraken account renewal, expiry or revised access announcement around 2027-03</td>
+<td>tests whether limited direct access persists</td>
+</tr>
+<tr>
+<td>DTC publishes the preliminary base-version launch notice</td>
+<td>moves tokenization from limited production to participant service</td>
+</tr>
+<tr>
+<td>DTC assigns positive Collateral Monitor or Net Debit Cap value</td>
+<td>changes tokenized assets from transferable entitlements toward funding collateral</td>
+</tr>
+<tr>
+<td>DTCC discloses July 15 cash-leg and transaction evidence</td>
+<td>can prove or falsify central-bank-cash delivery-versus-payment</td>
+</tr>
+<tr>
+<td>CMESC publishes first live clearing and settlement volume</td>
+<td>moves the service from designed/registered to operational</td>
+</tr>
+<tr>
+<td>Fedwire Securities extension proposal</td>
+<td>narrows the security-delivery clock gap</td>
+</tr>
+<tr>
+<td>Federal Reserve publishes 2025 actual operating software by comparable line</td>
+<td>replaces the $662,200,000 budget proxy</td>
+</tr>
+<tr>
+<td>FRFS publishes a FedNow recovery horizon or service-specific pro forma</td>
+<td>clarifies subsidy and price formation</td>
+</tr>
+<tr>
+<td>named application/vendor/host schedules appear</td>
+<td>converts the software-control model into a counterparty ledger</td>
+</tr>
+</tbody>
+</table>
+<p>The central falsifier for the current storyline would be authoritative evidence
+that a linked clearing utility can collect every required cash or collateral
+obligation continuously in final central-bank money or final securities
+delivery whenever its clearing or digital ledger is open. The reviewed record
+does not establish that.</p>
+<hr />
+<h2 id="ix-source-and-corpus-spine">IX. Source and corpus spine</h2>
+<h3 id="existing-observatory-corpus-reviewed">Existing Observatory corpus reviewed</h3>
+<ul>
+<li><code>CLEARING_HOUSE_TRANSITION_DEEP_DIVE.md</code></li>
+<li><code>CLEARING_HOUSE_TRANSITION_TIMELINE.md</code></li>
+<li><code>TREASURY_FED_MONEY_STATE_TIMELINE.md</code></li>
+<li><code>FEDERAL_RESERVE_SYSTEM_ENTITY_TRANSACTION_AND_SOFTWARE_MAP.md</code></li>
+<li><code>FEDERAL_RESERVE_USES_OF_MONEY_LEDGER_2025.md</code></li>
+<li><code>FEDERAL_RESERVE_ACTUAL_JOB_AND_OPERATING_STORY.md</code></li>
+<li><code>DTC_TOKENIZATION_SOFT_LAUNCH_STATUS_2026-07-15.md</code></li>
+<li><code>FEDERAL_TRANSACTION_RECORD_DEEP_DIVE_2026-07-23.md</code></li>
+<li><code>FINTECH_SWEEP_PAYMENT_ORCHESTRATORS.md</code></li>
+<li>the 2026-07-21 SWIFT source and execution-wave files</li>
+</ul>
+<h3 id="additional-primary-source-spine">Additional primary-source spine</h3>
+<ul>
+<li>Federal Reserve Board Payment Account release and Federal Register notice</li>
+<li>Federal Reserve Master Account and Services databases and CSVs</li>
+<li>Kansas City Fed Kraken limited-account announcement</li>
+<li>FRBservices operating-hour and operating-procedure pages</li>
+<li>SEC NSCC extended-hours order</li>
+<li>NSCC, DTC and FICC rules, disclosures and service guides</li>
+<li>DTC no-action letter and July 15 production-event records</li>
+<li>ICE Clear Credit Treasury rules</li>
+<li>CME Securities Clearing rulebook and service page</li>
+<li>Federal Reserve budget, audited financial statements and Financial
+  Accounting Manual already captured in the System transaction/software map</li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

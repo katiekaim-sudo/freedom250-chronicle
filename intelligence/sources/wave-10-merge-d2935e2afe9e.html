@@ -1,0 +1,322 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Wave 10 — whole-government merge and adjudication · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/government-through-time.html#return-to-the-result" class="" >Return for the outcome—and let the record correct the story <span class="meta">— What changed as the plans met the machinery?</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Wave 10 — whole-government merge and adjudication</h1><p class="deck">Source evidence cutoff: 2026-09-22 11:51:46 EDT · Collection evidence cutoff: 2026-09-22T11:51:46-04:00</p><p><a href="wave-10-merge-d2935e2afe9e.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="wave-10-whole-government-merge-and-adjudication">Wave 10 — whole-government merge and adjudication</h1>
+<h2 id="controlling-answer">Controlling answer</h2>
+<p>The September 16–22 record does not show one government-wide program moving in
+lockstep. It shows a dense redistribution of <strong>decision rights, access gates,
+record duties and implementation responsibility</strong> across otherwise separate
+systems.</p>
+<p>The strongest common movement is procedural and operational:</p>
+<ul>
+<li>executive instruments assign new interagency duties and future review gates;</li>
+<li>agencies move approval authority, define who may enter a system, and state
+  which record or evidence controls a decision;</li>
+<li>temporary industrial, emergency and land instruments keep capacity available
+  while operating proof remains separate;</li>
+<li>fielding, commissioning and entry-into-force receipts move selected programs
+  beyond planning without proving final delivery or effect; and</li>
+<li>the Joint Warfighter Evaluation announcement adds an intended senior-officer
+  selection gate without yet proving its implementing instrument, board use or
+  promotion outcomes; and</li>
+<li>audits, staged source releases and publication records make control and
+  accountability more inspectable without themselves completing a remedy.</li>
+</ul>
+<p>That convergence is strong enough to guide the Observatory's plotlines. It is
+not evidence of one master plan, a single platform, universal execution or a
+completed institutional settlement.</p>
+<h2 id="highest-value-current-control-objects">Highest-value current control objects</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>State established through cutoff</th>
+<th>What remains unproved</th>
+<th>Root disposition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EO 14431 and Proclamation 11069</td>
+<td>Separate signed H-1B administration and entry-restriction objects; six-agency consultation, sponsor-layoff consideration, a 30-day WHD start gate and an exact extension horizon</td>
+<td>Downstream rule/guidance, review start, fee or payment rail, case action and judicial security</td>
+<td>retain both current atomics; do not merge them</td>
+</tr>
+<tr>
+<td>ACA agent/broker moratorium</td>
+<td>Immediate bounded registration/training/agreement-execution gate from September 22 through February 1 unless later changed; explicit FFE/SBE-FP actor limits and exclusions</td>
+<td>Individual system block, consumer enrollment or eligibility result, commission/payment effect or fraud finding</td>
+<td>retain current atomic</td>
+</tr>
+<tr>
+<td>OPM ratings/awards controls</td>
+<td>Government-wide 40-percent combined top-rating ceiling with waiver/reporting clocks; separate immediate delegation for awards above $10,000 through $25,000</td>
+<td>Rating, waiver, award approval, obligation or payroll/payment</td>
+<td>retain two current atomics</td>
+</tr>
+<tr>
+<td>BIS polysilicon rule</td>
+<td>Temporary September 22–December 3 import-control architecture with existing-importer monitoring, exact new-IOR quantity limits, Commerce notice/waiver and CBP roles</td>
+<td>Named prohibition or waiver, entry denial, broker enforcement, import effect or domestic production</td>
+<td>retain current atomic and fold to the polysilicon owner</td>
+</tr>
+<tr>
+<td>DHS mass-influx finding</td>
+<td>New 180-day nationwide authority for requested assistance</td>
+<td>State acceptance, deputization, arrest, transfer, grant or reimbursement</td>
+<td>promote review</td>
+</tr>
+<tr>
+<td>DOE/PJM section 202(c) use</td>
+<td>DOE Order 202-26-45 plus PJM notice and compliance report establish actual invocation and reported resource use</td>
+<td>MWh, avoided outage, emissions result, payment or final settlement</td>
+<td>promote review in existing 202(c) chronology</td>
+</tr>
+<tr>
+<td>Army activation and network fielding</td>
+<td>116th MBCT entered federal active service and began deployment; III Armored Corps formations received and began fielding/training on the new C2 baseline</td>
+<td>Arrival/mission assumption, formal acceptance, combat use or force-wide completion</td>
+<td>promote review and fold to military owners</td>
+</tr>
+<tr>
+<td>Joint Warfighter Evaluation</td>
+<td>Secretary-level announcement that eligible O-6 officers screening for one star will undergo a new assessment beginning in 2026</td>
+<td>Signed governing instrument, final service/Joint Staff plans, scoring and appeal rules, first administered evaluation, board use and promotion outcome</td>
+<td>retain current atomic plus hold for source</td>
+</tr>
+<tr>
+<td>FCC ANSCER Covered List action</td>
+<td>Three named robotics models received a conditional exclusion tied to continuous onshoring/vetting compliance and a return-to-list remedy</td>
+<td>Equipment authorization, completed onshoring, import, sale, procurement or operation</td>
+<td>promote review then fold</td>
+</tr>
+<tr>
+<td>State public-access rule</td>
+<td>New component-routing, receipt, identity-verification and appeal architecture; publication complete, October 21 effectiveness future</td>
+<td>Request, search, disclosure, withholding, appeal result or improved performance</td>
+<td>retain current atomic</td>
+</tr>
+<tr>
+<td>MCC Belize Compact</td>
+<td>September 18 entry into force began the five-year implementation term</td>
+<td>Obligation, disbursement, counterpart payment, procurement, accepted work or delivery</td>
+<td>retain current atomic</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-objects-that-matter-without-becoming-headline-events">Additional objects that matter without becoming headline events</h2>
+<ul>
+<li>DOJ's False Claims Act manual revision changes dismissal review,
+  consultation/approval routing and evidentiary use of guidance; it does not
+  decide a case or recover funds.</li>
+<li>FDA's nonclinical-testing terminology rule is a contingent permission change,
+  not a new evidentiary standard. The December 7 adverse-comment gate controls
+  whether February 4 effectiveness can occur.</li>
+<li>Federal Student Aid's prison-education notice creates an exact accepted-
+  filing and approval-document gate; it is not a Pell award or payment.</li>
+<li>Fannie Mae's Loan Delivery release changes settlement-error sequencing;
+  OCC Bulletin 2026-48 changes the controlling supervisory source while
+  expressly creating no new expectation.</li>
+<li>PLO 7971 extends the Fort Carson/Piñon Canyon land withdrawal for 15 years
+  effective September 23; the future effective clock does not prove a new
+  exercise, deployment or construction project.</li>
+<li>The FCC RF-remand notice creates a bounded evidence record and October 22
+  comment clock while leaving existing limits and tests in place.</li>
+<li>NIST IR 8623 is a draft O-RAN cybersecurity profile and remains a watch, not
+  a standard, deployment instruction or authority to operate.</li>
+<li>The staged FRUS release changes public source availability for 88 numbered
+  documents; it is not a 2026 policy action or a completed volume.</li>
+<li>USAID OIG's government-to-government brief preserves 24 addressed and 20
+  outstanding prior recommendations as of May. Suggestions to State are not
+  new formal recommendations, and allowed costs are not recoveries.</li>
+<li>DOJ OIG's ATF report is resolved but not closed: concurrence with nine
+  recommendations does not prove implementation.</li>
+</ul>
+<h2 id="cross-plotline-reading">Cross-plotline reading</h2>
+<h3 id="1-authority-and-selection-gates-are-moving-through-named-controls">1. Authority and selection gates are moving through named controls</h3>
+<p>The H-1B order, OPM award delegation, DHS assistance finding, Commerce/CBP
+polysilicon procedure and FCC/Department of War robotics decision all assign
+who may decide, who must consult, who maintains the list or record, and how a
+decision can be reversed. They support a plotline of redistributed discretion
+inside the federal system, not privatization or unitary command.</p>
+<p>The Joint Warfighter Evaluation adds a different but related control: an
+announced assessment gate between O-6 eligibility and one-star selection. The
+announcement changes stated selection procedure, not the statutory appointment
+chain, Senate confirmation, or proof of any individual promotion result.</p>
+<h3 id="2-records-and-identity-are-increasingly-operative-gates">2. Records and identity are increasingly operative gates</h3>
+<p>Marketplace registration, State FOIA/Privacy Act identity controls, FSA
+recipient reporting, HIGLAS status design, SSA match instructions, OFLC record
+custody and the Cold Case/FRUS publication seams all show that record state can
+control access, review and remedy. A page, list or match is still not the
+underlying adjudication or recipient outcome.</p>
+<h3 id="3-permission-and-capacity-are-advancing-faster-than-proved-effects">3. Permission and capacity are advancing faster than proved effects</h3>
+<p>Temporary import controls, emergency power orders, conditional land and
+equipment decisions, acquisition proposals, fielding and program entry into
+force create real capability or permission changes. The campaign repeatedly
+failed to find the later payment, accepted delivery, final settlement or
+measured-effect receipt. Those missing clocks are evidence boundaries, not
+reasons to erase the earlier state change.</p>
+<h3 id="4-publication-and-source-custody-remain-their-own-infrastructure">4. Publication and source custody remain their own infrastructure</h3>
+<p>Federal Register filing/publication, direct agency action, NARA availability,
+FRUS staged release, committee QFR custody and OIG recommendation state often
+occur on different dates and under different publishers. The campaign's
+strongest corrections came from refusing to turn a later publication receipt
+into a second event.</p>
+<h2 id="proposal-watch-and-hold-queue">Proposal, watch and hold queue</h2>
+<table>
+<thead>
+<tr>
+<th>Unit</th>
+<th>Current status</th>
+<th>Exact next receipt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GSA FSS move from FAR 8.4 to GSAR 538</td>
+<td>proposal support only</td>
+<td>final FAR/GSAR rule, effective date, then first traceable use</td>
+</tr>
+<tr>
+<td>Treasury Debt Financing System</td>
+<td>watch only; final testing and future transition</td>
+<td>ATO/ATU, accepted test, cutover notice or first DFS auction</td>
+</tr>
+<tr>
+<td>SEC tokenized NMS-stock exemptions</td>
+<td>conditional permission already owned</td>
+<td>Notice of Intent, completed waiting path and first live venue receipt</td>
+</tr>
+<tr>
+<td>NSCC A9819 and DTC October tokenization</td>
+<td>scheduled/future operation</td>
+<td>first realized calculation, launch notice and transaction receipt</td>
+</tr>
+<tr>
+<td>CMS IDRE workbook and CMS transmittals</td>
+<td>exact source/body holds</td>
+<td>workbook/manual body plus predecessor diff, then implementation exercise</td>
+</tr>
+<tr>
+<td>SSA TN 18 and TN 76</td>
+<td>predecessor-diff holds</td>
+<td>transmittal comparison or first changed operating receipt</td>
+</tr>
+<tr>
+<td>EPA Butte remedy</td>
+<td>owner plus signed-body hold</td>
+<td>signed ROD amendment, then property/sample/excavation receipts</td>
+</tr>
+<tr>
+<td>CISA directives, Ginnie production notices, War.gov contract releases</td>
+<td>blocked unresolved</td>
+<td>direct dated inventory or exact primary body from the inherited cursor</td>
+</tr>
+<tr>
+<td>Joint Warfighter Evaluation implementation</td>
+<td>announcement reached; governing source held</td>
+<td>signed department instrument or service/Joint Staff plan, then first administered assessment and documented board use</td>
+</tr>
+<tr>
+<td>State/USTDA/DSCA direct inventories</td>
+<td>blocked/partial</td>
+<td>named direct body with a trustworthy in-window clock</td>
+</tr>
+</tbody>
+</table>
+<h2 id="federal-register-close-replay">Federal Register close replay</h2>
+<p>The frozen snapshots were replayed without using post-cutoff state to alter the
+campaign:</p>
+<ul>
+<li>178 Federal Register documents were published September 21–22: 76 on
+  September 21 and 102 on September 22.</li>
+<li>The current public-inspection snapshot contained 100 documents: 80 notices,
+  12 rules, 6 proposed rules and 2 presidential documents. Regular filings
+  were updated at 8:45 a.m. and special filings at 11:15 a.m., both before the
+  11:51:46 a.m. cutoff.</li>
+<li>EO 14431 and Proclamation 11069 were signed September 18, filed September 22
+  and scheduled for September 23 publication. Their scheduled publication was
+  not represented as complete at the cutoff.</li>
+<li>FR 2026-19287 was reconciled to the Iran portion of OFAC's September 17
+  direct action. PI 2026-19488 was a separate September 14 VTB determination,
+  not a September 17–18 event.</li>
+<li>Every priority Wave 0 route was either body-adjudicated, folded to its direct
+  owner, or left with an explicit source/access hold.</li>
+</ul>
+<h2 id="post-close-correction-in-window-jwe-announcement">Post-close correction — in-window JWE announcement</h2>
+<p>The Secretary of War's official Joint Warfighter Evaluation announcement was
+recovered at <code>2026-09-22 22:21 EDT</code>. Its approximately <code>09:00 EDT</code> native
+platform clock precedes the frozen <code>11:51:46 EDT</code> cutoff. It is therefore added
+as an in-window object recovered after close. The original cutoff does not
+move, and the earlier <code>dynamic_bounded</code> War.gov result remains an honest record
+of the first pass.</p>
+<p>The correction establishes an intended 2026 personnel-selection assessment,
+not completed implementation. The exact claim and next-receipt boundary are in
+<code>POST_CLOSE_CORRECTION_JOINT_WARFIGHTER_EVALUATION_2026-09-22.md</code>.</p>
+<h2 id="coverage-and-completion-ruling">Coverage and completion ruling</h2>
+<p>The shared ledgers contain 113 source-family receipts and 59 adjudicated
+objects. The figures describe the campaign record; they are not a count of all
+federal publishers or all activity. The corrected directory's 398 identities,
+567 roots and 670 publisher relationships served as routing controls, not a
+quota.</p>
+<p>All opened waves and declared gap replays are reconciled through the fixed
+cutoff, including the separately timed post-close correction. Reached,
+bounded, blocked, future and predecessor-diff states remain explicit. The
+remaining gaps are precise enough for later return and do not invalidate the
+completed fixed-window answer.</p>
+<h2 id="custody-and-human-disposition">Custody and human disposition</h2>
+<p>This package is saved Workbench research. It proposes no automatic Chronicle
+event, canonical watch, Federal Group edit, installed-app/published-site change
+or Git operation. Katie's post-close instruction authorized the adjudicated JWE
+record to be added to the Workbench Government-Wide Research Hub; it did not
+authorize any of those other surfaces. Each remaining <code>promote_review</code>,
+<code>hold_for_owner</code> and future-return unit requires its governing human/owner
+disposition before downstream mutation.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

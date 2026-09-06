@@ -219,7 +219,7 @@ Source: [OMB M-25-21](https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25
 | State after | NARA expressly applied the federal-record definition and approved-schedule disposal regime to AI materials, with capture/use/reliance tests and a stated GRS gap for AI policy and training-data records. |
 | Safe claim | NARA created a records-management boundary for the federal AI stack; it did not declare every AI interaction a record or impose general AI governance. |
 | Best joins | OMB M-25-21; agency AI inventories and policies; FOIA search declarations; investigations; procurement and vendor logs; ERA 2.0 and digital preservation. |
-| Promotion state | Pending Katie keep / revise / reject / hold. |
+| Workbench lifecycle | Current Workbench research; no Chronicle landing, watch, generated-view rebuild or app shipment follows. |
 
 ## Primary source shelf
 

@@ -1,0 +1,490 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>One mortgage, several accounting layers · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/claims-collateral-and-loss.html#mortgage-through-the-balance-sheets" class="" >Follow the mortgage into funding, securities and the Fed <span class="meta">— What we own, what we owe, and who absorbs the loss</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>One mortgage, several accounting layers</h1><p class="deck">Collection evidence cutoff: 2026-09-07</p><p><a href="mortgage-accounting-layers-2026-09-07-98c678f9e4df.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="one-mortgage-several-accounting-layers">One mortgage, several accounting layers</h1>
+<p>Research ID: <code>mortgage-balance-sheet-trail</code>. Accounting extension checked September 7, 2026, America/New_York. Read alongside the process and current Fed endpoint.</p>
+<p>The organizing question is: <strong>Which entity debits which asset, credits which liability or asset, and what survives at the next reporting level?</strong> The entries below are constructed examples consistent with the cited reporting policies. They are not recovered internal journals or a traced household mortgage.</p>
+<h2 id="the-base-case-and-accounting-boundaries">The base case and accounting boundaries</h2>
+<p>Begin with an existing $300,000 mortgage funded by a nonbank originator. Its temporary funding is $294,000 warehouse borrowing plus $6,000 of its own funds. Follow a cash sale to Fannie, a consolidated trust, an outside investor, an optional repo and an optional Fed purchase. Everything is at par; the main sequence omits fees, interest, credit allowances, premiums, discounts, taxes and hedges. Separate examples add those layers below. The $300,000 represents a proportional slice of a larger MBS pool.</p>
+<p>Debits increase assets and expenses; credits increase liabilities, equity and revenue. The opposite entry reduces those accounts. Every journal balances <strong>within its own entity</strong>. An asset on one party’s books often corresponds to a liability on another’s, but the assets and liabilities may have different measurement bases.</p>
+<p>Keep four reporting boundaries distinct:</p>
+<table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>What belongs inside it</th>
+<th>What can be eliminated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Individual legal entity</td>
+<td>Its own recognized assets, obligations and income</td>
+<td>Only qualifying offsets under its accounting rules</td>
+</tr>
+<tr>
+<td>Fannie consolidated group</td>
+<td>Fannie and trusts/subsidiaries it consolidates</td>
+<td>Intra-group balances and transactions; not the homeowner or outside investor</td>
+</tr>
+<tr>
+<td>Combined Reserve Banks</td>
+<td>The twelve Reserve Banks and relevant consolidated entities</td>
+<td>Reciprocal Reserve Bank positions; not commercial-bank deposits or GSE debt</td>
+</tr>
+<tr>
+<td>Analyst-selected economic perimeter</td>
+<td>Whichever parties the analyst explicitly chooses</td>
+<td>Matched internal claims for that analytical presentation only</td>
+</tr>
+</tbody>
+</table>
+<p>A nationwide financial-claims map is not one company’s GAAP balance sheet. A contract, regulatory relationship or settlement account does not by itself put two parties in the same consolidated group. <a href="https://www.fanniemae.com/media/document/pdf/q22026.pdf">Fannie Q2 2026, Note 3</a>, <a href="https://www.federalreserve.gov/aboutthefed/chapter-4-system-open-market-account.htm">Fed Financial Accounting Manual, Chapter 4</a></p>
+<h2 id="1-the-mortgage-already-exists">1. The mortgage already exists</h2>
+<p>The opening positions of interest are:</p>
+<table>
+<thead>
+<tr>
+<th>Books</th>
+<th>Asset/claim</th>
+<th>Liability or funding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Household</td>
+<td>Home acquired; the mortgage-financed slice is $300,000</td>
+<td>Mortgage payable $300,000</td>
+</tr>
+<tr>
+<td>Nonbank originator</td>
+<td>Mortgage loan $300,000</td>
+<td>Warehouse payable $294,000; own funds supporting the remaining $6,000</td>
+</tr>
+<tr>
+<td>Warehouse bank</td>
+<td>Loan to originator $294,000</td>
+<td>The bank’s own funding is a separate layer</td>
+</tr>
+</tbody>
+</table>
+<p>These are selected positions, not full institutional balance sheets. The household’s home value and equity need not equal the amount borrowed.</p>
+<p>The originator’s funding and closing entries can be reconstructed separately:</p>
+<table>
+<thead>
+<tr>
+<th>Books / event</th>
+<th>Debit</th>
+<th>Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Originator draws warehouse line</td>
+<td>Bank deposit $294,000</td>
+<td>Warehouse payable $294,000</td>
+</tr>
+<tr>
+<td>Warehouse bank credits originator’s account</td>
+<td>Loan to originator $294,000</td>
+<td>Originator deposit liability $294,000</td>
+</tr>
+<tr>
+<td>Originator funds mortgage, using the draw and existing $6,000</td>
+<td>Mortgage loan $300,000</td>
+<td>Bank deposit $300,000</td>
+</tr>
+<tr>
+<td>Household, mortgage-financed portion of purchase</td>
+<td>Home $300,000</td>
+<td>Mortgage payable $300,000</td>
+</tr>
+</tbody>
+</table>
+<p>The last row is the financed slice of closing, not a second disbursement. The home seller receives the deposit proceeds and derecognizes the property sold. If payment crosses banks, settlement moves reserve assets between banks. A nonbank’s deposit is an asset; the bank records that deposit as a liability. Deposit creation at a bank and subsequent interbank settlement are distinct entries. <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy">Bank of England explanation of lending and deposit mechanics</a>, <a href="https://www.sec.gov/Archives/edgar/data/1805284/000162828026013283/rkt-20251231.htm">Rocket 2025 funding and sale disclosures</a></p>
+<h2 id="2-sale-to-fannie-and-repayment-of-warehouse-funding">2. Sale to Fannie and repayment of warehouse funding</h2>
+<p>Assume a qualifying sale for $300,000 with no retained-servicing valuation in this base case.</p>
+<table>
+<thead>
+<tr>
+<th>Books / event</th>
+<th>Debit</th>
+<th>Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Originator sells loan</td>
+<td>Cash $300,000</td>
+<td>Mortgage loan $300,000</td>
+</tr>
+<tr>
+<td>Fannie buys loan</td>
+<td>Mortgage loan $300,000</td>
+<td>Cash $300,000</td>
+</tr>
+<tr>
+<td>Originator repays warehouse line</td>
+<td>Warehouse payable $294,000</td>
+<td>Cash $294,000</td>
+</tr>
+<tr>
+<td>Warehouse bank receives repayment</td>
+<td>Settlement cash/reserves $294,000</td>
+<td>Loan to originator $294,000</td>
+</tr>
+</tbody>
+</table>
+<p>If the originator pays from an account <strong>at that warehouse bank</strong>, the bank instead debits its originator-deposit liability and credits the loan asset. Do not also debit reserves for the same same-bank repayment. For different banks, the paying bank debits the originator deposit liability and credits reserves; the receiving warehouse bank uses the final row above.</p>
+<p>The originator recovers its original $6,000 cash contribution and extinguishes its warehouse debt. At par, before costs, it has not made $300,000 or $6,000 of profit. Fannie has exchanged one asset for another. The household posts no entry merely because its creditor changes. Fannie’s cash-purchase route and lender-swap route are different executions. <a href="https://selling-guide.fanniemae.com/sel/c1-1-01/execution-options">Fannie execution options</a></p>
+<h2 id="3-trust-formation-legal-movement-versus-consolidated-result">3. Trust formation: legal movement versus consolidated result</h2>
+<p>For a simple legal-flow illustration, suppose Fannie conveys the mortgage into a trust and initially retains all certificates:</p>
+<table>
+<thead>
+<tr>
+<th>View / books</th>
+<th>Debit</th>
+<th>Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Corporate transfer schematic</td>
+<td>Certificate interest $300,000</td>
+<td>Mortgage loan $300,000</td>
+</tr>
+<tr>
+<td>Trust-administration schematic</td>
+<td>Mortgage loan $300,000</td>
+<td>Certificateholders’ beneficial interests $300,000</td>
+</tr>
+<tr>
+<td>Consolidation workpaper, while internally held</td>
+<td>Internally held certificate interests $300,000</td>
+<td>Corporate certificate asset $300,000</td>
+</tr>
+</tbody>
+</table>
+<p>The first two rows illustrate the legal structure, <strong>not an assertion about Fannie’s undisclosed standalone journals or standalone sale-accounting conclusion</strong>. The neutral trust-side label is intentional: certificates legally represent beneficial interests. The verified external <strong>debt</strong> classification belongs to the consolidated financial reporting view. <a href="https://capitalmarkets.fanniemae.com/mortgage-backed-securities/mbs-trust-agreements">Fannie trust-agreement explanation</a></p>
+<p>For the consolidated group, the internal formation has no net external cash, debt or equity effect in this example. One mortgage remains recognized. Fannie’s published policy carries consolidated portfolio securitizations at the existing basis, with no consolidation gain; loans intended for these securitizations are held for investment before and after. <a href="https://www.fanniemae.com/media/56616/display">Fannie 2025 Form 10-K, F-10 and F-12</a></p>
+<p>Consolidation entries belong to a workpaper. They are not instructions to cancel the underlying contracts or to post the elimination into both parties’ legal books. Trust restrictions continue to apply.</p>
+<h2 id="4-external-mbs-issuance-cash-comes-back-debt-remains">4. External MBS issuance: cash comes back, debt remains</h2>
+<p>When an outside investor buys the certificates for $300,000:</p>
+<table>
+<thead>
+<tr>
+<th>View / books</th>
+<th>Debit</th>
+<th>Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Corporate sale schematic</td>
+<td>Cash $300,000</td>
+<td>Certificate interest $300,000</td>
+</tr>
+<tr>
+<td>Outside investor</td>
+<td>MBS investment $300,000</td>
+<td>Cash $300,000</td>
+</tr>
+<tr>
+<td>Fannie consolidated economic entry</td>
+<td>Cash $300,000</td>
+<td>Debt of consolidated trusts $300,000</td>
+</tr>
+</tbody>
+</table>
+<p>The corporate and consolidated rows are <strong>alternative reporting views of the same event</strong>. Do not post both into one ledger. Rebuild consolidation from closing balances: after the external sale, there is no internally held certificate asset to eliminate against that external debt.</p>
+<p>Relative to before Fannie purchased the mortgage, its consolidated position is now: cash unchanged, mortgage assets +$300,000, external trust debt +$300,000, and equity unchanged before the excluded items. The original mortgage still earns cash flows; issuance supplies funding against those flows. This is how cash can return while the loan stays on the consolidated balance sheet.</p>
+<p>There are now two distinct principal claims: Fannie’s consolidated mortgage asset against the household, and the investor’s MBS asset corresponding to trust debt. Adding those two selected assets gives $600,000 of gross financial claims, not $600,000 of housing or household debt. Neither claim is fictitious merely because they are economically connected. <a href="https://www.fanniemae.com/media/document/pdf/q22026.pdf">Fannie Q2 2026, consolidated balance sheet and Note 3</a></p>
+<h3 id="what-external-trust-debt-supplies-the-funding-means">What “external trust debt supplies the funding” means</h3>
+<p>More precisely, <strong>outside investors supply purchase cash; the consolidated trust-debt account records the corresponding external obligation</strong>. “External” means outside Fannie’s consolidated reporting group. It does not mean foreign funding, a Fed loan, or a second warehouse line.</p>
+<p>Follow an isolated teaching balance sheet with $300,000 opening cash funded entirely by $300,000 equity. This starting capitalization is invented solely to make the arithmetic visible, not a depiction of Fannie’s actual funding.</p>
+<table>
+<thead>
+<tr>
+<th>Fannie consolidated teaching balance sheet</th>
+<th style="text-align: right;">Before purchase</th>
+<th style="text-align: right;">After buying mortgage</th>
+<th style="text-align: right;">After selling MBS externally</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cash</td>
+<td style="text-align: right;">$300,000</td>
+<td style="text-align: right;">$0</td>
+<td style="text-align: right;">$300,000</td>
+</tr>
+<tr>
+<td>Mortgage loan</td>
+<td style="text-align: right;">$0</td>
+<td style="text-align: right;">$300,000</td>
+<td style="text-align: right;">$300,000</td>
+</tr>
+<tr>
+<td>Total assets</td>
+<td style="text-align: right;">$300,000</td>
+<td style="text-align: right;">$300,000</td>
+<td style="text-align: right;">$600,000</td>
+</tr>
+<tr>
+<td>External trust debt</td>
+<td style="text-align: right;">$0</td>
+<td style="text-align: right;">$0</td>
+<td style="text-align: right;">$300,000</td>
+</tr>
+<tr>
+<td>Equity</td>
+<td style="text-align: right;">$300,000</td>
+<td style="text-align: right;">$300,000</td>
+<td style="text-align: right;">$300,000</td>
+</tr>
+</tbody>
+</table>
+<p>The restored cash is financed by the investor’s security purchase. It is not sale revenue or additional equity in this par-only example. If available cash then purchases another eligible mortgage, the group exchanges cash for another loan; it has not reset the first mortgage’s risk or erased its trust debt. Further issuance can recycle liquidity while expanding funded assets and corresponding obligations. Actual activity depends on market demand, pricing, eligibility, risk capacity and governing requirements.</p>
+<p>The investor purchases a certificate carrying rights to pool cash flows under the trust documents, with Fannie’s guarantee. It does not buy Fannie common stock. Legally these are beneficial interests; consolidated reporting nevertheless presents outside-held securities as trust debt. <a href="https://capitalmarkets.fanniemae.com/media/26506/display">MBS prospectus</a></p>
+<p>This is observable in the financial statements: Fannie defines trust debt as MBS from consolidated trusts held by third-party certificateholders, separately from corporate debt issued to fund operations. Its 2025 cash-flow statement reports $255,527,000,000 of proceeds from issuance of consolidated trust debt within financing activities. That is a cash-flow line, not the total face value of every MBS issued; noncash lender swaps must be distinguished. <a href="https://www.fanniemae.com/media/56616/display">2025 Form 10-K, consolidated balance-sheet analysis and statement of cash flows</a></p>
+<p>This example concerns initial external placement of securities backed by already purchased loans. A later investor-to-investor resale sends money to the selling investor. In a lender swap, the originating lender receives MBS for delivered loans and may itself receive the outside buyer’s cash. Those executions must not be collapsed into a universal claim that Fannie receives cash on every MBS trade.</p>
+<h2 id="5-trading-and-repo-add-different-entries">5. Trading and repo add different entries</h2>
+<p>A secondary-market sale at par replaces the investor:</p>
+<table>
+<thead>
+<tr>
+<th>Books</th>
+<th>Debit</th>
+<th>Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Investor A, seller</td>
+<td>Cash $300,000</td>
+<td>MBS $300,000</td>
+</tr>
+<tr>
+<td>Investor B, buyer</td>
+<td>MBS $300,000</td>
+<td>Cash $300,000</td>
+</tr>
+</tbody>
+</table>
+<p>No household entry; no new trust issuance entry solely because of this resale. Price differing from carrying value introduces seller gain/loss and a different buyer acquisition basis.</p>
+<p>Now suppose B already owns the MBS and borrows $294,000 against it:</p>
+<table>
+<thead>
+<tr>
+<th>Books</th>
+<th>Debit</th>
+<th>Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Investor B, cash borrower</td>
+<td>Cash $294,000</td>
+<td>Repo payable $294,000</td>
+</tr>
+<tr>
+<td>Repo counterparty, cash lender</td>
+<td>Reverse-repo receivable $294,000</td>
+<td>Cash $294,000</td>
+</tr>
+</tbody>
+</table>
+<p>Under secured-financing treatment B keeps the MBS asset; the cash lender recognizes a financing receivable, not an additional owned MBS asset. The illustrative 2% haircut is a financing gap, not a fee or newly created equity. The legal repo can be documented as sale and repurchase while meeting financing-accounting conditions. <a href="https://www.ffiec.gov/sites/default/files/data/reporting-forms/FFIEC051_202503_i.pdf">FFIEC instructions, glossary A-86–88</a>, <a href="https://www.sifma.org/wp-content/uploads/2024/06/Master_Repurchase_Agreement_MRA.pdf">SIFMA Master Repurchase Agreement, paragraphs 5–7</a></p>
+<p>Selected principal claims are now $300,000 mortgage + $300,000 MBS + $294,000 repo receivable = <strong>$894,000 gross</strong>. Their matched obligations reside at the household, trust and investor respectively. This excludes deposits and all other accounts; it is not a total-system asset measure.</p>
+<p>An analyst combining investor and repo lender can eliminate their matched $294,000 financing claim and payable for that chosen analytical perimeter. Two independent firms cannot make that elimination in their separate published statements merely because the positions match. Real repayment deadlines, collateral rights and margin risk persist. AGNC’s filing demonstrates MBS assets and repo financing alongside each other. <a href="https://www.sec.gov/Archives/edgar/data/1423689/000142368926000128/agnc-20260630.htm">AGNC Q2 2026, Note 2</a></p>
+<h2 id="6-an-outright-fed-purchase-adds-the-reservedeposit-layer">6. An outright Fed purchase adds the reserve/deposit layer</h2>
+<p>Take the unencumbered MBS branch, or first repay the repo and release collateral. Compress dealer intermediation and assume a $300,000 par purchase from a nonbank seller:</p>
+<table>
+<thead>
+<tr>
+<th>Books</th>
+<th>Debit</th>
+<th>Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nonbank seller</td>
+<td>Bank-deposit asset $300,000</td>
+<td>MBS asset $300,000</td>
+</tr>
+<tr>
+<td>Seller’s commercial bank</td>
+<td>Reserve asset $300,000</td>
+<td>Seller deposit liability $300,000</td>
+</tr>
+<tr>
+<td>Combined Reserve Banks</td>
+<td>MBS asset $300,000</td>
+<td>Bank reserve-deposit liability $300,000</td>
+</tr>
+</tbody>
+</table>
+<p>Two money layers are visible: the seller owns a claim on its bank; that bank owns a claim on the Fed. The Fed owns the MBS, whose cash flows trace through the trust to mortgages. The seller’s MBS asset has been replaced, not left behind as another holding. <a href="https://www.federalreserve.gov/aboutthefed/files/the-fed-explained.pdf">The Fed Explained, securities purchases and reserves</a></p>
+<p>The selected chain now contains:</p>
+<p><strong>Household mortgage payable ↔ consolidated trust mortgage asset; trust debt ↔ Fed MBS asset; Fed reserve liability ↔ bank reserve asset; bank deposit liability ↔ seller deposit asset.</strong></p>
+<p>That is $1,200,000 of selected gross financial claims in this par example. It is four connected $300,000 contracts/positions, not a fourfold increase in the household’s borrowing. This selected-claims sum is not a money multiplier or a full financial-system balance sheet; deposits and reserves are fungible and cannot remain permanently earmarked to this mortgage. If an analyst includes every corresponding debtor and creditor at matching values, the financial claims net internally. That exercise does not erase the home, institutional risks or legal contracts, and it is not permission for any participant to net external assets and liabilities in its GAAP statements.</p>
+<p>Within the Fed itself, each Reserve Bank has an undivided SOMA participation. For an illustrative $30,000 allocation from New York to another Reserve Bank, New York debits ISA and credits MBS; the other Bank debits MBS and credits ISA. Reciprocal Interdistrict Settlement Account positions eliminate in the combined view. A borrower’s location does not assign that particular mortgage to its regional Reserve Bank. <a href="https://www.federalreserve.gov/aboutthefed/chapter-4-system-open-market-account.htm">FAM Chapter 4, section 40.70</a></p>
+<h2 id="7-follow-500-of-principal-back-down-the-claims">7. Follow $500 of principal back down the claims</h2>
+<p>This isolated principal-payment example excludes interest and fees. It assumes a proportionate pass-through to a Fed-owned interest, with no timing advances. Commercial-bank routing to the issuer’s Fed account is compressed; issuer/trust deposit labels below describe a combined issuer/trust cash-flow schematic, not an asserted proprietary account title.</p>
+<table>
+<thead>
+<tr>
+<th>Books / event</th>
+<th>Debit</th>
+<th>Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Household pays principal</td>
+<td>Mortgage payable $500</td>
+<td>Bank deposit $500</td>
+</tr>
+<tr>
+<td>Fannie/trust collects</td>
+<td>Cash/deposit $500</td>
+<td>Mortgage loan $500</td>
+</tr>
+<tr>
+<td>Paying bank settles onward</td>
+<td>Customer deposit liability $500</td>
+<td>Reserves $500</td>
+</tr>
+<tr>
+<td>Fed receives issuer prefunding</td>
+<td>Bank reserve liability $500</td>
+<td>Issuer deposit liability $500</td>
+</tr>
+<tr>
+<td>Fannie/trust distributes principal</td>
+<td>Trust debt $500</td>
+<td>Cash/deposit $500</td>
+</tr>
+<tr>
+<td>Fed receives its distribution</td>
+<td>Issuer deposit liability $500</td>
+<td>MBS principal asset $500</td>
+</tr>
+</tbody>
+</table>
+<p>The household mortgage, consolidated mortgage asset, trust debt and Fed-held MBS principal each fall from $300,000 to $299,500 in this simplified matched slice. The bank loses reserve assets and deposit liabilities. <strong>Reserve reduction can precede MBS reduction:</strong> the issuer may accumulate funds before distribution. <a href="https://libertystreeteconomics.newyorkfed.org/2017/07/how-the-fed-changes-the-size-of-its-balance-sheet-the-case-of-mortgage-backed-securities/">New York Fed’s staged MBS balance-sheet example</a></p>
+<p>The current July 29, 2026 instruction reinvests agency principal into Treasury bills. For an illustrative secondary-market bill purchase costing $500, face value $501: Fed <strong>Dr Treasury bills $501 / Cr unamortized discount $1 / Cr bank reserves $500</strong>. The initial net bill asset is $500. This replaces the paid-down MBS exposure with a Treasury exposure; it does not pay the household again. <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a1.htm">Current implementation instruction</a>, <a href="https://www.federalreserve.gov/aboutthefed/chapter-1-balance-sheet.htm">FAM Chapter 1, section 2.90</a></p>
+<h2 id="8-income-retained-rights-and-valuation-sit-beside-principal">8. Income, retained rights and valuation sit beside principal</h2>
+<p>These are separate examples; do not add them to the par-only chain without adjusting its assumptions.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Illustrative entry</th>
+<th>What it measures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retained servicing on qualifying sale</td>
+<td>Originator Dr cash $300,000; Dr MSR $3,000; Cr loan $300,000; Cr sale gain $3,000</td>
+<td>A valued service right and gain under assumed consideration/basis; not another mortgage principal claim</td>
+</tr>
+<tr>
+<td>Mortgage interest accrual</td>
+<td>Loan holder Dr interest receivable; Cr interest income</td>
+<td>Earnings before cash collection</td>
+</tr>
+<tr>
+<td>Trust debt interest accrual</td>
+<td>Consolidated issuer Dr interest expense; Cr interest payable</td>
+<td>Cost of funding the mortgage pool</td>
+</tr>
+<tr>
+<td>Investor coupon accrual</td>
+<td>Investor Dr interest receivable; Cr interest income</td>
+<td>Earnings on the security, distinct from its principal</td>
+</tr>
+<tr>
+<td>Repo interest accrual</td>
+<td>Borrower Dr interest expense; Cr interest payable; lender mirrors receivable/income</td>
+<td>Cost and return on institutional leverage</td>
+</tr>
+<tr>
+<td>Credit allowance, where the allowance model applies</td>
+<td>Loan holder Dr credit-loss expense; Cr allowance</td>
+<td>Reduction of net loan carrying value, not borrower forgiveness; fair-value/HFS accounting can differ</td>
+</tr>
+<tr>
+<td>Charge-off using allowance</td>
+<td>Loan holder Dr allowance; Cr loan</td>
+<td>Removes recognized gross receivable against the reserve; discharge is a separate legal question</td>
+</tr>
+<tr>
+<td>Security purchased above par</td>
+<td>Buyer Dr MBS principal $300,000; Dr premium $6,000; Cr cash $306,000</td>
+<td>Purchase basis differs from homeowner principal</td>
+</tr>
+<tr>
+<td>Derivative fair-value gain</td>
+<td>Dr derivative asset; Cr gain, subject to applicable hedge accounting</td>
+<td>Market value of a separate contract; not its reference notional</td>
+</tr>
+</tbody>
+</table>
+<p>The MSR figures are invented to show arithmetic, not a market quotation. Actual retained-right, consideration and loan-basis allocation must be measured together. Rocket explains its MSR fair-value recognition and subsequent accounting. <a href="https://www.sec.gov/Archives/edgar/data/1805284/000162828026013283/rkt-20251231.htm">Rocket 2025 Form 10-K, MSR accounting</a></p>
+<p>Fannie’s consolidation presents the mortgage interest and related MBS interest expense through net interest income; legal guaranty-fee economics therefore need not appear as a simple standalone fee-revenue line. Do not automatically add another $300,000 guarantee liability on top of $300,000 consolidated trust debt. Separate unconsolidated guarantees follow their applicable policy. <a href="https://www.fanniemae.com/media/56616/display">Fannie 2025 Form 10-K, financial guarantees</a></p>
+<p>Fed MBS interest is accrued before receipt: debit interest receivable, credit interest income. Collection then credits that receivable, not a second income entry. Premium amortization and paydown adjustments mean principal face value, carrying value and market value can diverge. <a href="https://www.federalreserve.gov/aboutthefed/chapter-4-system-open-market-account.htm">FAM Chapter 4, section 40.13</a></p>
+<p>Treasury remittance is further downstream: remittable <strong>net earnings</strong>, after applicable costs and deferred-asset treatment, create a remittance obligation. They are not an immediate transfer of each homeowner’s interest dollar. FAM specifies an expense/payable accrual for earnings remittances. <a href="https://www.federalreserve.gov/aboutthefed/chapter-1-balance-sheet.htm">FAM Chapter 1, sections 11.96 and 12.60</a></p>
+<h2 id="what-this-changes-in-our-research">What this changes in our research</h2>
+<p>The original process map now has an accounting companion that distinguishes the same asset changing hands, a new security financing retained assets, new institutional borrowing, money creation at settlement, income recognition and consolidation eliminations.</p>
+<p>The next empirical step is to attach actual balances, basis, fees and dates to a selected security/pool. Published accounting policies establish how these layers work; they do not disclose every internal journal, servicing ledger, consolidated workpaper or borrower-to-CUSIP link. Those remain evidence gaps. Credit-scoring reform affects the entrance to this structure; its measured effects still require production and performance data.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

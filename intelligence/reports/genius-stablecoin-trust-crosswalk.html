@@ -1,0 +1,497 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>GENIUS Stablecoin Trust Crosswalk · Full research · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head>
+<body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/money-in-motion.html#different-ambitions" class="" >Several ambitions, several kinds of money <span class="meta">— How money moves, and what is changing</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Money and settlement · full research · current</div>
+<h1>GENIUS Stablecoin Trust Crosswalk</h1><p class="deck">Governed Research Desk file · evidence cutoff 2026-08-17</p>
+<div class="report-actions"><a class="report-action primary" href="genius-stablecoin-trust-crosswalk.md">Open source text</a><a class="report-action" href="../library/genius-stablecoin-trust-crosswalk.html">Back to summary</a></div></header>
+<article class="content"><h1>GENIUS Act x Scientific Trust Stack Crosswalk</h1>
+<p><strong>Evidence cutoff:</strong> 2026-08-17<br>
+<strong>State:</strong> active workbench bridge; not vault-canonical<br>
+<strong>Authority rule:</strong> enacted law outranks proposals; final rules outrank forms,
+questions and guidance; transaction-specific instruments and operating evidence
+determine the exact issuer, token and intermediary state.</p>
+<h2>Executive ruling</h2>
+<p>GENIUS supplies the monetary specimen of the Scientific Trust Stack.</p>
+<pre><code class="language-text">statutory authority and regulatory perimeter
+  -&gt; named issuer, intermediary, custodian and token object
+  -&gt; ownership, control, disclosures and certifications
+  -&gt; authority-specific eligibility decisions
+  -&gt; exact contract, chain, administrator keys and delegated functions
+  -&gt; controlled mint, redeem, custody, offer and sale actions
+  -&gt; logged issuance, transfer, freeze, burn and redemption events
+  -&gt; reserve, supply, custody and contract provenance
+  -&gt; independent accounting, technical and supervisory validation
+  -&gt; distribution, suspension, revocation, correction, appeal or insolvency remedy
+  -&gt; cryptographic migration sufficient to keep the evidence verifiable
+</code></pre>
+<p>At the current cutoff, this architecture can issue only
+<code>pre-effective-readiness</code> or <code>design-validation</code> receipts. It cannot publish a
+live GENIUS eligibility list because the located record contains no named PPSI
+approval, SCRC certification, foreign comparability determination or foreign
+issuer registration.</p>
+<p>The Act does not put law on a blockchain. It makes named issuers,
+cryptographic capabilities, reserve arrangements and distribution
+intermediaries answerable to law.</p>
+<h2>Four truth classes translated into money</h2>
+<table>
+<thead>
+<tr>
+<th>Scientific Trust Stack truth</th>
+<th>Stablecoin translation</th>
+<th>Best available proof</th>
+<th>What the proof cannot establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity truth</td>
+<td>Which legal person is the issuer, reserve owner, custodian, DASP, token administrator or holder-facing obligor? Which contract and key represent the technical object?</td>
+<td>charter/application/approval, legal identifier, contract address, chain ID, code hash, public key or key identifier</td>
+<td>authority to issue; legal title to reserves; current key control; economic truth</td>
+</tr>
+<tr>
+<td>Permission truth</td>
+<td>May this issuer issue, this DASP offer or sell, this custodian hold, or this key mint, burn, freeze or upgrade this exact object now?</td>
+<td>regulator decision, final rule, registration, scoped role, multisignature policy, signed configuration</td>
+<td>reserve sufficiency; wisdom or legality of the underlying policy; correct exercise of the permission</td>
+</tr>
+<tr>
+<td>Provenance truth</td>
+<td>Which mint, burn, bridge, wrapper, contract version, reserve report and status change produced the current state?</td>
+<td>ledger history, signed event, code hash, bridge lineage, report hash, authoritative time, supersession link</td>
+<td>completeness of off-chain facts; legal classification; solvency; absence of hidden liabilities</td>
+</tr>
+<tr>
+<td>Economic and legal truth</td>
+<td>Is each token backed as required, redeemable under the disclosed policy, legally segregated and subject to the correct holder and insolvency rights?</td>
+<td>custodian and bank records, reserve composition, registered-accounting-firm examination, CEO/CFO certification, supervisory examination, legal instruments</td>
+<td>cryptographic signatures cannot make false source data true or cure an unlawful order</td>
+</tr>
+</tbody>
+</table>
+<h2>Thirteen-layer crosswalk</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Scientific Trust Stack question</th>
+<th>GENIUS object and authority</th>
+<th>Current evidence state at cutoff</th>
+<th>Typed receipt or decision</th>
+<th>Evidence required to promote</th>
+<th>Change triggers and limits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0. Mission and authority</td>
+<td>What law and purpose authorize the gate?</td>
+<td>Public Law 119-27; principally sections 3, 4, 5, 8, 10-13, 18 and 20; codified at 12 U.S.C. 5901 et seq.</td>
+<td>enacted; core implementation materially proposal-stage</td>
+<td><code>authority-in-scope</code>, <code>not-in-jurisdiction</code>, <code>effective-date-pending</code></td>
+<td>operative section, implementing final rule, effective date and responsible regulator</td>
+<td>statutory amendment, final rule, judicial order, waiver or effective-date acceleration</td>
+</tr>
+<tr>
+<td>1. Subject identity</td>
+<td>Who or what is acting?</td>
+<td>permitted or foreign issuer; DASP; reserve owner; custodian; accountant; token administrator; contract; bridge or wrapper operator</td>
+<td>statutory classes exist; exact approvals and classifications unresolved in material part</td>
+<td><code>identity-resolved</code>, <code>identity-ambiguous</code>, <code>issuer-unresolved</code></td>
+<td>legal name and identifier, parent chain, regulator, token brand, chain ID, contract address, code hash and responsible obligor</td>
+<td>novation, merger, affiliate transfer, contract migration, new chain, new wrapper or changed administrator</td>
+</tr>
+<tr>
+<td>2. Ownership and sponsorship</td>
+<td>Who owns, controls, guarantees or operationally administers each box?</td>
+<td>applicant and controlling persons; reserve beneficial owner, legal title/account holder, custodian and subcustodian; redemption controller; token administrator; issuer versus distributor; foreign jurisdiction</td>
+<td>application and entity-specific; no universal registry joins all boxes</td>
+<td><code>ownership-resolved</code>, <code>control-mitigated</code>, <code>control-unresolved</code></td>
+<td>beneficial ownership, governance rights, reserve legal title and account control, custody/subcustody, redemption control, key-control arrangement, service-provider contracts and effective dates</td>
+<td>ownership, governance, financing, account holder, custodian, key quorum, redemption control or service-provider change</td>
+</tr>
+<tr>
+<td>3. Disclosure and attestation</td>
+<td>What did each responsible party assert?</td>
+<td>section 4 monthly reserve composition; outstanding issuance; CEO/CFO certification; redemption policy; foreign-issuer representation under Treasury's proposed section 3 rule</td>
+<td>statutory disclosure/certification duties enacted; current Treasury reliance mechanics proposed</td>
+<td><code>reserve-report-current</code>, <code>certification-current</code>, <code>representation-unverified</code></td>
+<td>exact report period, supply value, reserve composition, custody geography, report hash, signatory identity and regulator receipt</td>
+<td>month end, corrected filing, reserve change, false certification, issuer or accountant change</td>
+</tr>
+<tr>
+<td>4. Institutional controls</td>
+<td>Does the organization maintain the required operating control system?</td>
+<td>capital, liquidity, diversification, interest-rate, operational, compliance, IT, BSA/AML and sanctions controls under section 4; custody controls under section 10</td>
+<td>statutory requirements enacted; detailed federal/state implementation uneven and partly proposed</td>
+<td><code>control-attested</code>, <code>control-examined</code>, <code>deficiency-open</code>, <code>control-unresolved</code></td>
+<td>applicable final standard, policy/control evidence, independent test, supervisory exam, deficiency and remediation state</td>
+<td>incident, control failure, regulatory finding, service-provider change, new chain or material scale increase</td>
+</tr>
+<tr>
+<td>5. Risk and eligibility</td>
+<td>Which authority permits which activity?</td>
+<td>section 5 issuer approval; state regime and SCRC route; section 18 foreign comparability/OCC registration; section 3 DASP offer/sale perimeter</td>
+<td>no located named GENIUS PPSI approval, SCRC certification, foreign comparability determination or foreign registration through cutoff</td>
+<td><code>issuer-permitted</code>, <code>offer-sale-permitted</code>, <code>transition-pending</code>, <code>suspended</code>, <code>revoked</code>, <code>unresolved</code></td>
+<td>final rule, application, approval/registration, public list entry, conditions, effective time and scope</td>
+<td>status change, list update, reserve failure, illicit-finance risk, comparability rescission or noncompliance designation</td>
+</tr>
+<tr>
+<td>6. Credential and delegation</td>
+<td>Which credential, role or key may perform which action?</td>
+<td>issuer officers; administrator/mint/burn/freeze/upgrade keys; custodian roles; DASP compliance decision; accountant signature</td>
+<td>cryptographic delegation is implementation-specific; no universal GENIUS credential profile located</td>
+<td><code>key-active</code>, <code>key-rotating</code>, <code>key-revoked</code>, <code>delegation-scoped</code>, <code>delegation-unresolved</code></td>
+<td>key identifier and algorithm, controller, custody/HSM or MPC arrangement, quorum, role, action scope, validity and revocation route</td>
+<td>key compromise, rotation, signer change, quorum/policy change, contract upgrade or quantum migration</td>
+</tr>
+<tr>
+<td>7. Controlled resource access</td>
+<td>What may the actor touch or do?</td>
+<td>issue, redeem, manage reserves, custody stablecoins/reserves/private keys; DASP offer, sale, transfer or custody; lawful-order action</td>
+<td>activity limits enacted; precise workflow and whitelist mechanics entity-specific</td>
+<td><code>mint-authorized</code>, <code>redeem-authorized</code>, <code>custody-authorized</code>, <code>distribution-authorized</code>, <code>action-denied</code></td>
+<td>legal authority plus runtime authorization bound to exact contract, key, amount, network, jurisdiction and time</td>
+<td>authorization expiry, status change, transaction limit, incident, lawful order or network migration</td>
+</tr>
+<tr>
+<td>8. Execution telemetry</td>
+<td>What action occurred, when, under which authority and version?</td>
+<td>issuance, redemption, burn, removal from circulation, transfer block, reserve movement, supply report and DASP restriction</td>
+<td>public ledgers expose some events; FDIC telemetry and other reporting objects remain proposal/information-collection layers where applicable</td>
+<td><code>execution-recorded</code>, <code>execution-reconciled</code>, <code>execution-disputed</code></td>
+<td>authoritative time/block, actor/key, contract version, instruction, transaction ID, amount, before/after state, off-chain journal and exception</td>
+<td>chain reorganization, corrected record, disputed authorization, reporting reconciliation or reversal</td>
+</tr>
+<tr>
+<td>9. Provenance</td>
+<td>How did this token or report acquire its current identity?</td>
+<td>original issuance; redeemed/reissued tokens; chain migration; wrapped or bridged representation; reserve report and contract lineage</td>
+<td>Treasury Questions 16-21 expose the classification problem; no final bridge/wrapper rule located</td>
+<td><code>native-issued-object</code>, <code>issuer-authorized-representation</code>, <code>third-party-wrapper</code>, <code>classification-unresolved</code></td>
+<td>lock/burn/mint mechanics, controllers, reserve and redemption rights, contractual obligations, supply reconciliation, code and report hashes</td>
+<td>new bridge, altered custody, broken peg, contract upgrade, redemption change or loss of underlying assets</td>
+</tr>
+<tr>
+<td>10. Independent validation</td>
+<td>Is the asserted system fit for the claimed use?</td>
+<td>registered-accounting-firm monthly examination; supervisory examination; technical testing of lawful-order and key controls; supply/reserve reconciliation</td>
+<td>accounting duty enacted; Treasury asks, but has not finally required, DASP smart-contract examination</td>
+<td><code>accountant-examined</code>, <code>technical-function-tested</code>, <code>supervisory-validated</code>, <code>validation-unresolved</code></td>
+<td>examiner identity, standard and scope, test environment, exceptions, sample/coverage, result, date and remediation</td>
+<td>new report period, contract/key change, audit exception, incident, reserve shortfall or control redesign</td>
+</tr>
+<tr>
+<td>11. Consequence and remedy</td>
+<td>What happens when facts, authority or state are wrong?</td>
+<td>lawful-order execution; section 8 foreign noncompliance; application denial/appeal; registration rescission/revocation; section 11 holder priority and insolvency; correction and reissuance</td>
+<td>remedies enacted in law; many operating pathways await rules and first use</td>
+<td><code>freeze-required</code>, <code>burn-required</code>, <code>secondary-trading-prohibited</code>, <code>corrected</code>, <code>superseded</code>, <code>appeal-pending</code>, <code>insolvency-priority</code></td>
+<td>final valid order or decision, exact object, action log, notice, cure, review/appeal, corrected state and downstream propagation</td>
+<td>appeal, cure, rescission, court order, mistaken match, key compromise, reserve deficiency or insolvency</td>
+</tr>
+<tr>
+<td>12. Cryptographic durability</td>
+<td>Will identity, authorization and evidence remain trustworthy through algorithm migration?</td>
+<td>wallet and issuer signatures; administrator keys; HSM/MPC; software and report signing; TLS/APIs; long-lived audit records</td>
+<td>no reviewed GENIUS instrument expressly mandates PQC, crypto agility or CBOM</td>
+<td><code>classical-current</code>, <code>migration-planned</code>, <code>hybrid-tested</code>, <code>pqc-operating</code>, <code>algorithm-deprecated</code></td>
+<td>named system, algorithm/profile, inventory, owner, compatibility test, cutover, revocation and archived-proof validation</td>
+<td>cryptanalytic break, NIST withdrawal, regulator standard, system upgrade, key lifetime or interoperability failure</td>
+</tr>
+</tbody>
+</table>
+<h2>The legal-to-runtime join</h2>
+<p>The core join is a two-key system:</p>
+<pre><code class="language-text">LEGAL KEY
+  regulator + authority + decision + scope + effective time
+
+CRYPTOGRAPHIC KEY
+  exact controller + algorithm + role + contract + network + validity
+
+JOINED ACTION
+  this legal person, acting through this currently valid key,
+  may perform this action on this exact token object under this authority
+</code></pre>
+<p>Neither key can substitute for the other. A regulator approval does not prove
+which key controls a deployed contract. A valid signature does not prove that
+the signer possessed legal authority.</p>
+<h2>The reserve-oracle seam</h2>
+<p>GENIUS combines an on-chain liability surface with reserves that may include
+cash, Federal Reserve balances, deposits, Treasury securities, repos,
+government money market funds and permitted tokenized forms.</p>
+<pre><code class="language-text">on-chain supply at authoritative block/time
+  + redeemed but not yet burned or removed objects
+  + off-chain customer and omnibus liabilities
+  -&gt; reconciled outstanding liability
+
+custodian/bank/depository records
+  + legal title and segregation
+  + asset eligibility, tenor, geography and valuation
+  + liens, reuse and encumbrance state
+  -&gt; reconciled eligible reserve
+
+registered-accounting-firm examination
+  + CEO/CFO certification
+  + regulator receipt/examination
+  -&gt; authority-backed monthly reserve assertion
+</code></pre>
+<p>A public-key signature can authenticate each component. It cannot establish
+that an omitted account, lien, liability or side agreement does not exist.</p>
+<h2>The bridge and wrapper identity test</h2>
+<p>A bridged or wrapped object must not inherit the underlying token's eligibility
+by ticker or brand alone. Resolve at least:</p>
+<ol>
+<li>who controls lock, mint, burn, release and upgrades;</li>
+<li>who owes redemption and under which contract;</li>
+<li>whether the underlying token remains segregated and available;</li>
+<li>whether supply is one-for-one and continuously reconcilable;</li>
+<li>whether a new legal claim or issuer has been created;</li>
+<li>whether lawful-order functions reach both the underlying and representation;</li>
+<li>which DASP offers or sells the representation in the United States; and</li>
+<li>which failure, correction, insolvency and appeal regime applies.</li>
+</ol>
+<p>Until those fields resolve, issue a <code>bridge-wrapper-classification</code> receipt
+with status <code>unresolved</code>. Do not inherit <code>issuer-permitted</code> automatically.</p>
+<h2>Lawful-order capability is three separate receipts</h2>
+<pre><code class="language-text">CAPABILITY
+  the exact deployed contract/key arrangement can perform the required action
+
+AUTHORITY
+  a final valid order identifies the stablecoin or account with sufficient
+  particularity and preserves the applicable review or appeal
+
+EXECUTION
+  the responsible issuer/intermediary performed the action and logged the
+  resulting state, exceptions and remedy
+</code></pre>
+<p>Treasury's August 17 proposal asks whether a DASP should examine smart contracts
+and verify seize, freeze and burn functions. That is evidence of a possible
+future capability test, not a current final duty.</p>
+<h2>The distribution whitelist</h2>
+<p>The blockchain may continue to produce blocks while the legal perimeter changes
+at issuers, custodians, exchanges, processors and other covered intermediaries.</p>
+<pre><code class="language-text">issuer/token status change
+  -&gt; authority-specific decision receipt
+  -&gt; DASP due diligence and product configuration
+  -&gt; buy/mint/deposit/transfer/offer/sale restrictions
+  -&gt; notice, wind-down, correction or appeal
+</code></pre>
+<p>This is why distribution eligibility must identify the exact DASP, product,
+jurisdiction, token contract and time. It is not a universal property of the
+underlying network.</p>
+<h2>Required receipt bundle</h2>
+<p>For one asserted U.S. distribution pathway, require at least these independent
+decision types:</p>
+<table>
+<thead>
+<tr>
+<th>Decision type</th>
+<th>Required scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>authority-and-effective-date</code></td>
+<td>statutory section, implementing instrument, effective state and clock</td>
+</tr>
+<tr>
+<td><code>issuer-identity</code></td>
+<td>legal issuer/redemption obligor, parent chain, regulator and jurisdiction</td>
+</tr>
+<tr>
+<td><code>issuer-permission</code></td>
+<td>approval route, conditions and current state</td>
+</tr>
+<tr>
+<td><code>state-regime-certification</code></td>
+<td>final Treasury principles, SCRC process, state submission, SCRC decision, cure and annual recertification</td>
+</tr>
+<tr>
+<td><code>foreign-country-comparability</code></td>
+<td>exact country, SCRC recommendations, Treasury determination, justification and rescission state</td>
+</tr>
+<tr>
+<td><code>foreign-issuer-registration</code></td>
+<td>exact issuer, OCC filing/receipt, decision or deemed approval, public list and current status</td>
+</tr>
+<tr>
+<td><code>foreign-lawful-order-representation</code></td>
+<td>issuer representation, DASP due diligence, technical capability evidence and contradictions</td>
+</tr>
+<tr>
+<td><code>foreign-noncompliance-status</code></td>
+<td>Treasury designation, cure, Federal Register notice, secondary-trading effect and review</td>
+</tr>
+<tr>
+<td><code>token-contract-identity</code></td>
+<td>brand, symbol, chain ID, contract address, code hash and native/wrapped state</td>
+</tr>
+<tr>
+<td><code>cryptographic-control</code></td>
+<td>administrator/mint/burn/freeze/upgrade roles, keys, algorithms, quorum and custody</td>
+</tr>
+<tr>
+<td><code>lawful-order-capability</code></td>
+<td>functions, test evidence, limits, controller and last verification</td>
+</tr>
+<tr>
+<td><code>reserve-and-supply</code></td>
+<td>authoritative supply, reserve report, custody, valuation, encumbrance and reconciliation</td>
+</tr>
+<tr>
+<td><code>accounting-and-supervision</code></td>
+<td>accountant examination, CEO/CFO certification and supervisory state</td>
+</tr>
+<tr>
+<td><code>custody-and-segregation</code></td>
+<td>customer/reserve/private-key custody, segregation, priority and service providers</td>
+</tr>
+<tr>
+<td><code>offer-sale-eligibility</code></td>
+<td>DASP, jurisdiction, permitted object, diligence, restrictions and wind-down</td>
+</tr>
+<tr>
+<td><code>bridge-wrapper-classification</code></td>
+<td>underlying, representation, controller, redemption rights and supply lineage</td>
+</tr>
+<tr>
+<td><code>monitoring-and-remedy</code></td>
+<td>owner, recheck, triggers, incidents, correction, revocation and appeal</td>
+</tr>
+<tr>
+<td><code>cryptographic-durability</code></td>
+<td>inventory, algorithm state, migration owner, cutover and archived-proof validation</td>
+</tr>
+</tbody>
+</table>
+<p>The foreign receipts are deliberately non-fungible. Country comparability does
+not approve an issuer. OCC registration does not prove current lawful-order
+capability. Absence of a Treasury section 8 prohibition does not establish that
+a DASP's due diligence is sufficient. DASP distribution eligibility must join,
+rather than collapse, those results.</p>
+<h2>Observable state ladder</h2>
+<pre><code class="language-text">statutory class
+  -&gt; proposed implementation
+  -&gt; final rule
+  -&gt; effective requirement
+  -&gt; application or registration
+  -&gt; regulator decision
+  -&gt; contract/key configuration
+  -&gt; independent test or examination
+  -&gt; operating issuance/distribution/redemption
+  -&gt; monitored continuing eligibility
+  -&gt; correction, suspension, revocation, appeal or insolvency
+</code></pre>
+<p>Never jump from proposal to operating control, from application to approval, or
+from valid signature to substantive truth.</p>
+<h2>Observatory synthesis</h2>
+<p>The same architecture now appears in science and money:</p>
+<table>
+<thead>
+<tr>
+<th>Science</th>
+<th>Stablecoin money</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>researcher/institution/agent identity</td>
+<td>issuer/DASP/custodian/contract/key identity</td>
+</tr>
+<tr>
+<td>research-security eligibility</td>
+<td>issuer and distribution eligibility</td>
+</tr>
+<tr>
+<td>delegated data/compute/instrument access</td>
+<td>scoped mint/redeem/custody/offer/sale authority</td>
+</tr>
+<tr>
+<td>execution receipt</td>
+<td>issuance, transfer, burn, freeze and redemption receipt</td>
+</tr>
+<tr>
+<td>data/model/software provenance</td>
+<td>contract, supply, reserve-report and wrapper provenance</td>
+</tr>
+<tr>
+<td>independent scientific validation</td>
+<td>accounting, technical and supervisory validation</td>
+</tr>
+<tr>
+<td>award correction/revocation/appeal</td>
+<td>correction, delisting, registration revocation, appeal and insolvency priority</td>
+</tr>
+<tr>
+<td>PQC durability of scientific evidence</td>
+<td>PQC durability of keys, attestations, instructions and audit evidence</td>
+</tr>
+</tbody>
+</table>
+<p>The deeper national story is not that one database or blockchain has become the
+source of truth. It is that capital, science and money are moving through
+typed, machine-checkable, revocable permission layers whose legitimacy still
+depends on law, authoritative source records and human judgment.</p>
+<h2>Primary source set</h2>
+<ul>
+<li><a href="https://www.govinfo.gov/content/pkg/PLAW-119publ27/pdf/PLAW-119publ27.pdf">Public Law 119-27 - GENIUS Act</a></li>
+<li><a href="https://public-inspection.federalregister.gov/2026-16796.pdf">Treasury Section 3 proposal - public-inspection copy, FR Doc. 2026-16796</a></li>
+<li><a href="https://home.treasury.gov/system/files/136/NPRM-GENIUS4c-Principles.pdf">Treasury state-regime substantial-similarity proposal</a></li>
+<li><a href="https://www.federalregister.gov/documents/2026/07/20/2026-14589">FDIC proposed GENIUS reporting forms and notice</a></li>
+<li><a href="https://www.federalregister.gov/documents/2026/07/27/2026-15088">OCC licensing and registration forms notice</a></li>
+<li><code>GENIUS Act Implementation Gap Audit</code></li>
+</ul></article><footer class="reader-foot">Complete governed read-first file · evidence remains bounded by the cutoff above</footer>
+</main></body></html>

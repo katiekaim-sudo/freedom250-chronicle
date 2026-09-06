@@ -1,3 +1,5 @@
+> **Lifecycle note (September 8, 2026):** closed provenance. Historical pending, review, promotion, completion or incorporation language below records the campaign state at its own cutoff; it is not a current queue and does not change any stated Chronicle landing, incorporation boundary or evidence cutoff.
+
 # Federal Government Freshness — Materiality Closeout
 
 This is the controlling result of the interrupted August 22–23 freshness work.

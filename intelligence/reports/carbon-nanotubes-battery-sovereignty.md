@@ -1,7 +1,7 @@
 # Carbon Nanotubes, Batteries and U.S. Sovereignty
 
 Research cutoff: **2026-08-23**  
-State: **pending workbench research; not vault canon**
+State: **current Workbench research; not vault canon**
 
 ## Short answer
 

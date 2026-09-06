@@ -65,4 +65,4 @@ FRBNY is the operational hands of the Federal Reserve System — the Board in Wa
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1913 - Federal Reserve Act §4 (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

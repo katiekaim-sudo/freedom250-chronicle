@@ -1,7 +1,7 @@
 # CNT Battery Company and Supply-Chain Registry
 
 Evidence cutoff: **2026-08-23**  
-State: **pending**
+State: **current Workbench research; not vault canon**
 
 ## Object rule
 

@@ -1,0 +1,105 @@
+# Wave 10 — whole-government merge
+
+> **September 26 corrective note:** read this merge with
+> `CORRECTIVE_DIRECT_SITE_REVIEW_2026-09-26.md` and
+> `WATCH_AND_RETURN_AUDIT_2026-09-26.md`. The original synthesis remains
+> directionally sound, but its direct-site coverage was incomplete. The
+> correction adds material USTDA, DOE, FDIC, CFTC, DSCA/SAMM, USTR, FAA, FERC
+> and OCC objects and resolves or advances several due return gates.
+
+## Controlling answer
+
+The September 21–25 federal record does not show one government-wide program.
+Its strongest new common movement is a set of **procedural control changes**:
+agencies finalized who qualifies, who reviews, which record governs, how an
+appeal or penalty process is routed and when new procedures take effect.
+
+The most consequential completed changes after the September 22 baseline are:
+
+1. **DOT DBE/ACDBE eligibility:** the final rule made individualized
+   disadvantage determinations the controlling approach and became effective
+   September 25.
+2. **OFAC enforcement procedure:** new 31 CFR part 505 consolidated sanctions
+   penalty procedures without substantively changing the underlying penalty
+   provisions; a separate rule updated Syria-related Terrorism List Government
+   regulations.
+3. **FTC internal process:** two immediately effective rules changed practice,
+   review and ethics-clearance procedures.
+4. **USPS environmental process:** updated NEPA procedures took effect while a
+   comment window remains open.
+5. **Supreme Court election control:** the Court stayed the new injunction in
+   `People Not Politicians`, keeping the 2022 Missouri congressional map in
+   place for the underway 2026 election absent further order.
+
+The strongest implementation-planned objects are different in kind:
+
+- CMS and 37 states launched a voluntary Medicaid/CHIP quality pledge; no rule,
+  procurement or outcome is established.
+- EXIM and Argentina signed a framework to mobilize up to $7 billion through
+  2027; no Board-approved transaction, commitment or disbursement is proved.
+- GAO reports that VA is pursuing partial use of new Compact health authorities
+  but has no public implementation timeline.
+- ATF's Safe Explosives final rule was published but does not become effective
+  until October 26.
+
+## Proposal, permission and operation boundaries
+
+Coinbase Derivatives and KalshiEx proposed perpetual single-stock futures rules,
+but CFTC approval remained pending. The Fed's GENIUS implementation objects are
+proposals, already controlled by a dedicated package. DOJ's $25 million ANGEL
+notice is a competitive funding opportunity, not an award. Senate cloture on
+S. 4668 is not passage. GAO concurrence is not remediation. No object in this
+package proves a new payment rail, universal implementation, disbursement,
+accepted delivery or measured effect.
+
+## Existing-owner folds
+
+Current packages already control the Fed/CFTC GENIUS delta, SEC tokenized-stock
+FAQs, Treasury Market Conference replay, UNGA81, military FAST, ILA–USMX,
+U.S.–China state-visit and current China/Russia orientation work. This weekly
+package records their coverage and leaves their facts with those owners.
+
+## Hub adjudication
+
+The Movement Registry receives only administrative movements that fit its
+current vocabulary and have a completed owner disposition: DOT DBE/ACDBE,
+OFAC part 505, the FTC practice-rule pair, USPS NEPA procedures, the EXIM
+framework, the CMS 37-state pledge and the VA partial-implementation plan.
+
+The Supreme Court stay, DOJ desegregation dismissals, congressional procedure
+and GAO's open State recommendations remain readable in this package but are
+not force-fit into administrative movement stages.
+
+## Access and return gates
+
+- War.gov daily contracts: direct dated bodies still blocked; inherited cursor
+  retained.
+- DSCA Major Arms Sales inventory: direct dated bodies remain blocked; the
+  official SAMM alternate route recovered policy memoranda 26-100 and 26-99.
+- USTDA: the root and exact bodies were recovered on September 26; seven
+  study/technical-assistance funding objects are now recorded in the corrective
+  review. Their continuing decision-gate analysis now belongs to USTDA Project
+  Development Pipeline 2026.
+  Those objects do not prove project construction or operation.
+- CISA directives/KEV: publisher root reached; complete dated inventory not
+  established.
+- DOJ firearm-rights restoration: obtain a live form/application receipt or a
+  completed decision before claiming operation or restored rights.
+- ATF rule: return on or after October 26 for effectiveness/implementation.
+- EXIM framework: return for Board authorization, commitment and disbursement.
+- CMS pledge: return for state targets, procurement or formal program changes.
+- VA Compact care: return for a dated implementation instrument and first
+  service/reimbursement receipt.
+
+The corrective watch audit separately records: U.S.–China, IMF Legal at 80 and
+the HFSC ARMA markup as resolved immediate return gates; Philadelphia Fed as
+partial; the September 23 HFSC pages as an unresolved public-record conflict;
+CFTC AF80 as unchanged; IRS and OCC as passed deadlines without next-stage
+objects; and the OPM–Treasury DNP match as a legal-date-only state without a
+separate operating receipt.
+
+## Custody
+
+This is completed Workbench research. Catalog, Registry and Hub integration do
+not authorize Chronicle promotion, a canonical watch, Federal Group mutation,
+app/site shipment, commit or push.

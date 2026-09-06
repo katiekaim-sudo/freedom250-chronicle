@@ -1,0 +1,43 @@
+# USTDA Project Development Pipeline 2026
+
+This is the dedicated owner for U.S. Trade and Development Agency feasibility
+studies, technical assistance and adjacent project-development work that can
+shape later regulation, financing, tender design, procurement and physical
+infrastructure. It opens with the seven material USTDA objects published during
+September 21–25, 2026.
+
+## Short ruling
+
+These objects matter because several commission the upstream documents from
+which later government and commercial decisions may be made: regulatory
+roadmaps, legal documents, tender packages, environmental assessments,
+financial models, procurement criteria, technical designs and demand
+forecasts. They are therefore stronger than generic diplomatic statements.
+
+They remain project-development objects. A grant agreement, selected study
+contractor or published RFP does not establish host-country adoption,
+financing close, equipment award, construction, commissioning or operation.
+
+## Read first
+
+1. Project-development deep dive
+2. Decision-gate ledger
+3. Official-source ledger
+
+## Why this page exists
+
+The September weekly sweep first recovered the seven announcements as missed
+objects. This package now owns their substantive analysis. The weekly package
+remains the discovery and coverage receipt; this page controls the continuing
+project-development record.
+
+## Evidence boundary
+
+The public record is uneven. Marshall Islands, Vietnam and Ecuador name the
+selected U.S. contractor. Nigeria and Lobito expose active RFPs and detailed
+task scopes. Türkiye and the DRC announce signed USTDA funding agreements but
+do not yet identify a selected contractor in the reviewed record. Final study
+deliverables are not presently public for any of the seven.
+
+No Chronicle event, canonical watch, app/site shipment, commit or push is
+authorized by this package.

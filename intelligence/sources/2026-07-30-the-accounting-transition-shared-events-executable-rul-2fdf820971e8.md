@@ -18,6 +18,10 @@ business event and evidence
   → disclosure, assurance, correction and recovery
 ```
 
+This is a July 30 research architecture, not a deployed universal system or a
+measured labor-saving result. Its layers are questions to preserve when
+testing implementations.
+
 This preserves the user's simplification thesis. A small company may interact
 with cash, invoices, bills, payroll and assets rather than hand-built debits
 and credits. The difficult accounting can run behind the interface. But the
@@ -27,6 +31,10 @@ which uncertainty is material.
 
 The change is from **private entries reconciled after the fact** toward
 **shared events transformed by visible rules**.
+
+The shared event is not a third debit or credit. “Triple-entry accounting” is
+useful shorthand for a mutually verifiable receipt; the receipt improves
+agreement and provenance but does not replace an entity's double-entry view.
 
 ## The modified-cash boundary
 
@@ -52,8 +60,9 @@ Do not confuse:
 
 FASB's conceptual framework says accrual accounting supplies information about
 assets, liabilities and period performance that receipts and outlays alone
-cannot supply. There is no reviewed FASB project to turn modified cash basis
-into general-purpose GAAP.
+cannot supply. The sources reviewed through July 30 did not identify a FASB
+project to turn modified cash basis into general-purpose GAAP; this
+consolidation does not refresh that negative finding.
 
 ## What smart contracts can do
 
@@ -169,13 +178,21 @@ Congress / program statute
   → audit finding, ED or partner-agency resolution, debt and recovery
 ```
 
-This is an operative accounting problem, not a blockchain claim. ED reports
-that the predecessor DOL workforce partnership had onboarded all grantees and
-processed 1,627 payment requests totaling $575 million from 51 States and
-territories by January 2026. For covered postsecondary grants, ED expressly
-divides the system of record by award cohort: FY2025 and earlier awards remain
-in G5; FY2026 and later awards use GrantSolutions and the HHS Payment Management
-System. A February 2026 ED-HHS agreement separately provides for Form 7600B
+This is an operative accounting problem, not a blockchain claim. ED reported
+two dated observations for the predecessor Perkins V/WIOA pathway: the FY2025
+Agency Financial Report described more than 1,300 payment requests from 43
+States and territories since October 1; the later fact sheet described nearly
+1,627 requests totaling $575 million from 51 States and territories as of
+January 2026. Those observations do not measure every later partnership.
+
+For covered postsecondary grants, the original fact sheet described the system
+split by initial award year: FY2025 and prior in G5, and FY2026 and future in
+GrantSolutions and the HHS Payment Management System. The March 16, 2026 letter
+gives the narrower operative instruction: existing grants remain in G5, while
+new awards competed and awarded in FY2026 use GrantSolutions and PMS. The
+actual award and applicable notice control any individual migration claim; the
+sources do not establish that every covered award was already operating on the
+new stack. A February 2026 ED-HHS agreement separately provides for Form 7600B
 obligations, IPAC transfers, at-least-quarterly balance reconciliation and
 written correction of reconciliation issues.
 

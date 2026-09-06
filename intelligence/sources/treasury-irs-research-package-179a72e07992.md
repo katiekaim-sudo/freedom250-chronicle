@@ -1,7 +1,7 @@
 # Freedom 250 — Treasury / IRS Research Package
 
 Completed: 2026-07-14  
-Status: first full source-first sweep; pending review and selective promotion into the live vault  
+Status: current Workbench answer; landed fact spines remain vault-copy-wins  
 Cutoff: 2026-07-14
 
 ## Short answer

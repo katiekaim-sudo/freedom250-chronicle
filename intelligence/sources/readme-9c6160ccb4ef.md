@@ -1,5 +1,7 @@
 > Source evidence cutoff: 2026-08-01 ET
 
+> **Lifecycle note (September 8, 2026):** closed provenance. Historical pending, review, promotion, completion or incorporation language below records the campaign state at its own cutoff; it is not a current queue and does not change any stated Chronicle landing, incorporation boundary or evidence cutoff.
+
 # Federal Government Whole-Site Recertification — 2026-08-01
 
 This package deepens the incorporated July 25 whole-federal sweep. It is not a
@@ -11,6 +13,10 @@ and publishing parents exist now, which are live and canonical, what non-news
 source surfaces they expose, what their sitemaps and archives actually cover,
 and what those surfaces add or correct across the Chronicle's current
 storylines.
+
+## September 7 question reconciliation
+
+Civilian autonomy and airspace: The September 7 reconciliation follows the original Driverless and Airspace questions through oversight, exemptions, standards, flight permission and demonstrated flights. Read the two named civilian sections beside the dated August 1 findings.
 
 ## Operational meaning of “entire websites”
 
@@ -97,6 +103,12 @@ Katie approved Observatory promotion on August 4. The full factual package is
 routed into the existing Research Desk under the stable ID
 `government-wide-recertification-august-2026`; the workbench remains the
 provenance authority and the Observatory surface is a generated projection.
+
+## Shared AI policy reading
+
+The existing [AI official inventory](../sources/trump-ai-executive-order-official-inventory-2026-08-01-6f8e2def351e.html#ai-governance-from-policy-reset-to-agency-practice) now joins seven original Tech questions about the policy reset, consultations, cybersecurity, procurement and NIST collaboration. Its September 7 reconciliation connects those records to the agency-AI and Scientific Trust studies. The August 1 instrument census and August 4 campaign cutoff remain unchanged; the targeted review does not refresh the entire campaign.
+
+The same inventory now carries [three complementary BIS export-access questions](../sources/trump-ai-executive-order-official-inventory-2026-08-01-6f8e2def351e.html#ai-export-access-three-different-legal-mechanisms): diffusion nonenforcement, named-entity restrictions and conditional advanced-computing licensing. The September 7 review preserves their original questions and source dates; it does not expand the thirteen-order census or refresh the whole campaign.
 
 ## Completed deliverables
 

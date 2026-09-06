@@ -1,10 +1,11 @@
 # Retail debt — separate entity factual spine
 
-Updated: 2026-07-11  
-Status: first factual pass; entities and debt books remain separate  
+Original research date: 2026-07-11  
+Status: current Workbench entity study; dated findings below retain their original source periods  
+Consolidation note: 2026-09-07. This review clarifies ownership and existing source support; it does not refresh the portfolio data.  
 Scope: U.S. credit cards, private student loans, consumer installment debt, and adjacent retail-credit books. This record tracks what each lender, buyer, servicer, or regulator has actually done with debt—not what a headline implies it may do.
 
-**Project position:** This is a derived storyline from the broader banking website full sweep, not the frame for that sweep. Growth, research, payments, AI, footprint, partnerships, and capital actions remain in the parent entity record until a specific debt event belongs here.
+**Project position:** This is a derived storyline from the broader [banking website full sweep — controlling Chronicle copy](../sources/banking-website-sweep-source-document-4cadeee6e9f4.html), not the frame for that sweep. Growth, research, payments, AI, footprint, partnerships, and capital actions remain in the parent entity record until a specific debt event belongs here.
 
 ## Reading rule
 
@@ -17,6 +18,8 @@ The entity clocks are:
 - **customer:** line closure, fixed-payment conversion, servicing transfer, hardship enrollment;
 - **regulatory:** consent order, restitution, penalty, or rule;
 - **retail:** merchant-card partnership gained, lost, renewed, or moved.
+
+For the cross-entity accounting question, use [FY2025 credit losses, reserves and net receivables](../sources/credit-loss-reserve-and-net-receivables-fy2025-437b4a840942.html). This entity timeline owns portfolio and borrower acts; the companion owns provision/charge-off/allowance definitions, denominators and financial comparisons. Source questions and remaining documents are maintained once in the source guide.
 
 ## System baseline — what is and is not rising
 
@@ -97,7 +100,7 @@ At March 31, the combined card book was $270.6 billion; 30+ delinquency was 3.67
 
 **Primary sources:** [Capital One 2026 Q1 Form 10-Q, pp. 20, 43–47, 93–98](https://investor.capitalone.com/static-files/ba856655-52e1-45fd-a921-adae843b2c3a); [Capital One — 2026 Q1 results](https://investor.capitalone.com/news-releases/news-release-details/capital-one-reports-first-quarter-2026-net-income-22-billion-or)
 
-### Current state
+### State at the original research cutoff
 
 Discover's private student-loan and home-loan exits are confirmed. Capital One is keeping and integrating the card franchise while using large-scale rate reductions, term conversions, and some principal/fee forgiveness as loss mitigation. The unverified piece is the size and rule of any Discover student-loan cancellations outside the sold portfolio.
 
@@ -117,9 +120,9 @@ This is a seller exit and buyer expansion, not borrower relief. Account terms an
 
 **Primary source:** [Goldman Sachs — Apple Card transition agreement](https://www.goldmansachs.com/pressroom/press-releases/2026/goldman-sachs-announces-agreement-to-transition-apple-card-program-to-chase)
 
-### Current state
+### State at the original research cutoff
 
-Goldman is leaving mass-market card lending; Chase is taking the book. Watch for regulatory approval, closing, servicing notices, portfolio marks, and any change to hardship terms or credit lines during conversion.
+At the July 11 research cutoff, Goldman had agreed to exit Apple Card and Chase had agreed to acquire the book; completion remained subject to the disclosed transition and approvals. The buyer-side chronology in section H owns the commitment and expected conversion timetable. Approval, closing, servicing notices and customer changes remain separate evidence questions.
 
 ---
 
@@ -141,13 +144,15 @@ Ally sold its credit-card business to CardWorks and Merrick Bank. At December 31
 **Clock:** Capital  
 **Debt book:** Consumer mortgages
 
-Ally's filing says consumer-mortgage originations would cease in the second quarter of 2025 and the remaining book would run off. This is a second retail-credit retreat, distinct from the card sale.
+Ally's first-quarter filing described the planned second-quarter 2025 cessation. Its already-cited [FY2025 annual report](https://www.ally.com/content/dam/pdf/investor-relations/2025-10k.pdf), Mortgage section (printed page 45), confirms that consumer mortgage originations ceased during that quarter and the remaining portfolio runs off. This is distinct from the completed card sale.
 
 **Primary source:** [Ally 2025 Q1 Form 10-Q](https://www.sec.gov/Archives/edgar/data/40729/000004072925000011/ally-20250331.htm)
 
-### Current state
+### State at the original research cutoff
 
 Ally exited cards and stopped adding new mortgages while staying centered on auto finance. CardWorks/Merrick became the card-book owner. Watch the buyer's performance reports, customer conversions, line closures, and charged-off-debt sales rather than treating Ally's exit as extinguishment.
+
+The saved [agreement map, section 6](../sources/bank-user-agreements-source-document-b69017548c46.html#6-ally-cardworks-merrick-bank-ollo-sale-becomes-customer-level-issuer-migration) documents Merrick as issuer and Ollo as customer interface, with specified terms and settings carried over. The document-resolution account, section 3 retains the missing customer-specific change-in-terms mailing. General conversion evidence is therefore partly resolved; individual arbitration changes and later portfolio performance remain separate questions.
 
 ---
 
@@ -159,7 +164,7 @@ Ally exited cards and stopped adding new mortgages while staying centered on aut
 **Clock:** Credit / customer  
 **Debt book:** Mostly retail and co-brand cards
 
-Synchrony enrolled **$398 million** of card balances in long-term modifications and **$218 million** in short-term modifications during the quarter. Long-term modifications reduced weighted-average interest rates by 97%. For borrowers who successfully exited short-term programs, Synchrony forgave $11 million of unpaid balances. Sixty percent of short-term-program borrowers completed and exited successfully; $101 million of recently modified card loans defaulted and charged off during the quarter.
+Synchrony enrolled **$398 million** of card balances in long-term modifications and **$218 million** in short-term modifications during the quarter. Those card enrollment balances total $616 million; another $3 million in commercial-credit modifications brings the reported all-loan total to $619 million. The filing measures these amounts at enrollment, not the quarter-end carrying balance. Long-term modifications reduced weighted-average interest rates by 97%. For borrowers who successfully exited short-term programs, Synchrony forgave $11 million of unpaid balances. Of loans that entered a short-term modification program within the preceding twelve months, 60% completed all required payments and exited successfully during the quarter. Separately, $101 million of card loans enrolled in long-term modifications within the preceding twelve months defaulted and charged off during the quarter.
 
 The bank recorded $1.233 billion of card net charge-offs, a 5.36% annualized rate, down from 6.36% a year earlier. Its $9.704 billion card allowance was nearly unchanged from year-end.
 
@@ -175,7 +180,7 @@ Synchrony acquired about $700 million of outstanding Lowe's commercial co-brand 
 
 **Primary source:** [Synchrony 2026 Q1 Form 10-Q](https://investors.synchrony.com/filings-regulatory/sec-filings/all-sec-filings/content/0001601712-26-000016/syf-20260331.htm)
 
-### Current state
+### State at the original research cutoff
 
 Synchrony is not leaving retail credit. It is buying selected merchant books while using steep rate cuts, short-term programs, limited balance forgiveness, and charge-offs on distressed accounts.
 
@@ -201,7 +206,7 @@ Citi says its long-term card modifications generally reduce the rate, place the 
 
 **Primary source:** [Citi 2026 Q1 Form 10-Q, consumer credit and modification sections](https://www.citigroup.com/rcs/citigpa/storage/public/citigroup-inc-1q-2026-10Q.pdf)
 
-### Current state
+### State at the original research cutoff
 
 Citi is keeping and reorganizing its card business, not exiting it. The relevant debt acts are fixed-payment conversions, line cancellations, negotiated settlements, and the credit performance of its retailer-specific book.
 
@@ -218,7 +223,7 @@ American Express says its relief programs may reduce rates as low as zero and pu
 
 **Primary source:** [American Express 2025 annual report, pp. 125–127](https://s26.q4cdn.com/747928648/files/doc_financials/2025/ar/American-Express-Annual-Report-2025.pdf)
 
-### Current state
+### State at the original research cutoff
 
 American Express is using large rate cuts and fixed plans, coupled with spending-line suspension or cancellation. Unlike Capital One and Synchrony disclosures above, this filing says the reported 2025 modifications did not reduce principal.
 
@@ -236,7 +241,7 @@ Bank of America introduced a feature that lets eligible cardholders convert qual
 
 **Primary source:** [Bank of America — Custom Pay Plan announcement](https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/06/bank-of-america-introduces-new-ways-to-reward-clients--manage-pa.html)
 
-### Current state
+### State at the original research cutoff
 
 The public customer pages confirm that Bank of America offers assistance for card and unsecured-loan stress, but the first pass has not yet isolated a clean 2026 entity table comparable to Capital One, Synchrony, Citi, or American Express. Keep product installment plans separate from loss-mitigation plans.
 
@@ -282,7 +287,7 @@ The retained card book was **$239.1 billion**, up 7% year over year before the A
 
 **Primary source:** [JPMorganChase 2026 Q1 Form 10-Q, pp. 19–20 and 130–131](https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2026/1st-quarter/corp-q1-2026.pdf)
 
-### Current state
+### State at the original research cutoff
 
 JPMorgan is a consolidator, not an exiting lender. It is growing its existing card book, committing capital to buy Apple Card, and sharply increasing the volume of distressed balances moved from revolving credit into low-rate fixed-payment plans. The key tension is visible inside the same entity: ordinary card balances keep growing while hardship modifications have risen from $648 million in 2023 to $2.084 billion in 2025 and $853 million in the first quarter of 2026 alone.
 
@@ -292,19 +297,13 @@ JPMorgan is a consolidator, not an exiting lender. It is growing its existing ca
 
 The bank actions sort into four distinct buckets:
 
-1. **Whole-book exit:** Discover student loans; Discover home loans; Ally cards and new mortgages; Goldman Apple Card.
+1. **Exit or run-off:** completed Discover student- and home-loan sales and Ally card sale; Ally mortgage-origination cessation with run-off; Goldman Apple Card sale agreed but not closed at the research cutoff.
 2. **Book acquisition/concentration:** Capital One buys Discover; Chase agrees to take Apple Card while growing a $239.1 billion retained card book; CardWorks/Merrick takes Ally cards; Synchrony buys Lowe's commercial cards.
 3. **Internal loss mitigation:** rate cuts, fixed-payment conversion, line cancellation, fee waiver, limited principal settlement, and re-aging after successful payments.
 4. **Accounting and collection:** reserves, charge-offs, recoveries, securitization, and possible later debt sales. None alone proves legal discharge.
 
-The early story is therefore not “banks are all canceling debt.” It is a **sorting of retail debt toward the firms and funding machines willing to hold it**, while incumbent issuers quietly modify a measurable slice before charge-off.
+The original research interpretation is a **sorting of retail debt toward firms and funding arrangements willing to hold it**, alongside measurable hardship modification. The dated cases support that reading; they do not establish that all banks cancel debt, that every exit has closed, or that any particular modification prevents charge-off.
 
-## Open document requests
+## Open document questions
 
-- Discover/Capital One: official amount and selection rule, if any, for private student loans canceled rather than sold.
-- Each issuer: 2024–2026 quarterly table of modifications, subsequent defaults, principal/fee forgiveness, and revolving-to-term conversions.
-- Each issuer or trust: charged-off receivables sold, retained, or placed with third-party collectors; sale price where disclosed.
-- Apple/Goldman/Chase: closing approval, conversion date, account terms, and customer hardship treatment.
-- CardWorks/Merrick: Ally portfolio performance and customer conversion record.
-- Retail partners: contract transfers, early terminations, loss-sharing arrangements, and merchant incentives.
-- Bankruptcy courts: issuer claims, debt-buyer assignments, and consumer Chapter 7/13 trends by geography.
+The retail-debt source guide owns the consolidated questions for cancellations, modification/default tables, debt sales, Apple Card conversion, Ally/Merrick performance, merchant contracts and court records. It distinguishes the saved Ally/Ollo partial closure from documents still missing.

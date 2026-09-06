@@ -6,7 +6,7 @@ Updated: 2026-08-15
 Status: factual legal map  
 Rule: A press release is not a charter. A budget justification is not an organic act. A preliminary injunction is not a merits repeal.
 
-This note is the **third emptying**. [Department of Education — Consummation Map](../sources/department-of-education-consummation-map-23a7ccec3cea.html) is the Department that still exists. [USAID — Statutory Person and Operating Death](../sources/usaid-statutory-person-and-operating-death-a4950011ce2c.html) is the independent establishment that still exists. This note is HHS: the Department still exists; SAMHSA still exists; the Administration for a Healthy America is a request. Do not merge. Do not braid the MAHA Commission into AHA.
+This note is the **third emptying**. Department of Education — Consummation Map is the Department that still exists. USAID — Statutory Person and Operating Death is the independent establishment that still exists. This note is HHS: the Department still exists; SAMHSA still exists; the Administration for a Healthy America is a request. Do not merge. Do not braid the MAHA Commission into AHA.
 
 ## Short answer
 
@@ -144,9 +144,9 @@ A hollowed administration is still a legal person if the Code says it is. A requ
 
 ## 9. Bind
 
-- **First emptying:** [Department of Education — Consummation Map](../sources/department-of-education-consummation-map-23a7ccec3cea.html)
-- **Second emptying:** [USAID — Statutory Person and Operating Death](../sources/usaid-statutory-person-and-operating-death-a4950011ce2c.html)
-- **Career staff:** [Schedule Policy-Career — Personnel and Removal Map](../sources/schedule-policy-career-personnel-and-removal-map-7f152fea03d9.html) — a Policy/Career conversion is not this.
+- **First emptying:** Department of Education — Consummation Map
+- **Second emptying:** USAID — Statutory Person and Operating Death
+- **Career staff:** Schedule Policy-Career — Personnel and Removal Map — a Policy/Career conversion is not this.
 - **Health plot:** Health / MAHA. This note is the leash, not the vaccine fight.
 - **Do not** file this as a MAHA-Commission note or a CMS note.
 

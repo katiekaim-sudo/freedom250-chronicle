@@ -2,6 +2,8 @@
 
 # Federal agency AI transition — cross-agency synthesis
 
+**Saved evidence clocks:** The core comparison retains its August 23, 2026 ET cutoff. Its VA IBM Pension Optimization rows include the targeted September 3 review of the August 24 modification described in the package receipt note. This September 7 consolidation note makes that existing exception explicit; it does not refresh other agency states.
+
 ## Answer first
 
 The material federal AI story is no longer a single policy announcement. It is
@@ -398,7 +400,8 @@ and [FY2027 budget overview](https://comptroller.war.gov/Portals/45/Documents/de
 
 ## Lifecycle boundary
 
-This is a source-audited Research Desk synthesis at the August 23, 2026 cutoff.
+This is a source-audited Research Desk synthesis at the August 23, 2026 cutoff,
+with the targeted September 3 VA receipt exception stated above.
 It does not create or promote a live-vault event, implementation watch,
 generated view or app state. The next research action is limited to the named
 return objects above; it is not authorization to reopen an unbounded

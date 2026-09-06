@@ -1,20 +1,15 @@
 # Insurance and reinsurance — factual field registry
 
-Updated: 2026-07-12  
-Status: working research protocol  
+Source framework date: 2026-07-12  
+Organization reconciled: 2026-09-07; no external-source refresh  
+Status: reusable research field guide  
 Purpose: make the insurance layer repeatable, factual, and capable of tracing both the transfer of risk and the investment of the capital supporting it.
 
-## Governing proposition
+## How to use this guide
 
-Insurance is not only a claims business. It is an access gate, a risk-transfer chain, a capital pool, and a public/private backstop system.
+The [deep dive](../sources/insurance-reinsurance-deep-dive-20780fd540e8.html) owns the connected findings. This file owns the vocabulary and fields for tracing the direct policy obligation, risk transfer and supporting assets. Use the fields relevant to the question and state unknowns; missing fields do not prevent saving useful research.
 
-The research object is therefore not merely the named insurer. It is the full chain:
-
-`risk owner → broker/MGA → primary carrier → reinsurer → retrocessionaire/ILS investor → guaranty, residual, or government backstop`
-
-At the same time, trace the capital chain:
-
-`premium/reserve → insurer or affiliated asset manager → invested asset → valuation/rating → capital charge → liquidity or impairment outcome`
+Residual plans, catastrophe funds, guaranty associations and federal programs enter at different statutory positions. The risk-transfer and capital relationships are mapping aids, not a universal sequence ending with government payment. Premium receipts and other funding support assets; reserves measure obligations rather than a second cash inflow.
 
 ## 1. Entity vocabulary
 
@@ -39,7 +34,7 @@ Do not collapse these bodies into one brand:
 | Asset manager | selects and manages assets supporting insurer liabilities | may be affiliated with the insurer owner or originator |
 | Rating organization / model vendor | affects price, capital, counterparty acceptance, and market access | rating/model output is not a regulatory finding |
 | State residual market | coverage mechanism for risks the voluntary market will not take | may be an insurer, association, plan, or facility with different assessment powers |
-| Guaranty association | post-insolvency statutory protection within stated limits | not pre-failure supervision and not unlimited insurance |
+| Guaranty association | statutory protection after the qualifying impairment, rehabilitation or insolvency/liquidation trigger under applicable state law | covered products, claimants and caps vary; not unlimited or FDIC insurance |
 | Government insurer / guarantor | directly writes, reinsures, guarantees, or shares defined risks | taxpayer exposure depends on statute, trigger, cap, and recoupment |
 
 ## 2. Contract vocabulary
@@ -51,7 +46,7 @@ Do not collapse these bodies into one brand:
 | Endorsement | changes the policy; capture whether it broadens, restricts, or clarifies cover |
 | Exclusion | removes a peril, cause, territory, actor, or loss class |
 | Limit / sublimit | maximum payable amount; keep occurrence, aggregate, and sublimits separate |
-| Deductible / retention | first-loss amount borne by insured; do not confuse with reinsurance attachment |
+| Deductible / retention | identify whose first-loss share it is (insured or cedant), the contract and its attachment basis; policy deductibles and reinsurance retentions are not interchangeable |
 | Claims-made / occurrence | determines which policy period responds |
 | Parametric trigger | payment depends on a stated index or event rather than adjusted indemnity loss |
 | Treaty reinsurance | covers a defined portfolio or class automatically under treaty terms |
@@ -73,7 +68,8 @@ Do not collapse these bodies into one brand:
 - **ANNOUNCED:** company or official has stated an intended action.
 - **FILED / APPLIED:** rate, form, transaction, license, or approval request is before an authority.
 - **AUTHORIZED / APPROVED:** competent body has granted the stated permission; conditions remain part of the status.
-- **BOUND / PLACED:** insurance or reinsurance contract is effective under stated terms.
+- **BOUND / PLACED:** the stated evidence establishes a coverage commitment or placement; record inception/effectiveness separately, including a future inception date.
+- **EFFECTIVE:** the specified legal coverage period has begun; this alone does not establish business volume or payment.
 - **OPERATING:** entity or program is writing, assuming, servicing, or paying real business.
 - **TRIGGERED:** contract or public program trigger has occurred; payment remains a separate clock.
 - **PAID / RECOVERED:** claim, reinsurance recovery, or public share has been paid.
@@ -82,7 +78,7 @@ Do not collapse these bodies into one brand:
 - **REHABILITATION / RECEIVERSHIP / LIQUIDATION:** use the exact court or regulator status.
 - **SCHEDULED / TARGET:** future state; not a historical event.
 
-## 4. Required entity record
+## 4. Entity research fields
 
 ```markdown
 ## Legal entity / operating brands
@@ -117,7 +113,7 @@ Do not collapse these bodies into one brand:
 ### Open watches
 ```
 
-## 5. Required transaction or program record
+## 5. Transaction or program research fields
 
 - transaction/program name and aliases;
 - legal parties and each party's role;
@@ -133,7 +129,7 @@ Do not collapse these bodies into one brand:
 - rating, model, and risk-based-capital treatment;
 - public guarantee, assessment, recoupment, or taxing authority;
 - governing law, regulator, court, and dispute mechanism;
-- current state and next formal watch date;
+- state as of the source date and any identified next evidence date;
 - primary sources and explicit unknowns.
 
 ## 6. The seven clocks
@@ -141,14 +137,14 @@ Do not collapse these bodies into one brand:
 1. **Policy clock** — quote → bind → endorsement → renewal/nonrenewal → cancellation.
 2. **Claims clock** — loss → notice → reserve → adjustment → payment/denial → suit → subrogation.
 3. **Risk-transfer clock** — cession → placement → attachment → recovery → dispute → commutation.
-4. **Capital clock** — premium → reserve → asset purchase → valuation → capital charge → liquidity/impairment.
+4. **Capital clock** — premium or other funding → assets supporting reserve liabilities → valuation → capital charge → liquidity/impairment.
 5. **Entity clock** — formation → acquisition → block transfer → runoff → receivership/liquidation.
 6. **Regulatory clock** — filing → approval → examination → remediation → enforcement.
-7. **Public-backstop clock** — private-market withdrawal/failure → statutory trigger → public payment → assessment, surcharge, borrowing, or taxpayer recoupment.
+7. **Public-backstop clock** — identify the program’s entry point and any statutory trigger → eligible obligation/claim → payment if established → assessment, surcharge, borrowing, recovery or recoupment under its own rules.
 
-A single event may move more than one clock, but the clocks must not be merged. A rate approval does not prove a policy was renewed. A catastrophe does not prove a reinsurance layer attached. A reinsurance recovery booked as receivable does not prove cash was collected.
+Arrows show possible transitions, not a required sequence for every case. A single event may move more than one clock, but the clocks must not be merged. A rate approval does not prove a policy was renewed. A catastrophe does not prove a reinsurance layer attached. A reinsurance recovery booked as receivable does not prove cash was collected.
 
-## 7. Event capture template
+## 7. Dated action template
 
 ```markdown
 ### YYYY-MM-DD — action title
@@ -164,7 +160,7 @@ A single event may move more than one clock, but the clocks must not be merged. 
 **Ceded/net exposure:**
 **Policyholders/accounts/assets affected:**
 **Location / legal locus:**
-**Time:** Publicly stated / not publicly stated
+**Time:** Publicly stated / not located in the reviewed source / explicitly not disclosed
 
 One neutral paragraph stating the act. Then state separately what changed in coverage, price, risk bearer, reserves/assets, claims rights, and public exposure.
 
@@ -183,15 +179,17 @@ One neutral paragraph stating the act. Then state separately what changed in cov
 - **SPECULATION:** possibility or hypothesis without enough evidence to call an inference.
 - **UNVERIFIED LEAD:** potentially important claim awaiting an operative source.
 
-## 9. Promotion rules
+## 9. Evidence for a particular conclusion
+
+The following distinctions govern the strength of a claim, not admission to the research library. Save useful partial findings with their limits.
 
 ### Entity action
 
-A source becomes an entity action only when it establishes the legal actor, date, affected business or liability, and changed state. A group press release does not prove which writing company, reinsurer, or account bears the risk.
+To substantiate a particular entity action, identify the legal actor, date, affected business or liability, and changed state; missing detail limits that conclusion. A group press release does not prove which writing company, reinsurer, or account bears the risk.
 
 ### Risk transfer
 
-A risk-transfer claim becomes confirmed only when the record establishes:
+To substantiate the asserted risk transfer, look for the following evidence. A missing item permits a narrower finding rather than requiring the research to be discarded:
 
 1. cedent or insured risk owner;
 2. assuming risk bearer;
@@ -207,7 +205,7 @@ Do not infer insolvency from a carrier's nonrenewal, moratorium, rate request, o
 
 ### Public backstop
 
-Do not say taxpayers bear a loss until the statute or operative record establishes the trigger, payment source, cap, recoupment, assessment, borrowing, and repayment structure.
+Distinguish statutory fiscal exposure from an actual taxpayer-funded payment. Identify the trigger, source, cap and any recoupment, assessment, borrowing or repayment arrangement relevant to the asserted result; incomplete evidence supports a narrower conclusion.
 
 ### On-chain or AI claim
 

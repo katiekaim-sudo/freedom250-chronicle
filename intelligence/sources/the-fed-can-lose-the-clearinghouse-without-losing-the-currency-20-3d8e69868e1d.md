@@ -10,7 +10,7 @@ installed app
 **Evidence cutoff:** public reachability through 2026-08-29
 
 **Companion factual refresh:**
-[District Fed Technology and Operating Foundation Refresh](../sources/district-fed-technology-and-operating-foundation-refresh-2026-08--26de24a480da.html)
+District Fed Technology and Operating Foundation Refresh
 
 ## The sentence
 

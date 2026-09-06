@@ -1,0 +1,29 @@
+# UK Constitutional Order and Self-Determination
+
+Current, cutoff-controlled research on the United Kingdom's constitutional structure, its constituent and devolved nations, London and the City of London, and the separate legal routes for Scottish independence, Welsh independence and Irish reunification.
+
+## Read first
+
+- `CURRENT_ORIENTATION_2026-09-13.md` — the pre-Cardiff baseline, rumor audit, separate clocks and September 14 return questions.
+- `UK_ENTITY_AND_JURISDICTION_MAP_2026-09-13.md` — the current constitutional topology: UK, Crown, four nations, three legal jurisdictions, London, the City of London, financial authorities and the outer territorial ring.
+- `outputs/The UK Legal Constitution — Authority × Jurisdiction × Money.html` — the governed interactive graph across Constitution, Four nations, Public state, Money & London, Crown-connected and DLT-transition lenses.
+- `UK_DLT_TRANSITION_CONSTITUTION_2026-09-13.md` — the layer-by-layer DLT reading: six clocks, seven phases, current UK pathways, transaction walks and scenario-only territorial handoff.
+- `FCA_RESEARCH_DEEP_READING_AND_DLT_DELTA_2026-09-14.md` — the full FS26/1, tokenised-gold, AIF, crypto-market, OTC-stress and regional-finance reading, including quantitative anchors, limitations and exact DLT-map consequences.
+- `UK_TOKENISED_COLLATERAL_CONSTITUTION_2026-09-14.md` — the nine-stage collateral chain across claim, institutional eligibility, control, pre-positioning, valuation, haircut, cash timing, reuse and default realisation, with SMF, CCP and repo paths kept separate.
+- `UK_DLT_DOCUMENT_AND_RULEBOOK_STRUCTURE_2026-09-13.md` — the actual controlling-document structure from Acts and regulator permissions through public operating terms, private rulebooks, claim documents and failure/exit instruments.
+- `CARDIFF_AGREEMENTS_RETURN_2026-09-14.md` — the returned watch question separating the non-binding Welsh–Scottish governmental agreement from the reported party declaration and recording which constitutional clocks did not move.
+- `UK_LEGAL_GRAPH_BUILD_AND_EVIDENCE_NOTE_2026-09-13.md` — the artifact's evidence cutoff, scope, high-value distinctions, custody and interpretation boundary.
+
+## Interactive visual
+
+The visual is produced from the stable legal spine in `UK_LEGAL_GRAPH_DATA_2026-09-13.json`, the separately governed `UK_DLT_TRANSITION_OVERLAY_2026-09-13.json`, and the `UK_DLT_DOCUMENT_CONTROL_OVERLAY_2026-09-13.json` by `build_uk_legal_graph.py`. Its 14 September FCA–Bank research extension adds the tokenised-gold product fork, collateral-stress gate, actor/flow/decision-geography gate and the collateral control, valuation/liquidation and cash/reuse sub-gates without rewriting the 13 September legal spine or advancing maturity without operating receipts. It currently contains 219 nodes, 331 typed relations, seven lenses and 86 official source routes. Forty-eight nodes participate in the DLT lens; the Documents & rulebooks lens adds 31 controlling-document objects and annotates 18 existing or role nodes with document-control responsibilities. Run `validate_uk_legal_graph.py` before staging it into the Observatory.
+
+This is the UK counterpart to **The Federal Group**, but it intentionally does not force the UK into the United States' branch-and-agency ontology. The graph preserves legal identity, authority, accountability, sponsorship, ownership, money and settlement as distinct relations.
+
+## Boundary
+
+The package keeps political advocacy, governmental action, statutory authority, referendum initiation, public consent, implementation and operative sovereignty separate. It does not treat party cooperation as a state act or scenario consequences as present facts.
+
+The official Welsh–Scottish governmental Cardiff Agreement is now captured and reviewed. It is non-binding and expressly does not alter statutory powers or duties. A separate party-political declaration has been reported, but an official party-hosted full text was not located at the cutoff; the constitutional and DLT handoff clocks therefore remain unchanged.
+
+The entity map and interactive graph form the constitutional spine, not a completed census of every UK, devolved or local public body.

@@ -1,6 +1,6 @@
 # Sovereign Communications — Emergency Rails Map
 
-**Status:** `pending`  
+**Status:** current Workbench research  
 **Cutoff:** 2026-07-15  
 **Scope:** congestion, outage, disaster, public warning, restoration, continuity, national emergency and war
 

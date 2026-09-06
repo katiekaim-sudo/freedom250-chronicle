@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Freedom 250 Chronicle — 2026-09-26</title><style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,-apple-system,'Segoe UI',Roboto,Inter,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+:root{--bg:#fbfbfd;--card:#fff;--ink:#17181f;--mut:#6a6f7e;--line:#e7e8ee}
+@media(prefers-color-scheme:dark){:root{--bg:#0d0e12;--card:#16181f;--ink:#eceef4;--mut:#9aa0b0;--line:#252833}}
+a.lk{color:inherit;text-decoration:none}a.lk:hover{color:var(--ac,#3e63dd)}
+img{display:block}
+.wrap{max-width:940px;margin:0 auto;padding:34px 22px 90px}
+.bar{height:6px;width:64px;border-radius:99px;background:linear-gradient(90deg,#e5484d,#f76808,#ffb224,#30a46c,#00a2c7,#3e63dd,#8e4ec6);margin-bottom:14px}
+h1.m{font-size:clamp(28px,6vw,46px);font-weight:850;letter-spacing:-.03em;margin:0 0 8px}
+.sub{color:var(--mut);font-weight:600;font-size:13px;margin-bottom:6px}
+.num{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:20px 0 8px}
+.num .t{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--ac);border-radius:12px;padding:12px 14px;min-width:0}
+.num .b{font-size:clamp(18px,2.4vw,26px);font-weight:850;letter-spacing:-.02em;line-height:1.15;overflow-wrap:anywhere}
+.num .l{font-size:12px;color:var(--mut);margin-top:3px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hero{margin:26px 0 8px}
+.hero .kick{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#e5484d;border-radius:99px;padding:5px 11px;margin-bottom:12px}
+.hero h2{font-size:clamp(30px,5vw,50px);line-height:1.05;margin:0 0 12px;font-weight:850;letter-spacing:-.025em}
+.hero .deck{font-size:20px;color:var(--mut);max-width:82%;margin:0 0 14px}
+.hero p{font-size:18px;max-width:72ch}
+.dhead{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:48px 0 18px;color:var(--ac);border-bottom:2px solid var(--ac);padding-bottom:8px}
+.feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start;margin:22px 0}
+.feat.rev .txt{order:2}
+.feat.solo,.feat.stack{grid-template-columns:1fr}
+.feat.stack .imgcol{max-width:520px}
+.feat.stack .imgcol .hero{max-height:340px}
+.feat h3{font-size:26px;line-height:1.13;margin:0 0 8px;font-weight:800;letter-spacing:-.015em}
+.feat .src{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ac)}
+.feat p{font-size:16px;margin:0 0 .75em}
+.feat .txt{max-width:72ch}
+/* Box shrinks to the photo. Do not force width:100% — that letterboxes
+   portrait letters/screenshots inside a wide column (img.hero also matches
+   the lead wrapper class .hero and would inherit its 26px top margin).
+   Same CSS is baked into the edition HTML that Observatory iframes and
+   that the friend site copies, so the two surfaces stay in lockstep. */
+.imgcol{text-align:center}
+.imgcol .hero{display:block;width:auto;max-width:100%;height:auto;margin:0 auto;object-fit:contain;border-radius:14px;border:1px solid var(--line);background:var(--card);cursor:zoom-in}
+.cap{font-size:12.5px;color:var(--mut);margin-top:7px;text-align:center}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;justify-content:center}
+.thumbs .th{width:74px;height:56px;object-fit:cover;border-radius:9px;border:1px solid var(--line);cursor:zoom-in}
+.watch{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12.5px;font-weight:750;color:#fff;background:var(--ac);border-radius:99px;padding:7px 13px;text-decoration:none}
+.reply{font-size:13px;color:var(--mut);border-left:3px solid var(--line);padding:6px 0 6px 12px;margin:8px 0 10px;line-height:1.4}
+.reply .who{font-weight:750;color:var(--ink);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.briefs{display:grid;grid-template-columns:1fr 1fr;gap:4px 28px;margin:16px 0}
+.briefs .b{border-top:2px solid var(--line);padding:13px 0}
+.briefs h4{font-size:17px;margin:0 0 3px;font-weight:750;line-height:1.22}
+.briefs .src{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ac)}
+.briefs p{font-size:14px;color:var(--mut);margin:5px 0 0}
+.briefs .bth{display:block;width:auto;max-width:100%;max-height:200px;height:auto;object-fit:contain;border-radius:10px;border:1px solid var(--line);margin:9px auto 0;cursor:zoom-in;background:var(--card)}
+.pq{margin:46px 0;padding:32px;border-radius:18px;background:linear-gradient(135deg,#8e4ec611,#3e63dd11);border:1px solid var(--line)}
+.pq q{font-size:30px;font-weight:800;line-height:1.24;letter-spacing:-.015em;quotes:none}
+.pq cite{display:block;font-style:normal;font-size:14px;color:var(--mut);margin-top:14px;font-weight:600}
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--mut);text-align:center}
+#lb{display:none;position:fixed;inset:0;background:rgba(6,7,10,.94);z-index:99;align-items:center;justify-content:center;cursor:zoom-out;padding:22px}
+#lb img{max-width:96%;max-height:96%;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+@media(max-width:720px){.feat,.feat.rev,.feat.stack{grid-template-columns:1fr}.feat.rev .txt{order:0}.briefs{grid-template-columns:1fr}.hero .deck{max-width:100%}.num{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style><meta name="robots" content="noindex, nofollow"><style>.sharetop{max-width:940px;margin:0 auto;padding:14px 22px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;font-weight:700;color:var(--mut)}.sharetop a{color:var(--ac,#3e63dd);text-decoration:none}.sharefoot{max-width:940px;margin:0 auto;padding:22px;text-align:center;font-size:12px;color:var(--mut)}.sharefoot a{color:var(--ac,#3e63dd);text-decoration:none}</style><style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head>
+<body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="wrap"><div class="sharetop"><a href="../">← All editions</a><span><a href="../intelligence/">Intelligence Rooms</a> &nbsp;·&nbsp; The Freedom&nbsp;250 Chronicle</span></div><div class="bar"></div><h1 class="m">The Freedom&nbsp;250 Chronicle</h1><div class="sub">Saturday, September 26, 2026 &middot; 6 Dispatches · 5 Desks</div><div class="num"><div class="t" style="--ac:#e5484d"><div class="b" style="color:#e5484d">$30B</div><div class="l">The US and China have reached a trade deal to lower tariffs on $30 billion worth of "non-sensitive goods"</div></div><div class="t" style="--ac:#f76808"><div class="b" style="color:#f76808">$1B</div><div class="l">Trump cancels nearly $1B in funding for illegals and race-focused programs</div></div></div><div class="hero"><span class="kick">China</span><h2>US and China cut tariffs on $30B of goods after Trump-Xi meeting</h2><div class="deck">China cuts tariffs on farm goods and seafood and agrees to take 10 million tons of US coal.</div><p style="margin-top:14px">BREAKING: The US and China have reached a trade deal to lower tariffs on $30 billion worth of "non-sensitive goods" after President Trump and President Xi met this week.
+
+This deal will likely lower prices on a variety of consumer goods, including small appliances, toys, holiday decorations, and kids' car seats.
+
+In return, China will cut tariffs on agricultural goods and seafood, wood products, cosmetics, and medical devices.
+
+China has also agreed to import 10 million metric tons of US coal in 2027 and 2028.
+
+Rare earths are still being discussed, the White House said.</p></div><div class="dhead" style="--ac:#e5484d">Technology</div><div class="feat solo" style="--ac:#e5484d"><div class="txt"><div class="src">@SecWar</div><h3>Hegseth designates Anthropic a military supply-chain risk</h3><p>This week, Anthropic delivered a master class in arrogance and betrayal as well as a textbook case of how not to do business with the United States Government or the Pentagon.</p><p>Our position has never wavered and will never waver: the Department of War must have full, unrestricted access to Anthropic’s models for every LAWFUL purpose in defense of the Republic.</p><p>Instead, @AnthropicAI and its CEO @DarioAmodei, have chosen duplicity. Cloaked in the sanctimonious rhetoric of “effective altruism,” they have attempted to strong-arm the United States military into submission - a cowardly act of corporate virtue-signaling that places Silicon Valley ideology above American lives.</p><p>The Terms of Service of Anthropic’s defective altruism will never outweigh the safety, the readiness, or the lives of American troops on the battlefield.</p><p>Their true objective is unmistakable: to seize veto power over the operational decisions of the United States military. That is unacceptable.</p><p>As President Trump stated on Truth Social, the Commander-in-Chief and the American people alone will determine the destiny of our armed forces, not unelected tech executives.</p><p>Anthropic’s stance is fundamentally incompatible with American principles. Their relationship with the United States Armed Forces and the Federal Government has therefore been permanently altered.</p><p>In conjunction with the President's directive for the Federal Government to cease all use of Anthropic's technology, I am directing the Department of War to designate Anthropic a Supply-Chain Risk to National Security. Effective immediately, no contractor, supplier, or partner that does business with the United States military may conduct any commercial activity with Anthropic. Anthropic will continue to provide the Department of War its services for a period of no more than six months to allow for a seamless transition to a better and more patriotic service.</p><p>America’s warfighters will never be held hostage by the ideological whims of Big Tech. This decision is final.</p></div></div><div class="dhead" style="--ac:#f76808">China</div><div class="feat solo" style="--ac:#f76808"><div class="txt"><div class="src">@BRICSinfo</div><h3>US and China open an emergency channel for AI incidents</h3><p>JUST IN: 🇺🇸🇨🇳 US and China agree to create communication channel for emergency AI incidents.</p></div></div><div class="dhead" style="--ac:#ffb224">Europe</div><div class="feat solo" style="--ac:#ffb224"><div class="txt"><div class="src">@PeterSweden7</div><h3>150,000 Swedes petition for a new election amid fraud probes</h3><p>Almost 150.000 people have now signed a petition demanding a NEW ELECTION in Sweden as authorities now has six ongoing investigations into suspected election fraud.</p></div></div><div class="dhead" style="--ac:#30a46c">Space</div><div class="feat solo" style="--ac:#30a46c"><div class="txt"><div class="src">@remarks</div><h3>Harvard detects first radio signals from an exoplanet 64 light-years away</h3><p>JUST IN: Harvard scientists detect first-ever radio signals directly from a planet outside our solar system, 64 light-years away.</p></div></div><div class="dhead" style="--ac:#00a2c7">Politics</div><div class="feat solo" style="--ac:#00a2c7"><div class="txt"><div class="src">@InsiderWire</div><h3>Trump cancels nearly $1B for illegal-immigrant and race-focused programs</h3><p>#BREAKING: Trump cancels nearly $1B in funding for illegals and race-focused programs.</p></div></div><footer>Compiled from your X bookmarks · every headline opens the vault note · the words are the posts' own.</footer></div><div id="lb"><img></div><script>document.querySelectorAll("img[data-full]").forEach(i=>i.addEventListener("click",()=>{const b=document.getElementById("lb");b.firstElementChild.src=i.dataset.full;b.style.display="flex";}));document.getElementById("lb").addEventListener("click",e=>e.currentTarget.style.display="none");</script><div class="sharefoot"><a href="../">← Back to all editions</a></div></body></html>

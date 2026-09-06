@@ -49,4 +49,4 @@ See `04 - Synthesis/Entity Theory/` for the cross-entity ledger entry on the ESF
 > [!graph]- Graph links (3 notes — auto-generated, do not edit)
 > 1934 - Gold Reserve Act (verbatim)
 > 2026 - 31 USC §5302 (current, verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

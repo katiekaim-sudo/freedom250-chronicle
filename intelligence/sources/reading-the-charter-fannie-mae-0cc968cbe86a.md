@@ -98,4 +98,4 @@ Fannie Mae is a chimera built by Congress to eat two ways at once: private profi
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1954 - Federal National Mortgage Association Charter Act (current codified) (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

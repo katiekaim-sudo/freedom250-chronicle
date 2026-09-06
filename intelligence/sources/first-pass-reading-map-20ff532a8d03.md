@@ -1,7 +1,7 @@
 # First-pass reading map — Trump at the 2026 WHCA dinner
 
-This is a close-reading workbench, not a claim verdict and not a vault
-promotion. “Observed” means the transcript records the words. “Hypothesis”
+This is a close-reading workbench, not a claim verdict and not a Chronicle
+incorporation. “Observed” means the transcript records the words. “Hypothesis”
 means an interpretive reading to test against the underlying legal, corporate,
 military, or operational object.
 

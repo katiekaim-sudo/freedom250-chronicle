@@ -65,4 +65,4 @@ The International Organizations Immunities Act is not itself a creature with a b
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1945 - International Organizations Immunities Act (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

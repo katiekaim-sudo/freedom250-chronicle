@@ -13,9 +13,9 @@ That pressure can impair foreign-currency access, trade finance, oil-revenue rep
 ## Read order
 
 1. `OPERATION_ECONOMIC_OUTCAST_BANQUE_MISR_UAE_DELTA_2026-08-28.md` — targeted September 3 receipt: proposed Section 311 action against Banque Misr UAE, separate operative OFAC designations and successor gates.
-2. `OPERATION_ECONOMIC_OUTCAST_DELTA_2026-08-24.md` — controlling August 24 legal and architecture delta; pending workbench object.
-3. `OPERATION_ECONOMIC_OUTCAST_OFAC_ANNEX_2026-08-24.md` — reconciled Treasury/State additions and annex boundary; pending workbench object.
-4. `OPERATION_ECONOMIC_OUTCAST_FINANCIAL_INSTITUTION_WATCH_2026-08-24.md` — Bessent's end-of-week forecast, now partially confirmed by the August 28 proposed Banque Misr UAE action; pending workbench object.
+2. `OPERATION_ECONOMIC_OUTCAST_DELTA_2026-08-24.md` — controlling August 24 legal and architecture delta; current Workbench research with no Chronicle landing.
+3. `OPERATION_ECONOMIC_OUTCAST_OFAC_ANNEX_2026-08-24.md` — reconciled Treasury/State additions and annex boundary; current Workbench research with no Chronicle landing.
+4. `OPERATION_ECONOMIC_OUTCAST_FINANCIAL_INSTITUTION_WATCH_2026-08-24.md` — Bessent's end-of-week forecast, now partially confirmed by the August 28 proposed Banque Misr UAE action; current Workbench research with no Chronicle landing.
 5. `IRAN_FINANCIAL_PRESSURE_RESEARCH_PACKAGE.md` — August 7 controlling synthesis and adjudication; incorporated August 7 lineage.
 6. `BESSENT_IRAN_BANKING_SYSTEM_SOURCE_RECORD_2026-08-07.md` — exact August 7 source identity, time and context.
 7. `IRAN_BANKING_PAYMENT_AND_BYPASS_ENTITY_MAP.md` — institutions, accounts, messages, assets and controllers.
@@ -59,9 +59,9 @@ Selective live-vault copies are the Iran Financial Pressure source document,
 claim audit and watchboard; the August 7 Bessent official-source record; and
 one atomic August 7 event note. The registry records their exact landing paths.
 
-The three August 24 artifacts remain `pending` with `workbench_controls`. They
-extend the current Research Desk answer but have not landed in the vault. The
-vault remains authoritative for the incorporated August 7 copies. Read order
-expresses retrieval freshness, not promotion, canon or review.
+The three August 24 artifacts are current with `workbench_controls`. They
+extend the current Research Desk answer but have no Chronicle landing. The
+Chronicle remains authoritative for the incorporated August 7 copies. Read
+order expresses retrieval freshness, not promotion, canon or review.
 
 Observatory presentation: existing Research Desk, stable family ID `iran-financial-pressure`. No new tab and no new Iran subplot are required for this first factual pass.

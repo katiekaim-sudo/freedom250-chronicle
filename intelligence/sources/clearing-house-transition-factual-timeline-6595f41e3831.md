@@ -2,7 +2,7 @@
 
 # Clearing-house transition — factual timeline
 
-Updated: 2026-09-01  
+Updated: 2026-09-18  
 Status: working factual spine  
 Scope: U.S. central counterparties, securities depositories, Treasury-clearing implementation, clearing access, margin and collateral, operating hours, core-platform modernization, tokenization, and Federal Reserve interaction with clearing infrastructure.
 
@@ -93,15 +93,20 @@ This index is factual metadata plus an explicit **proposed charting anchor**. Th
 | DTC limited-production transactions | 2026-07-15 | Not publicly stated | Distributed production systems on Hyperledger Besu and Canton | New York, NY as institutional anchor; exact execution loci unknown | Occurred limited-production milestone; no transaction-level timestamp, CUSIP, value or matched-counterparty record was published |
 | NSCC CNS output-testing window | 2026-08-24–2026-10-09 | Daily availability not stated in the controlling public notice | Distributed PSE test environment | New York, NY only as institutional anchor | Scheduled narrow receipt/layout/file-structure test; economic values and cash components are excluded |
 | SEC issues transfer-agent modernization proposal | 2026-09-01 | Not publicly stated | SEC, Washington | Washington, DC | Commission-issued proposal; Federal Register publication and exact comment close were not yet located at the cutoff |
+| DTC issues mandatory settlement-system migration notice | 2026-09-10 | Not publicly stated | DTC notice / distributed participant migration | New York, NY | Notice and revised program target; not production launch |
+| NSCC fixes CMU CSV testing and cutover schedule | 2026-09-14 | Not publicly stated | NSCC notice / distributed participant systems | New York, NY | Required test/attestation and future conversion schedule |
+| DTC files AnnounceDirect proposed rule change | 2026-09-15 | Not publicly stated | DTC filing / SEC process | Washington, DC for filing; New York, NY for applicant action | Proposed filing; no effectiveness or deployment inference |
+| Oasis Pro Markets joins Fund/SERV | 2026-09-16 | Not publicly stated | NSCC Fund/SERV / distributed member access | New York, NY | Membership announcement; no first tokenized-fund transaction inference |
 | OCC external parallel-testing target | 2026-Q3 | Not yet known | Distributed test environment | Chicago, IL once date is known | Future window |
 | CMESC launch target | Later 2026 | Not yet known | Distributed production system | Chicago, IL once activation is confirmed | Original Q2 target changed; do not chart a planned quarter as an event |
-| DTC commercial tokenization target | 2026-10 | Not yet known | Distributed production system | New York, NY once activation is confirmed | Future target |
+| DTC commercial tokenization target | 2026-10 | Not yet known | Distributed production system | New York, NY once activation is confirmed | Month-level future target; October 1 is not an announced launch date |
+| CMU CSV-only production cutover | 2026-10-30 | Not yet known | Distributed NSCC production systems | New York, NY only as institutional anchor | Fixed future conversion target; legacy PDF print-image reports scheduled to retire |
 | Collateral AppChain launch target | 2026-Q4 | Not yet known | Distributed production system | New York, NY once activation is confirmed | Future target |
 | Cash Treasury compliance date | 2026-12-31 | Legal effective time not stated in source used here | U.S. regulatory regime / distributed market | Washington, DC at 12:00 a.m. EST only if legal convention is adopted | Confirm rule's definition of compliance date and business-day operation before choosing midnight |
 | Digital Launchpad Azure migration target | End-2026 | Not yet known | Distributed cloud infrastructure | New York, NY once completion is announced | Future target |
 | Stellar connectivity target | 2027-H1 | Not yet known | Distributed network | New York, NY once production begins | Future target |
 | Treasury repo compliance date | 2027-06-30 | Legal effective time not stated in source used here | U.S. regulatory regime / distributed market | Washington, DC at 12:00 a.m. EDT only if legal convention is adopted | Confirm legal and business-day convention |
-| DTCC settlement transformation target | 2027-Q4 | Not yet known | Distributed production system | New York, NY once activation is confirmed | Future target |
+| DTC settlement-system launch | 2027-11 | Not yet known | Distributed production system | New York, NY once activation is confirmed | Mandatory migration program; exact November date to be announced later |
 
 ### Recommended charting hierarchy
 
@@ -710,7 +715,67 @@ remained 60 days after Federal Register publication rather than a fixed
 calendar date. The proposal is not final or effective and does not approve any
 chain, company or token.
 
-**Sources:** [SEC — Transfer Agent Rules proposal page](https://www.sec.gov/rules-regulations/2026/09/s7-2026-30); [SEC — Release No. 34-106246](https://www.sec.gov/files/rules/proposed/2026/34-106246.pdf); SEC Transfer Agent Modernization — Source Document
+**Sources:** [SEC — Transfer Agent Rules proposal page](https://www.sec.gov/rules-regulations/2026/09/s7-2026-30); [SEC — Release No. 34-106246](https://www.sec.gov/files/rules/proposed/2026/34-106246.pdf); [SEC Transfer Agent Modernization — Source Document](../sources/sec-transfer-agent-modernization-source-document-3be126c5861c.html)
+
+### 2026-09-10 — DTC makes the settlement-system migration mandatory
+
+**Status:** Notice issued / implementation pending  
+**Entities:** DTC; Participants; other covered entities  
+**Track:** Core settlement-platform modernization
+
+DTC Notice B24776-26 states that the settlement-system updates are mandatory
+under DTC Rule 2. It replaces the earlier third-quarter-2027 target with an
+exact launch date in November 2027 to be announced later. DTC warns that a
+noncompliant Participant or covered entity will be unable to connect and may be
+subject to sanctions and regulatory reporting. The notice establishes the
+migration duty and revised clock, not completed connectivity or production use.
+
+**Source:** [DTC Important Notice B24776-26](https://files.dtcc.com/download/assets/B24776-26/08374a0aad3011f1a4d8625b0fb4d4b6)
+
+### 2026-09-14 — NSCC fixes the CMU PDF-to-CSV conversion clock
+
+**Status:** Notice issued / testing and conversion pending  
+**Entities:** NSCC; CMU RTTM clients  
+**Track:** Machine-readable reporting / client conversion
+
+NSCC Notice CMU220-26 requires PSE testing and client attestation by October 2,
+permits optional parallel comparison of legacy PDF print images and new CSV
+reports from October 2 through October 29, and schedules CSV-only production
+and retirement of the legacy format for October 30. These are scheduled test
+and conversion states; participant completion, results and production accuracy
+remain separate proof objects.
+
+**Source:** [NSCC Important Notice CMU220-26](https://files.dtcc.com/download/assets/CMU220-26/f123def2b04811f1afbbfac66c7e4334)
+
+### 2026-09-15 — DTC files the AnnounceDirect corporate-action proposal
+
+**Status:** Proposed  
+**Entities:** DTC; SEC; transfer agents and other announcement agents  
+**Track:** Corporate-action submission / legal intake
+
+DTC Important Notice 24808-26 states that SR-DTC-2026-010 would establish
+AnnounceDirect and standardize submission channels, agent obligations,
+good-order and timing requirements and announcement content. The filing does
+not itself make the system effective; no SEC disposition, revised operative
+arrangements or observed production use was located at the September 18
+cutoff.
+
+**Source:** [DTC Important Notice 24808-26](https://files.dtcc.com/download/assets/24808-26/733b8d30b13f11f1ba6ba6fa009a8480)
+
+### 2026-09-16 — Oasis Pro Markets joins Fund/SERV as its first tokenization-platform member
+
+**Status:** Membership announced  
+**Entities:** NSCC Fund/SERV; Oasis Pro Markets; Ondo Finance  
+**Track:** Tokenized funds / incumbent distribution and reporting rails
+
+DTCC announced that Oasis Pro Markets, an Ondo subsidiary and registered
+broker-dealer, joined Fund/SERV as the network's first tokenization-platform
+member. Membership connects the platform to incumbent fund transaction,
+confirmation, account-data, reconciliation, distribution, tax and regulatory-
+reporting functions. It does not prove a first named tokenized-fund transaction
+or the broader DTC tokenization-service launch.
+
+**Source:** [DTCC — Fund/SERV Adds Ondo Finance as First Tokenization Member](https://www.dtcc.com/press-releases/2026/DTCC-FundSERV-Adds-Ondo-Finance-as-First-Tokenization-Member)
 
 ---
 
@@ -738,13 +803,29 @@ CME's December 2025 announcement identified Q2 2026 as the expected launch perio
 
 ### 2026-10 — DTC tokenization-service launch target
 
-**Status:** Scheduled  
+**Status:** Scheduled / month only  
 **Entities:** DTC; DTCC Digital Assets; DTC participants and clients  
 **Track:** Depository tokenization
 
-DTCC announced an October 2026 target for launch of DTC's tokenization service following the limited-production phase.
+DTCC announced an October 2026 target for broader launch of DTC's tokenization
+service following the limited-production phase. No exact October date was
+located at the September 18 cutoff; October 1 is an approximate watch anchor,
+not an announced launch date.
 
 **Source:** [DTCC — DTC tokenization development update](https://www.dtcc.com/news/2026/may/04/dtcc-advances-development-of-new-tokenization-service)
+
+### 2026-10-30 — CMU CSV-only production target
+
+**Status:** Scheduled  
+**Entities:** NSCC; CMU RTTM clients  
+**Track:** Machine-readable reporting / legacy-format retirement
+
+NSCC scheduled CSV-only CMU production for October 30 after a required PSE
+test/attestation due October 2 and an optional October 2–29 dual-format
+comparison period. Reaching the date will not by itself establish successful
+client conversion, report accuracy or defect closure.
+
+**Source:** [NSCC Important Notice CMU220-26](https://files.dtcc.com/download/assets/CMU220-26/f123def2b04811f1afbbfac66c7e4334)
 
 ### 2026-Q4 — DTCC Collateral AppChain launch target
 
@@ -796,15 +877,18 @@ Covered clearing agencies' direct participants must begin submitting the covered
 
 **Source:** [SEC — Extension of compliance dates](https://www.sec.gov/rules-regulations/2025/02/s7-23-22)
 
-### 2027-Q4 — DTCC clearing-and-settlement transformation production target
+### 2027-11 — DTC settlement-system launch target
 
-**Status:** Scheduled  
-**Entities:** DTCC; NSCC; DTC; market participants  
-**Track:** Equity clearing and settlement modernization
+**Status:** Scheduled / exact day pending  
+**Entities:** DTC; Participants; other covered entities  
+**Track:** Core settlement-system modernization
 
-DTCC identified the fourth quarter of 2027 as the target for production launch of new settlement interfaces and related ISO 20022 implementation within its broader clearing-and-settlement transformation.
+DTC replaced the earlier third-quarter-2027 target with an exact date in
+November 2027 to be announced later. The participant migration is mandatory
+under Rule 2, but the notice does not establish occurred migration or production
+use.
 
-**Source:** [DTCC — Comprehensive Clearing & Settlement Transformation Initiative](https://www.dtcc.com/dtcc-connection/articles/2025/october/22/the-path-forward-comprehensive-clearing-settlement-transformation-initiative-b2p6i4aw)
+**Source:** [DTC Important Notice B24776-26](https://files.dtcc.com/download/assets/B24776-26/08374a0aad3011f1a4d8625b0fb4d4b6)
 
 ---
 
@@ -818,6 +902,10 @@ These are not events and should not be entered as occurred until a dated source 
 - first reported ICC Treasury clearing volume and Treasury participant list;
 - SEC action and effective date for FICC's July 9 enforcement proposal;
 - production launch date for OCC Ovation;
+- operative DTC terms and first post-opening transaction for the broader October tokenization service;
+- SEC disposition, effective date and observed production use for AnnounceDirect;
+- CMU client attestation/results, October 30 CSV-only production and legacy-report retirement;
+- the exact November 2027 DTC settlement-system launch date and completed participant migration;
 - first formal standing eligibility or recurring use of a DTC-tokenized asset as collateral in a CCP, repo, or regulated margin system beyond the July 15 limited-production workflows;
 - production launch and participant list for the Collateral AppChain;
 - any FOMC authorization, test, or operating change for centrally cleared Federal Reserve open-market or Standing Repo Facility transactions;

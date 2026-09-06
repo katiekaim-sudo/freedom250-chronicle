@@ -1,7 +1,7 @@
-# INTERNATIONAL MONETARY INITIATION — RESEARCH PACKAGE
+# INTERNATIONAL MONETARY INITIATION — RESEARCH GUIDE
 
-**Status:** `pending` — finished workbench package; not yet folded into the vault.  
-**As-of date:** 2026-07-20.  
+**Status:** Current Workbench reading guide; not a Chronicle landing.  
+**Original package cutoff:** 2026-07-20, with July 13 component comparisons. The maintained regional answer identifies targeted later saved corrections separately.  
 **Question:** If the next monetary phase does not begin in the United States, what would it mean for Japan, South Korea, Indonesia/ASEAN, Europe or BRICS to “start it”?
 
 ## Read in this order
@@ -16,9 +16,15 @@
 8. `INTERNATIONAL_MONETARY_TRANSITION_TIMELINE.md` — occurred, effective, pilot, production and scheduled events kept separate.
 9. `INTERNATIONAL_MONETARY_SOURCE_WATCHBOARD.md` — the records capable of changing the answer.
 
-## The finding in one paragraph
+## Maintained answer and complementary evidence
 
-There is no single starting gun. The regions lead different clocks, but a common architecture is visible: regulated bank/trust claims at the customer edge, sovereign/HQLA assets as income and collateral, central-bank money at final settlement and interoperability layers between national systems. Japan can originate a bank-balance-sheet, trust-money or collateral transition. Korea is joining public spending, tokenized deposits, securities and BOK finality. Indonesia has added the most direct trade-to-bank-to-sovereign channel: natural-resource export FX must enter state-owned banks and may be placed in FX government bonds/sukuk, while QR/LCT, CIPS and Nexus extend outward. Europe has the strongest completed tokenized-collateral circuit and the nearest scheduled wholesale central-bank-money bridge. BRICS remains a coordination layer over production national systems—not one issuer or rail. The United States need not originate the transition to become decisive later through dollar liquidity, Treasury collateral, sanctions, public chains and institutional scale.
+Read the [regional comparison](../sources/international-monetary-initiation-map-e03be4ad2554.html) for
+the single maintained answer to “who could start which part?” It carries the
+saved later corrections and separates factual stage changes from the original
+sequencing hypothesis. The bank, legal, regional, timeline and scenario files
+answer distinct supporting questions; their number is not a count of independent
+confirmations. The [Next Phase extension](../sources/international-monetary-next-phase-research-package-804f4b36d10e.html)
+traces funding, fiscal authority, finality and risk transfer in more depth.
 
 ## Method
 
@@ -29,7 +35,7 @@ The package treats “start” as six different clocks:
 | **Stress** | Did a market, currency, collateral pool or balance sheet force adaptation? |
 | **Law** | Did an enacted or effective rule change what may legally be issued, held or settled? |
 | **Pilot** | Did a controlled experiment use real or simulated participants/value? |
-| **Production** | Can ordinary or institutional users move live value now? |
+| **Production** | Can eligible users move live value under operating service terms beyond a bounded experiment? A closed-account service can be production. |
 | **Interoperability** | Does the rail cross systems, currencies or borders? |
 | **Control** | Who can admit, freeze, sanction, reverse, collateralize or confer settlement finality? |
 

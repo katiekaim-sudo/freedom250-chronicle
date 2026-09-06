@@ -1,7 +1,8 @@
 # Direct-Website Corrective Merge — August 31–September 3, 2026
 
-**State:** controlling correction to the first weekly merge; pending human
-promotion review
+**State:** closed-provenance; controlling correction to the first weekly merge; human promotion remained unapproved at campaign close
+
+> **Lifecycle note (September 8, 2026):** closed provenance. Historical pending, review, promotion, completion or incorporation language below records the campaign state at its own cutoff; it is not a current queue and does not change any stated Chronicle landing, incorporation boundary or evidence cutoff.
 
 **Inclusive start:** 2026-08-31 00:00:00 EDT
 

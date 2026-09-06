@@ -81,4 +81,4 @@ The FHLBank System is a mutual-aid pact wearing a government charter: eleven reg
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1932 - Federal Home Loan Bank Act (current codified) (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

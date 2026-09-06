@@ -1,9 +1,7 @@
-> This research edition omits the original’s separate astrological passages and local app controls. The full original remains in the private Observatory. Government, monetary and institutional interpretations retain their original status and dates; this is not a fresh factual audit.
-
 # Iraq Oil Provenance Logistics Ledger
 
 Updated: 2026-07-15  
-Status: pending — primary-source factual layer; not yet folded into the live vault  
+Status: current Workbench research; no Chronicle landing  
 Scope: Qayarah production and road movement; Khor al-Zubayr and Berth/Jetty 41; floating storage and ship-to-ship transfer; cargo documents; vessel identity; insurance; bank routing; sovereign receipt  
 Source rule: Iraqi government and state-company records, U.S. Treasury/OFAC, CBI, MoF, EITI official records, official corporate/ship/insurance registries. Treasury narrative allegations remain allegations unless an operative or adjudicative record independently establishes them.
 
@@ -437,6 +435,7 @@ source_url
 8. Current registered-owner/manager histories for DIJILAH, CASINOVA and MOLECULE.
 9. P&I, hull and war-risk records for the named vessels, plus any sanctions endorsements or cancellations.
 10. Cargo-level chain: SOMO invoice → buyer payment → Iraq 2/OPRA credit → MoF recognition.
+
 
 ## Primary source register
 

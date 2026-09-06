@@ -1,5 +1,35 @@
 # Wholesale Metals
 
+For the FCA's September 2026 tokenised-gold question, start with
+FCA_TOKENISED_GOLD_LEGAL_COLLATERAL_AND_PERIMETER_DEEP_DIVE_2026-09-14.md.
+It separates token property, physical-gold title and collateral control;
+tests whole-bar, fractional, pooled, unallocated and synthetic architectures;
+maps the CIS/AIF and 2027 crypto-perimeter clocks; and answers the FCA's five
+questions without treating the Call for Input as a rule or product approval.
+
+For the UK fund-vehicle and liquidity extension, continue to
+Wave 1 AIF vehicle and liquidity bridge.
+It distinguishes direct gold property from a tokenised gold-fund unit, keeps
+current FUND rules, final 2027 liquidity changes and proposed 2028 AIFM reforms
+on separate clocks, and walks redemption, ledger, custodian and issuer failure.
+
+For the FCA's private-standards versus formal-regulation research question,
+continue to the
+Wave 2 LBMA/LPMCL case study.
+It separates technical standards, market conduct, membership, contracts,
+supervision, statutory finality, property and failure powers, and tests where
+self-regulation is credible or structurally incomplete.
+
+For the reusable **arrived / owed / accepted / exit** framework and Crypto Hub technology map, use the maintained claim-and-process crosswalk. It separates saved evidence, hypothetical connections and missing contractual interfaces.
+
+For the four follow-through questions, read the joined two-wave study. It sharpens weekend novation/funding, BMO cash semantics, conditional sovereign rebates and the Shandong upstream cause; the broader review retains its other findings.
+
+For current COMEX changes, start with
+COMEX rules, operations and research — September 9, 2026.
+It extends the July infrastructure review with weekend trading, sovereign-fund
+incentives, producer eligibility, collateral and technical changes, substantive
+CME research, and explicit coverage gaps. Other regions retain their own cutoffs.
+
 For the gold plotline, start with
 [GOLD_USE_HOLDINGS_AND_CUSTODY_MAP_2026-08-16.md](../sources/gold-use-holdings-and-custody-map-2026-08-16-c6534962dbcf.html).
 It maps current uses, physical forms, owners, custodians, ledgers and the

@@ -1,6 +1,8 @@
-> Source created: 2026-07-12 · Source updated: 2026-09-01
+> Source created: 2026-07-12 · Source updated: 2026-09-07
 
 # Private Monetary Stack — Source Documents
+
+> **2026-09-07 bounded account correction.** FINTECH_SWEEP_MARKET_ACCESS#2. Kraken and FINTECH_CRYPTO_CLAIM_AUDIT#CA-10 — All crypto trust-bank approvals are at the same stage now reconcile Kraken Financial’s officially approved limited-purpose account, May 8 service restrictions and the January 28 fields reported in saved July 25 research. This changes the earlier universal “unopened gate” assessment below; it does not refresh the whole suite or establish actual payment use. The original delivered Workbench copies remain preserved.
 
 > **Provenance & audit (Claude, 2026-07-12; SWIFT activation addendum 2026-07-21; Circle–IBM patent Waves 0–2, portfolio landscape and transfer-membership test, 2026-08-05; continuous-underwriting extension 2026-08-09; SEC transfer-agent-modernization extension 2026-09-01).** Eight original company-layer documents, one canonical SWIFT activation dossier, five Circle–IBM source-first patent artifacts, one cross-sector lending source document and one transfer-agent rulemaking/control map. The suite maps the private firms and operator constitutions trying to issue, route, record, custody, settle, tokenize, lend through or govern the new monetary pipes.
 >
@@ -13,7 +15,7 @@
 > 2. **Company metrics are not audited totals.** Visa's $7B annualized run rate, Canton's "$350B daily," Kinexys's ">$3T processed," R3's "$17B tokenized," Ondo's "$370M TVL," Fireblocks' "2,400+ institutions" — all self-reported program metrics. The docs flag every one. Never promote them to fact.
 > 3. **"Live" collapses five meanings** (mainnet available / asset issued / one completed regulated transaction / pilot with real value / recurring production service). The `ISO_NETWORKS` annex is explicit about this. Use the status vocabulary in the Registry.
 > 4. **XDC Foundation's legal transparency is an open gap** the document itself flags — jurisdiction, incorporation number, directors, treasury all unstated.
-> 5. **Cutoffs are document-specific.** The original company suite ends 2026-07-11. The SWIFT activation dossier carries a 2026-07-21 cutoff. Do not silently project either snapshot forward.
+> 5. **Cutoffs are document-specific.** The original company core is dated 2026-07-11; later additions retain their own dates, including the August 5 claim-audit and August 14 charter-matrix additions and September 7 bounded Kraken correction. The SWIFT dossier began with a July 21 cutoff and carries its own dated updates. These are not uniform current-status sweeps; read the observation date attached to each claim.
 > 6. **Continuous underwriting is not public-wallet lending.** The 2026-08-09 extension distinguishes platform cash-flow underwriting, tokenized collateral, executed digital-currency loan controls, DLT loan records and still-unproven DLT-native enterprise credit.
 
 ---
@@ -37,7 +39,7 @@
 | 13 | Circle–IBM Patent Portfolio — Landscape and Cluster Map | **Circle–IBM portfolio landscape.** Broad and conservative official-USPTO brackets, provisional eight-cluster map, inventor programs, Circle architecture crosswalk and Maximo boundary. |
 | 14 | Circle–IBM Transfer Membership Test — Maximo versus Financial Controls | **Original-question return gate.** Seven Maximo/EAM candidates versus five financial/security controls; no reviewed property has an indexed Circle assignment. |
 | 15 | [Continuous Underwriting and Programmable Credit — Source Document](../sources/continuous-underwriting-and-programmable-credit-source-document-0b20967cc733.html) | **Lending extension.** Production platform cash-flow underwriting, tokenized secured finance, stablecoin funding, borrower-evidence clocks, GAAP/assurance boundary and exact DLT-native credit return gates. |
-| 16 | SEC Transfer Agent Modernization — Source Document | **Record/control extension.** Proposed electronic and DLT master-securityholder-file rules, one accountable recordkeeping transfer agent, multichain reconciliation, company-chain firewalls and exact Federal Register/comment clocks. |
+| 16 | [SEC Transfer Agent Modernization — Source Document](../sources/sec-transfer-agent-modernization-source-document-3be126c5861c.html) | **Record/control extension.** Proposed electronic and DLT master-securityholder-file rules, one accountable recordkeeping transfer agent, multichain reconciliation, company-chain firewalls and exact Federal Register/comment clocks. |
 
 Files live in `02 - Research/Private Monetary Stack/`.
 
@@ -45,7 +47,7 @@ Files live in `02 - Research/Private Monetary Stack/`.
 
 **Adds:** the *institutional interior*. The vault already carried the retail-facing names (RLUSD, Custodia, Mastercard, Securitize, Hedera, Paxos, Canton, Anchorage, Chainlink, BitGo). It barely carried the permissioned bank rails that actually settle the money — **Fnality (2 mentions), Partior (2), Digital Asset (1), Broadridge (6), Fiserv (5)**. That was the hole. It is now filled.
 
-**Takes away:** the assumption that the private build is a *bypass*. See the derived reading — the incumbents are absorbing the new rails, and **the Fed's gate has not opened for anyone.**
+**Takes away:** the assumption that the private build is a *bypass*. The original July 12 assessment said: “the incumbents are absorbing the new rails, and **the Fed's gate has not opened for anyone.**” That universal account claim is superseded by the official Kraken Financial record. Kansas City announced approval March 4, 2026 and disclosed Fedwire Funds-only limits on May 8; the saved July 25 audit reports January 28 action/access-effective CSV fields. The permission applies to the SPDI, not its exchange or other affiliates, and does not demonstrate actual payment use. The initial one-year term’s start remains unspecified. See FINTECH_SWEEP_MARKET_ACCESS#2. Kraken for exact sources and remaining gaps. Other institutions’ charter, access and operating clocks remain separate.
 
 ## 3. Corrections applied to the vault (2026-07-12)
 
@@ -119,7 +121,7 @@ companion energy application begins at [ENERGY INFRASTRUCTURE — READ FIRST](..
 
 ## 2026-09-01 transfer-agent modernization extension
 
-SEC Transfer Agent Modernization — Source Document adds the legal and
+[SEC Transfer Agent Modernization — Source Document](../sources/sec-transfer-agent-modernization-source-document-3be126c5861c.html) adds the legal and
 operational record layer. The proposal permits multiple linked electronic
 systems, including blockchain/DLT components, while retaining one registered
 recordkeeping transfer agent responsible for each fungible issue. It connects

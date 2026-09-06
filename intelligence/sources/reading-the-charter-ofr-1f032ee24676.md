@@ -45,4 +45,4 @@ See `04 - Synthesis/Entity Theory/` for the cross-entity ledger entry on OFR.
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 2010 - Dodd-Frank Title I — OFR provisions (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

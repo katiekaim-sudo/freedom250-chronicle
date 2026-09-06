@@ -91,4 +91,4 @@ The FFB isn't a bank in any sense a depositor would recognize — it's a pipe. T
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1973 - Federal Financing Bank Act (current codified, verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

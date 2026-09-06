@@ -1,0 +1,188 @@
+# Government Hidden Control Surfaces 2026
+
+## Question
+
+What high-value government information is Freedom 250 likely missing because it
+lives below or between the familiar entity, agency, committee and publisher
+layers?
+
+## Answer
+
+The largest newly identified blind spot is not another list of agencies. It is
+the set of **institutional control surfaces between entities and final
+decisions**:
+
+- advisory councils and FACA committees;
+- interagency and government-wide management councils;
+- public stakeholder-contact and ex-parte-style meeting ledgers;
+- program boards and project-performance portfolios; and
+- the draft-recommendation, agency-response and implementation records that
+  connect meetings to later action.
+
+The current Federal Group and Government-Wide Source Monitor are strong at
+answering **who exists** and **where the official publisher is**. They are much
+less explicit about **which recurring room, council, board, meeting series or
+contact ledger is shaping a decision**.
+
+The completed fixed-window sweep establishes a 1,025-body closed-FY2025 FACA
+denominator; a live FY2026 agency overlay; a 41-center FFRDC denominator; a
+corrected 15-body executive-council union; and a 114-record seed census of the
+highest-value control surfaces. Material early findings include five durable
+staff-level FSOC committees, the Federal Reserve's five-body advisory family
+and 90-record systemic public-contact series, the CDO Council's December 2024
+expiry and January 2025 re-establishment, the distinction between FSCAC advice
+and FedRAMP Board implementation authority, and official 2025 terminations of
+NIAC and CIPAC despite their continued presence on an umbrella landing page.
+The next three sector waves added an authority-based delivery overlay after
+keyword triage missed most tax and benefits bodies; reconciled a 29-record
+statutory trade-advisory family against USTR's stated 27; located clean advice-
+to-response chains at IRS, OPM, CBP, DOE and PHMSA; replaced a blanket FFRDC
+classification with a sponsor–center–administrator model; and identified the
+National Science Board, the 2026 STIB succession layer and the new EO 14177
+PCAST identity as high-priority chart candidates.
+The individual-candidate audit now dispositions all 253 manual-review rows,
+the action ledger holds 43 clock-separated chains, and Wave 9 has completed a
+governed canonical promotion. The Chronicle now owns a 650-node Federal Group,
+a 397-row institutional seed and a separate relationship layer with 92 stable
+endpoints, 76 typed relationships and 25 membership profiles. Private FFRDC
+administrators remain external endpoints rather than federal children.
+
+Wave 11 closes the Tier A membership drift at 94 rows, expanding the normalized
+membership ledger to 35 bodies and adding a machine-checked coverage invariant.
+It also resolves SCDAC's legal reestablishment date to the February 9, 2026
+charter filing; distinguishes active, renamed and charter-expired BIS TACs;
+records FDIC ComE-IN's bounded post-2024 operating gap; and preserves the DHS,
+Defense Acquisition Board, SEC and CFTC public-custody gaps without converting
+missing public records into evidence that no internal event occurred.
+The cleared canonical delta is now applied: DIB and DSB are `terminated` in
+the Chronicle relationship owner, while STIB remains a distinct mission
+successor and the 92-endpoint/76-relationship/25-profile topology is unchanged.
+
+Waves 12 and 13 close the fixed-window action and census backlogs. Wave 12
+normalizes 14 already-researched bodies across seven action clocks, adds five
+new BSC/FASAB/NSB action records and seven STIB/JBEA joins, and converts stale
+workflow labels into evidence-owned terminal states. Wave 13 resolves the last
+five genuinely open census rows, all in the CFTC advisory family. The governed
+114-record census now contains 82 `complete` and 32 terminal `held` records,
+with no `preflighted` or `in_progress` rows. `Held` remains a public-custody
+disposition, not a finding of inactivity.
+
+Wave 14 completes the program-board relationship delta. Ten program and
+shared-services governance bodies remain overlay-only, not constitutional-tree
+children. The reviewed promotion adds eight support endpoints and 23
+source-backed structural relationships, promotes the ten already-normalized
+membership profiles and holds four relationships that did not clear the
+authority or vocabulary gate. The canonical relationship layer now contains
+110 endpoints, 99 relationships, 35 membership profiles and 30 exact tree
+bindings while the 650-node topology and 397-row founding-date seed remain
+unchanged. The generator check and all 12 relationship regressions pass.
+Final convergence rebuilt 116 Research Room files with zero waiting items, a
+138-item Research Desk spanning 3,002 files and 119 watches, and 4,840 Search
+items spanning the same 3,002 research documents. The package validator reports
+zero errors and the final governed-scope suite passes 138 tests.
+
+A bounded cross-agency pass now adds a 17-anchor public-contact denominator and
+a 13-body program-board denominator. It identifies six standing or formal
+contact routes, including OIRA's government-wide E.O. 12866 meeting ledger,
+and reconciles ten current program boards. DOT's Council on Credit and Finance
+supplies the strongest item-level chain: recommendation, approval notice and
+executed agreement remain separate from construction, operation and effect.
+
+## Read order
+
+1. `HIDDEN_GOVERNMENT_CONTROL_SURFACES_DISCOVERY_2026-09-28.md` — findings, ranked seams, method correction and research waves.
+2. `FULL_SWEEP_CHARTER_AND_WAVE_PLAN_2025-2026.md` — governed January 2025–September 2026 census, legal-topology and research program.
+3. `CONTROL_SURFACE_CENSUS_2025-2026.json` — governed candidate universe and per-surface work state.
+4. `FACA_FY2025_DENOMINATOR_RECEIPT.json` — exact closed-FY counts, activity-window reconciliation, source defects and claim limits.
+5. `FACA_FY2025_COMMITTEE_CENSUS.json` — all 1,025 FY2025 committee identities with legal, lifecycle, interest and reported-activity fields; no personal member records.
+6. `FACA_MATERIALITY_TRIAGE_METHOD_2025-2026.md` and `FACA_FY2025_MATERIALITY_TRIAGE.json` — reproducible depth/wave routing for all 1,025 committees; work allocation only, not factual or chart promotion.
+7. `FACA_CHART_RECONCILIATION_METHOD_2025-2026.md` and `FACA_FY2025_CHART_RECONCILIATION_QUEUE.json` — exact topology collision check, agency-anchor review, repeat-family grouping and Wave 9 chart queue.
+8. `FACA_FY2026_CURRENT_AGENCY_OVERLAY_2026-09-28.json` — live, expressly unverified current-year agency-level counts and limitations.
+9. `WAVE_1_CURRENT_FINANCIAL_FACA_ROSTER_2026-09-28.json` and `WAVE_1_FINANCIAL_FACA_CROSSWALK_2025_2026.json` — the first committee-level current roster and reviewed FY2025-to-FY2026 identity/status bridge.
+10. `WAVE_1_FINANCIAL_CONTROL_ROOMS_REPORT_2025_2026.md` — Federal Reserve, FSOC, OFR, FFIEC and FBIIC legal/operating map and in-window evidence braid.
+11. `WAVE_2_EXECUTIVE_COUNCILS_DENOMINATOR_2026-09-28.json` — corrected 15-body current union, authorities, support relationships, record density and lifecycle traps.
+12. `WAVE_3_CLOUD_CYBER_CONTROL_ROOMS_REPORT_2025_2026.md` — FedRAMP/FSCAC authority stack, CISA lifecycle corrections and newly located implementation rooms.
+13. `WAVE_4_RETIREMENT_TAX_BENEFITS_DELIVERY_REPORT_2025_2026.md` — authority/program-owner recovery of tax, retirement, pay, Social Security and CMS control rooms missed by keyword triage.
+14. `WAVE_5_TRADE_INDUSTRY_INFRASTRUCTURE_CONTROL_ROOMS_REPORT_2025_2026.md` — family-complete trade, Commerce, COAC, DOE, PHMSA, STB, TVA and EXIM sweep with action joins and lifecycle breaks.
+15. `WAVE_6_DEFENSE_SCIENCE_RESEARCH_INTERFACE_REPORT_2025_2026.md` — FFRDC sponsor–center–administrator model, National Science Board, STIB, PCAST identity split and research-interface dispositions.
+16. `WAVE_7_MISSING_FEDERAL_ANCHORS_LEGAL_RECONCILIATION_2026-09-28.md` — resolves four unsupported FACA sponsoring-agency anchors into their actual legal forms and Wave 9 proposals.
+17. `WAVE_7_FACA_INDIVIDUAL_AND_FAMILY_MATERIALITY_AUDIT_2025_2026.md` — full disposition of the 253 individual-review candidates, including five previously missed family routers, lifecycle corrections and promotion gates.
+18. `WAVE_8_RECOMMENDATION_TO_ACTION_JOIN_LEDGER_2025_2026.json`, `WAVE_8_FINANCIAL_EXECUTIVE_CLOUD_JOIN_EXTENSION_2025_2026.json` and `WAVE_8_ITEM_LEVEL_JOIN_EXTENSION_2025_2026.json` — 43 cross-wave advice, response, instrument, operation and effect records, including strong, held and negative joins.
+19. `WAVE_9_ENTITY_RELATIONSHIP_INTEGRATION_MANIFEST_2025_2026.json` — the reviewed node, typed-edge, lifecycle and rebuild manifest promoted in Wave 9; the canonical result and authorization boundary are recorded in `WAVE_9_PROMOTION_RECEIPT_2026-09-28.md`.
+20. `FFRDC_MASTER_CENSUS_FY2025_FY2026.json` — reconciled 41-center FY2025/FY2026 sponsor, administrator, activity, change and chart-boundary registry.
+21. `CONTROL_SURFACE_CENSUS_SCHEMA.json` — legal type, lifecycle, chart-disposition and sweep-state contract.
+22. `CONTROL_SURFACE_WAVE_LEDGER_2025-2026.json` — durable progress and return gates for Waves 0–14.
+23. `SOURCE_MANIFEST.json` and `SOURCE_LEDGER.md` — preserved official files, hashes, source custody, exact states and claim limits.
+24. `validate_control_surface_program.py` — cross-artifact integrity check for census IDs, join references, Waves 12–14 terminal states, wave outputs, Catalog/Registry routing and promoted Wave 9, 11 and 14 receipts. Canonical Chronicle state is validated separately by its own injector and regression tests.
+25. `PROGRAM_COMPLETION_AUDIT_2026-09-28.md` — requirement-by-requirement evidence audit showing what is proved, partial and still required before the goal or chart integration can close.
+26. `WAVE_9_PROMOTION_READINESS_AUDIT_2026-09-28.md` — exact canonical-path, stable-ID, founding-date baseline, endpoint and vocabulary audit that must clear before chart promotion.
+27. `CONTROL_SURFACE_RELATIONSHIP_LEDGER_2025-2026.json` — first stable-ID, source-backed typed relationship set; role and external endpoints remain explicit rather than being collapsed into false parents.
+28. `CONTROL_SURFACE_RELATIONSHIP_SCHEMA.json` — machine-readable stable-ID, lifecycle, source and claim-limit contract for typed relationships.
+29. `CONTROL_SURFACE_MEMBERSHIP_SCHEMA.json` — machine-readable seat-design, appointment, chair, composition, term, current-roster and evidence-state contract.
+30. `WAVE_9_CANONICAL_BASELINE_RECONCILIATION_2026-09-28.md` — exact 408-node institutional-baseline versus 392-record seed reconciliation, with locator, historical, program and true-drift dispositions.
+31. `FFRDC_MATERIAL_RELATIONSHIP_LEDGER_2025_2026.json` — 19-center material sponsor–center–administrator layer with current activity receipts and contract/sponsor/consumer boundaries.
+32. `CONTROL_SURFACE_MEMBERSHIP_LEDGER_2025-2026.json` — normalized 35-body seat, appointment, chair, composition, term, roster and vacancy evidence.
+33. `TIER_A_MEMBERSHIP_COVERAGE_AUDIT_2025_2026.md` and its machine-checked coverage ledger — closes all 94 Tier A rows through 35 normalized records, 45 prose dispositions and fourteen explicit exclusions.
+34. `PUBLIC_CONTACT_AND_PROGRAM_BOARD_SWEEP_2025_2026.md` — source-bearing findings for Tier A stakeholder-contact routes and material investment, modernization, credit, capital-project and portfolio boards.
+35. `PUBLIC_CONTACT_AND_PROGRAM_BOARD_DENOMINATOR_2025_2026.json` — bounded 17-anchor contact-route denominator, 13-board disposition set, six clock braids and explicit negative/held routes.
+36. `WAVE_9_PROMOTION_RECEIPT_2026-09-28.md` — applied canonical topology, typed-relationship, legal-identity, rebuild and validation receipt.
+37. `WAVE_10_EXECUTIVE_COUNCIL_OPERATION_RECONCILIATION_2025_2026.md` and its structured ledger — current-operation and public-record reconciliation for six sparse management councils plus the SSGB and BSC shared-services governance routes, including the CHCO Council's strong 2025 receipt and the corrected four-times-per-year PMPC statutory clock.
+38. `WAVE_10_LIFECYCLE_CONFLICT_RECONCILIATION_2025_2026.md` and its structured ledger — exact termination, reestablishment and successor-clock reconciliation for DIB, DSB, ISAC, NPSAB and SCDAC.
+39. `WAVE_10_CONTACT_BOARD_RECONCILIATION_2025_2026.md` and its structured ledger — CFPB docket-level ex parte receipts, SEC/CFTC calendar cutoffs, acquisition-board custody gaps and downstream DOE/CHIPS gate receipts.
+40. `WAVE_10_PRIORITY_CANDIDATE_CURRENT_YEAR_VERIFICATION_2025_2026.md` and its structured ledger — official-source current-year disposition of 18 priority bodies, including versioned CSRIC, NSAC reconstitution and the split BIS TAC lifecycle.
+41. `WAVE_11_LEADERSHIP_CALENDAR_CUSTODY_RECONCILIATION_2025_2026.md` and its structured ledger — bounded exact-path reconciliation of the SEC chair-calendar series through September 2025 and the CFTC leadership-calendar series through December 2025, with preserved source files and return triggers.
+42. `WAVE_11_BIS_TAC_AND_FDIC_LIFECYCLE_RECONCILIATION_2025_2026.md` and its structured ledger — seven-body lifecycle resolution separating current operation, current charter without operation, same-identity rename, charter expiry, nontermination and bounded public-record absence.
+43. `WAVE_11_SCDAC_AND_ACQUISITION_GOVERNANCE_RECONCILIATION_2025_2026.md` and its structured ledger — SCDAC's filed-charter legal clock, DHS PARM elimination and unresolved successor custody, post-reorganization ADA continuity, and the bounded Defense Acquisition Board item-level negative.
+44. `WAVE_11_CANONICAL_LIFECYCLE_DELTA_MANIFEST_2026-09-28.json` and `WAVE_11_CANONICAL_LIFECYCLE_DELTA_RECEIPT_2026-09-28.md` — applied DIB/DSB endpoint lifecycle correction and regenerated relationship projection, with pre/post hashes, 12/12 regression tests and explicit non-promotion boundaries.
+45. `WAVE_12_EXISTING_ACTION_EVIDENCE_NORMALIZATION_2025_2026.md` and its structured ledger — 14-body normalization of existing SEC IAC, DOT, DOE, NASA, CHIPS and FSOC evidence across recommendation, response, instrument, funding, deployment, operation and effect clocks.
+46. `WAVE_12_BSC_FASAB_NSB_ACTION_JOINS_2025_2026.md` and its structured ledger — five action records, including FASAB Technical Bulletin 2025-1 and the NSB National Geophysical Facility recommendation-to-award-to-operation chain.
+47. `WAVE_12_STIB_JBEA_ACTION_JOINS_2025_2026.md` and its structured ledger — STIB's tasking-to-work boundary and JBEA's complete 2025 CPE rule-to-administration chain, with examination, waiver, renewal and roster operations kept separate from measured effect.
+48. `WAVE_12_SPARSE_EXECUTIVE_COUNCIL_STOP_RECEIPT_2025_2026.md` and its structured receipt — fixed-window terminal dispositions for eight sparse executive and shared-services governance routes.
+49. `WAVE_12_CENSUS_SWEEP_STATE_RECONCILIATION_2025_2026.md` and its machine-readable map — evidence-owner reconciliation that reduced 43 stale workflow rows to five genuine CFTC gaps.
+50. `WAVE_13_CFTC_AAC_EEMAC_RECONCILIATION_2025_2026.md` and its structured ledger — current AAC and statutory non-FACA EEMAC lifecycle, meeting, report, adoption and response boundaries.
+51. `WAVE_13_CFTC_GMAC_MRAC_RECONCILIATION_2025_2026.md` and its structured ledger — exact charter-expiry termination clocks for GMAC and MRAC, two express GMAC action joins and the bounded MRAC response negative.
+52. `WAVE_13_CFTC_IAC_RECONCILIATION_2025_2026.md` and its structured ledger — same-body TAC-to-IAC continuity, August 2026 renewal and meeting operation, and a bounded recommendation-to-action negative.
+53. `WAVE_14_PROGRAM_BOARD_CANONICAL_PROMOTION_PLAN_2026-09-28.md` and its structured plan — reviewed overlay-only dispositions, support endpoints, 23 promotable structural relationships, ten membership-profile promotions and four held relationships.
+54. `WAVE_14_PROGRAM_BOARD_CANONICAL_PROMOTION_MANIFEST_2026-09-28.json` and `WAVE_14_PROGRAM_BOARD_CANONICAL_PROMOTION_RECEIPT_2026-09-28.md` — applied canonical counts, hashes, non-changes and validation receipt for the 110-endpoint, 99-relationship and 35-profile layer.
+
+## Boundaries
+
+- A meeting record establishes a contact and what participants presented; it
+  does not establish agreement, adoption or causation.
+- An advisory recommendation is advice, not a rule, order or agency response.
+- A board vote to invest is not an obligation, transfer, deployment, accepted
+  operation or outcome.
+- A charter or Federal Register notice establishes a body or meeting clock, not
+  present activity by itself.
+- An exact name missing from the Catalog or Registry establishes a library
+  identity gap, not that no earlier package ever mentioned the subject.
+- Workbench Catalog, Registry, Research Rooms and Return Ledger registrations
+  are routing metadata, not factual promotion or shipment. Wave 9 changed the
+  Chronicle-owned Federal Group only after explicit authorization and a
+  fail-closed staging review. No canonical watch, Source Monitor policy,
+  installed app, commit, push or public shipment followed from that promotion.
+
+## Entity-chart integration state
+
+Wave 9 canonical integration is complete for the reviewed set. The Federal
+Group now carries the verified durable nodes and a separate, source-bearing
+relationship runtime. Durable relationships such as `chairs`, `member_of`,
+`selected_by`, `administered_by`, `provides_secretariat`, `reports_to`,
+`advises` and `participates_in` remain distinct. A shared host, secretariat or
+visual branch does not imply ownership or control.
+
+The promotion also corrected the 1863 identity to **National Academy of
+Sciences (NAS)** while keeping the later NASEM collective distinct, and removed
+MITRE, RAND and The Aerospace Corporation from false DoD containment without
+discarding their institutional history. See the Wave 9 promotion receipt for
+the exact counts, hashes, rebuild chain and accepted generated collateral.
+
+## Evidence cutoff and access gaps
+
+Evidence is current through September 28, 2026, 11:59:59 p.m. EDT. The live GSA
+FACA directory was captured at agency level and for the first financial-sector
+committee cohort. GSA expressly marks current reporting-year data unverified
+until the Annual Comprehensive Review closes, so agency committee pages,
+charters and notices remain necessary for exact lifecycle clocks. Several
+promising bodies still have document-completeness gaps and remain below the
+first research tier.

@@ -323,7 +323,7 @@ An agency press release saying that assets were “seized,” “blocked,” “
 
 **Claims / defenses:** Cook alleged that no valid statutory cause or required process supported the removal and that the Board should not treat the seat as vacant. The Government argued cause existed, the President's Article II power displaced or narrowed statutory protection, and the injunction was improper.
 
-Sibling control map (not a rewrite): [Independent-Agency Officer Removal — Slaughter and Cook](../sources/independent-agency-officer-removal-slaughter-and-cook-434d0b12f5a3.html)
+Sibling control map (not a rewrite): Independent-Agency Officer Removal — Slaughter and Cook
 
 **Holding:** on the stay application, the Court held that a fixed term removable only for cause carries a requirement of notice and some opportunity to respond; Cook did not receive it. The majority also held Fed Governor removal protection consistent with the Constitution because the Fed fits a distinct historical central-bank tradition. The application for stay was denied.
 
@@ -337,7 +337,7 @@ Sibling control map (not a rewrite): [Independent-Agency Officer Removal — Sla
 
 #### JM-02 — Slaughter
 
-Sibling control map (not a rewrite): [Independent-Agency Officer Removal — Slaughter and Cook](../sources/independent-agency-officer-removal-slaughter-and-cook-434d0b12f5a3.html)
+Sibling control map (not a rewrite): Independent-Agency Officer Removal — Slaughter and Cook
 
 **Holding:** 15 U.S.C. §41's FTC removal restriction violates Article II; *Humphrey's Executor* no longer saves the modern FTC structure. **Fed limit:** the majority treated central-bank independence as a distinct historically grounded arrangement. That is a legal distinction, not a finding that every Fed regulatory function is immune from Article II analysis.
 
@@ -446,7 +446,7 @@ Sibling control map (not a rewrite): [Independent-Agency Officer Removal — Sla
 
 #### JM-15 — Learning Resources / V.O.S.
 
-Sibling control map (not a rewrite): [IEEPA — Tariff Dead, Block Live](../sources/ieepa-tariff-dead-block-live-48d8e15eb378.html)
+Sibling control map (not a rewrite): IEEPA — Tariff Dead, Block Live
 
 **Holding:** IEEPA does not authorize tariffs; tariff power is a tax power vested in Congress, and the statute's regulation-of-importation language does not silently transfer it. The Court distinguished blocking and sanctions authorities.  
 **Jurisdiction:** the Court affirmed the Federal Circuit/Court of International Trade route and ordered the parallel D.D.C. case dismissed for lack of jurisdiction.

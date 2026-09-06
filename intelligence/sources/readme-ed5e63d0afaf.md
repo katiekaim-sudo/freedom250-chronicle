@@ -4,7 +4,7 @@
 
 This package orients the July 29 White House post inside the live Freedom 250
 COVID plot and audits the surrounding release-and-hearing sequence using
-official records. It is a pending workbench package, not a live-vault update.
+official records. It is current Workbench research, not a Chronicle update.
 
 ## Short answer
 
@@ -65,6 +65,6 @@ different institutional findings, not a resolved scientific or judicial state.
 
 ## Package state
 
-Research is complete through the stated cutoff and remains `pending` human
-review and selective promotion. No live-vault note, plotline, subplot,
-forecast ledger or watch calendar has been changed.
+Research is current in the Workbench through the stated cutoff. No Chronicle
+landing, plotline, subplot, forecast ledger or watch-calendar change follows
+from that lifecycle state.

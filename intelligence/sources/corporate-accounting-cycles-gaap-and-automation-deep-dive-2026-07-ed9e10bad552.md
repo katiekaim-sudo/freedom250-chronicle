@@ -515,7 +515,7 @@ The crypto example is instructive: FASB changed the measurement model for qualif
 |---|---|---|
 | Crypto assets, ASU 2023-08 | **Final and effective** for fiscal years beginning after 2024-12-15 | Demonstrates a GAAP measurement change prompted by a new asset class. |
 | SEC SAB 122 | **Effective 2025-01-30** | Rescinded SAB 121; safeguarding loss risk returns to contingency analysis. |
-| Internal-use software, ASU 2025-06 | **Final; mandatory 2027+, early adoption permitted** | Modernizes recognition for iterative software development but retains probable-completion judgment. |
+| Internal-use software, ASU 2025-06 | **Final; mandatory for annual periods beginning after December 15, 2027; early adoption permitted** | Modernizes recognition for iterative software development but retains probable-completion judgment. |
 | Expense disaggregation, ASU 2024-03/2025-01 | **Final; annual 2027, interim 2028 for PBEs** | Uses more granular expense data without replacing the income statement. |
 | Crypto transfers, wrapped/receipt tokens | **Technical-agenda project; initial deliberations/tentative** | FASB is considering scope expansion and derecognition guidance. No current-GAAP change yet. |
 | Certain digital assets as cash equivalents | **Project; Board directed staff to draft a proposed ASU in April 2026** | Stablecoin classification is under active consideration. No current-GAAP change yet. |
@@ -529,7 +529,7 @@ The crypto example is instructive: FASB changed the measurement model for qualif
 
 The user’s intuition is strongest when reframed this way:
 
-- Most accounting labor is not the economic theory of GAAP; it is capturing fragmented facts, reconciling incompatible systems, posting repetitive entries, documenting controls, and rebuilding lineage at close.
+- The July 30 design hypothesis is that shared event records could reduce work spent capturing fragmented facts, reconciling incompatible systems, posting repetitive entries, documenting controls, and rebuilding lineage at close. This study does not measure those activities as a share of accounting labor.
 - Event-sourced, cryptographically signed systems can collapse much of that labor and make correction, authorization, and provenance visible.
 - A small company may operate on a cash-centered interface with AR/AP and a few modules, while the system derives accrual, tax, and management views underneath.
 - Open-source accounting rules can make transformations inspectable and challengeable.
@@ -555,7 +555,7 @@ That could make the system far more understandable without pretending that every
 - [Topic 606 revenue recognition](https://fasb.org/projects/recently-completed-projects/revenue-recognition-summary)
 - [Topic 326 credit losses](https://fasb.org/projects/recently-completed-projects/accounting-standards-update-2016-13-financial-instrument-credit-losses)
 - [ASU 2015-11 inventory](https://storage.fasb.org/ASU%202015-11.pdf)
-- [Topic 842 leases and Topic 326 summary](https://fasb.org/projects/current-projects/leases-398331)
+- [Topic 842 leases summary](https://fasb.org/projects/current-projects/leases-398331)
 - [ASU 2025-06 internal-use software](https://storage.fasb.org/ASU%202025-06.pdf)
 - [Topic 450 loss-contingency summary](https://fasb.org/page/PageContent?bcpath=tff&pageId=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-5.html)
 - [Topic 820 fair-value measurement summary](https://fasb.org/page/pagecontent?bcpath=tff&isPrintView=true&pageid=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-157.html)

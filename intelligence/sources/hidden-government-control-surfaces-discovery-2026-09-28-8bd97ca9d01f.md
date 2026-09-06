@@ -1,0 +1,384 @@
+> Source evidence cutoff: 2026-09-28T18:00:00-04:00
+
+# Hidden government control surfaces — discovery pass
+
+## Bottom line
+
+Freedom 250 is not principally missing the federal entity tree. It is missing a
+typed, recurring way to see the **rooms where an entity hears, coordinates,
+tests, recommends, funds and translates policy before a final instrument or
+operating result appears**.
+
+The project already has unusually strong coverage of legal entities, official
+publishers, congressional bodies, final instruments, audits and selected
+implementation receipts. The blind spot sits orthogonal to that architecture:
+
+```text
+entity / publisher
+       |
+       +-- advisory body -------- draft -> recommendation -> agency response
+       +-- stakeholder ledger --- meeting / attachment / stated request
+       +-- internal council ----- shared method / coordination / capacity
+       +-- program board -------- selection -> transfer -> obligation -> delivery
+       +-- board record --------- agenda -> vote -> implementation -> effect
+```
+
+These are not subordinate agencies that should automatically be added as new
+tree children. They are **typed relationship and event surfaces** attached to
+existing actors.
+
+## Why the present systems did not naturally reveal them
+
+### Entity coverage is not surface coverage
+
+The Government-Wide Research Hub projects 642 Federal Group nodes. Its current
+attachment layer joins 401 governed associations across 167 nodes. That is a
+strong answer to “what entity is this?” and “what saved research attaches
+here?” It is not a census of the recurring rooms in which advice, coordination
+or implementation is worked out.
+
+The congressional control plane is also broad: 46 top-level bodies and 180
+subcommittees are represented. But the September 22 gap audit still classified
+194 bodies as `not_scanned`. Structural presence therefore must not be confused
+with activity-series research.
+
+### The Source Monitor's vocabulary is publisher-shaped
+
+The generated Source Registry has 398 entities, 670 publisher relations, 567
+publisher roots and 1,077 logical routes. The routes use only seven surface
+types:
+
+| Surface type | Routes |
+|---|---:|
+| `official_root` | 567 |
+| `publications` | 127 |
+| `library` | 120 |
+| `campaign_surface` | 113 |
+| `sitemap` | 77 |
+| `foia` | 71 |
+| `api` | 2 |
+
+There is no first-class type for `meetings`, `minutes`, `recommendations`,
+`agency_response`, `stakeholder_contacts`, `program_board` or
+`implementation_dashboard`.
+
+That matters even where the URL is already known. The Federal Advisory Council
+page is present as an `official_root`, a `library` and `publications`, but the
+registry does not encode that it is a quarterly meeting-record series. A broad
+publisher crawl can reach the page without knowing that the ten-page May 2026
+record is a distinct, high-value decision input.
+
+### Exact library identities are absent
+
+At this cutoff, exact-name searches of the current Catalog and Registry return
+no first-class research identity for the Federal Reserve's “Communications with
+the Public” ledger, Federal Secure Cloud Advisory Committee, Technology
+Modernization Fund, Performance Improvement Council, Employee Thrift Advisory
+Council, Commercial Customs Operations Advisory Committee, CISA Cybersecurity
+Advisory Committee, Critical Infrastructure Partnership Advisory Council, or
+the government-wide CIO/CFO/CDO/Privacy/Acquisition councils.
+
+That is an identity and discoverability finding. Some of these actors or
+programs have appeared inside dated sweeps or adjacent research. They are not
+yet maintained as their own series.
+
+## Tier 1 — research these now
+
+### 1. Federal Reserve stakeholder-contact ledger and advisory-council records
+
+**Why this is the clearest new seam:** The Board's quietly maintained
+[Communications with the Public](https://www.federalreserve.gov/regreform/reform-systemic.htm)
+page lists a dense 2026 sequence of meetings with individual banks, trade
+associations, academics and public-interest groups. Attached PDFs identify
+participants, topics, presentations and stated requests.
+
+Examples:
+
+- An August 12 meeting record says JPMorgan Chase discussed implementation and
+  transition issues for the Basel III proposal, GSIB surcharge proposal and
+  annual stress-test transparency proposal.
+- A July 31 SIFMA record contains an eight-page capital-markets presentation
+  seeking specified treatment for cross-product netting, cross-margining,
+  hedging, CVA and bank tailoring.
+- A July 16 joint Fed/OCC/FDIC record documents a meeting with ACORE, banks and
+  the Solar Energy Industries Association about Basel treatment of tax-equity
+  financing and deferred tax assets.
+
+Separately, the statutory [Federal Advisory Council](https://www.federalreserve.gov/GeneralInfo/AdvisCoun/FAC.htm)
+publishes substantial meeting records. Its
+[May 7, 2026 record](https://www.federalreserve.gov/aboutthefed/files/fac-20260507.pdf)
+runs ten pages and covers AI and data-center investment, labor effects,
+inflation, lending and deposits, monetary policy, mortgage servicing and
+leveraged lending. The Board also publishes records for the
+[Community Depository Institutions Advisory Council](https://www.federalreserve.gov/aboutthefed/cdiac.htm).
+
+**What it can answer:** Who was asking for which prudential, market, mortgage,
+capital, clearing or supervisory change before a Board action; which concerns
+were repeated across meetings; what the twelve Federal Reserve District bank
+representatives were reporting; and which later proposals resemble earlier
+requests.
+
+**Claim limit:** Contact is not influence proved. A presentation is not Board
+agreement, a proposed rule, final rule, supervisory instruction or measured
+effect. Use a sequence of contact -> proposal -> final text -> implementation,
+and label resemblance as comparison unless the agency supplies lineage.
+
+**First slice:** Inventory every 2026 entry in the systemic/banking-supervision
+section; tag actor, regulator participants, instrument/topic and attachment;
+then read the February and May FAC records and the April CDIAC record.
+
+### 2. Administrative Conference of the United States procedural pipeline
+
+The project has swept ACUS as an agency, but has not treated its committee and
+project pipeline as a maintained research series. That is a material miss for a
+project whose thesis is procedural reconstruction from inside government.
+
+ACUS's live 2026 agenda includes:
+
+- transparency in the review of license and permit applications;
+- general permits and permits by rule;
+- regulatory warnings;
+- frontline decision making for benefits, loans, grants and licenses; and
+- a December 10 plenary at which committee work may become Conference
+  recommendations.
+
+The [September 22 draft on general permits](https://www.acus.gov/sites/default/files/documents/General%20Permits%20and%20Permits%20by%20Rule%20%E2%80%93%20DRAFT%20Recommendation%202026.09.22.pdf)
+is particularly relevant to energy, land, environmental, infrastructure,
+security, food, drug and medical-device programs. The
+[current ACUS calendar](https://www.acus.gov/meetings-and-events/calendar)
+shows committee meetings on October 1, 2, 6, 13 and 20 and the plenary on
+December 10.
+
+**What it can answer:** The procedural grammar federal agencies may be advised
+to use across many substantive programs, before the same idea appears piecemeal
+in agency rules, guidance, portals or adjudication systems.
+
+**Claim limit:** Consultant report, committee draft, committee approval,
+Conference adoption, Federal Register publication, agency uptake and legal
+effect are separate clocks. The September 22 text is a draft, not an adopted
+recommendation.
+
+**First slice:** Follow the four fall projects through committee drafts,
+redlines, public comments, committee disposition and the December plenary;
+then test any adopted recommendation for agency implementation records.
+
+### 3. Federal Secure Cloud Advisory Committee
+
+GSA's [Federal Secure Cloud Advisory Committee meeting library](https://www.gsa.gov/technology/government-it-initiatives/federal-secure-cloud-advisory-committee/federal-secure-cloud-advisory-committee-meetings)
+is unusually complete: notices, agendas, certified minutes, recordings,
+transcripts, recommendation memos and annual reports.
+
+The [July 27 minutes](https://www.gsa.gov/technology/government-it-initiatives/federal-secure-cloud-advisory-committee/federal-secure-cloud-advisory-committee-meetings/fscac-july-27-2026-public-meeting-agenda-and-minutes)
+report 590 FedRAMP-certified services, 6,004 historical agency authorizations
+and 3,320 authorizations treated as active. They also state that 57 percent of
+those active records had no definite expiration date, describe incomplete
+agency lifecycle reporting, distinguish certification from each agency's own
+risk decision, and identify education plus tooling/automation as working-group
+focuses.
+
+The August 31 meeting has an agenda but no posted minutes in the meeting library
+at this cutoff. The [November 2 agenda](https://www.gsa.gov/technology/government-it-initiatives/federal-secure-cloud-advisory-committee/federal-secure-cloud-advisory-committee-meetings/fscac-nov-2-2026-public-meeting-agenda)
+calls for a vote to finalize adoption-and-reuse recommendations to the FedRAMP
+Director.
+
+**What it can answer:** Where federal cloud adoption actually stalls between
+certification, agency risk acceptance, authorization reuse, acquisition,
+machine-readable evidence, continuous monitoring and reporting. This joins the
+project's AI, data, cybersecurity, procurement, records and audit lanes.
+
+**Claim limit:** FedRAMP certification is not an agency authorization or proof
+of production use. Committee concern is not a measured government-wide defect.
+The November vote is future at this cutoff.
+
+**First slice:** Preserve the June and July certified minutes; recover the
+August recording/record only with its authority label; return after the
+November 2 vote for the adopted recommendation and then for the FedRAMP/GSA
+response.
+
+### 4. Technology Modernization Fund board and investment portfolio
+
+The [TMF investment portfolio](https://tmf.cio.gov/investments/) is an
+implementation-receipt layer rather than a conventional newsroom. Each project
+can expose the Board investment clock, active/inactive state, transfer and
+repayment percentages, schedule delay, cost overrun, commercial-product flag,
+total investment and receiving-agency obligations to date.
+
+Examples include:
+
+- the GSA federal rulemaking/Regulations.gov modernization project, with its
+  continuity and public-comment infrastructure problem;
+- Treasury's completed hybrid-cloud modernization of its classified foreign
+  intelligence network;
+- Selective Service registration and verification modernization, which is
+  active and marked for both delay and cost overrun; and
+- identity, zero-trust, benefits and cross-agency data projects.
+
+The [2026 call for proposals](https://tmf.cio.gov/2026-call-for-proposals/)
+prioritizes permitting technology and agency AI adoption alongside legacy
+modernization and cybersecurity. Initial proposals are due October 20; the page
+says proposals submitted later may not be considered by the Board before
+December 11.
+
+**What it can answer:** Which announced priorities have an actual Board-selected
+project, how much money has transferred and been obligated, whether the project
+is delayed or over cost, and whether it has completed its Board milestones.
+
+**Claim limit:** Board investment start, transfer, obligation, milestone
+completion, launch, accepted operation, benefit realization and audit result
+are distinct. An “inactive” project means completed milestones or early end and
+a final Board presentation; it does not by itself prove success.
+
+**First slice:** Build a thesis-filtered portfolio for identity, permitting,
+rulemaking, payments, records, AI, fraud, cloud and emergency-response systems;
+join each project to USAspending, agency inspector-general/GAO evidence and an
+operating receipt.
+
+### 5. The already-identified money-rail committee families
+
+The September 17 SEC-IAC look-around correctly identified a family-level gap:
+the Workbench is strong on selected congressional monetary hearings, the SEC
+IAC and one CFTC IAC meeting, but weak on recurring series for TBAC, FSOC,
+Federal Reserve advisory councils, CFTC GMAC/MRAC/AAC/EEMAC, the SEC Small
+Business Capital Formation Advisory Committee and related bodies.
+
+This discovery pass raises that work rather than replacing it. The live
+Federal Reserve records show that the gap is substantive, not merely
+organizational. The May FAC record alone contains several direct bridges to
+current mortgage, bank capital, private credit, AI and data-center research.
+
+**First slice:** Treat FAC/CDIAC and the Fed public-communications ledger as one
+joined pilot, then conduct the TBAC and CFTC/SEC families as separate series
+with their own recommendation-to-action clocks.
+
+## Tier 2 — validate lifecycle, then research selectively
+
+| Surface | Why it may matter | Current restraint |
+|---|---|---|
+| FRTIB Board + Employee Thrift Advisory Council | Federal retirement investment policy and participant operations; direct bridge to retirement-rail research | Board notices are covered episodically; ETAC is not a maintained series. Current 2026 ETAC record was not established in this pass. |
+| CBP Commercial Customs Operations Advisory Committee | ACE/ACE 2.0, earlier supply-chain data, automation, e-commerce, de minimis, forced labor and DLT pilots | Rich 2023–25 record found; current 2026 meeting series needs a lifecycle and document check before promotion. |
+| CISA CSAC, NIAC, NSTAC and CIPAC | Public-private cyber and critical-infrastructure coordination; recommendations plus agency responses can reveal operating priorities | Current CISA umbrella page is live, but the latest detailed recommendation/response record located in this pass was 2024. CIPAC is not a FACA body and may have a different disclosure pattern. |
+| Performance Improvement Council | Statutory OMB/GSA government-wide performance body with regular meetings and working groups | Current public page confirms the body and recurring meetings, but detailed meeting records were not located. Use primarily as an implementation-router unless public work products support a specific question. |
+| CIO, CFO, CDO, Privacy, Acquisition and related councils | The internal management layer that may translate OMB policy into shared practice | Public output density varies and some collaboration spaces require government access. Research by named work product, not by assuming every meeting is public. |
+| FFIEC and FBIIC | Interagency bank supervision and financial-sector infrastructure/cyber coordination | Both already appear in adjacent research. The gap is series-level decision/output tracking, not actor discovery. |
+
+## Lifecycle traps found during discovery
+
+Central inventories and old search results can make dead or stale bodies look
+live. Current official agency pages produced three useful cautions:
+
+- NIST marks the CHIPS Industrial Advisory Committee **inactive**.
+- Commerce marks the Advisory Committee on Supply Chain Competitiveness
+  **terminated**.
+- GSA acquisition-policy and open-government advisory pages have useful
+  historical material, but the pages found were archived and did not establish
+  current 2026 activity.
+
+Every candidate therefore needs `established`, `charter_current`,
+`meeting_current`, `terminated_or_inactive`, `documents_current` and
+`last_verified` fields before it becomes a recurring research route.
+
+## Recommended method correction
+
+### Add a control-surface overlay, not hundreds of new tree children
+
+Use these surface classes:
+
+| Class | Typical evidence | What it does not prove |
+|---|---|---|
+| `external_advisory` | charter, notice, agenda, minutes, recommendation | agency agreement or action |
+| `statutory_advisory` | statute, meeting record, formal advice | decision authority unless statute says so |
+| `internal_council` | charter/bylaws, members, playbook, working-group output | binding direction to every member agency |
+| `stakeholder_contact_ledger` | participants, meeting summary, attachments | influence, agreement or causation |
+| `program_board` | proposal criteria, selection, investment decision, dashboard | obligation, deployment or outcome |
+| `sunshine_board` | notice, agenda, minutes, vote | later implementation or effect |
+
+Each surface should attach to its legal/publishing/operating actor through a
+typed edge. It should not inherit a department's authority or become a parent
+of its members.
+
+### Expand route semantics
+
+The Source Monitor can keep its existing root architecture while adding exact
+surface roles:
+
+- `meetings_index`
+- `agenda_minutes`
+- `recommendations`
+- `agency_response`
+- `stakeholder_contacts`
+- `board_actions`
+- `implementation_dashboard`
+- `charter_lifecycle`
+
+The first pilot should use only the four Tier 1 seams. That is enough to test
+whether the new vocabulary improves discovery without creating an indiscriminate
+committee crawl.
+
+### Preserve the full clock braid
+
+```text
+establishment / charter
+  -> meeting notice
+  -> meeting held
+  -> draft work product
+  -> adopted recommendation or board vote
+  -> agency response
+  -> proposal / order / funding instrument
+  -> obligation / delivery / operation
+  -> measured effect / audit
+```
+
+The most important new field is often `agency_response_state`, because GAO has
+found that committees and agencies do not always make recommendation-response
+and implementation status fully available online.
+
+## Research waves
+
+### Wave 1 — four high-value pilots
+
+1. Federal Reserve 2026 public communications + FAC/CDIAC.
+2. ACUS fall 2026 procedural projects.
+3. FSCAC June–November 2026.
+4. TMF thesis-filtered portfolio.
+
+Output: one compact record per event or project, with actor, source, topic,
+state, clock, downstream target and claim limit.
+
+### Wave 2 — money and retirement
+
+Continue the existing TBAC/FSOC/Fed/SEC/CFTC gap plan. Add FRTIB/ETAC only after
+current-series validation. Join advice to later instrument text rather than
+collecting meeting records as isolated content.
+
+### Wave 3 — movement of goods, cyber and internal government
+
+Validate COAC/ACE, CISA councils and the management-council cluster. Select only
+work products that intersect live plotlines or expose a new authority,
+implementation or operating receipt.
+
+### Wave 4 — representation decision
+
+After the pilots, decide whether the Federal Government Movement Atlas needs a
+separate “Control surfaces” view. Do not mutate the Federal Group merely to
+display these relationships, and do not make every FACA committee a research
+assignment.
+
+## What this pass does not claim
+
+- It does not claim that all federal advisory committees are material.
+- It does not claim that the bodies above control their parent agencies.
+- It does not infer that a regulated firm obtained the rule it requested.
+- It does not equate a recommendation with a final agency instrument.
+- It does not treat the absence of a Catalog identity as absence of all prior
+  Workbench mentions.
+- It does not replace the September 22 Atlas gap audit. That audit reconciled
+  representation and known owner gaps; this pass used newly authorized outside
+  research to identify an additional source class.
+
+## Controlling conclusion
+
+The “dusty corner” is a missing **relationship-and-process layer**, not a single
+forgotten agency. The most valuable new research will come from following the
+small number of recurring public rooms that sit immediately upstream of rules,
+standards, funding and operation—and from preserving the downstream response
+clock so advice never masquerades as action.

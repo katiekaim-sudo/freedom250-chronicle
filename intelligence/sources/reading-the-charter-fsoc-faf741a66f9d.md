@@ -48,4 +48,4 @@ See `04 - Synthesis/Entity Theory/` for the cross-entity ledger entry on FSOC.
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 2010 - Dodd-Frank Title I — FSOC provisions (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

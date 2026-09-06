@@ -2,7 +2,7 @@
 
 Evidence cutoff: 2026-07-30  
 Method: primary-source, entity-based, claim-audited  
-Status: active research package; one synthesis is selected for vault landing
+Status: active research package; the Chronicle synthesis controls the maintained shared answer
 
 ## Predecessor
 
@@ -33,37 +33,114 @@ to outsiders. It does not make recognition, measurement, entity boundaries,
 valuation, legal rights, performance, collectibility or audit evidence
 automatic.
 
+## Official-record extension — September 26, 2026
+
+Read
+`OFFICIAL_RECORD_AUTHORITY_AND_BLOCKCHAIN_CROSSWALK_2026-09-26.md` for the
+current term-of-art answer prompted by the September 24 CFTC FAQ. It separates
+federal records, designated recordkeeping copies, CFTC regulatory records, the
+SEC official Master Securityholder File, corporate books and records, audit
+evidence, public disclosure and settlement/finality records. Its controlling
+rule is that officialness comes from purpose-specific authority, accountable
+custody and defined consequence—not from the storage medium.
+
+## Continuous-assurance extension — September 26, 2026
+
+Read `ATOMIC_SETTLEMENT_TO_CONTINUOUS_ASSURANCE_2026-09-26.md` for the current
+answer on real-time books, continuously refreshed financial statements and the
+changing audit. It distinguishes protocol validation, smart-contract
+execution, management monitoring, auditor procedures, interim review, audit
+opinion and a possible future continuous-assurance product. Its controlling
+rule is that blockchain can make events continuously verifiable, smart
+contracts can make controls continuously executable and AI can make evidence
+continuously examinable, but only a defined independent engagement can make an
+assurance claim.
+
+## Oracle–Swift event-to-books extension — September 28, 2026
+
+Read `ORACLE_SWIFT_EVENT_TO_BOOKS_GATE_2026-09-28.md` for the current Accounting
+Transition assessment of Oracle's integration with Swift's shared ledger. It
+finds a meaningful gate-opening convergence across token-ledger events, ISO
+20022 payment processing, governed database records and Oracle's existing
+accounting/ERP stack. Oracle's broader Enterprise Edition material expressly
+adds smart-contract lifecycle controls, deterministic and human-in-the-loop
+workflows, compensation patterns and generic ERP/GL queries and updates. The
+assessment maps those capabilities into recognition, accrual, cutoff,
+correction and close. It also joins the September 24 CFTC staff FAQ: compliant
+on-chain records may natively satisfy specified regulatory recordkeeping duties
+without an off-chain duplicate solely because blockchain is used, but the FAQ
+does not change GAAP, settlement finality or audit. The assessment does **not**
+find a governed production accounting mapping, posted journal, named Oracle
+bank, close/disclosure effect or assurance receipt; current Besu material
+includes limited/pre-GA boundaries, and Digital Assets Data Nexus remains
+planned for fiscal year 2027.
+
+## Full thesis map — September 28, 2026
+
+Read `ACCOUNTING_TRANSITION_FULL_THESIS_MAP_2026-09-28.md` for the integrated
+front-door architecture behind the Accounting Transition visual. It restores
+the whole thesis beyond the Oracle–Swift case: the event, rule, judgment and
+view objects; all sixteen accounting functions; the ordinary corporate
+cycles; the public appropriation-to-recovery branch; eight clocks; the
+assurance ladder; current receipts; and the exact joins still required before
+continuous books, statements or assurance become operating fact. The
+Chronicle synthesis remains the maintained shared answer. Open
+`outputs/The Accounting Transition.html` for the standalone five-lens page
+used by the Observatory Research Library's Accounting Transition workspace.
+
 ## Read order
 
-1. `ACCOUNTING_FUNCTIONS_AND_SMART_CONTRACT_AUTOMATION_MAP_2026-07-30.md`
-   — **read first**; full accounting-function decomposition and event-sourced
-   design.
-2. `CORPORATE_ACCOUNTING_CYCLES_GAAP_AND_AUTOMATION_DEEP_DIVE_2026-07-30.md`
+1. `04 - Synthesis/Cross-cuts/2026-07-30 - The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer.md`
+   — **read first in the Chronicle** for the maintained shared answer. Its
+   July 30 architecture is a research hypothesis; the August 5 SEC extension
+   is separately dated.
+2. `OFFICIAL_RECORD_AUTHORITY_AND_BLOCKCHAIN_CROSSWALK_2026-09-26.md`
+   — current cross-regime definition, CFTC/SEC blockchain-record boundary,
+   official-record constitution and accounting bridge.
+3. `ATOMIC_SETTLEMENT_TO_CONTINUOUS_ASSURANCE_2026-09-26.md`
+   — eight-clock real-time model, assurance ladder, AI control constitution,
+   continuous-close architecture, current U.S. reporting/audit boundary and
+   exact return gates.
+4. `ORACLE_SWIFT_EVENT_TO_BOOKS_GATE_2026-09-28.md`
+   — focused gate assessment connecting the Swift payment event to Oracle's
+   bank-side, evidence, accounting and ERP layers while preserving the missing
+   production journal, close and assurance receipts.
+5. `ACCOUNTING_TRANSITION_FULL_THESIS_MAP_2026-09-28.md`
+   — integrated Workbench map and visual constitution spanning the whole
+   thesis, its accounting layers, ordinary cycles, public branch, evidence
+   states, eight clocks and assurance ladder.
+6. `outputs/The Accounting Transition.html`
+   — standalone interactive projection used as the Accounting Transition's
+   native Systems & Maps page inside the Research Library.
+7. `ACCOUNTING_FUNCTIONS_AND_SMART_CONTRACT_AUTOMATION_MAP_2026-07-30.md`
+   — what accounting actually does: the original 16-function decomposition,
+   event object and judgment object.
+8. `CORPORATE_ACCOUNTING_CYCLES_GAAP_AND_AUTOMATION_DEEP_DIVE_2026-07-30.md`
    — order-to-cash, procure-to-pay, payroll, inventory, fixed assets,
    treasury, tax, close, reporting and audit mapped function by function.
-3. `MODIFIED_CASH_BASIS_AND_GAAP_BOUNDARY_2026-07-30.md`
-   — cash, modified cash, accrual, GASB modified accrual and federal
-   budgetary/proprietary accounting kept separate.
-4. `GOVERNMENT_OPEN_LEDGER_DEEP_DIVE_2026-07-30.md`
+9. `MODIFIED_CASH_BASIS_AND_GAAP_BOUNDARY_2026-07-30.md`
+   — why cash plus AR/AP is not GAAP: cash, modified cash, accrual, GASB
+   modified accrual and federal budgetary/proprietary accounting kept separate.
+10. `GOVERNMENT_OPEN_LEDGER_DEEP_DIVE_2026-07-30.md`
    — primary-source map of authoritative federal record owners from
    appropriation through recovery, the missing joins and a detailed
    education-grant case.
-5. `OPEN_GOVERNMENT_ACCOUNTING_FROM_APPROPRIATION_TO_OUTCOME_2026-07-30.md`
-   — public-money architecture, privacy boundary and current federal building
-   blocks.
-6. `EDUCATION_GRANT_ADMINISTRATION_AND_LEDGER_INTERLOCK_2026-07-30.md`
+11. `OPEN_GOVERNMENT_ACCOUNTING_FROM_APPROPRIATION_TO_OUTCOME_2026-07-30.md`
+   — what public accountability makes visible: open code, standards, data,
+   verifiable records and governance kept distinct.
+12. `EDUCATION_GRANT_ADMINISTRATION_AND_LEDGER_INTERLOCK_2026-07-30.md`
    — concrete case study of ED's interagency grant-administration changes,
    award-cohort system migration and the legal/payment/audit joins a public
    transaction record must preserve.
-7. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
+13. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
    — assertion matrix, oracle/key/admin/legal-code/correction/privacy controls,
    migrated accounting games and an auditor work program.
-8. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
+14. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
    — carry, correct, forecast and reject ledger.
-9. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
-   — evidence gates that would show the idea moving into standards or
-   production.
-10. `SOURCE_LEDGER_2026-07-30.md`
+15. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
+   — one source-question guide for standards, production, the federal
+   transaction spine and assurance evidence; it is not a scheduled watch.
+16. `SOURCE_LEDGER_2026-07-30.md`
    — official source spine.
 
 ## Boundaries
@@ -77,8 +154,9 @@ automatic.
   the network’s rules. It does not by itself prove delivery, legal ownership,
   collectibility, fair value, allowability, beneficiary eligibility or absence
   of collusion.
-- Open-source code, open standards, open data and a publicly verifiable
-  transaction record are four different transparency objects.
+- Open-source code, open standards, open data, a publicly verifiable
+  transaction record and open governance are five different transparency
+  objects.
 - Treasury’s federal grant blockchain work was a prototype. It did not process
   real grant payments.
 

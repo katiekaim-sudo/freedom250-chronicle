@@ -1,8 +1,10 @@
 # Federal Science Operating System
 
-**Evidence cutoff:** 2026-08-17
-**Status:** pending workbench package; the NSSTS full-reading is selectively incorporated into the live vault
+**Evidence cutoff:** 2026-08-17; the factual spine has a targeted September 7 Reactor reconciliation with separately dated implementation evidence
+**Status:** current research package; the workbench controls these owners except where the Registry identifies a controlling vault landing, including the selectively incorporated NSSTS full reading
 **Scope:** the federal funding, infrastructure, workforce, data, experimental and transaction architecture proposed for an AI-native scientific-industrial economy
+
+The factual spine now joins all thirteen original Reactor filings to their exact legal clocks, the saved Groves criticality finding and the August 18 fission/fuel company map. Read its “Reactor reconciliation” and “Reactor licensing paths, hearings, fees and ownership” sections for the connection between policy, testing, construction permission and production. The broader package retains its original questions and evidence windows. The factual spine, fusion bridge and related current summaries also correct the 2027 framework deadline’s origin to NEIMA (2019), as amended by ADVANCE.
 
 ## Short answer
 
@@ -79,7 +81,7 @@ restriction, monitoring or mitigation to a specific object.
 - **Emergency Monetary Policy:** authority-specific activation; no single emergency switch.
 - **Fintech and Private Rails:** wallets, programmable payments, identity and settlement remain separate legal objects.
 - **Federal Cryptographic Trust Stack:**
-  Genesis identity, provenance and PQC bridge
+  [Genesis identity, provenance and PQC bridge](../sources/genesis-identity-provenance-pqc-bridge-2026-08-11-0051de7f91ee.html)
   preserves the operating
   Globus/ModCon identity and provenance rail, the DOE-published cryptographic
   attestation proposal, adjacent PQC mandates and the missing system-level join.

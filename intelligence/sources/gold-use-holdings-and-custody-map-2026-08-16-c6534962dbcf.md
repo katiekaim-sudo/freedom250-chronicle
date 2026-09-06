@@ -1,7 +1,7 @@
 # Gold in Use and in Custody — Broad Current Map
 
 Updated: 2026-08-16 ET  
-Status: pending workbench research; not reviewed or landed in the vault  
+Status: current Workbench research; no Chronicle landing  
 Evidence cutoff: 2026-08-16 ET; every quantity retains its own reporting date  
 Scope assumption: Katie's “hosting” means holdings, storage, custody, vaulting and the records that control claims to gold  
 Scope boundary: this pass maps current uses and holding structures. It does **not** decide when any of them is monetary.

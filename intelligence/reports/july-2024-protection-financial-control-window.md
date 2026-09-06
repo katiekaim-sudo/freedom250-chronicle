@@ -1,0 +1,228 @@
+# July 2–8, 2024 Protection and Financial Control Window
+
+## Answer first
+
+The fixed July 2–8, 2024 federal publication window was not empty. It contained
+five independently material authority objects concerning consumer-order
+disclosure, large-bank recovery planning, outbound capital controls,
+correspondent-account exclusion and disaster-relief administration.
+
+They did not mature as one program. By the September 25, 2026 evidence cutoff:
+
+- the CFPB nonbank-order registry had been finalized, made effective and then
+  rescinded;
+- the OCC recovery-planning expansion had been proposed, finalized and then
+  rescinded, while separate contingency-funding expectations remained;
+- Treasury's outbound-investment proposal had become an operating notification
+  and prohibition regime and later received a statutory successor mandate;
+- FinCEN's Al-Huda Bank special measure remained listed without a rescission;
+  and
+- FEMA's Public Assistance update remained a proposal in the located official
+  record after a reopened comment period.
+
+The factual comparison is therefore not “protection advanced” or “protection
+retreated.” The window defined several different ways the federal government
+could require a party to **report, recover, refrain, block or qualify for
+relief**. The later record shows those controls being selectively dismantled,
+retained, hardened or left unfinished.
+
+## Research question
+
+Which material U.S. federal authority objects published from July 2 through
+July 8, 2024 created or proposed systems of protection, financial control,
+resilience or relief, and what verifiable state had each reached by September
+25, 2026?
+
+## Scope and method
+
+The denominator was the Federal Register API publication set for July 2–8,
+2024: 448 documents—374 notices, 37 rules, 35 proposed rules and two
+presidential documents. The daily counts were 103 on July 2, 106 on July 3, 95
+on July 5 and 144 on July 8.
+
+The five objects below were selected independently for material institutional
+effect and lifecycle traceability. Astrology supplied neither the search terms
+nor the selection test. Routine notices, administrative amendments and objects
+without a material authority, protection, financial-control or relief
+dimension were excluded from this focused answer. Selection does not imply
+that these objects share a legal owner, policy program or causal relationship.
+
+## Object matrix
+
+| Seed-window publication | Authority object | July 2024 state | State by Sep. 25, 2026 | Boundary |
+|---|---|---|---|---|
+| Jul. 8 · FR Doc. 2024-12689 | CFPB nonbank orders registry | Final rule; effective Sep. 16, 2024 | Rescinded effective Oct. 29, 2025 | Rescission ended this registry and written-statement regime; it did not erase the underlying agency or court orders. |
+| Jul. 3 · FR Doc. 2024-13960 | OCC recovery-planning guidelines | Proposal to lower the threshold to $100 billion and add testing and nonfinancial-risk standards | Finalized Oct. 2024; effective Jan. 1, 2025; rescinded effective May 1, 2026 | Rescission ended the formal appendix-E recovery-plan requirement, not all funding, liquidity or safety-and-soundness supervision. |
+| Jul. 5 · FR Doc. 2024-13923 | Treasury outbound-investment controls | Proposed notification and prohibition regime under Executive Order 14105 | 31 CFR part 850 operational since Jan. 2, 2025; current rules remain during the COINS Act rulemaking handoff | The July document was a proposal, not an operating restriction. The 2025 statute did not instantly replace the current rules. |
+| Jul. 3 · FR Doc. 2024-14415 | FinCEN Al-Huda Bank special measure | Final rule; effective Aug. 2, 2024 | Still present on FinCEN's section 311/9714 table with no rescission listed at cutoff | The rule controls covered U.S. financial institutions' correspondent accounts and processing; it is not a general asset freeze. |
+| Jul. 2 · FR Doc. 2024-13898 | FEMA Public Assistance regulations update | Proposed rule | Comment period reopened through Oct. 18, 2024; no final rule located for docket FEMA-2023-0005 by cutoff | A proposal to codify statutory and program changes is not an implemented new regulatory state. |
+
+## 1. CFPB: public orders become a supervised registry, then the registry is removed
+
+The Consumer Financial Protection Bureau's July 8 final rule required certain
+nonbank covered persons subject to qualifying final public agency or court
+orders to register those orders and related information. Certain supervised
+nonbanks also had to submit annual compliance reports and identify an executive
+responsible for compliance. The rule became effective September 16, 2024.
+
+On April 11, 2025, the CFPB announced that it would not prioritize enforcement
+or supervision actions based on the registration deadlines while it considered
+the rule's future. The Bureau then rescinded the rule effective on publication,
+October 29, 2025. The rescission relieved covered nonbanks of this registration
+and written-statement system. It did not vacate the individual government or
+court orders that would have been reported.
+
+**Lifecycle:** final rule → effective registration architecture → enforcement
+relief → rescission.
+
+## 2. OCC: recovery planning expands after bank failures, then the formal requirement is rescinded
+
+The Office of the Comptroller of the Currency's July 3 proposal responded in
+part to the 2023 failures of institutions with at least $100 billion in assets.
+It proposed lowering the recovery-planning threshold from $250 billion to $100
+billion, adding a testing standard and clarifying that nonfinancial risks,
+including operational and strategic risks, belong in recovery planning.
+
+The OCC finalized the revisions in October 2024. They became effective January
+1, 2025 with staggered compliance periods. A 2026 final rule then rescinded the
+recovery-planning guidelines effective May 1, 2026, so covered banks no longer
+had to maintain the formal appendix-E recovery-plan documentation and the OCC
+would no longer examine for that documentation.
+
+The rescission did not mean that contingency preparation disappeared. The OCC
+declined to codify separate contingency-funding guidance but expressly stated
+that it continued to expect all banks to maintain formal contingency-funding
+plans covering stress scenarios, funding stability and adverse-condition
+funding sources.
+
+**Lifecycle:** proposal → enforceable expansion → implementation window →
+formal recovery-plan rescission, with adjacent supervisory expectations
+retained.
+
+## 3. Treasury: proposed outbound-investment controls become an operating regime and statutory handoff
+
+Treasury's July 5 proposal would implement Executive Order 14105 by prohibiting
+or requiring notification of certain transactions by U.S. persons involving
+covered foreign persons in semiconductors and microelectronics, quantum
+information technologies and artificial intelligence. The named country of
+concern was the People's Republic of China, including Hong Kong and Macau.
+
+Treasury issued the final rule on October 28, 2024; it was published November
+15 and became effective January 2, 2025 as 31 CFR part 850. Treasury's current
+program page provides a notification system, national-interest-exemption path
+and enforcement contacts.
+
+The Comprehensive Outbound Investment National Security Act of 2025 became law
+on December 18, 2025 as part of the FY2026 National Defense Authorization Act.
+Treasury says the existing part 850 obligations remain in force until it issues
+COINS Act regulations, which the statute directs within 450 days of enactment.
+
+**Lifecycle:** proposal → final rule → operating notification/prohibition
+system → statutory successor rulemaking pending while the existing system
+continues.
+
+## 4. FinCEN: one foreign bank is excluded from U.S. correspondent access
+
+FinCEN's July 3 final rule used section 311 of the USA PATRIOT Act to prohibit
+covered U.S. financial institutions from opening or maintaining correspondent
+accounts for or on behalf of Al-Huda Bank. It also requires special due
+diligence reasonably designed to prevent foreign correspondent accounts from
+processing transactions involving Al-Huda Bank. The rule became effective
+August 2, 2024.
+
+At the evidence cutoff, FinCEN's alphabetical table of section 311 and 9714
+special measures still listed the July 3 final rule for Al-Huda Bank and showed
+no rescission date.
+
+**Lifecycle:** final rule → effective correspondent-account prohibition → no
+rescission located.
+
+## 5. FEMA: an attempted codification of disaster-relief practice remains incomplete
+
+FEMA's July 2 proposed rule sought to revise Public Assistance regulations to
+reflect Stafford Act amendments and current agency practice. The proposal
+addressed, among other subjects, the project-application process, State
+administrative plans, Tribal participation, alternate projects and eligibility
+for certain force-account labor and disaster costs.
+
+FEMA later reopened and extended the comment period through October 18, 2024.
+A document-number and docket search located the proposal and reopening notice
+but no final rule for docket FEMA-2023-0005 through the evidence cutoff.
+
+**Lifecycle:** proposal → reopened comment period → no located final rule.
+
+## What changed across the five objects
+
+The common factual grammar is a rule about a **contingent burden**:
+
+- a nonbank must expose and attest to its order-compliance burden;
+- a large bank must plan how it would survive severe stress;
+- a U.S. person must refrain from or report a covered outbound investment;
+- a U.S. financial institution must block a named bank's correspondent route;
+  or
+- a government or eligible applicant must establish which disaster work and
+  costs qualify for federal assistance.
+
+Their divergent later states matter more than a thematic resemblance. Two
+formal protection or resilience mechanisms were rescinded. One capital-control
+system became operational and received a statutory continuation path. One
+targeted financial exclusion remained in force. One relief-administration
+rewrite remained unfinalized. That is a lifecycle comparison, not proof of a
+single coordinated federal agenda.
+
+## Non-findings and boundaries
+
+- The 448-document census is a publication denominator, not a claim that all
+  documents received full substantive review.
+- No causal connection among the five objects was located.
+- Publication, effectiveness, compliance, enforcement and rescission are
+  separate clocks.
+- A proposed rule does not create an operating duty.
+- A final rule does not prove observed compliance or enforcement.
+- A rescission does not erase every neighboring statute, supervisory tool or
+  underlying legal order.
+- The FinCEN table supports a bounded “no rescission listed” conclusion, not a
+  claim about every transaction or enforcement action.
+- No astrology interpretation is part of this factual package.
+
+## Primary sources
+
+### CFPB nonbank orders registry
+
+- [Final rule, FR Doc. 2024-12689](https://www.federalregister.gov/documents/2024/07/08/2024-12689/registry-of-nonbank-covered-persons-subject-to-certain-agency-and-court-orders)
+- [CFPB enforcement-relief announcement, April 11, 2025](https://www.consumerfinance.gov/about-us/newsroom/cfpb-offers-regulatory-relief-from-registration-requirements-for-small-loan-providers/)
+- [Rescission, FR Doc. 2025-19689](https://www.federalregister.gov/documents/2025/10/29/2025-19689/registry-of-nonbank-covered-persons-subject-to-certain-agency-and-court-orders-rescission)
+
+### OCC recovery planning
+
+- [Proposed guidelines, FR Doc. 2024-13960](https://www.federalregister.gov/documents/2024/07/03/2024-13960/occ-guidelines-establishing-standards-for-recovery-planning-by-certain-large-insured-national-banks)
+- [OCC final-guidelines announcement, October 21, 2024](https://www.occ.gov/news-issuances/news-releases/2024/nr-occ-2024-120.html)
+- [Rescission, FR Doc. 2026-06281](https://www.federalregister.gov/documents/2026/04/01/2026-06281/rescission-of-occ-guidelines-establishing-standards-for-recovery-planning-by-certain-large-insured)
+
+### Treasury outbound investment
+
+- [Proposed rule, FR Doc. 2024-13923](https://www.federalregister.gov/documents/2024/07/05/2024-13923/provisions-pertaining-to-us-investments-in-certain-national-security-technologies-and-products-in)
+- [Final rule, FR Doc. 2024-25422](https://www.federalregister.gov/documents/2024/11/15/2024-25422/provisions-pertaining-to-us-investments-in-certain-national-security-technologies-and-products-in)
+- [Treasury Outbound Investment Security Program](https://home.treasury.gov/policy-issues/international/outbound-investment-program)
+- [Treasury FAQ, including the COINS Act handoff](https://home.treasury.gov/policy-issues/international/outbound-investment-program/frequently-asked-questions)
+
+### FinCEN Al-Huda Bank measure
+
+- [Final rule, FR Doc. 2024-14415](https://www.federalregister.gov/documents/2024/07/03/2024-14415/imposition-of-special-measure-regarding-al-huda-bank-as-a-financial-institution-of-primary-money)
+- [FinCEN section 311 and 9714 special-measures table](https://www.fincen.gov/index.php/resources/statutes-and-regulations/311-and-9714-special-measures)
+
+### FEMA Public Assistance proposal
+
+- [Proposed rule, FR Doc. 2024-13898](https://www.federalregister.gov/documents/2024/07/02/2024-13898/update-of-femas-public-assistance-regulations)
+- [Reopened comment period, FR Doc. 2024-21556](https://www.federalregister.gov/documents/2024/09/24/2024-21556/update-of-femas-public-assistance-regulations-reopening-of-comment-period)
+
+## Exact next receipts
+
+Reopen this package if any of the following appears:
+
+1. Treasury publishes proposed or final COINS Act regulations that replace or
+   materially revise 31 CFR part 850;
+2. FinCEN rescinds or materially amends the Al-Huda Bank special measure;
+3. FEMA publishes a final rule or withdrawal for docket FEMA-2023-0005; or
+4. a court or agency order changes the legal state of either rescinded 2024
+   reporting or recovery-planning architecture.

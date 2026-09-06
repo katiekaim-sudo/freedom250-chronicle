@@ -1,4 +1,4 @@
-> Source evidence cutoff: 2026-09-01
+> Source evidence cutoff: 2026-09-01 · Source updated: 2026-09-17
 
 # Ripple, XRP and the Invisible Conversion Layer
 
@@ -26,6 +26,42 @@ providers maintain large, persistent net XRP inventory for those routes.
 XRP's distinct inflection requires route-share, depth, financed inventory,
 holding-duration and hedge evidence. Gross payment notional, Ripple revenue,
 RLUSD supply and XRPL transaction count cannot substitute for those receipts.
+
+## September 17 addendum: a new permission channel, not a token selection
+
+SEC Release No. 34-106402 creates an effective five-year exemption for a
+qualifying Tokenized Securities Venue to operate permissioned AMM pools on
+public, permissionless DLT. At least one pool leg must be Tokenized NMS Stock;
+the other may be **any non-security crypto asset**. A separate Covered Firm
+exemption permits qualifying own-account liquidity provision and requires
+disclosure of compensation, including token incentives.
+
+This is the closest operative legal bridge yet between U.S. public-equity
+trading and the persistent crypto-liquidity-inventory mechanism described in
+this answer. It changes the set of legally possible routes. It does not establish
+that Ripple operates a TSV, that XRPL hosts one, that RLUSD supplies the cash
+leg, or that XRP has been selected as a pair or bridge asset.
+
+The new evidence chain is:
+
+```text
+complete TSV notice + 30-day clock
+  -> named public chain and auditable contracts
+     -> eligible Tokenized NMS Stock and issuer process
+        -> named XRP or RLUSD pool
+           -> recurring route wins and market depth
+              -> gross and net liquidity-provider inventory
+                 -> holding duration, financing and hedges
+                    -> XRP-specific value capture, if any
+```
+
+The order therefore strengthens the *mechanical plausibility* of the invisible
+conversion thesis while leaving its asset-level factual verdict unchanged.
+Regulatory permission for a non-security-crypto pair is not evidence of token
+selection, usage, net persistent inventory or price transmission.
+
+Read the full order analysis in
+Tokenized NMS Stock Innovation Exemption 2026-09-17.
 
 ## Four success ledgers
 
@@ -63,6 +99,8 @@ or bank connection does not establish that the incumbent adopted XRP or XRPL.
 
 The controlling relationship map remains
 Ripple infrastructure relationship sweep.
+For the targeted September 17 cybersecurity comparison, use
+Ripple stack and GOLD EAGLE interface map; it is a dated extension and does not refresh every claim in this answer.
 
 ## September 1 addendum: transfer agency, Securitize and Wormhole
 

@@ -21,7 +21,7 @@
 
 1. **Iran:** Trump said the United States intends to win, repeated the no-nuclear-weapon condition, and said strikes would continue; he did not announce a signed ceasefire, a strike order, or a defined end state. He also said negotiations continue through Steve Witkoff, Jared Kushner, Vance and Rubio. This is escalation rhetoric plus an open negotiation clock, not a new operative instrument.
 2. **Ukraine weapons:** Trump said Patriot/Tomahawk transfer or production licensing was being discussed and that the United States had **not agreed**. This is the key negative finding: no authorization was announced.
-3. **Hamas disarmament:** Trump and Rubio described a deal/agreement in principle. Asked for sequencing, Trump did not give it. Do not promote this to actual disarmament, Israeli withdrawal, custody transfer, or an implemented Board-of-Peace role without the agreement and observed performance.
+3. **Hamas disarmament:** Trump and Rubio described a deal/agreement in principle. Asked for sequencing, Trump did not give it. Do not treat this as actual disarmament, Israeli withdrawal, custody transfer, or an implemented Board-of-Peace role without the agreement and observed performance.
 4. **Minnesota water-system cyberattack:** Trump rejected an Iran attribution and blamed state incompetence. Attribution was still officially unresolved; the event is a live critical-infrastructure/cybersecurity watch, not evidence that Minnesota or Iran caused it.
 5. **Federal payment integrity:** Vance announced 17 new anti-fraud actions and claimed $230B identified / $56B halted. Treat the numbers as administration claims pending an action-by-action ledger, identifiers, amounts, legal mechanism, and actual payment-stop or recovery state.
 6. **Iran financial pressure:** Bessent described an asset-search/recovery program and future use of Iranian assets for Iranian people, U.S. claimants, or damaged shipping. No legal authority, asset inventory, forfeiture judgment, or distribution mechanism was identified on camera. This is a concrete document-request lane.
@@ -30,7 +30,7 @@
 
 ## Research boundary
 
-This package preserves the source and an initial factual audit only. It does not alter vault event notes, watches, astrology, or synthesis. Any promotion must attach primary objects and preserve announcement, legal, funding, effective, implementation, and operating clocks separately.
+This package preserves the source and an initial factual audit only. It does not alter vault event notes, watches, astrology, or synthesis. Any later Chronicle incorporation must attach primary objects and preserve announcement, legal, funding, effective, implementation, and operating clocks separately.
 
 ## Return-governance reconciliation — 2026-08-27
 

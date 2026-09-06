@@ -1,0 +1,345 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Genesis Identity, Provenance and Post-Quantum Bridge · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/science-to-capability.html#ambitions" class="" >What are the ambitions? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#scientific-work" class="" >What has to work together? <span class="meta">— From scientific ambition to things that work</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Genesis Identity, Provenance and Post-Quantum Bridge</h1><p class="deck">Collection evidence cutoff: 2026-08-11</p><p><a href="genesis-identity-provenance-pqc-bridge-2026-08-11-0051de7f91ee.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="genesis-identity-provenance-and-post-quantum-bridge">Genesis Identity, Provenance and Post-Quantum Bridge</h1>
+<blockquote>
+<p>Correction checked 2026-09-09: NNSA June 30 notice establishes an enterprise-authorized AWS environment but describes inaugural Genesis workloads prospectively. Original evidence cutoff is retained; this is a bounded wording correction, not a full refresh.</p>
+</blockquote>
+<p>Completed: 2026-08-11<br />
+Evidence cutoff: 2026-08-11<br />
+Status: current Workbench research; no Chronicle landing<br />
+Project scope: Freedom 250 mundane-policy research only<br />
+Retrieval terms: Genesis Mission, American Science and Security Platform,
+American Science Cloud, ModCon, Globus Auth, digital provenance, cryptographic
+attestation, AI passports, PQC, FIPS 203, FIPS 204, FIPS 205, CNSA 2.0, M7</p>
+<h2 id="executive-ruling">Executive ruling</h2>
+<p>The first public bridge between the Genesis Mission and cryptographic proof has
+appeared, but the full Genesis–identity–provenance–post-quantum stack has not yet
+been joined in one operative federal instrument.</p>
+<p>Three separate layers are now visible:</p>
+<ol>
+<li><strong>Genesis identity and workflow controls are operating.</strong> DOE and Globus
+   describe federated authentication, delegated tokens, API access for human and
+   non-human agents, authenticated production-compute jobs, access groups and
+   audit controls.</li>
+<li><strong>Genesis provenance is an adopted design requirement and partially
+   implemented.</strong> DOE requires traceability, auditability, digital provenance,
+   fine-grained access controls and data/model/agent cards documenting origin,
+   provider, inputs, outputs, methods, limits and authentication requirements.</li>
+<li><strong>Genesis-specific cryptographic attestation is documented as a proposal,
+   not an adoption.</strong> DOE's July 2026 analysis of stakeholder responses records
+   a proposal for hardware-attested confidential computing, AI passports for
+   cryptographic attestation and open verification standards. DOE attributes
+   the idea to an outside respondent; the analysis is not a solicitation,
+   award, standard or implementation decision.</li>
+</ol>
+<p>Government-wide and Department of War post-quantum mandates sit directly beside
+these layers. No public Genesis system-security plan, contract, certificate
+profile, cryptographic bill of materials or interface agreement located by the
+evidence cutoff expressly applies FIPS 203, FIPS 204, FIPS 205 or CNSA 2.0 to a
+named Genesis component.</p>
+<p>The precise state is therefore:</p>
+<pre><code class="language-text">Genesis + federated identity             = operating
+Genesis + provenance/auditability        = designed and partly operating
+Genesis + cryptographic attestation      = explicitly proposed
+Genesis + system-specific PQC            = not publicly established
+Genesis + blockchain/DLT implementation  = not established
+</code></pre>
+<h2 id="the-strict-joining-test">The strict joining test</h2>
+<p>A source qualifies as the missing joined instrument only if it identifies a
+named Genesis system, interface, procurement, pilot or standard <strong>and</strong> applies
+an algorithm-level or control-level post-quantum requirement to its identity,
+signing, provenance or data-transfer function.</p>
+<p>Examples that would satisfy the test include:</p>
+<ul>
+<li>an American Science Cloud identity architecture specifying PQC or hybrid
+  certificates;</li>
+<li>a Genesis solicitation requiring FIPS 203/204/205 or CNSA 2.0;</li>
+<li>a Genesis system-security plan or authorization package with a dated PQC
+  migration profile;</li>
+<li>a cryptographic bill of materials naming Genesis components;</li>
+<li>a signed scientific-output or provenance standard specifying PQC algorithms,
+  trusted issuers, revocation and correction; or</li>
+<li>a DoW–DOE interface agreement applying PQC to defense data entering or leaving
+  the Genesis platform.</li>
+</ul>
+<p>Generic use of the word <code>secure</code> does not satisfy this test. OAuth, OpenID
+Connect, PKI, TLS, tokens, signatures and hardware attestation are not quantum
+safe merely because they are cryptographic.</p>
+<h2 id="evidence-matrix">Evidence matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Public object</th>
+<th>What it establishes</th>
+<th>Authority state</th>
+<th>Missing boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executive Order 14363, Launching the Genesis Mission</td>
+<td>American Science and Security Platform; cybersecurity-risk controls; user vetting/authentication; metadata and provenance; standard partnership, data and model agreements</td>
+<td>operative presidential direction</td>
+<td>no PQC algorithm, ledger or signature profile</td>
+</tr>
+<tr>
+<td>DOE Genesis Data Team fact sheet</td>
+<td>federated governance, fine-grained access control, licensing, auditability, digital provenance and traceability for verification and reproducibility</td>
+<td>current DOE architecture</td>
+<td>no disclosed signing or PQC schema</td>
+</tr>
+<tr>
+<td>DOE Genesis Infrastructure Team fact sheet</td>
+<td>federated secure ecosystem spanning open, restricted and classified systems; secure multi-agent workflows and access to facilities</td>
+<td>current DOE architecture</td>
+<td>no disclosed certificate, token or PQC control profile</td>
+</tr>
+<tr>
+<td>DOE ModCon / American Science Cloud architecture</td>
+<td>agent cards, data cards and model cards; a common onboarding and registration path; platform-handled identity, data, compute and inference</td>
+<td>current implementation architecture</td>
+<td>card contents are not proof that every card or result is digitally signed</td>
+</tr>
+<tr>
+<td>May 2026 DOE ModCon/AmSC presentation</td>
+<td>authenticated production workflows using Globus Auth and the ALCF IRI API; data transfer, job submission, monitoring and result retrieval; SSO, group permissions, tracing and evaluation work</td>
+<td>demonstrated on production national-lab systems</td>
+<td>unified AmSC token and several interfaces were still incomplete; no PQC named</td>
+</tr>
+<tr>
+<td>Globus April 2026 Genesis presentation</td>
+<td>Globus Auth already supports Genesis scientific-AI applications, non-human agents, delegated tokens and secure API access</td>
+<td>provider-reported production use</td>
+<td>no PQC or hybrid-key claim</td>
+</tr>
+<tr>
+<td>DOE July 2026 Genesis RFI analysis</td>
+<td>outside proposal for hardware-attested confidential computing, AI passports for cryptographic attestation and open verification standards</td>
+<td>stakeholder idea preserved in a DOE synthesis</td>
+<td>not DOE adoption, solicitation, award or standard; no PQC named</td>
+</tr>
+<tr>
+<td>NNSA Secret/Restricted Data AWS environment</td>
+<td>first enterprise-authorized cloud environment for Secret/Restricted Data, intended to host inaugural Genesis workloads</td>
+<td>authorized classified-cloud environment; running Genesis workloads not established</td>
+<td>public notice omits detailed cryptographic control profile</td>
+</tr>
+<tr>
+<td>Argonne Genesis supercomputing-center sources-sought notice</td>
+<td>market research for secure, scalable AI infrastructure, software, services and testbeds</td>
+<td>planning; not a solicitation or award</td>
+<td>no public PQC or provenance-signature requirement</td>
+</tr>
+<tr>
+<td>DoW–Genesis partnership</td>
+<td>DoW data, design loops and substantial planned investment flow into the DOE platform</td>
+<td>announced interdepartmental program</td>
+<td>no public interface-security or PQC annex</td>
+</tr>
+<tr>
+<td>DoW 2026 PQC Strategy</td>
+<td>DoW-wide deadlines for PQC support and use across PKI, signing, cloud, browsers, networks and contractor integrations</td>
+<td>operative department strategy</td>
+<td>never names Genesis or a specific DoW–DOE connection</td>
+</tr>
+<tr>
+<td>EO 14412 and OMB M-26-15</td>
+<td>government-wide PQC inventory, planning, shared implementation and pilot clocks</td>
+<td>operative government-wide program</td>
+<td>no public DOE/Genesis migration plan located at cutoff</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-strongest-genesis-specific-cryptographic-evidence">The strongest Genesis-specific cryptographic evidence</h2>
+<p>DOE's <code>Genesis Mission RFI Analysis 2026</code> is the first located public Genesis
+document to use the relevant proof language directly. At pages 10–11 it records
+this stakeholder proposal:</p>
+<blockquote>
+<p>“Verifiable AI Infrastructure” using hardware-attested confidential computing
+environments, AI passports for cryptographic attestation, and open
+verification standards.</p>
+</blockquote>
+<p>The document identifies Lucid Computing as the respondent. It also says the RFI
+was market research for strategic planning and did not constitute a
+solicitation or promise to issue one. The idea has therefore entered DOE's
+documented Genesis option set, but it has not crossed the adoption gate.</p>
+<p>This is closer to the trust-stack thesis than a generic blockchain reference.
+It names the proof objects needed to establish which agent, model or protected
+environment produced an output. It still does not establish:</p>
+<ul>
+<li>which party issues an AI passport;</li>
+<li>what fact the passport attests;</li>
+<li>which key or trust registry validates it;</li>
+<li>whether the attestation covers code, model, data, hardware, result or all of
+  them;</li>
+<li>how revocation and correction work;</li>
+<li>which post-quantum algorithms are required; or</li>
+<li>whether any ledger is involved.</li>
+</ul>
+<h2 id="the-production-identity-and-provenance-rail">The production identity and provenance rail</h2>
+<p>The operating structure reconstructed from DOE and Globus sources is:</p>
+<pre><code class="language-text">human or non-human agent identity
+  -&gt; Globus Auth / delegated token
+  -&gt; authorized Genesis service or workflow
+  -&gt; DOE data + national-laboratory compute or instrument
+  -&gt; result + execution logs
+  -&gt; agent card + data card + model card
+  -&gt; provenance, audit and reproducibility record
+</code></pre>
+<p>DOE's May 2026 ModCon presentation supplies the best implementation proof. It
+reports that an AI agent used the ALCF IRI API and Globus to authenticate, move
+files, submit an ML training job to Polaris, monitor the job and retrieve the
+result on production systems. The presentation also records remaining gaps,
+including per-facility accounts, manual whitelisting, unfinished portal and
+registry connections and the need for a single American Science Cloud token.</p>
+<p>That is a real trust rail, not merely a future diagram. It is not yet public
+proof of post-quantum protection or universal cryptographic provenance.</p>
+<h2 id="how-pqc-entersand-where-inference-must-stop">How PQC enters—and where inference must stop</h2>
+<p>Executive Order 14412 and OMB M-26-15 require federal agencies to inventory and
+migrate vulnerable cryptography. The DoW strategy separately requires its
+systems to support PQC by December 31, 2030 and use PQC for key establishment
+and digital signatures by December 31, 2031.</p>
+<p>The DoW–Genesis partnership makes a future collision highly likely: DoW systems
+and data connected to Genesis will need to survive DoW's cryptographic migration
+requirements. That is an institutional inference, not a documented
+system-specific implementation fact. The public record does not yet identify:</p>
+<ul>
+<li>the DoW or DOE endpoints in the connection;</li>
+<li>the network, API, transfer service or identity provider carrying the data;</li>
+<li>the present classical algorithms;</li>
+<li>the system owner responsible for migration;</li>
+<li>the relevant authorization boundary;</li>
+<li>the contract or interagency agreement allocating responsibility; or</li>
+<li>the planned PQC cutover date.</li>
+</ul>
+<p>The NNSA classified-cloud announcement has the same boundary. Security detail
+may be withheld for legitimate reasons. Public silence therefore does not prove
+that PQC is absent, but it cannot be converted into affirmative evidence that
+PQC is present.</p>
+<h2 id="procurement-and-standards-ruling">Procurement and standards ruling</h2>
+<p>The closest procurement-adjacent object located by the cutoff is Argonne's July
+21, 2026 sources-sought notice for a National Genesis Mission Supercomputing
+Center of Innovation. It asks industry about secure, scalable AI
+infrastructure, equipment, software, services, testbeds, financing and
+partnership structures. It is market research, not a solicitation or award, and
+does not publish an algorithm-level cryptographic requirement.</p>
+<p>No public object located by the cutoff satisfied the joining test. Searches
+covered DOE, NNSA, DoW, NIST, SAM.gov, USAspending, Globus and ESnet surfaces for
+combinations of Genesis/American Science Cloud/ModCon with PQC,
+post-quantum, FIPS 203/204/205, CNSA 2.0 and cryptographic bill of materials.</p>
+<h2 id="relationship-to-the-july-2026-science-doctrine">Relationship to the July 2026 science doctrine</h2>
+<p><code>Science: A New Golden Age</code> imagines cryptographically signed laboratory
+results, contribution records, smart contracts, distributed ledgers and
+machine-executable scientific exchange. The report describes a horizon; it
+does not select a chain or create a procurement.</p>
+<p>The Genesis implementation documents now supply the identity, workflow,
+provenance and platform layers underneath that horizon. The PQC program supplies
+the coming cryptographic migration layer. The unbuilt connector is the operative
+instrument that applies PQC-quality signatures or attestations to a named
+Genesis identity, workflow or scientific result.</p>
+<h2 id="m7-firewall">M7 firewall</h2>
+<p>The documented Genesis identity, provenance and cryptographic-attestation work does not by itself establish a federal spending-transparency or payments ledger pilot. Identity assertions, provenance cards, append-only logs, PKI and PQC can operate without distributed consensus.</p>
+<p>The <a href="../sources/federal-cryptographic-trust-stack-2026-08-11-1c0e21c343cb.html#11-m7-provenance-correction">Cryptographic Trust foundation, section 11</a> owns the official-evidence question and the separate provenance of the historical M7 clock. This September 7 source-boundary correction preserves the bridge's original evidence cutoff and does not refresh Genesis implementation.</p>
+<h2 id="return-gates">Return gates</h2>
+<ol>
+<li><strong>2026-08-21 — Argonne sources-sought close.</strong> Recheck SAM.gov for an
+   amendment, attachments, response summary, draft solicitation or successor
+   procurement containing security requirements.</li>
+<li><strong>Federal FICAM/PQC working group — formation return received.</strong> The
+   <a href="../sources/federal-cryptographic-trust-stack-2026-08-11-1c0e21c343cb.html#10-post-quantum-migration-is-the-decisive-live-clock">Cryptographic Trust foundation, section 10</a>
+   owns the saved GSA report of its August 12 first meeting. The remaining Genesis
+   question is a named DOE/Genesis participant, deliverable, pilot, procurement
+   or certificate profile; group formation alone does not establish that join.</li>
+<li><strong>Before October 2026 — American Science Cloud identity work.</strong> Recheck the
+   single-token, federated-SSO, portal, model-registry and job-API gaps recorded
+   in the May presentation.</li>
+<li><strong>2026-10-22 — agency PQC plans due.</strong> Determine whether a public DOE plan
+   identifies Genesis, AmSC, ModCon, Globus, national-lab APIs, classified cloud
+   or scientific-output signatures.</li>
+<li><strong>2026-11-24 — Genesis annual-report clock.</strong> Look for implementation
+   milestones, cybersecurity architecture, standards, procurements and
+   interagency data connections.</li>
+<li><strong>2026-12-19 — NIST pilot initiation.</strong> Identify the system, algorithms,
+   vendors, budget, success measures and relationship—if any—to identity,
+   provenance or scientific workflows.</li>
+<li><strong>2027-03-19 — CBOM guidance.</strong> Search for Genesis/AmSC components in public
+   agency implementation or acquisition documents using the new minimum
+   elements.</li>
+</ol>
+<h2 id="primary-source-ledger">Primary source ledger</h2>
+<ul>
+<li><a href="https://www.federalregister.gov/documents/2025/11/28/2025-21665/launching-the-genesis-mission">Executive Order 14363 — Launching the Genesis Mission</a></li>
+<li><a href="https://www.energy.gov/documents/data-team-fact-sheet">DOE — Genesis Mission Data Team</a></li>
+<li><a href="https://www.energy.gov/documents/infrastructure-team-fact-sheet">DOE — Genesis Mission Infrastructure Team</a></li>
+<li><a href="https://www.energy.gov/undersecretaryforscience/genesis-mission/modcon-transformational-ai-and-data">DOE — ModCon: Transformational AI and Data</a></li>
+<li><a href="https://www.energy.gov/sites/default/files/2026-07/ModCon-Confab26.pdf">DOE — May 2026 ModCon / American Science Cloud presentation</a></li>
+<li><a href="https://amsc.energy.gov/">American Science Cloud</a></li>
+<li><a href="https://www.globus.org/events/Improving-Scientific-Software-2026">Globus — Federated Identity and Access Management for Scientific AI Systems</a></li>
+<li><a href="https://www.energy.gov/sites/default/files/2026-07/Genesis-Mission-RFI-Analysis.pdf">DOE — Genesis Mission RFI Analysis 2026</a></li>
+<li><a href="https://www.energy.gov/nnsa/articles/nnsa-launches-secretrestricted-data-enterprise-cloud-environment-collaboration-amazon">NNSA — Secret/Restricted Data Enterprise Cloud and Genesis workloads</a></li>
+<li><a href="https://sam.gov/opp/e526498e24924e268dfc64c44d243276/view">SAM.gov — National Genesis Mission Supercomputing Center of Innovation sources sought</a></li>
+<li><a href="https://www.war.gov/News/Releases/Release/Article/4551998/department-of-war-partners-with-the-genesis-mission-to-proliferate-ai-for-scien/">DoW — Genesis Mission partnership</a></li>
+<li><a href="https://dowcio.war.gov/Portals/0/Documents/Library/DoW-PQC-Strategy.pdf">DoW — 2026 Post-Quantum Cryptography Strategy</a></li>
+<li><a href="https://www.whitehouse.gov/presidential-actions/2026/06/securing-the-nation-against-advanced-cryptographic-attacks/">Executive Order 14412 — Securing the Nation Against Advanced Cryptographic Attacks</a></li>
+<li><a href="https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf">OMB M-26-15 — Execution of the Migration to Post-Quantum Cryptography</a></li>
+<li><a href="https://www.whitehouse.gov/science/">White House — Science: A New Golden Age</a></li>
+</ul>
+<h2 id="reference-capsule">Reference capsule</h2>
+<blockquote>
+<p>As of August 11, 2026, Genesis already has a real federated identity,
+authenticated-agent and provenance architecture. DOE has published—but not
+adopted—a stakeholder proposal for AI passports, hardware-attested computing
+and cryptographic verification. Government-wide and DoW PQC mandates now sit
+beside the platform, but no located public procurement, standard or
+system-security instrument yet applies PQC to a named Genesis component. The
+first document that does so will close the bridge.</p>
+</blockquote></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

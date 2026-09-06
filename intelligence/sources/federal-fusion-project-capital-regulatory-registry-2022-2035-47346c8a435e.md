@@ -1,7 +1,7 @@
 # Federal fusion project, capital and regulatory registry, 2022–2035
 
 **Evidence cutoff:** 2026-08-15  
-**Status:** pending workbench research; object-level implementation registry  
+**Status:** current workbench research; object-level implementation registry  
 **Scope:** the eight companies in DOE's Milestone-Based Fusion Development Program, their machines and sites, public capital, verified milestones, regulatory and grid objects, and the Genesis-linked implementation layer  
 **Authority boundary:** federal, state, utility, laboratory and local-government records control public-program and regulatory state. Company records establish company designs, contracts, experiments and claims only at the verb and boundary the source supports.
 

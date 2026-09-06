@@ -1,4 +1,4 @@
-> Source cutoff: 2026-08-26
+> Source cutoff: 2026-09-25
 
 # SEC–CFTC Current Authority and Operative Change Ledger
 
@@ -17,11 +17,72 @@ where located. CLARITY is used only to mark the present statutory boundary, not
 as the engine of the analysis. Banking, payment, AML, tax, state commercial law
 and bankruptcy are included only where they delimit SEC or CFTC power.
 
-**Cutoff:** 2026-08-26 EDT. Legal authority, instrument state and operation are
+**Cutoff:** 2026-09-25 EDT. Legal authority, instrument state and operation are
 kept separate.
 
 **Mutation boundary:** Workbench research only. No live-vault event, canonical
 watch, plotline, app state or legislative forecast was changed.
+
+## September 25 addendum — Corporation Finance crypto-asset FAQs
+
+Corporation Finance issued nine nonbinding staff answers applying the March
+Commission interpretation. They add no statute, rule, registration, exemption
+or operating permission, so the authority ledger's top-level allocation does
+not change. They do sharpen the securities-perimeter analysis: Commission
+definitions govern asset classification while issuer-authored thresholds govern
+promise fulfillment; successor assumption preserves those promises; specified
+post-functional maintenance, improvement, network-growth and buyback activity
+does not constitute essential managerial effort; pure receipts require
+continuing depositor ownership and no issuer use or rehypothecation; and a
+secondary platform is a promoter only if Securities Act Rule 405 is met.
+
+The March interpretation remains the Commission-level object. Regulation
+Crypto Assets remains proposed, and the FAQs do not close the ordinary
+non-security digital-commodity spot-market gap.
+
+## September 18 addendum — CFTC crypto-market prerule at OIRA
+
+OIRA received a new CFTC action, RIN `3038-AF80`, on September 17 under the
+title **Regulation Crypto Asset Transactions and Regulation Crypto Asset
+Markets**. The record is pending, at the **prerule** stage, marked
+`Dodd-Frank: Yes`, not economically significant, and has no legal deadline.
+The RIN has not appeared in the Unified Agenda, and the draft remains
+deliberative, so no public text, CFR parts, legal-authority list, Commission
+vote, publication date or comment clock exists yet.
+
+This is the first formal drafting-stage receipt after Chairman Selig's August
+20 direction to explore a DCM subtype called a “crypto asset market” for
+leveraged or margined crypto trading under existing authority. It strengthens
+the central ruling below: the CFTC is actively testing the reach of its
+derivatives and retail-commodity-transaction toolkit after CLARITY stalled,
+but the action does not yet create a rule or close the comprehensive ordinary
+spot-market gap.
+
+Full reading: CFTC Crypto Asset Transactions and Markets — OIRA Prerule
+Review.
+
+## September 17 addendum — passive-software distribution layer
+
+CFTC Market Participants Division Letter 26-25 adds a new staff-relief object
+to the CFTC side of this ledger. It generalizes the March 17 Phantom position
+to qualifying passive software providers, expressly including non-crypto
+providers. A PSP may provide a standalone or embedded front end, transmit user
+orders directly to registered derivatives entities, market named event
+contracts or perpetuals, solicit users to specific registrants, and receive
+revenue-share or transaction-based fees without MPD recommending IB/AP
+registration enforcement solely for those activities.
+
+The letter does not alter the core ruling below. Covered activity remains on a
+DCM, directly or through an FCM/IB; customer property remains at a DCO and/or
+FCM; and the PSP may not hold assets, generate express buy/sell signals,
+exercise routing/execution discretion or become affirmatively involved in an
+order. The provider and each registrant partner accept disclosures, marketing,
+records, notice, jurisdiction and joint-liability conditions. Letter 26-25 is
+an interim MPD no-action position, not Commission law, a spot-market regime,
+a DeFi safe harbor or operating evidence.
+
+Full reading: [CFTC Passive Software No-Action Position — Full Reading and
+Plotline Impact](../sources/cftc-passive-software-no-action-position-2026-09-17-d180cea1d70c.html).
 
 ## Controlling answer
 

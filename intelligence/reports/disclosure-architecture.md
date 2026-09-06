@@ -1,7 +1,7 @@
 # DNI Release Architecture Crosswalk — Election and COVID/Biolab
 
 **Analysis date:** July 27, 2026  
-**Status:** `pending` vault review  
+**Status:** `current` Workbench research  
 **Scope:** release architecture only; no substantive merger of the two subjects
 
 ## Short answer

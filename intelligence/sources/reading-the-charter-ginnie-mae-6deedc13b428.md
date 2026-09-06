@@ -112,4 +112,4 @@ Ginnie Mae isn't a company wearing a government costume — it's the government 
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1968 - Government National Mortgage Association provisions (current codified) (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

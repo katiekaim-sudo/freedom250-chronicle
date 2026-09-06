@@ -1,0 +1,704 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>From Atomic Settlement to Continuous Assurance — Real-Time Books, Financial Statements, and the Changing Audit · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/money-rights-and-records.html#records-that-can-explain" class="" >A transaction record must explain more than movement <span class="meta">— Who gets in, which record counts, and when payment is complete</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>From Atomic Settlement to Continuous Assurance — Real-Time Books, Financial Statements, and the Changing Audit</h1><p class="deck">Source cutoff: 2026-09-26 · Collection evidence cutoff: 2026-09-26</p><p><a href="atomic-settlement-to-continuous-assurance-2026-09-26-d75aaac96925.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="from-atomic-settlement-to-continuous-assurance-real-time-books-financial-statements-and-the-changing-audit">From Atomic Settlement to Continuous Assurance — Real-Time Books, Financial Statements, and the Changing Audit</h1>
+<h2 id="question">Question</h2>
+<p>Can atomic settlement, smart contracts, blockchain records and artificial
+intelligence make real-time accounting and continuously updated financial
+statements practical—and, if they can, how does the external audit change?</p>
+<h2 id="scope-and-cutoff">Scope and cutoff</h2>
+<p>This is a primary-source, U.S.-public-company-centered architecture and claim
+audit through <strong>September 26, 2026</strong>. It joins the Accounting Transition
+package to the maintained DLT record/finality work. PCAOB and SEC rules control
+the current U.S. issuer-audit and reporting state; FASB sources control the
+conceptual accounting boundary. Federal Reserve, BIS, GAO, NIST and IAASB
+sources are used for technical and horizon evidence with their institutional
+status preserved.</p>
+<p>This study does not claim that a U.S. issuer currently publishes continuously
+audited GAAP financial statements. No such general SEC filing regime or PCAOB
+audit-reporting product was located in the reviewed primary sources. Current
+issuer reporting remains annual, quarterly and event-triggered; current PCAOB
+opinions remain attached to identified financial statements and periods.</p>
+<h2 id="ruling">Ruling</h2>
+<p>Katie's hypothesis is directionally right, with one essential correction:</p>
+<blockquote>
+<p>Blockchain transactions can become <strong>continuously verifiable</strong>; smart
+contracts can make many controls <strong>continuously executable</strong>; and AI can make
+large evidence populations <strong>continuously examinable</strong>. None of those states
+is, by itself, an audit.</p>
+</blockquote>
+<p>The defensible transition is:</p>
+<pre><code class="language-text">authorized event
+  -&gt; condition and evidence packet
+  -&gt; smart-contract execution
+  -&gt; atomic exchange or explicit failure
+  -&gt; authoritative operational / regulatory record
+  -&gt; versioned accounting projection
+  -&gt; continuously updated books
+  -&gt; judgment and estimate layer
+  -&gt; consolidated statement snapshot
+  -&gt; management certification
+  -&gt; independent assurance
+</code></pre>
+<p>This can move accounting from a periodic reconstruction exercise toward a
+continuously controlled evidence system. The annual audit then has a plausible
+new center of gravity: less reconstruction and sampling of routine events;
+more testing of system boundaries, code, permissions, source completeness,
+models, judgments, exceptions, corrections and governance.</p>
+<p>The annual opinion does not disappear merely because the underlying evidence
+arrives continuously. A new continuous-assurance product would still need an
+identified subject matter, suitable criteria, a responsible party, an
+independent practitioner, sufficient appropriate evidence, a defined level of
+assurance and a report that tells users exactly what was—and was not—assured.</p>
+<h2 id="1-the-terms-are-not-interchangeable">1. The terms are not interchangeable</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Controlled meaning here</th>
+<th>What it does not establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Atomic settlement</strong></td>
+<td>Two or more specified transfer legs complete together or none completes under the system's rule</td>
+<td>Legal finality in every jurisdiction, correct accounting, economic performance, fair value or absence of later remedy</td>
+</tr>
+<tr>
+<td><strong>Smart-contract execution</strong></td>
+<td>Approved code applied defined conditions to defined inputs and produced a state change or failure</td>
+<td>Correct legal interpretation, accurate oracle input, authorized economic purpose or correct GAAP treatment</td>
+</tr>
+<tr>
+<td><strong>On-chain validation</strong></td>
+<td>The network accepted the transaction under its consensus and protocol rules</td>
+<td>Audit opinion, ownership outside the recorded tier, completeness of all entity activity or off-chain truth</td>
+</tr>
+<tr>
+<td><strong>Continuous accounting</strong></td>
+<td>Authorized events and approved time-based calculations update subledgers and books throughout the period</td>
+<td>Continuously complete GAAP statements if estimates, eliminations, contingencies and disclosures remain unresolved</td>
+</tr>
+<tr>
+<td><strong>Continuous monitoring</strong></td>
+<td>Management's systems test controls, thresholds, populations and exceptions on an ongoing basis</td>
+<td>Independent assurance; management cannot become its own external auditor</td>
+</tr>
+<tr>
+<td><strong>Continuous auditing</strong></td>
+<td>Auditor-controlled procedures run repeatedly or persistently across current data and controls</td>
+<td>A continuously outstanding public audit opinion unless a reporting framework creates and defines one</td>
+</tr>
+<tr>
+<td><strong>Continuous assurance</strong></td>
+<td>An independent conclusion is refreshed or issued against defined subject matter and criteria under an authorized engagement</td>
+<td>A blanket guarantee that the business, system or statements are always correct</td>
+</tr>
+<tr>
+<td><strong>Real-time financial statements</strong></td>
+<td>A versioned statement snapshot generated near its stated measurement/publication time from current books, estimates and consolidation rules</td>
+<td>Timeless truth; every statement still has an as-of time, covered period, perimeter, policy set, judgment state and assurance label</td>
+</tr>
+</tbody>
+</table>
+<p>The phrase <strong>“each transaction is audited on the blockchain”</strong> should therefore
+be replaced with a typed claim such as:</p>
+<blockquote>
+<p>Each in-scope transaction is protocol-validated, retained with a
+machine-verifiable evidence packet, processed through approved automated
+controls, and continuously available for management and auditor testing.</p>
+</blockquote>
+<p>Only an authorized independent engagement and report can add the word
+“audited.”</p>
+<h2 id="2-atomic-settlement-changes-the-evidence-object">2. Atomic settlement changes the evidence object</h2>
+<p>Federal Reserve Governor Christopher Waller described atomic settlement as a
+smart-contract construction in which transaction legs are combined so that
+one settles if and only if the other settles. For delivery-versus-payment, the
+buyer does not pay without delivery and the seller does not deliver without
+payment. That can mitigate settlement and counterparty credit risk.</p>
+<p>Atomicity is not unique to blockchain; delivery-versus-payment and
+payment-versus-payment are older settlement objectives. DLT's distinctive
+contribution is the possibility of placing programmable assets, conditions,
+execution and the resulting record into one shared, machine-verifiable event
+environment—or synchronising them across connected environments.</p>
+<p>The accounting significance is larger than faster payment. A well-designed
+atomic event can bind, in one inspectable object:</p>
+<ul>
+<li>the identified parties and legal entities;</li>
+<li>the asset and money legs;</li>
+<li>the quantity, price and unit;</li>
+<li>the authorizations and signatures;</li>
+<li>the contract address and executable-rule version;</li>
+<li>the required conditions and exact oracle payloads;</li>
+<li>the instruction, execution, finality and legal-effect times;</li>
+<li>the official recordkeeper and conflict-precedence rule;</li>
+<li>the success, failure, timeout or compensating-action state; and</li>
+<li>the evidence references needed by each accounting view.</li>
+</ul>
+<p>That object can remove an important class of disagreement: one party need not
+record delivery while the other records a failed payment if the authoritative
+system truly makes those two specified legs indivisible.</p>
+<p>Atomicity remains bounded. It does not prove that:</p>
+<ul>
+<li>a physical good existed, was undamaged or reached the proper destination;</li>
+<li>a service was performed to the required standard;</li>
+<li>the transacting addresses belong to the represented legal persons;</li>
+<li>the asset was unencumbered or the transfer legally effective outside the
+  system;</li>
+<li>an oracle was accurate;</li>
+<li>a revenue-performance obligation was satisfied;</li>
+<li>the reporting entity owns or controls the resulting asset;</li>
+<li>the exchange price was fair value; or</li>
+<li>every side agreement and reporting-entity transaction was included.</li>
+</ul>
+<p>The Federal Reserve also warns that smart-contract bugs, cyber vulnerabilities
+and instantaneous settlement create risks. The BIS distinguishes fully
+integrated settlement from synchronised transfers across separate systems and
+notes migration costs, liquidity fragmentation and disaster-recovery/control
+questions. Atomic settlement can reduce principal risk while increasing the
+importance of prefunding, intraday liquidity, interoperability and failure
+governance.</p>
+<h2 id="3-eight-clocks-replace-the-single-real-time-claim">3. Eight clocks replace the single “real-time” claim</h2>
+<pre><code class="language-text">1. event clock          What happened in the business world, and when?
+2. execution clock      When did code apply the specified conditions?
+3. settlement clock     When did each asset or money leg become final at its tier?
+4. record clock         When did the accountable keeper accept the official record?
+5. recognition clock    When did the reporting framework require an accounting effect?
+6. measurement clock    At what time and with which inputs was the amount measured?
+7. publication clock    When was a defined statement version made available?
+8. assurance clock      What work supports which conclusion through what cutoff?
+</code></pre>
+<p>Those clocks can converge, but they do not become legally or conceptually
+identical. A payment may settle at 10:01, its block may reach the required
+finality at 10:03, the transfer agent may accept it into the official holder
+record at 10:04, and the accounting policy may recognize the associated event
+only after delivery evidence arrives at 14:00. A valuation model can remeasure
+the position at midnight. A published statement at 08:00 the next morning may
+carry assurance only through the auditor's last completed evidence cutoff.</p>
+<p>The architecture should expose those differences instead of hiding them behind
+one timestamp.</p>
+<h2 id="4-from-continuous-books-to-a-continuous-close">4. From continuous books to a continuous close</h2>
+<h3 id="what-can-update-continuously">What can update continuously</h3>
+<ul>
+<li>cash, token and securities quantities after the required settlement/finality
+  state;</li>
+<li>receivable and payable movements tied to governed events;</li>
+<li>interest, amortization and depreciation schedules after policy inputs are
+  approved;</li>
+<li>inventory quantity and custody events supported by reliable source controls;</li>
+<li>routine allocations, approved eliminations and rule-based classifications;</li>
+<li>subledger-to-general-ledger postings;</li>
+<li>bank, custodian, chain and counterparty reconciliations;</li>
+<li>exceptions, failed transactions, reversals and supersessions;</li>
+<li>XBRL-tagged presentation assemblies; and</li>
+<li>control and evidence lineage for every generated amount.</li>
+</ul>
+<h3 id="what-still-prevents-a-fully-automatic-close">What still prevents a fully automatic close</h3>
+<ul>
+<li>unrecorded liabilities and side agreements;</li>
+<li>revenue-performance and principal-versus-agent judgments;</li>
+<li>collectibility and expected-credit-loss forecasts;</li>
+<li>physical inventory condition, shrinkage and obsolescence;</li>
+<li>impairment, useful-life and residual-value estimates;</li>
+<li>fair values using illiquid or unobservable inputs;</li>
+<li>litigation, tax, warranty and environmental contingencies;</li>
+<li>reporting-entity, VIE and related-party conclusions;</li>
+<li>intercompany breaks and foreign-system cutoffs;</li>
+<li>going-concern and subsequent-event evaluation;</li>
+<li>disclosure completeness and materiality; and</li>
+<li>management bias, override, collusion and fraud.</li>
+</ul>
+<p>The better concept is therefore a <strong>continuous close readiness state</strong>:</p>
+<pre><code class="language-yaml">statement_as_of:
+period_start:
+covered_entities_and_ledgers:
+event_population_complete_through:
+settlement_final_through:
+accounting_rule_versions:
+valuation_sources_and_times:
+judgment_objects_current_through:
+unresolved_exceptions:
+consolidation_complete_through:
+disclosures_current_through:
+management_certification_state:
+assurance_type_and_cutoff:
+supersedes_statement_version:
+</code></pre>
+<p>A live balance sheet is plausible because it is largely an as-of depiction.
+A live income statement and cash-flow statement remain cumulative
+period-to-date depictions requiring allocation, classification, estimates and
+aggregation. Notes and narrative disclosures may be the slowest layer because
+they explain conditions, uncertainties and judgments not reducible to settled
+transactions.</p>
+<p>FASB's Conceptual Framework helps establish the boundary. Timeliness makes
+information useful, but cannot repair information that is not relevant or
+faithfully represented. Verification can be direct or indirect; checking model
+inputs and recalculating outputs is still verification. The Framework also
+recognizes that some forward-looking information cannot be verified until a
+future period, if ever, and that financial statements necessarily aggregate
+large populations into meaningful line items.</p>
+<h2 id="5-the-assurance-ladder">5. The assurance ladder</h2>
+<p>Every displayed number or transaction should carry one—and only one—clear
+assurance state:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Object established</th>
+<th>Responsible actor</th>
+<th>Permitted language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Raw claim or submitted document</td>
+<td>Submitter</td>
+<td>“submitted”</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Cryptographic integrity and inclusion</td>
+<td>Network / verifier</td>
+<td>“signature and ledger inclusion verified”</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rule execution</td>
+<td>Contract operator / control owner</td>
+<td>“approved code version produced this result from these inputs”</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Official-record acceptance</td>
+<td>Accountable recordkeeper</td>
+<td>“accepted as the record for [named purpose]”</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Accounting-policy application</td>
+<td>Management / controller</td>
+<td>“posted under policy version X”</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Management control result</td>
+<td>Management</td>
+<td>“control operated; no exception” or “exception open”</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Auditor procedure result</td>
+<td>Independent auditor</td>
+<td>“procedure performed through [cutoff]; result [typed]”</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Review conclusion</td>
+<td>Independent accountant</td>
+<td>Current PCAOB interim-review language and scope</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Audit opinion</td>
+<td>Independent auditor</td>
+<td>Opinion on identified statements/periods under the applicable framework</td>
+</tr>
+</tbody>
+</table>
+<p>Lower levels can supply evidence to higher levels. They cannot impersonate
+them. Thousands of Level 1 receipts do not establish population completeness;
+a successful Level 2 calculation does not establish that the policy was GAAP;
+a Level 5 management control cannot become Level 8 by being placed on-chain.</p>
+<p>PCAOB AS 1105 requires sufficient appropriate evidence and preserves tests of
+accuracy, completeness, relevance, reliability, precision and detail. The
+PCAOB's technology-assisted-analysis amendments, effective for audits of fiscal
+years beginning on or after December 15, 2025, explicitly preserve those
+responsibilities when auditors analyze electronic information at scale. The
+amendments require investigation of selected items and emphasize IT controls;
+population-wide analysis is not a permission to ignore exceptions.</p>
+<h2 id="6-ais-proper-place">6. AI's proper place</h2>
+<p>AI can be transformational at the joins that currently make continuous
+accounting expensive:</p>
+<ul>
+<li>extract parties, dates, terms, obligations and exceptions from contracts and
+  supporting documents;</li>
+<li>join invoice, shipment, acceptance, payment and ledger events;</li>
+<li>propose chart-of-account, tax, reporting and disclosure classifications;</li>
+<li>compare prose agreements with deployed smart-contract behavior;</li>
+<li>search complete transaction populations for anomalies, related-party
+  patterns, unusual approvals, round-dollar entries and control overrides;</li>
+<li>monitor rule, model, contract, oracle and privilege changes;</li>
+<li>draft reconciliations and explain changes between statement versions;</li>
+<li>identify missing evidence and route exceptions to the responsible person;</li>
+<li>help auditors build independent expectations and test full populations; and</li>
+<li>preserve an inspectable evidence graph connecting every reported amount to
+  source objects, policies, judgments and corrections.</li>
+</ul>
+<p>AI should not silently become the accounting authority. A financially
+material AI component needs its own controlled constitution:</p>
+<pre><code class="language-yaml">model_owner:
+approved_use_and_prohibited_use:
+model_and_prompt_or_policy_version:
+source_population_and_lineage:
+retrieval_cutoff:
+output_schema:
+confidence_or_uncertainty:
+validation_and_benchmark:
+human_review_threshold:
+override_authority:
+change_approval:
+drift_and_incident_monitoring:
+retained_inputs_outputs_and_rationale:
+privacy_and_security_controls:
+fallback_and_recovery:
+</code></pre>
+<p>NIST's voluntary AI Risk Management Framework organizes risk work around
+govern, map, measure and manage. PCAOB's 2024 outreach found issuer-audit use
+of generative AI still focused primarily on administrative and research tasks,
+with firms acknowledging supervision, privacy and security risks. The IAASB
+now treats AI and other emerging technologies as a quality-management issue
+and continues to develop non-authoritative support. Those are movement signals,
+not evidence that AI currently may make unsupervised audit judgments.</p>
+<p>The accountant or auditor must be able to reproduce the result without asking
+an opaque model to remember why it answered as it did. Deterministic posting
+rules should remain deterministic. AI is best used to interpret, connect,
+challenge and prioritize; material recognition and measurement conclusions
+should become explicit, signed judgment objects.</p>
+<h2 id="7-how-the-external-audit-changes">7. How the external audit changes</h2>
+<h3 id="work-that-can-shrink">Work that can shrink</h3>
+<ul>
+<li>manual sample selection from routine homogeneous populations;</li>
+<li>repeated confirmation of facts already available from independently
+  controlled, authoritative records;</li>
+<li>spreadsheet rollforwards and subledger-to-general-ledger reconciliation;</li>
+<li>manual inspection of every ordinary authorization trail;</li>
+<li>retrospective reconstruction of sequence and cutoff; and</li>
+<li>waiting until year-end to discover routine exceptions.</li>
+</ul>
+<h3 id="work-that-becomes-central">Work that becomes central</h3>
+<ul>
+<li>defining and independently obtaining the complete population;</li>
+<li>testing identity, key, wallet, role and authorization governance;</li>
+<li>testing smart-contract specification, deployed bytecode, upgrades,
+  parameters, administrators and emergency powers;</li>
+<li>testing oracles and every off-chain evidence boundary;</li>
+<li>testing official-record authority, conflict precedence and correction;</li>
+<li>testing automated accounting mappings and effective-date/version logic;</li>
+<li>validating valuation, estimation and AI models;</li>
+<li>investigating every material exception and management override;</li>
+<li>testing business continuity, forks, outages, reversals and recovery;</li>
+<li>evaluating disclosures, aggregation and statement-wide materiality;</li>
+<li>maintaining independence from the system being examined; and</li>
+<li>deciding whether evidence supports the statements taken as a whole.</li>
+</ul>
+<p>This is already compatible with the logic of the integrated audit. PCAOB AS
+2201 requires an opinion on the effectiveness of internal control over
+financial reporting as of a specified date and makes clear that the ICFR and
+financial-statement audits have different objectives even when their testing
+is integrated. Effective automated controls can change the nature, timing and
+extent of substantive work; they do not eliminate the financial-statement
+opinion or the need to test estimates and contradictory evidence.</p>
+<p>There is also an independence constraint. The SEC prohibits an issuer's
+independent auditor from performing bookkeeping or designing and implementing
+financial-information systems whose results will be subject to its audit,
+subject to the rule's narrow framing. The future external auditor may evaluate,
+test and recommend improvements to a continuous-accounting system, but cannot
+quietly become management, operate the books or audit its own system design.</p>
+<h2 id="8-real-time-publication-needs-versioned-truth-not-a-mutable-dashboard">8. Real-time publication needs versioned truth, not a mutable dashboard</h2>
+<p>A continuously refreshed management dashboard is not automatically a public
+financial statement. A public statement version should be immutable as
+published and linked to later correction or supersession—not silently changed.</p>
+<p>Every release should disclose:</p>
+<ul>
+<li>exact publication time and statement as-of/covered period;</li>
+<li>reporting entity and consolidation perimeter;</li>
+<li>GAAP, non-GAAP or management-reporting status;</li>
+<li>accounting policy and executable-rule versions;</li>
+<li>market-price, FX and valuation cutoffs;</li>
+<li>judgment and estimate cutoffs;</li>
+<li>unresolved material exceptions;</li>
+<li>whether notes and disclosures are complete or delta-only;</li>
+<li>management certification state;</li>
+<li>independent assurance type and cutoff; and</li>
+<li>prior version, correction and supersession links.</li>
+</ul>
+<p>The SEC currently requires periodic Forms 10-K and 10-Q, specified current
+events on Form 8-K, officer certifications, and electronic filing through
+EDGAR. Interactive-data requirements make reported statements machine-readable
+but do not convert them into continuous reports; the SEC's interactive-data
+guide also says third-party assurance on the interactive data is not required.</p>
+<p>PCAOB AS 4105 illustrates why assurance labels matter: a quarterly review is
+substantially less in scope than an audit and does not support an audit opinion.
+A future live statement might be management-only, continuously monitored,
+reviewed at intervals, audited at intervals or covered by a new continuous
+attestation product. Users must never be left to infer which one.</p>
+<h2 id="9-a-plausible-target-architecture">9. A plausible target architecture</h2>
+<pre><code class="language-text">LEGAL / ECONOMIC CONSTITUTION
+  contracts, authority, entity, rights, accounting policy, materiality
+                              |
+                              v
+SIGNED EVENT FABRIC --------&gt; OFF-CHAIN EVIDENCE STORE
+  IDs, parties, states,       contracts, PII, delivery, legal, physical proof
+  signatures, code versions              |
+          |                               | signed/hash-linked receipts
+          v                               v
+ATOMIC EXECUTION / SETTLEMENT -----&gt; OFFICIAL RECORD LAYER
+  success, failure, timeout          named keeper, purpose, precedence,
+  and compensation state            retention, correction, recovery
+          |                               |
+          +---------------+---------------+
+                          v
+VERSIONED ACCOUNTING ENGINE
+  policy rules + deterministic postings + signed judgment objects
+                          |
+                          v
+CONTINUOUS BOOKS AND CONSOLIDATION
+  lineage, reconciliations, exceptions, eliminations, valuations
+                          |
+          +---------------+---------------+
+          v                               v
+MANAGEMENT CONTROL PLANE          INDEPENDENT AUDITOR PLANE
+  monitoring, certification       independent data, reperformance,
+  and remediation                 control and substantive procedures
+          |                               |
+          +---------------+---------------+
+                          v
+VERSIONED REPORTING LAYER
+  management view / GAAP snapshot / filing / assurance label / supersession
+</code></pre>
+<p>The auditor plane must remain independently governed. The company can expose
+APIs, nodes and evidence packages, but the auditor should control its
+procedures, validation logic, thresholds, retained workpapers and conclusion.</p>
+<h2 id="10-transition-ladder">10. Transition ladder</h2>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Required evidence</th>
+<th>Current disposition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Continuous event capture</strong></td>
+<td>Complete signed event population with correction and identity controls</td>
+<td>Technically feasible; implementation-specific</td>
+</tr>
+<tr>
+<td><strong>2. Atomic settlement</strong></td>
+<td>Defined asset/money legs, finality, failure and legal-effect map</td>
+<td>Live in bounded systems/use cases; not universal</td>
+</tr>
+<tr>
+<td><strong>3. Official native record</strong></td>
+<td>Governing authority, accountable keeper, retention, production and precedence</td>
+<td>Permitted in bounded CFTC/SEC record contexts; purpose-specific</td>
+</tr>
+<tr>
+<td><strong>4. Continuous subledgers</strong></td>
+<td>Stable schemas, reconciliations, mappings and change controls</td>
+<td>Feasible for deterministic scopes</td>
+</tr>
+<tr>
+<td><strong>5. Continuous close readiness</strong></td>
+<td>Current estimates, eliminations, judgments, disclosures and exception state</td>
+<td>Architecture/hypothesis; entity implementation required</td>
+</tr>
+<tr>
+<td><strong>6. Versioned real-time statements</strong></td>
+<td>Defined GAAP/management product, timestamp, perimeter, policies and correction</td>
+<td>Technically plausible; not the general SEC reporting regime</td>
+</tr>
+<tr>
+<td><strong>7. Continuous auditor procedures</strong></td>
+<td>Independent population access, reliable tools, exception work and documentation</td>
+<td>Direction of travel; technology-assisted analysis is current, not a standing opinion</td>
+</tr>
+<tr>
+<td><strong>8. Continuous public assurance</strong></td>
+<td>Authorized criteria, level, report, responsibility, independence and liability model</td>
+<td>Future standards/regulatory question</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-claim-audit">11. Claim audit</h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Disposition</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“Atomic settlement eliminates reconciliation.”</td>
+<td><strong>Qualified carry</strong></td>
+<td>It can eliminate reconciliation between the specified atomic legs inside the authoritative scope; entity, custody, tax, valuation, side-agreement and cross-system reconciliations remain.</td>
+</tr>
+<tr>
+<td>“Each blockchain transaction is audited.”</td>
+<td><strong>Reject</strong></td>
+<td>Network validation and code execution are not independent assurance under auditing standards.</td>
+</tr>
+<tr>
+<td>“Real-time books are possible.”</td>
+<td><strong>Carry</strong></td>
+<td>Deterministic event and schedule postings can update continuously when populations, rules and controls are governed.</td>
+</tr>
+<tr>
+<td>“Real-time GAAP statements are possible.”</td>
+<td><strong>Qualified carry</strong></td>
+<td>Versioned near-real-time snapshots are technically plausible; completeness depends on current judgments, estimates, consolidation and disclosure, and public reporting remains periodic.</td>
+</tr>
+<tr>
+<td>“Annual audits will focus more on systems and processes.”</td>
+<td><strong>Carry as transition hypothesis</strong></td>
+<td>Effective automated controls and full-population analytics can shift effort, but current standards still require sufficient evidence for the statements and estimates.</td>
+</tr>
+<tr>
+<td>“AI can audit every transaction.”</td>
+<td><strong>Reject as phrased</strong></td>
+<td>AI can test, classify and investigate full populations; the auditor retains responsibility, skepticism, evidence evaluation and the opinion.</td>
+</tr>
+<tr>
+<td>“Continuous monitoring equals continuous assurance.”</td>
+<td><strong>Reject</strong></td>
+<td>Monitoring is management's control activity; assurance requires an independent engagement and conclusion.</td>
+</tr>
+<tr>
+<td>“The annual audit will disappear.”</td>
+<td><strong>Unsupported</strong></td>
+<td>Current SEC and PCAOB regimes remain period-bound; a replacement would require reporting, assurance, independence and liability changes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-exact-return-gates">12. Exact return gates</h2>
+<p>Return when one of these produces new primary evidence:</p>
+<ol>
+<li>the SEC proposes or adopts more frequent or continuously updated issuer
+   financial-statement reporting;</li>
+<li>the PCAOB, AICPA or IAASB proposes a continuous-assurance reporting model
+   with defined criteria and report form;</li>
+<li>a public issuer publishes versioned, continuously updated GAAP statements
+   with an independent assurance label and complete correction history;</li>
+<li>an auditor documents production use of independently governed procedures
+   over a complete on-chain/off-chain population and explains the resulting
+   change in substantive work;</li>
+<li>a live multi-entity transaction uses persistent event IDs through atomic
+   settlement, official records, both parties' accounting and audit evidence;</li>
+<li>an accounting or audit failure shows whether the smart contract, oracle,
+   accounting rule, AI model, administrator or human judgment bore the error;</li>
+<li>an audit-independence interpretation addresses continuous auditor tooling
+   connected to a client's live financial-information system;</li>
+<li>a standard-setter defines assurance for machine-readable statement deltas,
+   statement APIs or cryptographic publication receipts; or</li>
+<li>a material fork, outage, reversal, key compromise or model error tests the
+   correction and supersession architecture of a continuously reported system.</li>
+</ol>
+<h2 id="13-do-not-carry">13. Do not carry</h2>
+<ul>
+<li>“Blockchain performs the audit.”</li>
+<li>“Consensus proves the business event.”</li>
+<li>“Atomic settlement proves legal finality everywhere.”</li>
+<li>“A smart contract knows GAAP.”</li>
+<li>“AI judgment is objective because it is automated.”</li>
+<li>“Full-population testing proves completeness of an undisclosed population.”</li>
+<li>“No exception means the accounting policy was correct.”</li>
+<li>“Real-time means timeless or permanently correct.”</li>
+<li>“A live dashboard is an audited financial statement.”</li>
+<li>“Auditing systems allows the auditor to operate or design management's
+  accounting system.”</li>
+</ul>
+<h2 id="primary-source-spine">Primary-source spine</h2>
+<h3 id="atomic-settlement-and-dlt">Atomic settlement and DLT</h3>
+<ul>
+<li>Federal Reserve Governor Christopher J. Waller, <a href="https://www.federalreserve.gov/newsevents/speech/waller20230420a.htm">Innovation and the Future of Finance</a>, April 20, 2023.</li>
+<li>BIS Committee on Payments and Market Infrastructures, <a href="https://www.bis.org/publications/wholesale-central-bank-money-context-technological-innovation">Wholesale central bank money in the context of technological innovation</a>, 2025.</li>
+<li>GAO, <a href="https://www.gao.gov/products/gao-22-104625">Blockchain: Emerging Technology Offers Benefits for Some Applications but Faces Challenges, GAO-22-104625</a>, March 23, 2022.</li>
+</ul>
+<h3 id="accounting-and-public-reporting">Accounting and public reporting</h3>
+<ul>
+<li>FASB, <a href="https://storage.fasb.org/Conceptual%20Framework%20for%20Financial%20Reporting%20%28September%202024%29.pdf">Conceptual Framework for Financial Reporting</a>, September 2024, especially QC26-QC35, interim reporting and presentation/aggregation chapters.</li>
+<li>SEC, <a href="https://www.sec.gov/resources-small-businesses/going-public/exchange-act-reporting-registration">Exchange Act Reporting and Registration</a>, June 20, 2024.</li>
+<li>SEC, <a href="https://www.sec.gov/resources-small-businesses/small-business-compliance-guides/interactive-data-financial-reporting">Interactive Data for Financial Reporting</a>.</li>
+</ul>
+<h3 id="audit-controls-and-technology">Audit, controls and technology</h3>
+<ul>
+<li>PCAOB, <a href="https://pcaobus.org/oversight/standards/auditing-standards/details/as-1000--general-responsibilities-of-the-auditor-in-conducting-an-audit">AS 1000: General Responsibilities of the Auditor in Conducting an Audit</a>.</li>
+<li>PCAOB, <a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS1105">AS 1105: Audit Evidence</a>.</li>
+<li>PCAOB, <a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS2201">AS 2201: An Audit of Internal Control Over Financial Reporting That Is Integrated with An Audit of Financial Statements</a>.</li>
+<li>PCAOB, <a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS2501">AS 2501: Auditing Accounting Estimates, Including Fair Value Measurements</a>.</li>
+<li>PCAOB, <a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS3101">AS 3101: The Auditor's Report on an Audit of Financial Statements When the Auditor Expresses an Unqualified Opinion</a>.</li>
+<li>PCAOB, <a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS4105">AS 4105: Reviews of Interim Financial Information</a>.</li>
+<li>PCAOB, <a href="https://pcaobus.org/oversight/standards/standard-setting-research-projects/amendments-related-to-certain-aspects-of-designing-and-performing-audit-procedures-that-involve-technology-assisted-data-analysis">Technology-Assisted Analysis amendments</a>, effective for fiscal years beginning on or after December 15, 2025.</li>
+<li>PCAOB, <a href="https://pcaobus.org/news-events/news-releases/news-release-detail/pcaob-staff-shares-observations-from-outreach-on-use-of-generative-artificial-intelligence-in-audits-and-financial-reporting">Staff Update on Generative AI in Audits and Financial Reporting</a>, July 22, 2024.</li>
+<li>SEC Office of the Chief Accountant, <a href="https://www.sec.gov/about/divisions-offices/office-chief-accountant/office-chief-accountant-application-commissions">Application of the Commission's Rules on Auditor Independence</a>.</li>
+<li>IAASB, <a href="https://www.iaasb.org/focus-areas/technology">Technology focus area</a>, including the Technology Position and Technology Quality Management workstream.</li>
+<li>NIST, <a href="https://www.nist.gov/itl/ai-risk-management-framework">AI Risk Management Framework</a>, including the Generative AI Profile.</li>
+</ul>
+<h2 id="internal-joins">Internal joins</h2>
+<ul>
+<li><code>OFFICIAL_RECORD_AUTHORITY_AND_BLOCKCHAIN_CROSSWALK_2026-09-26.md</code></li>
+<li><code>SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md</code></li>
+<li><code>ACCOUNTING_FUNCTIONS_AND_SMART_CONTRACT_AUTOMATION_MAP_2026-07-30.md</code></li>
+<li><code>CORPORATE_ACCOUNTING_CYCLES_GAAP_AND_AUTOMATION_DEEP_DIVE_2026-07-30.md</code></li>
+<li><code>../../Monetary Cross-Cuts/Overall DLT Transition 2025-2026/DLT_RECORD_SOVEREIGNTY_SETTLEMENT_AND_FAILURE_MAP_2025-2026.md</code></li>
+<li><code>../../Monetary Cross-Cuts/Overall DLT Transition 2025-2026/DLT_MONEY_SECURITIES_COLLATERAL_AND_ACCOUNTING_MAP_2025-2026.md</code></li>
+</ul>
+<h2 id="status-boundary">Status boundary</h2>
+<p>This is a saved Workbench answer and extension of the Accounting Transition
+package. It does not by itself revise the Chronicle synthesis, create a watch,
+establish a current continuous-reporting implementation, authorize a Research
+Library rebuild, or promote the transition hypothesis as present operating
+fact.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

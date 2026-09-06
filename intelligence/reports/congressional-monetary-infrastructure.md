@@ -1,8 +1,8 @@
 # Congressional Monetary Infrastructure — Research Package
 
-**Read first.**  
-**Cutoff:** 2026-07-18  
-**State:** `pending workspace research; no live-vault files changed`  
+**Read first.**
+**Cutoff:** 2026-09-23
+**State:** `current workspace research; no live-vault files changed`
 **Scope:** DTC/DTCC tokenization, House Financial Services hearings, cross-committee market-structure work, PACE, sovereign digital reserves, prudential regulation, consumer/AML controls and the existing Freedom 250 monetary corpus.
 
 ## Short answer
@@ -17,6 +17,39 @@ Yes: a large financial re-architecture is moving, but it is not one bill or one 
 - the congressional task force studying the Fed and Treasury market has been reauthorized, so the nine-hearing series is entering a second phase.
 
 The vault already understood most of the machine. The newly exposed gap was the **congressional assembly layer** connecting these systems.
+
+### September 15 Treasury testimony delta
+
+The full committee's annual Treasury testimony is preserved at
+`HFSC Treasury International Financial System Hearing 2026-09-15/README.md`,
+with the official document packet, a complete working transcript and a source
+ledger. The hearing joined IMF/World Bank governance, China and the SDR,
+Treasury buybacks and FX operations, Iran sanctions, GENIUS/AML implementation,
+AI/cyber risk and domestic fiscal proposals in one record.
+
+Its operative state change was narrow: the oversight record occurred and
+written answers were requested by October 20. The hearing did not itself issue
+a rule, appropriate funds, authorize the proposed $5,000 payment, change IMF or
+SDR policy, or execute a new market intervention. The transcript is a
+third-party automatic-caption corpus for navigation; the official replay
+controls quotations.
+
+The hearing bundle now also contains
+`CHINA_2025_ARTICLE_IV_OVERSIGHT_AND_TRANSPARENCY_MAP_2026-09-16.md`. It tests
+Hill's China reference against IMF Country Report 26/044, preserves the Chinese
+Executive Director's dissent, separates real depreciation from a manipulation
+finding, inventories the report's data gaps, and maps Congress -> Treasury ->
+U.S. Executive Director -> IMF Board influence without treating Article IV
+surveillance as loan conditionality. It also keeps the World Bank's disclosure
+and accountability mechanisms separate from IMF surveillance.
+
+The hearing also opened a broader research question now preserved separately in
+`IFI_OVERSIGHT_TO_CONSEQUENCE_RESEARCH_DESIGN_2026-09-16.md`. That design does
+not extend the hearing's factual findings. It defines a future audit of how a
+congressional demand, shareholder instruction, institutional evaluation or
+affected-person complaint travels through response, decision, implementation,
+independent verification and closure across Treasury, the IMF and the World
+Bank.
 
 ### July 18 audit delta
 
@@ -126,6 +159,25 @@ GENIUS completed this process and became law. CLARITY has not. The House passed 
 HFSC agreed on 2026-06-30 to reauthorize the Task Force on Monetary Policy, Treasury Market Resilience, and Economic Prosperity. The resolution takes effect July 23, 2026 and authorizes more hearings, investigations, reports and recommended legislation.
 
 The vault's nine-hearing sequence should therefore be preserved as **Act I**, with post-reauthorization work captured as **Act II**.
+
+### September 23 four-hearing retrospective delta
+
+`FOUR_HEARING_RETROSPECTIVE_BALANCE_SHEET_ACCORD_CLEARING_STRUCTURE_2026-09-23.md`
+rereads the January balance-sheet, March Treasury-Fed Accord, April derivatives
+and June Reserve Bank structure hearings after the later account-access,
+stablecoin, Treasury-clearing, Reserve Bank control and crisis-command work.
+
+Its central finding is a **stress escalator**: ordinary private execution,
+clearing-member and bank liquidity, Reserve Bank settlement and secured credit,
+FOMC market operations, Board/Treasury emergency programs, FDIC resolution and
+congressional redesign are separate conditional stages. The new object is the
+handoff between them—who authorizes, operates, books, corrects, exits and bears
+loss—not a claim that every event climbs to public rescue.
+
+The retrospective also joins the Federal Reserve constellation's two faces:
+regional research/sensing and district/national operations. It recommends
+reconciling the stress escalator with the existing Stress & Backstop Hub concept
+but does not authorize a Chronicle or generated-app change.
 
 ### H. The June 30 markup is the control-plane prequel to programmable finance
 
@@ -238,15 +290,17 @@ Watch these instead of headline volume:
 
 ## 7. Package reading order
 
-1. `CONGRESSIONAL_MONETARY_EXISTING_CORPUS_AUDIT.md` — what is already deep, partial, thin or absent.
-2. `HFSC Various Measures Markup 2026-06-30/README.md` — Event 119430 control-plane analysis and rejected-protection record.
-3. `DTC_TOKENIZATION_SOFT_LAUNCH_STATUS_2026-07-15.md` — today's event and the refreshed public operating model.
-4. `HFSC_MONETARY_INFRASTRUCTURE_HEARING_REGISTRY.md` — the expanded House Financial Services record.
-5. `CONGRESSIONAL_MONETARY_CROSS_COMMITTEE_MAP.md` — the four-committee assembly line.
-6. `MONETARY_HEARING_ENTITY_BILL_CROSSWALK.md` — exact legal entities and bill states.
-7. `PACE_ACT_LEGAL_MAP.md` — the payment-provider/Fed-account architecture.
-8. `AMERICAN_RESERVE_MODERNIZATION_ACT_LEGAL_MAP.md` — sovereign reserve-asset proposal.
-9. `CONGRESSIONAL_MONETARY_SOURCE_WATCHBOARD.md` — where each next state change will appear.
+1. `FOUR_HEARING_RETROSPECTIVE_BALANCE_SHEET_ACCORD_CLEARING_STRUCTURE_2026-09-23.md` — retrospective stress-escalator join across the core 2026 task-force hearings.
+2. `CONGRESSIONAL_MONETARY_EXISTING_CORPUS_AUDIT.md` — what is already deep, partial, thin or absent.
+3. `HFSC Various Measures Markup 2026-06-30/README.md` — Event 119430 control-plane analysis and rejected-protection record.
+4. `HFSC Treasury International Financial System Hearing 2026-09-15/README.md` — Event 119546 transcript route, dissection and state boundaries.
+5. `DTC_TOKENIZATION_SOFT_LAUNCH_STATUS_2026-07-15.md` — today's event and the refreshed public operating model.
+6. `HFSC_MONETARY_INFRASTRUCTURE_HEARING_REGISTRY.md` — the expanded House Financial Services record.
+7. `CONGRESSIONAL_MONETARY_CROSS_COMMITTEE_MAP.md` — the four-committee assembly line.
+8. `MONETARY_HEARING_ENTITY_BILL_CROSSWALK.md` — exact legal entities and bill states.
+9. `PACE_ACT_LEGAL_MAP.md` — the payment-provider/Fed-account architecture.
+10. `AMERICAN_RESERVE_MODERNIZATION_ACT_LEGAL_MAP.md` — sovereign reserve-asset proposal.
+11. `CONGRESSIONAL_MONETARY_SOURCE_WATCHBOARD.md` — where each next state change will appear.
 
 ## 8. Primary official anchors
 

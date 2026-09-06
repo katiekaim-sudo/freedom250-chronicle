@@ -1,5 +1,12 @@
 # Japan August 2026 — Controlling State and Monetary Delta
 
+> **Later BOJ state:** the September 17-18 MPM raised the overnight target to
+> 1.25 percent by a 7-2 vote, effective September 24. The September 28 release
+> of the July 30-31 minutes adds the earlier banking-transmission discussion.
+> This document remains the fixed August delta; use the current BOJ
+> rate-transmission return
+> for the later policy state.
+
 ## Bottom line
 
 The strongest August reading is not “Japan chose a new monetary system” or

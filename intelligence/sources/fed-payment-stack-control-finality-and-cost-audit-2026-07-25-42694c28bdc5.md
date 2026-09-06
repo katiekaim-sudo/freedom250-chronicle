@@ -1,7 +1,7 @@
 # Federal Reserve payment stack — control, finality and cost audit
 
-**Cutoff:** 2026-07-25  
-**Status:** pending workbench research; not promoted to the vault  
+**Cutoff:** 2026-07-25; bounded historical-source correction added 2026-09-07  
+**Status:** current Workbench research; this Workbench file controls under the Research Registry  
 **Scope:** Federal Reserve account access, Federal Reserve payment rails, NSCC,
 DTC, FICC, ICE Clear Credit, CME Securities Clearing, settlement banks,
 Federal Reserve Financial Services, Federal Reserve Information Technology,
@@ -12,6 +12,11 @@ sources
 **Dollar rule:** every monetary amount is written in full nominal dollars. When
 the official source reports in rounded millions, the added zeros are
 presentation rather than added precision.
+
+**September 7 correction scope:** the May 8, 2026 Kansas City supplemental
+disclosure resolves part of the original account-service gap. It does not
+refresh the July 25 system-wide findings or establish September 7 account use,
+renewal or final national Payment Account policy.
 
 ---
 
@@ -279,7 +284,8 @@ Primary source:
 
 ### B. Kraken is the concrete Tier 3 test case
 
-The live Federal Reserve CSV records show:
+The July 25 review reported these Federal Reserve CSV fields, in the database
+coverage through May 31, 2026:
 
 | Field | Record |
 |---|---|
@@ -292,17 +298,28 @@ The live Federal Reserve CSV records show:
 | access-effective date | 2026-01-28 |
 | Reserve Bank | Federal Reserve Bank of Kansas City |
 
-Kansas City publicly described the institution as Payward Financial, doing
-business as Kraken Financial, a Wyoming Special Purpose Depository Institution.
-It approved a limited-purpose account for an initial one-year term with
-undisclosed restrictions tailored to Kraken's business model and risk profile.
+Kansas City identified Payward Financial, doing business as Kraken Financial,
+as a Wyoming Special Purpose Depository Institution. The May 8 supplemental
+disclosure says March 4 was the announcement of approval. The January 28 dates
+above remain reported database fields; neither date independently establishes
+the account agreement's term-start or first completed payment.
 
-That example proves that “approved” does not mean “unrestricted,” and that the
-public database does not reveal the exact service set or tailored controls.
+**Bounded correction, September 7:** the May 8 disclosure authorizes Fedwire
+Funds only, excludes intraday and discount-window credit and interest, and
+imposes a closing-balance limit. The exchange and other Payward subsidiaries
+do not receive this access. The initial term is one year, but the numerical
+limit, term-start, actual transaction history and complete agreement remain
+unestablished here. Thus the original blanket service-disclosure gap was too
+broad. Approval, service authorization and observed use remain distinct.
+
+The Bank acted under existing authority. Its conditional pilot framing refers
+to consistency with the earlier Payment Account RFI, not operation under the
+later May national proposal.
 
 Primary sources:
 
 - [Kansas City Fed limited-account announcement](https://www.kansascityfed.org/newsroom/2026-news-releases/federal-reserve-bank-of-kansas-city-approves-limited-account/)
+- [May 8 supplemental disclosure, pages 1–2; retrieved September 7 for this bounded correction](https://www.kansascityfed.org/documents/16129/Supplemental_Information_Regarding_Kraken_Financial_Account_05.08.2026.pdf)
 - [Existing Access CSV](https://www.federalreserve.gov/paymentsystems/account-and-access-disclosure/holder-data.csv)
 - [Access Requests CSV](https://www.federalreserve.gov/paymentsystems/account-and-access-disclosure/requestor-data.csv)
 
@@ -564,7 +581,8 @@ service or project total`.
 - BNY Mellon's concentration across FICC and ICE Treasury settlement.
 - FICC's collateral and cash response when Fedwire Securities is closed.
 - FedNow's eventual full-cost recovery and pricing path.
-- The service and restriction set attached to Kraken's one-year account.
+- Kraken's numerical closing limit, term-start, actual use and complete account
+  agreement; the May 8 disclosed service restrictions are resolved above.
 - Cloud and network concentration across national Federal Reserve services.
 
 ### Still open
@@ -614,7 +632,7 @@ service or project total`.
 |---|---|
 | Board adopts, revises or withdraws the Payment Account proposal | changes the access and prefunding lane |
 | Tier 3 decision pause ends | reopens the high-scrutiny account clock |
-| Kraken account renewal, expiry or revised access announcement around 2027-03 | tests whether limited direct access persists |
+| Kraken controlling term-start, renewal, expiry or revised access disclosure | tests whether limited direct access persists; do not infer expiry from announcement or database dates |
 | DTC publishes the preliminary base-version launch notice | moves tokenization from limited production to participant service |
 | DTC assigns positive Collateral Monitor or Net Debit Cap value | changes tokenized assets from transferable entitlements toward funding collateral |
 | DTCC discloses July 15 cash-leg and transaction evidence | can prove or falsify central-bank-cash delivery-versus-payment |

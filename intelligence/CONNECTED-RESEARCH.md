@@ -16,6 +16,8 @@ We studied the legacy system to understand what a crypto transition would actual
 
 Who issues money, who can hold central-bank accounts, how claims clear, and who supplies liquidity when payments fail? This is the foundation for comparing every proposed new route.
 
+[Read the combined findings](topics/monetary-transition--inherited-system.md)
+
 - [Federal Reserve, Clearing and Treasury](library/fed-clearing-treasury.html)
 - [Private Monetary Stack](library/private-monetary-stack.html)
 - [The People's Money](library/peoples-money.html)
@@ -63,6 +65,8 @@ Who issues money, who can hold central-bank accounts, how claims clear, and who 
 
 Reserve currencies, FX, IMF participation and coordination rules explain the international system that new settlement routes enter. The transition studies and the institutional charters belong together here.
 
+[Read the combined findings](topics/monetary-transition--international-rules.md)
+
 - [International Monetary Transition](library/international-monetary-transition.html)
 - [G20 Currency Watch](library/currency-watch.html)
 - [G7 and G20 Coordination Architecture — 2025–2026](library/g7-g20-coordination-architecture.html)
@@ -96,6 +100,8 @@ Reserve currencies, FX, IMF participation and coordination rules explain the int
 
 Follow the shift in asset representation, ownership records, messaging and settlement. Then compare private dollar instruments, crypto networks and adapters against the institutional functions they still depend on.
 
+[Read the combined findings](topics/monetary-transition--records-and-routes.md)
+
 - [Overall DLT Transition — 2025–2026](library/overall-dlt-transition.html)
 - [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](library/route-anchor-inventory.html)
 - [Crypto Infrastructure Hub](library/tokenization-entity-control-map.html)
@@ -112,6 +118,8 @@ Follow the shift in asset representation, ownership records, messaging and settl
 ### 4 · Who permits the change?
 
 Charters, legislation, regulators and courts determine which routes may operate. Hearings preserve the arguments and proposals; the legal research follows their actual status and effects.
+
+[Read the combined findings](topics/monetary-transition--permission.md)
 
 - [Congressional Monetary Infrastructure](library/congressional-monetary-infrastructure.html)
 - [Congressional Committee Control Plane](library/congressional-committee-control-plane.html)
@@ -132,6 +140,8 @@ Charters, legislation, regulators and courts determine which routes may operate.
 ### 5 · What is owned, recorded, owed and correctable?
 
 A visible transfer still needs an account of the obligation, tax treatment, ownership, redemption and remedy. These studies connect payment technology to accounting and the public record.
+
+[Read the combined findings](topics/monetary-transition--accounting.md)
 
 - [Private Monetary Stack](library/private-monetary-stack.html)
 - [Treasury and IRS](library/treasury-irs.html)
@@ -157,6 +167,8 @@ A visible transfer still needs an account of the obligation, tax treatment, owne
 ### 6 · Where finance meets physical buildout and public authority
 
 Investment, energy and industrial projects provide concrete places to examine financing and settlement claims. The thesis connects these questions about control and responsibility; its interpretations and alternatives remain visible within the study.
+
+[Read the combined findings](topics/monetary-transition--real-economy.md)
 
 - [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](library/us-inbound-investment-industrial-capex.html)
 - [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html)
@@ -189,6 +201,8 @@ Strategy, company maps, manufacturing, compute and energy describe different sta
 
 Start with the national science strategy, agency plans and company maps to see the capabilities being pursued and the organizations assigned to pursue them.
 
+[Read the combined findings](topics/industry-buildout--strategy.md)
+
 - [Federal Science Operating System](library/federal-science-operating-system.html)
 - [NSSTS Technology-to-Company Map](library/nssts-technology-company-map.html)
 - [Federal Strategic Plans](library/federal-strategic-plans.html)
@@ -200,6 +214,8 @@ Start with the national science strategy, agency plans and company maps to see t
 ### 2 · Investment, places, materials and power
 
 Connect investment announcements to locations, suppliers, materials and power requirements. The NY map is one way into this broader industrial picture.
+
+[Read the combined findings](topics/industry-buildout--sites.md)
 
 - [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](library/us-inbound-investment-industrial-capex.html)
 - [New York Manufacturing and Innovation Map — 2026](library/new-york-manufacturing-innovation-map-2026.html)
@@ -216,6 +232,8 @@ Connect investment announcements to locations, suppliers, materials and power re
 ### 3 · Infrastructure, access and accepted operation
 
 Compute and communications depend on sites, legal access, standards and trusted records. These are the practical connections between industrial capability and government authority.
+
+[Read the combined findings](topics/industry-buildout--operation.md)
 
 - [Sovereign Compute](library/sovereign-compute.html)
 - [Sovereign Communications](library/sovereign-communications.html)
@@ -249,6 +267,8 @@ Executive orders, agency changes, public payments, eligibility and oversight con
 ### 1 · Legal authority and the institutions carrying it out
 
 Connect executive orders, agency structure, courts and congressional oversight to the offices and permissions that carry a decision into practice.
+
+[Read the combined findings](topics/public-authority--authority.md)
 
 - [Office of Personnel Management Structural Change Audit — 2025–2026](library/opm-structural-change-audit-2025-2026.html)
 - [Federal Strategic Plans](library/federal-strategic-plans.html)
@@ -293,6 +313,8 @@ Connect executive orders, agency structure, courts and congressional oversight t
 
 Payment integrity and eligibility bring monetary records into contact with people, state administration and public services. Follow both the legal rules and the actual operating records.
 
+[Read the combined findings](topics/public-authority--delivery.md)
+
 - [Treasury Do Not Pay — Governmentwide Structural Map](library/treasury-do-not-pay-governmentwide-map.html)
 - [Fraud and Payment Integrity](library/fraud-payment-integrity.html)
 - [PRWORA State Reporting and Eligibility Architecture — 1996–2026](library/prwora-state-reporting-eligibility-architecture.html)
@@ -317,6 +339,8 @@ Payment integrity and eligibility bring monetary records into contact with peopl
 ### 3 · Records, disclosure and accountability
 
 AI records, disclosures, hearings and source collections show how claims can be checked. This also connects to the thesis question about where control, responsibility and visible evidence reside.
+
+[Read the combined findings](topics/public-authority--accountability.md)
 
 - [NARA AI Records and Compute Transition](library/nara-ai-records-compute-transition.html)
 - [Disclosure Architecture](library/disclosure-architecture.html)

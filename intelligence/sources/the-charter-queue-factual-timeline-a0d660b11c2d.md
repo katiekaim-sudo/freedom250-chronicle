@@ -9,7 +9,7 @@
 **The seven tracks**
 
 - **The Door** — the OCC charter queue. Who applied, who was conditionally approved, who consummated.
-- **The Gate** — Federal Reserve account access. Master accounts, Reserve Bank stock, Custodia. *The door nobody has walked through.*
+The Gate — Federal Reserve access. Kraken Financial received a one-year limited-purpose Tier 3 account in March 2026; no member of the digital-asset national-trust cohort has a publicly confirmed Master Account.
 - **The Ledger** — clearing and depository permission. PSSC, DTC's tokenization service, the Collateral AppChain.
 - **The Rulebook** — the incumbents absorbing the new rails while keeping the constitution. Swift, Visa, Mastercard, the capital-treatment guidance.
 - **The Coin** — the issuers and their obligors. Who owes the holder money, and who can freeze it.
@@ -620,3 +620,6 @@ Eighteen months from the grant of 2026-05-27. Unless the Commission acts, the pe
 ---
 
 *Facts only. The reading is in [The Waiting Room](../sources/the-waiting-room-ec8cb6742eea.html). Sources and their audit: [Private Monetary Stack — Source Documents](../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html) — company metrics throughout are self-reported and are never promoted to fact. Every "live" in this record means one of five different things; the status line says which.*
+
+
+> Updated explanation, September 6, 2026: the maintained passages above incorporate later saved evidence; this revision does not refresh every other claim in the dated source. Original captures retain their own dates.

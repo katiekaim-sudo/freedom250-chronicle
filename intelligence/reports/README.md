@@ -32,7 +32,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Crypto Infrastructure Comparatives](crypto-infrastructure-comparatives.md) — cutoff 2026-09-01
 - [Crypto Infrastructure Hub](tokenization-entity-control-map.md) — cutoff 2026-09-02
 - [Energy Asset Management, Atomic Settlement and Iran](energy-atomic-settlement-iran.md) — cutoff 2026-08-09
-- [Federal Reserve, Clearing and Treasury](fed-clearing-treasury.md) — cutoff 2026-08-29
+- [Federal Reserve, Clearing and Treasury](fed-clearing-treasury.md) — cutoff 2026-09-05
 - [Overall DLT Transition — 2025–2026](overall-dlt-transition.md) — cutoff 2026-08-31T12:08:12-04:00
 - [Private Monetary Stack](private-monetary-stack.md) — cutoff 2026-08-26
 - [Ripple, XRP and the Invisible Conversion Layer](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-09-01

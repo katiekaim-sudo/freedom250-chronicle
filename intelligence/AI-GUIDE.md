@@ -1,6 +1,6 @@
 # Start with the connected research
 
-Use [CONNECTED-RESEARCH.md](CONNECTED-RESEARCH.md) for the explanatory chapter map and [connected-index.json](connected-index.json) for subjects, company investigations, exact source URLs and chapter relationships. The same Catalog drives the private app. Older room, report and library links remain valid.
+Use [CONNECTED-RESEARCH.md](CONNECTED-RESEARCH.md) for the connected families and explanatory chapters, and [connected-index.json](connected-index.json) for their exact research references, source URLs and relationships. Studies may belong to several branches while retaining one source identity and evidence cutoff. The same Catalog drives the private app. Older room, report and library links remain valid.
 
 # Freedom 250 AI Research Guide
 

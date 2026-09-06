@@ -87,7 +87,7 @@ The most relevant statutory hooks are:
 
 The law does not guarantee public disclosure of every bilateral contract, smart contract, security control or node configuration. It creates a statutory route to the public core of the service constitution if the ledger is within the regulated service perimeter.
 
-Sources: [Belgian Law no. 2025004515](https://refli.be/fr/lex/2025004515); [SWIFT Annual Review 2025](https://www.swift.com/sites/default/files/files/2025-swift-annual-review_v08-1.pdf); Reading the Charter — SWIFT.
+Sources: [Belgian Law no. 2025004515](https://refli.be/fr/lex/2025004515); [SWIFT Annual Review 2025](https://www.swift.com/sites/default/files/files/2025-swift-annual-review_v08-1.pdf); [Reading the Charter — SWIFT](../sources/reading-the-charter-swift-40d398f6fc61.html).
 
 ### 7. The public post is an architecture statement, not a new legal state
 
@@ -186,4 +186,4 @@ The evidence does not establish a new universal final-settlement rail. It shows 
 
 The product's load-bearing object is therefore its constitution. Besu supplies a state machine. The rulebook determines whose promise counts, when the receiving customer can use it, what record wins and who carries the loss if the external settlement layer does not complete.
 
-Related: FINTECH_SWEEP_PAYMENT_ORCHESTRATORS · FINTECH_CRYPTO_CLAIM_AUDIT · FINTECH_CRYPTO_TRANSITION_TIMELINE · 2026-07-12 - The Private Stack — Who Owns the Gates · The Clearing-House Transition
+Related: FINTECH_SWEEP_PAYMENT_ORCHESTRATORS · FINTECH_CRYPTO_CLAIM_AUDIT · [FINTECH_CRYPTO_TRANSITION_TIMELINE](../sources/fintech-crypto-transition-timeline-348aca1fff2f.html) · 2026-07-12 - The Private Stack — Who Owns the Gates · [The Clearing-House Transition](../sources/the-clearing-house-transition-14af0641f357.html)

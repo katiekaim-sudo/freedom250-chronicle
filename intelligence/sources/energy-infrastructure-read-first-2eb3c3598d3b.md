@@ -37,7 +37,7 @@ rights, event schemas and legal adapters required to use those rails.
 
 1. Turbine Asset Management and U.S. Buildout — Source Document — the
    physical stack, AI authority boundary and reservation-to-operation clocks.
-2. Continuous Underwriting and Programmable Credit — Source Document — the
+2. [Continuous Underwriting and Programmable Credit — Source Document](../sources/continuous-underwriting-and-programmable-credit-source-document-0b20967cc733.html) — the
    cross-sector bank, borrower-evidence, collateral, accounting and assurance
    constitution.
 3. [Energy Infrastructure Continuous Finance — Source Document](../sources/energy-infrastructure-continuous-finance-source-document-8061c9c27fad.html) — the
@@ -55,7 +55,7 @@ rights, event schemas and legal adapters required to use those rails.
 | Question | Read | What it controls |
 |---|---|---|
 | What equipment and software are actually being installed? | Turbine Asset Management and U.S. Buildout — Source Document | physical asset, AI, OEM and project-state evidence |
-| Can live information change a loan? | Continuous Underwriting and Programmable Credit — Source Document | current lending practice, borrower perimeter, collateral and assurance |
+| Can live information change a loan? | [Continuous Underwriting and Programmable Credit — Source Document](../sources/continuous-underwriting-and-programmable-credit-source-document-0b20967cc733.html) | current lending practice, borrower perimeter, collateral and assurance |
 | Where can energy financing move first? | [Energy Infrastructure Continuous Finance — Source Document](../sources/energy-infrastructure-continuous-finance-source-document-8061c9c27fad.html) | working capital, logistics, draw, reserve, treasury and multi-network architecture |
 | Which event can legally do what? | [Asset–Obligation–Authority — Control Map](../sources/asset-obligation-authority-control-map-32825a3e08f4.html) | attribution, contract effect, safety, compliance, correction and loss |
 | How fast can the stack converge? | DLT Energy-Finance Convergence Timeline | sourced clocks, analytical windows, accelerants and falsifiers |

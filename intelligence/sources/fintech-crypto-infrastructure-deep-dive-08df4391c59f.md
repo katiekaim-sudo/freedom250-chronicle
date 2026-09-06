@@ -44,9 +44,9 @@ Stablecoins can now enter the funding or settlement layer without becoming the
 merchant-facing payment method. Square Bitcoin is the live counterexample: a
 supported merchant surface can also host a genuinely non-card instruction.
 
-Read the controlling extension: Card Networks — Stablecoin Product Lines.
+Read the controlling extension: [Card Networks — Stablecoin Product Lines](../sources/card-networks-stablecoin-product-lines-8bca609f0991.html).
 Exact roles and flows: [Card Networks — Entity and Flow Map](../sources/card-networks-entity-and-flow-map-d2b978d0ade2.html). Corrections:
-Card Networks — Claim Audit. The chart layer remains parallel and
+[Card Networks — Claim Audit](../sources/card-networks-claim-audit-033d2210abc5.html). The chart layer remains parallel and
 non-evidentiary: Card Networks — Money × Sky.
 
 ### August 26 extension — the no-cost implementation lane

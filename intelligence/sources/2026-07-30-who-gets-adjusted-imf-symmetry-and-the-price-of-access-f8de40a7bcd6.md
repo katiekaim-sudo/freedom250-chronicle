@@ -160,7 +160,7 @@ new price-formation architecture a prior action or review commitment.
 ## Source bridge
 
 Parent legitimacy synthesis: [2026-04-14 - The Bretton Woods Legitimacy Crisis — Who Gets to Define Stability](../sources/2026-04-14-the-bretton-woods-legitimacy-crisis-who-gets-to-define-4a7001ae308d.html)  
-Charter: Reading the Charter — IMF  
+Charter: [Reading the Charter — IMF](../sources/reading-the-charter-imf-aaae2c88db93.html)  
 Parent event: 2026-04-14 - Bessent at IIF — Growth as Global Financial Stability
 
 ## Primary external documents

@@ -1,0 +1,614 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Card Networks Add Stablecoin Product Lines · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Card Networks Add Stablecoin Product Lines</h1><p class="deck">Source created: 2026-07-29 · Collection evidence cutoff: 2026-08-26</p><p><a href="card-networks-stablecoin-product-lines-8bca609f0991.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="card-networks-add-stablecoin-product-lines">Card Networks Add Stablecoin Product Lines</h1>
+<blockquote>
+<p><strong>Vault ruling:</strong> this note extends <a href="../sources/fintech-crypto-infrastructure-deep-dive-08df4391c59f.html">FINTECH_CRYPTO_INFRASTRUCTURE_DEEP_DIVE</a>
+and FINTECH_SWEEP_PAYMENT_ORCHESTRATORS. Read its correction ledger
+<a href="../sources/card-networks-claim-audit-033d2210abc5.html">Card Networks — Claim Audit</a> before carrying a card/stablecoin claim into
+synthesis. Exact roles and money objects: <a href="../sources/card-networks-entity-and-flow-map-d2b978d0ade2.html">Card Networks — Entity and Flow Map</a>. Research-only sky layer: Card Networks — Money × Sky.</p>
+</blockquote>
+<h2 id="controlling-ruling">Controlling ruling</h2>
+<p>The current transition is not accurately described as “credit cards moving onto
+stablecoin rails.” The stronger, source-supported formulation is:</p>
+<blockquote>
+<p>Card networks, issuers, processors and acquirers are adding stablecoin-funded
+cards, stablecoin settlement, merchant stablecoin payout and wallet
+infrastructure as separate product lines. In the dominant card-linked paths,
+the customer still presents a network credential and the merchant still uses
+its existing acceptance contract. The stablecoin changes the funding,
+conversion, settlement or payout layer behind that interface.</p>
+</blockquote>
+<p>This is the precise rhyme with the earlier transitions. A check could fund a
+card account without the merchant accepting a check at checkout. Apple Pay
+could replace the exposed card number with a device token without replacing the
+issuer, acquirer, network or merchant rulebook. A stablecoin can now fund a card
+or settle a network obligation without becoming the merchant-facing payment
+method.</p>
+<h2 id="2026-07-31-transparency-extension">2026-07-31 transparency extension</h2>
+<p><a href="../sources/2026-07-31-the-visible-ledger-and-the-hidden-constitution-from-ca-3eb1a2bcb2e6.html">2026-07-31 - The Visible Ledger and the Hidden Constitution — From Cash to Stablecoins</a>
+adds an audience-specific transparency test. Cards and Apple Pay make
+transactions highly legible to issuers, networks, processors and regulators
+without making them public. Public-chain stablecoins invert part of that
+design: address-level transfers and contract state can be publicly inspected,
+while beneficial ownership, reserves, direct-redemption eligibility, exchange
+inventory, full conversion cost and legal remedy remain partly or wholly
+off-chain.</p>
+<p>The product-line grammar below must therefore retain two additional
+questions: <strong>who can inspect the transfer record, and who can inspect the
+monetary claim behind it?</strong></p>
+<p>The field also contains real alternatives to this adapter model. Coinbase and
+PayPal now offer native online wallet payment methods, while Square Bitcoin
+provides a live non-card point-of-sale path. Those are different products with
+different contracts, finality and dispute rules; they should not be counted as
+card-network stablecoin adoption.</p>
+<h2 id="what-changed-after-the-2026-07-28-package">What changed after the 2026-07-28 package</h2>
+<p>The July 28 package remains structurally sound. This supplement makes four
+material additions or repairs:</p>
+<ol>
+<li><strong>Stripe/Bridge card maturity moved upward.</strong> The July 28 memo used Deel as
+   the principal example and described the complete card path as future.
+   Stripe's 2026 product disclosures now support stablecoin-backed consumer and
+   commercial cards in 30 countries, and the Phantom Card supplies a named
+   production example. This does not mean every announced country, chain or
+   issuer is live under one program.</li>
+<li><strong>JCB entered the map.</strong> JCB disclosed both a USDC internal-fund-transfer
+   proof of concept and a separate physical-store stablecoin experiment in
+   Japan. Both remain exploration or PoC objects, not production acceptance.</li>
+<li><strong>Mastercard needs asset-specific and product-specific clocks.</strong> USDC has
+   early on-chain settlement flows in select markets; the other announced
+   stablecoins, chains and institutions cannot be flattened into one live
+   matrix. Card funding, network settlement, acquirer receipt, merchant payout,
+   wallet payout and Multi-Token Network activity remain distinct.</li>
+<li><strong>The native counterexample is now visible.</strong> Square Bitcoin is a live
+   non-card checkout product on Square POS. It demonstrates that the terminal
+   can carry a new rail, but only when the payment application, merchant terms,
+   finality and refund model also change.</li>
+</ol>
+<h2 id="product-line-grammar">Product-line grammar</h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Product line</th>
+<th>Stablecoin's role</th>
+<th>Merchant-facing event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>T1</strong></td>
+<td>Stablecoin-funded card</td>
+<td>Customer balance or collateral behind a Visa or Mastercard credential</td>
+<td>Ordinary card authorization and card-network settlement unless the program separately uses stablecoin settlement</td>
+</tr>
+<tr>
+<td><strong>T2</strong></td>
+<td>Processor-converted wallet checkout</td>
+<td>Customer tenders a stablecoin; the PSP converts or orchestrates it</td>
+<td>New wallet payment method under PSP terms; merchant may receive fiat</td>
+</tr>
+<tr>
+<td><strong>T3</strong></td>
+<td>Direct wallet-to-merchant rail</td>
+<td>Native asset moves through a non-card network</td>
+<td>New merchant payment application, finality and refund/dispute constitution</td>
+</tr>
+<tr>
+<td><strong>T4</strong></td>
+<td>Card-network stablecoin settlement</td>
+<td>Issuer or acquirer uses a stablecoin to settle network obligations</td>
+<td>Customer and merchant checkout can remain unchanged</td>
+</tr>
+<tr>
+<td><strong>T5</strong></td>
+<td>Merchant or payee stablecoin payout</td>
+<td>Processor/acquirer converts an ordinary settlement or funded payout into a stablecoin</td>
+<td>Merchant or payee elects a different receipt asset; customer tender is not implied</td>
+</tr>
+<tr>
+<td><strong>T6</strong></td>
+<td>Stablecoin platform and treasury tooling</td>
+<td>Mint, burn, custody, wallet, prefunding or cross-border movement</td>
+<td>Infrastructure capability; no merchant acceptance follows automatically</td>
+</tr>
+</tbody>
+</table>
+<p>Architecture path and evidence maturity are separate fields. <strong>Production,
+limited production, pilot, rollout, beta, signed agreement, planned and
+marketing</strong> are not synonyms.</p>
+<h2 id="card-network-product-families">Card-network product families</h2>
+<h3 id="visa">Visa</h3>
+<table>
+<thead>
+<tr>
+<th>Product line</th>
+<th>Exact path</th>
+<th>Evidence state at cutoff</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stablecoin-linked cards (<strong>T1</strong>)</td>
+<td>Stablecoin balance → program manager/issuer conversion or reservation → Visa credential → ordinary Visa merchant transaction</td>
+<td>Production portfolio; Visa reports more than 130 programs across more than 50 countries</td>
+<td>Merchant acceptance is Visa acceptance, not direct stablecoin acceptance</td>
+</tr>
+<tr>
+<td>Principal-member stablecoin settlement (<strong>T1 + T4</strong>)</td>
+<td>Stablecoin-funded card transaction → participating principal member settles an enabled obligation to Visa in USDC → downstream merchant payout remains under existing acquiring flow</td>
+<td>Emerging/limited</td>
+<td>The card program and the network-settlement election are two separate contractual objects</td>
+</tr>
+<tr>
+<td>U.S. issuer/acquirer USDC settlement (<strong>T4</strong>)</td>
+<td>Participating issuer or acquirer settles VisaNet obligations in USDC</td>
+<td>Limited production beginning with Cross River Bank and Lead Bank over Solana; broader 2026 availability planned</td>
+<td>Not universal Visa settlement; not a new consumer tender</td>
+</tr>
+<tr>
+<td>Visa Direct stablecoin prefunding (<strong>T6</strong>)</td>
+<td>Originator funds its Visa Direct payout inventory with stablecoin; downstream recipient receives local fiat</td>
+<td>Pilot; named partners, token, chain and geography remain undisclosed</td>
+<td>Stablecoin-in/fiat-out treasury funding is not card checkout</td>
+</tr>
+<tr>
+<td>Visa Direct stablecoin wallet payout (<strong>T5/T6</strong>)</td>
+<td>U.S. originator funds in fiat; Visa Direct routes or converts the payout to a compatible stablecoin wallet</td>
+<td>Pilot; broader rollout was planned for the second half of 2026</td>
+<td>Fiat-in/stablecoin-out is the reverse flow and remains separate from merchant acquiring</td>
+</tr>
+<tr>
+<td>Visa Stablecoin Platform / Open USD (<strong>T6</strong>)</td>
+<td>Wallet-as-a-Service, mint/burn and stablecoin-management functions linked to Visa products</td>
+<td>Select-client beta disclosed 2026-07-16</td>
+<td>Platform availability does not prove an issuer launch, merchant acceptance or production volume</td>
+</tr>
+</tbody>
+</table>
+<p>Visa's company-reported metrics must retain their measurement dates and
+denominators. Its March 2026 stablecoin-linked-card review reported about
+$5.2 billion of 2025 card volume—319% year over year, but only 0.04% of Visa's
+$14.2 trillion total global volume. An earlier annual-report snapshot reported
+different card and settlement figures on a different clock. These are adoption
+signals, not proof that card money has migrated wholesale.</p>
+<p>The global settlement pilot lists Avalanche, Ethereum, Solana, Stellar, Arc,
+Base, Canton, Polygon and Tempo. Visa does not publish a token-by-chain or
+participant-by-chain volume matrix. Visa's separate Tokenized Asset Platform and
+its Brale/Canton proof of concept concern bank-issued tokens and institutional
+settlement architecture; neither establishes checkout acceptance.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.visa.com/en-us/solutions/stablecoins">Visa stablecoin product family</a></li>
+<li><a href="https://www.visa.com/en-us/thought-leadership/innovation/stablecoin-linked-cards-monetize-money-movement">Visa stablecoin-linked card architecture and 2025 metrics</a></li>
+<li><a href="https://investor.visa.com/news/news-details/2026/Visa-and-Bridge-Expand-Collaboration-with-Plans-to-Bring-Stablecoin-Linked-Cards-to-Over-100-Countries/default.aspx">Visa–Bridge card expansion</a></li>
+<li><a href="https://corporate.visa.com/en/sites/visa-perspectives/newsroom/visa-launches-stablecoin-settlement-in-the-united-states.html">Visa U.S. issuer/acquirer USDC settlement</a></li>
+<li><a href="https://investor.visa.com/news/news-details/2026/Visa-Accelerates-Stablecoin-Momentum-Adding-Five-Blockchains-for-Settlement/">Visa nine-chain settlement-pilot expansion</a></li>
+<li><a href="https://investor.visa.com/news/news-details/2025/Visa-Direct-Taps-Stablecoins-to-Unlock-Faster-Funding-for-Businesses/default.aspx">Visa Direct stablecoin prefunding</a></li>
+<li><a href="https://investor.visa.com/news/news-details/2025/Visa-Direct-Stablecoin-Payouts-Pilot-Speeds-Up-Access-to-Funds-for-Creators--Gig-Workers/default.aspx">Visa Direct stablecoin wallet payout</a></li>
+<li><a href="https://annualreport.visa.com/chairman-and-ceo-message/default.aspx">Visa annual-report CEO message</a></li>
+<li><a href="https://investor.visa.com/news/news-details/2026/Visa-Introduces-Platform-for-Stablecoin-Minting-Movement-and-Management/">Visa Stablecoin Platform</a></li>
+<li><a href="https://investor.visa.com/news/news-details/2024/Visa-Introduces-the-Visa-Tokenized-Asset-Platform/default.aspx">Visa Tokenized Asset Platform</a></li>
+<li><a href="https://investor.visa.com/news/news-details/2026/Visa-and-Brale-Explore-Private-Stablecoin-Settlement-for-Institutional-Payments/default.aspx">Visa–Brale Canton proof of concept</a></li>
+</ul>
+<h3 id="mastercard">Mastercard</h3>
+<table>
+<thead>
+<tr>
+<th>Product line</th>
+<th>Exact path</th>
+<th>Evidence state at cutoff</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wallet-linked Mastercard programs (<strong>T1</strong>)</td>
+<td>Crypto/stablecoin wallet → program issuer/manager → Mastercard credential → ordinary merchant card flow</td>
+<td>Mixed by program; portfolio includes named production and rollout relationships</td>
+<td>MetaMask, Kraken, Gemini, Bybit, Crypto.com, Binance, Monavate and Bleap cannot be assigned one common launch state</td>
+</tr>
+<tr>
+<td>MoonAgents Card (<strong>T1</strong>)</td>
+<td>Self-custody wallet → Monavate on-chain funding and real-time authorization → virtual Mastercard debit credential → online merchant</td>
+<td>Limited production disclosed 2026-05-01 for an agent/CLI use case in the UK and Latin America</td>
+<td>No proof of NFC, Apple Pay, broad consumer availability or transaction volume</td>
+</tr>
+<tr>
+<td>Global network settlement (<strong>T4</strong>)</td>
+<td>Enabled issuer or acquirer settles Mastercard obligations using an enabled stablecoin</td>
+<td>USDC supports early on-chain flows in select markets; broader asset and participant set is rollout/expected</td>
+<td>The release lists assets and chains but does not provide a pairwise asset-by-chain matrix</td>
+</tr>
+<tr>
+<td>Circle EEMEA acquirer settlement (<strong>T4</strong>)</td>
+<td>Mastercard settles participating acquirer in USDC or EURC; acquirer separately settles merchants</td>
+<td>Limited regional production/rollout with Arab Financial Services and Eazy Financial Services named first</td>
+<td>Acquirer receipt is not proof every downstream merchant elects stablecoin</td>
+</tr>
+<tr>
+<td>Merchant settlement capability (<strong>T5</strong>)</td>
+<td>Nuvei/acquirer infrastructure converts merchant settlement to USDC or an enabled Paxos-family asset</td>
+<td>Partnership/capability; availability varies</td>
+<td>Customer stablecoin tender is not implied; all assets are not proven live</td>
+</tr>
+<tr>
+<td>Mastercard Move/Thunes wallet payout (<strong>T5</strong>)</td>
+<td>Cross-border payout endpoint delivers value to a recipient stablecoin wallet</td>
+<td>Integration/rollout language</td>
+<td>Separate money-movement product, not card-network settlement</td>
+</tr>
+<tr>
+<td>Multi-Token Network (<strong>T6</strong>)</td>
+<td>Governed institutional platform connects bank money, tokenized assets and ledger environments</td>
+<td>Operational platform with specific integrations and pilots</td>
+<td>MTN evidence does not establish retail card settlement</td>
+</tr>
+<tr>
+<td>BVNK acquisition</td>
+<td>Mastercard would acquire on-chain/fiat orchestration capabilities</td>
+<td>Definitive agreement signed; not closed at cutoff</td>
+<td>No acquired control should be attributed until closing</td>
+</tr>
+</tbody>
+</table>
+<p>The June 2026 settlement release needs three different clocks:</p>
+<ul>
+<li><strong>USDC:</strong> early live on-chain settlement flows in select markets.</li>
+<li><strong>PYUSD, USDG, USDP, RLUSD and SoFiUSD:</strong> announced support or rollout.</li>
+<li><strong>ARQ/DolarApp, CBW Bank, Cross River Bank, Lead Bank and Nuvei:</strong> expected
+  early participants, not one proven live cohort.</li>
+</ul>
+<p>The legal issuers of Paxos-associated assets also differ. “Paxos asset” is an
+infrastructure-family label, not proof that Paxos Trust Company is the obligor
+for every coin.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.mastercard.com/news/press/2025/april/mastercard-unveils-end-to-end-capabilities-to-power-stablecoin-transactions-from-wallets-to-checkouts">Mastercard end-to-end stablecoin capabilities</a></li>
+<li><a href="https://www.mastercard.com/global/en/news-and-trends/press/2026/june/mastercard-expands-settlement-capabilities-to-include-stablecoin.html">Mastercard global stablecoin settlement expansion</a></li>
+<li><a href="https://www.mastercard.com/news/eemea/en/newsroom/press-releases/en/2025-1/august/mastercard-expands-partnership-with-circle-to-transform-digital-settlement-for-merchants-and-acquirers-in-region">Mastercard–Circle EEMEA acquirer settlement</a></li>
+<li><a href="https://www.moonpay.com/ro/newsroom/moonagents-card">MoonPay MoonAgents Card</a></li>
+<li><a href="https://www.mastercard.com/news/ap/en/newsroom/press-releases/en/2025/mastercard-and-thunes-bring-stablecoin-payouts-to-the-mainstream/">Mastercard Move–Thunes</a></li>
+<li><a href="https://www.mastercard.com/global/en/news-and-trends/press/2026/march/Mastercard-to-acquire-BVNK-to-connect-on-chain-payments-and-fiat-rails.html">Mastercard–BVNK agreement</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1141391/000114139126000031/ma-20260331.htm">Mastercard Q1 2026 Form 10-Q</a></li>
+</ul>
+<h3 id="jcb">JCB</h3>
+<p>JCB supplies the clearest new <strong>watch</strong> lane, not a production claim:</p>
+<ul>
+<li>On 2026-07-14, <strong>JCB Co., Ltd.</strong> and an unnamed affiliate of Circle Internet
+  Group signed an MOU. The initial PoC concerns JCB's internal cross-border fund
+  transfers using USDC. A second exploration lane concerns in-store stablecoin
+  payment experiences in Japan and multi-chain interoperability.</li>
+<li>JCB's separate work with Digital Garage and Resona announced a physical-store
+  PoC involving dollar- and yen-denominated stablecoins, merchant settlement
+  into yen and operational testing.</li>
+</ul>
+<p>This does not prove that ordinary JCB Contactless terminals, Apple Pay or the
+JCB merchant rulebook already accept a native stablecoin. The named payment
+application, conversion provider, merchant contract, refund process and final
+production route remain program-specific research objects.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.global.jcb/en/press/2026/202607141000_products.html">JCB–Circle MOU</a></li>
+<li><a href="https://www.global.jcb/ja/press/2026/202601161100_others.pdf">JCB–Digital Garage–Resona collaboration</a></li>
+<li><a href="https://www.global.jcb/ja/press/2026/202602191600_others.pdf">JCB physical-store PoC announcement</a></li>
+</ul>
+<h3 id="american-express-discover-unionpay-and-adyen">American Express, Discover, UnionPay and Adyen</h3>
+<p>A targeted primary-source review through the cutoff did not locate an official
+stablecoin-funded credential, native stablecoin merchant product, merchant
+stablecoin payout or network stablecoin-settlement program for:</p>
+<ul>
+<li><strong>American Express</strong></li>
+<li><strong>Capital One / Discover Global Network</strong></li>
+<li><strong>UnionPay International</strong></li>
+<li><strong>Adyen N.V.</strong></li>
+</ul>
+<p>These rows are <strong>NR — not located in the reviewed public sources</strong>, not proof
+that no private development, partner pilot or future product exists.</p>
+<p>Capital One's completed acquisition of Discover and planned migration of some
+Capital One volume onto the Discover network remain important card-network
+verticalization evidence. They are not stablecoin evidence.</p>
+<p>Adyen's current product catalogue and settlement documentation continue to
+describe cards, wallets, bank methods and fiat payouts. That is a useful
+processor/acquirer control case, but it does not establish stablecoin
+acceptance, merchant payout or on-chain settlement.</p>
+<p>Control sources:</p>
+<ul>
+<li><a href="https://www.americanexpress.com/uk/merchant/contactless-payments.html">American Express contactless merchant acceptance</a></li>
+<li><a href="https://www.capitalone.com/about/newsroom/capital-one-completes-acquisition-of-discover/">Capital One completion of Discover acquisition</a></li>
+<li><a href="https://www.unionpayintl.com/en/mediaCenter/newsCenter/companyNews/6524.shtml">UnionPay Pay+ wallet ecosystem</a></li>
+<li><a href="https://docs.adyen.com/payment-methods">Adyen payment-method catalogue</a></li>
+<li><a href="https://docs.adyen.com/platforms/settle-funds">Adyen settlement flow</a></li>
+</ul>
+<h2 id="processor-acquirer-and-wallet-additions">Processor, acquirer and wallet additions</h2>
+<h3 id="stripe-bridge-production-card-evidence">Stripe / Bridge: production card evidence</h3>
+<p>Stripe now describes stablecoin-backed consumer and commercial cards across 30
+countries, with further availability staged on separate 2026 clocks. The
+Phantom Card provides a named production example:</p>
+<pre><code class="language-text">Phantom CASH stablecoin balance
+→ Bridge stablecoin infrastructure
+→ Stripe Issuing
+→ card credential
+→ ordinary card merchant
+</code></pre>
+<p>Phantom reported a spring 2026 general-availability rollout and thousands of
+cards issued within weeks. This corrects the broad July 28 statement that the
+“full card path is not yet live.” The narrower Deel statement remains valid:
+Deel's wallet and Deel Card had their own rollout clocks.</p>
+<p>Stripe's native stablecoin acceptance is a separate <strong>T2</strong> online/web-mobile
+payment method. Its regional Stripe entity and settlement providers control
+custody, conversion and fiat payout under the operative terms. Current Stripe
+Terminal documentation does not establish a physical stablecoin payment method.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://stripe.com/blog/everything-we-announced-at-sessions-2026">Stripe Sessions 2026 product map</a></li>
+<li><a href="https://stripe.com/en-dk/customers/phantom-spotlight">Phantom Card case study</a></li>
+<li><a href="https://stripe.com/legal/stablecoin-payments">Stripe stablecoin payment terms</a></li>
+<li><a href="https://docs.stripe.com/payments/accept-stablecoin-payments">Stripe stablecoin acceptance documentation</a></li>
+<li><a href="https://docs.stripe.com/terminal">Stripe Terminal documentation</a></li>
+</ul>
+<h3 id="paypal-two-operative-non-card-lanes">PayPal: two operative non-card lanes</h3>
+<p>PayPal's current legal terms show two distinct products:</p>
+<ol>
+<li><strong>Pay with Crypto / T2:</strong> a buyer's crypto is accessed or converted through
+   Mesh and PYUSD; PayPal converts the value to fiat for the merchant. The
+   merchant does not receive stablecoin and the transaction is not ordinary
+   card settlement.</li>
+<li><strong>Hyperwallet PYUSD payout / T5:</strong> merchant-funded fiat is converted to PYUSD
+   and sent to an eligible Solana wallet. This is a payee-disbursement product,
+   not proof of customer stablecoin tender.</li>
+</ol>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://www.paypal.com/us/legalhub/paypal/crypto-payment-method?locale.x=en_US">PayPal Pay with Crypto terms</a></li>
+<li><a href="https://www.paypal.com/us/legalhub/paypal/hyperwallet-pyusd-payouts-tnc?country.x=US&amp;locale.x=en_US">Hyperwallet PYUSD payout terms</a></li>
+</ul>
+<h3 id="coinbase-and-checkoutcom-native-online-acceptance-versus-payout">Coinbase and Checkout.com: native online acceptance versus payout</h3>
+<p>Coinbase Payment Acceptance offers authorization, capture, void and refund-like
+merchant primitives for USDC. Checkout.com separately disclosed:</p>
+<ul>
+<li>Coinbase-powered customer stablecoin acceptance with merchant settlement in
+  USD (<strong>T2</strong>); and</li>
+<li>Fireblocks-powered merchant settlement to a USDC or USDT wallet (<strong>T5</strong>).</li>
+</ul>
+<p>The two Checkout.com products cannot be merged into “merchant accepts
+stablecoin and receives stablecoin.” Customer tender and merchant receipt are
+independent elections. Coinbase's newer multi-chain API documentation also
+needs an exact contract-and-entity match before its full architecture is treated
+as legally complete.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://docs.cdp.coinbase.com/payments/payment-acceptance/overview">Coinbase Payment Acceptance</a></li>
+<li><a href="https://www.checkout.com/newsroom/checkout-com-enables-stablecoin-acceptance-for-merchants-in-partnership-with-coinbase">Checkout.com–Coinbase acceptance</a></li>
+<li><a href="https://www.checkout.com/newsroom/checkout-com-scales-stablecoin-settlement-for-us-merchants-in-partnership-with-fireblocks">Checkout.com–Fireblocks merchant settlement</a></li>
+</ul>
+<h3 id="worldpay-and-fiserv">Worldpay and Fiserv</h3>
+<ul>
+<li><strong>Worldpay:</strong> direct merchant USDC settlement is an established product lane.
+  Its separately announced BVNK third-party payout pilot was not verified as
+  production through the cutoff.</li>
+<li><strong>Fiserv:</strong> FIUSD remains a deployment watch. Public materials describe
+  settlement, cash management, cross-border, merchant conversion and loyalty,
+  but do not yet supply an operative issuer/redemption constitution, contract
+  address, named production transaction or proof that Clover exposes FIUSD as a
+  payment method. Fiserv's INDX real-dollar settlement product is a separate,
+  off-chain cash-settlement object.</li>
+</ul>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://worldpay.com/en-GB/insights/articles/usdc-stablecoin-circle">Worldpay current USDC settlement description</a></li>
+<li><a href="https://corporate.worldpay.com/news-releases/news-release-details/worldpay-enable-stablecoin-payouts-global-businesses">Worldpay–BVNK payout announcement</a></li>
+<li><a href="https://investors.fiserv.com/news-releases/news-release-details/fiserv-launches-new-fiusd-stablecoin-financial-institutions">Fiserv FIUSD announcement</a></li>
+<li><a href="https://investors.fiserv.com/news-releases/news-release-details/fiserv-introduces-indx-real-time-cash-settlement-platform">Fiserv INDX announcement</a></li>
+</ul>
+<h2 id="native-point-of-sale-counterexample-square-bitcoin">Native point-of-sale counterexample: Square Bitcoin</h2>
+<p>Square Bitcoin is the strongest live falsifier of a card-only terminal thesis.
+Eligible U.S. Square sellers can accept Bitcoin over Lightning:</p>
+<pre><code class="language-text">buyer Lightning wallet
+→ QR code, or NFC phone tap on supported second-generation Square Register
+→ Lightning transfer
+→ merchant elects BTC in a Square wallet or immediate USD conversion
+</code></pre>
+<p>This is <strong>T3</strong>, not a stablecoin and not card-network settlement. Its differences
+from a card transaction are constitutionally important:</p>
+<ul>
+<li>device and geographic eligibility are narrower;</li>
+<li>transaction and daily caps apply;</li>
+<li>the payment has no card chargeback process;</li>
+<li>refunds follow Square's specified alternative process;</li>
+<li>merchant receipt can be BTC or immediate USD.</li>
+</ul>
+<p>The hardware can look familiar while the payment system underneath is genuinely
+different. That is the correct test for the next transition: not whether the
+same terminal can display a new option, but whether authorization, routing,
+merchant contract, finality and remedy have moved together.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://squareup.com/us/en/legal/general/square-bitcoin-alpha-terms">Square Bitcoin terms</a></li>
+<li><a href="https://squareup.com/help/us/en/article/8622-accept-and-manage-bitcoin-payments">Square Bitcoin device and payment rules</a></li>
+</ul>
+<h2 id="the-apple-pay-parallel-stated-precisely">The Apple Pay parallel, stated precisely</h2>
+<p>Apple Pay changed the <strong>credential-presentment and security layer</strong>:</p>
+<pre><code class="language-text">plastic PAN exposure
+→ device token + cryptogram
+→ existing issuer authorization
+→ existing network routing
+→ existing acquirer and merchant contract
+</code></pre>
+<p>The dominant stablecoin card transition changes the <strong>funding and settlement
+options</strong>:</p>
+<pre><code class="language-text">bank deposit or credit balance only
+→ optional stablecoin-funded account and/or stablecoin settlement asset
+→ existing credential
+→ existing network routing
+→ existing merchant acceptance
+</code></pre>
+<p>The parallel is therefore not “Apple Pay put cards on a new rail, and now
+stablecoins will do the same.” It is:</p>
+<blockquote>
+<p>Apple Pay proved that a mass-market payment interface can remain familiar
+while a new tokenization and control layer is inserted behind it. Stablecoin
+products are extending that modularity into funding, treasury, network
+settlement and payout.</p>
+</blockquote>
+<h2 id="constitutional-test-product-line-or-new-rail">Constitutional test: product line or new rail?</h2>
+<p>Treat a product as an <strong>added card-rail line</strong> when most of these remain under
+the incumbent card constitution:</p>
+<ul>
+<li>credential and acceptance mark;</li>
+<li>issuer authorization;</li>
+<li>network routing and clearing;</li>
+<li>acquirer/merchant contract;</li>
+<li>fraud allocation and chargebacks;</li>
+<li>interchange and network pricing;</li>
+<li>merchant settlement obligation.</li>
+</ul>
+<p>Treat it as a <strong>native alternative rail</strong> only when the new system materially
+controls several of these:</p>
+<ul>
+<li>the customer payment instruction;</li>
+<li>authorization or validity rules;</li>
+<li>transaction routing;</li>
+<li>merchant onboarding and acceptance terms;</li>
+<li>finality;</li>
+<li>refunds, disputes and fraud loss;</li>
+<li>the settlement asset and recipient claim;</li>
+<li>transaction pricing.</li>
+</ul>
+<p>By that test, today's field is mixed:</p>
+<ul>
+<li><strong>Visa/Mastercard/Stripe stablecoin-backed cards:</strong> added product lines inside
+  card rails.</li>
+<li><strong>Visa/Mastercard stablecoin network settlement:</strong> new settlement option
+  inside card rails.</li>
+<li><strong>PayPal/Coinbase/Checkout.com wallet acceptance:</strong> native online payment
+  method mediated by a PSP.</li>
+<li><strong>Worldpay/Checkout.com/Hyperwallet stablecoin payout:</strong> treasury or
+  disbursement choice after, or separate from, acceptance.</li>
+<li><strong>Square Bitcoin:</strong> native alternative POS rail.</li>
+<li><strong>JCB:</strong> controlled exploration whose final constitutional placement is not
+  yet proven.</li>
+</ul>
+<h2 id="watchboard">Watchboard</h2>
+<p>Promote or reclassify only on exact evidence:</p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>What it would prove</th>
+<th>What it would not prove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Named issuer launches a stablecoin-funded card with operative terms and volume</td>
+<td>T1 production for that program</td>
+<td>Direct merchant stablecoin acceptance</td>
+</tr>
+<tr>
+<td>Named issuer/acquirer settles a disclosed network obligation in a disclosed asset</td>
+<td>T4 production for that participant/asset/network</td>
+<td>Universal network settlement</td>
+</tr>
+<tr>
+<td>Acquirer terms let merchant elect stablecoin receipt</td>
+<td>T5 contractual availability</td>
+<td>Customer stablecoin tender</td>
+</tr>
+<tr>
+<td>Terminal documentation lists a native wallet/stablecoin method</td>
+<td>In-person application support</td>
+<td>General merchant activation or legal finality</td>
+</tr>
+<tr>
+<td>Operative merchant rules replace card chargebacks with on-chain finality/remedies</td>
+<td>Movement toward a native rail constitution</td>
+<td>Mass adoption</td>
+</tr>
+<tr>
+<td>BVNK acquisition closes</td>
+<td>Mastercard obtains corporate control of the acquired entity</td>
+<td>Immediate integration into every Mastercard product</td>
+</tr>
+<tr>
+<td>FIUSD publishes issuer, redemption, reserve, contract and live participant evidence</td>
+<td>FIUSD legal/technical production state</td>
+<td>Automatic Clover enablement</td>
+</tr>
+<tr>
+<td>JCB names production merchants and operative payment/settlement terms</td>
+<td>JCB production path</td>
+<td>Automatic JCB Contactless or Apple Pay interoperability</td>
+</tr>
+</tbody>
+</table>
+<h2 id="research-conclusion">Research conclusion</h2>
+<p>The credit-card companies are not abandoning the card. They are attempting to
+make the card network the compatibility layer across more kinds of money:</p>
+<ul>
+<li>bank deposits and credit remain customer funding sources;</li>
+<li>stablecoin balances become an additional funding source;</li>
+<li>regulated stablecoins become optional issuer/acquirer settlement assets;</li>
+<li>processors offer merchant stablecoin receipt after ordinary acceptance;</li>
+<li>network companies add wallet, mint/burn and cross-border orchestration tools.</li>
+</ul>
+<p>That is economically important precisely because it is incremental. The
+merchant does not need to wait for a wholly new installed base. The incumbent
+networks can sell a new product line while preserving the credential,
+acceptance footprint, risk controls and dispute machinery that make their
+networks valuable.</p>
+<p>The genuine competitive threat appears where a provider reproduces enough of
+that merchant constitution outside the card network. Square Bitcoin is a live,
+bounded example. Coinbase, PayPal and Checkout.com show the online version.
+That is the seam to watch: whether stablecoins remain an asset carried by the
+card-and-processor stack, or whether native payment applications become a
+complete merchant operating system of their own.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

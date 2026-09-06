@@ -211,32 +211,32 @@ and Stablecoin Certification Review Committee visible in the structural tree.
 All entity-derived layers were rebuilt. See [2026-08-15 - Executive Order Entity Maps — Wave 1 Monetary Control Plane](../sources/2026-08-15-executive-order-entity-maps-wave-1-monetary-control-pl-70b45f385321.html) for cohort coverage, validation gates, corrections, and the explicit 35-of-491 boundary.
 
 > [!graph]- Graph links (26 notes — auto-generated, do not edit)
-> Reading the Charter — BIS
-> Reading the Charter — Bretton Woods Agreements Act
-> Reading the Charter — CFPB
-> Reading the Charter — CFTC
-> Reading the Charter — DTCC
-> Reading the Charter — Department of the Treasury
-> Reading the Charter — Exchange Stabilization Fund
-> Reading the Charter — FDIC
-> Reading the Charter — FHFA
-> Reading the Charter — FHLBank System
-> Reading the Charter — FSOC
-> Reading the Charter — Fannie Mae
-> Reading the Charter — Federal Financing Bank
-> Reading the Charter — Federal Open Market Committee
-> Reading the Charter — Federal Reserve Bank of New York
-> Reading the Charter — Federal Reserve System
-> Reading the Charter — Freddie Mac
-> Reading the Charter — GENIUS Act — SCRC
-> Reading the Charter — Ginnie Mae
-> Reading the Charter — IBRD
-> Reading the Charter — International Organizations Immunities Act
-> Reading the Charter — OCC
-> Reading the Charter — OFR
-> Reading the Charter — SEC
-> Reading the Charter — US Mint
-> Source Archive — index
+> [Reading the Charter — BIS](../sources/reading-the-charter-bis-dc20bc90a8ab.html)
+> [Reading the Charter — Bretton Woods Agreements Act](../sources/reading-the-charter-bretton-woods-agreements-act-a1deb404380f.html)
+> [Reading the Charter — CFPB](../sources/reading-the-charter-cfpb-2864305cba4e.html)
+> [Reading the Charter — CFTC](../sources/reading-the-charter-cftc-90d1a2d65d57.html)
+> [Reading the Charter — DTCC](../sources/reading-the-charter-dtcc-0d5cfe8258a9.html)
+> [Reading the Charter — Department of the Treasury](../sources/reading-the-charter-department-of-the-treasury-01d7e7f4d09c.html)
+> [Reading the Charter — Exchange Stabilization Fund](../sources/reading-the-charter-exchange-stabilization-fund-db6548231537.html)
+> [Reading the Charter — FDIC](../sources/reading-the-charter-fdic-7e3d2307bf33.html)
+> [Reading the Charter — FHFA](../sources/reading-the-charter-fhfa-f291502be9f8.html)
+> [Reading the Charter — FHLBank System](../sources/reading-the-charter-fhlbank-system-80be4ec0a3e8.html)
+> [Reading the Charter — FSOC](../sources/reading-the-charter-fsoc-faf741a66f9d.html)
+> [Reading the Charter — Fannie Mae](../sources/reading-the-charter-fannie-mae-0cc968cbe86a.html)
+> [Reading the Charter — Federal Financing Bank](../sources/reading-the-charter-federal-financing-bank-92e5bdc85747.html)
+> [Reading the Charter — Federal Open Market Committee](../sources/reading-the-charter-federal-open-market-committee-16b32d2f2a2a.html)
+> [Reading the Charter — Federal Reserve Bank of New York](../sources/reading-the-charter-federal-reserve-bank-of-new-york-68e4e116c541.html)
+> [Reading the Charter — Federal Reserve System](../sources/reading-the-charter-federal-reserve-system-5d337df21abf.html)
+> [Reading the Charter — Freddie Mac](../sources/reading-the-charter-freddie-mac-bb12d643ea71.html)
+> [Reading the Charter — GENIUS Act — SCRC](../sources/reading-the-charter-genius-act-scrc-acc7c69a8bb3.html)
+> [Reading the Charter — Ginnie Mae](../sources/reading-the-charter-ginnie-mae-6deedc13b428.html)
+> [Reading the Charter — IBRD](../sources/reading-the-charter-ibrd-6b6ad5c14796.html)
+> [Reading the Charter — International Organizations Immunities Act](../sources/reading-the-charter-international-organizations-immunities-act-68871be3600f.html)
+> [Reading the Charter — OCC](../sources/reading-the-charter-occ-ed96716e1937.html)
+> [Reading the Charter — OFR](../sources/reading-the-charter-ofr-1f032ee24676.html)
+> [Reading the Charter — SEC](../sources/reading-the-charter-sec-d37ac1868d60.html)
+> [Reading the Charter — US Mint](../sources/reading-the-charter-us-mint-4d310eef6f42.html)
+> [Source Archive — index](../sources/source-archive-index-527253ed6730.html)
 
 ## Related packages
 

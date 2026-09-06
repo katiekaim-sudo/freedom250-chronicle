@@ -142,7 +142,7 @@ Congress still writes the appropriation. The ICA is a 45-day proposal window, no
 
 - Payment-gate twin: [The Fraud Machine — Identity, Eligibility, and the Payment Gate](../sources/the-fraud-machine-identity-eligibility-and-the-payment-gate-61d967f2138f.html)
 - Record spine (appropriation → apportionment): [Federal Transaction Record — Open Accounting, Audit Limits, and the State-NGO Gap](../sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html)
-- Treasury persons: [Treasury and IRS — Entity and Authority Map](../sources/treasury-and-irs-entity-and-authority-map-6ed2d06c2948.html) · Reading the Charter — Department of the Treasury
+- Treasury persons: [Treasury and IRS — Entity and Authority Map](../sources/treasury-and-irs-entity-and-authority-map-6ed2d06c2948.html) · [Reading the Charter — Department of the Treasury](../sources/reading-the-charter-department-of-the-treasury-01d7e7f4d09c.html)
 - USAID remnant: entity-chart status in [2026-07-10 - Entity Chart Audit — Dates, Statuses & the Legal Spine](../sources/2026-07-10-entity-chart-audit-dates-statuses-the-legal-spine-c2a0dd6b0de7.html); consummation map is Wave 2
 - Independent-agency removal (officers, not money): Judicial Money Map JM-02
 

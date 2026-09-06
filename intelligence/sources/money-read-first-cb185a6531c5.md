@@ -44,7 +44,7 @@ DTCC Atomic Settlement Liquidity Stress Test — Source Document — *the DTC to
 DTCC Collateral AppChain and Record Sovereignty — Source Document — *the claim audit behind the published capital-release case; separates Fed fees, funding spread, HQLA, capital and opex, then maps issuer, Cede/DTC, LedgerScan, chain and customer records plus the Sunday-night rail collision.*
 [DTCC Operative Constitution and Public-Bank Model — Source Document](../sources/dtcc-operative-constitution-and-public-bank-model-source-document-afab7d8d77b1.html) — *the controlling legal/financial extension: public exchange rules versus DTC's unpublished Participant supplement; AppChain rulebook gaps; six-bank sensitivity model; and the corrected DTC/bilateral/FICC Sunday-night failure states.*
 DTCC Notice and Testing Clock Map — Source Document — *the dated public-evidence control for CNS, DTC Asset Services, NSCC I&RS, FICC CCLF and GSD membership clocks through August 21; separates scheduled tests, attestations, eligibility, deployment targets and occurred operation.*
-The Clearing-House Transition — *the reading, including the funded-state/netting cost constitution and DTCC atomic-liquidity ruling.* · [Treasury–Fed Money State — Factual Timeline](../sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html) — *the cash and collateral side.*
+[The Clearing-House Transition](../sources/the-clearing-house-transition-14af0641f357.html) — *the reading, including the funded-state/netting cost constitution and DTCC atomic-liquidity ruling.* · [Treasury–Fed Money State — Factual Timeline](../sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html) — *the cash and collateral side.*
 
 **5. The judicial money map — who gets to say no**
 [Judicial Money Map — Source Document](../sources/judicial-money-map-source-document-d2f844afe3d8.html) — *the litigation that controls, restrains or defines the transition. Note the audit flags in its header.*
@@ -52,7 +52,7 @@ The Clearing-House Transition — *the reading, including the funded-state/netti
 
 **6. The fintech/crypto adapters — the private builders, and the shut gate**
 [Private Monetary Stack — Source Documents](../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html) — *the company/network source index: who issues, routes, records, custodies, settles, tokenizes and supplies credit.*
-Continuous Underwriting and Programmable Credit — Source Document — *the
+[Continuous Underwriting and Programmable Credit — Source Document](../sources/continuous-underwriting-and-programmable-credit-source-document-0b20967cc733.html) — *the
 live borrower-evidence, cash-control, collateral, GAAP and assurance boundary;
 continuous data changes monitoring before it replaces conventional reporting.*
 [ENERGY INFRASTRUCTURE — READ FIRST](../sources/energy-infrastructure-read-first-2eb3c3598d3b.html) — *the joined turbine, project-finance,
@@ -64,10 +64,10 @@ Circle–IBM Patent Universe — Wave 1 Recovery — *the partial Wave 1 assignm
 Circle–IBM Patent Portfolio — Landscape and Cluster Map — *the controlling portfolio-scale view: official broad and conservative brackets, eight technical clusters, inventor-program chronology, Circle crosswalk and Maximo boundary.*
 Circle–IBM Transfer Membership Test — Maximo versus Financial Controls — *the original-question return gate: property-level assignment comparison showing that neither Maximo nor the financial controls is yet transfer-visible under Circle.*
 Circle–IBM Patent Claims — Wave 2 Taxonomy — *the first independent-claim tranche: which candidate techniques actually require blockchain, which only mention it, and where Maximo/EAM fits.*
-Card Networks — Stablecoin Product Lines — *the July 29 product-line
+[Card Networks — Stablecoin Product Lines](../sources/card-networks-stablecoin-product-lines-8bca609f0991.html) — *the July 29 product-line
 extension: stablecoin-funded cards, network settlement, wallet checkout, native
 POS, payout and platform infrastructure are separate objects and clocks.*
-[Card Networks — Entity and Flow Map](../sources/card-networks-entity-and-flow-map-d2b978d0ade2.html) · Card Networks — Claim Audit —
+[Card Networks — Entity and Flow Map](../sources/card-networks-entity-and-flow-map-d2b978d0ade2.html) · [Card Networks — Claim Audit](../sources/card-networks-claim-audit-033d2210abc5.html) —
 *exact controller/money/receipt map and the eighteen-claim correction ledger.*
 Card Networks — Money × Sky — *the research-only 14-anchor chart layer:
 reported/noon/midnight clocks, local + D.C. companions, 916 America where the

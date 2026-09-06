@@ -167,7 +167,7 @@ currency price authority.
 
 ## Source bridge
 
-Charter: Reading the Charter — IMF  
+Charter: [Reading the Charter — IMF](../sources/reading-the-charter-imf-aaae2c88db93.html)  
 Legitimacy frame: [2026-04-14 - The Bretton Woods Legitimacy Crisis — Who Gets to Define Stability](../sources/2026-04-14-the-bretton-woods-legitimacy-crisis-who-gets-to-define-4a7001ae308d.html)  
 Surveillance/program symmetry: [2026-07-30 - Who Gets Adjusted — IMF Symmetry and the Price of Access](../sources/2026-07-30-who-gets-adjusted-imf-symmetry-and-the-price-of-access-f8de40a7bcd6.html)  
 Parent event: 2026-04-14 - Bessent at IIF — Growth as Global Financial Stability

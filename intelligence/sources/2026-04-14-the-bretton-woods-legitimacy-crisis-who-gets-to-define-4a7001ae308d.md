@@ -227,9 +227,9 @@ establish:
 ## Source bridge
 
 Primary event: 2026-04-14 - Bessent - IIF Global Finance Conversation - transcript  
-Charter: Reading the Charter — IMF  
-U.S. control layer: Reading the Charter — Bretton Woods Agreements Act  
-Bank control layer: Reading the Charter — IBRD  
+Charter: [Reading the Charter — IMF](../sources/reading-the-charter-imf-aaae2c88db93.html)  
+U.S. control layer: [Reading the Charter — Bretton Woods Agreements Act](../sources/reading-the-charter-bretton-woods-agreements-act-a1deb404380f.html)  
+Bank control layer: [Reading the Charter — IBRD](../sources/reading-the-charter-ibrd-6b6ad5c14796.html)  
 Parent synthesis: 2026-04-14 - Bessent at IIF — Growth as Global Financial Stability  
 Whole-vault thesis: 2026-06 - The Thesis - A Contested Re-Founding
 Live currency case: [2026-07-31 - Japan–Korea Currency Defense — The State Moves, the IMF Classifies](../sources/2026-07-31-japan-korea-currency-defense-the-state-moves-the-imf-c-6cdb8fe460b3.html)

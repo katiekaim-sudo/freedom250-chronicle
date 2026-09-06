@@ -5,7 +5,7 @@
 > [!abstract] Controlling ruling
 > The near-term federal-securities model is one fungible national market with an optional post-trade token-form instruction. DTC—not the chain alone—decides eligibility, maintains the official token-entitlement record and can correct or reverse token state. Public exchange rules already describe the instruction, but the DTC supplemental Participant and wallet terms that allocate commercial loss were not located in the public rulebook, procedures or fee guide. Collateral AppChain remains a credible expected product architecture without a public operator contract, settlement cash, finality rule or waterfall. The public-bank case supports a sensitivity model, not a generic capital-release claim.
 
-Companions: DTCC Collateral AppChain and Record Sovereignty — Source Document · DTCC Atomic Settlement Liquidity Stress Test — Source Document · The Clearing-House Transition · [Clearing-House Transition — Factual Timeline](../sources/clearing-house-transition-factual-timeline-6595f41e3831.html)
+Companions: DTCC Collateral AppChain and Record Sovereignty — Source Document · DTCC Atomic Settlement Liquidity Stress Test — Source Document · [The Clearing-House Transition](../sources/the-clearing-house-transition-14af0641f357.html) · [Clearing-House Transition — Factual Timeline](../sources/clearing-house-transition-factual-timeline-6595f41e3831.html)
 
 **Evidence grammar:** **O** operative public instrument · **S** SEC staff position · **F** primary fact · **D** reproducible arithmetic · **E** operator expectation · **M** marketing statement · **C** commenter position · **I** architecture inference · **NR** not resolved publicly.
 

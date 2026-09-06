@@ -2,10 +2,10 @@
 
 # Card-Network Stablecoin Entity and Flow Map
 
-> Companion to Card Networks — Stablecoin Product Lines. Use this note to
+> Companion to [Card Networks — Stablecoin Product Lines](../sources/card-networks-stablecoin-product-lines-8bca609f0991.html). Use this note to
 > keep customer tender, credential, issuer, processor, network obligation,
 > settlement asset and merchant/recipient receipt from collapsing into one
-> event. Corrections: Card Networks — Claim Audit.
+> event. Corrections: [Card Networks — Claim Audit](../sources/card-networks-claim-audit-033d2210abc5.html).
 
 ## Reading rule
 

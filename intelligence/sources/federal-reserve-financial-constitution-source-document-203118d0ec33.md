@@ -468,4 +468,4 @@ not exist, and no external request is proposed.
 
 ## Related
 
-[Treasury–Fed Money State — Factual Timeline](../sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html) · [Federal Reserve Restructuring — Factual Timeline](../sources/federal-reserve-restructuring-factual-timeline-4d78a4e48145.html) · 2026-07-09 - The Twelve Districts — Regional Reserve Bank Sweep · Reading the Charter — Federal Reserve System · Reading the Charter — Federal Reserve Bank of New York
+[Treasury–Fed Money State — Factual Timeline](../sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html) · [Federal Reserve Restructuring — Factual Timeline](../sources/federal-reserve-restructuring-factual-timeline-4d78a4e48145.html) · 2026-07-09 - The Twelve Districts — Regional Reserve Bank Sweep · [Reading the Charter — Federal Reserve System](../sources/reading-the-charter-federal-reserve-system-5d337df21abf.html) · [Reading the Charter — Federal Reserve Bank of New York](../sources/reading-the-charter-federal-reserve-bank-of-new-york-68e4e116c541.html)

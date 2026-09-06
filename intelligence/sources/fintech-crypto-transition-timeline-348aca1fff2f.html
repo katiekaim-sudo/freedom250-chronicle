@@ -1,0 +1,248 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Fintech and crypto infrastructure transition — factual spine · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Fintech and crypto infrastructure transition — factual spine</h1><p class="deck">Source created: 2026-07-12 · Source updated: 2026-07-21 · Collection evidence cutoff: 2026-08-26</p><p><a href="fintech-crypto-transition-timeline-348aca1fff2f.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><blockquote>
+<p><strong>The 2025-2027 factual spine; gate-changing events only. The 12-item watchboard.</strong>
+<em>Verbatim as delivered. Audit + provenance: <a href="../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html">Private Monetary Stack — Source Documents</a>.</em></p>
+</blockquote>
+<h1 id="fintech-and-crypto-infrastructure-transition-factual-spine">Fintech and crypto infrastructure transition — factual spine</h1>
+<p><strong>As of:</strong> 2026-07-21<br />
+<strong>Scope:</strong> selected company and infrastructure events that change a legal entity, operating permission, production state, network connection, authoritative record, or settlement path</p>
+<h2 id="inclusion-rule">Inclusion rule</h2>
+<p>This is not a crypto-news chronology. It includes events that change at least one gate in the private monetary stack: charter, account, issuer, custody, title/record, network governance, interoperability, clearing, collateral, or production status.</p>
+<p>Status words are literal:</p>
+<ul>
+<li><strong>completed/live</strong> — the dated action occurred;</li>
+<li><strong>temporary/limited</strong> — operative within stated limits;</li>
+<li><strong>pilot/test</strong> — controlled use, not general production;</li>
+<li><strong>conditional</strong> — permission subject to preopening or other conditions;</li>
+<li><strong>announced/targeted</strong> — future state, not yet achieved.</li>
+</ul>
+<hr />
+<h2 id="2025">2025</h2>
+<h3 id="2025-02-04-stripe-completes-bridge-acquisition">2025-02-04 — Stripe completes Bridge acquisition</h3>
+<p><strong>Status:</strong> completed<br />
+<strong>Track:</strong> payment orchestration / vertical integration</p>
+<p>Stripe pulled stablecoin orchestration inside its merchant-payments group. Wallet infrastructure, proprietary-chain development, and a proposed trust-bank layer followed later. <a href="https://stripe.com/gb/newsroom/news/stripe-completes-bridge-acquisition">Stripe</a></p>
+<h3 id="2025-05-17-kinexys-chainlink-and-ondo-complete-cross-chain-dvp-test">2025-05-17 — Kinexys, Chainlink, and Ondo complete cross-chain DvP test</h3>
+<p><strong>Status:</strong> test transaction with real-world value<br />
+<strong>Track:</strong> tokenized asset / bank deposit / orchestration</p>
+<p>Ondo OUSG formed the asset leg, J.P. Morgan USD deposits formed the payment leg, and Chainlink coordinated the cross-network workflow. The event proved a transaction path; it did not establish a general production service. <a href="https://www.jpmorgan.com/payments/newsroom/kinexys-chainlink-ondo-tokenized-asset-test">J.P. Morgan</a></p>
+<h3 id="2025-05-22-r3-announces-publicprivate-integration-path-with-solana">2025-05-22 — R3 announces public/private integration path with Solana</h3>
+<p><strong>Status:</strong> announced/development<br />
+<strong>Track:</strong> Corda / public-chain bridge</p>
+<p>R3 selected Solana as a public Layer-1 substrate for a planned permissioned consensus and asset-distribution path. Existing Corda production networks did not thereby migrate. <a href="https://r3.com/r3-signals-strategic-shift-to-lead-the-convergence-of-public-and-private-blockchains-to-deliver-internet-capital-markets-through-collaboration-with-solana-foundation/">R3</a></p>
+<h3 id="2025-06-24-digital-asset-raises-135-million-strategic-round">2025-06-24 — Digital Asset raises $135 million strategic round</h3>
+<p><strong>Status:</strong> completed<br />
+<strong>Track:</strong> institutional infrastructure ownership</p>
+<p>The investor group joined dealers, market makers, banks, market utilities, and crypto firms around the company that builds Canton technology. Company equity and Canton governance remain separate structures. <a href="https://blog.digitalasset.com/press-release/digital-asset-raises-135-million-to-accelerate-adoption-of-canton-network">Digital Asset</a></p>
+<h3 id="2025-09-23-fnality-closes-136-million-series-c">2025-09-23 — Fnality closes $136 million Series C</h3>
+<p><strong>Status:</strong> completed<br />
+<strong>Track:</strong> tokenized central-bank-backed wholesale cash</p>
+<p>The round supported expansion beyond the operating sterling Fnality Payment System. Currency-by-currency authorization and central-bank account arrangements remain the scaling gate. See <code>FINTECH_SWEEP_INSTITUTIONAL_RAILS.md</code>.</p>
+<h3 id="2025-09-24-chainlink-becomes-a-canton-super-validator">2025-09-24 — Chainlink becomes a Canton Super Validator</h3>
+<p><strong>Status:</strong> completed / integration rolling<br />
+<strong>Track:</strong> interoperability provider becomes governance participant</p>
+<p>Chainlink added Canton governance/validation to its oracle and cross-chain role. That narrows the line between neutral connector and governed market participant. <a href="https://www.canton.network/canton-network-press-releases/canton-network-and-chainlink-enter-into-strategic-partnership-to-accelerate-institutional-blockchain-adoption-">Canton and Chainlink</a></p>
+<h3 id="2025-09-25-deutsche-bank-completes-first-euro-cross-border-payment-on-partior">2025-09-25 — Deutsche Bank completes first euro cross-border payment on Partior</h3>
+<p><strong>Status:</strong> live transaction<br />
+<strong>Track:</strong> multi-bank commercial-bank money</p>
+<p>The event expanded Partior's production evidence beyond Singapore-dollar and dollar paths. Each participating settlement bank still issues its own liability. See <code>FINTECH_SWEEP_INSTITUTIONAL_RAILS.md</code>.</p>
+<h3 id="2025-12-12-occ-conditionally-approves-five-digital-asset-trust-bank-applications">2025-12-12 — OCC conditionally approves five digital-asset trust-bank applications</h3>
+<p><strong>Status:</strong> conditional at this date<br />
+<strong>Track:</strong> federal charter gate</p>
+<p>The OCC conditionally approved proposed First National Digital Currency Bank/Circle National Trust and Ripple National Trust Bank, plus conversions for BitGo, Fidelity Digital Assets, and Paxos. Later consummation status diverged by entity. <a href="https://www.occ.gov/news-issuances/news-releases/2025/nr-occ-2025-125.html">OCC</a></p>
+<h3 id="2025-12-17-dtcc-and-digital-asset-announce-dtc-treasury-token-path-on-canton">2025-12-17 — DTCC and Digital Asset announce DTC Treasury-token path on Canton</h3>
+<p><strong>Status:</strong> announced/controlled-production target<br />
+<strong>Track:</strong> authoritative record / token representation</p>
+<p>DTC planned token representations of participant entitlements to immobilized DTC-custodied Treasuries on Canton. The underlying securities remain registered to Cede &amp; Co.; the later DTC FAQ moved the preliminary service expectation to H2 2026. <a href="https://www.dtcc.com/news/2025/december/17/dtcc-and-digital-asset-partner-to-tokenize-dtc-custodied-us-treasury-securities">DTCC</a></p>
+<hr />
+<h2 id="2026">2026</h2>
+<h3 id="2026-01-15-canton-working-group-demonstrates-multi-asset-cross-border-repo">2026-01-15 — Canton working group demonstrates multi-asset cross-border repo</h3>
+<p><strong>Status:</strong> completed staged real-asset transactions<br />
+<strong>Track:</strong> collateral / commercial-bank money</p>
+<p>The exercise used European government bonds, U.S. Treasuries, euro and dollar cash, including tokenized commercial-bank deposits supplied through LSEG Digital Settlement House. It remained a working-group program rather than an open market. See <code>FINTECH_SWEEP_INSTITUTIONAL_RAILS.md</code>.</p>
+<h3 id="2026-02-09-occ-terminates-anchorage-digital-bank-operating-agreement">2026-02-09 — OCC terminates Anchorage Digital Bank operating agreement</h3>
+<p><strong>Status:</strong> completed supervisory change<br />
+<strong>Track:</strong> federal trust bank</p>
+<p>Termination of the 2021 operating agreement did not terminate Anchorage's charter. Its separate Federal Reserve access request remained pending in the latest reviewed public database. <a href="https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-decisions/2026/scl2026-01.pdf">OCC</a></p>
+<h3 id="2026-02-12-bridge-national-trust-bank-receives-preliminary-conditional-approval">2026-02-12 — Bridge National Trust Bank receives preliminary conditional approval</h3>
+<p><strong>Status:</strong> conditional/preopening<br />
+<strong>Track:</strong> payment orchestrator moves into licensed custody/issuance layer</p>
+<p>The proposed Bridge/Stripe trust must satisfy preopening conditions. The required Federal Reserve Bank stock application is not a confirmed master account. <a href="https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-decisions/2026/cd1365.pdf">OCC</a></p>
+<h3 id="2026-04-02-coinbase-national-trust-receives-preliminary-conditional-approval">2026-04-02 — Coinbase National Trust receives preliminary conditional approval</h3>
+<p><strong>Status:</strong> conditional/preopening<br />
+<strong>Track:</strong> exchange/custody federalization</p>
+<p>The approval did not authorize the proposed trust to commence business. Coinbase's existing state and federal regulated entities continued to carry distinct functions. <a href="https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-decisions/2026/cd1370.pdf">OCC</a></p>
+<h3 id="2026-04-21-broadridge-invests-in-hqlax-and-announces-canton-migration-path">2026-04-21 — Broadridge invests in HQLAx and announces Canton migration path</h3>
+<p><strong>Status:</strong> investment completed; migration planned<br />
+<strong>Track:</strong> repo/collateral consolidation</p>
+<p>The event linked Broadridge's production DLR repo workflow more tightly to HQLAx and Canton, while actual custody, settlement, and migration milestones remained future work. <a href="https://www.broadridge.com/press-release/2026/hqlax-announces-strategic-investments-from-broadridge">Broadridge</a></p>
+<h3 id="2026-04-27-walletconnect-goes-live-on-canton">2026-04-27 — WalletConnect goes live on Canton</h3>
+<p><strong>Status:</strong> live connectivity<br />
+<strong>Track:</strong> wallet/custody connection</p>
+<p>The integration opened a connection path for wallets and custodians. It did not prove production liquidity for every referenced asset. <a href="https://www.canton.network/blog/walletconnect-is-now-live-on-canton-network">Canton</a></p>
+<h3 id="2026-04-28-jp-morgan-reports-public-chain-and-fund-flow-kinexys-milestones">2026-04-28 — J.P. Morgan reports public-chain and fund-flow Kinexys milestones</h3>
+<p><strong>Status:</strong> production milestones<br />
+<strong>Track:</strong> bank deposit token / asset lifecycle</p>
+<p>J.P. Morgan said its institutional public-chain deposit product on Base was available to eligible clients and that Fund Flow had launched. Canton-native issuance remained a planned phased path rather than verified production. See <code>FINTECH_SWEEP_INSTITUTIONAL_RAILS.md</code>.</p>
+<h3 id="2026-04-29-visa-expands-stablecoin-settlement-pilot-to-nine-chains">2026-04-29 — Visa expands stablecoin settlement pilot to nine chains</h3>
+<p><strong>Status:</strong> live pilot/regional rollout<br />
+<strong>Track:</strong> card-network settlement</p>
+<p>Visa reported a $7 billion annualized stablecoin-settlement run rate and nine supported chains. The figure is a Visa program metric; chain support does not prove equal liquidity or volume on each network. <a href="https://investor.visa.com/news/news-details/2026/Visa-Accelerates-Stablecoin-Momentum-Adding-Five-Blockchains-for-Settlement/default.aspx">Visa</a></p>
+<h3 id="2026-05-27-three-structural-events-land-on-one-day">2026-05-27 — Three structural events land on one day</h3>
+<p><strong>Status:</strong> mixed<br />
+<strong>Track:</strong> stablecoin distribution / clearing registration / public-chain connectivity</p>
+<ul>
+<li>SoFiUSD launched in the SoFi app on Ethereum and Solana. The token is issued by SoFi Bank, N.A., but is not itself an insured deposit. <a href="https://investors.sofi.com/news/news-details/2026/SoFiUSD-Becomes-the-First-Stablecoin-Issued-by-a-US-National-Bank-to-Launch-on-a-Banking-Platform/default.aspx">SoFi</a></li>
+<li>The SEC granted Paxos Securities Settlement Company, LLC temporary clearing-agency registration. <a href="https://www.sec.gov/files/rules/other/2026/34-105562.pdf">SEC</a></li>
+<li>DTCC and SDF announced planned H1 2027 Stellar connectivity for DTC's multi-chain tokenization service. <a href="https://www.dtcc.com/news/2026/may/27/tokenization-service-to-connect-with-stellar-public-blockchain-as-dtc-advances-multi-chain-strategy">DTCC</a></li>
+</ul>
+<h3 id="2026-06-03-mastercard-announces-multi-asset-multi-chain-stablecoin-settlement-expansion">2026-06-03 — Mastercard announces multi-asset, multi-chain stablecoin settlement expansion</h3>
+<p><strong>Status:</strong> early USDC flows plus broader rollout announced<br />
+<strong>Track:</strong> card-network settlement</p>
+<p>Mastercard named USDC, Paxos-issued coins, RLUSD, and SoFiUSD across several chains while keeping its network rulebook, fraud, dispute, and participant structure. <a href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-expands-settlement-capabilities-to-include-stablecoin.html">Mastercard</a></p>
+<h3 id="2026-07-09-swift-says-blockchain-ledger-is-ready-for-initial-use">2026-07-09 — Swift says blockchain ledger is ready for initial use</h3>
+<p><strong>Status:</strong> ready for initial use; 17 banks preparing pilots<br />
+<strong>Track:</strong> bank-token orchestration</p>
+<p>Swift's Besu-based shared ledger synchronizes bank-issued tokenized-deposit commitments. Swift says final settlement still completes through existing systems. The first completed live transaction and exact balance-sheet path remained open at the cutoff. <a href="https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure">Swift</a></p>
+<h3 id="2026-07-10-circle-receives-final-occ-approval">2026-07-10 — Circle receives final OCC approval</h3>
+<p><strong>Status:</strong> final approval; opening/activity-transfer watch<br />
+<strong>Track:</strong> stablecoin issuer / federal trust bank</p>
+<p>Circle received final approval to establish Circle National Trust. Initial custody and later reserve-management roles remain separate implementation steps. <a href="https://investor.circle.com/news/news-details/2026/Circle-Receives-Final-OCC-Approval-to-Establish-National-Trust-Bank/default.aspx">Circle</a></p>
+<h3 id="2026-07-20-swift-publicly-frames-the-ledger-as-incumbent-system-evolution">2026-07-20 — SWIFT publicly frames the ledger as incumbent-system evolution</h3>
+<p><strong>Status:</strong> public architecture position; no operating-state promotion<br />
+<strong>Track:</strong> bank-token orchestration / incumbent control</p>
+<p>SWIFT said the ledger extends infrastructure already trusted by its banking community and is designed to help the existing financial ecosystem evolve rather than replace it. The statement confirms the orchestrator strategy but does not establish a first completed transaction or final cash settlement. 2026-07-20-1001 - Why is Swifts approach to blockchain different</p>
+<hr />
+<h2 id="scheduled-and-open-windows">Scheduled and open windows</h2>
+<h3 id="2026-07-13-2026-07-20-coinbasederibit-engine-gates">2026-07-13 / 2026-07-20 — Coinbase/Deribit engine gates</h3>
+<p><strong>Status:</strong> scheduled<br />
+New production-engine gates precede the planned September consolidation of Coinbase International Exchange positions and balances into Deribit. <a href="https://help.coinbase.com/en/international-exchange/deribit/what-you-need-to-know">Coinbase migration guide</a></p>
+<h3 id="summer-2026-fiusd-production-target">Summer 2026 — FIUSD production target</h3>
+<p><strong>Status:</strong> pilots / target<br />
+Fiserv's original year-end 2025 expectation was followed by pilot language and a summer 2026 target. The issuer, redemption obligor, reserve custodian, and first production users remained unresolved in public documentation. See <code>FINTECH_SWEEP_PAYMENT_ORCHESTRATORS.md</code>.</p>
+<h3 id="h2-2026-preliminary-dtc-tokenization-service-window">H2 2026 — preliminary DTC tokenization service window</h3>
+<p><strong>Status:</strong> expected<br />
+DTC's later FAQ places the preliminary service in the second half of 2026. Verify eligible CUSIPs, wallets, rulebook, first participant, first transfer, and reconciliation procedure. <a href="https://www.dtcc.com/-/media/Files/Downloads/digital-assets/dtc-tokenization-service-faq.pdf">DTC FAQ</a></p>
+<h3 id="q4-2026-dtcc-collateral-appchain-target">Q4 2026 — DTCC Collateral AppChain target</h3>
+<p><strong>Status:</strong> targeted<br />
+The AppChain is a separate collateral workflow/orchestration layer, not the same ledger as DTC's Canton or Stellar connections. Verify asset eligibility, valuation, margin, cash leg, and production volume. <a href="https://www.dtcc.com/digital-assets/collateral-appchain">DTCC</a></p>
+<h3 id="2026-07-29-to-2026-08-06-swift-pioneer-bank-disclosure-window">2026-07-29 to 2026-08-06 — SWIFT pioneer-bank disclosure window</h3>
+<p><strong>Status:</strong> scheduled public-reporting surfaces; not promised ledger disclosures<br />
+<strong>Track:</strong> first-corridor and bank-adapter watch</p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Institution</th>
+<th>Evidence target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29 Jul</td>
+<td>Standard Chartered half-year results</td>
+<td>Ant/Whale role, SWIFT product, currency or corridor</td>
+</tr>
+<tr>
+<td>4 Aug</td>
+<td>HSBC interim results</td>
+<td>Tokenised Deposit Service entity/location, counterparty, transaction or volume</td>
+</tr>
+<tr>
+<td>6 Aug</td>
+<td>DBS results</td>
+<td>Treasury Tokens-to-SWIFT connection and currency</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2026-09-28-to-2026-10-01-sibos-miami-ledger-disclosure-window">2026-09-28 to 2026-10-01 — Sibos Miami ledger disclosure window</h3>
+<p><strong>Status:</strong> scheduled sessions and demonstrations<br />
+<strong>Track:</strong> customer, implementation, transaction and rulebook evidence</p>
+<p>SWIFT advertises ledger sessions with customer perspectives, live demonstrations and roadmap discussion. A demonstration does not itself prove production final settlement. <a href="https://www.swift.com/news-events/events/sibos-2026-miami">SWIFT at Sibos Miami</a></p>
+<h3 id="2026-10-01-belgian-financial-messaging-framework-stated-applicable-to-swift">2026-10-01 — Belgian financial-messaging framework stated applicable to SWIFT</h3>
+<p><strong>Status:</strong> legal applicability clock stated by SWIFT; exact NBB designation object missing<br />
+<strong>Track:</strong> operator oversight / public constitution</p>
+<p>Watch for the NBB designation list, express ledger service classification, public key rules/procedures, access and suspension criteria, service description, participant rights/obligations and fees. <a href="https://www.swift.com/sites/default/files/files/2025-swift-annual-review_v08-1.pdf">SWIFT Annual Review 2025</a>; <a href="../sources/reading-the-charter-swift-40d398f6fc61.html">Reading the Charter — SWIFT</a></p>
+<h3 id="2026-10-13-citi-q3-disclosure-watch">2026-10-13 — Citi Q3 disclosure watch</h3>
+<p><strong>Status:</strong> scheduled reporting surface<br />
+<strong>Track:</strong> bank adapter / external-bank transaction</p>
+<p>Watch Services and Token Services material for an express SWIFT connection or a second named external-bank live case. <a href="https://www.citigroup.com/global/news/press-release/2025/citi-third-fourth-quarter-2025-and-2026-earnings-calls">Citi earnings schedule</a></p>
+<h3 id="2026-09-09-coinbase-international-exchange-migration-to-deribit">2026-09-09 — Coinbase International Exchange migration to Deribit</h3>
+<p><strong>Status:</strong> scheduled; readiness/approval dependent<br />
+Watch legal novations, risk-engine cutover, insurance-fund treatment, client opt-outs, and postmortem. <a href="https://help.coinbase.com/en/international-exchange/deribit/what-you-need-to-know">Coinbase migration guide</a></p>
+<h3 id="by-year-end-2026-mastercardbvnk-acquisition-target">By year-end 2026 — Mastercard/BVNK acquisition target</h3>
+<p><strong>Status:</strong> signed, not closed at cutoff<br />
+The deal would pull enterprise fiat/stablecoin conversion and treasury orchestration inside Mastercard. Watch approvals, surviving legal entities, licenses, safeguarding banks, and whether BVNK remains asset-neutral. <a href="https://www.mastercard.com/global/en/news-and-trends/press/2026/march/Mastercard-to-acquire-BVNK-to-connect-on-chain-payments-and-fiat-rails.html">Mastercard</a></p>
+<h3 id="h1-2027-dtc-tokenized-assets-expected-on-stellar">H1 2027 — DTC-tokenized assets expected on Stellar</h3>
+<p><strong>Status:</strong> planned<br />
+Watch first eligible asset, authoritative-record design, cash leg, corporate actions, participating custodians, and whether XLM has any role beyond network function. <a href="https://www.dtcc.com/news/2026/may/27/tokenization-service-to-connect-with-stellar-public-blockchain-as-dtc-advances-multi-chain-strategy">DTCC</a></p>
+<h3 id="late-2027-paxos-temporary-registration-limit">Late 2027 — Paxos temporary-registration limit</h3>
+<p><strong>Status:</strong> legal clock<br />
+PSSC's temporary registration runs up to 18 months unless Commission action changes the state. Watch permanent registration, exemptions, scope changes, DTC membership, eligible securities, and first default/recovery procedure. <a href="https://www.sec.gov/files/rules/other/2026/34-105562.pdf">SEC</a></p>
+<hr />
+<h2 id="highest-value-watchboard">Highest-value watchboard</h2>
+<ol>
+<li>First completed Swift ledger transaction: both legal entities, currency, transaction-level field, customer-credit time, external settlement path and legal-finality event.</li>
+<li>DTC's first tokenized entitlement: asset, chain, wallet, legal record, cash leg, and correction path.</li>
+<li>Circle National Trust's opening, first custody client, and any reserve-management transfer.</li>
+<li>Ripple and Coinbase final OCC decisions; BitGo/Paxos active-bank operations; Anchorage Fed-access outcome.</li>
+<li>Kraken's limited-purpose Fed-access terms and an independently visible regulator record.</li>
+<li>PSSC first live registered operation and the 18-month permanent-registration clock.</li>
+<li>First production JPMD transaction on Canton; do not pre-state it.</li>
+<li>First integrated DvP using a DTC entitlement token and a named deposit/stablecoin/central-bank cash leg.</li>
+<li>Visa/Mastercard production volume by stablecoin, chain, bank, and geography.</li>
+<li>FIUSD's issuer and first recurring production use.</li>
+<li>Mastercard/BVNK close and contract/license migration.</li>
+<li>Any insolvency, sanctions order, mistaken transfer, or fork that forces the new stack to reveal which ledger and legal person wins.</li>
+<li>NBB designation-list object, express ledger classification and Article 71/73 public-rule package.</li>
+</ol></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

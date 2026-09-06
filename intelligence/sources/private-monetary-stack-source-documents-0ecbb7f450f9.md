@@ -25,7 +25,7 @@
 | 1 | [FINTECH_CRYPTO_INFRASTRUCTURE_DEEP_DIVE](../sources/fintech-crypto-infrastructure-deep-dive-08df4391c59f.html) | **Start here.** The synthesis: the seven-layer stack, 12 findings, the five-phase transition sequence, 15 forward tells. |
 | 2 | [FINTECH_CRYPTO_COMPANY_REGISTRY](../sources/fintech-crypto-company-registry-b1e13dd0198e.html) | The entity census. The **five-layer rule** (parent / licensed legal person / network / asset / customer) and the status vocabulary. |
 | 3 | FINTECH_CRYPTO_CLAIM_AUDIT | **CA-01 → CA-18.** The correction ledger. Read before carrying any private-rail claim into synthesis. |
-| 4 | FINTECH_CRYPTO_TRANSITION_TIMELINE | The 2025–2027 factual spine — gate-changing events only — plus the 12-item watchboard. |
+| 4 | [FINTECH_CRYPTO_TRANSITION_TIMELINE](../sources/fintech-crypto-transition-timeline-348aca1fff2f.html) | The 2025–2027 factual spine — gate-changing events only — plus the 12-item watchboard. |
 | 5 | FINTECH_SWEEP_ISO_NETWORKS | Ripple/XRPL, Stellar, Hedera, Algorand, XDC, IOTA, Quant. |
 | 6 | FINTECH_SWEEP_INSTITUTIONAL_RAILS | Digital Asset/Canton, R3/Corda, Chainlink, Fnality, Partior, Broadridge DLR, Kinexys, Paxos. |
 | 7 | FINTECH_SWEEP_MARKET_ACCESS | Coinbase, Kraken, Circle, Securitize, Ondo, Fireblocks, Anchorage, BitGo, Zero Hash, Stripe/Bridge. **Holds the charter queue.** |
@@ -36,7 +36,7 @@
 | 12 | Circle–IBM Patent Claims — Wave 2 Taxonomy | **Circle–IBM Wave 2, tranche 1.** Independent-claim review of 13 U.S. records across Maximo/EAM, digital twins, transfer, privacy, audit, netting, HTLC, secure containers and key lifecycle. |
 | 13 | Circle–IBM Patent Portfolio — Landscape and Cluster Map | **Circle–IBM portfolio landscape.** Broad and conservative official-USPTO brackets, provisional eight-cluster map, inventor programs, Circle architecture crosswalk and Maximo boundary. |
 | 14 | Circle–IBM Transfer Membership Test — Maximo versus Financial Controls | **Original-question return gate.** Seven Maximo/EAM candidates versus five financial/security controls; no reviewed property has an indexed Circle assignment. |
-| 15 | Continuous Underwriting and Programmable Credit — Source Document | **Lending extension.** Production platform cash-flow underwriting, tokenized secured finance, stablecoin funding, borrower-evidence clocks, GAAP/assurance boundary and exact DLT-native credit return gates. |
+| 15 | [Continuous Underwriting and Programmable Credit — Source Document](../sources/continuous-underwriting-and-programmable-credit-source-document-0b20967cc733.html) | **Lending extension.** Production platform cash-flow underwriting, tokenized secured finance, stablecoin funding, borrower-evidence clocks, GAAP/assurance boundary and exact DLT-native credit return gates. |
 | 16 | SEC Transfer Agent Modernization — Source Document | **Record/control extension.** Proposed electronic and DLT master-securityholder-file rules, one accountable recordkeeping transfer agent, multichain reconciliation, company-chain firewalls and exact Federal Register/comment clocks. |
 
 Files live in `02 - Research/Private Monetary Stack/`.
@@ -104,7 +104,7 @@ eligibility, full conversion cost, legal finality or remedy.
 
 ## 2026-08-09 continuous-underwriting extension
 
-Continuous Underwriting and Programmable Credit — Source Document separates
+[Continuous Underwriting and Programmable Credit — Source Document](../sources/continuous-underwriting-and-programmable-credit-source-document-0b20967cc733.html) separates
 the parts of lending that are already continuous from the parts that remain
 projected. Square, Shopify and Stripe demonstrate production cash-flow
 underwriting inside controlled platform perimeters. Tokenized collateral,

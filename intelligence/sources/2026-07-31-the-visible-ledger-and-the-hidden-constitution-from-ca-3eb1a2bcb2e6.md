@@ -153,9 +153,9 @@ stack.
 
 ## Links
 
-- Card Networks — Stablecoin Product Lines
+- [Card Networks — Stablecoin Product Lines](../sources/card-networks-stablecoin-product-lines-8bca609f0991.html)
 - [Card Networks — Entity and Flow Map](../sources/card-networks-entity-and-flow-map-d2b978d0ade2.html)
-- Card Networks — Claim Audit
+- [Card Networks — Claim Audit](../sources/card-networks-claim-audit-033d2210abc5.html)
 - 2026-07-12 - The Private Stack — Who Owns the Gates
 - [2026-07-30 - The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer](../sources/2026-07-30-the-accounting-transition-shared-events-executable-rul-2fdf820971e8.html)
 - Crypto

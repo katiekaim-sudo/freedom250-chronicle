@@ -1,0 +1,632 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>SEC–CFTC Current Authority and Operative Change Ledger · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>SEC–CFTC Current Authority and Operative Change Ledger</h1><p class="deck">Source cutoff: 2026-08-26 · Collection evidence cutoff: 2026-08-26 · Collection evidence cutoff: 2026-09-05</p><p><a href="sec-cftc-current-authority-and-operative-change-ledger-2026-08-26-b78c54aa1060.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="seccftc-current-authority-and-operative-change-ledger">SEC–CFTC Current Authority and Operative Change Ledger</h1>
+<h2 id="research-contract">Research contract</h2>
+<p><strong>Question:</strong> Without relying on the proposed CLARITY Act, what can the SEC and
+CFTC already do under the statutes they administer, and what have they already
+changed for crypto, tokenization and connected market infrastructure?</p>
+<p><strong>Mode:</strong> present-law authority audit and operative-change ledger.</p>
+<p><strong>Scope:</strong> current federal securities and commodities statutes; Commission
+rules, interpretations, orders and registrations; effective SRO rules; staff
+guidance, withdrawals and no-action positions; and observed operating evidence
+where located. CLARITY is used only to mark the present statutory boundary, not
+as the engine of the analysis. Banking, payment, AML, tax, state commercial law
+and bankruptcy are included only where they delimit SEC or CFTC power.</p>
+<p><strong>Cutoff:</strong> 2026-08-26 EDT. Legal authority, instrument state and operation are
+kept separate.</p>
+<p><strong>Mutation boundary:</strong> Workbench research only. No live-vault event, canonical
+watch, plotline, app state or legislative forecast was changed.</p>
+<h2 id="controlling-answer">Controlling answer</h2>
+<p>The claim that the SEC and CFTC can proceed without CLARITY is <strong>substantially
+correct, but easy to overstate</strong>. Neither agency possesses a free-standing
+power to regulate “crypto.” Each has a collection of old, function-specific
+powers that already reach large parts of the new stack.</p>
+<ul>
+<li>The <strong>SEC already has a complete securities-side toolkit</strong>. It can interpret
+  the statutory security and investment-contract perimeter; register or exempt
+  offerings; regulate exchanges, ATSs, brokers, custody, transfer agents,
+  clearing agencies and investment companies; approve SRO rules and ETP listing
+  standards; and use broad but bounded exemptive authorities.</li>
+<li>The <strong>CFTC already has a complete derivatives-side toolkit plus several
+  commodity-side hooks</strong>. It can regulate futures, options, swaps, DCMs, SEFs,
+  DCOs and FCMs; review or accept product and rule filings; reach specified
+  leveraged, margined or financed retail commodity transactions; police fraud
+  and manipulation in commodity cash markets; grant bounded CEA section 4(c)
+  exemptions; and adapt collateral, customer-property and operating rules for
+  registrants.</li>
+<li>The principal missing object is a <strong>comprehensive federal registration,
+  conduct, surveillance and customer-protection constitution for ordinary
+  unleveraged spot trading in non-security digital commodities</strong>. The CFTC's
+  cash-market antifraud and manipulation authority is not that constitution,
+  and SEC regulation of a securities wrapper or mixed venue does not convert
+  the underlying commodity into a security.</li>
+</ul>
+<p>The present plotline is therefore not “the agencies are waiting for Congress.”
+It is: <strong>the agencies are already assembling most securities, derivatives,
+clearing, custody and collateral layers through modular uses of existing law;
+Congress would chiefly allocate and harden the uncovered spot-market center.</strong></p>
+<h2 id="read-the-instrument-before-the-headline">Read the instrument before the headline</h2>
+<table>
+<thead>
+<tr>
+<th>Legal state</th>
+<th>What changed</th>
+<th>What did not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Statute or existing Commission rule</td>
+<td>The agency has durable authority within the text and judicial construction.</td>
+<td>It does not authorize action outside the statute's subject, procedures or required findings.</td>
+</tr>
+<tr>
+<td>Commission rule, interpretation, order or registration</td>
+<td>The Commission acted as a body on the exact legal object. An order or registration is operative on its facts and conditions; an interpretation states the Commission's current construction.</td>
+<td>It is not legislation. Courts can reject an interpretation; a facts-specific order is not a market-wide permission.</td>
+</tr>
+<tr>
+<td>Effective SRO rule</td>
+<td>The exchange or clearing-organization rule has entered the operative rulebook through the statutory filing route.</td>
+<td>Immediate effectiveness is not an affirmative approval order, product launch or observed use.</td>
+</tr>
+<tr>
+<td>Staff statement, FAQ, withdrawal or no-action letter</td>
+<td>The administering staff has changed its public interpretation or enforcement posture for stated facts.</td>
+<td>It has no independent force of law, does not bind the Commission, courts or private plaintiffs, and may be withdrawn.</td>
+</tr>
+<tr>
+<td>Proposal, agenda item, request for comment or speech</td>
+<td>It reveals direction, a legal theory or intended use of authority.</td>
+<td>No operative rule or exemption has changed.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="i-sec-what-present-law-already-permits">I. SEC: what present law already permits</h2>
+<h3 id="a-current-authority-map">A. Current-authority map</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Existing authority</th>
+<th>What the SEC can do now</th>
+<th>Present ceiling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classify the asset and transaction</td>
+<td>Securities Act §2(a)(1); Exchange Act §3(a)(10); <em>Howey</em>, <em>Reves</em> and other judicial constructions</td>
+<td>Interpret and enforce the terms “security,” “investment contract,” stock, note and other enumerated instruments; distinguish a non-security crypto asset from a securities transaction involving it.</td>
+<td>The Commission cannot legislate a new asset class into the statutory definition or bind courts to its interpretation.</td>
+</tr>
+<tr>
+<td>Regulate offerings</td>
+<td>Securities Act §§5, 7, 10, 17; statutory and regulatory exemptions; Securities Act §28</td>
+<td>Require registration and disclosure, enforce antifraud law, or create bounded exemptions by rule when the statutory findings are met.</td>
+<td>Existing exemptions remain bounded by statute; staff no-action relief is not an exemption; a proposed safe harbor changes nothing until adopted.</td>
+</tr>
+<tr>
+<td>Regulate securities venues and brokers</td>
+<td>Exchange Act §§5, 6 and 15; Regulation ATS</td>
+<td>Register and supervise exchanges and broker-dealers, permit ATS operation inside the broker-dealer framework, and apply securities duties to a security leg or mixed trading pair.</td>
+<td>It does not acquire comprehensive jurisdiction over an ordinary non-security commodity merely because that commodity trades beside a security.</td>
+</tr>
+<tr>
+<td>Approve SRO rules and listings</td>
+<td>Exchange Act §19(b); Rules 19b-4 and 19b-4(e); §6(b)(5)</td>
+<td>Approve or permit effectiveness of exchange and clearing-agency rule changes; establish generic listing standards for qualifying securities wrappers.</td>
+<td>Approval of an exchange rule or ETP share is not approval of the issuer, blockchain, investment merits or underlying commodity market.</td>
+</tr>
+<tr>
+<td>Regulate custody and customer protection</td>
+<td>Exchange Act §§15(c) and 17; Rule 15c3-3; Investment Company Act §17(f)</td>
+<td>Define or interpret possession/control and qualified-custody routes for regulated brokers and funds; grant narrow relief.</td>
+<td>Key control alone does not create SIPA protection, legal title, bankruptcy priority or protection for non-security crypto.</td>
+</tr>
+<tr>
+<td>Regulate ownership records and transfer agents</td>
+<td>Exchange Act §17A(c); Rules 17Ad</td>
+<td>Permit DLT to perform all or part of the official master securityholder-file function while enforcing record accuracy, production and safeguarding duties.</td>
+<td>Federal securities guidance does not decide all state corporate, UCC, contract or insolvency questions.</td>
+</tr>
+<tr>
+<td>Register and supervise securities clearing</td>
+<td>Exchange Act §17A; Rule 17Ab2-1</td>
+<td>Register clearing agencies temporarily or permanently, supervise SRO rulebooks and standards, and condition or exempt exact functions.</td>
+<td>The SEC cannot supply the bank cash leg, stablecoin redemption, central-bank access or cross-regime bankruptcy treatment.</td>
+</tr>
+<tr>
+<td>Regulate investment companies</td>
+<td>Investment Company Act, including §§6(c), 17 and 22</td>
+<td>Grant class or application-specific exemptions and adapt dealing, custody and affiliated-transaction rules for tokenized funds.</td>
+<td>Registration-statement effectiveness is not product approval; token form does not erase fund-law duties.</td>
+</tr>
+<tr>
+<td>Grant exemptions</td>
+<td>Securities Act §28; Exchange Act §36; Investment Company Act §6(c)</td>
+<td>Create conditional rules, orders, pilots, safe harbors and application-specific relief when public-interest and investor-protection findings are satisfied.</td>
+<td>The provisions contain subject and procedural limits. Exemption cannot transfer CFTC, banking, Fed, state-law or bankruptcy jurisdiction to the SEC.</td>
+</tr>
+<tr>
+<td>Enforce existing law</td>
+<td>Securities Act §17(a); Exchange Act §10(b), Rule 10b-5 and other provisions</td>
+<td>Investigate and prosecute securities fraud, unregistered offerings, exchange/broker violations and misleading disclosures involving crypto.</td>
+<td>Enforcement discretion cannot rewrite a statute, immunize conduct from private plaintiffs or adjudicate non-SEC legal regimes.</td>
+</tr>
+</tbody>
+</table>
+<p>Primary statutory spine: <a href="https://uscode.house.gov/view.xhtml?req=%28title%3A15%20section%3A77b%20edition%3Aprelim%29">Securities Act definition of “security”</a>, <a href="https://uscode.house.gov/view.xhtml?req=%28title%3A15%20section%3A78c%20edition%3Aprelim%29">Exchange Act definition</a>, <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title15-section77z-3">Securities Act §28</a>, <a href="https://uscode.house.gov/view.xhtml?req=%28title%3A15%20section%3A78mm%20edition%3Aprelim%29">Exchange Act §36</a>, and <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title15-section80a-6">Investment Company Act §6(c)</a>.</p>
+<h3 id="b-sec-changes-already-made-under-that-authority">B. SEC changes already made under that authority</h3>
+<h4 id="1-commission-level-and-operative-sro-actions">1. Commission-level and operative SRO actions</h4>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Instrument and authority</th>
+<th>What actually changed</th>
+<th>Boundary at cutoff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crypto classification</td>
+<td>Commission Interpretive Releases 33-11412 / 34-105020, effective 2026-03-23</td>
+<td>The Commission supplied a taxonomy, separated a non-security crypto asset from an investment contract involving it, and addressed mining, staking, wrapping and airdrops.</td>
+<td>An administrative interpretation, not legislation or a judicial amendment to <em>Howey</em>; no venue or product was registered by it. <a href="https://www.sec.gov/rules-regulations/2026/03/s7-2026-09">SEC release</a></td>
+</tr>
+<tr>
+<td>In-kind crypto ETP operations</td>
+<td>Commission approval orders, 2025-07-29</td>
+<td>Authorized in-kind creations and redemptions for spot bitcoin and ether ETPs and approved related product/listing changes.</td>
+<td>The regulated objects are ETP shares and exchange rules, not the entire underlying spot markets. <a href="https://www.sec.gov/newsroom/press-releases/2025-101-sec-permits-kind-creations-redemptions-crypto-etps">SEC action</a></td>
+</tr>
+<tr>
+<td>Generic crypto/commodity ETP listings</td>
+<td>Commission SRO approval orders, 2025-09-17, under Exchange Act §§6 and 19(b) and Rule 19b-4(e)</td>
+<td>Qualifying Commodity-Based Trust Shares, including digital-asset ETPs, can list under generic standards without a separate proposed §19(b) rule filing for every product.</td>
+<td>The standards govern qualifying securities wrappers; they are not asset-wide approval. <a href="https://www.sec.gov/newsroom/press-releases/2025-121-sec-approves-generic-listing-standards-commodity-based-trust-shares">SEC action</a></td>
+</tr>
+<tr>
+<td>Nasdaq tokenized trading</td>
+<td>Release 34-105047, Commission approval under §19(b)(2), 2026-03-18</td>
+<td>Permitted a post-trade tokenization preference for eligible DTC-held securities while preserving the same security, CUSIP, rights, order book, surveillance and T+1 cycle.</td>
+<td>Approval is real; launch was not established. DTC eligibility and infrastructure remain gates. <a href="https://www.sec.gov/files/rules/sro/nasdaq/2026/34-105047.pdf">Nasdaq order</a></td>
+</tr>
+<tr>
+<td>NYSE-family and 24X tokenized trading</td>
+<td>Six SRO filings effective under §19(b)(3)(A) and Rule 19b-4(f)(6)</td>
+<td>Added Nasdaq-like tokenization instructions to the exchanges' operative rules without waiting for affirmative Commission approval orders.</td>
+<td>Effective rules are not launches; no commencement evidence was located. See the companion <a href="../sources/sec-tokenization-approval-census-2026-08-26-6ae5929d6398.html">approval census</a>.</td>
+</tr>
+<tr>
+<td>PSSC securities settlement</td>
+<td>Release 34-105562, temporary clearing-agency registration under §17A and Rule 17Ab2-1(c), 2026-05-27</td>
+<td>Registered Paxos Securities Settlement Company for up to 18 months with limited statutory exemptions, creating a legal route toward a permissioned DVP securities-settlement system.</td>
+<td>PSSC represented it would not begin before 2027-03-27 and still must complete its operating constitution. <a href="https://www.sec.gov/files/rules/other/2026/34-105562.pdf">PSSC order</a></td>
+</tr>
+<tr>
+<td>WTGXX dealer model</td>
+<td>Investment Company Act Order IC-35968 under §§6(c), 17(d) and Rule 17d-1, 2026-02-23</td>
+<td>Permitted covered dealers to transact as principal at a stable $1 price, plus or minus disclosed compensation, in qualifying government MMF shares.</td>
+<td>The order did not approve whether or how blockchain maintains the shareholder record. <a href="https://www.sec.gov/files/rules/ic/2026/ic-35968.pdf">Commission order</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-staff-changes-that-matter-but-are-not-commission-law">2. Staff changes that matter but are not Commission law</h4>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Staff action already taken</th>
+<th>Exact legal weight and limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DTC Tokenization Services</td>
+<td>Three-year, revocable no-action position under named Reg SCI, §19(b), Rule 19b-4 and clearing-agency standards. The model tokenizes DTC participant entitlements; Cede, DTC and participant/customer books remain legally central. <a href="https://www.sec.gov/files/tm/no-action/dtc-nal-121125.pdf">DTC letter</a></td>
+<td>Enforcement position only. Tokens initially have zero DTC collateral and settlement value. Limited production was reported, but the broader service has a separate launch clock.</td>
+</tr>
+<tr>
+<td>HQLAx / Clearstream</td>
+<td>Three-year capped no-action position under §17A(b)(1) for qualifying U.S. institutional participation in tokenized collateral records. <a href="https://www.sec.gov/files/tm/no-action/hqlax-nal-request-050426.pdf">HQLAx letter</a></td>
+<td>Not clearing registration or an approval order; facts, participant and volume limits control.</td>
+</tr>
+<tr>
+<td>Broker custody</td>
+<td>Withdrew the restrictive 2019 joint custody statement; later said a broker controlling transfer capability may satisfy Rule 15c3-3(b)(1) under detailed ledger, key, fork, freeze and insolvency conditions. <a href="https://www.sec.gov/newsroom/speeches-statements/trading-markets-121725-statement-custody-crypto-asset-securities-broker-dealers">2025 custody statement</a></td>
+<td>Staff view limited to possession/control. Capital, reserve, records, Reg BI, FINRA and insolvency duties remain.</td>
+</tr>
+<tr>
+<td>Transfer-agent DLT records</td>
+<td>Staff FAQs say DLT can be the official master securityholder file or part of it if existing transfer-agent duties are met; no exclusively offchain twin is categorically required. <a href="https://www.sec.gov/rules-regulations/staff-guidance/trading-markets-frequently-asked-questions/frequently-asked-questions-relating-crypto-asset-activities-distributed-ledger-technology">Trading and Markets FAQs</a></td>
+<td>Does not make every ledger participant a registered owner or displace state-law and insolvency rules.</td>
+</tr>
+<tr>
+<td>Self-custodial interfaces</td>
+<td>2026-04-13 staff position supplies a facts-specific route for certain user interfaces not to register as brokers when users control parameters and the provider does not solicit, advise, finance, custody, execute, settle or take orders. <a href="https://www.sec.gov/newsroom/speeches-statements/staff-statement-regarding-broker-dealer-registration-certain-user-interfaces-utilized-prepare-staff-statement-regarding-broker-dealer-registration-certain-user-interfaces-utilized">Staff statement</a></td>
+<td>Limited to §15 and specified facts; not an exchange, ATS, clearing, adviser or custody exemption.</td>
+</tr>
+<tr>
+<td>Tokenized-fund custody</td>
+<td>2026-08-12 Franklin Templeton no-action position under Investment Company Act §17(f) and Rule 17f-2 for a specified affiliated custody structure. <a href="https://www.sec.gov/rules-regulations/no-action-interpretive-exemptive-letters/division-investment-management-staff-no-action-interpretive-letters/franklin-templeton-081226">Staff page</a></td>
+<td>Facts-specific, revocable and not Commission approval of the fund or chain.</td>
+</tr>
+<tr>
+<td>Crypto safeguarding accounting</td>
+<td>Staff Accounting Bulletin 122 rescinded SAB 121 effective 2025-01-30. <a href="https://www.sec.gov/rules-regulations/staff-guidance/staff-accounting-bulletins/staff-accounting-bulletin-122">SAB 122</a></td>
+<td>Removes one staff accounting interpretation; it is not custody permission and does not erase GAAP or disclosure analysis.</td>
+</tr>
+<tr>
+<td>Status carve-outs</td>
+<td>CorpFin statements/no-action letters address specified meme coins, proof-of-work mining, qualifying stablecoins, protocol staking, liquid staking and network projects. <a href="https://www.sec.gov/about/divisions-offices/division-corporation-finance/corpfin-crypto-assets">CorpFin crypto index</a></td>
+<td>These are public staff views or facts-specific enforcement positions, not Commission rules or market-wide safe harbors.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-sec-items-that-have-not-changed-current-law">3. SEC items that have <strong>not</strong> changed current law</h4>
+<ul>
+<li>Regulation Crypto Assets, S7-2026-27, remains a proposal.</li>
+<li>The broad “innovation exemption” remains a policy design unless and until the
+  Commission releases and adopts an actual legal instrument.</li>
+<li>Crypto market-structure, broker financial-responsibility, adviser/fund custody
+  and transfer-agent modernization agenda entries are not rules.</li>
+<li>A Form D, effective registration statement, registered broker/ATS/transfer
+  agent, or staff meeting does not constitute SEC approval of a token or
+  tokenization project.</li>
+</ul>
+<h2 id="ii-cftc-what-present-law-already-permits">II. CFTC: what present law already permits</h2>
+<h3 id="a-current-authority-map_1">A. Current-authority map</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Existing authority</th>
+<th>What the CFTC can do now</th>
+<th>Present ceiling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regulate commodity derivatives</td>
+<td>CEA §§2(a)(1)(A), 4, 5, 5a, 5b and 5c; Parts 37–40</td>
+<td>Regulate futures, options and swaps; register and supervise DCMs, SEFs, DCOs, FCMs and other intermediaries; review or accept product and rule filings.</td>
+<td>A spot reference price or digital underlying does not remove a derivative from the CEA, but derivatives authority does not become a general spot-exchange regime.</td>
+</tr>
+<tr>
+<td>Reach leveraged retail commodity trades</td>
+<td>CEA §2(c)(2)(D)</td>
+<td>Treat specified leveraged, margined or financed retail commodity transactions as if they were futures unless an exception—most importantly actual delivery within 28 days—applies.</td>
+<td>Ordinary fully paid spot trades outside the provision are not comprehensively regulated by this hook.</td>
+</tr>
+<tr>
+<td>Police commodity cash markets</td>
+<td>CEA §6(c)(1) and Regulation 180.1</td>
+<td>Bring fraud and manipulation cases involving cash commodity markets, including virtual currencies.</td>
+<td>General antifraud/manipulation enforcement is not venue registration, prudential supervision, custody regulation or continuous market surveillance.</td>
+</tr>
+<tr>
+<td>Approve or accept products and rules</td>
+<td>CEA §5c(c); Parts 38–40</td>
+<td>Approve products voluntarily submitted under Regulation 40.3 and receive self-certifications under Regulations 40.2/40.6; enforce DCM core principles and product/rule conditions.</td>
+<td>Approval or certification is product- or rule-specific and remains subject to all applicable CEA duties.</td>
+</tr>
+<tr>
+<td>Regulate clearing, margin and customer property</td>
+<td>CEA §§4d and 5b; Parts 1, 22, 30, 39 and 190</td>
+<td>Supervise DCO/FCM segregation, eligible collateral, valuation, haircuts, custody, risk and default treatment; grant conditional relief inside that constitution.</td>
+<td>A permitted stablecoin or digital asset is not automatically a permitted investment, eligible margin in every account, or bankruptcy-remote customer property.</td>
+</tr>
+<tr>
+<td>Permit foreign futures access</td>
+<td>CEA and Part 30; foreign-board-of-trade framework</td>
+<td>Classify qualifying foreign crypto derivatives as foreign futures and condition how U.S. FCMs intermediate and margin them.</td>
+<td>Staff interpretation/no-action does not domestically register the foreign venue or displace foreign and customer-property law.</td>
+</tr>
+<tr>
+<td>Grant exemptions</td>
+<td>CEA §4(c)</td>
+<td>By rule, regulation or order and after required process, exempt specified transactions or persons to promote responsible innovation and fair competition when the statutory tests are met.</td>
+<td>Section 4(c) has eligibility, public-interest, Act-purpose and anti-evasion limits; it cannot create a new congressional spot mandate or rewrite other statutes.</td>
+</tr>
+<tr>
+<td>Coordinate and harmonize</td>
+<td>Existing SEC and CFTC rulemaking, exemptive and supervisory powers</td>
+<td>Harmonize definitions, data standards, margin, dual-registrant treatment and coordinated exemptions where each agency already has jurisdiction.</td>
+<td>Coordination cannot merge statutes or confer one agency's jurisdiction on the other.</td>
+</tr>
+</tbody>
+</table>
+<p>Primary statutory spine: <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title7-section2">CEA §2 and the retail-commodity provision</a>, <a href="https://uscode.house.gov/view.xhtml?edition=2023&amp;num=0&amp;req=granuleid%3AUSC-2023-title7-section6">CEA §4(c) and transaction provisions</a>, <a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title7-section9">CEA §6(c)(1), codified at 7 U.S.C. §9</a>, and <a href="https://www.ecfr.gov/current/title-17/chapter-I/part-180/section-180.1">CFTC Regulation 180.1</a>.</p>
+<h3 id="b-cftc-changes-already-made-under-that-authority">B. CFTC changes already made under that authority</h3>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Instrument and authority</th>
+<th>What actually changed</th>
+<th>Boundary at cutoff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitnomial listed spot crypto</td>
+<td>Registered-entity rule and product self-certifications under CEA §2(c)(2)(D), §5c(c) and Part 40, effective 2025-11-28; CFTC launch announcement 2025-12-04</td>
+<td>Bitnomial created mandatorily cleared DCM spot contracts treated as retail commodity transactions and “as if” futures; its BTCUSD product filing targeted 2025-12-03 trading. This converted the September joint staff pathway into an operative regulated island. <a href="https://www.cftc.gov/PressRoom/PressReleases/9145-25">CFTC announcement</a> · <a href="https://www.cftc.gov/sites/default/files/filings/orgrules/25/11/rules11132532364.pdf">spot rule filing</a> · <a href="https://www.cftc.gov/sites/default/files/filings/ptc/25/12/ptc12012533857.pdf">BTCUSD filing</a></td>
+<td>Self-certification is the registered entity's compliance representation, not a Commission merits approval. Bitnomial's rule says the spot collateral is not §4d-segregated futures customer property. The rules/product were operative, but a completed-trade tape was not independently established in this pass. The route does not register the ordinary spot market generally.</td>
+</tr>
+<tr>
+<td>U.S. bitcoin perpetual</td>
+<td>Commission Order under CEA §5c(c)(4) and Regulation 40.3, 2026-05-29</td>
+<td>Approved KalshiEX's BTCPERP as a futures contract after review against the CEA, DCM core principles and Part 38. <a href="https://www.cftc.gov/PressRoom/PressReleases/9240-26">CFTC action</a></td>
+<td>Exact product and representations control. The Commission said the design may not fit every asset class and prescribed case-by-case review for others.</td>
+</tr>
+<tr>
+<td>Digital-commodity perpetual conversion</td>
+<td>DMO Letter 26-19, 2026-06-12</td>
+<td>Temporarily permitted DCMs to remove expirations from existing perpetual-style digital-commodity futures after customer notice, exit opportunity, risk disclosure and required Part 40 filings. <a href="https://www.cftc.gov/csl/26-19/download">Letter 26-19</a></td>
+<td>Staff no-action relief; conditions controlled and the stated position expired 2026-06-30. Bitnomial later filed an effective rule amendment, so the temporary staff route and the resulting venue rule are separate objects.</td>
+</tr>
+<tr>
+<td>Foreign crypto perpetuals and margin</td>
+<td>MPD Letter 26-17, 2026-05-29</td>
+<td>Classified specified Deribit contracts as foreign futures and conditionally declined enforcement when a U.S. FCM transfers customer digital commodities/payment stablecoins to its foreign broker affiliate as margin. <a href="https://www.cftc.gov/PressRoom/PressReleases/9241-26">CFTC action</a></td>
+<td>Facts-specific staff interpretation/no-action position, including reuse and foreign-custody risks; not Commission approval of Deribit or a general custody rule.</td>
+</tr>
+<tr>
+<td>Digital assets as FCM margin</td>
+<td>Staff Letter 26-05</td>
+<td>Permits FCMs, subject to detailed conditions, to accept certain non-security digital assets including payment stablecoins as customer margin, count value for segregation/undermargin purposes and use qualifying stablecoins as residual interest. <a href="https://www.cftc.gov/csl/26-05/download">Letter 26-05</a></td>
+<td>DCO acceptance and DCO valuation/haircuts remain necessary for futures and cleared swaps. For each FCM's first three months, the covered set was BTC, ETH and payment stablecoins meeting the letter's definition, with weekly reporting and issue notification. The letter does not amend Reg. 1.25 or make crypto eligible margin for uncleared swaps under Reg. 23.156.</td>
+</tr>
+<tr>
+<td>Tokenized collateral</td>
+<td>Staff Letter 25-39 and 2026 FAQ</td>
+<td>Clarified that tokenization technology does not by itself change collateral eligibility: the legal character and eligibility of the underlying asset or right controls. <a href="https://www.cftc.gov/media/13521/Registrant%26RegisteredEntity_FAQs032026/download">CFTC FAQ</a></td>
+<td>Guidance, not a new collateral class or Commission rule; custody, perfection, valuation, haircut, segregation and account-specific rules remain.</td>
+</tr>
+<tr>
+<td>24/7 operations</td>
+<td>Coinbase Derivatives and Nodal Clear rule self-certifications effective 2025-05-08; Staff Advisory 26-16</td>
+<td>Venue rules made 24/7 trading and weekend clearing operative for the covered infrastructure. The later advisory applied existing surveillance, resilience, financial-integrity, settlement and customer-protection duties to continuous operation. <a href="https://www.cftc.gov/PressRoom/PressReleases/9104-25">CFTC operating-state release</a> · <a href="https://www.cftc.gov/csl/26-16/download">Staff Advisory 26-16</a></td>
+<td>Exact venue rules are operative; the advisory is informational. Neither makes banks, cash settlement, collateral markets or support services operate 24/7.</td>
+</tr>
+<tr>
+<td>CME–FICC cross-margin</td>
+<td>Commission §4(c) exemptive order, effective 2026-04-15</td>
+<td>Permits eligible Treasury securities and futures positions to be carried in a futures account at dually registered BD–FCMs for the covered customer cross-margin program, with exemptions from CEA §4d and Regulations 1.20/1.49. <a href="https://www.cftc.gov/LawRegulation/FederalRegister/final-rules/2026-07643.html">CFTC order</a></td>
+<td>Non-crypto but constitutionally important: customers expressly trade ordinary securities/SIPA customer treatment for the futures customer-property and bankruptcy regime on covered assets. It proves joint market plumbing can change now, but only by an explicit legal allocation.</td>
+</tr>
+<tr>
+<td>Cross-market surveillance</td>
+<td>Existing DCM core principles and CFTC reporting/surveillance authorities; deployed 2025-08</td>
+<td>The CFTC deployed Nasdaq technology for automated alerts, order-book analysis and cross-market surveillance across traditional and digital-asset derivatives. <a href="https://www.cftc.gov/PressRoom/PressReleases/9110-25">CFTC release</a></td>
+<td>The data mandate and surveillance program principally cover registered derivatives markets and regulated participants, not the full unregistered spot ecosystem.</td>
+</tr>
+<tr>
+<td>Retail actual-delivery interpretation</td>
+<td>Withdrawal of the 2020 final interpretive guidance, 2025-12</td>
+<td>Removed the Commission's prior crypto-specific gloss on the 28-day actual-delivery exception while leaving CEA §2(c)(2)(D) and the statutory exception in place. <a href="https://www.cftc.gov/LawRegulation/FederalRegister/final-rules/2025-22872.html">Withdrawal</a></td>
+<td>Withdrawal is a real policy change, but it does not repeal the statute, create an alternative delivery test or establish a general spot regime.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c-cftc-items-that-have-not-created-a-comprehensive-spot-regime">C. CFTC items that have <strong>not</strong> created a comprehensive spot regime</h3>
+<ul>
+<li>A chair speech, “crypto sprint,” request for comment or advisory is not a
+  Commission rule.</li>
+<li>Permission for a DCM to list one spot or perpetual product does not register
+  every centralized spot platform, dealer, broker or custodian.</li>
+<li>Cash-market antifraud and anti-manipulation authority does not by itself
+  impose routine capital, custody, segregation, disclosure, listing,
+  examination or bankruptcy rules on ordinary spot venues.</li>
+<li>Staff collateral relief does not amend the Commission's permitted-investment
+  rule, give every DCO the same eligibility decision, or establish use.</li>
+</ul>
+<h2 id="iii-what-the-agencies-have-already-changed-together">III. What the agencies have already changed together</h2>
+<p>The joint program is an adapter protocol between two statutes, not a merger.</p>
+<ol>
+<li><strong>Current-law spot path:</strong> joint staff publicly said registered SEC and CFTC
+   exchanges are not prohibited from facilitating specified spot commodity
+   products. Each venue still needs the correct rule, product and operating
+   path.</li>
+<li><strong>Shared classification language:</strong> the March 2026 SEC interpretation was
+   issued with CFTC guidance, reducing disagreement over the asset/contract
+   boundary without changing either statute.</li>
+<li><strong>Formal coordination:</strong> the agencies' 2026-03-11 memorandum covers
+   definitions, clearing, margin, collateral, dual registrants, reporting,
+   examinations, surveillance and enforcement. It creates a coordination
+   mechanism, not transferred jurisdiction. <a href="https://www.cftc.gov/media/13471/SEC_CFTC_MOU031126/download">SEC–CFTC MOU</a></li>
+<li><strong>Coordinated exemptive agenda:</strong> the chairs identified definitions, data,
+   capital, margin, P2P, leveraged/margined transactions and perpetuals as
+   areas where they can coordinate existing rulemaking and exemptive powers.</li>
+<li><strong>Cross-margin constitution:</strong> the paired SEC/CFTC CME–FICC actions show the
+   agencies can join securities and futures positions today when the account,
+   lien, customer-property, insolvency and supervisory consequences are stated
+   explicitly.</li>
+</ol>
+<p>The chairs' strongest formulation is itself bounded: they described
+harmonizing rules and using existing exemptive authority, not acquiring a new
+undifferentiated crypto mandate. <a href="https://www.sec.gov/newsroom/speeches-statements/joint-statement-atkins-pham-090525">Joint chairs' statement</a></p>
+<h2 id="iv-what-does-not-require-clarity">IV. What does <strong>not</strong> require CLARITY</h2>
+<p>Subject to ordinary notice, findings, Commission voting and judicial-review
+requirements, the agencies can already:</p>
+<ul>
+<li>decide whether a transaction involves a security or regulated derivative;</li>
+<li>register, supervise, discipline and condition securities and derivatives
+  intermediaries already within their statutes;</li>
+<li>approve or permit SRO, DCM, DCO and product-rule changes;</li>
+<li>create bounded exemptions, pilots and temporary registrations within their
+  statutory exemptive powers;</li>
+<li>permit tokenized securities, shareholder records, entitlement records and
+  settlement systems that satisfy existing securities law;</li>
+<li>permit crypto ETP wrappers and in-kind ETP operations;</li>
+<li>approve crypto futures, options and product-specific perpetuals;</li>
+<li>regulate specified leveraged or financed retail commodity transactions;</li>
+<li>adapt custody, collateral, margin, segregation and continuous-operation
+  expectations for existing registrants;</li>
+<li>police securities fraud and commodity cash-market fraud/manipulation; and</li>
+<li>coordinate definitions, reporting, margin and dual-registrant treatment
+  where both statutes already reach the activity.</li>
+</ul>
+<h2 id="v-what-still-needs-congressor-another-sovereign-authority">V. What still needs Congress—or another sovereign authority</h2>
+<h3 id="a-the-principal-congressional-gap">A. The principal congressional gap</h3>
+<p>A comprehensive federal market constitution for <strong>ordinary, unleveraged spot
+trading in non-security digital commodities</strong> requires a statutory grant if it
+is to include the things that cash-market antifraud authority does not supply:</p>
+<ul>
+<li>venue, dealer, broker and custodian registration;</li>
+<li>routine examinations and continuous surveillance;</li>
+<li>capital, segregation, custody and conflicts standards;</li>
+<li>listing, disclosure, recordkeeping and reporting duties;</li>
+<li>customer-protection and failure-resolution rules; and</li>
+<li>a clean allocation between the SEC and CFTC that is durable against changes
+  in agency interpretation.</li>
+</ul>
+<p>This is the center that CLARITY or another market-structure statute could
+create. It should not be described as the source of every crypto power around
+it.</p>
+<h3 id="b-other-boundaries-neither-agency-can-solve-alone">B. Other boundaries neither agency can solve alone</h3>
+<table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>Why SEC/CFTC action is insufficient</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Statutory definitions and jurisdiction</td>
+<td>Agencies can interpret ambiguity and exempt within delegated limits; they cannot repeal statutory text, transfer congressional jurisdiction or prevent courts from rejecting their reading.</td>
+</tr>
+<tr>
+<td>Bank and stablecoin-issuer powers</td>
+<td>Charters, deposits, reserves, redemption, capital, liquidity and prudential supervision belong principally to banking/stablecoin authorities, not securities or commodities regulators.</td>
+</tr>
+<tr>
+<td>Federal Reserve access and dollar finality</td>
+<td>Fed accounts, payment services, intraday credit and central-bank settlement are Federal Reserve and statutory eligibility questions. A token or trading permission does not supply them.</td>
+</tr>
+<tr>
+<td>AML, sanctions and tax</td>
+<td>Treasury/FinCEN, OFAC, IRS and Congress own material parts of these regimes. SEC/CFTC market permissions do not displace them.</td>
+</tr>
+<tr>
+<td>State commercial and corporate law</td>
+<td>Issuer records, property rights, controllable electronic records, securities entitlements, perfection and priority often turn on state corporate law, UCC Articles 8, 9 and 12, contracts and choice of law.</td>
+</tr>
+<tr>
+<td>Bankruptcy and customer property</td>
+<td>SEC/CFTC can define regulated account treatment within delegated rules, but generally rewriting SIPA, the Bankruptcy Code or cross-regime statutory priority requires Congress. SEC staff says non-security crypto is not SIPA-protected and even unregistered investment contracts fall outside the relevant definition. The CME–FICC order works by making a narrow choice inside existing law, not erasing the statutes. <a href="https://www.sec.gov/rules-regulations/staff-guidance/trading-markets-frequently-asked-questions/frequently-asked-questions-relating-crypto-asset-activities-distributed-ledger-technology">SEC Trading and Markets FAQs</a></td>
+</tr>
+<tr>
+<td>Private rights and judicial review</td>
+<td>Staff forbearance and agency interpretations do not bind private plaintiffs or Article III courts. Under <em>Loper Bright</em>, a reviewing court independently determines statutory meaning while respecting actual delegations. Durable immunity or a new cause of action requires statutory authority. <a href="https://www.supremecourt.gov/opinions/23pdf/22-451_7m58.pdf">Supreme Court opinion</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="vi-the-corrected-regulatory-thesis">VI. The corrected regulatory thesis</h2>
+<p>The most accurate thesis is narrower—and stronger—than “Congress will bring
+clarity”:</p>
+<blockquote>
+<p><strong>The SEC and CFTC are already constitutionalizing tokenized finance through
+the securities and derivatives systems they administer. They are changing
+classification, wrappers, exchange rules, broker custody, transfer-agent
+records, clearing registrations, perpetual products, collateral and market
+hours through existing interpretation, approval, registration, exemptive and
+supervisory powers. The remaining congressional center is not permission to
+begin; it is a comprehensive and durable federal constitution for ordinary
+spot non-security digital-commodity markets, plus any cross-statute customer
+property and jurisdictional reallocations Congress chooses to make.</strong></p>
+</blockquote>
+<p>That framing changes what Freedom 250 should watch. The material clocks are no
+longer only bill passage and final rulemaking. They are:</p>
+<ol>
+<li>exact Commission orders and their conditions;</li>
+<li>effective SRO, DCM and DCO rule changes;</li>
+<li>staff relief converted into real participant use;</li>
+<li>first funded collateral, custody, clearing and default-path evidence;</li>
+<li>the record that controls title and correction when systems disagree; and</li>
+<li>any court decision that narrows or rejects the agencies' current-law
+   interpretations.</li>
+</ol>
+<h2 id="vii-highest-value-follow-up-research">VII. Highest-value follow-up research</h2>
+<ol>
+<li><strong>CFTC listed-spot operating census.</strong> Identify every product, DCM, clearing
+   path, launch date, asset, custody chain and retail-transaction theory behind
+   the “listed spot” initiative. Separate staff permission, product filing,
+   live trade and customer-protection state.</li>
+<li><strong>Relief-to-production ledger.</strong> For DTC, HQLAx, SEC broker custody, CFTC
+   Letter 26-05 and 24/7 operations, find the first named participant, funded
+   use, haircut, volume, incident and examination evidence. Relief without use
+   is a legal opening, not a functioning market.</li>
+<li><strong>Customer-property concordance.</strong> Run one failure fact pattern through SEC
+   Rule 15c3-3 and SIPA, CFTC Parts 1/22/30/190, DTC/DCO/FCM rulebooks, UCC
+   Articles 8/9/12 and the Bankruptcy Code.</li>
+<li><strong>Exemptive-authority ceiling memo.</strong> Compare SEC §§28/36/6(c) and CFTC §4(c)
+   procedure, required findings, anti-evasion limits, judicial review and the
+   largest lawful class exemption each could issue without new legislation.</li>
+<li><strong>Enforcement-discretion reversal ledger.</strong> Separate dismissed actions,
+   withdrawn appeals, staff withdrawals, Commission interpretation, binding
+   adjudications and unresolved private litigation. This is the fragility map
+   for the present permissive turn.</li>
+</ol>
+<h2 id="source-and-coverage-receipt">Source and coverage receipt</h2>
+<p>This audit reconciled the companion SEC tokenization census and cross-agency
+architecture thesis against current official SEC, CFTC, Federal Register,
+e-CFR and U.S. Code sources through the cutoff. Trade press and advocacy
+submissions were used, if encountered, only as locators and not as evidence of
+legal state.</p>
+<p><strong>Disposition:</strong> <code>promotion_review</code>. This is a new controlling Workbench answer
+for the existing-authority question. It does not supersede the broader
+architecture thesis or the project-level SEC tokenization approval census.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

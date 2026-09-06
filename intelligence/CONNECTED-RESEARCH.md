@@ -1,6 +1,257 @@
 # Freedom 250 connected research map
 
-This is the same authored organization used by the Observatory. Each linked source retains its own evidence cutoff. Start with a story; follow exact readings and connections.
+This is the same authored organization used by the Observatory. Each linked source retains its own evidence cutoff. Start with a connected family, then follow exact readings and story connections.
+
+## Monetary & crypto transition
+
+How does the inherited money system change when its records, routes and instruments change?
+
+We studied the legacy system to understand what a crypto transition would actually have to change. Banking, international institutions, participation laws, payments and accounting are parts of this same investigation. Follow the questions below, then open the underlying studies.
+
+[Open this family](index.html#family-monetary-transition)
+
+### 1 · The system we started with
+
+Who issues money, who can hold central-bank accounts, how claims clear, and who supplies liquidity when payments fail? This is the foundation for comparing every proposed new route.
+
+- [Federal Reserve, Clearing and Treasury](library/fed-clearing-treasury.html)
+- [Private Monetary Stack](library/private-monetary-stack.html)
+- Source collection: Public money — founding laws and charters
+  - [Reading the Charter — CFPB](sources/reading-the-charter-cfpb-2864305cba4e.html)
+  - [Reading the Charter — CFTC](sources/reading-the-charter-cftc-90d1a2d65d57.html)
+  - [Reading the Charter — DTCC / DTC / NSCC / FICC](sources/reading-the-charter-dtcc-0d5cfe8258a9.html)
+  - [Reading the Charter — Department of the Treasury](sources/reading-the-charter-department-of-the-treasury-01d7e7f4d09c.html)
+  - [Reading the Charter — Exchange Stabilization Fund (ESF)](sources/reading-the-charter-exchange-stabilization-fund-db6548231537.html)
+  - [Reading the Charter — FDIC](sources/reading-the-charter-fdic-7e3d2307bf33.html)
+  - [Reading the Charter — FHFA](sources/reading-the-charter-fhfa-f291502be9f8.html)
+  - [Reading the Charter — FHLBank System](sources/reading-the-charter-fhlbank-system-80be4ec0a3e8.html)
+  - [Reading the Charter — FSOC](sources/reading-the-charter-fsoc-faf741a66f9d.html)
+  - [Reading the Charter — Fannie Mae](sources/reading-the-charter-fannie-mae-0cc968cbe86a.html)
+  - [Reading the Charter — Federal Financing Bank](sources/reading-the-charter-federal-financing-bank-92e5bdc85747.html)
+  - [Reading the Charter — Federal Open Market Committee](sources/reading-the-charter-federal-open-market-committee-16b32d2f2a2a.html)
+  - [Reading the Charter — Federal Reserve Bank of New York](sources/reading-the-charter-federal-reserve-bank-of-new-york-68e4e116c541.html)
+  - [Reading the Charter — Federal Reserve System](sources/reading-the-charter-federal-reserve-system-5d337df21abf.html)
+  - [Reading the Charter — Freddie Mac](sources/reading-the-charter-freddie-mac-bb12d643ea71.html)
+  - [Reading the Charter — GENIUS Act — SCRC](sources/reading-the-charter-genius-act-scrc-acc7c69a8bb3.html)
+  - [Reading the Charter — Ginnie Mae (Government National Mortgage Association)](sources/reading-the-charter-ginnie-mae-6deedc13b428.html)
+  - [Reading the Charter — OCC](sources/reading-the-charter-occ-ed96716e1937.html)
+  - [Reading the Charter — OFR](sources/reading-the-charter-ofr-1f032ee24676.html)
+  - [Reading the Charter — SEC](sources/reading-the-charter-sec-d37ac1868d60.html)
+  - [Reading the Charter — US Mint](sources/reading-the-charter-us-mint-4d310eef6f42.html)
+- Source collection: Fed powers: legislature, operating system and accounts
+  - [Federal Reserve restructuring — factual timeline](sources/federal-reserve-restructuring-factual-timeline-4d78a4e48145.html)
+  - [Treasury–Fed institutional money state — factual transition timeline](sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html)
+  - [Federal Reserve Financial Constitution — Source Document](sources/federal-reserve-financial-constitution-source-document-203118d0ec33.html)
+  - [The Castration of the Fed](sources/the-castration-of-the-fed-ed63e25e35fb.html)
+  - [Keep the Fed. Bind Its Hands.](sources/keep-the-fed-bind-its-hands-00bfd07676a4.html)
+- Source collection: Clearing and collateral constitution
+  - [Clearing-house transition — factual timeline](sources/clearing-house-transition-factual-timeline-6595f41e3831.html)
+  - [DTCC Operative Constitution and Public-Bank Model — Source Document](sources/dtcc-operative-constitution-and-public-bank-model-source-document-afab7d8d77b1.html)
+- Source collection: Charter Queue
+  - [The Charter Queue — Factual Timeline](sources/the-charter-queue-factual-timeline-a0d660b11c2d.html)
+  - [The Waiting Room](sources/the-waiting-room-ec8cb6742eea.html)
+- Guide: [How money moves, and what is changing](stories/money-in-motion.html)
+### 2 · Money across borders: institutions, charters & participation
+
+Reserve currencies, FX, IMF participation and coordination rules explain the international system that new settlement routes enter. The transition studies and the institutional charters belong together here.
+
+- [International Monetary Transition](library/international-monetary-transition.html)
+- [G20 Currency Watch](library/currency-watch.html)
+- [G7 and G20 Coordination Architecture — 2025–2026](library/g7-g20-coordination-architecture.html)
+- [Gold Balance of Payments & Currency Adjustment](library/gold-bop-currency-adjustment.html)
+- Source collection: International monetary institutions — charters and participation laws
+  - [Reading the Charter — Bank for International Settlements](sources/reading-the-charter-bis-dc20bc90a8ab.html)
+  - [Reading the Charter — Bretton Woods Agreements Act](sources/reading-the-charter-bretton-woods-agreements-act-a1deb404380f.html)
+  - [Reading the Charter — IBRD](sources/reading-the-charter-ibrd-6b6ad5c14796.html)
+  - [Reading the Charter — IMF](sources/reading-the-charter-imf-aaae2c88db93.html)
+  - [Reading the Charter — International Organizations Immunities Act](sources/reading-the-charter-international-organizations-immunities-act-68871be3600f.html)
+  - [Reading the charter — SWIFT](sources/reading-the-charter-swift-40d398f6fc61.html)
+- Source collection: World Machine international event stream
+  - [The World's Money — the International Sweep](sources/2026-07-08-the-world-s-money-the-international-sweep-b550501f225c.html)
+- Guide: [How countries pay their way, and who controls access](stories/countries-and-connections.html)
+### 3 · What moves onto new records and payment routes?
+
+Follow the shift in asset representation, ownership records, messaging and settlement. Then compare private dollar instruments, crypto networks and adapters against the institutional functions they still depend on.
+
+- [Overall DLT Transition — 2025–2026](library/overall-dlt-transition.html)
+- [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](library/route-anchor-inventory.html)
+- [Crypto Infrastructure Hub](library/tokenization-entity-control-map.html)
+- [SWIFT Shared Ledger](library/swift-shared-ledger.html)
+- [Crypto Infrastructure Comparatives](library/crypto-infrastructure-comparatives.html)
+- [Ripple, XRP and the Invisible Conversion Layer](library/ripple-xrp-invisible-conversion-layer.html)
+- Source collection: Private monetary suite and Treasury control
+  - [Private Monetary Stack — Source Documents](sources/private-monetary-stack-source-documents-0ecbb7f450f9.html)
+  - [Treasury Executive-Order Architecture — Source Document](sources/treasury-executive-order-architecture-source-document-ab217095aed1.html)
+  - [The Private Monetary Stack](sources/fintech-crypto-infrastructure-deep-dive-08df4391c59f.html)
+- Guide: [How our picture of the transition keeps changing](stories/reading-the-transition.html)
+- Guide: [Who gets in, which record counts, and when payment is complete](stories/money-rights-and-records.html)
+### 4 · Who permits the change?
+
+Charters, legislation, regulators and courts determine which routes may operate. Hearings preserve the arguments and proposals; the legal research follows their actual status and effects.
+
+- [Congressional Monetary Infrastructure](library/congressional-monetary-infrastructure.html)
+- [Congressional Committee Control Plane](library/congressional-committee-control-plane.html)
+- [SEC Transfer Agent Modernization — 2026 Proposal](library/sec-transfer-agent-modernization.html)
+- [Judicial Money](library/judicial-money.html)
+- [Emergency Monetary Policy](library/emergency-monetary-policy.html)
+- Source collection: GENIUS law and its historical reading
+  - [The GENIUS Act, Cover to Cover (2026-07-08)](sources/2026-07-08-the-genius-act-cover-to-cover-a84ed796d9b6.html)
+- Source collection: Congressional hearings — source library
+  - [Source Archive — index](sources/source-archive-index-527253ed6730.html)
+- Guide: [Who gets in, which record counts, and when payment is complete](stories/money-rights-and-records.html)
+### 5 · What is owned, recorded, owed and correctable?
+
+A visible transfer still needs an account of the obligation, tax treatment, ownership, redemption and remedy. These studies connect payment technology to accounting and the public record.
+
+- [Private Monetary Stack](library/private-monetary-stack.html)
+- [Treasury and IRS](library/treasury-irs.html)
+- [Fraud and Payment Integrity](library/fraud-payment-integrity.html)
+- Source collection: Accounting, assurance and the public transaction record
+  - [Accounting Transition and Open Public Ledger — 2026-07-30](sources/readme-50750ec8c0f3.html)
+  - [Federal Transaction Record — Open Accounting, Audit Limits, and the State-NGO Gap](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html)
+  - [The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer](sources/2026-07-30-the-accounting-transition-shared-events-executable-rul-2fdf820971e8.html)
+- Source collection: Fine Print and people’s banking
+  - [The fine print — factual timeline](sources/the-fine-print-factual-timeline-69fa51fe257d.html)
+  - [Bank user agreements — legal-entity and contract-change map](sources/bank-user-agreements-source-document-b69017548c46.html)
+  - [U.S. banking websites — full entity sweep](sources/banking-website-sweep-source-document-4cadeee6e9f4.html)
+  - [The crowd cannot assemble](sources/the-crowd-cannot-assemble-34b267309649.html)
+- Source collection: Fraud control and the federal transaction record
+  - [The Fraud Machine — Identity, Eligibility, and the Payment Gate (2026-07-16)](sources/the-fraud-machine-identity-eligibility-and-the-payment-gate-61d967f2138f.html)
+  - [OBBB — Fraud, Improper-Payment and Error-Rate Legal Map](sources/obbb-fraud-improper-payment-and-error-rate-legal-map-0938f4722658.html)
+  - [Federal Transaction Record — Open Accounting, Audit Limits, and the State-NGO Gap](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html)
+- Guide: [What we own, what we owe, and who absorbs the loss](stories/claims-collateral-and-loss.html)
+### 6 · Where finance meets physical buildout and public authority
+
+Investment, energy and industrial projects provide concrete places to examine financing and settlement claims. The thesis connects these questions about control and responsibility; its interpretations and alternatives remain visible within the study.
+
+- [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](library/us-inbound-investment-industrial-capex.html)
+- [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html)
+- [Economic Institution Legitimacy Crisis — 2025–2026](library/economic-institution-legitimacy-crisis.html)
+- Source collection: The Grand Design / Spine bridge
+- Guide: [How our picture of the transition keeps changing](stories/reading-the-transition.html)
+- Connect: [Science, industry & infrastructure](index.html#family-industry-buildout): Finance funds facilities, equipment and power. Follow the projects and operating evidence behind investment and settlement claims.
+- Connect: [Public authority, records & delivery](index.html#family-public-authority): The same questions about permission, records, correction and accountability recur in agencies, benefits and public payments.
+
+## Science, industry & infrastructure
+
+How do national ambitions become funded, built and operating capabilities?
+
+Strategy, company maps, manufacturing, compute and energy describe different stages of the same buildout. Read across them to distinguish a plan, an investment, a physical site and an operating capability.
+
+[Open this family](index.html#family-industry-buildout)
+
+### 1 · Strategy, science and the organizations doing the work
+
+Start with the national science strategy, agency plans and company maps to see the capabilities being pursued and the organizations assigned to pursue them.
+
+- [Federal Science Operating System](library/federal-science-operating-system.html)
+- [NSSTS Technology-to-Company Map](library/nssts-technology-company-map.html)
+- [Federal Strategic Plans](library/federal-strategic-plans.html)
+- Source collection: The Grand Design / Spine bridge
+- Guide: [From scientific ambition to things that work](stories/science-to-capability.html)
+### 2 · Investment, places, materials and power
+
+Connect investment announcements to locations, suppliers, materials and power requirements. The NY map is one way into this broader industrial picture.
+
+- [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](library/us-inbound-investment-industrial-capex.html)
+- [New York Manufacturing and Innovation Map — 2026](library/new-york-manufacturing-innovation-map-2026.html)
+- [Permanent Magnets](library/permanent-magnets.html)
+- [Carbon Nanotubes and Battery Sovereignty](library/carbon-nanotubes-battery-sovereignty.html)
+- [AI-Enabled Turbine Asset Management and U.S. Power Buildout](library/ai-turbine-asset-management-power-buildout.html)
+- Source collection: Joined energy-infrastructure library
+  - [Energy Infrastructure — Read First](sources/energy-infrastructure-read-first-2eb3c3598d3b.html)
+  - [Energy Infrastructure Continuous Finance — Source Document](sources/energy-infrastructure-continuous-finance-source-document-8061c9c27fad.html)
+- Guide: [What does this company actually do?](stories/companies-in-context.html)
+- Guide: [How systems keep working under pressure](stories/keeping-systems-working.html)
+### 3 · Infrastructure, access and accepted operation
+
+Compute and communications depend on sites, legal access, standards and trusted records. These are the practical connections between industrial capability and government authority.
+
+- [Sovereign Compute](library/sovereign-compute.html)
+- [Sovereign Communications](library/sovereign-communications.html)
+- [Data Center Federal Legal Spine 2025–2026](library/data-center-federal-legal-spine.html)
+- [Scientific Trust Stack](library/scientific-trust-stack.html)
+- [Federal Agency AI Plans and Infrastructure](library/federal-agency-ai-plans-infrastructure.html)
+- Source collection: The Compute — 24 legacy filings
+- Source collection: University research-security funding control
+  - [Thirty Unnamed Universities — Research Security Moves to Institution-Level Review](sources/2026-08-17-thirty-unnamed-universities-research-security-moves-to-e1bb71cbbe48.html)
+- Guide: [From scientific ambition to things that work](stories/science-to-capability.html)
+- Connect: [Monetary & crypto transition](index.html#family-monetary-transition): Capital, collateral and payment arrangements connect industrial buildout back to money. Shared context helps locate a claim; the project records establish what actually happened.
+- Connect: [Public authority, records & delivery](index.html#family-public-authority): Agencies set funding, procurement, security, access and record requirements that shape what can be built and accepted.
+
+## Public authority, records & delivery
+
+Who can act, which record counts, and how does an authorized decision reach people?
+
+Executive orders, agency changes, public payments, eligibility and oversight connect through authority and implementation. These studies help explain how a legal decision becomes an operating process and how that process can be checked.
+
+[Open this family](index.html#family-public-authority)
+
+### 1 · Legal authority and the institutions carrying it out
+
+Connect executive orders, agency structure, courts and congressional oversight to the offices and permissions that carry a decision into practice.
+
+- [Office of Personnel Management Structural Change Audit — 2025–2026](library/opm-structural-change-audit-2025-2026.html)
+- [Federal Strategic Plans](library/federal-strategic-plans.html)
+- [Congressional Committee Control Plane](library/congressional-committee-control-plane.html)
+- [White House Research Hub](library/white-house-research-hub.html)
+- [House Oversight Corpus](library/house-oversight-corpus.html)
+- Source collection: Executive-order entity maps: existing legal routes
+  - [Executive Order Entity Maps — Wave 1 Monetary Control Plane](sources/2026-08-15-executive-order-entity-maps-wave-1-monetary-control-pl-70b45f385321.html)
+  - [Every numbered EO, plus the unnumbered CFIUS order](sources/2026-08-16-executive-order-entity-maps-complete-17c443ba73db.html)
+  - [Executive Order Entity Maps — Wave 2 Personnel Control](sources/2026-08-16-executive-order-entity-maps-wave-2-personnel-control-6a645ffbe682.html)
+  - [Executive Order Entity Maps — Wave 3 Immigration](sources/2026-08-16-executive-order-entity-maps-wave-3-immigration-cc1ffb14b95a.html)
+  - [Waves 4–5](sources/2026-08-16-executive-order-entity-maps-waves-4-5-66d40210bc9b.html)
+  - [Waves 6–7](sources/2026-08-16-executive-order-entity-maps-waves-6-7-82f651382e0a.html)
+  - [Waves 8–12](sources/2026-08-16-executive-order-entity-maps-waves-8-12-546b6c08fe2e.html)
+  - [Annex deep read — money chairs and the gold suite](sources/2026-08-16-annex-deep-read-14410-money-chairs-and-the-gold-suite-8c5f4315549a.html)
+- Source collection: Federal workforce and agency survival
+  - [Schedule Policy/Career — Personnel and Removal Map](sources/schedule-policy-career-personnel-and-removal-map-7f152fea03d9.html)
+  - [Independent-Agency Officer Removal — Slaughter and Cook](sources/independent-agency-officer-removal-slaughter-and-cook-434d0b12f5a3.html)
+  - [Department of Education — Consummation Map](sources/department-of-education-consummation-map-23a7ccec3cea.html)
+  - [USAID — Statutory Person and Operating Death](sources/usaid-statutory-person-and-operating-death-a4950011ce2c.html)
+  - [HHS and AHA — Proposed Person and Statutory Remainder](sources/hhs-and-aha-proposed-person-and-statutory-remainder-6720d5018d4d.html)
+- Guide: [Who can make the government act?](stories/authority-and-institutions.html)
+- Guide: [How public power becomes public outcomes](stories/government-in-practice.html)
+### 2 · Public money, identity and service delivery
+
+Payment integrity and eligibility bring monetary records into contact with people, state administration and public services. Follow both the legal rules and the actual operating records.
+
+- [Treasury Do Not Pay — Governmentwide Structural Map](library/treasury-do-not-pay-governmentwide-map.html)
+- [Fraud and Payment Integrity](library/fraud-payment-integrity.html)
+- [PRWORA State Reporting and Eligibility Architecture — 1996–2026](library/prwora-state-reporting-eligibility-architecture.html)
+- [Census, USPS, Citizenship and Apportionment — 2026](library/census-usps-citizenship-apportionment.html)
+- [Education and University Funding](library/education-university-funding.html)
+- Source collection: Identity, citizenship and federal-State eligibility
+  - [Identity Rails — Travel, Benefit, Vote, Count](sources/identity-rails-travel-benefit-vote-count-306194cc785a.html)
+  - [Citizenship Operating Clock — Barbara and EO 14418](sources/citizenship-operating-clock-barbara-and-eo-14418-635122ac1943.html)
+  - [OBBB — Eligibility and Fiscal-Federalism Companion](sources/obbb-eligibility-and-fiscal-federalism-companion-35a40a201a22.html)
+- Source collection: Federal Group Control: public money and procurement
+  - [Federal Group Control — Read First](sources/federal-group-control-read-first-18582ff6f6a7.html)
+  - [Impoundment and Rescission — Legal and Entity Map](sources/impoundment-and-rescission-legal-and-entity-map-1b276d1b2443.html)
+  - [Revolutionary FAR Overhaul — Procurement Control Map](sources/revolutionary-far-overhaul-procurement-control-map-df1a8c3272f5.html)
+- Guide: [Where national change becomes local](stories/national-change-local-life.html)
+- Guide: [Who is counted, who qualifies, who can govern?](stories/representation-and-membership.html)
+### 3 · Records, disclosure and accountability
+
+AI records, disclosures, hearings and source collections show how claims can be checked. This also connects to the thesis question about where control, responsibility and visible evidence reside.
+
+- [NARA AI Records and Compute Transition](library/nara-ai-records-compute-transition.html)
+- [Disclosure Architecture](library/disclosure-architecture.html)
+- [COVID Authority and Disclosure Record](library/covid-authority-disclosures.html)
+- [Economic Institution Legitimacy Crisis — 2025–2026](library/economic-institution-legitimacy-crisis.html)
+- Source collection: Accounting, assurance and the public transaction record
+  - [Accounting Transition and Open Public Ledger — 2026-07-30](sources/readme-50750ec8c0f3.html)
+  - [Federal Transaction Record — Open Accounting, Audit Limits, and the State-NGO Gap](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html)
+  - [The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer](sources/2026-07-30-the-accounting-transition-shared-events-executable-rul-2fdf820971e8.html)
+- Source collection: Disclosure, accountability and public narrative
+  - [The Epstein Statement Trap](sources/2026-07-21-the-epstein-statement-trap-18181c6edae9.html)
+- Source collection: Congressional hearings — source library
+  - [Source Archive — index](sources/source-archive-index-527253ed6730.html)
+- Guide: [How a public claim becomes something we can examine](stories/claims-records-and-accountability.html)
+- Guide: [What changed as the plans met the machinery?](stories/government-through-time.html)
+- Connect: [Monetary & crypto transition](index.html#family-monetary-transition): Public payments, financial permissions and accounting link government operations to the monetary transition.
+- Connect: [Science, industry & infrastructure](index.html#family-industry-buildout): Strategy becomes tangible through funding, procurement, permits, standards, infrastructure and delivery records.
 
 ## How money moves, and what is changing
 

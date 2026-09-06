@@ -10,12 +10,16 @@ We studied the legacy system to understand what a crypto transition would actual
 
 [Open this family](index.html#family-monetary-transition)
 
+> Money shows the thesis in operation: new instruments and private routes can change practical control while legal claims, central-bank obligations, public records and remedies remain with inherited institutions. Cross-border and state cases show where the same functions meet different authorities.
+
 ### 1 · The system we started with
 
 Who issues money, who can hold central-bank accounts, how claims clear, and who supplies liquidity when payments fail? This is the foundation for comparing every proposed new route.
 
 - [Federal Reserve, Clearing and Treasury](library/fed-clearing-treasury.html)
 - [Private Monetary Stack](library/private-monetary-stack.html)
+- [The People's Money](library/peoples-money.html)
+- [Retail Debt](library/retail-debt.html)
 - Timeline research: [Money Machine](machines/money.html)
 - Timeline research: [The Whole Money Story](machines/wholemoney.html)
 - Source collection: Public money — founding laws and charters
@@ -52,6 +56,8 @@ Who issues money, who can hold central-bank accounts, how claims clear, and who 
 - Source collection: Charter Queue
   - [The Charter Queue — Factual Timeline](sources/the-charter-queue-factual-timeline-a0d660b11c2d.html)
   - [The Waiting Room](sources/the-waiting-room-ec8cb6742eea.html)
+- Source collection: Money Machine official filing stream
+  - [The Week the Money Never Sleeps — Gov-Site Deep Dive (2026-07-08)](sources/2026-07-08-the-week-the-money-never-sleeps-gov-site-deep-dive-473b5218be11.html)
 - Guide: [How money moves, and what is changing](stories/money-in-motion.html)
 ### 2 · Money across borders: institutions, charters & participation
 
@@ -61,6 +67,12 @@ Reserve currencies, FX, IMF participation and coordination rules explain the int
 - [G20 Currency Watch](library/currency-watch.html)
 - [G7 and G20 Coordination Architecture — 2025–2026](library/g7-g20-coordination-architecture.html)
 - [Gold Balance of Payments & Currency Adjustment](library/gold-bop-currency-adjustment.html)
+- [Wholesale Metals Infrastructure](library/wholesale-metals.html)
+- [Cuba Pressure and Counter-Influence](library/cuba-pressure-counter-influence.html)
+- [Iraq Oil Provenance and Logistics](library/iraq-oil-logistics.html)
+- [Iran Financial Pressure and Banking-System Isolation](library/iran-financial-pressure.html)
+- [Canada, transshipment and customs origin records](library/institutional-regime-waves.html)
+- [Japan August 2026 — State, Monetary, Industrial and Digital Delta](library/japan-august-2026-delta.html)
 - Timeline research: [World Machine](machines/world.html)
 - Timeline research: [Side by Side](machines/side.html)
 - Source collection: International monetary institutions — charters and participation laws
@@ -72,6 +84,13 @@ Reserve currencies, FX, IMF participation and coordination rules explain the int
   - [Reading the charter — SWIFT](sources/reading-the-charter-swift-40d398f6fc61.html)
 - Source collection: World Machine international event stream
   - [The World's Money — the International Sweep](sources/2026-07-08-the-world-s-money-the-international-sweep-b550501f225c.html)
+- Source collection: State money and reserves — earlier & related research
+  - [Money From Below — The State Sweep (2026-07-08)](sources/2026-07-08-money-from-below-the-state-sweep-b34b64df7309.html)
+  - [Gold Monetary-Use Mechanism Map](sources/gold-monetary-use-mechanism-map-2026-08-16-740aee22a4fc.html)
+- Source collection: Side by Side
+- Source collection: Earlier international story essays
+  - [Great-Power Realignment](sources/2026-06-meta-narrative-5-great-power-realignment-fdbdd3249199.html)
+  - [War Footing — Iran & the Mideast](sources/2026-06-meta-narrative-2-war-footing-iran-and-the-mideast-c8536b574f4b.html)
 - Guide: [How countries pay their way, and who controls access](stories/countries-and-connections.html)
 ### 3 · What moves onto new records and payment routes?
 
@@ -104,6 +123,11 @@ Charters, legislation, regulators and courts determine which routes may operate.
   - [The GENIUS Act, Cover to Cover (2026-07-08)](sources/2026-07-08-the-genius-act-cover-to-cover-a84ed796d9b6.html)
 - Source collection: Congressional hearings — source library
   - [Source Archive — index](sources/source-archive-index-527253ed6730.html)
+- Source collection: Judicial money
+  - [Judicial Money Map — Freedom 250](sources/judicial-money-map-source-document-d2f844afe3d8.html)
+  - [The Judicial Watch — factual timeline](sources/the-judicial-watch-factual-timeline-55de9addbe1e.html)
+  - [The Bench and the Money](sources/the-bench-and-the-money-4ae20ac158de.html)
+  - [Judicial Watch — factual case gates from the July 11, 2026 note](sources/the-judicial-watch-standing-expectations-registered-calls-fc5aff8a6175.html)
 - Guide: [Who gets in, which record counts, and when payment is complete](stories/money-rights-and-records.html)
 ### 5 · What is owned, recorded, owed and correctable?
 
@@ -112,6 +136,9 @@ A visible transfer still needs an account of the obligation, tax treatment, owne
 - [Private Monetary Stack](library/private-monetary-stack.html)
 - [Treasury and IRS](library/treasury-irs.html)
 - [Fraud and Payment Integrity](library/fraud-payment-integrity.html)
+- [Transaction-Native Accounting](library/transaction-native-accounting.html)
+- [Insurance and Reinsurance](library/insurance-reinsurance.html)
+- [Retail Debt](library/retail-debt.html)
 - Timeline research: [The Fine Print](machines/fineprint.html)
 - Source collection: Accounting, assurance and the public transaction record
   - [Accounting Transition and Open Public Ledger — 2026-07-30](sources/readme-50750ec8c0f3.html)
@@ -134,10 +161,16 @@ Investment, energy and industrial projects provide concrete places to examine fi
 - [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](library/us-inbound-investment-industrial-capex.html)
 - [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html)
 - [Economic Institution Legitimacy Crisis — 2025–2026](library/economic-institution-legitimacy-crisis.html)
+- [The Overall Monetary Play — July 2026 Interpretation](library/overall-monetary-play.html)
 - Timeline research: [The Spine](machines/spine.html)
 - Timeline research: [Tech Machine](machines/tech.html)
 - Timeline research: [State Machine](machines/state.html)
 - Source collection: The Grand Design / Spine bridge
+- Source collection: Monetary big-picture readings and Spine
+  - [The Whole Money Story — A Full-Corpus Reading (2026-07-08)](sources/2026-07-08-the-whole-money-story-a-full-corpus-reading-0b5b82bb67f1.html)
+  - [The Whole World's Money — the World Ring Folded In (2026-07-08)](sources/2026-07-08-the-whole-world-s-money-the-world-ring-folded-in-72614fd1fcac.html)
+  - [The Money Crosswalk — Four Machines, Five Poles](sources/2026-07-10-the-money-crosswalk-four-machines-five-poles-681e6f6b51ee.html)
+  - [MONEY — READ FIRST](sources/money-read-first-cb185a6531c5.html)
 - Guide: [How our picture of the transition keeps changing](stories/reading-the-transition.html)
 - Connect: [Science, industry & infrastructure](index.html#family-industry-buildout): Finance funds facilities, equipment and power. Follow the projects and operating evidence behind investment and settlement claims.
 - Connect: [Public authority, records & delivery](index.html#family-public-authority): The same questions about permission, records, correction and accountability recur in agencies, benefits and public payments.
@@ -150,6 +183,8 @@ Strategy, company maps, manufacturing, compute and energy describe different sta
 
 [Open this family](index.html#family-industry-buildout)
 
+> Technology gives the transition its physical capability: compute, energy, materials, factories and logistics. These studies ask who funds and operates that capability, who grants access, and whether the responsible institution can understand, supervise and correct the result.
+
 ### 1 · Strategy, science and the organizations doing the work
 
 Start with the national science strategy, agency plans and company maps to see the capabilities being pursued and the organizations assigned to pursue them.
@@ -160,6 +195,7 @@ Start with the national science strategy, agency plans and company maps to see t
 - Timeline research: [Tech Machine](machines/tech.html)
 - Timeline research: [The Spine](machines/spine.html)
 - Source collection: The Grand Design / Spine bridge
+- Source collection: The Arsenal — 10 legacy filings
 - Guide: [From scientific ambition to things that work](stories/science-to-capability.html)
 ### 2 · Investment, places, materials and power
 
@@ -174,6 +210,7 @@ Connect investment announcements to locations, suppliers, materials and power re
 - Source collection: Joined energy-infrastructure library
   - [Energy Infrastructure — Read First](sources/energy-infrastructure-read-first-2eb3c3598d3b.html)
   - [Energy Infrastructure Continuous Finance — Source Document](sources/energy-infrastructure-continuous-finance-source-document-8061c9c27fad.html)
+- Source collection: The Reactor — 13 legacy filings
 - Guide: [What does this company actually do?](stories/companies-in-context.html)
 - Guide: [How systems keep working under pressure](stories/keeping-systems-working.html)
 ### 3 · Infrastructure, access and accepted operation
@@ -185,10 +222,16 @@ Compute and communications depend on sites, legal access, standards and trusted 
 - [Data Center Federal Legal Spine 2025–2026](library/data-center-federal-legal-spine.html)
 - [Scientific Trust Stack](library/scientific-trust-stack.html)
 - [Federal Agency AI Plans and Infrastructure](library/federal-agency-ai-plans-infrastructure.html)
+- [Military Modernization](library/military-modernization.html)
+- [Contested Logistics](library/contested-logistics.html)
 - Timeline research: [Tech Machine](machines/tech.html)
 - Source collection: The Compute — 24 legacy filings
 - Source collection: University research-security funding control
   - [Thirty Unnamed Universities — Research Security Moves to Institution-Level Review](sources/2026-08-17-thirty-unnamed-universities-research-security-moves-to-e1bb71cbbe48.html)
+- Source collection: The Driverless — 6 legacy filings
+- Source collection: The Airspace — 10 legacy filings
+- Source collection: The High Ground — 3 legacy filings
+- Source collection: The Lab — 3 legacy filings
 - Guide: [From scientific ambition to things that work](stories/science-to-capability.html)
 - Connect: [Monetary & crypto transition](index.html#family-monetary-transition): Capital, collateral and payment arrangements connect industrial buildout back to money. Shared context helps locate a claim; the project records establish what actually happened.
 - Connect: [Public authority, records & delivery](index.html#family-public-authority): Agencies set funding, procurement, security, access and record requirements that shape what can be built and accepted.
@@ -201,6 +244,8 @@ Executive orders, agency changes, public payments, eligibility and oversight con
 
 [Open this family](index.html#family-public-authority)
 
+> Public authority is where control must become answerable: laws, agencies, courts, public services and official records. The studies and dated source collections let us compare promised authority with actual delivery, identify conflicts, and test whether institutions adapt successfully.
+
 ### 1 · Legal authority and the institutions carrying it out
 
 Connect executive orders, agency structure, courts and congressional oversight to the offices and permissions that carry a decision into practice.
@@ -210,6 +255,9 @@ Connect executive orders, agency structure, courts and congressional oversight t
 - [Congressional Committee Control Plane](library/congressional-committee-control-plane.html)
 - [White House Research Hub](library/white-house-research-hub.html)
 - [House Oversight Corpus](library/house-oversight-corpus.html)
+- [Trump 2028 Constitutional and Election-Ledger Hypothesis](library/trump-2028-constitutional-election-ledger.html)
+- [White House Ballroom Lawfare 2025-2026](library/white-house-ballroom-lawfare-2025-2026.html)
+- [Cuba Pressure and Counter-Influence](library/cuba-pressure-counter-influence.html)
 - Timeline research: [The Spine](machines/spine.html)
 - Timeline research: [The Charter Queue](machines/charter.html)
 - Source collection: Executive-order entity maps: existing legal routes
@@ -227,6 +275,18 @@ Connect executive orders, agency structure, courts and congressional oversight t
   - [Department of Education — Consummation Map](sources/department-of-education-consummation-map-23a7ccec3cea.html)
   - [USAID — Statutory Person and Operating Death](sources/usaid-statutory-person-and-operating-death-a4950011ce2c.html)
   - [HHS and AHA — Proposed Person and Statutory Remainder](sources/hhs-and-aha-proposed-person-and-statutory-remainder-6720d5018d4d.html)
+- Source collection: Force, surveillance and emergency authority
+  - [FISA 702 — Split Clock Map](sources/fisa-702-split-clock-map-01be1ca24143.html)
+  - [Title 10 Guard and the Insurrection Act — Force Authorization Map](sources/title-10-guard-and-the-insurrection-act-force-authorization-map-c22fce4635e3.html)
+  - [Iran War Powers — Authority Map](sources/iran-war-powers-authority-map-57dfefbc2e8c.html)
+  - [IEEPA — Tariff Dead, Block Live](sources/ieepa-tariff-dead-block-live-48d8e15eb378.html)
+  - [Universal Relief — Trump v. CASA Remedy Map](sources/universal-relief-trump-v-casa-remedy-map-7cb09798854f.html)
+- Source collection: Entity Theory: institutional framework and private lens
+  - [The Entity Theory — the government as a stack of legal entities](sources/the-entity-theory-working-note-e6145374fc35.html)
+  - [Federal entity dates, statuses and the legal spine — saved audit](sources/2026-07-10-entity-chart-audit-dates-statuses-the-legal-spine-c2a0dd6b0de7.html)
+  - [USA Inc. — The Sovereign as Corporation](sources/2026-07-10-usa-inc-the-sovereign-as-corporation-6889df397862.html)
+  - [Annex entity addition audit — 2026-08-15](sources/2026-08-15-annex-entity-addition-audit-tfi-ofac-and-usitc-41304d95e186.html)
+  - [Annex entity addition audit — 2026-08-16](sources/2026-08-16-annex-entity-addition-audit-14410-parents-d99347b92421.html)
 - Guide: [Who can make the government act?](stories/authority-and-institutions.html)
 - Guide: [How public power becomes public outcomes](stories/government-in-practice.html)
 ### 2 · Public money, identity and service delivery
@@ -238,6 +298,7 @@ Payment integrity and eligibility bring monetary records into contact with peopl
 - [PRWORA State Reporting and Eligibility Architecture — 1996–2026](library/prwora-state-reporting-eligibility-architecture.html)
 - [Census, USPS, Citizenship and Apportionment — 2026](library/census-usps-citizenship-apportionment.html)
 - [Education and University Funding](library/education-university-funding.html)
+- [Election Integrity Release](library/election-integrity-release.html)
 - Timeline research: [State Machine](machines/state.html)
 - Timeline research: [The Fine Print](machines/fineprint.html)
 - Source collection: Identity, citizenship and federal-State eligibility
@@ -248,6 +309,9 @@ Payment integrity and eligibility bring monetary records into contact with peopl
   - [Federal Group Control — Read First](sources/federal-group-control-read-first-18582ff6f6a7.html)
   - [Impoundment and Rescission — Legal and Entity Map](sources/impoundment-and-rescission-legal-and-entity-map-1b276d1b2443.html)
   - [Revolutionary FAR Overhaul — Procurement Control Map](sources/revolutionary-far-overhaul-procurement-control-map-df1a8c3272f5.html)
+- Source collection: Health institutions and international obligations
+  - [HHS and AHA — Proposed Person and Statutory Remainder](sources/hhs-and-aha-proposed-person-and-statutory-remainder-6720d5018d4d.html)
+  - [WHO and IHR — Membership Exit Map](sources/who-and-ihr-membership-exit-map-66037e156b95.html)
 - Guide: [Where national change becomes local](stories/national-change-local-life.html)
 - Guide: [Who is counted, who qualifies, who can govern?](stories/representation-and-membership.html)
 ### 3 · Records, disclosure and accountability
@@ -258,6 +322,20 @@ AI records, disclosures, hearings and source collections show how claims can be 
 - [Disclosure Architecture](library/disclosure-architecture.html)
 - [COVID Authority and Disclosure Record](library/covid-authority-disclosures.html)
 - [Economic Institution Legitimacy Crisis — 2025–2026](library/economic-institution-legitimacy-crisis.html)
+- [Government-Wide Audit — July 2026](library/government-wide-audit-july-2026.html)
+- [Federal Whole-Site Recertification — August 2026](library/government-wide-recertification-august-2026.html)
+- [Federal Government Entity Library Harvest — 2026-08-22](library/federal-government-entity-library-harvest-2026-08-22.html)
+- [Federal Government Full Freshness Sweep — August 22, 2026](library/federal-government-full-freshness-sweep-2026-08-22.html)
+- [Federal Government Sweep Control Audit — August 21–29, 2026](library/federal-government-sweep-control-audit-2026-08-29.html)
+- [Federal Government Website Sweep — 2026-07-25](library/federal-government-website-sweep-2026-07-25.html)
+- [Federal Government Weekly Delta — August 2–8, 2026](library/federal-government-weekly-delta-2026-08-08.html)
+- [Federal Government Weekly Delta — August 8–13, 2026](library/federal-government-weekly-delta-2026-08-13.html)
+- [Federal Government Weekly Delta — August 13–20, 2026](library/federal-government-weekly-delta-2026-08-20.html)
+- [Federal Government Weekly Delta — August 20–21, 2026](library/federal-government-weekly-delta-2026-08-21.html)
+- [Federal Government Weekly Delta — August 31–September 3, 2026](library/federal-government-weekly-delta-2026-09-03.html)
+- [Trump Davos Address — January 21, 2026](library/trump-davos-address-2026-01-21.html)
+- [White House Cabinet Meeting — July 31, 2026](library/white-house-cabinet-meeting-2026-07-31.html)
+- [Trump WHCA Dinner Remarks — July 24, 2026](library/trump-whca-dinner-remarks-2026-07-24.html)
 - Timeline research: [The Spine](machines/spine.html)
 - Source collection: Accounting, assurance and the public transaction record
   - [Accounting Transition and Open Public Ledger — 2026-07-30](sources/readme-50750ec8c0f3.html)
@@ -267,6 +345,10 @@ AI records, disclosures, hearings and source collections show how claims can be 
   - [The Epstein Statement Trap](sources/2026-07-21-the-epstein-statement-trap-18181c6edae9.html)
 - Source collection: Congressional hearings — source library
   - [Source Archive — index](sources/source-archive-index-527253ed6730.html)
+- Source collection: Early government and knowledge-authority story essays
+  - [The Great Reckoning](sources/2026-06-meta-narrative-1-the-great-reckoning-877cebe8c1eb.html)
+  - [Border & Homeland](sources/2026-06-meta-narrative-4-border-and-homeland-26b74e8f56bb.html)
+  - [The Information War](sources/2026-06-meta-narrative-6-the-information-war-cf3191debbc4.html)
 - Guide: [How a public claim becomes something we can examine](stories/claims-records-and-accountability.html)
 - Guide: [What changed as the plans met the machinery?](stories/government-through-time.html)
 - Connect: [Monetary & crypto transition](index.html#family-monetary-transition): Public payments, financial permissions and accounting link government operations to the monetary transition.

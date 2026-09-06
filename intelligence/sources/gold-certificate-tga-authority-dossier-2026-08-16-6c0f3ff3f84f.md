@@ -3,7 +3,7 @@
 ## Who can authorize, execute, record and spend
 
 Updated: 2026-08-16 ET  
-Status: pending workbench research; not reviewed or landed in the vault  
+Status: current Workbench research; no Chronicle landing  
 Evidence cutoff: 2026-08-16 ET  
 Scope: the current U.S. statutory, operational, accounting and budgetary chain for Treasury gold certificates and the Treasury General Account  
 Boundary: this dossier establishes decision rights and ledger effects. It is not a gold-price thesis, a forecast, or a claim that any proposal has become law.

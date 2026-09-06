@@ -39,7 +39,7 @@ coverage.
 
 ## Read order
 
-1. Priority 1 origin deliberation and public-representation test
+1. [Priority 1 origin deliberation and public-representation test](../sources/priority-1-origin-deliberation-public-representation-test-2026-07-eb97b8c95e72.html)
    — exact-clock comparison of the January 31 alarm, successive *Proximal
    Origin* drafts, peer review, March public release, Fauci's April 17 statement
    and June private reconsideration.
@@ -166,6 +166,6 @@ dictated the conclusion or that Fauci's April 17 answer was knowingly false.
 Waves 0, 1 and 3 are complete. The completed Wave 2 diary and Slack audits now
 feed the story architecture; automatic page progression is paused. Wave 4
 decomposition is partly complete and its remaining sources are on-demand
-evidence reservoirs. The substantive corpus remains `pending` and deliberately
-unpromoted. No live-vault note, plotline, subplot, watch calendar, synthesis
-surface or installed app has been changed.
+evidence reservoirs. The substantive corpus is current Workbench research. The remaining Wave 4
+sources stay on-demand evidence reservoirs; no Chronicle landing, plotline,
+subplot, watch calendar, synthesis surface or installed-app change follows.

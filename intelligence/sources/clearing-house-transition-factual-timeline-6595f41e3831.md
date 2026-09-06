@@ -710,7 +710,7 @@ remained 60 days after Federal Register publication rather than a fixed
 calendar date. The proposal is not final or effective and does not approve any
 chain, company or token.
 
-**Sources:** [SEC — Transfer Agent Rules proposal page](https://www.sec.gov/rules-regulations/2026/09/s7-2026-30); [SEC — Release No. 34-106246](https://www.sec.gov/files/rules/proposed/2026/34-106246.pdf); SEC Transfer Agent Modernization — Source Document
+**Sources:** [SEC — Transfer Agent Rules proposal page](https://www.sec.gov/rules-regulations/2026/09/s7-2026-30); [SEC — Release No. 34-106246](https://www.sec.gov/files/rules/proposed/2026/34-106246.pdf); [SEC Transfer Agent Modernization — Source Document](../sources/sec-transfer-agent-modernization-source-document-3be126c5861c.html)
 
 ---
 

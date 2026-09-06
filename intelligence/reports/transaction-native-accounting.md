@@ -2,6 +2,13 @@
 
 Evidence cutoff: 2026-07-30
 
+Custody note: the Chronicle's **Accounting Transition — Shared Events,
+Executable Rules, and the Judgment Layer** controls the maintained shared
+answer. This original July 30 specialist remains current for its complete
+16-function decomposition, event object and judgment object; consolidation
+does not refresh its evidence cutoff or convert its proposed design into an
+adopted system.
+
 ## Ruling
 
 Double-entry bookkeeping and blockchain solve different problems.

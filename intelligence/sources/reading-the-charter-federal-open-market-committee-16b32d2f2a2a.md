@@ -63,4 +63,4 @@ The FOMC is not a corporation, not an agency, and not directly elected or appoin
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1933 - Federal Reserve Act §12A (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

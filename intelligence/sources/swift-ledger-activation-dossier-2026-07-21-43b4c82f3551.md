@@ -3,7 +3,9 @@
 # SWIFT ledger — activation, legal constitution and finality
 
 **Research cutoff:** 2026-07-21; targeted activation-state refresh 2026-09-03  
-**Status:** ready for initial controlled use; 17 named banks are preparing live pilots; no completed SWIFT-ledger transaction, external-cash finality event or public participant rulebook is established  
+**Status in the saved evidence:** ready for initial controlled use; 17 named banks are preparing live pilots; no completed SWIFT-ledger transaction, external-cash finality event or public participant rulebook is established  
+**Date scope:** July 21 covers architecture, bank products, legal retrieval and hypothesis work. September 3 rechecked only the operator/readiness wording; it did not refresh every missing-document search, bank product, legal proposal or watch date. September 7 consolidates the saved research without a new factual refresh.
+
 **Control:** hypotheses are marked. A product announcement, transaction execution, customer credit, external cash settlement and legal finality are separate states.
 
 ## Executive ruling
@@ -62,7 +64,7 @@ No source located by the cutoff collapses those four moments into one universal 
 
 SWIFT says access is restricted to regulated institutions and verified entities, rules governing commitments and settlement are defined, and governance is shared among participating institutions. SWIFT also says it is not the money issuer, custodian, settlement agent or financial market infrastructure.
 
-The public ledger rulebook, executed participation form, pricing object, failure/reversal provisions and node/control schedule were not located. The operative constitution may be assembled through the SWIFT General Terms and Conditions, a Swift Solution rulebook, ordering records, activation notices, participant agreements and restricted MySwift Knowledge Centre material.
+The separate retail payments Scheme rulebook is not this blockchain ledger's rulebook. The public ledger rulebook, executed participation form, pricing object, failure/reversal provisions and node/control schedule were not located. The operative constitution may be assembled through the SWIFT General Terms and Conditions, a Swift Solution rulebook, ordering records, activation notices, participant agreements and restricted MySwift Knowledge Centre material.
 
 Source: [SWIFT — a future built on trust](https://www.swift.com/payments/payment-innovation/blockchain-based-ledger/future-built-trust).
 
@@ -71,6 +73,22 @@ Source: [SWIFT — a future built on trust](https://www.swift.com/payments/payme
 The public legal-site and version audit did not locate a ledger-named change in the ordinary website terms or a public ledger participation agreement. That negative finding does not prove the participant terms are unchanged: product-specific and highest-precedence documents can sit in a rulebook, order, quotation, click-through acknowledgement or controlled customer environment.
 
 The safe statement is **no public ledger-specific terms object located**, not “no terms changed.”
+
+The edition distinction matters: `sgtc/5.0` is the **1 December 2020** edition;
+the **1 September 2025** edition replaces the **1 August 2024** edition. The
+saved audit used SWIFT's published change table and did not obtain an exhaustive
+2024-to-2025 official redline. The change table did not identify a ledger-specific
+settlement amendment; timing near the ledger announcement does not establish one.
+
+The saved SGTC reading separates the SWIFT-to-bank service contract from direct
+customer-to-customer arrangements under a Solution rulebook. An executed order
+can outrank general terms; incorporated documents and restricted amendment notices
+can matter even when the public legal page does not change. Record classification
+and retention also affect claims: the published terms distinguish invoice claims,
+message/file retrieval periods and other claims. The ledger record's classification
+was not established, so a general claims clock cannot simply be assigned to it.
+
+Sources and exact clause/version limitations: legal/version audit and contract and retrieval dossier.
 
 ### 6. Belgian law creates the strongest disclosure route
 
@@ -85,15 +103,29 @@ The most relevant statutory hooks are:
 - **Article 71:** public, non-discriminatory access and orderly suspension/exit criteria;
 - **Article 73:** public key rules and procedures, clear service descriptions, rights and obligations, supporting documentation and per-service fees.
 
+Article 80 also concerns records retained for supervision; a later NBB regulation may specify records and a period up to ten years. This does not establish a universal ten-year ledger retention period. The saved operator analysis separates Management Board, Supervisory Board and advisory Council changes from unknown ledger-validator or participant voting rules, and separates operator continuity resources from settlement liquidity or protection against token-principal losses. Detailed evidence: operator governance and statutory analysis.
+
 The law does not guarantee public disclosure of every bilateral contract, smart contract, security control or node configuration. It creates a statutory route to the public core of the service constitution if the ledger is within the regulated service perimeter.
 
-Sources: [Belgian Law no. 2025004515](https://refli.be/fr/lex/2025004515); [SWIFT Annual Review 2025](https://www.swift.com/sites/default/files/files/2025-swift-annual-review_v08-1.pdf); [Reading the Charter — SWIFT](../sources/reading-the-charter-swift-40d398f6fc61.html).
+Sources: [Belgian Law no. 2025004515 — Refli mirror](https://refli.be/fr/lex/2025004515); [SWIFT Annual Review 2025](https://www.swift.com/sites/default/files/files/2025-swift-annual-review_v08-1.pdf); [Reading the Charter — SWIFT](../sources/reading-the-charter-swift-40d398f6fc61.html).
 
-### 7. The public post is an architecture statement, not a new legal state
+### 7. Technology attribution and standards are separate from deployment
 
-On 20 July 2026 at 10:01 UTC, SWIFT said its approach differs because it extends infrastructure already trusted by its member community and is designed to help the existing ecosystem evolve rather than replace it. That confirms the incumbent-orchestrator strategy. It does not promote the ledger beyond “ready for initial use / pilots preparing.”
+The September 2025 announcement names Consensys for the conceptual prototype.
+The March 2026 account identifies a Besu/EVM implementation. Those facts do not
+identify the production integrator, host, auditor, validator roster, consensus
+settings or upgrade authority. Besu capability does not prove SWIFT's chosen
+configuration, public Ethereum settlement, or ETH use.
 
-Event: 2026-07-20-1001 - Why is Swifts approach to blockchain different.
+SWIFT's earlier Fabric nostro-reconciliation experiment and Corda/gpi Link
+work are technical history, not components established for this Besu ledger.
+Likewise, its separate Chainlink CCIP interoperability experiments do not prove
+that CCIP is the new ledger's adapter. Recruitment material is evidence of
+advertised roles and responsibilities, not a disclosed deployment diagram.
+
+Sources: [2025 prototype announcement](https://www.swift.com/news-events/press-releases/swift-add-blockchain-based-ledger-its-infrastructure-stack-groundbreaking-move-accelerate-and-scale-benefits-digital-finance), [March MVP account](https://www.swift.com/news-events/news/swifts-blockchain-based-shared-ledger-progresses-mvp-implementation).
+
+Detailed capability, control, hiring and lineage evidence: technical annex.
 
 ## Control architecture
 
@@ -112,6 +144,23 @@ HSBC is the only bank in the announced cohort located in this pass expressly con
 
 Citi Token Services, DBS Treasury Tokens, Standard Chartered/Ant Whale balances, Lloyds Canton deposits, BNY digital cash, UBS Digital Cash and Kinexys-linked products are adjacent systems operated or used by cohort banks. Shared membership or technical compatibility does not establish that any is the bank's SWIFT adapter.
 
+The July 2026 pilot roster is ANZ, BNP Paribas, BNY, Citi, DBS, First Abu Dhabi
+Bank, FirstRand Bank Limited, HSBC, Itaú Unibanco, Lloyds Bank, Mashreq, MUFG
+Bank, OCBC, Standard Chartered, UBS, UOB and Wells Fargo. A brand-level roster
+does not resolve every contracting bank, branch, BIC, token issuer or node role.
+The earlier 34-name design-feedback cohort is a different population: 14 names
+reappear in the initial pilot cohort; Lloyds, Mashreq and UBS were not in that
+earlier named roster. Neither design membership nor omission establishes a
+bank's eventual transaction role.
+
+The bank objects also differ. Citi describes interbranch liabilities, BNY mirrored
+demand-deposit records, and HSBC its Tokenised Deposit Service. Lloyds's separate
+Canton transaction and Kinexys activity at other cohort banks do not identify
+their SWIFT adapters. These distinctions determine what an adapter must attest
+and which bank record controls; they cannot be reduced to a common bank token.
+
+Sources: [SWIFT pilot roster and HSBC quotation](https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure), [2025 design roster](https://www.swift.com/news-events/press-releases/swift-add-blockchain-based-ledger-its-infrastructure-stack-groundbreaking-move-accelerate-and-scale-benefits-digital-finance); complete participant/source matrix.
+
 The common SWIFT proposition must normalise legally different bank objects into a signed commitment with currency, amount, conditions, expiry and authority. The commitment schema—not Besu alone—is the interoperability control point.
 
 ## Weekend-liquidity and failure test
@@ -129,6 +178,25 @@ A useful non-SWIFT control landed on 9 July: Citi and Siam Commercial Bank annou
 Source: [Citi/SCB transaction](https://www.citigroup.com/global/news/press-release/2026/siam-commercial-bank-citi-24-7-usd-clearing-near-real-time-cross-border-payments-citi-token-services).
 
 ## Stablecoin boundary
+
+Three research tracks must remain separate: the bank-deposit payment ledger,
+digital-securities/cash interoperability trials, and standards/control development.
+In the separately reported January 2026 securities-lifecycle trial, BNP Paribas
+Securities Services and Intesa Sanpaolo acted as paying agents and custodians;
+SG-FORGE supplied the tokenized asset and EURCV. SWIFT coordinated DvP, interest
+and redemption across blockchain and conventional systems. That completed trial
+is stronger evidence than design participation, but it is not a completed
+transaction on this shared ledger or a recurring production service.
+
+SWIFT's standards work also distinguishes message fields, token identification
+and technical/legal finality from an asset's eligibility. ISO 20022 does not
+make a coin eligible; an issuer's multichain deployment does not establish the
+network, fee payer or native-token demand in a particular SWIFT transaction.
+The annex retains the July 21 GENIUS-proposal snapshot and five possible
+stablecoin-entry scenarios as dated context, not refreshed legal state or
+selected SWIFT architecture.
+
+Source: [SWIFT digital-bond/EURCV trial](https://www.swift.com/news-events/news/swift-takes-bold-steps-unlock-benefits-digital-finance-global-scale); stablecoin and standards evidence.
 
 No source located by the cutoff establishes a stablecoin as current SWIFT-ledger funding, collateral or settlement value. Tokenised deposits and payment stablecoins preserve different issuers, reserve/redemption structures, insolvency regimes, custody models, freeze powers and chain risks.
 
@@ -156,7 +224,12 @@ The first stablecoin could enter as **funding**, **collateral**, **settlement va
 | 5 | final cash settlement | external asset/system and finality event identified |
 | 6 | legal finality verified | rulebook covers irrevocability, reversal, record priority, default and loss |
 
-## Disclosure clocks
+## Dated disclosure calendar
+
+These dates were collected in the July 21 study. The September 3 wording
+correction did not recheck their outcomes. Past dates are research history;
+unrefreshed entries do not mean no development occurred. This table creates no
+automation or new canonical watch.
 
 | Date | Surface | Evidence target |
 |---|---|---|
@@ -167,7 +240,7 @@ The first stablecoin could enter as **funding**, **collateral**, **settlement va
 | 1 Oct 2026 | Belgian framework stated applicable to SWIFT | designation list, ledger classification, key rules, criteria, service description and fees |
 | 13 Oct 2026 | Citi Q3 results | CTS connection or another external-bank live case |
 
-## Exact promotion objects
+## Evidence needed to resolve the open questions
 
 1. NBB designation-list entry and effective date.
 2. Express NBB/SWIFT classification of the ledger service.
@@ -180,10 +253,42 @@ The first stablecoin could enter as **funding**, **collateral**, **settlement va
 9. Default, reversal, insolvency and loss-allocation rule.
 10. Stablecoin eligibility rule, if one is admitted.
 
-## Research judgment
+## Research interpretation
 
 The evidence does not establish a new universal final-settlement rail. It shows SWIFT moving beyond message transmission into shared execution/notary coordination while leaving issuance, custody, funding and final cash with banks and existing systems.
 
 The product's load-bearing object is therefore its constitution. Besu supplies a state machine. The rulebook determines whose promise counts, when the receiving customer can use it, what record wins and who carries the loss if the external settlement layer does not complete.
 
 Related: FINTECH_SWEEP_PAYMENT_ORCHESTRATORS · FINTECH_CRYPTO_CLAIM_AUDIT · [FINTECH_CRYPTO_TRANSITION_TIMELINE](../sources/fintech-crypto-transition-timeline-348aca1fff2f.html) · 2026-07-12 - The Private Stack — Who Owns the Gates · [The Clearing-House Transition](../sources/the-clearing-house-transition-14af0641f357.html)
+
+
+## Specialist evidence and research history
+
+This dossier maintains the shared explanation. Use the annexes for the distinct
+questions and evidence below; their original cutoffs remain in force.
+
+| Question | Saved evidence owner |
+|---|---|
+| What is disclosed about software, suppliers, control and lineage? | Technical architecture |
+| Which bank products and exact entity gaps are evidenced? | Participant map |
+| What could fund the interval, and what fails in the S0–S8 model? | Adapters and liquidity |
+| Which separate trials, assets, standards and ingress scenarios exist? | Stablecoin and standards map |
+| Which public legal editions and clause changes were actually examined? | Legal/version audit |
+| Which documents, access routes, retention and claims questions remain? | Contract retrieval |
+| Which legal, designation, governance and disclosure clocks differ? | Operator/Belgian law |
+| Which recurring claims were rejected or narrowed, and why? | Dated claim audit |
+| Which candidate scenarios and falsifiers were worth investigating then? | July 21 corridor hypotheses |
+| Which original dates and capture fields guided the investigation? | July 21 watch snapshot |
+| Which exact document requests were drafted? | Unsent request templates |
+| How did the first architecture explanation develop? | Initial July 21 synthesis |
+| Which detailed rankings and mechanisms supported the selective Chronicle landing? | [Retained Workbench activation study](../sources/swift-ledger-activation-dossier-2026-07-21-43b4c82f3551.html) |
+
+The first study introduced the four-clock explanation and corrected the SGTC
+edition label. The activation follow-up added contract-assembly retrieval,
+Belgian disclosure, bank-adapter and liquidity analysis. The targeted September 3
+correction clarified the service operator and pilot readiness. The September 7
+consolidation made this the maintained lead, removed the social-post paragraph,
+and retained the source studies and dated hypotheses. It also keeps **executed**,
+**recipient credited**, **final cash settled** and **legal finality verified**
+separate: evidence for a later stage is not a prerequisite for reporting an
+earlier evidenced stage.

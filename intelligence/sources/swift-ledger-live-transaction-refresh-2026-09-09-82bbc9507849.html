@@ -1,0 +1,132 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>SWIFT ledger — what has actually gone live? · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>SWIFT ledger — what has actually gone live?</h1><p class="deck">Source evidence cutoff: 2026-09-09T21:35:00-04:00 · Collection evidence cutoff: 2026-09-09</p><p><a href="swift-ledger-live-transaction-refresh-2026-09-09-82bbc9507849.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="swift-ledger-what-has-actually-gone-live">SWIFT ledger — what has actually gone live?</h1>
+<blockquote>
+<p>September 9 follow-up: Funding, binding commitments, cross-network liquidity and FX is the maintained four-question deepening, with the Siemens sequence, illustrative accounting and public-term gaps. Earlier dated findings retain their original cutoff.</p>
+</blockquote>
+<p><strong>Answer:</strong> SWIFT's shared ledger has progressed from readiness to bank-reported live transactions in a controlled rollout. The strongest newly located evidence includes named interbank pairings, HKD and USD payments, a dated weekend Singapore–New York payment, identified bank deposit systems, matching/netting, and a report of completed correspondent settlement. General commercial availability, recurring network volume and a publicly inspectable legal-finality constitution remain unestablished by these disclosures.</p>
+<p><strong>Scope:</strong> official SWIFT architecture and participant-bank disclosures available through September 9, 2026, 9:35 p.m. EDT. The later bank review covered all 17 roster participants and material adjacent programmes; it is not exhaustive coverage of every bank project or a fresh legal-regulatory review. Three agents supplied bank lanes; the lead reconciled material sources and the recovered BNP PDF. Publication dates below are not transaction dates unless explicitly stated.</p>
+<p><strong>Relationship to saved research:</strong> extend the existing <code>swift-shared-ledger</code> identity. The Chronicle's <a href="../sources/swift-ledger-activation-dossier-2026-07-21-43b4c82f3551.html">July architecture dossier</a> remains the detailed historical architecture/retrieval baseline, with its September 3 limited refresh. Its statement that completed transactions had not been established is now superseded by the evidence below. The later bank/partnership expansion is saved in the Workbench; this research pass did not update the Chronicle or build/install the app.</p>
+<h2 id="what-the-offering-does">What the offering does</h2>
+<p>SWIFT described initial readiness on <strong>July 9, 2026</strong>, with 17 banks preparing live pilots and broader availability to follow controlled activation. Customer availability can precede final settlement. That announcement alone was not transaction evidence. <a href="https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure">SWIFT readiness</a></p>
+<p>The disclosed architecture uses Hyperledger Besu, compatible with the Ethereum Virtual Machine. SWIFT operates workflow and commitment coordination; banks retain their environments, keys, assets, funding and settlement choices. Programmable corporate flows, FX payment-versus-payment and securities cash movements are described as capabilities the model can support, not universally available products. A separate retail payments scheme is a parallel initiative. EVM compatibility alone does not establish Ethereum-mainnet operation or ETH purchases. <a href="https://www.swift.com/news-events/news/swifts-blockchain-based-shared-ledger-progresses-mvp-implementation">SWIFT implementation</a></p>
+<p>SWIFT's liquidity explainer describes funding confirmed before execution and shared visibility of commitments. It supplies no measured reduction in liquidity buffers or public specification of the legal funding object. <a href="https://www.swift.com/payments/payment-innovation/blockchain-based-ledger/enabling-bank-liquidity-management-always-world">Liquidity explainer</a></p>
+<p>Its governance explainer restricts access to regulated institutions and verified entities and describes shared governance. SWIFT disclaims issuance, custody and settlement-agent/FMI roles. These are operator representations; the page is not an executed participant agreement or independent legal determination. <a href="https://www.swift.com/payments/payment-innovation/blockchain-based-ledger/future-built-trust">Trust explainer</a></p>
+<h2 id="the-operating-evidence">The operating evidence</h2>
+<table>
+<thead>
+<tr>
+<th>Publication</th>
+<th>Bank-reported result</th>
+<th>What remains bounded</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>August 19</td>
+<td>Standard Chartered and HSBC report their first live interbank transaction. HSBC TDS and Standard Chartered infrastructure recorded deposit obligations; SWIFT matched/netted them before external settlement. <a href="https://www.sc.com/en/press-release/standard-chartered-and-hsbc-execute-first-live-tokenised-deposit-transaction-on-swifts-blockchain-based-ledger/">Source</a></td>
+<td>Currency, precise endpoints, value and execution date are unspecified.</td>
+</tr>
+<tr>
+<td>August 26</td>
+<td>UOB and HSBC completed HKD cross-border transactions, using UOB's deposit infrastructure and HSBC TDS. Their obligations were matched/netted before settlement through existing systems. <a href="https://www.uobgroup.com/uobgroup/newsroom/news-releases/2026/uob-cross-border-transactions-on-swift.page">Source</a></td>
+<td>Exact geographic corridor and transaction dates unspecified; SGD/USD expansion was planned.</td>
+</tr>
+<tr>
+<td>September 2</td>
+<td>Citi reports completed USD transactions with FAB and OCBC and defines a July–December 2026 controlled proof-of-concept period. <a href="https://www.citigroup.com/global/news/press-release/2026/citi-services-pioneers-live-transactions-swift-ledger-fab-ocbc-redefine-always-on-global-payments">Source</a></td>
+<td>Separate Citi Token Services volume and clearing-client totals are not SWIFT-ledger metrics. Regional “first” claims have narrower scopes than Standard Chartered's August claim.</td>
+</tr>
+<tr>
+<td>September 2</td>
+<td>FAB confirms bilateral USD activity with Citi. Deposits stayed on bank balance sheets; SWIFT recorded commitments/liabilities without custody. FAB says separate interbank settlement completed through correspondent channels. <a href="https://www.bankfab.com/en-ae/about-fab/group/in-the-media/completes-tokenized-deposit-milestone-with-citi-swift-ledger">Source</a></td>
+<td>“At scale” is unquantified. No account-level route, settlement timestamp or legal-finality instrument disclosed.</td>
+</tr>
+<tr>
+<td>September 4</td>
+<td>BNP Paribas and HSBC report a completed Siemens corporate payment, EUR in France to GBP in the UK. SWIFT coordinated obligations; banks handled FX, funding and external settlement. <a href="https://cashmanagement.bnpparibas.com/sites/default/files/2026-09/POC_SWIFT_HSBC_BNP%20Paribas_PRESSRELEASE.pdf">Official PDF</a></td>
+<td>Exact execution day, amount, FX rate and finality timestamp not disclosed.</td>
+</tr>
+<tr>
+<td>September 7</td>
+<td>DBS reports a payment actually executed <strong>September 5</strong>, a Saturday, between Singapore and Citi's New York office, in USD, taking minutes. <a href="https://www.dbs.com/newsroom/DBS_and_Citi_partner_to_enable_instant_247_cross_border_USD_payments_with_tokenised_deposits">Source</a></td>
+<td>Amount, customer, exact latency, cost and external settlement clock absent. This replaces Citi's earlier prospective DBS status.</td>
+</tr>
+</tbody>
+</table>
+<p>The six pairings above involve <strong>eight named banks</strong>, a count derived from these disclosures, not a census of network activity. A public announcement remains participant-reported evidence, not independent transaction-log verification.</p>
+<h2 id="what-changes-in-our-understanding">What changes in our understanding</h2>
+<ol>
+<li><strong>Readiness → executed activity:</strong> the old blanket absence of completed transactions is stale. The August announcements predate the September 3 architecture-only check; its limited scope explains the missed development.</li>
+<li><strong>Generic compatibility → named adapters:</strong> Standard Chartered/HSBC and UOB/HSBC identify the bank deposit environments. Shared membership alone was weaker evidence.</li>
+<li><strong>Possible netting → reported matching/netting in named cases:</strong> the bank releases strengthen the implemented-function evidence. They do not disclose enforceability, multilateral netting rules or quantified savings.</li>
+<li><strong>Unspecified external settlement → a reported correspondent settlement:</strong> FAB identifies completion and channel class. That does not provide every transaction's finality event or loss rules.</li>
+<li><strong>Weekend promise → a dated weekend example:</strong> DBS supplies the clearest execution date, endpoints, currency and coarse duration in this set.</li>
+</ol>
+<h2 id="observatory-interpretation-incumbent-banks-absorb-the-new-machinery">Observatory interpretation: incumbent banks absorb the new machinery</h2>
+<p>Our <a href="../sources/route-anchor-inventory-working-thesis-2026-08-31-f672ae7d7c8b.html">Route–Anchor–Inventory thesis</a> asks which functions move and which institutions still define the claim and carry the risk. This case now supplies operational evidence for that question.</p>
+<p>The working interpretation is that banks are making their deposit liabilities easier to coordinate across institutions. A shared state can support payment execution while bank books, bank credit and settlement relationships continue to matter. SWIFT gains a coordinating role beyond sending independent messages. The evidence supports incumbent adaptation and a division of functions; it does not establish central-bank displacement or quantify market-share migration.</p>
+<p>The unresolved economic question is <strong>who funds the interval between customer availability and final interbank discharge, on what terms, and at what cost?</strong> Upfront funding and matching may reduce uncertainty, but only actual balances, limits, collateral, settlement timing and failure rules reveal the liquidity burden. A useful stress test would follow a failed external settlement after customer funds became usable.</p>
+<p>No reviewed transaction establishes a required XRP, LINK, ETH, stablecoin or CBDC leg. That bounded finding neither rules out future integrations nor converts another bank/network relationship into a selected SWIFT route. Network utility, operator revenue and demand to hold a native token require separate evidence.</p>
+<h2 id="remaining-source-gaps-and-return-questions">Remaining source gaps and return questions</h2>
+<ul>
+<li>Public rulebook, pricing, participant eligibility details, operative netting/finality provisions and loss allocation were not established by this refresh. Restricted MySwift material was not accessed; the prior legal dossier was not exhaustively recertified.</li>
+<li>General availability, recurring customer usage, amounts, costs, measured liquidity savings and corridor-by-corridor settlement clocks require new operating disclosures.</li>
+<li>Citi–UOB and UOB's planned SGD expansion remain unverified here; absence of a located completion report is not proof of nonoccurrence.</li>
+<li>The previous BNP/HSBC/Siemens retrieval gap is resolved by its official September 4 PDF; the payment is now included above.</li>
+<li>SWIFT's product explainers include video objects; no video transcript was inspected. Search/open snapshots of its news index were inconsistent. This pass does not certify that no September 9 announcement exists.</li>
+</ul>
+<p>Update the existing Sibos return to seek operating scale, contracts, funding and failure details rather than waiting for a first transaction already reported. This is a saved research return, not a new automation or watch-calendar change.</p>
+<h2 id="accounting-companion">Accounting companion</h2>
+<p>Saved accounting walkthrough and Crypto Hub rule overlap preserves the September 9 explanation, adds explicitly illustrative journal entries and maps the questions to the existing Hub process layers.</p>
+<h2 id="all-bank-and-adjacent-research-companion">All-bank and adjacent research companion</h2>
+<p>All 17 banks, testing, partnerships and linked research expands the roster audit, resolves BNP/HSBC/Siemens, and separates earlier SWIFT experiments from Canton, Chainlink, Kinexys, Partior, Agorá and other bank projects. Nine roster banks have no completed shared-ledger receipt located by this cutoff.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

@@ -1,6 +1,6 @@
 # Federal Science Operating System — control-surface map
 
-**As of:** 2026-08-17
+**As of:** 2026-08-17; September 7 correction to the fusion deadline’s statutory attribution only
 **Status:** analytical synthesis over the separate factual spine  
 **Thesis label:** proposed constitution of an AI-native scientific-industrial economy
 
@@ -210,7 +210,7 @@ states behind this synthesis.
 | Speed-to-power | materials, neutron, high-heat-flux, tritium, blanket, fuel-cycle and plant-integration infrastructure | existing, enhanced, under-construction, planned and gap-identified objects mixed in one roadmap | site, funding, construction authority, equipment, commissioning and completed test for each facility |
 | Scientific rails | AI-Fusion Digital Convergence Platform, American Science Cloud, codes, foundation and surrogate models, digital twins and autonomous control | RFA and named July 22 fusion selections make work packages concrete; all remain selections for negotiation | executed OTA/FWP, production access, standards, logged cross-resource job, physical experiment and traceable result |
 | Industrial translation | supply chains, industrial heats, magnets, lasers, diagnostics, remote maintenance and codes/standards | milestones and desired capabilities | qualified domestic production, accepted code or standard, repeat order and delivered component |
-| Regulation | ADVANCE Act definitions/deadline; NRC proposal; CFS-reported Massachusetts SPARC license; Tennessee framework and Type One initial Bull Run package | federal proposal, one research-machine license claim, effective state framework and unresolved project filing | operative records, federal final/effective rule and project-specific completeness, disposition, inspection and operating authorization |
+| Regulation | ADVANCE Act definitions; existing NEIMA section 103(a)(4) deadline, as amended; NRC proposal; CFS-reported Massachusetts SPARC license; Tennessee framework and Type One initial Bull Run package | federal proposal, one research-machine license claim, effective state framework and unresolved project filing | operative records, federal final/effective rule and project-specific completeness, disposition, inspection and operating authorization |
 | Market/grid | pilot-plant, interconnection, offtake and grid-delivery pathway | CFS has local approval, PPAs and a PJM application; Type One has a conditional TVA LOI; no operating plant | completed studies, executed interconnection agreement, installed generator, gross/net electricity, metered export and sustained delivery |
 
 ### Fusion operating architecture

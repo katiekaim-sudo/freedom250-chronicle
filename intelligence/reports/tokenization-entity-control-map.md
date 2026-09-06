@@ -19,23 +19,29 @@ objects; Securitize's affiliates remain separate regulated legal entities; and
 Wormhole remains an interoperability layer rather than an issuer, transfer
 agent, custodian or title authority.
 
-The registry currently contains **225 nodes, 259 typed relationships, 151 source
-objects, 19 governed ecosystem profiles, three governed process maps, nine
-governed asset traces, eight analytical lenses and eight operational clocks**.
+For the FCA's bounded 2026 UK market description, use the
+UK cryptoasset actor-and-flow baseline.
+It maps the FCA's role taxonomy, consumer access and custody co-location,
+settlement clocks, cross-border structure and October 2027 regime without
+creating new Hub entity relationships or treating brand-level survey responses
+as legal-entity market shares.
+
+The registry currently contains **280 nodes, 338 typed relationships, 318 source
+objects, 20 governed ecosystem profiles, three governed process maps, sixteen
+governed asset traces with process-role references, eight analytical lenses and eight operational clocks**.
 The profiles cover
 **Ripple/XRPL, Securitize, Ethereum, Hedera, Stellar, Canton, Solana, Avalanche,
 Chainlink, Bitcoin, DTC/DTCC tokenization, cash legs and tokenized bank money,
-Circle/USDC/Arc, Coinbase/Base/Tokenize, Algorand, XDC, IOTA/TWIN and bounded
+Circle/USDC/CPN/Arc/Tazapay, Coinbase/Base/Tokenize, Algorand, XDC, IOTA/TWIN and bounded
 Quant orchestration**, with **Wormhole** now visible as its own interoperability
 stack. Each follows a common walkthrough:
 steering, operation, execution, native asset, external asset authority, access,
 technical finality and legal settlement or remedy.
 
-The schema-v4 process layer answers a different question from an ecosystem
-profile or an asset trace: for each lifecycle stage, which exact ecosystem
+The schema-v4 process layer supplies the shared evidence for Process, Trace
+and Compare: for each lifecycle stage, which exact ecosystem
 **controls, operates, integrates or depends on** the relevant rail? The three
-initial maps are **Tokenization, Stablecoins, and FX & cross-border**. Each uses
-ten readable macro stages backed by the deeper claim, authority, admission,
+maps are **Tokenization (14 stages), Stablecoins (13), and FX & cross-border (12)**, backed by the deeper claim, authority, admission,
 funding, instruction, execution, clearing, technical-state, authoritative-record,
 cash, finality, posting, servicing, correction, default, backstop and proof
 families. Every visible role references existing governed nodes, relationships
@@ -70,6 +76,22 @@ collateral. Canton separately records one completed Treasury-for-USDCx cash-leg
 event while leaving USDCx issuer and redemption terms unresolved. Neither
 single-event receipt establishes a production corridor or general service.
 
+Circle's September 4 definitive agreement to acquire Tazapay is mapped as
+**pending control**, not current ownership. The live operating relationship came
+first: Tazapay was already a CPN Beneficiary Financial Institution converting
+received stablecoin into local fiat and paying through local bank rails. The map
+now separates Circle Internet Group, the actual purchaser Taurus Acquisition
+Inc., CTS-operated CPN, Tazapay Pte. Ltd., Tazapay Canada Corp.'s exclusive
+stablecoin on/off-ramp role and Tazapay's local payout stack. If the transaction
+closes, Circle would internalize a regulated last-mile adapter; it would not
+collapse the exact licences, bank books, local payment systems, USDC issuer or
+beneficiary-finality obligations into one entity. The $400 million all-stock base
+price is adjustable and the expected 2027 close still requires MAS approval and
+other conditions. Circle's reported $25 billion annualized volume, 60-plus
+partners, 100-plus payout markets and roughly 60% stablecoin-including volume are
+aggregate company claims as of July 31, not audited USDC-only or corridor-level
+measurements.
+
 The SEC proposal-overlap view makes the proposed
 accountability sequence inspectable from issuer and recordkeeping transfer
 agent through the authoritative master securityholder file, linked systems,
@@ -78,34 +100,125 @@ The network view separates protocol governance, operators, execution layers,
 native-token economics and named product connections rather than collapsing a
 company, network and token into one object.
 
+## Accounting companion — September 9
+
+SWIFT accounting walkthrough and rule overlap explains issuer, custody, funded commitments, interbank obligations and settlement using an illustrative Saturday payment and journal entries. It maps to the existing Process/Trace distinctions and preserves each rule's scope. The interactive **Accounting** mode now projects these questions across all existing process-role records, with seven layers, SWIFT/comparison and ecosystem filters, primary sources, links to Process/Explore, and an adjustable illustrative journal example. SWIFT also has its own Explore profile and Trace path.
+
+## Question-led Hub home and Transaction X-ray — September 15
+
+The generated Hub now opens on a question-led home instead of treating ten
+different instruments as a flat room list. The existing rooms are grouped by
+the job they perform:
+
+- **Follow something moving:** Walk, Transaction maps, Steps & rights and
+  Debits & credits.
+- **See the whole system:** Current stack map, Crypto map and Whole hub.
+- **Prove authority or control:** Permissions & players (the former Evidence
+  label) and Legal process.
+- **Cross-cutting lens:** Liquidity & collateral.
+
+Share, Dollar and Fund are now persistent route contexts across the compatible
+rooms. Their existing route and step IDs already aligned; the interface carries
+the selection rather than creating a new transaction model.
+
+**Transaction X-ray** is the joined transaction instrument in this wave. At
+each existing route step it joins five independently owned layers: action and movement; right
+and authoritative record; books and cash; authority and permission; and
+correction, failure and remedy. The optional crypto comparison uses the existing
+Steps & rights classification and books overlay. X-ray is a presentation join,
+not a transaction receipt, new source owner or claim that technical movement,
+legal title, accounting entry, cash discharge and remedy share one clock.
+
+## Tracked Systems Field Guide — September 15
+
+The generated Hub now includes a plain-language **Field Guide** for all 20
+tracked technology ecosystems. It is a reading layer over the same governed
+registry and sources, not a second crypto research store. Each profile answers:
+
+- what the object actually is;
+- why it matters to this investigation;
+- how it works in a short sequence;
+- what it controls and does not control;
+- where it attaches to banks, markets, records and cash;
+- what makes it different, with a required boundary on that distinction;
+- its observed state, next evidence to watch and a **Do not confuse** list.
+
+Differentiators are labeled **meaningful**, **contextual** or **not
+established**. Those labels describe the strength of the architectural or
+operating distinction in the saved evidence; they are not rankings, investment
+views or proof of adoption, legal authority, production scale or token value
+capture. The entrance preserves three especially important separations:
+Ripple company / XRPL / XRP / RLUSD; Securitize's regulated operating entities
+versus Ethereum execution; and Solana network versus SOL native asset.
+
 ## Read order
 
 1. `TOKENIZATION_ENTITY_RELATIONSHIP_REGISTRY_2026-09-01.json` — editable
    node, relationship, source, ecosystem and lens registry.
-2. `outputs/Tokenization Entity and Control Map.html` — generated interactive
+2. `technology_field_guide.json` — the 20 governed plain-language profiles,
+   required differentiators and source joins.
+3. `outputs/Tokenization Entity and Control Map.html` — generated interactive
    projection used by the Observatory.
-3. `generate_tokenization_entity_map.py` — deterministic builder and structural
+4. `generate_tokenization_entity_map.py` — deterministic builder and structural
    validator.
 
 The stable Observatory route is `obs-ch`. The Workbench registry remains the
 editable evidence owner; the app view is a generated projection and must not be
 edited independently.
 
-Use **Explore** to open one explicit end-to-end ecosystem stack, **Process** to
-compare stage-by-stage infrastructure coverage across companies and networks,
-**Compare** to add objects and inspect direct or shared surfaces, **Trace** to follow one
-governed asset or claim from issuer through ledger, cash and remedy, and **Full
-map** to see the entire field. The view menu isolates the SEC proposal overlap,
-legal control, products and flows, cash-leg comparison, network architecture,
-capital and influence, or all relationships. The separate **Operational clock**
-filter distinguishes proposed, announced, planned, pilot/test, limited
-production, live production, current operating and historical objects. **Refine
-& key** explains node lanes, relationship lines and clock dots. Select any
-relationship to inspect its exact claim, date, primary source and overclaim
-boundary.
+The Hub opens in **Process**, with the selected lifecycle's numbered stages in
+registry order. The **Follow the process** strip shows sourced-role counts and
+evidence gaps; click a stage or use **Exact stage** to inspect that step across
+systems. **All steps** restores the full lifecycle. Its arrows show analytical
+sequence, not a verified transaction route or movement of money.
+
+**Process**, **Trace** and **Compare** use the same stage order, role records,
+research cards and flow renderer:
+
+- **Process** aligns all mapped ecosystem rows for the selected process.
+- **Compare** shows only the systems checked in **Systems to compare**. A shared
+  object does not automatically add other ecosystems. Select the process and
+  compare the same exact step, or retain all steps for a whole-process view.
+- **Trace** shows only the curated coverage records referenced by the selected
+  asset or claim path. It follows process stages rather than structural lanes.
+  Where a trace spans several processes, the Process selector offers its mapped
+  choices. The sidebar retains the walkthrough, mapping limits and documented
+  relationships; a trace is not proof of one continuous live transaction.
+
+**Follow a technology or object** narrows these three modes to records that
+explicitly reference that object. It does not assign every ecosystem function
+to its coin, software or network. The selected process and exact stage persist
+between compatible views; explicit comparison choices are retained. An object
+filter resets to all objects when the new scope has no role for it. Rows retain
+**No mapped role** or **Hidden by filters** cells so an evidence gap can be
+distinguished from a filtered result.
+
+**Explore** and **Full map** remain structural relationship views. Explore opens
+one ecosystem's organizations, authorities, operators, products, networks and
+market rails; Full map shows the whole relationship field. These columns classify
+objects and do not represent transaction order. **Compare this system** opens
+explicit system comparison; **Compare this step** on an object's researched role
+opens its exact process stage. Process cards can return to the relevant ecosystem
+structure without creating a second version of the evidence.
+
+**Accounting** remains a separate grouped lens over those same process records,
+with the illustrative journal walkthrough. Its seven broad questions are not
+interchangeable with exact lifecycle steps. Use **See process role** to open the
+matching process and stage for precise comparison.
+
+The structural view menu isolates the SEC proposal overlap, legal control,
+products and flows, cash-leg comparison, network architecture, capital and
+influence, or all relationships. **Operational clock** distinguishes proposed,
+announced, planned, pilot/test, limited production, live production, current
+operating and historical records. **Find** and the clock filter apply to the
+visible mode. **Refine & key** explains structural lanes, relationship lines,
+process roles and clock dots. Select a structural relationship to inspect its
+claim, primary sources and overclaim boundary; open a process card's **Research**
+for its finding, evidence limits and sources.
 
 The wider factual analysis remains in:
 
+- `CIRCLE_TAZAPAY_ACQUISITION_AND_LOCAL_RAILS_MAP_2026-09-08.md`
 - `../Transfer Agent Modernization Proposal 2026-09-01/SEC_TRANSFER_AGENT_MODERNIZATION_RECORD_CHAIN_AND_CONTROL_MAP_2026-09-01.md`
 - `../RIPPLE_XRP_INVISIBLE_CONVERSION_LAYER_2026-08-31.md`
 - `../RIPPLE_INFRASTRUCTURE_RELATIONSHIP_SWEEP.md`
@@ -113,7 +226,16 @@ The wider factual analysis remains in:
 
 ## Boundaries
 
-- Evidence cutoff: **2026-09-02**.
+- Evidence cutoff: **2026-09-09 for SWIFT; other evidence retains its existing dates**.
+- Circle and Taurus do not control Tazapay before closing. The signed agreement
+  remains subject to MAS and other approvals and closing conditions; it does not
+  transfer Tazapay licences, bank relationships, customer contracts or local
+  payment-system control. Tazapay's existing CPN role remains a separately live
+  partnership.
+- Tazapay Pte. Ltd.'s Singapore MPI licence does not include Digital Payment
+  Token service. Tazapay identifies Tazapay Canada Corp. as the exclusive group
+  entity providing stablecoin payment and conversion services. Neither entity
+  issues USDC or controls its reserves or redemption terms.
 - SEC Release 34-106246 / S7-2026-30 is a **proposal**, not a final rule.
 - A registration describes the named legal entity and permitted role; it is not
   approval of every affiliate, product, chain or transaction.

@@ -1,6 +1,6 @@
 # Military Modernization — Research Package
 
-**Status:** `pending`  
+**Status:** `current`  
 **Cutoff:** 2026-07-15  
 **Scope:** the command, data, communications, space, AI, autonomy, continuity and acquisition architecture of the U.S. military  
 **Method:** primary-source factual spine first; synthesis and vault routing kept separate
@@ -106,6 +106,10 @@ Keep this full package in the Observatory research workspace. Promote only discr
 
 General speeches, exercises without a state change, vendor marketing and broad budget rhetoric stay in the source bench.
 
-## Next phase after this package
+## Read the joined policy and sustainment research
 
-The next useful expansion is **contested logistics and the military industrial metabolism**: fuel, power, ports, sealift, prepositioned stocks, maintenance data, additive manufacturing, microreactors, munitions capacity and the financial/contract rails beneath mobilisation. That should be a separate factual package, joined to this one through the sustainment layer rather than folded into it.
+The Arsenal policy section in the transition timeline reconciles ten original filings on September 7, 2026. It keeps their questions about demand, procurement, transfers and supplier conditions beside the saved command-and-control evidence. This targeted addition does not change the broader July 15 implementation cutoff.
+
+The complementary Contested Logistics package now follows fuel, power, ports, lift, maintenance, munitions capacity and the financial arrangements beneath mobilization. Its question is how capability moves and remains usable. Read the two studies together through the sustainment layer.
+
+The same transition timeline also joins six original defense-innovation questions: software acquisition, security review, quantum evaluation, cyber competition results, counter-drone procurement and research solicitations. Its September 7 review identifies the official counterparts behind historical captures and distinguishes measured results from future delivery.

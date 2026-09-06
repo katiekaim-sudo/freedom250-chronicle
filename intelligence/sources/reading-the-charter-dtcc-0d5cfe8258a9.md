@@ -83,4 +83,4 @@ DTC/NSCC/FICC are private companies the state has quietly decided it cannot let 
 > 1975 - Securities Exchange Act §17A — National System for Clearance and Settlement (15 U.S.C. §78q-1) (current, verbatim)
 > 2010 - Dodd-Frank Title VIII — Payment, Clearing, and Settlement Supervision Act (12 U.S.C. §§5461-5472) (current, verbatim)
 > 2012 - DTC Public Status Statement & FSOC SIFMU Designation (verbatim excerpts)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

@@ -86,4 +86,4 @@ The CFTC is a five-headed committee-creature, not a king — staggered five-year
 > 1922 - Commodity Exchange Act §16 Commission Operations, Funding (current codified, verbatim)
 > 1936 - Commodity Exchange Act §1a Definitions — commodity, swap, future delivery (verbatim, partial)
 > 1974 - Commodity Exchange Act §2 (current codified, verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

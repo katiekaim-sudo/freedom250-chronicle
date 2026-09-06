@@ -1,11 +1,10 @@
-> This research edition omits the original’s separate astrological passages and local app controls. The full original remains in the private Observatory. Government, monetary and institutional interpretations retain their original status and dates; this is not a fresh factual audit.
-
 > Source created: 2026-07-11
 
 # Treasury–Fed institutional money state — factual transition timeline
 
-Updated: 2026-08-02
-Status: working factual spine, first full institutional sweep  
+Original institutional-sweep header: 2026-08-02  
+Bounded maintenance: 2026-09-07 — account-clock correction, unsupported Ripple row disposition and charting-method custody; individual entries retain their source dates.  
+Status: maintained factual spine; coverage varies by entry  
 Primary period: 2025–2026  
 Companion records: [Federal Reserve Restructuring — Factual Timeline](../sources/federal-reserve-restructuring-factual-timeline-4d78a4e48145.html) · [Clearing-House Transition — Factual Timeline](../sources/clearing-house-transition-factual-timeline-6595f41e3831.html) · [Federal Reserve Financial Constitution — Source Document](../sources/federal-reserve-financial-constitution-source-document-203118d0ec33.html)
 Institutional control map: [Treasury and IRS — Entity and Authority Map](../sources/treasury-and-irs-entity-and-authority-map-6ed2d06c2948.html)
@@ -34,7 +33,7 @@ It is deliberately broader than the Department of the Treasury and the Federal R
 - `Occurred` means the dated action happened. `Proposed` means it remained subject to approval. `Scheduled` is a future deadline. `Public position` is not adopted policy.
 - Time is included only when the source states it. Otherwise it is `not publicly stated`.
 - Place distinguishes a legal/regulatory locus from a distributed technical operation. Washington, D.C. is used for a federal rule or order; the relevant Reserve Bank city is used for a regional-bank action; distributed payment launches are identified as such.
-- A proposed charting anchor is a convention, not a historical fact. Exact filing, vote, operation, or speech times should supersede a noon chart.
+- Preserve source-stated filing, vote, operation and speech times. An unavailable time remains unknown; do not substitute an assumed time as historical fact.
 - System-wide Federal Reserve actions are not repeated twelve times. Each Reserve Bank receives its own entry when it acts independently, operates a distinct facility, approves an account, or publishes a materially distinct position.
 - Routine rate decisions, ordinary Treasury auctions, ordinary sanctions packages, and ordinary enforcement cases are excluded unless they change institutional authority, operating rails, approved claim types, or the architecture of the transition.
 
@@ -157,7 +156,7 @@ FICC, NSCC, DTC, OCC, ICE Clear Credit, and CME Securities Clearing are maintain
 | 2026-02-23 | Not stated | Washington, DC | Proposed | Board | Bank supervision | Board proposed codifying removal of reputation risk from its supervisory framework. | [Federal Reserve](https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260223a.htm) |
 | 2026-02-25 | Not stated | Washington, DC | Proposed | OCC | Stablecoins | OCC published its principal proposed GENIUS framework covering issuer activities, reserves, redemption, supervision, custody, capital, applications, and foreign issuers. | [OCC Bulletin 2026-3](https://occ-gov.cms.awsdev.treasury.gov/news-issuances/bulletins/2026/bulletin-2026-3/) |
 | 2026-03-02 | Not stated | Washington, DC | Proposed | OCC | Stablecoins | Federal Register published OCC's GENIUS implementing proposal. | [Federal Register](https://www.federalregister.gov/documents/2026/03/02/2026-04089/implementing-the-guiding-and-establishing-national-innovation-for-us-stablecoins-act-for-the) |
-| 2026-03-04 | Account approval time not stated | Kansas City, MO | Occurred / one-year approval | Kansas City Fed; Kraken Financial | Reserve Bank account gate | Kansas City Fed approved a one-year limited-purpose account for Kraken Financial under Tier 3 of the Board's Account Access Guidelines. | [Kansas City Fed](https://www.kansascityfed.org/newsroom/2026-news-releases/federal-reserve-bank-of-kansas-city-approves-limited-account/) |
+| 2026-03-04 | Announcement time not stated | Kansas City, MO | Occurred / approval announcement | Kansas City Fed; Kraken Financial | Reserve Bank account gate | Kansas City Fed publicly announced approval of a limited-purpose account under Tier 3 review. The May 8 disclosure describes an initial one-year term without stating its start. The July 25 saved Fed audit reports January 28 in database action/access-effective fields; those fields are separate from this announcement and do not establish first use or expiry. | [Kansas City Fed](https://www.kansascityfed.org/newsroom/2026-news-releases/federal-reserve-bank-of-kansas-city-approves-limited-account/) |
 | 2026-03-05 | Not stated | Washington, DC | Occurred / joint clarification | Board; OCC; FDIC | Tokenized bank assets | Agencies clarified that bank-capital treatment applies based on the underlying exposure and not merely because a security is tokenized. | [Federal Reserve](https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260305a.htm) |
 | 2026-03-12 / 03-16 | Production begins March 16; time not stated | New York Fed Desk | Occurred | New York Fed; SOMA; Treasury fiscal-agent operations | Operating platform | Desk moved SOMA Treasury outright operations and Treasury buybacks conducted as fiscal agent onto FedTrade Plus. | [New York Fed](https://www.newyorkfed.org/markets/opolicy/operating_policy_260312b) |
 | 2026-03-25 | Meeting time not entered | Washington, DC | Occurred | FSOC; Treasury | Systemic designation | FSOC changed its nonbank financial-company designation framework, raising the conditions for designation. | [Treasury / FSOC](https://home.treasury.gov/policy-issues/financial-markets-financial-institutions-and-fiscal-service/fsoc) |
@@ -199,7 +198,6 @@ FICC, NSCC, DTC, OCC, ICE Clear Credit, and CME Securities Clearing are maintain
 | 2026-06-25 | Not stated | Washington, DC | Proposed / request for comment | CFTC | 24/7 markets | CFTC requested comment on extending standard futures to 24/7 trading and on perpetual contracts. | [Federal Register](https://www.federalregister.gov/documents/2026/06/25/2026-12784/request-for-comment-on-the-extension-of-standard-futures-contracts-to-247-trading-and-on-perpetual) |
 | 2026-06-25 | Not stated | Washington, DC | Proposed / joint rule | Treasury; Board; OCC; FDIC; NCUA; CFPB; FHFA; CFTC; SEC | Data standards | Nine agencies proposed joint data standards under the Financial Data Transparency Act. | [Federal Register](https://www.federalregister.gov/documents/2026/06/25/2026-12787/financial-data-transparency-act-joint-data-standards) |
 | 2026-06-25 | Not stated | Alexandria, VA / Washington regulatory locus | Occurred / final rule | NCUA | Supervision | NCUA adopted a rule prohibiting use of reputation risk in supervision. | [Federal Register](https://www.federalregister.gov/documents/2026/06/25/2026-12856/prohibition-on-the-use-of-reputation-risk) |
-| 2026-06-26 | Filing/announcement time not stated | Washington, DC | Occurred / applications | OCC; Board; Ripple National Trust Bank | Charter and account gate | Ripple disclosed an OCC trust-bank charter application and a Federal Reserve master-account request. | [OCC digital-asset licensing page](https://www.occ.gov/topics/charters-and-licensing/digital-assets-licensing-applications/index-digital-assets-licensing-applications.html) |
 | 2026-06-29 | Court-order time not stated | Washington, DC | Occurred | Supreme Court; Board; Cook; President | Fed independence | Supreme Court action left Cook protected while litigation continued and stated that structural change to the Fed belongs to Congress under the applicable framework. | [Supreme Court](https://www.supremecourt.gov/) |
 | 2026-07-01 | Not stated | Washington, DC | Occurred / statistical publication | Board; Reserve Banks | Payments data | Board published initial findings from the 2025 Federal Reserve Payments Study. | [Federal Reserve](https://www.federalreserve.gov/newsevents/pressreleases/other20260701a.htm) |
 | 2026-07-07 | Decision date in corporate record | Washington, DC | Occurred / conditional approval | OCC; Connectia Trust / Sony | Charter gate | OCC conditionally approved Connectia Trust as a national trust bank. | [OCC Corporate Decision 1380](https://business.cch.com/BFLD/OCC-Corporate-Decision-1380-Connectia-Trust-07022026070826.pdf) |
@@ -291,7 +289,7 @@ dated changes.
 | OFAC | Joint stablecoin sanctions proposal represented | Add digital-asset blocking/burning guidance and systemic sanctions changes |
 | U.S. Mint | No qualifying transition entry yet | Sweep coin composition, bullion settlement, electronic-gold interfaces, mint modernization |
 | BEP | No qualifying transition entry yet | Sweep note-design, production, substrate, cash-demand, and modernization notices |
-| TTB | No qualifying transition entry yet | Sweep payment, excise, permitting, and rule modernization; entity is a forward progression watch in project |
+| TTB | No qualifying transition entry yet | Sweep payment, excise, permitting, and rule modernization |
 | CDFI Fund | April compliance action represented | Add program transfer, staffing, funding, certification, and award-system changes |
 | Federal Financing Bank | No qualifying transition entry yet | Sweep debt issuance, Treasury purchase authority, and federal-credit consolidation |
 | ESF | 2025 Argentina operation represented | Add monthly statements, swaps, SDR, gold certificates, and stabilization agreements |
@@ -322,9 +320,9 @@ dated changes.
 
 ---
 
-## 5. Non-occurred promotion criteria
+## 5. Evidence needed for later milestones
 
-This section is not an active queue. Live activation belongs in OPEN ITEMS and dated monitoring belongs in `99 - Templates/watch_calendar.json`.
+These are research questions and evidence milestones. Useful research can be saved and continued while an outcome remains unresolved. Project work is tracked in OPEN ITEMS and dated monitoring in `99 - Templates/watch_calendar.json`.
 
 Do not mark these occurred without a dated primary record:
 
@@ -353,3 +351,23 @@ Do not mark these occurred without a dated primary record:
 - distinct dated Boston, Philadelphia, Cleveland, Richmond, Atlanta, Chicago, St. Louis, Minneapolis, and San Francisco Fed actions that change the gate, rails, supervision, collateral, or money-like claims; standing accounting/governance roles are already covered in [Federal Reserve Financial Constitution — Source Document](../sources/federal-reserve-financial-constitution-source-document-203118d0ec33.html).
 
 ---
+
+## 6. Charting-method provenance
+
+The former charting conventions and dated event-selection judgments are preserved in Historical Treasury–Fed event charting guidance in Sky & Charts. The factual dates, places and source-stated times remain in this timeline.
+
+## 7. Dated corrections and source limits
+
+### 2026-09-07 — June 26 Ripple application row
+
+The former dated-action row below is withdrawn from the factual table because its cited OCC index does not establish the claimed Ripple disclosure or a Federal Reserve account request. The index checked September 7 lists June 26, 2026 against CBW Bank. That mismatch does not prove that no Ripple-related request was ever made.
+
+Preserved original row (superseded as evidence):
+
+```text
+| 2026-06-26 | Filing/announcement time not stated | Washington, DC | Occurred / applications | OCC; Board; Ripple National Trust Bank | Charter and account gate | Ripple disclosed an OCC trust-bank charter application and a Federal Reserve master-account request. | [OCC digital-asset licensing page](https://www.occ.gov/topics/charters-and-licensing/digital-assets-licensing-applications/index-digital-assets-licensing-applications.html) |
+```
+
+The [OCC conditional approval dated December 12, 2025](https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-actions/2026/ca1359.pdf) concerns proposed Ripple National Trust Bank, charter 25364, and an expected Federal Reserve Bank stock application. It identifies Standard Custody & Trust Company as a distinct subsidiary and RLUSD issuer. A charter decision and a stock application do not establish that subsidiary’s master-account request. The PDF’s 2026 publication folder is not the decision date.
+
+Private Monetary Stack claim audit, CA-09 owns the maintained claim disposition. Its prior database search is a dated saved observation: the September 7 review did not retrieve and re-search the Fed CSV, so it supplies no fresh absence finding or new current account status.

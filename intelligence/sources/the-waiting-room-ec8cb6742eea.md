@@ -1,113 +1,37 @@
-> Source date: 2026-07-12
+> Source date: 2026-07-12 · Source updated: 2026-09-07
 
 # The Waiting Room
 
-*The reading. The facts are next door, in [The Charter Queue — Factual Timeline](../sources/the-charter-queue-factual-timeline-a0d660b11c2d.html) — this note argues; that one only records.*
+**Question:** Who may act on money, and how do charters, courts, central-bank accounts and operating services interact?
 
-## The third room
+The original July reading used a closed-door thesis to compare new entrants with incumbent financial institutions. The factual comparison below preserves that question while incorporating the later evidence already saved in the research. September 7 is the consolidation date; individual decisions, database observations and company reports retain their own dates.
 
-The One Machine holds three timelines now, and it took building the third to see that they were always one question.
+## Permission is specific to an entity and an activity
 
-**Keep the Fed, Bind Its Hands** watches the state take the potency out of its own central bank — the shell kept, the powers named and split, the work moved into fixed rails. *The incumbent is unmanned.*
+A charter authorizes specified activities under a legal framework. A Reserve Bank account decision is a different act, with its own conditions. Access to particular services and actual use are further questions. A company announcement, regulator decision, effective date, account entry and first transaction may therefore describe different milestones for the same institution. Banking services can also be obtained through intermediaries; direct account access is not the only possible route.
 
-**The Bench and the Money** watches the courts refuse to open a new door — Custodia's discretion rule, Cantero's case-by-case standard, the CFPB kept as a starved shell. The bench draws perimeters; it does not hand out gates. *The applicants are turned away.*
+The maintained comparison is Private Monetary Stack — market access, with disputed claims resolved in Private Monetary Stack — claim audit. The [The Charter Queue — Factual Timeline](../sources/the-charter-queue-factual-timeline-a0d660b11c2d.html) preserves the dated original chronology and makes later corrections prominent. These are one evidence chain, not three independent confirmations.
 
-And now this. **The Charter Queue** watches the private bodies line up at the OCC and ask, one after another, for permission to exist. *The applicants wait.*
+## What changed the closed-door premise
 
-Three rooms. One question, asked of the incumbent, of the bench, and of the challengers: **who may act on the money?**
+Kraken's limited account is documented in the saved official record. The January 28 database date, March 4 announcement and May 8 terms describe different records; none alone establishes the first actual payment or unrestricted access. That evidence defeats the universal claim that no entrant obtained an account. It does not establish the same result for every charter applicant.
 
-## The door and the gate are not the same thing
+The comparison also preserves distinct cohorts. Paxos and BitGo appear active in the saved April 30 record; Circle's July 10 final-approval announcement is separate from evidence of opening. Anchorage's August 28, 2025 request remained pending in the database coverage through May 31, 2026. Those are dated observations, not a September-wide status census. Ripple's old June 26 application row is unsupported by the cited OCC index; CA-09 and the [Treasury–Fed Money State — Factual Timeline](../sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html) preserve the correction and original claim history.
 
-Everything in this record turns on a distinction the headlines will not make, so it must be made here, hard.
+A court case may affect the scope or review of access decisions, but its existence does not put all applicants in the same legal posture. Read the [Judicial Money Map — Source Document](../sources/judicial-money-map-source-document-d2f844afe3d8.html) for the actual litigation and its audit limits.
 
-**A charter is a licence to exist.** It says a legal person may act — may hold assets in trust, may take custody, may issue. The OCC has been handing these out at a pace with no precedent since the National Banking Act. Five in a single afternoon on the twelfth of December. Circle. Ripple. BitGo. Fidelity. Paxos. One agency, one day.
+## Absorption or a change in control?
 
-**An account is a licence to settle.** It is a line in the Federal Reserve's own book. It is the difference between owning a bank and being *in* the banking system — between having a shop on the street and having a key to the vault.
+The original competing lenses—incumbent absorption and a practical bypass—remain research questions. Test them against the legal and operating chain: who owes the holder, who keeps the authoritative record, who can redeem or freeze the instrument, whose account settles the transfer, and who bears a loss.
 
-And here is the whole of it:
+[Private Monetary Stack — Source Documents](../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html) and [Card Networks — Entity and Flow Map](../sources/card-networks-entity-and-flow-map-d2b978d0ade2.html) distinguish brand, issuer, network, custodian and contracting party. [DTCC Operative Constitution and Public-Bank Model — Source Document](../sources/dtcc-operative-constitution-and-public-bank-model-source-document-afab7d8d77b1.html) distinguishes DTC, its participants and the separate cash and securities obligations. A partnership, software integration or acquisition agreement does not itself transfer those rights or prove completion. This reading does not turn old company metrics into newly verified operating facts.
 
-> **Not one member of the cohort has a publicly confirmed Federal Reserve master account. Not one.**
+## Legal dates and operating evidence
 
-Circle has a final charter and no account. Paxos and BitGo are consummated, numbered, active — and have no account. Anchorage has been a chartered national bank for five years, was let off its supervisory leash clean in February, filed its request on the twenty-eighth of August 2025 — and **nine months later it is still marked pending**. Not denied. Not granted. *Pending.* Coinbase, Bridge, Ripple: conditional only, no authority even to open the doors. zerohash: applied, no answer. Kraken says it has an account and the Fed's own public database does not say so.
+DTC's July 15 limited-production report changes the old first-production question. The broader October launch remained a target in the saved evidence; a tokenized security transaction does not automatically prove an atomic cash leg or routine margin eligibility. The [Clearing-House Transition — Factual Timeline](../sources/clearing-house-transition-factual-timeline-6595f41e3831.html) owns that distinction and the scoped Treasury-clearing compliance dates. [2026-07-08 - The GENIUS Act, Cover to Cover](../sources/2026-07-08-the-genius-act-cover-to-cover-a84ed796d9b6.html) owns the separate statutory clocks. Their proximity is not evidence of a common legal start.
 
-The OCC hands out charters like candy. **The Federal Reserve hands out nothing.**
+The remaining questions are concrete: actual service use, continuing account conditions, issuer and reserve obligations, transaction finality, and insolvency remedies. Later evidence can answer them without preserving the old universal closed-door conclusion.
 
-So the charter queue is not a march through the wall. It is a **waiting room** — a long bench of the well-capitalised and the newly chartered, sitting outside a door that has not opened for any of them, holding numbered tickets, watching Custodia go in first.
+## Original reading
 
-## Which is why Custodia is now the whole story
-
-The vault has carried Custodia for a year as a Wyoming bank with a grievance. That reading is finished.
-
-Fourteen chartered or approved bodies are queued behind that question. When the Court disposes of the cert petition filed on the tenth of July — and the vault's registered call says the disposition lands in the **Fountain-chair window, the seventh to the ninth of November** — it will not be deciding one bank's fate. It will be deciding whether the door the entire private build is waiting at can be opened by anything other than the Federal Reserve's own say-so.
-
-That is a constitutional question wearing an accountant's suit. Congress writes the statute. The OCC issues the charter. The Court says what the statute means. And the Federal Reserve, alone, decides who settles — and has decided, so far, that nobody new does.
-
-**The castration story and the charter story are the same story told from the two ends of the same corridor.** The state is stripping its central bank of discretion in every room but one. In that one room the discretion is total, and it is the room with the money in it.
-
-## The annex, not the tunnel
-
-The vault's own reading needed correcting and this record corrects it. We said the middle crew was rerouting the Fed's rails — building a bypass. It isn't.
-
-Look at what the incumbents actually did while the crypto firms queued for charters.
-
-**The depository kept the book.** DTC's tokenization service immobilises the position, leaves the securities registered to **Cede & Co.**, mints tokens that represent *entitlements*, and treats its own scan of the wallets as part of **DTC's official books and records**. The chain is a delivery van. The ledger of record never left the building. And DTCC is not merely connected to the network carrying its tokens — it **co-chairs the foundation that governs it**, and it is an **investor in the company that builds it**.
-
-**The card networks made the money pluggable and kept the constitution.** Visa across nine chains, Mastercard across eight, five issuers named — and not one gram of membership, netting, fraud, dispute or acceptance authority has moved. The settlement asset became modular. The rulebook did not. And when Mastercard wanted the last missing piece, it did not launch a coin; it **bought the adapter** for $1.8 billion.
-
-**Swift built its own ledger rather than surrender the rail.** Seventeen of the world's largest banks, ready for initial use on the ninth of July — carrying **bank-issued tokenized deposits**. Not stablecoins. The guild defended its own money-form on its own infrastructure, using the message standard it already owns.
-
-**And the crypto firms are becoming banks.** Not the other way round. Paxos converted. Circle chartered. Coinbase applied. Ripple applied. Nobody is storming the castle. **They are all filling out forms to get a room in it.**
-
-That is not a tunnel under the wall. It is an **annex bolted onto the same house** — and the old owners are holding the key to the connecting door.
-
-## Whose money is it, and who can stop it
-
-Strip the technology away and ask the two questions that have decided every monetary quarrel in history: **whose promise is this, and who can break it?**
-
-The private stack's answer is that you almost certainly do not know.
-
-PayPal is the face of PYUSD. **Paxos** owns the reserves, the redemption and the freeze — and PayPal's own terms say it does not guarantee Paxos's performance and may stop supporting the coin whenever it likes. MoneyGram is the face of MGUSD; **Bridge** — which is Stripe — is the issuer of record and **M0** writes the mint-and-burn logic. Fiserv has been marketing FIUSD for thirteen months and the public record **still does not say who owes the money**.
-
-The one clean vertical is SoFi, and it proves the point rather than escaping it: SoFi Bank is charter-holder, issuer and brand at once — and the coin it issues **is not an insured deposit**. The same federally insured national bank will hand you two dollars with entirely different rights attached, and nothing at the counter tells you which one is in your hand.
-
-Beneath the whole garden of brands sit a handful of necks: **Paxos, Bridge, M0, Circle, Cross River, Lead Bank, Fireblocks, zerohash**. Twenty ledgers, five chokepoints. *More brands do not mean more independent pipes.* And freeze, burn, pause and claw-back are not hacks or exploits — the networks **advertise them as features**. The power to stop your money sits with the issuer, the custodian or the orchestrator. It never sits with you.
-
-This is the **Status Clamp** wearing a new coat. Money as the enforcement layer never needed a government ledger. It only needed an issuer with a pause button and a customer who never asked whose liability he was holding.
-
-## The collision in the second half
-
-Two clocks are about to strike in the same six months, and neither was set with the other in mind.
-
-**DTC will run its preliminary tokenization service in the second half of 2026** — quietly slipped from the first half, on a page nobody reads. The depository begins issuing token representations of the securities it holds.
-
-**And on the thirty-first of December the entire cash Treasury market must clear through a single clearinghouse**, over a year-end balance-sheet turn.
-
-The depository changes its bones in the same half-year the whole Treasury market is forced into one house. The Whole Money Story already named that quarter as the machine's riskiest turn — the quarter whose watchdogs were blinded first, the OFR cut, the FSOC re-sheathed, the PCAOB captured and then handed the audit of the very issuers the money law creates.
-
-And the sky the vault computed weeks ago does not move to accommodate any of it. **At noon in Washington on the thirty-first of December the Moon stands on the Fountain chair** — twenty-one degrees of Libra, the liquidity degree the 1863 Act, the 1913 Act and Volcker all sat down in — for the hours the old clearing world ends.
-
-The charter queue, the depository's first token, the collateral chain and the clearing mandate all resolve inside the same corridor. **The people's planet, on the money's chair, in the week the pipes are re-laid.**
-
-## Both poles
-
-The house rule says hold both, so:
-
-**This is a snapshot of a queue, not a verdict.** Every "the gate is shut" sentence above has an expiry date. One master account — to Anchorage, to Kraken, to anybody — and the reading inverts overnight. That is exactly why it belongs in the Ledger as a call rather than in the essay as a belief.
-
-**"The incumbents absorb" may only be the early innings.** You let the new rail in as an option; ten years later the option is the system. The vault should not mistake **who holds the rulebook today** for **who will hold it once the rulebook is rewritten around the new asset.** Absorption is sometimes how displacement happens — slowly, and then in the accounts.
-
-**And the simplest story still breathes.** A hundred firms racing for a charter because a charter is worth money is not a conspiracy. It is a gold rush with lawyers. The vault's answer stays what it has been: **grift and statecraft lay the same pipe** — and the pipe gets laid either way.
-
-## What would change the reading
-
-**Stronger** if: any cohort member gets a publicly confirmed Federal Reserve master account · Anchorage's nine-month request is granted · Custodia wins, or the Court takes the case · DTC's first tokenized entitlement settles against a *named* cash leg · a second, third and fourth conversion consummate and open for business.
-
-**Weaker** if: the Fed denies Anchorage outright and the queue keeps growing anyway (permission to exist without permission to settle, forever) · the DTC service slips again past the clearing mandate · Circle's charter opens but never takes reserve management · FIUSD never names an issuer · the first insolvency or mistaken transfer shows the tokens were never anything but a receipt.
-
-**Fatal** to the whole private-stack thesis if: the incumbents' absorption turns out to be complete — DTC tokenizes, the card networks settle in stablecoins, Swift carries the deposits, and **not one new legal body ever gets an account**. In that world nothing was rebuilt at all. The old system simply learned a new word, and the queue in the waiting room never moved.
-
-That is the honest null. Watch the door.
-
----
-
-*Reading, not record. Facts and sources: [The Charter Queue — Factual Timeline](../sources/the-charter-queue-factual-timeline-a0d660b11c2d.html). Company metrics throughout are self-reported and never promoted to fact. The Fountain-chair and December Moon positions are cited from [2026-07-08 - The Whole Money Story — A Full-Corpus Reading](../sources/2026-07-08-the-whole-money-story-a-full-corpus-reading-0b5b82bb67f1.html), where they were computed — nothing here was written from memory.*
+The complete original is preserved byte-for-byte in Money × Sky — historical Waiting Room, including its thesis, counter-reading, chart interpretation and timing expectations. Use [MONEY — READ FIRST](../sources/money-read-first-cb185a6531c5.html) and [2026-07-10 - The Money Crosswalk — Four Machines, Five Poles](../sources/2026-07-10-the-money-crosswalk-four-machines-five-poles-681e6f6b51ee.html) to follow the factual strands through the shared Research hub.

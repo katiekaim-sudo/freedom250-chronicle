@@ -1,26 +1,20 @@
-> This research edition omits the original’s separate astrological passages and local app controls. The full original remains in the private Observatory. Government, monetary and institutional interpretations retain their original status and dates; this is not a fresh factual audit.
-
-> Source updated: 2026-08-09
+> Source updated: 2026-09-07
 
 # MONEY — READ FIRST
 
-> ⚠ **Some bookmark notes carry claims a primary document kills.** Before you lean on any source note, check the register: Claim Corrections — Register (`04 - Synthesis/Claim Corrections — Register.md`). Rule of the house: **annotate, never delete** — a bookmark carrying a false claim is a true fact about what was being said.
+**Start in the Research hub.** Its topic readings, story braids and Machines lead into the same official-source library. The Machines provide perspectives and timelines; the linked studies explain the evidence and retain their original questions and source dates. This router holds no mutable counts or queue state; `_Claude-Context/VAULT_PRIMER.md` names those owners.
 
-**This is a router, not an essay.** It holds no mutable live state — counts, watch dates and queue state go stale. For a generated current summary, read `_Claude-Context/VAULT_PRIMER.md`; for authority, the canonical queue, watch calendar and status sources named there win.
-
-**What the money layer is, in one breath:** the pipes under the dollar are being rebuilt — who clears, who holds the collateral, who keeps the master account, who writes the fine print, and who gets to say no. Read it in this order and you will not guess.
-
----
+Check Claim Corrections — Register when a saved claim is disputed. A historical statement and the evidence correcting it can both be preserved without treating both as current findings. Social captures remain outside this Research library.
 
 ## Read in this order
 
-**1. The thesis — what the whole money story says**
-[2026-07-08 - The Whole Money Story — A Full-Corpus Reading](../sources/2026-07-08-the-whole-money-story-a-full-corpus-reading-0b5b82bb67f1.html) — *the one building, three crews. Start here; everything below is a wall of that building.*
-2026-06 - Meta-narrative 3 - The Monetary Reset — *the arc it sits in, if you need the frame.*
-The Monetary Chronicle — Method & Findings — *every redefinition of American money since 1790. Nothing just happens.*
+**1. Establish the factual object and its state**
+[Treasury–Fed Money State — Factual Timeline](../sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html) · [Clearing-House Transition — Factual Timeline](../sources/clearing-house-transition-factual-timeline-6595f41e3831.html) · Private Monetary Stack — market access — *legal authority, money and collateral, charters, account access and operating evidence. Follow each source's own cutoff.*
 
-**2. The crosswalk — how the same story moves through four machines**
-[2026-07-10 - The Money Crosswalk — Four Machines, Five Poles](../sources/2026-07-10-the-money-crosswalk-four-machines-five-poles-681e6f6b51ee.html) — *Money / State / World / Entity. Read this before you go looking for a fact, so you know which machine holds it.*
+**2. Read the joined question, then follow its strands**
+[2026-07-08 - The Whole Money Story — A Full-Corpus Reading](../sources/2026-07-08-the-whole-money-story-a-full-corpus-reading-0b5b82bb67f1.html) — *federal authority, private infrastructure and state alternatives; what the early thesis asked and what later evidence changed.*
+[2026-07-08 - The Whole World's Money — the World Ring Folded In](../sources/2026-07-08-the-whole-world-s-money-the-world-ring-folded-in-72614fd1fcac.html) — *the international comparison, with different money and legal objects kept distinct.*
+[2026-07-10 - The Money Crosswalk — Four Machines, Five Poles](../sources/2026-07-10-the-money-crosswalk-four-machines-five-poles-681e6f6b51ee.html) — *Money / State / World / Entity perspectives and routes into their maintained studies. These are ways through one Research hub.*
 
 **3. The banking agreements — the people's money, the fine print**
 [Bank User Agreements — Source Document](../sources/bank-user-agreements-source-document-b69017548c46.html) — *the legal person behind the brand, and which contract terms provably changed.*
@@ -50,7 +44,7 @@ DTCC Notice and Testing Clock Map — Source Document — *the dated public-evid
 [Judicial Money Map — Source Document](../sources/judicial-money-map-source-document-d2f844afe3d8.html) — *the litigation that controls, restrains or defines the transition. Note the audit flags in its header.*
 [The Judicial Watch — Factual Timeline](../sources/the-judicial-watch-factual-timeline-55de9addbe1e.html) — *the derived facts.* · [The Bench and the Money](../sources/the-bench-and-the-money-4ae20ac158de.html) — *the reading.*
 
-**6. The fintech/crypto adapters — the private builders, and the shut gate**
+**6. Private instruments, controllers and market access**
 [Private Monetary Stack — Source Documents](../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html) — *the company/network source index: who issues, routes, records, custodies, settles, tokenizes and supplies credit.*
 [Continuous Underwriting and Programmable Credit — Source Document](../sources/continuous-underwriting-and-programmable-credit-source-document-0b20967cc733.html) — *the
 live borrower-evidence, cash-control, collateral, GAAP and assurance boundary;
@@ -58,7 +52,7 @@ continuous data changes monitoring before it replaces conventional reporting.*
 [ENERGY INFRASTRUCTURE — READ FIRST](../sources/energy-infrastructure-read-first-2eb3c3598d3b.html) — *the joined turbine, project-finance,
 logistics, DLT, Genesis Mission and Iran shelf; use it when a physical state may
 change a credit, collateral or cash state.*
-2026-07-12 - The Private Stack — Who Owns the Gates — *the reading: the incumbents are **absorbing** the new rails, not being bypassed.*
+2026-07-12 - The Private Stack — Who Owns the Gates — *the dated incumbent-absorption thesis; use the source studies to test its claims.*
 Circle–IBM Blockchain Patent Portfolio — Disclosure Audit — *the Wave 0 SEC, assignment-record, “enterprise infrastructure,” and Maximo boundary.*
 Circle–IBM Patent Universe — Wave 1 Recovery — *the partial Wave 1 assignment API, ODP/PASDL gate, materiality/funding clocks, and candidate-only Maximo/EAM register.*
 Circle–IBM Patent Portfolio — Landscape and Cluster Map — *the controlling portfolio-scale view: official broad and conservative brackets, eight technical clusters, inventor-program chronology, Circle crosswalk and Maximo boundary.*
@@ -69,11 +63,7 @@ extension: stablecoin-funded cards, network settlement, wallet checkout, native
 POS, payout and platform infrastructure are separate objects and clocks.*
 [Card Networks — Entity and Flow Map](../sources/card-networks-entity-and-flow-map-d2b978d0ade2.html) · [Card Networks — Claim Audit](../sources/card-networks-claim-audit-033d2210abc5.html) —
 *exact controller/money/receipt map and the eighteen-claim correction ledger.*
-Card Networks — Money × Sky — *the research-only 14-anchor chart layer:
-reported/noon/midnight clocks, local + D.C. companions, 916 America where the
-canonical cache supports it, and no score or causal claim.*
-[The Charter Queue — Factual Timeline](../sources/the-charter-queue-factual-timeline-a0d660b11c2d.html) — *the applications.* · [The Waiting Room](../sources/the-waiting-room-ec8cb6742eea.html) — *the reading: the OCC hands out charters, the Fed hands out nothing.*
-[The Castration of the Fed](../sources/the-castration-of-the-fed-ed63e25e35fb.html) · [Keep the Fed, Bind Its Hands](../sources/keep-the-fed-bind-its-hands-00bfd07676a4.html) — *the same grammar, applied to the central bank.*
+[The Charter Queue — Factual Timeline](../sources/the-charter-queue-factual-timeline-a0d660b11c2d.html) — *the dated chronology and maintained corrections.* · [The Waiting Room](../sources/the-waiting-room-ec8cb6742eea.html) — *charter, account, services and actual use; the documented account evidence changes the old universal closed-door premise.*
 
 **7. Congress and Treasury — the pending legal gates and the collection machine**
 [Treasury Executive-Order Architecture — Source Document](../sources/treasury-executive-order-architecture-source-document-ab217095aed1.html) — *the joined
@@ -87,17 +77,14 @@ American Reserve Modernization Act — Legal Map — *the proposed statutory SBR
 Congressional Monetary Infrastructure — Cross-Committee Map · Entity & Bill Crosswalk — *which committee, bill and legal person owns each moving part.*
 [Treasury and IRS — Entity and Authority Map](../sources/treasury-and-irs-entity-and-authority-map-6ed2d06c2948.html) — *Secretary, Commissioner, CEO, IRS, Fiscal Service, CBP, ERS proposal and private adapters kept legally separate.*
 
-**8. The sky — method first, then the watch**
-Reading the Charts — START HERE — **mandatory** before any interpretive work. Motivation, not location. Both poles. To the root.
-**Watch dates and open calls:** `_Claude-Context/VAULT_PRIMER.md` and OPEN ITEMS. **Never** copy a date or a count out of prose — the Primer is generated; the prose is not.
+**8. Historical readings and Money × Sky**
+The complete original monetary story readings, including chart interpretation, are preserved in Historical Monetary Story Readings under Sky & Charts. Their factual derivatives stay at the familiar Research paths. Card-network chart work likewise belongs in Money × Sky. Astrology has its own method owners; it supplies no factual evidence to this library.
 
----
+## Reading the evidence
 
-## Three rules before you write a word
-
-- **Never type a number a script can compute.** Run `99 - Templates/check_vault.py`. A number in prose is a rumour.
-- **A press release is not a rule.** Two clocks: the *build clock* (founding → product → pilot → production) and the *legal operating clock* (application → approval → account access → effective date). An announcement moves the first while the second sits still.
-- **Preserve before delete.** Move to `_Holding/` with a tombstone. Never `rm`.
+- Distinguish the legal entity, instrument, authority and actual service. A brand name or token label is not enough.
+- Separate decision, publication, effective date, target, testing and observed operation. A press release may report a legal decision or an operating milestone; inspect what its underlying record actually establishes.
+- Keep original questions, sources and meaningful corrections accessible. A saved cutoff is a statement about coverage, not a restriction on later research.
 
 **9. Control of the federal group — sibling shelf (2026-08-15)**
 [FEDERAL GROUP CONTROL — READ FIRST](../sources/federal-group-control-read-first-18582ff6f6a7.html) — *who may spend, fire, stop, empty, count, look, leave, or send force. Not a money map. The purse note is the unspend door; the fraud machine remains the payment door; the OBBB companion is eligibility and State financing, not the error-rate map.*

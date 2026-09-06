@@ -1,7 +1,7 @@
 # NSSTS hidden referee and decision-record deep dive
 
 **As of:** 2026-08-19  
-**Status:** pending Workbench evidence  
+**Status:** current Workbench research  
 **Automatic monitoring:** false  
 **Investment use:** false  
 **Vault or Observatory promotion:** not authorized

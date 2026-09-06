@@ -1,11 +1,13 @@
 # Credit-loss expense, reserves and net receivables — FY2025
 
-Updated: 2026-07-13  
-Status: factual first pass complete  
-Scope: the banking-sweep entity universe; latest complete fiscal year for each entity  
+Original research date: 2026-07-13  
+Status: current Workbench FY2025 accounting study  
+Scope: the banking-sweep entity universe and FY2025 reporting periods assembled in the original review; this is not a September 2026 balance-sheet refresh.  
 Units: U.S. dollars in billions unless otherwise stated
 
-Companion sweep: U.S. banking websites — full entity sweep
+Companion sweep: [U.S. banking websites — controlling Chronicle copy](../sources/banking-website-sweep-source-document-4cadeee6e9f4.html)
+
+This study owns provision, charge-off, allowance and net-receivable comparisons. Use the [retail-debt entity spine](../sources/retail-debt-entity-factual-spine-da3cd45008b6.html) for who sold, serviced, modified or forgave a particular book; the source guide owns the remaining documents. Here, funded allowance means the contra-asset for funded loans, not a separate pool of cash or Federal Reserve balances.
 
 ## Accounting frame
 
@@ -34,6 +36,8 @@ Across the seventeen lending entities with usable FY2025 figures, the mechanical
 | Funded reserve as a share of gross receivables | **2.10%** |
 
 This aggregate is descriptive, not a clean credit-cycle index. Capital One's provision includes an $8.767B initial reserve for acquired Discover loans; Goldman reported a $1.113B provision **benefit** after moving Apple Card loans to held for sale; and the entity set mixes diversified banks with specialist card issuers.
+
+These are mechanical totals of the displayed research rows, not an independently reconciled industry aggregate. Cross River and Merrick figures were taken from third-party Call Report-derived pages; their exact dated regulatory rows and unrounded inputs were not preserved in this study. See the source and rounding note below.
 
 ## Entity-by-entity expense and realized loss
 
@@ -82,6 +86,8 @@ The denominator below is the gross funded balance subject to an allowance, not t
 | Cross River Bank | 5.304 | 0.118 | 5.185 | 2.23% |
 | Merrick Bank | 8.916 | 1.367 | 7.549 | 15.34% |
 | Franklin Resources, Inc. / Franklin Templeton | **not disclosed on a gross basis** | **not separately disclosed** | 1.229 carrying value | **not calculable** |
+
+**Source and rounding note (September 7 consolidation):** the original Cross River row displays $5.304B less $0.118B as $5.185B; subtraction of the displayed amounts is $5.186B. Its 2.23% and Merrick's 15.34% likewise do not exactly reproduce from the rounded cells (about 2.22% and 15.33%). Underlying unrounded Call Report inputs were not recovered in this bounded review, so the original figures are retained as unresolved source/rounding discrepancies, not silently recalculated source facts. The displayed rows sum to $6,805.097B gross, $142.747B allowance and $6,662.349B net, a $0.001B residual relative to gross minus allowance. The published trillion-scale totals are unchanged.
 
 ### Important denominator notes
 
@@ -132,7 +138,7 @@ The April 2025 credit-card sale removed the card book and its reserve from the y
 
 ### PNC and Fifth Third
 
-PNC's FirstBank acquisition closed January 5, 2026 and Fifth Third's Comerica merger closed February 1, 2026. Neither acquired book is in the FY2025 table. Both entities will have mechanical 2026 jumps in loans, reserves and acquisition-date provision expense.
+PNC's FirstBank acquisition closed January 5, 2026 and Fifth Third's Comerica merger closed February 1, 2026. Neither acquired book is in the FY2025 table. The original July 13 reading expected these transactions to change the 2026 comparison mechanically. The FY2025 table does not measure the resulting 2026 loans, reserves or acquisition-date expense; those require the successor-period filings.
 
 ## Factual read
 
@@ -141,7 +147,7 @@ PNC's FirstBank acquisition closed January 5, 2026 and Fifth Third's Comerica me
 3. **Portfolio transfers can overwhelm the credit signal.** Capital One's acquisition created expense; Goldman's exit created a benefit; Ally's sale removed receivables and allowance. The same underlying consumer debt can generate different accounting outcomes depending on who owns it and how it is classified at the reporting date.
 4. **Franklin Templeton belongs in an ownership/funding map, not this lender comparison.** Its debt exposure sits principally in managed funds, CLOs, private-credit vehicles and investments rather than a consolidated consumer-receivable book with a bank-style allowance.
 
-## Primary sources
+## Sources and provenance
 
 | Entity | Source |
 |---|---|
@@ -163,3 +169,5 @@ PNC's FirstBank acquisition closed January 5, 2026 and Fifth Third's Comerica me
 | Cross River Bank | [FDIC Call Report-derived loan balances](https://www.usbanklocations.com/cross-river-bank-financial-info.shtml?t=loansleases); [provision ranking](https://www.usbanklocations.com/bank-rank/provision-for-loan-and-lease-losses---incomeexpense--ie-elnatr.html?d=2025-12-31); [FDIC BankFind Suite](https://banks.data.fdic.gov/bankfind-suite/bankfind) |
 | Merrick Bank | [FDIC Call Report-derived financial information](https://www.usbanklocations.com/merrick-bank.shtml); [FDIC BankFind Suite](https://banks.data.fdic.gov/bankfind-suite/bankfind) |
 | Franklin Resources / Franklin Templeton | [FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/38777/000003877725000238/ben-20250930.htm) |
+
+Cross River and Merrick: US Bank Locations is a third-party publisher, even when it describes figures as FDIC Call Report-derived. The generic BankFind links identify an official retrieval route but do not by themselves verify a specific December 31, 2025 amount. A precise reconciliation needs the bank identifier, report date, schedule/item codes and original amounts in thousands for provisions, net charge-offs, gross loans and funded allowance. Preserve the current URLs as the original provenance trail.

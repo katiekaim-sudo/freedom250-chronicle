@@ -291,6 +291,6 @@ All retrieved **2026-08-15**. Primary only.
 
 - [OBBB — Fraud, Improper-Payment and Error-Rate Legal Map](../sources/obbb-fraud-improper-payment-and-error-rate-legal-map-0938f4722658.html)
 - [The Fraud Machine — Identity, Eligibility, and the Payment Gate](../sources/the-fraud-machine-identity-eligibility-and-the-payment-gate-61d967f2138f.html)
-- [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+- The Entity Theory — Working Note
 
 **Not used as objects:** news, CRS products, scorekeeper recaps, CMS preamble policy language as if it were the statute.

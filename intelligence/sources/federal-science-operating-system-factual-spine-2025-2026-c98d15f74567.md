@@ -1,6 +1,6 @@
 # Federal Science Operating System — factual spine, 2025–2026
 
-**As of:** 2026-08-17
+**As of:** 2026-08-17; targeted Reactor reconciliations added 2026-09-07, covering all thirteen original Reactor filings
 **Status:** source-first factual spine  
 **Boundary:** dates, entities, instruments and legal states first; synthesis belongs in the control-surface map
 
@@ -12,7 +12,7 @@
 | National Security Science & Technology Strategy | 2026-08 cover month; exact publication/transmittal clock unresolved | national functional strategy supporting the 2025 NSS | select security missions and CETs; define resilience, acceleration and protection posture; promise OSTP/NSC follow-on plans | appropriate funds, assign every agency, prove statutory transmission, operate a platform or advance a named project |
 | NSTM-5 / M-26-16 | 2026-07-21 | joint OSTP–OMB budget memorandum | direct FY2028 budget formulation and require qualifying agencies' implementation plans | guarantee Congress funds a proposal or turn speculative report concepts into programs |
 | EO 14363 | signed 2025-11-24; published 2025-11-28 | executive order | charter Genesis Mission and direct DOE to build and operate the American Science and Security Platform | override appropriations, classification, IP, privacy, export-control or other applicable law |
-| ADVANCE Act section 205 | 2024-07-09 | enacted statute | amend fusion-machine and fusion-produced byproduct-material definitions and set a 2027 NRC rulemaking clock | finalize the rule or decide any project application |
+| ADVANCE Act section 205 | 2024-07-09 | enacted statute | amend fusion-machine and fusion-produced byproduct-material definitions and amend the existing NEIMA framework provisions | finalize the rule or decide any project application |
 | FY2026 Fusion Energy Sciences appropriation | 2026-01-23 | enacted appropriation and incorporated explanatory table | fund the FES account, including research and U.S. ITER construction | fund every facility or milestone named in the later roadmap |
 | Type One / Bull Run initial application | 2026-01-29 | company-reported initial Tennessee byproduct-material application | begin a named project licensing record under an Agreement State framework | establish completeness, issuance, inspection, operation or power generation |
 | NRC fusion-machine proposed rule | 2026-02-26 | proposed federal rule and draft guidance | open a technology-neutral federal licensing framework for comment | create a final effective rule or issue a particular license |
@@ -23,20 +23,76 @@
 | EO 14156 | 2025-01-20 | national-emergency declaration | direct use of lawful emergency processes for energy supply and infrastructure | make every private data center an emergency facility or supply a missing project authority |
 | DPA section 303 grid determination | 2026-04-20 | presidential determination | authorize purchases, commitments and financial instruments to expand named grid capabilities | blanket-preempt siting, environmental review, utility jurisdiction or tribal consent |
 
+## Reactor reconciliation — seven filings reviewed September 7, 2026
+
+**Scope:** the four May 2025 nuclear orders, the initial DOE pilot selection, the worker-safety comment reopening and NRC Part 53. This addition joins those original Tech questions to selected saved implementation evidence. It does not refresh every nuclear program, the remaining Reactor filings or the original August 17 science chronology.
+
+The original question was how a nuclear revival would move through institutions, testing, fuel, sites and industrial capacity. Those are complementary investigations: an executive direction, a selected pilot, a construction permit and criticality answer different parts of it. The table corrects compressed descriptions while retaining the original dated filings and their thesis lens.
+
+| Instrument / primary source | Source clocks | Verified meaning |
+|---|---|---|
+| [EO 14300 — NRC reform](https://www.federalregister.gov/documents/2025/05/29/2025-09798/ordering-the-reform-of-the-nuclear-regulatory-commission) | Signed 2025-05-23; filed 2025-05-28 08:45; published 2025-05-29, 90 FR 22587–22590. | NRC reform direction: decision deadlines and hourly-fee recovery caps require implementation. The approximately 100-to-400 GW aspiration for 2050 is in section 2(c). |
+| [EO 14301 — DOE testing](https://www.federalregister.gov/documents/2025/05/29/2025-09799/reforming-nuclear-reactor-testing-at-the-department-of-energy) | Signed 2025-05-23; filed 2025-05-28 08:45; published 2025-05-29, 90 FR 22591–22593. | DOE laboratory testing and the separate outside-laboratory pilot have different processes. The latter requires sufficient DOE control, not DOE ownership of the land; its research jurisdiction excludes commercial electric-power production. |
+| [EO 14299 — national-security power](https://www.federalregister.gov/documents/2025/05/29/2025-09796/deploying-advanced-nuclear-reactor-technologies-for-national-security) | Signed 2025-05-23; filed 2025-05-28 08:45; published 2025-05-29, 90 FR 22581–22586. | Separate Defense and DOE assignments connect national-security missions, sites and fuel. The Defense operating target is September 30, 2028; the DOE first-site goal is thirty months after signing. |
+| [EO 14302 — industrial base](https://www.federalregister.gov/documents/2025/05/29/2025-09801/reinvigorating-the-nuclear-industrial-base) | Signed 2025-05-23; filed 2025-05-28 08:45; published 2025-05-29, 90 FR 22595–22599. | Fuel-cycle, workforce, financing and voluntary-agreement directions. Section 4(a) targets five GW of uprates and ten large reactors with complete designs under construction by 2030; the 2050 capacity aspiration belongs to EO 14300. |
+| [DOE Reactor Pilot selections](https://www.energy.gov/articles/department-energy-announces-initial-selections-new-reactor-pilot-program) | Official announcement 2025-08-12; no time established. Criticality target 2026-07-04 is prospective in that source. | Eleven projects across ten companies were initially selected; companies bear project costs. Selection and the July 4, 2026 criticality goal do not themselves establish authorization or achievement. |
+| [DOE worker-safety comment reopening](https://www.federalregister.gov/documents/2026/02/26/2026-03866/worker-safety-and-health-requirements-to-support-reform-of-nuclear-reactor-testing-reopening-of) | Original NOPR published 2026-01-21; extension request dated 2026-02-04; reopening signed 2026-02-24; filed 2026-02-25 08:45; published 2026-02-26, 91 FR 9498–9499; comments through 2026-03-23. | Reopened comments on the January 21 proposed Part 851 rule through March 23. The AFL-CIO request cited review time and affiliate coordination; it is not itself evidence of substantive opposition or a final rule. |
+| [NRC Part 53 final rule](https://www.federalregister.gov/documents/2026/03/30/2026-06048/risk-informed-technology-inclusive-regulatory-framework-for-advanced-reactors) | Rule dated 2026-03-25; filed 2026-03-27 08:45; published 2026-03-30, 91 FR 15696; effective 2026-04-29. Correction dated 2026-04-09; filed 2026-04-10 08:45; published 2026-04-13; effective 2026-04-29. | Optional commercial fission licensing alongside Parts 50 and 52, including light-water designs. Effective April 29; the April 13 correction retained that date. Fusion has a separate rulemaking; this is distinct from the broader EO 14300 overhaul. |
+
+For Part 53, see also the [April 13 technical correction](https://www.govinfo.gov/content/pkg/FR-2026-04-13/pdf/2026-07090.pdf). For the safety reopening, the [January 21 underlying proposal](https://www.federalregister.gov/documents/2026/01/21/2026-01066/worker-safety-and-health-requirements-to-support-reform-of-nuclear-reactor-testing) supplies the proposed changes. This reconciliation read the four orders and two short notices in full; Part 53 and the underlying safety proposal received targeted scope, authority and clock checks, not a complete technical review or later-rule census.
+
+### Later evidence: a test milestone, construction permissions and fuel production
+
+DOE's [August 6 Groves release](https://www.energy.gov/ne/articles/office-nuclear-energy-celebrates-fifth-advanced-reactor-criticality) reports that Oklo's Groves Isotope Test Reactor reached criticality the previous night in Lockhart, Texas. August 5 is inferred from that relative wording; the exact physical time is unstated. DOE calls it the fifth DOE-authorized advanced reactor to reach criticality that summer. This is an attributed program milestone, not an independently reconstructed census. The release describes a future commercial isotope-producing variant still in development; continuous operation, commercial NRC approval, isotope production and delivery are separate findings.
+
+The saved finding belongs to the Chronicle's [August 8 Federal Government Weekly Delta — Full Merge](../sources/2026-08-08-federal-government-weekly-delta-full-merge-09e42eef764e.html), section 2, “Oklo Groves reached criticality.” That inquiry was a bounded whole-government delta through August 8, not a reactor census; its vault landing controls over the workbench wave. The exact DOE release was reread for this reconciliation.
+
+The August 18 energy, manufacturing and materials map asks which companies can turn federal position into accepted output. Its row/source registry preserves three relevant, distinct returns:
+
+- TerraPower / Natrium: active federal cost share and an issued construction permit; fuel, operating license, commissioning and generation remain separate. Exact edge `w2-energy-terrapower-007`, source `w2-src-terrapower`, [DOE March 9 construction-permit notice](https://www.energy.gov/ne/articles/nrc-issues-construction-permit-terrapowers-natrium-advanced-reactor).
+- Kairos / Hermes: construction permission and build activity; operating authorization, fuel loading and criticality remain separate in that saved reading. Exact edge `w2-energy-kairos-009`, source `w2-src-kairos`, [NRC Hermes licensing page](https://www.nrc.gov/reactors/non-power/new-facility-licensing/hermes-kairos).
+- American Centrifuge Operating: demonstration HALEU production and a definitive expansion contract; commercial-scale output is a further question. Exact edge `w2-mat-centrus-028`, source `w2-src-haleu`, [DOE HALEU enrichment services](https://www.energy.gov/ne/haleu-enrichment-services).
+
+Those company findings retain the map's August 18 cutoff. The three selected edges and their source objects were reconciled here; the full registry was not recertified. They do not establish that these projects were authorized under the DOE pilot or caused by the four orders. Fusion's scientific, capital and licensing sequence remains with the [existing commercialization bridge](../sources/federal-fusion-commercialization-bridge-2020-2035-187110145b91.html) and [project registry](../sources/federal-fusion-project-capital-regulatory-registry-2022-2035-47346c8a435e.html), under their own saved cutoffs.
+
+## Reactor licensing paths, hearings, fees and ownership
+
+**Reviewed September 7, 2026:** the six remaining original Reactor filings. Their questions complement the earlier orders and pilot: which designs can enter a path, what safety evidence carries over, how a decision can be contested, what review costs, and who may own a licensee. Keeping these questions together makes the nuclear-revival thesis testable against particular legal changes and eventual project results.
+
+| Filing / original primary source | Distinct clocks | What the source establishes |
+|---|---|---|
+| [Part 57 microreactor proposal](https://www.federalregister.gov/documents/2026/05/01/2026-08550/licensing-requirements-for-microreactors-and-other-reactors-with-comparable-risk-profiles) | Dated 2026-04-29; filed 2026-04-30 08:45; published 2026-05-01, 91 FR 23628–23766. Comments due 2026-06-15 at 23:59 Eastern. Correction filed 2026-05-14 08:45 and published 2026-05-15, 91 FR 27870–27871. | Proposed optional microreactor path for qualifying designs, with conditional construction permission and separate operating approval. The May 15 correction does not finalize the framework. |
+| [Prior DOE/Defense design evidence](https://www.federalregister.gov/documents/2026/04/02/2026-06414/nrc-reviews-of-reactor-designs-previously-authorized-by-us-department-of-energy-or-department-of-war) | Dated 2026-03-31; filed 2026-04-01 08:45; published 2026-04-02, 91 FR 16584–16588. Comments due 2026-05-04. | Proposed reuse of tested DOE/Defense safety evidence in NRC review, with a mapping to NRC requirements and changed conditions. Authorization alone does not convert into a commercial license. |
+| [Contested adjudications proposal](https://www.federalregister.gov/documents/2026/03/03/2026-04187/streamlining-contested-adjudications-in-licensing-proceedings) | Dated 2026-02-27; filed 2026-03-02 08:45; published 2026-03-03, 91 FR 10450. Comments due 2026-04-02. | Proposed changes to merits submissions, discovery and contested proceedings. Filing windows vary; appeals sit outside the fixed EO timeline. |
+| [Fusion-machine framework proposal](https://www.federalregister.gov/documents/2026/02/26/2026-03865/regulatory-framework-for-fusion-machines) | Dated 2026-02-23; filed 2026-02-25 at 08:45 (timezone not specified in filing line); published 2026-02-26, 91 FR 9476–9498. Comments due 2026-05-27. NRC selected the Part 30 approach on 2023-04-13. NEIMA enacted 2019-01-14 already set 2027-12-31; ADVANCE enacted 2024-07-09 retained that date and separately required a section 205(c) report within one year (2025-07-09). No final-rule effective date established by this proposal. | Proposed Part 30 byproduct-material framework, following NRC’s 2023 policy choice and ADVANCE’s substantive definitions. The pre-existing NEIMA deadline and state/project licensing clocks remain separate. |
+| [FY2026 fee final rule](https://www.federalregister.gov/documents/2026/06/16/2026-12067/fee-schedules-fee-recovery-for-fiscal-year-2026) | Dated 2026-06-05; filed 2026-06-15 08:45; published 2026-06-16, 91 FR 36470–36509. General effectiveness 2026-08-17; fixed caps start 2026-10-01. Hourly rates begin with the first full pay period after general effectiveness. | Final fee rule generally effective August 17; fixed caps begin October 1. Hourly billing remains. Caps cover requested activities involving a final safety evaluation; decision deadlines are deferred. |
+| [Foreign ownership exceptions](https://www.federalregister.gov/documents/2026/04/23/2026-07918/exceptions-from-foreign-ownership-control-or-domination) | Proposal and direct final dated 2026-04-06; filed 2026-04-22 08:45; published 2026-04-23. Confirmation dated 2026-06-03; filed 2026-06-04 08:45; published 2026-06-05. Direct final effective 2026-07-07. | The companion April 23 direct final rule was confirmed June 5 as effective July 7. Exceptions concern listed eligible foreign interests in utilization facilities, subject to NRC’s non-inimicality determination; production-facility restrictions remain. |
+
+The ownership entry has a confirmed later state: the [April 23 direct final rule](https://www.federalregister.gov/documents/2026/04/23/2026-07917/exceptions-from-foreign-ownership-control-or-domination) and [June 5 confirmation](https://www.federalregister.gov/documents/2026/06/05/2026-11363/exceptions-from-foreign-ownership-control-or-domination) establish July 7 effectiveness. The 37 listed jurisdictions comprise 36 eligible OECD members plus India; the July 9, 2024 statutory sanctions screen excludes Turkey. Eligibility is not evidence of a completed investment or an approved ownership structure. The [May 15 Part 57 correction](https://www.federalregister.gov/documents/2026/05/15/C1-2026-08550/licensing-requirements-for-microreactors-and-other-reactors-with-comparable-risk-profiles) corrects the proposal’s presentation, without establishing adoption.
+
+The fusion proposal connects to the existing February 26 chronology below and the [commercialization bridge](../sources/federal-fusion-commercialization-bridge-2020-2035-187110145b91.html). NRC had selected its byproduct-material approach in 2023. ADVANCE amended the statutory definitions in 2024; the December 31, 2027 optional-framework deadline originated in NEIMA in 2019. A proposed federal framework, an Agreement State’s effective rules and a particular research machine’s license remain parallel evidence, rather than a single nationwide start date for commercial fusion.
+
+The later Groves, construction and fuel findings in the preceding reconciliation answer different questions from these legal mechanisms. A demonstrated test can inform a review; it does not settle the commercial application. A more predictable cost or ownership route can enable a project; it does not measure construction, financing close or electricity delivery. The existing company and fusion project studies retain their saved implementation cutoffs.
+
+**Reading scope:** the short prior-design proposal, ownership instruments and confirmation were read substantively; the long Part 57, adjudication, fusion and fee rules received selected scope, authority, clock and operative-clause checks. This is a review of the six original filings and their identified correction/confirmation chain, not a full technical review or a later-finality census of every proposal.
+
 ## Pre-2025 statutory hinge
 
-### 2024-07-09 — ADVANCE Act supplies fusion definitions and a federal rule clock
+**September 7 legal attribution correction:** the 2027 framework deadline originated in [NEIMA section 103(a)(4), 132 Stat. 5572](https://www.govinfo.gov/content/pkg/PLAW-115publ439/pdf/PLAW-115publ439.pdf). [ADVANCE section 205, 138 Stat. 1460–1462](https://www.govinfo.gov/content/pkg/PLAW-118publ67/pdf/PLAW-118publ67.pdf) amended definitions and related provisions and required a separate report; it did not originate that deadline. The source chronology and forward clock below now use that attribution. This targeted correction does not advance other evidence cutoffs.
+
+### 2024-07-09 — ADVANCE Act supplies fusion definitions within the existing NEIMA framework
 
 **Entity:** Congress; President; Nuclear Regulatory Commission
 **Clock:** statute / federal rulemaking
-**State after:** Atomic Energy Act definitions amended; December 31, 2027 rule deadline created
+**State after:** Atomic Energy Act definitions amended; existing NEIMA December 31, 2027 framework deadline retained
 
 Section 205 of Public Law 118-67 added the term `fusion machine` to the Atomic
 Energy Act and brought radioactive material produced by a fusion machine into
-the byproduct-material definition. It also directs NRC to complete a
-technology-inclusive framework, optional for new fusion-machine applicants, by
-December 31, 2027. This statutory clock does not itself create a final rule,
-an Agreement State framework or a project license.
+the byproduct-material definition. The December 31, 2027 optional-framework
+deadline already existed in NEIMA section 103(a)(4), enacted in 2019; ADVANCE
+section 205(b) amended the related provisions and terminology. Section 205(c)
+separately required a mass-manufactured-fusion licensing report within one year.
+These provisions do not themselves create a final rule or project license.
 
 **Sources:** [Public Law 118-67](https://www.govinfo.gov/app/details/PLAW-118publ67) · [NRC — Fusion and the ADVANCE Act](https://www.nrc.gov/materials/fusion/mass-production-status) · [NRC fusion FAQ](https://www.nrc.gov/materials/fusion/faq)
 
@@ -423,10 +479,11 @@ Agency submissions should show proposed shifts in portfolio composition, Genesis
 
 EO 14363 requires DOE to report within one year of the order and annually thereafter on platform status, integration, user engagement, measurable outcomes, partnerships and authority needs. Public availability is not guaranteed by the order.
 
-### 2027-12-31 — ADVANCE Act fusion-rulemaking deadline
+### 2027-12-31 — existing NEIMA technology-inclusive framework deadline
 
-Section 205 of Public Law 118-67 directs NRC to complete a technology-inclusive
-regulatory framework, optional for new fusion-machine applicants, by this date.
+NEIMA section 103(a)(4), enacted in 2019 and subsequently amended by ADVANCE,
+sets this optional technology-inclusive framework deadline. ADVANCE section 205
+did not create the date; its mass-manufactured-fusion report is a separate duty.
 A final rule, its effective date, Agreement State implementation and individual
 project dispositions must still be recorded separately.
 

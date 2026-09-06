@@ -1,7 +1,7 @@
 # White House Election Integrity Release — Research Package
 
 **Release date:** July 16, 2026  
-**Status:** `pending` vault review  
+**Status:** current Workbench answer  
 **Scope:** four White House download packages; 58 PDFs; 269 pages; 76,918,519 bytes; post-address actions through July 18  
 **Source of record:** [White House — Election Integrity](https://www.whitehouse.gov/election-integrity/)
 
@@ -55,8 +55,9 @@ central control rule is therefore:
    announced-action clocks.
 5. Document registry —
    object type, issuer, date, marking, evidentiary role and use limit.
-6. Deep dive — integrated reading
-   across the four evidence lanes and the existing vault.
+6. Earlier deep dive — dated
+   integrated synthesis preserved as Archive/history; use the maintained answer
+   and second pass for the current reading.
 7. Source watchboard —
    exact observables that can move a claim or status.
 8. Generated inventory — machine inventory,

@@ -48,4 +48,4 @@ See `04 - Synthesis/Entity Theory/` for the cross-entity ledger entry on the GEN
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 2025 - GENIUS Act (verbatim - partial)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

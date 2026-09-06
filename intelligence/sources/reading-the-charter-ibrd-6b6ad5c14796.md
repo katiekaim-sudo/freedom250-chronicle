@@ -87,4 +87,4 @@ The IBRD is a treaty-born bank that wrote itself a legal force field: it can't b
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 2012 - Articles of Agreement (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

@@ -1,6 +1,6 @@
 # Contested Logistics — Transition Timeline
 
-**Status:** `pending`  
+**Status:** `current`  
 **Cutoff:** 2026-07-15  
 **Rule:** authority, request, award, construction, readiness, activation, output, delivery and payment are separate clocks
 

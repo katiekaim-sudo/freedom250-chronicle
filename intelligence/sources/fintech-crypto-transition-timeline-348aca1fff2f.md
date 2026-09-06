@@ -1,12 +1,14 @@
-> Source created: 2026-07-12 · Source updated: 2026-07-21
+> Source created: 2026-07-12 · Source updated: 2026-09-07
 
 > **The 2025-2027 factual spine; gate-changing events only. The 12-item watchboard.**
-> *Verbatim as delivered. Audit + provenance: [Private Monetary Stack — Source Documents](../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html).*
+> *Original delivered research with dated corrections. Audit + provenance: [Private Monetary Stack — Source Documents](../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html). The delivered Workbench copy remains preserved.*
 
 # Fintech and crypto infrastructure transition — factual spine
 
 **As of:** 2026-07-21  
 **Scope:** selected company and infrastructure events that change a legal entity, operating permission, production state, network connection, authoritative record, or settlement path
+
+**2026-09-07 bounded correction:** the Kraken follow-up below now distinguishes located official approval and account terms from remaining operating questions. The original July 21 cutoff and dated event entries are preserved; this is not a new sweep of the timeline. Exact account evidence and clock reconciliation: FINTECH_SWEEP_MARKET_ACCESS#2. Kraken.
 
 ## Inclusion rule
 
@@ -268,7 +270,7 @@ PSSC's temporary registration runs up to 18 months unless Commission action chan
 2. DTC's first tokenized entitlement: asset, chain, wallet, legal record, cash leg, and correction path.
 3. Circle National Trust's opening, first custody client, and any reserve-management transfer.
 4. Ripple and Coinbase final OCC decisions; BitGo/Paxos active-bank operations; Anchorage Fed-access outcome.
-5. Kraken's limited-purpose Fed-access terms and an independently visible regulator record.
+5. Kraken Financial’s remaining account questions: the closing-balance cap amount, initial one-year term start, actual payment use, and any later renewal or changed conditions. Official approval announced March 4, 2026 and Fedwire Funds-only terms disclosed May 8 are already located; the saved July 25 audit reports January 28 action/access-effective CSV fields. Those dates do not establish the first payment or term start. See FINTECH_SWEEP_MARKET_ACCESS#2. Kraken for the maintained reconciliation and sources.
 6. PSSC first live registered operation and the 18-month permanent-registration clock.
 7. First production JPMD transaction on Canton; do not pre-state it.
 8. First integrated DvP using a DTC entitlement token and a named deposit/stablecoin/central-bank cash leg.

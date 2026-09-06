@@ -1,7 +1,10 @@
 # Insurance and Reinsurance — Master Claim Audit
 
-**Status date:** 2026-07-12  
+**Source status date:** 2026-07-12  
+**Organization reconciled:** 2026-09-07; no external-source refresh  
 **Scope:** consolidated audit of claims tested across the strategic/digital, life/annuity-capital, and property-catastrophe source-first sweeps.
+
+The [deep dive](../sources/insurance-reinsurance-deep-dive-20780fd540e8.html) owns the connected explanation. This ledger retains the 36 dated claims and their distinct verdicts; a verdict evaluates an assertion, not whether useful research belongs in the library.
 
 ## Boundary
 
@@ -24,7 +27,7 @@ This ledger tests what the cited record can support. It does not determine wheth
 
 - **Verdict:** Weakened in categorical form.
 - **Record:** The International Group says its mutual cover, including access to Excess War P&I reinsurance, was not amended after the attacks. It says separate underlying Primary War P&I insurers amended the listed area and arranged new voyage rates. IMO independently verified physical attacks and unsafe passage. No primary record found substantiates simultaneous cancellation by all twelve clubs.
-- **Safe wording:** “After the attacks, listed-area notices, primary-war repricing and capacity constraints interacted with physical danger, charterparty duties, lender requirements and P&I dependencies to suppress traffic; the official Group record says mutual P&I excess-war protection remained unchanged.”
+- **Safe wording:** “The Group reported unchanged mutual P&I and access to excess-war protection alongside changes in separate primary-war terms and rates. IMO reported physical danger. These are distinct possible constraints on voyages; attributing an individual non-transit to insurance requires vessel-level evidence.”
 - **Primary sources:** [International Group Iran update](https://www.igpandi.org/article/iranpersian-gulf-update-on-cover/) · [IMO 15 June 2026 statement](https://www.imo.org/en/mediacentre/pressbriefings/pages/statement--on-us-iran-agreement.aspx)
 
 ### CA-03 — “A JWC listed-area decision cancels cover.”
@@ -279,6 +282,6 @@ This ledger tests what the cited record can support. It does not determine wheth
 
 ---
 
-## Use rule
+## Using and revisiting a claim
 
-When a Chronicle event relies on one of these propositions, cite the claim ID and carry the safe wording or a still narrower formulation. Promotion from “unsupported/weakened” requires the missing primary object—policy, endorsement, treaty, regulatory order, statutory filing, claims record or audited transaction evidence—not repetition in secondary reporting.
+Cite the claim ID and the supported wording, narrowed where necessary for the case. A stronger conclusion needs evidence of the particular missing object: policy, endorsement, treaty, order, filing, claim payment or transaction. Useful questions and partial findings remain saved research. The dated timeline and source watchboard explain existing follow-up questions; this is not an instruction to create watches or events.

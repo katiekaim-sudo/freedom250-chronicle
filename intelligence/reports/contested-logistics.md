@@ -1,6 +1,6 @@
 # Contested Logistics — Research Package
 
-**Status:** `pending`  
+**Status:** `current`  
 **Cutoff:** 2026-07-15  
 **Scope:** the physical, commercial, energy, industrial, data and financial machinery that deploys and sustains U.S. forces  
 **Method:** primary-source factual spine first; ownership, operation, activation, readiness and payment kept separate
@@ -108,6 +108,10 @@ Keep the package in the Observatory research workspace. Promote only events that
 
 Speeches, capacity aspirations, proposed funds, unsigned leases and exercise participation without a result remain in the source bench.
 
-## Best next branch
+## Geography boundary
 
-The highest-value next branch is a geographic map of **mobilization nodes**: the 18 commercial strategic ports, military ammunition ports, principal OIB sites, major fuel-support points, prepositioning hubs and Army land offered for energy/mineral projects. That map should preserve public location information without attempting to infer classified routes, stocks or vulnerabilities.
+Keep place and geography in factual records. Do not build a nationwide node map by default. Promote a location only when repeated cross-layer significance changes ownership, operator, jurisdiction, activation, priority or throughput.
+
+## Read the policy sequence with the physical chain
+
+The Military Modernization timeline's Arsenal section joins ten original policy filings, reviewed September 7, 2026. Maritime planning, arms transfers, contractor cybersecurity, foreign influence and critical-material requirements connect to this study's production and sustainment question. The common policy explanation is maintained there; this package retains its July 15 evidence for prepared access, industrial capacity, fuel, repair and payment.

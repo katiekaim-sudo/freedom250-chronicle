@@ -3,7 +3,7 @@
 ## Monetary, monetized and mobilized are three different states
 
 Updated: 2026-08-16 ET  
-Status: pending workbench research; not reviewed or landed in the vault  
+Status: current Workbench research; no Chronicle landing  
 Evidence cutoff: 2026-08-16 ET; each amount and mechanism retains its own clock  
 Scope: current official, wholesale, state and private mechanisms that classify, convert, value, settle, pledge, lend or pay with gold  
 Boundary: this is a mechanism and evidence-state map, not a gold-price thesis and not a prediction that any dormant authority will be used

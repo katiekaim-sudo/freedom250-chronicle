@@ -2,6 +2,11 @@
 
 # Education Grant Administration and Ledger Interlock — 2026-07-30
 
+This specialist case keeps its July 30 evidence cutoff. Sections 4–7 specify a
+proposed event, responsibility and access design; they are not an adopted
+government-wide schema or proof of implementation. The Chronicle's Accounting
+Transition note owns the maintained shared answer.
+
 ## Controlling finding
 
 The education-grant transition is a concrete test of the accounting architecture
@@ -68,9 +73,9 @@ Status words in this table are deliberately narrow. “Announced” is not
 
 | Pathway | Located operative object | Administration and system state | Authority retained by ED | Evidence state at cutoff |
 |---|---|---|---|---|
-| Perkins V and WIOA Title II | May 2025 ED-DOL workforce-development IAA and July 2025 implementation announcement | DOL performs day-to-day administration; ED reported all grantees onboarded to GrantSolutions and PMS. The January 2026 K-12 fact sheet reports 1,627 payment requests totaling $575 million from 51 States and territories under this predecessor partnership. | ED states it retains statutory responsibility, policy authority and oversight. | **Operating, with quantified payment activity reported by ED** |
+| Perkins V and WIOA Title II | May 2025 ED-DOL workforce-development IAA and July 2025 implementation announcement | DOL performs day-to-day administration; ED reported all grantees onboarded to GrantSolutions and PMS. The Postsecondary Education Partnership fact sheet reports nearly 1,627 payment requests totaling $575 million from 51 States and territories under this predecessor partnership. | ED states it retains statutory responsibility, policy authority and oversight. | **Operating, with quantified payment activity reported by ED** |
 | K-12 ESEA and related programs | November 2025 ED-DOL IAA and official four-page fact sheet | DOL is to provide grant-administration services for Title I Parts A-D, Title II-A, Title III-A, Title IV-A/B, rural programs, Impact Aid and listed competitive programs. ED says States will receive covered formula funds from DOL. Program-by-program migration timing remains an implementation question. | ED maintains statutory responsibilities and oversight; statutory eligibility is stated to remain unchanged. | **IAA established; servicing model specified; full program migration not demonstrated by one aggregate record** |
-| OPE postsecondary grants | November 2025 ED-DOL IAA, January 2026 staff-detail announcement and official fact sheet | ED Higher Education Programs staff began detail to DOL in the week of January 20. FY2025 and earlier awards use ED G5; FY2026 and later awards use DOL GrantSolutions and HHS PMS for drawdowns. | ED retains responsibility, policy authority, civil-rights jurisdiction for ED statutes and oversight. | **Implementation underway; award-cohort system split expressly documented** |
+| OPE postsecondary grants | September 30, 2025 ED-DOL IAA identified in the March 16, 2026 Dear Colleague Letter; November 18 public announcement; January 2026 staff-detail announcement and official fact sheet | ED Higher Education Programs staff began detail to DOL in the week of January 20. The fact sheet describes awards by initial award year: FY2025 and prior remain in ED G5, while FY2026 and future initial awards use DOL GrantSolutions and HHS PMS. The narrower March 16 instruction says existing grants remain in G5 and new awards competed and awarded in FY2026 transition to GrantSolutions/PMS. | ED retains responsibility, policy authority, civil-rights jurisdiction for ED statutes and oversight. | **Implementation underway; cohort language differs by source and must be carried with the dated source** |
 | Native education | November 2025 ED-DOI IAA and fact sheet | DOI takes a greater role in elementary, secondary, higher, career-technical and vocational-rehabilitation program administration for Native students and Tribes. | ED retains statutory responsibility and policymaking/oversight as described by the partnership. | **IAA established; program implementation must be tested by award and system** |
 | CCAMPIS | November 2025 ED-HHS partnership | HHS is to manage existing competitions and technical assistance and integrate the program with HHS child-care grant expertise. | The source describes ED oversight but does not support treating the Higher Education Act authority as repealed or transferred by statute. | **Partnership established; transaction-level migration evidence not yet joined here** |
 | Family engagement and school support | February 20, 2026 ED-HHS IAA, with July 23 addendum | HHS supports monitoring, drawdown oversight, program administration, technology and new awards. ED transfers funding; IPAC may be used; quarterly reconciliation and written issue resolution are required. | ED retains program leadership, internal-control monitoring, audit resolution, GPRA/Congress reporting, annual report review, certain State award operations and final statutory authority. | **Executed IAA with unusually detailed funding, reconciliation and responsibility clauses** |
@@ -83,18 +88,40 @@ Status words in this table are deliberately narrow. “Announced” is not
 
 The postsecondary fact sheet says the intended recipient experience is a single
 administering agency, but the actual system of record depends on the award's
-initial fiscal year:
+initial award fiscal year:
 
 ```text
-FY2025 or earlier award → ED G5
-FY2026 or later award   → DOL GrantSolutions + HHS Payment Management System
+FY2025 or prior initial award → ED G5
+FY2026 or future initial award → DOL GrantSolutions + HHS Payment Management System
 ```
+
+The March 16, 2026 Dear Colleague Letter supplies a narrower operational
+formulation: the ED-DOL IAA was signed September 30, 2025; existing grants
+remain in G5; and new awards competed and awarded in FY2026 transition to
+GrantSolutions and PMS. The dated formulations should not be silently merged
+into “all FY2026 activity moved.”
 
 This is not described as duplicative reporting because each award cohort uses
 one path. It is still a major accounting fact: the same recipient and statutory
 program can have concurrent awards on two system stacks. Entity-level totals,
 draw histories, receivables, advances, closeout status and audit samples must
 retain the award vintage and source system.
+
+### B. Two workforce-payment receipts, one limited pathway
+
+Two dated ED sources quantify the predecessor Perkins V/WIOA Title II
+workforce partnership. ED's FY2025 Agency Financial Report says the transition
+processed more than 1,300 payment requests in 43 States and territories. The
+later Postsecondary Education Partnership fact sheet reports nearly 1,627
+payment requests totaling $575 million for 51 States
+and territories. These receipts evidence activity in the predecessor
+workforce pathway only; they do not establish migration of every K–12, OPE,
+HHS, DOI or State-administered program.
+
+ED OIG's FY2026 Management Challenges independently describes the transition
+of select CTE and adult-education functions and related staffing/control risk.
+It corroborates that an operational handoff occurred, but it does not turn the
+payment totals into a government-wide grant-system count.
 
 ### B. The ED-HHS agreement's internal federal ledger
 
@@ -200,9 +227,11 @@ files.
 - commercially or security-sensitive vendor information.
 
 Public proof can show that a protected record existed, was signed by an
-authorized party, satisfied a named rule version and was later corrected,
-without publishing the underlying student data. FERPA and other program-specific
-privacy rules remain legal constraints; a hash is not a waiver of those rules.
+authorized party and was later corrected without publishing the underlying
+student data. A commitment or signature does not prove eligibility, compliance
+or satisfaction of the named rule; those conclusions still require authorized
+evidence and judgment. FERPA and other program-specific privacy rules remain
+legal constraints; a hash is not a waiver of those rules.
 
 ## 7. What smart contracts could and could not do here
 
@@ -246,10 +275,11 @@ definitions and correction rules.
 
 ### Award vintage becomes a control field
 
-For affected postsecondary grants, FY2025-and-earlier awards and FY2026-and-
-later awards occupy different stacks. An audit population that queries only G5
-or only GrantSolutions/PMS can be incomplete without appearing mathematically
-wrong.
+For affected postsecondary grants, the fact sheet separates initial awards by
+FY2025/prior versus FY2026/future, while the March 16 letter separates existing
+grants from new awards competed and awarded in FY2026. An audit population that
+queries only G5 or only GrantSolutions/PMS can be incomplete without appearing
+mathematically wrong; the controlling dated award notice must decide the case.
 
 ### The legal owner and operational actor must remain separable
 
@@ -273,30 +303,20 @@ need a join key.
 | “The Department of Education has been abolished.” | **False at cutoff** | Only Congress can repeal the department's statutory existence. Functions and staff have been shifted, but ED remains a legal entity with retained duties. |
 | “Education funding was sent directly to States with no federal intermediary.” | **Not generally supported** | For covered K-12 programs ED says States will receive formula funds from DOL, while ED retains statutory responsibilities and DOL becomes the servicing federal agency. |
 | “The partnerships changed program eligibility.” | **Not supported by the cited fact sheets** | ED states statutory requirements and eligibility remain in effect; later rules or award terms must be assessed separately. |
-| “All education grants moved from G5 to PMS.” | **False** | The documented OPE transition is cohort-based: FY2025/prior awards remain in G5; FY2026/future awards use GrantSolutions and PMS. Pell/Title IV should not be swept into this grant list without a separate instrument. |
+| “All education grants moved from G5 to PMS.” | **False** | The postsecondary fact sheet uses initial-award-year cohorts: FY2025/prior initial awards remain in G5 and FY2026/future initial awards use GrantSolutions/PMS. The March 16 letter is narrower: existing grants remain in G5 and new awards competed and awarded in FY2026 transition. Pell/Title IV should not be swept into this grant list without a separate instrument. |
 | “The handoffs decentralize federal control.” | **Mixed** | They redistribute administration among federal agencies and may simplify recipient contact. ED retains enumerated policy, oversight and final-authority functions; shared federal systems may also centralize payment data. |
 | “The agreements are a blockchain program.” | **False** | The located agreements use conventional federal agreements, IPAC, GrantSolutions, G5 and PMS. They create a use case for joined event accounting but do not select DLT. |
 | “A public ledger should expose student transactions.” | **Reject** | Public authority, organization-level payment, correction and audit events can be disclosed while protected student evidence remains access-controlled. |
 | “A single payment-system total proves the whole transition is operating.” | **False** | The reported 1,627 requests/$575 million concerns the predecessor workforce partnership and cannot be imputed to every K-12, OPE, HHS, DOI or State program. |
 
-## 10. Watchboard
+## 10. Source questions
 
-Promote the education-grant transition only on a new operative object or
-observed system consequence.
+The Accounting Transition — Source Questions and Evidence
+States
+keeps the nine education-grant questions once. They are research questions,
+not scheduled watches or promotion gates.
 
-| Surface | Promotion object | Exact question |
-|---|---|---|
-| ED/DOL K-12 | grantee notice, award document, system guide or first quantified payment set | Which named ESEA programs have actually begun award and draw activity through DOL? |
-| ED/DOL OPE | award notices and system records by fiscal-year cohort | Do FY2026 awards consistently show DOL administration, GrantSolutions and PMS while preserving ED program authority? |
-| ED/HHS | Form 7600B, IPAC/reconciliation evidence, award notice or annual report | Can an ED appropriation be joined to the HHS interagency receipt, recipient award, draw and ED audit-resolution record? |
-| ED/DOI and ED/State | operative IAAs, notices and system instructions | Which programs, personnel, awards and payment systems have actually migrated? |
-| USAspending | agency/program/award attribution changes | Does public data identify both statutory/ordering and servicing agencies or collapse the relationship? |
-| Treasury/GSDM | new interagency and award lineage fields | Are IAA, Form 7600B, IPAC, FAIN, payment and correction IDs joined in the governmentwide model? |
-| FAC / Single Audit | audit-guidance and cognizant-agency changes | Who resolves findings for awards administered by a servicing agency under ED authority? |
-| Privacy | FERPA/program guidance for cross-agency processing | What is the lawful basis, access model, retention rule and correction procedure for protected education data shared with servicing agencies? |
-| Workforce Pell | FSA implementation records | Keep Title IV student-aid eligibility and disbursement separate from the OPE grant-administration migration unless an operative document joins them. |
-
-## 11. Bottom line for the accounting-transition thesis
+## 11. What the case adds
 
 Education grants expose why “one public ledger” cannot mean one undifferentiated
 table of payments.
@@ -305,12 +325,11 @@ The useful object is a **federated, append-only transaction record** that keeps
 legal authority, budget ownership, servicing work, payment, protected evidence,
 performance, audit and correction distinct but joinable.
 
-This case strengthens the broader thesis:
-
-> The revolutionary change is not replacing every accounting basis with cash.
-> It is replacing repeated, lossy reconstruction with a common signed event
-> history from which budgetary, proprietary, cash, compliance, performance and
-> public-accountability views can be reproduced.
+The case contributes one bounded lens to the maintained Chronicle answer: the
+statutory owner, ordering agency, servicing agency, grant system, payment rail,
+recipient, performance reviewer, audit-decision owner and collector can be
+different parties. It does not independently establish that a federated event
+record is adopted, necessary or sufficient.
 
 ## Primary sources
 
@@ -319,6 +338,9 @@ This case strengthens the broader thesis:
 - [ED-DOL — Postsecondary implementation steps, January 15, 2026](https://www.ed.gov/about/news/press-release/us-department-of-education-and-us-department-of-labor-take-next-steps-implement-postsecondary-education-partnership)
 - [ED-DOL — Elementary and Secondary Education Partnership fact sheet](https://www.ed.gov/media/document/fact-sheet-department-of-education-ed-and-department-of-labor-dol-elementary-and-secondary-education-partnership-112465.pdf)
 - [ED-DOL — Postsecondary Education Partnership fact sheet](https://www.ed.gov/media/document/fact-sheet-department-of-education-ed-and-department-of-labor-dol-postsecondary-education-partnership-112464.pdf)
+- [ED-DOL — Dear Colleague Letter, March 16, 2026](https://www.ed.gov/media/document/dear-colleague-letter-ed-and-dol-grants-partnership-march-16-2026-113460.pdf)
+- [ED — FY2025 Agency Financial Report](https://www.ed.gov/media/document/fy25-agency-financial-report-113142.pdf)
+- [ED OIG — FY2026 Management Challenges](https://oig.ed.gov/reports/top-management-challenges/fiscal-year-2026-management-challenges-facing-us-department)
 - [ED-DOI — Indian Education Partnership fact sheet](https://www.ed.gov/media/document/fact-sheet-department-of-education-ed-and-department-of-interior-doi-partnership-112463.pdf)
 - [ED-HHS — Family Engagement and School Support IAA and July 23 addendum](https://www.ed.gov/media/document/interagency-agreement-ed-and-hhs-family-engagement-and-school-support-february-23-2026-113311.pdf)
 - [ED — Four additional agency partnerships, June 16, 2026](https://www.ed.gov/about/news/press-release/us-department-of-education-announces-additional-partnerships-strengthen-coordination-individuals-disabilities-programs-bolster-civil-rights)

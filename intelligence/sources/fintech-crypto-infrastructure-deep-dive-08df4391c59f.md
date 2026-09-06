@@ -1,7 +1,7 @@
-> Source created: 2026-07-12
+> Source created: 2026-07-12 · Source updated: 2026-09-07
 
 > **Start here. The seven-layer stack, the 12 findings, the transition sequence, the forward tells.**
-> *Verbatim as delivered. Audit + provenance: [Private Monetary Stack — Source Documents](../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html).*
+> *Original delivered research with dated corrections. Audit + provenance: [Private Monetary Stack — Source Documents](../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html). The delivered Workbench copy remains preserved.*
 
 # The Private Monetary Stack
 
@@ -12,6 +12,10 @@
 **Companions:** `FINTECH_CRYPTO_COMPANY_REGISTRY.md`; `FINTECH_CRYPTO_CLAIM_AUDIT.md`; `FINTECH_CRYPTO_TRANSITION_TIMELINE.md`; the four company-family research annexes
 
 ---
+
+### September 7 bounded account correction — Kraken Financial
+
+The Kraken forward tell below now asks about subsequent account decisions and actual use, because official limited-purpose account approval and disclosed restrictions are already located. The March 4 announcement, May 8 disclosure and January 28 fields reported in saved July 25 research remain distinct clocks. See FINTECH_SWEEP_MARKET_ACCESS#2. Kraken for the exact evidence and unresolved term start. The original July 11 core and later dated extensions remain intact; this is not a new company-status sweep.
 
 ### September 3 targeted charter refresh — World Liberty
 
@@ -322,7 +326,7 @@ Tokenized securities, funds, deposits, stablecoins, and central-bank money becom
 2. Whether the Stellar target reaches production in H1 2027 and which asset classes are eligible.
 3. Which Canton, Corda, Besu, or public-chain workflows process sustained production volume rather than pilots.
 4. Final and consummated status for the OCC crypto trust-bank queue.
-5. Federal Reserve account decisions for Kraken Financial, Ripple/Standard Custody, and other limited-purpose institutions.
+5. Subsequent renewal or changed-condition decisions for Kraken Financial’s already approved limited-purpose account, and evidence of actual payment use; its initial one-year term start remains unspecified. Keep separate the account decisions or request evidence for Ripple/Standard Custody and other limited-purpose institutions. Exact Kraken approval, restrictions and reported CSV clocks: FINTECH_SWEEP_MARKET_ACCESS#2. Kraken.
 6. Whether stablecoin settlement at Visa and Mastercard becomes material production volume and which settlement banks close the fiat leg.
 7. Swift's initial ledger pilots: tokenized-deposit liability, off-ledger settlement mechanism, participant rulebook, and production volume.
 8. Paxos Securities Settlement Company's temporary registration: eligible securities, participant growth, cash leg, and route toward permanent status.

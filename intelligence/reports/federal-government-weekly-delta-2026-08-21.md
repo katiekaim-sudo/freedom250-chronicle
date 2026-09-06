@@ -1,6 +1,8 @@
 # Whole-Government Weekly Merge — August 20–21, 2026
 
-**State:** pending human review; fixed-window merge complete  
+**State:** closed-provenance; fixed-window merge complete; human promotion was not authorized at campaign close  
+
+> **Lifecycle note (September 8, 2026):** closed provenance. Historical pending, review, promotion, completion or incorporation language below records the campaign state at its own cutoff; it is not a current queue and does not change any stated Chronicle landing, incorporation boundary or evidence cutoff.
 **Exclusive start:** 2026-08-20 12:19:33 EDT  
 **Frozen cutoff:** 2026-08-21 15:00:00 EDT  
 

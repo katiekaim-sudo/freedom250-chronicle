@@ -70,6 +70,6 @@ override the live vault's event-routing rules.
 
 ## Package state
 
-Research is complete through the stated cutoff and remains `pending` human
-review and selective promotion. No live-vault note, plotline, subplot, forecast
-ledger or watch calendar has been changed.
+Research is current in the Workbench through the stated cutoff. No Chronicle
+landing, plotline, subplot, forecast ledger or watch-calendar change follows
+from that lifecycle state.

@@ -161,11 +161,11 @@ Keep Sierra Leone as the eligibility-without-presence control and India 1991 as
 the liquidity-without-BOP-closure comparator. They stop future research from
 promoting rule text or crisis sequence into causal proof.
 
-## Promotion boundary
+## Custody boundary
 
-This document is a review-ready pending research answer and the read-first
+This document is a current saved Workbench research answer and the read-first
 document for Research Desk card `gold-bop-currency-adjustment`. The Desk
-projection preserves it as Workbench evidence rather than vault doctrine. It
-changes no Currency Watch grade, does not claim a gold-caused exchange-rate
+projection preserves it as Workbench evidence rather than Chronicle doctrine.
+It changes no Currency Watch grade, does not claim a gold-caused exchange-rate
 move without a causal receipt, and does not create a vault watch or canonical
 research landing.

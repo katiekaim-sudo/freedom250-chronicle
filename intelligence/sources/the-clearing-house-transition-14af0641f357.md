@@ -1,11 +1,11 @@
-> Source created: 2026-07-11 · Source updated: 2026-08-02
+> Source created: 2026-07-11 · Source updated: 2026-09-18
 
 # The Clearing-House Transition
 
 ## How the monetary transition looks when viewed through the institutions that stand in the middle
 
-Updated: 2026-08-02
-Status: deep-dive synthesis; funded-state and cost constitution refreshed 2026-08-02
+Updated: 2026-09-18
+Status: deep-dive synthesis; DTCC regulated modular-conversion reading refreshed 2026-09-18
 Scope: FICC, NSCC, DTC, OCC, CME Securities Clearing, ICE Clear Credit, and the regulatory/infrastructure links among them
 
 ---
@@ -19,6 +19,59 @@ The grouped change is:
 > **More markets are being pulled into central nodes at the same moment those nodes are being rebuilt for longer hours, faster risk calculation, cloud infrastructure, tokenized assets, programmable interfaces, and cross-market collateral.**
 
 This is a synthesis of public records, not a claim that the institutions share one secret plan. Each organization has its own mandate, owners, regulators, products, risk waterfall, and commercial interest. The overlap is architectural.
+
+---
+
+## September 18 ruling — DTCC is converting the middle, module by module
+
+The whole-site DTCC review sharpens the thesis. DTCC is not merely adding a
+token service beside an otherwise unchanged clearing system. It is rebuilding
+the legal and technical middle in separable modules:
+
+```text
+legal submission
+  -> standardized machine-readable data
+  -> authoritative entitlement and account record
+  -> reconciliation, accounting and regulatory reporting
+  -> clearing, margin and risk controls
+  -> securities and cash settlement
+  -> correction, default and remedy
+```
+
+The modules do not share one legal state or launch date. AnnounceDirect remains
+proposed; CMU's PDF-to-CSV conversion has an October test and production clock;
+NSCC's 24×5 clearing is already operating; DTC's broader tokenization service
+has only an October month-level target; Stellar belongs to a first-half-2027
+network clock; and the mandatory settlement-system migration runs into
+November 2027. Their proximity is evidence of an architectural refactor, not a
+common effective date or a single command.
+
+This changes the most useful question. The issue is no longer simply whether
+DTCC will “put securities on blockchain.” The issue is how DTCC makes an asset
+machine-readable and portable across approved environments while preserving
+the incumbent utility's membership, account, custody, risk, correction and
+settlement constitution.
+
+The September evidence therefore supports a **regulated modular conversion of
+the market middle**:
+
+| Layer being converted | Current DTCC evidence | Control that remains |
+|---|---|---|
+| Legal intake | proposed AnnounceDirect corporate-action submission duties | DTC rules, agent obligations, good-order and timing standards |
+| Data and reporting | CMU CSV cutover, ISO 20022, later modernized interfaces | prescribed formats, testing, attestation and participant connectivity |
+| Asset and entitlement record | same-CUSIP token representations on approved networks | DTC mint, burn, pause, clawback and LedgerScan reconciliation |
+| Fund distribution | Oasis Pro Markets admitted to Fund/SERV | incumbent confirmation, account, distribution, tax and regulatory-reporting rails |
+| Operating day | NSCC 24×5 live; first exchange/SIP participation targeted later | CCP admission, guarantee, risk cycles and business-date rules |
+| Settlement core | mandatory DTC migration program through November 2027 | Rule 2 connectivity, service guides, settlement banks and cash finality |
+
+This is not proof of a single master plan, completed deployment, a new
+settlement currency or the disappearance of transfer agents, custodians,
+banks or CCPs. It is stronger evidence that the institutional response to
+tokenization is to absorb it into the existing regulated utility and convert
+the surrounding records and workflows so the utility can operate across more
+hours, interfaces and asset representations.
+
+Factual owner: DTCC Notice and Testing Clock Map — Source Document.
 
 ---
 
@@ -255,7 +308,7 @@ The SEC's December 2025 no-action position opened a three-year window for DTC to
 DTC and DTCC Digital Assets have described:
 
 - limited production activity beginning in July 2026;
-- a participant-facing service launch targeted for October 2026;
+- a participant-facing service launch targeted only to the month of October 2026, not to October 1;
 - institutional development with more than 50 firms;
 - Canton as an institutional/privacy-oriented network;
 - Stellar as the first public-blockchain connection, targeted for the first half of 2027;
@@ -272,6 +325,21 @@ Canton. This moves the limited-production clock to `occurred`; it does not move
 the separate October participant-service launch to `occurred`, and the release
 did not disclose transaction-level CUSIPs, counterparties, values or on-chain
 identifiers. [DTCC official release](https://www.dtcc.com/news/2026/july/15/dtcc-turns-tokenization-into-reality)
+
+The current service page makes the control model more explicit. Tokenized
+positions retain the same CUSIP and are designed to preserve the legal and
+economic rights of the underlying DTC-held securities. DTC retains mint, burn,
+pause and clawback functions, while LedgerScan tracks and reconciles token
+movements and locations against the DTC account structure. The page groups the
+Collateral AppChain, Canton and Stellar as eligible networks, but DTCC's
+separate Stellar announcement keeps Stellar on a first-half-2027 clock. The
+network list is therefore a governed universe, not an October launch receipt.
+
+Fund/SERV now supplies a second bridge. Oasis Pro Markets joined as the first
+tokenization-platform member on September 16, connecting a tokenization firm to
+existing fund confirmations, account data, reconciliation, distributions, tax
+and regulatory reporting. Membership establishes access; it does not establish
+a first tokenized-fund transaction.
 
 ### What its transition means
 
@@ -301,6 +369,9 @@ Multi-chain interoperability creates reach but also creates synchronization, cyb
 - [DTCC May 2026 tokenization development update](https://www.dtcc.com/news?articletype=Press+Releases)
 - [Tokenization moves from theory to reality](https://www.dtcc.com/dtcc-connection/articles/2026/may/19/tokenization-moves-from-theory-to-reality)
 - [DTCC Cloud First strategy](https://www.dtcc.com/en/news/2026/april/15/dtcc-advances-cloud-first-strategy-to-modernize-core-market-and-digital-market-infrastructures)
+- [DTC Tokenization Service](https://www.dtcc.com/products-and-services/digital-assets/tokenization)
+- [LedgerScan](https://www.dtcc.com/products-and-services/digital-assets/composerx/ledgerscan)
+- [Fund/SERV adds Oasis Pro Markets](https://www.dtcc.com/press-releases/2026/DTCC-FundSERV-Adds-Ondo-Finance-as-First-Tokenization-Member)
 
 ---
 
@@ -755,7 +826,9 @@ Repo stress, the March 2020 Treasury dislocation, meme-stock volatility, and rep
 - CME builds toward launch as a new Treasury CCP.
 - FICC adds enforcement, access, collateral, and cross-margining machinery.
 - NSCC goes live 24×5.
-- DTC enters its tokenization launch window.
+- DTC completes limited tokenization production and enters a month-level broader launch window.
+- Fund/SERV admits its first tokenization-platform member.
+- DTCC begins converting corporate-action intake, CMU reporting and Asset Services messages into standardized digital submission and machine-readable formats on separate clocks.
 - OCC resumes Ovation scenario testing.
 - DTCC moves core and digital infrastructure toward AWS/Azure.
 - Cash Treasury mandatory clearing arrives December 31.
@@ -779,6 +852,9 @@ Repo stress, the March 2020 Treasury dislocation, meme-stock volatility, and rep
 ### Confirmation markers
 
 - Recurring participant-facing production use, or standing CCP/repo/margin eligibility, beyond the limited July workflows.
+- An operative DTC launch notice identifying participant terms, approved launch networks and assets, fees, wallet controls and first post-opening production use.
+- AnnounceDirect becomes effective and produces observed corporate-action submissions under revised operating arrangements.
+- CMU completes the October CSV-only production conversion with participant acceptance and defect disposition.
 - CMESC production launch, named clearing members, and non-trivial open positions.
 - Treasury volume distributes across ICE and CME rather than remaining overwhelmingly at FICC.
 - Operational bridges or cross-margin arrangements expand between otherwise competing CCPs.
@@ -810,7 +886,10 @@ The clearing-house story often appears first as a changed verb, a new PDF, a ren
 | ICE Treasury participant list and volumes | ICC Treasury page, disclosures, circulars | Separates operational readiness from commercial adoption |
 | FICC enforcement rule approval/effective date | DTCC notices and SEC FICC docket | Supplies the teeth behind the Dec. 31 mandate |
 | FICC daily volume, CCLF, and Clearing Fund changes | DTCC disclosures and notices | Shows whether concentration and liquidity demands are accelerating |
-| First DTC tokenized production transaction | DTCC press releases and DTC notices | Marks the step from authority/pilot to live ledger use |
+| Broader DTC tokenization opening | DTC notices, service guides, participant terms and occurred transactions | Separates the approximate October target from a legally and operationally open service |
+| AnnounceDirect effectiveness and use | DTC/SEC filing docket, Operational Arrangements and DTC notices | Tests whether corporate-action legal intake has actually moved to the new submission system |
+| CMU CSV-only production and defects | NSCC Important Notices and client resources | Tests the exact October 30 machine-readable reporting conversion |
+| DTC settlement-system launch date and migration | DTC notices and service guides | Tracks the mandatory core migration now extending to November 2027 |
 | Tokenized asset becomes eligible collateral | DTC/NSCC/FICC/OCC notices | Joins the token story to the clearing story |
 | Collateral AppChain production date and participants | DTCC/Chainlink materials | Tests the 24/7 collateral thesis |
 | Ovation testing phases and production date | OCC Transformation pages and memos | Tracks the riskiest core-platform replacement |
@@ -833,6 +912,8 @@ It is a change in the legal and technical middle:
 - trading hours outgrow the old market day;
 - margin becomes more frequent and data-driven;
 - collateral becomes mobile and potentially tokenized;
+- corporate-action intake and participant reporting become standardized and machine-readable;
+- on-chain and off-chain records are normalized back into accounting, custody and portfolio systems;
 - depositories extend authoritative records across multiple rails;
 - competing clearing houses remain linked through banks, cross-margining agreements, cloud providers, and the Federal Reserve's cash layer;
 - private rulebooks determine how losses are socialized when the machine breaks.
@@ -841,4 +922,7 @@ The grouped story is therefore paradoxical:
 
 > **The market is becoming more centralized and more plural, more programmable and more rule-bound, more continuous and more dependent on a few hidden nodes—all at once.**
 
-That paradox is the clearing-house transition.
+The September DTCC evidence makes the mechanism clearer: this is not one
+blockchain launch replacing the old market. It is a regulated utility converting
+the middle module by module while retaining authority over admission, records,
+risk, correction and settlement. That paradox is the clearing-house transition.

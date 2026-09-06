@@ -1,187 +1,68 @@
-# SWIFT ledger — activation, legal constitution and finality
+# SWIFT ledger — what has actually gone live?
 
-**Research cutoff:** 2026-07-21; targeted activation-state refresh 2026-09-03  
-**Status:** ready for initial controlled use; 17 named banks are preparing live pilots; no completed SWIFT-ledger transaction, external-cash finality event or public participant rulebook is established  
-**Control:** hypotheses are marked. A product announcement, transaction execution, customer credit, external cash settlement and legal finality are separate states.
+> September 9 follow-up: Funding, binding commitments, cross-network liquidity and FX is the maintained four-question deepening, with the Siemens sequence, illustrative accounting and public-term gaps. Earlier dated findings retain their original cutoff.
 
-## Executive ruling
+**Answer:** SWIFT's shared ledger has progressed from readiness to bank-reported live transactions in a controlled rollout. The strongest newly located evidence includes named interbank pairings, HKD and USD payments, a dated weekend Singapore–New York payment, identified bank deposit systems, matching/netting, and a report of completed correspondent settlement. General commercial availability, recurring network volume and a publicly inspectable legal-finality constitution remain unestablished by these disclosures.
 
-**September 3 status refresh.** SWIFT's July 9 announcement resolves two
-questions previously described too cautiously: SWIFT is the operator of the
-ledger within its infrastructure stack, and 17 named banks are preparing to
-pilot live transactions using bank-issued tokenised deposits. This is
-activation/readiness evidence, not proof of a completed transaction, production
-scale, a named corridor, final cash settlement or legal finality. [SWIFT
-activation announcement](https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure)
+**Scope:** official SWIFT architecture and participant-bank disclosures available through September 9, 2026, 9:35 p.m. EDT. The later bank review covered all 17 roster participants and material adjacent programmes; it is not exhaustive coverage of every bank project or a fresh legal-regulatory review. Three agents supplied bank lanes; the lead reconciled material sources and the recovered BNP PDF. Publication dates below are not transaction dates unless explicitly stated.
 
-The ledger's strategic object is not a SWIFT coin. It is a **funded interbank commitment** that SWIFT records, validates, synchronises and—in the March 2026 Payments Market Practice Group description—notarises across bank-controlled liabilities.
+**Relationship to saved research:** extend the existing `swift-shared-ledger` identity. The Chronicle's July architecture dossier remains the detailed historical architecture/retrieval baseline, with its September 3 limited refresh. Its statement that completed transactions had not been established is now superseded by the evidence below. The later bank/partnership expansion is saved in the Workbench; this research pass did not update the Chronicle or build/install the app.
 
-The public architecture is:
+## What the offering does
 
-1. participating banks retain their own tokenised-deposit environments, keys, assets, funding and settlement authority;
-2. SWIFT operates a shared Besu/EVM orchestration and notary layer;
-3. the payer-side commitment is funded and confirmed before execution;
-4. a receiving bank may make customer funds available overnight or on weekends; and
-5. final cash settlement remains outside the ledger through RTGS, correspondent accounts or another participant-agreed mechanism.
+SWIFT described initial readiness on **July 9, 2026**, with 17 banks preparing live pilots and broader availability to follow controlled activation. Customer availability can precede final settlement. That announcement alone was not transaction evidence. [SWIFT readiness](https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure)
 
-Two objects remain undisclosed:
+The disclosed architecture uses Hyperledger Besu, compatible with the Ethereum Virtual Machine. SWIFT operates workflow and commitment coordination; banks retain their environments, keys, assets, funding and settlement choices. Programmable corporate flows, FX payment-versus-payment and securities cash movements are described as capabilities the model can support, not universally available products. A separate retail payments scheme is a parallel initiative. EVM compatibility alone does not establish Ethereum-mainnet operation or ETH purchases. [SWIFT implementation](https://www.swift.com/news-events/news/swifts-blockchain-based-shared-ledger-progresses-mvp-implementation)
 
-- **the funding object** — reservation, segregated balance, collateral, credit line, correspondent balance, net position or something else;
-- **the gap bearer** — the bank or provider carrying principal and liquidity exposure if customer funds become usable before external settlement completes.
+SWIFT's liquidity explainer describes funding confirmed before execution and shared visibility of commitments. It supplies no measured reduction in liquidity buffers or public specification of the legal funding object. [Liquidity explainer](https://www.swift.com/payments/payment-innovation/blockchain-based-ledger/enabling-bank-liquidity-management-always-world)
 
-## Factual findings
+Its governance explainer restricts access to regulated institutions and verified entities and describes shared governance. SWIFT disclaims issuance, custody and settlement-agent/FMI roles. These are operator representations; the page is not an executed participant agreement or independent legal determination. [Trust explainer](https://www.swift.com/payments/payment-innovation/blockchain-based-ledger/future-built-trust)
 
-### 1. The ledger is a notary for bank liabilities
+## The operating evidence
 
-The March 2026 PMPG minutes describe a central 24/7 infrastructure focused initially on tokenised-deposit corporate payments and acting as a **notary for interbank liabilities**. Participants also explored external-settlement connections for liquidity management and discussed clearing, atomic settlement and netting across central- and commercial-bank systems.
-
-“Explored” is design evidence. It does not prove that every discussed function is implemented in the MVP.
-
-Source: [PMPG Monthly Meeting Minutes, 24–26 March 2026, item 5.1, p. 6](https://www.swift.com/swift-resource/252568/download).
-
-### 2. “Funded upfront” is an outcome, not yet a known legal object
-
-SWIFT says commitments are funded before execution and visible to relevant parties in real time. Public material does not establish that the funding is segregated, irrevocably earmarked, bankruptcy-remote, collateralised or immediately available to the receiving bank in final cash.
-
-Source: [SWIFT — enabling bank liquidity management in an always-on world](https://www.swift.com/payments/payment-innovation/blockchain-based-ledger/enabling-bank-liquidity-management-always-world).
-
-### 3. Four clocks sit underneath “instant settlement”
-
-| Clock | Event | Public state |
+| Publication | Bank-reported result | What remains bounded |
 |---|---|---|
-| **Bank token/funding** | payer bank reserves or identifies value behind its commitment | funding outcome stated; mechanism undisclosed |
-| **SWIFT commitment** | shared ledger validates, records and coordinates the interbank promise | product capability stated |
-| **Customer credit** | receiving bank makes funds usable | intended overnight/weekend capability; first public transaction missing |
-| **External cash finality** | the banks' final obligation is discharged through RTGS, correspondent accounts or another mechanism | explicitly off-ledger; corridor-specific rail missing |
+| August 19 | Standard Chartered and HSBC report their first live interbank transaction. HSBC TDS and Standard Chartered infrastructure recorded deposit obligations; SWIFT matched/netted them before external settlement. [Source](https://www.sc.com/en/press-release/standard-chartered-and-hsbc-execute-first-live-tokenised-deposit-transaction-on-swifts-blockchain-based-ledger/) | Currency, precise endpoints, value and execution date are unspecified. |
+| August 26 | UOB and HSBC completed HKD cross-border transactions, using UOB's deposit infrastructure and HSBC TDS. Their obligations were matched/netted before settlement through existing systems. [Source](https://www.uobgroup.com/uobgroup/newsroom/news-releases/2026/uob-cross-border-transactions-on-swift.page) | Exact geographic corridor and transaction dates unspecified; SGD/USD expansion was planned. |
+| September 2 | Citi reports completed USD transactions with FAB and OCBC and defines a July–December 2026 controlled proof-of-concept period. [Source](https://www.citigroup.com/global/news/press-release/2026/citi-services-pioneers-live-transactions-swift-ledger-fab-ocbc-redefine-always-on-global-payments) | Separate Citi Token Services volume and clearing-client totals are not SWIFT-ledger metrics. Regional “first” claims have narrower scopes than Standard Chartered's August claim. |
+| September 2 | FAB confirms bilateral USD activity with Citi. Deposits stayed on bank balance sheets; SWIFT recorded commitments/liabilities without custody. FAB says separate interbank settlement completed through correspondent channels. [Source](https://www.bankfab.com/en-ae/about-fab/group/in-the-media/completes-tokenized-deposit-milestone-with-citi-swift-ledger) | “At scale” is unquantified. No account-level route, settlement timestamp or legal-finality instrument disclosed. |
+| September 4 | BNP Paribas and HSBC report a completed Siemens corporate payment, EUR in France to GBP in the UK. SWIFT coordinated obligations; banks handled FX, funding and external settlement. [Official PDF](https://cashmanagement.bnpparibas.com/sites/default/files/2026-09/POC_SWIFT_HSBC_BNP%20Paribas_PRESSRELEASE.pdf) | Exact execution day, amount, FX rate and finality timestamp not disclosed. |
+| September 7 | DBS reports a payment actually executed **September 5**, a Saturday, between Singapore and Citi's New York office, in USD, taking minutes. [Source](https://www.dbs.com/newsroom/DBS_and_Citi_partner_to_enable_instant_247_cross_border_USD_payments_with_tokenised_deposits) | Amount, customer, exact latency, cost and external settlement clock absent. This replaces Citi's earlier prospective DBS status. |
 
-No source located by the cutoff collapses those four moments into one universal final-settlement event.
+The six pairings above involve **eight named banks**, a count derived from these disclosures, not a census of network activity. A public announcement remains participant-reported evidence, not independent transaction-log verification.
 
-### 4. A participant constitution exists, but its operative documents are missing
+## What changes in our understanding
 
-SWIFT says access is restricted to regulated institutions and verified entities, rules governing commitments and settlement are defined, and governance is shared among participating institutions. SWIFT also says it is not the money issuer, custodian, settlement agent or financial market infrastructure.
+1. **Readiness → executed activity:** the old blanket absence of completed transactions is stale. The August announcements predate the September 3 architecture-only check; its limited scope explains the missed development.
+2. **Generic compatibility → named adapters:** Standard Chartered/HSBC and UOB/HSBC identify the bank deposit environments. Shared membership alone was weaker evidence.
+3. **Possible netting → reported matching/netting in named cases:** the bank releases strengthen the implemented-function evidence. They do not disclose enforceability, multilateral netting rules or quantified savings.
+4. **Unspecified external settlement → a reported correspondent settlement:** FAB identifies completion and channel class. That does not provide every transaction's finality event or loss rules.
+5. **Weekend promise → a dated weekend example:** DBS supplies the clearest execution date, endpoints, currency and coarse duration in this set.
 
-The public ledger rulebook, executed participation form, pricing object, failure/reversal provisions and node/control schedule were not located. The operative constitution may be assembled through the SWIFT General Terms and Conditions, a Swift Solution rulebook, ordering records, activation notices, participant agreements and restricted MySwift Knowledge Centre material.
+## Observatory interpretation: incumbent banks absorb the new machinery
 
-Source: [SWIFT — a future built on trust](https://www.swift.com/payments/payment-innovation/blockchain-based-ledger/future-built-trust).
+Our Route–Anchor–Inventory thesis asks which functions move and which institutions still define the claim and carry the risk. This case now supplies operational evidence for that question.
 
-### 5. The ordinary public terms did not reveal a ledger-specific amendment
+The working interpretation is that banks are making their deposit liabilities easier to coordinate across institutions. A shared state can support payment execution while bank books, bank credit and settlement relationships continue to matter. SWIFT gains a coordinating role beyond sending independent messages. The evidence supports incumbent adaptation and a division of functions; it does not establish central-bank displacement or quantify market-share migration.
 
-The public legal-site and version audit did not locate a ledger-named change in the ordinary website terms or a public ledger participation agreement. That negative finding does not prove the participant terms are unchanged: product-specific and highest-precedence documents can sit in a rulebook, order, quotation, click-through acknowledgement or controlled customer environment.
+The unresolved economic question is **who funds the interval between customer availability and final interbank discharge, on what terms, and at what cost?** Upfront funding and matching may reduce uncertainty, but only actual balances, limits, collateral, settlement timing and failure rules reveal the liquidity burden. A useful stress test would follow a failed external settlement after customer funds became usable.
 
-The safe statement is **no public ledger-specific terms object located**, not “no terms changed.”
+No reviewed transaction establishes a required XRP, LINK, ETH, stablecoin or CBDC leg. That bounded finding neither rules out future integrations nor converts another bank/network relationship into a selected SWIFT route. Network utility, operator revenue and demand to hold a native token require separate evidence.
 
-### 6. Belgian law creates the strongest disclosure route
+## Remaining source gaps and return questions
 
-Belgium's Law of 25 May 2025 on the supervision of providers of financial messaging services entered into force on 1 January 2026. SWIFT's 2025 Annual Review says the National Bank of Belgium designated SWIFT in early 2026 and the framework becomes applicable to it on **1 October 2026**. The exact NBB designation-list object and date were not located.
+- Public rulebook, pricing, participant eligibility details, operative netting/finality provisions and loss allocation were not established by this refresh. Restricted MySwift material was not accessed; the prior legal dossier was not exhaustively recertified.
+- General availability, recurring customer usage, amounts, costs, measured liquidity savings and corridor-by-corridor settlement clocks require new operating disclosures.
+- Citi–UOB and UOB's planned SGD expansion remain unverified here; absence of a located completion report is not proof of nonoccurrence.
+- The previous BNP/HSBC/Siemens retrieval gap is resolved by its official September 4 PDF; the payment is now included above.
+- SWIFT's product explainers include video objects; no video transcript was inspected. Search/open snapshots of its news index were inconsistent. This pass does not certify that no September 9 announcement exists.
 
-The most relevant statutory hooks are:
+Update the existing Sibos return to seek operating scale, contracts, funding and failure details rather than waiting for a first transaction already reported. This is a saved research return, not a new automation or watch-calendar change.
 
-- **Article 3(4):** a broad service perimeter including closely related operational and ancillary services;
-- **Articles 40–41:** operator responsibility and NBB authorisation/information routes for critical or important outsourcing;
-- **Article 46:** enforceable rules and contracts across relevant legal systems;
-- **Articles 47–48:** risk incentives, recovery and orderly wind-down;
-- **Article 71:** public, non-discriminatory access and orderly suspension/exit criteria;
-- **Article 73:** public key rules and procedures, clear service descriptions, rights and obligations, supporting documentation and per-service fees.
+## Accounting companion
 
-The law does not guarantee public disclosure of every bilateral contract, smart contract, security control or node configuration. It creates a statutory route to the public core of the service constitution if the ledger is within the regulated service perimeter.
+Saved accounting walkthrough and Crypto Hub rule overlap preserves the September 9 explanation, adds explicitly illustrative journal entries and maps the questions to the existing Hub process layers.
 
-Sources: [Belgian Law no. 2025004515](https://refli.be/fr/lex/2025004515); [SWIFT Annual Review 2025](https://www.swift.com/sites/default/files/files/2025-swift-annual-review_v08-1.pdf); Reading the Charter — SWIFT.
+## All-bank and adjacent research companion
 
-### 7. The public post is an architecture statement, not a new legal state
-
-On 20 July 2026 at 10:01 UTC, SWIFT said its approach differs because it extends infrastructure already trusted by its member community and is designed to help the existing ecosystem evolve rather than replace it. That confirms the incumbent-orchestrator strategy. It does not promote the ledger beyond “ready for initial use / pilots preparing.”
-
-Event: 2026-07-20-1001 - Why is Swifts approach to blockchain different.
-
-## Control architecture
-
-| Layer | Confirmed authority | Missing activation evidence |
-|---|---|---|
-| **Bank liability/token** | issuing or participating bank | exact legal debtor, token terms, reservation and bank-book priority |
-| **Bank adapter** | bank retains its environment and keys | system of record, interface events and double-commitment prevention |
-| **SWIFT commitment/notary** | SWIFT operates shared orchestration | validator roster, contract administration, schema, rollback and governance votes |
-| **Customer credit** | receiving bank | provisional/final status, unrestricted availability and reversal rights |
-| **External final cash** | banks plus RTGS/correspondent/agreed mechanism | rail, accounts, asset, operating hours, gross/net rule and legal-finality event |
-| **Operator oversight** | NBB plus cooperative central-bank oversight | ledger classification, conditions and exact designation object |
-
-## Bank-adapter boundary
-
-HSBC is the only bank in the announced cohort located in this pass expressly connecting a named bank product—its Tokenised Deposit Service—to the SWIFT ledger.
-
-Citi Token Services, DBS Treasury Tokens, Standard Chartered/Ant Whale balances, Lloyds Canton deposits, BNY digital cash, UBS Digital Cash and Kinexys-linked products are adjacent systems operated or used by cohort banks. Shared membership or technical compatibility does not establish that any is the bank's SWIFT adapter.
-
-The common SWIFT proposition must normalise legally different bank objects into a signed commitment with currency, amount, conditions, expiry and authority. The commitment schema—not Besu alone—is the interoperability control point.
-
-## Weekend-liquidity and failure test
-
-Plausible bridges include a gross reservation, prefunded correspondent balance, bilateral credit limit, collateralised facility, deferred netting, a designated settlement bank or an always-open external settlement rail. SWIFT has not publicly selected one universal mechanism; corridor and currency may control.
-
-The minimum failure question is:
-
-> If the receiving customer can use funds before external cash settles, do those funds stand when the external leg fails—and which bank, collateral pool, credit line or loss-sharing rule pays?
-
-The rulebook must also resolve reservation expiry, replay/double use, sanctions or fraud holds, bank insolvency, ledger/book conflict, node failure, reversal, interest/overdraft cost and loss allocation.
-
-A useful non-SWIFT control landed on 9 July: Citi and Siam Commercial Bank announced a US-holiday-weekend USD payment using Citi Token Services and Citi's 24/7 USD Clearing. That case proves one bank can place the token and clearing bridge inside its own controlled network. It does not prove SWIFT's multi-bank bridge.
-
-Source: [Citi/SCB transaction](https://www.citigroup.com/global/news/press-release/2026/siam-commercial-bank-citi-24-7-usd-clearing-near-real-time-cross-border-payments-citi-token-services).
-
-## Stablecoin boundary
-
-No source located by the cutoff establishes a stablecoin as current SWIFT-ledger funding, collateral or settlement value. Tokenised deposits and payment stablecoins preserve different issuers, reserve/redemption structures, insolvency regimes, custody models, freeze powers and chain risks.
-
-A future stablecoin claim requires a named:
-
-- token and issuer;
-- legal classification and eligible holder;
-- reserve/redemption and insolvency treatment;
-- custody, wallet and bank-adapter path;
-- SWIFT commitment role;
-- external settlement or redemption asset; and
-- depeg, blacklist/freeze, fork and issuer-default rule.
-
-The first stablecoin could enter as **funding**, **collateral**, **settlement value** or an **external asset whose movement SWIFT coordinates**. Those are four different architectures.
-
-## Status ladder
-
-| Level | Permitted status | Evidence gate |
-|---:|---|---|
-| 0 | research hypothesis | adjacent capability only |
-| 1 | configured/connected | named legal entity, environment and SWIFT connection |
-| 2 | scheduled | both sides, currency, use case and planned live state |
-| 3 | executed | occurrence plus a transaction-level field |
-| 4 | recipient credited | usable-funds time separated from execution |
-| 5 | final cash settlement | external asset/system and finality event identified |
-| 6 | legal finality verified | rulebook covers irrevocability, reversal, record priority, default and loss |
-
-## Disclosure clocks
-
-| Date | Surface | Evidence target |
-|---|---|---|
-| 29 Jul 2026 | Standard Chartered half-year results | Ant/Whale role, SWIFT product, currency or corridor |
-| 4 Aug 2026 | HSBC interim results | TDS entity/location, counterparty, transaction or volume |
-| 6 Aug 2026 | DBS results | Treasury Tokens-to-SWIFT connection and currency |
-| 28 Sep–1 Oct 2026 | Sibos Miami | named transaction, live demonstration, customers, implementation details or rulebook |
-| 1 Oct 2026 | Belgian framework stated applicable to SWIFT | designation list, ledger classification, key rules, criteria, service description and fees |
-| 13 Oct 2026 | Citi Q3 results | CTS connection or another external-bank live case |
-
-## Exact promotion objects
-
-1. NBB designation-list entry and effective date.
-2. Express NBB/SWIFT classification of the ledger service.
-3. Ledger rulebook, participation/order object and version history.
-4. Commitment schema, reservation/expiry rule and signature method.
-5. Node, validator, privacy-group and contract-administration schedule.
-6. First transaction with both legal entities, currency, date and transaction-level field.
-7. Customer-credit time and provisional/final status.
-8. External settlement rail, accounts, asset and finality event.
-9. Default, reversal, insolvency and loss-allocation rule.
-10. Stablecoin eligibility rule, if one is admitted.
-
-## Research judgment
-
-The evidence does not establish a new universal final-settlement rail. It shows SWIFT moving beyond message transmission into shared execution/notary coordination while leaving issuance, custody, funding and final cash with banks and existing systems.
-
-The product's load-bearing object is therefore its constitution. Besu supplies a state machine. The rulebook determines whose promise counts, when the receiving customer can use it, what record wins and who carries the loss if the external settlement layer does not complete.
-
-Related: FINTECH_SWEEP_PAYMENT_ORCHESTRATORS · FINTECH_CRYPTO_CLAIM_AUDIT · FINTECH_CRYPTO_TRANSITION_TIMELINE · 2026-07-12 - The Private Stack — Who Owns the Gates · The Clearing-House Transition
+All 17 banks, testing, partnerships and linked research expands the roster audit, resolves BNP/HSBC/Siemens, and separates earlier SWIFT experiments from Canton, Chainlink, Kinexys, Partior, Agorá and other bank projects. Nine roster banks have no completed shared-ledger receipt located by this cutoff.

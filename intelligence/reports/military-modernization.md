@@ -1,9 +1,11 @@
 # Military Modernization — Research Package
 
-**Status:** `pending`  
+**Status:** `current`  
 **Cutoff:** 2026-07-15  
 **Scope:** the command, data, communications, space, AI, autonomy, continuity and acquisition architecture of the U.S. military  
 **Method:** primary-source factual spine first; synthesis and vault routing kept separate
+
+**Targeted update:** the 2026-09-25 FAST review adds the Department's resource-governance and portfolio-pruning layer. It does not change the package's broader 2026-07-15 implementation cutoff.
 
 ## Short answer
 
@@ -24,12 +26,13 @@ This is a real Freedom 250 crosscut. It is **not** grounds for a new top-level p
 ## Read order
 
 1. `MILITARY_MODERNIZATION_FIELD_REGISTRY.md` — ontology, status rules and clocks.
-2. `MILITARY_COMMAND_DATA_CONTROL_STACK.md` — the integrated architecture.
-3. `MILITARY_MODERNIZATION_ENTITY_PROGRAM_REGISTRY.md` — who owns each function and program.
-4. `MILITARY_MODERNIZATION_TRANSITION_TIMELINE.md` — occurred, contracted, fielded and scheduled events.
-5. `MILITARY_MODERNIZATION_CLAIM_AUDIT.md` — corrections and non-findings.
-6. `MILITARY_MODERNIZATION_VAULT_INTEGRATION_MAP.md` — what belongs in the live vault.
-7. `MILITARY_MODERNIZATION_SOURCE_WATCHBOARD.md` — sources and promotion triggers.
+2. `FORCE_AGILITY_AND_STREAMLINING_TEAM_2026-09-25.md` — targeted FAST authority, state, clock and results-gate map.
+3. `MILITARY_COMMAND_DATA_CONTROL_STACK.md` — the integrated architecture.
+4. `MILITARY_MODERNIZATION_ENTITY_PROGRAM_REGISTRY.md` — who owns each function and program.
+5. `MILITARY_MODERNIZATION_TRANSITION_TIMELINE.md` — occurred, contracted, fielded and scheduled events.
+6. `MILITARY_MODERNIZATION_CLAIM_AUDIT.md` — corrections and non-findings.
+7. `MILITARY_MODERNIZATION_VAULT_INTEGRATION_MAP.md` — what belongs in the live vault.
+8. `MILITARY_MODERNIZATION_SOURCE_WATCHBOARD.md` — sources and promotion triggers.
 
 ## Strongest findings
 
@@ -75,6 +78,14 @@ The Space Force accepted GPS OCX contractually in 2025, then cancelled the progr
 
 Primary source: [Space Force OCX termination](https://www.spaceforce.mil/News/Article-Display/Article/4465024/ussf-terminates-program-for-the-global-positioning-system-next-generation-opera/)
 
+### 8. FAST adds a resource-governance layer, not a new innovation lane
+
+A Deputy Secretary memorandum signed 2026-08-04 established the Force Agility and Streamlining Team inside the Comptroller/CFO office; the Department publicly released it on 2026-09-25. FAST reviews duplicative or inefficient programs, processes, spending and organizational structures and recommends elimination, realignment, consolidation or modification. That places it upstream of budget and portfolio dispositions and beside—rather than in place of—the Department's acquisition, business-system, performance-improvement and cost-evaluation owners.
+
+The documents establish an enduring review-and-recommendation mechanism. They do not name the Director, publish a target list, record a recommendation, grant universal implementation authority, or prove savings or readiness results. Read the FAST authority, state and clock map before treating a future announcement as an implemented change.
+
+Primary sources: [Department release](https://www.war.gov/News/Releases/Release/Article/4611887/department-of-war-establishes-force-agility-and-streamlining-team-to-cut-bureau/); [signed establishment memorandum](https://media.defense.gov/2026/Sep/25/2004007185/-1/-1/1/DEPUTY-SECRETARY-MEMO-ESTABLISHMENT-OF-THE-FORCE-AGILITY-AND-STREAMLINING-TEAM.PDF)
+
 ## Controlling synthesis
 
 The emerging military machine is best understood as a **federated decision fabric**:
@@ -106,6 +117,10 @@ Keep this full package in the Observatory research workspace. Promote only discr
 
 General speeches, exercises without a state change, vendor marketing and broad budget rhetoric stay in the source bench.
 
-## Next phase after this package
+## Read the joined policy and sustainment research
 
-The next useful expansion is **contested logistics and the military industrial metabolism**: fuel, power, ports, sealift, prepositioned stocks, maintenance data, additive manufacturing, microreactors, munitions capacity and the financial/contract rails beneath mobilisation. That should be a separate factual package, joined to this one through the sustainment layer rather than folded into it.
+The Arsenal policy section in the transition timeline reconciles ten original filings on September 7, 2026. It keeps their questions about demand, procurement, transfers and supplier conditions beside the saved command-and-control evidence. This targeted addition does not change the broader July 15 implementation cutoff.
+
+The complementary Contested Logistics package now follows fuel, power, ports, lift, maintenance, munitions capacity and the financial arrangements beneath mobilization. Its question is how capability moves and remains usable. Read the two studies together through the sustainment layer.
+
+The same transition timeline also joins six original defense-innovation questions: software acquisition, security review, quantum evaluation, cyber competition results, counter-drone procurement and research solicitations. Its September 7 review identifies the official counterparts behind historical captures and distinguishes measured results from future delivery.

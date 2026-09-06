@@ -2,7 +2,7 @@
 
 Evidence cutoff: 2026-07-30  
 Method: primary-source, entity-based, claim-audited  
-Status: active research package; one synthesis is selected for vault landing
+Status: active research package; the Chronicle synthesis controls the maintained shared answer
 
 ## Predecessor
 
@@ -35,35 +35,39 @@ automatic.
 
 ## Read order
 
-1. `ACCOUNTING_FUNCTIONS_AND_SMART_CONTRACT_AUTOMATION_MAP_2026-07-30.md`
-   — **read first**; full accounting-function decomposition and event-sourced
-   design.
-2. `CORPORATE_ACCOUNTING_CYCLES_GAAP_AND_AUTOMATION_DEEP_DIVE_2026-07-30.md`
+1. `04 - Synthesis/Cross-cuts/2026-07-30 - The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer.md`
+   — **read first in the Chronicle** for the maintained shared answer. Its
+   July 30 architecture is a research hypothesis; the August 5 SEC extension
+   is separately dated.
+2. `ACCOUNTING_FUNCTIONS_AND_SMART_CONTRACT_AUTOMATION_MAP_2026-07-30.md`
+   — what accounting actually does: the original 16-function decomposition,
+   event object and judgment object.
+3. `CORPORATE_ACCOUNTING_CYCLES_GAAP_AND_AUTOMATION_DEEP_DIVE_2026-07-30.md`
    — order-to-cash, procure-to-pay, payroll, inventory, fixed assets,
    treasury, tax, close, reporting and audit mapped function by function.
-3. `MODIFIED_CASH_BASIS_AND_GAAP_BOUNDARY_2026-07-30.md`
-   — cash, modified cash, accrual, GASB modified accrual and federal
-   budgetary/proprietary accounting kept separate.
-4. `GOVERNMENT_OPEN_LEDGER_DEEP_DIVE_2026-07-30.md`
+4. `MODIFIED_CASH_BASIS_AND_GAAP_BOUNDARY_2026-07-30.md`
+   — why cash plus AR/AP is not GAAP: cash, modified cash, accrual, GASB
+   modified accrual and federal budgetary/proprietary accounting kept separate.
+5. `GOVERNMENT_OPEN_LEDGER_DEEP_DIVE_2026-07-30.md`
    — primary-source map of authoritative federal record owners from
    appropriation through recovery, the missing joins and a detailed
    education-grant case.
-5. `OPEN_GOVERNMENT_ACCOUNTING_FROM_APPROPRIATION_TO_OUTCOME_2026-07-30.md`
-   — public-money architecture, privacy boundary and current federal building
-   blocks.
-6. `EDUCATION_GRANT_ADMINISTRATION_AND_LEDGER_INTERLOCK_2026-07-30.md`
+6. `OPEN_GOVERNMENT_ACCOUNTING_FROM_APPROPRIATION_TO_OUTCOME_2026-07-30.md`
+   — what public accountability makes visible: open code, standards, data,
+   verifiable records and governance kept distinct.
+7. `EDUCATION_GRANT_ADMINISTRATION_AND_LEDGER_INTERLOCK_2026-07-30.md`
    — concrete case study of ED's interagency grant-administration changes,
    award-cohort system migration and the legal/payment/audit joins a public
    transaction record must preserve.
-7. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
+8. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
    — assertion matrix, oracle/key/admin/legal-code/correction/privacy controls,
    migrated accounting games and an auditor work program.
-8. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
+9. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
    — carry, correct, forecast and reject ledger.
-9. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
-   — evidence gates that would show the idea moving into standards or
-   production.
-10. `SOURCE_LEDGER_2026-07-30.md`
+10. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
+    — one source-question guide for standards, production, the federal
+    transaction spine and assurance evidence; it is not a scheduled watch.
+11. `SOURCE_LEDGER_2026-07-30.md`
    — official source spine.
 
 ## Boundaries
@@ -77,8 +81,9 @@ automatic.
   the network’s rules. It does not by itself prove delivery, legal ownership,
   collectibility, fair value, allowability, beneficiary eligibility or absence
   of collusion.
-- Open-source code, open standards, open data and a publicly verifiable
-  transaction record are four different transparency objects.
+- Open-source code, open standards, open data, a publicly verifiable
+  transaction record and open governance are five different transparency
+  objects.
 - Treasury’s federal grant blockchain work was a prototype. It did not process
   real grant payments.
 

@@ -1,10 +1,12 @@
 # Federal fusion commercialization bridge, 2020–2035
 
 **Evidence cutoff:** 2026-08-15 15:28 EDT
-**Status:** pending workbench research; source-first domain bridge
+**Status:** current workbench research; source-first domain bridge
 **Primary Observatory home:** `Energy` → `Energy dominance & the nuclear revival`
 **Secondary join:** `Technology/AI` only where the object is AI, compute, data, a digital twin or an autonomous experimental system
 **Research join:** Federal Science Operating System / Research Desk
+
+**September 7 correction:** the existing 2027 framework deadline is attributed to [NEIMA section 103(a)(4)](https://www.govinfo.gov/content/pkg/PLAW-115publ439/pdf/PLAW-115publ439.pdf), as amended. The saved August 15 implementation findings retain their cutoff.
 
 ## Short answer
 
@@ -78,7 +80,7 @@ roadmap; do not promote it as a scientific or commercial milestone.
 |---|---|---|---|
 | DOE August 15 X thread | official communications event | DOE is actively amplifying the fusion-commercialization agenda | a new experiment, award, license, plant or power result |
 | Finalized FS&T Roadmap | final DOE strategy published June 9 | national Build-Innovate-Grow architecture, metrics, technical gaps and mid-2030s targets | a specific appropriation, award or guaranteed timetable |
-| ADVANCE Act section 205 | enacted July 9, 2024 | adds fusion-machine and fusion-produced byproduct-material definitions to the Atomic Energy Act and sets a December 31, 2027 NRC rulemaking deadline | a final rule, state framework or project license |
+| ADVANCE Act section 205 | enacted July 9, 2024 | adds fusion-machine and fusion-produced byproduct-material definitions to the Atomic Energy Act and amends related NEIMA provisions; the December 31, 2027 framework deadline originated in NEIMA section 103(a)(4) in 2019 | a final rule, state framework or project license |
 | FY2026 Fusion Energy Sciences appropriation | enacted account funding | public research capital exists for FES research and U.S. ITER construction | that every roadmap facility or milestone is funded |
 | Milestone Program | operating public-private award mechanism; eight TIAs show $110.685M obligations and $28.490M linked outlays at cutoff | public capital reaches executed agreements, accounting and some verified milestones | that an obligation/outlay maps one-to-one to a technical result or that a participant completed a pilot plant |
 | Eight-company cohort | CFS, Focused, Realta, Thea, Tokamak, Type One, Xcimer and Zap remain program participants | eight distinct legal/project/technology lanes | eight equivalent U.S.-sited power plants |
@@ -106,8 +108,9 @@ roadmap; do not promote it as a scientific or commercial milestone.
   Collaboratives and a proposed public-private consortium framework.
 - On July 9, 2024, the ADVANCE Act became law. Section 205 amended the
   Atomic Energy Act's fusion-machine and fusion-produced byproduct-material
-  definitions and directed NRC to complete an optional technology-inclusive
-  fusion licensing rulemaking by December 31, 2027.
+  definitions and related NEIMA provisions. The optional-framework deadline
+  of December 31, 2027 already existed in NEIMA section 103(a)(4) (2019);
+  ADVANCE section 205(c) separately required a mass-manufactured-fusion report.
 
 **Sources:** [Public Law 116-260](https://www.govinfo.gov/content/pkg/PLAW-116publ260/pdf/PLAW-116publ260.pdf) · [DOE ignition announcement](https://www.energy.gov/articles/doe-national-laboratory-makes-history-achieving-fusion-ignition) · [DOE 2024 strategy](https://www.energy.gov/articles/doe-announces-new-decadal-fusion-energy-strategy) · [DOE FIRE and Milestone update](https://www.energy.gov/articles/us-department-energy-announces-selectees-107-million-fusion-innovation-research-engine) · [Public Law 118-67](https://www.govinfo.gov/app/details/PLAW-118publ67) · [NRC — Fusion and the ADVANCE Act](https://www.nrc.gov/materials/fusion/mass-production-status)
 

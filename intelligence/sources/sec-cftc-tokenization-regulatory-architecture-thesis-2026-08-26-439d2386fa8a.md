@@ -1,4 +1,4 @@
-> Source cutoff: 2026-08-26
+> Source cutoff: 2026-09-25 · Source updated: 2026-09-25
 
 # SEC–CFTC Tokenization Regulatory Architecture Thesis
 
@@ -18,13 +18,96 @@ stablecoins, central-bank settlement access, commercial-law record priority
 and failure-state protection. State implementation, tax and international
 comparison are included only where they change a federal handoff.
 
-**Evidence cutoff:** 2026-08-26 EDT. Legal state and operating state are kept
+**Evidence cutoff:** 2026-09-25 EDT. Legal state and operating state are kept
 separate. Commissioner speeches, staff statements, no-action positions,
 registered/effective securities, proposed rules, Commission orders, enacted
 law and observed production are not interchangeable.
 
 **Mutation boundary:** Workbench research only. This thesis is not a vault
 landing, canonical watch-calendar change or app-state mutation.
+
+## September 25 refinement: the asset-to-network lifecycle is now more explicit
+
+Corporation Finance's crypto-asset FAQs strengthen the controlled-constitutional-
+retrofit thesis without changing a legal permission. The staff now separates
+Commission-defined functionality for classifying the asset from issuer-defined
+functionality for testing whether promised managerial work was fulfilled. It
+also treats successor assumption as continuity rather than exit, distinguishes
+ordinary post-functional maintenance and network growth from essential
+managerial effort, and makes receipt-token treatment depend on continuing
+holder ownership plus the absence of added economics, issuer use and
+rehypothecation.
+
+**Thesis effect:** the securities perimeter is becoming a lifecycle rather than
+a permanent token label:
+
+`asset classification → issuer promises → investment-contract period → exact promised milestone state → successor continuity → post-functional conduct → possible separation`
+
+This is staff guidance beneath the March Commission interpretation. It does not
+make proposed Rule 400 operative, validate a Form TR, authorize a venue or prove
+that a named network is functional or decentralized.
+
+## September 17 state change: the innovation exemption is now operative
+
+SEC Release No. 34-106402 changes one important state in this thesis. The
+innovation exemption is no longer forthcoming Commission work. It is an
+effective, temporary and conditional order through September 17, 2031.
+
+The order exempts a qualifying Tokenized Securities Venue from the Exchange
+Act definition of `exchange` and gives a matching dealer-definition exemption
+to qualifying own-account AMM liquidity providers. A TSV may operate
+permissioned AMM pools on public, permissionless DLT where at least one leg is
+a Tokenized NMS Stock and the other leg may be another such stock, any
+non-security crypto asset or a tokenized money market fund.
+
+This is a bounded exterior lane beside the registered exchange/ATS stack, not
+an erasure of the surrounding securities constitution. A TSV must publish a
+complete notice at least 30 calendar days before operating. The order preserves
+issuer rights, Securities Act registration, antifraud and antimanipulation
+law, underlying-stock halts, books and SEC examination; it does not supply
+primary issuance, transfer agency, custody, clearing, Investment Company Act
+relief, bank money or legal settlement finality.
+
+**Thesis effect:** the counter-thesis that U.S. tokenized securities will be
+admitted only through incumbent exchange or ATS plumbing is materially
+weakened. The broader controlled-constitutional-retrofit thesis is strengthened:
+execution may move into a new onchain container while the record, identity,
+issuer, cash, settlement and remedy functions remain separately governed.
+
+Read the full controlling-order analysis in
+Tokenized NMS Stock Innovation Exemption 2026-09-17.
+
+## September 17 state change: CFTC opens the derivatives distribution adapter
+
+CFTC Market Participants Division Letter 26-25 generalizes the March Phantom
+no-action position to qualifying providers of passive software, expressly
+including providers outside crypto. A PSP may supply a standalone or embedded
+front end, display market and position information, transmit user orders
+directly to registered derivatives entities, market particular event contracts
+or perpetuals, solicit users to specific registrants, and receive revenue-share
+or transaction-based compensation without MPD recommending an IB/AP
+registration enforcement action solely for those covered activities.
+
+The permission is narrower than the headline. The user must trade on a DCM,
+directly or through an FCM/IB; custody remains at a DCO and/or FCM; the PSP may
+not hold assets, generate express buy/sell signals, exercise routing/execution
+discretion or become affirmatively involved in an order. The provider and each
+registrant partner must file a joint-and-several-liability undertaking, and the
+PSP accepts disclosures, marketing, recordkeeping, notice and enforcement-
+jurisdiction conditions. This is an MPD no-action position until later
+Commission rulemaking/guidance, not Commission-level law or a DeFi safe harbor.
+
+**Thesis effect:** the same-day SEC and CFTC actions form matching adapters.
+The SEC opened a limited onchain securities execution container; CFTC staff
+opened a reusable software distribution container into registered derivatives
+markets. Two days after Senate cloture on CLARITY failed, existing-authority
+implementation is visibly advancing while the statutory spot-market center
+remains stalled. Distribution and execution can change at the edge, while the
+official account, custody, clearing, records, risk, settlement and remedy
+functions remain anchored in the inherited constitution.
+
+Read the full letter analysis in
+[CFTC_PASSIVE_SOFTWARE_NO_ACTION_POSITION_2026-09-17.md](../sources/cftc-passive-software-no-action-position-2026-09-17-d180cea1d70c.html).
 
 ## Controlling thesis
 

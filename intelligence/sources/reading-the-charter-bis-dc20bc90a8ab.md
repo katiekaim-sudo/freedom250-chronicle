@@ -88,4 +88,4 @@ The BIS is the central bankers' own private club, built by central banks, for ce
 > 1930 - Convention Respecting the Bank for International Settlements (verbatim)
 > 1930 - Statutes of the Bank for International Settlements (as amended 2016) (verbatim)
 > 1936 - Protocol Regarding the Immunities of the Bank for International Settlements (Brussels Protocol) (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

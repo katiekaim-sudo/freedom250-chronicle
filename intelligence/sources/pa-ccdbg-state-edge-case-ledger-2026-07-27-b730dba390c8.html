@@ -1,0 +1,420 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Pennsylvania CCDBG State-Edge Case Ledger · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/government-in-practice.html#follow-the-public-dollar" class="" >Follow the money through the handoffs <span class="meta">— How public power becomes public outcomes</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Pennsylvania CCDBG State-Edge Case Ledger</h1><p class="deck">Collection evidence cutoff: 2026-07-27</p><p><a href="pa-ccdbg-state-edge-case-ledger-2026-07-27-b730dba390c8.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="pennsylvania-ccdbg-state-edge-case-ledger">Pennsylvania CCDBG State-Edge Case Ledger</h1>
+<p>Completed: 2026-07-27<br />
+Status: current Workbench answer<br />
+Evidence cutoff: 2026-07-27<br />
+Case ID: <code>PA-CCDBG-2501PACCDD-2025-04-17</code></p>
+<h2 id="short-answer">Short answer</h2>
+<p>The April 17, 2025 public payment can be joined to a real Pennsylvania CCDBG
+assistance award. Pennsylvania's own published operating materials then show a
+substantial internal accounting trail:</p>
+<pre><code class="language-text">PELICAN allocation
+  → provider attendance and invoice
+  → PELICAN invoice ID
+  → PELICAN payment ID
+  → payment / return / reissue / adjustment / recoupment states
+  → SAP line, internal order, fund, cost center, general-ledger and federal-program coding
+  → fiscal reconciliation
+  → ACF-696 aggregate reporting
+</code></pre>
+<p>But the public materials do not expose the join from the federal payment to a
+specific Pennsylvania receipt, SAP journal or PELICAN allocation. The missing
+public proof is therefore a <strong>cross-system identifier and reconciliation
+problem</strong>, not proof that Pennsylvania lacks downstream records.</p>
+<h2 id="1-federal-case-fingerprint">1. Federal case fingerprint</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Observed value</th>
+<th>What it proves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FAIN</td>
+<td><code>2501PACCDD</code></td>
+<td>Award identifier shared by the public payment row and federal award record.</td>
+</tr>
+<tr>
+<td>Public payment date</td>
+<td>2025-04-17</td>
+<td>Date reported by the Defend the Spend public feed. It is not independently proved here as State receipt or bank settlement.</td>
+</tr>
+<tr>
+<td>Public payment amount</td>
+<td><code>$37,065,525.14</code></td>
+<td>Amount reported by the public feed.</td>
+</tr>
+<tr>
+<td>Recipient label</td>
+<td><code>PA ST DEPARTMENT OF PUBLIC WELFARE</code></td>
+<td>Public-feed recipient label.</td>
+</tr>
+<tr>
+<td>Recipient UEI</td>
+<td><code>FYVAZVJGDFA4</code></td>
+<td>Federal recipient identity on the USAspending award object.</td>
+</tr>
+<tr>
+<td>Assistance Listing</td>
+<td><code>93.575</code></td>
+<td>Child Care and Development Block Grant.</td>
+</tr>
+<tr>
+<td>Federal account</td>
+<td><code>075-1515</code></td>
+<td>AID plus main account exposed by USAspending. It is not the award-specific full TAS.</td>
+</tr>
+<tr>
+<td>Award signed</td>
+<td>2024-10-16</td>
+<td>Award-action clock; not the April cash-payment clock.</td>
+</tr>
+<tr>
+<td>Award period</td>
+<td>2024-10-01 through 2027-09-30</td>
+<td>Performance period, not proof of expenditure.</td>
+</tr>
+<tr>
+<td>DOGE award ID</td>
+<td><code>ASST_NON_2501PACCDD_7590</code></td>
+<td>Program Support Center/public-feed identifier.</td>
+</tr>
+<tr>
+<td>USAspending award ID</td>
+<td><code>ASST_NON_2501PACCDD_075</code></td>
+<td>USAspending canonical award identifier.</td>
+</tr>
+</tbody>
+</table>
+<p>Federal source chain: the incorporated
+<code>FEDERAL_TRANSACTION_RECORD_DEEP_DIVE_2026-07-23.md</code>, based on the official
+Defend the Spend and USAspending APIs. This pilot preserves that verified seed
+and tests only the State edge.</p>
+<p>Current verification on July 27, 2026 adds:</p>
+<ul>
+<li>four USAspending/FABS obligation actions — <code>$52,558,049</code> on 2024-10-16,
+  <code>$63,093,420</code> on 2025-01-13, <code>$112,735,924</code> on 2025-05-22 and <code>$43,240,580</code>
+  on 2025-07-01 — sum to the award's <code>$271,627,973</code> obligation;</li>
+<li>those are assistance-award obligation actions, not the April 17 cash event;</li>
+<li>the current USAspending award object reports <code>$265,051,096.62</code> in cumulative
+  award-level File C outlay state, but no File C row equals the April payment;
+  monthly/cumulative award-account reporting is not a settlement trace; and</li>
+<li><code>075-1515</code> is the federal-account grouping. The exact award/payment TAS,
+  period-of-availability and subaccount remain unproved.</li>
+</ul>
+<h3 id="11-live-public-data-contradictions">1.1 Live public-data contradictions</h3>
+<p>The same verified case also contains four public-data defects:</p>
+<ol>
+<li>Defend the Spend uses award ID suffix <code>_7590</code>; USAspending canonicalizes the
+   same FAIN to suffix <code>_075</code>. Alias resolution works, but neither payload
+   publishes the alias rule.</li>
+<li>Defend the Spend labels the recipient <code>PA ST DEPARTMENT OF PUBLIC WELFARE</code>;
+   the USAspending/SAM-derived record uses <code>PA DEPARTMENT OF HUMAN SERVICES</code>.</li>
+<li>The Defend the Spend agency-lead justification calls the expense consistent
+   with a <strong>Head Start</strong> grant. The award, FAIN description and Assistance
+   Listing identify CCDBG <code>93.575</code>; Head Start is <code>93.600</code>.</li>
+<li>The OpenAPI example presents an ISO date, while live payment rows use
+   <code>MM/DD/YYYY</code>.</li>
+</ol>
+<p>These defects do not disprove the payment row. They show why FAIN, typed
+identifiers, controlled program codes and validation rules matter more than a
+free-text label.</p>
+<h2 id="2-what-pennsylvanias-own-documents-establish">2. What Pennsylvania's own documents establish</h2>
+<h3 id="21-the-state-describes-the-operating-chain">2.1 The State describes the operating chain</h3>
+<p>The current FFY 2025–2027 Pennsylvania CCDF State Plan says:</p>
+<ul>
+<li>State and federal funding is provided to ELRCs through an allocation in
+  PELICAN Child Care Works;</li>
+<li>after month-end, providers report attendance and invoice the regional ELRC
+  for the previous month's services;</li>
+<li>PELICAN CCW information is interfaced with SAP, the Commonwealth accounting
+  system; and</li>
+<li>the federal ACF-696 report is prepared using grant and expenditure coding
+  available in SAP.</li>
+</ul>
+<p>Locator: <code>PA_CCDF_STATE_PLAN_FFY_2025_2027.pdf</code>, PDF p. 199.</p>
+<p>This establishes the <strong>generic operating route</strong>. It does not prove that the
+April 17 federal payment followed a particular SAP line or funded a particular
+provider invoice.</p>
+<h3 id="22-pelican-carries-accounting-bridge-fields">2.2 PELICAN carries accounting bridge fields</h3>
+<p>The official PELICAN Reports Manual's RE107 Cost Function Report identifies:</p>
+<ul>
+<li>SAP line number;</li>
+<li>invoice number;</li>
+<li>internal order;</li>
+<li>county;</li>
+<li>fund;</li>
+<li>cost center;</li>
+<li>general ledger;</li>
+<li>CFDA number;</li>
+<li>amount; and</li>
+<li>apply-start date.</li>
+</ul>
+<p>The manual describes internal order, fund, cost center and general ledger as
+numbers used to track payments or expenditures by funding stream,
+program/office and grant type. It describes the SAP line number as the unique
+identifier for each line of fund coding needed by the Commonwealth accounting
+system.</p>
+<p>Locator: <code>PA_PELICAN_REPORTS_MANUAL_SECTION_600.pdf</code>, PDF p. 11.</p>
+<p>This is the strongest public evidence that an internal PELICAN-to-SAP
+reconciliation key exists. The public document is a report specification, not
+the current interface mapping or a 2025 transaction extract.</p>
+<h3 id="23-provider-level-lineage-is-more-detailed-than-a-monthly-total">2.3 Provider-level lineage is more detailed than a monthly total</h3>
+<p>The same manual defines records for:</p>
+<ul>
+<li>PELICAN-generated invoice ID;</li>
+<li>PELICAN-generated payment ID;</li>
+<li>check number;</li>
+<li>service period;</li>
+<li>payment amount and issue status;</li>
+<li>returned payment date, reason, amount and remaining balance;</li>
+<li>original invoice ID;</li>
+<li>adjustment amount; and</li>
+<li>recoupment amount and date.</li>
+</ul>
+<p>It also preserves invoice-status progression including <code>Need Invoice</code>,
+<code>Have Invoice</code>, <code>Calculated</code>, <code>Authorized</code>, <code>Payment Requested</code>, <code>Paid</code>, and
+<code>Paid Pending Adjustment</code>.</p>
+<p>Locators: manual PDF pp. 104–107.</p>
+<p>Those are distinct state transitions. In particular:</p>
+<pre><code class="language-text">authorized ≠ payment requested ≠ paid ≠ paid pending adjustment
+returned ≠ recouped ≠ collected recovery
+service period ≠ invoice period ≠ payment date ≠ adjustment date
+</code></pre>
+<h3 id="24-the-reconciliation-logic-is-explicit">2.4 The reconciliation logic is explicit</h3>
+<p>RE415, the Payment Activity by Service Period Report, lists payments and
+processed adjustments for a provider and is designed for fiscal reconciliation.
+The manual says an office can match its general ledger to the original payment
+and subsequent payments caused by positive adjustments. Its example separates:</p>
+<ul>
+<li>March service;</li>
+<li>April invoice processing and payment; and</li>
+<li>a May adjustment paid against the March service period.</li>
+</ul>
+<p>It warns that one Payment ID may include more than one invoice.</p>
+<p>Locator: manual PDF p. 120.</p>
+<p>RE417 is designed to reconcile provider payments with year-to-date child-care
+expenditures by funding program and allows provider-level detail. Its totals
+match RE703, used for monthly reconciliation.</p>
+<p>Locator: manual PDF p. 122.</p>
+<h3 id="25-the-state-monitors-pending-and-available-fund-states">2.5 The State monitors pending and available-fund states</h3>
+<p>The ELRC Operations Monitoring Tool guide instructs program representatives to
+use the live PELICAN CCW invoice-search surface, Report 704 and Report 403 to
+review payment timeliness, including pending invoices over 60 days. It also
+uses PELICAN reports for obligated and available funds.</p>
+<p>Locator: <code>PA_ELRC_OPERATIONS_MONITORING_TOOL_GUIDE_FY_2021_2022.pdf</code>, PDF
+pp. 14 and 48–50.</p>
+<p>This proves that invoice status and available/obligated funding are monitored
+as separate operational states. The guide is historical operating
+documentation; current layouts and retention rules still need confirmation.</p>
+<h2 id="3-the-proof-boundary">3. The proof boundary</h2>
+<h3 id="publicly-proved">Publicly proved</h3>
+<pre><code class="language-text">FAIN 2501PACCDD
+  → federal award identity
+  → April 17, 2025 public payment row for $37,065,525.14
+
+Pennsylvania program design
+  → PELICAN allocation
+  → provider attendance/invoice
+  → PELICAN payment and correction fields
+  → PELICAN/SAP coding interface
+  → fiscal reconciliation
+  → ACF-696 aggregate report
+</code></pre>
+<h3 id="not-publicly-joined">Not publicly joined</h3>
+<pre><code class="language-text">April 17 payment
+  ╳ exact PMS draw request / subaccount
+  ╳ Treasury schedule, trace and settlement
+  ╳ Pennsylvania receipt date and cash-account entry
+  ╳ SAP document / journal / internal order
+  ╳ PELICAN allocation batch
+  ╳ ELRC allocation
+  ╳ provider invoice and payment IDs
+  ╳ later adjustment, recoupment, receivable or collected recovery
+  ╳ corresponding ACF-696 line and reporting period
+</code></pre>
+<p>No assertion should jump across a <code>╳</code>.</p>
+<h2 id="4-what-the-accounting-problem-actually-is">4. What the accounting problem actually is</h2>
+<p>The trace breaks for several independent reasons:</p>
+<ol>
+<li><strong>Authority changes.</strong> The award, draw, Treasury settlement, State book
+   entry, provider payment, federal expenditure report and recovery are
+   authoritative in different systems.</li>
+<li><strong>Identifiers change.</strong> FAIN survives on the federal side, while the
+   published State specifications expose SAP line, internal order, invoice and
+   payment IDs without showing a public FAIN-to-State crosswalk.</li>
+<li><strong>Money may be pooled.</strong> A federal draw can support a program funding pool.
+   A public one-dollar-to-one-provider claim requires an allocation rule or
+   transaction bridge; it cannot be assumed.</li>
+<li><strong>Clocks differ.</strong> Service, invoice, authorization, payment, return,
+   adjustment, reporting and recovery can occur in different months.</li>
+<li><strong>Corrections have different effects.</strong> A negative or revised entry may
+   change obligation, cash, accounting classification, recipient entitlement,
+   public disclosure, receivable or collection — or only some of them.</li>
+<li><strong>Public feeds are derivative.</strong> They can expose a useful assertion while
+   omitting the authoritative journal, settlement record or downstream
+   reconciliation.</li>
+</ol>
+<p>This is why a public blockchain alone would not solve the case. The first
+requirement is a legally required event and identifier constitution across the
+systems that already control the money.</p>
+<h2 id="5-correction-firewall">5. Correction firewall</h2>
+<p>Every correction event in the pilot must answer all seven questions:</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Required question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Legal obligation</td>
+<td>Did the amount the government is legally obligated to provide change?</td>
+</tr>
+<tr>
+<td>Cash</td>
+<td>Did cash move, reverse, refund or offset?</td>
+</tr>
+<tr>
+<td>Accounting classification</td>
+<td>Was the same cost moved between grants, funds, periods or programs?</td>
+</tr>
+<tr>
+<td>Recipient entitlement</td>
+<td>Did the provider or recipient's entitlement change?</td>
+</tr>
+<tr>
+<td>Public disclosure</td>
+<td>Did only the published representation change?</td>
+</tr>
+<tr>
+<td>Receivable</td>
+<td>Was a debt or receivable created?</td>
+</tr>
+<tr>
+<td>Collection</td>
+<td>Was the receivable actually collected?</td>
+</tr>
+</tbody>
+</table>
+<p>The Georgia May 8, 2025 CCDF case in the incorporated deep dive remains the
+control example: a negative discretionary-stream entry and two positive
+matching-stream entries described a funding-stream reallocation. The public
+rows did not, by themselves, prove a fraud recovery, zero-sum cash reversal or
+collected debt.</p>
+<p>A negative amount is not necessarily returned cash.</p>
+<h2 id="6-questions-this-pilot-raises">6. Questions this pilot raises</h2>
+<ol>
+<li>Does Pennsylvania retain FAIN, PMS account/subaccount, Treasury schedule,
+   ALC or other federal settlement identifiers in SAP?</li>
+<li>Which SAP field maps to the PELICAN <code>SAP Line Number</code>, and is that mapping
+   versioned?</li>
+<li>Can a current RE107/RE415/RE417/RE703 extract be joined to SAP document
+   number and ACF-696 grant/expenditure coding without creating a new record?</li>
+<li>Is the April 17 draw treated as an advance into a pooled cash position or as
+   reimbursement for already incurred expenditure?</li>
+<li>What allocation method assigns pooled federal and State funding to ELRC and
+   provider expenditures?</li>
+<li>Which system is authoritative when PELICAN invoice/payment status differs
+   from SAP cash or general-ledger status?</li>
+<li>How do returns, reissues, positive and negative adjustments, recoupments,
+   offsets, receivables and collections propagate into SAP and ACF-696?</li>
+<li>Are historical interface mappings and correction histories retained after
+   system changes?</li>
+<li>Can masked transaction bridges be disclosed without child, household,
+   provider-bank or security-sensitive data?</li>
+<li>Who acknowledges that a correction propagated through every downstream
+    public and authoritative record?</li>
+</ol>
+<h3 id="61-banking-layer-update">6.1 Banking-layer update</h3>
+<p>The companion
+<code>PA_CCDBG_EXISTING_SETTLEMENT_CROSSWALK_AND_BANKING_MAP_2026-07-27.md</code>
+now narrows several of these questions:</p>
+<ul>
+<li>Pennsylvania's FY2025 Treasury-State Agreement names <strong>Wells Fargo</strong> as the
+  CMIA fiscal agent for CCDBG Assistance Listing <code>93.575</code>.</li>
+<li>The agreement assigns 96% of the local-agency/vendor/operating component to
+  <strong>Reimbursement</strong> and 4% to <strong>Payroll</strong>. Exact classification of the April 17
+  payment still requires the PMS request and State draw support.</li>
+<li>Pennsylvania BAFM must retain a Report of Drawdowns Processed by Funding
+  Source and the federal draw-system confirmation.</li>
+<li>Pennsylvania's cash directive requires bank/SAP reconciliation and a central
+  file of approved agency bank accounts, but the CCDBG receiving-account class
+  is not publicly identified.</li>
+<li>The latest publicly listed ELRC audit guide says grant funds must be held in
+  an interest-bearing account, permits co-mingling if interest is properly
+  credited, and expressly contemplates temporary use of any available funding
+  source followed by later OCDEL accounting after final recaps.</li>
+</ul>
+<p>The remaining problem is therefore a transaction-specific reconciliation
+problem, not an unresearched generic settlement-rail problem.</p>
+<h2 id="7-smallest-useful-public-proof-layer">7. Smallest useful public proof layer</h2>
+<p>A workable public layer does not need to expose protected operational records.
+For each event it needs:</p>
+<ul>
+<li>durable event and object IDs;</li>
+<li>authoritative system and actor;</li>
+<li>the identifiers asserted at that stage;</li>
+<li>amount and amount state;</li>
+<li>separate event clocks;</li>
+<li>predecessor, successor, reversal and supersession relationships;</li>
+<li>evidence locator or hash;</li>
+<li>correction-effect booleans;</li>
+<li>disclosure/protection state; and</li>
+<li>explicit unresolved joins.</li>
+</ul>
+<p>The pilot schema and registry implement that minimum. They are a factual test
+instrument, not evidence that any proposed public system has been adopted.</p></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

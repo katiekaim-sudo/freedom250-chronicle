@@ -2,6 +2,13 @@
 
 Evidence cutoff: 2026-07-30
 
+This is the public-accounting entrance: it asks what “open” means, what may be
+published, what must remain protected, and what an integrity architecture can
+and cannot establish. The [Government Open Ledger Deep
+Dive](../sources/government-open-ledger-deep-dive-2026-07-30-6d826ea3e054.html) owns the full operating
+chain and source ledger; the Chronicle's Accounting Transition note owns the
+maintained shared answer.
+
 ## Ruling
 
 The federal government already has many components of machine-readable,
@@ -41,37 +48,13 @@ recipient purchased or achieved.
 
 ## 2. The public-money event chain
 
-```text
-appropriation / legal authority
-  → apportionment and allotment
-  → commitment
-  → obligation / award
-  → draw or payment request
-  → certification
-  → Treasury release and settlement
-  → recipient receipt
-  → subaward / contract / payroll / provider expenditure
-  → delivery / service / beneficiary / milestone
-  → accounting and public reporting
-  → correction / questioned cost / debt
-  → refund / offset / collection / discharge
-```
-
-These are not equivalent amounts or clocks:
-
-```text
-budget authority ≠ obligation
-obligation ≠ outlay
-payment instruction ≠ settlement
-settlement ≠ allowable recipient expenditure
-expenditure ≠ successful outcome
-deobligation ≠ cash refund
-audit finding ≠ final debt
-debt referral ≠ collection
-```
-
-The existing vault's `Federal Transaction Record` note controls the detailed
-system and identifier map.
+The [Government Open Ledger Deep
+Dive](../sources/government-open-ledger-deep-dive-2026-07-30-6d826ea3e054.html#1-the-public-money-chain-who-owns-each-fact)
+owns the complete appropriation-through-recovery chain and the governing
+non-equivalences. The Chronicle's `Federal Transaction Record` owns the
+detailed system-and-identifier map. Those records keep appropriation,
+obligation, payment, settlement, allowable expenditure, outcome, finding,
+debt and recovery as separate facts and clocks.
 
 ## 3. What should be public
 
@@ -133,44 +116,25 @@ performance information is adequately supported.
 
 ### Treasury USSGL and GTAS
 
-The U.S. Standard General Ledger provides a uniform chart of accounts,
-definitions, transaction guidance, attributes, validations and crosswalks.
-GTAS is a government-wide reporting and validation system. These are core
-standardization and consolidation components, not a public transaction
-chronology.
+The Government Open Ledger source owner maintains the detailed Treasury
+USSGL, GTAS, TAS/BETC and central-accounting record. Here, their relevant
+limit is the conclusion: standardization and consolidation are not a public
+transaction chronology.
 
 ### GSDM, DATA Act Broker and USAspending
 
-Treasury calls the Governmentwide Spending Data Model the authoritative source
-for hundreds of spending-data terms, definitions, formats and structures.
-Validation occurs through the open-source DATA Act Broker. USAspending joins
-agency budget-execution, agency financial, award and authoritative reference
-systems and publishes data and APIs.
-
-USAspending remains a federation of submissions and extracts. Its award and
-account data do not by themselves show every downstream invoice, payroll
-payment, beneficiary event, correction and recovery.
+The Government Open Ledger source owner maintains the detailed GSDM, DATA Act
+Broker and USAspending evidence. Here, their relevant limit is the conclusion:
+open schemas, validation code and publication remain a federation of
+submissions and extracts, not proof of every downstream use, correction or
+recovery.
 
 ### Treasury and JFMIP blockchain work
 
-Treasury's NSF grant prototype reported:
-
-- greater visibility as funding moved from prime to subrecipient;
-- potential reduction in recipient reporting;
-- standardization and near-real-time transaction potential; and
-- possible internal-control improvement.
-
-It did not process real grant payments. Treasury identified legal, technical,
-governance, legacy-integration and infrastructure barriers.
-
-The multi-agency JFMIP follow-up discussed one integrated, validated data
-source, reduced reconciliation and read-only auditor nodes, while retaining
-existing audit methodologies and cybersecurity/authority-to-operate
-requirements.
-
-This is the strongest primary-source precedent in the package for the user's
-open-accounting thesis. It is a prototype and learning record, not an adopted
-government-wide architecture.
+The Government Open Ledger source owner maintains the Treasury NSF prototype
+and JFMIP evidence. Its bounded conclusion controls here: the work found
+potential visibility, reconciliation and control benefits, but did not process
+real grant payments and did not adopt a government-wide architecture.
 
 ### GAO controls and audit
 
@@ -213,7 +177,11 @@ perfectly. Fraud prevention still depends on identity, eligibility, authority,
 performance evidence, independent data, segregation of duties and recovery
 powers.
 
-## 7. A plausible adoption ladder
+## 7. Dated adoption possibilities, not a required sequence
+
+These eight July 30 states are separate adoption possibilities, not a
+mandatory order or a forecast that each will occur. The hybrid endpoint below
+is a research hypothesis to test, not an inevitable destination.
 
 1. **Machine-readable reports** — already operating through XBRL, USSGL,
    GSDM and USAspending.

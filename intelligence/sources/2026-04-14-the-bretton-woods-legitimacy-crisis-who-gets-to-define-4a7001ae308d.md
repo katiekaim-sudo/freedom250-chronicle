@@ -7,6 +7,17 @@
 > documents show three competing sources of authority: **shareholder control,
 > technocratic independence, and borrower-country voice**.
 
+**Maintained institutional-document answer.** Event: April 14, 2026; original
+research: July 30; named linked extensions: July 31. September 7 consolidation
+compares saved copies and incorporates their distinct evidence; it is not a
+new factual refresh. “Legitimacy crisis” is our descriptive interpretation of
+a documented governance contest, not a legal finding.
+
+Read the document matrix for the evidence behind each institutional claim,
+the speech claim audit for attribution limits, and
+the source provenance for caption limitations.
+The doctrine analysis retains the speaker chronology and storyline.
+
 ## The finding
 
 Bessent does not propose U.S. withdrawal. He says America is “in it to win it”
@@ -23,7 +34,7 @@ The institutions' own documents show that this is a real governance dispute:
 - the G‑24 communiqué issued on the same date demands more emerging-market
   voice, even-handed surveillance, program flexibility, lower financing
   burdens, SDR options, and continued concessional climate finance;
-- the 16th quota review increases resources without changing relative quota
+- the 16th quota review provides for increased resources without changing relative quota
   shares;
 - the Articles combine internationally independent staff with a
   quota-weighted Board.
@@ -31,12 +42,32 @@ The institutions' own documents show that this is a real governance dispute:
 This is not a clean fight between “politics” and “expertise.” Both lanes are in
 the charter, and borrower-country governments assert a third.
 
+## Entity-by-entity evidence
+
+This July 30 comparison distinguishes legal authority, the actor’s stated
+position and our interpretation of the resulting legitimacy claim. The World
+Bank Group row names a family of institutions; IBRD Articles govern IBRD and
+do not supply identical authority for every Group entity. Later
+documents do not establish what the speaker knew on April 14.
+
+| Entity | Documented authority | Documented position or action | Legitimacy claim |
+|---|---|---|---|
+| **U.S. Treasury / Bessent** | Largest national voting share; U.S. representatives and policy direction; congressional control over quota increases and amendments under U.S. law | Remain in the institutions, lead them, narrow priorities, measure outputs, push imbalance surveillance, debt transparency, energy access, graduation, and budget discipline | Largest shareholder and democratic government can demand institutional accountability |
+| **IMF Board and management** | Articles of Agreement; Board decisions; quota-weighted votes; surveillance and lending powers | 2026 surveillance, imbalance, program-design, conditionality, quota, and governance reviews | Multilateral rules and technical capacity authorize adaptation to system-wide risks |
+| **IMF staff** | Article XII duty to the Fund and no other authority; professional competence and geographic-diversity requirements | Analysis, surveillance, program design, data standards, and recommendations | Expertise should be insulated from direct national instruction |
+| **IMF Independent Evaluation Office** | Institutionally authorized but operationally independent evaluation | Found real strategy, scope, resource, and quality problems in the expansion into newer policy areas | Self-correction and transparent evaluation can support institutional legitimacy |
+| **G‑24 member governments** | Governors, votes, programs, and collective ministerial representation | On 2026-04-14 demanded more EMDE voice, even-handed surveillance, program flexibility, lower financing burdens, SDR options, development finance, and continued climate support | A multilateral institution is not legitimate if borrowers lack voice or adjustment is asymmetric |
+| **World Bank Group** | IBRD Articles, shareholder voting, lending and guarantee authority | Retains “poverty on a livable planet,” a climate-finance target, and country-context conditions while re-entering nuclear power | Development legitimacy rests on country demand, poverty outcomes, financial capacity, and risk management |
+| **European Commission / Draghi** | EU policy and legislative machinery; Commission implementation program | Competitiveness reforms and investment initiatives after the Draghi report | Implementation can occur through existing institutions rather than their rejection |
+| **Argentina** | Member government, program commitments, domestic political mandate | Stabilization and reform program with reserve gains, a missed performance criterion, waiver, revised target, and continued risk | Program legitimacy requires both measurable performance and durable societal ownership |
+| **Venezuela** | Continuing IMF membership; rights and obligations restored after recognition issue resolved | Re-engagement, data restoration, surveillance, and potential later access subject to additional conditions | Operational state recognition is mediated by member voting power and bilateral recognition |
+
 ## The charter control map
 
 ### Shareholder legitimacy
 
 Each IMF member appoints a governor, but voting power is basic votes plus
-quota-based votes. The United States holds 16.49% of total voting power. It can
+quota-based votes. The July 30 review recorded a U.S. share of 16.49% of total voting power. It can
 therefore block decisions requiring 85%, but it cannot unilaterally veto every
 ordinary Fund decision.
 
@@ -62,7 +93,23 @@ programs, affordable financing, and protection of the poorest members.
 The conflict is therefore not over whether the IMF should act. It is over who
 sets the scorecard, whose risks count, and who absorbs adjustment.
 
-## The five documentary tests
+### Surveillance and member circumstances
+
+Article IV's firm-surveillance duty also requires respect for members' domestic
+social and political policies and due regard to their circumstances. This is
+why stronger scrutiny of imbalances and G‑24 demands for even-handed,
+country-sensitive advice can both invoke the same authority. A call for a
+particular priority does not itself amend that authority.
+
+### Withdrawal and amendment
+
+A member may withdraw by written notice, effective on receipt. Ordinary Articles
+amendments require three-fifths of members holding 85% of total voting power;
+certain protected rights, including withdrawal and consent to a quota change,
+require all members. Continued U.S. membership and Bessent's stated wish to lead
+therefore point to an internal policy strategy, not an accomplished rewrite.
+
+## The six documentary tests
 
 ### Mandate
 
@@ -74,11 +121,26 @@ newer subjects through their macrocritical relevance.
 The IEO supports the existence of a mission-management problem. It does not
 rule that every climate engagement lies outside the mandate.
 
+### Representation
+
+Quota affects contributions, votes, normal access and SDR allocation. The 16th
+Review provides for a 50% quota increase in proportion to existing shares;
+a resource-increase decision is not proof of paid contributions or effective
+share realignment. The G‑24 position and
+Diriyah principles keep representation reform open. Whether the rules actually
+change requires the subsequent resolutions and effective conditions.
+
 ### Evidence
 
 The Nature paper invoked by Bessent was materially flawed and retracted. Its
 authors reported a wider revised damage range and lower confidence in
 mid-century divergence across emissions scenarios.
+
+The revised mid-century damage ranges are not a direct comparison with the
+century-end 60% claim in the speech. The document matrix preserves that
+horizon distinction. Lomborg’s 48% statement also remains unmatched to a
+verified year and denominator; FY2024’s 44% and the 45% target do not alone
+confirm or refute it.
 
 But the World Bank's climate mission and finance target predated the paper.
 The retraction supports scrutiny of models; it does not establish that
@@ -98,6 +160,11 @@ members representing more than 50% of voting power recognized or dealt with
 the Rodríguez administration. Bessent publicly anticipated re-engagement two
 days before the announcement. The source record does not establish that he
 caused the decision.
+
+The saved FAQ describes restored dealings, surveillance, technical assistance
+and access to SDRs. Financing remains a separate decision requiring a request,
+policy commitments, adequate data and implementation capacity. Recognition
+alone does not establish a loan approval or disbursement.
 
 ### Output
 
@@ -142,6 +209,14 @@ visibility can alter risk pricing, program design, and restructuring leverage.
 This is a documented data-and-control layer. It is not evidence of a unified
 global debt registry, new reserve asset, or production settlement rail.
 
+### Energy and balance-of-payments capacity
+
+The documented nuclear re-engagement supplies an institutional-policy example.
+Our economic inference is that reliable energy can affect imports, productive
+capacity, growth and debt service. Whether an approved project improves those
+variables requires project- and country-level evidence; partnership language
+alone does not demonstrate allocation, operation or a new monetary rail.
+
 ## The same-day counter-record
 
 The IIF stage paired Bessent with Lomborg. It did not include a G‑24 minister
@@ -153,7 +228,7 @@ counter-record and prevents the Observatory from treating a U.S.
 shareholder's description of poorer-country preferences as the only
 documented position of those governments.
 
-## The symmetry audit
+## The symmetry audit — saved July 30 extension
 
 [2026-07-30 - Who Gets Adjusted — IMF Symmetry and the Price of Access](../sources/2026-07-30-who-gets-adjusted-imf-symmetry-and-the-price-of-access-f8de40a7bcd6.html)
 tests the next question against 2025–26 IMF country documents.
@@ -178,7 +253,7 @@ legitimacy tests are therefore more specific:
 - whether waiver and target-modification grounds are transparent; and
 - which social protections receive hard or flexible program status.
 
-## The currency-pricing control surface
+## The currency-pricing control surface — saved July 30 extension
 
 [2026-07-30 - IMF and Currency Pricing — The Referee, the Model, and the Program Gate](../sources/2026-07-30-imf-and-currency-pricing-the-referee-the-model-and-the-b2461a67fd9a.html)
 tests what the Fund actually does to and around exchange rates.
@@ -197,22 +272,25 @@ access. The resulting price is downstream of the condition.
 
 ## What would move the story
 
-- an effective quota-share realignment under the 17th General Review;
-- final 2026 surveillance rules that change treatment of large surplus and
-  deficit members;
-- published budget, staffing, or operational-guidance changes that narrow or
-  expand newer policy work;
-- enforceable borrower-and-creditor debt-disclosure requirements;
-- Argentina targets met without repeated waiver or modification, plus durable
-  market access and documented social support;
-- a completed Venezuela surveillance cycle or separately approved financing
-  request;
-- approved World Bank energy projects with technology, amount, conditions,
-  and clock.
+These are the original research tests, not refreshed findings or new watches.
+Each needs its named primary object; elapsed target dates do not establish
+implementation.
+
+| Question | Primary object that can answer it | Positive evidence | What would not be enough |
+|---|---|---|---|
+| Does surveillance become more symmetrical? | 2026 Comprehensive Surveillance Review, Article IV reports, External Sector Report | Express methodology and published treatment of large surplus and deficit members under the same framework | Bessent or IMF management saying “even-handed” |
+| Does governance representation change? | 17th General Review of Quotas, amendment or quota resolutions, voting table | Effective share realignment or changed basic-vote rules | A resource increase at unchanged relative shares |
+| Does mission refocus alter budgets or work programs? | IMF/World Bank budgets, staffing, policy papers, operational guidance | Reallocated staff/resources, terminated workstreams, revised eligibility or appraisal rules | A speech, communiqué, or renamed priority |
+| Does debt transparency become enforceable? | Lending conditions, debtor/creditor reporting standards, contract clauses, public registry | Required disclosures with identified coverage, verification, correction, and consequence | A transparency report alone |
+| Is Argentina's program durable? | BCRA reserves, IMF performance criteria, Board reviews, market access, social-spending and poverty data | Targets met without repeated waivers plus sustained market access and documented social support | One month of purchases or one political characterization |
+| What does Venezuela re-engagement become? | Article IV process, data publication, technical-assistance records, financing request and Board decision | Restored data, completed surveillance, and separately documented financing gates | Recognition or resumed dealings alone |
+| Does World Bank energy policy change allocation? | Project approvals, country strategies, financing terms, technology mix | Approved nuclear/gas/grid projects with amounts, conditions, clocks, and development objectives | Partnership language alone |
 
 ## Boundaries
 
-The source record supports a descriptive legitimacy crisis. It does not
+Our descriptive legitimacy-crisis interpretation concerns mandate priorities,
+weighted governance, expertise, borrower voice, program performance, recognition
+and contested empirical authority. The source record does not
 establish:
 
 - that the IMF or World Bank is illegal or institutionally collapsed;
@@ -256,7 +334,11 @@ Live currency case: [2026-07-31 - Japan–Korea Currency Defense — The State M
 - [European Commission — Draghi report
   hub](https://commission.europa.eu/topics/competitiveness/draghi-report_en)
 
-## July 31 live test — shareholder becomes market actor
+## July 31 dated test — shareholder becomes market actor
+
+The following paragraphs retain their July 31 source state; later intervention
+confirmation and accounting evidence belong to the named Japan/Korea owners.
+This consolidation does not refresh these observations.
 
 The reported Japan–Korea currency operations sharpen the legitimacy question
 without supporting a secret-IMF-control claim.
@@ -287,3 +369,9 @@ Treasury doctrine emphasizes dollar reserve status and Treasury demand. The IMF
 researches the spillover and classification perimeter but does not operate the
 stablecoin market. The documents support a contested perimeter around state
 money, not an established exit from it.
+
+## Preserved research history
+
+The original July 30 Workbench dossier retains its complete original body. Its distinct entity table,
+legal qualifications and observable tests have been incorporated here. The
+Chronicle dossier owns the maintained institutional explanation.

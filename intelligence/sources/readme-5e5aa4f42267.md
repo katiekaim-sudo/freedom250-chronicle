@@ -105,16 +105,16 @@ under `outputs/01a02ee9-bb2a-7270-815f-7877c99c9548/`.
 
 ## Lifecycle
 
-This package is Workbench-only. Substantive artifacts moved to `pending` only
-after the complete packet passed targeted release validation and an independent
-cold audit. Nothing is `incorporated`; promotion remains Katie's disposition
-gate.
+This package is current saved Workbench research after the complete packet
+passed targeted release validation and an independent cold audit. `Current`
+means useful and findable in Research; it does not make the packet Chronicle
+canon. Any Chronicle landing remains a separate disposition.
 
 ## Research Desk disposition
 
 Katie retained the complete packet for future reference on 2026-08-23. It is
 cataloged in the Research Desk as `gold-bop-currency-adjustment`, with the
 integrated synthesis as the read-first document and nine supporting documents.
-The Desk labels it Workbench evidence at Registry lifecycle `pending`; this
-projection does not make the packet vault doctrine, create a watch or send any
-document request.
+The Desk labels it current Workbench evidence at Registry lifecycle `current`;
+this projection does not make the packet Chronicle doctrine, create a watch or
+send any document request.

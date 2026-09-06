@@ -1,6 +1,6 @@
 # Sovereign Communications — Research Package
 
-**Status:** `pending`  
+**Status:** current Workbench research  
 **Cutoff:** 2026-07-15  
 **Scope:** United States communications infrastructure, ordinary rights and permissions, federal security control, emergency activation and public warning  
 **Method:** primary sources first; asset, right, operator and clock kept separate
@@ -13,6 +13,8 @@
 4. `SOVEREIGN_COMMUNICATIONS_EMERGENCY_RAILS_MAP.md`
 5. `SOVEREIGN_COMMUNICATIONS_CLAIM_AUDIT.md`
 6. `SOVEREIGN_COMMUNICATIONS_SOURCE_WATCHBOARD.md`
+
+The Upper C-band case in the rights map follows the original Tech infrastructure question through a proposal, final allocation, auction procedure and market-specific transition dates. This September 7 reconciliation is limited to that chain; the broader July 15 package cutoff remains in place.
 
 ## Short answer
 

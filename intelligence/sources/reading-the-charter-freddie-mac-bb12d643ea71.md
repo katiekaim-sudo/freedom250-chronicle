@@ -98,4 +98,4 @@ This thing is a ghost wearing a business suit. Congress built it, dressed it up 
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1970 - Federal Home Loan Mortgage Corporation Act (current codified) (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

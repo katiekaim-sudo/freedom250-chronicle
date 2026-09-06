@@ -1,7 +1,7 @@
 # NSSTS Transaction, Failure and Return-to-Service Trigger Map
 
 **Evidence cutoff:** 2026-08-19  
-**Status:** pending Workbench evidence; not vault doctrine  
+**Status:** current Workbench research; not vault doctrine  
 **Scope:** 31 cases across four trigger layers  
 **Automatic monitoring:** false
 

@@ -1,0 +1,581 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>Federal Cryptographic Trust Stack · Full research · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head>
+<body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a><details class="context"><summary>Where this research fits</summary><a href="../stories/science-to-capability.html#ambitions" class="" >What are the ambitions? <span class="meta">— From scientific ambition to things that work</span></a><a href="../stories/science-to-capability.html#scientific-work" class="" >What has to work together? <span class="meta">— From scientific ambition to things that work</span></a></details></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Science, compute and industrial policy · full research · current</div>
+<h1>Federal Cryptographic Trust Stack</h1><p class="deck">Governed Research Desk file · evidence cutoff 2026-08-11</p>
+<div class="report-actions"><a class="report-action primary" href="federal-cryptographic-trust-stack.md">Open source text</a><a class="report-action" href="../library/federal-cryptographic-trust-stack.html">Back to summary</a></div></header>
+<article class="content"><h1>The Federal Cryptographic Trust Stack</h1>
+<p>Completed: 2026-08-11<br>
+Status: current Workbench research; not vault canon<br>
+Evidence cutoff: 2026-08-11</p>
+<h2>Executive ruling</h2>
+<p>The federal trust stack is not waiting to be invented. Its core cryptographic
+components are already in production, but they are split across separate legal
+and operational domains.</p>
+<pre><code class="language-text">authoritative source record
+  -&gt; identity proofing
+  -&gt; credential or account binding
+  -&gt; issuer-signed assertion / attribute bundle
+  -&gt; key and issuer trust registry
+  -&gt; verification by a relying party
+  -&gt; authorization or eligibility adjudication
+  -&gt; signed transaction / payment certification
+  -&gt; execution and settlement
+  -&gt; audit, revocation, correction and appeal
+  -&gt; optional public proof or shared ledger
+</code></pre>
+<p>The first major efficiency gain is therefore not “put the government on a
+blockchain.” It is <strong>stop making every agency re-prove the same person, re-check
+the same issuer and reconcile the same authorization by hand</strong>. Public-key
+cryptography, federation and portable signed attributes can do much of that
+without exposing a complete central profile.</p>
+<p>The strongest production connector from identity to money is Treasury's Secure
+Payment System (SPS). A federal employee's authority is established through
+designation and role controls; the person enters SPS with a PKI credential; a
+Data Entry Operator and a Certifying Officer perform separate functions; their
+digital signatures are attached to the schedule; and Treasury retains the
+signatures in the audit record. Cryptography proves who signed what and whether
+the record changed. The Certifying Officer remains legally responsible for
+whether the payment is legal, proper and correct.</p>
+<p>That separation is the entire thesis in miniature:</p>
+<blockquote>
+<p>A signature can make accountability much sharper. It cannot make the signed
+assertion substantively true.</p>
+</blockquote>
+<h2>1. The layers and their present state</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Trust question</th>
+<th>Current federal object</th>
+<th>State</th>
+<th>What it cannot prove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0. Source</td>
+<td>Who owns the fact?</td>
+<td>SSA Numident, state vital records and DMVs, USCIS records, agency award/benefit systems</td>
+<td>production, fragmented</td>
+<td>that the record is current, complete or legally sufficient for another purpose</td>
+</tr>
+<tr>
+<td>1. Proofing</td>
+<td>Is the applicant the claimed person?</td>
+<td>Login.gov, agency proofing, PIV enrollment, commercial validation services</td>
+<td>production</td>
+<td>citizenship, benefit eligibility, honesty or future account control</td>
+</tr>
+<tr>
+<td>2. Credential</td>
+<td>What authenticator is bound to the account/person?</td>
+<td>PIV/CAC certificate, Login.gov authenticators, state mDL, agency account</td>
+<td>production, uneven</td>
+<td>authorization to every service</td>
+</tr>
+<tr>
+<td>3. Claim</td>
+<td>What did an issuer attest?</td>
+<td>SAML/OIDC assertion, PKI certificate, mDL signed data, NIST attribute bundle</td>
+<td>production for some formats; emerging for portable public attributes</td>
+<td>that the underlying source or policy is correct</td>
+</tr>
+<tr>
+<td>4. Trust registry</td>
+<td>Why should a verifier trust this key/issuer?</td>
+<td>Federal PKI roots and bridge; AAMVA VICAL; bilateral/multilateral trust agreements</td>
+<td>production</td>
+<td>that every issuer uses the same evidence or law</td>
+</tr>
+<tr>
+<td>5. Verification</td>
+<td>Is the signature valid, unexpired, unreplayed and meant for this relying party?</td>
+<td>FICAM federation, Login.gov integrations, mDL readers, PKI validation</td>
+<td>production</td>
+<td>permission to grant the requested service</td>
+</tr>
+<tr>
+<td>6. Adjudication</td>
+<td>Does the verified fact satisfy this program's rule now?</td>
+<td>agency policy engine, caseworker, certifying/authorizing official</td>
+<td>production, agency-specific</td>
+<td>that the rule itself is lawful or wise</td>
+</tr>
+<tr>
+<td>7. Signed action</td>
+<td>Who authorized this transaction?</td>
+<td>Treasury SPS payment certification and permanent signature audit trail</td>
+<td>production</td>
+<td>underlying eligibility or performance</td>
+</tr>
+<tr>
+<td>8. Execution</td>
+<td>Did money or legal state actually change?</td>
+<td>PAM/SPS, ACH, Fedwire, FedNow, card/digital payout, agency systems</td>
+<td>production</td>
+<td>final program outcome or absence of fraud</td>
+</tr>
+<tr>
+<td>9. Remedy</td>
+<td>Can bad data, a compromised key or wrongful decision be corrected?</td>
+<td>certificate revocation, account recovery, Privacy Act correction, program appeal, payment reversal/recovery</td>
+<td>production but fragmented</td>
+<td>automatic restoration across every downstream copy</td>
+</tr>
+<tr>
+<td>10. Public/shared proof</td>
+<td>Can outsiders or peer agencies verify a common event history?</td>
+<td>USAspending/open APIs; bounded public payment feeds; JFMIP permissioned-ledger prototype</td>
+<td>public feeds production; DLT prototype only</td>
+<td>oracle truth, legality or protection of PII</td>
+</tr>
+</tbody>
+</table>
+<h2>2. The oldest live blockchain-adjacent idea is PKI, not blockchain</h2>
+<p>Federal Public Key Infrastructure (FPKI) supplies a mature trust fabric for
+certificates, signatures, authentication and encryption. The Federal Common
+Policy root and Federal Bridge Certification Authority let separate policy
+domains map their certificate rules and establish trust without one system
+issuing every identity. Certificate authorities are audited, keys expire or are
+revoked, and relying systems validate the chain before trusting a certificate.</p>
+<p>This is already a distributed institutional trust arrangement, but it is not a
+blockchain. Its key lesson is that <strong>shared trust does not require shared data</strong>.
+Agencies can recognize the issuer and validate the signature while retaining
+their own source records, local accounts and legal authority.</p>
+<p>Primary sources: <a href="https://www.idmanagement.gov/university/fpki/">FPKI overview</a> ·
+<a href="https://www.idmanagement.gov/fpki/">Federal PKI architecture and services</a> ·
+<a href="https://www.idmanagement.gov/trust-services/">FICAM trust services</a></p>
+<h2>3. Login.gov is production federation, not a national person database</h2>
+<p>Login.gov integrates with agency applications using SAML or OpenID Connect. The
+partner specifies whether it needs authentication or identity verification and
+which attributes it needs; the parties exchange public keys/certificates; and
+the agency must complete an interagency agreement before production. The
+receiving agency retains its own account, authorization rules and program
+decision.</p>
+<p>This replaces repeated account and proofing infrastructure, not the agency's
+legal adjudication. GAO reported in 2024 that 21 of the 24 CFO Act agencies used
+Login.gov; 16 reported improved operations and seven reported reduced costs.
+Those are agency reports, not an audited government-wide savings total. GAO's
+July 2026 update says GSA has implemented all but one recommendation; the open
+item concerns mutually agreed timelines for partner technical problems.</p>
+<p>The cost thesis must stay calibrated:</p>
+<ul>
+<li>shared proofing can reduce duplicate agency systems and compliance work;</li>
+<li>GSA publishes a usage-based price rather than making identity proofing free;</li>
+<li>agencies may still need more capable commercial tools;</li>
+<li>false identities can still pass a standards-aligned proofing process; and</li>
+<li>there is no current audited number proving net government-wide savings.</li>
+</ul>
+<p>Primary sources: <a href="https://developers.login.gov/">Login.gov developer guide</a> ·
+<a href="https://www.gao.gov/products/gao-25-106640">GAO-25-106640</a> ·
+<a href="https://files.gao.gov/reports/GAO-25-107000/index.html">GAO-25-107000</a> ·
+<a href="https://www.gao.gov/products/gao-26-109261">GAO-26-109261</a></p>
+<h2>4. Portable claims are the important new frontier</h2>
+<p>NIST SP 800-63C-4 now supports two federation models:</p>
+<ol>
+<li>a conventional identity provider sends a signed assertion to a relying
+   party; or</li>
+<li>a credential service provider issues a signed attribute bundle to a
+   subscriber-controlled wallet, which presents only the needed values.</li>
+</ol>
+<p>The standard permits both raw attributes and derived claims. A verifier might
+receive “over 18” instead of a full birth date. Assertions must be
+cryptographically signed and bound to the issuer, audience, subject and validity
+window. Pairwise pseudonymous identifiers can make one person's identifier
+different at different services, reducing simple cross-service tracking.</p>
+<p>This is the architecture most relevant to a fragmented government. It could let
+one authority prove a narrow fact without sending the complete source record or
+requiring the verifier to maintain a permanent live connection to the source.</p>
+<p>The standards are no longer merely conceptual:</p>
+<ul>
+<li>W3C made Verifiable Credentials Data Model 2.0 a Recommendation on May 15,
+  2025;</li>
+<li>OpenID has final issuance and presentation specifications;</li>
+<li>NIST's federal digital-identity standard recognizes signed attribute bundles
+  and subscriber-controlled wallets; and</li>
+<li>mobile driver's-license standards already provide a common state credential
+  format.</li>
+</ul>
+<p>But standards maturity is not the same as federal production adoption.</p>
+<p>Primary sources: <a href="https://pages.nist.gov/800-63-4/sp800-63c/Federation/">NIST SP 800-63C federation requirements</a> ·
+<a href="https://www.w3.org/standards/history/vc-data-model-2.0/">W3C VC Data Model history</a> ·
+<a href="https://openid.net/specs/openid-4-verifiable-presentations-1_0-final.html">OpenID4VP 1.0</a> ·
+<a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">OpenID4VCI 1.0</a></p>
+<h2>5. The first live public-credential trust registry is emerging from the states</h2>
+<p>AAMVA's mobile driver's-license Digital Trust Service (DTS) is a concrete,
+operating issuer-key layer. AAMVA securely obtains participating issuing
+authorities' public keys and publishes them through a Verified Issuer
+Certificate Authority List (VICAL). A relying party downloads the VICAL and can
+verify that a presented mDL was signed by a participating official issuer.</p>
+<p>That is important because it solves one of the hardest scale problems: every
+merchant, agency and verifier does not need to negotiate separately with every
+state DMV merely to learn which issuer keys are genuine.</p>
+<p>The federal bridge is not production yet. In January 2026 NIST's NCCoE announced
+a government-use demonstration in which an mDL or other verifiable digital
+credential could be used with Login.gov to access state or federal services.
+The official description calls it a demonstration. It should not be promoted to
+“Login.gov accepts every state mDL in production.”</p>
+<p>Primary sources: <a href="https://www.aamva.org/publications-news/aamva-news/aamva-s-mobile-driver-license-digital-trust-service-is-now-live">AAMVA DTS live announcement</a> ·
+<a href="https://www.aamva.org/identity/mobile-driver-license-digital-trust-service/for-relying-parties">AAMVA relying-party/VICAL architecture</a> ·
+<a href="https://www.nccoe.nist.gov/node/2986">NIST government-use demonstration</a></p>
+<h2>6. Treasury shows where cryptography becomes accountable government action</h2>
+<p>Treasury's Secure Payment System is the clean production example:</p>
+<ol>
+<li>an agency designates and enrolls a person for a defined role;</li>
+<li>the SPS user must possess a PKI token/certificate and exist in the SPS user
+   table;</li>
+<li>the Data Entry Operator prepares or modifies the payment schedule;</li>
+<li>a separate Certifying Officer certifies it;</li>
+<li>SPS appends each relevant digital signature; and</li>
+<li>Treasury permanently retains those signatures in the SPS audit log.</li>
+</ol>
+<p>SPS also validates Treasury Account Symbol and Business Event Type Code fields
+against Treasury's Shared Accounting Module before accepting a schedule. The
+system therefore joins identity, role, separation of duties, accounting
+classification, signed authorization and an audit trail before disbursement.</p>
+<p>This is more consequential than a generic immutable record. It tells an auditor
+<strong>which legally designated person certified which exact schedule under which
+role</strong>. It also preserves the liability boundary: the certifying officer must
+ensure the payment is legal, proper and correct. A valid signature does not
+convert a bad invoice, false eligibility record or unlawful instruction into a
+proper payment.</p>
+<p>Primary sources: <a href="https://fiscal.treasury.gov/system/files/files/pia/SPS-pia.pdf">SPS privacy impact assessment</a> ·
+<a href="https://fiscal.treasury.gov/payments-from-government/secure-payment-systems-sps/forms">SPS enrollment and designation</a> ·
+<a href="https://fiscal.treasury.gov/payments-from-government/secure-payment-systems-sps/components">SPS TAS/BETC validation</a> ·
+<a href="https://fiscal.treasury.gov/about-us/training-events/cot">Certifying Officer training</a></p>
+<h2>7. Where the actual savings can come from</h2>
+<h3>High-confidence mechanisms</h3>
+<table>
+<thead>
+<tr>
+<th>Waste/friction</th>
+<th>Cryptographic or federated remedy</th>
+<th>Residual work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Every agency repeats identity proofing</td>
+<td>reuse a shared proofing/federation service</td>
+<td>program authorization, error correction and local account security</td>
+</tr>
+<tr>
+<td>Every verifier separately tracks issuer keys</td>
+<td>trusted root/bridge or VICAL-style key registry</td>
+<td>issuer governance, audits and revocation</td>
+</tr>
+<tr>
+<td>Whole records are copied to prove one fact</td>
+<td>signed derived attribute or selective disclosure</td>
+<td>lawful purpose, source accuracy and correlation controls</td>
+</tr>
+<tr>
+<td>Manual signatures and unclear responsibility</td>
+<td>credential-bound digital signature plus role and time</td>
+<td>substantive review and legal accountability</td>
+</tr>
+<tr>
+<td>Reconciliation cannot identify who changed what</td>
+<td>signed event records and append-only audit log</td>
+<td>accounting judgment, corrections and reversals</td>
+</tr>
+<tr>
+<td>Static credentials remain trusted after compromise/change</td>
+<td>expiration, status and revocation checking</td>
+<td>fast propagation and due-process restoration</td>
+</tr>
+<tr>
+<td>Separate agencies build the same crypto migration tooling</td>
+<td>shared procurement, cloud upgrades, joint training and central support</td>
+<td>inventory, legacy replacement and agency-specific risk</td>
+</tr>
+</tbody>
+</table>
+<h3>What is not yet proved</h3>
+<ul>
+<li>no audited total shows how much government-wide spending cryptography has
+  already eliminated;</li>
+<li>no production evidence shows a federal verifiable-credential layer carrying
+  citizenship, benefit eligibility or award authority broadly across agencies;</li>
+<li>no evidence shows that placing the same data on blockchain would improve the
+  source record or legal decision;</li>
+<li>the Treasury/JFMIP grant-blockchain prototype processed no real grant payment;
+  and</li>
+<li>post-quantum migration is initially a major cost and risk-reduction program,
+  even though shared procurement and coordinated modernization may lower its
+  expense.</li>
+</ul>
+<h2>8. The failure constitution</h2>
+<p>Cryptographic systems change the location of failure; they do not abolish it.</p>
+<table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Cryptography's contribution</th>
+<th>Necessary non-cryptographic control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wrong source data</td>
+<td>faithfully proves which authority issued the wrong claim</td>
+<td>correction, evidence review and downstream notification</td>
+</tr>
+<tr>
+<td>compromised private key</td>
+<td>exposes unverifiable/forged actions once detected</td>
+<td>protected key storage, revocation and incident response</td>
+</tr>
+<tr>
+<td>stolen but valid account</td>
+<td>may show a valid credential controlled the session</td>
+<td>phishing resistance, fraud detection, recovery and human review</td>
+</tr>
+<tr>
+<td>stale eligibility</td>
+<td>proves a once-valid claim</td>
+<td>expiration, fresh source check and effective-date rule</td>
+</tr>
+<tr>
+<td>unlawful policy</td>
+<td>creates a precise execution record</td>
+<td>judicial/administrative review and legal authority</td>
+</tr>
+<tr>
+<td>excessive correlation</td>
+<td>can reduce linkage through pseudonymous identifiers/selective disclosure</td>
+<td>purpose limitation, retention rules and enforcement</td>
+</tr>
+<tr>
+<td>irreversible bad transaction</td>
+<td>preserves the mistake perfectly</td>
+<td>reversal, compensating entry, restitution and appeal</td>
+</tr>
+<tr>
+<td>quantum break</td>
+<td>makes legacy public-key trust unsafe</td>
+<td>inventory, crypto agility and PQC migration</td>
+</tr>
+</tbody>
+</table>
+<p>The correct system is therefore <strong>tamper-evident, not correction-hostile</strong>.
+Corrections should be new, signed and linked events that preserve history while
+changing operative state. Deleting the evidence of the prior error destroys
+auditability; refusing to correct it destroys justice.</p>
+<h2>9. Blockchain's proper place</h2>
+<p>Most of this stack does not need blockchain.</p>
+<p>Use conventional PKI/federation when:</p>
+<ul>
+<li>one recognized authority owns the fact;</li>
+<li>the relying party only needs to validate the issuer's signature;</li>
+<li>revocation and correction must be centrally governed; or</li>
+<li>low latency, privacy and legal accountability matter more than shared
+  consensus.</li>
+</ul>
+<p>Consider a permissioned ledger or public cryptographic anchor when:</p>
+<ul>
+<li>several institutions jointly create a sequence of events;</li>
+<li>no participant should be able to rewrite the shared history alone;</li>
+<li>reconciliation across those participants is a material cost;</li>
+<li>auditors or the public need independent proof of publication or sequence; and</li>
+<li>privacy-preserving off-chain records and an explicit correction constitution
+  remain available.</li>
+</ul>
+<p>For federal spending, the plausible design is hybrid:</p>
+<pre><code class="language-text">protected authoritative records and PII off-chain
+  + issuer/official digital signatures
+  + standardized event identifiers
+  + permissioned shared state for authorized participants
+  + public API and/or public cryptographic commitments
+  + signed corrections, reversals and appeal outcomes
+</code></pre>
+<p>This would extend the trust stack. It would not replace appropriations law,
+program eligibility, certifying-officer liability, banking settlement,
+accounting standards or judicial remedy.</p>
+<h2>10. Post-quantum migration is the decisive live clock</h2>
+<p><strong>Targeted reconciliation: September 7, 2026.</strong> The wider study retains its August 11 cutoff. This section joins the original Tech migration question to the issued order, the implementing memorandum and the already-saved GSA coordination return.</p>
+<h3>Post-quantum migration: duties and the first coordination receipt</h3>
+<p><strong>Research question:</strong> The original guardrail/AI-compute record asks how the defensive side of quantum readiness creates concrete federal migration and contractor obligations. Preserve the link between vulnerable infrastructure and the quantum build while separating risk rationale, mandatory planning, future rulemaking and completed protection.</p>
+<p>EO 14412 was signed June 22, 2026 and published June 25. It directs federal PQC migration and supporting guidance; it does not establish that every federal system has migrated or that cryptography is invulnerable. Its high-value/high-impact-system guidance excludes national security systems and targets key establishment by December 31, 2030 and signatures by December 31, 2031. NSS reporting and critical-infrastructure assistance are separate lanes. The order requires a proposed FAR contractor rule within 180 days; it does not itself supply a final contractor rule. OMB issued M-26-15 on June 24: agency plans are due October 22, and its phased approach covers priority migration, signatures and risk-sensitive remaining-system migration through 2035. A concrete later receipt is GSA’s August 24 report of its first FICAM modernization working-group meeting on August 12, with 40 participants from 17 agencies. GSA also describes testing capability in development. These receipts support coordination and preparation, not completed system cutovers or approved PQC products. The existing cryptographic trust study should own these duties and later receipts, with the quantum acceptance study explaining the separate algorithm, module, product and system checks.</p>
+<p><strong>Clocks:</strong> EO signed June 22 and published June 25, 2026, 91 FR 38483–38486, document 2026-12909. OMB M-26-15 is dated June 24; plan deadline October 22 is 120 days from that date. GSA’s August 24 publication reports an August 12 first meeting; neither date is a system migration completion date. Reviewed September 7, 2026 with only the named later return revisited.</p>
+<p><strong>Primary evidence:</strong> <a href="https://www.federalregister.gov/documents/2026/06/25/2026-12909/securing-the-nation-against-advanced-cryptographic-attacks">EO 14412, sections 1–7</a>; <a href="https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf">OMB M-26-15, core pages 1–5</a>; <a href="https://www.gsa.gov/blog/2026/08/24/gsa-leads-the-transition-to-quantumresistant-technology">GSA August 24 implementation receipt</a>.</p>
+<p><strong>Evidence limits:</strong></p>
+<ul>
+<li>PQC means algorithms designed to resist quantum and classical attacks, not a guarantee of quantum-proof security. M-26-15 states that a cryptographically relevant quantum computer is not yet known to exist.</li>
+<li>The June 22 EO clock differs from the June 24 memorandum clock. M-26-15 gives 120 days from its date for agency plans; its GSA group instruction says 60 days from publication. August 23 is the calculated group deadline if publication occurred June 24; the meeting receipt itself establishes August 12.</li>
+<li>NSS exclusion from the civilian guidance is not exclusion from every EO duty. Assistance to private critical infrastructure does not impose the civilian-agency deadlines universally, and a proposed FAR rule is not a final contract requirement.</li>
+<li>An inventory, a plan, a working group, a testing capability, an algorithm standard, a module certificate and an agency-authorized operating system require distinct evidence. No system-specific completed migration or product approval was established in this bounded review.</li>
+<li>M-26-15 core pages 1–5 were read fully as text and rendered images, including footnotes; technical appendices were not fully reviewed. No broad agency-return, product-certificate or procurement sweep was undertaken.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Clock</th>
+<th>Required object and scope</th>
+<th>Evidence state in this bounded review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>July 22, 2026</td>
+<td>EO: agency migration lead within 30 days of June 22</td>
+<td>Direction verified; no agency-by-agency completion roster reviewed</td>
+</tr>
+<tr>
+<td>60 days from M-26-15 publication</td>
+<td>GSA FICAM/PQC working group; August 23 if published June 24</td>
+<td>GSA's August 24 article reports the first meeting on August 12, 40 participants from 17 agencies; planned biweekly cadence is not a completed meeting history</td>
+</tr>
+<tr>
+<td>October 22, 2026</td>
+<td>Agency migration plans, 120 days from the June 24 memorandum date</td>
+<td>Issued requirement; submissions not established</td>
+</tr>
+<tr>
+<td>December 19, 2026</td>
+<td>EO: NIST pilot initiation within 180 days of June 22</td>
+<td>Future requirement in the reviewed order; no operating pilot established here</td>
+</tr>
+<tr>
+<td>March 19, 2027</td>
+<td>EO: minimum cryptographic bill-of-materials guidance within 270 days</td>
+<td>Guidance requirement; no final guidance receipt established here</td>
+</tr>
+<tr>
+<td>December 31, 2027</td>
+<td>NIST pilot completion</td>
+<td>Future target; completion requires a later record</td>
+</tr>
+<tr>
+<td>December 31, 2030</td>
+<td>Priority non-NSS high-value/high-impact key establishment</td>
+<td>Migration target under the order's guidance lane; not a universal private-sector or NSS deadline</td>
+</tr>
+<tr>
+<td>December 31, 2031</td>
+<td>Priority non-NSS high-value/high-impact signatures</td>
+<td>Separate signature target; not evidence that migration is complete</td>
+</tr>
+<tr>
+<td>Through 2035</td>
+<td>M-26-15 remaining-system migration phase</td>
+<td>Risk and commercial-availability conditions remain relevant; not all federal systems have a 2030 deadline</td>
+</tr>
+</tbody>
+</table>
+<p>The GSA formation question has a named return. System inventories, filed plans, procurement, interoperability results and actual cutovers remain separate questions. The acceleration synthesis retains the detailed GSA receipt and civilian/NSS/private-rail distinctions. The quantum acceptance map explains algorithm, module, product and system acceptance. Its company evidence remains dated August 19.</p>
+<p>The order directs agencies to seek savings through shared services, procurement, training and support. OMB encourages automation for cryptographic discovery and management. Those are implementation directions; a realized cost reduction requires measured results.</p>
+<p>Primary sources: <a href="https://www.whitehouse.gov/presidential-actions/2026/06/securing-the-nation-against-advanced-cryptographic-attacks/">EO 14412</a> ·
+<a href="https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf">OMB M-26-15</a> ·
+<a href="https://csrc.nist.gov/News/2024/postquantum-cryptography-fips-approved">NIST final PQC standards</a> ·
+<a href="https://www.idmanagement.gov/implement/fpkicite/">FPKI CITE</a></p>
+<h2>11. M7 provenance correction</h2>
+<p><strong>Source-boundary reconciliation: September 7, 2026.</strong> The mid-2027 ledger-pilot date comes from the Chronicle's historical <em>Sovereign Ledger</em> prediction, made June 26 and updated August 20. M7 says <strong>mid-2027</strong>; June 30, 2027 is the broader note's structural check. These are forecast clocks, not dates established by a statute, agency program, award or procurement. The full argument, confidence levels and counter-reading remain in the original Chronicle note:</p>
+<p><code>04 - Synthesis/Predictions/2026-06-26 - MASTER PREDICTION — The Sovereign Ledger.md</code></p>
+<p>For government research, the question is whether an official source identifies a federal spending-transparency or payments pilot and the public or permissioned ledger it uses. Keep the named agency, instrument, function and implementation stage attached to that evidence. Federated identity, signed claims, PKI, append-only logs and PQC modernization can operate without such a ledger. Their official implementation dates do not establish that a ledger pilot exists.</p>
+<p>This section owns the date-provenance clarification. The original prediction remains outside this Research package; its historical method and forecast are preserved there rather than repeated here. This correction does not reassess or rescore the prediction.</p>
+<h2>12. Watchboard and return gates</h2>
+<ol>
+<li><strong>FICAM/PQC working group — formation return received.</strong> GSA's August 24
+   article reports the August 12 first meeting. Follow the existing question into
+   published deliverables, testing, procurement and system cutovers; formation
+   does not establish those later results.</li>
+<li><strong>September 5, 2026 — EO 14418 agency guidance.</strong> Check whether State, DHS,
+   SSA or other agencies propose portable citizenship evidence, new proofing,
+   wallet credentials, source queries or data matching. Do not infer it from the
+   EO alone.</li>
+<li><strong>October 22, 2026 — agency PQC plans.</strong> Determine which plans are public and
+   whether identity, PKI, digital signatures, payments or credential wallets are
+   named priorities.</li>
+<li><strong>December 19, 2026 — NIST pilot initiation.</strong> Identify system, algorithm,
+   vendors, budget, legacy interface and success measures.</li>
+<li><strong>Login.gov/mDL production bridge.</strong> Promote only when GSA/NIST and a named
+   agency show live acceptance, not another demonstration.</li>
+<li><strong>Portable federal attribute.</strong> Watch for a production credential carrying a
+   bounded federal claim such as veteran status, professional authority,
+   citizenship evidence, benefit enrollment or award authority.</li>
+<li><strong>Treasury signature modernization.</strong> Watch SPS/PAM, FPKI and ISO 20022 work
+   for PQC-ready signatures, signed APIs or shared event proofs.</li>
+<li><strong>Federal spending-transparency or payments ledger.</strong> Identify an official
+   source naming the federal pilot, its function and the public or permissioned
+   ledger it uses. Distinguish a proposal, authorized pilot and observed operation.
+   Section 11 explains the historical forecast date; it supplies no program deadline.</li>
+<li><strong>Savings proof.</strong> Require a baseline, realized cost comparison, error or
+   fraud measure and attribution before claiming that cryptography reduced
+   spending.</li>
+<li><strong>Remedy proof.</strong> For any portable credential or automated verification,
+    locate revocation, individual notice, correction, appeal and downstream
+    repair procedures before calling the system trustworthy.</li>
+</ol>
+<h2>Conclusion</h2>
+<p>The government's likely next operating model is not a single national database
+and not necessarily a blockchain. It is a <strong>federated claim network</strong>:</p>
+<ul>
+<li>authoritative agencies retain their records;</li>
+<li>trusted issuers sign narrow claims;</li>
+<li>wallets or identity providers present only what a relying service needs;</li>
+<li>registries distribute trusted issuer keys;</li>
+<li>agency law and policy decide what the verified claim permits;</li>
+<li>officials sign consequential actions;</li>
+<li>Treasury and other execution systems move value;</li>
+<li>revocation, correction, appeal and audit remain explicit; and</li>
+<li>public or shared ledgers may add provenance where multi-party reconciliation
+  or public verification justifies their cost.</li>
+</ul>
+<p>That architecture could genuinely make government faster and cheaper. The
+efficiency comes from reusing verified facts and signed authority, not from
+pretending that cryptography can replace legal judgment or human remedy.</p></article><footer class="reader-foot">Complete governed read-first file · evidence remains bounded by the cutoff above</footer>
+</main></body></html>

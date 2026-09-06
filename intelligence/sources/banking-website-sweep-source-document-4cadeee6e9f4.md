@@ -1,5 +1,17 @@
 > Source created: 2026-07-12
 
+## Maintained reading — institutions’ strategies and customer-facing programs
+
+What do these institutions say they are building, buying, researching, testing, expanding or exiting? The July 11 survey keeps eighteen institution/group portraits and separates filings, targets, product announcements, internal transaction-data research, surveys and technical work. Consumer debt is one resulting thread, not the survey’s entire organizing question.
+
+Read [Bank User Agreements — Source Document](../sources/bank-user-agreements-source-document-b69017548c46.html) for the maintained legal-entity and contract-control answer and the six saved corrections. The website and agreement investigations are complementary. [The FY2025 credit-loss companion](../sources/credit-loss-reserve-and-net-receivables-fy2025-437b4a840942.html) owns the separate reserve/receivables question.
+
+**Clocks:** July 11, 2026 source observations and analysis; saved July 12 audit; September 7 consolidation. This is not a refreshed website survey. The original open questions below are dated research history, not active monitoring or an instruction to execute another sweep. Complete original website packet is preserved.
+
+## Saved July 12 audit history
+
+The following audit is retained verbatim as dated provenance. Its references to a verbatim packet describe the original ingestion. The maintained reading below applies its corrections; the complete original July 11 packet remains in the linked Workbench history.
+
 > **Provenance & audit (Claude, 2026-07-12).** Delivered by Katie; audited before ingestion by an independent verification pass against live primary sources. The packet's method is unusually strong — it separates source classes (10-K vs newsroom vs survey vs agreement), and it distinguishes **CONFIRMED CHANGE** (a proven before/after) from **CURRENT TERM** (what a live document says today). That discipline is why the audit could find its seams. Corrections below are BINDING on the derived layer; the body is reproduced verbatim.
 >
 > **① BofA — the finding holds, but the window is different and the packet's "June 2" agreement could not be found.** The §12 arbitration/mass-arbitration insertion is REAL and independently corroborated without the Internet Archive: the May 18 update PDF carries the clause verbatim, its scope does reach Zelle, RTP, ACH, wires, bill pay and **Erica**, and a June 4 2026 Senate letter (Blumenthal/Warren/Johnson) plus NCLC and Public Citizen all describe it as newly adopted after ~17 years without pre-dispute arbitration. BUT: the live agreement at the packet's own URL today reads **effective March 23, 2026**, contains the word "arbitration" zero times, and banners the May 18 update as forthcoming. So (a) the insertion window is **Mar 23 → May 18, 2026**, TIGHTER than the packet's Jan 31 → May 18, and (b) the packet's "2026-06-02 CONFIRMED CHANGE" (transfer clocks, Deals rename) is **unverified — demoted**. Do not carry the June 2 delta.
@@ -14,7 +26,7 @@
 # U.S. banking websites — full entity sweep
 
 Updated: 2026-07-11  
-Status: live full-site reconnaissance; first institutional pass complete  
+Status: maintained institutional survey; first pass completed July 11, 2026, with saved audit and September 7 consolidation  
 Scope: what major U.S. banking entities say they are building, buying, researching, testing, growing, shrinking, and preparing for across their own public websites.
 
 Companion legal review: [Bank user agreements — legal-entity and contract-change map](../sources/bank-user-agreements-source-document-b69017548c46.html)
@@ -75,11 +87,11 @@ The expansion ring is included because it contains distinct growth experiments�
 
 **Primary sources:** [JPMorganChase — financial health and cash-flow underwriting](https://www.jpmorganchase.com/newsroom/stories/strengthening-pathways-to-financial-health); [Institute — BNPL and household balance sheets](https://www.jpmorganchase.com/institute/all-topics/community-development/convenience-or-liquidity-valve-buy-now-pay-later); [JPMorganChase 2026 company update](https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/2026-company-updates/company-update-firm-overview-transcript.pdf)
 
-### Current factual read
+### July 11 analytical read
 
 Chase is growing by joining a huge physical and deposit franchise to co-brands, premium loyalty, new-to-credit underwriting, real-time personalization, and acquired card books. The debt-modification story is the back end of that broader acquisition-and-engagement machine.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Apple Card conversion; Freedom Rise and deposit-data underwriting volume; pricing/personalization AI; agentic-commerce payment rules; branch and affluent-account growth; Institute findings that become products.
 
@@ -104,11 +116,11 @@ Apple Card conversion; Freedom Rise and deposit-data underwriting volume; pricin
 
 **Primary sources:** [Bank of America Institute — Consumer Checkpoint](https://institute.bankofamerica.com/consumer-checkpoint.html); [May 2026 Consumer Checkpoint](https://institute.bankofamerica.com/economic-insights/consumer-checkpoint-may-2026.html); [Bank of America — technology and AI](https://newsroom.bankofamerica.com/content/newsroom/executive-bios/hari-gopalkrishnan.html)
 
-### Current factual read
+### July 11 analytical read
 
 BofA is building a relationship-pricing loop: deposit account → rewards tier → card and installment use → Merrill assets → more benefits. Its Institute simultaneously watches the same customer base for stress and spending changes.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Custom Pay Plan terms and uptake; referral-driven account growth; Rewards migration; branch openings; whether Institute measures feed credit-line, pricing, or marketing changes; new patent families tied to payments or underwriting.
 
@@ -133,11 +145,11 @@ Custom Pay Plan terms and uptake; referral-driven account growth; Rewards migrat
 
 **Primary source:** [Wells Fargo — Saul Van Beurden role](https://www.wellsfargo.com/about/corporate/governance/vanbeurden/)
 
-### Current factual read
+### July 11 analytical read
 
 Wells may be the clearest regulatory-release growth story: it is adding card accounts, checking relationships, and auto production at unusually high rates after years of constraint and business exits.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Card product mix and approval bands; branch-market targets; auto underwriting; AI production use; whether growth outpaces controls; second-quarter results following the asset-cap removal.
 
@@ -163,11 +175,11 @@ Card product mix and approval bands; branch-market targets; auto underwriting; A
 
 **Primary sources:** [Citi Consumer Cards Credit Trends Survey](https://www.citigroup.com/rcs/citigpa/storage/public/US-consumer-cards-credit-trends-survey.pdf); [Citi 2026 U.S. Consumer Cards presentation transcript](https://www.citigroup.com/rcs/citigpa/storage/public/investor-day/citi-ID26-us-consumer-cards-presentation-transcript.pdf)
 
-### Current factual read
+### July 11 analytical read
 
 Citi is using AI not only to cut costs but to approve more accounts, personalize acquisition, lift digital sales, and place its cards inside merchant and future agentic-shopping flows.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Approval-rate lift by portfolio; digital-sales baseline; installment balances; new strategic partners; agentic-commerce standards; whether higher lifetime-value acquisition changes risk mix.
 
@@ -192,11 +204,11 @@ Approval-rate lift by portfolio; digital-sales baseline; installment balances; n
 
 **Primary sources:** [Capital One — AI and machine learning](https://www.capitalone.com/tech/machine-learning/); [Capital One — ML research agenda](https://www.capitalone.com/tech/machine-learning/machine-learning-research-roundup/)
 
-### Current factual read
+### July 11 analytical read
 
 Capital One is assembling a vertically linked payments stack: consumer lending + deposits + Discover network + merchant acceptance + Brex business cards and spend control + cloud/AI underwriting and fraud research.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Discover-network volume migration; Brex integration; merchant pricing; graph-model production use; consumer/business data joining; new network products; retained versus sold loan books.
 
@@ -221,11 +233,11 @@ Discover-network volume migration; Brex integration; merchant pricing; graph-mod
 
 **Primary sources:** [American Express 2026 Global Travel Trends](https://www.americanexpress.com/en-us/newsroom/articles/travel-and-dining/american-express-travel--reveals-top-travel-trends-for-2026.html); [Amex Trendex — expense management and AI](https://www.americanexpress.com/en-us/newsroom/articles/amex-for-business/new-amex-trendex-finds-mid-sized-businesses-prioritize-ai-adopti.html)
 
-### Current factual read
+### July 11 analytical read
 
 AmEx is not chiefly chasing the broadest borrower pool. It is growing a closed-loop data-and-loyalty system around younger premium customers, merchants, experiences, and business expense flows—while also earning more interest as card balances rise.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Young-cohort retention and revolving behavior; premium fee changes; sports/experience partnerships; merchant acceptance; card-balance growth; how survey findings become product refreshes.
 
@@ -250,11 +262,11 @@ Young-cohort retention and revolving behavior; premium fee changes; sports/exper
 
 **Primary source:** [Synchrony / CareCredit — 2026 VisionIQ study](https://www.synchrony.com/contenthub/newsroom/consumers-vision-care-decisions-clouded-by-costs.html)
 
-### Current factual read
+### July 11 analytical read
 
 Synchrony's growth funnel is unusually explicit: find a purchase blocked by price → embed instant credit at checkout or provider office → pay the merchant quickly → retain collection risk → migrate the customer from installment to revolving and then co-brand products.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Walmart/OnePay launch; merchant conversion lift; customer migration rates; health-care vertical research; deferred-interest mix; Versatile Credit's multi-lender routing; merchant loss-sharing.
 
@@ -278,11 +290,11 @@ Walmart/OnePay launch; merchant conversion lift; customer migration rates; healt
 
 **Primary sources:** [Goldman Sachs Research — U.S. consumer and inflation](https://www.goldmansachs.com/insights/articles/the-outlook-for-the-us-consumer-amid-rising-inflation); [Goldman Sachs — Cracks in Private Credit](https://www.goldmansachs.com/insights/top-of-mind/cracks-in-private-credit)
 
-### Current factual read
+### July 11 analytical read
 
 Goldman is retreating from holding ordinary card balances while expanding around wealth, markets, and private-credit plumbing. Its research is especially useful for watching where consumer and corporate debt migrates after banks narrow direct lending.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Apple Card close; consumer-platform wind-down; private-credit fundraising and stress; bank-to-fund financing; research changes that precede capital allocation.
 
@@ -306,11 +318,11 @@ Apple Card close; consumer-platform wind-down; private-credit fundraising and st
 
 **Primary source:** [Ally — company and technology posture](https://www.ally.com/about/)
 
-### Current factual read
+### July 11 analytical read
 
 Ally is concentrating rather than broadly expanding: remove cards and new mortgages, collect deposits digitally, and redeploy capacity into auto and selected corporate assets.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Application-to-origination funnel; dealer concentration; credit-tier mix; used-car prices; repossessions; servicing AI; deposit pricing; corporate-finance growth.
 
@@ -331,11 +343,11 @@ Application-to-origination funnel; dealer concentration; credit-tier mix; used-c
 
 The first sweep has not yet found a large branded public research institute. Bread's observable intelligence loop is product and partner based: merchant vertical knowledge, underwriting, loyalty behavior, shopping activity, and lifecycle value disclosed through results and partnership announcements.
 
-### Current factual read
+### July 11 analytical read
 
 Bread is building embedded credit around ownership ecosystems—not just a store purchase, but the later subscriptions, service, repair, parts, and accessories that keep a consumer spending inside the partner's orbit.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Ford launch and receivables; Gen Z/Millennial growth; partner economics; installment-to-card migration; Comenity securitizations; loyalty and underwriting changes.
 
@@ -360,7 +372,7 @@ Ford launch and receivables; Gen Z/Millennial growth; partner economics; install
 
 **Primary sources:** [U.S. Bank Payment Strategy Report](https://www.usbank.com/corporate-and-commercial-banking/insights/reports/payment-strategy.html); [U.S. Bank 2026 CFO survey](https://www.usbank.com/about-us-bank/news-and-stories/article-library/us-bank-cfo-survey-geopolitics-and-inflation-rise-on-the-risk-agenda.html); [U.S. Bank — CES 2026 Future Safari](https://www.usbank.com/about-us-bank/news-and-stories/article-library/insights-from-ces-2026-to-guide-future-client-and-team-member-experiences.html)
 
-### Current factual read
+### July 11 analytical read
 
 U.S. Bank is using merchant acquiring and payment research as a growth engine. It is watching how businesses change payments, then selling the banking, processing, data, fraud, and card products needed for that change.
 
@@ -385,7 +397,7 @@ U.S. Bank is using merchant acquiring and payment research as a growth engine. I
 
 **Primary sources:** [PNC Consumer Health Check — February 2026](https://www.pnc.com/content/dam/es/pnc-com/pdf/aboutpnc/EconomicReports/EconomicUpdates/2026/PNC_Research_Consumer_Health_Check_February_2026.pdf); [PNC Economics — February outlook](https://www.pnc.com/content/dam/pnc-com/pdf/aboutpnc/EconomicReports/EconomicUpdates/2026/PNC_Economics_Research_National_Economic_Outlook_26_February_2026.pdf)
 
-### Current factual read
+### July 11 analytical read
 
 PNC is placing a large physical bet on population and business migration while using internal transaction data to read those households and markets.
 
@@ -410,7 +422,7 @@ PNC is placing a large physical bet on population and business migration while u
 
 **Primary source:** [Truist newsroom](https://media.truist.com/home)
 
-### Current factual read
+### July 11 analytical read
 
 Truist is trying to turn a high-growth regional footprint into a personalized data franchise: more advisors and branches on the ground, more AI-generated prompts and offers in the app, and more open connections to outside fintechs.
 
@@ -432,7 +444,7 @@ Citizens produces sector research and portfolio monitoring through its commercia
 
 **Primary source:** [Citizens 2026 Q1 presentation](https://investor.citizensbank.com/~/media/Files/C/CitizensBank-IR/1q26-earnings-presentation-4-16-26.pdf)
 
-### Current factual read
+### July 11 analytical read
 
 Citizens is an important bridge entity: a regional deposit bank with national embedded point-of-sale lending, education refinancing, private banking, and innovation-company finance.
 
@@ -451,7 +463,7 @@ Citizens is an important bridge entity: a regional deposit bank with national em
 
 Public research disclosure is thin. The important evidence will likely sit in bank call reports, securitization documents, account-conversion notices, credit agreements, and regulatory records rather than a branded institute.
 
-### Current factual read
+### July 11 analytical read
 
 CardWorks is a debt-destination entity: it grows partly by acquiring card portfolios that broad-service banks no longer want to hold.
 
@@ -475,11 +487,11 @@ Cross River does not present a consumer-research institute comparable with JPMor
 
 **Primary sources:** [Cross River stablecoin platform](https://www.crossriver.com/newsroom/cross-river-launches-stablecoin-payments-with-infrastructure-to-power-the-future-of-onchain-finance); [Cross River / Thredd issuing partnership](https://www.crossriver.com/newsroom/thredd-and-cross-river-to-accelerate-expansion-into-the-us-market-for-global-fintechs)
 
-### Current factual read
+### July 11 analytical read
 
 Cross River is building both sides of embedded credit: regulated origination/issuing infrastructure and capital facilities that purchase or finance the resulting assets. The consumer-facing fintech may generate demand, while Cross River can appear as bank, infrastructure provider, warehouse lender or receivable buyer.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Partner-specific underwriting and servicing roles; forward-flow performance; crypto-backed-loan terms; stablecoin partner approvals; Delaware origination; regulatory orders; and which party owns each loan after origination.
 
@@ -507,11 +519,11 @@ Franklin Templeton Institute coordinates market and investment research across s
 
 **Primary sources:** [Franklin Templeton FY2025 investor presentation](https://investors.franklinresources.com/files/doc_financials/2025/q4/Investor-Presentation-Q4-2025_11-7-2025-Final.pdf); [Franklin OnChain Fund SAI](https://www.franklintempleton.com/forms-literature/download-preview/9001-SAI)
 
-### Current factual read
+### July 11 analytical read
 
 Franklin Templeton is growing by joining traditional public-market distribution to private credit, alternatives, wealth platforms, tokenized funds and active crypto management. For this observatory, the important question is not whether it issues consumer debt, but where its funds, private-credit managers, structured products or tokenized vehicles finance and own debt produced elsewhere.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Private-credit portfolio composition; consumer and fintech receivable exposure; Western Asset flows and remediation; Benji account/wallet entities; 250 Digital closing; tokenized collateral; AI research tools; and acquisitions of specialist managers.
 
@@ -538,17 +550,17 @@ Private-credit portfolio composition; consumer and fintech receivable exposure; 
 
 **Primary sources:** [Fifth Third AI-powered interface](https://www.53.com/content/fifth-third/en/media-center/press-releases/2026/press-release-2026-06-17.html); [Fifth Third Financial Insights](https://www.53.com/content/fifth-third/en/financial-insights.html); [Corporate and Investment Banking research](https://www.53.com/content/fifth-third/en/commercial-banking/industries/market-insights.html)
 
-### Current factual read
+### July 11 analytical read
 
 Fifth Third is simultaneously executing a geographic bank acquisition and rebuilding the retail interface around conversational and eventually agentic banking. The merger supplies new markets and commercial relationships; interaction data supplies the personalization and acquisition layer intended to deepen them.
 
-### Open watches
+### Questions retained from the July 11 survey
 
 Comerica customer conversion; Direct Express administration; deposit consolidation and insurance notices; Texas branch build; Brex/Newline partnerships; AI use in disputes and advice; consumer-acquisition performance in acquired markets; and credit normalization across the two banks.
 
 ---
 
-## Cross-entity patterns — promoted only after the factual portraits
+## Cross-entity patterns — July 11 analysis following the factual portraits
 
 ### 1. The new retail bank is a demand-generation machine
 
@@ -579,7 +591,9 @@ Goldman and Ally exit selected consumer books; Chase, Capital One, Synchrony, Br
 
 Citi, U.S. Bank, Capital One/Brex, JPMorgan, and Truist are preparing for AI systems that recommend, approve, route, or execute payments. The future “top of wallet” contest may be fought inside software agents rather than in a leather wallet or even a mobile app.
 
-## Immediate next sweep
+## Original July 11 next-sweep plan
+
+These questions preserve the original investigation’s intended continuation. They are not new assignments or a claim that the listed work remains unperformed everywhere in the library.
 
 1. Complete the newsroom and investor chronology for each entity from 2024 through July 2026.
 2. Build one dated action timeline per entity rather than one merged bank timeline.

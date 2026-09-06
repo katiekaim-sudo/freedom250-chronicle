@@ -116,4 +116,4 @@ This is not a watchdog. It is a lockbox with a court-proof lid, built by Congres
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 2008 - Housing and Economic Recovery Act — FHFA provisions (current codified) (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

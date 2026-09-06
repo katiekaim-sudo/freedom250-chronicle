@@ -93,4 +93,4 @@ This is the referee that regulates the game Congress itself set up in 1864 and n
 > 1863 - National Currency Act, Comptroller's Office provisions (verbatim)
 > 1864 - National Bank Act, Comptroller's Office provisions (verbatim)
 > 2026 - 12 USC §§1-16 (current, verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

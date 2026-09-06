@@ -76,6 +76,20 @@ remain return gates.
 | UK DSS first Gate-2 live transaction | 2026-10-31 | authorization only | named instrument, operator, legal limit, asset record, cash object and completed finality |
 | DTCC Collateral AppChain production | 2026-12-31 | Q4 target only | production rulebook, named participants/assets, live pledge/financing, authoritative record and unwind |
 | Clearstream EIB CP full lifecycle | source-triggered / 2026-09-15 review | issue and financing proved; maturity/redemption not closed here | maturity payment, collateral release, Bundesbank financing repayment, exceptions and accounting close |
+
+### September 21 return — public lifecycle close still absent
+
+The ten-business-day review date has passed. A bounded search of EIB,
+Clearstream, Deutsche Bundesbank and Eurosystem public surfaces did not locate a
+later issuer, paying-agent, CSD, ECMS or central-bank receipt proving maturity
+cash, redemption/cancellation, collateral release, Bundesbank financing
+repayment, exception handling, reconciliation or accounting close. The
+[Clearstream issuance release](https://www.clearstream.com/clearstream-en/newsroom/260629-5355756)
+still establishes only the opening chain.
+
+Disposition: remove the stale dated trigger and retain a source-triggered return
+for the first authoritative lifecycle-close or exception object. Public
+non-detection is neither successful-close evidence nor failure evidence.
 | Agorá successor / production decision | 2027-03-31 | controlled real-value prototype | permanent legal entity/operator, RTGS/core-bank integration, rulebook, non-scripted availability, recurring volume and incidents |
 | BCBS tokenized-asset treatment evidence | 2027-03-31 | standard effective; comparable application not yet assessed | bank/jurisdiction disclosures showing Group 1a/other classification, legal finality and capital treatment |
 | project-finance DLT adoption | source-triggered | no named rail in reviewed flagship stacks | borrower, executed instrument, on-ledger authoritative title/collateral, first draw, settled cash, project spend and default path |

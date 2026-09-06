@@ -98,4 +98,4 @@ The FDIC is what happens when a government builds a fire department and then wri
 > [!graph]- Graph links (3 notes — auto-generated, do not edit)
 > 1933 - Banking Act of 1933 §12B (FRASER, as enacted) (verbatim)
 > 1950 - Federal Deposit Insurance Act — current codified (12 U.S.C. §1811 ff.) (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

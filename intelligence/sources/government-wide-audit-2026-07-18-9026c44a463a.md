@@ -1,5 +1,7 @@
 > Source cutoff: 2026-07-18
 
+> **Lifecycle note (September 8, 2026):** closed provenance. Historical pending, review, promotion, completion or incorporation language below records the campaign state at its own cutoff; it is not a current queue and does not change any stated Chronicle landing, incorporation boundary or evidence cutoff.
+
 # Government-Wide Audit — July 18, 2026
 
 ## Executive call

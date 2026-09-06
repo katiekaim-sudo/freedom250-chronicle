@@ -1,4 +1,4 @@
-> Source cutoff: 2026-08-26T12:55:35-04:00
+> Source cutoff: 2026-08-26T12:55:35-04:00 · Source updated: 2026-09-17
 
 # SEC Tokenization Approval Census — What Was Actually Approved
 
@@ -12,9 +12,35 @@
 
 **Mutation boundary:** workbench research only. No vault event, canonical watch, plotline or app state was changed.
 
+## September 17 addendum: fourth Commission-level action
+
+Release No. 34-106402 adds a **fourth Commission-level tokenization-linked
+action** to the three-action census below and a **third core
+market-infrastructure action** alongside Nasdaq and PSSC. It is a Commission
+exemptive order, not an approval of a company, product, token or chain.
+
+The order is effective through September 17, 2031 and conditionally exempts a
+qualifying Tokenized Securities Venue from the Exchange Act definition of
+`exchange`, with matching dealer-definition relief for qualifying own-account
+AMM liquidity providers. It permits permissioned pools deployed on public,
+permissionless DLT and allows Tokenized NMS Stock to pair with another such
+stock, any non-security crypto asset or a tokenized money market fund.
+
+Its legal state is `Commission exemptive order / effective / operation not yet
+established`. A TSV must publish a complete notice at least 30 calendar days
+before operating, and product-specific issuer and securities-law conditions
+remain. Read the full analysis in
+Tokenized NMS Stock Innovation Exemption 2026-09-17.
+
+The August 26 census is retained below as a dated baseline. References in that
+baseline to three Commission-level actions describe the original cutoff, not
+the updated September 17 total.
+
 ## Controlling answer
 
-“SEC-approved tokenization” is usually too broad. The current public record supports **three Commission-level tokenization-linked actions**, but only **two are core market-infrastructure approvals**:
+At the August 26 cutoff, “SEC-approved tokenization” was usually too broad. The
+reviewed public record supported **three Commission-level tokenization-linked
+actions**, but only **two were core market-infrastructure approvals**:
 
 1. **Nasdaq’s DTC-pilot tokenized-trading rule** — a true Commission approval order.
 2. **Paxos Securities Settlement Company (PSSC)** — a true Commission order approving temporary clearing-agency registration, with an 18-month limit and a mandatory ramp-up before operation.
@@ -156,6 +182,15 @@ Other operating registered tokenized-security examples include Arca’s ArCoin i
 | Item | Correct state at cutoff |
 |---|---|
 | ARK Venture Fund Tokenized Class | **Pending application.** Notice IC-36308 was issued 2026-08-24; hearing requests are due 2026-09-18 at 5:30 p.m. ET. No order or launch. [SEC notice](https://www.sec.gov/files/rules/ic/2026/ic-36308.pdf) |
+
+**September 21 return:** The hearing-request deadline has passed. The SEC's
+[current Investment Company Act table](https://www.sec.gov/rules-regulations/investment-company-act-notices-orders)
+still lists file 812-16031 only as the August 24 notice; no Commission order,
+denial or withdrawal for the application was located on the reviewed official
+surfaces. The disposition return therefore becomes source-triggered. This
+bounded non-detection does not establish that no nonpublic request exists, and a
+future order would remain separate from effectiveness, ATS admission, investor
+access and commercial launch.
 | Superstate USTB conversion to registered MMF | **Pending/un-effective.** Existing USTB remains a private offering; no effectiveness record for the proposed MMF conversion was located. [Superstate SEC submission](https://www.sec.gov/file/ctf-superstate-letter-061725) |
 | NYSE standalone 24/7 tokenized platform | **Announced and subject to regulatory approvals.** It is separate from the immediately effective DTC-pilot rule filings. [ICE/NYSE announcement](https://ir.theice.com/press/news-details/2026/The-New-York-Stock-Exchange-Develops-Tokenized-Securities-Platform/default.aspx) |
 | BSTX | The 2022 Commission orders approved an NMS equity venue with conventional NSCC/DTC settlement and a blockchain market-data feed. The order expressly did **not** approve digital-token trading. [BSTX order](https://www.sec.gov/files/rules/sro/box/2022/34-94092.pdf) |

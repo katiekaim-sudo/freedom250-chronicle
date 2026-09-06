@@ -12,13 +12,16 @@
 3. `SCIENTIFIC_TRUST_STACK_CLAIM_AUDIT_2026-08-17.md` — compressions the evidence does not permit.
 4. `SCIENTIFIC_TRUST_STACK_IMPLEMENTATION_WATCHBOARD_2026-08-17.md` — dated clocks, standing watches and promotion tests.
 5. `SCIENTIFIC_TRUST_STACK_SOURCE_LEDGER_2026-08-17.md` — official primary-source ledger and source-state notes.
-6. `GENIUS Stablecoin Trust Crosswalk 2026-08-17` — monetary specimen translating every layer into chain-specific issuer, contract/key, reserve, distribution, monitoring, remedy and cryptographic-durability receipts.
 
-Then use the existing
+## Related question routes
+
+Use the separate
 `Federal Cryptographic Trust Stack`
 for the government-wide PKI, signed-claim, payment-certification, correction and
-PQC foundation, and the
-`Genesis identity, provenance and PQC bridge`
+PQC foundation. Use the separate
+`GENIUS Stablecoin Trust Crosswalk`
+for the monetary law-to-runtime question, and the
+[`Genesis identity, provenance and PQC bridge`](../sources/genesis-identity-provenance-pqc-bridge-2026-08-11-0051de7f91ee.html)
 for the system-specific scientific implementation boundary.
 
 ## Controlling ruling

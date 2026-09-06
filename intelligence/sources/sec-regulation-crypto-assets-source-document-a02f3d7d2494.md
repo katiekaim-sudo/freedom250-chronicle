@@ -1,8 +1,8 @@
-> Source created: 2026-08-20 · Source updated: 2026-08-23
+> Source created: 2026-08-20 · Source updated: 2026-09-25
 
 # SEC Regulation Crypto Assets — Source Document
 
-**Evidence cutoff:** 2026-08-23
+**Evidence cutoff:** 2026-09-25 at 16:04 EDT
 
 **Legal state:** Commission-issued proposal; Public Inspection filed August 20;
 Federal Register publication August 21, 2026; comments due October 20, 2026
@@ -26,6 +26,48 @@ may participate, when state registration may be displaced, and how a sponsor
 asserts that the investment-contract relationship has ended. It does not define
 the chain's technical architecture, guarantee that the network is decentralized
 or functional, or approve any offering.
+
+## September 25 Corporation Finance FAQ overlay
+
+Corporation Finance issued nine staff answers applying the March Commission
+interpretation to classification and investment-contract questions. The FAQs
+do not amend this proposal, activate Rule 400 or Form TR, bind the Commission
+or create new legal obligations. They do refine the factual framework this
+proposal uses:
+
+- Commission-defined functionality and decentralization govern asset
+  classification, while the issuer's own promised thresholds govern whether it
+  fulfilled its representations;
+- another party's assumption of the promises does not create separation;
+- after a system is functional, securing, maintaining, improving or enhancing
+  it and facilitating network effects do not involve essential managerial
+  efforts under the cited Commission view;
+- marketing existing utility and indefinite non-profit-focused aspirations
+  likely are not, without more, promises of essential managerial efforts;
+- a post-functionality buyback announcement is not such a promise, while a
+  pre-functionality buyback promoted as yield or return may be;
+- a pure receipt requires continuing depositor ownership, unchanged rights, no
+  added economics and no issuer transfer, lending, pledge, rehypothecation,
+  other use or third-party exposure; and
+- secondary listing does not make a platform a promoter unless Securities Act
+  Rule 405 is satisfied.
+
+The resulting lifecycle is:
+
+```text
+asset classification
+  → issuer promise inventory
+  → investment-contract period, if formed
+  → issuer-defined milestone state
+  → successor-promise continuity
+  → post-functionality conduct
+  → possible separation
+  → later transaction analysis
+```
+
+The authority ladder remains: March Commission interpretation; September
+Corporation Finance staff application guidance; proposed Regulation Crypto
+Assets. Staff guidance is useful but does not convert the proposal into law.
 
 ## Current state chain
 
@@ -135,12 +177,13 @@ consideration, insider exits, network completion and state-law preemption.
 - [Commissioner Uyeda statement](https://www.sec.gov/newsroom/speeches-statements/uyeda-statement-regulation-crypto-assets-081826)
 - [Federal Register Public Inspection — FR Doc 2026-17183](https://www.federalregister.gov/public-inspection/2026-17183/regulation-crypto-assets)
 - [Federal Register publication — FR Doc 2026-17183](https://www.federalregister.gov/d/2026-17183)
+- [Corporation Finance crypto-asset FAQs — issued September 25, 2026](https://www.sec.gov/about/divisions-offices/division-corporation-finance/faqs-crypto-assets)
 
 ## Workbench provenance
 
 `Research Packages/Fintech and Private Rails/Regulation Crypto Assets Offering Regime 2026-08-18/`
 
 That package contains the page-complete 402-page reading atlas, rule/form/clock
-crosswalk, all-question atlas, internal-consistency ledger, claim audit and
-source manifest. This vault note is the durable reference; the workbench keeps
-the detailed evidence ledgers.
+crosswalk, all-question atlas, internal-consistency ledger, claim audit, source
+manifest and September 25 staff-guidance overlay. This vault note is the durable
+reference; the workbench keeps the detailed evidence ledgers.

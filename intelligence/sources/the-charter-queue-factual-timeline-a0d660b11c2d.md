@@ -1,24 +1,48 @@
-> Source date: 2026-07-12
+> Source date: 2026-07-12 · Source updated: 2026-09-07
 
 # The Charter Queue — Factual Timeline
 
+> **September 7, 2026 — maintained factual corrections beside a preserved dated record.** Read the correction section below for the specific charter/account claims it updates. The event blocks remain the original seed-source records, including their original commentary and superseded assertions; they are not a current-status census. This revision does not refresh other claims, establish new operation or regenerate seed inputs. The separate [The Waiting Room](../sources/the-waiting-room-ec8cb6742eea.html) remains the original July 12 interpretation.
+
 **This note is the canonical source.** The Observatory view (`The Charter Queue.html`, sub-view of obs-om) is *derived* — edit here, then re-run `build_charter_seed.py` → `build_charter_astro.py` → `build_charter_timeline.py`. Never hand-edit the JSON or the HTML.
 
-**What it tracks:** the **legal operating clock** of the private monetary stack — application → conditional approval → final approval → consummation → **account access**. Not the company build clock (founding → product → pilot → production). A press release moves the first; only a regulator moves the second.
+**What it tracks:** the legal operating clock of the private monetary stack—application, conditional approval, final approval, consummation and account permission—alongside the original dated company-building events. The legal operating clock and the company build clock answer different questions. An announcement may report a legal decision, a completed action or a future plan; the operative decision and the actual operating receipt establish their own effects and dates. Chartering, account permission, permitted services and actual payment use are separate. FINTECH_SWEEP_MARKET_ACCESS#C. Charter-stage matrix.
 
 **The seven tracks**
 
 - **The Door** — the OCC charter queue. Who applied, who was conditionally approved, who consummated.
-- **The Gate** — Federal Reserve account access. Master accounts, Reserve Bank stock, Custodia. *The door nobody has walked through.*
+- **The Gate** — Federal Reserve access, permitted services and actual use are separate. Kansas City announced Kraken Financial’s limited-purpose account approval March 4, 2026; the saved July 25 audit reports January 28 action/access-effective fields. These do not establish first use or the one-year term start. The Wyoming SPDI is distinct from the digital-asset national-trust cohort; its account does not confer affiliate access. See FINTECH_SWEEP_MARKET_ACCESS#2. Kraken.
 - **The Ledger** — clearing and depository permission. PSSC, DTC's tokenization service, the Collateral AppChain.
 - **The Rulebook** — the incumbents absorbing the new rails while keeping the constitution. Swift, Visa, Mastercard, the capital-treatment guidance.
 - **The Coin** — the issuers and their obligors. Who owes the holder money, and who can freeze it.
 - **The Interior** — the permissioned bank rails. Fnality, Partior, Canton, Kinexys, Broadridge — where regulated balance sheets actually meet.
 - **The Stack** — the acquisitions. Vertical integration is moving faster than any protocol merger.
 
-**Status vocabulary:** `Occurred` · `Proposed` · `Scheduled` · `Public position` · `Research`. Month-precision dates get **no chart** — month is not a moment, and the vault does not fake one.
+**Status vocabulary:** `Occurred` · `Proposed` · `Scheduled` · `Public position` · `Research`. Month-precision dates remain month-precision; no exact event time is inferred. Historical chart conventions are preserved in Sky & Charts.
 
 ---
+
+## Maintained factual corrections — September 7, 2026
+
+These corrections use named saved research cutoffs and the historical May 8 Kansas City disclosure reviewed in the September 7 reconciliation. FINTECH_SWEEP_MARKET_ACCESS#C. Charter-stage matrix owns the maintained entity-stage comparison; FINTECH_SWEEP_MARKET_ACCESS#2. Kraken owns the exact Kraken account terms and source clocks. The following original statements remain preserved in the record and are qualified here.
+
+**Charter powers — original 2021 Anchorage entry.** A national trust charter does not itself confer insured deposits, lending powers, discount-window access or a Federal Reserve master account. Exact institution-specific powers and account status require their separate legal records. Anchorage’s charter and later access request are distinct events; this correction does not refresh the other historical claims in the paragraph. FINTECH_CRYPTO_CLAIM_AUDIT#CA-06 — A trust charter equals a full bank, deposit insurance, or a Fed account; FINTECH_SWEEP_MARKET_ACCESS#C. Charter-stage matrix.
+
+**Anchorage request — original August 28, 2025 entry.** The saved database observation records Anchorage Digital Bank, N.A.’s access request submitted August 28, 2025 as pending, Tier 3, through May 31, 2026. That is a dated request-state observation, not a September status check or proof of the whole private stack’s position. Charter age does not rank requests by approval likelihood. FINTECH_SWEEP_MARKET_ACCESS#C. Charter-stage matrix.
+
+**Five OCC actions — original December 12, 2025 entry (record 21).** The December 12 action covered proposed national trust banks and trust conversions, with entity-specific conditions and clocks. Later saved records show Paxos and BitGo active by April 30, 2026, while Circle announced final approval on July 10 with opening/activity transfer still separate. The five cannot be treated as one continuing preopening group. The reviewed Ripple stock-application clause does not establish an identical requirement for all five; stock or membership is not account permission. FINTECH_SWEEP_MARKET_ACCESS#C. Charter-stage matrix; FINTECH_CRYPTO_CLAIM_AUDIT#CA-09 — Ripple or Standard Custody has a verified Fed master-account application.
+
+**Paxos conversion clock — original December 12, 2025 entry (record 22).** The saved controlling matrix establishes Paxos Trust Company, N.A., charter 25379, as active by April 30, 2026. That is an active-status observation bound, not a replacement date for this original December 12 event. The exact 17:00 effective-time assertion, timezone and operative decision clause have not been independently recovered in this bounded review; the original heading and time field remain preserved as such. The broad December 12 release alone does not establish every institution-specific deposit or stock condition. Trust-bank status, deposit insurance and account access remain separate. FINTECH_SWEEP_MARKET_ACCESS#C. Charter-stage matrix.
+
+**Anchorage supervisory action — original February 9, 2026 entry.** The February 9 supervisory action terminated the 2021 operating agreement, not the charter. Separately, Anchorage’s access request was pending in the saved database observation through May 31, 2026; this observation must not be read as a current pending-state assertion. FINTECH_SWEEP_MARKET_ACCESS#C. Charter-stage matrix.
+
+**Anchorage database observation — original May 31, 2026 entry (record 42).** Through the saved database currency date of May 31, 2026, Anchorage’s August 28, 2025 request remained pending, Tier 3, while Anchorage was already an active national trust bank. This does not show an unopened door for every institution or a current September cohort census. Kraken Financial’s distinct SPDI account is officially approved with disclosed restrictions; that does not resolve Anchorage’s separate request. FINTECH_SWEEP_MARKET_ACCESS#C. Charter-stage matrix; FINTECH_SWEEP_MARKET_ACCESS#2. Kraken.
+
+**Circle approval — original July 10, 2026 entry.** Circle announced final OCC approval to establish Circle National Trust on July 10, 2026. The saved research leaves its opening and planned reserve-management transfer as separate evidence questions and does not verify a Circle Federal Reserve account. “First final” and “furthest-advanced charter in America” are not supported rankings: the same saved record already identifies Anchorage as active and Paxos/BitGo as consummated by April 30. Preserve each entity’s own clock. FINTECH_SWEEP_MARKET_ACCESS#C. Charter-stage matrix.
+
+**Kraken account — original July 11, 2026 failed-search entry.** The July 11 non-corroboration statement and its heading are superseded as a maintained account assessment. Kansas City officially announced limited-purpose account approval for Payward Financial, doing business as Kraken Financial, on March 4, 2026. Its May 8 disclosure permits Fedwire Funds only, with no intraday or discount-window credit or interest, a closing-balance cap whose amount is unspecified, and no account services for the Kraken exchange or other Payward entities. The [saved July 25 Fed payment-stack audit](../sources/fed-payment-stack-control-finality-and-cost-audit-2026-07-25-42694c28bdc5.html) reports January 28 as both the action and access-effective CSV fields. Those fields and the March announcement are distinct source clocks, not proof of actual payment use or the start of the initial one-year term. The decision under existing authority and its possible RFI-consistent pilot value do not establish a first live test of a later national proposal. FINTECH_SWEEP_MARKET_ACCESS#2. Kraken; [March 4 official announcement](https://www.kansascityfed.org/newsroom/2026-news-releases/federal-reserve-bank-of-kansas-city-approves-limited-account/); [May 8 supplemental disclosure](https://www.kansascityfed.org/documents/16129/Supplemental_Information_Regarding_Kraken_Financial_Account_05.08.2026.pdf).
+
+**Historical record begins below.** The event headings, status/time/entity/source fields and all event-body paragraphs are unchanged. They preserve what the dated research recorded and argued, including claims corrected above. The original “facts only” footer is a historical label, not a claim that every retained sentence is current or free of commentary. No new watch is created by this correction.
 
 ## The record
 
@@ -620,3 +644,6 @@ Eighteen months from the grant of 2026-05-27. Unless the Commission acts, the pe
 ---
 
 *Facts only. The reading is in [The Waiting Room](../sources/the-waiting-room-ec8cb6742eea.html). Sources and their audit: [Private Monetary Stack — Source Documents](../sources/private-monetary-stack-source-documents-0ecbb7f450f9.html) — company metrics throughout are self-reported and are never promoted to fact. Every "live" in this record means one of five different things; the status line says which.*
+
+
+> Updated explanation, September 6, 2026: the maintained passages above incorporate later saved evidence; this revision does not refresh every other claim in the dated source. Original captures retain their own dates.

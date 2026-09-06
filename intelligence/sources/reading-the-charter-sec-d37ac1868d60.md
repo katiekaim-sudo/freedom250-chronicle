@@ -102,4 +102,4 @@ The SEC is a committee-creature wearing an independence costume it can't fully a
 > 1934 - Securities Exchange Act §31 — 15 U.S.C. §78ee (verbatim)
 > 1934 - Securities Exchange Act §4 — 15 U.S.C. §78d (verbatim)
 > 1996 - Securities Exchange Act §36 — 15 U.S.C. §78mm (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

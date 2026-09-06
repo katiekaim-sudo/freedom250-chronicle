@@ -42,7 +42,7 @@ The federal group is not uniform. Each entity type is a different answer to "is 
 - **Strategic Bitcoin Reserve** + **US Digital Asset Stockpile** — chartered by EO 6 Mar 2025, Treasury-held, seeded from forfeited assets. Still fighting to become statute (BITCOIN Act → ARMA, May 2026, 20-yr lockup).
 - **US Sovereign Wealth Fund** — directed by EO 3 Feb 2025; plan delivered; **as of Jul 2026 no legal entity stood up** — yet ad-hoc equity stakes (chipmakers, rare-earth miners, quantum) are already being taken.
 
-**The signature (the accountant's tell):** the dissolutions complete; the new vehicles **act before they legally exist**. Mandate and money move through vehicles whose articles aren't signed. That always gets "papered" after the fact — and whoever writes the paper decides what the entity really is.
+Some functions and offices may be reduced, transferred, contested or proposed for reorganization, but statutory existence, personnel, function transfer and appropriations remain separate clocks. At the Federal Group Control cutoff, HHS and SAMHSA still existed and the Administration for a Healthy America was a request; proposed or directed change was not itself a completed legal dissolution or operating transfer.
 
 **The instrument is itself an entity:** **DOGE** is a re-flagged **USDS**, re-chartered to run the cuts. The reorg eats from inside the org chart.
 
@@ -241,3 +241,6 @@ All entity-derived layers were rebuilt. See [2026-08-15 - Executive Order Entity
 ## Related packages
 
 - Federal Strategic Plans — the research package — promoted into the graph 2026-07-25 (its registry crosswalks to the Entity Chart; was staged-but-unlinked since 2026-07-22).
+
+
+> Updated explanation, September 6, 2026: the maintained passages above incorporate later saved evidence; this revision does not refresh every other claim in the dated source. Original captures retain their own dates.

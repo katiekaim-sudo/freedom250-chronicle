@@ -64,4 +64,4 @@ The Bretton Woods Agreements Act isn't itself an entity — it's the wiring harn
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1945 - Bretton Woods Agreements Act (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

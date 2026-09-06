@@ -1,54 +1,61 @@
 # International Monetary Next Phase — Research Package
 
 Completed: 2026-07-13  
-Status: source-first comparative extension; pending review and selective vault incorporation  
-Read after: `INTERNATIONAL_MONETARY_INITIATION_RESEARCH_PACKAGE.md` and `INTERNATIONAL_BANK_MONETARY_TRANSITION_COMPARATIVE_DEEP_DIVE.md`
+Status: completed Workbench mechanism extension; not a Chronicle landing  
+Read alongside: [regional initiation comparison](../sources/international-monetary-initiation-map-e03be4ad2554.html) and bank/state evidence.
 
-## The answer this pass produced
+**Scope of September 7 consolidation:** all nine studies in this extension have
+now been compared in bounded reviews. This lead owns the shared mechanism
+explanation; the specialist files below retain their legal, operating, numerical
+and source evidence. Original July 13 findings and hypotheses retain that date.
+Targeted saved July/August corrections are named separately; no external refresh
+or whole-region recertification was performed.
 
-The larger transition is not best described as a contest among CBDCs, stablecoins or payment apps. It is a redesign of four connected control systems:
+## Maintained question and answer
+
+How could changes in funding, public payments, settlement and insurance connect—and what evidence would establish the connection? The saved studies distinguish four parts of that question:
 
 1. **captured liquidity** — who legally holds deposits, export proceeds and token reserves and what assets they may become;
 2. **programmable fiscal money** — how a public appropriation becomes a restricted payment without collapsing the ministry, bank and central bank into one entity;
 3. **failure and finality** — which rule wins during redemption, insolvency, outage, sanctions, reversal or failed linked settlement;
 4. **risk transfer** — which insurer, export-credit agency, guarantee fund or reinsurer makes the underlying trade or project financeable.
 
-The common operating chain is now:
+The original July 13 analytical sketch connected these components:
 
 `permission to trade/spend -> captured or allocated funds -> regulated bank/trust/central-bank claim -> permitted sovereign/HQLA asset -> collateral/liquidity -> programmable transaction -> legal finality -> cross-border adapter -> guarantee/reinsurance loss waterfall`
 
-No source proves that every jurisdiction has completed this whole chain. The project now has an exact field structure for identifying the first one that does.
+This is a map of possible relationships, not an observed universal chain or a required order of operations. Insurance and guarantees may enable financing before funds arrive; collateral and payment roles depend on the actual instrument. Separate legal permissions, programmes and transactions do not establish a linked loop. The field definitions keep those evidence questions distinct.
 
 ## Package map
 
 | File | Function |
 |---|---|
-| `CAPTURED_LIQUIDITY_SOVEREIGN_COLLATERAL_DEEP_DIVE.md` | Traces source of funds → legal holder → permitted asset → collateral → central-bank liquidity/finality → cross-border exit across Japan, Korea, Indonesia, Europe and BRICS national systems. |
-| `PROGRAMMABLE_FISCAL_MONEY_COMPARATIVE_DEEP_DIVE.md` | Separates fiscal allocation, payment instruction, issuer, wallet, restrictions, data, reversal, expiry and central-bank settlement. |
-| `DIGITAL_MONEY_FAILURE_FINALITY_EMERGENCY_LIQUIDITY_DEEP_DIVE.md` | Maps legal claims, redemption, safeguarding, insolvency, deposit insurance, outage, sanctions, atomic-settlement failure and emergency liquidity for the named digital-money objects. |
-| `INTERNATIONAL_COMMODITY_CURRENCY_INSURANCE_LOOP_DEEP_DIVE.md` | Extends the U.S.-weighted insurance package into ECAs, public guarantees, reinsurance, insurer capital and commodity/local-currency trade. |
-| `INTERNATIONAL_MONETARY_NEXT_PHASE_FIELD_REGISTRY.md` | Shared ontology, status language, entity roles, separate currency fields, clocks and promotion tests. |
-| `INTERNATIONAL_MONETARY_NEXT_PHASE_TRANSITION_TIMELINE.md` | Selected occurred/effective facts plus scheduled and conditional gates. |
-| `INTERNATIONAL_MONETARY_NEXT_PHASE_CLAIM_AUDIT.md` | Correction ledger for the highest-load cross-track claims. |
-| `INTERNATIONAL_MONETARY_NEXT_PHASE_SOURCE_WATCHBOARD.md` | Entity-by-entity source paths and exact evidence required to move status. |
+| Captured Liquidity Sovereign Collateral Deep Dive | Traces source of funds → legal holder → permitted asset → collateral → central-bank liquidity/finality → cross-border exit across Japan, Korea, Indonesia, Europe and BRICS national systems. |
+| Programmable Fiscal Money Comparative Deep Dive | Separates fiscal allocation, payment instruction, issuer, wallet, restrictions, data, reversal, expiry and central-bank settlement. |
+| Digital Money Failure Finality Emergency Liquidity Deep Dive | Maps legal claims, redemption, safeguarding, insolvency, deposit insurance, outage, sanctions, atomic-settlement failure and emergency liquidity for the named digital-money objects. |
+| International Commodity Currency Insurance Loop Deep Dive | Extends the U.S.-weighted insurance package into ECAs, public guarantees, reinsurance, insurer capital and commodity/local-currency trade. |
+| International Monetary Next Phase Field Registry | Shared ontology, status language, entity roles, separate currency fields, clocks and promotion tests. |
+| International Monetary Next Phase Transition Timeline | Selected occurred/effective facts plus scheduled and conditional gates. |
+| International Monetary Next Phase Claim Audit | Correction ledger for the highest-load cross-track claims. |
+| International Monetary Next Phase Source Watchboard | Entity-by-entity source paths and exact evidence required to move status. |
 
-## Strongest factual findings
+## Findings in the saved July 13 comparison
 
-### 1. Indonesia currently has the strongest capture law
+### 1. Indonesia — covered export-FX retention
 
 Covered natural-resource export FX must enter the state-bank channel. The exporter remains the beneficial holder. The funds may enter specified bank, Bank Indonesia and foreign-currency sovereign instruments and may support rupiah credit or defined hedging/monetary operations. This is **capture plus optional sovereign/collateral routing**, not proof that the state bank owns the funds or that every dollar buys government debt.
 
-### 2. Europe currently has the strongest completed digital-collateral transaction
+### 2. Europe — completed digital-collateral transaction
 
 DLT-native EIB commercial paper moved through regulated CSD and triparty infrastructure into ECMS and Bundesbank financing. It proves that a legally eligible digital public asset can reach central-bank credit. It does not make every token eligible or convert the EIB obligation into national sovereign debt.
 
-### 3. Korea currently has the strongest programmable fiscal-bank architecture
+### 3. Korea — programmable fiscal-bank architecture
 
 Real-user bank deposit tokens and public vouchers operated in Hangang Phase I. Phase II and the EV-charging subsidy are designed to connect Treasury-authorized funds to commercial-bank claims with BOK institutional settlement. The first production subsidy payment—and its reversal, privacy and unused-fund rules—remains the decisive trigger.
 
 ### 4. China materially changed the legal object in 2026
 
-The original e-CNY design treated retail balances as direct PBOC/M0 liabilities. Effective 2026-01-01, commercial-bank wallet balances became bank deposit liabilities with interest, reserve treatment and deposit insurance; nonbank-provider balances became provider liabilities backed by 100% guarantee funds. PBOC retained the top-layer rules, standards, infrastructure and regulation. China therefore moved structurally toward the same bank-liability/public-infrastructure pattern visible in Korea—but at national scale.
+The original e-CNY design treated retail balances as direct PBOC/M0 liabilities. Effective 2026-01-01, commercial-bank wallet balances became bank deposit liabilities with interest, reserve treatment and deposit insurance; nonbank-provider balances became provider liabilities backed by 100% guarantee funds. PBOC retained the top-layer rules, standards, infrastructure and regulation. This is a national-level framework change toward bank/provider liabilities under public infrastructure. Earlier transaction and wallet totals do not independently prove post-reform operating volumes or uniform fiscal-program rules.
 
 ### 5. Failure rules remain fragmented even when settlement is “atomic”
 
@@ -66,7 +73,7 @@ Published BMG material describes an NDB-incubated guarantee pilot, not an operat
 
 Local-currency settlement can remove a dollar payment conversion while policy, claim, reinsurance, collateral and capital currencies remain different. IAIS data shows the dollar still dominates foreign-currency positions among large international insurers. A new payment rail is therefore not enough to prove a new insurance or capital order.
 
-## The new comparative model
+## How to trace the mechanism
 
 | Layer | Controlling question | First evidence that changes the story |
 |---|---|---|
@@ -80,25 +87,56 @@ Local-currency settlement can remove a dollar payment conversion while policy, c
 | Adapter | How does value cross systems or borders? | Production transaction with FX and dispute rules |
 | Risk transfer | Who insures, guarantees or reinsures the obligation? | Named policy/guarantee, currency and loss waterfall |
 
-## The most important unresolved chain
+## Original linked-transaction hypothesis
 
-Indonesia is the best place to test the whole theory:
+The July 13 study selected Indonesia as a useful case to test these connections. This is an analytical choice within the reviewed sample, not a measured country ranking:
 
 `state-priority commodity export -> LPEI or other cover -> foreign buyer payment -> DHE special state-bank account -> named retained instrument -> collateralized rupiah credit or BI operation -> local-currency/CIPS cross-border use`
 
-Each component exists in law or programme descriptions. No located transaction record connects all components. Finding one would materially strengthen the larger story; repeated inability to find one would weaken the closed-loop interpretation.
+Each component exists in law or programme descriptions. No located transaction record connects all components. Finding one would materially strengthen the linked-transaction interpretation. Failure to recover a public record remains an evidence-access limit; affirmative evidence that the links did not occur would test the mechanism.
 
-## Immediate document hunt
+## Dated corrections and partial resolutions
 
-1. Transaction-level Indonesian commodity export with ECA/insurance, settlement currency, DHE account and final placement.
-2. Executed Korean Treasury deposit-token instruction, beneficiary terms, privacy schedule, reversal and unused-fund rule.
-3. Pontes final participant agreement, finality route, outage process and first production transaction.
-4. JPYSC executed trust summary, reserve attestation, redemption SLA and issuer/distributor loss agreement.
-5. First ABGF FGCE or BRICS BMG guarantee with obligor, beneficiary, governing law, currency and claim waterfall.
-6. First insurer holding of tokenized sovereign/public debt under a disclosed prudential classification.
-7. First ECA-insured trade through CIPS, LCT, SML or Nexus disclosing payment, policy, claim and reinsurance currencies.
+The source and evidence-gap index
+owns the shared status of documentary questions. Named specialist corrections
+carry later saved records without refreshing other countries:
 
-## What would falsify the larger framing
+- Japan’s June 30 reserve snapshot and contractual direct-redemption route
+  partially resolve JPYSC retrieval gaps. Current attestation, routine redemption,
+  external circulation and complete loss-allocation terms remain separate.
+- July Agorá real-value testing, reported July 30, resolves the earlier future-test
+  description. It does not establish production availability or complete legal
+  and RTGS/core-system finality. DCP and Canton evidence likewise records bounded
+  experiments, not a completed unified production chain.
+- Korea’s July 15 designation expands Hangang pilot scope. It does not establish
+  an appropriation, executed Treasury instruction or completed EV subsidy payment.
+- The August Japan review adds signed JBIC financing and NEXI insurance for two U.S. power projects. This is a concrete risk-transfer instrument example, not proof of drawdown, operation, a digital settlement route or common policy/claim/reinsurance currencies. The insurance specialist carries its source and limits.
+- Later Japan bank JGB observations change particular balance-sheet facts; they
+  do not establish stablecoin-funded purchases or a common long-duration trade.
+
+The timeline records
+these distinct observation and release clocks. The failure study
+and captured-funds study
+retain the source-specific limits. Unamended Russia, Europe and other regional
+states still belong to their original cutoff; elapsed target dates are not
+operating evidence.
+
+## Remaining evidence by mechanism
+
+Use the shared source and evidence-gap index
+for the exact next records and the dated partial resolutions. Its source rows
+retain transaction-level Indonesian placement and insurance, executed Korean
+fiscal instructions, Pontes agreements and production evidence, JPYSC operative
+terms, FGCE/BMG guarantees, insurer asset classification, and the distinct
+payment/policy/claim/reinsurance currencies.
+
+The specialist files own detailed requests for their mechanisms. The index is
+a research aid; it creates no watch schedule, approval requirement or assumption
+that an old target has now occurred.
+
+## Original hypothesis tests and their limits
+
+These are conditional research tests, not fresh observations or a schedule. A missing public record leaves the connection unproved; it does not by itself show that the connection failed.
 
 - captured export proceeds remain segregated compliance balances and do not support sovereign instruments, credit or cross-border liquidity;
 - programmable public-money pilots do not progress into recurring disbursement;
@@ -108,6 +146,6 @@ Each component exists in law or programme descriptions. No located transaction r
 - ECAs and reinsurers keep underwriting and claims wholly on legacy currency/settlement terms;
 - BRICS BMG remains summit text without an operative guarantee.
 
-## Recommended Observatory posture
+## Research boundary
 
 Keep this as a cross-machine research layer. Do not create a new top-level plotline or treat the analytical chain as an occurred event. Promote individual events only when they change a named holder, asset, collateral rule, fiscal programme, failure hierarchy, cross-border finality rule or guarantee obligation.

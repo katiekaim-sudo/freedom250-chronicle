@@ -1,5 +1,10 @@
 # Smart-Contract and Blockchain Accounting Controls and Assurance Map
 
+Evidence scope: July 30, 2026 saved research. This specialist distinguishes
+cited legal and audit requirements from the author's proposed system controls,
+work program and dashboard. Consolidation does not refresh the standards or
+establish implementation.
+
 ## Executive conclusion
 
 A blockchain can make a transaction history tamper-evident and, after sufficient finality, difficult to rewrite. It can also make deterministic rules and reconciliations executable rather than manual. Those are real control improvements. They do **not** establish that:
@@ -91,7 +96,7 @@ For each oracle-dependent accounting or settlement outcome, document:
 
 - Prefer independent, economically active sources rather than issuer-controlled prices.
 - Use a median/quorum and time-weighted logic where flash manipulation is plausible.
-- Reject stale, missing, zero, negative, out-of-range, or excessive-deviation inputs.
+- Define acceptable values for each instrument, unit and data field; reject stale, missing, out-of-range or excessive-deviation inputs, and reject zero or negative values when invalid for that defined field.
 - Limit the financial effect of one update.
 - Separate oracle administration from protocol administration and treasury signing.
 - Preserve signed raw observations so the auditor can reperform the aggregation.
@@ -506,7 +511,10 @@ Upgradeability improves recoverability but creates a powerful administrator risk
 
 ## 15. Board and audit-committee dashboard
 
-At least quarterly—and immediately after material incidents—report:
+Proposed dashboard cadence for this system design: at least quarterly—and
+immediately after material incidents—report the following. This cadence is a
+research recommendation, not a universal frequency imposed by the cited
+sources:
 
 - assets and obligations by chain, custodian, bridge, and legal entity;
 - all privileged keys, quorum, signer concentration, and recertification status;

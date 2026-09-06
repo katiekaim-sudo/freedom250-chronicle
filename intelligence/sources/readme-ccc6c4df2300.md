@@ -30,7 +30,7 @@ The nearest official foreign-investment check is BEA’s 2025 new-FDI release: a
 12. `ACTUAL_SPEND_EVIDENCE_AUDIT.md` — a strict audit of project-specific construction-use evidence versus facility-wide spend and borrower advances.
 13. `FUNDING_SOURCE_CENSUS_WAVE_1.md` — lender, government, guarantor, trustee, collateral and residual-risk map, with holder gaps left explicit.
 14. `CLAIM_FUNDING_STATE_DASHBOARD.md` — one funding-state code per frozen claim family and a proof-priority queue.
-15. `WHOLESALE_RAIL_HYPOTHESIS_AND_RETURN_GATES.md` — legal-object, production/pilot and finality map for the tokenized wholesale-rail hypothesis.
+15. [`WHOLESALE_RAIL_HYPOTHESIS_AND_RETURN_GATES.md`](../sources/wholesale-rail-hypothesis-and-return-gates-d02014baf8b0.html) — legal-object, production/pilot and finality map for the tokenized wholesale-rail hypothesis.
 16. `PROJECT_FINANCE_DIGITAL_RAIL_AUDIT.md` — six public financing-stack searches and the exact document event required to reopen a digital-rail claim.
 17. `INITIAL_EVIDENCE_LEDGER.md` — macro controls and the original six-sample starting ledger.
 

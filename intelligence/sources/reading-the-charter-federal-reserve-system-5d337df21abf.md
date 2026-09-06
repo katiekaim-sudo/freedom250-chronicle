@@ -64,4 +64,4 @@ The Federal Reserve System is a hybrid creature Congress built and can still leg
 
 > [!graph]- Graph links (2 notes — auto-generated, do not edit)
 > 1913 - Federal Reserve Act (verbatim)
-> [The Entity Theory — Working Note](../sources/the-entity-theory-working-note-e6145374fc35.html)
+> The Entity Theory — Working Note

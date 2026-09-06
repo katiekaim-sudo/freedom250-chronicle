@@ -80,6 +80,12 @@ GAO describes the appropriations-accounting sequence as appropriation → apport
 
 ## 2. What is already open—and what “open” means
 
+Use [Open Government Accounting, section
+1](../sources/open-government-accounting-from-appropriation-to-outcome-2026-07--2152f7f26edb.html#1-open-source-accounting-has-five-separate-meanings)
+for the five separate meanings of openness. The examples below establish the
+bounded operating components, authoritative-record controls and limits at the
+July 30 cutoff.
+
 ### 2.1 Open-source software
 
 Open-source software means the program code can be inspected and reused. It does **not** establish that data are complete, authentic, legally authoritative, or public.
@@ -186,7 +192,13 @@ Each system corrects a different fact:
 
 Without common causal and supersession identifiers, a negative amount can be mistaken for a recovery, a deobligation for a refund, or a public-data correction for a cash reversal.
 
-## 4. A workable hybrid append-only design
+## 4. Proposed hybrid append-only design
+
+This is the research architecture inferred from the preceding gaps. The fields
+and controls below are design choices to test, not a published government-wide
+requirement. A valid signature or hash supports attribution or integrity only
+within its verified scope; it does not prove entitlement, allowability or
+real-world performance.
 
 ### 4.1 Design principle
 
@@ -399,61 +411,22 @@ The proper chain is:
 
 The finding itself is not proof that cash was stolen or that a debt was collected.
 
-### 5.7 Operative 2025–2026 changes to education-grant delivery
+### 5.7 Interagency administration: detailed case owner
 
-#### Operating, documented changes
+The [Education Grant Administration and Ledger
+Interlock](../sources/education-grant-administration-and-ledger-interlock-2026-07-30-acce8473e0aa.html)
+owns the May 2025–July 2026 handoff chronology, the two dated
+workforce-payment receipts, OPE award-cohort qualifications and ED-HHS
+interagency reconciliation terms. Its responsibility and event matrices
+preserve legal program owner, ordering and servicing agencies, grant and
+payment systems, recipient, performance reviewer, audit-decision owner and
+creditor or collector.
 
-1. **ED–DOL workforce-development service transfer (May–October 2025).**
-   - Authority cited by ED: 20 U.S.C. § 1231(a) and the Economy Act, 31 U.S.C. § 1535.
-   - Perkins V and AEFLA grant administration moved to DOL-supported GrantSolutions/PMS workflows.
-   - ED’s FY2025 Agency Financial Report states all affected grantees were onboarded and, since October 1, the joint agencies processed more than 1,300 payment requests from 43 States and territories.
-
-2. **Six additional IAAs announced November 18, 2025.**
-   - DOL assumed larger administrative-service roles for K–12 and postsecondary grant programs.
-   - HHS, Interior and State received defined administrative roles for other program groups.
-   - These are administrative/service arrangements under existing law, not congressional repeal or wholesale statutory transfer of ED programs.
-
-3. **Postsecondary new-award migration in FY2026.**
-   - ED/DOL stated Higher Education Programs staff would be detailed to DOL.
-   - A March 16, 2026 Dear Colleague Letter says **new awards competed and awarded in FY2026** transition to GrantSolutions and PMS.
-   - **Current and existing grants remain monitored and managed in ED’s G5/G6 environment** unless separately transitioned.
-
-4. **Additional February 23, 2026 IAAs.**
-   - ED announced new State and HHS partnerships and published agreement text citing program statutes and 31 U.S.C. §§ 1501 and 1535.
-
-5. **Workforce Pell / Pell eligibility changes effective July 1, 2026.**
-   - ED’s June 4, 2026 implementation notice states the operative statutory date for Workforce Pell and specified Pell ineligibility rules is July 1, 2026, with corresponding 2026–27 COD system changes.
-   - This changes eligibility/program processing. It does not by itself create a shared public accounting ledger.
-
-#### Proposed or political, not equivalent to operative architecture
-
-- FY2026 budget requests to consolidate programs do not establish law by themselves.
-- Bills proposing transfer or abolition are not operative until enacted.
-- Press-release language about “breaking up” ED does not change the statutory program owner unless valid law or delegated authority does so.
-
-### 5.8 Strongest education interlock
-
-The education changes prove why an entity-based ledger is necessary:
-
-> **The statutory owner, grants-management service provider, payment platform operator, recipient, performance-data custodian, auditor and debt owner can all be different entities.**
-
-ED’s OIG states that under the IAAs partner agencies provide grant-administration, monitoring and technical-assistance services, while ED retains statutory responsibilities, including audit resolution/closure, internal-control and risk oversight, and review of annual performance and fiscal reports. The OIG identifies the resulting multi-agency oversight, staff loss, data quality and IT/security burden as a management challenge.
-
-A correct ledger must therefore record at least:
-
-- `legal_program_owner = ED`;
-- `administrative_service_provider = DOL/HHS/Interior/State as applicable`;
-- `award_system = G6/G5 or GrantSolutions`;
-- `payment_system = G6 or PMS`;
-- `cash_disburser/settlement = Treasury/Fiscal Service or authorized rail`;
-- `prime_recipient = SEA/IHE/LEA/nonprofit`;
-- `pass_through_entity = SEA/IHE/other`;
-- `performance_custodian = ED program office/EDFacts/recipient system`;
-- `audit_decision_owner = ED or pass-through entity under the award`;
-- `debt_owner = creditor agency`;
-- `collection_service = agency/Treasury`.
-
-If a system merely says “Department of Labor paid an education grant,” it can misstate the legal and accounting reality. DOL may administer the workflow; ED may remain the legal program and audit-resolution owner; PMS may process the draw; Treasury may disburse cash; a State may control downstream use.
+The case supports keeping these roles distinct; it does not prove that a shared
+ledger is necessary or operating. The formula, discretionary and Title IV
+branches above remain distinct: a named system handoff does not show that a
+settled federal dollar caused a student outcome, that all education grants
+migrated, or that a finding became collected debt.
 
 ## 6. Public versus protected fields for a minimum federal event record
 
@@ -489,18 +462,14 @@ If a system merely says “Department of Labor paid an education grant,” it ca
 9. **The education system migration is a live example of functional unbundling.** Legal ownership, administration, payment, performance and audit can move or remain with different agencies.
 10. **Blockchain can reduce reconciliation and improve provenance, but cannot supply oracle truth.** Treasury/JFMIP’s own prototype record supports both the opportunity and the limitation.
 
-### Missing government-wide joins to monitor
+### Remaining public-record questions
 
-- public agency allotment/suballotment dataset;
-- standard public draw-request and payment-certification object;
-- durable join from SPS/PAM/PIR/CARS settlement to FAIN/PIID without exposing PII;
-- mandatory downstream subrecipient/vendor expenditure lineage;
-- performance evidence linked to award events and rule versions;
-- structured public management decisions;
-- finding → debt → collection/recovery chain;
-- universal reversal/supersession semantics across award, cash, accounting and public-data systems;
-- public history of rule-code versions used to admit, block or transform records;
-- authoritative, machine-readable designation of legal owner versus service provider for interagency grant administration.
+The accounting-transition source
+guide
+maintains the remaining allotment, certification, settlement and award,
+recipient-use, performance, management-decision, debt and recovery, correction,
+rule-version and agency-role questions once. These are July 30 gaps, not claims
+that no later partial implementation exists.
 
 ## Primary source ledger
 

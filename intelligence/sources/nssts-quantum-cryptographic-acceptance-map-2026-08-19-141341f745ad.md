@@ -1,7 +1,7 @@
 # NSSTS Quantum and Cryptographic Acceptance Map
 
 **As of:** August 19, 2026  
-**State:** pending Workbench evidence; not vault canon  
+**State:** current Workbench research; not vault canon  
 **Automatic monitoring:** false  
 **Investment use:** false
 
@@ -35,6 +35,29 @@ interesting than a headline-only quantum-computer list. The second makes
 **Entrust, WidePoint, Crypto4A, SafeLogic and the small accredited testing-lab
 population** pivotal even when they never build the end application.
 
+## Quantum policy and the evidence of an accepted capability
+
+**Research question:** The saved build/AI-compute record asks how the federal quantum initiative moves from strategy through computers, sensing, scientific access and security, and how it relates to the broader federal science build. Preserve that question while treating quantum as its own capability lane; a connection to AI or Genesis does not merge their programs.
+
+EO 14413 was signed June 22, 2026 and published June 25; its number is assigned, so the original provisional-number note is obsolete. It establishes the QC-ADDS Effort, coordinated by the presidential science adviser, to pursue a computer capable of useful scientific work, with an intent to deliver at least one to a DOE facility and enable scientific access where possible. DOE must identify technical specifications within 90 days, explore partnership models within 180 days, and establish a performance-assessment center within 180 days. The order also directs identification within 60 days of at least three priority quantum-sensor projects intended for fielding by September 30, 2028. It requests recommended advisory-committee membership and proposed counterintelligence staffing; those directions do not show completed reconstitution or expanded staffing. The saved question remains how federal quantum ambitions become capabilities, suppliers and accepted systems. The existing quantum acceptance study supplies the separate testing and decision-record framework; EO 14412 and the cryptographic studies own the associated protection and migration obligations.
+
+**Clocks:** Signed June 22, 2026; Federal Register publication June 25, 2026, 91 FR 38487–38491, document 2026-12910. Relative order duties run from June 22 unless expressly dependent on a later event: the agency alignment report is due 30 days after publication of the updated National Quantum Strategy, not 30 days after this EO. Sensor fielding target is September 30, 2028. Reviewed September 7, 2026; no blanket implementation freshness claim.
+
+**Primary evidence:** [EO 14413, sections 1–11](https://www.federalregister.gov/documents/2026/06/25/2026-12910/ushering-in-the-next-frontier-of-quantum-innovation).
+
+**Evidence limits:**
+
+- The order creates and directs an effort; it does not identify a winning vendor, establish a completed award, appropriate funds, demonstrate scientific advantage, or document delivered and accepted hardware. Implementation remains subject to applicable law and available appropriations.
+- Sensor identification, future fielding, advisory-membership recommendations and staffing proposals are different states. This bounded review verifies the order, not completion of every elapsed deadline.
+- Quantum-computing capability, cryptographic algorithm approval, module validation, product eligibility and agency authorization are separate evidence objects. An agency program or company capability does not establish a target system acceptance.
+- Reviewed September 7 against the named primary order and saved studies; this is not a refreshed quantum-sector or procurement census.
+
+The order supplies a policy and program starting point for the acceptance chain below. Its sensor project selection, computer specifications, partnership exploration and performance-assessment directions each need their own later records. They do not merge QC-ADDS with DARPA's separate QBI or US2QC programs.
+
+For the associated defensive program, read [Federal Cryptographic Trust §10](../sources/federal-cryptographic-trust-stack-2026-08-11-1c0e21c343cb.html#10-post-quantum-migration-is-the-decisive-live-clock). EO 14412 and M-26-15 own migration duties; the existing algorithm → module → product → agency-authorization chain below explains why those duties do not establish accepted hardware or a completed system migration.
+
+**Scope:** September 7 reconciliation of EO 14413 and its original Tech question. The company's acceptance and capability study retains its August 19 evidence window; no vendor, award, performance or deadline-completion census was performed.
+
 ## Wave 1 — quantum truth and acceptance
 
 ### Rydberg Technologies is the strongest hidden referee
@@ -55,11 +78,16 @@ recognition path—not the Phase II announcement alone.
 
 - **QBI Stage B** is planning, risk retirement and prototype work. It is not
   government V&V.
-- **QBI Stage C** applies government V&V to Microsoft and PsiQuantum designs,
-  but does not itself build and accept a utility-scale machine.
+- **QBI Stage C** is the final government verification and validation stage.
+  Microsoft and PsiQuantum entered the final phase of the distinct **US2QC**
+  pilot, which DARPA says has the same technical goals as QBI Stage C. That
+  equivalence does not make the program labels interchangeable or establish
+  that a utility-scale machine has been built and accepted.
 - **DARPA's QBI IV&V call** remains open through October 15, 2026. No public
   awardee exists yet, and a company accepting the independent-referee role may
   face organizational-conflict limits on performer work.
+
+**September 7 source clarification:** the [DARPA Stage B page](https://www.darpa.mil/research/programs/quantum-benchmarking-initiative/stage-b-selection) explicitly dates its eleven-company roster November 6, 2025 and distinguishes the US2QC final phase from QBI Stage C. This corrects the program label above while preserving the broader August 19 analytical cutoff. The [joined defense-innovation chronology](../sources/military-modernization-transition-timeline-77eeedb20ebd.html#defense-innovation-from-entry-route-to-demonstrated-result) connects the original Stage A question to these later evaluation steps.
 
 The same separation applies to Commerce's nine **Quantum CHIPS letters of
 intent**. They expose a major proposed foundry and system-manufacturing field,

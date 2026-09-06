@@ -1,9 +1,15 @@
 # NSSTS Technology-to-Company Map
 
+> Correction checked 2026-09-09: NNSA June 30 notice establishes an enterprise-authorized AWS environment but describes inaugural Genesis workloads prospectively. Original evidence cutoff is retained; this is a bounded wording correction, not a full refresh.
+
 **Started:** 2026-08-18  
 **Evidence cutoff:** 2026-08-19  
 **Status:** active workbench research; exposed in the Observatory Research Desk as Workbench evidence, not vault doctrine  
 **Scope:** forecast which private companies are positioned to supply, integrate, finance, operate or validate the capabilities implied by the National Security Science and Technology Strategy and its operative federal implementation lanes
+
+## September 7 question reconciliation
+
+[Biomedical and space acceptance](../sources/nssts-wave-3-biotech-quantum-space-map-2026-08-18-79c84751a42e.html): Wave 3 now joins the original Lab and High Ground questions to the maintained company map: biomedical mission, regulatory evidence, manufacturing, space policy, licensing and mission delivery. Original company counts retain their August 18 cutoff.
 
 ## Who gets a project accepted?
 
@@ -346,9 +352,9 @@ The public record is already richer than a simple speculative field map:
 - DOE selected 278 Genesis RFA projects for award negotiations, including 19
   company-led selections and 157 participating companies. Selection for
   negotiation is not an issued award or obligation.
-- NNSA's AWS Secret/Restricted Data environment houses inaugural Genesis
-  workloads. That is an operating relationship, while the public notice still
-  omits the full contract and security architecture.
+- NNSA's AWS Secret/Restricted Data environment is enterprise-authorized and
+  intended to host inaugural Genesis workloads. The notice does not establish
+  that those workloads are running and omits the full contract and security architecture.
 - Argonne's National Genesis Mission Supercomputing Center of Innovation RFI is
   market research for infrastructure, software, services, testbeds and private
   financing. It is not a solicitation or award.
@@ -407,8 +413,8 @@ Center, the cryogenic and photonic component cohort, Entrust and WidePoint's
 federal PKI positions, Crypto4A and SafeLogic's validation transitions, and the
 finite NVLAP cryptographic-testing laboratory base.
 
-The phase also preserves a firm public-record no-join: Globus and AWS have
-operating Genesis relationships, but no public Genesis-specific PQC
+The phase also preserves a firm public-record no-join: Globus has a demonstrated Genesis workflow and AWS has
+an authorized environment intended for Genesis workloads, but no public Genesis-specific PQC
 configuration, CBOM, certificate profile, HSM/KMS mapping or ATO evidence was
 located as of August 19, 2026.
 
@@ -417,7 +423,7 @@ located as of August 19, 2026.
 - [`../NATIONAL_SECURITY_SCIENCE_AND_TECHNOLOGY_STRATEGY_2026.md`](../sources/national-security-science-and-technology-strategy-2026-e86541703238.html) supplies the CET and strategy layer; it names no companies or procurements.
 - `../NSSTS_MEMBRANE_MAP_2026-08-17.md` supplies research-security, ownership, capital and eligibility gates.
 - [`../Scientific Trust Stack 2026-08-17/README.md`](../sources/readme-243d6cdfb65e.html) supplies identity, authorization, provenance, capital and remedy layers.
-- `../../Fintech and Private Rails/Federal Cryptographic Trust Stack 2026-08-11/GENESIS_IDENTITY_PROVENANCE_PQC_BRIDGE_2026-08-11.md` supplies the operating Globus/ModCon/AWS baseline and the PQC boundary.
+- [`../../Fintech and Private Rails/Federal Cryptographic Trust Stack 2026-08-11/GENESIS_IDENTITY_PROVENANCE_PQC_BRIDGE_2026-08-11.md`](../sources/genesis-identity-provenance-pqc-bridge-2026-08-11-0051de7f91ee.html) supplies the operating Globus/ModCon/AWS baseline and the PQC boundary.
 - Military Modernization supplies JWCC, classified-AI and defense acquisition adjacency without converting defense access into a DOE/Genesis award.
 - Sovereign Compute and inbound-capex packages supply land, power, data-center and financing objects without converting announced capacity into federal use.
 

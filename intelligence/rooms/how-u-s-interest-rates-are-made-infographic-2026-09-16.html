@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How U.S. Interest Rates Are Made</title>
+<style>
+  :root{
+    --ink:#1c1b18;--ink2:#4a4842;--ink3:#77736a;--paper:#faf8f1;--card:#fffdf7;
+    --panel:#f3efe3;--line:#ddd6c5;--line2:#c6bda8;--policy:#7c2947;--policy-soft:#f7e8ee;
+    --market:#225c78;--market-soft:#e5f1f6;--cash:#356b52;--cash-soft:#e4f1e9;
+    --credit:#795b19;--credit-soft:#f5edd7;--risk:#9c3d32;--risk-soft:#f8e7e3;
+    --shadow:0 12px 36px rgba(45,39,25,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  button,a{font:inherit}
+  a{color:var(--market);text-underline-offset:2px}
+  .wrap{max-width:1180px;margin:0 auto;padding:34px 22px 52px}
+  .mast{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.6fr);gap:24px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:24px}
+  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--policy);font-weight:700;margin:0 0 9px}
+  h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:600}
+  h1{font-size:clamp(34px,5vw,60px);line-height:1.02;letter-spacing:-.025em;margin:0 0 12px;max-width:14ch}
+  .dek{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(18px,2.2vw,24px);line-height:1.35;color:var(--ink2);margin:0;max-width:68ch}
+  .stamp{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 18px;box-shadow:var(--shadow);font-size:13px;color:var(--ink2)}
+  .stamp b{display:block;color:var(--ink);margin-bottom:4px}
+  .stamp p{margin:4px 0}
+  .tabs{display:flex;gap:8px;overflow-x:auto;padding:18px 0 11px;position:sticky;top:0;z-index:20;background:linear-gradient(var(--paper) 78%,rgba(250,248,241,0));scrollbar-width:thin}
+  .tab{border:1px solid var(--line2);background:var(--card);color:var(--ink2);padding:9px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+  .tab:hover{border-color:var(--ink3)}
+  .tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .panel[hidden]{display:none}
+  .panel{padding-top:8px}
+  .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.65fr);gap:20px;align-items:end;margin:12px 0 22px}
+  .section-head h2{font-size:clamp(28px,3.5vw,42px);line-height:1.05;margin:0 0 5px}
+  .section-head p{margin:0;color:var(--ink2)}
+  .plain{border-left:4px solid var(--policy);padding:11px 0 11px 15px;color:var(--ink2);font-size:14px}
+  .plain b{color:var(--ink)}
+  .flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;align-items:stretch;margin:20px 0 26px}
+  .step{position:relative;background:var(--card);border:1px solid var(--line);border-top:5px solid var(--tone,var(--market));border-radius:14px;padding:16px;min-height:194px;box-shadow:var(--shadow)}
+  .step:not(:last-child):after{content:"→";position:absolute;right:-21px;top:45%;color:var(--ink3);font-size:25px;font-weight:700}
+  .num{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:700}
+  .step h3{font-size:21px;line-height:1.1;margin:8px 0 8px}
+  .step p{font-size:13px;color:var(--ink2);margin:0}
+  .who{display:inline-block;margin-top:11px;padding:4px 8px;border-radius:99px;background:var(--soft,var(--market-soft));color:var(--tone,var(--market));font-size:11px;font-weight:700}
+  .rate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+  .rate{border-top:3px solid var(--tone,var(--market));background:var(--card);padding:15px 16px;border-radius:0 0 11px 11px}
+  .rate b{display:block;margin-bottom:3px}
+  .rate small{display:block;color:var(--ink3);line-height:1.4}
+  .worked{display:grid;grid-template-columns:1.1fr repeat(4,minmax(100px,.55fr));gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px;margin:20px 0}
+  .worked>div{padding:8px 10px;border-left:1px solid var(--line)}
+  .worked>div:first-child{border-left:0}
+  .worked span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3)}
+  .worked b{font-size:17px}
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+  .lane{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+  .lane h3{font-size:25px;margin:0 0 3px}
+  .lane .sub{color:var(--ink3);font-size:13px;margin:0 0 17px}
+  .timeline{display:grid;gap:8px}
+  .moment{display:grid;grid-template-columns:34px 1fr;gap:11px;align-items:start}
+  .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--tone,var(--market));color:#fff;font-size:12px;font-weight:700;margin-top:1px}
+  .moment div:last-child{border-bottom:1px solid var(--line);padding:2px 0 11px}
+  .moment:last-child div:last-child{border-bottom:0}
+  .moment b{display:block}
+  .moment p{margin:2px 0 0;color:var(--ink2);font-size:13px}
+  .fork{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+  .fork div{background:var(--panel);padding:9px;border-radius:8px;font-size:12px;color:var(--ink2)}
+  .compare{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+  .compare article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px}
+  .compare h3{font-size:19px;margin:0 0 7px}
+  .compare dl{font-size:12px;margin:0}
+  .compare dt{font-weight:700;margin-top:6px}
+  .compare dd{margin:0;color:var(--ink2)}
+  .bookmap{display:grid;grid-template-columns:1fr 70px 1fr;gap:10px;align-items:center;margin:20px 0}
+  .book{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:19px;box-shadow:var(--shadow)}
+  .book h3{font-size:24px;margin:0 0 3px}
+  .book .owner{font-size:12px;color:var(--ink3);margin-bottom:10px}
+  .entry{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:8px 0;font-size:13px}
+  .entry b{font-weight:600}.entry span{color:var(--ink2);text-align:right}
+  .arrow{text-align:center;color:var(--market);font-size:34px;font-weight:700}
+  .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--ink);color:var(--paper);border-radius:13px;padding:16px 18px;margin:17px 0;overflow-x:auto;font-size:13px}
+  .question{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow);margin:18px 0}
+  .question h3{font-size:27px;margin:0 0 5px}
+  .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+  .branch{border-left:4px solid var(--tone,var(--credit));background:var(--soft,var(--credit-soft));padding:13px;border-radius:0 10px 10px 0}
+  .branch b{display:block}.branch span{font-size:12px;color:var(--ink2)}
+  .cu{display:grid;grid-template-columns:.8fr 1.2fr;gap:16px;align-items:start;margin:22px 0}
+  .cu-lead{background:var(--cash);color:#fff;border-radius:16px;padding:22px}
+  .cu-lead h3{font-size:29px;line-height:1.08;margin:0 0 9px}
+  .cu-lead p{margin:0;color:#edf7f1}
+  .gates{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .gate{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px}
+  .gate b{display:block;margin-bottom:3px}.gate span{font-size:12px;color:var(--ink2)}
+  .truth{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+  .truth article{border-radius:13px;padding:16px}
+  .truth .yes{background:var(--cash-soft);border:1px solid #a8cdb8}
+  .truth .no{background:var(--risk-soft);border:1px solid #dfb0a9}
+  .truth h3{font-size:21px;margin:0 0 6px}
+  .truth ul{margin:0;padding-left:19px;color:var(--ink2);font-size:13px}
+  details{border-top:1px solid var(--line);margin-top:28px;padding-top:14px}
+  summary{cursor:pointer;font-weight:700}
+  .sources{columns:2;column-gap:28px;font-size:12px;color:var(--ink2)}
+  .sources li{break-inside:avoid;margin:7px 0}
+  footer{border-top:1px solid var(--line);margin-top:30px;padding-top:16px;color:var(--ink3);font-size:12px}
+  @media(max-width:980px){.flow{grid-template-columns:1fr}.step{min-height:0}.step:not(:last-child):after{content:"↓";right:auto;left:50%;top:auto;bottom:-26px}.rate-grid,.branches{grid-template-columns:repeat(2,1fr)}.compare{grid-template-columns:1fr 1fr}.worked{grid-template-columns:1fr 1fr}.worked>div{border-left:0;border-top:1px solid var(--line)}.worked>div:first-child{grid-column:1/-1;border-top:0}.cu{grid-template-columns:1fr}}
+  @media(max-width:720px){.wrap{padding:22px 14px 38px}.mast,.section-head,.lanes,.truth{grid-template-columns:1fr}.stamp{box-shadow:none}.tabs{margin:0 -14px;padding-left:14px;padding-right:14px}.rate-grid,.branches,.compare,.gates{grid-template-columns:1fr}.bookmap{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.worked{grid-template-columns:1fr}.worked>div:first-child{grid-column:auto}.sources{columns:1}}
+  @media print{.tabs{display:none}.panel[hidden]{display:block}.panel{break-before:page}.panel:first-of-type{break-before:auto}.step,.lane,.book,.question{box-shadow:none}a{color:inherit}.wrap{max-width:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head>
+<body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <a href="../library/index.html" class="" >All research</a></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav>
+<main class="wrap">
+  <header class="mast">
+    <div>
+      <p class="eyebrow">Freedom 250 · Money and settlement</p>
+      <h1>How U.S. interest rates are made</h1>
+      <p class="dek">The Fed chooses one policy target. It does not choose every interest rate. This map follows the decision into overnight markets, bank balance sheets, Treasury auctions, customer contracts—and the special case of a “below-market” loan.</p>
+    </div>
+    <aside class="stamp">
+      <b>Learning map · evidence through September 16, 2026</b>
+      <p>Factual layer: official Federal Reserve, New York Fed, Treasury, IRS, CFPB and NCUA sources.</p>
+      <p>Boundary: institutional explainer, not advice for a particular loan or institution.</p>
+    </aside>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Interest-rate explainer views">
+    <button class="tab" id="tab-policy" role="tab" aria-controls="policy" aria-selected="true" type="button">1 · Policy → price</button>
+    <button class="tab" id="tab-overnight" role="tab" aria-controls="overnight" aria-selected="false" type="button">2 · One overnight cycle</button>
+    <button class="tab" id="tab-books" role="tab" aria-controls="books" aria-selected="false" type="button">3 · Whose account?</button>
+    <button class="tab" id="tab-below" role="tab" aria-controls="below" aria-selected="false" type="button">4 · Below market</button>
+  </nav>
+
+  <section class="panel" id="policy" role="tabpanel" aria-labelledby="tab-policy">
+    <div class="section-head">
+      <div><h2>One policy decision, several tools, many other rates</h2><p>The important separation is <b>decision → implementation → observed trade → benchmark → contract → cash payment</b>.</p></div>
+      <div class="plain"><b>Plain English:</b> the Fed sets the conditions around the shortest-term central-bank money. Markets and lenders then translate those conditions into other prices.</div>
+    </div>
+    <div class="flow" aria-label="Policy-to-customer rate flow">
+      <article class="step" style="--tone:var(--policy);--soft:var(--policy-soft)"><span class="num">Step 1 · policy</span><h3>FOMC chooses a target range</h3><p>The statutory committee—seven Governors plus five voting Reserve Bank presidents—votes on the desired range for overnight federal funds.</p><span class="who">Chosen by the FOMC</span></article>
+      <article class="step" style="--tone:var(--policy);--soft:var(--policy-soft)"><span class="num">Step 2 · tools</span><h3>Fed creates alternatives and backstops</h3><p>IORB pays eligible reserve holders. ON RRP gives certain cash investors an overnight outlet. Repo and the discount window lend against collateral.</p><span class="who">Board + FOMC + New York Fed + Reserve Banks</span></article>
+      <article class="step" style="--tone:var(--cash);--soft:var(--cash-soft)"><span class="num">Step 3 · trades</span><h3>Institutions actually transact</h3><p>Banks, FHLBs, dealers, money funds and others move cash, reserves and collateral under different access rules.</p><span class="who">Market participants</span></article>
+      <article class="step" style="--tone:var(--market);--soft:var(--market-soft)"><span class="num">Step 4 · measurement</span><h3>Benchmarks are calculated</h3><p>EFFR is calculated from qualifying unsecured federal-funds trades. SOFR is calculated from qualifying Treasury-repo trades.</p><span class="who">New York Fed</span></article>
+      <article class="step" style="--tone:var(--credit);--soft:var(--credit-soft)"><span class="num">Step 5 · contracts</span><h3>Lenders price the actual borrower</h3><p>Reference cost, term, credit risk, capital, servicing, options, competition and subsidy all affect the offered rate.</p><span class="who">Lender + borrower + governing program</span></article>
+    </div>
+    <div class="worked" aria-label="September 16 2026 worked example">
+      <div><span>Dated worked example</span><b>September 16–17, 2026 implementation</b></div>
+      <div><span>Target range</span><b>3.75%–4.00%</b></div>
+      <div><span>IORB</span><b>3.90%</b></div>
+      <div><span>ON RRP</span><b>3.75%</b></div>
+      <div><span>Standing repo / primary credit</span><b>4.00%</b></div>
+    </div>
+    <div class="rate-grid">
+      <article class="rate" style="--tone:var(--market)"><b>Treasury auction yield</b><small>Treasury sets the security and amount; competitive bids produce the auction rate or yield.</small></article>
+      <article class="rate" style="--tone:var(--market)"><b>Secondary-market bond yield</b><small>Buyers and sellers set the price; the price implies the yield.</small></article>
+      <article class="rate" style="--tone:var(--market)"><b>SOFR</b><small>Reported secured Treasury-repo transactions produce the benchmark.</small></article>
+      <article class="rate" style="--tone:var(--credit)"><b>Prime</b><small>Individual banks post it. The Fed reports the majority rate among 25 large banks; it does not set prime.</small></article>
+      <article class="rate" style="--tone:var(--credit)"><b>Mortgage / auto / card</b><small>The lender prices the product and borrower; the contract controls resets and payments.</small></article>
+      <article class="rate" style="--tone:var(--policy)"><b>AFR</b><small>Treasury/IRS publishes a monthly tax proxy derived from U.S. government yields—not from the FOMC target.</small></article>
+    </div>
+    <div class="truth">
+      <article class="yes"><h3>Why EFFR is the operating anchor</h3><ul><li>Reserve balances are central-bank settlement assets.</li><li>The Fed controls the return available on eligible balances through IORB.</li><li>Nearby overnight instruments compete for the same cash.</li><li>Expected future overnight rates help price longer maturities.</li></ul></article>
+      <article class="no"><h3>What “base rate” does not mean</h3><ul><li>Federal funds is not the largest credit market.</li><li>Every customer contract does not cite EFFR.</li><li>A 0.25-point FOMC move does not force every rate to move 0.25 point.</li><li>The Fed does not administratively set Treasury, mortgage or credit-card yields.</li></ul></article>
+    </div>
+  </section>
+
+  <section class="panel" id="overnight" role="tabpanel" aria-labelledby="tab-overnight" hidden>
+    <div class="section-head">
+      <div><h2>Two overnight loops that sound similar but do opposite jobs</h2><p>In the federal-funds lane, an institution <b>borrows reserves</b>. In ON RRP, a cash investor <b>places cash with the Fed</b>.</p></div>
+      <div class="plain"><b>“Overnight” means:</b> originated today, due the next business day. Repeated use is a sequence of new transactions, not one immortal loan.</div>
+    </div>
+    <div class="lanes">
+      <article class="lane" style="--tone:var(--market)">
+        <h3>Federal-funds loan</h3><p class="sub">Unsecured institution-to-institution credit</p>
+        <div class="timeline">
+          <div class="moment"><span class="dot">1</span><div><b>Payments redistribute reserves</b><p>Customer payments, securities settlement, taxes and clearing leave Bank B below its preferred end-of-day buffer—even if the system as a whole has ample reserves.</p></div></div>
+          <div class="moment"><span class="dot">2</span><div><b>A lender sends reserve balances</b><p>The transfer settles finally through a Federal Reserve account. Bank B records more reserves and a federal-funds-purchased liability.</p></div></div>
+          <div class="moment"><span class="dot">3</span><div><b>The lender still has credit risk</b><p>No specific Treasury or other asset is pledged. Finality of the outgoing payment does not guarantee tomorrow’s repayment.</p></div></div>
+          <div class="moment"><span class="dot">4</span><div><b>Next business day: principal + interest are due</b><div class="fork"><div><b>Repay</b><br>from inflows, deposits, maturing assets, sales or other funding.</div><div><b>Refinance</b><br>originate Loan 2 and use its cash to discharge Loan 1.</div></div></div></div>
+        </div>
+      </article>
+      <article class="lane" style="--tone:var(--cash)">
+        <h3>ON RRP cash placement</h3><p class="sub">Collateralized Federal Reserve investment outlet</p>
+        <div class="timeline">
+          <div class="moment"><span class="dot">1</span><div><b>A money fund or other eligible counterparty has cash</b><p>It needs a very short, liquid investment—not a loan from the Fed.</p></div></div>
+          <div class="moment"><span class="dot">2</span><div><b>The counterparty sends cash to the Fed</b><p>The Fed provides Treasury securities as transaction collateral and records an ON RRP liability.</p></div></div>
+          <div class="moment"><span class="dot">3</span><div><b>The facility supports the policy floor</b><p>An eligible investor has less reason to lend privately for materially less after access and balance-sheet costs.</p></div></div>
+          <div class="moment"><span class="dot">4</span><div><b>Next business day: the trade unwinds</b><p>Cash plus interest returns and the securities return. The investor may enter a new ON RRP that day.</p></div></div>
+        </div>
+      </article>
+    </div>
+    <div class="truth">
+      <article class="yes"><h3>Daily does not mean emergency</h3><ul><li>Different banks end each day with different reserve positions.</li><li>Some current federal-funds trades reflect arbitrage or regulatory-liquidity motives.</li><li>Federal Reserve research attributes more than 90% of current lending to FHLBs.</li><li>The cited traditional bank-to-bank lane was about $2–$6 billion per day.</li></ul></article>
+      <article class="no"><h3>The risk that remains</h3><ul><li>An unsecured lender lacks an earmarked asset to seize.</li><li>A borrower dependent on daily renewal faces rollover risk.</li><li>A new loan repaying an old loan does not erase the funding dependence.</li><li>ON RRP volume does not show that the Fed “needs money.”</li></ul></article>
+    </div>
+  </section>
+
+  <section class="panel" id="books" role="tabpanel" aria-labelledby="tab-books" hidden>
+    <div class="section-head">
+      <div><h2>The same dollars can be claims on different issuers</h2><p>“Cash,” “bank deposit,” “reserve balance” and “correspondent balance” are not interchangeable legal or accounting objects.</p></div>
+      <div class="plain"><b>Nostro/vostro:</b> two banks’ names for the same commercial correspondent account—“our account on your books” / “your account on our books.”</div>
+    </div>
+    <div class="bookmap">
+      <article class="book"><h3>Bank A’s customer pays</h3><p class="owner">Commercial bank ledger</p><div class="entry"><b>Customer deposit</b><span>Bank A liability decreases</span></div><div class="entry"><b>What customer owns</b><span>A claim on Bank A</span></div><div class="entry"><b>Not owned by customer</b><span>A slice of Bank A’s Fed account</span></div></article>
+      <div class="arrow" aria-hidden="true">→</div>
+      <article class="book"><h3>Bank A’s reserve account is debited</h3><p class="owner">Federal Reserve Bank ledger · master account</p><div class="entry"><b>Bank A records</b><span>Reserve asset decreases</span></div><div class="entry"><b>Reserve Bank records</b><span>Liability to Bank A decreases</span></div><div class="entry"><b>Settlement layer</b><span>Central-bank money</span></div></article>
+    </div>
+    <div class="bookmap">
+      <article class="book"><h3>Bank B’s reserve account is credited</h3><p class="owner">Federal Reserve Bank ledger · master account</p><div class="entry"><b>Bank B records</b><span>Reserve asset increases</span></div><div class="entry"><b>Reserve Bank records</b><span>Liability to Bank B increases</span></div><div class="entry"><b>Fedwire result</b><span>Final reserve transfer</span></div></article>
+      <div class="arrow" aria-hidden="true">→</div>
+      <article class="book"><h3>Bank B credits its customer</h3><p class="owner">Commercial bank ledger</p><div class="entry"><b>Customer deposit</b><span>Bank B liability increases</span></div><div class="entry"><b>What customer owns</b><span>A claim on Bank B</span></div><div class="entry"><b>Money layer</b><span>Commercial-bank money</span></div></article>
+    </div>
+    <div class="compare">
+      <article><h3>Reserve balance</h3><dl><dt>Debtor</dt><dd>Federal Reserve Bank</dd><dt>Holder</dt><dd>Eligible account holder</dd><dt>Main job</dt><dd>Central-bank settlement and liquidity</dd></dl></article>
+      <article><h3>Nostro/vostro</h3><dl><dt>Debtor</dt><dd>Commercial correspondent</dd><dt>Holder</dt><dd>Respondent bank</dd><dt>Main job</dt><dd>Correspondent payment or market access</dd></dl></article>
+      <article><h3>Federal-funds claim</h3><dl><dt>Debtor</dt><dd>Borrowing institution</dd><dt>Holder</dt><dd>Lending institution</dd><dt>Main job</dt><dd>Unsecured overnight funding</dd></dl></article>
+      <article><h3>Repo claim</h3><dl><dt>Debtor</dt><dd>Cash borrower</dd><dt>Holder</dt><dd>Cash lender</dd><dt>Main job</dt><dd>Collateralized short-term funding</dd></dl></article>
+    </div>
+    <div class="formula">final payment transfer ≠ collateral for the return promise ≠ customer ownership of the settlement account</div>
+  </section>
+
+  <section class="panel" id="below" role="tabpanel" aria-labelledby="tab-below" hidden>
+    <div class="section-head">
+      <div><h2>Below market is usually not forbidden—but the missing yield has an identity</h2><p>The rate alone does not tell you what happened. Trace the relationship, economic funder, legal authority and each applicable ledger.</p></div>
+      <div class="plain"><b>Tax professional’s bridge:</b> the note can remain enforceable while tax, compensation, distribution, subsidy or governance rules characterize the forgone return separately.</div>
+    </div>
+    <div class="formula">quoted rate = reference cost + credit + term/liquidity + capital/operations + options + margin − subsidy or relationship value</div>
+    <article class="question">
+      <h3>Who economically funded the missing yield—and why?</h3>
+      <p>A “cheap loan” can be six different transactions before the accounting and tax analysis even begins.</p>
+      <div class="branches">
+        <div class="branch"><b>Lender / related owner</b><span>Possible gift, shareholder distribution, capital contribution or other related-party transfer.</span></div>
+        <div class="branch"><b>Employer</b><span>Possible compensation or employee-benefit element, with a separate interest leg.</span></div>
+        <div class="branch"><b>Seller / manufacturer</b><span>Commercial promotion: product margin or marketing spend may fund the rate buy-down.</span></div>
+        <div class="branch"><b>Bank insider relationship</b><span>Regulation O may require substantially comparable terms and underwriting.</span></div>
+        <div class="branch"><b>Government program</b><span>Authorized public subsidy, guarantee or credit program with its own budget and eligibility clocks.</span></div>
+        <div class="branch"><b>Member-owned cooperative</b><span>Credit-union member benefit may be ordinary mission pricing rather than an outside subsidy.</span></div>
+      </div>
+    </article>
+    <div class="cu">
+      <div class="cu-lead"><h3>Credit unions deserve their own lane</h3><p>A lower member loan rate can be ordinary cooperative pricing. Federal credit unions are member-owned, not-for-profit institutions; value may return through lower loan rates, higher savings rates or lower fees.</p></div>
+      <div class="gates">
+        <div class="gate"><b>1 · Charter and membership</b><span>Who is legally eligible for the product?</span></div>
+        <div class="gate"><b>2 · Board policy</b><span>Who approved the product, underwriting and pricing criteria?</span></div>
+        <div class="gate"><b>3 · Ceiling, not floor</b><span>The FCU general rate cap—currently 18% through September 10, 2027—is a maximum, not a minimum required charge.</span></div>
+        <div class="gate"><b>4 · Officials and employees differ</b><span>Covered officials generally cannot receive more favorable comparable terms; a genuine employee benefit follows a separate analysis.</span></div>
+        <div class="gate"><b>5 · Fair lending</b><span>Member ownership does not excuse discriminatory or unexplained pricing differences.</span></div>
+        <div class="gate"><b>6 · Safety, tax and capital</b><span>Mission-consistent pricing still must cover expected losses, operations and adequate net worth; tax consequences remain transaction-specific.</span></div>
+      </div>
+    </div>
+    <div class="truth">
+      <article class="yes"><h3>Potentially ordinary</h3><ul><li>A lender chooses a lower commercial margin.</li><li>A broad promotion is funded by a seller.</li><li>A credit union returns value to eligible members.</li><li>A duly authorized public program bears a disclosed subsidy.</li></ul></article>
+      <article class="no"><h3>Still requires another rulebook</h3><ul><li>IRC §7872 and the monthly AFR for specified relationships.</li><li>Insider, fiduciary, compensation and governance rules.</li><li>ECOA / Regulation B pricing and eligibility controls.</li><li>Usury ceilings, disclosure, safety and soundness, and program authority.</li></ul></article>
+    </div>
+  </section>
+
+  <details>
+    <summary>Primary-source spine</summary>
+    <ol class="sources">
+      <li><a href="https://www.federalreserve.gov/monetarypolicy/monetary-policy-what-are-its-goals-how-does-it-work.htm">Federal Reserve: monetary-policy goals and transmission</a></li>
+      <li><a href="https://www.federalreserve.gov/monetarypolicy/iorb-faqs.htm">Federal Reserve: IORB and ample-reserves implementation</a></li>
+      <li><a href="https://www.newyorkfed.org/markets/reference-rates/additional-information-about-reference-rates">New York Fed: EFFR and SOFR methodology</a></li>
+      <li><a href="https://www.newyorkfed.org/markets/domestic-market-operations/monetary-policy-implementation/repo-reverse-repo-agreements">New York Fed: repo and reverse-repo operations</a></li>
+      <li><a href="https://www.federalreserve.gov/monetarypolicy/reserve-maintenance-manual-account-structure.htm">Federal Reserve: master-account structure</a></li>
+      <li><a href="https://www.frbservices.org/financial-services/wires">Federal Reserve Financial Services: Fedwire Funds Service</a></li>
+      <li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/bankers-banks-and-their-role-in-the-federal-funds-market-20260130.html">Federal Reserve study: bankers’ banks and current federal-funds composition</a></li>
+      <li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/monitoring-reserve-scarcity-through-nonbank-cash-lenders-20250328.html">Federal Reserve study: FHLB lending, arbitrage and reserve scarcity signals</a></li>
+      <li><a href="https://www.treasurydirect.gov/auctions/">TreasuryDirect: auction process</a></li>
+      <li><a href="https://www.federalreserve.gov/faqs/credit_12846.htm">Federal Reserve: who sets prime</a></li>
+      <li><a href="https://www.irs.gov/applicable-federal-rates">IRS: Applicable Federal Rates</a></li>
+      <li><a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title26-section7872">26 U.S.C. §7872: specified below-market loans</a></li>
+      <li><a href="https://uscode.house.gov/view.xhtml?edition=prelim&amp;num=0&amp;req=granuleid%3AUSC-prelim-title12-section1757">12 U.S.C. §1757: federal credit-union lending powers and rate ceiling</a></li>
+      <li><a href="https://ncua.gov/regulation-supervision/letters-credit-unions-other-guidance/permissible-loan-interest-rate-ceiling-extended-0">NCUA: federal credit-union loan-rate ceiling</a></li>
+      <li><a href="https://ncua.gov/regulation-supervision/letters-credit-unions-other-guidance/evaluating-earnings">NCUA: member benefit, earnings and safety</a></li>
+      <li><a href="https://www.ecfr.gov/current/title-12/chapter-II/subchapter-A/part-215">12 C.F.R. Part 215: Regulation O</a></li>
+    </ol>
+  </details>
+  <footer>Companion visual to <i>The U.S. Interest-Rate Constitution</i> and <i>Overnight Money Plumbing</i>. The dated policy numbers are a worked example, not a permanent rate card. Workbench research only; no Chronicle, watch or publication state is changed by this visual.</footer>
+</main>
+<script>
+(function(){
+  const tabs=[...document.querySelectorAll('[role="tab"]')];
+  const panels=[...document.querySelectorAll('[role="tabpanel"]')];
+  function select(tab,focus){
+    tabs.forEach(t=>{const on=t===tab;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1});
+    panels.forEach(p=>p.hidden=p.id!==tab.getAttribute('aria-controls'));
+    if(focus)tab.focus();
+    history.replaceState(null,'','#'+tab.getAttribute('aria-controls'));
+  }
+  tabs.forEach((tab,i)=>{
+    tab.addEventListener('click',()=>select(tab,false));
+    tab.addEventListener('keydown',e=>{
+      if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+      e.preventDefault();
+      let next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+      select(tabs[next],true);
+    });
+  });
+  const requested=location.hash.slice(1);
+  const initial=tabs.find(t=>t.getAttribute('aria-controls')===requested)||tabs[0];
+  select(initial,false);
+})();
+</script>
+</body>
+</html>

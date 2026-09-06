@@ -1,7 +1,7 @@
 # NSSTS Hidden Acceptance Economy Map
 
 **As of:** 2026-08-19  
-**Status:** pending Workbench evidence; not vault canon  
+**Status:** current Workbench research; not vault canon  
 **Automatic monitoring:** false  
 **Investment use:** false
 

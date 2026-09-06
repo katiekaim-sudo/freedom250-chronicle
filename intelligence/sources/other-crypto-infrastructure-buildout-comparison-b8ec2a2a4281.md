@@ -394,7 +394,9 @@ This exact chain is an architectural illustration, not a claim that all integrat
 
 Hosting one token proves technical compatibility. A completed pilot proves a circuit can work once. Load-bearing infrastructure requires repeatable transactions, enforceable rights, operating rulebooks, default procedures, custodial recovery, regulatory permission, disclosed volumes, and a settlement asset that remains available under stress.
 
-## Forward watchboard
+## Evidence-return questions (not a canonical watch)
+
+These are dated research questions, not scheduled follow-ups; only the Research Return Ledger or canonical Watch Calendar can create live follow-up state.
 
 1. **Stellar:** DTC H1 2027 launch, U.S. Bank stablecoin status, MoneyGram settlement/redemption volume.
 2. **Hedera:** any AP+/RBA production successor to Acacia, repeat Archax/Lloyds collateral use, public/private synchronization economics.

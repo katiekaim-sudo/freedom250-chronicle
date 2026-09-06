@@ -1,5 +1,17 @@
 > Source created: 2026-07-12
 
+## Maintained reading — legal person, contract and customer control
+
+Which entity owes the deposit or extends credit, and which contract governs access, servicing, data, rewards, disputes and assignment? A retained brand or card number does not establish a retained creditor; a merger does not harmonize every product contract. The entity map and product-specific comparisons below answer those questions. [The website survey](../sources/banking-website-sweep-source-document-4cadeee6e9f4.html) owns institutions’ stated strategies and research programs.
+
+**Clocks:** source observations July 11, 2026; binding saved audit July 12; consolidation September 7. No new survey of live contracts was performed. Scheduled changes and missing documents below remain observations at the saved cutoff, not newly verified implementation or absence.
+
+Complete original agreement packet preserves the investigation and superseded assertions. The maintained body applies the six saved corrections at their claims.
+
+## Saved July 12 audit history
+
+The following audit is retained verbatim as dated provenance. Its references to a verbatim packet describe the original ingestion. The maintained reading below applies its corrections; the complete original July 11 packet remains in the linked Workbench history.
+
 > **Provenance & audit (Claude, 2026-07-12).** Delivered by Katie; audited before ingestion by an independent verification pass against live primary sources. The packet's method is unusually strong — it separates source classes (10-K vs newsroom vs survey vs agreement), and it distinguishes **CONFIRMED CHANGE** (a proven before/after) from **CURRENT TERM** (what a live document says today). That discipline is why the audit could find its seams. Corrections below are BINDING on the derived layer; the body is reproduced verbatim.
 >
 > **① BofA — the finding holds, but the window is different and the packet's "June 2" agreement could not be found.** The §12 arbitration/mass-arbitration insertion is REAL and independently corroborated without the Internet Archive: the May 18 update PDF carries the clause verbatim, its scope does reach Zelle, RTP, ACH, wires, bill pay and **Erica**, and a June 4 2026 Senate letter (Blumenthal/Warren/Johnson) plus NCLC and Public Citizen all describe it as newly adopted after ~17 years without pre-dispute arbitration. BUT: the live agreement at the packet's own URL today reads **effective March 23, 2026**, contains the word "arbitration" zero times, and banners the May 18 update as forthcoming. So (a) the insertion window is **Mar 23 → May 18, 2026**, TIGHTER than the packet's Jan 31 → May 18, and (b) the packet's "2026-06-02 CONFIRMED CHANGE" (transfer clocks, Deals rename) is **unverified — demoted**. Do not carry the June 2 delta.
@@ -14,7 +26,7 @@
 # Bank user agreements — legal-entity and contract-change map
 
 Updated: 2026-07-11  
-Status: first full agreement sweep; current terms and proven changes are kept separate  
+Status: maintained agreement reading; original July 11 evidence with July 12 corrections applied September 7  
 Scope: consumer deposit, credit-card, digital-service, open-banking, rewards, portfolio-transfer, and servicing agreements for the entities in the banking website sweep.
 
 Document-retrieval results: Agreement document requests — resolution log
@@ -63,25 +75,25 @@ A current clause is not a recent change. This record uses **CONFIRMED CHANGE** o
 
 ## 1. Bank of America — new digital-services arbitration constitution
 
-### 2026-05-18 / 2026-06-02 — 2026 arbitration and mass-claim regime
+### March 23 → May 18, 2026 — arbitration and mass-claim insertion
 
-**Status:** CONFIRMED CHANGE FROM JANUARY 2026 AGREEMENT  
+**Status:** CONFIRMED INSERTION WITH NARROWED SAVED WINDOW; June 2 claim unverified  
 **Legal counterparty:** Bank of America  
 **Instrument:** Online Banking Service Agreement
 
-Bank of America's May 18 replacement agreement and current June 2 agreement contain a binding-arbitration clause, jury and class waiver, and a mass-arbitration process. A preserved official January 31 page lacks the new §12 entirely, proving that this digital arbitration constitution was inserted after the January agreement and by May 18. Its scope is not confined to a checking account. It covers claims tied to online/mobile banking, Zelle, Real Time Payments, bill pay, ACH, wires, internal transfers, alerts, Deals, Erica, advertising, and the application, denial, approval or establishment of an online/mobile ID.
+The saved July 12 audit corroborated the May 18 update's binding-arbitration clause, jury and class waiver, and mass-arbitration process. It narrowed the supported §12 insertion window to March 23 → May 18, 2026. The original January Archive comparison remains a historical source route; the audit could not recover the alleged June 2 agreement. The corroborated May 18 provision is not confined to a checking account. It covers claims tied to online/mobile banking, Zelle, Real Time Payments, bill pay, ACH, wires, internal transfers, alerts, Deals, Erica, advertising, and the application, denial, approval or establishment of an online/mobile ID.
 
 Consumer customers have sixty days from first delivery of the arbitration provision to opt out online or by phone. Small-business users do not receive that consumer opt-out. The provision states that it survives account closure, payment, bankruptcy, and sale or assignment.
 
 The mass-arbitration trigger is twenty-five or more coordinated similar claims. Claims must meet individualized filing requirements; a process arbitrator can screen and dismiss deficient claims; each side initially selects fifteen cases, producing thirty-case rounds. The agreement delays fees on unselected claims and permits sanctions under Rule 11-style standards.
 
-**Primary sources:** [Preserved January 31 official page](https://web.archive.org/web/20260131205653/https://www.bankofamerica.com/online-banking/service-agreement.go); [May 18, 2026 agreement update](https://www.bankofamerica.com/content/documents/agreement/OnlineBankingServiceAgreementUpdateEN.pdf); [Current agreement — effective June 2, 2026](https://www.bankofamerica.com/online-banking/service-agreement.go?request_locale=en_US)
+**Primary sources:** [Preserved January 31 official page](https://web.archive.org/web/20260131205653/https://www.bankofamerica.com/online-banking/service-agreement.go); [May 18, 2026 agreement update](https://www.bankofamerica.com/content/documents/agreement/OnlineBankingServiceAgreementUpdateEN.pdf); [Original live-agreement route — June 2 version not recovered by the saved audit](https://www.bankofamerica.com/online-banking/service-agreement.go?request_locale=en_US)
 
-### 2026-06-02 — transfer clocks and Deals name change
+### Alleged June 2 transfer-clock and Deals changes — unverified history
 
-**Status:** CONFIRMED CHANGE FROM MAY 18 TEXT
+**Status:** UNVERIFIED ORIGINAL COMPARISON; demoted by the saved July 12 audit
 
-The June agreement changed transfer-limit accounting from a rolling-or-calendar method based on customer profile to fixed calendar clocks: the daily period resets at 12:00 a.m. Eastern and the weekly period resets Monday at 12:00 a.m. Eastern. The disclosed $3,500 daily and $10,000 weekly limits did not change. The agreement also replaced “BankAmeriDeals” with “Deals” in the automatic-enrollment/data-sharing clause and the arbitration scope. The bank may share anonymized transaction information with vendors, merchants, third parties and card networks to present offers and administer rewards.
+The original packet alleged that a June agreement changed transfer-limit accounting from a rolling-or-calendar method based on customer profile to fixed calendar clocks: the daily period resets at 12:00 a.m. Eastern and the weekly period resets Monday at 12:00 a.m. Eastern. The disclosed $3,500 daily and $10,000 weekly limits did not change. It also alleged that the agreement replaced “BankAmeriDeals” with “Deals” in the automatic-enrollment/data-sharing clause and the arbitration scope. The original comparison also described permission to share anonymized transaction information with vendors, merchants, third parties and card networks to present offers and administer rewards. These claims and the reported figures are preserved as the original comparison, not maintained as a confirmed June 2 delta.
 
 ### Legal significance
 
@@ -89,7 +101,7 @@ The digital access layer now has its own dispute constitution reaching multiple 
 
 ### Comparison resolved
 
-The January-to-May insertion is proven. The May-to-June comparison separately proves the transfer-clock and Deals terminology changes. Deposit, card, Merrill and small-business agreements remain separate contracts and may carry different dispute rules.
+The saved audit supports the narrower March-to-May insertion. It does not support the asserted May-to-June transfer-clock and Deals comparison. Deposit, card, Merrill and small-business agreements remain separate contracts and may carry different dispute rules.
 
 ---
 
@@ -128,9 +140,9 @@ The June date belongs to “Additional Banking Services and Fees for Personal Ac
 
 The contract is designed not only to prevent class actions but to manage the later tactic of filing many nominally individual arbitrations. Successors, agents and an unaffiliated account assignee can receive the benefit of the dispute clause.
 
-### 2025-11-06 digital agreement — third-party AI agents enter the access contract
+### June 2026 last-update label — third-party AI agents in the access contract
 
-**Status:** CURRENT DATED TERM; prior official version not obtained to prove entry date  
+**Status:** TERM VERIFIED BY SAVED JULY 12 AUDIT; June 2026 last-update label, introduction date unproven. The original November 6, 2025 date was not supported.  
 **Named entities:** JPMorgan Chase Bank, N.A.; J.P. Morgan Securities LLC as applicable; broad parent, affiliate, licensee, successor, agent, contractor, designee and assignee definition
 
 Chase's Digital Services Agreement now defines autonomous, semi-autonomous and non-autonomous third-party AI agents. A customer who connects an agent consents to sharing sensitive account data; Chase says its privacy rules do not govern the third party, disclaims reviewing or auditing the agent's security and privacy, and says it may rely on instructions or actions initiated after the customer supplies credentials or access.
@@ -225,7 +237,7 @@ The December 2024 secured-card agreement named Discover Bank as issuer, used Del
 **Successor issuer/counterparty:** Capital One, N.A.  
 **Governing state law:** Virginia to the extent state law applies
 
-The merger FAQ says Discover Bank merged into Capital One, N.A.; the agreements became agreements with Capital One; federal law and Virginia law now govern. The Discover brand, account number, rewards and interface initially remained.
+The merger FAQs establish that Discover Bank merged into Capital One, N.A. and that the agreements became agreements with Capital One. The post-merger cardmember agreement cited below supplies the federal/Virginia governing-law term; that term should not be attributed to the merger FAQ. The Discover brand, account number, rewards and interface initially remained.
 
 **Primary sources:** [Discover banking merger FAQ](https://www.discover.com/faqs/discover-online-banking-capital-one-discover-merger/); [Discover card merger FAQ](https://www.discover.com/faqs/discover-credit-cards-capital-one-discover-merger/)
 
@@ -267,9 +279,9 @@ A June 2024 public agreement provided individual arbitration, class waiver, AAA 
 
 **Primary source:** [CFPB archive — Synchrony Preferred Mastercard, June 2024](https://files.consumerfinance.gov/a/assets/credit-card-agreements/pdf/QCCA2Q2024/SYNCHRONY_FINANCIAL/Synchrony_Preferred_Mastercard_Account_Agreement_and_Pricing_Addendum-255482.pdf)
 
-### 2026-01-01 — detailed coordinated-claim procedure
+### Saved 2026 terms — detailed coordinated-claim procedure; exact effective date unresolved
 
-**Status:** CONFIRMED AGREEMENT CHANGE  
+**Status:** AGREEMENT-CHANGE FINDING RETAINED; January 1, 2026 effective date not established by the saved audit  
 **Issuer:** Synchrony Bank  
 **Program partner:** PayPal in this example
 
@@ -281,7 +293,7 @@ The agreement makes PayPal and relevant assignees, owners, servicers and collect
 
 ### CareCredit and OnePay/Walmart comparison
 
-CareCredit's current agreement contains the same sixty-day informal process, individualized certifications and batches no larger than fifty, proving the hardened system is broader than PayPal. A 2024 CFPB agreement supplies the earlier CareCredit state.
+CareCredit's saved agreement contains the same sixty-day informal process, individualized certifications and batches no larger than fifty, showing that the system is broader than PayPal. Its 3/2026 revision code does not establish a January 1 effective date or independently date the PayPal form. A 2024 CFPB agreement supplies the earlier CareCredit state.
 
 OnePay/Walmart is a new Synchrony program launched in 2025, not a conversion of Capital One's former Walmart portfolio. Synchrony Bank is issuer; One Finance Inc. and affiliates govern the platform under a separate contract with its own arbitration/class waiver; rewards have separate OnePay terms.
 
@@ -456,11 +468,11 @@ The current agreement contains individual arbitration, a class/representative/jo
 
 **Primary sources:** [U.S. Bank current Deposit Account Agreement](https://www.usbank.com/dam/en/documents/pdfs/disclosures/your-deposit-account-agreement.pdf); [U.S. Bank agreement addendum](https://www.usbank.com/content/dam/usbank/documents/pdf/Deposit-Account-Agreement.pdf)
 
-### February 2026 digital agreement — AI-data clause
+### AI-data clause — saved current term, first introduction unproven
 
-**Status:** CONFIRMED CHANGE INTRODUCED IN FEBRUARY 2026 AGREEMENT
+**Status:** CURRENT TERM VERIFIED BY SAVED JULY 12 AUDIT; February 20, 2026 page-modification clock, not a proven introduction date
 
-The January 13 preserved official page lacks an AI section. The March 9 copy contains “Use of artificial intelligence” and identifies the document as the February 2026 agreement. The digital agreement's “we” includes U.S. Bank N.A., U.S. Bancorp Advisors LLC and affiliates. It permits assignment and delegation to providers, suspension or termination for any reason, and device/carrier data use for fraud. It states that data entered into AI tools may be used to train and develop AI models and for quality control, analytics, product improvement, compliance, customer service, offers and other business purposes.
+The original packet claimed a before/after comparison between the January 13 and March 9 Archive snapshots. The saved July 12 audit could not open those snapshots, so that introduction claim remains unverified; it did verify the term on a page last modified February 20, 2026. The digital agreement's “we” includes U.S. Bank N.A., U.S. Bancorp Advisors LLC and affiliates. It permits assignment and delegation to providers, suspension or termination for any reason, and device/carrier data use for fraud. It states that data entered into AI tools may be used to train and develop AI models and for quality control, analytics, product improvement, compliance, customer service, offers and other business purposes.
 
 **Primary sources:** [January 13 preserved official page](https://web.archive.org/web/20260113200857id_/https://www.usbank.com/caas/digital-services-agreement.html); [March 9 preserved official page](https://web.archive.org/web/20260309174950id_/https://www.usbank.com/caas/digital-services-agreement.html); [Current U.S. Bank Digital Services Agreement](https://www.usbank.com/caas/digital-services-agreement.html)
 
@@ -608,7 +620,7 @@ The research, investment product and user agreement can belong to different lega
 
 ### Benji and OnChain fund stack recovered
 
-The Franklin OnChain U.S. Government Money Fund documents identify Franklin Templeton Trust as fund issuer, Franklin Advisers, Inc. as manager, Franklin Templeton Investor Services, LLC as transfer agent and blockchain recordkeeper, and JPMorgan Chase Bank as holder of the conventional fund assets. For hosted wallets, the transfer agent holds the private key and can correct or reverse erroneous or unauthorized ownership records. Investor-managed wallets move key custody to the investor or selected custodian, while the transfer agent retains token-level controls.
+The packet identifies Franklin Templeton Trust as fund issuer, Franklin Advisers, Inc. as manager and JPMorgan Chase Bank as holder of the conventional fund assets. Its specific attribution of transfer-agent/blockchain-recordkeeper functions to Franklin Templeton Investor Services, LLC was not established from the custody passage by the saved July 12 audit; that passage names only the Fund’s transfer agent. For hosted wallets, the transfer agent holds the private key and corrects erroneous or unauthorized transactions by appending an offsetting instruction. The blockchain record is not deleted or reversed. Investor-managed wallets move key custody to the investor or selected custodian, while the transfer agent retains token-level controls.
 
 The tokenized share therefore remains inside a conventional registered-fund, transfer-agent and custodian hierarchy. A standalone public Benji app agreement was not located.
 
@@ -696,4 +708,4 @@ Franklin Templeton is not one consumer counterparty. The public parent, distribu
 
 ## Document-request status
 
-All thirteen first-round requests were investigated. Eight were fulfilled or resolved to a defensible comparison; five are partially fulfilled, customer-specific, confidential or not yet issued. The complete evidence table, exact links and remaining acquisition paths are in Agreement document requests — resolution log.
+The July 11 packet investigated all thirteen first-round requests and recorded eight as fulfilled or resolved to a comparison and five as partial, customer-specific, confidential or not yet issued. That is the original retrieval tally, not a claim that eight change findings survived the July 12 audit unchanged. The complete evidence table, exact links and remaining acquisition paths are in Agreement document requests — resolution log.

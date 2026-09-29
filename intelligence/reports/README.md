@@ -110,6 +110,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Permanent Magnets](permanent-magnets.md) — cutoff 2026-07-22
 - [Scientific Trust Stack](scientific-trust-stack.md) — cutoff 2026-08-17
 - [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](us-inbound-investment-industrial-capex.md) — cutoff 2026-07-31
+- [Canada, transshipment and customs origin records](institutional-regime-waves.md) — cutoff 2026-09-02
 - [China Country Orientation — 2026](china-country-orientation-2026.md) — cutoff 2026-09-24T23:05:00-04:00
 - [Cuba Pressure and Counter-Influence](cuba-pressure-counter-influence.md) — cutoff 2026-07-20
 - [Economic Institution Legitimacy Crisis — 2025–2026](economic-institution-legitimacy-crisis.md) — cutoff 2026-09-24T22:31:00-04:00

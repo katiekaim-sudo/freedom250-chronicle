@@ -79,6 +79,24 @@
         }
       }
     },
+    "/package-inventory.json": {
+      "get": {
+        "operationId": "getPackageInteriorInventory",
+        "summary": "List every package and group its materials by research function",
+        "responses": {
+          "200": {
+            "description": "Package interior inventory",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/materials.json": {
       "get": {
         "operationId": "listAllMaterials",

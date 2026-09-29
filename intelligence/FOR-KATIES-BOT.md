@@ -11,9 +11,10 @@ Hello, bot. This site is Katie's portable Freedom 250 research mirror. Its bot d
 5. For an obscure name, tiny one-off note or exact artifact title, search [materials-index.jsonl](materials-index.jsonl) or [API materials](api/v1/materials.json).
 6. Open each selected package's manifest under `packages/{research_id}.json` or `api/v1/packages/{research_id}.json`. It lists every governed package material, including safe metadata for material that is not publicly readable.
 7. Read the package's Markdown report under `reports/{research_id}.md` when available, then follow exact public material URLs from the manifest.
-8. Use [CONNECTED-RESEARCH.md](CONNECTED-RESEARCH.md) only when the question needs the larger story, cross-package relationships or explanatory chapters. Use [connected-index.json](connected-index.json) only when the compact index is insufficient.
-9. Apply [RESEARCH-GRAMMAR.md](RESEARCH-GRAMMAR.md). Preserve cutoffs and institutional clocks. Do not turn metadata-only material into claimed knowledge.
-10. Cite the exact public page used. If Katie asks what is true now, verify time-sensitive claims with fresh primary sources.
+8. Use the static [Bot Index](bot-index.html) for a no-JavaScript current map and the [Package Interior Inventory](package-inventory.html) or [its JSON form](api/v1/package-inventory.json) to see the distinct research layers and actual materials inside each package.
+9. Use [CONNECTED-RESEARCH.md](CONNECTED-RESEARCH.md) only when the question needs the larger story, cross-package relationships or explanatory chapters. Use [connected-index.json](connected-index.json) only when the compact index is insufficient.
+10. Apply [RESEARCH-GRAMMAR.md](RESEARCH-GRAMMAR.md). Preserve cutoffs and institutional clocks. Do not turn metadata-only material into claimed knowledge.
+11. Cite the exact public page used. If Katie asks what is true now, verify time-sensitive claims with fresh primary sources.
 
 ## Important interpretation rule
 

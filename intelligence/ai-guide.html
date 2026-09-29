@@ -61,10 +61,11 @@ box-shadow:0 0 18px rgba(86,212,216,.9)}
 <li>The <strong>Government Entity Tree</strong> at <code>intelligence/rooms/government-entity-tree.html</code> maps federal structure, reporting relationships, money flows, committees and subcommittees.</li>
 <li>The <strong>Research Reading Room</strong> at <code>intelligence/library/</code> represents every object in the governed Research Desk Catalog. Each topic opens with a concise orientation and then routes to the actual research edition in <code>intelligence/reports/</code> when available. Current research is the default shelf; dated archive objects remain available for provenance.</li>
 <li><code>intelligence/reports/index.json</code> is the machine-readable report map. The sibling <code>.md</code> files are the fastest path for Codex or another research agent; the <code>.html</code> files are the human reading edition.</li>
+<li><code>intelligence/FOR-KATIES-BOT.md</code> is the preferred first door for an unfamiliar agent. It routes progressively through a compact package index, per-package manifests, the all-materials stream, reports and only then the full connected graph.</li>
 </ul>
 <h2>Instructions for an AI research partner</h2>
 <ol>
-<li>Start from the Research Reading Room or one of the interactive rooms. Do not infer the scope of the project from the featured cards alone.</li>
+<li>Start from <code>intelligence/FOR-KATIES-BOT.md</code>. Do not infer the scope of the project from featured cards alone.</li>
 <li>For deep work, open the report's <code>.md</code> source-text edition. It contains the actual governed research body, with local-only links converted into portable provenance text.</li>
 <li>Always preserve the evidence cutoff shown on the page. A statement can be accurate at its cutoff without being confirmed current today.</li>
 <li>Keep <strong>fact</strong>, <strong>project inference</strong>, <strong>strongest rival</strong>, and <strong>falsifier</strong> separate. The living thesis is a developing interpretation, not a claim that one coordinated plan has been proved.</li>
@@ -73,6 +74,7 @@ box-shadow:0 0 18px rgba(86,212,216,.9)}
 <li>Never turn an interface, partnership, pilot, technical compatibility, or standards participation into proof of adoption or production use.</li>
 <li>For a conclusion, show the strongest supporting evidence, the strongest ordinary rival explanation, unresolved objects, and what new evidence would change the answer.</li>
 <li>Cite the exact public page used. When a page links to a primary source, prefer that source for factual claims.</li>
+<li>A <code>private_library_metadata</code> material is a safe existence and routing signal, not readable content. Never infer its contents. Search <code>materials-index.jsonl</code> so tiny one-off materials are not missed.</li>
 </ol>
 <h2>Useful starting prompts</h2>
 <ul>

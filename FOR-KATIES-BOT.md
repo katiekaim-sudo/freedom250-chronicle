@@ -6,10 +6,10 @@ Fast machine routes:
 
 - [Shared brain API bootstrap](intelligence/api/v1/index.json)
 - [Layered research inventory](intelligence/api/v1/inventory.json)
-- [Recent computer activity](intelligence/api/v1/activity.jsonl)
+- [Recent computer activity](intelligence/api/v1/activity.json)
 - [OpenAPI description](intelligence/api/v1/openapi.json)
 - [Compact package index](intelligence/api/v1/packages.json)
-- [All package materials](intelligence/api/v1/materials.jsonl)
+- [All package materials](intelligence/api/v1/materials.json)
 - [Research grammar](intelligence/RESEARCH-GRAMMAR.md)
 - [Human bot doorway](intelligence/for-katies-bot.html)
 

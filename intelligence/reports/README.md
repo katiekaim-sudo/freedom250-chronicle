@@ -127,7 +127,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [U.S.–China Strategic Stability State Visit — September 2026](us-china-strategic-stability-state-visit-2026.md) — cutoff 2026-09-28T10:07:16-04:00
 - [UK Constitutional Order and Self-Determination](uk-constitutional-order-self-determination.md) — cutoff 2026-09-13T17:59:00-04:00
 - [USTDA Project Development Pipeline — 2026](ustda-project-development-pipeline-2026.md) — cutoff 2026-09-26T12:45:00-04:00
-- [United Nations General Assembly High-Level Week — 2026](un-general-assembly-high-level-week-2026.md) — cutoff 2026-09-29T04:30:00-04:00
+- [United Nations General Assembly High-Level Week — 2026](un-general-assembly-high-level-week-2026.md) — cutoff 2026-09-29T07:04:00-04:00
 - [Federal Government Entity Library Harvest — 2026-08-22](federal-government-entity-library-harvest-2026-08-22.md) — cutoff 2026-08-23
 - [Federal Government Full Freshness Sweep — August 22, 2026](federal-government-full-freshness-sweep-2026-08-22.md) — cutoff 2026-08-23
 - [Federal Government Sweep Control Audit — August 21–29, 2026](federal-government-sweep-control-audit-2026-08-29.md) — cutoff 2026-08-29T21:06:00-04:00

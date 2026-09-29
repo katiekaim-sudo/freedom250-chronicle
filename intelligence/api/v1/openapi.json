@@ -79,15 +79,36 @@
         }
       }
     },
+    "/materials.json": {
+      "get": {
+        "operationId": "listAllMaterials",
+        "summary": "List all material memberships, including safe metadata-only one-offs",
+        "responses": {
+          "200": {
+            "description": "JSON material array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/materials.jsonl": {
       "get": {
         "operationId": "streamAllMaterials",
-        "summary": "Read newline-delimited material memberships, including safe metadata-only one-offs",
+        "summary": "Read the optional newline-delimited material stream",
         "responses": {
           "200": {
-            "description": "NDJSON material stream",
+            "description": "JSONL bytes served by GitHub Pages",
             "content": {
-              "application/x-ndjson": {
+              "application/octet-stream": {
                 "schema": {
                   "type": "string"
                 }
@@ -115,15 +136,36 @@
         }
       }
     },
+    "/activity.json": {
+      "get": {
+        "operationId": "listResearchActivity",
+        "summary": "List deduplicated materials sorted by privacy-safe filesystem modification time",
+        "responses": {
+          "200": {
+            "description": "JSON activity array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/activity.jsonl": {
       "get": {
         "operationId": "streamResearchActivity",
-        "summary": "Read deduplicated materials sorted by privacy-safe filesystem modification time",
+        "summary": "Read the optional newline-delimited activity stream",
         "responses": {
           "200": {
-            "description": "NDJSON activity stream",
+            "description": "JSONL bytes served by GitHub Pages",
             "content": {
-              "application/x-ndjson": {
+              "application/octet-stream": {
                 "schema": {
                   "type": "string"
                 }

@@ -23,15 +23,19 @@
     "public_api": "Generated projection only; it does not supersede the governing owners."
   },
   "retrieval_order": [
-    "index.json",
+    "../../bot-instructions.html",
+    "../../bot-index.html",
     "packages.json",
     "packages/{research_id}.json",
-    "a public report or material URL",
+    "../../readings/packages/{research_id}.html",
+    "a material reading_url when public_full_text is true",
     "fresh primary-source verification when present state matters"
   ],
   "endpoints": {
     "bootstrap": "index.json",
     "bot_index": "../../bot-index.html",
+    "machine_instructions": "../../bot-instructions.html",
+    "markdown_instructions": "../../FOR-KATIES-BOT.md",
     "openapi": "openapi.json",
     "packages": "packages.json",
     "package": "packages/{research_id}.json",
@@ -74,9 +78,11 @@
     ]
   },
   "answer_contract": [
+    "Open package full_text_url rather than treating an index summary as the underlying research.",
+    "For materials with public_full_text true, prefer reading_url. A retrieval failure is a crawler or delivery issue, not private-by-design.",
+    "For access_state private_by_design, use metadata only and do not claim the contents.",
     "Name the packages and exact public pages used.",
     "State material evidence cutoffs.",
-    "Label metadata-only leads without claiming their contents.",
     "Verify time-sensitive claims against fresh primary sources.",
     "Explain what would change the conclusion."
   ],

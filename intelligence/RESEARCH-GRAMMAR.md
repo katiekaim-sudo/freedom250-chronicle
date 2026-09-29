@@ -5,8 +5,8 @@ This is the compact method contract for bots reading the selectively discoverabl
 ## Object and custody boundaries
 
 - A **package** is one governed research identity. It may contain a tiny one-off note or a large family of reports, ledgers, source objects and visuals.
-- A **public reading** has text or an interactive view on this site.
-- **Private-library metadata** means the governed library knows that material exists, but this site intentionally exposes only safe title, role and lifecycle state. Never invent or summarize unavailable content.
+- A **public reading** has `public_full_text: true`, its original public view, and a crawler-friendly static HTML `reading_url`. If the reading URL cannot be retrieved, report an access or crawler failure; do not reinterpret it as private.
+- **Private-library metadata** has `public_full_text: false` and `access_state: private_by_design`. The governed library knows that material exists, but this site intentionally exposes only safe title, role and lifecycle state. Never invent or summarize unavailable content.
 - The Research Catalog owns package identity and presentation. The Registry owns artifact membership and lifecycle. This website is a generated projection of those owners.
 
 ## Evidence discipline

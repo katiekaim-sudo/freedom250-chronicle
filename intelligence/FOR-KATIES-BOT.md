@@ -4,17 +4,18 @@ Hello, bot. This site is Katie's portable Freedom 250 research mirror. Its bot d
 
 ## Use this retrieval path
 
-1. Open the [shared brain API bootstrap](api/v1/index.json) to learn the method, custody boundaries and stable endpoints.
-2. Open the [layered inventory](api/v1/inventory.json) to see what is available at each research layer and each package's latest computer edit.
-3. When Katie refers to recent work, filter the [activity index](api/v1/activity.json) by `modified_at`. Treat it as a computer recency signal, not proof that a finding changed.
-4. For a broad question, open [agent-index.json](agent-index.json) or [API packages](api/v1/packages.json) and select the smallest relevant set of packages.
-5. For an obscure name, tiny one-off note or exact artifact title, search [materials-index.jsonl](materials-index.jsonl) or [API materials](api/v1/materials.json).
-6. Open each selected package's manifest under `packages/{research_id}.json` or `api/v1/packages/{research_id}.json`. It lists every governed package material, including safe metadata for material that is not publicly readable.
-7. Read the package's Markdown report under `reports/{research_id}.md` when available, then follow exact public material URLs from the manifest.
-8. Use the static [Bot Index](bot-index.html) for a no-JavaScript current map and the [Package Interior Inventory](package-inventory.html) or [its JSON form](api/v1/package-inventory.json) to see the distinct research layers and actual materials inside each package.
-9. Use [CONNECTED-RESEARCH.md](CONNECTED-RESEARCH.md) only when the question needs the larger story, cross-package relationships or explanatory chapters. Use [connected-index.json](connected-index.json) only when the compact index is insufficient.
-10. Apply [RESEARCH-GRAMMAR.md](RESEARCH-GRAMMAR.md). Preserve cutoffs and institutional clocks. Do not turn metadata-only material into claimed knowledge.
-11. Cite the exact public page used. If Katie asks what is true now, verify time-sensitive claims with fresh primary sources.
+1. Open the crawler-friendly HTML instructions at [bot-instructions.html](bot-instructions.html). The Markdown file is only a redundant mirror.
+2. Open the [shared brain API bootstrap](api/v1/index.json) to learn the method, custody boundaries and stable endpoints.
+3. Open the [layered inventory](api/v1/inventory.json) to see what is available at each research layer and each package's latest computer edit.
+4. When Katie refers to recent work, filter the [activity index](api/v1/activity.json) by `modified_at`. Treat it as a computer recency signal, not proof that a finding changed.
+5. For a broad question, open [agent-index.json](agent-index.json) or [API packages](api/v1/packages.json) and select the smallest relevant set of packages.
+6. For an obscure name, tiny one-off note or exact artifact title, search [materials-index.jsonl](materials-index.jsonl) or [API materials](api/v1/materials.json).
+7. Open each selected package's manifest. If `public_full_text` is true, read its `full_text_url` before treating the summary as the research.
+8. For each material, `public_full_text: true` guarantees a crawler-friendly static `reading_url`. `public_full_text: false` plus `access_state: private_by_design` means metadata only. If a true reading URL fails, report a crawler or delivery failure rather than calling it private.
+9. Use the static [Bot Index](bot-index.html) for a no-JavaScript current map and the [Package Interior Inventory](package-inventory.html) or [its JSON form](api/v1/package-inventory.json) to see the distinct research layers and actual materials inside each package.
+10. Use [CONNECTED-RESEARCH.md](CONNECTED-RESEARCH.md) only when the question needs the larger story, cross-package relationships or explanatory chapters. Use [connected-index.json](connected-index.json) only when the compact index is insufficient.
+11. Apply [RESEARCH-GRAMMAR.md](RESEARCH-GRAMMAR.md). Preserve cutoffs and institutional clocks. Do not turn metadata-only material into claimed knowledge.
+12. Cite the exact public page used. If Katie asks what is true now, verify time-sensitive claims with fresh primary sources.
 
 ## Important interpretation rule
 

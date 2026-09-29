@@ -52,20 +52,24 @@
     "supporting": 5
   },
   "latest_computer_edit_at": "2026-07-22T03:55:33Z",
+  "public_full_text": true,
+  "full_text_url": "readings/packages/white-house-research-hub.html",
   "routes": {
     "summary": "library/white-house-research-hub.html",
     "manifest": "packages/white-house-research-hub.json",
     "report": "reports/white-house-research-hub.html",
+    "full_text": "readings/packages/white-house-research-hub.html",
     "source_text": "reports/white-house-research-hub.md"
   },
   "availability_semantics": {
-    "public_reading": "The public site contains a readable edition and URL.",
-    "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. Do not infer its contents."
+    "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
-    "Use the package finding as orientation, not as a substitute for the report.",
+    "Open full_text_url for the package before treating a summary as the underlying research.",
+    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For access_state private_by_design, use metadata only and do not infer contents.",
     "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
-    "Use public_reading materials directly. Treat private_library_metadata entries as existence and routing signals only.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -173,7 +177,11 @@
       "modified_at": "2026-07-22T03:54:12Z",
       "source_id": "258f33990a670db3",
       "url": "sources/white-house-research-hub-audit-2026-07-21-258f33990a67.html",
-      "source_text": "sources/white-house-research-hub-audit-2026-07-21-258f33990a67.md"
+      "source_text": "sources/white-house-research-hub-audit-2026-07-21-258f33990a67.md",
+      "access_state": "public_full_text",
+      "public_full_text": true,
+      "reading_url": "readings/258f33990a670db3.html",
+      "reading_basis": "public_html_full_text"
     },
     {
       "material_id": "14501b9dc1f6fbf7",
@@ -183,7 +191,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "chronicle",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:48:13Z"
+      "modified_at": "2026-07-22T03:48:13Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "4743ad5e42a3757a",
@@ -193,7 +203,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:35:37Z"
+      "modified_at": "2026-07-22T03:35:37Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "f9749da582276c0f",
@@ -203,7 +215,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:30:41Z"
+      "modified_at": "2026-07-22T03:30:41Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "d3e593b769696e8b",
@@ -213,7 +227,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:55:33Z"
+      "modified_at": "2026-07-22T03:55:33Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "21de0a12c2268acb",
@@ -223,7 +239,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:29:24Z"
+      "modified_at": "2026-07-22T03:29:24Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "26efc73af3b90e58",
@@ -233,7 +251,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "directory",
-      "modified_at": "2026-07-22T03:30:49Z"
+      "modified_at": "2026-07-22T03:30:49Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "43130183c55d7f87",
@@ -243,7 +263,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "directory",
-      "modified_at": "2026-07-22T03:29:30Z"
+      "modified_at": "2026-07-22T03:29:30Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "7bd4b7a53a1b9b98",
@@ -253,7 +275,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:29:24Z"
+      "modified_at": "2026-07-22T03:29:24Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "6ad76900c8c684b8",
@@ -263,7 +287,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:29:17Z"
+      "modified_at": "2026-07-22T03:29:17Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "6a06bc0714bd2a8d",
@@ -273,7 +299,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:29:07Z"
+      "modified_at": "2026-07-22T03:29:07Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "acab34b7d7fdf9ec",
@@ -283,7 +311,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:28:48Z"
+      "modified_at": "2026-07-22T03:28:48Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "43183655aa18ccab",
@@ -293,7 +323,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:28:56Z"
+      "modified_at": "2026-07-22T03:28:56Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "78bb2116d2ae1178",
@@ -303,7 +335,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:28:37Z"
+      "modified_at": "2026-07-22T03:28:37Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "5c9768dde3107a35",
@@ -313,7 +347,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:28:34Z"
+      "modified_at": "2026-07-22T03:28:34Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "22f1c2f7745588f3",
@@ -323,7 +359,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:28:30Z"
+      "modified_at": "2026-07-22T03:28:30Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "5bc8806f425ebff6",
@@ -333,7 +371,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:28:17Z"
+      "modified_at": "2026-07-22T03:28:17Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "35a4877152dbf63b",
@@ -343,7 +383,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:28:09Z"
+      "modified_at": "2026-07-22T03:28:09Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "8a4bd1359bcbb0b2",
@@ -353,7 +395,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:58Z"
+      "modified_at": "2026-07-22T03:27:58Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "7bfef51a5697fd12",
@@ -363,7 +407,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:51Z"
+      "modified_at": "2026-07-22T03:27:51Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "e77383b4d022fc5e",
@@ -373,7 +419,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:50Z"
+      "modified_at": "2026-07-22T03:27:50Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "d7b125e4c8a4cdff",
@@ -383,7 +431,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:38Z"
+      "modified_at": "2026-07-22T03:27:38Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "a1f4a9795a44edda",
@@ -393,7 +443,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:26Z"
+      "modified_at": "2026-07-22T03:27:26Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "414dc61dcb4b1d02",
@@ -403,7 +455,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:25Z"
+      "modified_at": "2026-07-22T03:27:25Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "249f9a35d83abec7",
@@ -413,7 +467,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:23Z"
+      "modified_at": "2026-07-22T03:27:23Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "8d458fb38abd2482",
@@ -423,7 +479,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:12Z"
+      "modified_at": "2026-07-22T03:27:12Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "ad676e9d3f54c349",
@@ -433,7 +491,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:08Z"
+      "modified_at": "2026-07-22T03:27:08Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "8ec67e1e503172d2",
@@ -443,7 +503,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:27:05Z"
+      "modified_at": "2026-07-22T03:27:05Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "a7fcc09bd6e4d98a",
@@ -453,7 +515,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:26:59Z"
+      "modified_at": "2026-07-22T03:26:59Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "cc3d647ed67e9ced",
@@ -463,7 +527,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:26:48Z"
+      "modified_at": "2026-07-22T03:26:48Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "d6a14a0254e86ce2",
@@ -473,7 +539,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:26:43Z"
+      "modified_at": "2026-07-22T03:26:43Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "3416cbbb0a536925",
@@ -483,7 +551,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:26:40Z"
+      "modified_at": "2026-07-22T03:26:40Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "dfa4bf1668436499",
@@ -493,7 +563,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:26:28Z"
+      "modified_at": "2026-07-22T03:26:28Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "042aa55838b499c8",
@@ -503,7 +575,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:26:25Z"
+      "modified_at": "2026-07-22T03:26:25Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "b40b9bc231f35dba",
@@ -513,7 +587,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:26:12Z"
+      "modified_at": "2026-07-22T03:26:12Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "2da2fc6391b34d24",
@@ -523,7 +599,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:30:20Z"
+      "modified_at": "2026-07-22T03:30:20Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "9d60eafe66b78bed",
@@ -533,7 +611,9 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-22T03:35:24Z"
+      "modified_at": "2026-07-22T03:35:24Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     }
   ]
 }

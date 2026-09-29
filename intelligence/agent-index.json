@@ -4,19 +4,23 @@
   "catalog_sha256": "6fde84daf55901aa53cd2d22cdcf55778de944b53654a105fb113a4b7ee768dd",
   "organization_sha256": "ebc33a93e7b7d60945e422e5ffd4962b793cefe3f294954a3175484498f15d46",
   "retrieval_order": [
-    "FOR-KATIES-BOT.md",
+    "bot-instructions.html",
+    "bot-index.html",
     "agent-index.json",
     "packages/{research_id}.json",
-    "reports/{research_id}.md or a public material URL",
+    "readings/packages/{research_id}.html",
+    "a material reading_url when public_full_text is true",
     "fresh primary-source verification when current state matters"
   ],
   "availability_semantics": {
-    "public_reading": "Readable on this site.",
-    "private_library_metadata": "Known to the governed private library; title/role/state only on the public site."
+    "public_reading": "Readable on this site. public_full_text is true; prefer reading_url for a crawler-friendly static edition.",
+    "private_library_metadata": "Known to the governed private library; public_full_text is false and access_state is private_by_design."
   },
   "routes": {
+    "machine_instructions": "bot-instructions.html",
+    "markdown_instructions": "FOR-KATIES-BOT.md",
+    "bot_index": "bot-index.html",
     "human_front_door": "for-katies-bot.html",
-    "instructions": "FOR-KATIES-BOT.md",
     "research_grammar": "RESEARCH-GRAMMAR.md",
     "all_materials": "materials-index.jsonl",
     "connected_story_map": "CONNECTED-RESEARCH.md",
@@ -117,10 +121,13 @@
         "supporting": 84
       },
       "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/fed-clearing-treasury.html",
       "routes": {
         "summary": "library/fed-clearing-treasury.html",
         "manifest": "packages/fed-clearing-treasury.json",
         "report": "reports/fed-clearing-treasury.html",
+        "full_text": "readings/packages/fed-clearing-treasury.html",
         "source_text": "reports/fed-clearing-treasury.md"
       }
     },
@@ -189,10 +196,13 @@
         "supporting": 22
       },
       "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/congressional-monetary-infrastructure.html",
       "routes": {
         "summary": "library/congressional-monetary-infrastructure.html",
         "manifest": "packages/congressional-monetary-infrastructure.json",
         "report": "reports/congressional-monetary-infrastructure.html",
+        "full_text": "readings/packages/congressional-monetary-infrastructure.html",
         "source_text": "reports/congressional-monetary-infrastructure.md"
       }
     },
@@ -297,10 +307,13 @@
         "supporting": 69
       },
       "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/private-monetary-stack.html",
       "routes": {
         "summary": "library/private-monetary-stack.html",
         "manifest": "packages/private-monetary-stack.json",
         "report": "reports/private-monetary-stack.html",
+        "full_text": "readings/packages/private-monetary-stack.html",
         "source_text": "reports/private-monetary-stack.md"
       }
     },
@@ -363,10 +376,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-09-15T18:03:06Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/bank-credit-union-legal-architecture.html",
       "routes": {
         "summary": "library/bank-credit-union-legal-architecture.html",
         "manifest": "packages/bank-credit-union-legal-architecture.json",
         "report": "reports/bank-credit-union-legal-architecture.html",
+        "full_text": "readings/packages/bank-credit-union-legal-architecture.html",
         "source_text": "reports/bank-credit-union-legal-architecture.md"
       }
     },
@@ -431,10 +447,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/payment-transparency-hidden-constitution.html",
       "routes": {
         "summary": "library/payment-transparency-hidden-constitution.html",
         "manifest": "packages/payment-transparency-hidden-constitution.json",
         "report": "reports/payment-transparency-hidden-constitution.html",
+        "full_text": "readings/packages/payment-transparency-hidden-constitution.html",
         "source_text": "reports/payment-transparency-hidden-constitution.md"
       }
     },
@@ -516,10 +535,13 @@
         "supporting": 20
       },
       "latest_computer_edit_at": "2026-09-28T16:26:31Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/swift-shared-ledger.html",
       "routes": {
         "summary": "library/swift-shared-ledger.html",
         "manifest": "packages/swift-shared-ledger.json",
         "report": "reports/swift-shared-ledger.html",
+        "full_text": "readings/packages/swift-shared-ledger.html",
         "source_text": "reports/swift-shared-ledger.md"
       }
     },
@@ -590,10 +612,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-09-18T12:50:01Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/sec-transfer-agent-modernization.html",
       "routes": {
         "summary": "library/sec-transfer-agent-modernization.html",
         "manifest": "packages/sec-transfer-agent-modernization.json",
         "report": "reports/sec-transfer-agent-modernization.html",
+        "full_text": "readings/packages/sec-transfer-agent-modernization.html",
         "source_text": "reports/sec-transfer-agent-modernization.md"
       }
     },
@@ -659,10 +684,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-29T02:11:41Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/cftc-passive-software-no-action-2026-09-17.html",
       "routes": {
         "summary": "library/cftc-passive-software-no-action-2026-09-17.html",
         "manifest": "packages/cftc-passive-software-no-action-2026-09-17.json",
         "report": "reports/cftc-passive-software-no-action-2026-09-17.html",
+        "full_text": "readings/packages/cftc-passive-software-no-action-2026-09-17.html",
         "source_text": "reports/cftc-passive-software-no-action-2026-09-17.md"
       }
     },
@@ -726,10 +754,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-09-29T02:14:27Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/coinbase-clearing-dco-registration-2026-09-28.html",
       "routes": {
         "summary": "library/coinbase-clearing-dco-registration-2026-09-28.html",
         "manifest": "packages/coinbase-clearing-dco-registration-2026-09-28.json",
         "report": "reports/coinbase-clearing-dco-registration-2026-09-28.html",
+        "full_text": "readings/packages/coinbase-clearing-dco-registration-2026-09-28.html",
         "source_text": "reports/coinbase-clearing-dco-registration-2026-09-28.md"
       }
     },
@@ -798,10 +829,13 @@
         "supporting": 10
       },
       "latest_computer_edit_at": "2026-09-27T20:28:17Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/sec-tokenized-nms-stock-innovation-exemption.html",
       "routes": {
         "summary": "library/sec-tokenized-nms-stock-innovation-exemption.html",
         "manifest": "packages/sec-tokenized-nms-stock-innovation-exemption.json",
         "report": "reports/sec-tokenized-nms-stock-innovation-exemption.html",
+        "full_text": "readings/packages/sec-tokenized-nms-stock-innovation-exemption.html",
         "source_text": "reports/sec-tokenized-nms-stock-innovation-exemption.md"
       }
     },
@@ -866,10 +900,13 @@
         "supporting": 10
       },
       "latest_computer_edit_at": "2026-09-23T17:31:09Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/sec-investor-advisory-committee.html",
       "routes": {
         "summary": "library/sec-investor-advisory-committee.html",
         "manifest": "packages/sec-investor-advisory-committee.json",
         "report": "reports/sec-investor-advisory-committee.html",
+        "full_text": "readings/packages/sec-investor-advisory-committee.html",
         "source_text": "reports/sec-investor-advisory-committee.md"
       }
     },
@@ -941,10 +978,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-27T16:33:11Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/crypto-infrastructure-comparatives.html",
       "routes": {
         "summary": "library/crypto-infrastructure-comparatives.html",
         "manifest": "packages/crypto-infrastructure-comparatives.json",
         "report": "reports/crypto-infrastructure-comparatives.html",
+        "full_text": "readings/packages/crypto-infrastructure-comparatives.html",
         "source_text": "reports/crypto-infrastructure-comparatives.md"
       }
     },
@@ -1009,10 +1049,13 @@
         "supporting": 29
       },
       "latest_computer_edit_at": "2026-09-22T01:12:22Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/wholesale-metals.html",
       "routes": {
         "summary": "library/wholesale-metals.html",
         "manifest": "packages/wholesale-metals.json",
         "report": "reports/wholesale-metals.html",
+        "full_text": "readings/packages/wholesale-metals.html",
         "source_text": "reports/wholesale-metals.md"
       }
     },
@@ -1088,10 +1131,13 @@
         "supporting": 10
       },
       "latest_computer_edit_at": "2026-09-08T15:29:39Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/gold-bop-currency-adjustment.html",
       "routes": {
         "summary": "library/gold-bop-currency-adjustment.html",
         "manifest": "packages/gold-bop-currency-adjustment.json",
         "report": "reports/gold-bop-currency-adjustment.html",
+        "full_text": "readings/packages/gold-bop-currency-adjustment.html",
         "source_text": "reports/gold-bop-currency-adjustment.md"
       }
     },
@@ -1161,10 +1207,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-25T10:42:50Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/overall-monetary-play.html",
       "routes": {
         "summary": "library/overall-monetary-play.html",
         "manifest": "packages/overall-monetary-play.json",
         "report": "reports/overall-monetary-play.html",
+        "full_text": "readings/packages/overall-monetary-play.html",
         "source_text": "reports/overall-monetary-play.md"
       }
     },
@@ -1236,10 +1285,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-18T15:17:06Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/authority-through-the-adapter.html",
       "routes": {
         "summary": "library/authority-through-the-adapter.html",
         "manifest": "packages/authority-through-the-adapter.json",
         "report": "reports/authority-through-the-adapter.html",
+        "full_text": "readings/packages/authority-through-the-adapter.html",
         "source_text": "reports/authority-through-the-adapter.md"
       }
     },
@@ -1321,10 +1373,13 @@
         "supporting": 11
       },
       "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/overall-dlt-transition.html",
       "routes": {
         "summary": "library/overall-dlt-transition.html",
         "manifest": "packages/overall-dlt-transition.json",
         "report": "reports/overall-dlt-transition.html",
+        "full_text": "readings/packages/overall-dlt-transition.html",
         "source_text": "reports/overall-dlt-transition.md"
       }
     },
@@ -1387,10 +1442,13 @@
         "supporting": 9
       },
       "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/transaction-native-accounting.html",
       "routes": {
         "summary": "library/transaction-native-accounting.html",
         "manifest": "packages/transaction-native-accounting.json",
         "report": "reports/transaction-native-accounting.html",
+        "full_text": "readings/packages/transaction-native-accounting.html",
         "source_text": "reports/transaction-native-accounting.md"
       }
     },
@@ -1453,10 +1511,13 @@
         "supporting": 8
       },
       "latest_computer_edit_at": "2026-09-25T10:42:50Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/treasury-irs.html",
       "routes": {
         "summary": "library/treasury-irs.html",
         "manifest": "packages/treasury-irs.json",
         "report": "reports/treasury-irs.html",
+        "full_text": "readings/packages/treasury-irs.html",
         "source_text": "reports/treasury-irs.md"
       }
     },
@@ -1519,10 +1580,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-08T01:24:59Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/peoples-money.html",
       "routes": {
         "summary": "library/peoples-money.html",
         "manifest": "packages/peoples-money.json",
         "report": "reports/peoples-money.html",
+        "full_text": "readings/packages/peoples-money.html",
         "source_text": "reports/peoples-money.md"
       }
     },
@@ -1582,10 +1646,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-15T18:03:06Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/retail-debt.html",
       "routes": {
         "summary": "library/retail-debt.html",
         "manifest": "packages/retail-debt.json",
         "report": "reports/retail-debt.html",
+        "full_text": "readings/packages/retail-debt.html",
         "source_text": "reports/retail-debt.md"
       }
     },
@@ -1663,10 +1730,13 @@
         "supporting": 26
       },
       "latest_computer_edit_at": "2026-09-23T02:58:06Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/fraud-payment-integrity.html",
       "routes": {
         "summary": "library/fraud-payment-integrity.html",
         "manifest": "packages/fraud-payment-integrity.json",
         "report": "reports/fraud-payment-integrity.html",
+        "full_text": "readings/packages/fraud-payment-integrity.html",
         "source_text": "reports/fraud-payment-integrity.md"
       }
     },
@@ -1735,10 +1805,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-09-23T02:58:06Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/treasury-do-not-pay-governmentwide-map.html",
       "routes": {
         "summary": "library/treasury-do-not-pay-governmentwide-map.html",
         "manifest": "packages/treasury-do-not-pay-governmentwide-map.json",
         "report": "reports/treasury-do-not-pay-governmentwide-map.html",
+        "full_text": "readings/packages/treasury-do-not-pay-governmentwide-map.html",
         "source_text": "reports/treasury-do-not-pay-governmentwide-map.md"
       }
     },
@@ -1800,10 +1873,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/emerging-fraud-identity-payment-gate.html",
       "routes": {
         "summary": "library/emerging-fraud-identity-payment-gate.html",
         "manifest": "packages/emerging-fraud-identity-payment-gate.json",
         "report": "reports/emerging-fraud-identity-payment-gate.html",
+        "full_text": "readings/packages/emerging-fraud-identity-payment-gate.html",
         "source_text": "reports/emerging-fraud-identity-payment-gate.md"
       }
     },
@@ -1863,10 +1939,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/obbb-fraud-error-rate-legal-map.html",
       "routes": {
         "summary": "library/obbb-fraud-error-rate-legal-map.html",
         "manifest": "packages/obbb-fraud-error-rate-legal-map.json",
         "report": "reports/obbb-fraud-error-rate-legal-map.html",
+        "full_text": "readings/packages/obbb-fraud-error-rate-legal-map.html",
         "source_text": "reports/obbb-fraud-error-rate-legal-map.md"
       }
     },
@@ -1929,10 +2008,13 @@
         "supporting": 8
       },
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/pa-ccdbg-state-edge-pilot.html",
       "routes": {
         "summary": "library/pa-ccdbg-state-edge-pilot.html",
         "manifest": "packages/pa-ccdbg-state-edge-pilot.json",
         "report": "reports/pa-ccdbg-state-edge-pilot.html",
+        "full_text": "readings/packages/pa-ccdbg-state-edge-pilot.html",
         "source_text": "reports/pa-ccdbg-state-edge-pilot.md"
       }
     },
@@ -1989,10 +2071,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-07-27T16:11:40Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/hawaii-public-corruption-source-ledger.html",
       "routes": {
         "summary": "library/hawaii-public-corruption-source-ledger.html",
         "manifest": "packages/hawaii-public-corruption-source-ledger.json",
         "report": "reports/hawaii-public-corruption-source-ledger.html",
+        "full_text": "readings/packages/hawaii-public-corruption-source-ledger.html",
         "source_text": "reports/hawaii-public-corruption-source-ledger.md"
       }
     },
@@ -2050,10 +2135,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/southeast-fraud-enforcement-partnerships.html",
       "routes": {
         "summary": "library/southeast-fraud-enforcement-partnerships.html",
         "manifest": "packages/southeast-fraud-enforcement-partnerships.json",
         "report": "reports/southeast-fraud-enforcement-partnerships.html",
+        "full_text": "readings/packages/southeast-fraud-enforcement-partnerships.html",
         "source_text": "reports/southeast-fraud-enforcement-partnerships.md"
       }
     },
@@ -2116,10 +2204,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-07-28T01:02:43Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/government-wide-audit-july-2026.html",
       "routes": {
         "summary": "library/government-wide-audit-july-2026.html",
         "manifest": "packages/government-wide-audit-july-2026.json",
         "report": "reports/government-wide-audit-july-2026.html",
+        "full_text": "readings/packages/government-wide-audit-july-2026.html",
         "source_text": "reports/government-wide-audit-july-2026.md"
       }
     },
@@ -2207,10 +2298,13 @@
         "supporting": 38
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/government-wide-recertification-august-2026.html",
       "routes": {
         "summary": "library/government-wide-recertification-august-2026.html",
         "manifest": "packages/government-wide-recertification-august-2026.json",
         "report": "reports/government-wide-recertification-august-2026.html",
+        "full_text": "readings/packages/government-wide-recertification-august-2026.html",
         "source_text": "reports/government-wide-recertification-august-2026.md"
       }
     },
@@ -2266,10 +2360,13 @@
         "supporting": 11
       },
       "latest_computer_edit_at": "2026-07-28T02:42:30Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/house-oversight-corpus.html",
       "routes": {
         "summary": "library/house-oversight-corpus.html",
         "manifest": "packages/house-oversight-corpus.json",
         "report": "reports/house-oversight-corpus.html",
+        "full_text": "readings/packages/house-oversight-corpus.html",
         "source_text": "reports/house-oversight-corpus.md"
       }
     },
@@ -2328,10 +2425,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-08-14T22:23:26Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/congressional-hearing-source-library.html",
       "routes": {
         "summary": "library/congressional-hearing-source-library.html",
         "manifest": "packages/congressional-hearing-source-library.json",
         "report": "reports/congressional-hearing-source-library.html",
+        "full_text": "readings/packages/congressional-hearing-source-library.html",
         "source_text": "reports/congressional-hearing-source-library.md"
       }
     },
@@ -2384,10 +2484,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-07-22T03:41:58Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/epstein-interview-statement-accountability.html",
       "routes": {
         "summary": "library/epstein-interview-statement-accountability.html",
         "manifest": "packages/epstein-interview-statement-accountability.json",
         "report": "reports/epstein-interview-statement-accountability.html",
+        "full_text": "readings/packages/epstein-interview-statement-accountability.html",
         "source_text": "reports/epstein-interview-statement-accountability.md"
       }
     },
@@ -2449,10 +2552,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-21T00:17:51Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/judicial-money.html",
       "routes": {
         "summary": "library/judicial-money.html",
         "manifest": "packages/judicial-money.json",
         "report": "reports/judicial-money.html",
+        "full_text": "readings/packages/judicial-money.html",
         "source_text": "reports/judicial-money.md"
       }
     },
@@ -2522,10 +2628,13 @@
         "supporting": 16
       },
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/covid-authority-disclosures.html",
       "routes": {
         "summary": "library/covid-authority-disclosures.html",
         "manifest": "packages/covid-authority-disclosures.json",
         "report": "reports/covid-authority-disclosures.html",
+        "full_text": "readings/packages/covid-authority-disclosures.html",
         "source_text": "reports/covid-authority-disclosures.md"
       }
     },
@@ -2586,10 +2695,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-07-27T14:31:31Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/covid-2020-authority-spine.html",
       "routes": {
         "summary": "library/covid-2020-authority-spine.html",
         "manifest": "packages/covid-2020-authority-spine.json",
         "report": "reports/covid-2020-authority-spine.html",
+        "full_text": "readings/packages/covid-2020-authority-spine.html",
         "source_text": "reports/covid-2020-authority-spine.md"
       }
     },
@@ -2650,10 +2762,13 @@
         "supporting": 3
       },
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/odni-covid-biolab-disclosures-2026-06.html",
       "routes": {
         "summary": "library/odni-covid-biolab-disclosures-2026-06.html",
         "manifest": "packages/odni-covid-biolab-disclosures-2026-06.json",
         "report": "reports/odni-covid-biolab-disclosures-2026-06.html",
+        "full_text": "readings/packages/odni-covid-biolab-disclosures-2026-06.html",
         "source_text": "reports/odni-covid-biolab-disclosures-2026-06.md"
       }
     },
@@ -2710,10 +2825,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/hhs-high-risk-life-sciences-policy-2026-07-28.html",
       "routes": {
         "summary": "library/hhs-high-risk-life-sciences-policy-2026-07-28.html",
         "manifest": "packages/hhs-high-risk-life-sciences-policy-2026-07-28.json",
         "report": "reports/hhs-high-risk-life-sciences-policy-2026-07-28.html",
+        "full_text": "readings/packages/hhs-high-risk-life-sciences-policy-2026-07-28.html",
         "source_text": "reports/hhs-high-risk-life-sciences-policy-2026-07-28.md"
       }
     },
@@ -2771,10 +2889,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/white-house-covid-gov-reactivation-2026-07-29.html",
       "routes": {
         "summary": "library/white-house-covid-gov-reactivation-2026-07-29.html",
         "manifest": "packages/white-house-covid-gov-reactivation-2026-07-29.json",
         "report": "reports/white-house-covid-gov-reactivation-2026-07-29.html",
+        "full_text": "readings/packages/white-house-covid-gov-reactivation-2026-07-29.html",
         "source_text": "reports/white-house-covid-gov-reactivation-2026-07-29.md"
       }
     },
@@ -2834,10 +2955,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/rand-paul-covid-origins-reading-room-2026-07-29.html",
       "routes": {
         "summary": "library/rand-paul-covid-origins-reading-room-2026-07-29.html",
         "manifest": "packages/rand-paul-covid-origins-reading-room-2026-07-29.json",
         "report": "reports/rand-paul-covid-origins-reading-room-2026-07-29.html",
+        "full_text": "readings/packages/rand-paul-covid-origins-reading-room-2026-07-29.html",
         "source_text": "reports/rand-paul-covid-origins-reading-room-2026-07-29.md"
       }
     },
@@ -2897,10 +3021,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-08-15T18:41:32Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/us-who-membership-exit-legal-map.html",
       "routes": {
         "summary": "library/us-who-membership-exit-legal-map.html",
         "manifest": "packages/us-who-membership-exit-legal-map.json",
         "report": "reports/us-who-membership-exit-legal-map.html",
+        "full_text": "readings/packages/us-who-membership-exit-legal-map.html",
         "source_text": "reports/us-who-membership-exit-legal-map.md"
       }
     },
@@ -2972,10 +3099,13 @@
         "supporting": 55
       },
       "latest_computer_edit_at": "2026-09-16T23:20:09Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/currency-watch.html",
       "routes": {
         "summary": "library/currency-watch.html",
         "manifest": "packages/currency-watch.json",
         "report": "reports/currency-watch.html",
+        "full_text": "readings/packages/currency-watch.html",
         "source_text": "reports/currency-watch.md"
       }
     },
@@ -3084,10 +3214,13 @@
         "supporting": 130
       },
       "latest_computer_edit_at": "2026-09-28T23:56:45Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/international-monetary-transition.html",
       "routes": {
         "summary": "library/international-monetary-transition.html",
         "manifest": "packages/international-monetary-transition.json",
         "report": "reports/international-monetary-transition.html",
+        "full_text": "readings/packages/international-monetary-transition.html",
         "source_text": "reports/international-monetary-transition.md"
       }
     },
@@ -3147,10 +3280,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-08-24T22:12:40Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/cuba-pressure-counter-influence.html",
       "routes": {
         "summary": "library/cuba-pressure-counter-influence.html",
         "manifest": "packages/cuba-pressure-counter-influence.json",
         "report": "reports/cuba-pressure-counter-influence.html",
+        "full_text": "readings/packages/cuba-pressure-counter-influence.html",
         "source_text": "reports/cuba-pressure-counter-influence.md"
       }
     },
@@ -3210,10 +3346,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-08T15:29:39Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/iraq-oil-logistics.html",
       "routes": {
         "summary": "library/iraq-oil-logistics.html",
         "manifest": "packages/iraq-oil-logistics.json",
         "report": "reports/iraq-oil-logistics.html",
+        "full_text": "readings/packages/iraq-oil-logistics.html",
         "source_text": "reports/iraq-oil-logistics.md"
       }
     },
@@ -3290,10 +3429,13 @@
         "supporting": 29
       },
       "latest_computer_edit_at": "2026-09-15T21:28:33Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/global-oil-gas-movements.html",
       "routes": {
         "summary": "library/global-oil-gas-movements.html",
         "manifest": "packages/global-oil-gas-movements.json",
         "report": "reports/global-oil-gas-movements.html",
+        "full_text": "readings/packages/global-oil-gas-movements.html",
         "source_text": "reports/global-oil-gas-movements.md"
       }
     },
@@ -3355,10 +3497,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-08-24T17:28:40Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/emergency-monetary-policy.html",
       "routes": {
         "summary": "library/emergency-monetary-policy.html",
         "manifest": "packages/emergency-monetary-policy.json",
         "report": "reports/emergency-monetary-policy.html",
+        "full_text": "readings/packages/emergency-monetary-policy.html",
         "source_text": "reports/emergency-monetary-policy.md"
       }
     },
@@ -3424,10 +3569,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-08-24T17:14:19Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/international-emergency-monetary-policy.html",
       "routes": {
         "summary": "library/international-emergency-monetary-policy.html",
         "manifest": "packages/international-emergency-monetary-policy.json",
         "report": "reports/international-emergency-monetary-policy.html",
+        "full_text": "readings/packages/international-emergency-monetary-policy.html",
         "source_text": "reports/international-emergency-monetary-policy.md"
       }
     },
@@ -3491,10 +3639,13 @@
         "supporting": 10
       },
       "latest_computer_edit_at": "2026-09-14T18:02:00Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/insurance-reinsurance.html",
       "routes": {
         "summary": "library/insurance-reinsurance.html",
         "manifest": "packages/insurance-reinsurance.json",
         "report": "reports/insurance-reinsurance.html",
+        "full_text": "readings/packages/insurance-reinsurance.html",
         "source_text": "reports/insurance-reinsurance.md"
       }
     },
@@ -3564,10 +3715,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-09-08T14:42:20Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/permanent-magnets.html",
       "routes": {
         "summary": "library/permanent-magnets.html",
         "manifest": "packages/permanent-magnets.json",
         "report": "reports/permanent-magnets.html",
+        "full_text": "readings/packages/permanent-magnets.html",
         "source_text": "reports/permanent-magnets.md"
       }
     },
@@ -3635,10 +3789,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-08-24T22:54:12Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/carbon-nanotubes-battery-sovereignty.html",
       "routes": {
         "summary": "library/carbon-nanotubes-battery-sovereignty.html",
         "manifest": "packages/carbon-nanotubes-battery-sovereignty.json",
         "report": "reports/carbon-nanotubes-battery-sovereignty.html",
+        "full_text": "readings/packages/carbon-nanotubes-battery-sovereignty.html",
         "source_text": "reports/carbon-nanotubes-battery-sovereignty.md"
       }
     },
@@ -3742,10 +3899,13 @@
         "supporting": 18
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-science-operating-system.html",
       "routes": {
         "summary": "library/federal-science-operating-system.html",
         "manifest": "packages/federal-science-operating-system.json",
         "report": "reports/federal-science-operating-system.html",
+        "full_text": "readings/packages/federal-science-operating-system.html",
         "source_text": "reports/federal-science-operating-system.md"
       }
     },
@@ -3814,10 +3974,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-08T18:17:52Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-fusion-commercialization.html",
       "routes": {
         "summary": "library/federal-fusion-commercialization.html",
         "manifest": "packages/federal-fusion-commercialization.json",
         "report": "reports/federal-fusion-commercialization.html",
+        "full_text": "readings/packages/federal-fusion-commercialization.html",
         "source_text": "reports/federal-fusion-commercialization.md"
       }
     },
@@ -3910,10 +4073,13 @@
         "supporting": 31
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/nssts-technology-company-map.html",
       "routes": {
         "summary": "library/nssts-technology-company-map.html",
         "manifest": "packages/nssts-technology-company-map.json",
         "report": "reports/nssts-technology-company-map.html",
+        "full_text": "readings/packages/nssts-technology-company-map.html",
         "source_text": "reports/nssts-technology-company-map.md"
       }
     },
@@ -3976,10 +4142,13 @@
         "supporting": 20
       },
       "latest_computer_edit_at": "2026-09-09T20:14:14Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/nssts-program-acceptance-economy.html",
       "routes": {
         "summary": "library/nssts-program-acceptance-economy.html",
         "manifest": "packages/nssts-program-acceptance-economy.json",
         "report": "reports/nssts-program-acceptance-economy.html",
+        "full_text": "readings/packages/nssts-program-acceptance-economy.html",
         "source_text": "reports/nssts-program-acceptance-economy.md"
       }
     },
@@ -4041,10 +4210,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-08T00:18:52Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/nssts-quantum-cryptographic-acceptance.html",
       "routes": {
         "summary": "library/nssts-quantum-cryptographic-acceptance.html",
         "manifest": "packages/nssts-quantum-cryptographic-acceptance.json",
         "report": "reports/nssts-quantum-cryptographic-acceptance.html",
+        "full_text": "readings/packages/nssts-quantum-cryptographic-acceptance.html",
         "source_text": "reports/nssts-quantum-cryptographic-acceptance.md"
       }
     },
@@ -4147,10 +4319,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/scientific-trust-stack.html",
       "routes": {
         "summary": "library/scientific-trust-stack.html",
         "manifest": "packages/scientific-trust-stack.json",
         "report": "reports/scientific-trust-stack.html",
+        "full_text": "readings/packages/scientific-trust-stack.html",
         "source_text": "reports/scientific-trust-stack.md"
       }
     },
@@ -4215,10 +4390,13 @@
         "supporting": 3
       },
       "latest_computer_edit_at": "2026-09-09T20:04:06Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-cryptographic-trust-stack.html",
       "routes": {
         "summary": "library/federal-cryptographic-trust-stack.html",
         "manifest": "packages/federal-cryptographic-trust-stack.json",
         "report": "reports/federal-cryptographic-trust-stack.html",
+        "full_text": "readings/packages/federal-cryptographic-trust-stack.html",
         "source_text": "reports/federal-cryptographic-trust-stack.md"
       }
     },
@@ -4282,10 +4460,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-18T15:17:06Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/genius-stablecoin-trust-crosswalk.html",
       "routes": {
         "summary": "library/genius-stablecoin-trust-crosswalk.html",
         "manifest": "packages/genius-stablecoin-trust-crosswalk.json",
         "report": "reports/genius-stablecoin-trust-crosswalk.html",
+        "full_text": "readings/packages/genius-stablecoin-trust-crosswalk.html",
         "source_text": "reports/genius-stablecoin-trust-crosswalk.md"
       }
     },
@@ -4368,10 +4549,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-08-23T21:05:40Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/nara-ai-records-compute-transition.html",
       "routes": {
         "summary": "library/nara-ai-records-compute-transition.html",
         "manifest": "packages/nara-ai-records-compute-transition.json",
         "report": "reports/nara-ai-records-compute-transition.html",
+        "full_text": "readings/packages/nara-ai-records-compute-transition.html",
         "source_text": "reports/nara-ai-records-compute-transition.md"
       }
     },
@@ -4430,10 +4614,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-09-25T10:05:09Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/sec-credit-rating-recordkeeping-orders-2024-2026.html",
       "routes": {
         "summary": "library/sec-credit-rating-recordkeeping-orders-2024-2026.html",
         "manifest": "packages/sec-credit-rating-recordkeeping-orders-2024-2026.json",
         "report": "reports/sec-credit-rating-recordkeeping-orders-2024-2026.html",
+        "full_text": "readings/packages/sec-credit-rating-recordkeeping-orders-2024-2026.html",
         "source_text": "reports/sec-credit-rating-recordkeeping-orders-2024-2026.md"
       }
     },
@@ -4524,10 +4711,13 @@
         "supporting": 14
       },
       "latest_computer_edit_at": "2026-09-29T02:25:26Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-agency-ai-plans-infrastructure.html",
       "routes": {
         "summary": "library/federal-agency-ai-plans-infrastructure.html",
         "manifest": "packages/federal-agency-ai-plans-infrastructure.json",
         "report": "reports/federal-agency-ai-plans-infrastructure.html",
+        "full_text": "readings/packages/federal-agency-ai-plans-infrastructure.html",
         "source_text": "reports/federal-agency-ai-plans-infrastructure.md"
       }
     },
@@ -4595,10 +4785,13 @@
         "supporting": 7
       },
       "latest_computer_edit_at": "2026-09-04T13:23:40Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/sovereign-compute.html",
       "routes": {
         "summary": "library/sovereign-compute.html",
         "manifest": "packages/sovereign-compute.json",
         "report": "reports/sovereign-compute.html",
+        "full_text": "readings/packages/sovereign-compute.html",
         "source_text": "reports/sovereign-compute.md"
       }
     },
@@ -4659,10 +4852,13 @@
         "supporting": 7
       },
       "latest_computer_edit_at": "2026-09-08T01:19:46Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/sovereign-communications.html",
       "routes": {
         "summary": "library/sovereign-communications.html",
         "manifest": "packages/sovereign-communications.json",
         "report": "reports/sovereign-communications.html",
+        "full_text": "readings/packages/sovereign-communications.html",
         "source_text": "reports/sovereign-communications.md"
       }
     },
@@ -4726,10 +4922,13 @@
         "supporting": 7
       },
       "latest_computer_edit_at": "2026-09-25T22:37:25Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/military-modernization.html",
       "routes": {
         "summary": "library/military-modernization.html",
         "manifest": "packages/military-modernization.json",
         "report": "reports/military-modernization.html",
+        "full_text": "readings/packages/military-modernization.html",
         "source_text": "reports/military-modernization.md"
       }
     },
@@ -4791,10 +4990,13 @@
         "supporting": 8
       },
       "latest_computer_edit_at": "2026-09-25T11:03:40Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/contested-logistics.html",
       "routes": {
         "summary": "library/contested-logistics.html",
         "manifest": "packages/contested-logistics.json",
         "report": "reports/contested-logistics.html",
+        "full_text": "readings/packages/contested-logistics.html",
         "source_text": "reports/contested-logistics.md"
       }
     },
@@ -4878,10 +5080,13 @@
         "supporting": 9
       },
       "latest_computer_edit_at": "2026-09-08T15:29:39Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/iran-financial-pressure.html",
       "routes": {
         "summary": "library/iran-financial-pressure.html",
         "manifest": "packages/iran-financial-pressure.json",
         "report": "reports/iran-financial-pressure.html",
+        "full_text": "readings/packages/iran-financial-pressure.html",
         "source_text": "reports/iran-financial-pressure.md"
       }
     },
@@ -4943,10 +5148,13 @@
         "supporting": 15
       },
       "latest_computer_edit_at": "2026-07-28T01:03:48Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/election-integrity-release.html",
       "routes": {
         "summary": "library/election-integrity-release.html",
         "manifest": "packages/election-integrity-release.json",
         "report": "reports/election-integrity-release.html",
+        "full_text": "readings/packages/election-integrity-release.html",
         "source_text": "reports/election-integrity-release.md"
       }
     },
@@ -5006,10 +5214,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-16T23:20:33Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/trump-2028-constitutional-election-ledger.html",
       "routes": {
         "summary": "library/trump-2028-constitutional-election-ledger.html",
         "manifest": "packages/trump-2028-constitutional-election-ledger.json",
         "report": "reports/trump-2028-constitutional-election-ledger.html",
+        "full_text": "readings/packages/trump-2028-constitutional-election-ledger.html",
         "source_text": "reports/trump-2028-constitutional-election-ledger.md"
       }
     },
@@ -5073,10 +5284,13 @@
         "supporting": 3
       },
       "latest_computer_edit_at": "2026-09-08T17:25:25Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/white-house-ballroom-lawfare-2025-2026.html",
       "routes": {
         "summary": "library/white-house-ballroom-lawfare-2025-2026.html",
         "manifest": "packages/white-house-ballroom-lawfare-2025-2026.json",
         "report": "reports/white-house-ballroom-lawfare-2025-2026.html",
+        "full_text": "readings/packages/white-house-ballroom-lawfare-2025-2026.html",
         "source_text": "reports/white-house-ballroom-lawfare-2025-2026.md"
       }
     },
@@ -5137,10 +5351,13 @@
         "supporting": 3
       },
       "latest_computer_edit_at": "2026-08-09T20:23:54Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/ai-turbine-asset-management-power-buildout.html",
       "routes": {
         "summary": "library/ai-turbine-asset-management-power-buildout.html",
         "manifest": "packages/ai-turbine-asset-management-power-buildout.json",
         "report": "reports/ai-turbine-asset-management-power-buildout.html",
+        "full_text": "readings/packages/ai-turbine-asset-management-power-buildout.html",
         "source_text": "reports/ai-turbine-asset-management-power-buildout.md"
       }
     },
@@ -5198,10 +5415,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-03T23:47:22Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/census-usps-citizenship-apportionment.html",
       "routes": {
         "summary": "library/census-usps-citizenship-apportionment.html",
         "manifest": "packages/census-usps-citizenship-apportionment.json",
         "report": "reports/census-usps-citizenship-apportionment.html",
+        "full_text": "readings/packages/census-usps-citizenship-apportionment.html",
         "source_text": "reports/census-usps-citizenship-apportionment.md"
       }
     },
@@ -5261,10 +5481,13 @@
         "supporting": 29
       },
       "latest_computer_edit_at": "2026-09-28T21:08:46Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/congressional-committee-control-plane.html",
       "routes": {
         "summary": "library/congressional-committee-control-plane.html",
         "manifest": "packages/congressional-committee-control-plane.json",
         "report": "reports/congressional-committee-control-plane.html",
+        "full_text": "readings/packages/congressional-committee-control-plane.html",
         "source_text": "reports/congressional-committee-control-plane.md"
       }
     },
@@ -5328,10 +5551,13 @@
         "supporting": 7
       },
       "latest_computer_edit_at": "2026-08-24T22:43:25Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/data-center-federal-legal-spine.html",
       "routes": {
         "summary": "library/data-center-federal-legal-spine.html",
         "manifest": "packages/data-center-federal-legal-spine.json",
         "report": "reports/data-center-federal-legal-spine.html",
+        "full_text": "readings/packages/data-center-federal-legal-spine.html",
         "source_text": "reports/data-center-federal-legal-spine.md"
       }
     },
@@ -5394,10 +5620,13 @@
         "supporting": 8
       },
       "latest_computer_edit_at": "2026-08-09T20:24:07Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/energy-atomic-settlement-iran.html",
       "routes": {
         "summary": "library/energy-atomic-settlement-iran.html",
         "manifest": "packages/energy-atomic-settlement-iran.json",
         "report": "reports/energy-atomic-settlement-iran.html",
+        "full_text": "readings/packages/energy-atomic-settlement-iran.html",
         "source_text": "reports/energy-atomic-settlement-iran.md"
       }
     },
@@ -5456,10 +5685,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-09-05T16:44:47Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/institutional-regime-waves.html",
       "routes": {
         "summary": "library/institutional-regime-waves.html",
         "manifest": "packages/institutional-regime-waves.json",
         "report": "reports/institutional-regime-waves.html",
+        "full_text": "readings/packages/institutional-regime-waves.html",
         "source_text": "reports/institutional-regime-waves.md"
       }
     },
@@ -5526,10 +5758,13 @@
         "supporting": 12
       },
       "latest_computer_edit_at": "2026-09-25T00:16:10Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/us-inbound-investment-industrial-capex.html",
       "routes": {
         "summary": "library/us-inbound-investment-industrial-capex.html",
         "manifest": "packages/us-inbound-investment-industrial-capex.json",
         "report": "reports/us-inbound-investment-industrial-capex.html",
+        "full_text": "readings/packages/us-inbound-investment-industrial-capex.html",
         "source_text": "reports/us-inbound-investment-industrial-capex.md"
       }
     },
@@ -5592,10 +5827,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/ai-infrastructure-capital-stack-risk-transfer.html",
       "routes": {
         "summary": "library/ai-infrastructure-capital-stack-risk-transfer.html",
         "manifest": "packages/ai-infrastructure-capital-stack-risk-transfer.json",
         "report": "reports/ai-infrastructure-capital-stack-risk-transfer.html",
+        "full_text": "readings/packages/ai-infrastructure-capital-stack-risk-transfer.html",
         "source_text": "reports/ai-infrastructure-capital-stack-risk-transfer.md"
       }
     },
@@ -5657,10 +5895,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-25T00:16:10Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/industrial-project-finance-digital-rails.html",
       "routes": {
         "summary": "library/industrial-project-finance-digital-rails.html",
         "manifest": "packages/industrial-project-finance-digital-rails.json",
         "report": "reports/industrial-project-finance-digital-rails.html",
+        "full_text": "readings/packages/industrial-project-finance-digital-rails.html",
         "source_text": "reports/industrial-project-finance-digital-rails.md"
       }
     },
@@ -5727,10 +5968,13 @@
         "supporting": 25
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-strategic-plans.html",
       "routes": {
         "summary": "library/federal-strategic-plans.html",
         "manifest": "packages/federal-strategic-plans.json",
         "report": "reports/federal-strategic-plans.html",
+        "full_text": "readings/packages/federal-strategic-plans.html",
         "source_text": "reports/federal-strategic-plans.md"
       }
     },
@@ -5785,10 +6029,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-07-22T03:55:33Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/white-house-research-hub.html",
       "routes": {
         "summary": "library/white-house-research-hub.html",
         "manifest": "packages/white-house-research-hub.json",
         "report": "reports/white-house-research-hub.html",
+        "full_text": "readings/packages/white-house-research-hub.html",
         "source_text": "reports/white-house-research-hub.md"
       }
     },
@@ -5848,10 +6095,13 @@
         "supporting": 25
       },
       "latest_computer_edit_at": "2026-08-27T21:48:32Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-entity-library-harvest-2026-08-22.html",
       "routes": {
         "summary": "library/federal-government-entity-library-harvest-2026-08-22.html",
         "manifest": "packages/federal-government-entity-library-harvest-2026-08-22.json",
         "report": "reports/federal-government-entity-library-harvest-2026-08-22.html",
+        "full_text": "readings/packages/federal-government-entity-library-harvest-2026-08-22.html",
         "source_text": "reports/federal-government-entity-library-harvest-2026-08-22.md"
       }
     },
@@ -5910,10 +6160,13 @@
         "supporting": 7
       },
       "latest_computer_edit_at": "2026-09-22T01:12:22Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-full-freshness-sweep-2026-08-22.html",
       "routes": {
         "summary": "library/federal-government-full-freshness-sweep-2026-08-22.html",
         "manifest": "packages/federal-government-full-freshness-sweep-2026-08-22.json",
         "report": "reports/federal-government-full-freshness-sweep-2026-08-22.html",
+        "full_text": "readings/packages/federal-government-full-freshness-sweep-2026-08-22.html",
         "source_text": "reports/federal-government-full-freshness-sweep-2026-08-22.md"
       }
     },
@@ -5970,10 +6223,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-08-31T22:21:22Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-sweep-control-audit-2026-08-29.html",
       "routes": {
         "summary": "library/federal-government-sweep-control-audit-2026-08-29.html",
         "manifest": "packages/federal-government-sweep-control-audit-2026-08-29.json",
         "report": "reports/federal-government-sweep-control-audit-2026-08-29.html",
+        "full_text": "readings/packages/federal-government-sweep-control-audit-2026-08-29.html",
         "source_text": "reports/federal-government-sweep-control-audit-2026-08-29.md"
       }
     },
@@ -6035,10 +6291,13 @@
         "supporting": 13
       },
       "latest_computer_edit_at": "2026-08-25T21:30:51Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-website-sweep-2026-07-25.html",
       "routes": {
         "summary": "library/federal-government-website-sweep-2026-07-25.html",
         "manifest": "packages/federal-government-website-sweep-2026-07-25.json",
         "report": "reports/federal-government-website-sweep-2026-07-25.html",
+        "full_text": "readings/packages/federal-government-website-sweep-2026-07-25.html",
         "source_text": "reports/federal-government-website-sweep-2026-07-25.md"
       }
     },
@@ -6098,10 +6357,13 @@
         "supporting": 10
       },
       "latest_computer_edit_at": "2026-08-08T16:37:33Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-08.html",
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-08-08.html",
         "manifest": "packages/federal-government-weekly-delta-2026-08-08.json",
         "report": "reports/federal-government-weekly-delta-2026-08-08.html",
+        "full_text": "readings/packages/federal-government-weekly-delta-2026-08-08.html",
         "source_text": "reports/federal-government-weekly-delta-2026-08-08.md"
       }
     },
@@ -6161,10 +6423,13 @@
         "supporting": 10
       },
       "latest_computer_edit_at": "2026-08-14T02:09:24Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-13.html",
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-08-13.html",
         "manifest": "packages/federal-government-weekly-delta-2026-08-13.json",
         "report": "reports/federal-government-weekly-delta-2026-08-13.html",
+        "full_text": "readings/packages/federal-government-weekly-delta-2026-08-13.html",
         "source_text": "reports/federal-government-weekly-delta-2026-08-13.md"
       }
     },
@@ -6225,10 +6490,13 @@
         "supporting": 9
       },
       "latest_computer_edit_at": "2026-08-27T21:45:45Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-20.html",
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-08-20.html",
         "manifest": "packages/federal-government-weekly-delta-2026-08-20.json",
         "report": "reports/federal-government-weekly-delta-2026-08-20.html",
+        "full_text": "readings/packages/federal-government-weekly-delta-2026-08-20.html",
         "source_text": "reports/federal-government-weekly-delta-2026-08-20.md"
       }
     },
@@ -6290,10 +6558,13 @@
         "supporting": 7
       },
       "latest_computer_edit_at": "2026-08-21T19:09:11Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-21.html",
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-08-21.html",
         "manifest": "packages/federal-government-weekly-delta-2026-08-21.json",
         "report": "reports/federal-government-weekly-delta-2026-08-21.html",
+        "full_text": "readings/packages/federal-government-weekly-delta-2026-08-21.html",
         "source_text": "reports/federal-government-weekly-delta-2026-08-21.md"
       }
     },
@@ -6348,10 +6619,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/disclosure-architecture.html",
       "routes": {
         "summary": "library/disclosure-architecture.html",
         "manifest": "packages/disclosure-architecture.json",
         "report": "reports/disclosure-architecture.html",
+        "full_text": "readings/packages/disclosure-architecture.html",
         "source_text": "reports/disclosure-architecture.md"
       }
     },
@@ -6412,10 +6686,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-25T05:42:08Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/trump-davos-address-2026-01-21.html",
       "routes": {
         "summary": "library/trump-davos-address-2026-01-21.html",
         "manifest": "packages/trump-davos-address-2026-01-21.json",
         "report": "reports/trump-davos-address-2026-01-21.html",
+        "full_text": "readings/packages/trump-davos-address-2026-01-21.html",
         "source_text": "reports/trump-davos-address-2026-01-21.md"
       }
     },
@@ -6476,10 +6753,13 @@
         "supporting": 3
       },
       "latest_computer_edit_at": "2026-09-16T23:20:09Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/white-house-cabinet-meeting-2026-07-31.html",
       "routes": {
         "summary": "library/white-house-cabinet-meeting-2026-07-31.html",
         "manifest": "packages/white-house-cabinet-meeting-2026-07-31.json",
         "report": "reports/white-house-cabinet-meeting-2026-07-31.html",
+        "full_text": "readings/packages/white-house-cabinet-meeting-2026-07-31.html",
         "source_text": "reports/white-house-cabinet-meeting-2026-07-31.md"
       }
     },
@@ -6539,10 +6819,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/education-university-funding.html",
       "routes": {
         "summary": "library/education-university-funding.html",
         "manifest": "packages/education-university-funding.json",
         "report": "reports/education-university-funding.html",
+        "full_text": "readings/packages/education-university-funding.html",
         "source_text": "reports/education-university-funding.md"
       }
     },
@@ -6605,10 +6888,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/university-funding-programmable-compliance.html",
       "routes": {
         "summary": "library/university-funding-programmable-compliance.html",
         "manifest": "packages/university-funding-programmable-compliance.json",
         "report": "reports/university-funding-programmable-compliance.html",
+        "full_text": "readings/packages/university-funding-programmable-compliance.html",
         "source_text": "reports/university-funding-programmable-compliance.md"
       }
     },
@@ -6667,10 +6953,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/education-full-surface-sweep-2026-08-04.html",
       "routes": {
         "summary": "library/education-full-surface-sweep-2026-08-04.html",
         "manifest": "packages/education-full-surface-sweep-2026-08-04.json",
         "report": "reports/education-full-surface-sweep-2026-08-04.html",
+        "full_text": "readings/packages/education-full-surface-sweep-2026-08-04.html",
         "source_text": "reports/education-full-surface-sweep-2026-08-04.md"
       }
     },
@@ -6728,10 +7017,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/dow-research-security-audits-2026-08-17.html",
       "routes": {
         "summary": "library/dow-research-security-audits-2026-08-17.html",
         "manifest": "packages/dow-research-security-audits-2026-08-17.json",
         "report": "reports/dow-research-security-audits-2026-08-17.html",
+        "full_text": "readings/packages/dow-research-security-audits-2026-08-17.html",
         "source_text": "reports/dow-research-security-audits-2026-08-17.md"
       }
     },
@@ -6786,10 +7078,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-16T23:20:09Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/trump-whca-dinner-remarks-2026-07-24.html",
       "routes": {
         "summary": "library/trump-whca-dinner-remarks-2026-07-24.html",
         "manifest": "packages/trump-whca-dinner-remarks-2026-07-24.json",
         "report": "reports/trump-whca-dinner-remarks-2026-07-24.html",
+        "full_text": "readings/packages/trump-whca-dinner-remarks-2026-07-24.html",
         "source_text": "reports/trump-whca-dinner-remarks-2026-07-24.md"
       }
     },
@@ -6853,10 +7148,13 @@
         "supporting": 3
       },
       "latest_computer_edit_at": "2026-09-08T17:25:25Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/opm-structural-change-audit-2025-2026.html",
       "routes": {
         "summary": "library/opm-structural-change-audit-2025-2026.html",
         "manifest": "packages/opm-structural-change-audit-2025-2026.json",
         "report": "reports/opm-structural-change-audit-2025-2026.html",
+        "full_text": "readings/packages/opm-structural-change-audit-2025-2026.html",
         "source_text": "reports/opm-structural-change-audit-2025-2026.md"
       }
     },
@@ -6920,10 +7218,13 @@
         "supporting": 3
       },
       "latest_computer_edit_at": "2026-09-28T00:52:07Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/japan-august-2026-delta.html",
       "routes": {
         "summary": "library/japan-august-2026-delta.html",
         "manifest": "packages/japan-august-2026-delta.json",
         "report": "reports/japan-august-2026-delta.html",
+        "full_text": "readings/packages/japan-august-2026-delta.html",
         "source_text": "reports/japan-august-2026-delta.md"
       }
     },
@@ -6995,10 +7296,13 @@
         "supporting": 17
       },
       "latest_computer_edit_at": "2026-09-03T23:57:10Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/g7-g20-coordination-architecture.html",
       "routes": {
         "summary": "library/g7-g20-coordination-architecture.html",
         "manifest": "packages/g7-g20-coordination-architecture.json",
         "report": "reports/g7-g20-coordination-architecture.html",
+        "full_text": "readings/packages/g7-g20-coordination-architecture.html",
         "source_text": "reports/g7-g20-coordination-architecture.md"
       }
     },
@@ -7077,10 +7381,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/route-anchor-inventory.html",
       "routes": {
         "summary": "library/route-anchor-inventory.html",
         "manifest": "packages/route-anchor-inventory.json",
         "report": "reports/route-anchor-inventory.html",
+        "full_text": "readings/packages/route-anchor-inventory.html",
         "source_text": "reports/route-anchor-inventory.md"
       }
     },
@@ -7215,10 +7522,13 @@
         "supporting": 28
       },
       "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/tokenization-entity-control-map.html",
       "routes": {
         "summary": "library/tokenization-entity-control-map.html",
         "manifest": "packages/tokenization-entity-control-map.json",
         "report": "reports/tokenization-entity-control-map.html",
+        "full_text": "readings/packages/tokenization-entity-control-map.html",
         "source_text": "reports/tokenization-entity-control-map.md"
       }
     },
@@ -7302,10 +7612,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-09-23T15:05:04Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/ripple-xrp-invisible-conversion-layer.html",
       "routes": {
         "summary": "library/ripple-xrp-invisible-conversion-layer.html",
         "manifest": "packages/ripple-xrp-invisible-conversion-layer.json",
         "report": "reports/ripple-xrp-invisible-conversion-layer.html",
+        "full_text": "readings/packages/ripple-xrp-invisible-conversion-layer.html",
         "source_text": "reports/ripple-xrp-invisible-conversion-layer.md"
       }
     },
@@ -7379,10 +7692,13 @@
         "supporting": 3
       },
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/prwora-state-reporting-eligibility-architecture.html",
       "routes": {
         "summary": "library/prwora-state-reporting-eligibility-architecture.html",
         "manifest": "packages/prwora-state-reporting-eligibility-architecture.json",
         "report": "reports/prwora-state-reporting-eligibility-architecture.html",
+        "full_text": "readings/packages/prwora-state-reporting-eligibility-architecture.html",
         "source_text": "reports/prwora-state-reporting-eligibility-architecture.md"
       }
     },
@@ -7463,10 +7779,13 @@
         "supporting": 13
       },
       "latest_computer_edit_at": "2026-09-04T01:23:44Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-weekly-delta-2026-09-03.html",
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-09-03.html",
         "manifest": "packages/federal-government-weekly-delta-2026-09-03.json",
         "report": "reports/federal-government-weekly-delta-2026-09-03.html",
+        "full_text": "readings/packages/federal-government-weekly-delta-2026-09-03.html",
         "source_text": "reports/federal-government-weekly-delta-2026-09-03.md"
       }
     },
@@ -7544,10 +7863,13 @@
         "supporting": 21
       },
       "latest_computer_edit_at": "2026-09-15T22:40:36Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-weekly-delta-2026-09-11.html",
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-09-11.html",
         "manifest": "packages/federal-government-weekly-delta-2026-09-11.json",
         "report": "reports/federal-government-weekly-delta-2026-09-11.html",
+        "full_text": "readings/packages/federal-government-weekly-delta-2026-09-11.html",
         "source_text": "reports/federal-government-weekly-delta-2026-09-11.md"
       }
     },
@@ -7617,10 +7939,13 @@
         "supporting": 28
       },
       "latest_computer_edit_at": "2026-09-17T00:33:47Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-weekly-delta-2026-09-16.html",
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-09-16.html",
         "manifest": "packages/federal-government-weekly-delta-2026-09-16.json",
         "report": "reports/federal-government-weekly-delta-2026-09-16.html",
+        "full_text": "readings/packages/federal-government-weekly-delta-2026-09-16.html",
         "source_text": "reports/federal-government-weekly-delta-2026-09-16.md"
       }
     },
@@ -7690,10 +8015,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-09-23T17:31:09Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html",
       "routes": {
         "summary": "library/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html",
         "manifest": "packages/federal-technology-and-monetary-infrastructure-delta-2026-09-20.json",
         "report": "reports/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html",
+        "full_text": "readings/packages/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html",
         "source_text": "reports/federal-technology-and-monetary-infrastructure-delta-2026-09-20.md"
       }
     },
@@ -7777,10 +8105,13 @@
         "supporting": 158
       },
       "latest_computer_edit_at": "2026-09-29T19:05:24Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/un-general-assembly-high-level-week-2026.html",
       "routes": {
         "summary": "library/un-general-assembly-high-level-week-2026.html",
         "manifest": "packages/un-general-assembly-high-level-week-2026.json",
         "report": "reports/un-general-assembly-high-level-week-2026.html",
+        "full_text": "readings/packages/un-general-assembly-high-level-week-2026.html",
         "source_text": "reports/un-general-assembly-high-level-week-2026.md"
       }
     },
@@ -7861,10 +8192,13 @@
         "supporting": 25
       },
       "latest_computer_edit_at": "2026-09-29T02:48:24Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/economic-institution-legitimacy-crisis.html",
       "routes": {
         "summary": "library/economic-institution-legitimacy-crisis.html",
         "manifest": "packages/economic-institution-legitimacy-crisis.json",
         "report": "reports/economic-institution-legitimacy-crisis.html",
+        "full_text": "readings/packages/economic-institution-legitimacy-crisis.html",
         "source_text": "reports/economic-institution-legitimacy-crisis.md"
       }
     },
@@ -7950,10 +8284,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-04T17:17:27Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/new-york-manufacturing-innovation-map-2026.html",
       "routes": {
         "summary": "library/new-york-manufacturing-innovation-map-2026.html",
         "manifest": "packages/new-york-manufacturing-innovation-map-2026.json",
         "report": "reports/new-york-manufacturing-innovation-map-2026.html",
+        "full_text": "readings/packages/new-york-manufacturing-innovation-map-2026.html",
         "source_text": "reports/new-york-manufacturing-innovation-map-2026.md"
       }
     },
@@ -8027,10 +8364,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-07T16:38:09Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/mortgage-credit-score-reform.html",
       "routes": {
         "summary": "library/mortgage-credit-score-reform.html",
         "manifest": "packages/mortgage-credit-score-reform.json",
         "report": "reports/mortgage-credit-score-reform.html",
+        "full_text": "readings/packages/mortgage-credit-score-reform.html",
         "source_text": "reports/mortgage-credit-score-reform.md"
       }
     },
@@ -8092,10 +8432,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-07T15:55:05Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/mortgage-balance-sheet-trail.html",
       "routes": {
         "summary": "library/mortgage-balance-sheet-trail.html",
         "manifest": "packages/mortgage-balance-sheet-trail.json",
         "report": "reports/mortgage-balance-sheet-trail.html",
+        "full_text": "readings/packages/mortgage-balance-sheet-trail.html",
         "source_text": "reports/mortgage-balance-sheet-trail.md"
       }
     },
@@ -8153,10 +8496,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-08-15T20:06:50Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-workforce-and-agency-control.html",
       "routes": {
         "summary": "library/federal-workforce-and-agency-control.html",
         "manifest": "packages/federal-workforce-and-agency-control.json",
         "report": "reports/federal-workforce-and-agency-control.html",
+        "full_text": "readings/packages/federal-workforce-and-agency-control.html",
         "source_text": "reports/federal-workforce-and-agency-control.md"
       }
     },
@@ -8215,10 +8561,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-08-15T20:06:50Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-force-surveillance-and-emergency-authority.html",
       "routes": {
         "summary": "library/federal-force-surveillance-and-emergency-authority.html",
         "manifest": "packages/federal-force-surveillance-and-emergency-authority.json",
         "report": "reports/federal-force-surveillance-and-emergency-authority.html",
+        "full_text": "readings/packages/federal-force-surveillance-and-emergency-authority.html",
         "source_text": "reports/federal-force-surveillance-and-emergency-authority.md"
       }
     },
@@ -8312,10 +8661,13 @@
         "supporting": 3
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/genesis-mission.html",
       "routes": {
         "summary": "library/genesis-mission.html",
         "manifest": "packages/genesis-mission.json",
         "report": "reports/genesis-mission.html",
+        "full_text": "readings/packages/genesis-mission.html",
         "source_text": "reports/genesis-mission.md"
       }
     },
@@ -8371,10 +8723,13 @@
         "supporting": 1
       },
       "latest_computer_edit_at": "2026-09-09T22:27:33Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/education-learning-agenda-playbook.html",
       "routes": {
         "summary": "library/education-learning-agenda-playbook.html",
         "manifest": "packages/education-learning-agenda-playbook.json",
         "report": "reports/education-learning-agenda-playbook.html",
+        "full_text": "readings/packages/education-learning-agenda-playbook.html",
         "source_text": "reports/education-learning-agenda-playbook.md"
       }
     },
@@ -8437,10 +8792,13 @@
         "supporting": 12
       },
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-budget-fy2026-fy2027.html",
       "routes": {
         "summary": "library/federal-budget-fy2026-fy2027.html",
         "manifest": "packages/federal-budget-fy2026-fy2027.json",
         "report": "reports/federal-budget-fy2026-fy2027.html",
+        "full_text": "readings/packages/federal-budget-fy2026-fy2027.html",
         "source_text": "reports/federal-budget-fy2026-fy2027.md"
       }
     },
@@ -8520,10 +8878,13 @@
         "supporting": 8
       },
       "latest_computer_edit_at": "2026-09-23T15:38:16Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/uk-constitutional-order-self-determination.html",
       "routes": {
         "summary": "library/uk-constitutional-order-self-determination.html",
         "manifest": "packages/uk-constitutional-order-self-determination.json",
         "report": "reports/uk-constitutional-order-self-determination.html",
+        "full_text": "readings/packages/uk-constitutional-order-self-determination.html",
         "source_text": "reports/uk-constitutional-order-self-determination.md"
       }
     },
@@ -8583,10 +8944,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-15T23:10:33Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/stop-secret-spending-act-ota-transparency.html",
       "routes": {
         "summary": "library/stop-secret-spending-act-ota-transparency.html",
         "manifest": "packages/stop-secret-spending-act-ota-transparency.json",
         "report": "reports/stop-secret-spending-act-ota-transparency.html",
+        "full_text": "readings/packages/stop-secret-spending-act-ota-transparency.html",
         "source_text": "reports/stop-secret-spending-act-ota-transparency.md"
       }
     },
@@ -8661,10 +9025,13 @@
         "supporting": 5
       },
       "latest_computer_edit_at": "2026-09-23T02:38:28Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-deep-website-review-2026-09-22.html",
       "routes": {
         "summary": "library/federal-government-deep-website-review-2026-09-22.html",
         "manifest": "packages/federal-government-deep-website-review-2026-09-22.json",
         "report": "reports/federal-government-deep-website-review-2026-09-22.html",
+        "full_text": "readings/packages/federal-government-deep-website-review-2026-09-22.html",
         "source_text": "reports/federal-government-deep-website-review-2026-09-22.md"
       }
     },
@@ -8737,10 +9104,13 @@
         "supporting": 9
       },
       "latest_computer_edit_at": "2026-09-26T16:51:34Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-weekly-delta-2026-09-25.html",
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-09-25.html",
         "manifest": "packages/federal-government-weekly-delta-2026-09-25.json",
         "report": "reports/federal-government-weekly-delta-2026-09-25.html",
+        "full_text": "readings/packages/federal-government-weekly-delta-2026-09-25.html",
         "source_text": "reports/federal-government-weekly-delta-2026-09-25.md"
       }
     },
@@ -8798,10 +9168,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-25T04:03:47Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/dvd-third-country-removal-authority-2025-2026.html",
       "routes": {
         "summary": "library/dvd-third-country-removal-authority-2025-2026.html",
         "manifest": "packages/dvd-third-country-removal-authority-2025-2026.json",
         "report": "reports/dvd-third-country-removal-authority-2025-2026.html",
+        "full_text": "readings/packages/dvd-third-country-removal-authority-2025-2026.html",
         "source_text": "reports/dvd-third-country-removal-authority-2025-2026.md"
       }
     },
@@ -8864,10 +9237,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-25T05:28:52Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/financial-infrastructure-permission-operating-receipt-windows-2026.html",
       "routes": {
         "summary": "library/financial-infrastructure-permission-operating-receipt-windows-2026.html",
         "manifest": "packages/financial-infrastructure-permission-operating-receipt-windows-2026.json",
         "report": "reports/financial-infrastructure-permission-operating-receipt-windows-2026.html",
+        "full_text": "readings/packages/financial-infrastructure-permission-operating-receipt-windows-2026.html",
         "source_text": "reports/financial-infrastructure-permission-operating-receipt-windows-2026.md"
       }
     },
@@ -8930,10 +9306,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-25T04:47:09Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/march-2025-aries-eclipse-authority-window.html",
       "routes": {
         "summary": "library/march-2025-aries-eclipse-authority-window.html",
         "manifest": "packages/march-2025-aries-eclipse-authority-window.json",
         "report": "reports/march-2025-aries-eclipse-authority-window.html",
+        "full_text": "readings/packages/march-2025-aries-eclipse-authority-window.html",
         "source_text": "reports/march-2025-aries-eclipse-authority-window.md"
       }
     },
@@ -8993,10 +9372,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-25T09:11:43Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/january-2025-authority-operations-window.html",
       "routes": {
         "summary": "library/january-2025-authority-operations-window.html",
         "manifest": "packages/january-2025-authority-operations-window.json",
         "report": "reports/january-2025-authority-operations-window.html",
+        "full_text": "readings/packages/january-2025-authority-operations-window.html",
         "source_text": "reports/january-2025-authority-operations-window.md"
       }
     },
@@ -9055,10 +9437,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-25T04:19:01Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/july-2024-protection-financial-control-window.html",
       "routes": {
         "summary": "library/july-2024-protection-financial-control-window.html",
         "manifest": "packages/july-2024-protection-financial-control-window.json",
         "report": "reports/july-2024-protection-financial-control-window.html",
+        "full_text": "readings/packages/july-2024-protection-financial-control-window.html",
         "source_text": "reports/july-2024-protection-financial-control-window.md"
       }
     },
@@ -9117,10 +9502,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-25T12:16:57Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/december-2024-beneficial-ownership-reporting-perimeter.html",
       "routes": {
         "summary": "library/december-2024-beneficial-ownership-reporting-perimeter.html",
         "manifest": "packages/december-2024-beneficial-ownership-reporting-perimeter.json",
         "report": "reports/december-2024-beneficial-ownership-reporting-perimeter.html",
+        "full_text": "readings/packages/december-2024-beneficial-ownership-reporting-perimeter.html",
         "source_text": "reports/december-2024-beneficial-ownership-reporting-perimeter.md"
       }
     },
@@ -9185,10 +9573,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-25T02:07:55Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/march-2006-march-2007-institutional-action-windows.html",
       "routes": {
         "summary": "library/march-2006-march-2007-institutional-action-windows.html",
         "manifest": "packages/march-2006-march-2007-institutional-action-windows.json",
         "report": "reports/march-2006-march-2007-institutional-action-windows.html",
+        "full_text": "readings/packages/march-2006-march-2007-institutional-action-windows.html",
         "source_text": "reports/march-2006-march-2007-institutional-action-windows.md"
       }
     },
@@ -9266,10 +9657,13 @@
         "supporting": 17
       },
       "latest_computer_edit_at": "2026-09-28T23:53:46Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-movement-atlas.html",
       "routes": {
         "summary": "library/federal-government-movement-atlas.html",
         "manifest": "packages/federal-government-movement-atlas.json",
         "report": "reports/federal-government-movement-atlas.html",
+        "full_text": "readings/packages/federal-government-movement-atlas.html",
         "source_text": "reports/federal-government-movement-atlas.md"
       }
     },
@@ -9335,10 +9729,13 @@
         "supporting": 4
       },
       "latest_computer_edit_at": "2026-09-28T15:44:41Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/us-china-strategic-stability-state-visit-2026.html",
       "routes": {
         "summary": "library/us-china-strategic-stability-state-visit-2026.html",
         "manifest": "packages/us-china-strategic-stability-state-visit-2026.json",
         "report": "reports/us-china-strategic-stability-state-visit-2026.html",
+        "full_text": "readings/packages/us-china-strategic-stability-state-visit-2026.html",
         "source_text": "reports/us-china-strategic-stability-state-visit-2026.md"
       }
     },
@@ -9416,10 +9813,13 @@
         "supporting": 19
       },
       "latest_computer_edit_at": "2026-09-28T14:09:26Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/china-country-orientation-2026.html",
       "routes": {
         "summary": "library/china-country-orientation-2026.html",
         "manifest": "packages/china-country-orientation-2026.json",
         "report": "reports/china-country-orientation-2026.html",
+        "full_text": "readings/packages/china-country-orientation-2026.html",
         "source_text": "reports/china-country-orientation-2026.md"
       }
     },
@@ -9496,10 +9896,13 @@
         "supporting": 6
       },
       "latest_computer_edit_at": "2026-09-25T03:02:02Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/russia-country-orientation-2026.html",
       "routes": {
         "summary": "library/russia-country-orientation-2026.html",
         "manifest": "packages/russia-country-orientation-2026.json",
         "report": "reports/russia-country-orientation-2026.html",
+        "full_text": "readings/packages/russia-country-orientation-2026.html",
         "source_text": "reports/russia-country-orientation-2026.md"
       }
     },
@@ -9560,10 +9963,13 @@
         "supporting": 2
       },
       "latest_computer_edit_at": "2026-09-26T16:39:41Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/ustda-project-development-pipeline-2026.html",
       "routes": {
         "summary": "library/ustda-project-development-pipeline-2026.html",
         "manifest": "packages/ustda-project-development-pipeline-2026.json",
         "report": "reports/ustda-project-development-pipeline-2026.html",
+        "full_text": "readings/packages/ustda-project-development-pipeline-2026.html",
         "source_text": "reports/ustda-project-development-pipeline-2026.md"
       }
     },
@@ -9643,10 +10049,13 @@
         "supporting": 22
       },
       "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/institutional-signals-thesis-test-2025-2026.html",
       "routes": {
         "summary": "library/institutional-signals-thesis-test-2025-2026.html",
         "manifest": "packages/institutional-signals-thesis-test-2025-2026.json",
         "report": "reports/institutional-signals-thesis-test-2025-2026.html",
+        "full_text": "readings/packages/institutional-signals-thesis-test-2025-2026.html",
         "source_text": "reports/institutional-signals-thesis-test-2025-2026.md"
       }
     },
@@ -9721,10 +10130,13 @@
         "supporting": 71
       },
       "latest_computer_edit_at": "2026-09-29T02:48:24Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/government-hidden-control-surfaces-2026.html",
       "routes": {
         "summary": "library/government-hidden-control-surfaces-2026.html",
         "manifest": "packages/government-hidden-control-surfaces-2026.json",
         "report": "reports/government-hidden-control-surfaces-2026.html",
+        "full_text": "readings/packages/government-hidden-control-surfaces-2026.html",
         "source_text": "reports/government-hidden-control-surfaces-2026.md"
       }
     },
@@ -9795,10 +10207,13 @@
         "supporting": 10
       },
       "latest_computer_edit_at": "2026-09-27T16:34:44Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/major-bank-digital-transition.html",
       "routes": {
         "summary": "library/major-bank-digital-transition.html",
         "manifest": "packages/major-bank-digital-transition.json",
         "report": "reports/major-bank-digital-transition.html",
+        "full_text": "readings/packages/major-bank-digital-transition.html",
         "source_text": "reports/major-bank-digital-transition.md"
       }
     },
@@ -9857,10 +10272,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-27T00:57:49Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/official-record-authority-blockchain.html",
       "routes": {
         "summary": "library/official-record-authority-blockchain.html",
         "manifest": "packages/official-record-authority-blockchain.json",
         "report": "reports/official-record-authority-blockchain.html",
+        "full_text": "readings/packages/official-record-authority-blockchain.html",
         "source_text": "reports/official-record-authority-blockchain.md"
       }
     },
@@ -9919,10 +10337,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-27T01:13:42Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/atomic-settlement-continuous-assurance.html",
       "routes": {
         "summary": "library/atomic-settlement-continuous-assurance.html",
         "manifest": "packages/atomic-settlement-continuous-assurance.json",
         "report": "reports/atomic-settlement-continuous-assurance.html",
+        "full_text": "readings/packages/atomic-settlement-continuous-assurance.html",
         "source_text": "reports/atomic-settlement-continuous-assurance.md"
       }
     },
@@ -9986,10 +10407,13 @@
         "supporting": 0
       },
       "latest_computer_edit_at": "2026-09-27T16:33:11Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/qnt-september-2026-price-rise.html",
       "routes": {
         "summary": "library/qnt-september-2026-price-rise.html",
         "manifest": "packages/qnt-september-2026-price-rise.json",
         "report": "reports/qnt-september-2026-price-rise.html",
+        "full_text": "readings/packages/qnt-september-2026-price-rise.html",
         "source_text": "reports/qnt-september-2026-price-rise.md"
       }
     }

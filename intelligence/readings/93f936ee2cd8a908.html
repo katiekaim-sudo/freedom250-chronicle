@@ -1,0 +1,876 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><meta name="f250:page-type" content="plain_full_text_reading"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/readings/93f936ee2cd8a908.html"><link rel="sitemap" type="application/xml" href="../../sitemap.xml"><title>Follow the stablecoin adapter stack</title></head><body><p><a href="../bot-instructions.html">For Katie's Bot</a> · <a href="../bot-index.html">Bot Index</a></p><h1>Follow the stablecoin adapter stack</h1><p>Crawler-friendly static reading edition. For an interactive or generated object, this page preserves its visible text and appends the public package research needed to interpret it.</p><ul><li><a href="../rooms/stablecoin-adapter-stack.html">Original public view</a></li><li><a href="packages/private-monetary-stack.html">Package full-text reading — private-monetary-stack</a></li></ul><h2>Full text</h2><pre style="white-space:pre-wrap;overflow-wrap:anywhere">PUBLIC OBJECT — VISIBLE TEXT
+
+Stablecoin Adapter Stack — Wallet × Processor × Acquirer
+Freedom 250 Observatory · private rails · as of 2026-07-28
+Stablecoin Adapter Stack — Wallet × Processor × Acquirer
+The conversion layer forming behind cards, checkout pages, merchant payouts and network settlement
+Stablecoin adoption is entering commerce through controlled adapters, not through a universal crypto terminal. The firms that already own the wallet, merchant contract, payout instruction, network obligation or reconciliation ledger can change the funding or settlement asset while preserving the familiar checkout surface.
+The controlled adapter stack
+A payment is not one rail. Each product assigns these jobs to different companies and different legal clocks.
+credential / tenderwallet / custodypayment adapterprocessor / networkmerchant contractconversion / payoutissuer / bank finality
+T1 · funded cardStablecoin balance funds a familiar card credential; merchant usually receives ordinary card settlement.T2 · wallet checkoutCustomer sends stablecoin; processor preserves order/refund/reconciliation and pays merchant fiat or stablecoin.T4 · network settlementCustomer still pays by card; issuer/acquirer obligation settles with a stablecoin behind the network.T5 · merchant payoutCustomer tender stays ordinary; processor converts merchant proceeds to a stablecoin wallet.Adapter fabricWallet, compliance, issuance, conversion or chain middleware; necessary but not sufficient for merchant acceptance.Evidence ruleProduction, limited production, pilot, rollout, beta, announced acquisition and product marketing are not interchangeable.
+Architecture
+Evidence
+2022 → 2026
+T5 · merchant payout
+Production
+Worldpay × Circle × BVNK
+merchant acquiring + treasury payout
+production
+The acquirer changes what the merchant receives
+Worldpay can preserve ordinary customer tender while paying an eligible merchant in USDC or USDG. Current Worldpay material also says cross-border stablecoin payouts are supported, although public proof of the named BVNK integration&#x27;s production scale is limited.
+Customer presentsOrdinary card or other supported tender can remain unchanged.
+Merchant / beneficiary receivesMerchant or beneficiary receives USDC, USDG or a supported stablecoin.
+Terminal effectThe payout election itself requires no terminal change; this does not establish in-person availability.
+open the seven-layer adapter reading
+Credential / tender
+Ordinary card or other supported tender can remain unchanged.
+Wallet / custody
+Merchant-controlled stablecoin wallet or payout beneficiary wallet.
+Payment adapter
+Worldpay&#x27;s merchant settlement election and enterprise payout integration adapt the processor payable to a wallet endpoint.
+Processor / network
+Worldpay processes the underlying merchant or payout flow.
+Merchant contract
+Worldpay owns the acquiring or enterprise payout relationship.
+Conversion / routing
+Circle supplies USDC issuance/redemption infrastructure. BVNK was named for fiat/stablecoin payout infrastructure, but current public Worldpay material does not isolate the provider on every supported payout.
+Issuer + finality
+Circle issues USDC; Paxos Digital Singapore issues USDG. On-chain receipt and issuer redemption are separate from the original card settlement.
+What actually changed
+The payout asset and treasury clock changed; the point-of-sale credential did not.
+Boundary
+Merchant stablecoin settlement is not proof that the customer paid in stablecoin or that an EMV terminal parsed a blockchain asset. The live Worldpay settlement product and the later BVNK beneficiary-payout relationship have different evidence clocks.
+Worldpay — USDC settlement · Worldpay — 2026 product update · Worldpay — USDG settlement · BVNK — Worldpay collaboration
+12 Jun 2025 → live
+T2 · wallet checkout
+Production
+Shopify × Stripe × Coinbase
+on-chain USDC ecommerce checkout
+production · region gated
+Stablecoin becomes a payment method inside an existing order system
+Shopify Payments merchants in supported regions can activate USDC checkout, accept hundreds of wallets and choose local-currency or USDC payout without rebuilding order management.
+Customer presentsUSDC on Base, Ethereum, Optimism, Polygon or Arbitrum from a supported wallet.
+Merchant receivesLocal-currency Shopify payout or USDC balance/payout, depending on region and election.
+Terminal effectThis is ecommerce checkout, not ordinary EMV contactless. It proves software-level acceptance can be added to a familiar merchant surface.
+open the seven-layer adapter reading
+Credential / tender
+USDC on Base, Ethereum, Optimism, Polygon or Arbitrum from a supported wallet.
+Wallet / custody
+Shopify says 480 wallets are supported; the customer connects a crypto wallet.
+Payment adapter
+The USDC payment method lives inside Shopify Payments order, capture, payout and refund workflows.
+Processor / network
+Shopify Payments preserves checkout, capture, order, refund and merchant-admin workflows; Stripe and Coinbase supplied the original payment infrastructure.
+Merchant contract
+The merchant enables USDC inside Shopify Payments.
+Conversion / routing
+The merchant can receive the chosen payout currency or, where available, claim USDC to a connected wallet.
+Issuer + finality
+Circle is the USDC issuer. Supported-chain confirmation, Shopify order finality, refund funding and issuer redemption remain distinct.
+What actually changed
+A stablecoin payment method was inserted into the processor and order stack.
+Boundary
+Regional exclusions, identity checks, no subscriptions, no partial capture and no customer disputes make this materially different from card acceptance.
+Shopify Help — USDC · Shopify — original launch
+16 Dec 2025 → production pilot
+T4 · network settlement
+Pilot
+Visa × Circle × select banks × nine-chain pilot
+issuer/acquirer network settlement
+live pilot / regional rollout · $7B annualized company-reported run rate
+The card experience stays fixed while Visa changes its settlement asset
+Select U.S. issuer and acquirer partners became eligible for USDC settlement; Cross River Bank and Lead Bank were the named initial banks using USDC on Solana. By April 2026 Visa&#x27;s global pilot supported nine blockchains and reported a $7 billion overall annualized run rate, without a chain-level allocation.
+Customer presentsThe consumer still presents a Visa credential; Visa says no change to the consumer card experience.
+Merchant receivesThe merchant can still receive ordinary merchant settlement even when an institutional Visa leg moves in USDC.
+Terminal effectNo checkout change is implied by the settlement feature; the consumer card experience and terminal transaction can remain ordinary.
+open the seven-layer adapter reading
+Credential / tender
+The consumer still presents a Visa credential; Visa says no change to the consumer card experience.
+Wallet / custody
+Institutional treasury/custody wallets operated by participating banks and infrastructure providers.
+Payment adapter
+Visa&#x27;s stablecoin settlement program maps network obligations into approved institutional USDC settlement legs.
+Processor / network
+Visa authorization, clearing and network rules remain the commercial spine.
+Merchant contract
+The acquirer still credits the merchant under existing acquiring arrangements.
+Conversion / routing
+Participating issuers or acquirers source or receive approved stablecoins for network obligations.
+Issuer + finality
+Circle issuance/redemption plus blockchain finality sit behind a continuing Visa obligation and bank liquidity process.
+What actually changed
+The inter-institution settlement instrument and operating window changed; the credential, authorization message and merchant acceptance contract survived.
+Boundary
+Visa continues to call the program a pilot. Annualized run rate is not total settled volume, universal issuer/acquirer availability or proof that the volume was distributed across all nine supported chains.
+Visa — U.S. USDC settlement · Visa — nine-chain expansion
+22 Dec 2025
+T5 · merchant payout
+Production
+Shift4
+merchant acquiring + stablecoin payout
+production
+Stablecoin payout becomes a setting on a global acquiring platform
+Shift4 launched merchant settlement in USDC, USDT, EURC or DAI across several chains for its global merchant base.
+Customer presentsNot specified as stablecoin; the product concerns merchant settlement.
+Merchant receivesMerchant receives the selected stablecoin on a supported chain.
+Terminal effectThe payout election itself requires no terminal change and may sit behind existing acceptance; it does not prove an in-person method is enabled.
+open the seven-layer adapter reading
+Credential / tender
+Not specified as stablecoin; the product concerns merchant settlement.
+Wallet / custody
+Merchant nominates a compatible stablecoin wallet.
+Payment adapter
+A Shift4 merchant settlement election maps the processor payable to a supported wallet, stablecoin and chain.
+Processor / network
+Shift4 continues processing and reconciling the underlying merchant payments.
+Merchant contract
+Shift4 already owns the merchant settlement instruction.
+Conversion / routing
+Shift4 converts or routes the payable merchant balance into the elected stablecoin.
+Issuer + finality
+Multiple issuers and chains create separate token, custody, redemption and bank-funding dependencies.
+What actually changed
+The merchant settlement endpoint became a wallet address.
+Boundary
+A broad product launch does not disclose enabled-merchant count, volume, liquidity providers or the exact legal entity on every corridor.
+Shift4 — stablecoin settlement launch
+27 Jan 2026
+Adapter fabric
+Agreement / acquisition
+Checkout.com × Blue EMI
+acquirer/processor acquires issuer license
+acquisition announced · relevant approvals obtained
+The merchant processor buys a regulated euro-token issuer
+Checkout.com announced its acquisition of Blue EMI after receiving relevant approvals, adding an EU electronic-money issuer authorized to issue euro stablecoins.
+Customer presentsNo customer payment method follows automatically.
+Product-specific endpoint receivesProduct-specific; this card maps ownership, not a merchant launch.
+Terminal effectNone by itself.
+open the seven-layer adapter reading
+Credential / tender
+No customer payment method follows automatically.
+Wallet / custody
+A wallet/distribution layer still has to be specified for a product.
+Payment adapter
+No live merchant payment adapter is specified; this card records an issuer capability entering the same corporate stack.
+Processor / network
+Checkout.com supplies merchant processing, acquiring and reconciliation.
+Merchant contract
+Checkout.com already controls enterprise merchant relationships.
+Conversion / routing
+The acquired issuer capability could connect euro bank money, token issuance/redemption and merchant flows in a product-specific implementation.
+Issuer + finality
+Blue EMI carries regulated issuance authority; reserve-bank money and any separate payment-system connection remain the fiat side of finality.
+What actually changed
+One company now spans merchant processing and a regulated stablecoin-issuance doorway.
+Boundary
+Owning an authorized issuer does not prove a particular coin, wallet, merchant route or volume is live.
+Checkout.com — Blue EMI acquisition
+17 Mar 2026
+Adapter fabric
+Agreement / acquisition
+Mastercard × BVNK
+network acquires conversion/orchestration layer
+definitive agreement · not yet closed
+Mastercard moves to own the fiat–stablecoin bridge
+Mastercard agreed to acquire BVNK for up to $1.8 billion, explicitly pairing a global card network with infrastructure that sends, receives, stores and converts fiat and stablecoins across 130+ countries.
+Customer presentsProduct-dependent: card, bank money or stablecoin.
+Product-specific endpoint receivesProduct-dependent merchant, platform or beneficiary payout.
+Terminal effectNo terminal change follows from the deal.
+open the seven-layer adapter reading
+Credential / tender
+Product-dependent: card, bank money or stablecoin.
+Wallet / custody
+BVNK supports enterprise wallets and beneficiary endpoints.
+Payment adapter
+No single live merchant adapter follows from the agreement; BVNK would add reusable fiat/stablecoin account, conversion and payout modules.
+Processor / network
+Mastercard supplies card-network and money-movement infrastructure.
+Merchant contract
+Could arrive through Mastercard partners, acquirers, PSPs or BVNK enterprise integrations.
+Conversion / routing
+BVNK is the proposed owned bridge across fiat accounts, stablecoin balances and chains.
+Issuer + finality
+BVNK does not collapse stablecoin issuers, blockchains, banking partners or Mastercard settlement into one legal object.
+What actually changed
+The network announced vertical integration into the conversion and orchestration layer.
+Boundary
+The transaction was still subject to closing conditions at this cutoff. Treat expected synergies as announced, not delivered.
+Mastercard — BVNK acquisition agreement
+8 Apr 2026
+Adapter fabric
+Rollout / onboarding
+Circle Internet Financial × CPN Managed Payments
+institutional cross-border orchestration
+launched · collaborative use cases; production scale undisclosed
+The stablecoin issuer packages mint, burn, compliance and chain routing
+CPN Managed Payments lets approved banks, PSPs and fintechs interact through fiat-facing workflows while Circle handles USDC mint/burn, compliance orchestration and blockchain operations.
+Customer presentsUsually institutional fiat funding rather than consumer checkout.
+Institution / beneficiary receivesBeneficiary may receive local fiat through a payout partner; participant flows may settle in USDC.
+Terminal effectNone. This is an institutional back-end rail.
+open the seven-layer adapter reading
+Credential / tender
+Usually institutional fiat funding rather than consumer checkout.
+Wallet / custody
+Participant and managed institutional wallet infrastructure.
+Payment adapter
+CPN Managed Payments packages participant instructions, compliance orchestration, token operations and fiat-facing settlement workflows.
+Processor / network
+Circle Internet Financial provides Managed Payments. Circle Technology Services operates the underlying CPN technology and rules.
+Merchant contract
+Participants such as PSPs and cross-border payout firms retain their customer relationships.
+Conversion / routing
+Circle packages fiat-to-USDC and USDC-to-fiat legs for approved flows.
+Issuer + finality
+USDC is issued by regulated Circle affiliates. CPN rules state participants settle with each other and Circle Technology Services is not automatically the transaction principal or funds holder.
+What actually changed
+The issuer expanded from supplying the asset to supplying an operating system around it.
+Boundary
+Launch collaborators were described as exploring use cases; public production volume is undisclosed. Circle Internet Financial provides Managed Payments, while Circle Technology Services operates CPN technology and is not the principal in participant transactions.
+Circle — CPN Managed Payments launch · Circle — CPN roles and rules
+27 May 2026
+T2 · wallet checkout
+Rollout / onboarding
+PPRO × Coinbase
+PSP-distributed wallet checkout
+documented integration · merchant onboarding; public production deployment not evidenced
+A local-payment-method aggregator makes USDC look like another checkout method
+PPRO exposes Coinbase-powered USDC as a Global API payment method, with redirect/QR wallet handoff, standard refunds and merchant settlement in fiat or USDC.
+Customer presentsUSDC from a Coinbase account or compatible wallet.
+Merchant receivesMerchant-side settlement can be fiat or USDC.
+Terminal effectOnline redirect/QR flow. It does not turn a generic contactless terminal into a native USDC terminal.
+open the seven-layer adapter reading
+Credential / tender
+USDC from a Coinbase account or compatible wallet.
+Wallet / custody
+Coinbase or passthrough wallet flow after redirect or QR.
+Payment adapter
+PPRO exposes the Coinbase-powered stablecoin method through its Global API transaction, status and refund model.
+Processor / network
+PPRO provides the PSP-facing API, transaction object, status model and refund interface.
+Merchant contract
+The merchant may be reached through PPRO&#x27;s PSP customer rather than a direct Coinbase integration.
+Conversion / routing
+Coinbase payment infrastructure routes and converts the stablecoin flow.
+Issuer + finality
+Circle issues USDC; wallet transfer, PPRO payment state, merchant payout and redemption remain separate.
+What actually changed
+PPRO gives a PSP one integration point from which it can configure the method for eligible merchant integrations.
+Boundary
+PPRO documents disputes as “No.” Refunds are supported, but the guide includes sandbox and pre-go-live steps and settlement configuration through an account manager; no named production merchant or volume is disclosed.
+PPRO — Coinbase collaboration · PPRO developer docs — stablecoins
+2 Jun 2026
+T2 · wallet checkout
+Rollout / onboarding
+Checkout.com × Coinbase Payments
+enterprise stablecoin checkout
+launched capability · partner onboarding; production deployment undisclosed
+The acquirer adds wallet-funded checkout while preserving merchant USD settlement
+Eligible Checkout.com enterprise merchants can add Coinbase-powered stablecoin acceptance while continuing to settle in USD through Checkout.com&#x27;s existing rails.
+Customer presentsUSDC from a Coinbase account or supported self-custody wallet; Coinbase&#x27;s current acceptance documentation lists USDT as coming soon.
+Merchant receivesUSD through existing Checkout.com settlement rails.
+Terminal effectNo in-store terminal claim. This is enterprise digital checkout.
+open the seven-layer adapter reading
+Credential / tender
+USDC from a Coinbase account or supported self-custody wallet; Coinbase&#x27;s current acceptance documentation lists USDT as coming soon.
+Wallet / custody
+Coinbase says its acceptance layer can connect hundreds of wallets.
+Payment adapter
+Coinbase Payment Acceptance APIs sit behind the Checkout.com merchant payment and reconciliation surface.
+Processor / network
+Coinbase exposes acceptance APIs; Checkout.com keeps the merchant payment and reconciliation surface.
+Merchant contract
+Checkout.com remains the merchant-facing processor/acquirer.
+Conversion / routing
+Coinbase handles stablecoin payment orchestration; Checkout.com preserves fiat settlement to the merchant.
+Issuer + finality
+The stablecoin issuer and chain sit on the customer side; merchant finality still lands in conventional banking rails.
+What actually changed
+The funding instrument changed while the merchant&#x27;s contractual and treasury experience was intentionally held constant.
+Boundary
+Eligibility, geography, supported assets and exact merchant terms remain controlled product boundaries. Coinbase&#x27;s generic USD/USDC settlement options do not by themselves establish the exact Checkout.com configuration, counterparty or a named production merchant.
+Checkout.com — Coinbase acceptance · Coinbase — Payment Acceptance APIs
+2 Jun 2026
+Adapter fabric
+Limited production
+Fireblocks Flow
+PSP acceptance middleware
+launched · production customer named
+Wallet verification, chain intake and reconciliation become one PSP module
+Fireblocks Flow lets PSPs and fintechs accept from exchange accounts and hundreds of wallet types while outsourcing wallet verification, compliance, asset conversion and reconciliation.
+Customer presentsSupported stablecoin from an exchange account or external wallet.
+Configured merchant endpoint receivesConfigured fiat or stablecoin path through the PSP and its partners.
+Terminal effectNo automatic terminal change. The product is acceptance infrastructure for PSP-controlled surfaces.
+open the seven-layer adapter reading
+Credential / tender
+Supported stablecoin from an exchange account or external wallet.
+Wallet / custody
+Fireblocks says Flow covers exchange sources and roughly 800 wallet types across EVM, Solana and Bitcoin environments.
+Payment adapter
+Flow is the reusable crypto-intake module between a PSP checkout and the configured wallet, compliance and protocol endpoints.
+Processor / network
+The PSP owns checkout and merchant processing; Flow supplies the crypto-specific adapter.
+Merchant contract
+The PSP keeps its licenses and merchant relationship.
+Conversion / routing
+Flow coordinates compliance and reconciliation; conversion, swap, bridge and routing counterparties depend on the PSP and integrated protocols.
+Issuer + finality
+Fireblocks states it is not in the flow of funds; licenses, issuers, exchanges and settlement partners remain independent.
+What actually changed
+The hard crypto intake jobs became a reusable middleware module.
+Boundary
+Fireblocks says it is not in the flow of funds and does not control underlying swap, bridge or routing protocols. Blipply is the explicitly named production user; other launch relationships have different states.
+Fireblocks — Flow launch
+3 Jun 2026
+T5 · merchant payout
+Limited production
+Checkout.com × Fireblocks
+merchant stablecoin settlement
+production · eligible U.S. merchants
+The same merchant processor now supports the opposite conversion direction
+Checkout.com can accept ordinary payment flows and settle eligible U.S. merchants to a preferred stablecoin wallet through Fireblocks.
+Customer presentsUnchanged ordinary tender; stablecoin customer funding is not required.
+Merchant receivesStablecoin in the merchant&#x27;s selected wallet.
+Terminal effectThe payout feature itself requires no terminal change; the cited source does not establish in-person availability.
+open the seven-layer adapter reading
+Credential / tender
+Unchanged ordinary tender; stablecoin customer funding is not required.
+Wallet / custody
+Merchant supplies a preferred eligible stablecoin wallet.
+Payment adapter
+Checkout.com&#x27;s merchant settlement configuration invokes Fireblocks-connected conversion and wallet payout infrastructure.
+Processor / network
+Checkout.com processes and reconciles merchant transactions.
+Merchant contract
+Checkout.com controls merchant eligibility and payout configuration.
+Conversion / routing
+Fireblocks supplies regulated conversion and payout infrastructure.
+Issuer + finality
+Merchant wallet receipt sits after the processor payable; issuer redemption and banking legs remain separate.
+What actually changed
+The merchant payout rail changed while the customer&#x27;s payment method could remain exactly the same.
+Boundary
+The initial U.S. footprint excludes several jurisdictions and is limited to eligible merchants. The release does not identify the Fireblocks group legal entity, conversion counterparty or custody arrangement for every flow.
+Checkout.com — Fireblocks settlement
+3 Jun 2026
+T1 · funded card
+Rollout / onboarding
+Stripe × Bridge × Privy × Tempo × Deel
+embedded wallet + payroll + forthcoming card
+wallet live in Argentina · regional rollout announced · Deel Card forthcoming
+One vendor stack now spans funding, issuance, wallet, chain and spend
+Deel&#x27;s live Argentina wallet combines employer bank funding, Bridge conversion and DLUSD through Open Issuance with Privy embedded wallets and Tempo transfer infrastructure; the Deel Card was described as forthcoming.
+Customer presentsEmployer funds through ordinary bank debit; contractor holds a dollar stablecoin balance. Conventional card spend is a forthcoming layer in the cited release.
+Contractor receivesContractor holds DLUSD. The forthcoming card layer is intended to let that balance reach ordinary merchant card acceptance.
+Terminal effectThe live wallet does not establish a terminal path. The forthcoming conventional network card could preserve ordinary merchant acceptance, but no Apple Pay provisioning or specific contactless-terminal support is established.
+open the seven-layer adapter reading
+Credential / tender
+Employer funds through ordinary bank debit; contractor holds a dollar stablecoin balance. Conventional card spend is a forthcoming layer in the cited release.
+Wallet / custody
+Privy-powered embedded wallet inside Deel.
+Payment adapter
+The live adapter is the Deel embedded wallet; the T1 bridge would be the forthcoming Deel Card linked to that balance.
+Processor / network
+Stripe supplies employer payment processing and fraud controls; Bridge supplies stablecoin orchestration and issuance infrastructure.
+Merchant contract
+If and when the cited Deel Card layer launches, the eventual merchant would see a conventional card transaction through the network/acquirer.
+Conversion / routing
+Bridge converts employer USD into DLUSD through Open Issuance.
+Issuer + finality
+The release says DLUSD is issued through Bridge&#x27;s Open Issuance but does not identify the legal issuer/redemption obligor or reserve custodian. Tempo finality and any future card authorization/settlement remain distinct.
+What actually changed
+A live embedded payroll wallet now holds a stablecoin balance; the conventional card-spend adapter remains forthcoming in the cited release.
+Boundary
+Launch geography and rollout are limited. The card is forward-looking, and legal issuer, reserve custodian, redemption terms, Apple Pay provisioning and specific contactless-terminal support are not established.
+Stripe — Deel stablecoin wallet · Stripe — Sessions 2026 product map
+3 Jun 2026
+T4 · network settlement
+Rollout / onboarding
+Mastercard × issuers × acquirers × multiple stablecoins
+network settlement rollout
+early live flows + 2026 rollout
+Mastercard announces a multi-token, multi-chain settlement menu
+Mastercard plans intraday, weekend and holiday settlement using several regulated stablecoins across eight named chains; USDC already supports early on-chain flows while other assets and partners remain in rollout.
+Customer presentsThe customer card experience remains conventional.
+Issuer / acquirer receivesInstitutional network settlement; merchant payout can remain fiat.
+Terminal effectNo terminal change follows from the network-settlement feature.
+open the seven-layer adapter reading
+Credential / tender
+The customer card experience remains conventional.
+Wallet / custody
+Institutional settlement wallets for participating issuers and acquirers.
+Payment adapter
+Mastercard is adding a configurable stablecoin settlement option alongside existing network settlement processes.
+Processor / network
+Mastercard&#x27;s global card network remains the authorization, clearing and dispute framework.
+Merchant contract
+Acquirers continue the merchant relationship and merchant credit.
+Conversion / routing
+Participating institutions select fiat or supported stablecoin settlement options.
+Issuer + finality
+Each stablecoin and blockchain adds its own issuer, reserve, redemption and finality dependencies.
+What actually changed
+Settlement timing and asset choice are becoming configurable inside the existing card network.
+Boundary
+The release deliberately mixes already-live USDC flows, expected first participants and future global rollout; those states must not be collapsed.
+Mastercard — settlement expansion
+current docs · Jul 2026
+T2 · wallet checkout
+Production
+PayPal Crypto Payments
+wallet/exchange checkout adapter
+production · U.S. merchants
+PayPal absorbs the crypto flow and presents local currency to the merchant
+PayPal&#x27;s crypto payment method connects many wallets and exchanges, manages the digital-asset leg, converts the purchase and settles the merchant&#x27;s PayPal account in local currency.
+Customer presentsSupported crypto or stablecoin through a connected wallet or exchange.
+Merchant receivesMerchant PayPal balance in local currency.
+Terminal effectNo generic NFC or Apple Pay effect; this is PayPal-hosted digital checkout.
+open the seven-layer adapter reading
+Credential / tender
+Supported crypto or stablecoin through a connected wallet or exchange.
+Wallet / custody
+PayPal says the experience reaches roughly 100 supported crypto wallets and exchanges.
+Payment adapter
+PayPal Crypto Payments is an alternative payment method inside PayPal&#x27;s multiparty checkout, conversion and refund model.
+Processor / network
+PayPal owns checkout state, conversion, merchant credit and refunds.
+Merchant contract
+Eligible U.S. merchant uses PayPal multiparty checkout.
+Conversion / routing
+PayPal converts the crypto-funded payment into merchant local currency.
+Issuer + finality
+PayPal&#x27;s documentation says refunds are issued in PYUSD. Paxos, not PayPal, is the PYUSD issuer and custodian; original-asset liquidation, PayPal balance credit and bank withdrawal are separate.
+What actually changed
+The wallet asset is hidden behind a familiar PayPal merchant settlement object.
+Boundary
+The method does not support authorization/capture, billing agreements, subscriptions or card-style chargebacks.
+PayPal developer docs — crypto payments · PayPal — PYUSD
+summer 2026 watch
+Adapter fabric
+Marketing / launch target
+Fiserv × FIUSD × Finxact × Clover ecosystem
+core + processor + acquirer + issuer platform
+commercial page + launch target · no launch proof located
+Fiserv is positioning stablecoin inside the bank-and-merchant operating core
+Fiserv now markets FIUSD as a fully reserved, programmable digital dollar for banks and businesses, connected to core banking and payment systems; a May statement said go-live was expected in summer 2026.
+Customer presentsNot fixed; proposed uses include payment, loyalty, cross-border and treasury flows.
+Product-specific endpoint receivesProduct-specific bank or merchant stablecoin/fiat flow.
+Terminal effectNo proof located that existing Clover terminals automatically accept a native stablecoin payment.
+open the seven-layer adapter reading
+Credential / tender
+Not fixed; proposed uses include payment, loyalty, cross-border and treasury flows.
+Wallet / custody
+Product-specific bank, business or embedded-finance experience.
+Payment adapter
+FIUSD is marketed as an interoperable layer for Fiserv core, embedded-finance and payment systems; no named general-production merchant adapter is public.
+Processor / network
+Fiserv owns core processing, merchant acquiring, issuer processing and Clover distribution surfaces.
+Merchant contract
+Potentially Fiserv or Clover, but no universal merchant enablement is documented.
+Conversion / routing
+Fiserv describes interoperability with fiat and other major stablecoins; partners include Paxos, Circle, PayPal and Mastercard.
+Issuer + finality
+Public materials do not yet resolve every issuer, custodian, reserve-bank and redemption role for every FIUSD or white-label deployment.
+What actually changed
+Fiserv is building token infrastructure adjacent to its core and merchant distribution stack; no Clover acceptance follows from this announcement.
+Boundary
+A product page and launch target are stronger than a concept but weaker than named production institutions, transaction documents and observed volume.
+Fiserv — FIUSD product page · Fiserv — May 2026 shareholder statement
+16 Jul 2026
+Adapter fabric
+Beta
+Visa Stablecoin Platform × Open USD
+wallet-as-a-service + mint/burn + network connection
+select-client beta
+Visa adds the wallet and issuer-operation layers beside its network
+Visa&#x27;s new platform packages wallet infrastructure, bank-account connection, controls, audit logs and Open USD mint/burn/transfer access alongside Visa settlement, cards and money movement.
+Customer presentsFuture product-specific card, wallet, treasury or money-movement flow.
+Institution / product endpoint receivesInstitutional wallet or downstream product endpoint.
+Terminal effectNone at beta launch.
+open the seven-layer adapter reading
+Credential / tender
+Future product-specific card, wallet, treasury or money-movement flow.
+Wallet / custody
+Visa-managed Wallet-as-a-Service or connected institutional wallet.
+Payment adapter
+VSP is a Visa-managed institutional control plane for wallets, bank accounts and Open USD operations alongside existing Visa products.
+Processor / network
+Visa links the platform to its existing network, risk, fraud, treasury and settlement tools.
+Merchant contract
+Not a merchant acceptance launch; distribution would come through participating institutions and acquirers.
+Conversion / routing
+Clients can link bank accounts and mint, redeem, hold or transfer Open USD.
+Issuer + finality
+Visa attributes Open USD to Open Standard; the reviewed Visa source does not establish the exact issuer, redemption obligor, reserve owner or custodian. Visa packages access and controls but does not turn every Visa transaction into an on-chain transfer.
+What actually changed
+Visa is no longer only adapting stablecoins at card settlement; it is building the institutional wallet and mint/burn control plane too.
+Boundary
+The entire VSP and Wallet-as-a-Service package is initially beta with select clients. Broader availability is expressly future.
+Visa — Stablecoin Platform beta
+T3 direct wallet-to-merchant transfer remains a valid path but is not the dominant institutional pattern in this card set. “Acquirer” is used only where the firm actually owns the merchant-acquiring relationship; stablecoin acceptance middleware may perform an acquirer-like routing function without becoming the card acquirer of record.
+
+PACKAGE RESEARCH — private-monetary-stack
+
+&gt; **Start here. The seven-layer stack, the 12 findings, the transition sequence, the forward tells.**
+&gt; *Original delivered research with dated corrections. Audit + provenance: Private Monetary Stack — Source Documents. The delivered Workbench copy remains preserved.*
+
+# The Private Monetary Stack
+
+## What the fintech and crypto companies are actually building
+
+**Status:** primary-source company sweep and synthesis  
+**As of:** 2026-07-11  
+**Companions:** `FINTECH_CRYPTO_COMPANY_REGISTRY.md`; `FINTECH_CRYPTO_CLAIM_AUDIT.md`; `FINTECH_CRYPTO_TRANSITION_TIMELINE.md`; the four company-family research annexes
+
+---
+
+### September 7 bounded account correction — Kraken Financial
+
+The Kraken forward tell below now asks about subsequent account decisions and actual use, because official limited-purpose account approval and disclosed restrictions are already located. The March 4 announcement, May 8 disclosure and January 28 fields reported in saved July 25 research remain distinct clocks. See FINTECH_SWEEP_MARKET_ACCESS#2. Kraken for the exact evidence and unresolved term start. The original July 11 core and later dated extensions remain intact; this is not a new company-status sweep.
+
+### September 3 targeted charter refresh — World Liberty
+
+OCC Conditional Approval 1385, dated August 14, grants **preliminary
+conditional approval** to proposed World Liberty Trust Company, N.A., charter
+25407. The bank cannot commence business before final approval and satisfaction
+of preopening requirements. Its plan is to assume USD1 issuance, redemption and
+reserve functions from BitGo after establishment; it does not currently plan to
+seek a Federal Reserve master account. This is a charter-stage change, not proof
+that the bank opened, USD1 functions moved or a new settlement rail became
+operational. [OCC decision](https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-decisions/2026/cd1385.pdf)
+
+## The story in one line
+
+The private market is not converging on one magic coin or one chain. It is assembling a **federated permission stack** in which public networks, private ledgers, banks, trust companies, custodians, tokenizers, card networks, Swift, and market utilities each keep a different gate—and the firms are racing to own the adapters between them.
+
+### July 29 extension — the card constitution becomes product-line modular
+
+The follow-on card-network audit sharpens the adapter finding without replacing
+it. Visa, Mastercard, processors and acquirers are adding at least six distinct
+objects: stablecoin-funded card credentials, wallet checkout, native point of
+sale, network settlement, payout/treasury and minting-orchestration platforms.
+They do not share one customer tender, one merchant receipt, one finality rule
+or one production clock.
+
+The historical rhyme is now explicit. Bank cards separated the consumer loan,
+merchant relationship, authorization, clearing and settlement. Apple Pay
+changed the exposed credential while leaving the card constitution in place.
+Stablecoins can now enter the funding or settlement layer without becoming the
+merchant-facing payment method. Square Bitcoin is the live counterexample: a
+supported merchant surface can also host a genuinely non-card instruction.
+
+Read the controlling extension: Card Networks — Stablecoin Product Lines.
+Exact roles and flows: Card Networks — Entity and Flow Map. Corrections:
+Card Networks — Claim Audit. The chart layer remains parallel and
+non-evidentiary: Card Networks — Money × Sky.
+
+### August 26 extension — the no-cost implementation lane
+
+Howard Lutnick described a “gratis vendor” model in the March 20, 2025
+All-In interview: a company gives software to the government rather than
+selling it, and the government becomes the reference customer for later sales.
+That is evidence of an intended **no-price entry lane**, not a general rule
+that free software needs no approval or disclosure. The Antideficiency Act
+generally bars acceptance of voluntary services; GAO distinguishes properly
+documented gratuitous services and no-cost contracts; and Commerce&#x27;s own gift
+order requires authorized acceptance, conflict review and a CD-210 record for
+in-kind goods or services. A zero-dollar implementation may disappear from
+USAspending while still leaving legal, security and operational records.
+
+The bounded company refresh finds quiet government integration, but not a
+named donated federal crypto rail:
+
+| Company / family | Public federal-facing receipt | What it establishes | What it does not establish |
+|---|---|---|---|
+| Coinbase | says it works with more than 150 government entities and provides some services outside government contracts; a separate U.S. Marshals managed-services award is visible in USAspending at about $7 million | government custody, trading, education and technical support can exist through more than one legal channel | “outside a contract” does not mean donated software; the Marshals custody object is paid |
+| Tether | DOJ repeatedly credits Tether with freezing or transferring USDT into government-controlled wallets | the issuer&#x27;s key and lawful-order controls are operationally integrated into federal seizure workflows | case cooperation is not a donated payment, accounting or settlement rail |
+| Anchorage Digital | markets custody, seizure, training, strategic-reserve and stablecoin-issuance capabilities directly to government | the regulated custody/issuer adapter is being packaged for public-sector use | a marketing surface is not a named agency deployment, award or donation |
+| Circle | publicly urged Treasury to use payment stablecoins in federal-payment modernization | USDC is being offered as a government-payment component | an RFI response or policy pitch is not acceptance, pilot or production use |
+| Ripple, Stellar, Hedera, Chainlink, Fireblocks and the other mapped adapters | no named U.S. federal gratis deployment located in this bounded pass | keep them in the implementation watch because their payment, identity, oracle, wallet-policy and network roles fit the architecture | silence is not proof of absence, but it cannot be promoted to adoption |
+
+The likely quiet path is not “the government secretly chose one coin.” It is
+an adapter entering through a no-cost pilot, open-source component, technical
+assistance, lawful-order integration or gift/no-cost agreement, followed later
+by an authority, security or paid operating object. The receipt ladder is:
+
+```text
+company claim / public code
+  -&gt; written gift, gratuitous-service, no-cost-contract, MOU or pilot record
+  -&gt; government security authorization and system identity
+  -&gt; named agency workflow and accountable operator
+  -&gt; transaction, custody or settlement evidence
+  -&gt; paid follow-on award or durable operating authority
+```
+
+Do not collapse those rungs. For this research, the best hidden-implementation
+search is therefore broader than USAspending: gift records, no-cost agreements,
+ATO/system inventories, privacy and records notices, identity/certificate
+profiles, code repositories, agency technical documentation and later
+follow-on procurements.
+
+Sources: [All-In interview](https://www.youtube.com/watch?v=182ckTL2KBA) ·
+[31 U.S.C. § 1342](https://uscode.house.gov/view.xhtml?req=%28title%3A31+section%3A1342+edition%3Aprelim%29) ·
+[GAO, Treasury acceptance of voluntary services](https://www.gao.gov/products/b-324214) ·
+[Commerce DAO 203-9](https://www.commerce.gov/opog/directives/DAO_203-9) ·
+[Coinbase government services](https://www.coinbase.com/blog/Coinbase-is-helping-governments-engage-with-crypto) ·
+[Coinbase U.S. Marshals award](https://www.usaspending.gov/award/CONT_AWD_15M50024FA4400016_1544_15M50024DA4400010_1544) ·
+[DOJ Tether seizure assistance](https://www.justice.gov/opa/pr/united-states-files-civil-forfeiture-complaint-against-225m-funds-involved-cryptocurrency) ·
+[Anchorage Digital for government](https://www.anchorage.com/who-we-serve/government) ·
+[Circle on federal-payment modernization](https://www.circle.com/pt-br/blog/circle-supports-treasurys-vision-for-smarter-safer-government-payments).
+
+## 1. What this layer adds to the banking and judicial maps
+
+The banking sweep found that the brand, legal counterparty, processor, servicer, data holder, receivable owner, and customer agreement can all belong to different entities.
+
+The Judicial Money Map found that control, ownership, custody, liability, finality, and asset state are related but not interchangeable.
+
+The company sweep brings those two findings into the on-chain build. A single “crypto payment” may involve:
+
+- a wallet or exchange brand;
+- a state or national trust company;
+- a stablecoin issuer;
+- a reserve custodian;
+- a public blockchain;
+- a permissioned synchronization network;
+- an oracle or cross-chain messenger;
+- a transfer agent or depository retaining the authoritative record;
+- a card network, Swift, or bank rail carrying the instruction;
+- and a bank or central-bank account where final cash settlement occurs.
+
+The token is the visible object. The company map shows the legal and operational chain beneath it.
+
+## 2. First correction: there is no ISO coin club
+
+Ripple, Stellar, Hedera, Algorand, XDC, IOTA, and Quant are often grouped online as “ISO 20022 coins.” That label is not an ISO status. The ISO 20022 Registration Authority says cryptocurrencies are not inherently compliant, are not managed or registered by ISO 20022, and that no official certification authority exists.
+
+The real question is more interesting:
+
+&gt; Which company, gateway, or product can translate a regulated institution&#x27;s business intent into the messages, identity checks, asset records, and settlement steps used across old and new rails?
+
+That moves the story away from token destiny and toward adapters, message models, orchestration, and legal eligibility. [ISO 20022 FAQ](https://www.iso20022.org/frequently-asked-questions)
+
+## 3. The seven-layer private stack
+
+| Layer | Function | Leading company families in this sweep | Governing question |
+|---|---|---|---|
+| **1. Customer gate** | wallet, exchange, merchant, app, agentic interface | Coinbase, Kraken, PayPal, Stripe, Visa, Mastercard | Who can reach the user and set the contract? |
+| **2. Licensed gate** | charter, custody, brokerage, transfer agency, stablecoin issuance | Circle, Paxos, Ripple entities, Anchorage, BitGo, Coinbase, Kraken, Zero Hash, Securitize | Which legal person may act, and under whose supervision? |
+| **3. Asset wrapper** | stablecoin, deposit token, fund share, security token, digital twin | USDC, RLUSD, PYUSD, tokenized funds/stocks/Treasuries, bank deposit tokens | What legal claim does the token represent? |
+| **4. Record and lifecycle** | issuance, ownership record, corporate actions, mint/burn/freeze/correction | DTC/DTCC, Securitize, Paxos settlement entities, fund transfer agents, Ondo structures | Which ledger is authoritative when records conflict? |
+| **5. Network and synchronization** | public chain, permissioned ledger, privacy domain, transaction ordering | XRPL, Stellar, Hedera, Canton, Corda, Besu-based systems | Who operates the network and who may join? |
+| **6. Orchestration and interoperability** | messages, data, cross-chain instructions, proof, workflow | Swift, Chainlink, Quant, card networks, Fireblocks, Digital Asset | Who sees and coordinates the whole transaction? |
+| **7. Final cash and collateral** | reserve account, settlement bank, central-bank money, clearing margin | Fed/Reserve Banks, settlement banks, Fnality systems, Kinexys, clearinghouses | What asset discharges the obligation, and where? |
+
+No company owns all seven. The strategic firms are trying to occupy two or three adjacent layers so that every transaction must cross their boundary.
+
+## 4. The grouped company story
+
+### Finding 1 — The market is moving from chain competition to orchestration competition
+
+The loud retail story asks which chain wins. The institutional build assumes many chains, many money forms, and several authoritative records will coexist.
+
+DTCC calls its approach multi-chain. Visa expanded a multi-chain stablecoin settlement pilot. Mastercard named several stablecoins and networks in one settlement program. Swift is building a ledger while also orchestrating transactions across blockchain and conventional systems. Canton emphasizes synchronized but private applications rather than one shared global state.
+
+The scarce layer is therefore not raw blockspace. It is the trusted system that can express the instruction, prove the asset and identity state, coordinate both legs, and recover when one leg fails.
+
+### Finding 2 — The crypto companies are becoming regulated legal bodies
+
+The charter race is not a side story. Circle, Ripple, Paxos, BitGo, Coinbase, Kraken/Payward, Zero Hash, Anchorage, Fidelity Digital Assets, and others have pursued or obtained federal or state trust/bank status in different forms.
+
+This is the private-rail version of Entity Theory: the function migrates into a new legal body before the public fully notices the change. But the status words matter. Application, conditional approval, final approval, consummation, deposit insurance, and Federal Reserve account access are separate events.
+
+The leading firms want the public chain&#x27;s reach **and** the charter&#x27;s legal standing. The likely winner is not “decentralized” or “regulated” in the abstract; it is the entity that can bridge both without losing the users on one side or the account access on the other.
+
+### Finding 3 — Public chains are being admitted at the edge while authoritative control stays inside
+
+DTC&#x27;s Stellar plan is the cleanest example. DTC-tokenized assets are expected to become available on Stellar, but DTCC describes the connection as part of a multi-chain service and says the tokenized assets keep the same entitlements and safeguards as conventional DTC holdings.
+
+That is not the national securities record being handed to a public chain. It is a regulated depository allowing controlled public-chain representations of assets whose eligibility, lifecycle, and investor rights remain inside the DTC perimeter. [DTCC and Stellar](https://www.dtcc.com/news/2026/may/27/tokenization-service-to-connect-with-stellar-public-blockchain-as-dtc-advances-multi-chain-strategy)
+
+The structural pattern is likely to recur: openness in transport and distribution; permission at issuance, identity, custody, redemption, and correction.
+
+### Finding 4 — Permissioned networks are not losing to public chains; they are becoming the institutional interior
+
+Canton, Corda, Kinexys, Fnality, Partior, Broadridge DLR, and bank-led tokenized-deposit systems solve a different problem from open retail networks. They let regulated parties coordinate cash, securities, collateral, and privacy without revealing every position or workflow to every participant.
+
+Public and permissioned networks are therefore more complementary than the winner-take-all framing suggests:
+
+- public networks widen distribution and composability;
+- permissioned systems synchronize regulated balance sheets and private data;
+- depositories, custodians, and transfer agents bind the token to legal title;
+- adapters and messaging systems bridge the domains;
+- central-bank and commercial-bank money still close the cash leg.
+
+### Finding 5 — Stablecoins are becoming a settlement option inside incumbent networks
+
+Visa, Mastercard, PayPal, Fiserv, Stripe/Bridge, Circle, Paxos, Ripple, and bank issuers are not all trying to abolish card or bank rails. Several are inserting stablecoins as one settlement, treasury, payout, or cross-border option behind familiar networks.
+
+Mastercard&#x27;s June 2026 announcement named USDC, Paxos-issued coins, RLUSD, and SoFiUSD across several chains while keeping Mastercard&#x27;s fraud, dispute, rulebook, and acceptance perimeter. Visa likewise expanded its pilot across nine chains. The incumbent network can therefore adopt tokenized cash without yielding the customer relationship or operating constitution. [Mastercard](https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-expands-settlement-capabilities-to-include-stablecoin.html); [Visa](https://investor.visa.com/news/news-details/2026/Visa-Accelerates-Stablecoin-Momentum-Adding-Five-Blockchains-for-Settlement/default.aspx)
+
+### Finding 6 — The asset wrapper is becoming more programmable while title remains stubbornly conventional
+
+Tokenized Treasuries, funds, stocks, bonds, repo collateral, and deposits often remain claims on assets held by a conventional custodian or issuer. The token may support faster transfer, longer hours, composability, or collateral mobility, but it does not answer on its own:
+
+- who owns the underlying asset;
+- whether the token holder has a direct property right or a contractual claim;
+- who may correct the record;
+- what happens in the issuer&#x27;s bankruptcy;
+- whether a transfer agent or depository can freeze, burn, or replace the token;
+- or which court and law govern the result.
+
+This is the Judicial Money Story expressed in product architecture: technical finality and legal finality remain separate clocks.
+
+### Finding 7 — Custody and key policy are becoming the hidden constitution
+
+Fireblocks, Anchorage, BitGo, Coinbase Custody, Paxos, Standard Custody, Metaco, and other custody stacks decide who may sign, recover, pause, route, or segregate an asset. In institutional systems, “self-executing” code often sits behind multi-party approvals, allowlists, policy engines, recovery procedures, and legal orders.
+
+The control question is not simply who has the private key. It is who defines the signing policy, who can change it, which legal person owes the asset, and which outside body can compel action.
+
+### Finding 8 — Acquisitions are building vertical stacks faster than protocols are merging
+
+The important consolidation is occurring at the company level: payment firms buy stablecoin infrastructure; crypto firms buy custodians, prime brokers, treasury software, licensing footprints, and distribution; incumbents buy the adapters that let them add on-chain settlement without rebuilding the whole network.
+
+The acquisition map may reveal the end state faster than chain metrics. Each deal should be read as a missing layer being pulled inside the group.
+
+### Finding 9 — The same few dependencies sit under the appearance of diversity
+
+Many networks still depend on:
+
+- a small set of reserve custodians and settlement banks;
+- cloud and key-management providers;
+- stablecoin issuers and redemption banks;
+- oracles and interoperability software;
+- depositories and transfer agents;
+- the OCC, SEC, state regulators, and Federal Reserve account gate;
+- and the same large broker-dealers and asset managers supplying volume.
+
+Twenty ledgers can still rest on five legal or operational chokepoints. The company map must show shared dependencies, not merely node count.
+
+### Finding 10 — “Always on” has three clocks
+
+The payment-orchestrator sweep makes 24/7 language much more exact. There are at least three clocks:
+
+1. **token clock** — the on-chain transfer reaches protocol finality;
+2. **network clock** — Visa, Mastercard, Swift, an exchange, or another rulebook recognizes the participant obligation;
+3. **balance-sheet clock** — reserves are minted or redeemed, the deposit ledger changes, or final commercial-bank/central-bank settlement occurs.
+
+A service can make the first clock continuous while leaving the second or third on older cycles. Swift says its shared ledger synchronizes tokenized-deposit commitments while final settlement still completes through existing systems. Cross River describes converting an on-chain settlement event into a dollar ledger balance. “24/7” therefore needs the object and clock named.
+
+### Finding 11 — Coin proliferation can hide adapter concentration
+
+M0, Brale, Bridge, Fiserv, Galileo, BVNK, Fireblocks, Zero Hash, Cross River, and Lead Bank can sit beneath many visible brands. The customer may see a bespoke stablecoin or fintech app while a small set of companies supplies issuance logic, reserve routing, wallets, liquidity, compliance, bank accounts, and network settlement.
+
+This repeats the banking website finding in a new form: more brands do not necessarily mean more independent pipes. The adapter may be the true consolidating entity.
+
+### Finding 12 — Stablecoin and tokenized deposit are different legal states
+
+SoFiUSD is issued by an FDIC-insured national bank but is not itself an insured deposit. SoFi separately describes a future tokenized deposit that would carry deposit status. Swift&#x27;s first ledger use case coordinates bank-issued tokenized deposits, while Visa and Mastercard accept selected stablecoins as participant settlement options. Fiserv is exploring both.
+
+The issuer&#x27;s charter does not settle the asset&#x27;s legal nature. Each token needs its own liability, reserve, redemption, insurance, and insolvency map.
+
+## 5. The public/private seam by company type
+
+| Company type | Private power | Public-law source of force | Main fault line |
+|---|---|---|---|
+| Stablecoin issuer | mint, burn, freeze, redeem, choose reserve/custodian | charter/license, reserve rules, sanctions, account access | token holder versus issuer/custodian claim |
+| Public network sponsor/foundation | software roadmap, grants, treasury, validator influence | securities/commodities law, sanctions, licensed gateways | “neutral” network versus sponsor concentration |
+| Institutional ledger operator | admission, privacy domains, synchronization, software control | member regulation, contract, market-utility approvals | private rulebook carrying market-wide effect |
+| Exchange/broker | listing, access, margin, liquidation, custody | SEC/CFTC/state/OCC permissions | platform balance sheet versus customer property |
+| Tokenizer/transfer agent | create representation, maintain holder record, corporate actions | securities law and transfer-agent duties | on-chain transfer versus authoritative register |
+| Custodian/key platform | signing, recovery, segregation, policy engine | trust/bank charter, custody rules, court orders | cryptographic control versus legal title |
+| Card/message network | routing, acceptance, fraud/dispute rules, data | bank/network regulation and contract | tokenized settlement beneath unchanged network power |
+
+## 6. The strongest continuity with the five poles
+
+The company layer cuts across all five monetary poles:
+
+- **TOKEN:** Circle, Paxos, Ripple, PayPal, Fiserv, SoFi, Stripe/Bridge, M0/Brale-style infrastructure;
+- **STATE-LEDGER:** central-bank and state pilots using private software, including Project Acacia use cases and Wyoming FRNT infrastructure;
+- **METAL:** still a thinner company layer, but tokenizers, custodians, exchanges, and state platforms can wrap specie claims;
+- **WALL:** charters, licensing, sanctions compliance, identity, freeze/burn powers, geofencing, and listing rules;
+- **PLUMBING:** Swift, card networks, Canton, Corda, Chainlink, Quant, Fnality, Partior, Broadridge, Kinexys, DTCC connectivity, and public L1s.
+
+The company field therefore does not add a sixth pole. It shows **who is trying to own each gate inside the five**.
+
+## 7. What this strengthens in the existing story
+
+1. **The pipes matter more than the unit.** Most firms assume dollars, deposits, stablecoins, securities, and multiple networks coexist.
+2. **Private bodies are becoming public-law franchises.** Trust charters, transfer-agent status, clearing registration, and depository connections give private systems legal force.
+3. **The transition is additive and accretive.** Incumbents absorb the new rails instead of vanishing.
+4. **Permission is the operating grammar.** Allowlist, certify, charter, custody, validate, mint, redeem, freeze, connect, and settle are the decisive verbs.
+5. **Collateral is the meeting point.** Tokenized cash and assets converge most clearly where institutions need intraday liquidity, repo, margin, and DvP.
+
+## 8. What this corrects or restrains
+
+1. **No ISO-certified coin list exists.** Messaging compatibility does not certify a token.
+2. **Institutional selection of a network does not make its native token the settlement asset.** The fee token, represented security, and cash leg may be different things.
+3. **A public-chain connection does not prove that the public chain becomes the authoritative ownership record.** DTC and transfer agents can remain in control.
+4. **A pilot is not adoption.** Real-value tests, limited production, and announced targets need separate labels.
+5. **A trust charter is not a full commercial bank or automatic Fed access.** Each permission has its own clock.
+6. **More chains do not necessarily mean more independent infrastructure.** Shared custodians, banks, clouds, oracles, and regulators can re-centralize the stack.
+
+## 9. Transition sequence
+
+### Phase 1 — crypto firms prove the primitive
+
+Public chains, stablecoins, exchanges, and custody systems show that programmable, continuously available value can move outside bank hours.
+
+### Phase 2 — institutions isolate the useful parts
+
+Banks and market utilities adopt permissioned ledgers, tokenized deposits, controlled public-chain pilots, and digital-asset custody while retaining conventional title and supervision.
+
+### Phase 3 — the legal bodies move into place
+
+Trust charters, clearing registrations, transfer-agent structures, account applications, and stablecoin statutes turn technical capability into legal permission.
+
+### Phase 4 — incumbent networks become multi-rail orchestrators
+
+Swift, Visa, Mastercard, DTCC, settlement banks, and clearinghouses accept several assets and chains while keeping the rulebook, identity, and recovery layer.
+
+### Phase 5 — collateral and cash converge
+
+Tokenized securities, funds, deposits, stablecoins, and central-bank money become usable across repo, margin, treasury, payments, and DvP workflows. This is the point where the new stack becomes load-bearing rather than decorative.
+
+## 10. Forward tells
+
+1. DTC&#x27;s first live tokenized asset, the exact authoritative-record design, and the first public-chain connection used in production.
+2. Whether the Stellar target reaches production in H1 2027 and which asset classes are eligible.
+3. Which Canton, Corda, Besu, or public-chain workflows process sustained production volume rather than pilots.
+4. Final and consummated status for the OCC crypto trust-bank queue.
+5. Subsequent renewal or changed-condition decisions for Kraken Financial’s already approved limited-purpose account, and evidence of actual payment use; its initial one-year term start remains unspecified. Keep separate the account decisions or request evidence for Ripple/Standard Custody and other limited-purpose institutions. Exact Kraken approval, restrictions and reported CSV clocks: FINTECH_SWEEP_MARKET_ACCESS#2. Kraken.
+6. Whether stablecoin settlement at Visa and Mastercard becomes material production volume and which settlement banks close the fiat leg.
+7. Swift&#x27;s initial ledger pilots: tokenized-deposit liability, off-ledger settlement mechanism, participant rulebook, and production volume.
+8. Paxos Securities Settlement Company&#x27;s temporary registration: eligible securities, participant growth, cash leg, and route toward permanent status.
+9. Bank tokenized-deposit networks versus nonbank stablecoins: whether they interoperate, compete, or divide wholesale and retail use cases.
+10. Acquisitions that pull custody, licensing, treasury, prime brokerage, or tokenization inside one group.
+11. The first insolvency, sanctions order, mistaken transfer, or custody dispute to test the new stack&#x27;s legal recovery path.
+12. Any new asset or money form that fails to fit TOKEN / STATE-LEDGER / METAL / WALL / PLUMBING.
+13. Whether “24/7” programs close all three clocks—token, network, and balance sheet—or merely move the delay.
+14. FIUSD&#x27;s actual issuer/redemption obligor and the first production banks or merchants.
+15. Mastercard&#x27;s BVNK acquisition closing and whether asset/chain neutrality survives integration.
+16. Any gift record, no-cost agreement, ATO, system inventory, identity profile, code repository or follow-on award that turns a crypto-company government claim into a named federal implementation receipt.
+
+## 11. Research coverage and reading order
+
+The sweep contains 35 distinct core company/system portraits, with overlap retained where one group occupies several functions.
+
+1. **Start here:** this synthesis.
+2. **Use `FINTECH_CRYPTO_COMPANY_REGISTRY.md`** for the entity/function census and the field schema for future additions.
+3. **Use `FINTECH_CRYPTO_CLAIM_AUDIT.md`** before carrying old private-rail claims into new synthesis.
+4. **Use `FINTECH_CRYPTO_TRANSITION_TIMELINE.md`** for the selected 2025–2027 factual spine and watchboard.
+5. **Use the four detailed annexes for portraits and primary sources:**
+   - `FINTECH_SWEEP_ISO_NETWORKS.md` — Ripple/XRPL, Stellar, Hedera, Algorand, XDC, IOTA, Quant;
+   - `FINTECH_SWEEP_INSTITUTIONAL_RAILS.md` — Digital Asset/Canton, R3/Corda, Chainlink, Fnality, Partior, Broadridge DLR, Kinexys, Paxos;
+   - `FINTECH_SWEEP_MARKET_ACCESS.md` — Coinbase, Kraken, Circle, Securitize, Ondo, Fireblocks, Anchorage, BitGo, Zero Hash, Stripe/Bridge;
+   - `FINTECH_SWEEP_PAYMENT_ORCHESTRATORS.md` — Swift, Visa, Mastercard/BVNK, Fiserv/FIUSD, PayPal/PYUSD, SoFi/Galileo/SoFiUSD, M0, Brale, Cross River, Lead Bank.
+
+## Bottom line
+
+The private build does not show the old financial system being cleanly replaced by crypto. It shows the old system learning to speak to public chains, the crypto firms learning to become banks and market utilities, and both sides meeting in a layered architecture built around permission, custody, and interoperability.
+
+The deepest company-level question is therefore not “which token wins?” It is:
+
+&gt; Which legal group controls the adapter between the asset, the ledger, the customer, and final settlement—and can that adapter survive regulation, failure, and a court order?
+
+That is where the next chapter of the monetary story lives.
+</pre></body></html>

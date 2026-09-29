@@ -2,8 +2,8 @@
 
 **Research ID:** `un-general-assembly-high-level-week-2026`  
 **Focus reset:** 2026-09-26 17:40 EDT  
-**Primary-source refresh:** official ODET pages checked 2026-09-26  
-**State:** Digital Cooperation Day held; several evidence and method layers advanced; no located UN crypto, AI-finance or sandbox instrument has crossed into adoption, capitalization or operation
+**Primary-source refresh:** official ODET and PGA records checked 2026-09-29  
+**State:** Digital Cooperation Day and the General Debate are complete; the debate produced a strong AI-governance salience signal, but no located UN crypto, AI-finance or sandbox instrument crossed into adoption, capitalization or operation
 
 ## The actual question
 
@@ -59,6 +59,21 @@ endorsement, a shared legal definition, a settlement-finality rule, a custody
 or priority regime, a standards work item, a regulator-backed pilot or
 production use.
 
+### 4. AI governance moved to the centre of the General Debate
+
+In his official remarks closing the General Debate on 28 September, the
+President of the General Assembly reported that **128 delegations addressed
+artificial intelligence**, compared with five delegations four years earlier.
+He characterized AI or artificial general intelligence as having moved from
+the margins of the debate to its centre and routed the political ambition
+forward to the Global Dialogue on AI Governance in 2027.
+
+This is a consequential **agenda-salience and coalition-breadth** signal. It is
+not proof that 128 delegations agreed on a common policy, endorsed the same
+risk model or authorized a new institution. The closing statement announced
+no adopted rule, negotiating text, budget, fund, standard, implementation body
+or operating programme.
+
 ## What did not cross
 
 - **Global Fund for AI Capacity-Building:** A/80/817 recommends that the
@@ -80,7 +95,7 @@ production use.
   located.
 - **Digital Cooperation Day outcome layer:** the official ODET event page still
   exposes the agenda, speakers, photographs and three room recordings. The
-  focused September 26 refresh did not locate a new consolidated outcome or a
+  focused September 29 refresh did not locate a new consolidated outcome or a
   later instrument that changes the state above.
 
 ## Active return gates
@@ -100,7 +115,10 @@ Only reopen the package for one of these receipts:
    operating deployment; or
 7. a General Debate statement containing a concrete technology commitment that
    crosses authority, money, implementation or operation—not generic support
-   for AI, innovation or digital inclusion.
+   for AI, innovation or digital inclusion; or
+8. a 2027 Global Dialogue negotiating text, agreed priority area, appointed
+   implementation owner or other receipt that converts the 128-delegation
+   salience signal into common policy machinery.
 
 ## Research routing
 
@@ -132,6 +150,9 @@ this handoff.
   <https://docs.un.org/A/80/817>
 - Secretary-General report A/79/966:
   <https://docs.un.org/A/79/966>
+- President of the General Assembly, remarks at the close of the General
+  Debate, 28 September 2026:
+  <https://www.un.org/pga/81/documents/speeches/close-of-the-general-debate-28-september-2026/>
 
 ## Clock boundary
 

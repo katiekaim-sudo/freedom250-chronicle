@@ -24,7 +24,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Education and University Funding](education-university-funding.md) — cutoff 2026-08-17
 - [Emerging Fraud — Identity, Eligibility and the Payment Gate](emerging-fraud-identity-payment-gate.md) — cutoff 2026-07-15
 - [Epstein Interview Statement Accountability](epstein-interview-statement-accountability.md) — cutoff 2026-07-21
-- [Federal Agency AI Plans and Infrastructure](federal-agency-ai-plans-infrastructure.md) — cutoff 2026-08-23
+- [Federal Agency AI Plans and Infrastructure](federal-agency-ai-plans-infrastructure.md) — cutoff 2026-09-28
 - [Federal Budget — FY2026 to FY2027](federal-budget-fy2026-fy2027.md) — cutoff 2026-09-11T19:55:13-04:00
 - [Federal Force, Surveillance and Emergency Authority Maps](federal-force-surveillance-and-emergency-authority.md) — cutoff 2026-08-15
 - [Federal Government Deep Website Review — September 16–22, 2026](federal-government-deep-website-review-2026-09-22.md) — cutoff 2026-09-22T11:51:46-04:00
@@ -60,6 +60,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Authority Through the Adapter — Where Control Actually Moves](authority-through-the-adapter.md) — cutoff 2026-08-31T10:42:24-04:00
 - [Banks and Credit Unions — Federal and Four-State Legal Architecture](bank-credit-union-legal-architecture.md) — cutoff 2026-09-15
 - [CFTC Passive Software No-Action Position — 2026](cftc-passive-software-no-action-2026-09-17.md) — cutoff 2026-09-17T11:32:00-04:00
+- [Coinbase Clearing DCO Registration — 2026](coinbase-clearing-dco-registration-2026-09-28.md) — cutoff 2026-09-28T22:09:00-04:00
 - [Congressional Monetary Infrastructure](congressional-monetary-infrastructure.md) — cutoff 2026-09-16
 - [Crypto Infrastructure Comparatives](crypto-infrastructure-comparatives.md) — cutoff 2026-09-17
 - [Crypto Infrastructure Hub](tokenization-entity-control-map.md) — cutoff 2026-09-24
@@ -125,7 +126,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [U.S.–China Strategic Stability State Visit — September 2026](us-china-strategic-stability-state-visit-2026.md) — cutoff 2026-09-28T10:07:16-04:00
 - [UK Constitutional Order and Self-Determination](uk-constitutional-order-self-determination.md) — cutoff 2026-09-13T17:59:00-04:00
 - [USTDA Project Development Pipeline — 2026](ustda-project-development-pipeline-2026.md) — cutoff 2026-09-26T12:45:00-04:00
-- [United Nations General Assembly High-Level Week — 2026](un-general-assembly-high-level-week-2026.md) — cutoff 2026-09-25T04:38:16-04:00
+- [United Nations General Assembly High-Level Week — 2026](un-general-assembly-high-level-week-2026.md) — cutoff 2026-09-29T04:30:00-04:00
 - [Federal Government Entity Library Harvest — 2026-08-22](federal-government-entity-library-harvest-2026-08-22.md) — cutoff 2026-08-23
 - [Federal Government Full Freshness Sweep — August 22, 2026](federal-government-full-freshness-sweep-2026-08-22.md) — cutoff 2026-08-23
 - [Federal Government Sweep Control Audit — August 21–29, 2026](federal-government-sweep-control-audit-2026-08-29.md) — cutoff 2026-08-29T21:06:00-04:00

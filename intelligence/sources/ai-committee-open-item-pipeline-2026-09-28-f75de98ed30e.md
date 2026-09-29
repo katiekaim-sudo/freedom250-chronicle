@@ -1,3 +1,5 @@
+> Source cutoff: 2026-09-28 ET
+
 # AI committee open-item pipeline
 
 ## Answer first

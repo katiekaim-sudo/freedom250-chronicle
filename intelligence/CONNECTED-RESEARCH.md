@@ -141,6 +141,7 @@ Charters, legislation, regulators and courts determine which routes may operate.
 - [SEC Tokenized NMS Stock Innovation Exemption — 2026 Order](library/sec-tokenized-nms-stock-innovation-exemption.html)
 - [SEC Investor Advisory Committee — 2026 meeting record](library/sec-investor-advisory-committee.html)
 - [CFTC Passive Software No-Action Position — 2026](library/cftc-passive-software-no-action-2026-09-17.html)
+- [Coinbase Clearing DCO Registration — 2026](library/coinbase-clearing-dco-registration-2026-09-28.html)
 - [Judicial Money](library/judicial-money.html)
 - [Emergency Monetary Policy](library/emergency-monetary-policy.html)
 - [International Emergency Monetary Policy](library/international-emergency-monetary-policy.html)
@@ -825,6 +826,7 @@ The proposal would keep one registered recordkeeping transfer agent responsible 
 - [Read the operative tokenized-stock trading lane](sources/sec-tokenized-nms-stock-innovation-exemption-2026-09-17-55d7bb31e484.html): The September 17 order opens a conditional public-chain AMM venue and liquidity-provider exemption while leaving the official record, issuance, custody, settlement and token-selection gates separate.
 - [Read the Investor Advisory Committee advice clock](sources/sec-iac-2026-analysis-9cea97e770e4.html): The March 12, 2026 IAC tokenization recommendation is Committee advice against a blanket exemption. Keep it separate from Release 34-106402, which is the later permission object.
 - [Read the derivatives distribution adapter](sources/cftc-passive-software-no-action-position-2026-09-17-d180cea1d70c.html): The September 17 staff position opens a conditional software distribution lane into registered derivatives markets while leaving custody, execution discretion, clearing, product legality and operating use separate.
+- [Separate clearing permission from clearing operation](sources/coinbase-clearing-dco-registration-order-2026-09-28-8307e1006304.html): The September 28 Commission order registers Coinbase Clearing for fully collateralized derivatives, while named products, collateral, members, settlement institutions and first transactions remain later operating receipts.
 - [Compare networks by the job they perform](sources/other-crypto-infrastructure-buildout-comparison-b8ec2a2a4281.html): The comparison separates corporate control, network function, native-token use and the local legal institutions above shared execution.
 - [Inspect those roles in the Crypto Infrastructure Hub](rooms/crypto-infrastructure.html): Use the process maps to locate operators, integrations and dependencies at each lifecycle stage.
 - Connect: [Use the Hub with the ownership question in mind](stories/money-in-motion.html#use-the-hub): The same network can appear in several processes without owning every legal or monetary function.

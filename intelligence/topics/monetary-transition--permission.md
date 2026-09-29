@@ -48,7 +48,7 @@ Sources: [Private monetary suite legacy custody](../sources/private-monetary-sta
 
 The decisive permission question is always specific: which authority authorized which entity to perform which function, under which conditions, at what clock, with what record and remedy?
 
-Congressional and judicial package cutoffs run through 2026-09-03; SEC transfer-agent proposal through 2026-09-01; SEC Tokenized NMS Stock Innovation Exemption through 2026-09-17 09:46 EDT; CFTC Letter 26-25 through 2026-09-17 11:32 EDT; emergency package through 2026-07-15. GENIUS and Charter Queue materials retain their own dated boundaries and source roles. September 7 record reconciliation adds seven exact Money/Charter records, using named saved-study cutoffs and the May 8 historical Kansas City Fed disclosure; it does not refresh every institution or policy to September 7. A further September 7 reconciliation connects the exact July 11 Ripple record to CA-09 and the Treasury correction history; no new Fed CSV search was completed. SEC Investor Advisory Committee meeting record through 2026-09-17 16:00 EDT.
+Congressional and judicial package cutoffs run through 2026-09-03; SEC transfer-agent proposal through 2026-09-01; SEC Tokenized NMS Stock Innovation Exemption through 2026-09-17 09:46 EDT; CFTC Letter 26-25 through 2026-09-17 11:32 EDT; Coinbase Clearing DCO registration through 2026-09-28 22:09 EDT; emergency package through 2026-07-15. GENIUS and Charter Queue materials retain their own dated boundaries and source roles. September 7 record reconciliation adds seven exact Money/Charter records, using named saved-study cutoffs and the May 8 historical Kansas City Fed disclosure; it does not refresh every institution or policy to September 7. A further September 7 reconciliation connects the exact July 11 Ripple record to CA-09 and the Treasury correction history; no new Fed CSV search was completed. SEC Investor Advisory Committee meeting record through 2026-09-17 16:00 EDT.
 
 ## Research collections
 
@@ -59,6 +59,7 @@ Congressional and judicial package cutoffs run through 2026-09-03; SEC transfer-
 - [SEC Tokenized NMS Stock Innovation Exemption — 2026 Order](../library/sec-tokenized-nms-stock-innovation-exemption.html)
 - [SEC Investor Advisory Committee — 2026 meeting record](../library/sec-investor-advisory-committee.html)
 - [CFTC Passive Software No-Action Position — 2026](../library/cftc-passive-software-no-action-2026-09-17.html)
+- [Coinbase Clearing DCO Registration — 2026](../library/coinbase-clearing-dco-registration-2026-09-28.html)
 - [Judicial Money](../library/judicial-money.html)
 - [Emergency Monetary Policy](../library/emergency-monetary-policy.html)
 - [International Emergency Monetary Policy](../library/international-emergency-monetary-policy.html)

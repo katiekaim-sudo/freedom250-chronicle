@@ -1,8 +1,8 @@
 # Institutional Signals and Thesis Test — 2025–2026
 
-**Status:** active research program  
+**Status:** historical sweep and dated active-buildout map complete through the September 28, 2026 cutoff  
 **Research window:** January 1, 2025 through September 28, 2026  
-**Evidence cutoff:** September 28, 2026 for Wave 0 and the Wave 1 opening sample  
+**Evidence cutoff:** September 28, 2026  
 **Parent census:** `government-hidden-control-surfaces-2026`  
 **Interpretive owner:** `economic-institution-legitimacy-crisis`
 
@@ -15,28 +15,58 @@ contradict, narrow or fail to bear on the Observatory's braided thesis?
 
 ## Present answer
 
-Wave 0 is complete: 126 existing source objects are reconciled across the
-financial/digital, management/public-input and science/industrial lanes. Wave
-1 is open with nine newly verified official-source signal records. No final
-program-level thesis verdict has yet been issued.
+The full fixed-window sweep is complete. All 114 governed surfaces now have a
+terminal disposition: 81 material signals, 4 bounded public-record nulls, 23
+access holds and 6 cohort-denominator routes. Thirteen signal ledgers contain
+145 unique normalized official-source records across 87 signal-bearing
+surfaces, and the independent falsification audit reconciles 420 proposition
+and rival tests.
 
-The test is deliberately adversarial. It preserves the possibility that the
-observed pattern is ordinary constitutional adaptation, independent sectoral
-modernization, incumbent absorption or selection bias rather than one coherent
-institutional refactoring.
+The final ruling supports incremental, incumbent-contained institutional
+refactoring: committees and expert bodies translate problems into common
+records, standards, assumptions, gates and candidate actions, while agencies,
+boards, Secretaries and statutory officials usually retain adoption, funding,
+finality and remedy authority. The same evidence strongly supports incumbent
+absorption and ordinary modernization. Founding-scale authority transfer, one
+hidden command structure and broad measured public benefit are not established.
+Effect and affected-person remedy remain the decisive evidence gaps.
+
+The companion active-buildout pass maps what remains in motion at the same
+cutoff. It admits 90 object-specific builds across 67 of the 114 surfaces:
+84 active objects and 6 specifically paused, stale or access-limited objects.
+The other 47 surfaces are not inferred into activity. The current architecture
+is strongest in common data grammar, machine-readable assurance, conditional
+permission, public-service records, shared-service migration, capital gates
+and testbed-to-deployment chains.
 
 ## Read first
 
-1. `INSTITUTIONAL_SIGNALS_AND_THESIS_TEST_CHARTER_2025-2026.md`
-2. `THESIS_PROPOSITION_REGISTER_2025-2026.json`
-3. `SIGNAL_EVIDENCE_SCHEMA.json`
-4. `SIGNALS_WAVE_LEDGER_2025-2026.json`
-5. `SIGNAL_SURFACE_DENOMINATOR_2025-2026.json`
-6. `SURFACE_COVERAGE_LEDGER_2025-2026.json`
+1. `ACTIVE_INSTITUTIONAL_BUILDOUT_MAP_2026-09-28.md`
+2. `CRYPTO_DLT_MONETARY_SOVEREIGNTY_OPEN_ITEM_PIPELINE_2026-09-28.md`
+3. `ACTIVE_BUILDOUT_REGISTER_2026-09-28.json`
+4. `ACTIVE_BUILDOUT_METHOD_2026-09-28.md`
+5. `FULL_SWEEP_CROSS_INSTITUTIONAL_SYNTHESIS_2026-09-28.md`
+6. `CROSS_LANE_FALSIFICATION_AUDIT_2026-09-28.md`
 7. `SURFACE_COVERAGE_STATUS_2026-09-28.md`
-8. [`WAVE_0_EXISTING_CORPUS_RECONCILIATION_2026-09-28.md`](../sources/wave-0-existing-corpus-reconciliation-2026-09-28-29d67a55a78b.html)
-9. `WAVE_1_FINANCIAL_DIGITAL_OPENING_FINDINGS_2026-09-28.md`
-10. `PUBLIC_DELIVERY_OPENING_FINDINGS_2026-09-28.md`
+8. `SIGNALS_WAVE_LEDGER_2025-2026.json`
+9. `ACTIVE_BUILDOUT_WAVE_LEDGER_2026-09-28.json`
+10. `INSTITUTIONAL_SIGNALS_AND_THESIS_TEST_CHARTER_2025-2026.md`
+11. `THESIS_PROPOSITION_REGISTER_2025-2026.json`
+12. `SIGNAL_EVIDENCE_SCHEMA.json`
+13. `SIGNAL_SURFACE_DENOMINATOR_2025-2026.json`
+14. `SURFACE_COVERAGE_LEDGER_2025-2026.json`
+15. [`WAVE_0_EXISTING_CORPUS_RECONCILIATION_2026-09-28.md`](../sources/wave-0-existing-corpus-reconciliation-2026-09-28-29d67a55a78b.html)
+16. `ACTIVE_BUILDOUT_FINANCIAL_MANAGEMENT_FINDINGS_2026-09-28.md`
+17. `ACTIVE_BUILDOUT_SCIENCE_CYBER_FINDINGS_2026-09-28.md`
+18. `ACTIVE_BUILDOUT_DELIVERY_TRADE_INPUT_FINDINGS_2026-09-28.md`
+19. `WAVE_1_FINANCIAL_ADVICE_TO_ACTION_CONCORDANCE_2025-2026.md`
+20. `REMAINING_FINANCIAL_DIGITAL_FULL_SWEEP_FINDINGS_2026-09-28.md`
+21. `WAVE_2_SCIENCE_MISSION_FINDINGS_2026-09-28.md`
+22. `REMAINING_MANAGEMENT_OPERATING_SYSTEM_FULL_SWEEP_FINDINGS_2026-09-28.md`
+23. `CYBER_CRITICAL_INFRASTRUCTURE_FULL_SWEEP_FINDINGS_2026-09-28.md`
+24. `TRADE_LOGISTICS_INFRASTRUCTURE_FULL_SWEEP_FINDINGS_2026-09-28.md`
+25. `PUBLIC_DELIVERY_FULL_SWEEP_FINDINGS_2026-09-28.md`
+26. `PUBLIC_DELIVERY_OPENING_CLOSEOUT_FINDINGS_2026-09-28.md`
 
 ## Evidence ladder
 
@@ -72,6 +102,9 @@ contract, system or decision right supplies the join.
 - The parent census owns legal identity, lifecycle and chart relationships.
 - Existing factual packages retain custody of their subjects and cutoffs.
 - This package owns the normalized signal comparison and thesis test.
+- The dated active-buildout register owns only present build state, next actor,
+  next receipt and stop condition. It does not revise the completed historical
+  signal disposition.
 - A missing public record is an access or custody fact, not proof of inactivity.
 - Advisory language is not agency policy. Agency policy is not operation.
 - This program does not authorize Chronicle promotion, chart mutation, app
@@ -79,3 +112,7 @@ contract, system or decision right supplies the join.
 - The 114-row surface coverage ledger is the completion control. A signal
   record never makes a surface terminal automatically; source-surface status
   and the final disposition require human reconciliation.
+- A terminal row may not retain a `not_started` or `unresolved` source surface.
+  A terminal signal requires a governed signal record; a terminal null cannot
+  contain a directional signal; and an access hold must identify the blocked,
+  dynamic or classified source surface and its exact access limit.

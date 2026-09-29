@@ -1,4 +1,4 @@
-> Source cutoff: 2026-09-25
+> Source cutoff: 2026-09-28
 
 # SEC–CFTC Current Authority and Operative Change Ledger
 
@@ -17,11 +17,34 @@ where located. CLARITY is used only to mark the present statutory boundary, not
 as the engine of the analysis. Banking, payment, AML, tax, state commercial law
 and bankruptcy are included only where they delimit SEC or CFTC power.
 
-**Cutoff:** 2026-09-25 EDT. Legal authority, instrument state and operation are
+**Cutoff:** 2026-09-28 EDT. Legal authority, instrument state and operation are
 kept separate.
 
 **Mutation boundary:** Workbench research only. No live-vault event, canonical
 watch, plotline, app state or legislative forecast was changed.
+
+## September 28 addendum — Coinbase Clearing DCO registration
+
+The Commission registered **Coinbase Clearing LLC** as a derivatives clearing
+organization under CEA section 5b and CFTC Regulation 39.3(a). The order
+permits the new DCO to clear fully collateralized futures, options on futures
+and swaps. This is Commission action and a live entity authorization—not staff
+relief—but it is not a product approval, ordinary spot-market regime,
+securities clearing-agency registration or permission for margined derivatives
+outside the fully collateralized model.
+
+The approved rulebook permits FCM-intermediated and self-clearing membership,
+requires a pre-acceptance full-collateral check, and says the DCO maintains no
+member-default financial-resource package because it clears only fully
+collateralized positions. It names no USDC, blockchain, product, settlement
+institution or first member. Coinbase's existing domestic margined
+perpetual-style products remained publicly described as cleared by Nodal Clear,
+so DCO registration and first in-house clearing remain separate clocks. The
+order also does not approve Coinbase Derivatives' proposed single-stock
+perpetual rules or its still-proposed SEC customer-margin filing.
+
+Full reading: [Coinbase Clearing DCO Registration Order — Authority, Structure
+and Operating Gates](../sources/coinbase-clearing-dco-registration-order-2026-09-28-8307e1006304.html).
 
 ## September 25 addendum — Corporation Finance crypto-asset FAQs
 

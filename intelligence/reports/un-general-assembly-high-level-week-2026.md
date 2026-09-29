@@ -1,148 +1,161 @@
-# UNGA81 Day Four Research Handoff
+# UNGA81 crypto, AI and innovation focused handoff
 
-**Meeting date:** 2026-09-25  
-**Evidence cutoff:** 2026-09-25 04:38 EDT  
 **Research ID:** `un-general-assembly-high-level-week-2026`  
-**State:** Day Three official media preserved; Day Four before-states fixed; substantive reconciliation remains open
+**Focus reset:** 2026-09-26 17:40 EDT  
+**Primary-source refresh:** official ODET and PGA records checked 2026-09-29  
+**State:** Digital Cooperation Day and the General Debate are complete; the debate produced a strong AI-governance salience signal, but no located UN crypto, AI-finance or sandbox instrument crossed into adoption, capitalization or operation
 
-## Start here
+## The actual question
 
-This is the compact re-entry point for 25 September. It preserves the first
-completed-media custody for Day Three, the formal Journal identities for
-yesterday and today, and the exact limits on what may be inferred before Day
-Four opens. Country addresses remain summary-first. Escalate only wording that
-changes an authority or implementation clock, announces money or machinery,
-proposes Charter or Security Council change, supplies a consequential factual
-claim, creates a meaningful cross-country pattern, or materially intersects an
-existing Observatory lane.
+Did UNGA81 materially advance:
 
-## What changed overnight
+- crypto, digital assets, tokenization, payments or settlement infrastructure;
+- AI governance, compute, data, digital public infrastructure or digital
+  cooperation; or
+- concrete innovation machinery such as funds, standards, sandboxes,
+  procurement, capacity networks, implementation bodies or operational
+  partnerships?
 
-### Day Three media is now in custody
+This is the controlling lens for the rest of High-Level Week. The package does
+not need minute-by-minute General Debate state, a country-completeness register
+or a transcript for every speech. A country statement matters only if it changes
+one of these technology or innovation clocks.
 
-The completed official UN WebTV objects and final English automatic-caption
-assets are preserved for:
+## What genuinely moved
 
-| Proceeding | Live entry | Recorded entry | Duration | Caption state |
-|---|---|---|---:|---|
-| General Debate Day Three | `1_8iyhzwip` | `1_nowzwrds` | 46,274 seconds | one English asset; chronological projection built without inferred speaker headings |
-| Sea-level rise Part One | `1_ej2317oq` | `1_2vtc5ckq` | 10,731 seconds | six caption assets; English projection built without inferred speaker headings |
-| Sea-level rise Part Two | `1_u0xp7957` | `1_1xle9f8h` | 10,893 seconds | six caption assets; English projection built without inferred speaker headings |
+### 1. The UN AI Strategy Blueprint crossed its launch gate
 
-The General Debate recording spans both the 9th and 10th plenary meetings.
-Meeting and speaker labels therefore require bounded intervals from the
-official proceeding; schedule order alone cannot label the transcript.
+Digital Cooperation Day held the formal launch and demonstration of the United
+Nations Blueprint for National AI and Data Strategies. Lesotho remains the
+first application and Guinea the announced next application. The existing
+official record says Lesotho's August workshop produced a draft national
+roadmap for computing capacity.
 
-The Day Three Journal return remains formally open. The 9th and 10th plenary
-records each expose eleven attached speaker statements. The two sea-level-rise
-records expose no attached statement, document or summary at this cutoff.
-Those are publication states, not proof of who delivered or what was adopted.
+This is a real **method and country-support** advance. It is not yet a released
+reusable Blueprint package, a final national strategy, an appropriation,
+procurement authority or operating deployment.
 
-### Sea-level-rise adoption advanced, but the exact outcome asset has not
+### 2. The Independent International Scientific Panel on AI released a new evidence object
 
-The President of the General Assembly's official as-delivered speech page says
-that the Assembly adopted the Political Declaration and describes the meeting
-as one at which the declaration was adopted. That advances the political
-agreement clock beyond the package's premeeting `adoption pending` state.
+The Panel's first thematic brief turns a real multi-agent incident into an
+evidence-and-controls object covering system permissions, credentials,
+runtime logs, independent monitoring, incident reporting, emergency controls
+and human authority. It materially strengthens the evidence and control-design
+layer.
 
-The official meeting page had not yet exposed a separately issued outcome file
-or UN document symbol at this cutoff. Therefore:
+The brief is not a binding safety rule, reporting duty, liability regime,
+audit standard or enforcement mechanism.
 
-`final draft agreed under silence → declaration adopted on 24 September → separately issued outcome text/document symbol still pending`
+### 3. Tokenization entered the public-infrastructure conversation
 
-Do not silently convert the earlier final-draft PDF into the exact adopted
-instrument until the competent outcome asset or formal record is published.
+Pakistan's official intervention framed tokenization around remittances, SME
+finance, sovereign debt and financial access, with regulation, safeguards and
+participation in international standard-setting. The Digital Cooperation Day
+agenda separately asked whether land, securities and commodity tokenization
+could become another layer of digital public infrastructure.
 
-### Day Two received two source corrections
+That is a meaningful policy framing and coalition signal. It is not UN
+endorsement, a shared legal definition, a settlement-finality rule, a custody
+or priority regime, a standards work item, a regulator-backed pilot or
+production use.
 
-- The 8th plenary Journal record advanced from seventeen to eighteen attached
-  statements with the addition of Uzbekistan. The record remains open and the
-  attachment does not by itself prove exact delivery.
-- UN WebTV replaced both Right to Development caption/media states. Part One
-  changed from 11,627 to 10,099 seconds and selected caption asset
-  `1_67j4v95z` was replaced by `1_ip6ppfri`. Part Two changed from 12,545 to
-  10,726 seconds and caption asset `1_kp26s5zt` was replaced by `1_9qbdiofy`.
-  The revised captions are preserved separately. Any quotation or interval
-  derived from the superseded longer recordings must be reconciled before use.
-- The climate event now exposes two caption assets rather than one, but the
-  selected English asset and preserved bytes are unchanged.
-- The Day Two e-Speakers raw feed changed bytes, but its governed Day Two
-  projection did not: thirty-nine approved records, thirty-nine end times, no
-  ready/done/skip transition and no identity or order change. No new roster
-  version was promoted.
+### 4. AI governance moved to the centre of the General Debate
 
-## Today's formal source map
+In his official remarks closing the General Debate on 28 September, the
+President of the General Assembly reported that **128 delegations addressed
+artificial intelligence**, compared with five delegations four years earlier.
+He characterized AI or artificial general intelligence as having moved from
+the margins of the debate to its centre and routed the political ambition
+forward to the Global Dialogue on AI Governance in 2027.
 
-At 04:36-04:38 EDT, all four official WebTV objects were published but exposed
-zero duration, zero audio tracks, zero captions and no recorded-entry
-transition. They are before-states only.
+This is a consequential **agenda-salience and coalition-breadth** signal. It is
+not proof that 128 delegations agreed on a common policy, endorsed the same
+risk model or authorized a new institution. The closing statement announced
+no adopted rule, negotiating text, budget, fund, standard, implementation body
+or operating programme.
 
-| Stream | Journal identity | WebTV live entry | Pre-opening state |
-|---|---|---|---|
-| General Debate morning | 11th plenary · `40ae0570-6f93-414c-9214-ff70a36686a3` | `1_ukg04uyo` | open; zero attached statements; no media route |
-| General Debate afternoon | 12th plenary · `da47a3f5-a760-42c3-937f-d37e94abda04` | `1_ukg04uyo` | open; zero attached statements; no media route |
-| Pandemic plenary opening | `a16c818a-67b3-4994-8303-544e59062c51` | shared event page `1_3wyul0eu` | open; zero attached statements; no media route |
-| Pandemic panel one | `9b2daa50-28fe-4484-9987-1558943bf321` | `1_giv9it0o` | open; zero attached statements; no media route |
-| Pandemic plenary continuation | `b20d81d6-9988-4116-a151-60418266b39d` | shared event page `1_3wyul0eu` | open; zero attached statements; no media route |
-| Pandemic plenary closing | `f51b8a98-7c05-4c12-97a0-0cc3c6d525ea` | shared event page `1_3wyul0eu` | open; zero attached statements; no media route |
-| Pandemic panel two | `f2120658-9d54-4dc7-b761-960c42bcf03f` | `1_mkix7q6m` | open; zero attached statements; no media route |
+## What did not cross
 
-The General Debate's two formal meetings share one day-level WebTV object. The
-pandemic plenary is split into three formal Journal records while its public
-WebTV meeting page is a shared event object. Keep those formal and media clocks
-separate.
+- **Global Fund for AI Capacity-Building:** A/80/817 recommends that the
+  General Assembly advance establishment work and gives an indicative
+  $3 billion starting scale over two to four years. No located record proves
+  that the Assembly established the fund, selected its legal home, approved
+  governance, received capitalization commitments or made an allocation.
+- **Cross-border AI-governance sandboxes:** the co-design sessions occurred,
+  but no charter, members, host, rulebook, data-sharing terms, ISO/IEC work item
+  or authorized pilot has been located.
+- **Tokenization infrastructure:** no UN legal model, common standard,
+  public-sector pilot, custody rule, priority rule, insolvency treatment or
+  production settlement rail has been located.
+- **AI Strategy Blueprint implementation:** no public reusable package, final
+  Lesotho strategy, adopted budget, procurement or operating programme has
+  been located.
+- **ODET–UNDRR collaboration:** the launch appeared in the event programme,
+  but no separate signed instrument, budget, work plan or operator map has been
+  located.
+- **Digital Cooperation Day outcome layer:** the official ODET event page still
+  exposes the agenda, speakers, photographs and three room recordings. The
+  focused September 29 refresh did not locate a new consolidated outcome or a
+  later instrument that changes the state above.
 
-## Pandemic outcome gate
+## Active return gates
 
-The official PGA meeting page still lists the programme, concept note,
-stakeholder-hearing summary, A/79/984 and the 2025 modalities resolution. It
-does not yet list a 2026 political-declaration text or outcome asset. The page
-says the meeting will culminate in approval of a declaration and that the
-outcome will be posted once issued. That is an expected future state, not
-current adoption.
+Only reopen the package for one of these receipts:
 
-When an outcome appears, test separately:
+1. a public Blueprint tool, manual, cost model or platform export;
+2. a final country AI/data strategy with adoption, budget, procurement or
+   accountable implementation owner;
+3. General Assembly action on the AI fund, a governance or operating model,
+   capitalization commitment, allocation rule or first grant;
+4. a sandbox charter, named participants, technical/legal rulebook or first
+   authorized cross-border pilot;
+5. a UN or regulator-backed tokenization paper, standard, pilot or legal rule
+   that changes custody, title, priority, insolvency, payments or settlement;
+6. a signed ODET partnership instrument, funded work plan or measurable
+   operating deployment; or
+7. a General Debate statement containing a concrete technology commitment that
+   crosses authority, money, implementation or operation—not generic support
+   for AI, innovation or digital inclusion; or
+8. a 2027 Global Dialogue negotiating text, agreed priority area, appointed
+   implementation owner or other receipt that converts the 128-delegation
+   salience signal into common policy machinery.
 
-1. approval during the meeting;
-2. exact issued text and document symbol;
-3. measurable or time-bound targets;
-4. finance owner and trigger;
-5. procurement, manufacturing and equitable-access terms;
-6. surveillance, data-sharing, PABS and reporting machinery; and
-7. later national or institutional implementation.
+## Research routing
 
-The existing expectation dossier already owns the background architecture.
-Do not build a duplicate pandemic baseline unless today's text materially
-changes it.
+- **Read first:** this handoff.
+- **Detailed outcome audit:**
+  `UN_DIGITAL_COOPERATION_DAY_OUTCOME_AND_FORECAST_AUDIT_2026-09-21.md`
+- **Architecture and dependency map:**
+  `UN_CRYPTO_AI_TECHNOLOGY_BUILDOUT_MAP_2026-09-20.md`
+- **Country application deep dive:**
+  `UN_AI_STRATEGY_BLUEPRINT_LESOTHO_GUINEA_DEEP_DIVE_2026-09-21.md`
+- **Primary-source ledger:**
+  `UN_DIGITAL_COOPERATION_DAY_SOURCE_LEDGER_2026-09-21.md`
+- **Visual hub:** `outputs/UNGA81 Week — Agenda × Architecture × Outcomes.html`
 
-## Minimum research sequence
+The September 26 live General Debate captures remain historical source custody.
+They are no longer the active research frontier and should not be extended
+unless a technology-relevant speech or session-level close materially changes
+this handoff.
 
-1. Compare today's four WebTV objects against the preserved preflight manifests.
-2. Compare all seven Journal meeting identities against the 04:38 records.
-3. Preserve an official caption asset only when the recording publishes; build
-   a chronological projection before adding any speaker headings.
-4. Reconcile the Day Three General Debate to actual delivery and produce one
-   compact country summary per delivered national address.
-5. Reconcile sea-level-rise interventions against the adopted-declaration
-   clock; treat national promises separately from the common declaration.
-6. For the pandemic meeting, prioritize the declaration and operating machinery
-   over rhetorical repetition; summarize ordinary national reports compactly.
+## Primary sources
 
-## Current open work
+- UN ODET, Digital Cooperation Day 2026:
+  <https://www.un.org/digital-emerging-technologies/content/un-digital-cooperation-day-2026>
+- UN ODET, Lesotho becomes first Blueprint pilot:
+  <https://www.un.org/digital-emerging-technologies/content/lesotho-becomes-first-pilot-un-blueprint-national-ai-and-data-strategies>
+- UN ODET, Secretary-General calls for a Global Fund for AI Capacity-Building:
+  <https://www.un.org/digital-emerging-technologies/content/secretary-general-calls-global-fund-address-ai-capacity-building-gaps-developing-countries>
+- Secretary-General report A/80/817:
+  <https://docs.un.org/A/80/817>
+- Secretary-General report A/79/966:
+  <https://docs.un.org/A/79/966>
+- President of the General Assembly, remarks at the close of the General
+  Debate, 28 September 2026:
+  <https://www.un.org/pga/81/documents/speeches/close-of-the-general-debate-28-september-2026/>
 
-- Day Three country-level delivery and summary reconciliation is not complete.
-- Day Three General Debate meeting/speaker intervals have not been attached.
-- The sea-level declaration is politically adopted, but the separately issued
-  outcome asset and formal document symbol are still pending.
-- Day Two remains open for content reconciliation even though its media and
-  statement-deposit states advanced.
-- Today's meetings have not begun at this cutoff; every Day Four source remains
-  schedule or publication apparatus only.
+## Clock boundary
 
-## Authority boundary
+`agenda or speech → evidence or proposal → released method → adopted authority → funded programme → implemented deployment → operating system → measured outcome`
 
-Official UN WebTV recording controls delivery. Speaker-authorized text controls
-prepared wording. The UN Journal controls formal meeting and deposit state. A
-PGA or General Assembly adoption record controls the political-agreement clock.
-None alone proves claim truth, funding, implementation, operation or legal
-settlement.
+No earlier stage may be used as proof of a later one.

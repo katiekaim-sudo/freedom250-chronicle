@@ -1,6 +1,6 @@
 # Freedom 250 research grammar
 
-This is the compact method contract for bots reading the public-unlisted Freedom 250 research mirror.
+This is the compact method contract for bots reading the selectively discoverable Freedom 250 research mirror.
 
 ## Object and custody boundaries
 
@@ -15,6 +15,7 @@ This is the compact method contract for bots reading the public-unlisted Freedom
 - Separate fact, project inference, strongest ordinary rival, unresolved object and falsifier.
 - Prefer the controlling primary object over an announcement or summary.
 - Absence from reached public sources is not proof that an event or record does not exist.
+- A filesystem modification time is a computer recency and routing signal. It does not establish that a finding, evidence cutoff or authority state changed.
 
 ## Clocks that must not collapse
 

@@ -1,0 +1,141 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Freedom 250 Shared Brain API",
+    "version": "1.0.0",
+    "description": "Static read-only research retrieval API. It provides stable files rather than server-side search or mutation."
+  },
+  "servers": [
+    {
+      "url": "https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1"
+    }
+  ],
+  "paths": {
+    "/index.json": {
+      "get": {
+        "operationId": "getSharedBrainBootstrap",
+        "summary": "Get method, custody, retrieval order and endpoint map",
+        "responses": {
+          "200": {
+            "description": "Bootstrap context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/packages.json": {
+      "get": {
+        "operationId": "listResearchPackages",
+        "summary": "List compact package records for first-hop selection",
+        "responses": {
+          "200": {
+            "description": "Package index",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/packages/{research_id}.json": {
+      "get": {
+        "operationId": "getResearchPackage",
+        "summary": "Get one package manifest and complete governed material inventory",
+        "parameters": [
+          {
+            "name": "research_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Package manifest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown package"
+          }
+        }
+      }
+    },
+    "/materials.jsonl": {
+      "get": {
+        "operationId": "streamAllMaterials",
+        "summary": "Read newline-delimited material memberships, including safe metadata-only one-offs",
+        "responses": {
+          "200": {
+            "description": "NDJSON material stream",
+            "content": {
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inventory.json": {
+      "get": {
+        "operationId": "getResearchInventory",
+        "summary": "Get the layered computer-side inventory and package recency map",
+        "responses": {
+          "200": {
+            "description": "Layered inventory",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/activity.jsonl": {
+      "get": {
+        "operationId": "streamResearchActivity",
+        "summary": "Read deduplicated materials sorted by privacy-safe filesystem modification time",
+        "responses": {
+          "200": {
+            "description": "NDJSON activity stream",
+            "content": {
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Human instructions for Katie's bots",
+    "url": "https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/for-katies-bot.html"
+  }
+}

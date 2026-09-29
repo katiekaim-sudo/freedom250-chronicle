@@ -1,12 +1,16 @@
 # For Katie's Bot
 
-This is the public-unlisted Freedom 250 research mirror. Start with [the complete bot instructions](intelligence/FOR-KATIES-BOT.md).
+This is the Freedom 250 research mirror. Its bot doorway and read-only shared brain API are intentionally discoverable; the wider human archive remains unlisted. Start with [the complete bot instructions](intelligence/FOR-KATIES-BOT.md).
 
 Fast machine routes:
 
-- [Compact package index](intelligence/agent-index.json)
-- [All package materials](intelligence/materials-index.jsonl)
+- [Shared brain API bootstrap](intelligence/api/v1/index.json)
+- [Layered research inventory](intelligence/api/v1/inventory.json)
+- [Recent computer activity](intelligence/api/v1/activity.jsonl)
+- [OpenAPI description](intelligence/api/v1/openapi.json)
+- [Compact package index](intelligence/api/v1/packages.json)
+- [All package materials](intelligence/api/v1/materials.jsonl)
 - [Research grammar](intelligence/RESEARCH-GRAMMAR.md)
 - [Human bot doorway](intelligence/for-katies-bot.html)
 
-Preserve evidence cutoffs, distinguish authority from operation, never infer the contents of metadata-only materials, cite exact pages, and freshly verify claims that must be current today.
+Treat modification times as computer recency signals, not proof that findings changed. Preserve evidence cutoffs, distinguish authority from operation, never infer the contents of metadata-only materials, cite exact pages, and freshly verify claims that must be current today.

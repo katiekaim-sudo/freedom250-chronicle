@@ -1,8 +1,21 @@
-# User-triggered ChatGPT visits are welcome; automatic search and training crawlers remain excluded.
+# Selective AI retrieval policy for the Freedom 250 project site.
+# The host-level robots.txt is authoritative; these rules also document project intent.
 User-agent: ChatGPT-User
 Allow: /
 
 User-agent: OAI-SearchBot
+Allow: /freedom250-chronicle/FOR-KATIES-BOT.md
+Allow: /freedom250-chronicle/llms.txt
+Allow: /freedom250-chronicle/intelligence/for-katies-bot.html
+Allow: /freedom250-chronicle/intelligence/FOR-KATIES-BOT.md
+Allow: /freedom250-chronicle/intelligence/llms.txt
+Allow: /freedom250-chronicle/intelligence/agent-index.json
+Allow: /freedom250-chronicle/intelligence/materials-index.jsonl
+Allow: /freedom250-chronicle/intelligence/RESEARCH-GRAMMAR.md
+Allow: /freedom250-chronicle/intelligence/CONNECTED-RESEARCH.md
+Allow: /freedom250-chronicle/intelligence/connected-index.json
+Allow: /freedom250-chronicle/intelligence/packages/
+Allow: /freedom250-chronicle/intelligence/api/
 Disallow: /
 
 User-agent: GPTBot
@@ -10,3 +23,5 @@ Disallow: /
 
 User-agent: *
 Disallow: /
+
+Sitemap: https://katiekaim-sudo.github.io/freedom250-chronicle/sitemap.xml

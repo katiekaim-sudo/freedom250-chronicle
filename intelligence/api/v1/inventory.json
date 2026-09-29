@@ -1,0 +1,3857 @@
+{
+  "inventory_version": "1.0",
+  "purpose": "Computer-side inventory of the governed research available to Katie's chats, organized by layer with privacy-safe last-edit timestamps.",
+  "timestamp_semantics": {
+    "modified_at": "Filesystem modification time in UTC. It is a recency and routing signal, not proof that a conclusion, evidence cutoff or authority state changed.",
+    "latest_computer_edit_at": "Latest modified_at among the materials attached to that package."
+  },
+  "layers": [
+    {
+      "id": "governed_packages",
+      "label": "Research packages",
+      "owner": "Research Catalog",
+      "count": 140,
+      "meaning": "Stable research identities with question, finding, evidence cutoff and relationships."
+    },
+    {
+      "id": "package_material_memberships",
+      "label": "Package material memberships",
+      "owner": "Research Registry plus Catalog routes",
+      "count": 3785,
+      "meaning": "Material-to-package memberships; one material may belong to several packages."
+    },
+    {
+      "id": "distinct_materials",
+      "label": "Distinct computer-side materials",
+      "owner": "Research Workbench or Chronicle",
+      "count": 3102,
+      "meaning": "Deduplicated safe inventory records with file state, role, custody layer and modification time."
+    },
+    {
+      "id": "public_readings",
+      "label": "Public readings",
+      "owner": "Generated share projection",
+      "count": 301,
+      "meaning": "Materials with readable public editions or views."
+    },
+    {
+      "id": "metadata_only",
+      "label": "Private-library metadata",
+      "owner": "Governed private library",
+      "count": 2801,
+      "meaning": "Known materials whose names, roles and states may route research, while contents remain private."
+    },
+    {
+      "id": "connected_context",
+      "label": "Connected research context",
+      "owner": "Research Catalog research_hub",
+      "count": 14,
+      "unit": "stories",
+      "meaning": "Cross-package story and family structure for questions that span packages."
+    },
+    {
+      "id": "shared_brain_api",
+      "label": "Read-only shared brain API",
+      "owner": "Generated public projection",
+      "count": 6,
+      "unit": "endpoint families",
+      "meaning": "Bootstrap, OpenAPI, package index, package manifests, material stream and activity stream."
+    }
+  ],
+  "routes": {
+    "bootstrap": "index.json",
+    "packages": "packages.json",
+    "package": "packages/{research_id}.json",
+    "materials": "materials.jsonl",
+    "activity": "activity.jsonl",
+    "openapi": "openapi.json"
+  },
+  "packages": [
+    {
+      "research_id": "fed-clearing-treasury",
+      "title": "Federal Reserve, Clearing and Treasury",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-22",
+      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "material_counts": {
+        "total": 179,
+        "public_reading": 15,
+        "private_library_metadata": 164
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Public money & the Fed",
+        "secondary_sections": [
+          "government"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/fed-clearing-treasury.html",
+        "manifest": "packages/fed-clearing-treasury.json",
+        "report": "reports/fed-clearing-treasury.html",
+        "source_text": "reports/fed-clearing-treasury.md"
+      }
+    },
+    {
+      "research_id": "congressional-monetary-infrastructure",
+      "title": "Congressional Monetary Infrastructure",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-16",
+      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "material_counts": {
+        "total": 43,
+        "public_reading": 6,
+        "private_library_metadata": 37
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Rules, ownership & access",
+        "secondary_sections": [
+          "government"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/congressional-monetary-infrastructure.html",
+        "manifest": "packages/congressional-monetary-infrastructure.json",
+        "report": "reports/congressional-monetary-infrastructure.html",
+        "source_text": "reports/congressional-monetary-infrastructure.md"
+      }
+    },
+    {
+      "research_id": "private-monetary-stack",
+      "title": "Private Monetary Stack",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-26",
+      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "material_counts": {
+        "total": 267,
+        "public_reading": 44,
+        "private_library_metadata": 223
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology"
+        ],
+        "additional_subsections": [
+          "Accounting & public records"
+        ]
+      },
+      "routes": {
+        "summary": "library/private-monetary-stack.html",
+        "manifest": "packages/private-monetary-stack.json",
+        "report": "reports/private-monetary-stack.html",
+        "source_text": "reports/private-monetary-stack.md"
+      }
+    },
+    {
+      "research_id": "bank-credit-union-legal-architecture",
+      "title": "Banks and Credit Unions — Federal and Four-State Legal Architecture",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-15",
+      "latest_computer_edit_at": "2026-09-15T18:03:06Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Rules, ownership & access",
+        "secondary_sections": [
+          "government"
+        ],
+        "additional_subsections": [
+          "Public money & the Fed"
+        ]
+      },
+      "routes": {
+        "summary": "library/bank-credit-union-legal-architecture.html",
+        "manifest": "packages/bank-credit-union-legal-architecture.json",
+        "report": "reports/bank-credit-union-legal-architecture.html",
+        "source_text": "reports/bank-credit-union-legal-architecture.md"
+      }
+    },
+    {
+      "research_id": "payment-transparency-hidden-constitution",
+      "title": "Payment Transparency and the Hidden Constitution",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-31",
+      "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "material_counts": {
+        "total": 22,
+        "public_reading": 2,
+        "private_library_metadata": 20
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/payment-transparency-hidden-constitution.html",
+        "manifest": "packages/payment-transparency-hidden-constitution.json",
+        "report": "reports/payment-transparency-hidden-constitution.html",
+        "source_text": "reports/payment-transparency-hidden-constitution.md"
+      }
+    },
+    {
+      "research_id": "swift-shared-ledger",
+      "title": "SWIFT Shared Ledger",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-28",
+      "latest_computer_edit_at": "2026-09-28T16:26:31Z",
+      "material_counts": {
+        "total": 23,
+        "public_reading": 2,
+        "private_library_metadata": 21
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/swift-shared-ledger.html",
+        "manifest": "packages/swift-shared-ledger.json",
+        "report": "reports/swift-shared-ledger.html",
+        "source_text": "reports/swift-shared-ledger.md"
+      }
+    },
+    {
+      "research_id": "sec-transfer-agent-modernization",
+      "title": "SEC Transfer Agent Modernization — 2026 Proposal",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-01",
+      "latest_computer_edit_at": "2026-09-18T12:50:01Z",
+      "material_counts": {
+        "total": 16,
+        "public_reading": 5,
+        "private_library_metadata": 11
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Rules, ownership & access",
+        "secondary_sections": [
+          "government",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/sec-transfer-agent-modernization.html",
+        "manifest": "packages/sec-transfer-agent-modernization.json",
+        "report": "reports/sec-transfer-agent-modernization.html",
+        "source_text": "reports/sec-transfer-agent-modernization.md"
+      }
+    },
+    {
+      "research_id": "cftc-passive-software-no-action-2026-09-17",
+      "title": "CFTC Passive Software No-Action Position — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-17T11:32:00-04:00",
+      "latest_computer_edit_at": "2026-09-29T02:11:41Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 2,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Rules, ownership & access",
+        "secondary_sections": [
+          "government",
+          "technology"
+        ],
+        "additional_subsections": [
+          "Payments & digital assets"
+        ]
+      },
+      "routes": {
+        "summary": "library/cftc-passive-software-no-action-2026-09-17.html",
+        "manifest": "packages/cftc-passive-software-no-action-2026-09-17.json",
+        "report": "reports/cftc-passive-software-no-action-2026-09-17.html",
+        "source_text": "reports/cftc-passive-software-no-action-2026-09-17.md"
+      }
+    },
+    {
+      "research_id": "coinbase-clearing-dco-registration-2026-09-28",
+      "title": "Coinbase Clearing DCO Registration — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-28T22:09:00-04:00",
+      "latest_computer_edit_at": "2026-09-29T02:14:27Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 2,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Rules, ownership & access",
+        "secondary_sections": [
+          "government",
+          "technology"
+        ],
+        "additional_subsections": [
+          "Payments & digital assets"
+        ]
+      },
+      "routes": {
+        "summary": "library/coinbase-clearing-dco-registration-2026-09-28.html",
+        "manifest": "packages/coinbase-clearing-dco-registration-2026-09-28.json",
+        "report": "reports/coinbase-clearing-dco-registration-2026-09-28.html",
+        "source_text": "reports/coinbase-clearing-dco-registration-2026-09-28.md"
+      }
+    },
+    {
+      "research_id": "sec-tokenized-nms-stock-innovation-exemption",
+      "title": "SEC Tokenized NMS Stock Innovation Exemption — 2026 Order",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-17T09:46:00-04:00",
+      "latest_computer_edit_at": "2026-09-27T20:28:17Z",
+      "material_counts": {
+        "total": 28,
+        "public_reading": 7,
+        "private_library_metadata": 21
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Rules, ownership & access",
+        "secondary_sections": [
+          "government",
+          "technology"
+        ],
+        "additional_subsections": [
+          "Payments & digital assets"
+        ]
+      },
+      "routes": {
+        "summary": "library/sec-tokenized-nms-stock-innovation-exemption.html",
+        "manifest": "packages/sec-tokenized-nms-stock-innovation-exemption.json",
+        "report": "reports/sec-tokenized-nms-stock-innovation-exemption.html",
+        "source_text": "reports/sec-tokenized-nms-stock-innovation-exemption.md"
+      }
+    },
+    {
+      "research_id": "sec-investor-advisory-committee",
+      "title": "SEC Investor Advisory Committee — 2026 meeting record",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-20T16:20:12-04:00",
+      "latest_computer_edit_at": "2026-09-23T17:31:09Z",
+      "material_counts": {
+        "total": 36,
+        "public_reading": 2,
+        "private_library_metadata": 34
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Rules, ownership & access",
+        "secondary_sections": [
+          "government"
+        ],
+        "additional_subsections": [
+          "Payments & digital assets"
+        ]
+      },
+      "routes": {
+        "summary": "library/sec-investor-advisory-committee.html",
+        "manifest": "packages/sec-investor-advisory-committee.json",
+        "report": "reports/sec-investor-advisory-committee.html",
+        "source_text": "reports/sec-investor-advisory-committee.md"
+      }
+    },
+    {
+      "research_id": "crypto-infrastructure-comparatives",
+      "title": "Crypto Infrastructure Comparatives",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-17",
+      "latest_computer_edit_at": "2026-09-27T16:33:11Z",
+      "material_counts": {
+        "total": 14,
+        "public_reading": 3,
+        "private_library_metadata": 11
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/crypto-infrastructure-comparatives.html",
+        "manifest": "packages/crypto-infrastructure-comparatives.json",
+        "report": "reports/crypto-infrastructure-comparatives.html",
+        "source_text": "reports/crypto-infrastructure-comparatives.md"
+      }
+    },
+    {
+      "research_id": "wholesale-metals",
+      "title": "Wholesale Metals Infrastructure",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-14",
+      "latest_computer_edit_at": "2026-09-22T01:12:22Z",
+      "material_counts": {
+        "total": 63,
+        "public_reading": 6,
+        "private_library_metadata": 57
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Gold & reserves",
+        "secondary_sections": [
+          "states",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/wholesale-metals.html",
+        "manifest": "packages/wholesale-metals.json",
+        "report": "reports/wholesale-metals.html",
+        "source_text": "reports/wholesale-metals.md"
+      }
+    },
+    {
+      "research_id": "gold-bop-currency-adjustment",
+      "title": "Gold Balance of Payments & Currency Adjustment",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-23",
+      "latest_computer_edit_at": "2026-09-08T15:29:39Z",
+      "material_counts": {
+        "total": 36,
+        "public_reading": 3,
+        "private_library_metadata": 33
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Monetary systems & currencies",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/gold-bop-currency-adjustment.html",
+        "manifest": "packages/gold-bop-currency-adjustment.json",
+        "report": "reports/gold-bop-currency-adjustment.html",
+        "source_text": "reports/gold-bop-currency-adjustment.md"
+      }
+    },
+    {
+      "research_id": "overall-monetary-play",
+      "title": "The Overall Monetary Play — July 2026 Interpretation",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-13",
+      "latest_computer_edit_at": "2026-09-25T10:42:50Z",
+      "material_counts": {
+        "total": 7,
+        "public_reading": 6,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Public money & the Fed",
+        "secondary_sections": [
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/overall-monetary-play.html",
+        "manifest": "packages/overall-monetary-play.json",
+        "report": "reports/overall-monetary-play.html",
+        "source_text": "reports/overall-monetary-play.md"
+      }
+    },
+    {
+      "research_id": "authority-through-the-adapter",
+      "title": "Authority Through the Adapter — Where Control Actually Moves",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-31T10:42:24-04:00",
+      "latest_computer_edit_at": "2026-09-18T15:17:06Z",
+      "material_counts": {
+        "total": 6,
+        "public_reading": 1,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/authority-through-the-adapter.html",
+        "manifest": "packages/authority-through-the-adapter.json",
+        "report": "reports/authority-through-the-adapter.html",
+        "source_text": "reports/authority-through-the-adapter.md"
+      }
+    },
+    {
+      "research_id": "overall-dlt-transition",
+      "title": "Overall DLT Transition — 2025–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-22T23:59:59-04:00",
+      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "material_counts": {
+        "total": 57,
+        "public_reading": 11,
+        "private_library_metadata": 46
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/overall-dlt-transition.html",
+        "manifest": "packages/overall-dlt-transition.json",
+        "report": "reports/overall-dlt-transition.html",
+        "source_text": "reports/overall-dlt-transition.md"
+      }
+    },
+    {
+      "research_id": "transaction-native-accounting",
+      "title": "Transaction-Native Accounting",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-07-30",
+      "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "material_counts": {
+        "total": 39,
+        "public_reading": 10,
+        "private_library_metadata": 29
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Accounting & public records",
+        "secondary_sections": [
+          "government",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/transaction-native-accounting.html",
+        "manifest": "packages/transaction-native-accounting.json",
+        "report": "reports/transaction-native-accounting.html",
+        "source_text": "reports/transaction-native-accounting.md"
+      }
+    },
+    {
+      "research_id": "treasury-irs",
+      "title": "Treasury and IRS",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-16",
+      "latest_computer_edit_at": "2026-09-25T10:42:50Z",
+      "material_counts": {
+        "total": 9,
+        "public_reading": 3,
+        "private_library_metadata": 6
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public money, benefits and eligibility",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/treasury-irs.html",
+        "manifest": "packages/treasury-irs.json",
+        "report": "reports/treasury-irs.html",
+        "source_text": "reports/treasury-irs.md"
+      }
+    },
+    {
+      "research_id": "peoples-money",
+      "title": "The People's Money",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-15",
+      "latest_computer_edit_at": "2026-09-08T01:24:59Z",
+      "material_counts": {
+        "total": 6,
+        "public_reading": 3,
+        "private_library_metadata": 3
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Banks, borrowing & risk",
+        "secondary_sections": [
+          "government",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/peoples-money.html",
+        "manifest": "packages/peoples-money.json",
+        "report": "reports/peoples-money.html",
+        "source_text": "reports/peoples-money.md"
+      }
+    },
+    {
+      "research_id": "retail-debt",
+      "title": "Retail Debt",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-15",
+      "latest_computer_edit_at": "2026-09-15T18:03:06Z",
+      "material_counts": {
+        "total": 8,
+        "public_reading": 3,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Banks, borrowing & risk",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/retail-debt.html",
+        "manifest": "packages/retail-debt.json",
+        "report": "reports/retail-debt.html",
+        "source_text": "reports/retail-debt.md"
+      }
+    },
+    {
+      "research_id": "fraud-payment-integrity",
+      "title": "Fraud and Payment Integrity",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-22",
+      "latest_computer_edit_at": "2026-09-23T02:58:06Z",
+      "material_counts": {
+        "total": 53,
+        "public_reading": 10,
+        "private_library_metadata": 43
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public money, benefits and eligibility",
+        "secondary_sections": [
+          "money",
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/fraud-payment-integrity.html",
+        "manifest": "packages/fraud-payment-integrity.json",
+        "report": "reports/fraud-payment-integrity.html",
+        "source_text": "reports/fraud-payment-integrity.md"
+      }
+    },
+    {
+      "research_id": "treasury-do-not-pay-governmentwide-map",
+      "title": "Treasury Do Not Pay — Governmentwide Structural Map",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-29",
+      "latest_computer_edit_at": "2026-09-23T02:58:06Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public money, benefits and eligibility",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/treasury-do-not-pay-governmentwide-map.html",
+        "manifest": "packages/treasury-do-not-pay-governmentwide-map.json",
+        "report": "reports/treasury-do-not-pay-governmentwide-map.html",
+        "source_text": "reports/treasury-do-not-pay-governmentwide-map.md"
+      }
+    },
+    {
+      "research_id": "emerging-fraud-identity-payment-gate",
+      "title": "Emerging Fraud — Identity, Eligibility and the Payment Gate",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-15",
+      "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "material_counts": {
+        "total": 5,
+        "public_reading": 1,
+        "private_library_metadata": 4
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public money, benefits and eligibility",
+        "secondary_sections": [
+          "technology",
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/emerging-fraud-identity-payment-gate.html",
+        "manifest": "packages/emerging-fraud-identity-payment-gate.json",
+        "report": "reports/emerging-fraud-identity-payment-gate.html",
+        "source_text": "reports/emerging-fraud-identity-payment-gate.md"
+      }
+    },
+    {
+      "research_id": "obbb-fraud-error-rate-legal-map",
+      "title": "OBBB — Fraud, Improper-Payment and Error-Rate Legal Map",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-16",
+      "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public money, benefits and eligibility",
+        "secondary_sections": [
+          "states",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/obbb-fraud-error-rate-legal-map.html",
+        "manifest": "packages/obbb-fraud-error-rate-legal-map.json",
+        "report": "reports/obbb-fraud-error-rate-legal-map.html",
+        "source_text": "reports/obbb-fraud-error-rate-legal-map.md"
+      }
+    },
+    {
+      "research_id": "pa-ccdbg-state-edge-pilot",
+      "title": "Pennsylvania CCDBG — State-Edge Transaction Pilot",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-27",
+      "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "material_counts": {
+        "total": 9,
+        "public_reading": 1,
+        "private_library_metadata": 8
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public money, benefits and eligibility",
+        "secondary_sections": [
+          "states",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/pa-ccdbg-state-edge-pilot.html",
+        "manifest": "packages/pa-ccdbg-state-edge-pilot.json",
+        "report": "reports/pa-ccdbg-state-edge-pilot.html",
+        "source_text": "reports/pa-ccdbg-state-edge-pilot.md"
+      }
+    },
+    {
+      "research_id": "hawaii-public-corruption-source-ledger",
+      "title": "Hawaii Public Corruption — Primary-Source Ledger",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-27",
+      "latest_computer_edit_at": "2026-07-27T16:11:40Z",
+      "material_counts": {
+        "total": 5,
+        "public_reading": 1,
+        "private_library_metadata": 4
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public money, benefits and eligibility",
+        "secondary_sections": [
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/hawaii-public-corruption-source-ledger.html",
+        "manifest": "packages/hawaii-public-corruption-source-ledger.json",
+        "report": "reports/hawaii-public-corruption-source-ledger.html",
+        "source_text": "reports/hawaii-public-corruption-source-ledger.md"
+      }
+    },
+    {
+      "research_id": "southeast-fraud-enforcement-partnerships",
+      "title": "Southeast Fraud Enforcement Partnerships",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-31",
+      "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 1,
+        "private_library_metadata": 2
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public money, benefits and eligibility",
+        "secondary_sections": [
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/southeast-fraud-enforcement-partnerships.html",
+        "manifest": "packages/southeast-fraud-enforcement-partnerships.json",
+        "report": "reports/southeast-fraud-enforcement-partnerships.html",
+        "source_text": "reports/southeast-fraud-enforcement-partnerships.md"
+      }
+    },
+    {
+      "research_id": "government-wide-audit-july-2026",
+      "title": "Government-Wide Audit — July 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-07-18",
+      "latest_computer_edit_at": "2026-07-28T01:02:43Z",
+      "material_counts": {
+        "total": 21,
+        "public_reading": 2,
+        "private_library_metadata": 19
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/government-wide-audit-july-2026.html",
+        "manifest": "packages/government-wide-audit-july-2026.json",
+        "report": "reports/government-wide-audit-july-2026.html",
+        "source_text": "reports/government-wide-audit-july-2026.md"
+      }
+    },
+    {
+      "research_id": "government-wide-recertification-august-2026",
+      "title": "Federal Whole-Site Recertification — August 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-08-04T17:48:00-04:00",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 95,
+        "public_reading": 4,
+        "private_library_metadata": 91
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/government-wide-recertification-august-2026.html",
+        "manifest": "packages/government-wide-recertification-august-2026.json",
+        "report": "reports/government-wide-recertification-august-2026.html",
+        "source_text": "reports/government-wide-recertification-august-2026.md"
+      }
+    },
+    {
+      "research_id": "house-oversight-corpus",
+      "title": "House Oversight Corpus",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-22",
+      "latest_computer_edit_at": "2026-07-28T02:42:30Z",
+      "material_counts": {
+        "total": 26,
+        "public_reading": 3,
+        "private_library_metadata": 23
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/house-oversight-corpus.html",
+        "manifest": "packages/house-oversight-corpus.json",
+        "report": "reports/house-oversight-corpus.html",
+        "source_text": "reports/house-oversight-corpus.md"
+      }
+    },
+    {
+      "research_id": "congressional-hearing-source-library",
+      "title": "Congressional Hearing Source Library",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-25",
+      "latest_computer_edit_at": "2026-08-14T22:23:26Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/congressional-hearing-source-library.html",
+        "manifest": "packages/congressional-hearing-source-library.json",
+        "report": "reports/congressional-hearing-source-library.html",
+        "source_text": "reports/congressional-hearing-source-library.md"
+      }
+    },
+    {
+      "research_id": "epstein-interview-statement-accountability",
+      "title": "Epstein Interview Statement Accountability",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-21",
+      "latest_computer_edit_at": "2026-07-22T03:41:58Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 1,
+        "private_library_metadata": 2
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/epstein-interview-statement-accountability.html",
+        "manifest": "packages/epstein-interview-statement-accountability.json",
+        "report": "reports/epstein-interview-statement-accountability.html",
+        "source_text": "reports/epstein-interview-statement-accountability.md"
+      }
+    },
+    {
+      "research_id": "judicial-money",
+      "title": "Judicial Money",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-03",
+      "latest_computer_edit_at": "2026-09-21T00:17:51Z",
+      "material_counts": {
+        "total": 9,
+        "public_reading": 3,
+        "private_library_metadata": 6
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Rules, ownership & access",
+        "secondary_sections": [
+          "government",
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/judicial-money.html",
+        "manifest": "packages/judicial-money.json",
+        "report": "reports/judicial-money.html",
+        "source_text": "reports/judicial-money.md"
+      }
+    },
+    {
+      "research_id": "covid-authority-disclosures",
+      "title": "COVID Authority and Disclosure Record",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-29",
+      "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "material_counts": {
+        "total": 65,
+        "public_reading": 12,
+        "private_library_metadata": 53
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": [
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/covid-authority-disclosures.html",
+        "manifest": "packages/covid-authority-disclosures.json",
+        "report": "reports/covid-authority-disclosures.html",
+        "source_text": "reports/covid-authority-disclosures.md"
+      }
+    },
+    {
+      "research_id": "covid-2020-authority-spine",
+      "title": "2020 COVID Authority Spine",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-27",
+      "latest_computer_edit_at": "2026-07-27T14:31:31Z",
+      "material_counts": {
+        "total": 16,
+        "public_reading": 2,
+        "private_library_metadata": 14
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": [
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/covid-2020-authority-spine.html",
+        "manifest": "packages/covid-2020-authority-spine.json",
+        "report": "reports/covid-2020-authority-spine.html",
+        "source_text": "reports/covid-2020-authority-spine.md"
+      }
+    },
+    {
+      "research_id": "odni-covid-biolab-disclosures-2026-06",
+      "title": "ODNI COVID and Biolab Disclosures — June 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-27",
+      "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "material_counts": {
+        "total": 10,
+        "public_reading": 2,
+        "private_library_metadata": 8
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": [
+          "Public services and legal limits"
+        ]
+      },
+      "routes": {
+        "summary": "library/odni-covid-biolab-disclosures-2026-06.html",
+        "manifest": "packages/odni-covid-biolab-disclosures-2026-06.json",
+        "report": "reports/odni-covid-biolab-disclosures-2026-06.html",
+        "source_text": "reports/odni-covid-biolab-disclosures-2026-06.md"
+      }
+    },
+    {
+      "research_id": "hhs-high-risk-life-sciences-policy-2026-07-28",
+      "title": "HHS High-Risk Life Sciences Research Policy — July 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-28",
+      "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 2,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [],
+        "additional_subsections": [
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/hhs-high-risk-life-sciences-policy-2026-07-28.html",
+        "manifest": "packages/hhs-high-risk-life-sciences-policy-2026-07-28.json",
+        "report": "reports/hhs-high-risk-life-sciences-policy-2026-07-28.html",
+        "source_text": "reports/hhs-high-risk-life-sciences-policy-2026-07-28.md"
+      }
+    },
+    {
+      "research_id": "white-house-covid-gov-reactivation-2026-07-29",
+      "title": "White House COVID.gov Reactivation — July 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-29T12:00:00-04:00",
+      "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 2,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": [
+          "Public services and legal limits"
+        ]
+      },
+      "routes": {
+        "summary": "library/white-house-covid-gov-reactivation-2026-07-29.html",
+        "manifest": "packages/white-house-covid-gov-reactivation-2026-07-29.json",
+        "report": "reports/white-house-covid-gov-reactivation-2026-07-29.html",
+        "source_text": "reports/white-house-covid-gov-reactivation-2026-07-29.md"
+      }
+    },
+    {
+      "research_id": "rand-paul-covid-origins-reading-room-2026-07-29",
+      "title": "Rand Paul COVID Origins Reading Room — July 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-29",
+      "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "material_counts": {
+        "total": 32,
+        "public_reading": 3,
+        "private_library_metadata": 29
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": [
+          "Public services and legal limits"
+        ]
+      },
+      "routes": {
+        "summary": "library/rand-paul-covid-origins-reading-room-2026-07-29.html",
+        "manifest": "packages/rand-paul-covid-origins-reading-room-2026-07-29.json",
+        "report": "reports/rand-paul-covid-origins-reading-room-2026-07-29.html",
+        "source_text": "reports/rand-paul-covid-origins-reading-room-2026-07-29.md"
+      }
+    },
+    {
+      "research_id": "us-who-membership-exit-legal-map",
+      "title": "U.S. WHO Membership Exit Legal Map",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-15",
+      "latest_computer_edit_at": "2026-08-15T18:41:32Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/us-who-membership-exit-legal-map.html",
+        "manifest": "packages/us-who-membership-exit-legal-map.json",
+        "report": "reports/us-who-membership-exit-legal-map.html",
+        "source_text": "reports/us-who-membership-exit-legal-map.md"
+      }
+    },
+    {
+      "research_id": "currency-watch",
+      "title": "G20 Currency Watch",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-31",
+      "latest_computer_edit_at": "2026-09-16T23:20:09Z",
+      "material_counts": {
+        "total": 79,
+        "public_reading": 15,
+        "private_library_metadata": 64
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Monetary systems & currencies",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/currency-watch.html",
+        "manifest": "packages/currency-watch.json",
+        "report": "reports/currency-watch.html",
+        "source_text": "reports/currency-watch.md"
+      }
+    },
+    {
+      "research_id": "international-monetary-transition",
+      "title": "International Monetary Transition",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-28T10:16:00+09:00",
+      "latest_computer_edit_at": "2026-09-28T23:56:45Z",
+      "material_counts": {
+        "total": 243,
+        "public_reading": 17,
+        "private_library_metadata": 226
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Institutions & coordination",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": [
+          "Monetary systems & currencies"
+        ]
+      },
+      "routes": {
+        "summary": "library/international-monetary-transition.html",
+        "manifest": "packages/international-monetary-transition.json",
+        "report": "reports/international-monetary-transition.html",
+        "source_text": "reports/international-monetary-transition.md"
+      }
+    },
+    {
+      "research_id": "cuba-pressure-counter-influence",
+      "title": "Cuba Pressure and Counter-Influence",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-20",
+      "latest_computer_edit_at": "2026-08-24T22:12:40Z",
+      "material_counts": {
+        "total": 11,
+        "public_reading": 1,
+        "private_library_metadata": 10
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Trade, sanctions & pressure",
+        "secondary_sections": [
+          "government"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/cuba-pressure-counter-influence.html",
+        "manifest": "packages/cuba-pressure-counter-influence.json",
+        "report": "reports/cuba-pressure-counter-influence.html",
+        "source_text": "reports/cuba-pressure-counter-influence.md"
+      }
+    },
+    {
+      "research_id": "iraq-oil-logistics",
+      "title": "Iraq Oil Provenance and Logistics",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-15",
+      "latest_computer_edit_at": "2026-09-08T15:29:39Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 1,
+        "private_library_metadata": 2
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Trade, sanctions & pressure",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/iraq-oil-logistics.html",
+        "manifest": "packages/iraq-oil-logistics.json",
+        "report": "reports/iraq-oil-logistics.html",
+        "source_text": "reports/iraq-oil-logistics.md"
+      }
+    },
+    {
+      "research_id": "global-oil-gas-movements",
+      "title": "Global Oil and Gas Movements 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-15",
+      "latest_computer_edit_at": "2026-09-15T21:28:33Z",
+      "material_counts": {
+        "total": 36,
+        "public_reading": 2,
+        "private_library_metadata": 34
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Trade, sanctions & pressure",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/global-oil-gas-movements.html",
+        "manifest": "packages/global-oil-gas-movements.json",
+        "report": "reports/global-oil-gas-movements.html",
+        "source_text": "reports/global-oil-gas-movements.md"
+      }
+    },
+    {
+      "research_id": "emergency-monetary-policy",
+      "title": "Emergency Monetary Policy",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-15",
+      "latest_computer_edit_at": "2026-08-24T17:28:40Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/emergency-monetary-policy.html",
+        "manifest": "packages/emergency-monetary-policy.json",
+        "report": "reports/emergency-monetary-policy.html",
+        "source_text": "reports/emergency-monetary-policy.md"
+      }
+    },
+    {
+      "research_id": "international-emergency-monetary-policy",
+      "title": "International Emergency Monetary Policy",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-13",
+      "latest_computer_edit_at": "2026-08-24T17:14:19Z",
+      "material_counts": {
+        "total": 7,
+        "public_reading": 1,
+        "private_library_metadata": 6
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Institutions & coordination",
+        "secondary_sections": [
+          "money",
+          "government"
+        ],
+        "additional_subsections": [
+          "Monetary systems & currencies"
+        ]
+      },
+      "routes": {
+        "summary": "library/international-emergency-monetary-policy.html",
+        "manifest": "packages/international-emergency-monetary-policy.json",
+        "report": "reports/international-emergency-monetary-policy.html",
+        "source_text": "reports/international-emergency-monetary-policy.md"
+      }
+    },
+    {
+      "research_id": "insurance-reinsurance",
+      "title": "Insurance and Reinsurance",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-15",
+      "latest_computer_edit_at": "2026-09-14T18:02:00Z",
+      "material_counts": {
+        "total": 13,
+        "public_reading": 4,
+        "private_library_metadata": 9
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Banks, borrowing & risk",
+        "secondary_sections": [
+          "technology",
+          "states",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/insurance-reinsurance.html",
+        "manifest": "packages/insurance-reinsurance.json",
+        "report": "reports/insurance-reinsurance.html",
+        "source_text": "reports/insurance-reinsurance.md"
+      }
+    },
+    {
+      "research_id": "permanent-magnets",
+      "title": "Permanent Magnets",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-22",
+      "latest_computer_edit_at": "2026-09-08T14:42:20Z",
+      "material_counts": {
+        "total": 14,
+        "public_reading": 4,
+        "private_library_metadata": 10
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Materials, manufacturing and funding",
+        "secondary_sections": [
+          "money",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/permanent-magnets.html",
+        "manifest": "packages/permanent-magnets.json",
+        "report": "reports/permanent-magnets.html",
+        "source_text": "reports/permanent-magnets.md"
+      }
+    },
+    {
+      "research_id": "carbon-nanotubes-battery-sovereignty",
+      "title": "Carbon Nanotubes and Battery Sovereignty",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-23",
+      "latest_computer_edit_at": "2026-08-24T22:54:12Z",
+      "material_counts": {
+        "total": 7,
+        "public_reading": 2,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Materials, manufacturing and funding",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/carbon-nanotubes-battery-sovereignty.html",
+        "manifest": "packages/carbon-nanotubes-battery-sovereignty.json",
+        "report": "reports/carbon-nanotubes-battery-sovereignty.html",
+        "source_text": "reports/carbon-nanotubes-battery-sovereignty.md"
+      }
+    },
+    {
+      "research_id": "federal-science-operating-system",
+      "title": "Federal Science Operating System",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-17",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 21,
+        "public_reading": 6,
+        "private_library_metadata": 15
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Science strategy and emerging capabilities",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-science-operating-system.html",
+        "manifest": "packages/federal-science-operating-system.json",
+        "report": "reports/federal-science-operating-system.html",
+        "source_text": "reports/federal-science-operating-system.md"
+      }
+    },
+    {
+      "research_id": "federal-fusion-commercialization",
+      "title": "Federal Fusion Commercialization",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-15",
+      "latest_computer_edit_at": "2026-09-08T18:17:52Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 2,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Power and industrial operations",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": [
+          "Science strategy and emerging capabilities"
+        ]
+      },
+      "routes": {
+        "summary": "library/federal-fusion-commercialization.html",
+        "manifest": "packages/federal-fusion-commercialization.json",
+        "report": "reports/federal-fusion-commercialization.html",
+        "source_text": "reports/federal-fusion-commercialization.md"
+      }
+    },
+    {
+      "research_id": "nssts-technology-company-map",
+      "title": "NSSTS Technology-to-Company Map",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-19",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 68,
+        "public_reading": 17,
+        "private_library_metadata": 51
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Science strategy and emerging capabilities",
+        "secondary_sections": [
+          "government",
+          "money",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/nssts-technology-company-map.html",
+        "manifest": "packages/nssts-technology-company-map.json",
+        "report": "reports/nssts-technology-company-map.html",
+        "source_text": "reports/nssts-technology-company-map.md"
+      }
+    },
+    {
+      "research_id": "nssts-program-acceptance-economy",
+      "title": "NSSTS Program and Acceptance Economy",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-19",
+      "latest_computer_edit_at": "2026-09-09T20:14:14Z",
+      "material_counts": {
+        "total": 28,
+        "public_reading": 7,
+        "private_library_metadata": 21
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Science strategy and emerging capabilities",
+        "secondary_sections": [
+          "government",
+          "money",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/nssts-program-acceptance-economy.html",
+        "manifest": "packages/nssts-program-acceptance-economy.json",
+        "report": "reports/nssts-program-acceptance-economy.html",
+        "source_text": "reports/nssts-program-acceptance-economy.md"
+      }
+    },
+    {
+      "research_id": "nssts-quantum-cryptographic-acceptance",
+      "title": "NSSTS Quantum and Cryptographic Acceptance",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-19",
+      "latest_computer_edit_at": "2026-09-08T00:18:52Z",
+      "material_counts": {
+        "total": 4,
+        "public_reading": 1,
+        "private_library_metadata": 3
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Science strategy and emerging capabilities",
+        "secondary_sections": [
+          "government"
+        ],
+        "additional_subsections": [
+          "Compute, communications and sites"
+        ]
+      },
+      "routes": {
+        "summary": "library/nssts-quantum-cryptographic-acceptance.html",
+        "manifest": "packages/nssts-quantum-cryptographic-acceptance.json",
+        "report": "reports/nssts-quantum-cryptographic-acceptance.html",
+        "source_text": "reports/nssts-quantum-cryptographic-acceptance.md"
+      }
+    },
+    {
+      "research_id": "scientific-trust-stack",
+      "title": "Scientific Trust Stack",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-17",
+      "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "material_counts": {
+        "total": 16,
+        "public_reading": 2,
+        "private_library_metadata": 14
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Science strategy and emerging capabilities",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/scientific-trust-stack.html",
+        "manifest": "packages/scientific-trust-stack.json",
+        "report": "reports/scientific-trust-stack.html",
+        "source_text": "reports/scientific-trust-stack.md"
+      }
+    },
+    {
+      "research_id": "federal-cryptographic-trust-stack",
+      "title": "Federal Cryptographic Trust Stack",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-11",
+      "latest_computer_edit_at": "2026-09-09T20:04:06Z",
+      "material_counts": {
+        "total": 4,
+        "public_reading": 2,
+        "private_library_metadata": 2
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Compute, communications and sites",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": [
+          "Science strategy and emerging capabilities"
+        ]
+      },
+      "routes": {
+        "summary": "library/federal-cryptographic-trust-stack.html",
+        "manifest": "packages/federal-cryptographic-trust-stack.json",
+        "report": "reports/federal-cryptographic-trust-stack.html",
+        "source_text": "reports/federal-cryptographic-trust-stack.md"
+      }
+    },
+    {
+      "research_id": "genius-stablecoin-trust-crosswalk",
+      "title": "GENIUS Stablecoin Trust Crosswalk",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-17",
+      "latest_computer_edit_at": "2026-09-18T15:17:06Z",
+      "material_counts": {
+        "total": 7,
+        "public_reading": 1,
+        "private_library_metadata": 6
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology",
+          "government"
+        ],
+        "additional_subsections": [
+          "Rules, ownership & access"
+        ]
+      },
+      "routes": {
+        "summary": "library/genius-stablecoin-trust-crosswalk.html",
+        "manifest": "packages/genius-stablecoin-trust-crosswalk.json",
+        "report": "reports/genius-stablecoin-trust-crosswalk.html",
+        "source_text": "reports/genius-stablecoin-trust-crosswalk.md"
+      }
+    },
+    {
+      "research_id": "nara-ai-records-compute-transition",
+      "title": "NARA AI Records and Compute Transition",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-23",
+      "latest_computer_edit_at": "2026-08-23T21:05:40Z",
+      "material_counts": {
+        "total": 6,
+        "public_reading": 1,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "AI in government and the public record",
+        "secondary_sections": [
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/nara-ai-records-compute-transition.html",
+        "manifest": "packages/nara-ai-records-compute-transition.json",
+        "report": "reports/nara-ai-records-compute-transition.html",
+        "source_text": "reports/nara-ai-records-compute-transition.md"
+      }
+    },
+    {
+      "research_id": "sec-credit-rating-recordkeeping-orders-2024-2026",
+      "title": "SEC Credit-Rating Recordkeeping Orders, 2024–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-25",
+      "latest_computer_edit_at": "2026-09-25T10:05:09Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "AI in government and the public record",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/sec-credit-rating-recordkeeping-orders-2024-2026.html",
+        "manifest": "packages/sec-credit-rating-recordkeeping-orders-2024-2026.json",
+        "report": "reports/sec-credit-rating-recordkeeping-orders-2024-2026.html",
+        "source_text": "reports/sec-credit-rating-recordkeeping-orders-2024-2026.md"
+      }
+    },
+    {
+      "research_id": "federal-agency-ai-plans-infrastructure",
+      "title": "Federal Agency AI Plans and Infrastructure",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-28",
+      "latest_computer_edit_at": "2026-09-29T02:25:26Z",
+      "material_counts": {
+        "total": 17,
+        "public_reading": 3,
+        "private_library_metadata": 14
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "AI in government and the public record",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-agency-ai-plans-infrastructure.html",
+        "manifest": "packages/federal-agency-ai-plans-infrastructure.json",
+        "report": "reports/federal-agency-ai-plans-infrastructure.html",
+        "source_text": "reports/federal-agency-ai-plans-infrastructure.md"
+      }
+    },
+    {
+      "research_id": "sovereign-compute",
+      "title": "Sovereign Compute",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-15",
+      "latest_computer_edit_at": "2026-09-04T13:23:40Z",
+      "material_counts": {
+        "total": 13,
+        "public_reading": 4,
+        "private_library_metadata": 9
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Compute, communications and sites",
+        "secondary_sections": [
+          "government",
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/sovereign-compute.html",
+        "manifest": "packages/sovereign-compute.json",
+        "report": "reports/sovereign-compute.html",
+        "source_text": "reports/sovereign-compute.md"
+      }
+    },
+    {
+      "research_id": "sovereign-communications",
+      "title": "Sovereign Communications",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-15",
+      "latest_computer_edit_at": "2026-09-08T01:19:46Z",
+      "material_counts": {
+        "total": 8,
+        "public_reading": 3,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Compute, communications and sites",
+        "secondary_sections": [
+          "government",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/sovereign-communications.html",
+        "manifest": "packages/sovereign-communications.json",
+        "report": "reports/sovereign-communications.html",
+        "source_text": "reports/sovereign-communications.md"
+      }
+    },
+    {
+      "research_id": "military-modernization",
+      "title": "Military Modernization",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-15",
+      "latest_computer_edit_at": "2026-09-25T22:37:25Z",
+      "material_counts": {
+        "total": 10,
+        "public_reading": 2,
+        "private_library_metadata": 8
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Defense and logistics",
+        "secondary_sections": [
+          "government",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/military-modernization.html",
+        "manifest": "packages/military-modernization.json",
+        "report": "reports/military-modernization.html",
+        "source_text": "reports/military-modernization.md"
+      }
+    },
+    {
+      "research_id": "contested-logistics",
+      "title": "Contested Logistics",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-15",
+      "latest_computer_edit_at": "2026-09-25T11:03:40Z",
+      "material_counts": {
+        "total": 10,
+        "public_reading": 2,
+        "private_library_metadata": 8
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Defense and logistics",
+        "secondary_sections": [
+          "government",
+          "money",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/contested-logistics.html",
+        "manifest": "packages/contested-logistics.json",
+        "report": "reports/contested-logistics.html",
+        "source_text": "reports/contested-logistics.md"
+      }
+    },
+    {
+      "research_id": "iran-financial-pressure",
+      "title": "Iran Financial Pressure and Banking-System Isolation",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-03T19:41:23-04:00",
+      "latest_computer_edit_at": "2026-09-08T15:29:39Z",
+      "material_counts": {
+        "total": 16,
+        "public_reading": 4,
+        "private_library_metadata": 12
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Trade, sanctions & pressure",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/iran-financial-pressure.html",
+        "manifest": "packages/iran-financial-pressure.json",
+        "report": "reports/iran-financial-pressure.html",
+        "source_text": "reports/iran-financial-pressure.md"
+      }
+    },
+    {
+      "research_id": "election-integrity-release",
+      "title": "Election Integrity Release",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-18",
+      "latest_computer_edit_at": "2026-07-28T01:03:48Z",
+      "material_counts": {
+        "total": 24,
+        "public_reading": 1,
+        "private_library_metadata": 23
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Citizenship, elections and representation",
+        "secondary_sections": [
+          "technology",
+          "states"
+        ],
+        "additional_subsections": [
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/election-integrity-release.html",
+        "manifest": "packages/election-integrity-release.json",
+        "report": "reports/election-integrity-release.html",
+        "source_text": "reports/election-integrity-release.md"
+      }
+    },
+    {
+      "research_id": "trump-2028-constitutional-election-ledger",
+      "title": "Trump 2028 Constitutional and Election-Ledger Hypothesis",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-25",
+      "latest_computer_edit_at": "2026-09-16T23:20:33Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 1,
+        "private_library_metadata": 2
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Citizenship, elections and representation",
+        "secondary_sections": [
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/trump-2028-constitutional-election-ledger.html",
+        "manifest": "packages/trump-2028-constitutional-election-ledger.json",
+        "report": "reports/trump-2028-constitutional-election-ledger.html",
+        "source_text": "reports/trump-2028-constitutional-election-ledger.md"
+      }
+    },
+    {
+      "research_id": "white-house-ballroom-lawfare-2025-2026",
+      "title": "White House Ballroom Lawfare 2025-2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-23",
+      "latest_computer_edit_at": "2026-09-08T17:25:25Z",
+      "material_counts": {
+        "total": 4,
+        "public_reading": 1,
+        "private_library_metadata": 3
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/white-house-ballroom-lawfare-2025-2026.html",
+        "manifest": "packages/white-house-ballroom-lawfare-2025-2026.json",
+        "report": "reports/white-house-ballroom-lawfare-2025-2026.html",
+        "source_text": "reports/white-house-ballroom-lawfare-2025-2026.md"
+      }
+    },
+    {
+      "research_id": "ai-turbine-asset-management-power-buildout",
+      "title": "AI-Enabled Turbine Asset Management and U.S. Power Buildout",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-09",
+      "latest_computer_edit_at": "2026-08-09T20:23:54Z",
+      "material_counts": {
+        "total": 6,
+        "public_reading": 1,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Power and industrial operations",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/ai-turbine-asset-management-power-buildout.html",
+        "manifest": "packages/ai-turbine-asset-management-power-buildout.json",
+        "report": "reports/ai-turbine-asset-management-power-buildout.html",
+        "source_text": "reports/ai-turbine-asset-management-power-buildout.md"
+      }
+    },
+    {
+      "research_id": "census-usps-citizenship-apportionment",
+      "title": "Census, USPS, Citizenship and Apportionment — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-11",
+      "latest_computer_edit_at": "2026-09-03T23:47:22Z",
+      "material_counts": {
+        "total": 6,
+        "public_reading": 1,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Citizenship, elections and representation",
+        "secondary_sections": [
+          "technology",
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/census-usps-citizenship-apportionment.html",
+        "manifest": "packages/census-usps-citizenship-apportionment.json",
+        "report": "reports/census-usps-citizenship-apportionment.html",
+        "source_text": "reports/census-usps-citizenship-apportionment.md"
+      }
+    },
+    {
+      "research_id": "congressional-committee-control-plane",
+      "title": "Congressional Committee Control Plane",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-26",
+      "latest_computer_edit_at": "2026-09-28T21:08:46Z",
+      "material_counts": {
+        "total": 305,
+        "public_reading": 5,
+        "private_library_metadata": 300
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/congressional-committee-control-plane.html",
+        "manifest": "packages/congressional-committee-control-plane.json",
+        "report": "reports/congressional-committee-control-plane.html",
+        "source_text": "reports/congressional-committee-control-plane.md"
+      }
+    },
+    {
+      "research_id": "data-center-federal-legal-spine",
+      "title": "Data Center Federal Legal Spine 2025–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-20",
+      "latest_computer_edit_at": "2026-08-24T22:43:25Z",
+      "material_counts": {
+        "total": 9,
+        "public_reading": 2,
+        "private_library_metadata": 7
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Compute, communications and sites",
+        "secondary_sections": [
+          "government",
+          "states"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/data-center-federal-legal-spine.html",
+        "manifest": "packages/data-center-federal-legal-spine.json",
+        "report": "reports/data-center-federal-legal-spine.html",
+        "source_text": "reports/data-center-federal-legal-spine.md"
+      }
+    },
+    {
+      "research_id": "energy-atomic-settlement-iran",
+      "title": "Energy Asset Management, Atomic Settlement and Iran",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-09",
+      "latest_computer_edit_at": "2026-08-09T20:24:07Z",
+      "material_counts": {
+        "total": 9,
+        "public_reading": 2,
+        "private_library_metadata": 7
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Power and industrial operations",
+        "secondary_sections": [
+          "money",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/energy-atomic-settlement-iran.html",
+        "manifest": "packages/energy-atomic-settlement-iran.json",
+        "report": "reports/energy-atomic-settlement-iran.html",
+        "source_text": "reports/energy-atomic-settlement-iran.md"
+      }
+    },
+    {
+      "research_id": "institutional-regime-waves",
+      "title": "Canada, transshipment and customs origin records",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-02",
+      "latest_computer_edit_at": "2026-09-05T16:44:47Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Trade, sanctions & pressure",
+        "secondary_sections": [
+          "government"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/institutional-regime-waves.html",
+        "manifest": "packages/institutional-regime-waves.json",
+        "report": "reports/institutional-regime-waves.html",
+        "source_text": "reports/institutional-regime-waves.md"
+      }
+    },
+    {
+      "research_id": "us-inbound-investment-industrial-capex",
+      "title": "U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-31",
+      "latest_computer_edit_at": "2026-09-25T00:16:10Z",
+      "material_counts": {
+        "total": 15,
+        "public_reading": 2,
+        "private_library_metadata": 13
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Materials, manufacturing and funding",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/us-inbound-investment-industrial-capex.html",
+        "manifest": "packages/us-inbound-investment-industrial-capex.json",
+        "report": "reports/us-inbound-investment-industrial-capex.html",
+        "source_text": "reports/us-inbound-investment-industrial-capex.md"
+      }
+    },
+    {
+      "research_id": "ai-infrastructure-capital-stack-risk-transfer",
+      "title": "AI Infrastructure Capital Stack and Risk Transfer",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-10",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 9,
+        "public_reading": 3,
+        "private_library_metadata": 6
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Materials, manufacturing and funding",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/ai-infrastructure-capital-stack-risk-transfer.html",
+        "manifest": "packages/ai-infrastructure-capital-stack-risk-transfer.json",
+        "report": "reports/ai-infrastructure-capital-stack-risk-transfer.html",
+        "source_text": "reports/ai-infrastructure-capital-stack-risk-transfer.md"
+      }
+    },
+    {
+      "research_id": "industrial-project-finance-digital-rails",
+      "title": "Industrial Project Finance and Digital Rails",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-31",
+      "latest_computer_edit_at": "2026-09-25T00:16:10Z",
+      "material_counts": {
+        "total": 6,
+        "public_reading": 2,
+        "private_library_metadata": 4
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Materials, manufacturing and funding",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/industrial-project-finance-digital-rails.html",
+        "manifest": "packages/industrial-project-finance-digital-rails.json",
+        "report": "reports/industrial-project-finance-digital-rails.html",
+        "source_text": "reports/industrial-project-finance-digital-rails.md"
+      }
+    },
+    {
+      "research_id": "federal-strategic-plans",
+      "title": "Federal Strategic Plans",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-20",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 65,
+        "public_reading": 3,
+        "private_library_metadata": 62
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-strategic-plans.html",
+        "manifest": "packages/federal-strategic-plans.json",
+        "report": "reports/federal-strategic-plans.html",
+        "source_text": "reports/federal-strategic-plans.md"
+      }
+    },
+    {
+      "research_id": "white-house-research-hub",
+      "title": "White House Research Hub",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-21",
+      "latest_computer_edit_at": "2026-07-22T03:55:33Z",
+      "material_counts": {
+        "total": 37,
+        "public_reading": 1,
+        "private_library_metadata": 36
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/white-house-research-hub.html",
+        "manifest": "packages/white-house-research-hub.json",
+        "report": "reports/white-house-research-hub.html",
+        "source_text": "reports/white-house-research-hub.md"
+      }
+    },
+    {
+      "research_id": "federal-government-entity-library-harvest-2026-08-22",
+      "title": "Federal Government Entity Library Harvest — 2026-08-22",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-08-23",
+      "latest_computer_edit_at": "2026-08-27T21:48:32Z",
+      "material_counts": {
+        "total": 52,
+        "public_reading": 2,
+        "private_library_metadata": 50
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-entity-library-harvest-2026-08-22.html",
+        "manifest": "packages/federal-government-entity-library-harvest-2026-08-22.json",
+        "report": "reports/federal-government-entity-library-harvest-2026-08-22.html",
+        "source_text": "reports/federal-government-entity-library-harvest-2026-08-22.md"
+      }
+    },
+    {
+      "research_id": "federal-government-full-freshness-sweep-2026-08-22",
+      "title": "Federal Government Full Freshness Sweep — August 22, 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-08-23",
+      "latest_computer_edit_at": "2026-09-22T01:12:22Z",
+      "material_counts": {
+        "total": 49,
+        "public_reading": 1,
+        "private_library_metadata": 48
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-full-freshness-sweep-2026-08-22.html",
+        "manifest": "packages/federal-government-full-freshness-sweep-2026-08-22.json",
+        "report": "reports/federal-government-full-freshness-sweep-2026-08-22.html",
+        "source_text": "reports/federal-government-full-freshness-sweep-2026-08-22.md"
+      }
+    },
+    {
+      "research_id": "federal-government-sweep-control-audit-2026-08-29",
+      "title": "Federal Government Sweep Control Audit — August 21–29, 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-08-29T21:06:00-04:00",
+      "latest_computer_edit_at": "2026-08-31T22:21:22Z",
+      "material_counts": {
+        "total": 12,
+        "public_reading": 2,
+        "private_library_metadata": 10
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-sweep-control-audit-2026-08-29.html",
+        "manifest": "packages/federal-government-sweep-control-audit-2026-08-29.json",
+        "report": "reports/federal-government-sweep-control-audit-2026-08-29.html",
+        "source_text": "reports/federal-government-sweep-control-audit-2026-08-29.md"
+      }
+    },
+    {
+      "research_id": "federal-government-website-sweep-2026-07-25",
+      "title": "Federal Government Website Sweep — 2026-07-25",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-07-25",
+      "latest_computer_edit_at": "2026-08-25T21:30:51Z",
+      "material_counts": {
+        "total": 24,
+        "public_reading": 1,
+        "private_library_metadata": 23
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-website-sweep-2026-07-25.html",
+        "manifest": "packages/federal-government-website-sweep-2026-07-25.json",
+        "report": "reports/federal-government-website-sweep-2026-07-25.html",
+        "source_text": "reports/federal-government-website-sweep-2026-07-25.md"
+      }
+    },
+    {
+      "research_id": "federal-government-weekly-delta-2026-08-08",
+      "title": "Federal Government Weekly Delta — August 2–8, 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-08-08T11:50:27-04:00",
+      "latest_computer_edit_at": "2026-08-08T16:37:33Z",
+      "material_counts": {
+        "total": 12,
+        "public_reading": 1,
+        "private_library_metadata": 11
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-weekly-delta-2026-08-08.html",
+        "manifest": "packages/federal-government-weekly-delta-2026-08-08.json",
+        "report": "reports/federal-government-weekly-delta-2026-08-08.html",
+        "source_text": "reports/federal-government-weekly-delta-2026-08-08.md"
+      }
+    },
+    {
+      "research_id": "federal-government-weekly-delta-2026-08-13",
+      "title": "Federal Government Weekly Delta — August 8–13, 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-08-13T21:25:45-04:00",
+      "latest_computer_edit_at": "2026-08-14T02:09:24Z",
+      "material_counts": {
+        "total": 12,
+        "public_reading": 1,
+        "private_library_metadata": 11
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-weekly-delta-2026-08-13.html",
+        "manifest": "packages/federal-government-weekly-delta-2026-08-13.json",
+        "report": "reports/federal-government-weekly-delta-2026-08-13.html",
+        "source_text": "reports/federal-government-weekly-delta-2026-08-13.md"
+      }
+    },
+    {
+      "research_id": "federal-government-weekly-delta-2026-08-20",
+      "title": "Federal Government Weekly Delta — August 13–20, 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-08-20T12:19:33-04:00",
+      "latest_computer_edit_at": "2026-08-27T21:45:45Z",
+      "material_counts": {
+        "total": 14,
+        "public_reading": 1,
+        "private_library_metadata": 13
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-weekly-delta-2026-08-20.html",
+        "manifest": "packages/federal-government-weekly-delta-2026-08-20.json",
+        "report": "reports/federal-government-weekly-delta-2026-08-20.html",
+        "source_text": "reports/federal-government-weekly-delta-2026-08-20.md"
+      }
+    },
+    {
+      "research_id": "federal-government-weekly-delta-2026-08-21",
+      "title": "Federal Government Weekly Delta — August 20–21, 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-08-21T15:00:00-04:00",
+      "latest_computer_edit_at": "2026-08-21T19:09:11Z",
+      "material_counts": {
+        "total": 10,
+        "public_reading": 1,
+        "private_library_metadata": 9
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-weekly-delta-2026-08-21.html",
+        "manifest": "packages/federal-government-weekly-delta-2026-08-21.json",
+        "report": "reports/federal-government-weekly-delta-2026-08-21.html",
+        "source_text": "reports/federal-government-weekly-delta-2026-08-21.md"
+      }
+    },
+    {
+      "research_id": "disclosure-architecture",
+      "title": "Disclosure Architecture",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-27",
+      "latest_computer_edit_at": "2026-09-08T19:23:00Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/disclosure-architecture.html",
+        "manifest": "packages/disclosure-architecture.json",
+        "report": "reports/disclosure-architecture.html",
+        "source_text": "reports/disclosure-architecture.md"
+      }
+    },
+    {
+      "research_id": "trump-davos-address-2026-01-21",
+      "title": "Trump Davos Address — January 21, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-25",
+      "latest_computer_edit_at": "2026-09-25T05:42:08Z",
+      "material_counts": {
+        "total": 7,
+        "public_reading": 2,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Trade, sanctions & pressure",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/trump-davos-address-2026-01-21.html",
+        "manifest": "packages/trump-davos-address-2026-01-21.json",
+        "report": "reports/trump-davos-address-2026-01-21.html",
+        "source_text": "reports/trump-davos-address-2026-01-21.md"
+      }
+    },
+    {
+      "research_id": "white-house-cabinet-meeting-2026-07-31",
+      "title": "White House Cabinet Meeting — July 31, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-31T19:50:38-04:00",
+      "latest_computer_edit_at": "2026-09-16T23:20:09Z",
+      "material_counts": {
+        "total": 4,
+        "public_reading": 2,
+        "private_library_metadata": 2
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/white-house-cabinet-meeting-2026-07-31.html",
+        "manifest": "packages/white-house-cabinet-meeting-2026-07-31.json",
+        "report": "reports/white-house-cabinet-meeting-2026-07-31.html",
+        "source_text": "reports/white-house-cabinet-meeting-2026-07-31.md"
+      }
+    },
+    {
+      "research_id": "education-university-funding",
+      "title": "Education and University Funding",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-17",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 16,
+        "public_reading": 5,
+        "private_library_metadata": 11
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/education-university-funding.html",
+        "manifest": "packages/education-university-funding.json",
+        "report": "reports/education-university-funding.html",
+        "source_text": "reports/education-university-funding.md"
+      }
+    },
+    {
+      "research_id": "university-funding-programmable-compliance",
+      "title": "University Funding and Programmable Compliance",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-28",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 5,
+        "public_reading": 1,
+        "private_library_metadata": 4
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/university-funding-programmable-compliance.html",
+        "manifest": "packages/university-funding-programmable-compliance.json",
+        "report": "reports/university-funding-programmable-compliance.html",
+        "source_text": "reports/university-funding-programmable-compliance.md"
+      }
+    },
+    {
+      "research_id": "education-full-surface-sweep-2026-08-04",
+      "title": "Department of Education Full-Surface Sweep — August 4, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-04",
+      "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/education-full-surface-sweep-2026-08-04.html",
+        "manifest": "packages/education-full-surface-sweep-2026-08-04.json",
+        "report": "reports/education-full-surface-sweep-2026-08-04.html",
+        "source_text": "reports/education-full-surface-sweep-2026-08-04.md"
+      }
+    },
+    {
+      "research_id": "dow-research-security-audits-2026-08-17",
+      "title": "Department of War Research Security Audits — August 17, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-17",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 9,
+        "public_reading": 1,
+        "private_library_metadata": 8
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "technology",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/dow-research-security-audits-2026-08-17.html",
+        "manifest": "packages/dow-research-security-audits-2026-08-17.json",
+        "report": "reports/dow-research-security-audits-2026-08-17.html",
+        "source_text": "reports/dow-research-security-audits-2026-08-17.md"
+      }
+    },
+    {
+      "research_id": "trump-whca-dinner-remarks-2026-07-24",
+      "title": "Trump WHCA Dinner Remarks — July 24, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-07-24",
+      "latest_computer_edit_at": "2026-09-16T23:20:09Z",
+      "material_counts": {
+        "total": 12,
+        "public_reading": 3,
+        "private_library_metadata": 9
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/trump-whca-dinner-remarks-2026-07-24.html",
+        "manifest": "packages/trump-whca-dinner-remarks-2026-07-24.json",
+        "report": "reports/trump-whca-dinner-remarks-2026-07-24.html",
+        "source_text": "reports/trump-whca-dinner-remarks-2026-07-24.md"
+      }
+    },
+    {
+      "research_id": "opm-structural-change-audit-2025-2026",
+      "title": "Office of Personnel Management Structural Change Audit — 2025–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-29T20:10:53-04:00",
+      "latest_computer_edit_at": "2026-09-08T17:25:25Z",
+      "material_counts": {
+        "total": 4,
+        "public_reading": 1,
+        "private_library_metadata": 3
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/opm-structural-change-audit-2025-2026.html",
+        "manifest": "packages/opm-structural-change-audit-2025-2026.json",
+        "report": "reports/opm-structural-change-audit-2025-2026.html",
+        "source_text": "reports/opm-structural-change-audit-2025-2026.md"
+      }
+    },
+    {
+      "research_id": "japan-august-2026-delta",
+      "title": "Japan August 2026 — State, Monetary, Industrial and Digital Delta",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-31T23:10:00+09:00",
+      "latest_computer_edit_at": "2026-09-28T00:52:07Z",
+      "material_counts": {
+        "total": 4,
+        "public_reading": 1,
+        "private_library_metadata": 3
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Monetary systems & currencies",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/japan-august-2026-delta.html",
+        "manifest": "packages/japan-august-2026-delta.json",
+        "report": "reports/japan-august-2026-delta.html",
+        "source_text": "reports/japan-august-2026-delta.md"
+      }
+    },
+    {
+      "research_id": "g7-g20-coordination-architecture",
+      "title": "G7 and G20 Coordination Architecture — 2025–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-03T19:41:23-04:00",
+      "latest_computer_edit_at": "2026-09-03T23:57:10Z",
+      "material_counts": {
+        "total": 18,
+        "public_reading": 3,
+        "private_library_metadata": 15
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Institutions & coordination",
+        "secondary_sections": [
+          "government",
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/g7-g20-coordination-architecture.html",
+        "manifest": "packages/g7-g20-coordination-architecture.json",
+        "report": "reports/g7-g20-coordination-architecture.html",
+        "source_text": "reports/g7-g20-coordination-architecture.md"
+      }
+    },
+    {
+      "research_id": "route-anchor-inventory",
+      "title": "Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-31T14:43:21-04:00",
+      "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "material_counts": {
+        "total": 34,
+        "public_reading": 2,
+        "private_library_metadata": 32
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/route-anchor-inventory.html",
+        "manifest": "packages/route-anchor-inventory.json",
+        "report": "reports/route-anchor-inventory.html",
+        "source_text": "reports/route-anchor-inventory.md"
+      }
+    },
+    {
+      "research_id": "tokenization-entity-control-map",
+      "title": "Crypto Infrastructure Hub",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-24",
+      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "material_counts": {
+        "total": 68,
+        "public_reading": 3,
+        "private_library_metadata": 65
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/tokenization-entity-control-map.html",
+        "manifest": "packages/tokenization-entity-control-map.json",
+        "report": "reports/tokenization-entity-control-map.html",
+        "source_text": "reports/tokenization-entity-control-map.md"
+      }
+    },
+    {
+      "research_id": "ripple-xrp-invisible-conversion-layer",
+      "title": "Ripple, XRP and the Invisible Conversion Layer",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-17",
+      "latest_computer_edit_at": "2026-09-23T15:05:04Z",
+      "material_counts": {
+        "total": 17,
+        "public_reading": 4,
+        "private_library_metadata": 13
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/ripple-xrp-invisible-conversion-layer.html",
+        "manifest": "packages/ripple-xrp-invisible-conversion-layer.json",
+        "report": "reports/ripple-xrp-invisible-conversion-layer.html",
+        "source_text": "reports/ripple-xrp-invisible-conversion-layer.md"
+      }
+    },
+    {
+      "research_id": "prwora-state-reporting-eligibility-architecture",
+      "title": "PRWORA State Reporting and Eligibility Architecture — 1996–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-02",
+      "latest_computer_edit_at": "2026-09-08T17:00:29Z",
+      "material_counts": {
+        "total": 4,
+        "public_reading": 2,
+        "private_library_metadata": 2
+      },
+      "classification": {
+        "section": "states",
+        "subsection": "Federal–State rules & benefits",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/prwora-state-reporting-eligibility-architecture.html",
+        "manifest": "packages/prwora-state-reporting-eligibility-architecture.json",
+        "report": "reports/prwora-state-reporting-eligibility-architecture.html",
+        "source_text": "reports/prwora-state-reporting-eligibility-architecture.md"
+      }
+    },
+    {
+      "research_id": "federal-government-weekly-delta-2026-09-03",
+      "title": "Federal Government Weekly Delta — August 31–September 3, 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-09-03T20:09:34-04:00",
+      "latest_computer_edit_at": "2026-09-04T01:23:44Z",
+      "material_counts": {
+        "total": 16,
+        "public_reading": 1,
+        "private_library_metadata": 15
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-weekly-delta-2026-09-03.html",
+        "manifest": "packages/federal-government-weekly-delta-2026-09-03.json",
+        "report": "reports/federal-government-weekly-delta-2026-09-03.html",
+        "source_text": "reports/federal-government-weekly-delta-2026-09-03.md"
+      }
+    },
+    {
+      "research_id": "federal-government-weekly-delta-2026-09-11",
+      "title": "Federal Government Weekly Delta — September 4–11, 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-09-11T16:01:37-04:00",
+      "latest_computer_edit_at": "2026-09-15T22:40:36Z",
+      "material_counts": {
+        "total": 24,
+        "public_reading": 2,
+        "private_library_metadata": 22
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-weekly-delta-2026-09-11.html",
+        "manifest": "packages/federal-government-weekly-delta-2026-09-11.json",
+        "report": "reports/federal-government-weekly-delta-2026-09-11.html",
+        "source_text": "reports/federal-government-weekly-delta-2026-09-11.md"
+      }
+    },
+    {
+      "research_id": "federal-government-weekly-delta-2026-09-16",
+      "title": "Federal Government Weekly Delta — September 12–16, 2026",
+      "library_state": "archive",
+      "evidence_cutoff": "2026-09-16T19:10:34-04:00",
+      "latest_computer_edit_at": "2026-09-17T00:33:47Z",
+      "material_counts": {
+        "total": 29,
+        "public_reading": 1,
+        "private_library_metadata": 28
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-government-weekly-delta-2026-09-16.html",
+        "manifest": "packages/federal-government-weekly-delta-2026-09-16.json",
+        "report": "reports/federal-government-weekly-delta-2026-09-16.html",
+        "source_text": "reports/federal-government-weekly-delta-2026-09-16.md"
+      }
+    },
+    {
+      "research_id": "federal-technology-and-monetary-infrastructure-delta-2026-09-20",
+      "title": "Federal Technology and Monetary Infrastructure Delta — September 17–20, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-20T16:20:12-04:00",
+      "latest_computer_edit_at": "2026-09-23T17:31:09Z",
+      "material_counts": {
+        "total": 11,
+        "public_reading": 1,
+        "private_library_metadata": 10
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": [
+          "AI in government and the public record"
+        ]
+      },
+      "routes": {
+        "summary": "library/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html",
+        "manifest": "packages/federal-technology-and-monetary-infrastructure-delta-2026-09-20.json",
+        "report": "reports/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html",
+        "source_text": "reports/federal-technology-and-monetary-infrastructure-delta-2026-09-20.md"
+      }
+    },
+    {
+      "research_id": "un-general-assembly-high-level-week-2026",
+      "title": "United Nations General Assembly High-Level Week — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-29T04:30:00-04:00",
+      "latest_computer_edit_at": "2026-09-29T19:05:24Z",
+      "material_counts": {
+        "total": 330,
+        "public_reading": 2,
+        "private_library_metadata": 328
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Institutions & coordination",
+        "secondary_sections": [
+          "technology",
+          "government"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/un-general-assembly-high-level-week-2026.html",
+        "manifest": "packages/un-general-assembly-high-level-week-2026.json",
+        "report": "reports/un-general-assembly-high-level-week-2026.html",
+        "source_text": "reports/un-general-assembly-high-level-week-2026.md"
+      }
+    },
+    {
+      "research_id": "economic-institution-legitimacy-crisis",
+      "title": "Economic Institution Legitimacy Crisis — 2025–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-24T22:31:00-04:00",
+      "latest_computer_edit_at": "2026-09-29T02:48:24Z",
+      "material_counts": {
+        "total": 90,
+        "public_reading": 7,
+        "private_library_metadata": 83
+      },
+      "classification": {
+        "section": "thesis",
+        "subsection": "Living thesis and orientation",
+        "secondary_sections": [
+          "government",
+          "money",
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/economic-institution-legitimacy-crisis.html",
+        "manifest": "packages/economic-institution-legitimacy-crisis.json",
+        "report": "reports/economic-institution-legitimacy-crisis.html",
+        "source_text": "reports/economic-institution-legitimacy-crisis.md"
+      }
+    },
+    {
+      "research_id": "new-york-manufacturing-innovation-map-2026",
+      "title": "New York Manufacturing and Innovation Map — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-04",
+      "latest_computer_edit_at": "2026-09-04T17:17:27Z",
+      "material_counts": {
+        "total": 9,
+        "public_reading": 4,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "states",
+        "subsection": "Industry & places",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/new-york-manufacturing-innovation-map-2026.html",
+        "manifest": "packages/new-york-manufacturing-innovation-map-2026.json",
+        "report": "reports/new-york-manufacturing-innovation-map-2026.html",
+        "source_text": "reports/new-york-manufacturing-innovation-map-2026.md"
+      }
+    },
+    {
+      "research_id": "mortgage-credit-score-reform",
+      "title": "Credit Approval Standards: Mortgage, Retail and Business",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-07",
+      "latest_computer_edit_at": "2026-09-07T16:38:09Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 2,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Banks, borrowing & risk",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/mortgage-credit-score-reform.html",
+        "manifest": "packages/mortgage-credit-score-reform.json",
+        "report": "reports/mortgage-credit-score-reform.html",
+        "source_text": "reports/mortgage-credit-score-reform.md"
+      }
+    },
+    {
+      "research_id": "mortgage-balance-sheet-trail",
+      "title": "Mortgage Balance Sheet Trail to the Fed",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-07",
+      "latest_computer_edit_at": "2026-09-07T15:55:05Z",
+      "material_counts": {
+        "total": 3,
+        "public_reading": 1,
+        "private_library_metadata": 2
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Banks, borrowing & risk",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/mortgage-balance-sheet-trail.html",
+        "manifest": "packages/mortgage-balance-sheet-trail.json",
+        "report": "reports/mortgage-balance-sheet-trail.html",
+        "source_text": "reports/mortgage-balance-sheet-trail.md"
+      }
+    },
+    {
+      "research_id": "federal-workforce-and-agency-control",
+      "title": "Federal Workforce and Agency Control Maps",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-15",
+      "latest_computer_edit_at": "2026-08-15T20:06:50Z",
+      "material_counts": {
+        "total": 6,
+        "public_reading": 2,
+        "private_library_metadata": 4
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-workforce-and-agency-control.html",
+        "manifest": "packages/federal-workforce-and-agency-control.json",
+        "report": "reports/federal-workforce-and-agency-control.html",
+        "source_text": "reports/federal-workforce-and-agency-control.md"
+      }
+    },
+    {
+      "research_id": "federal-force-surveillance-and-emergency-authority",
+      "title": "Federal Force, Surveillance and Emergency Authority Maps",
+      "library_state": "current",
+      "evidence_cutoff": "2026-08-15",
+      "latest_computer_edit_at": "2026-08-15T20:06:50Z",
+      "material_counts": {
+        "total": 6,
+        "public_reading": 1,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-force-surveillance-and-emergency-authority.html",
+        "manifest": "packages/federal-force-surveillance-and-emergency-authority.json",
+        "report": "reports/federal-force-surveillance-and-emergency-authority.html",
+        "source_text": "reports/federal-force-surveillance-and-emergency-authority.md"
+      }
+    },
+    {
+      "research_id": "genesis-mission",
+      "title": "Genesis Mission",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-09",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 16,
+        "public_reading": 2,
+        "private_library_metadata": 14
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Science strategy and emerging capabilities",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/genesis-mission.html",
+        "manifest": "packages/genesis-mission.json",
+        "report": "reports/genesis-mission.html",
+        "source_text": "reports/genesis-mission.md"
+      }
+    },
+    {
+      "research_id": "education-learning-agenda-playbook",
+      "title": "Education Learning Agenda Playbook",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-09",
+      "latest_computer_edit_at": "2026-09-09T22:27:33Z",
+      "material_counts": {
+        "total": 2,
+        "public_reading": 1,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/education-learning-agenda-playbook.html",
+        "manifest": "packages/education-learning-agenda-playbook.json",
+        "report": "reports/education-learning-agenda-playbook.html",
+        "source_text": "reports/education-learning-agenda-playbook.md"
+      }
+    },
+    {
+      "research_id": "federal-budget-fy2026-fy2027",
+      "title": "Federal Budget — FY2026 to FY2027",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-11T19:55:13-04:00",
+      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "material_counts": {
+        "total": 158,
+        "public_reading": 1,
+        "private_library_metadata": 157
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/federal-budget-fy2026-fy2027.html",
+        "manifest": "packages/federal-budget-fy2026-fy2027.json",
+        "report": "reports/federal-budget-fy2026-fy2027.html",
+        "source_text": "reports/federal-budget-fy2026-fy2027.md"
+      }
+    },
+    {
+      "research_id": "uk-constitutional-order-self-determination",
+      "title": "UK Constitutional Order and Self-Determination",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-13T17:59:00-04:00",
+      "latest_computer_edit_at": "2026-09-23T15:38:16Z",
+      "material_counts": {
+        "total": 16,
+        "public_reading": 2,
+        "private_library_metadata": 14
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Institutions & coordination",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/uk-constitutional-order-self-determination.html",
+        "manifest": "packages/uk-constitutional-order-self-determination.json",
+        "report": "reports/uk-constitutional-order-self-determination.html",
+        "source_text": "reports/uk-constitutional-order-self-determination.md"
+      }
+    },
+    {
+      "research_id": "stop-secret-spending-act-ota-transparency",
+      "title": "Stop Secret Spending Act — OTA Transparency and Implementation",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-15T18:26:27-04:00",
+      "latest_computer_edit_at": "2026-09-15T23:10:33Z",
+      "material_counts": {
+        "total": 6,
+        "public_reading": 1,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public money, benefits and eligibility",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/stop-secret-spending-act-ota-transparency.html",
+        "manifest": "packages/stop-secret-spending-act-ota-transparency.json",
+        "report": "reports/stop-secret-spending-act-ota-transparency.html",
+        "source_text": "reports/stop-secret-spending-act-ota-transparency.md"
+      }
+    },
+    {
+      "research_id": "federal-government-deep-website-review-2026-09-22",
+      "title": "Federal Government Deep Website Review — September 16–22, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-22T11:51:46-04:00",
+      "latest_computer_edit_at": "2026-09-23T02:38:28Z",
+      "material_counts": {
+        "total": 23,
+        "public_reading": 1,
+        "private_library_metadata": 22
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "world",
+          "states"
+        ],
+        "additional_subsections": [
+          "AI in government and the public record"
+        ]
+      },
+      "routes": {
+        "summary": "library/federal-government-deep-website-review-2026-09-22.html",
+        "manifest": "packages/federal-government-deep-website-review-2026-09-22.json",
+        "report": "reports/federal-government-deep-website-review-2026-09-22.html",
+        "source_text": "reports/federal-government-deep-website-review-2026-09-22.md"
+      }
+    },
+    {
+      "research_id": "federal-government-weekly-delta-2026-09-25",
+      "title": "Federal Government Weekly Delta — September 21–25, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-25T23:59:59-04:00",
+      "latest_computer_edit_at": "2026-09-26T16:51:34Z",
+      "material_counts": {
+        "total": 20,
+        "public_reading": 1,
+        "private_library_metadata": 19
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "world",
+          "states"
+        ],
+        "additional_subsections": [
+          "AI in government and the public record"
+        ]
+      },
+      "routes": {
+        "summary": "library/federal-government-weekly-delta-2026-09-25.html",
+        "manifest": "packages/federal-government-weekly-delta-2026-09-25.json",
+        "report": "reports/federal-government-weekly-delta-2026-09-25.html",
+        "source_text": "reports/federal-government-weekly-delta-2026-09-25.md"
+      }
+    },
+    {
+      "research_id": "dvd-third-country-removal-authority-2025-2026",
+      "title": "D.V.D. Third-Country Removal Authority — 2025–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-25",
+      "latest_computer_edit_at": "2026-09-25T04:03:47Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [],
+        "additional_subsections": [
+          "Agencies, workforce and authority",
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/dvd-third-country-removal-authority-2025-2026.html",
+        "manifest": "packages/dvd-third-country-removal-authority-2025-2026.json",
+        "report": "reports/dvd-third-country-removal-authority-2025-2026.html",
+        "source_text": "reports/dvd-third-country-removal-authority-2025-2026.md"
+      }
+    },
+    {
+      "research_id": "financial-infrastructure-permission-operating-receipt-windows-2026",
+      "title": "2026 Financial Infrastructure Permission and Operating-Receipt Windows",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-25",
+      "latest_computer_edit_at": "2026-09-25T05:28:52Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Rules, ownership & access",
+        "secondary_sections": [
+          "government"
+        ],
+        "additional_subsections": [
+          "Payments & digital assets"
+        ]
+      },
+      "routes": {
+        "summary": "library/financial-infrastructure-permission-operating-receipt-windows-2026.html",
+        "manifest": "packages/financial-infrastructure-permission-operating-receipt-windows-2026.json",
+        "report": "reports/financial-infrastructure-permission-operating-receipt-windows-2026.html",
+        "source_text": "reports/financial-infrastructure-permission-operating-receipt-windows-2026.md"
+      }
+    },
+    {
+      "research_id": "march-2025-aries-eclipse-authority-window",
+      "title": "March 26–31, 2025 Aries Eclipse Authority Window",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-25",
+      "latest_computer_edit_at": "2026-09-25T04:47:09Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": [
+          "Agencies, workforce and authority",
+          "Public services and legal limits"
+        ]
+      },
+      "routes": {
+        "summary": "library/march-2025-aries-eclipse-authority-window.html",
+        "manifest": "packages/march-2025-aries-eclipse-authority-window.json",
+        "report": "reports/march-2025-aries-eclipse-authority-window.html",
+        "source_text": "reports/march-2025-aries-eclipse-authority-window.md"
+      }
+    },
+    {
+      "research_id": "january-2025-authority-operations-window",
+      "title": "January 26–February 1, 2025 Authority-to-Operations Window",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-25",
+      "latest_computer_edit_at": "2026-09-25T09:11:43Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "technology"
+        ],
+        "additional_subsections": [
+          "Agencies, workforce and authority",
+          "Public services and legal limits"
+        ]
+      },
+      "routes": {
+        "summary": "library/january-2025-authority-operations-window.html",
+        "manifest": "packages/january-2025-authority-operations-window.json",
+        "report": "reports/january-2025-authority-operations-window.html",
+        "source_text": "reports/january-2025-authority-operations-window.md"
+      }
+    },
+    {
+      "research_id": "july-2024-protection-financial-control-window",
+      "title": "July 2–8, 2024 Protection and Financial Control Window",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-25",
+      "latest_computer_edit_at": "2026-09-25T04:19:01Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": [
+          "Agencies, workforce and authority",
+          "Public money, benefits and eligibility"
+        ]
+      },
+      "routes": {
+        "summary": "library/july-2024-protection-financial-control-window.html",
+        "manifest": "packages/july-2024-protection-financial-control-window.json",
+        "report": "reports/july-2024-protection-financial-control-window.html",
+        "source_text": "reports/july-2024-protection-financial-control-window.md"
+      }
+    },
+    {
+      "research_id": "december-2024-beneficial-ownership-reporting-perimeter",
+      "title": "December 2024 Beneficial Ownership Reporting Perimeter",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-25",
+      "latest_computer_edit_at": "2026-09-25T12:16:57Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": [
+          "Agencies, workforce and authority",
+          "Public services and legal limits"
+        ]
+      },
+      "routes": {
+        "summary": "library/december-2024-beneficial-ownership-reporting-perimeter.html",
+        "manifest": "packages/december-2024-beneficial-ownership-reporting-perimeter.json",
+        "report": "reports/december-2024-beneficial-ownership-reporting-perimeter.html",
+        "source_text": "reports/december-2024-beneficial-ownership-reporting-perimeter.md"
+      }
+    },
+    {
+      "research_id": "march-2006-march-2007-institutional-action-windows",
+      "title": "March 2006 and March 2007 Institutional Action Windows",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-24",
+      "latest_computer_edit_at": "2026-09-25T02:07:55Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "world"
+        ],
+        "additional_subsections": [
+          "Agencies, workforce and authority",
+          "Public services and legal limits"
+        ]
+      },
+      "routes": {
+        "summary": "library/march-2006-march-2007-institutional-action-windows.html",
+        "manifest": "packages/march-2006-march-2007-institutional-action-windows.json",
+        "report": "reports/march-2006-march-2007-institutional-action-windows.html",
+        "source_text": "reports/march-2006-march-2007-institutional-action-windows.md"
+      }
+    },
+    {
+      "research_id": "federal-government-movement-atlas",
+      "title": "Government-Wide Research Hub",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-22T11:51:46-04:00",
+      "latest_computer_edit_at": "2026-09-28T23:53:46Z",
+      "material_counts": {
+        "total": 23,
+        "public_reading": 2,
+        "private_library_metadata": 21
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": [
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/federal-government-movement-atlas.html",
+        "manifest": "packages/federal-government-movement-atlas.json",
+        "report": "reports/federal-government-movement-atlas.html",
+        "source_text": "reports/federal-government-movement-atlas.md"
+      }
+    },
+    {
+      "research_id": "us-china-strategic-stability-state-visit-2026",
+      "title": "U.S.–China Strategic Stability State Visit — September 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-28T10:07:16-04:00",
+      "latest_computer_edit_at": "2026-09-28T15:44:41Z",
+      "material_counts": {
+        "total": 7,
+        "public_reading": 2,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Institutions & coordination",
+        "secondary_sections": [
+          "government",
+          "money",
+          "technology"
+        ],
+        "additional_subsections": [
+          "Trade, sanctions & pressure"
+        ]
+      },
+      "routes": {
+        "summary": "library/us-china-strategic-stability-state-visit-2026.html",
+        "manifest": "packages/us-china-strategic-stability-state-visit-2026.json",
+        "report": "reports/us-china-strategic-stability-state-visit-2026.html",
+        "source_text": "reports/us-china-strategic-stability-state-visit-2026.md"
+      }
+    },
+    {
+      "research_id": "china-country-orientation-2026",
+      "title": "China Country Orientation — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-24T23:05:00-04:00",
+      "latest_computer_edit_at": "2026-09-28T14:09:26Z",
+      "material_counts": {
+        "total": 20,
+        "public_reading": 2,
+        "private_library_metadata": 18
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Institutions & coordination",
+        "secondary_sections": [
+          "government",
+          "money",
+          "technology"
+        ],
+        "additional_subsections": [
+          "Monetary systems & currencies",
+          "Trade, sanctions & pressure"
+        ]
+      },
+      "routes": {
+        "summary": "library/china-country-orientation-2026.html",
+        "manifest": "packages/china-country-orientation-2026.json",
+        "report": "reports/china-country-orientation-2026.html",
+        "source_text": "reports/china-country-orientation-2026.md"
+      }
+    },
+    {
+      "research_id": "russia-country-orientation-2026",
+      "title": "Russia Country Orientation — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-24T23:59:00-04:00",
+      "latest_computer_edit_at": "2026-09-25T03:02:02Z",
+      "material_counts": {
+        "total": 7,
+        "public_reading": 2,
+        "private_library_metadata": 5
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Institutions & coordination",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": [
+          "Trade, sanctions & pressure"
+        ]
+      },
+      "routes": {
+        "summary": "library/russia-country-orientation-2026.html",
+        "manifest": "packages/russia-country-orientation-2026.json",
+        "report": "reports/russia-country-orientation-2026.html",
+        "source_text": "reports/russia-country-orientation-2026.md"
+      }
+    },
+    {
+      "research_id": "ustda-project-development-pipeline-2026",
+      "title": "USTDA Project Development Pipeline — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-26T12:45:00-04:00",
+      "latest_computer_edit_at": "2026-09-26T16:39:41Z",
+      "material_counts": {
+        "total": 4,
+        "public_reading": 2,
+        "private_library_metadata": 2
+      },
+      "classification": {
+        "section": "world",
+        "subsection": "Institutions & coordination",
+        "secondary_sections": [
+          "government",
+          "money",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/ustda-project-development-pipeline-2026.html",
+        "manifest": "packages/ustda-project-development-pipeline-2026.json",
+        "report": "reports/ustda-project-development-pipeline-2026.html",
+        "source_text": "reports/ustda-project-development-pipeline-2026.md"
+      }
+    },
+    {
+      "research_id": "institutional-signals-thesis-test-2025-2026",
+      "title": "Institutional Signals and Thesis Test — 2025–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-28T23:59:59-04:00",
+      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "material_counts": {
+        "total": 75,
+        "public_reading": 3,
+        "private_library_metadata": 72
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": [
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/institutional-signals-thesis-test-2025-2026.html",
+        "manifest": "packages/institutional-signals-thesis-test-2025-2026.json",
+        "report": "reports/institutional-signals-thesis-test-2025-2026.html",
+        "source_text": "reports/institutional-signals-thesis-test-2025-2026.md"
+      }
+    },
+    {
+      "research_id": "government-hidden-control-surfaces-2026",
+      "title": "Government Hidden Control Surfaces — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-28T23:59:59-04:00",
+      "latest_computer_edit_at": "2026-09-29T02:48:24Z",
+      "material_counts": {
+        "total": 90,
+        "public_reading": 3,
+        "private_library_metadata": 87
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [
+          "money",
+          "technology"
+        ],
+        "additional_subsections": [
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/government-hidden-control-surfaces-2026.html",
+        "manifest": "packages/government-hidden-control-surfaces-2026.json",
+        "report": "reports/government-hidden-control-surfaces-2026.html",
+        "source_text": "reports/government-hidden-control-surfaces-2026.md"
+      }
+    },
+    {
+      "research_id": "major-bank-digital-transition",
+      "title": "Major Bank Digital Transition Map",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-26T16:37:25-04:00",
+      "latest_computer_edit_at": "2026-09-27T16:34:44Z",
+      "material_counts": {
+        "total": 11,
+        "public_reading": 1,
+        "private_library_metadata": 10
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology",
+          "world"
+        ],
+        "additional_subsections": [
+          "Banks, borrowing & risk"
+        ]
+      },
+      "routes": {
+        "summary": "library/major-bank-digital-transition.html",
+        "manifest": "packages/major-bank-digital-transition.json",
+        "report": "reports/major-bank-digital-transition.html",
+        "source_text": "reports/major-bank-digital-transition.md"
+      }
+    },
+    {
+      "research_id": "official-record-authority-blockchain",
+      "title": "Official Record Authority and Blockchain Crosswalk — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-26",
+      "latest_computer_edit_at": "2026-09-27T00:57:49Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Accounting & public records",
+        "secondary_sections": [
+          "government",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/official-record-authority-blockchain.html",
+        "manifest": "packages/official-record-authority-blockchain.json",
+        "report": "reports/official-record-authority-blockchain.html",
+        "source_text": "reports/official-record-authority-blockchain.md"
+      }
+    },
+    {
+      "research_id": "atomic-settlement-continuous-assurance",
+      "title": "From Atomic Settlement to Continuous Assurance — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-26",
+      "latest_computer_edit_at": "2026-09-27T01:13:42Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Accounting & public records",
+        "secondary_sections": [
+          "government",
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/atomic-settlement-continuous-assurance.html",
+        "manifest": "packages/atomic-settlement-continuous-assurance.json",
+        "report": "reports/atomic-settlement-continuous-assurance.html",
+        "source_text": "reports/atomic-settlement-continuous-assurance.md"
+      }
+    },
+    {
+      "research_id": "qnt-september-2026-price-rise",
+      "title": "QNT September 2026 Price Rise — Causal Audit",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-27T09:44:00-04:00",
+      "latest_computer_edit_at": "2026-09-27T16:33:11Z",
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "private_library_metadata": 0
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Payments & digital assets",
+        "secondary_sections": [
+          "technology",
+          "world"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/qnt-september-2026-price-rise.html",
+        "manifest": "packages/qnt-september-2026-price-rise.json",
+        "report": "reports/qnt-september-2026-price-rise.html",
+        "source_text": "reports/qnt-september-2026-price-rise.md"
+      }
+    }
+  ]
+}

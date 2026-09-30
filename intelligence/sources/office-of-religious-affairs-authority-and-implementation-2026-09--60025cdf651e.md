@@ -1,0 +1,216 @@
+# Office of Religious Affairs — Authority, Reporting Line and Implementation Gates
+
+**Status:** `current`  
+**Research ID:** `office-of-religious-affairs`  
+**Parent research:** `military-modernization`  
+**Targeted evidence cutoff:** 2026-09-30, 10:00 p.m. EDT  
+**Question:** What did the Department change by establishing an Office of Religious Affairs that reports directly to the Secretary, and what has not yet happened?
+
+## Answer first
+
+The September 30 announcement is real, but its immediate significance is narrower and more institutional than “the military created religious affairs.” The armed forces already had service chaplaincies and an Armed Forces Chaplains Board (AFCB). The Department's own pre-existing instruction assigned that Board an advisory role on religious support, free exercise, chaplain personnel, facilities and related policy.
+
+The new **Office of Religious Affairs (ORA)** elevates that function into a direct-report office under the Secretary of War and adds an explicit Department-wide policy, resource-advocacy, research and external-representation mission. The signed memorandum makes the Director a Principal Staff Assistant with direct access to the Secretary and Deputy Secretary **without intervening authority**. It also authorizes the Director to identify and assume control over duties and authorities necessary for the mission and, when necessary, issue religious-affairs policy on the Secretary's behalf. In practical terms, the change is about **who controls the advice, how close it sits to the Secretary, and whether religious-affairs requirements can move into policy and budget decisions without the former personnel-and-readiness chain**.
+
+This is therefore an **organizational establishment, authority and reporting-line change**. It is not yet evidence of a funded program, a changed service-level chaplain command chain, a replacement religious-accommodation standard, a compulsory religious practice, or an operational result.
+
+## Current state and clocks
+
+| Object | Current public state | What the evidence establishes | What it does not establish |
+|---|---|---|---|
+| ORA | `established_effective` | The signed September 30 memorandum establishes ORA and the Director position effective immediately. | That the Director, staff and operating systems were already in place at signature. |
+| Secretary access | `direct_report_directed` | The Director is a Principal Staff Assistant, principal adviser to the Secretary and Deputy Secretary, and reports to them without intervening authority. | That every chaplain or service chaplain office reports operationally to the Secretary. |
+| Duties and authorities | `transfer_process_directed` | The Director is to coordinate with other Principal Staff Assistants and Office of the Secretary component heads to identify and assume control over duties and authorities the Director determines are necessary. Those officials are directed to assist, including with funding. | Which exact authorities, offices, funds or personnel have transferred, or when each transfer becomes operative. |
+| AFCB / Executive Director | `realignment_directed` | The memorandum realigns the AFCB and its Executive Director under the ORA Director's authority, direction and control to advise the Secretary. | The updated issuance, organization chart or completed personnel action. |
+| Service chaplaincies | `continuing_provider` | The Department release says service chaplaincies remain the primary providers of religious support. | A transfer of ordinary ministry, installation or unit-support delivery to ORA. |
+| Initial ORA budget | `plan_due_60_days` | CAPE, coordinated with the Comptroller/CFO and ORA, must establish an initial baseline budget and submit an FY2027 funding plan to the Secretary within 60 days. | Approval, appropriation, transfer or expenditure. |
+| Charter and staffing | `plan_due_90_days` | DA&M must formalize ORA, draft a chartering directive, identify initial SES/civilian/military billets, and coordinate permanent manning into budget and FYDP requests. | Issued directive, assigned personnel or funded permanent billets. |
+| Service requirements | `reports_due_90_days` | Military-department secretaries, coordinated with their chiefs of chaplains, must submit comprehensive baseline reports of all unfunded and underfunded religious-affairs requirements. | Submitted reports, accepted priorities, appropriation, transfer, contract or expenditure. |
+| Religious-liberty safeguards | `operative_memo_limit` | The memorandum says it may not be construed to compel religious participation or diminish free-exercise rights of service members, civilians or family members of any faith or no faith. | Whether future policies, funding criteria and command practices comply in implementation. |
+| Measured effects | `not_yet_public` | No operating result is required to establish the office itself. | Improved access, repaired facilities, new support, readiness effects or constitutional compliance in practice. |
+
+## Before and after
+
+### Pre-existing published structure
+
+Under DoDI 5120.08, the AFCB consisted of the chiefs and deputy chiefs of chaplains of the military departments. It could submit recommendations to the Secretary and the Under Secretary for Personnel and Readiness through the Deputy Assistant Secretary for Military Personnel Policy. Its remit already included:
+
+- free exercise and religious accommodation;
+- chaplain recruitment, training and assignment;
+- religious-support providers, supplies and facilities;
+- joint ministry and dialogue with civilian religious organizations; and
+- policy under DoDI 1300.17.
+
+The AFCB Executive Director was an O-6 chaplain who managed the office and staff under the Board chair and the supervision of the personnel-policy chain.
+
+### Announced design
+
+```text
+Secretary of War
+  └─ Office of Religious Affairs
+       ├─ Director as Principal Staff Assistant and principal adviser
+       ├─ policy issuance on the Secretary's behalf
+       ├─ PPBE integration and resource advocacy
+       ├─ spiritual-readiness research, technology and analytics
+       ├─ congressional, interagency and endorsing-organization representation
+       └─ Armed Forces Chaplains Board + Executive Director
+
+Military departments / service chaplaincies
+  └─ continue as primary religious-support providers
+```
+
+The consequential move is not that chaplains can advise senior leadership for the first time. It is that the advice-and-advocacy node is being lifted out of the former intermediate chain and placed under direct Secretary control.
+
+## What changed
+
+1. **Access and sponsorship.** A Secretary-level office can place religious-affairs questions directly into senior policy and resource deliberations.
+2. **Policy authority.** The Director may align and, when necessary, issue religious-affairs policies on the Secretary's behalf.
+3. **Control of the advisory node.** The memorandum places the AFCB and its Executive Director under the Director's authority, direction and control even though the Board's service chiefs remain its institutional base.
+4. **Resource advocacy and PPBE integration.** The Director is assigned to ensure the Department and military departments prioritize and obtain sufficient resources across ministry, facilities, logistics, chaplain procurement and training, youth and family support, resilience research and contracted services.
+5. **Analytical authority.** ORA is to sponsor and oversee research, technology and analytical tools for spiritual fitness, readiness and resilience across the Total Force.
+6. **External representation.** The Director represents the Secretary on religious-affairs matters with Congress, other government bodies and civilian religious endorsing organizations.
+7. **Transfer mechanism.** Existing Principal Staff Assistants and Office of the Secretary component heads must help the Director identify and assume necessary duties, authorities and funding. This makes future transfer records important control evidence.
+
+## What did not change on September 30
+
+- The service chaplaincies did not cease to be the primary providers.
+- The memorandum did not itself appropriate money or approve an unfunded requirement.
+- No public ORA Director was located by the cutoff.
+- The memorandum starts budget, charter and staffing clocks; it does not itself show their completion.
+- No updated DoDI 5120.08, DoDI 1300.17 or public organization chart was located.
+- No public service requirements report, Secretary disposition or implementing order was located.
+- No evidence yet shows a changed unit-level religious-support practice or measured result.
+
+## Authority map
+
+The Secretary's general organizational authority is substantial. Title 10 gives the Secretary authority, direction and control over the Department and permits action through designated persons and organizations unless law provides otherwise. The Office of the Secretary may also include other offices and officials established or designated by the Secretary. The memorandum uses that authority to create a Principal Staff Assistant, authorize a transfer process and direct budget, charter and staffing work. On the present record, creating and positioning ORA is therefore facially an internal-organization act, not by itself a constitutional violation.
+
+That authority does not erase other constraints. Religious-support policy still operates within:
+
+- the Free Exercise and Establishment Clauses;
+- statutory and policy protections for belief, conscience and religious apparel;
+- military readiness, unit cohesion, good order and discipline limits; and
+- neutral treatment of different faiths and of people with no faith.
+
+The leading direct constitutional challenge to the Army chaplaincy, *Katcoff v. Marsh*, sustained the core chaplaincy as an accommodation of service members whose military circumstances can prevent ordinary access to religion. Modern Supreme Court doctrine also asks whether government action is consistent with historical practices and understandings while retaining a prohibition on government coercion of religious exercise.
+
+The legal question is therefore not “may the military have chaplains?” It is how ORA uses policy, money and command access.
+
+## Rhetoric, instrument and implementation must stay separate
+
+The Secretary's Quantico presentation reportedly used expressly Christian language, including references to Psalm 33:12, the “armor of God” and a spiritual battle, while criticizing secular humanism and previous treatment of chaplains. That rhetoric is politically and constitutionally relevant context because it can illuminate the office's intended priorities.
+
+It is not the same object as the operative instrument. The Department's formal release states that ORA will not compel participation, favor one faith or diminish the rights of people of other faiths or no faith. Neither the rhetoric nor the disclaimer settles what future decisions will do.
+
+The decisive evidence will be implementation:
+
+- how the Director and staff are selected;
+- whether advice and grants of access are faith-neutral;
+- which requirements are accepted and funded;
+- whether comparable needs receive comparable treatment;
+- whether personnel face pressure to participate in religious activity; and
+- whether policy uses theology as government doctrine rather than protecting service members' exercise rights.
+
+## The most policy-sensitive seam
+
+The signed memorandum expressly includes ministry, religious facilities and support for **faith-based homeschooling for military families** in both ORA's resource-advocacy remit and the military departments' 90-day requirements reports. It also includes chapel youth programs, faith-based suicide-reduction and resilience initiatives, and contracted services from faith-based non-Federal entities. Traditional ministry and facilities sit squarely inside long-standing chaplain-support functions. The family, youth, research and contracted-service items widen the policy surface and therefore deserve separate scrutiny.
+
+No public record located by the cutoff defines the contemplated program, beneficiary class, funding source, neutral eligibility rule, service provider or relationship to existing military-family education support. A requirements request is not a program. The state ladder is:
+
+```text
+requested inventory
+→ service submission
+→ ORA validation/prioritization
+→ Secretary or component disposition
+→ budget/appropriation or lawful transfer
+→ program rule and eligibility design
+→ delivery
+→ observed access and constitutional result
+```
+
+## Evidence ladder
+
+### Confirmed by the signed memorandum
+
+- ORA and the Director position were established effective immediately on September 30.
+- The Director is a Principal Staff Assistant with direct access to, and no intervening authority between the Director and, the Secretary and Deputy Secretary.
+- The Director is the principal religious-affairs adviser to both officials across the Department.
+- The Director may assume necessary duties and authorities, issue religious-affairs policy on the Secretary's behalf, and represent the Secretary externally.
+- The AFCB and Executive Director are realigned under the Director's authority, direction and control.
+- CAPE, the Comptroller/CFO and ORA have a 60-day initial-budget and FY2027 funding-plan assignment.
+- DA&M has a 90-day organization, directive-charter and initial-billet assignment.
+- Military-department secretaries and their chiefs of chaplains have a 90-day comprehensive requirements-report assignment.
+- Service chaplaincies remain the primary statutory delivery mechanism.
+- The memorandum expressly protects people of any faith or no faith against compelled participation or diminished free-exercise rights.
+
+### Confirmed by the Department release
+
+- ORA's public charge includes free exercise, removal of policy barriers, unmet requirements and support for service chaplaincies.
+- The release additionally says the office will not favor one faith.
+
+### Speech context, separate from the instrument
+
+- The Secretary described direct access as a way to avoid staff filtering or bureaucratic dilution.
+- The speech used expressly Christian rhetoric that is relevant context but does not replace the memorandum's operative text.
+
+### Not yet established
+
+- named Director or completed transfer of the directed duties, authorities and funding;
+- submitted or approved budget plan, issued chartering directive, assigned billets or permanent manning;
+- amended Department instructions;
+- submitted requirements or approved resource decisions;
+- funded programs, facilities work or service delivery; or
+- improved religious access, readiness or constitutional outcomes.
+
+## Return gates
+
+Reopen this record when any of the following appears:
+
+1. a named ORA Director and a record of duties, authorities or funding actually transferred;
+2. the 60-day baseline budget and FY2027 funding plan, due on the memorandum's clock in late November 2026;
+3. the 90-day chartering directive, organization decision and initial billet allocation, due on the memorandum's clock in late December 2026;
+4. an amended DoDI 5120.08 or other issuance defining ORA/AFCB authority;
+5. the military departments' 90-day requirements submissions or a consolidated ORA assessment;
+6. a budget, reprogramming, transfer, contract, facilities project or personnel action tied to an accepted requirement;
+7. published criteria for faith-based homeschooling or another family-support program;
+8. an Inspector General, court, congressional or administrative record testing coercion, neutrality or discrimination; or
+9. evidence of actual service-member access and delivery effects.
+
+## Claim discipline
+
+Say:
+
+- “The Department announced a direct-report Office of Religious Affairs.”
+- “The Director is a Principal Staff Assistant with direct access to the Secretary and Deputy Secretary without intervening authority.”
+- “The office elevates policy, research, external representation and resource advocacy for religious affairs.”
+- “The existing AFCB already had a Secretary-advisory role; the memorandum changes its control and access path.”
+- “The memorandum starts 60- and 90-day budget, charter, staffing and requirements clocks.”
+- “The release promises neutrality and non-compulsion; implementation remains untested.”
+
+Do not yet say:
+
+- “All military chaplains now report directly to the Secretary.”
+- “The office created military religious support.”
+- “Congress funded the identified needs.”
+- “Faith-based homeschooling support is an operating program.”
+- “The announcement proves either constitutional compliance or an Establishment Clause violation.”
+
+## Primary and authoritative sources
+
+- [Department release: Secretary Hegseth Announces Six Major Initiatives at Quantico Speech](https://www.war.gov/News/Releases/Release/Article/4615424/secretary-hegseth-announces-six-major-initiatives-at-quantico-speech/)
+- Preserved signed ORA establishment memorandum — SHA-256 `5e787c421e1715e1ad9fbd37cfce1a5c85ad276171d8f590e1e9e899dedd0839`
+- [Signed ORA establishment memorandum — official media URL](https://media.defense.gov/2026/Sep/30/2004009308/-1/-1/1/ESTABLISHMENT-OF-THE-OFFICE-OF-RELIGIOUS-AFFAIRS.PDF)
+- [DoDI 5120.08, Armed Forces Chaplains Board](https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/512008p.pdf)
+- [DoDI 1300.17, Religious Liberty in the Military Services](https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/130017p.pdf)
+- [AFCB public page](https://prhome.war.gov/M-RA/Inside-M-RA/MPP/AFCB/)
+- [10 U.S.C. § 113](https://uscode.house.gov/view.xhtml?edition=prelim&hl=false&req=granuleid%3AUSC-prelim-title10-section113)
+- [10 U.S.C. § 131](https://uscode.house.gov/view.xhtml?edition=prelim&num=0&req=granuleid%3AUSC-prelim-title10-section131)
+- [Congressional Constitution Annotated: coercion test](https://constitution.congress.gov/browse/essay/amdt1-3-7-2/ALDE_00013090/)
+- [*Kennedy v. Bremerton School District*, 597 U.S. 507 (2022)](https://www.supremecourt.gov/opinions/21pdf/21-418_i425.pdf)
+- [*Katcoff v. Marsh*, 755 F.2d 223 (2d Cir. 1985)](https://app.midpage.ai/document/joel-katcoff-and-allen-m-448145)
+
+## Source-custody note
+
+The official media URL returned an access-denied response during the initial review. A user-supplied copy of the two-page signed memorandum was then visually inspected page by page, hashed and preserved in the package. Its memorandum-specific details are now treated as verified instrument text. The file is 4,968,626 bytes, dated September 30, 2026 on its face, and is byte-identical to the supplied source. The current AFCB webpages displayed inconsistent Executive Director identities, so this record still does not name a current officeholder.
+
+This targeted review does not refresh the broader Military Modernization package beyond the ORA reporting-line, authority, policy and resource clocks.

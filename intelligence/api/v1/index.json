@@ -29,6 +29,7 @@
     "packages/{research_id}.json",
     "../../readings/packages/{research_id}.html",
     "a material reading_url when public_full_text is true",
+    "a material data_url when access_state is public_machine_data",
     "fresh primary-source verification when present state matters"
   ],
   "endpoints": {
@@ -46,15 +47,17 @@
     "inventory": "inventory.json",
     "activity": "activity.json",
     "activity_stream": "activity.jsonl",
+    "public_data": "data/{data_id}.json",
     "human_entry": "../../for-katies-bot.html",
     "method_contract": "../../RESEARCH-GRAMMAR.md"
   },
   "method": {
     "evidence_rules": [
-      "Preserve each source and package evidence cutoff.",
+      "Preserve each source and package evidence cutoff, the package evidence_cutoff_note and each structured object data_as_of.",
       "Separate fact, project inference, strongest ordinary rival, unresolved object and falsifier.",
       "Prefer the controlling primary object over an announcement or summary.",
-      "Treat metadata-only material as an existence and routing signal, never as read content."
+      "Treat metadata-only material as an existence and routing signal, never as read content.",
+      "For public_machine_data, preserve the declared schema, vocabularies, scope boundary and upgrade or downgrade triggers."
     ],
     "clocks": [
       "proposal",
@@ -79,18 +82,19 @@
   },
   "answer_contract": [
     "Open package full_text_url rather than treating an index summary as the underlying research.",
-    "For materials with public_full_text true, prefer reading_url. A retrieval failure is a crawler or delivery issue, not private-by-design.",
+    "For public readings, prefer reading_url. For public_machine_data, open data_url and use the structured object without discarding its evidence vocabulary or scope boundary.",
+    "A retrieval failure for public_full_text is a crawler or delivery issue, not private-by-design.",
     "For access_state private_by_design, use metadata only and do not claim the contents.",
-    "Name the packages and exact public pages used.",
-    "State material evidence cutoffs.",
+    "Name the packages and exact public pages or data objects used.",
+    "State package and material evidence cutoffs or as-of dates.",
     "Verify time-sensitive claims against fresh primary sources.",
     "Explain what would change the conclusion."
   ],
   "snapshot": {
-    "catalog_sha256": "a2afe15b34188a82a1598ae453aa687d840b88c9351e5a4bc79bb084348643af",
-    "organization_sha256": "ebc33a93e7b7d60945e422e5ffd4962b793cefe3f294954a3175484498f15d46",
-    "package_count": 140,
-    "material_membership_count": 3788,
-    "distinct_material_count": 3105
+    "catalog_sha256": "109e80865e45446c6ebe89601712804fc3bc15c4ae97e5649bdd21685f5a88f3",
+    "organization_sha256": "4770277ed9d4524293fe2a9c0f40435563234d750ef92e721da5ecc8cf48c5ec",
+    "package_count": 147,
+    "material_membership_count": 4025,
+    "distinct_material_count": 3268
   }
 }

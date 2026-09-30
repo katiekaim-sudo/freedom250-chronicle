@@ -7,6 +7,7 @@
   "question": "How did the Leon Black and Doug Band interviews turn statements, denials, refusals and document duties into auditable accountability objects, and what did the public packet not prove?",
   "bluf": "The interviews create auditable statement, denial, memory, refusal and production-duty objects that can later be checked against documents and witnesses. The public packet does not itself establish concealment motive, a false statement, perjury or the underlying allegations.",
   "evidence_cutoff": "2026-07-21",
+  "use_note": "The Chronicle synthesis controls the reading. Released interviews and claim maps establish statements and process architecture, not truth, motive, criminal liability or adjudication.",
   "library_state": "current",
   "entities": [
     "House Oversight",
@@ -38,6 +39,7 @@
   "material_counts": {
     "total": 3,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 2
   },
   "research_layer_counts": {
@@ -61,13 +63,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [

@@ -7,6 +7,7 @@
   "question": "Which authority-specific identity, disclosure, ownership, access, provenance, security, data and investment gates route federally supported science?",
   "bluf": "Federally supported science is routed by a federation of authority-specific identity, disclosure, ownership, access, provenance, security, data, investment, validation and remedy gates. No credential, signature, list or permanent score supplies universal permission or scientific truth.",
   "evidence_cutoff": "2026-08-17",
+  "use_note": "Keep identity, disclosure, eligibility, permission, provenance, scientific validity, continuing monitoring and remedy separate. General federal cryptographic trust and the GENIUS stablecoin specimen are related child questions, not components of this maintained scientific answer.",
   "library_state": "current",
   "entities": [
     "OSTP",
@@ -88,16 +89,17 @@
   "material_counts": {
     "total": 16,
     "public_reading": 2,
+    "public_machine_data": 0,
     "private_library_metadata": 14
   },
   "research_layer_counts": {
-    "orientation": 2,
-    "findings": 1,
+    "orientation": 1,
+    "findings": 3,
     "evidence": 3,
     "monitoring": 1,
     "methods": 4,
     "presentation": 0,
-    "supporting": 5
+    "supporting": 4
   },
   "latest_computer_edit_at": "2026-09-28T16:26:47Z",
   "public_full_text": true,
@@ -111,13 +113,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -125,9 +129,8 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 2,
+      "count": 1,
       "material_ids": [
-        "243d6cdfb65e547f",
         "d7b89f5ed793c70e"
       ]
     },
@@ -135,8 +138,10 @@
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 1,
+      "count": 3,
       "material_ids": [
+        "243d6cdfb65e547f",
+        "b9b86dfc5e767eb6",
         "2e5b889ad11cabc1"
       ]
     },
@@ -183,13 +188,12 @@
       "id": "supporting",
       "label": "Supporting material",
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
-      "count": 5,
+      "count": 4,
       "material_ids": [
         "67eb1dff8eea9f66",
         "9a423712c1c86ee2",
         "b518ec6ac2a16c91",
-        "a0757cc30390a9e3",
-        "b9b86dfc5e767eb6"
+        "a0757cc30390a9e3"
       ]
     }
   ],
@@ -197,7 +201,7 @@
     {
       "material_id": "243d6cdfb65e547f",
       "title": "Scientific Trust Stack — Router",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -262,7 +266,7 @@
     {
       "material_id": "b9b86dfc5e767eb6",
       "title": "Scientific Trust Stack — Architecture and Evidence Map",
-      "artifact_role": "supporting",
+      "artifact_role": "synthesis",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

@@ -1,4 +1,4 @@
-> Source evidence cutoff: 2026-09-01 · Source updated: 2026-09-17
+> Source evidence cutoff: 2026-09-30 · Source updated: 2026-09-30
 
 # Ripple, XRP and the Invisible Conversion Layer
 
@@ -26,6 +26,28 @@ providers maintain large, persistent net XRP inventory for those routes.
 XRP's distinct inflection requires route-share, depth, financed inventory,
 holding-duration and hedge evidence. Gross payment notional, Ripple revenue,
 RLUSD supply and XRPL transaction count cannot substitute for those receipts.
+
+## September 29 addendum: CSD BR makes XRPL a mirror, not the legal record
+
+CSD BR and Ripple announced a first phase in which selected BTG Pactual
+investment-fund shares deposited at the Brazilian market-infrastructure
+operator will be represented as XRPL Multi-Purpose Tokens. Ripple Custody and
+XRPL supply the technical layer; CSD BR retains participant admission,
+issuance/administration, freeze and clawback controls.
+
+This is a strong XRPL institutional-use receipt because it joins a regulated
+central depository, real fund-share records, a public network and a named token
+standard. Its boundary is equally important: CSD BR's systems remain the
+official source for registration, deposit and settlement. The release supplies
+no issuer account, MPT issuance ID, transaction hash, fund/class identifier,
+mirrored amount, cash leg or reconciliation result. Live operation is therefore
+company-reported rather than independently reproducible at cutoff.
+
+The arrangement advances **Ripple-company** and **XRPL** ledgers. It does not
+name RLUSD, select XRP as payment or bridge liquidity, move Brazilian cash
+settlement onto XRPL, or turn CSD BR's more-than-R$22-trillion aggregate
+registered-asset base into onchain value. Read the full control and receipt map
+in CSD BR, Ripple and the XRPL fund-share record mirror.
 
 ## September 17 addendum: a new permission channel, not a token selection
 

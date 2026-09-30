@@ -7,6 +7,8 @@
   "question": "What was said in the public July 31 Cabinet meeting, and which legal, funding, contract or operating states actually changed?",
   "bluf": "The package separates policy statements and claims on Iran, Ukraine weapons, Hamas, cyber attribution, payment integrity, Iranian assets, defense investment and drug prices from operative instruments and observed results. Its transcript is a working auto-caption record without reliable attribution or quote-level punctuation and must be checked against the replay before quotation.",
   "evidence_cutoff": "2026-07-31T19:50:38-04:00",
+  "evidence_cutoff_note": "Replay and auto-caption verification remain package_context_only working checks; no later source evidence is claimed.",
+  "use_note": "Internal recall only. The transcript is auto-captioned and lacks reliable attribution and punctuation; replay verification is mandatory before quotation or claim attribution, and operative claims still require the exact legal, funding, contract, or operating object.",
   "library_state": "current",
   "entities": [
     "Donald J. Trump",
@@ -46,16 +48,17 @@
   "material_counts": {
     "total": 4,
     "public_reading": 2,
+    "public_machine_data": 0,
     "private_library_metadata": 2
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 0,
+    "orientation": 0,
+    "findings": 2,
     "evidence": 0,
     "monitoring": 0,
     "methods": 0,
     "presentation": 0,
-    "supporting": 3
+    "supporting": 2
   },
   "latest_computer_edit_at": "2026-09-16T23:20:09Z",
   "public_full_text": true,
@@ -69,13 +72,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -83,17 +88,18 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "e6dd636c41f83839"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 2,
+      "material_ids": [
+        "e6dd636c41f83839",
+        "b972fc8c245c7931"
+      ]
     },
     {
       "id": "evidence",
@@ -127,11 +133,10 @@
       "id": "supporting",
       "label": "Supporting material",
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
-      "count": 3,
+      "count": 2,
       "material_ids": [
         "d30ecd94d472ec2e",
-        "e402da3e24afe31c",
-        "b972fc8c245c7931"
+        "e402da3e24afe31c"
       ]
     }
   ],
@@ -139,7 +144,7 @@
     {
       "material_id": "e6dd636c41f83839",
       "title": "White House Cabinet Meeting — July 31, 2026",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -151,6 +156,23 @@
       "access_state": "public_full_text",
       "public_full_text": true,
       "reading_url": "readings/e6dd636c41f83839.html",
+      "reading_basis": "public_html_full_text"
+    },
+    {
+      "material_id": "b972fc8c245c7931",
+      "title": "Claim audit — White House Cabinet Meeting, July 31, 2026",
+      "artifact_role": "claim_audit",
+      "file_state": "current",
+      "availability": "public_reading",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-07-31T23:20:47Z",
+      "source_id": "b972fc8c245c7931",
+      "url": "sources/claim-audit-b972fc8c245c.html",
+      "source_text": "sources/claim-audit-b972fc8c245c.md",
+      "access_state": "public_full_text",
+      "public_full_text": true,
+      "reading_url": "readings/b972fc8c245c7931.html",
       "reading_basis": "public_html_full_text"
     },
     {
@@ -176,23 +198,6 @@
       "modified_at": "2026-07-31T23:20:05Z",
       "access_state": "private_by_design",
       "public_full_text": false
-    },
-    {
-      "material_id": "b972fc8c245c7931",
-      "title": "Claim audit — White House Cabinet Meeting, July 31, 2026",
-      "artifact_role": "supporting",
-      "file_state": "current",
-      "availability": "public_reading",
-      "custody_layer": "research_workbench",
-      "computer_object_type": "file",
-      "modified_at": "2026-07-31T23:20:47Z",
-      "source_id": "b972fc8c245c7931",
-      "url": "sources/claim-audit-b972fc8c245c.html",
-      "source_text": "sources/claim-audit-b972fc8c245c.md",
-      "access_state": "public_full_text",
-      "public_full_text": true,
-      "reading_url": "readings/b972fc8c245c7931.html",
-      "reading_basis": "public_html_full_text"
     }
   ]
 }

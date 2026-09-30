@@ -33,6 +33,24 @@ to outsiders. It does not make recognition, measurement, entity boundaries,
 valuation, legal rights, performance, collectibility or audit evidence
 automatic.
 
+## Narrative front door — September 30, 2026
+
+Read `THE_ACCOUNTING_TRANSITION_STORY_2026-09-30.md` for the coherent story of
+the thesis. It begins with accounting's present reconstruction problem, shows
+why identity, settlement, official records, programmable rules, tokenization,
+machine-readable reporting and AI are now converging, then follows the event
+through books, statements, assurance and correction. It makes the private-
+company on-chain transition the first concrete adoption wedge and assigns each
+specialist package one supporting role beneath a single narrative spine.
+
+The controlling sentence is:
+
+> Accounting is moving from the periodic reconstruction of business activity
+> out of fragmented private records toward the continuous production of
+> governed books from shared, signed business events—but law, economic meaning,
+> judgment, correction and independent assurance do not disappear when the
+> event becomes digital.
+
 ## Official-record extension — September 26, 2026
 
 Read
@@ -78,7 +96,7 @@ planned for fiscal year 2027.
 ## Full thesis map — September 28, 2026
 
 Read `ACCOUNTING_TRANSITION_FULL_THESIS_MAP_2026-09-28.md` for the integrated
-front-door architecture behind the Accounting Transition visual. It restores
+reference architecture behind the Accounting Transition visual. It restores
 the whole thesis beyond the Oracle–Swift case: the event, rule, judgment and
 view objects; all sixteen accounting functions; the ordinary corporate
 cycles; the public appropriation-to-recovery branch; eight clocks; the
@@ -88,59 +106,79 @@ Chronicle synthesis remains the maintained shared answer. Open
 `outputs/The Accounting Transition.html` for the standalone five-lens page
 used by the Observatory Research Library's Accounting Transition workspace.
 
+## Private-company on-chain transition — September 30, 2026
+
+Read `PRIVATE_COMPANY_ONCHAIN_TRANSITION_2026-09-30.md` for the governed bridge
+from investor-permission credentials through tokenized private equity,
+authoritative ownership records, accounting recognition and assurance. It
+explains why private-company record administration can move on-chain before
+exchange listing or broad liquidity, and it defines the exact twelve-part
+receipt required before calling the full permission-to-books transition
+operational. The reviewed evidence shows meaningful legal and technical
+convergence; it does not establish a complete named private-company stack at
+recurring scale.
+
 ## Read order
 
 1. `04 - Synthesis/Cross-cuts/2026-07-30 - The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer.md`
    — **read first in the Chronicle** for the maintained shared answer. Its
    July 30 architecture is a research hypothesis; the August 5 SEC extension
    is separately dated.
-2. `OFFICIAL_RECORD_AUTHORITY_AND_BLOCKCHAIN_CROSSWALK_2026-09-26.md`
+2. `THE_ACCOUNTING_TRANSITION_STORY_2026-09-30.md`
+   — Workbench narrative front door: one causal story from fragmented records
+   through governed events, compiled books, visible judgment, continuous-close
+   readiness, independent assurance and correction.
+3. `OFFICIAL_RECORD_AUTHORITY_AND_BLOCKCHAIN_CROSSWALK_2026-09-26.md`
    — current cross-regime definition, CFTC/SEC blockchain-record boundary,
    official-record constitution and accounting bridge.
-3. `ATOMIC_SETTLEMENT_TO_CONTINUOUS_ASSURANCE_2026-09-26.md`
+4. `ATOMIC_SETTLEMENT_TO_CONTINUOUS_ASSURANCE_2026-09-26.md`
    — eight-clock real-time model, assurance ladder, AI control constitution,
    continuous-close architecture, current U.S. reporting/audit boundary and
    exact return gates.
-4. `ORACLE_SWIFT_EVENT_TO_BOOKS_GATE_2026-09-28.md`
+5. `ORACLE_SWIFT_EVENT_TO_BOOKS_GATE_2026-09-28.md`
    — focused gate assessment connecting the Swift payment event to Oracle's
    bank-side, evidence, accounting and ERP layers while preserving the missing
    production journal, close and assurance receipts.
-5. `ACCOUNTING_TRANSITION_FULL_THESIS_MAP_2026-09-28.md`
+6. `ACCOUNTING_TRANSITION_FULL_THESIS_MAP_2026-09-28.md`
    — integrated Workbench map and visual constitution spanning the whole
    thesis, its accounting layers, ordinary cycles, public branch, evidence
    states, eight clocks and assurance ladder.
-6. `outputs/The Accounting Transition.html`
+7. `PRIVATE_COMPANY_ONCHAIN_TRANSITION_2026-09-30.md`
+   — investor-permission, tokenized-equity, official-record, books and
+   assurance bridge for private operating companies, including the distinction
+   among tokenized, listed, tradable and liquid states.
+8. `outputs/The Accounting Transition.html`
    — standalone interactive projection used as the Accounting Transition's
    native Systems & Maps page inside the Research Library.
-7. `ACCOUNTING_FUNCTIONS_AND_SMART_CONTRACT_AUTOMATION_MAP_2026-07-30.md`
+9. `ACCOUNTING_FUNCTIONS_AND_SMART_CONTRACT_AUTOMATION_MAP_2026-07-30.md`
    — what accounting actually does: the original 16-function decomposition,
    event object and judgment object.
-8. `CORPORATE_ACCOUNTING_CYCLES_GAAP_AND_AUTOMATION_DEEP_DIVE_2026-07-30.md`
+10. `CORPORATE_ACCOUNTING_CYCLES_GAAP_AND_AUTOMATION_DEEP_DIVE_2026-07-30.md`
    — order-to-cash, procure-to-pay, payroll, inventory, fixed assets,
    treasury, tax, close, reporting and audit mapped function by function.
-9. `MODIFIED_CASH_BASIS_AND_GAAP_BOUNDARY_2026-07-30.md`
+11. `MODIFIED_CASH_BASIS_AND_GAAP_BOUNDARY_2026-07-30.md`
    — why cash plus AR/AP is not GAAP: cash, modified cash, accrual, GASB
    modified accrual and federal budgetary/proprietary accounting kept separate.
-10. `GOVERNMENT_OPEN_LEDGER_DEEP_DIVE_2026-07-30.md`
+12. `GOVERNMENT_OPEN_LEDGER_DEEP_DIVE_2026-07-30.md`
    — primary-source map of authoritative federal record owners from
    appropriation through recovery, the missing joins and a detailed
    education-grant case.
-11. `OPEN_GOVERNMENT_ACCOUNTING_FROM_APPROPRIATION_TO_OUTCOME_2026-07-30.md`
+13. `OPEN_GOVERNMENT_ACCOUNTING_FROM_APPROPRIATION_TO_OUTCOME_2026-07-30.md`
    — what public accountability makes visible: open code, standards, data,
    verifiable records and governance kept distinct.
-12. `EDUCATION_GRANT_ADMINISTRATION_AND_LEDGER_INTERLOCK_2026-07-30.md`
+14. `EDUCATION_GRANT_ADMINISTRATION_AND_LEDGER_INTERLOCK_2026-07-30.md`
    — concrete case study of ED's interagency grant-administration changes,
    award-cohort system migration and the legal/payment/audit joins a public
    transaction record must preserve.
-13. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
+15. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
    — assertion matrix, oracle/key/admin/legal-code/correction/privacy controls,
    migrated accounting games and an auditor work program.
-14. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
+16. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
    — carry, correct, forecast and reject ledger.
-15. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
+17. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
    — one source-question guide for standards, production, the federal
    transaction spine and assurance evidence; it is not a scheduled watch.
-16. `SOURCE_LEDGER_2026-07-30.md`
+18. `SOURCE_LEDGER_2026-07-30.md`
    — official source spine.
 
 ## Boundaries

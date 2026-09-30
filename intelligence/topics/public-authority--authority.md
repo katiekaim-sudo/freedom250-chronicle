@@ -4,6 +4,14 @@ Which public actor has authority, which institution carries it, and what evidenc
 
 The authority branch follows the passage from law, executive direction, plan, committee or court into a named office, permission, record and operating act. It keeps policy direction, delegated authority, implementation and result separate.
 
+## Specialized authority does not eliminate the need for specialized delivery competence
+
+The September 29 Federal Reserve OIG report turns the Eccles-1951 renovation into an agency-wide capability question. The Board's monetary, regulatory and supervisory expertise does not itself make the institution an expert owner of historic-building construction, planned IT modernization or every other major initiative it can legally fund. The OIG's response is a governed nonexpert-owner model: import qualified project leadership, preserve independent challenge, set full-scope budgets and fixed measures, escalate material decisions and place independent senior officials above day-to-day management.
+
+The current state is diagnosis and direction, not completed reform. Chairman Warsh accepted all seven recommendations and directed GSA project leadership, an independent awarded-cost audit, GMP negotiations, fixed metrics, contract reconciliation and permanent standards. The operating receipts remain separate: GSA authority, auditor engagement, cost-data spine, audit result, contract remedy, signed ceiling, governance charter, issued agency policy, first reuse and measured outcome. Recommendation closure alone will not prove durable capability because several weaknesses recurred after 11 earlier recommendations were formally closed.
+
+Sources: [Federal Reserve Non-Core Initiative Governance](../sources/readme-3f64c26d8b5f.html) · [Non-Core Initiative Governance Watchboard](../library/federal-reserve-noncore-initiative-governance-2026.html) (collection route)
+
 ## Entity hubs preserve the path from authority to operation
 
 The Government-Wide Research Hub combines exact Catalog package browsing with the live Federal Group projection and typed completed-research movements. A White House publisher, a Treasury implementer, a Reserve Bank operator and an oversight actor remain different even when they appear in one story. Tree containment and Catalog entity mentions are therefore navigation facts, not automatic legal ownership, attachment or command.
@@ -19,6 +27,16 @@ The entity tree and official-publisher registry do not by themselves identify ev
 Their evidence must stay on a full clock braid: establishment, notice, meeting, draft, adopted recommendation or board vote, agency response, instrument, obligation, operation and measured effect. A participant's request is not influence proved; advice is not agency agreement; project selection is not delivery.
 
 Sources: [Government Hidden Control Surfaces — Discovery](../sources/hidden-government-control-surfaces-discovery-2026-09-28-8bd97ca9d01f.html)
+
+## Judicial process separates allegation, merits, remedy and review
+
+DOJ's September 30 complaint placed reported public comments before the Eighth Circuit's internal judicial-conduct process, but the received filing is not a misconduct finding or a recusal order. Rule 11 screening, any limited inquiry, a possible special committee and Judicial Council action each have their own actor and clock.
+
+The complaint also illustrates the boundary between institutional discipline and case adjudication. Merits attacks are excluded from the conduct process, case-specific impartiality ordinarily travels through 28 U.S.C. § 455 and appellate review, and a circuit council cannot remove an Article III judge.
+
+The four Trump criminal prosecutions show a parallel state problem inside criminal adjudication. A grand-jury charge, superseding indictment, quashed count, pretrial legal dismissal, jury verdict, sentence, nolle and appeal are not interchangeable. Across the four cases, only New York reached a verdict; the three others ended before a jury made merits findings.
+
+Sources: [DOJ Judicial Misconduct Complaint Against Minnesota Judges](../sources/readme-7fa634fbfe8c.html) · [Donald J. Trump Criminal Indictments — Primary-Source Map](../sources/readme-6b7cb62412b8.html)
 
 ## Administrative control becomes an operating system
 
@@ -116,14 +134,23 @@ Greater London, the City of Westminster, the City of London Corporation and the 
 
 Sources: [United Kingdom Entity and Jurisdiction Map](../library/uk-constitutional-order-self-determination.html) (collection route)
 
+## A new office exists before all of its power and money have moved
+
+The September 30 Office of Religious Affairs memorandum establishes the office and Director position immediately, makes the Director a Principal Staff Assistant with access to the Secretary and Deputy Secretary without intervening authority, and assigns policy, resource, research, external-representation and Armed Forces Chaplains Board functions. That is a real organizational and authority change, not merely a speech.
+
+The same instrument preserves the next states as separate work: appointment, transfer of exact duties, authorities and funding, a 60-day budget plan, 90-day charter and staffing work, military-department requirements reports, accepted priorities, funding, delivery and observed religious-liberty effects. The direct-report design therefore belongs in the authority story, while its practical meaning remains open to later receipts.
+
+Sources: [Office of Religious Affairs Research Hub](../sources/readme-4bb8516a5fb2.html) · [Office of Religious Affairs Event Ledger](../sources/office-of-religious-affairs-event-ledger-c38bdafa1ccc.html)
+
 ## How this fits together
 
 Authority is a chain of named permissions and records. The maintained answer must replace any current-facing explanation that treats a plan, paper, hearing, announcement or litigation posture as completed government action; preserve those objects as historical evidence and attach the later operating state.
 
-Primary package cutoffs range from 2026-07-21 to 2026-09-25; each section retains its source cutoff. No current claim is inferred beyond the cited package state. Budget comparison added through September 11, 2026; April request and September update retain separate vintages. UK constitutional topology added through September 13; the September 14 political memorandum remains a future return object. The D.V.D. return is bounded through September 25; application No. 26A406, any stay disposition and any replacement DHS procedure remain open. The March 2025 authority-window comparison is also bounded through September 25 and keeps action, publication, operation, successor instrument and budget-request clocks separate. The January 2025 authority-to-operations comparison is bounded through September 25 and keeps command, guidance, implementation, litigation, operation, deviation and rulemaking clocks separate.
+Primary package cutoffs range from 2026-07-21 to 2026-09-30; each section retains its source cutoff. No current claim is inferred beyond the cited package state. The Federal Reserve non-core initiative governance section is bounded through September 30 and keeps diagnosis, direction, appointment, engagement, audit, remedy, policy, reuse and closure on separate clocks. Budget comparison added through September 11, 2026; April request and September update retain separate vintages. UK constitutional topology added through September 13; the September 14 political memorandum remains a future return object. The D.V.D. return is bounded through September 25; application No. 26A406, any stay disposition and any replacement DHS procedure remain open. The March 2025 authority-window comparison is also bounded through September 25 and keeps action, publication, operation, successor instrument and budget-request clocks separate. The January 2025 authority-to-operations comparison is bounded through September 25 and keeps command, guidance, implementation, litigation, operation, deviation and rulemaking clocks separate.
 
 ## Research collections
 
+- [Federal Reserve Non-Core Initiative Governance — 2026](../library/federal-reserve-noncore-initiative-governance-2026.html)
 - [Office of Personnel Management Structural Change Audit — 2025–2026](../library/opm-structural-change-audit-2025-2026.html)
 - [Federal Strategic Plans](../library/federal-strategic-plans.html)
 - [Congressional Committee Control Plane](../library/congressional-committee-control-plane.html)
@@ -146,3 +173,6 @@ Primary package cutoffs range from 2026-07-21 to 2026-09-25; each section retain
 - [Government-Wide Research Hub](../library/federal-government-movement-atlas.html)
 - [Government Hidden Control Surfaces — 2026](../library/government-hidden-control-surfaces-2026.html)
 - [Institutional Signals and Thesis Test — 2025–2026](../library/institutional-signals-thesis-test-2025-2026.html)
+- [Office of Religious Affairs — 2026](../library/office-of-religious-affairs.html)
+- [DOJ Judicial Misconduct Complaint Against Minnesota Judges — September 30, 2026](../library/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html)
+- [Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026](../library/trump-criminal-indictments-primary-source-map-2023-2026.html)

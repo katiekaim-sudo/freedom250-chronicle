@@ -28,7 +28,7 @@ Weekly deltas, hearings and source harvests therefore belong together as version
 
 Public Law 119-106 makes the award-record boundary itself inspectable. It adds other transaction agreements to FFATA and stages the agency list, data feed, public view and audit cycle on separate clocks. GAO's $77.5 billion finding concerned DOD OTAs visible in SAM.gov but absent from USAspending, so fragmented reporting is neither total secrecy nor proof of fraud.
 
-Sources: [Federal Government Full Freshness Sweep — Materiality Closeout](../sources/materiality-closeout-2026-08-23-d4f524b6df10.html) · [Federal Government Sweep Control Audit — Catch-up Reconciliation](../sources/catchup-reconciliation-2026-08-29-b27222f83af3.html) · [Federal Government Weekly Delta — September 3 Corrective Merge](../sources/direct-website-corrective-merge-2026-09-03-f169f140ef3b.html) · [Federal Government Weekly Delta — September 11 Wave 3 Merge](../sources/wave-3-merge-17e07edc0ee8.html) · [Federal Government Weekly Delta — September 16 Wave 4 Merge](../sources/wave-4-merge-847f7e7bf00b.html) · [Federal Technology and Monetary Infrastructure Delta — September 20 Merge](../sources/wave-10-merge-2eeacf3400a2.html) · [Federal Government Deep Website Review — September 22 Merge](../sources/wave-10-merge-d2935e2afe9e.html) · [Federal Government Weekly Delta — September 25 Merge](../sources/wave-10-merge-ff1b0d353ac8.html) · [Stop Secret Spending Act — Legal and Implementation Deep Dive](../sources/stop-secret-spending-act-deep-dive-2026-09-15-f403e5eca9db.html)
+Sources: [Federal Government Full Freshness Sweep — Materiality Closeout](../sources/materiality-closeout-2026-08-23-d4f524b6df10.html) · [Federal Government Sweep Control Audit — Catch-up Reconciliation](../sources/catchup-reconciliation-2026-08-29-b27222f83af3.html) · [Federal Government Weekly Delta — September 3 Corrective Merge](../sources/direct-website-corrective-merge-2026-09-03-f169f140ef3b.html) · [Federal Government Weekly Delta — September 11 Wave 3 Merge](../sources/wave-3-merge-17e07edc0ee8.html) · [Federal Government Weekly Delta — September 16 Wave 4 Merge](../sources/wave-4-merge-847f7e7bf00b.html) · [Federal Technology and Monetary Infrastructure Delta — September 20 Merge](../sources/wave-10-merge-2eeacf3400a2.html) · [Federal Government Deep Website Review — September 22 Merge](../sources/wave-10-merge-d2935e2afe9e.html) · [Federal Government Weekly Delta — September 25 Merge](../sources/wave-10-merge-ff1b0d353ac8.html) · [Federal Government Fiscal-Year-Close Delta — September 30 Morning Merge](../sources/wave-10-merge-49986ee5e016.html) · [Stop Secret Spending Act — Legal and Implementation Deep Dive](../sources/stop-secret-spending-act-deep-dive-2026-09-15-f403e5eca9db.html)
 
 ## Accountability is tested through remedy and competing explanations
 
@@ -44,7 +44,7 @@ Sources: [Economic Institution Legitimacy Crisis — Working Thesis](../sources/
 
 Accountability requires source custody, versioned evidence, an authoritative decision record and a remedy path. Replace any current explanation that treats a release, sweep, transcript, dashboard or immutable record as proof of shared causation, complete coverage or achieved outcome.
 
-Named sources range from 2026-07-21 through 2026-09-22. Sweep and disclosure claims retain their individual version and cutoff boundaries; no exhaustive government census is claimed. The September 22 entity-routed review is a materiality-first direct-site deep dive, not a page-by-page government census or automatic Chronicle promotion.
+Named sources range from 2026-07-21 through the provisional September 30, 2026 post-noon close. Sweep and disclosure claims retain their individual version and cutoff boundaries; no exhaustive government census is claimed. The September 30 fiscal-close delta completed its required post-noon replay but remains provisional for the rest of the calendar day and does not authorize automatic Chronicle promotion.
 
 ## Research collections
 
@@ -69,6 +69,7 @@ Named sources range from 2026-07-21 through 2026-09-22. Sweep and disclosure cla
 - [Federal Technology and Monetary Infrastructure Delta — September 17–20, 2026](../library/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html)
 - [Federal Government Deep Website Review — September 16–22, 2026](../library/federal-government-deep-website-review-2026-09-22.html)
 - [Federal Government Weekly Delta — September 21–25, 2026](../library/federal-government-weekly-delta-2026-09-25.html)
+- [Federal Government Fiscal-Year-Close Delta — September 26–30, 2026](../library/federal-government-fiscal-year-close-delta-2026-09-30.html)
 - [Stop Secret Spending Act — OTA Transparency and Implementation](../library/stop-secret-spending-act-ota-transparency.html)
 - [Trump Davos Address — January 21, 2026](../library/trump-davos-address-2026-01-21.html)
 - [White House Cabinet Meeting — July 31, 2026](../library/white-house-cabinet-meeting-2026-07-31.html)

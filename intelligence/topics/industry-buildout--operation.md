@@ -91,6 +91,7 @@ Core package cutoffs are 2026-08-23 for agency AI, 2026-08-20 for data-center le
 - [Federal Agency AI Plans and Infrastructure](../library/federal-agency-ai-plans-infrastructure.html)
 - [Military Modernization](../library/military-modernization.html)
 - [Contested Logistics](../library/contested-logistics.html)
+- [FORTRESS America and Military Installation Energy Independence](../library/fortress-america-installation-energy-independence.html)
 - [Federal Cryptographic Trust Stack](../library/federal-cryptographic-trust-stack.html)
 - [NARA AI Records and Compute Transition](../library/nara-ai-records-compute-transition.html)
 - [Genesis Mission](../library/genesis-mission.html)

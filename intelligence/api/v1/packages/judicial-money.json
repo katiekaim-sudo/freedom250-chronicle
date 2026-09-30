@@ -7,6 +7,8 @@
   "question": "Which cases determine master-account access, preemption, sovereign assets, agency survival, bank failure and the right to stand inside a payment system?",
   "bluf": "The source map for cases that decide the money perimeter: master accounts, preemption, sovereign assets, agency survival, bank failure and the right to stand inside a payment system.",
   "evidence_cutoff": "2026-09-03",
+  "evidence_cutoff_note": "Targeted Custodia refresh through September 3: Supreme Court No. 26-62 was docketed July 14 and the response deadline was extended through September 11 for all respondents. The incorporated map body remains broadly bounded to July 11, and the separate July SVB trial outcome still requires a current court-record refresh.",
+  "use_note": "Internal recall only for mapped case identities, holdings, procedural postures and money-perimeter issue families; the incorporated vault copy controls. Custodia alone is refreshed through September 3, with responses due September 11. Do not treat pending posture as final judgment, generalize a case-specific holding beyond its facts or predict outcomes.",
   "library_state": "current",
   "entities": [
     "Supreme Court",
@@ -47,6 +49,7 @@
   "material_counts": {
     "total": 9,
     "public_reading": 3,
+    "public_machine_data": 0,
     "private_library_metadata": 6
   },
   "research_layer_counts": {
@@ -70,13 +73,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [

@@ -7,6 +7,8 @@
   "question": "What does Treasury Do Not Pay screen, how far does it reach, and who owns the actual eligibility or adverse-action decision?",
   "bluf": "Do Not Pay is a governmentwide shared screening network, not a conclusive blacklist: Treasury operates the Working System, controlled data access and a federal payment checkpoint, while each federal or State-administered program must verify a match and apply its own eligibility, notice, contest and recovery authority.",
   "evidence_cutoff": "2026-08-29",
+  "evidence_cutoff_note": "Primary federal law, Treasury, OMB, OPM and Federal Register sources were checked through August 29, 2026. OPM's August 26 notice is published but not operative until September 25; Public Law 119-77 amendments are not effective until December 27; the May 29 Uniform Guidance expansion remains proposed.",
+  "use_note": "Covers the statutory Working System, Treasury products and published datasets, federal and federally funded State-program reach, distributed eligibility judgment, M-25-32 controls, OPM's September 25 activation boundary and proposed/future expansion clocks. Reverify operating, dataset, agreement and rule states after the cutoff; a match is not an eligibility adjudication or fraud finding.",
   "library_state": "current",
   "entities": [
     "Treasury Bureau of the Fiscal Service",
@@ -54,18 +56,19 @@
   "material_counts": {
     "total": 2,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 1
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 0,
+    "orientation": 0,
+    "findings": 1,
     "evidence": 0,
     "monitoring": 0,
     "methods": 0,
     "presentation": 0,
     "supporting": 1
   },
-  "latest_computer_edit_at": "2026-09-23T02:58:06Z",
+  "latest_computer_edit_at": "2026-09-30T21:40:55Z",
   "public_full_text": true,
   "full_text_url": "readings/packages/treasury-do-not-pay-governmentwide-map.html",
   "routes": {
@@ -77,13 +80,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -91,17 +96,17 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "be425f3353bc9168"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "be425f3353bc9168"
+      ]
     },
     {
       "id": "evidence",
@@ -145,7 +150,7 @@
     {
       "material_id": "be425f3353bc9168",
       "title": "Treasury Do Not Pay — Governmentwide Structural Map",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -167,7 +172,7 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-09-23T02:58:06Z",
+      "modified_at": "2026-09-30T21:40:55Z",
       "access_state": "private_by_design",
       "public_full_text": false
     }

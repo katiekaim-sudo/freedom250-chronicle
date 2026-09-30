@@ -3,7 +3,8 @@
 Status: active multi-wave Research Desk project; Waves 0, 3, 4, 5 and 7 have
 initial governed products; Wave 6 has a validated working globe; Waves 1 and 2
 remain in source recovery  
-Evidence cutoff: 2026-09-15, America/New_York  
+Evidence cutoff: 2026-09-30 for the Alaska LNG–Korea selection note;
+2026-09-15 for the broader package baseline, America/New_York
 Research ID: `global-oil-gas-movements`
 
 ## The question
@@ -71,6 +72,16 @@ reinvestment layers. It finds no controlling public 50-year Saudi
 oil-only-in-dollars covenant and treats non-dollar capacity separately from a
 proved cargo payment.
 
+The September 30 Alaska LNG update adds a different kind of route hinge. The
+underlying North Slope-to-Nikiski gas system has long-standing federal
+authorization and substantial pre-FID engineering, but the new roughly
+$54 billion Korea announcement is a project-selection and financing claim, not
+a final Korean investment, FID, construction start or operating gas route.
+Korea's own ministry said participation was not finalized. The package now
+maps the Alaska physical segments as authorized and the future Korea LNG lane
+as announced, with the Korean statutory review, financing, construction and
+receipt gates kept separate.
+
 ## Read first
 
 1. Project Constitution and Wave Plan
@@ -80,25 +91,26 @@ proved cargo payment.
 5. Global Replacement Supply and Buyer Rewiring Matrix
 6. Global Gas and LNG Network
 7. U.S. Energy Hub and Buyer-Deal Execution Matrix
-8. Shortage Reality and Russia Sanctions-Relief Test
-9. Global Diesel Route Network
-10. Diesel Supplier Dependence and Substitution Test
-11. Venezuela Deal Execution Ledger
-12. Venezuela OFAC Permission Matrix
-13. Venezuela Early-2027 Flow and Readiness Test
-14. Venezuela Resource-to-Usable-Supply Ladder
-15. Petrodollar System monetary companion
-16. Return Trigger and Source-Gap Matrix
-17. Working Global Oil and Gas Globe
-18. Map Data Contract
-19. Globe Reuse Decision
-20. Map Asset Provenance
-21. Route Edge Starter
+8. Alaska LNG–Korea Project-Selection Gate
+9. Shortage Reality and Russia Sanctions-Relief Test
+10. Global Diesel Route Network
+11. Diesel Supplier Dependence and Substitution Test
+12. Venezuela Deal Execution Ledger
+13. Venezuela OFAC Permission Matrix
+14. Venezuela Early-2027 Flow and Readiness Test
+15. Venezuela Resource-to-Usable-Supply Ladder
+16. Petrodollar System monetary companion
+17. Return Trigger and Source-Gap Matrix
+18. Working Global Oil and Gas Globe
+19. Map Data Contract
+20. Globe Reuse Decision
+21. Map Asset Provenance
+22. Route Edge Starter
 
 ## Working globe
 
-The package-local globe currently projects 113 selected map features and 82
-nodes from 148 governed route/state records. It provides theatre, commodity,
+The package-local globe currently projects 116 selected map features and 85
+nodes from 151 governed route/state records. It provides theatre, commodity,
 layer, effective-date and text filters; every mapped record exposes its source,
 state, quantity/unit, clock, claim limit and next receipt.
 

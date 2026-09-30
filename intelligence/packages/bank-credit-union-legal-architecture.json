@@ -7,6 +7,8 @@
   "question": "What legally distinguishes banks from credit unions, which rules come from the federal government, and how do Florida, Wyoming, New York and Texas use their remaining charter, public-deposit, tax, supervision and digital-asset authority?",
   "bluf": "The United States has overlapping bank and credit-union dual-charter systems rather than one national regime. Charter, ownership, regulator, insurer, account eligibility, public-funds permission, digital authority and operating state must be recorded separately. Florida and Texas maintain active state-bank and state-credit-union charters and admit credit unions to public deposits; New York maintains both charters but its ordinary local-deposit law still excludes credit unions; Wyoming charters banks and SPDIs but has no current state-credit-union law, so its credit unions are federally chartered even when state law admits them to public funds.",
   "evidence_cutoff": "2026-09-15",
+  "evidence_cutoff_note": "Primary federal and state institutional sources checked through September 15, 2026. This is an orientation map, not a fifty-state survey or institution-specific legal opinion. Pending New York public-deposit bills and federal credit-union stablecoin/public-unit-share proceedings remain proposal or implementation clocks.",
+  "use_note": "Use as orientation before comparing a named institution. It does not replace a current charter, insurance, approval, account or transaction check. State charter does not mean state ownership; public-depository eligibility does not prove a deposit or lending outcome; digital custody authority does not prove issuance, insurance or operation.",
   "library_state": "current",
   "entities": [
     "Office of the Comptroller of the Currency",
@@ -48,11 +50,12 @@
   "material_counts": {
     "total": 2,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 1
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 0,
+    "orientation": 0,
+    "findings": 1,
     "evidence": 0,
     "monitoring": 0,
     "methods": 0,
@@ -71,13 +74,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -85,17 +90,17 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "16f681f90d916b8d"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "16f681f90d916b8d"
+      ]
     },
     {
       "id": "evidence",
@@ -139,7 +144,7 @@
     {
       "material_id": "16f681f90d916b8d",
       "title": "Banks and Credit Unions — Federal and Four-State Legal Architecture",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

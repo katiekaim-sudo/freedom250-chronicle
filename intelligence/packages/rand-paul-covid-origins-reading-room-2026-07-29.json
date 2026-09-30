@@ -7,6 +7,7 @@
   "question": "What does the 14-PDF Senate Reading Room corpus establish after page-level provenance, duplicate and claim testing, and where are the causal bridges missing?",
   "bluf": "The fourteen-PDF corpus supports bounded findings about provenance, deliberation, public representation, grants, enforcement and document defects. It does not close the causal bridges to laboratory origin, government direction, knowing falsity, retaliation, perjury or record destruction.",
   "evidence_cutoff": "2026-07-29",
+  "use_note": "Committee framing, source records and later analysis remain separate. Preserve duplicates, missing bridges and contrary or limiting records.",
   "library_state": "current",
   "entities": [
     "Senate HSGAC",
@@ -45,16 +46,17 @@
   "material_counts": {
     "total": 32,
     "public_reading": 3,
+    "public_machine_data": 0,
     "private_library_metadata": 29
   },
   "research_layer_counts": {
-    "orientation": 3,
-    "findings": 17,
-    "evidence": 1,
+    "orientation": 2,
+    "findings": 18,
+    "evidence": 2,
     "monitoring": 0,
     "methods": 4,
     "presentation": 3,
-    "supporting": 4
+    "supporting": 3
   },
   "latest_computer_edit_at": "2026-09-08T19:23:00Z",
   "public_full_text": true,
@@ -68,13 +70,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -82,9 +86,8 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 3,
+      "count": 2,
       "material_ids": [
-        "eb97b8c95e72e1da",
         "a95b431c7e6b99a4",
         "e9299e41c9a5fda7"
       ]
@@ -93,8 +96,9 @@
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 17,
+      "count": 18,
       "material_ids": [
+        "eb97b8c95e72e1da",
         "f69e815a263c274a",
         "9434200f40bb57f2",
         "6808014dab9e9880",
@@ -118,8 +122,9 @@
       "id": "evidence",
       "label": "Evidence and records",
       "meaning": "Primary-source custody, factual spines, evidence indexes and source ledgers.",
-      "count": 1,
+      "count": 2,
       "material_ids": [
+        "2af8aaafbd7e5cde",
         "21f1dec88cae7edb"
       ]
     },
@@ -157,9 +162,8 @@
       "id": "supporting",
       "label": "Supporting material",
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
-      "count": 4,
+      "count": 3,
       "material_ids": [
-        "2af8aaafbd7e5cde",
         "dbdf8141b8b9f108",
         "1dae18cd206dbaff",
         "109925fa4449f0cf"
@@ -170,7 +174,7 @@
     {
       "material_id": "eb97b8c95e72e1da",
       "title": "Origin Deliberation and Public Representation - Priority 1 Exact-Clock Test",
-      "artifact_role": "read_first",
+      "artifact_role": "synthesis",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -187,7 +191,7 @@
     {
       "material_id": "2af8aaafbd7e5cde",
       "title": "COVID Origins Reading Room Corpus Route Map",
-      "artifact_role": "supporting",
+      "artifact_role": "evidence_index",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

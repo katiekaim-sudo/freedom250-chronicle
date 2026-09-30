@@ -7,6 +7,7 @@
   "question": "Which education funding investigations exist, and how do they relate without becoming one universal university-control system?",
   "bluf": "The Education corpus shows a multi-entity federal funding junction in which recipient identity, award conditions, servicing, reporting and research-security eligibility increasingly operate before or around payment. It does not establish a government-wide public-blockchain mandate, that every university is under one control regime, or that an audit notice by itself proves misconduct, award termination or a payment hold.",
   "evidence_cutoff": "2026-08-17",
+  "use_note": "Internal recall for named federal entities, funding and compliance mechanisms, dated audit directives, and actor/clock distinctions. The vault copy controls incorporated Department of War claims. Do not infer a general blockchain mandate, one universal institution state, misconduct, award loss, payment hold or observed outcome without the exact controlling source.",
   "library_state": "current",
   "entities": [
     "Department of Education",
@@ -45,16 +46,17 @@
   "material_counts": {
     "total": 16,
     "public_reading": 5,
+    "public_machine_data": 0,
     "private_library_metadata": 11
   },
   "research_layer_counts": {
     "orientation": 4,
-    "findings": 3,
+    "findings": 4,
     "evidence": 3,
     "monitoring": 1,
     "methods": 0,
     "presentation": 0,
-    "supporting": 5
+    "supporting": 4
   },
   "latest_computer_edit_at": "2026-09-25T03:16:23Z",
   "public_full_text": true,
@@ -68,13 +70,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -94,8 +98,9 @@
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 3,
+      "count": 4,
       "material_ids": [
+        "aa67ac3d2add1060",
         "0b4c5149277d2627",
         "9f97b2caeb405279",
         "181078b2f7ba1766"
@@ -139,13 +144,12 @@
       "id": "supporting",
       "label": "Supporting material",
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
-      "count": 5,
+      "count": 4,
       "material_ids": [
         "238e190a5b3b679a",
-        "b393c0e25079b6f9",
-        "b0908538b18ab8b6",
         "acce8473e0aa7a68",
-        "aa67ac3d2add1060"
+        "b393c0e25079b6f9",
+        "b0908538b18ab8b6"
       ]
     }
   ],
@@ -153,7 +157,7 @@
     {
       "material_id": "9f2f86b449245cb9",
       "title": "Education — Research Packages",
-      "artifact_role": "read_first",
+      "artifact_role": "router",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -170,7 +174,7 @@
     {
       "material_id": "238e190a5b3b679a",
       "title": "Department of Education Full-Surface Sweep — 2026-08-04",
-      "artifact_role": "supporting",
+      "artifact_role": "other",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -182,6 +186,23 @@
       "access_state": "public_full_text",
       "public_full_text": true,
       "reading_url": "readings/238e190a5b3b679a.html",
+      "reading_basis": "public_html_full_text"
+    },
+    {
+      "material_id": "acce8473e0aa7a68",
+      "title": "Education Grant Administration and Ledger Interlock — 2026-07-30",
+      "artifact_role": "other",
+      "file_state": "current",
+      "availability": "public_reading",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-09-08T14:01:57Z",
+      "source_id": "acce8473e0aa7a68",
+      "url": "sources/education-grant-administration-and-ledger-interlock-2026-07-30-acce8473e0aa.html",
+      "source_text": "sources/education-grant-administration-and-ledger-interlock-2026-07-30-acce8473e0aa.md",
+      "access_state": "public_full_text",
+      "public_full_text": true,
+      "reading_url": "readings/acce8473e0aa7a68.html",
       "reading_basis": "public_html_full_text"
     },
     {
@@ -209,26 +230,9 @@
       "public_full_text": false
     },
     {
-      "material_id": "acce8473e0aa7a68",
-      "title": "Education Grant Administration and Ledger Interlock — 2026-07-30",
-      "artifact_role": "supporting",
-      "file_state": "current",
-      "availability": "public_reading",
-      "custody_layer": "research_workbench",
-      "computer_object_type": "file",
-      "modified_at": "2026-09-08T14:01:57Z",
-      "source_id": "acce8473e0aa7a68",
-      "url": "sources/education-grant-administration-and-ledger-interlock-2026-07-30-acce8473e0aa.html",
-      "source_text": "sources/education-grant-administration-and-ledger-interlock-2026-07-30-acce8473e0aa.md",
-      "access_state": "public_full_text",
-      "public_full_text": true,
-      "reading_url": "readings/acce8473e0aa7a68.html",
-      "reading_basis": "public_html_full_text"
-    },
-    {
       "material_id": "aa67ac3d2add1060",
       "title": "University Funding and Programmable Compliance — Factual and Control Map",
-      "artifact_role": "supporting",
+      "artifact_role": "synthesis",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

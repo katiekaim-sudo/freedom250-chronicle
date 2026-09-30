@@ -10,35 +10,42 @@
       "id": "governed_packages",
       "label": "Research packages",
       "owner": "Research Catalog",
-      "count": 140,
+      "count": 147,
       "meaning": "Stable research identities with question, finding, evidence cutoff and relationships."
     },
     {
       "id": "package_material_memberships",
       "label": "Package material memberships",
       "owner": "Research Registry plus Catalog routes",
-      "count": 3788,
+      "count": 4025,
       "meaning": "Material-to-package memberships; one material may belong to several packages."
     },
     {
       "id": "distinct_materials",
       "label": "Distinct computer-side materials",
       "owner": "Research Workbench or Chronicle",
-      "count": 3105,
+      "count": 3268,
       "meaning": "Deduplicated safe inventory records with file state, role, custody layer and modification time."
     },
     {
       "id": "public_readings",
       "label": "Public readings",
       "owner": "Generated share projection",
-      "count": 301,
+      "count": 319,
       "meaning": "Materials with an original public view and a guaranteed crawler-friendly static HTML reading_url."
+    },
+    {
+      "id": "public_machine_data",
+      "label": "Public machine data",
+      "owner": "Generated share projection",
+      "count": 1,
+      "meaning": "Complete positively selected structured JSON objects linked from their package manifests with schema, as-of and scope metadata."
     },
     {
       "id": "metadata_only",
       "label": "Private-library metadata",
       "owner": "Governed private library",
-      "count": 2804,
+      "count": 2948,
       "meaning": "Known materials whose names, roles and states may route research, while contents remain private."
     },
     {
@@ -53,9 +60,9 @@
       "id": "shared_brain_api",
       "label": "Read-only shared brain API",
       "owner": "Generated public projection",
-      "count": 7,
+      "count": 8,
       "unit": "endpoint families",
-      "meaning": "Bootstrap, OpenAPI, package index, package manifests, package interior inventory, material inventory and activity inventory."
+      "meaning": "Bootstrap, OpenAPI, package index, package manifests, package interior inventory, material inventory, activity inventory and positively selected structured datasets."
     }
   ],
   "routes": {
@@ -71,17 +78,52 @@
   },
   "packages": [
     {
+      "research_id": "federal-reserve-noncore-initiative-governance-2026",
+      "title": "Federal Reserve Non-Core Initiative Governance — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "The OIG report and management response, Board 2022-2025 financial statements and public acquisition-policy surface were reviewed. The package separates management direction from operating authority, audit engagement from result, questioned cost from recovery, aggregate construction in process from a project ledger, policy issuance from first reuse and administrative closure from durable capability.",
+      "latest_computer_edit_at": "2026-09-30T23:52:56Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-reserve-noncore-initiative-governance-2026.html",
+      "material_counts": {
+        "total": 8,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 7
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [
+          "money"
+        ],
+        "additional_subsections": [
+          "Public money, benefits and eligibility"
+        ]
+      },
+      "routes": {
+        "summary": "library/federal-reserve-noncore-initiative-governance-2026.html",
+        "manifest": "packages/federal-reserve-noncore-initiative-governance-2026.json",
+        "report": "reports/federal-reserve-noncore-initiative-governance-2026.html",
+        "full_text": "readings/packages/federal-reserve-noncore-initiative-governance-2026.html",
+        "source_text": "reports/federal-reserve-noncore-initiative-governance-2026.md"
+      }
+    },
+    {
       "research_id": "fed-clearing-treasury",
       "title": "Federal Reserve, Clearing and Treasury",
       "library_state": "current",
-      "evidence_cutoff": "2026-09-22",
-      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "The September 20 congressional-oversight addition is a U.S. primary-source orientation through 21:00 EDT. It separates Congress's ultimate statutory control from operational command; incorporates Federal Reserve Act appointment, funding, reporting and audit provisions, 31 U.S.C. §714, 5 U.S.C. §807, official committee jurisdiction, OIG limits and the 2025–26 Supreme Court independence decisions; and does not treat a hearing, report, nomination or audit as equivalent to enacted law or an FOMC direction. The September 20 dollar-issuance addition is a foundational U.S. constitutional and primary-statutory orientation through 19:00 EDT. It incorporates the July 2026 Federal Reserve Act §16A retail-CBDC prohibition, preserves the distinct GENIUS Act private-stablecoin lane, and maps ordinary-legislation, administrative and constitutional-amendment change paths without treating a proposal or executive order as self-executing currency authority. The September 20 Oklahoma City hearing audit is current through 18:49 EDT. It uses the official House event and legislative record plus a locally preserved automatic-caption transcript; no formal hearing transcript, Davidson exhibit, post-order San Francisco CBDC job posting or authoritative Executive Order 14178 violation finding was located. The September 20 payment-system mandate addition is a foundational U.S. primary-source orientation through 18:00 EDT. It distinguishes the institutional function from the Federal Reserve Act §2A mandate and maps legal authority, Board/Reserve-Bank/private/co-regulator roles, safety, efficiency, access, lifecycle and measurement without claiming plenary Board jurisdiction. The separate September 20 addition resolves the public outcome of the seven-request discount-rate sequence—all twelve district tables show 4.00% effective September 17—while preserving the remaining-five timing question for the later minutes, and records the SVB review's new monthly exam-team escalation path to supervision leadership and the respective Reserve Banks. The September 18 addition is a whole-site DTCC refresh and does not turn the approximate October tokenization target into an exact launch. Prior studies retain their own cutoffs.",
+      "latest_computer_edit_at": "2026-10-01T22:24:28Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/fed-clearing-treasury.html",
       "material_counts": {
-        "total": 179,
-        "public_reading": 15,
-        "private_library_metadata": 164
+        "total": 192,
+        "public_reading": 16,
+        "public_machine_data": 0,
+        "private_library_metadata": 176
       },
       "classification": {
         "section": "money",
@@ -104,12 +146,14 @@
       "title": "Congressional Monetary Infrastructure",
       "library_state": "current",
       "evidence_cutoff": "2026-09-16",
-      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "evidence_cutoff_note": null,
+      "latest_computer_edit_at": "2026-10-01T22:24:28Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/congressional-monetary-infrastructure.html",
       "material_counts": {
-        "total": 43,
-        "public_reading": 6,
+        "total": 45,
+        "public_reading": 8,
+        "public_machine_data": 0,
         "private_library_metadata": 37
       },
       "classification": {
@@ -133,13 +177,15 @@
       "title": "Private Monetary Stack",
       "library_state": "current",
       "evidence_cutoff": "2026-08-26",
-      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "evidence_cutoff_note": "Keep the broad package frozen through August 26. Name the bounded September 3 World Liberty preliminary-conditional-approval refresh, September 7 Kraken charter-consummation correction, September 8 GENIUS implementation delta, September 15 state-credit-union/public-deposit audit, September 23 SEC 24-hour-trading proceeding return, September 24 Fed/CFTC stablecoin-tokenization delta and September 30 OUSD launch return separately; none refreshes the rest of the package.",
+      "latest_computer_edit_at": "2026-10-01T22:24:28Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/private-monetary-stack.html",
       "material_counts": {
-        "total": 267,
-        "public_reading": 44,
-        "private_library_metadata": 223
+        "total": 289,
+        "public_reading": 45,
+        "public_machine_data": 0,
+        "private_library_metadata": 244
       },
       "classification": {
         "section": "money",
@@ -164,12 +210,14 @@
       "title": "Banks and Credit Unions — Federal and Four-State Legal Architecture",
       "library_state": "current",
       "evidence_cutoff": "2026-09-15",
+      "evidence_cutoff_note": "Primary federal and state institutional sources checked through September 15, 2026. This is an orientation map, not a fifty-state survey or institution-specific legal opinion. Pending New York public-deposit bills and federal credit-union stablecoin/public-unit-share proceedings remain proposal or implementation clocks.",
       "latest_computer_edit_at": "2026-09-15T18:03:06Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/bank-credit-union-legal-architecture.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -195,12 +243,14 @@
       "title": "Payment Transparency and the Hidden Constitution",
       "library_state": "current",
       "evidence_cutoff": "2026-07-31",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-28T16:26:47Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/payment-transparency-hidden-constitution.html",
       "material_counts": {
         "total": 22,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 20
       },
       "classification": {
@@ -222,12 +272,14 @@
       "title": "SWIFT Shared Ledger",
       "library_state": "current",
       "evidence_cutoff": "2026-09-28",
+      "evidence_cutoff_note": "Focused Sibos overlap and gap audit through September 28, 2026, 12:23 EDT. Existing packages already own the authority, settlement, accounting, smart-contract, correction/loss, route/anchor and DLT proof boundaries; the narrow live gaps are the scheme conformance constitution, SWIFT B2B agentic receipt, executable standards artefacts and exact corridor roles. The Oracle/SWIFT delta is current through 10:04 EDT and the complete 17-bank census retains its September 9 cutoff. Sibos continues through October 1; no named Oracle bank, executed Oracle transaction, operative adapter version, price, service level or public loss/finality rulebook was located.",
       "latest_computer_edit_at": "2026-09-28T16:26:31Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/swift-shared-ledger.html",
       "material_counts": {
         "total": 23,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 21
       },
       "classification": {
@@ -251,13 +303,15 @@
       "title": "SEC Transfer Agent Modernization — 2026 Proposal",
       "library_state": "current",
       "evidence_cutoff": "2026-09-01",
-      "latest_computer_edit_at": "2026-09-18T12:50:01Z",
+      "evidence_cutoff_note": "Commission-issued proposal, official fact sheet and primary company/regulatory filings checked through September 1 ET. No matching Federal Register public-inspection or publication object was located; no final or effective rule exists.",
+      "latest_computer_edit_at": "2026-10-01T01:19:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/sec-transfer-agent-modernization.html",
       "material_counts": {
-        "total": 16,
-        "public_reading": 5,
-        "private_library_metadata": 11
+        "total": 18,
+        "public_reading": 6,
+        "public_machine_data": 0,
+        "private_library_metadata": 12
       },
       "classification": {
         "section": "money",
@@ -281,12 +335,14 @@
       "title": "CFTC Passive Software No-Action Position — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-17T11:32:00-04:00",
+      "evidence_cutoff_note": "The complete seven-page Letter 26-25, release, staff-letter index, full Phantom predecessor, August CFTC roadmap, September 15 Senate cloture result and statutory preemption text were checked. No relying PSP notice, filed undertaking or operating use was located. The technology map is CFTC-only and does not import permission from the SEC's separate September 17 action.",
       "latest_computer_edit_at": "2026-09-29T02:11:41Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/cftc-passive-software-no-action-2026-09-17.html",
       "material_counts": {
         "total": 3,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -313,12 +369,14 @@
       "title": "Coinbase Clearing DCO Registration — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-28T22:09:00-04:00",
+      "evidence_cutoff_note": "The Commission order, DCO filing page, application rulebook, proposed-activities summary, ownership exhibit, current CFTC venue listing, Coinbase clearing disclosures and SEC security-futures filings were checked. No first member, first product, first trade, eligible-collateral notice, settlement-institution designation or migration from Nodal Clear was located.",
       "latest_computer_edit_at": "2026-09-29T02:14:27Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/coinbase-clearing-dco-registration-2026-09-28.html",
       "material_counts": {
         "total": 2,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -345,12 +403,14 @@
       "title": "SEC Tokenized NMS Stock Innovation Exemption — 2026 Order",
       "library_state": "current",
       "evidence_cutoff": "2026-09-17T09:46:00-04:00",
-      "latest_computer_edit_at": "2026-09-27T20:28:17Z",
+      "evidence_cutoff_note": "The controlling 60-page order, docket, release and commissioner statements were checked on issue morning. The same-day 24-hour-trading roundtable had not yet begun. No operating TSV was established in the reviewed sources.",
+      "latest_computer_edit_at": "2026-10-01T22:24:28Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/sec-tokenized-nms-stock-innovation-exemption.html",
       "material_counts": {
         "total": 28,
         "public_reading": 7,
+        "public_machine_data": 0,
         "private_library_metadata": 21
       },
       "classification": {
@@ -377,12 +437,14 @@
       "title": "SEC Investor Advisory Committee — 2026 meeting record",
       "library_state": "current",
       "evidence_cutoff": "2026-09-20T16:20:12-04:00",
+      "evidence_cutoff_note": "Base meeting package verified through September 17. September 18 uptake and EDGAR work adds Commissioner engagement, attribution checks, SEC/OIG/contract/FDTA evidence and controlled architectural inference. The September 20 join adds DERA and Enforcement organization, 24-hour trading, market-data revenue, transformed-data vendor and circuit-breaker objects. IAC captions remain non-verbatim discovery evidence; the order does not cite the IAC; June 4 and September 10 minutes were still not posted when checked.",
       "latest_computer_edit_at": "2026-09-23T17:31:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/sec-investor-advisory-committee.html",
       "material_counts": {
         "total": 36,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 34
       },
       "classification": {
@@ -407,14 +469,16 @@
       "research_id": "crypto-infrastructure-comparatives",
       "title": "Crypto Infrastructure Comparatives",
       "library_state": "current",
-      "evidence_cutoff": "2026-09-17",
-      "latest_computer_edit_at": "2026-09-27T16:33:11Z",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "September 17 adds the direct Ripple-Securitize control-plane comparison and preserves the September 1 transfer-agent, Securitize/Wormhole and international control-plane synthesis. Network baselines and supporting studies retain their cited source dates.",
+      "latest_computer_edit_at": "2026-10-01T22:24:28Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/crypto-infrastructure-comparatives.html",
       "material_counts": {
-        "total": 14,
-        "public_reading": 3,
-        "private_library_metadata": 11
+        "total": 33,
+        "public_reading": 4,
+        "public_machine_data": 0,
+        "private_library_metadata": 29
       },
       "classification": {
         "section": "money",
@@ -438,12 +502,14 @@
       "title": "Wholesale Metals Infrastructure",
       "library_state": "current",
       "evidence_cutoff": "2026-09-14",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-22T01:12:22Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/wholesale-metals.html",
       "material_counts": {
         "total": 63,
         "public_reading": 6,
+        "public_machine_data": 0,
         "private_library_metadata": 57
       },
       "classification": {
@@ -468,12 +534,14 @@
       "title": "Gold Balance of Payments & Currency Adjustment",
       "library_state": "current",
       "evidence_cutoff": "2026-08-23",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T15:29:39Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/gold-bop-currency-adjustment.html",
       "material_counts": {
         "total": 36,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 33
       },
       "classification": {
@@ -497,12 +565,14 @@
       "title": "The Overall Monetary Play — July 2026 Interpretation",
       "library_state": "current",
       "evidence_cutoff": "2026-07-13",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T10:42:50Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/overall-monetary-play.html",
       "material_counts": {
         "total": 7,
         "public_reading": 6,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -527,12 +597,14 @@
       "title": "Authority Through the Adapter — Where Control Actually Moves",
       "library_state": "current",
       "evidence_cutoff": "2026-08-31T10:42:24-04:00",
+      "evidence_cutoff_note": "The DDRS factual supplement has a separate 2026-09-02T11:23:22-04:00 cutoff and does not refresh the controlling comparative answer. This is a selected-case constitutional-refactoring interpretation, not a world census, proof of common command or claim that no authority genuinely migrates.",
       "latest_computer_edit_at": "2026-09-18T15:17:06Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/authority-through-the-adapter.html",
       "material_counts": {
         "total": 6,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -557,12 +629,14 @@
       "title": "Overall DLT Transition — 2025–2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-22T23:59:59-04:00",
-      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "evidence_cutoff_note": "The controlling phase synthesis remains frozen at 2026-08-31T12:08:12-04:00. Explicit post-cutoff supplements through September 22 preserve that historical calculation while recording current gates and a fixed comparison constitution. This Workbench cross-cut creates no live-vault, Currency Watch, Observatory/app, plotline or implementation change.",
+      "latest_computer_edit_at": "2026-10-01T22:23:39Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/overall-dlt-transition.html",
       "material_counts": {
         "total": 57,
         "public_reading": 11,
+        "public_machine_data": 0,
         "private_library_metadata": 46
       },
       "classification": {
@@ -586,14 +660,16 @@
       "research_id": "transaction-native-accounting",
       "title": "Transaction-Native Accounting",
       "library_state": "archive",
-      "evidence_cutoff": "2026-07-30",
-      "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "September 30 adds the bounded private-company on-chain transition synthesis, the SEC credential-notice bridge and the detailed ARK order/application control map. The CPA designation and transfer-agent modernization remain proposals. ARK exemptive relief is effective, but no Tokenized Class registration, named DLT/ATS/wallet stack, launch or operating receipt was located; Exchange Class effectiveness was delayed to October 23. Regulation D statistics count offerings rather than distinct companies, and the reviewed evidence does not establish one complete named operating-company stack.",
+      "latest_computer_edit_at": "2026-10-01T01:19:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/transaction-native-accounting.html",
       "material_counts": {
-        "total": 39,
-        "public_reading": 10,
-        "private_library_metadata": 29
+        "total": 44,
+        "public_reading": 11,
+        "public_machine_data": 0,
+        "private_library_metadata": 33
       },
       "classification": {
         "section": "money",
@@ -617,12 +693,14 @@
       "title": "Treasury and IRS",
       "library_state": "current",
       "evidence_cutoff": "2026-07-16",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T10:42:50Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/treasury-irs.html",
       "material_counts": {
         "total": 9,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 6
       },
       "classification": {
@@ -646,12 +724,14 @@
       "title": "The People's Money",
       "library_state": "current",
       "evidence_cutoff": "2026-07-15",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T01:24:59Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/peoples-money.html",
       "material_counts": {
         "total": 6,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 3
       },
       "classification": {
@@ -676,12 +756,14 @@
       "title": "Retail Debt",
       "library_state": "current",
       "evidence_cutoff": "2026-07-15",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-15T18:03:06Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/retail-debt.html",
       "material_counts": {
         "total": 8,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -702,14 +784,16 @@
       "research_id": "fraud-payment-integrity",
       "title": "Fraud and Payment Integrity",
       "library_state": "current",
-      "evidence_cutoff": "2026-09-22",
-      "latest_computer_edit_at": "2026-09-23T02:58:06Z",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "The Treasury Payment Fraud and Scams Working Group delta is bounded to 2026-09-30 17:38 EDT; no second-meeting readout or partner-agency account had been located by then. The White House task-force operating-state answer is bounded to 2026-09-22; the agreement/AI return and Fraud Detection Constitution to 2026-09-14 17:44 EDT; and the NFDC Charter deep dive to 18:04 EDT. The core transaction-record thesis remains bounded to 2026-07-23, regional PA, Hawaii and Southeast lanes to 2026-07-31, and the Do Not Pay structural map to 2026-08-29. Refresh the second-meeting record, H.R. 4936 status, Charter publication, program, EO-output, agreement and case-attribution states before later present-tense use.",
+      "latest_computer_edit_at": "2026-10-01T01:19:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/fraud-payment-integrity.html",
       "material_counts": {
-        "total": 53,
-        "public_reading": 10,
-        "private_library_metadata": 43
+        "total": 55,
+        "public_reading": 11,
+        "public_machine_data": 0,
+        "private_library_metadata": 44
       },
       "classification": {
         "section": "government",
@@ -733,12 +817,14 @@
       "title": "Treasury Do Not Pay — Governmentwide Structural Map",
       "library_state": "current",
       "evidence_cutoff": "2026-08-29",
-      "latest_computer_edit_at": "2026-09-23T02:58:06Z",
+      "evidence_cutoff_note": "Primary federal law, Treasury, OMB, OPM and Federal Register sources were checked through August 29, 2026. OPM's August 26 notice is published but not operative until September 25; Public Law 119-77 amendments are not effective until December 27; the May 29 Uniform Guidance expansion remains proposed.",
+      "latest_computer_edit_at": "2026-09-30T21:40:55Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/treasury-do-not-pay-governmentwide-map.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -764,12 +850,14 @@
       "title": "Emerging Fraud — Identity, Eligibility and the Payment Gate",
       "library_state": "current",
       "evidence_cutoff": "2026-07-15",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/emerging-fraud-identity-payment-gate.html",
       "material_counts": {
         "total": 5,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 4
       },
       "classification": {
@@ -794,12 +882,14 @@
       "title": "OBBB — Fraud, Improper-Payment and Error-Rate Legal Map",
       "library_state": "current",
       "evidence_cutoff": "2026-07-16",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/obbb-fraud-error-rate-legal-map.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -824,12 +914,14 @@
       "title": "Pennsylvania CCDBG — State-Edge Transaction Pilot",
       "library_state": "current",
       "evidence_cutoff": "2026-07-27",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/pa-ccdbg-state-edge-pilot.html",
       "material_counts": {
         "total": 9,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 8
       },
       "classification": {
@@ -854,12 +946,14 @@
       "title": "Hawaii Public Corruption — Primary-Source Ledger",
       "library_state": "current",
       "evidence_cutoff": "2026-07-27",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-07-27T16:11:40Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/hawaii-public-corruption-source-ledger.html",
       "material_counts": {
         "total": 5,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 4
       },
       "classification": {
@@ -883,12 +977,14 @@
       "title": "Southeast Fraud Enforcement Partnerships",
       "library_state": "current",
       "evidence_cutoff": "2026-07-31",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/southeast-fraud-enforcement-partnerships.html",
       "material_counts": {
         "total": 3,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 2
       },
       "classification": {
@@ -912,12 +1008,14 @@
       "title": "Government-Wide Audit — July 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-07-18",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-07-28T01:02:43Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/government-wide-audit-july-2026.html",
       "material_counts": {
         "total": 21,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 19
       },
       "classification": {
@@ -941,12 +1039,14 @@
       "title": "Federal Whole-Site Recertification — August 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-08-04T17:48:00-04:00",
+      "evidence_cutoff_note": "The campaign retains its August 4, 2026 17:48 ET cutoff and the AI instrument census its August 1 cutoff. The September 7 AI-inventory section reconciles seven original Tech records and identified guidance/consultation returns; it is not a government-wide refresh. Three complementary BIS records and the Upper C-band market-date correction were reconciled September 7; no whole-campaign refresh or expansion of the EO census.",
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/government-wide-recertification-august-2026.html",
       "material_counts": {
         "total": 95,
         "public_reading": 4,
+        "public_machine_data": 0,
         "private_library_metadata": 91
       },
       "classification": {
@@ -972,12 +1072,14 @@
       "title": "House Oversight Corpus",
       "library_state": "current",
       "evidence_cutoff": "2026-07-22",
+      "evidence_cutoff_note": "The main meeting census ends 2026-07-15; a routed delta extends through 2026-07-22. Transcript recovery remains tiered and incomplete, so later proceedings and formal-record upgrades require refresh.",
       "latest_computer_edit_at": "2026-07-28T02:42:30Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/house-oversight-corpus.html",
       "material_counts": {
         "total": 26,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 23
       },
       "classification": {
@@ -999,12 +1101,14 @@
       "title": "Congressional Hearing Source Library",
       "library_state": "current",
       "evidence_cutoff": "2026-07-25",
+      "evidence_cutoff_note": "Vault source index and generated hearing-corpus audit checked through July 25, 2026. Later additions require the Chronicle index rather than this routing snapshot.",
       "latest_computer_edit_at": "2026-08-14T22:23:26Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/congressional-hearing-source-library.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -1028,12 +1132,14 @@
       "title": "Epstein Interview Statement Accountability",
       "library_state": "current",
       "evidence_cutoff": "2026-07-21",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-07-22T03:41:58Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/epstein-interview-statement-accountability.html",
       "material_counts": {
         "total": 3,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 2
       },
       "classification": {
@@ -1055,12 +1161,14 @@
       "title": "Judicial Money",
       "library_state": "current",
       "evidence_cutoff": "2026-09-03",
+      "evidence_cutoff_note": "Targeted Custodia refresh through September 3: Supreme Court No. 26-62 was docketed July 14 and the response deadline was extended through September 11 for all respondents. The incorporated map body remains broadly bounded to July 11, and the separate July SVB trial outcome still requires a current court-record refresh.",
       "latest_computer_edit_at": "2026-09-21T00:17:51Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/judicial-money.html",
       "material_counts": {
         "total": 9,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 6
       },
       "classification": {
@@ -1085,12 +1193,14 @@
       "title": "COVID Authority and Disclosure Record",
       "library_state": "current",
       "evidence_cutoff": "2026-07-29",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/covid-authority-disclosures.html",
       "material_counts": {
         "total": 65,
         "public_reading": 12,
+        "public_machine_data": 0,
         "private_library_metadata": 53
       },
       "classification": {
@@ -1116,12 +1226,14 @@
       "title": "2020 COVID Authority Spine",
       "library_state": "current",
       "evidence_cutoff": "2026-07-27",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-07-27T14:31:31Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/covid-2020-authority-spine.html",
       "material_counts": {
         "total": 16,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 14
       },
       "classification": {
@@ -1147,12 +1259,14 @@
       "title": "ODNI COVID and Biolab Disclosures — June 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-07-27",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/odni-covid-biolab-disclosures-2026-06.html",
       "material_counts": {
         "total": 10,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 8
       },
       "classification": {
@@ -1178,12 +1292,14 @@
       "title": "HHS High-Risk Life Sciences Research Policy — July 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-07-28",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/hhs-high-risk-life-sciences-policy-2026-07-28.html",
       "material_counts": {
         "total": 3,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -1207,12 +1323,14 @@
       "title": "White House COVID.gov Reactivation — July 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-07-29T12:00:00-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/white-house-covid-gov-reactivation-2026-07-29.html",
       "material_counts": {
         "total": 3,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -1238,12 +1356,14 @@
       "title": "Rand Paul COVID Origins Reading Room — July 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-07-29",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/rand-paul-covid-origins-reading-room-2026-07-29.html",
       "material_counts": {
         "total": 32,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 29
       },
       "classification": {
@@ -1269,12 +1389,14 @@
       "title": "U.S. WHO Membership Exit Legal Map",
       "library_state": "current",
       "evidence_cutoff": "2026-08-15",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-15T18:41:32Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/us-who-membership-exit-legal-map.html",
       "material_counts": {
         "total": 1,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -1298,12 +1420,14 @@
       "title": "G20 Currency Watch",
       "library_state": "current",
       "evidence_cutoff": "2026-07-31",
+      "evidence_cutoff_note": "Frozen card and source program: July 20, 2026. JPY research: July 27; pricing/FX companions retain July 30–31 and named August evidence; tariff/SDR companions retain September 2 cutoffs. Narrow September 7 check of the already-cited CNY report is documented in the pilot guide; it does not refresh the six currency assessments.",
       "latest_computer_edit_at": "2026-09-16T23:20:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/currency-watch.html",
       "material_counts": {
         "total": 79,
         "public_reading": 15,
+        "public_machine_data": 0,
         "private_library_metadata": 64
       },
       "classification": {
@@ -1327,13 +1451,15 @@
       "title": "International Monetary Transition",
       "library_state": "current",
       "evidence_cutoff": "2026-09-28T10:16:00+09:00",
-      "latest_computer_edit_at": "2026-09-28T23:56:45Z",
+      "evidence_cutoff_note": "Broad package remains frozen through August 4. Initiation and Next Phase carry targeted saved Japan legal, bank, pilot and insurance-instrument observations from the August 31 review; currency defense carries the saved August 3 Japanese confirmation and August 28 aggregate disclosure with the reported event-date mismatch unresolved; the Asheville G20 ministerial outcome was refreshed through September 3; targeted BOJ normalization, official-site readings and the completed Japan Monetary Constitution Layers 0–8 and system-wide ruling were refreshed through September 15 01:11 JST. The JGB marginal-buyer and Japan–U.S. insurance returns are separately refreshed through September 15 02:55 JST; they distinguish cash ownership from leveraged price-setting and structural insurance convergence from identical scale or control. The UK Monetary Constitution retains its September 13 layer cutoffs and adds a September 14 primary-source delta for FS26/1 and the FCA tokenised-gold Call for Input. The petrodollar history, transaction, claim and source package is refreshed through September 15 and does not refresh unrelated regional states. A bounded Japan minutes/rate return extends through September 28 at 08:50 JST. A second official-site documentation sweep extends facility terms, BOJ-NET implementation, current-account access, legacy DICJ-route retirement, supervisory requests, bank-risk reviews and statistical/source-version controls through September 28 at 10:16 JST; it does not refresh every Japan layer, bank balance sheet or outcome. Other regional states retain their stated cutoffs.",
+      "latest_computer_edit_at": "2026-10-01T20:09:05Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/international-monetary-transition.html",
       "material_counts": {
-        "total": 243,
+        "total": 244,
         "public_reading": 17,
-        "private_library_metadata": 226
+        "public_machine_data": 0,
+        "private_library_metadata": 227
       },
       "classification": {
         "section": "world",
@@ -1358,12 +1484,14 @@
       "title": "Cuba Pressure and Counter-Influence",
       "library_state": "current",
       "evidence_cutoff": "2026-07-20",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-24T22:12:40Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/cuba-pressure-counter-influence.html",
       "material_counts": {
         "total": 11,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 10
       },
       "classification": {
@@ -1387,12 +1515,14 @@
       "title": "Iraq Oil Provenance and Logistics",
       "library_state": "current",
       "evidence_cutoff": "2026-07-15",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T15:29:39Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/iraq-oil-logistics.html",
       "material_counts": {
         "total": 3,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 2
       },
       "classification": {
@@ -1415,14 +1545,16 @@
       "research_id": "global-oil-gas-movements",
       "title": "Global Oil and Gas Movements 2026",
       "library_state": "current",
-      "evidence_cutoff": "2026-09-15",
-      "latest_computer_edit_at": "2026-09-15T21:28:33Z",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": null,
+      "latest_computer_edit_at": "2026-09-30T23:23:41Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/global-oil-gas-movements.html",
       "material_counts": {
-        "total": 36,
+        "total": 37,
         "public_reading": 2,
-        "private_library_metadata": 34
+        "public_machine_data": 0,
+        "private_library_metadata": 35
       },
       "classification": {
         "section": "world",
@@ -1446,12 +1578,14 @@
       "title": "Emergency Monetary Policy",
       "library_state": "current",
       "evidence_cutoff": "2026-07-15",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-24T17:28:40Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/emergency-monetary-policy.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -1476,12 +1610,14 @@
       "title": "International Emergency Monetary Policy",
       "library_state": "current",
       "evidence_cutoff": "2026-07-13",
+      "evidence_cutoff_note": "International comparative research is bounded to July 13, 2026. Country and institution states require fresh primary-source checking before present-tense use; continuity, liquidity, solvency, guarantees, controls, external finance and loss allocation remain separate.",
       "latest_computer_edit_at": "2026-08-24T17:14:19Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/international-emergency-monetary-policy.html",
       "material_counts": {
         "total": 7,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 6
       },
       "classification": {
@@ -1507,14 +1643,16 @@
       "research_id": "insurance-reinsurance",
       "title": "Insurance and Reinsurance",
       "library_state": "current",
-      "evidence_cutoff": "2026-09-15",
-      "latest_computer_edit_at": "2026-09-14T18:02:00Z",
+      "evidence_cutoff": "2026-10-01T16:00:00-04:00",
+      "evidence_cutoff_note": "The maintained U.S. carrier/treaty answer remains sourced through July 12, 2026. The bounded Japan comparison is refreshed through September 15 02:55 JST. The top-down monetary/government control map and the actuarial, life/annuity, homeowners, health, commercial, cross-border, liquidity, capital, ownership, pension, credit, operations, employment, public-pool, crop, alternative-capital, trade/political-risk, compulsory-cover, accounting/tax, federal-indemnity and domestic-failure extensions use sources checked October 1. The October 1 CRP meeting and October 7 interconnectedness discussion remained future clocks. The extensions are not fresh company, treaty, plan, pool, crop-policy, transaction, state-market, security, tax-return, receivership or service-contract censuses.",
+      "latest_computer_edit_at": "2026-10-01T18:20:53Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/insurance-reinsurance.html",
       "material_counts": {
-        "total": 13,
+        "total": 42,
         "public_reading": 4,
-        "private_library_metadata": 9
+        "public_machine_data": 0,
+        "private_library_metadata": 38
       },
       "classification": {
         "section": "money",
@@ -1539,12 +1677,14 @@
       "title": "Permanent Magnets",
       "library_state": "current",
       "evidence_cutoff": "2026-07-22",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T14:42:20Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/permanent-magnets.html",
       "material_counts": {
         "total": 14,
         "public_reading": 4,
+        "public_machine_data": 0,
         "private_library_metadata": 10
       },
       "classification": {
@@ -1569,12 +1709,14 @@
       "title": "Carbon Nanotubes and Battery Sovereignty",
       "library_state": "current",
       "evidence_cutoff": "2026-08-23",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-24T22:54:12Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/carbon-nanotubes-battery-sovereignty.html",
       "material_counts": {
         "total": 7,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -1598,12 +1740,14 @@
       "title": "Federal Science Operating System",
       "library_state": "current",
       "evidence_cutoff": "2026-08-17",
+      "evidence_cutoff_note": "The package retains its August 17 evidence cutoff. September 7 targeted factual-spine additions reconcile all thirteen original Reactor filings, with separately dated selected implementation, correction and confirmation evidence. Four current explanations also correct the 2027 deadline’s NEIMA origin. This is not a whole-package refresh. September 9 Genesis update is a separately dated targeted extension; the broader package retains its August 17 cutoff.",
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-science-operating-system.html",
       "material_counts": {
         "total": 21,
         "public_reading": 6,
+        "public_machine_data": 0,
         "private_library_metadata": 15
       },
       "classification": {
@@ -1628,12 +1772,14 @@
       "title": "Federal Fusion Commercialization",
       "library_state": "current",
       "evidence_cutoff": "2026-08-15",
+      "evidence_cutoff_note": "Original cutoff 2026-08-15 15:28 EDT. The September 7 NEIMA attribution correction is a bounded later correction, not a refresh of every project state.",
       "latest_computer_edit_at": "2026-09-08T18:17:52Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-fusion-commercialization.html",
       "material_counts": {
         "total": 3,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -1660,12 +1806,14 @@
       "title": "NSSTS Technology-to-Company Map",
       "library_state": "current",
       "evidence_cutoff": "2026-08-19",
+      "evidence_cutoff_note": "The 33 monitor records remain package_context_only; next_check values are manual package-review cues and do not advance the August 19 evidence cutoff. The quantum acceptance map adds a September 7 reading of EO 14413; company, award and performance evidence is not refreshed by that legal-context review.",
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/nssts-technology-company-map.html",
       "material_counts": {
         "total": 68,
         "public_reading": 17,
+        "public_machine_data": 0,
         "private_library_metadata": 51
       },
       "classification": {
@@ -1691,12 +1839,14 @@
       "title": "NSSTS Program and Acceptance Economy",
       "library_state": "current",
       "evidence_cutoff": "2026-08-19",
+      "evidence_cutoff_note": "Phase 5 evidence is dated August 18; hidden-delivery, acceptance and transaction extensions are dated August 19. The 33 monitor rows remain manual package-review cues, not live monitoring.",
       "latest_computer_edit_at": "2026-09-09T20:14:14Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/nssts-program-acceptance-economy.html",
       "material_counts": {
         "total": 28,
         "public_reading": 7,
+        "public_machine_data": 0,
         "private_library_metadata": 21
       },
       "classification": {
@@ -1722,12 +1872,14 @@
       "title": "NSSTS Quantum and Cryptographic Acceptance",
       "library_state": "current",
       "evidence_cutoff": "2026-08-19",
+      "evidence_cutoff_note": "Company and acceptance evidence is bounded to August 19, 2026. The September 7 EO 14413 legal-context reading does not refresh the company census or prove implementation.",
       "latest_computer_edit_at": "2026-09-08T00:18:52Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/nssts-quantum-cryptographic-acceptance.html",
       "material_counts": {
         "total": 4,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 3
       },
       "classification": {
@@ -1753,12 +1905,14 @@
       "title": "Scientific Trust Stack",
       "library_state": "current",
       "evidence_cutoff": "2026-08-17",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-28T16:26:47Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/scientific-trust-stack.html",
       "material_counts": {
         "total": 16,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 14
       },
       "classification": {
@@ -1782,14 +1936,16 @@
       "research_id": "federal-cryptographic-trust-stack",
       "title": "Federal Cryptographic Trust Stack",
       "library_state": "current",
-      "evidence_cutoff": "2026-08-11",
-      "latest_computer_edit_at": "2026-09-09T20:04:06Z",
+      "evidence_cutoff": "2026-10-01",
+      "evidence_cutoff_note": "The foundation retains its August 11 cutoff. The August 17 synthesis, August 24 GSA formation receipt, September 7 reconciliation and October 1 NSA PQC hub reading are bounded dated extensions, not a silent full-stack refresh. October 1 cutoff: 18:59 EDT.",
+      "latest_computer_edit_at": "2026-10-01T23:07:42Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-cryptographic-trust-stack.html",
       "material_counts": {
-        "total": 4,
+        "total": 6,
         "public_reading": 2,
-        "private_library_metadata": 2
+        "public_machine_data": 0,
+        "private_library_metadata": 4
       },
       "classification": {
         "section": "technology",
@@ -1815,12 +1971,14 @@
       "title": "GENIUS Stablecoin Trust Crosswalk",
       "library_state": "current",
       "evidence_cutoff": "2026-08-17",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-18T15:17:06Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/genius-stablecoin-trust-crosswalk.html",
       "material_counts": {
         "total": 7,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 6
       },
       "classification": {
@@ -1847,12 +2005,14 @@
       "title": "NARA AI Records and Compute Transition",
       "library_state": "current",
       "evidence_cutoff": "2026-08-23",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-23T21:05:40Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/nara-ai-records-compute-transition.html",
       "material_counts": {
         "total": 6,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -1876,12 +2036,14 @@
       "title": "SEC Credit-Rating Recordkeeping Orders, 2024–2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-25",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T10:05:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/sec-credit-rating-recordkeeping-orders-2024-2026.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -1905,12 +2067,14 @@
       "title": "Federal Agency AI Plans and Infrastructure",
       "library_state": "current",
       "evidence_cutoff": "2026-09-29",
+      "evidence_cutoff_note": "September 29 executive-order texts, fact sheets and current America.gov control surfaces are included. Federal Register numbers and publication objects were unavailable at cutoff. The overall proposal-to-operation layer remains current through September 28; the eleven-entity inventory and supplier census remain frozen through August 23.",
       "latest_computer_edit_at": "2026-09-30T00:42:32Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-agency-ai-plans-infrastructure.html",
       "material_counts": {
         "total": 18,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 15
       },
       "classification": {
@@ -1935,12 +2099,14 @@
       "title": "Sovereign Compute",
       "library_state": "current",
       "evidence_cutoff": "2026-07-15",
+      "evidence_cutoff_note": "Package evidence remains bounded to 2026-07-15. Four dated checks were completed on 2026-08-27 with bounded negative or limited results; they do not advance the overall cutoff. The undated DOE Tribal Data Center Convening and approximately September 2027 Colusa target remain open package watches, with successor source/state triggers governed separately.",
       "latest_computer_edit_at": "2026-09-04T13:23:40Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/sovereign-compute.html",
       "material_counts": {
         "total": 13,
         "public_reading": 4,
+        "public_machine_data": 0,
         "private_library_metadata": 9
       },
       "classification": {
@@ -1965,12 +2131,14 @@
       "title": "Sovereign Communications",
       "library_state": "current",
       "evidence_cutoff": "2026-07-15",
+      "evidence_cutoff_note": "The wider package retains its July 15, 2026 cutoff. A September 7 Upper C-band case follows the original proposal and specifically identified final-order/auction chain. A separate September 29 NCSWIC control-map refresh covers only the CISA-NCSWIC-SAFECOM-state coordination seam and public products through June 2026; it does not establish state adoption or move the wider package cutoff.",
       "latest_computer_edit_at": "2026-09-30T01:49:00Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/sovereign-communications.html",
       "material_counts": {
         "total": 10,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 7
       },
       "classification": {
@@ -1995,13 +2163,15 @@
       "title": "Military Modernization",
       "library_state": "current",
       "evidence_cutoff": "2026-07-15",
-      "latest_computer_edit_at": "2026-09-25T22:37:25Z",
+      "evidence_cutoff_note": "The implementation study retains its July 15, 2026 cutoff. September 7 targeted timeline reconciliations join ten Arsenal filings and six defense-innovation records. A September 25 update maps FAST's establishment and recommendation lane. The September 30 ORA instrument is retained here only as a cross-force timeline event; the child office-of-religious-affairs package owns its memorandum, authority-transfer, budget, charter, staffing, requirements, policy and constitutional-result clocks. Other September 30 updates map Project Meridian's commission, unnamed partner-governance seam and January 28, 2027 report gate; label confirmed, inferred and longer-horizon subterranean technology paths; and add a focused 20-company, 31-source field separating direct subterranean records, platform or team lineage, adjacent defense transition, commercial underground scale and exact-company versus public-parent ticker identity. No company is represented as selected by Meridian. This is not a whole-package current-state refresh.",
+      "latest_computer_edit_at": "2026-09-30T23:28:33Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/military-modernization.html",
       "material_counts": {
-        "total": 10,
-        "public_reading": 2,
-        "private_library_metadata": 8
+        "total": 20,
+        "public_reading": 6,
+        "public_machine_data": 1,
+        "private_library_metadata": 13
       },
       "classification": {
         "section": "technology",
@@ -2021,17 +2191,50 @@
       }
     },
     {
+      "research_id": "office-of-religious-affairs",
+      "title": "Office of Religious Affairs — 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-30T22:00:00-04:00",
+      "evidence_cutoff_note": "The two-page signed September 30, 2026 memorandum is preserved and visually verified. It establishes ORA and the Director position effective immediately and directs 60- and 90-day work. No named Director, completed transfer, submitted budget plan, issued charter, assigned staff, service requirements report, funded program or operating result was public by the cutoff. The calculated November 29 and December 29 dates are interval calculations, not dates printed in the memorandum.",
+      "latest_computer_edit_at": "2026-09-30T23:24:08Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/office-of-religious-affairs.html",
+      "material_counts": {
+        "total": 5,
+        "public_reading": 4,
+        "public_machine_data": 0,
+        "private_library_metadata": 1
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Agencies, workforce and authority",
+        "secondary_sections": [
+          "technology"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/office-of-religious-affairs.html",
+        "manifest": "packages/office-of-religious-affairs.json",
+        "report": "reports/office-of-religious-affairs.html",
+        "full_text": "readings/packages/office-of-religious-affairs.html",
+        "source_text": "reports/office-of-religious-affairs.md"
+      }
+    },
+    {
       "research_id": "contested-logistics",
       "title": "Contested Logistics",
       "library_state": "current",
-      "evidence_cutoff": "2026-07-15",
-      "latest_computer_edit_at": "2026-09-25T11:03:40Z",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "The implementation study retains its July 15, 2026 baseline. A September 7 targeted reconciliation joins ten original Arsenal filings in the Military Modernization timeline. A separate September 25 timeline distinguishes the ILA–USMX strike and contract clocks. The September 30 focused delta records FORTRESS America, September 18 Army SCI conditional selections and August 27 Janus vendor/site selections. This is not a whole-package current-state refresh.",
+      "latest_computer_edit_at": "2026-09-30T23:52:03Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/contested-logistics.html",
       "material_counts": {
-        "total": 10,
+        "total": 11,
         "public_reading": 2,
-        "private_library_metadata": 8
+        "public_machine_data": 0,
+        "private_library_metadata": 9
       },
       "classification": {
         "section": "technology",
@@ -2052,16 +2255,50 @@
       }
     },
     {
+      "research_id": "fortress-america-installation-energy-independence",
+      "title": "FORTRESS America and Military Installation Energy Independence",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-30T23:59:59-04:00",
+      "evidence_cutoff_note": "Primary federal and service sources checked through September 30 ET. The official release controls the accessible announcement. The signed memorandum PDF remained inaccessible through browser, HTTP and PDF-reader paths; memorandum-only office wording is preserved as indexed text in official-link access-hold state and must be checked against the signed PDF before quotation. No authoritative covered-installation list, technical standard, funding total or site-level FORTRESS delivery receipt was located.",
+      "latest_computer_edit_at": "2026-10-01T00:43:05Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/fortress-america-installation-energy-independence.html",
+      "material_counts": {
+        "total": 13,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 11
+      },
+      "classification": {
+        "section": "technology",
+        "subsection": "Defense and logistics",
+        "secondary_sections": [
+          "government",
+          "money"
+        ],
+        "additional_subsections": []
+      },
+      "routes": {
+        "summary": "library/fortress-america-installation-energy-independence.html",
+        "manifest": "packages/fortress-america-installation-energy-independence.json",
+        "report": "reports/fortress-america-installation-energy-independence.html",
+        "full_text": "readings/packages/fortress-america-installation-energy-independence.html",
+        "source_text": "reports/fortress-america-installation-energy-independence.md"
+      }
+    },
+    {
       "research_id": "iran-financial-pressure",
       "title": "Iran Financial Pressure and Banking-System Isolation",
       "library_state": "current",
       "evidence_cutoff": "2026-09-03T19:41:23-04:00",
+      "evidence_cutoff_note": "Targeted refresh through September 3 covers Treasury's August 28 release and the September 1 Federal Register publication; the rest of the package retains its stated cutoffs.",
       "latest_computer_edit_at": "2026-09-08T15:29:39Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/iran-financial-pressure.html",
       "material_counts": {
         "total": 16,
         "public_reading": 4,
+        "public_machine_data": 0,
         "private_library_metadata": 12
       },
       "classification": {
@@ -2086,12 +2323,14 @@
       "title": "Election Integrity Release",
       "library_state": "current",
       "evidence_cutoff": "2026-07-18",
+      "evidence_cutoff_note": "The July 27 second pass reanalyzes the same release corpus. The existing August 27 CISA-plan public-surface check is a bounded negative receipt and does not refresh the rest of the package.",
       "latest_computer_edit_at": "2026-07-28T01:03:48Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/election-integrity-release.html",
       "material_counts": {
         "total": 24,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 23
       },
       "classification": {
@@ -2118,12 +2357,14 @@
       "title": "Trump 2028 Constitutional and Election-Ledger Hypothesis",
       "library_state": "current",
       "evidence_cutoff": "2026-07-25",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-16T23:20:33Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/trump-2028-constitutional-election-ledger.html",
       "material_counts": {
         "total": 3,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 2
       },
       "classification": {
@@ -2147,12 +2388,14 @@
       "title": "White House Ballroom Lawfare 2025-2026",
       "library_state": "current",
       "evidence_cutoff": "2026-08-23",
+      "evidence_cutoff_note": "Time-sensitive legal snapshot through 2026-08-23. Refresh Supreme Court and lower-court dockets plus current construction records before any present-tense legal or project-state claim.",
       "latest_computer_edit_at": "2026-09-08T17:25:25Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/white-house-ballroom-lawfare-2025-2026.html",
       "material_counts": {
         "total": 4,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 3
       },
       "classification": {
@@ -2174,12 +2417,14 @@
       "title": "AI-Enabled Turbine Asset Management and U.S. Power Buildout",
       "library_state": "current",
       "evidence_cutoff": "2026-08-09",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-09T20:23:54Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/ai-turbine-asset-management-power-buildout.html",
       "material_counts": {
         "total": 6,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -2203,12 +2448,14 @@
       "title": "Census, USPS, Citizenship and Apportionment — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-08-11",
+      "evidence_cutoff_note": "Broad package remains frozen through August 11; the official test endpoint was refreshed through September 3. Outcome and 2030-design gates remain open.",
       "latest_computer_edit_at": "2026-09-03T23:47:22Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/census-usps-citizenship-apportionment.html",
       "material_counts": {
         "total": 6,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -2233,12 +2480,14 @@
       "title": "Congressional Committee Control Plane",
       "library_state": "current",
       "evidence_cutoff": "2026-07-26",
+      "evidence_cutoff_note": "The July 28 status records a central corpus cutoff of 2026-07-26 and isolated lanes through 2026-07-27; open discovery and result queues remain. Refresh official membership, jurisdiction, proceeding and result objects before current use.",
       "latest_computer_edit_at": "2026-09-28T21:08:46Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/congressional-committee-control-plane.html",
       "material_counts": {
         "total": 305,
         "public_reading": 5,
+        "public_machine_data": 0,
         "private_library_metadata": 300
       },
       "classification": {
@@ -2262,12 +2511,14 @@
       "title": "Data Center Federal Legal Spine 2025–2026",
       "library_state": "current",
       "evidence_cutoff": "2026-08-20",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-24T22:43:25Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/data-center-federal-legal-spine.html",
       "material_counts": {
         "total": 9,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 7
       },
       "classification": {
@@ -2292,12 +2543,14 @@
       "title": "Energy Asset Management, Atomic Settlement and Iran",
       "library_state": "current",
       "evidence_cutoff": "2026-08-09",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-09T20:24:07Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/energy-atomic-settlement-iran.html",
       "material_counts": {
         "total": 9,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 7
       },
       "classification": {
@@ -2322,12 +2575,14 @@
       "title": "Canada, transshipment and customs origin records",
       "library_state": "current",
       "evidence_cutoff": "2026-09-02",
+      "evidence_cutoff_note": "Factual customs audit through September 2, 2026 at 2:11 p.m. EDT. Publication, proposed reporting, adjudication and actual deployment remain separate.",
       "latest_computer_edit_at": "2026-09-05T16:44:47Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/institutional-regime-waves.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -2351,12 +2606,14 @@
       "title": "U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026",
       "library_state": "current",
       "evidence_cutoff": "2026-07-31",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T00:16:10Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/us-inbound-investment-industrial-capex.html",
       "material_counts": {
         "total": 15,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 13
       },
       "classification": {
@@ -2380,12 +2637,14 @@
       "title": "AI Infrastructure Capital Stack and Risk Transfer",
       "library_state": "current",
       "evidence_cutoff": "2026-08-10",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/ai-infrastructure-capital-stack-risk-transfer.html",
       "material_counts": {
         "total": 9,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 6
       },
       "classification": {
@@ -2409,12 +2668,14 @@
       "title": "Industrial Project Finance and Digital Rails",
       "library_state": "current",
       "evidence_cutoff": "2026-07-31",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T00:16:10Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/industrial-project-finance-digital-rails.html",
       "material_counts": {
         "total": 6,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 4
       },
       "classification": {
@@ -2438,12 +2699,14 @@
       "title": "Federal Strategic Plans",
       "library_state": "current",
       "evidence_cutoff": "2026-09-20",
+      "evidence_cutoff_note": "General plan survey, lane findings and entity-chart snapshot: July 22, 2026. August 17 adds the NSSTS national functional strategy only. The Core Missions extension retains separate 392-row entity and 226-body committee denominators and 18 Wave 1 assessments. September 18 adds the live plan-instrument and EDGAR control/procurement refresh; September 20 joins the proposed whole-FAR rewrite as a surrounding procurement-control change without claiming a new EDGAR award or design. Published direction and proposed rules are not implementation or achieved effect.",
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-strategic-plans.html",
       "material_counts": {
         "total": 65,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 62
       },
       "classification": {
@@ -2465,12 +2728,14 @@
       "title": "White House Research Hub",
       "library_state": "current",
       "evidence_cutoff": "2026-07-21",
+      "evidence_cutoff_note": "The 26-paper corpus and official PDF captures are bounded to the White House Research surface through 2026-07-21. Later paper or page changes require recapture; mutable Related-module adjacency is excluded from citation readiness.",
       "latest_computer_edit_at": "2026-07-22T03:55:33Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/white-house-research-hub.html",
       "material_counts": {
         "total": 37,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 36
       },
       "classification": {
@@ -2496,12 +2761,14 @@
       "title": "Federal Government Entity Library Harvest — 2026-08-22",
       "library_state": "archive",
       "evidence_cutoff": "2026-08-23",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-27T21:48:32Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-entity-library-harvest-2026-08-22.html",
       "material_counts": {
         "total": 52,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 50
       },
       "classification": {
@@ -2523,12 +2790,14 @@
       "title": "Federal Government Full Freshness Sweep — August 22, 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-08-23",
+      "evidence_cutoff_note": "The August 27 return-routing reconciliation classifies extracted obligations only; it does not reopen the closed campaign or advance the August 23 cutoff.",
       "latest_computer_edit_at": "2026-09-22T01:12:22Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-full-freshness-sweep-2026-08-22.html",
       "material_counts": {
         "total": 49,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 48
       },
       "classification": {
@@ -2550,12 +2819,14 @@
       "title": "Federal Government Sweep Control Audit — August 21–29, 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-08-29T21:06:00-04:00",
+      "evidence_cutoff_note": "The independent control audit froze at 18:55 EDT; the later live disposition receipt closed at 21:06 EDT. The original bounded access limits remain part of the audit provenance and are not converted into exhaustive-coverage claims.",
       "latest_computer_edit_at": "2026-08-31T22:21:22Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-sweep-control-audit-2026-08-29.html",
       "material_counts": {
         "total": 12,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 10
       },
       "classification": {
@@ -2577,12 +2848,14 @@
       "title": "Federal Government Website Sweep — 2026-07-25",
       "library_state": "archive",
       "evidence_cutoff": "2026-07-25",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-25T21:30:51Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-website-sweep-2026-07-25.html",
       "material_counts": {
         "total": 24,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 23
       },
       "classification": {
@@ -2608,12 +2881,14 @@
       "title": "Federal Government Weekly Delta — August 2–8, 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-08-08T11:50:27-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-08T16:37:33Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-08.html",
       "material_counts": {
         "total": 12,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 11
       },
       "classification": {
@@ -2638,12 +2913,14 @@
       "title": "Federal Government Weekly Delta — August 8–13, 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-08-13T21:25:45-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-14T02:09:24Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-13.html",
       "material_counts": {
         "total": 12,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 11
       },
       "classification": {
@@ -2668,12 +2945,14 @@
       "title": "Federal Government Weekly Delta — August 13–20, 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-08-20T12:19:33-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-27T21:45:45Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-20.html",
       "material_counts": {
         "total": 14,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 13
       },
       "classification": {
@@ -2698,12 +2977,14 @@
       "title": "Federal Government Weekly Delta — August 20–21, 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-08-21T15:00:00-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-08-21T19:09:11Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-21.html",
       "material_counts": {
         "total": 10,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 9
       },
       "classification": {
@@ -2728,12 +3009,14 @@
       "title": "Disclosure Architecture",
       "library_state": "current",
       "evidence_cutoff": "2026-07-27",
+      "evidence_cutoff_note": "Bounded official-release architecture snapshot through 2026-07-27. New releases and downstream actions require their own official source objects and fresh verification.",
       "latest_computer_edit_at": "2026-09-08T19:23:00Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/disclosure-architecture.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -2755,12 +3038,14 @@
       "title": "Trump Davos Address — January 21, 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-25",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T05:42:08Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/trump-davos-address-2026-01-21.html",
       "material_counts": {
         "total": 7,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -2785,12 +3070,14 @@
       "title": "White House Cabinet Meeting — July 31, 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-07-31T19:50:38-04:00",
+      "evidence_cutoff_note": "Replay and auto-caption verification remain package_context_only working checks; no later source evidence is claimed.",
       "latest_computer_edit_at": "2026-09-16T23:20:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/white-house-cabinet-meeting-2026-07-31.html",
       "material_counts": {
         "total": 4,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 2
       },
       "classification": {
@@ -2815,12 +3102,14 @@
       "title": "Education and University Funding",
       "library_state": "current",
       "evidence_cutoff": "2026-08-17",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/education-university-funding.html",
       "material_counts": {
         "total": 16,
         "public_reading": 5,
+        "public_machine_data": 0,
         "private_library_metadata": 11
       },
       "classification": {
@@ -2845,12 +3134,14 @@
       "title": "University Funding and Programmable Compliance",
       "library_state": "current",
       "evidence_cutoff": "2026-07-28",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/university-funding-programmable-compliance.html",
       "material_counts": {
         "total": 5,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 4
       },
       "classification": {
@@ -2875,12 +3166,14 @@
       "title": "Department of Education Full-Surface Sweep — August 4, 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-08-04",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/education-full-surface-sweep-2026-08-04.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -2904,12 +3197,14 @@
       "title": "Department of War Research Security Audits — August 17, 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-08-17",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/dow-research-security-audits-2026-08-17.html",
       "material_counts": {
         "total": 9,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 8
       },
       "classification": {
@@ -2934,12 +3229,14 @@
       "title": "Trump WHCA Dinner Remarks — July 24, 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-07-24",
+      "evidence_cutoff_note": "The event is fixed to July 24, 2026, but the transcript and high-load passages remain subject to the package's official-video audit queue.",
       "latest_computer_edit_at": "2026-09-16T23:20:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/trump-whca-dinner-remarks-2026-07-24.html",
       "material_counts": {
         "total": 12,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 9
       },
       "classification": {
@@ -2961,12 +3258,14 @@
       "title": "Office of Personnel Management Structural Change Audit — 2025–2026",
       "library_state": "current",
       "evidence_cutoff": "2026-08-29T20:10:53-04:00",
+      "evidence_cutoff_note": "Inclusive fixed window beginning 2025-01-01. OPM Federal Register feed screened at 154 documents; OPM site, White House/OMB, GAO, OPM OIG and relevant federal-court surfaces cross-checked. No full PACER, Regulations.gov comment-corpus, SAM.gov contract or agency implementation-action census is claimed.",
       "latest_computer_edit_at": "2026-09-08T17:25:25Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/opm-structural-change-audit-2025-2026.html",
       "material_counts": {
         "total": 4,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 3
       },
       "classification": {
@@ -2991,12 +3290,14 @@
       "title": "Japan August 2026 — State, Monetary, Industrial and Digital Delta",
       "library_state": "current",
       "evidence_cutoff": "2026-08-31T23:10:00+09:00",
+      "evidence_cutoff_note": "Materiality-first fixed window beginning 2026-08-01 00:00 JST, plus named July carry-forward objects whose amount, law number, test result or disaster-response state was resolved in August. No universal Japanese news census, complete METI August archive, confidential transaction records, U.S. primary intervention record, vault promotion, Currency Watch regrade is claimed.",
       "latest_computer_edit_at": "2026-09-28T00:52:07Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/japan-august-2026-delta.html",
       "material_counts": {
         "total": 4,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 3
       },
       "classification": {
@@ -3021,12 +3322,14 @@
       "title": "G7 and G20 Coordination Architecture — 2025–2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-03T19:41:23-04:00",
+      "evidence_cutoff_note": "The broad materiality-first audit remains frozen at August 31 12:08:12 EDT; only the official Asheville ministerial receipt was refreshed through September 3. This is not a universal speech, engagement-group or comparative-mention census and creates no vault, watch, plotline or app authorization.",
       "latest_computer_edit_at": "2026-09-03T23:57:10Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/g7-g20-coordination-architecture.html",
       "material_counts": {
         "total": 18,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 15
       },
       "classification": {
@@ -3052,12 +3355,14 @@
       "title": "Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates",
       "library_state": "current",
       "evidence_cutoff": "2026-08-31T14:43:21-04:00",
-      "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "evidence_cutoff_note": "User-reviewed working thesis plus a primary-linked implementation audit through the cutoff. G7/G20, Overall DLT, Federal Reserve, GENIUS, private-stack, network and company packages remain the component owners. No vault event, canonical watch, plotline, forecast or installed-app shipment is created.",
+      "latest_computer_edit_at": "2026-09-30T12:37:38Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/route-anchor-inventory.html",
       "material_counts": {
         "total": 34,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 32
       },
       "classification": {
@@ -3081,14 +3386,16 @@
       "research_id": "tokenization-entity-control-map",
       "title": "Crypto Infrastructure Hub",
       "library_state": "current",
-      "evidence_cutoff": "2026-09-24",
-      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "evidence_cutoff": "2026-10-01",
+      "evidence_cutoff_note": "October 1 adds the Commission's 760-page Adviser and Regulated Fund Custody Rules; Crypto Custody Rules proposal, File S7-2026-35, with 342 numbered comment questions. The new custody case preserves proposal, Federal Register, final, effective, compliance and first-use clocks and does not refresh unrelated Hub systems. September 30 CSD BR/Ripple and September 24 Fed GENIUS findings retain their own cited dates.",
+      "latest_computer_edit_at": "2026-10-01T22:24:51Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/tokenization-entity-control-map.html",
       "material_counts": {
-        "total": 68,
-        "public_reading": 3,
-        "private_library_metadata": 65
+        "total": 93,
+        "public_reading": 4,
+        "public_machine_data": 0,
+        "private_library_metadata": 89
       },
       "classification": {
         "section": "money",
@@ -3110,14 +3417,16 @@
       "research_id": "ripple-xrp-invisible-conversion-layer",
       "title": "Ripple, XRP and the Invisible Conversion Layer",
       "library_state": "current",
-      "evidence_cutoff": "2026-09-17",
-      "latest_computer_edit_at": "2026-09-23T15:05:04Z",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "September 30 adds the CSD BR / Ripple record mirror announced September 29. It establishes company-reported live named XRPL use while preserving CSD BR's official record and leaving the public project receipt, cash leg, RLUSD role and XRP value-capture case unproved. The older invisible-conversion, SDR and GOLD EAGLE studies retain their own bounded source dates.",
+      "latest_computer_edit_at": "2026-09-30T23:33:05Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/ripple-xrp-invisible-conversion-layer.html",
       "material_counts": {
-        "total": 17,
+        "total": 18,
         "public_reading": 4,
-        "private_library_metadata": 13
+        "public_machine_data": 0,
+        "private_library_metadata": 14
       },
       "classification": {
         "section": "money",
@@ -3140,12 +3449,14 @@
       "title": "PRWORA State Reporting and Eligibility Architecture — 1996–2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-02",
+      "evidence_cutoff_note": "Primary statutes, OLC opinions, the 2000 interagency notice, HHS/HUD/Treasury rulemaking and guidance, Federal Student Aid, Education grant-servicing, Treasury DNP, OPM matching and DHS acquisition sources were checked through September 2, 2026. The new opinion is issued and prospective; replacement implementation and operation remain unresolved.",
       "latest_computer_edit_at": "2026-09-08T17:00:29Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/prwora-state-reporting-eligibility-architecture.html",
       "material_counts": {
         "total": 4,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 2
       },
       "classification": {
@@ -3170,12 +3481,14 @@
       "title": "Federal Government Weekly Delta — August 31–September 3, 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-09-03T20:09:34-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-04T01:23:44Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-09-03.html",
       "material_counts": {
         "total": 16,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 15
       },
       "classification": {
@@ -3201,12 +3514,14 @@
       "title": "Federal Government Weekly Delta — September 4–11, 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-09-11T16:01:37-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-15T22:40:36Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-09-11.html",
       "material_counts": {
         "total": 24,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 22
       },
       "classification": {
@@ -3232,12 +3547,14 @@
       "title": "Federal Government Weekly Delta — September 12–16, 2026",
       "library_state": "archive",
       "evidence_cutoff": "2026-09-16T19:10:34-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-17T00:33:47Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-09-16.html",
       "material_counts": {
         "total": 29,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 28
       },
       "classification": {
@@ -3263,12 +3580,14 @@
       "title": "Federal Technology and Monetary Infrastructure Delta — September 17–20, 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-20T16:20:12-04:00",
+      "evidence_cutoff_note": "Exclusive start after the last closed whole-government cursor at 2026-09-16 19:10:34 EDT. Includes all 186 Federal Register publications on September 17–18 plus bounded direct-site and transcript-owner checks through the frozen cutoff. No weekend Federal Register publication day or post-cutoff object is claimed.",
       "latest_computer_edit_at": "2026-09-23T17:31:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html",
       "material_counts": {
         "total": 11,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 10
       },
       "classification": {
@@ -3294,13 +3613,15 @@
       "research_id": "un-general-assembly-high-level-week-2026",
       "title": "United Nations General Assembly High-Level Week — 2026",
       "library_state": "current",
-      "evidence_cutoff": "2026-09-29T07:04:00-04:00",
-      "latest_computer_edit_at": "2026-09-29T19:05:24Z",
+      "evidence_cutoff": "2026-09-30T04:30:00-04:00",
+      "evidence_cutoff_note": "The September 22 late-release wave preserves twenty newly posted Day One formal statements and reconciles them with the complete official-caption session version. Twenty-three of 31 country pages expose statement PDFs; the twenty additions contain 202 pages, all rendered and visually inspected. At 23:16 EDT, all eight no-PDF country pages exposed downloadable UN AI transcripts explicitly marked auto-generated and potentially erroneous. The eight files are preserved with hashes. Token comparison against the final-session captions yields two exact matches and 99.41-99.97 per cent similarity for the other six, with only clip-boundary spill or two Qatar name normalizations; the downloads are therefore the same caption family, not independent corroboration. Separate local official-audio transcripts remain genuinely independent passes for the United States and United Kingdom. By 23:25 EDT, the official UN WebTV event objects for General Debate Day Two, both Right to Development parts and the climate/just-transition event were published and fixed in the capture contract. The proved capture route and later baseline captures keep event-object publication separate from delivery. A 00:18 comparison found no WebTV state change. At 00:21, the official Day Two view exposed 21 morning and 16 afternoon schedule cards but zero country-page links; a direct Syrian Arab Republic page request returned to the General Debate landing page. At 00:44, the Right to Development legal/process baseline added eight primary UN PDFs totaling 121 rendered and visually inspected pages. It distinguishes the adopted non-treaty Declaration and operating mandate machinery from the unadopted covenant; records the 29–13–5 HRC transmission, continuing divergent Working Group views, the 28–14–5 HRC continuation resolution and the 127–23–32 current General Assembly resolution; and preserves the unreached negotiation, adoption, consent, entry-into-force, Conference and implementation-mechanism gates. At 01:04, another four-object WebTV comparison remained unchanged, the eight Day One no-PDF pages still exposed no speaker-authorized statement, and the first Day Two country route still redirected to the landing page. At 01:30, the rendered 21-page UN Journal and six structured Journal responses fixed four formal General Assembly meeting UUIDs, their room/time/agenda and WebTV joins, plus four exposed eStatements routes whose underlying agenda-view and speaker-view arrays were still empty. The 7th and 8th plenaries share one WebTV entry and therefore require meeting-aware transcript segmentation. At 01:47, the Right to Development public data changed: Costa Rica moved from slot 36 to 98 and from Foreign Minister Manuel Tovar-Rivera to Vice Minister of Multilateral Affairs Adriana Bolaños Argueta; sixty-two intervening entities shifted forward one slot, while the entity set, approvals and ready/done/skip totals remained fixed. A versioned raw source, complete projection and generated entity-level delta preserve the change without overwriting the first list. A generic manifest/hash-verified projection tool now distinguishes live rolling captions from completed de-duplicated assets and withholds speaker headings until a separate official interval map exists. Prepared text remains subordinate to the recording for delivery. Release, retrieval, source version, prepared text, delivery, interpretation, captioning, candidacy, negotiation, adoption, enactment, funding, entry into force, deployment and operation retain distinct clocks. At 02:17, the preserved official General Debate e-Speakers feed confirmed the earlier public roster exactly at twenty-one approved morning and sixteen approved afternoon speakers. Italy and Uzbekistan exist only as unapproved afternoon raw records; all approved entries remain zero ready, zero done, zero skipped and without end-time values. A byte-level return found all twenty-three preserved Day One statement PDFs unchanged, the eight other country pages still without a speaker-authorized PDF, and the 02:12 four-object WebTV comparison unchanged. At 02:32, the reusable official Journal API comparator found no source-state change across the four formal meeting records: all remained open, not cancelled and at zero statements, documents and summaries. At 03:18, the country-summary register contract fixed one compact summary per delivered address, explicit pending rows during live work and reasoned-only escalation. At 03:28, the General Debate feed remained byte-identical to the 02:17 source, all four WebTV objects remained at zero duration with no audio or captions, all four Journal records remained open and empty, the Syria statement region remained asset-empty, and all 37 schedule cards still exposed no country hrefs or node IDs. At 04:52, all 37 explicitly selected Day Two schedule rows remained unlinked, Syria remained asset-empty and the home-page live chrome still described Day One; the stale carousel and closed banner do not prove Day Two delivery. At 05:13, a 35-page primary-source Syria baseline separated eight representation, authority, sanctions, control, normalization and reconstruction clocks and fixed a presumptive deep-review disposition without advancing the scheduled speech to delivery. At 05:40, a 25-page Iran baseline corrected the prior no-agreement line and separated safeguards, verification, disputed UN sanctions, U.S. pressure, the incomplete Islamabad framework and force clocks. At 06:00, the roster, four WebTV objects and four Journal records remained unchanged. At 06:04, a 21-page Argentina baseline joined the Day One reply to the June C-24 decision and September Law 26.659 machinery while preserving opened proceedings, final sanctions, foreign effect, negotiation and title as separate states.",
+      "latest_computer_edit_at": "2026-09-30T12:26:36Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/un-general-assembly-high-level-week-2026.html",
       "material_counts": {
         "total": 330,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 328
       },
       "classification": {
@@ -3324,14 +3645,16 @@
       "research_id": "economic-institution-legitimacy-crisis",
       "title": "Economic Institution Legitimacy Crisis — 2025–2026",
       "library_state": "current",
-      "evidence_cutoff": "2026-09-24T22:31:00-04:00",
-      "latest_computer_edit_at": "2026-09-29T02:48:24Z",
+      "evidence_cutoff": "2026-09-30T16:15:00-04:00",
+      "evidence_cutoff_note": "The underlying Waves 1–5 program retains its September 2 cutoff. The Fed Constellation operating face was refreshed through September 8 at 19:18 EDT, its research-and-sensing face is cut off September 22, its separately sourced movement-over-time face joins the July regional sweeps to bounded late-September returns through September 30 at 15:30 EDT, and its innovation-controls face maps three corridors and seventeen control objects through September 30 at 16:15 EDT. The movement face preserves speech, research, conference, survey, model, appointment, operation, authority and outcome as separate states; the innovation face preserves research, proposal, authority, deployment, access, use, outcome and remedy as separate states. The capital-markets specimen is separately cut off September 17; the mission-to-machine synthesis is a September 18 corpus join; the inch-by-inch thesis is a September 20 cross-system synthesis with a pre-meeting UNGA81 extension; and the September 24 build-our-way-out extension joins the existing Bessent, capital-formation, continuous-finance, accounting and crypto owners while marking its five-percent belief passage as vision rather than observed outcome. The September 24 braided comparison joins eight thesis owners at their recorded cutoffs and adds no new factual finding; Katie's 22:31 EDT clarification governs the parent frame as 1776 2.0, a procedural rebellion from inside the inherited order. Component owners retain their own cutoffs. No forecast, commit or installed-app shipment is implied. Katie approved a private Workbench-controlled Observatory projection as Research → The Thesis on 2026-09-02.",
+      "latest_computer_edit_at": "2026-09-30T18:40:03Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/economic-institution-legitimacy-crisis.html",
       "material_counts": {
-        "total": 90,
-        "public_reading": 7,
-        "private_library_metadata": 83
+        "total": 92,
+        "public_reading": 8,
+        "public_machine_data": 0,
+        "private_library_metadata": 84
       },
       "classification": {
         "section": "thesis",
@@ -3357,12 +3680,14 @@
       "title": "New York Manufacturing and Innovation Map — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-04",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-04T17:17:27Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/new-york-manufacturing-innovation-map-2026.html",
       "material_counts": {
         "total": 9,
         "public_reading": 4,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -3387,12 +3712,14 @@
       "title": "Credit Approval Standards: Mortgage, Retail and Business",
       "library_state": "current",
       "evidence_cutoff": "2026-09-07",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-07T16:38:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/mortgage-credit-score-reform.html",
       "material_counts": {
         "total": 3,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -3414,12 +3741,14 @@
       "title": "Mortgage Balance Sheet Trail to the Fed",
       "library_state": "current",
       "evidence_cutoff": "2026-09-07",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-07T15:55:05Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/mortgage-balance-sheet-trail.html",
       "material_counts": {
         "total": 3,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 2
       },
       "classification": {
@@ -3441,12 +3770,14 @@
       "title": "Federal Workforce and Agency Control Maps",
       "library_state": "current",
       "evidence_cutoff": "2026-08-15",
+      "evidence_cutoff_note": "Chronicle-controlled factual maps created and checked through August 15, 2026. Each map retains its own source list, clocks and return gates; this Catalog collection adds routing only.",
       "latest_computer_edit_at": "2026-08-15T20:06:50Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-workforce-and-agency-control.html",
       "material_counts": {
         "total": 6,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 4
       },
       "classification": {
@@ -3468,12 +3799,14 @@
       "title": "Federal Force, Surveillance and Emergency Authority Maps",
       "library_state": "current",
       "evidence_cutoff": "2026-08-15",
+      "evidence_cutoff_note": "Chronicle-controlled factual maps created and checked through August 15, 2026. Each map retains its own source list, clocks and return gates; this Catalog collection adds routing only.",
       "latest_computer_edit_at": "2026-08-15T20:06:50Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-force-surveillance-and-emergency-authority.html",
       "material_counts": {
         "total": 6,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -3497,12 +3830,14 @@
       "title": "Genesis Mission",
       "library_state": "current",
       "evidence_cutoff": "2026-09-09",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/genesis-mission.html",
       "material_counts": {
         "total": 16,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 14
       },
       "classification": {
@@ -3527,12 +3862,14 @@
       "title": "Education Learning Agenda Playbook",
       "library_state": "current",
       "evidence_cutoff": "2026-09-09",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-09T22:27:33Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/education-learning-agenda-playbook.html",
       "material_counts": {
         "total": 2,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 1
       },
       "classification": {
@@ -3557,12 +3894,14 @@
       "title": "Federal Budget — FY2026 to FY2027",
       "library_state": "current",
       "evidence_cutoff": "2026-09-11T19:55:13-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-25T03:16:23Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-budget-fy2026-fy2027.html",
       "material_counts": {
         "total": 158,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 157
       },
       "classification": {
@@ -3586,12 +3925,14 @@
       "title": "UK Constitutional Order and Self-Determination",
       "library_state": "current",
       "evidence_cutoff": "2026-09-13T17:59:00-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-23T15:38:16Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/uk-constitutional-order-self-determination.html",
       "material_counts": {
         "total": 16,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 14
       },
       "classification": {
@@ -3616,12 +3957,14 @@
       "title": "Stop Secret Spending Act — OTA Transparency and Implementation",
       "library_state": "current",
       "evidence_cutoff": "2026-09-15T18:26:27-04:00",
+      "evidence_cutoff_note": null,
       "latest_computer_edit_at": "2026-09-15T23:10:33Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/stop-secret-spending-act-ota-transparency.html",
       "material_counts": {
         "total": 6,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -3645,12 +3988,14 @@
       "title": "Federal Government Deep Website Review — September 16–22, 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-22T11:51:46-04:00",
+      "evidence_cutoff_note": "The cutoff remains frozen. The Joint Warfighter Evaluation announcement carries an approximately 9:00 a.m. EDT native clock inside that window but was recovered in a separately recorded post-close correction at 10:21 p.m. EDT.",
       "latest_computer_edit_at": "2026-09-23T02:38:28Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-deep-website-review-2026-09-22.html",
       "material_counts": {
         "total": 23,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 22
       },
       "classification": {
@@ -3679,12 +4024,14 @@
       "title": "Federal Government Weekly Delta — September 21–25, 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-25T23:59:59-04:00",
+      "evidence_cutoff_note": "The human weekly window is September 21–25. New discovery is strictly after the September 22 deep-review cutoff at 11:51:46 EDT, with boundary replay for date-only and delayed-publication sources.",
       "latest_computer_edit_at": "2026-09-26T16:51:34Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-09-25.html",
       "material_counts": {
         "total": 20,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 19
       },
       "classification": {
@@ -3713,12 +4060,14 @@
       "title": "D.V.D. Third-Country Removal Authority — 2025–2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-25",
+      "evidence_cutoff_note": "The September 18 First Circuit opinion, the September 23 order dissolving the stay, Supreme Court docket No. 26A406 and the government's September 24 application and appendix were retrieved. The Court had requested a response by 4 p.m. EDT September 28 and had not yet disposed of the stay request at cutoff.",
       "latest_computer_edit_at": "2026-09-25T04:03:47Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/dvd-third-country-removal-authority-2025-2026.html",
       "material_counts": {
         "total": 1,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -3743,12 +4092,14 @@
       "title": "2026 Financial Infrastructure Permission and Operating-Receipt Windows",
       "library_state": "current",
       "evidence_cutoff": "2026-09-25",
+      "evidence_cutoff_note": "The externally supplied sampling frame contains four fixed civil-date windows: April 14–18, May 4–8, May 24–28 and July 3–7. The dates have no evidentiary or causal role. The DTC July schedule is treated as a bounded non-finding through July 11; DTCC's July 15 limited-production report falls outside the July window.",
       "latest_computer_edit_at": "2026-09-25T05:28:52Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/financial-infrastructure-permission-operating-receipt-windows-2026.html",
       "material_counts": {
         "total": 1,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -3774,12 +4125,14 @@
       "title": "March 26–31, 2025 Aries Eclipse Authority Window",
       "library_state": "current",
       "evidence_cutoff": "2026-09-25",
+      "evidence_cutoff_note": "The action-date window is March 26–31, 2025. The related March 26–April 1 Federal Register publication census contains 506 documents, but several executive orders signed inside the action window were published later. Six objects were selected independently for materiality and same-object lifecycle traceability; the census is not a claim of full substantive review.",
       "latest_computer_edit_at": "2026-09-25T04:47:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/march-2025-aries-eclipse-authority-window.html",
       "material_counts": {
         "total": 1,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -3806,12 +4159,14 @@
       "title": "January 26–February 1, 2025 Authority-to-Operations Window",
       "library_state": "current",
       "evidence_cutoff": "2026-09-25",
+      "evidence_cutoff_note": "The action-date window is January 26–February 1, 2025. Four objects were selected independently for materiality, lifecycle traceability and primary-source receipts. Signature, publication, guidance, implementation, operation, litigation, deviation, proposed rulemaking and observed outcome remain separate clocks; the set is not exhaustive.",
       "latest_computer_edit_at": "2026-09-25T09:11:43Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/january-2025-authority-operations-window.html",
       "material_counts": {
         "total": 1,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -3838,12 +4193,14 @@
       "title": "July 2–8, 2024 Protection and Financial Control Window",
       "library_state": "current",
       "evidence_cutoff": "2026-09-25",
+      "evidence_cutoff_note": "The fixed window used the 448-document Federal Register publication denominator for July 2–8, 2024, then traced five independently material objects through official agency and Federal Register sources. No final rule for FEMA docket FEMA-2023-0005 and no FinCEN rescission of the Al-Huda Bank measure were located by the cutoff.",
       "latest_computer_edit_at": "2026-09-25T04:19:01Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/july-2024-protection-financial-control-window.html",
       "material_counts": {
         "total": 1,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -3870,12 +4227,14 @@
       "title": "December 2024 Beneficial Ownership Reporting Perimeter",
       "library_state": "current",
       "evidence_cutoff": "2026-09-25",
+      "evidence_cutoff_note": "The lifecycle is controlled by the Supreme Court docket and order, FinCEN's 2025 interim final rule and guidance, Treasury's March 2 announcement and FinCEN's August 14, 2026 final rule. Litigation, enforcement discretion, rule text, deadlines and observed reporting remain separate clocks.",
       "latest_computer_edit_at": "2026-09-25T12:16:57Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/december-2024-beneficial-ownership-reporting-perimeter.html",
       "material_counts": {
         "total": 1,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -3902,12 +4261,14 @@
       "title": "March 2006 and March 2007 Institutional Action Windows",
       "library_state": "current",
       "evidence_cutoff": "2026-09-24",
+      "evidence_cutoff_note": "The review used fixed three-day windows around March 29, 2006 and March 19, 2007 and official congressional, archived White House and UN sources. Later enactment, implementation, sanctions, subpoena issuance and privilege events are retained only as lifecycle maturations of the named objects, not backdated into the seed windows.",
       "latest_computer_edit_at": "2026-09-25T02:07:55Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/march-2006-march-2007-institutional-action-windows.html",
       "material_counts": {
         "total": 1,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -3934,12 +4295,14 @@
       "title": "Government-Wide Research Hub",
       "library_state": "current",
       "evidence_cutoff": "2026-09-22T11:51:46-04:00",
-      "latest_computer_edit_at": "2026-09-28T23:53:46Z",
+      "evidence_cutoff_note": "The authored movement registry contains eight adjudicated records through the stated research cutoff. Exact research attachments, complete Registry membership and typed gap projections are regenerated from their current named owners, with source hashes recorded at build time. Catalog entity labels remain review-only candidates. This is neither a live government-state feed, a second return queue nor the Government-Wide Source Monitor inbox.",
+      "latest_computer_edit_at": "2026-09-30T12:41:10Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-movement-atlas.html",
       "material_counts": {
         "total": 23,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 21
       },
       "classification": {
@@ -3965,12 +4328,14 @@
       "title": "U.S.–China Strategic Stability State Visit — September 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-28T10:07:16-04:00",
+      "evidence_cutoff_note": "The original September 24 meeting record remains preserved in the dated claim audit, transcript and source ledger. The current update checked the September 25 White House outcome fact sheet, September 26 Chinese eight-point account, September 27 White House/USTR Board publications, September 28 MOFCOM counterpart documents and the U.S. and Chinese product schedules. No domestic tariff-modification instrument, synchronized effective date or customs implementation instruction was located by cutoff.",
       "latest_computer_edit_at": "2026-09-28T15:44:41Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/us-china-strategic-stability-state-visit-2026.html",
       "material_counts": {
         "total": 7,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -3998,12 +4363,14 @@
       "title": "China Country Orientation — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-24T23:05:00-04:00",
+      "evidence_cutoff_note": "Country-level structure and current orientation were checked against official Chinese institutional and statistical sources, U.S. bilateral trade and policy sources, IMF surveillance and the September 2026 state-visit package. Wave 1 reconciled the relationship instrument stack; wave 2 classified the bilateral operating machine; wave 3 mapped stage-specific reciprocal dependencies and replacement clocks; wave 4 separated the PRC, U.S. and Taiwan legal/policy columns and observable escalation states. Wave 5 joined property, local debt, household demand, prices, demography and industrial support through named balance-sheet owners to external trade and policy results while preserving official-data, IMF-assessment, Chinese-response and observed-outcome boundaries. Wave 6 separated physical exports, cloud training, model weights, inference, talent, capital, data and public AI services into object-specific U.S. and Chinese permission chains, with authorization and operating receipts kept distinct. Wave 7 separated the BRI contract-and-asset umbrella, GDI project machinery, GSI diplomatic/security objects, GCI dialogue institutions and GGI coalition layer, using Chinese initiative texts plus host, UN, FAO, IMF, World Bank and MDB custody. Wave 8 separated visa and transport permission from admission, enrollment, exchange completion, research output, journalist access and subnational operation; it corrected the youth invitation to 50,000 and preserved the Chinese issuer claim of more than 50,000 visits as unreconciled cohort-level evidence. All eight deepening waves are complete at country-orientation level. Product-, event-, household-, firm-, province-, transaction-, project- and participant-level proof gaps remain explicit return gates. Mutable officeholders, rule text, lists, stays, thresholds, license policies, schedules and project/program states must be rechecked at use time.",
       "latest_computer_edit_at": "2026-09-28T14:09:26Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/china-country-orientation-2026.html",
       "material_counts": {
         "total": 20,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 18
       },
       "classification": {
@@ -4032,12 +4399,14 @@
       "title": "Russia Country Orientation — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-24T23:59:00-04:00",
+      "evidence_cutoff_note": "Country structure was checked against Russian constitutional, presidential, government, legal-publication, budget and central-bank sources; U.S. bilateral state against State, Treasury, Commerce, Energy, NASA, Congress and White House sources; and territorial, institutional and economic boundaries against the United Nations, OSCE, Council of Europe, IMF, World Bank, EAEU, CSTO, SIPRI, EIA and USGS. Wave 1 established the country and source orientation. Wave 2 classified recognition, diplomacy, risk-reduction, terminated and expired arms-control instruments, sanctions and export controls, ad hoc war talks, consular channels and ISS operation. Wave 3 mapped wartime fiscal and monetary perimeters, Russia's China- and third-country dependencies, U.S. and allied nuclear/mineral/energy/space exposures, and the distinct legal weights of the China, DPRK, Iran, CSTO, EAEU, SCO, BRICS and Union State relationships. Current consolidated Russian constitutional text, post-New-START arrangements, legacy risk-reduction use, H.R. 5334 implementation, budget execution, transaction-level trade/payment routes, treaty-performance receipts and people-to-people operation remain named return gates.",
       "latest_computer_edit_at": "2026-09-25T03:02:02Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/russia-country-orientation-2026.html",
       "material_counts": {
         "total": 7,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 5
       },
       "classification": {
@@ -4064,12 +4433,14 @@
       "title": "USTDA Project Development Pipeline — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-26T12:45:00-04:00",
+      "evidence_cutoff_note": "The package reconciles seven official USTDA project announcements published September 21–25, 2026 with available recipient, contractor and procurement records. Agreement, contractor procurement, accepted work product, recipient decision, financing, procurement or delivery, and operation or effect remain separate gates.",
       "latest_computer_edit_at": "2026-09-26T16:39:41Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/ustda-project-development-pipeline-2026.html",
       "material_counts": {
         "total": 4,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 2
       },
       "classification": {
@@ -4095,12 +4466,14 @@
       "title": "Institutional Signals and Thesis Test — 2025–2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-28T23:59:59-04:00",
-      "latest_computer_edit_at": "2026-09-29T02:49:32Z",
+      "evidence_cutoff_note": "The January 1, 2025 through September 28, 2026 fixed window is closed. Thirteen signal ledgers contain 145 unique records and 420 proposition/rival tests; the 114-row coverage ledger has no open surface. A pre-window recommendation appears only as provenance for an in-window response or instrument. Access holds preserve missing item-level custody rather than inferring inactivity or causation.",
+      "latest_computer_edit_at": "2026-09-30T14:35:10Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/institutional-signals-thesis-test-2025-2026.html",
       "material_counts": {
         "total": 75,
         "public_reading": 2,
+        "public_machine_data": 0,
         "private_library_metadata": 73
       },
       "classification": {
@@ -4127,12 +4500,14 @@
       "title": "Government Hidden Control Surfaces — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-28T23:59:59-04:00",
+      "evidence_cutoff_note": "Waves 0–14 reconcile the Chronicle router, Workbench rules, Catalog and Registry, Source Monitor vocabulary, Federal Government Movement Atlas and canonical Federal Group with the January 1, 2025 through September 28, 2026 official-source sweep. The terminal census contains 82 complete and 32 held rows; held means the bounded public-record search reached its stop condition, not that the body's legal lifecycle ended. The live FACA directory remains unverified for the current reporting year until the Annual Comprehensive Review closes; exact lifecycle clocks remain body-page, charter, statute and notice controlled. The Wave 14 manifest and receipt record the applied canonical state and explicit non-changes.",
       "latest_computer_edit_at": "2026-09-29T02:48:24Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/government-hidden-control-surfaces-2026.html",
       "material_counts": {
         "total": 90,
         "public_reading": 3,
+        "public_machine_data": 0,
         "private_library_metadata": 87
       },
       "classification": {
@@ -4159,12 +4534,14 @@
       "title": "Major Bank Digital Transition Map",
       "library_state": "current",
       "evidence_cutoff": "2026-09-26T16:37:25-04:00",
+      "evidence_cutoff_note": "Fidelity cohort, retirement-control and retirement DLT-rail expansion completed through 2026-09-26T16:37:25-04:00 after the second direct-source pass. Institution research establishes doctrine; announcements establish only the stated launch or transaction. Fund exposure, fund-share record, depository entitlement, plan-trust holding, participant-benefit record and cash rail retain separate authority and operating receipts.",
       "latest_computer_edit_at": "2026-09-27T16:34:44Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/major-bank-digital-transition.html",
       "material_counts": {
         "total": 11,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 10
       },
       "classification": {
@@ -4191,13 +4568,15 @@
       "title": "Official Record Authority and Blockchain Crosswalk — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-26",
-      "latest_computer_edit_at": "2026-09-27T00:57:49Z",
+      "evidence_cutoff_note": "Primary-source U.S.-federal crosswalk through September 26, 2026. CFTC and SEC staff guidance, the SEC transfer-agent proposal and each purpose-specific record regime retain their own authority states.",
+      "latest_computer_edit_at": "2026-10-01T01:19:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/official-record-authority-blockchain.html",
       "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "private_library_metadata": 0
+        "total": 3,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 1
       },
       "classification": {
         "section": "money",
@@ -4221,13 +4600,15 @@
       "title": "From Atomic Settlement to Continuous Assurance — 2026",
       "library_state": "current",
       "evidence_cutoff": "2026-09-26",
-      "latest_computer_edit_at": "2026-09-27T01:13:42Z",
+      "evidence_cutoff_note": "Primary-source U.S.-public-company-centered architecture and claim audit through September 26, 2026. Current SEC reporting and PCAOB audit opinions remain tied to defined filings, statements, periods and evidence cutoffs.",
+      "latest_computer_edit_at": "2026-10-01T01:19:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/atomic-settlement-continuous-assurance.html",
       "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "private_library_metadata": 0
+        "total": 3,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 1
       },
       "classification": {
         "section": "money",
@@ -4251,12 +4632,14 @@
       "title": "QNT September 2026 Price Rise — Causal Audit",
       "library_state": "current",
       "evidence_cutoff": "2026-09-27T09:44:00-04:00",
+      "evidence_cutoff_note": "Primary-source facts are current through the September 24 UK Finance and The Clearing House releases. Market snapshots through September 26 use exchange-aggregated and contemporaneous reporting; exact percentages vary by venue and rolling window.",
       "latest_computer_edit_at": "2026-09-27T16:33:11Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/qnt-september-2026-price-rise.html",
       "material_counts": {
         "total": 1,
         "public_reading": 1,
+        "public_machine_data": 0,
         "private_library_metadata": 0
       },
       "classification": {
@@ -4274,6 +4657,139 @@
         "report": "reports/qnt-september-2026-price-rise.html",
         "full_text": "readings/packages/qnt-september-2026-price-rise.html",
         "source_text": "reports/qnt-september-2026-price-rise.md"
+      }
+    },
+    {
+      "research_id": "federal-government-fiscal-year-close-delta-2026-09-30",
+      "title": "Federal Government Fiscal-Year-Close Delta — September 26–30, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-30T12:21:42-04:00",
+      "evidence_cutoff_note": "New search begins strictly after September 25 at 23:59:59 EDT. The morning monitor froze at 09:57:04 EDT and direct adjudication at 10:18 EDT; the site, committee and adjacent layers advanced the cutoff to 11:52:51 EDT. A healthy 89-route post-noon replay then closed the bounded research window at 12:21:42 EDT. Later-day high-velocity sources remain provisional.",
+      "latest_computer_edit_at": "2026-09-30T16:30:08Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-government-fiscal-year-close-delta-2026-09-30.html",
+      "material_counts": {
+        "total": 21,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 20
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Official claims and source collections",
+        "secondary_sections": [
+          "money",
+          "technology",
+          "world"
+        ],
+        "additional_subsections": [
+          "Public money, benefits and eligibility",
+          "AI in government and the public record"
+        ]
+      },
+      "routes": {
+        "summary": "library/federal-government-fiscal-year-close-delta-2026-09-30.html",
+        "manifest": "packages/federal-government-fiscal-year-close-delta-2026-09-30.json",
+        "report": "reports/federal-government-fiscal-year-close-delta-2026-09-30.html",
+        "full_text": "readings/packages/federal-government-fiscal-year-close-delta-2026-09-30.html",
+        "source_text": "reports/federal-government-fiscal-year-close-delta-2026-09-30.md"
+      }
+    },
+    {
+      "research_id": "doj-minnesota-judicial-misconduct-complaint-2026-09-30",
+      "title": "DOJ Judicial Misconduct Complaint Against Minnesota Judges — September 30, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "Official DOJ, Eighth Circuit, statutory, Supreme Court docket and prior conduct-order records checked through September 30. The full September 17 New York Times article was access-blocked; DOJ's excerpts are preserved as allegations, not complete context. No public Eighth Circuit disposition had appeared at the cutoff.",
+      "latest_computer_edit_at": "2026-09-30T16:41:52Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html",
+      "material_counts": {
+        "total": 4,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 3
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [],
+        "additional_subsections": [
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html",
+        "manifest": "packages/doj-minnesota-judicial-misconduct-complaint-2026-09-30.json",
+        "report": "reports/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html",
+        "full_text": "readings/packages/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html",
+        "source_text": "reports/doj-minnesota-judicial-misconduct-complaint-2026-09-30.md"
+      }
+    },
+    {
+      "research_id": "sec-accredited-investor-credential-notices-2026-09-30",
+      "title": "SEC Accredited Investor Credential Notices — CPA Gate, 2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-09-30T20:55:02-04:00",
+      "evidence_cutoff_note": "The complete 1:24:59 SEC YouTube recording caption export, meeting event page, agenda, Sunshine notice, press release, two proposed-rule pages and PDFs, combined fact sheet, four published Commissioner statements, five credential notices, ARK Order IC-36333, Notice IC-36308, controlling second amended application and ARK's EDGAR filing state through September 30 were checked. The transcript is a complete YouTube caption export, not an authenticated SEC verbatim transcript. The ARK order makes exemptive relief effective immediately but does not itself make either new class registration effective or prove venue admission, launch, trading, settlement or authoritative-record operation. Federal Register versions, exact comment deadlines and public comments were not yet available. NASBA's active-CPA count excludes Hawaii and New Mexico and is not a newly eligible investor count.",
+      "latest_computer_edit_at": "2026-10-01T01:19:09Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/sec-accredited-investor-credential-notices-2026-09-30.html",
+      "material_counts": {
+        "total": 23,
+        "public_reading": 3,
+        "public_machine_data": 0,
+        "private_library_metadata": 20
+      },
+      "classification": {
+        "section": "money",
+        "subsection": "Banks, borrowing & risk",
+        "secondary_sections": [
+          "government"
+        ],
+        "additional_subsections": [
+          "Accounting & public records"
+        ]
+      },
+      "routes": {
+        "summary": "library/sec-accredited-investor-credential-notices-2026-09-30.html",
+        "manifest": "packages/sec-accredited-investor-credential-notices-2026-09-30.json",
+        "report": "reports/sec-accredited-investor-credential-notices-2026-09-30.html",
+        "full_text": "readings/packages/sec-accredited-investor-credential-notices-2026-09-30.html",
+        "source_text": "reports/sec-accredited-investor-credential-notices-2026-09-30.md"
+      }
+    },
+    {
+      "research_id": "trump-criminal-indictments-primary-source-map-2023-2026",
+      "title": "Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026",
+      "library_state": "current",
+      "evidence_cutoff": "2026-10-01T14:00:00-04:00",
+      "evidence_cutoff_note": "The four charging instruments, New York jury instructions and verdict, the Florida appointment dismissal, Supreme Court immunity and obstruction opinions, the federal election dismissal motion, Georgia quashal orders and the replacement prosecutor's nolle memorandum were reviewed. New York appellate orders through May 19, 2026 were checked; no merits appellate decision was located. Official DOJ summaries of 2025 FOIA rulings concerning Volume II were also checked. Some filed objects are preserved from public docket mirrors where PACER or a court download path prevented direct retrieval; the source ledger records custody and claim limits.",
+      "latest_computer_edit_at": "2026-10-01T17:59:31Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/trump-criminal-indictments-primary-source-map-2023-2026.html",
+      "material_counts": {
+        "total": 22,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 21
+      },
+      "classification": {
+        "section": "government",
+        "subsection": "Public services and legal limits",
+        "secondary_sections": [
+          "states"
+        ],
+        "additional_subsections": [
+          "Official claims and source collections"
+        ]
+      },
+      "routes": {
+        "summary": "library/trump-criminal-indictments-primary-source-map-2023-2026.html",
+        "manifest": "packages/trump-criminal-indictments-primary-source-map-2023-2026.json",
+        "report": "reports/trump-criminal-indictments-primary-source-map-2023-2026.html",
+        "full_text": "readings/packages/trump-criminal-indictments-primary-source-map-2023-2026.html",
+        "source_text": "reports/trump-criminal-indictments-primary-source-map-2023-2026.md"
       }
     }
   ]

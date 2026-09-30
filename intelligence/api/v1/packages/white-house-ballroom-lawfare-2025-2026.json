@@ -7,6 +7,8 @@
   "question": "What are the separate construction, review, disclosure, congressional and judicial states in the White House ballroom dispute?",
   "bluf": "One live construction-authority case sits at the center of a wider pressure architecture: an aborted first suit, two FOIA cases, a donor-disclosure referral, post-demolition federal review and competing congressional bills. A D.C. Circuit majority affirmed preliminary relief, but Chief Justice Roberts stayed the injunction on August 21; construction may proceed while Supreme Court emergency review remains open and no final merits judgment exists.",
   "evidence_cutoff": "2026-08-23",
+  "evidence_cutoff_note": "Time-sensitive legal snapshot through 2026-08-23. Refresh Supreme Court and lower-court dockets plus current construction records before any present-tense legal or project-state claim.",
+  "use_note": "Internal recall only for separately clocked construction, review, disclosure, congressional and judicial states through 2026-08-23. Do not collapse preliminary relief, the August 21 stay, emergency review and final merits; do not infer donor illegality, completed compliance, final project approval or unchanged construction/court posture without fresh primary records.",
   "library_state": "current",
   "entities": [
     "White House",
@@ -49,11 +51,12 @@
   "material_counts": {
     "total": 4,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 3
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 0,
+    "orientation": 0,
+    "findings": 1,
     "evidence": 0,
     "monitoring": 0,
     "methods": 0,
@@ -72,13 +75,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -86,17 +91,17 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "a5de44eefa899317"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "a5de44eefa899317"
+      ]
     },
     {
       "id": "evidence",
@@ -142,7 +147,7 @@
     {
       "material_id": "a5de44eefa899317",
       "title": "White House Ballroom Lawfare Map — 2025–2026",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

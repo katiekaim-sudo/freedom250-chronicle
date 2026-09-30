@@ -7,6 +7,8 @@
   "question": "What decision right changed in D.V.D. between the March 2025 third-country-removal TRO and the September 2026 appellate and emergency-relief return?",
   "bluf": "The September 18 First Circuit opinion is a same-object legal maturation of the March 2025 D.V.D. dispute. It vacated two sequencing declarations for lack of standing but otherwise affirmed the final judgment setting aside the challenged DHS guidance. The First Circuit dissolved its stay on September 23. On September 24 DHS filed Supreme Court application No. 26A406 for an immediate administrative stay and a stay pending certiorari; Justice Jackson requested a response by September 28. The filing attributes canceled and disrupted flights, added expense and diplomatic engagement to the restored judgment, but those operating claims remain filed government assertions rather than independently reconciled agency records.",
   "evidence_cutoff": "2026-09-25",
+  "evidence_cutoff_note": "The September 18 First Circuit opinion, the September 23 order dissolving the stay, Supreme Court docket No. 26A406 and the government's September 24 application and appendix were retrieved. The Court had requested a response by 4 p.m. EDT September 28 and had not yet disposed of the stay request at cutoff.",
+  "use_note": "Use for the exact D.V.D. legal and operating chain. Keep the power to conduct third-country removals separate from the validity of one guidance document, and keep opinion, mandate or docket effect, emergency application, stay disposition, replacement procedure and observed operations as separate clocks.",
   "library_state": "current",
   "entities": [
     "United States Department of Homeland Security",
@@ -43,11 +45,12 @@
   "material_counts": {
     "total": 1,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 0
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 0,
+    "orientation": 0,
+    "findings": 1,
     "evidence": 0,
     "monitoring": 0,
     "methods": 0,
@@ -66,13 +69,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -80,17 +85,17 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "76d8358c6281b328"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "76d8358c6281b328"
+      ]
     },
     {
       "id": "evidence",
@@ -132,7 +137,7 @@
     {
       "material_id": "76d8358c6281b328",
       "title": "D.V.D. Third-Country Removal Authority — 2025–2026",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

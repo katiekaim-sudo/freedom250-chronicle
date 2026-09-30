@@ -7,7 +7,7 @@ Purpose: make the insurance layer repeatable, factual, and capable of tracing bo
 
 ## How to use this guide
 
-The [deep dive](../sources/insurance-reinsurance-deep-dive-20780fd540e8.html) owns the connected findings. This file owns the vocabulary and fields for tracing the direct policy obligation, risk transfer and supporting assets. Use the fields relevant to the question and state unknowns; missing fields do not prevent saving useful research.
+The deep dive owns the connected findings. This file owns the vocabulary and fields for tracing the direct policy obligation, risk transfer and supporting assets. Use the fields relevant to the question and state unknowns; missing fields do not prevent saving useful research.
 
 Residual plans, catastrophe funds, guaranty associations and federal programs enter at different statutory positions. The risk-transfer and capital relationships are mapping aids, not a universal sequence ending with government payment. Premium receipts and other funding support assets; reserves measure obligations rather than a second cash inflow.
 
@@ -61,6 +61,11 @@ Do not collapse these bodies into one brand:
 | Collateral | assets securing obligations; identify owner, custodian, control, and release conditions |
 | Sidecar | limited-purpose capital vehicle taking a share of a book or layer |
 | Catastrophe bond | security whose principal or interest is exposed to a defined insurance trigger |
+| Public-pool coverage document | member-facing promise under enabling law and pool agreement; distinguish the member retention, pooled layer and commercial excess |
+| Self-insurance certificate | regulator or program approval to retain a specified obligation; not proof that every retained claim is funded or paid |
+| FCIC Standard Reinsurance Agreement | federal agreement allocating eligible crop-policy delivery support and underwriting gains/losses between FCIC and an approved insurer; not the producer policy |
+| Export-credit insurance policy | conditional protection for an eligible receivable; keep shipment, invoice, buyer default, claim and assignment separate |
+| Political-risk insurance / guarantee | protects named investment or financing risks such as expropriation, violence, breach or transfer restriction; not a general guarantee of profitability or currency value |
 
 ## 3. Status vocabulary
 
@@ -211,7 +216,17 @@ Distinguish statutory fiscal exposure from an actual taxpayer-funded payment. Id
 
 Do not treat a technology pilot as a change in legal policy, title, reserve ownership, settlement finality, or claims obligation unless the operative contract and regulated entity record establish that change.
 
-## 10. Boundaries
+## 10. Horizontal-constitution fields
+
+For compulsory financial responsibility, add: covered activity; requiring authority; protected interest; required amount; eligible mechanisms; provider qualification; proof owner; acceptance date; renewal/cancellation notice; permission disposition; third-party rights; residual fund or public layer.
+
+For accounting and tax, add: economic estimate; statutory reserve and admitted value; prescribed/permitted practice; accepted filing; GAAP measure; tax reserve or discounted loss; return form and year; premium situs; retaliatory or excise-tax basis; cash tax; RBC consequence; dividend permission; settled cash.
+
+For federal indemnity and limited liability, add: strategic activity; license/designation/contract; compulsory private layer; waiver/channeling/cap; industry assessment; federal policy or indemnity instrument; appropriation condition; successful claim; disbursement; recovery; final public cost.
+
+For domestic failure, add: distress record; supervision/conservation order; rehabilitation plan; liquidation trigger; receiver; estate and priority; policy/claim dataset transfer; guaranty eligibility and limit; assessment class/cap; policy transfer; claimant payment; reinsurance/collateral recovery; final distribution and uncovered loss.
+
+## 11. Boundaries
 
 The first sweep includes commercial and personal P&C, life and annuities, reinsurance, insurance-linked securities, strategic/public backstops, cyber/AI, and digital-asset seams.
 

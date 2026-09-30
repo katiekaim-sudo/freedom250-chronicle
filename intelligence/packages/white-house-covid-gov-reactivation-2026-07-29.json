@@ -7,6 +7,7 @@
   "question": "What changed on the COVID.gov surface and in the surrounding official hearing and release sequence on July 29, and what did not change?",
   "bluf": "The July 29 White House post reactivated an existing and later-extended COVID.gov narrative during the Fauci hearing. It did not itself publish a new study, assessment, declassification, legal instrument or adjudication.",
   "evidence_cutoff": "2026-07-29T12:00:00-04:00",
+  "use_note": "The X post remains a cited activation carrier only; no X capture enters Research. Timing does not establish deliberate coordination.",
   "library_state": "current",
   "entities": [
     "White House",
@@ -43,6 +44,7 @@
   "material_counts": {
     "total": 3,
     "public_reading": 2,
+    "public_machine_data": 0,
     "private_library_metadata": 1
   },
   "research_layer_counts": {
@@ -66,13 +68,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -82,7 +86,7 @@
       "meaning": "Start-here documents, package routers and controlling orientation.",
       "count": 1,
       "material_ids": [
-        "9cf4fe6cec4000a8"
+        "ed5e63d0afafdc90"
       ]
     },
     {
@@ -126,8 +130,8 @@
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
       "count": 2,
       "material_ids": [
-        "f2831367da122dc6",
-        "ed5e63d0afafdc90"
+        "9cf4fe6cec4000a8",
+        "f2831367da122dc6"
       ]
     }
   ],
@@ -135,7 +139,7 @@
     {
       "material_id": "9cf4fe6cec4000a8",
       "title": "COVID Plot Orientation and July 29 Delta",
-      "artifact_role": "read_first",
+      "artifact_role": "other",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -150,21 +154,9 @@
       "reading_basis": "public_html_full_text"
     },
     {
-      "material_id": "f2831367da122dc6",
-      "title": "OFFICIAL SOURCE LEDGER",
-      "artifact_role": "supporting",
-      "file_state": "current",
-      "availability": "private_library_metadata",
-      "custody_layer": "research_workbench",
-      "computer_object_type": "file",
-      "modified_at": "2026-07-29T16:26:33Z",
-      "access_state": "private_by_design",
-      "public_full_text": false
-    },
-    {
       "material_id": "ed5e63d0afafdc90",
       "title": "White House COVID.gov Reactivation — July 29, 2026",
-      "artifact_role": "supporting",
+      "artifact_role": "router",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -177,6 +169,18 @@
       "public_full_text": true,
       "reading_url": "readings/ed5e63d0afafdc90.html",
       "reading_basis": "public_html_full_text"
+    },
+    {
+      "material_id": "f2831367da122dc6",
+      "title": "OFFICIAL SOURCE LEDGER",
+      "artifact_role": "supporting",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-07-29T16:26:33Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     }
   ]
 }

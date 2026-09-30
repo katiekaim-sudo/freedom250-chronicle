@@ -1,0 +1,932 @@
+{
+  "schema_version": "1.0",
+  "registry_id": "subterranean-businesses-to-know-2026",
+  "research_id": "military-modernization",
+  "title": "Subterranean Businesses to Know — 2026",
+  "as_of": "2026-09-30",
+  "status": "current_workbench_research",
+  "purpose": "Map evidence-bearing company positions around the subterranean operating stack without treating technical fit, adjacent defense work or past challenge participation as a Project Meridian selection.",
+  "scope_boundary": "This is a focused strategic field, not a complete market census, procurement forecast or investment recommendation. Project Meridian has not publicly selected any company in this registry.",
+  "grading": {
+    "FIT": {
+      "0": "No located capability match.",
+      "1": "Broad adjacency or actor-claimed capability only.",
+      "2": "Direct capability demonstrated, but not in a target-relevant underground setting.",
+      "3": "Mission-relevant capability validated in a government, laboratory or named counterparty setting.",
+      "4": "Capability demonstrated in a representative subterranean setting or at operating underground scale."
+    },
+    "PATH": {
+      "0": "No public U.S. defense path located for the subterranean target.",
+      "1": "General eligibility, commercial availability or market participation only.",
+      "2": "Relevant federal vehicle, SBIR, challenge, test, prior award or transition bridge, but no live target program.",
+      "3": "Named recent defense program, award, production line or test path in an enabling capability; no public Meridian or subterranean award.",
+      "4": "Named participation in a U.S. government subterranean program or representative system event."
+    },
+    "EVID": {
+      "A": "Official government, laboratory, award, budget or operating record.",
+      "B": "At least two primary-source families, including a government or laboratory source.",
+      "C": "One primary source or actor-authored claim not independently matched to the exact relationship.",
+      "D": "Secondary or discovery-only material."
+    }
+  },
+  "relationship_state_vocabulary": {
+    "direct_subterranean_program": "Named participant in a government subterranean program, challenge team or final event.",
+    "subterranean_platform_or_lineage": "A platform, product or team lineage has representative underground evidence, but the company is not shown as the target prime or current awardee.",
+    "defense_transition_adjacent": "A recent defense award, program or production path validates an enabling capability, but no public subterranean target relationship was located.",
+    "commercial_underground_scale": "Operating underground capability is documented commercially, but no public U.S. defense transition path was located.",
+    "identity_or_role_unresolved": "Participation is public, but the exact legal entity, technical contribution or acquisition state is incomplete."
+  },
+  "market_status_vocabulary": {
+    "public": "The mapped legal entity has a verified exchange listing and ticker.",
+    "private": "No direct public listing is asserted for the mapped legal entity.",
+    "private_public_parent": "The mapped company is not separately listed, but one or more owners are publicly traded. Parent tickers are not the company's ticker."
+  },
+  "lane_vocabulary": {
+    "robot_platforms": "Legged, wheeled, tracked and aerial bodies for confined, rough or hazardous terrain.",
+    "autonomy_mapping": "GPS-denied autonomy, multi-robot coordination, SLAM, perception and 3D/4D mapping.",
+    "mesh_communications": "Infrastructure-light tactical mesh, relays, backhaul and disconnected operation.",
+    "resilient_pnt": "Inertial, magnetic and precision-timing technologies that reduce dependence on satellite signals.",
+    "excavation_logistics": "Automated drilling, hauling, breaching, route preparation and underground material movement."
+  },
+  "sources": [
+    {
+      "id": "src-meridian-memo",
+      "date": "2026-09-30",
+      "issuer": "U.S. Department of War",
+      "title": "Commissioning of Project Meridian",
+      "url": "https://media.defense.gov/2026/Sep/30/2004009287/-1/-1/1/COMMISSIONING-OF-PROJECT-MERIDIAN.PDF",
+      "source_type": "official_memorandum",
+      "limit": "The memorandum commissions a study; it does not name performers, solicit work or award contracts."
+    },
+    {
+      "id": "src-nssts",
+      "date": "2026-08-20",
+      "issuer": "The White House",
+      "title": "National Security Science and Technology Strategy",
+      "url": "https://www.whitehouse.gov/wp-content/uploads/2026/08/NSSTS-082026.pdf",
+      "source_type": "official_strategy",
+      "limit": "The strategy names diversified PNT for subterranean settings; it does not select a company."
+    },
+    {
+      "id": "src-darpa-subt",
+      "date": "2021-09-24",
+      "issuer": "DARPA",
+      "title": "Subterranean Challenge program and final event",
+      "url": "https://www.darpa.mil/research/challenges/subterranean",
+      "source_type": "official_program_record",
+      "limit": "Challenge participation and prizes do not establish a current production contract or operational fielding."
+    },
+    {
+      "id": "src-darpa-subt-teams",
+      "date": "2021-05-03",
+      "issuer": "DARPA",
+      "title": "Subterranean Challenge systems finalists and team composition",
+      "url": "https://www.darpa.mil/news/2021/subterranean-challenge-final-teams",
+      "source_type": "official_team_record",
+      "limit": "The page confirms team membership or finalist status, not each member's precise workshare."
+    },
+    {
+      "id": "src-army-ate",
+      "date": "2021-12-10",
+      "issuer": "U.S. Army",
+      "title": "Army demonstrates Autonomous Tunnel Exploitation",
+      "url": "https://www.army.mil/article/252879/army_demos_advancements_in_robotics_operations_in_subterranean_environments",
+      "source_type": "official_demonstration_record",
+      "limit": "The demonstration validates an integrated capability direction; it does not publicly identify every supplier or prove production acceptance."
+    },
+    {
+      "id": "src-flyability-cerberus",
+      "date": "2018-11-01",
+      "issuer": "Flyability",
+      "title": "Flyability joins Team CERBERUS",
+      "url": "https://www.flyability.com/news/flyability-takes-on-darpa-subt-challenge-with-international-team-cerberus",
+      "source_type": "company_primary",
+      "limit": "Actor-authored detail supports its role; DARPA separately confirms Flyability as a team member."
+    },
+    {
+      "id": "src-anybotics-subt",
+      "date": "2021-10-20",
+      "issuer": "ANYbotics",
+      "title": "ANYmal in the winning CERBERUS system",
+      "url": "https://www.anybotics.com/news/winner-darpa-worlds-hardest-robotics-challenge-builds-on-anymal/",
+      "source_type": "company_primary",
+      "limit": "The platform's use is supported; ANYbotics is not listed by DARPA as a separate funded team member."
+    },
+    {
+      "id": "src-exyn-subt",
+      "date": "2026-09-30",
+      "issuer": "Exyn Technologies, Inc.",
+      "title": "Company history and DARPA SubT Team PLUTO record",
+      "url": "https://www.exyn.com/about/company",
+      "source_type": "company_primary",
+      "limit": "The company records joining Team PLUTO and underground deployment; an operative current U.S. subterranean award was not located."
+    },
+    {
+      "id": "src-jpl-nebula-spot",
+      "date": "2026-09-30",
+      "issuer": "NASA Jet Propulsion Laboratory",
+      "title": "NeBula-SPOT",
+      "url": "https://www.jpl.nasa.gov/robotics-at-jpl/nebula-spot/",
+      "source_type": "official_laboratory_record",
+      "limit": "Boston Dynamics built the walker; JPL supplied the autonomy. Platform evidence is not a current defense award."
+    },
+    {
+      "id": "src-emesent-subt",
+      "date": "2021-09-24",
+      "issuer": "Emesent",
+      "title": "CSIRO Data61–Emesent–Georgia Tech team runner-up",
+      "url": "https://www.emesent.com/news/2021/09/24/emesent-runnerup-at-darpa-subt",
+      "source_type": "company_primary",
+      "limit": "DARPA confirms the CSIRO Data61 team; this page supplies Emesent's technical contribution."
+    },
+    {
+      "id": "src-fieldai-lineage",
+      "date": "2026-09-30",
+      "issuer": "Field AI",
+      "title": "Company journey through CoSTAR, RACER and current field autonomy",
+      "url": "https://www.fieldai.com/journey",
+      "source_type": "company_primary",
+      "limit": "The team lineage and current capability are real; a current target award to Field AI is not public."
+    },
+    {
+      "id": "src-darpa-racer",
+      "date": "2026-01-14",
+      "issuer": "DARPA",
+      "title": "RACER's finish line",
+      "url": "https://www.darpa.mil/news/2026/racer-finish-line",
+      "source_type": "official_transition_record",
+      "limit": "RACER validates off-road autonomy and transition lineage, not underground performance by every named company."
+    },
+    {
+      "id": "src-army-uxs-ota",
+      "date": "2025-08-27",
+      "issuer": "U.S. Army",
+      "title": "Army awards three UxS Autonomy OTA agreements",
+      "url": "https://www.army.mil/article-amp/288155",
+      "source_type": "official_award_record",
+      "limit": "The awards cover Infantry Support Vehicle autonomy prototypes; they are not subterranean awards."
+    },
+    {
+      "id": "src-diu-overland",
+      "date": "2025-12-31",
+      "issuer": "Defense Innovation Unit",
+      "title": "Ground Vehicle Autonomous Pathways II — Overland AI",
+      "url": "https://www.diu.mil/solutions/portfolio/catalog/a0T83000000Eec8EAC-a0hcr00000BCmDpAAL",
+      "source_type": "official_transition_catalog",
+      "limit": "The catalog records a completed, purchasable comms-limited off-road autonomy solution, not target underground acceptance."
+    },
+    {
+      "id": "src-army-radio-portfolio",
+      "date": "2023-11-03",
+      "issuer": "U.S. Army",
+      "title": "Army Acquisition Program Portfolio — Handheld, Manpack and Small Form Fit",
+      "url": "https://api.army.mil/e2/c/downloads/2023/11/03/18de7872/2023-u-s-army-acquisition-portfolio.pdf",
+      "source_type": "official_program_portfolio",
+      "limit": "Silvus is a production contractor in tactical radio; this is not evidence of underground propagation performance."
+    },
+    {
+      "id": "src-silvus-owner",
+      "date": "2025-08-06",
+      "issuer": "Motorola Solutions",
+      "title": "Motorola Solutions completes acquisition of Silvus Technologies Holdings Inc.",
+      "url": "https://www.motorolasolutions.com/newsroom/press-releases/motorola-solutions-completes-acquisition-of-silvus-technologies.html",
+      "source_type": "company_transaction_record",
+      "limit": "The acquisition resolves ownership; it does not alter the Army program state."
+    },
+    {
+      "id": "src-gotenna-army",
+      "date": "2025-11-30",
+      "issuer": "75th U.S. Army Reserve Innovation Command",
+      "title": "Enhanced mesh network technology for ARSOF",
+      "url": "https://innovation.army.mil/News/Article-View/Article/4348802/transforming-the-arsof-advantage-lines-of-effort-with-enhanced-mesh-network-tec/",
+      "source_type": "official_professional_analysis",
+      "limit": "The article describes evaluated potential and integration; it is not an acquisition or underground acceptance record."
+    },
+    {
+      "id": "src-persistent-budget",
+      "date": "2026-04-01",
+      "issuer": "U.S. Department of the Army",
+      "title": "FY 2027 Other Procurement, Army — communications and electronics",
+      "url": "https://www.asafm.army.mil/Portals/72/Documents/BudgetMaterial/2027/Discretionary%20Budget/Procurement/Other_Procurement%20-%20BA2%20-%20Communications%20%26%20Electronics.pdf",
+      "source_type": "official_budget_document",
+      "limit": "The budget confirms prior SBU-E production; later suppliers remain open and no subterranean lot is identified."
+    },
+    {
+      "id": "src-darpa-clock-manufacturing",
+      "date": "2026-09-06",
+      "issuer": "DARPA",
+      "title": "It's About Time optical-clock manufacturing award",
+      "url": "https://www.darpa.mil/news/2026/its-about-time",
+      "source_type": "official_award_record",
+      "limit": "IonQ received the manufacturing award using acquired Vector Atomic expertise; no underground platform integration is established."
+    },
+    {
+      "id": "src-aftc-magnav",
+      "date": "2023-05-26",
+      "issuer": "Air Force Test Center",
+      "title": "Real-time magnetic-navigation demonstration",
+      "url": "https://www.aftc.af.mil/News/Article/3411610/magnav-project-successfully-demonstrates-real-time-magnetic-navigation/",
+      "source_type": "official_test_record",
+      "limit": "The flight demonstration does not establish subterranean accuracy or procurement."
+    },
+    {
+      "id": "src-afrl-astra",
+      "date": "2025-09-22",
+      "issuer": "Air Force Research Laboratory",
+      "title": "Active OTSB and small-business contracts portfolio",
+      "url": "https://www.afrl.af.mil/Portals/90/Documents/SB/AFRL_Active_OTSB-SB_Contracts.pdf",
+      "source_type": "official_contract_portfolio",
+      "limit": "The portfolio confirms an active magnetic-navigation contract, not completion, acceptance or subterranean performance."
+    },
+    {
+      "id": "src-epiroc-deep-automation",
+      "date": "2026-05-28",
+      "issuer": "Epiroc",
+      "title": "Deep Automation for underground drilling and material handling",
+      "url": "https://www.epiroc.com/en-na/newsroom/2026/epiroc-expands-deep-automation-with-solutions-for-underground-drilling",
+      "source_type": "company_primary",
+      "limit": "Commercial mining scale is documented by the company; no public U.S. defense target path was located."
+    },
+    {
+      "id": "src-sandvik-automine",
+      "date": "2026-09-30",
+      "issuer": "Sandvik Mining and Rock Solutions",
+      "title": "AutoMine Core for underground loading and hauling",
+      "url": "https://www.rocktechnology.sandvik/en/digital-solutions/automation/automine-core-for-loading-and-hauling/",
+      "source_type": "company_primary",
+      "limit": "Commercial mining deployment is documented by the company; no public U.S. defense target path was located."
+    },
+    {
+      "id": "src-exyn-listing",
+      "date": "2026-05-18",
+      "issuer": "Exyn Technologies",
+      "title": "Exyn announces closing of its initial public offering",
+      "url": "https://investors.exyn.com/pr/exyn-announces-closing-of-its-initial-public-offering",
+      "source_type": "company_investor_record",
+      "limit": "This verifies the Nasdaq Capital Market common-stock ticker EXYN and warrant ticker EXYNW; it does not establish company value or subterranean procurement."
+    },
+    {
+      "id": "src-boston-ownership",
+      "date": "2026-09-30",
+      "issuer": "Boston Dynamics",
+      "title": "Boston Dynamics ownership FAQ",
+      "url": "https://bostondynamics.com/faq/",
+      "source_type": "company_ownership_record",
+      "limit": "Boston Dynamics states that it is 80 percent held by Hyundai Motor Group and 20 percent by a SoftBank affiliate; those parent listings are not a Boston Dynamics ticker."
+    },
+    {
+      "id": "src-hyundai-listing",
+      "date": "2024-09-12",
+      "issuer": "Hyundai Motor Company",
+      "title": "Hyundai Motor Company exchange identifier",
+      "url": "https://www.hyundai.com/content/hyundai/worldwide/en/newsroom/detail/hyundai-and-gm-sign-memorandum-of-understanding-to-explore-collaboration-on-vehicles%252C-supply-chain-and-clean-energy-technologies-0000000826.html",
+      "source_type": "company_market_record",
+      "limit": "This verifies Hyundai Motor Company's KRX identifier 005380; it is a parent-company reference, not a Boston Dynamics listing."
+    },
+    {
+      "id": "src-softbank-listing",
+      "date": "2026-03-31",
+      "issuer": "SoftBank Group Corp.",
+      "title": "General stock information",
+      "url": "https://group.softbank/en/ir/stock/info",
+      "source_type": "company_investor_record",
+      "limit": "This verifies SoftBank Group's Tokyo Stock Exchange code 9984; it is a parent-company reference, not a Boston Dynamics listing."
+    },
+    {
+      "id": "src-motorola-listing",
+      "date": "2026-09-30",
+      "issuer": "Motorola Solutions",
+      "title": "Motorola Solutions stock ownership",
+      "url": "https://www.motorolasolutions.com/investors/stock-ownership.html",
+      "source_type": "company_investor_record",
+      "limit": "This verifies Motorola Solutions' NYSE ticker MSI; Silvus Technologies is a subsidiary and does not have that ticker itself."
+    },
+    {
+      "id": "src-ionq-listing",
+      "date": "2026-09-30",
+      "issuer": "IonQ",
+      "title": "IonQ investor FAQs",
+      "url": "https://investors.ionq.com/resources/investor-faqs/default.aspx",
+      "source_type": "company_investor_record",
+      "limit": "This verifies IonQ common stock on NYSE under IONQ; it does not establish a market view or subterranean program relationship."
+    },
+    {
+      "id": "src-epiroc-listing",
+      "date": "2025-12-31",
+      "issuer": "Epiroc",
+      "title": "The Epiroc share",
+      "url": "https://reports.epirocgroup.com/annual-and-sustainability-report-2025/the-business/the-epiroc-share/",
+      "source_type": "company_annual_report",
+      "limit": "This verifies Epiroc's Nasdaq Stockholm A and B share tickers and U.S. ADR symbols; it does not establish defense demand."
+    },
+    {
+      "id": "src-sandvik-listing",
+      "date": "2022-08-31",
+      "issuer": "Sandvik",
+      "title": "Sandvik U.S. Form 8937 stock-identification record",
+      "url": "https://www.home.sandvik/contentassets/f7de7a7efdd047cdbd11f51f3c9c68f0/us-form-8937-sandvik-distribution-of-alleima.pdf",
+      "source_type": "company_market_record",
+      "limit": "This verifies Sandvik AB's Nasdaq Stockholm ticker SAND; it does not establish defense demand or target-program participation."
+    }
+  ],
+  "companies": [
+    {
+      "id": "flyability",
+      "display_name": "Flyability",
+      "company_legal_entity": "Flyability SA",
+      "ownership": "private; Swiss company",
+      "headquarters": "Paudex, Switzerland",
+      "market_status": "private",
+      "lanes": [
+        "robot_platforms",
+        "autonomy_mapping"
+      ],
+      "company_role": "Collision-tolerant indoor aerial robot and confined-space reconnaissance platform",
+      "relationship_state": "direct_subterranean_program",
+      "fit_grade": 4,
+      "path_grade": 4,
+      "evidence_grade": "B",
+      "map_label": "DIRECT SUBT TEAM",
+      "why_to_know": "DARPA and Flyability identify the company as a CERBERUS team member; its commercial product lineage is built for inaccessible confined spaces.",
+      "inference_boundary": "Past funded-team participation and a winning system do not establish a current U.S. production program.",
+      "missing_gate": "A current named defense user, solicitation, award and accepted field result.",
+      "upgrade_trigger": "A new U.S. subterranean prototype or production award names Flyability and an operational acceptance measure.",
+      "downgrade_trigger": "A target architecture excludes aerial platforms or selects a different confined-space system.",
+      "source_ids": [
+        "src-darpa-subt-teams",
+        "src-flyability-cerberus"
+      ]
+    },
+    {
+      "id": "anybotics",
+      "display_name": "ANYbotics",
+      "company_legal_entity": "ANYbotics AG",
+      "ownership": "private; Swiss company",
+      "headquarters": "Zürich, Switzerland",
+      "market_status": "private",
+      "lanes": [
+        "robot_platforms",
+        "autonomy_mapping"
+      ],
+      "company_role": "Legged robot platform for rough, narrow and multi-level terrain",
+      "relationship_state": "subterranean_platform_or_lineage",
+      "fit_grade": 4,
+      "path_grade": 2,
+      "evidence_grade": "B",
+      "map_label": "PROVEN SUBT PLATFORM",
+      "why_to_know": "Four ANYmal systems operated for nearly an hour in the winning CERBERUS final run, including rough terrain, stairs, inclines and smoke.",
+      "inference_boundary": "The platform was used by the team; DARPA does not list ANYbotics as a separate funded team member or current awardee.",
+      "missing_gate": "A named U.S. defense transition path, hardened payload set and unit acceptance.",
+      "upgrade_trigger": "An official U.S. subterranean program selects ANYmal or a U.S.-qualified derivative.",
+      "downgrade_trigger": "Payload, support, export or endurance requirements prevent transition.",
+      "source_ids": [
+        "src-darpa-subt",
+        "src-anybotics-subt"
+      ]
+    },
+    {
+      "id": "exyn",
+      "display_name": "Exyn",
+      "company_legal_entity": "Exyn Technologies, Inc.",
+      "ownership": "public operating company; Nasdaq: EXYN",
+      "headquarters": "Philadelphia, Pennsylvania",
+      "market_status": "public",
+      "market_listings": [
+        {
+          "entity": "Exyn Technologies, Inc.",
+          "relationship": "company",
+          "exchange": "Nasdaq Capital Market",
+          "ticker": "EXYN",
+          "source_id": "src-exyn-listing"
+        }
+      ],
+      "lanes": [
+        "autonomy_mapping",
+        "robot_platforms"
+      ],
+      "company_role": "GPS-denied autonomy, aerial exploration and real-time 3D mapping",
+      "relationship_state": "subterranean_platform_or_lineage",
+      "fit_grade": 4,
+      "path_grade": 2,
+      "evidence_grade": "C",
+      "map_label": "SUBT LINEAGE",
+      "why_to_know": "Exyn records underground commercial deployment, Team PLUTO participation and autonomy designed to work without GPS or a communications link.",
+      "inference_boundary": "The located Team PLUTO record is company-authored; no current U.S. target award was located.",
+      "missing_gate": "Independent target-user validation and a current government acquisition instrument.",
+      "upgrade_trigger": "A government record confirms an Exyn underground demonstration, award or accepted delivery.",
+      "downgrade_trigger": "Defense work remains promotional or fails security, endurance or data-rights gates.",
+      "source_ids": [
+        "src-exyn-subt"
+      ]
+    },
+    {
+      "id": "boston-dynamics",
+      "display_name": "Boston Dynamics",
+      "company_legal_entity": "Boston Dynamics, Inc.",
+      "ownership": "Hyundai Motor Group 80%; SoftBank affiliate 20%",
+      "headquarters": "Waltham, Massachusetts",
+      "market_status": "private_public_parent",
+      "market_listings": [
+        {
+          "entity": "Hyundai Motor Company",
+          "relationship": "controlling-group participant",
+          "exchange": "Korea Exchange",
+          "ticker": "005380",
+          "source_id": "src-hyundai-listing"
+        },
+        {
+          "entity": "SoftBank Group Corp.",
+          "relationship": "minority owner's parent",
+          "exchange": "Tokyo Stock Exchange",
+          "ticker": "9984",
+          "source_id": "src-softbank-listing"
+        }
+      ],
+      "lanes": [
+        "robot_platforms"
+      ],
+      "company_role": "Commercial quadruped platform integrated into subterranean autonomy systems",
+      "relationship_state": "subterranean_platform_or_lineage",
+      "fit_grade": 4,
+      "path_grade": 2,
+      "evidence_grade": "A",
+      "map_label": "PROVEN SUBT PLATFORM",
+      "why_to_know": "JPL's NeBula-SPOT paired a Boston Dynamics walker with JPL autonomy specifically for the DARPA Subterranean Challenge.",
+      "inference_boundary": "Boston Dynamics supplied the body; JPL supplied the autonomy. Platform presence is not a current defense award.",
+      "missing_gate": "A target acquisition path, payload configuration, cyber approval and government acceptance record.",
+      "upgrade_trigger": "A current U.S. subterranean program names Spot or another Boston Dynamics platform.",
+      "downgrade_trigger": "Restrictions, payload limits or a different platform architecture displace it.",
+      "source_ids": [
+        "src-jpl-nebula-spot"
+      ]
+    },
+    {
+      "id": "ssci",
+      "display_name": "Scientific Systems",
+      "company_legal_entity": "Scientific Systems Company, Inc.",
+      "ownership": "private U.S. company",
+      "headquarters": "Woburn, Massachusetts",
+      "market_status": "private",
+      "lanes": [
+        "autonomy_mapping"
+      ],
+      "company_role": "Multi-agent autonomy and virtual/subterranean system development",
+      "relationship_state": "direct_subterranean_program",
+      "fit_grade": 3,
+      "path_grade": 4,
+      "evidence_grade": "A",
+      "map_label": "DIRECT SUBT TEAM",
+      "why_to_know": "DARPA selected the company for the funded virtual track and later lists it in the MARBLE systems finalist team.",
+      "inference_boundary": "The official records establish program participation, not the precise current product or production state.",
+      "missing_gate": "A current target product, award and field acceptance record.",
+      "upgrade_trigger": "A new subterranean program names Scientific Systems as autonomy provider or integrator.",
+      "downgrade_trigger": "No transferable product or present transition path emerges from the research lineage.",
+      "source_ids": [
+        "src-darpa-subt-teams",
+        "src-darpa-subt"
+      ]
+    },
+    {
+      "id": "snc",
+      "display_name": "SNC",
+      "company_legal_entity": "Sierra Nevada Company, LLC",
+      "ownership": "private U.S. company",
+      "headquarters": "Sparks, Nevada",
+      "market_status": "private",
+      "lanes": [
+        "autonomy_mapping",
+        "mesh_communications"
+      ],
+      "company_role": "CERBERUS team member; precise public workshare unresolved",
+      "relationship_state": "identity_or_role_unresolved",
+      "fit_grade": 2,
+      "path_grade": 4,
+      "evidence_grade": "A",
+      "map_label": "DIRECT TEAM / ROLE OPEN",
+      "why_to_know": "DARPA lists SNC in the funded CERBERUS consortium, giving it a direct historical program edge.",
+      "inference_boundary": "The official team list does not establish which subsystem SNC supplied, and no current target role is public.",
+      "missing_gate": "Workshare, deliverable, transition record and current program relationship.",
+      "upgrade_trigger": "An official record identifies SNC's subterranean subsystem or new integration role.",
+      "downgrade_trigger": "No reusable technical or acquisition path can be matched beyond consortium membership.",
+      "source_ids": [
+        "src-darpa-subt-teams"
+      ]
+    },
+    {
+      "id": "emesent",
+      "display_name": "Emesent",
+      "company_legal_entity": "Emesent Pty Ltd",
+      "ownership": "private Australian company",
+      "headquarters": "Brisbane, Australia",
+      "market_status": "private",
+      "lanes": [
+        "autonomy_mapping",
+        "robot_platforms",
+        "mesh_communications"
+      ],
+      "company_role": "LiDAR SLAM, autonomous aerial mapping and multi-robot underground exploration",
+      "relationship_state": "direct_subterranean_program",
+      "fit_grade": 4,
+      "path_grade": 4,
+      "evidence_grade": "B",
+      "map_label": "DIRECT SUBT TEAM",
+      "why_to_know": "The DARPA-funded CSIRO Data61 team finished second; Emesent supplied autonomous drones and real-time multi-agent mapping in GPS- and infrastructure-denied tunnels.",
+      "inference_boundary": "Prize and team performance do not establish U.S. procurement, exportability or current fielding.",
+      "missing_gate": "U.S. acquisition access, security/export clearance and accepted operational performance.",
+      "upgrade_trigger": "A U.S. government transition or production record names Emesent.",
+      "downgrade_trigger": "Export, supply, security or platform-integration barriers block adoption.",
+      "source_ids": [
+        "src-darpa-subt",
+        "src-emesent-subt"
+      ]
+    },
+    {
+      "id": "coordinated-robotics",
+      "display_name": "Coordinated Robotics",
+      "company_legal_entity": "Coordinated Robotics (legal suffix unresolved in cited public record)",
+      "ownership": "private; exact legal identity unresolved",
+      "headquarters": "United States",
+      "market_status": "private",
+      "lanes": [
+        "autonomy_mapping"
+      ],
+      "company_role": "Self-funded physical and virtual subterranean autonomy finalist",
+      "relationship_state": "identity_or_role_unresolved",
+      "fit_grade": 3,
+      "path_grade": 2,
+      "evidence_grade": "A",
+      "map_label": "FINALIST / IDENTITY OPEN",
+      "why_to_know": "DARPA lists Coordinated Robotics as a systems finalist and third-place virtual finalist, demonstrating unusually efficient small-team capability.",
+      "inference_boundary": "Challenge standing is public, but the exact legal entity and current commercial or acquisition vehicle remain unresolved.",
+      "missing_gate": "Legal-entity resolution, current offering and live federal transition path.",
+      "upgrade_trigger": "An official award or company legal record resolves the entity and current product.",
+      "downgrade_trigger": "The entity is inactive or no transferable capability remains.",
+      "source_ids": [
+        "src-darpa-subt",
+        "src-darpa-subt-teams"
+      ]
+    },
+    {
+      "id": "field-ai",
+      "display_name": "Field AI",
+      "company_legal_entity": "Field AI, Inc.",
+      "ownership": "private U.S. company",
+      "headquarters": "Irvine, California",
+      "market_status": "private",
+      "lanes": [
+        "autonomy_mapping",
+        "robot_platforms"
+      ],
+      "company_role": "Hardware-agnostic, risk-aware autonomy for unmapped GPS- and cloud-denied environments",
+      "relationship_state": "subterranean_platform_or_lineage",
+      "fit_grade": 4,
+      "path_grade": 3,
+      "evidence_grade": "B",
+      "map_label": "SUBT LINEAGE + TRANSITION",
+      "why_to_know": "Its founding team traces through JPL CoSTAR and RACER; current products target underground mining and unmapped GPS-denied operation across robot types.",
+      "inference_boundary": "The lineage and present capability are strong, but no current public Meridian or Army subterranean award was located.",
+      "missing_gate": "Named target user, contract, acceptance metrics and data-rights/security terms.",
+      "upgrade_trigger": "A current U.S. subterranean program selects Field AI or accepts a Field AI-powered system.",
+      "downgrade_trigger": "Commercial deployments do not translate to defense security, reliability or operator-control requirements.",
+      "source_ids": [
+        "src-fieldai-lineage",
+        "src-darpa-racer",
+        "src-jpl-nebula-spot"
+      ]
+    },
+    {
+      "id": "overland-ai",
+      "display_name": "Overland AI",
+      "company_legal_entity": "Overland AI, Inc.",
+      "ownership": "private U.S. company",
+      "headquarters": "Seattle, Washington",
+      "market_status": "private",
+      "lanes": [
+        "autonomy_mapping",
+        "robot_platforms",
+        "excavation_logistics"
+      ],
+      "company_role": "Vehicle-agnostic autonomy and multi-vehicle command for comms-limited terrain",
+      "relationship_state": "defense_transition_adjacent",
+      "fit_grade": 3,
+      "path_grade": 3,
+      "evidence_grade": "A",
+      "map_label": "DEFENSE TRANSITION ADJACENT",
+      "why_to_know": "DARPA identifies Overland as a RACER spinout; DIU records a completed solution and the Army awarded an ISV autonomy OTA.",
+      "inference_boundary": "All located official work is off-road or vehicle autonomy, not underground tunnel navigation.",
+      "missing_gate": "Confined-space sensor stack, subterranean mobility platform and representative underground acceptance.",
+      "upgrade_trigger": "A target program or tunnel exercise names Overland AI.",
+      "downgrade_trigger": "Its autonomy remains optimized for open off-road terrain or cannot meet confined-space constraints.",
+      "source_ids": [
+        "src-darpa-racer",
+        "src-diu-overland",
+        "src-army-uxs-ota"
+      ]
+    },
+    {
+      "id": "carnegie-robotics",
+      "display_name": "Carnegie Robotics",
+      "company_legal_entity": "Carnegie Robotics, LLC",
+      "ownership": "private U.S. company",
+      "headquarters": "Pittsburgh, Pennsylvania",
+      "market_status": "private",
+      "lanes": [
+        "robot_platforms",
+        "autonomy_mapping",
+        "excavation_logistics"
+      ],
+      "company_role": "Rugged robotic platforms, autonomy computers and sensor integration",
+      "relationship_state": "defense_transition_adjacent",
+      "fit_grade": 3,
+      "path_grade": 3,
+      "evidence_grade": "A",
+      "map_label": "DEFENSE TRANSITION ADJACENT",
+      "why_to_know": "DARPA identifies Carnegie Robotics as creator of the RACER Heavy Platform used by the Army in an autonomous breaching demonstration.",
+      "inference_boundary": "A heavy off-road breaching platform is adjacent to underground route preparation, not proof of tunnel mobility.",
+      "missing_gate": "A confined-space platform and target underground system or test.",
+      "upgrade_trigger": "A subterranean engineering or logistics program selects its platform or ruggedized modules.",
+      "downgrade_trigger": "Size, maneuverability or propulsion constraints make the platform unsuitable below ground.",
+      "source_ids": [
+        "src-darpa-racer"
+      ]
+    },
+    {
+      "id": "forterra",
+      "display_name": "Forterra",
+      "company_legal_entity": "Forterra, Inc.",
+      "ownership": "private U.S. company; formerly Robotic Research",
+      "headquarters": "Clarksburg, Maryland",
+      "market_status": "private",
+      "lanes": [
+        "autonomy_mapping",
+        "excavation_logistics"
+      ],
+      "company_role": "Ground autonomy, breaching and contested logistics integration",
+      "relationship_state": "defense_transition_adjacent",
+      "fit_grade": 3,
+      "path_grade": 3,
+      "evidence_grade": "A",
+      "map_label": "DEFENSE TRANSITION ADJACENT",
+      "why_to_know": "The Army awarded Forterra an ISV autonomy OTA; its autonomy stack is designed for GPS- and communications-degraded ground missions.",
+      "inference_boundary": "The located Army award and breaching work are not underground system awards.",
+      "missing_gate": "A tunnel-sized platform, underground test and accepted mission metric.",
+      "upgrade_trigger": "Army engineer or subterranean programs integrate Forterra autonomy below ground.",
+      "downgrade_trigger": "The architecture remains tied to vehicle classes too large for target passages.",
+      "source_ids": [
+        "src-army-uxs-ota"
+      ]
+    },
+    {
+      "id": "persistent-systems",
+      "display_name": "Persistent Systems",
+      "company_legal_entity": "Persistent Systems, LLC",
+      "ownership": "private U.S. company",
+      "headquarters": "New York, New York",
+      "market_status": "private",
+      "lanes": [
+        "mesh_communications"
+      ],
+      "company_role": "Self-forming tactical mesh-radio manufacturer and networking-stack supplier",
+      "relationship_state": "defense_transition_adjacent",
+      "fit_grade": 3,
+      "path_grade": 3,
+      "evidence_grade": "A",
+      "map_label": "FIELDABLE NETWORK ADJACENCY",
+      "why_to_know": "Army budget records confirm prior SBU-E production, giving the company a real tactical-network manufacturing and integration path.",
+      "inference_boundary": "The Army record does not establish performance through rock, turns or depth, and future supplier lots remain open.",
+      "missing_gate": "Representative underground propagation, robot-deployed relay integration and accepted network recovery metrics.",
+      "upgrade_trigger": "A subterranean exercise or procurement names the MPU5/Wave Relay stack or a successor.",
+      "downgrade_trigger": "Propagation, power, size or interoperability fails the underground requirement.",
+      "source_ids": [
+        "src-persistent-budget",
+        "src-army-ate"
+      ]
+    },
+    {
+      "id": "silvus",
+      "display_name": "Silvus Technologies",
+      "company_legal_entity": "Silvus Technologies Holdings Inc.",
+      "ownership": "Motorola Solutions, Inc. subsidiary since 2025-08-06",
+      "headquarters": "Los Angeles, California",
+      "market_status": "private_public_parent",
+      "market_listings": [
+        {
+          "entity": "Motorola Solutions, Inc.",
+          "relationship": "parent company",
+          "exchange": "New York Stock Exchange",
+          "ticker": "MSI",
+          "source_id": "src-motorola-listing"
+        }
+      ],
+      "lanes": [
+        "mesh_communications"
+      ],
+      "company_role": "High-data-rate mobile ad hoc networking for contested and mobile operations",
+      "relationship_state": "defense_transition_adjacent",
+      "fit_grade": 3,
+      "path_grade": 3,
+      "evidence_grade": "A",
+      "map_label": "FIELDABLE NETWORK ADJACENCY",
+      "why_to_know": "The Army lists Silvus as an HMS prime contractor, while Motorola's acquisition record confirms the present parent and mission-critical MANET focus.",
+      "inference_boundary": "Army production and contested-network capability do not prove subterranean link performance.",
+      "missing_gate": "Underground channel tests, relay topology, robot integration and target acceptance.",
+      "upgrade_trigger": "A named tunnel exercise or program selects Silvus radios and publishes performance.",
+      "downgrade_trigger": "The system cannot meet propagation, power or deployment-density requirements underground.",
+      "source_ids": [
+        "src-army-radio-portfolio",
+        "src-silvus-owner",
+        "src-army-ate"
+      ]
+    },
+    {
+      "id": "gotenna",
+      "display_name": "goTenna",
+      "company_legal_entity": "goTenna, Inc.",
+      "ownership": "private U.S. company",
+      "headquarters": "Jersey City, New Jersey",
+      "market_status": "private",
+      "lanes": [
+        "mesh_communications"
+      ],
+      "company_role": "Low-SWaP peer-to-peer mesh, position sharing and store-and-forward messaging",
+      "relationship_state": "defense_transition_adjacent",
+      "fit_grade": 2,
+      "path_grade": 2,
+      "evidence_grade": "B",
+      "map_label": "LOW-BANDWIDTH MESH WATCH",
+      "why_to_know": "Army professional analysis describes goTenna relay and integration behavior relevant to obstructions and denied-area sensing.",
+      "inference_boundary": "The record is analysis and evaluation context, not a subterranean acquisition or high-bandwidth solution.",
+      "missing_gate": "Underground range, relay density, battery life and acquisition record.",
+      "upgrade_trigger": "A government tunnel test publishes useful store-and-forward or relay performance.",
+      "downgrade_trigger": "Bandwidth, latency or propagation cannot support the target mission.",
+      "source_ids": [
+        "src-gotenna-army"
+      ]
+    },
+    {
+      "id": "ionq-vector-atomic",
+      "display_name": "IonQ / Vector Atomic",
+      "company_legal_entity": "IonQ, Inc. (Vector Atomic acquired 2025-10-07)",
+      "ownership": "public U.S. company; NYSE: IONQ",
+      "headquarters": "College Park, Maryland / Pleasanton, California",
+      "market_status": "public",
+      "market_listings": [
+        {
+          "entity": "IonQ, Inc.",
+          "relationship": "company",
+          "exchange": "New York Stock Exchange",
+          "ticker": "IONQ",
+          "source_id": "src-ionq-listing"
+        }
+      ],
+      "lanes": [
+        "resilient_pnt"
+      ],
+      "company_role": "Optical clocks, inertial sensors and precision synchronization",
+      "relationship_state": "defense_transition_adjacent",
+      "fit_grade": 3,
+      "path_grade": 3,
+      "evidence_grade": "A",
+      "map_label": "PNT TRANSITION ADJACENT",
+      "why_to_know": "Vector Atomic delivered defense quantum sensing prototypes and IonQ now holds a DARPA optical-clock manufacturing award using that expertise.",
+      "inference_boundary": "Timing and inertial technology are relevant to GPS-denied systems; rugged subterranean integration is not established.",
+      "missing_gate": "SWaP-C, shock, thermal, calibration and target-platform acceptance below ground.",
+      "upgrade_trigger": "A subterranean platform test or production award names IonQ/Vector Atomic hardware.",
+      "downgrade_trigger": "Manufacturing, calibration or environmental hardening misses target requirements.",
+      "source_ids": [
+        "src-darpa-clock-manufacturing",
+        "src-nssts"
+      ]
+    },
+    {
+      "id": "sandboxaq",
+      "display_name": "SandboxAQ",
+      "company_legal_entity": "Sandbox AQ, Inc.",
+      "ownership": "private U.S. company",
+      "headquarters": "Palo Alto, California",
+      "market_status": "private",
+      "lanes": [
+        "resilient_pnt"
+      ],
+      "company_role": "Magnetic navigation sensor and software developer",
+      "relationship_state": "defense_transition_adjacent",
+      "fit_grade": 3,
+      "path_grade": 2,
+      "evidence_grade": "A",
+      "map_label": "PNT TRANSITION ADJACENT",
+      "why_to_know": "Government MagNav work demonstrates GPS-independent navigation and SandboxAQ is a named transition participant in the maintained PNT evidence base.",
+      "inference_boundary": "Airborne magnetic navigation does not prove tunnel accuracy; local magnetic disturbance may be severe underground.",
+      "missing_gate": "Representative geology and infrastructure tests with quantified drift and calibration burden.",
+      "upgrade_trigger": "Government testing validates magnetic navigation in underground or structurally complex terrain.",
+      "downgrade_trigger": "Magnetic anomalies, steel infrastructure or calibration needs defeat useful accuracy.",
+      "source_ids": [
+        "src-aftc-magnav",
+        "src-nssts"
+      ]
+    },
+    {
+      "id": "astra-navigation",
+      "display_name": "Astra Navigation",
+      "company_legal_entity": "ASTRA NAVIGATION INC",
+      "ownership": "private U.S. small business",
+      "headquarters": "United States",
+      "market_status": "private",
+      "lanes": [
+        "resilient_pnt"
+      ],
+      "company_role": "Small-platform magnetic-navigation developer",
+      "relationship_state": "defense_transition_adjacent",
+      "fit_grade": 3,
+      "path_grade": 2,
+      "evidence_grade": "A",
+      "map_label": "PNT CONTRACT ADJACENT",
+      "why_to_know": "AFRL's contract portfolio confirms an active small-business magnetic-navigation path with potentially relevant SWaP-C.",
+      "inference_boundary": "The contract is confirmed; completed testing, target accuracy and subterranean use are not.",
+      "missing_gate": "Published test result, Phase III or production transition, and underground performance.",
+      "upgrade_trigger": "A government result shows useful accuracy on small underground platforms.",
+      "downgrade_trigger": "The contract ends without transition or cannot tolerate underground magnetic conditions.",
+      "source_ids": [
+        "src-afrl-astra",
+        "src-nssts"
+      ]
+    },
+    {
+      "id": "epiroc",
+      "display_name": "Epiroc",
+      "company_legal_entity": "Epiroc AB",
+      "ownership": "public Swedish company; Nasdaq Stockholm: EPI A / EPI B",
+      "headquarters": "Stockholm, Sweden",
+      "market_status": "public",
+      "market_listings": [
+        {
+          "entity": "Epiroc AB class A",
+          "relationship": "company",
+          "exchange": "Nasdaq Stockholm",
+          "ticker": "EPI A",
+          "source_id": "src-epiroc-listing"
+        },
+        {
+          "entity": "Epiroc AB class B",
+          "relationship": "company",
+          "exchange": "Nasdaq Stockholm",
+          "ticker": "EPI B",
+          "source_id": "src-epiroc-listing"
+        }
+      ],
+      "lanes": [
+        "excavation_logistics",
+        "autonomy_mapping"
+      ],
+      "company_role": "Underground drilling, loading, haulage, traffic management and mine automation",
+      "relationship_state": "commercial_underground_scale",
+      "fit_grade": 4,
+      "path_grade": 0,
+      "evidence_grade": "C",
+      "map_label": "COMMERCIAL SCALE ONLY",
+      "why_to_know": "Epiroc operates an integrated underground automation stack across drilling and material handling—the industrial scale military tunneling concepts would need to confront.",
+      "inference_boundary": "Commercial mining performance is not evidence of a U.S. defense relationship, tactical deployability or combat survivability.",
+      "missing_gate": "U.S. defense access, deployable scale, signature control and representative tactical tunneling test.",
+      "upgrade_trigger": "A U.S. engineering, logistics or subterranean program names Epiroc or its U.S. entity.",
+      "downgrade_trigger": "Equipment scale, logistics or signatures are incompatible with tactical requirements.",
+      "source_ids": [
+        "src-epiroc-deep-automation"
+      ]
+    },
+    {
+      "id": "sandvik",
+      "display_name": "Sandvik",
+      "company_legal_entity": "Sandvik AB",
+      "ownership": "public Swedish company; Nasdaq Stockholm: SAND",
+      "headquarters": "Stockholm, Sweden",
+      "market_status": "public",
+      "market_listings": [
+        {
+          "entity": "Sandvik AB",
+          "relationship": "company",
+          "exchange": "Nasdaq Stockholm",
+          "ticker": "SAND",
+          "source_id": "src-sandvik-listing"
+        }
+      ],
+      "lanes": [
+        "excavation_logistics",
+        "autonomy_mapping",
+        "mesh_communications"
+      ],
+      "company_role": "Autonomous underground loading, hauling, drilling and mine-system integration",
+      "relationship_state": "commercial_underground_scale",
+      "fit_grade": 4,
+      "path_grade": 0,
+      "evidence_grade": "C",
+      "map_label": "COMMERCIAL SCALE ONLY",
+      "why_to_know": "AutoMine combines underground autonomous fleets, mapping, safety zones, traffic management and connectivity at operating mine scale.",
+      "inference_boundary": "Operating mining systems do not establish military acquisition, tactical construction speed or contested-environment survivability.",
+      "missing_gate": "U.S. defense path, deployable form factor, logistics and signature-control validation.",
+      "upgrade_trigger": "A U.S. defense or engineering program tests Sandvik underground automation in a tactical mission.",
+      "downgrade_trigger": "System size, fixed infrastructure or support burden prevents tactical use.",
+      "source_ids": [
+        "src-sandvik-automine"
+      ]
+    }
+  ]
+}

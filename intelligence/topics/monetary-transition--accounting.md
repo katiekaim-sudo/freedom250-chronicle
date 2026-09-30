@@ -2,17 +2,19 @@
 
 How can a visible payment or token transfer be connected to ownership, obligation, accounting treatment, tax, redemption and remedy?
 
-A signed event can feed several governed accounting views, but it cannot decide recognition, measurement, entity boundaries, valuation, eligibility, delivery or judgment by itself. The public transaction record has the same limit: a visible transfer still needs joins to authority, purpose, performance, ownership and correction.
+The Accounting Transition is the move from reconstructing business activity out of fragmented private records toward producing governed books from shared, signed events. The journal becomes a controlled projection of an event, a rule and a visible judgment; law, ownership, valuation, correction and independent assurance remain distinct. Private-company tokenization is the clearest near-term wedge because record administration can move before public listing or broad liquidity.
 
-## From signed event to governed books
+## From reconstructed books to governed business events
 
-The July 30 Accounting Transition package supersedes the July 25 transaction-native hypothesis as the current answer. Signed business events can generate reproducible cash, GAAP, tax, regulatory and management views through versioned rules. Recognition, measurement, entity boundaries, estimates, protected evidence and audit judgment remain governing objects rather than automatic outputs.
+The story begins with accounting's reconstruction problem. One business event is split among contracts, operational systems, banks, custodians, tax records and the general ledger; accountants later rebuild the sequence and reconcile competing copies. The transition reverses that architecture: the governed event becomes the durable starting object, while journals and subledgers become reproducible outputs.
 
-This correction matters for tokenized systems: a technically valid transfer can still represent the wrong entity, an undelivered good, an ineligible beneficiary or an incorrectly recognized revenue event. Event sourcing improves traceability only when the rule version, responsible actor and judgment are preserved.
+The system has four objects: event, rule, judgment and view. One complete event population can support cash, GAAP, tax, regulatory, management and public-accountability views through versioned rules. Recognition, measurement, entity boundaries, estimates, protected evidence and audit judgment remain explicit governing objects rather than automatic properties of a ledger.
 
-The September 24 CFTC staff FAQ applies that distinction to regulatory records. It would permit on-chain records under technology-neutral recordkeeping rules and would not require an off-chain duplicate solely because the record is on-chain, but authenticity, reliability, retention, inspection and production still control. A public permissionless network therefore needs an independent recovery and production path when the network or block explorer is unavailable.
+The private-company extension makes the adoption path concrete. Investor identity and eligibility, subscription, cash settlement, valid share issuance, official ownership record, cap table, equity subledger, journal and assurance can form one lineage. The likely sequence is record administration, tokenized issuance, controlled transfer and only later broader liquidity; tokenized does not mean listed, actively traded or liquid.
 
-Sources: [Fed GENIUS and CFTC tokenized-infrastructure delta — September 24](../library/private-monetary-stack.html) (collection route) · [Accounting transition synthesis](../sources/2026-07-30-the-accounting-transition-shared-events-executable-rul-2fdf820971e8.html) · [Accounting Transition package guide](../sources/readme-50750ec8c0f3.html) · [Accounting functions, event object and judgment object](../sources/accounting-functions-and-smart-contract-automation-map-2026-07-30-3bd094dca4f5.html) · [Modified-cash and GAAP boundary](../sources/modified-cash-basis-and-gaap-boundary-2026-07-30-34e290a7e910.html) · [Corporate accounting cycles](../sources/corporate-accounting-cycles-gaap-and-automation-deep-dive-2026-07-ed9e10bad552.html)
+The official-record and continuous-assurance extensions preserve the constitution. CFTC and SEC staff guidance can permit native on-chain records in bounded settings while keeping accountable custody, authenticity, retention, production, correction and recovery. Blockchain can make events continuously verifiable, smart contracts can make controls continuously executable and AI can make evidence continuously examinable; none of those states is an audit.
+
+Sources: [The Accounting Transition — narrative front door](../sources/the-accounting-transition-story-2026-09-30-d7bd5f4fb7f8.html) · [Private-company on-chain adoption wedge](../library/transaction-native-accounting.html) (collection route) · [Atomic settlement to continuous assurance](../sources/atomic-settlement-to-continuous-assurance-2026-09-26-d75aaac96925.html) · [Fed GENIUS and CFTC tokenized-infrastructure delta — September 24](../library/private-monetary-stack.html) (collection route) · [Accounting transition synthesis](../sources/2026-07-30-the-accounting-transition-shared-events-executable-rul-2fdf820971e8.html) · [Accounting Transition package guide](../sources/readme-50750ec8c0f3.html) · [Accounting functions, event object and judgment object](../sources/accounting-functions-and-smart-contract-automation-map-2026-07-30-3bd094dca4f5.html) · [Modified-cash and GAAP boundary](../sources/modified-cash-basis-and-gaap-boundary-2026-07-30-34e290a7e910.html) · [Corporate accounting cycles](../sources/corporate-accounting-cycles-gaap-and-automation-deep-dive-2026-07-ed9e10bad552.html)
 
 ## Public money after release
 
@@ -30,7 +32,7 @@ These cases share one test: identify the asset or obligation, the owner and coun
 
 The retail-debt spine keeps portfolio ownership, servicing and borrower concessions together. Its FY2025 accounting companion owns the expense, charge-off and allowance comparisons; the source guide now holds their shared remaining-document questions. The agreement study supplies the saved Ally/Ollo conversion evidence and preserves the narrower missing customer-notice question.
 
-Sources: [Gold BOP accounting and counterpart map](../library/gold-bop-currency-adjustment.html) (collection route) · [Retail debt factual spine](../sources/retail-debt-entity-factual-spine-da3cd45008b6.html) · [Maintained insurance and reinsurance study](../sources/insurance-reinsurance-deep-dive-20780fd540e8.html) · [FY2025 credit losses, allowances and net receivables](../sources/credit-loss-reserve-and-net-receivables-fy2025-437b4a840942.html)
+Sources: [Gold BOP accounting and counterpart map](../library/gold-bop-currency-adjustment.html) (collection route) · [Retail debt factual spine](../sources/retail-debt-entity-factual-spine-da3cd45008b6.html) · [Maintained insurance and reinsurance study](../library/insurance-reinsurance.html) (collection route) · [FY2025 credit losses, allowances and net receivables](../sources/credit-loss-reserve-and-net-receivables-fy2025-437b4a840942.html)
 
 ## How the evidence develops
 
@@ -40,9 +42,9 @@ Sources: [Fine Print factual timeline](../sources/the-fine-print-factual-timelin
 
 ## How this fits together
 
-The useful accounting transition is governed pluralism: one signed event may support several views, but responsible people and institutions still decide what the event means, who owns the result, who bears loss and how errors are corrected.
+The transition is not books moving onto a blockchain. It is the construction of a governed event-to-report system in which every important number can be traced to the event, rule, judgment, recordkeeper, correction and assurance state that made it what it is.
 
-Accounting suite and public-record findings are dated 2026-07-30/31; Fed accounting extension is 2026-08-15; gold package is 2026-08-23; private-stack updates run through 2026-09-03. The CFTC blockchain-recordkeeping FAQ is a bounded primary-source extension through September 24, 2026; it does not refresh the remaining accounting or public-record studies.
+The narrative front door and private-company adoption wedge integrate dated package evidence through September 30, 2026. The CPA credential route and transfer-agent modernization remain notices or proposals; CFTC and SEC staff guidance remains bounded; no reviewed implementation completes the event-to-report-to-assurance chain at recurring scale.
 
 ## Research collections
 

@@ -1,23 +1,52 @@
 # Insurance and Reinsurance — Research Guide
 
-Source evidence through July 12, 2026. Organization reconciled September 7, 2026; this is saved, usable research, not a fresh insurance-market census.
+Core U.S. source evidence through July 12, 2026; bounded Japan comparison through September 15, 2026; top-down monetary/government control, actuarial-control-plane, life/annuity funding, homeowners, health/social-insurance, commercial/specialty/cyber/AI, cross-border supervision, liquidity/collateral, asset/capital, ownership, pension-transfer, credit-enhancement, operational-control, employment protection, public pooling, crop, alternative-capital, trade/political-risk, compulsory-cover, accounting/tax, federal-indemnity and insurer-failure extensions through October 1, 2026. Organization reconciled October 1, 2026; this is saved, usable research, not a fresh census of every carrier, treaty, health plan, pool, crop policy, security, transaction, state market, policy form, tax return, receivership, model, resolution plan or service contract.
 
-**Question:** Who promises protection, controls the assets supporting it, transfers or retains the risk, and pays or recoups a loss?
+**Question:** Which sovereign and supervisory authorities define the insurance constitution, how do insurer groups and balance sheets transmit monetary and capital-market policy, who transfers or retains the risk, and which private or public balance sheet pays or recoups a loss?
 
-Insurance can affect whether a project, mortgage, voyage or product can proceed. Reinsurance can transfer a defined share of risk while the direct insurer retains its policy obligation. The package follows both the contractual loss chain and the assets supporting long-dated liabilities. Those are related questions, not proof of one coordinated system or an inevitable public bailout.
+**Interpretive thesis:** Insurance as the Constitution of Permission and Public Loss owns the package-wide perspective: insurance decides which risks may proceed, who must pre-fund them, which losses remain private and when a loss becomes public.
 
-**Read the maintained answer:** [The Insurance Machine](../sources/insurance-reinsurance-deep-dive-20780fd540e8.html). It brings together the legal promise, reinsurance, reserve-supporting assets, models, public mechanisms and the corrected Hormuz case. Its claims describe the saved source period; later company, policy and payment states require their own dated evidence.
+Insurance can affect whether credit, housing, trade, infrastructure, employment benefits or public services can proceed. At system scale, long promises create large pools of capital, capital rules redirect demand, reinsurance moves economics across entities and borders, and statutory programs allocate specifically defined public loss layers. The package therefore starts with the sovereign, supervisory and balance-sheet constitution, then follows contractual and retail detail. Those connected layers are not proof of one controller, freely transferable group capital or an inevitable public bailout.
+
+**Start with the system map:** The Insurance Machine hub and [Big Insurance monetary and government control map](../sources/big-insurance-monetary-government-control-map-2026-10-01-a050a7dce491.html). Then read the maintained connected answer. The map establishes the top-down constitution; the connected answer follows legal promises, reinsurance, reserve-supporting assets, models and public mechanisms. Later company, policy, transfer and payment states require their own dated evidence.
 
 | Use | Existing owner |
 |---|---|
-| Follow the connected findings | [Deep dive](../sources/insurance-reinsurance-deep-dive-20780fd540e8.html) |
+| See the whole sovereign–supervisory–capital–risk–public-loss machine | Interactive hub |
+| Preserve the package-wide interpretive perspective and its falsifiers | Insurance constitutional thesis |
+| Understand government authority, monetary transmission, group capital, cross-border control and public loss sharing | [Big Insurance control map](../sources/big-insurance-monetary-government-control-map-2026-10-01-a050a7dce491.html) |
+| Follow cash demands, collateral calls, secured funding, encumbrance and asset-sale feedback | Liquidity, collateral and market-funding map |
+| Trace ratings, filing-exempt treatment, SVO/SSG work, statutory accounting and RBC conversion | Asset-classification, ratings and capital-gate map |
+| Trace acquisition approval, boards, CGAD/ORSA, affiliate transactions, related-party assets, fees, dividends and support | Ownership, governance and affiliate-control map |
+| Separate pension sponsor duty, provider selection, buy-in/buy-out/termination, annuity promise, PBGC and state-guaranty protection | Pension and retirement risk-transfer map |
+| Separate PMI, title, financial-guaranty and surety promises from the underlying debt, title or performance obligation | Credit-enhancement control map |
+| Locate authoritative policy, claim, filing, custody, collateral, cyber-continuity, reconciliation and remedy records | Operational, data and custody-control map |
+| Separate work causation, employment class, workers compensation, federal worker statutes, employer disability, state wage replacement and SSDI | Workers compensation, disability and employment-protection map |
+| Trace a public entity from budgeted retention through member pool, excess market, FEMA allocation and fiscal consequence | Public-entity and municipal risk-pool map |
+| Follow FCIC/RMA authority, AIP delivery, producer coverage, indemnity, SRA settlement, NAP and supplemental aid | Federal crop and agricultural-risk map |
+| Follow cat bonds and collateralized reinsurance from sponsor and SPV through collateral, trigger, release and investor outcome | Alternative risk capital and ILS map |
+| Separate private trade credit, EXIM, DFC, MIGA, sanctions, covered events, payment and recovery | Trade, export-credit and political-risk map |
+| Trace compulsory insurance and other financial-responsibility mechanisms from duty through proof, permission, lapse and third-party loss | Compulsory insurance and financial-responsibility constitution |
+| Separate economic, statutory, investor, tax, domicile, capital and cash measures | Accounting, tax and jurisdictional-location constitution |
+| Compare nuclear, space, aviation war-risk and SAFETY Act private/public liability structures | Federal indemnity and limited-liability constitution |
+| Follow domestic insurer distress through receivership, policy continuity, guaranty assessment, estate recovery and final loss | Domestic insurer failure and policy-continuity constitution |
+| See which large-system layers are strong, partial or still open and the order for filling them | System-layer gap audit |
+| Separate global standards, recognition instruments, group and legal-entity supervision, reserve credit, collateral, recovery and resolution | Cross-border supervision, market-structure and resolution map |
+| Follow the connected findings | Deep dive |
 | Test a specific assertion | [36-claim audit](../sources/insurance-reinsurance-claim-audit-6c96e2125d61.html) |
 | Identify actors, contracts, quantities and clocks | [Field registry](../sources/insurance-risk-transfer-field-registry-be5de4c8a988.html) |
 | Find named legal entities and relationships | Entity registry |
 | Follow what happened and what remained a question | Dated transition timeline |
 | Find the source body able to answer a later question | Source watchboard |
 | Examine liabilities, private assets and reinsurance | Life and annuity annex |
+| Read the year-end 2025 statutory update on reinsurance flows, private credit, affiliation, Schedule BA, investment managers and FABNs | Life and annuity funding state |
 | Examine local loss and public-funding arrangements | Property catastrophe annex |
+| Separate homeowners hazard, rate, premium, coverage, nonrenewal, residual-market and mortgage states | Affordability and availability control map |
+| Distinguish commercial health policies, self-funded employer plans, stop-loss, ACA transfers, Medicaid capitation, Medicare delivery and statutory social insurance | Health and social-insurance risk-transfer map |
+| Map admitted, surplus-lines, delegated-underwriting, Lloyd's, RRG/captive, cyber-aggregation, insurer-AI and catastrophic-cyber public perimeters | Commercial, specialty, cyber and AI control map |
 | Examine marine, sanctions, cyber, AI and digital cases | Strategic and digital annex |
+| Follow how actuarial studies become standards, signed records and regulatory inputs | Actuarial control plane |
 
-Useful unresolved questions include transaction-level collateral and reinsurance terms; actual catastrophe placement and recovery; vessel-level coverage and physical constraints; and production, title and claims evidence for digital workflows. The timeline retains the dated questions; the watchboard identifies sources. Missing evidence limits the particular claim, not whether useful research can be saved.
+Useful unresolved questions include the October 1 credit-rating-provider due-diligence disposition; the October 7 interconnectedness work plan; first public consequences of 2026 Group Capital Calculation and Liquidity Stress Test accreditation; IAIS 2026 baseline and 2027 detailed implementation assessments; the January 29–30, 2027 transposition and application of the EU Insurance Recovery and Resolution Directive; changes to reciprocal-jurisdiction or individual reinsurer status; operative consequences from FIO–BMA or FIO–CIMA cooperation; insurer use and repayment of FHLBank liquidity; any FSOC insurance designation or activity response; transaction-level collateral and reinsurance terms; the first public consequences of AG 55; year-end 2026 FABN, private-rating and private-placement disclosures; production CLO modeling; actual catastrophe placement and recovery; a final Form A order and closed control transaction; material affiliate-transaction, dividend or capital-support evidence; a pension-risk-transfer contract, participant distribution and later insurer payment record; PMIERs approval or credit-insurance claim consequence; a custody, cyber or filing incident with reconciled corrections; health-plan stop-loss, Medicaid risk-sharing, ACA transfer and Medicare reconciliation records; adoption and first examination use of the AI Risk Evaluation Supplement; the first matched AI underwriting order or AI-coverage claim; the Treasury/CISA catastrophic-cyber assessment; vessel-level coverage and physical constraints; and production, title and claims evidence for digital workflows. The gap audit ranks the next structural layers; the return ledger holds genuine revisit gates and the watchboard identifies sources. Missing evidence limits the particular claim, not whether useful research can be saved.
+
+The new layers add transaction-level return gates for a worker claim with payer and reimbursement records, a public-pool assessment or FEMA allocation, a completed crop-year and AIP-FCIC settlement, a catastrophe-bond trigger and collateral release, an EXIM/DFC/MIGA claim, a financial-responsibility lapse or third-party payment, an accounting-to-tax-to-cash reconciliation, a federally funded indemnity claim, and a receivership with policy transfer, assessment and estate recovery. The gap audit now treats these horizontal macro layers as structurally filled; its narrower future candidates do not displace the evidence returns.

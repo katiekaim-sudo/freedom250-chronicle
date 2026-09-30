@@ -7,6 +7,7 @@
   "question": "How much does FY2027 funding change, which institutions gain or lose, and what is enacted rather than proposed?",
   "bluf": "April policy estimates raise total outlays about 7.3%, with sharper changes in agency priorities. FY2027 annual appropriations begin under a continuing resolution through December 11; enacted multiyear border funding and September mandatory-outlay updates remain separate. Entity-chart cards preserve department, component, function, authority and spending distinctions.",
   "evidence_cutoff": "2026-09-11T19:55:13-04:00",
+  "use_note": "Read the final materiality scope before the historical exhaustive goal. Do not mix April proposals, September current-law estimates, annual CR rates or multiyear authority. Unmapped entities are not zero funded.",
   "library_state": "current",
   "entities": [
     "OMB",
@@ -48,11 +49,12 @@
   "material_counts": {
     "total": 158,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 157
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 2,
+    "orientation": 0,
+    "findings": 3,
     "evidence": 8,
     "monitoring": 0,
     "methods": 135,
@@ -71,13 +73,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -85,17 +89,16 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "bc27bfabcf8fc7c9"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 2,
+      "count": 3,
       "material_ids": [
+        "bc27bfabcf8fc7c9",
         "9037d448488ce887",
         "181078b2f7ba1766"
       ]
@@ -298,7 +301,7 @@
     {
       "material_id": "bc27bfabcf8fc7c9",
       "title": "Federal budget: FY2026 to FY2027",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

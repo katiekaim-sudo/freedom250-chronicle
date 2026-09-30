@@ -1,4 +1,4 @@
-> Source evidence cutoff: 2026-09-25T23:59:59-04:00
+> Source evidence cutoff: 2026-09-29T23:59:59-04:00
 
 # Government-Wide Research Hub
 
@@ -21,13 +21,21 @@ own records. It presents seven coordinated views without merging their meaning:
 7. typed gaps and exact next-check conditions projected from their existing
    owners without turning them into one generic watch list.
 
-The entity chart covers all 650 Federal Group nodes. Twenty-seven exact tree
-paths also carry stable relationship `body_id` values; the remaining 65
+The entity chart covers all 650 Federal Group nodes. Thirty-one exact tree
+paths also carry stable relationship `body_id` values; the remaining 81
 relationship endpoints stay in the separate directory rather than becoming
 invented tree nodes. Research paths currently
-highlight 167 exact note-bearing or research-bearing entities; Whole family
+highlight 175 exact note-bearing or research-bearing entities; Whole family
 restores the surrounding structural nodes without treating sparse coverage as a
 finding of no activity.
+
+The September 30 relationship refresh binds CISA to its exact DHS tree node and
+adds NCSWIC as an off-tree intergovernmental governance body. Separate records
+show CISA administrative support, CISA technical support and NCSWIC advice to
+CISA; the membership profile preserves the 56-jurisdiction SWIC design. The
+NCSWIC endpoint routes directly to the Sovereign Communications governance map.
+None of these records makes state coordinators federal subordinates or turns a
+council product into state adoption, procurement, deployment or operation.
 
 ## Read order
 

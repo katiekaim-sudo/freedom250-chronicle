@@ -2,8 +2,8 @@
 
 **Research ID:** `un-general-assembly-high-level-week-2026`  
 **Focus reset:** 2026-09-26 17:40 EDT  
-**Primary-source refresh:** official ODET and PGA records checked 2026-09-29  
-**State:** Digital Cooperation Day and the General Debate are complete; the debate produced a strong AI-governance salience signal, but no located UN crypto, AI-finance or sandbox instrument crossed into adoption, capitalization or operation
+**Primary-source refresh:** official ODET, PGA, UN Journal, eStatements, WebTV and Secretary-General records checked through the 29 September proceedings on 2026-09-30  
+**State:** complete through UNGA81 High-Level Week; four technology-relevant movements and one material AI–nuclear-risk screen were reconciled, but no located UN crypto, AI-finance, sandbox or nuclear-AI implementation instrument crossed into new adoption, capitalization or operation during the week
 
 ## The actual question
 
@@ -74,6 +74,27 @@ risk model or authorized a new institution. The closing statement announced
 no adopted rule, negotiating text, budget, fund, standard, implementation body
 or operating programme.
 
+### 5. The September 29 nuclear meeting raised AI risk but created no new machinery
+
+The annual high-level plenary meeting was held in two recorded sessions. In
+his official remarks as delivered, the President said AI, cyber capabilities
+and advanced delivery systems are adding uncertainty to nuclear command,
+control and decision-making. The Secretary-General likewise warned that
+technological advances are increasing the risk of mistake and miscalculation.
+
+That language is materially relevant to the Observatory, but it did **not**
+create a new UNGA81 rule, doctrine, reporting system, verification mechanism,
+budget or implementation body. The controlling adopted authority remains
+General Assembly resolution A/RES/80/23 of 1 December 2025. It demands human
+control and oversight over nuclear command, control and communications systems
+that integrate AI; urges nuclear-weapon States to publish policies and
+doctrines that operationalize that control and prevent autonomous initiation
+of nuclear-use decisions; calls for common understandings and
+confidence-building measures; and places the subject on the eighty-first
+session agenda. The September 29 meeting delivered renewed risk framing and
+general calls for guardrails, but the official event page exposes no new
+outcome instrument implementing those earlier demands.
+
 ## What did not cross
 
 - **Global Fund for AI Capacity-Building:** A/80/817 recommends that the
@@ -97,8 +118,13 @@ or operating programme.
   exposes the agenda, speakers, photographs and three room recordings. The
   focused September 29 refresh did not locate a new consolidated outcome or a
   later instrument that changes the state above.
+- **AI in nuclear command and control:** A/RES/80/23 is an adopted pre-week
+  authority and agenda mandate. The September 29 high-level meeting did not
+  add a national doctrine publication, common-understanding text,
+  confidence-building measure, verification protocol, implementation owner or
+  operating receipt.
 
-## Active return gates
+## Long-term return gates
 
 Only reopen the package for one of these receipts:
 
@@ -118,7 +144,10 @@ Only reopen the package for one of these receipts:
    for AI, innovation or digital inclusion; or
 8. a 2027 Global Dialogue negotiating text, agreed priority area, appointed
    implementation owner or other receipt that converts the 128-delegation
-   salience signal into common policy machinery.
+   salience signal into common policy machinery; or
+9. a published nuclear-weapon-State AI/NC3 doctrine, agreed common
+   understanding, confidence-building measure or implementation mechanism
+   responsive to A/RES/80/23.
 
 ## Research routing
 
@@ -134,9 +163,8 @@ Only reopen the package for one of these receipts:
 - **Visual hub:** `outputs/UNGA81 Week — Agenda × Architecture × Outcomes.html`
 
 The September 26 live General Debate captures remain historical source custody.
-They are no longer the active research frontier and should not be extended
-unless a technology-relevant speech or session-level close materially changes
-this handoff.
+Daily High-Level Week monitoring is complete. Reopen this package only when a
+long-term return gate above clears.
 
 ## Primary sources
 
@@ -153,6 +181,22 @@ this handoff.
 - President of the General Assembly, remarks at the close of the General
   Debate, 28 September 2026:
   <https://www.un.org/pga/81/documents/speeches/close-of-the-general-debate-28-september-2026/>
+- President of the General Assembly, nuclear-disarmament remarks as delivered,
+  29 September 2026:
+  <https://www.un.org/pga/81/documents/speeches/nuclear-weapons-elimination-day-29-september-2026/>
+- Secretary-General, remarks at the nuclear-disarmament plenary, 29 September
+  2026:
+  <https://www.un.org/sg/en/content/sg/statements/2026-09-29/secretary-generals-remarks-the-plenary-meeting-the-international-day-for-the-total-elimination-of-nuclear-weapons>
+- UN Journal, 29 September morning and afternoon meeting records:
+  <https://journal.un.org/en/new-york/meeting/officials/2082c9ee-84e1-462b-b34f-703accb39ebc/2026-09-29>
+  and
+  <https://journal.un.org/en/new-york/meeting/officials/9371e028-71a8-4671-af06-314e8d26c5ad/2026-09-29>
+- UN WebTV, 29 September meeting recordings, parts 1 and 2:
+  <https://webtv.un.org/en/asset/k19/k19ugmm4y6> and
+  <https://webtv.un.org/en/asset/k1e/k1e0kjhzk5>
+- General Assembly resolution A/RES/80/23, possible risks of integrating AI
+  into nuclear command, control and communications systems:
+  <https://documents.un.org/api/symbol/access?l=en&s=A%2FRES%2F80%2F23&t=pdf>
 
 ## Clock boundary
 

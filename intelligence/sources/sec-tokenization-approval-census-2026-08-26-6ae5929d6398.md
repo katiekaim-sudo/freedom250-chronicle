@@ -1,4 +1,4 @@
-> Source cutoff: 2026-08-26T12:55:35-04:00 · Source updated: 2026-09-17
+> Source cutoff: 2026-08-26T12:55:35-04:00 · Source updated: 2026-09-30
 
 # SEC Tokenization Approval Census — What Was Actually Approved
 
@@ -11,6 +11,42 @@
 **Cutoff:** 2026-08-26 12:55:35 EDT. A bounded negative means “not located on the official surfaces reached through this cutoff,” not proof that no private or unpublished action exists.
 
 **Mutation boundary:** workbench research only. No vault event, canonical watch, plotline or app state was changed.
+
+## September 30 addendum: fifth Commission-level action
+
+Investment Company Act Order **IC-36333**, issued September 21, adds a **fifth
+Commission-level tokenization-linked action** to the four-action September 17
+state. The order grants ARK Venture Fund and ARK Investment Management relief
+for a multiple-class structure that includes an exchange-traded class and a
+tokenized class whose shares may trade on one or more alternative trading
+systems or be quoted through other quotation media.
+
+The Commission's September 30 interval-fund proposal, Release 33-11444, makes
+the boundary unusually clear. Its proposed generally available multiple-class
+rule would require qualifying closed-end-fund shares to remain unlisted and not
+offered or traded on a secondary market. On page 116, the Commission says it
+does **not** plan to rescind the ARK order and suggests that comparable unique
+structures continue through individualized exemptive applications and facts-
+and-circumstances review.
+
+State: `Commission exemptive relief effective immediately / bespoke fund-class
+structure permitted subject to application conditions / no Tokenized Class
+registration located / Exchange Class registration delayed to October 23 /
+venue admission, launch, transactions, reconciliation and scale not
+established`.
+
+The detailed control map is
+`ARK_VENTURE_FUND_TOKENIZED_CLASS_CONTROL_MAP_2026-09-30.md`.
+
+Primary sources: [ARK order IC-36333](https://www.sec.gov/files/rules/ic/2026/ic-36333.pdf),
+[notice IC-36308](https://www.sec.gov/files/rules/ic/2026/ic-36308.pdf) and
+[interval-fund proposal 33-11444](https://www.sec.gov/files/rules/proposed/2026/33-11444.pdf),
+especially page 116.
+
+The proposal's page-116 footnote still contains an unresolved order-number and
+date placeholder, but the substantive text says the order issued and an
+earlier footnote identifies IC-36333 and September 21. The separate official
+order controls the disposition state.
 
 ## September 17 addendum: fourth Commission-level action
 
@@ -181,16 +217,7 @@ Other operating registered tokenized-security examples include Arca’s ArCoin i
 
 | Item | Correct state at cutoff |
 |---|---|
-| ARK Venture Fund Tokenized Class | **Pending application.** Notice IC-36308 was issued 2026-08-24; hearing requests are due 2026-09-18 at 5:30 p.m. ET. No order or launch. [SEC notice](https://www.sec.gov/files/rules/ic/2026/ic-36308.pdf) |
-
-**September 21 return:** The hearing-request deadline has passed. The SEC's
-[current Investment Company Act table](https://www.sec.gov/rules-regulations/investment-company-act-notices-orders)
-still lists file 812-16031 only as the August 24 notice; no Commission order,
-denial or withdrawal for the application was located on the reviewed official
-surfaces. The disposition return therefore becomes source-triggered. This
-bounded non-detection does not establish that no nonpublic request exists, and a
-future order would remain separate from effectiveness, ATS admission, investor
-access and commercial launch.
+| ARK Venture Fund Tokenized Class | **Commission exemptive order issued; class not shown operating.** Order IC-36333 was issued 2026-09-21 after Notice IC-36308 and makes the conditional exemptive relief effective immediately. No Tokenized Class registration filing was located through September 30; the separate Exchange Class registration date was delayed to October 23. Venue admission, investor access, launch, settlement, reconciliation and observed trading remain separate and were not established. [SEC order](https://www.sec.gov/files/rules/ic/2026/ic-36333.pdf); detailed control map |
 | Superstate USTB conversion to registered MMF | **Pending/un-effective.** Existing USTB remains a private offering; no effectiveness record for the proposed MMF conversion was located. [Superstate SEC submission](https://www.sec.gov/file/ctf-superstate-letter-061725) |
 | NYSE standalone 24/7 tokenized platform | **Announced and subject to regulatory approvals.** It is separate from the immediately effective DTC-pilot rule filings. [ICE/NYSE announcement](https://ir.theice.com/press/news-details/2026/The-New-York-Stock-Exchange-Develops-Tokenized-Securities-Platform/default.aspx) |
 | BSTX | The 2022 Commission orders approved an NMS equity venue with conventional NSCC/DTC settlement and a blockchain market-data feed. The order expressly did **not** approve digital-token trading. [BSTX order](https://www.sec.gov/files/rules/sro/box/2022/34-94092.pdf) |
@@ -241,7 +268,9 @@ The next promotion-worthy objects are:
 2. DTC gives staff its Preliminary Base Version launch notice and publishes participant terms, fees, approved networks and operating evidence;
 3. PSSC files completed ramp-up materials, begins operation or receives permanent/extended registration;
 4. HQLAx identifies a qualifying U.S. participant or reports U.S.-linked activity;
-5. the Commission grants, denies or modifies the ARK tokenized-class application;
+5. ARK files an effective class registration, identifies an ATS or quotation
+   medium, launches the tokenized class, or produces observed transaction and
+   official-record receipts;
 6. a future SEC MMF census incorporates DOLXX/RSVXX or changes the staff classification methodology;
 7. a Commission order approves a genuinely native or non-fungible tokenized-security architecture rather than a same-security entitlement adapter.
 
@@ -253,7 +282,7 @@ The next promotion-worthy objects are:
 | 2. DTC broader-service launch and operating terms | `existing_canonical_watch` | `w-2026-10-01-dtc-tokenization-opening`; Return Ledger row `ret-dtc-tokenization-broader-opening-2026-10-01` |
 | 3. PSSC ramp-up, operation or registration disposition | `package_context_only` | — |
 | 4. HQLAx U.S.-participant or activity evidence | `package_context_only` | — |
-| 5. ARK tokenized-class disposition | `ledger` | — |
+| 5. ARK tokenized-class activation and operation | `ledger` | — |
 | 6. Future SEC tokenized-MMF census | `package_context_only` | — |
 | 7. Native/non-fungible architecture approval | `package_context_only` | — |
 

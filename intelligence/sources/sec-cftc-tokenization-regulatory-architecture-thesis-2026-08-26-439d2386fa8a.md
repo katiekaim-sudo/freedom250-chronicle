@@ -1,4 +1,4 @@
-> Source cutoff: 2026-09-25 · Source updated: 2026-09-25
+> Source cutoff: 2026-10-01 · Source updated: 2026-10-01
 
 # SEC–CFTC Tokenization Regulatory Architecture Thesis
 
@@ -18,13 +18,39 @@ stablecoins, central-bank settlement access, commercial-law record priority
 and failure-state protection. State implementation, tax and international
 comparison are included only where they change a federal handoff.
 
-**Evidence cutoff:** 2026-09-25 EDT. Legal state and operating state are kept
+**Evidence cutoff:** 2026-10-01 EDT. Legal state and operating state are kept
 separate. Commissioner speeches, staff statements, no-action positions,
 registered/effective securities, proposed rules, Commission orders, enacted
 law and observed production are not interchangeable.
 
 **Mutation boundary:** Workbench research only. This thesis is not a vault
 landing, canonical watch-calendar change or app-state mutation.
+
+## October 1 proposal baseline: custody becomes a separate constitutional adapter
+
+The Commission's 760-page adviser and regulated-fund crypto-custody proposal
+fills the most important missing adapter beneath the September 17 tokenized-
+securities execution order. It would create a residual self-custody route only
+while no qualified custodian will maintain the particular covered asset, a
+conditional State trust route, a human key-authority perimeter, per-client
+address segregation, independent operating-effectiveness evidence, an Article
+8 property frame and qualifying onchain regulatory records. It supplies no
+general DeFi or trading-platform custody exception and no universal cash,
+clearing, settlement-finality or loss-allocation rule.
+
+**Thesis effect:** execution and records may move into onchain containers while
+custody, beneficial ownership, key authority, accounting, examiner production,
+property priority and remedy remain separately governed. This strengthens the
+controlled-constitutional-retrofit thesis: the Commission is opening functions
+through distinct adapters rather than declaring blockchain finance one legal
+object.
+
+The proposal baseline is frozen as 36 stable provisions across eight
+constitutional layers in the
+proposal-to-final change map.
+Every final-rule slot remains pending. No Hub actor, asset, custodian, wallet,
+network, fund or transaction receives current permission or operating status
+from the proposal.
 
 ## September 25 refinement: the asset-to-network lifecycle is now more explicit
 

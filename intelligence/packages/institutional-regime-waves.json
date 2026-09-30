@@ -7,6 +7,8 @@
   "question": "What do the transshipment report and customs record proposals establish about origin verification, and what remains a claim or proposed system?",
   "bluf": "A dated factual audit of the White House transshipment report, importer records and supply-chain disclosure proposals. It separates risk classification from an adjudicated violation and proposed origin-data architecture from observed deployment.",
   "evidence_cutoff": "2026-09-02",
+  "evidence_cutoff_note": "Factual customs audit through September 2, 2026 at 2:11 p.m. EDT. Publication, proposed reporting, adjudication and actual deployment remain separate.",
+  "use_note": "Read risk tiers and exposure estimates as dated claims, not proved country offenses. Detective Border is described as target-state architecture, not a deployment receipt. The earlier mixed institutional-wave interpretation is preserved in Sky & Charts → Astrology Files → Institutional Regime Waves — Astrology.",
   "library_state": "current",
   "entities": [
     "Canada",
@@ -44,11 +46,12 @@
   "material_counts": {
     "total": 2,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 1
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 0,
+    "orientation": 0,
+    "findings": 1,
     "evidence": 0,
     "monitoring": 0,
     "methods": 0,
@@ -67,13 +70,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -81,17 +86,17 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "db6e728890edc165"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "db6e728890edc165"
+      ]
     },
     {
       "id": "evidence",
@@ -135,7 +140,7 @@
     {
       "material_id": "db6e728890edc165",
       "title": "Canada, Transshipment and the Customs Origin Ledger",
-      "artifact_role": "read_first",
+      "artifact_role": "claim_audit",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

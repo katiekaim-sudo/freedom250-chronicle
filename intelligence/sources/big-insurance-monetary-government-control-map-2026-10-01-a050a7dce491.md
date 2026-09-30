@@ -1,0 +1,288 @@
+> Source evidence cutoff: 2026-10-01
+
+# Big Insurance: Monetary and Government Control Map
+
+## The sovereign, supervisory and capital-market machine above the retail policy
+
+**Question:** At system scale, who governs insurance, where do insurer balance sheets sit inside monetary and capital markets, how does risk move across legal entities and borders, and which public balance sheet is actually exposed when private capacity fails or a designated catastrophe occurs?
+
+**Scope:** The U.S. insurance constitution with its federal, state and international interfaces; aggregate year-end 2025 life/annuity and property/casualty balance sheets; group capital, liquidity and failure controls; insurer monetary-policy transmission; public risk-sharing programs; and cross-border reinsurance. Retail policies and claims appear only as the legal promises that anchor the larger machine. Standalone health insurers are not included in the Federal Insurance Office's 2026 aggregate industry tables and remain separately mapped in the health study.
+
+**Evidence cutoff:** October 1, 2026. The 2026 FIO Annual Report, current NAIC pages, current Federal Reserve rules, 2025 FSOC report, 2025 FHFA annual record and IAIS implementation timetable were checked for this wave. Same-day committee and implementation pages remain subject to later disposition.
+
+## Bottom line
+
+Big insurance is a **distributed public-private balance-sheet constitution**. No single U.S. insurance ministry controls it.
+
+```text
+Congress and state legislatures
+  -> state insurance commissioners and domiciliary legal-entity supervision
+  -> lead-state and group tools coordinated through NAIC processes
+  -> Treasury / FIO / FSOC / Federal Reserve / SEC / DOL / CMS / FHFA functional perimeters
+  -> IAIS, covered agreements and foreign group supervisors
+  -> insurer holding company, licensed insurers, reinsurers, captives and asset managers
+  -> reserves, capital, collateral, liquidity and invested assets
+  -> households, firms, governments and financial markets
+  -> claims, recoveries, resolution, assessments, borrowing or fiscal loss
+```
+
+The top-down lens changes the central question. Insurance is not merely a bill paid by a household. It is a way to:
+
+- convert long-dated promises into large pools of invested capital;
+- allocate catastrophe, mortality, longevity, liability and market risk across legal entities and jurisdictions;
+- condition mortgages, projects, trade, employment benefits and public services;
+- transmit interest rates and capital rules into demand for corporate credit, mortgages, structured assets and private debt;
+- bring state assessments, federal programs, government-sponsored liquidity and ultimately fiscal capacity into specifically defined loss paths.
+
+The control system is powerful because it is fragmented. State commissioners protect the solvency of licensed entities; lead-state tools look across groups; federal bodies monitor systemic, securities, benefit, housing-liquidity and public-program perimeters; international standards create a common supervisory language; and contracts determine which private balance sheet takes the next loss. Every layer needs its own authority and cash record.
+
+## 1. The U.S. insurance constitution
+
+| Level | Actor or institution | Actual power | Record | Boundary |
+|---|---|---|---|---|
+| Sovereign law | Congress, state legislatures and courts | create charters, product and solvency authority, taxes, benefit programs, resolution rules and public backstops | statute, regulation, judgment, appropriation | a policy preference or model text is not operative law |
+| Legal-entity supervisor | state insurance commissioner in the insurer's domicile | license, examine, approve material transactions, enforce reserves/capital, restrict dividends, rehabilitate or liquidate | licence, filing, examination, consent order, receivership record | group brand and NAIC coordination do not replace the commissioner's jurisdiction |
+| National coordination | NAIC members, committees and accreditation program | create model laws, accounting instructions, RBC methods, data systems and peer standards for states | adopted model, manual, instruction, accreditation standard | NAIC is not a federal regulator and adoption is not automatic in every state |
+| Group supervision | lead state and other domiciliary regulators | examine enterprise risk, affiliate transactions, group capital and liquidity; coordinate a supervisory college | Schedule Y, Form F, ORSA, GCC, LST, college record | group measurement does not make capital freely transferable between legal entities |
+| Treasury insurance policy | Federal Insurance Office | monitor the sector, advise Treasury, represent the United States internationally, administer TRIP support, recommend an insurer for FSOC designation and make bounded preemption determinations | annual/preemption/TRIP report, covered agreement, recommendation | FIO does not generally charter insurers or approve retail rates and excludes health insurance from important parts of its statutory perimeter |
+| Financial stability | FSOC | identify risks and, under section 113, designate a nonbank financial company for Federal Reserve supervision if the statutory test is met | annual report, analytic framework, designation and rescission record | risk monitoring is not designation; designation is not failure or a bailout |
+| Federal consolidated supervision | Federal Reserve | supervise covered depository-institution holding companies significantly engaged in insurance and a designated nonbank; apply the Building Block Approach where applicable | Regulation Q, supervisory record, capital calculation | the Fed does not supervise every insurer or replace state legal-entity capital rules |
+| Functional federal perimeter | SEC, DOL, CMS, PBGC, FHFA, tax and sanctions authorities | regulate securities and variable products, ERISA plans, federal health programs, pension guarantees, FHLBank liquidity, tax and prohibited transactions | agency-specific filing, contract, audit, enforcement or payment record | each authority reaches a named product, entity or activity—not “insurance” in the abstract |
+| International standard setting | IAIS and Financial Stability Board | establish Insurance Core Principles, ComFrame, the Insurance Capital Standard and the Holistic Framework used by supervisors | adopted standard, assessment and peer-review record | a global standard is not self-executing domestic law |
+| Foreign and cross-border supervision | foreign group supervisors, covered-agreement parties and supervisory colleges | supervise foreign legal entities and groups, exchange information and coordinate prudential treatment | licence, group decision, MOU, covered agreement, college record | cooperation is not shared treasury, joint guarantee or automatic U.S. legal effect |
+
+FIO's September 2026 report states the constitutional split plainly: the primary regulators of the business of insurance are the 50 states, the District of Columbia and five U.S. territories, while federal law creates important financial-stability, securities, benefit-plan, tax, public-program and international roles.
+
+**Primary sources:** [2026 FIO Annual Report](https://home.treasury.gov/system/files/311/2026-FIO-AR.pdf) · [FIO statutory role](https://home.treasury.gov/policy-issues/financial-markets-financial-institutions-and-fiscal-service/federal-insurance-office/about-fio) · [FSOC nonbank guidance and analytic framework](https://home.treasury.gov/policy-issues/financial-markets-financial-institutions-and-fiscal-service/fsoc/rulemaking-and-notices) · [Federal Reserve Regulation Q](https://www.federalreserve.gov/frrs/regulations/regulation-q-capital-adequacy-of-bank-holding-companies-and-state-member-banks.htm)
+
+## 2. The “windows and walls” group constitution
+
+The retail policy is issued by a legal entity, not by an undifferentiated corporate group. That entity-level promise is the wall the U.S. framework tries to protect. At the same time, ownership, guarantees, reinsurance, derivatives, asset management and capital can cross affiliate boundaries. Regulators therefore need windows into the wider enterprise.
+
+The NAIC describes the U.S. holding-company approach as **windows and walls**:
+
+- windows let regulators examine group structure, enterprise risk, affiliate arrangements and non-insurance activity;
+- walls protect the insurer's capital through legal-entity rules and approval of material related-party transactions.
+
+The group record now has several non-equivalent tools:
+
+| Tool | What it sees | What it is not |
+|---|---|---|
+| Schedule Y and holding-company filings | legal entities, ownership and selected transactions | proof of operational control over every asset or affiliate |
+| Form F enterprise-risk report | risks from the broader system that could affect the insurer | a public event ledger or capital requirement |
+| ORSA | management's current and prospective risk and capital self-assessment under stress | the statutory RBC intervention trigger or regulator's independent conclusion |
+| Legal-entity RBC | risk-sensitive capital at the licensed insurer and defined intervention levels | consolidated group capital or available cash at the parent |
+| Group Capital Calculation | location and sources of capital and risks outside insurers for lead-state analysis | a replacement for legal-entity RBC or proof that capital can move freely |
+| Liquidity Stress Test | macroprudential view of large-life liquidity under scenarios | a public cash forecast or a Federal Reserve discount-window entitlement |
+| Supervisory college | coordination among state, federal and foreign supervisors | delegation of each commissioner's legal authority to the college |
+
+Two 2026 changes matter. The NAIC accreditation program made the 2020 holding-company changes implementing the Group Capital Calculation and Liquidity Stress Test significant accreditation elements effective January 1, 2026. Its Financial Stability Task Force is also operating a macroprudential surveillance program, not merely a company-by-company solvency process.
+
+That does not nationalize insurance regulation. It makes group and system risk more visible inside a state-based constitution.
+
+**Primary sources:** [NAIC group supervision](https://content.naic.org/insurance-topics/group-supervision) · [NAIC Group Capital Calculation](https://content.naic.org/insurance-topics/group-capital-calculation) · [NAIC ORSA](https://content.naic.org/insurance-topics/own-risk-and-solvency-assessment) · [NAIC Financial Regulation Standards and Accreditation Committee](https://content.naic.org/committees/f/financial-regulation-standards-accreditation-cmte) · [NAIC macroprudential supervision](https://content.naic.org/insurance-topics/macroprudential-supervision)
+
+## 3. The balance-sheet scale
+
+The insurance system is a major capital-market actor before any catastrophe occurs.
+
+FIO's 2026 report, using year-end 2025 data, shows:
+
+- **$2.2 trillion** of direct premiums written across the life/health and property/casualty sectors as FIO defines them; this excludes standalone health insurers and excludes life-insurer deposits from that premium measure;
+- **$9.902 trillion** of life-and-health-sector assets, including **$6.382 trillion** in general accounts and **$3.520 trillion** in separate accounts;
+- **$3.223 trillion** of P&C-sector assets and **$1.246 trillion** of policyholder surplus;
+- a U.S. share of **44.4 percent** of nearly **$7.2 trillion** in global direct premiums in 2025, using FIO's international series, which includes health.
+
+These numbers should not be collapsed into one pot of “insurer money.” Separate-account investment risk and legal rights differ from the general account. P&C claims are generally shorter and more event-driven than annuity and life obligations. Health entities are outside the cited domestic aggregate. Statutory carrying values, market values and usable parent liquidity are different quantities.
+
+The direction is nevertheless clear: insurance converts premium, annuity consideration and investment income into one of the world's largest pools of financial assets.
+
+**Primary source:** [2026 FIO Annual Report](https://home.treasury.gov/system/files/311/2026-FIO-AR.pdf)
+
+## 4. The insurer channel of monetary policy
+
+Insurers do not create transaction deposits like banks, and ordinary insurers do not receive Federal Reserve reserve accounts or routine discount-window access merely because they are large. Their monetary role is different.
+
+### 4.1 Long liabilities create demand at the long end
+
+Life insurers price and reserve long promises against a yield curve and invest heavily in fixed income. Higher long-term yields can improve reinvestment income and make guarantees easier to support, while rapid rate changes can create unrealized losses, derivative collateral needs, surrender incentives and liquidity pressure. Lower yields raise the value of long liabilities and can encourage a search for spread.
+
+FIO reported that 66.8 percent of life-sector cash and invested assets were long-term bonds at year-end 2025, with mortgage loans another 13.9 percent. Privately placed bonds—including FIO's broad private-credit category—had reached 48.4 percent of life-sector bond holdings. The broad “private placement” measure is not identical to every private-credit definition, but it shows the size of the less-public channel.
+
+An IMF working paper provides evidence of a specific transmission mechanism: long-term risk-free rates change life insurers' relative demand for Treasury and private corporate debt, affecting risk premia more strongly where insurers are a larger investor base. That is research evidence, not a Federal Reserve operating rule or proof that all companies react alike.
+
+### 4.2 Regulatory capital is part of transmission
+
+Risk weights and valuation rules change the relative cost of owning assets. A monetary shock therefore reaches insurance through both market price and supervisory accounting:
+
+```text
+Federal Reserve policy and long-term rate expectations
+  -> Treasury curve, credit spread, equity and mortgage valuation
+  -> insurer asset yield, liability value, hedging and surrender behavior
+  -> statutory valuation and risk-based capital treatment
+  -> portfolio demand, product pricing, reinsurance and liquidity action
+  -> borrower financing conditions and policyholder terms
+```
+
+Every arrow is contingent. The policy rate does not order an insurer to buy or sell a bond. Statutory accounting can damp market-value volatility without eliminating economic risk. Higher yields can improve income and simultaneously reduce the market value of existing bonds.
+
+### 4.3 The FHLBank bridge is real but bounded
+
+Insurance companies can be members of the government-chartered Federal Home Loan Bank System and borrow through secured advances. FHFA reported 622 insurance-company members at year-end 2025 and said insurers' share of total FHLBank advances rose to 26.5 percent from 22.2 percent a year earlier. FIO identifies FHLBank funding as one source life insurers can use to manage liquidity and reduce fire-sale pressure.
+
+This is an important public-private liquidity bridge, but it is not central-bank money or an unsecured guarantee. Each advance is a loan from an FHLBank to a qualifying member, subject to collateral, member creditworthiness and FHFA/FHLBank rules. Membership, available collateral, borrowing, repayment and any troubled-member action require separate evidence.
+
+**Primary and research sources:** [2026 FIO Annual Report](https://home.treasury.gov/system/files/311/2026-FIO-AR.pdf) · [FHFA 2025 Annual Report to Congress](https://www.fhfa.gov/document/d/arc/fhfa-2025-annual-report-to-congress.pdf) · [FHFA on the FHLBank System](https://www.fhfa.gov/about/federal-home-loan-bank-system) · [IMF working paper, The Insurer Channel of Monetary Policy](https://www.imf.org/en/Publications/WP/Issues/2025/03/14/The-Insurer-Channel-of-Monetary-Policy-565244)
+
+## 5. Private credit, asset management and reinsurance form one control problem
+
+The system-scale issue is not simply whether insurers hold “private credit.” It is whether the same wider group or commercial ecosystem can influence:
+
+- product origination and policy liabilities;
+- asset sourcing, underwriting and valuation;
+- private ratings and NAIC designations;
+- reinsurance pricing and reserve transfer;
+- collateral composition and custody;
+- affiliate fees, dividends and capital movement;
+- access to institutional funding such as funding-agreement-backed notes;
+- the timing and venue of loss recognition.
+
+FIO's year-end 2025 record found private placements approaching 3.6 times life-sector capital and surplus, while alternative assets reached $475.6 billion. It also preserved the counterweight: 95.4 percent of life bonds were investment grade, operating cash flow was positive and aggregate cash and invested assets exceeded general-account liabilities on a carrying-value basis.
+
+That supports monitoring, not a declaration of hidden insolvency. The correct top-down audit separates:
+
+```text
+legal asset owner
+  ≠ investment manager
+  ≠ loan originator
+  ≠ rating or designation source
+  ≠ policy issuer
+  ≠ reinsurer
+  ≠ collateral controller
+  ≠ ultimate beneficiary or creditor
+```
+
+FSOC's 2025 report described private credit as increasingly interconnected with banks and insurers and emphasized opacity and valuation challenges. Treasury convened state regulators in 2026 specifically around private credit, offshore reserve movement, RBC, private letter ratings and evolving business models. These are policy and surveillance records—not findings against a named insurer or asset.
+
+**Primary sources:** [2026 FIO Annual Report](https://home.treasury.gov/system/files/311/2026-FIO-AR.pdf) · [2025 FSOC Annual Report](https://home.treasury.gov/system/files/261/FSOC2025AnnualReport.pdf) · [Treasury convening with state insurance commissioners](https://home.treasury.gov/news/press-releases/sb0493)
+
+## 6. Cross-border insurance is a supervisory network, not one global regulator
+
+Large groups can contain U.S. policy issuers, holding companies, foreign reinsurers, special-purpose vehicles, asset managers and investors in different jurisdictions. The economic risk can move while legal obligations and capital remain entity-specific.
+
+The international control stack has four layers:
+
+1. the domestic law and supervisor of each legal entity;
+2. the identified group-wide supervisor and supervisory college;
+3. IAIS Insurance Core Principles and ComFrame for internationally active insurance groups;
+4. covered agreements, bilateral cooperation and information-sharing arrangements.
+
+The IAIS adopted the Insurance Capital Standard as a group-wide prescribed capital requirement for internationally active insurance groups in late 2024. It reported 59 identified IAIGs across 18 jurisdictions at adoption. The U.S.-developed Aggregation Method was found to provide a basis for implementation with comparable outcomes, while interest-rate treatment and timing of intervention remained implementation issues. The timetable calls for 2026 baseline self-assessments and detailed jurisdictional assessments beginning in 2027.
+
+Those dates matter. Adoption created the international standard; jurisdictional implementation creates domestic supervisory effect; assessment tests consistency; an intervention would require a separate group or legal-entity record.
+
+The systemic-risk framework has also moved away from treating a list of globally systemically important insurers as the whole answer. FIO says the Financial Stability Board reaffirmed in 2025 that it would rely on IAIS Holistic Framework assessments as the principal international insurance-risk monitoring tool. That focuses attention on activities, exposures, liquidity, counterparty concentration and recovery/resolution across the sector and named groups.
+
+In 2026, FIO signed a memorandum of understanding with the Bermuda Monetary Authority and a bilateral statement of cooperation with the Cayman Islands Monetary Authority. Those records deepen information exchange around major reinsurance jurisdictions; they do not merge supervision, guarantee a reinsurer or approve a particular treaty.
+
+**Primary sources:** [IAIS adoption of the Insurance Capital Standard](https://www.iaisweb.org/uploads/2024/12/IAIS-Press-Release-IAIS-adopts-Insurance-Capital-Standard-and-other-enhancements-to-its-global-standards-to-promote-a-resilient-insurance-sector.pdf) · [2026 FIO Annual Report](https://home.treasury.gov/system/files/311/2026-FIO-AR.pdf) · [NAIC internationally active insurance groups](https://content.naic.org/insurance-topics/internationally-active-insurance-group)
+
+## 7. Public loss sharing is a portfolio of constitutions
+
+Government does not stand “behind insurance” in one general sense. It occupies different positions in different programs.
+
+| Public mechanism | Government position | Private layer that generally remains | Public money clock |
+|---|---|---|---|
+| TRIP | federal share after a certified act, insurer deductible and program trigger under statute | private commercial P&C policy and insurer claim payment | certification, insured-loss calculation, federal-share claim, payment and possible recoupment surcharge |
+| NFIP | federal primary flood-insurance program with contractors, reinsurance and borrowing | private carriers may service policies or write separate private flood coverage | premium, claim, reinsurance, Treasury borrowing and later repayment/forgiveness records |
+| State catastrophe fund | statutory wholesale reimbursement layer | primary insurer retention and private reinsurance around the layer | contract attachment, reimbursement, bonding or assessment |
+| Residual-market plan | state-created primary writer or market mechanism | private admitted or surplus-lines market remains outside or alongside | plan premium, claim, reinsurance, assessment and borrowing |
+| Guaranty association | limited post-impairment or insolvency protection | licensed insurer and receivership estate first | coverage determination, assessment, transfer and payment |
+| PBGC | federal limited guarantee for covered private defined-benefit pensions | sponsor and plan assets remain the first system | termination, trusteeship or assistance, guarantee calculation and benefit payment |
+| Medicare/Social Security | statutory benefit and social-insurance financing | private delivery may exist under federal contract, but the entitlement is public law | appropriation/trust-fund financing, contract payment and beneficiary benefit |
+| FHLBank advance | secured liquidity loan from a government-chartered member-owned bank | member insurer remains liable and pledges collateral | membership, collateral, advance, repayment and any resolution priority |
+
+The government question is therefore not “will taxpayers pay?” It is:
+
+> Which statute places which public entity at which point in the loss waterfall, after what trigger, with what private retention, borrowing authority, assessment or recoupment?
+
+TRIP illustrates the full chain. Treasury's federal-share process requires a certified act, insurer claims and loss records, federal-share calculations and, where applicable, a policyholder surcharge for recoupment. Program authority and available capacity are not a paid federal claim.
+
+**Primary sources:** [Treasury TRIP federal-share claim process](https://home.treasury.gov/policy-issues/financial-markets-financial-institutions-and-fiscal-service/federal-insurance-office/terrorism-risk-insurance-program/federal-share-claim-process) · [2026 TRIP effectiveness report](https://home.treasury.gov/system/files/311/2026ProgramEffectivenessReportFINAL.pdf) · [FHFA on collateral pledged to FHLBanks](https://www.fhfa.gov/reports/collateral-pledged-to-fhlbanks)
+
+## 8. Failure and resolution: the legal entity still matters
+
+Insurance resolution normally begins in state insurance law. The domiciliary regulator can place a troubled licensed insurer into rehabilitation or liquidation; guaranty systems and transfer arrangements then address covered obligations under their statutes. Parent-company distress, reinsurer failure and insurer insolvency are related but not identical.
+
+At the federal perimeter, Dodd-Frank creates a separate extraordinary path. FIO's annual report explains that before the Treasury Secretary may seek FDIC appointment as receiver of an insurer under Title II, the Secretary must receive written recommendations from the FIO Director and the Federal Reserve. That is a legal gateway, not evidence that a named insurer has been designated, entered orderly liquidation or received federal support.
+
+A complete failure map must preserve:
+
+```text
+market concern or downgrade
+  -> company liquidity/capital action
+  -> regulator finding or restriction
+  -> rehabilitation / resolution / liquidation trigger
+  -> policy transfer, stay, claim determination or guaranty activation
+  -> asset realization and reinsurance collection
+  -> assessment, borrowing or public payment
+  -> final creditor and policyholder loss
+```
+
+No earlier step proves a later one.
+
+## 9. What “systemically important” should mean here
+
+Size alone is not the whole systemic question. The relevant transmission channels are:
+
+- **asset liquidation:** forced sales move prices and funding conditions for other holders;
+- **credit demand:** changes in insurer appetite alter corporate-bond, mortgage and private-credit pricing;
+- **counterparty exposure:** reinsurance, derivatives, securities and affiliate guarantees transmit loss;
+- **liquidity:** surrenders, collateral calls, catastrophe payments and funding maturities create cash demands;
+- **critical coverage withdrawal:** unavailable property, liability, cyber, trade or benefit coverage stops activity before an insolvency occurs;
+- **public mechanism capacity:** assessments, bonds, federal shares and borrowing move loss to other insurers, policyholders or government accounts;
+- **confidence and substitution:** policyholders, cedants or investors reprice or move business across an entire sector.
+
+FSOC designation, NAIC macroprudential surveillance, IAIS Holistic Framework monitoring and company-level solvency action are separate instruments aimed at different points in those channels.
+
+## 10. Claim limits
+
+This study does **not** establish:
+
+- that the U.S. has a single insurance regulator or consolidated public guarantee;
+- that NAIC models or IAIS standards are law without domestic adoption and implementation;
+- that group capital is freely fungible or that a parent can use regulated-insurer assets at will;
+- that every insurer is Federal Reserve supervised, an FSOC-designated nonbank or eligible for FHLBank advances;
+- that FHLBank advances are central-bank reserves, unsecured aid or a loss transfer;
+- that private placements, private credit, Schedule BA, affiliated assets and alternative investments are identical measures;
+- that year-end 2025 aggregate strength rules out company-specific or later stress;
+- that offshore reinsurance, private-equity ownership or affiliated asset management proves unsafe control;
+- that a public program's legal authority, capacity or data call proves a triggered or paid public loss;
+- that insurer asset demand alone determines interest rates or corporate borrowing costs;
+- current company-level exposures, confidential ORSA/LST results, treaty terms or supervisory findings.
+
+## 11. Dated return gates
+
+| Trigger | Question | Do not confuse with |
+|---|---|---|
+| 2026 NAIC accreditation and first mature GCC/LST cycle | Which states implemented the group tools and what public supervisory consequences appeared? | model adoption, accreditation effective date or confidential filing alone |
+| IAIS 2026 baseline and 2027 detailed assessments | Does U.S. Aggregation Method implementation meet ICS prudence and intervention comparability? | the 2024 IAIS adoption or political support alone |
+| Next FSOC annual report or designation record | Did insurance, private credit, FHLBank use, reinsurance or catastrophe capacity move from monitoring to a named systemic response? | discussion of a vulnerability as designation or distress |
+| 2026–2027 Treasury/FIO and state-regulator record | What concrete change followed the private-credit/offshore-reinsurance convenings and Bermuda/Cayman cooperation? | a meeting or MOU as a rule, examination finding or treaty action |
+| 2026 year-end statutory filings | How did asset mix, private placements, FABNs, surrenders, FHLBank advances, collateral and reinsurance change at legal-entity level? | aggregate industry totals as company proof |
+| Next severe market or catastrophe stress | Which liquidity, collateral, recovery, assessment and public-program channels actually operated? | modeled capacity or statutory authority as observed operation |
+| First insurer or group resolution using a novel federal/state route | Which authority controlled the legal entity, group and creditor waterfall? | a downgrade, watch, capital raise or ordinary receivership as Title II action |
+
+## Source hierarchy for top-down insurance research
+
+1. Statute, adopted regulation, state insurance order, federal rule and court judgment.
+2. Statutory legal-entity filing, holding-company record, ORSA/GCC/LST instruction and public supervisory action.
+3. Treasury/FIO, FSOC, Federal Reserve, FHFA, CMS, PBGC and other functional federal records.
+4. IAIS adopted standards, implementation assessments, foreign-supervisor rules and covered agreements.
+5. Policy, treaty, collateral, funding, derivatives and investment-management instruments.
+6. Claim, recovery, assessment, borrowing, resolution and payment records.
+7. Research and market analysis, labeled as evidence rather than authority.
+
+The governing system-scale question is:
+
+> **Which sovereign or supervisor controls which legal entity and balance sheet, which contract moves the risk, which capital or liquidity record constrains it, and where does the loss land if every private layer above it is exhausted?**

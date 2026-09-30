@@ -7,6 +7,7 @@
   "question": "What material legal, institutional, funding, operating and oversight changes did the sectioned federal and tightly bounded federal-adjacent website sweep establish through its lane cutoffs on July 25, 2026?",
   "bluf": "The campaign produced a government-wide source, entity, legal-clock and operating-clock merge while leaving full wave ledgers in the Workbench. It neither replaces the live Federal Group tree nor converts broad source coverage into automatic vault ingestion.",
   "evidence_cutoff": "2026-07-25",
+  "use_note": "Internal baseline only. The vault merge controls incorporated findings, and current claims require a refreshed official source; broad campaign coverage is not proof of current endpoint completeness.",
   "library_state": "archive",
   "entities": [
     "U.S. federal government",
@@ -47,6 +48,7 @@
   "material_counts": {
     "total": 24,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 23
   },
   "research_layer_counts": {
@@ -70,13 +72,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [

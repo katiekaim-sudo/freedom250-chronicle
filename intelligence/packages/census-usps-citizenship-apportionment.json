@@ -7,6 +7,8 @@
   "question": "Does the 2026 Census–USPS test merely use postal workers as a cheaper field workforce, or does it materially advance a joined federal address, citizenship, enumeration, apportionment or immigration-control system?",
   "bluf": "The test establishes a scalable postal-enumerator channel inside a Census environment whose online questionnaire includes citizenship, but it does not establish one joined enforcement database or that postal workers ask the citizenship question. Census now confirms the Huntsville and Spartanburg field test concluded August 31; no response, cost, quality, productivity, USPS-comparison or 2030 production-decision result is yet published. The unpublished interagency agreement and shorter field instrument remain decisive missing objects.",
   "evidence_cutoff": "2026-08-11",
+  "evidence_cutoff_note": "Broad package remains frozen through August 11; the official test endpoint was refreshed through September 3. Outcome and 2030-design gates remain open.",
+  "use_note": "Internal recall only for the bounded 2026 USPS-enumerator test, Census/Title 13 data flow and citizenship/apportionment control map, with the official August 31 endpoint refreshed through September 3. Do not infer successful test results, a 2030 design decision, a joined enforcement database, that postal workers ask citizenship, operational SSA/DHS matching, an apportionment change or a legal conclusion; the unpublished interagency agreement and shorter field instrument remain decisive missing objects.",
   "library_state": "current",
   "entities": [
     "Census Bureau",
@@ -43,11 +45,12 @@
   "material_counts": {
     "total": 6,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 5
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 0,
+    "orientation": 0,
+    "findings": 1,
     "evidence": 0,
     "monitoring": 0,
     "methods": 0,
@@ -66,13 +69,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -80,17 +85,17 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "97c0f62a7aaad62f"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "97c0f62a7aaad62f"
+      ]
     },
     {
       "id": "evidence",
@@ -138,7 +143,7 @@
     {
       "material_id": "97c0f62a7aaad62f",
       "title": "Census–USPS Operating and Data-Flow Map",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

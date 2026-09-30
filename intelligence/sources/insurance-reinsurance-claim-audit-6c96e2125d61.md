@@ -4,7 +4,7 @@
 **Organization reconciled:** 2026-09-07; no external-source refresh  
 **Scope:** consolidated audit of claims tested across the strategic/digital, life/annuity-capital, and property-catastrophe source-first sweeps.
 
-The [deep dive](../sources/insurance-reinsurance-deep-dive-20780fd540e8.html) owns the connected explanation. This ledger retains the 36 dated claims and their distinct verdicts; a verdict evaluates an assertion, not whether useful research belongs in the library.
+The deep dive owns the connected explanation. This ledger retains the 36 dated claims and their distinct verdicts; a verdict evaluates an assertion, not whether useful research belongs in the library.
 
 ## Boundary
 

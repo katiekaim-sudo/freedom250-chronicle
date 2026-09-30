@@ -140,6 +140,7 @@ Charters, legislation, regulators and courts determine which routes may operate.
 - [SEC Transfer Agent Modernization — 2026 Proposal](library/sec-transfer-agent-modernization.html)
 - [SEC Tokenized NMS Stock Innovation Exemption — 2026 Order](library/sec-tokenized-nms-stock-innovation-exemption.html)
 - [SEC Investor Advisory Committee — 2026 meeting record](library/sec-investor-advisory-committee.html)
+- [SEC Accredited Investor Credential Notices — CPA Gate, 2026](library/sec-accredited-investor-credential-notices-2026-09-30.html)
 - [CFTC Passive Software No-Action Position — 2026](library/cftc-passive-software-no-action-2026-09-17.html)
 - [Coinbase Clearing DCO Registration — 2026](library/coinbase-clearing-dco-registration-2026-09-28.html)
 - [Judicial Money](library/judicial-money.html)
@@ -171,6 +172,7 @@ A visible transfer still needs an account of the obligation, tax treatment, owne
 - [Retail Debt](library/retail-debt.html)
 - Timeline research: [The Fine Print](machines/fineprint.html)
 - Source collection: Accounting, assurance and the public transaction record
+  - [The Accounting Transition](sources/the-accounting-transition-story-2026-09-30-d7bd5f4fb7f8.html)
   - [Accounting Transition and Open Public Ledger — 2026-07-30](sources/readme-50750ec8c0f3.html)
   - [Federal Transaction Record — Open Accounting, Audit Limits, and the State-NGO Gap](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html)
   - [The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer](sources/2026-07-30-the-accounting-transition-shared-events-executable-rul-2fdf820971e8.html)
@@ -268,6 +270,7 @@ Compute and communications depend on sites, legal access, standards and trusted 
 - [Federal Agency AI Plans and Infrastructure](library/federal-agency-ai-plans-infrastructure.html)
 - [Military Modernization](library/military-modernization.html)
 - [Contested Logistics](library/contested-logistics.html)
+- [FORTRESS America and Military Installation Energy Independence](library/fortress-america-installation-energy-independence.html)
 - [Federal Cryptographic Trust Stack](library/federal-cryptographic-trust-stack.html)
 - [NARA AI Records and Compute Transition](library/nara-ai-records-compute-transition.html)
 - [Genesis Mission](library/genesis-mission.html)
@@ -299,6 +302,7 @@ Connect executive orders, agency structure, courts and congressional oversight t
 
 [Read the combined findings](topics/public-authority--authority.md)
 
+- [Federal Reserve Non-Core Initiative Governance — 2026](library/federal-reserve-noncore-initiative-governance-2026.html)
 - [Office of Personnel Management Structural Change Audit — 2025–2026](library/opm-structural-change-audit-2025-2026.html)
 - [Federal Strategic Plans](library/federal-strategic-plans.html)
 - [Congressional Committee Control Plane](library/congressional-committee-control-plane.html)
@@ -321,6 +325,9 @@ Connect executive orders, agency structure, courts and congressional oversight t
 - [Government-Wide Research Hub](library/federal-government-movement-atlas.html)
 - [Government Hidden Control Surfaces — 2026](library/government-hidden-control-surfaces-2026.html)
 - [Institutional Signals and Thesis Test — 2025–2026](library/institutional-signals-thesis-test-2025-2026.html)
+- [Office of Religious Affairs — 2026](library/office-of-religious-affairs.html)
+- [DOJ Judicial Misconduct Complaint Against Minnesota Judges — September 30, 2026](library/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html)
+- [Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026](library/trump-criminal-indictments-primary-source-map-2023-2026.html)
 - Timeline research: [The Spine](machines/spine.html)
 - Timeline research: [The Charter Queue](machines/charter.html)
 - Guide: [Who can make the government act?](stories/authority-and-institutions.html)
@@ -387,6 +394,7 @@ AI records, disclosures, hearings and source collections show how claims can be 
 - [Federal Technology and Monetary Infrastructure Delta — September 17–20, 2026](library/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html)
 - [Federal Government Deep Website Review — September 16–22, 2026](library/federal-government-deep-website-review-2026-09-22.html)
 - [Federal Government Weekly Delta — September 21–25, 2026](library/federal-government-weekly-delta-2026-09-25.html)
+- [Federal Government Fiscal-Year-Close Delta — September 26–30, 2026](library/federal-government-fiscal-year-close-delta-2026-09-30.html)
 - [Stop Secret Spending Act — OTA Transparency and Implementation](library/stop-secret-spending-act-ota-transparency.html)
 - [Trump Davos Address — January 21, 2026](library/trump-davos-address-2026-01-21.html)
 - [White House Cabinet Meeting — July 31, 2026](library/white-house-cabinet-meeting-2026-07-31.html)
@@ -400,6 +408,7 @@ AI records, disclosures, hearings and source collections show how claims can be 
 - [Rand Paul COVID Origins Reading Room — July 2026](library/rand-paul-covid-origins-reading-room-2026-07-29.html)
 - Timeline research: [The Spine](machines/spine.html)
 - Source collection: Accounting, assurance and the public transaction record
+  - [The Accounting Transition](sources/the-accounting-transition-story-2026-09-30-d7bd5f4fb7f8.html)
   - [Accounting Transition and Open Public Ledger — 2026-07-30](sources/readme-50750ec8c0f3.html)
   - [Federal Transaction Record — Open Accounting, Audit Limits, and the State-NGO Gap](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html)
   - [The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer](sources/2026-07-30-the-accounting-transition-shared-events-executable-rul-2fdf820971e8.html)
@@ -683,10 +692,13 @@ An agency plan tells us what an institution wants to achieve. The operating ques
 The ballroom investigation makes the distinction tangible. Funding and design reviews can move ahead while the legal power to build is still contested. At the saved August 23 cutoff, an emergency stay changed what construction could proceed; it did not settle the merits. The same habit helps us read much larger claims about reorganizing government.
 Congress enters this story through distinct committees, bills, nominations and oversight requests. A hearing can reveal the problem or frame a solution before a binding instrument exists. Even emergency powers have named triggers and limits: procurement, industrial priority, liquidity support and transaction restrictions use different legal routes, each with its own responsible officials.
 
+- [Watch what happens when the Fed is not the expert owner](sources/readme-3f64c26d8b5f.html): Follow the OIG diagnosis through imported project expertise, independent assurance, fixed baselines, an agency-wide policy and first reuse on IT modernization or another major initiative.
+- [Follow a new Secretary-level office from authority to result](sources/readme-4bb8516a5fb2.html): Separate ORA's establishment, Director, transferred power, budget, charter, staffing, requirements, programs and religious-liberty effects.
 - [How a public goal becomes an operating plan](sources/federal-strategic-planning-legal-framework-a69a081cd437.html): Follow strategic aims into performance targets, budget decisions and reviews of results.
 - [The ballroom: who has power to build?](sources/white-house-ballroom-lawfare-map-2025-2026-a5de44eefa89.html): A concrete dispute where donations, planning approval and construction authority answer different questions.
 - [How Congress turns a question into an institutional object](sources/committee-activity-synthesis-2026-07-26-05a5acfd2b85.html): Follow hearings into bills, nominations and requests, then check the later action and response rather than treating committee activity as a completed result.
 - [Find the public rooms between the entity boxes](sources/hidden-government-control-surfaces-discovery-2026-09-28-8bd97ca9d01f.html): Follow advisory records, stakeholder contacts, board decisions and response clocks without treating advice or access as agency action.
+- [Follow a judicial-conduct complaint without collapsing its clocks](sources/readme-7fa634fbfe8c.html): Separate DOJ's allegation from chief-judge screening, investigation, discipline, case-specific recusal, appellate merits and any constitutional removal route.
 - [Test what those rooms actually said against the thesis](sources/readme-b113ac7bfd03.html): Follow committee and board records into recommendations, instruments and effects without treating advice as agency policy.
 - [Test what the hidden rooms actually said](sources/wave-0-existing-corpus-reconciliation-2026-09-28-29d67a55a78b.html): Compare recommendations, standards, taskings and research outputs with later agency instruments, operation and effects while keeping rival explanations and null evidence visible.
 - [What an emergency can actually activate](sources/federal-emergency-technology-crypto-activation-map-e20f78d5f14f.html): See the distinct contracting, priority, continuity and financial-control routes—and the permissions and operating connections they still require.
@@ -808,11 +820,13 @@ The money story becomes clearer when we follow a transaction through permission,
 
 A payment connection is useful only if someone is legally allowed to use it. The congressional research supplies the missing assembly line between a proposed product and an operating institution: committees shape categories, Congress may enact them, regulators implement them, and account providers still make separate admission decisions. Its PACE example has two proposed gates—OCC registration and a Federal Reserve payments account—rather than automatic access created by a software connection.
 This puts the Fed and private-rail research in the same frame. A firm can own a fast interface while another institution controls the account needed underneath it. The judicial research then shows where that perimeter is contested. A hearing, introduced bill, court filing, approved charter and open account each answer a different question about who can actually transact.
+Investor access has its own version of the same problem. The September 30 SEC notices ask whether professional credentials—including an active U.S. CPA license—should satisfy the accredited-investor gate for private offerings. The state license could become the verification object, but notice, final Commission designation, an issuer's decision to accept the investor and an actual purchase remain different events.
 
 - [Follow the congressional assembly line](sources/congressional-monetary-infrastructure-research-package-fbcfe344359b.html): The July package joins hearings, proposed payment-provider access, digital-asset law and the DTC operating record while keeping bills separate from enacted authority.
 - [Locate the public account underneath](sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html): The Treasury–Fed timeline explains why private transaction routes can still depend on public money and access gates.
 - [See where access is disputed](sources/judicial-money-map-source-document-d2f844afe3d8.html): Custodia and other cases put legal access, agency power and actual operating effects on separate clocks.
 - [Compare permission with an operating receipt](sources/readme-373b9567b61c.html): Four fixed 2026 windows show approvals, account limits, pilots, registrations, charters and a bounded production non-receipt without treating them as the same legal or operating state.
+- [See how a state CPA license could unlock private offerings](sources/sec-accredited-investor-credential-notices-and-cpa-gate-2026-09-3-9ecfa13f5041.html): The five Commission notices and CPA deep dive separate professional qualification, public license verification, final federal designation and actual private-market participation.
 - Connect: [Return to the underlying money system](stories/money-in-motion.html#the-system-underneath): Begin with bank claims and public settlement before following permission into a particular service.
 - Connect: [Compare how public authority is assembled](stories/government-in-practice.html#from-purpose-to-authority): Financial access is one case of the broader passage from purpose through lawful authority into implementation.
 ### Many networks can serve one recognized ownership record
@@ -1009,6 +1023,7 @@ This gives the factory map a destination: accepted output must reach a user and 
 - [Arsenal policy and the path to delivery](sources/military-modernization-transition-timeline-77eeedb20ebd.html): Read all ten original Arsenal filings with their questions, legal clocks and connections to the saved implementation record.
 - [Follow production into movement and sustainment](sources/contested-logistics-research-package-e4cceffe38a0.html): The integrated study joins public-private access, port and rail interfaces, fuel, repair, financing and payment.
 - [Compare the dated readiness and delivery steps](sources/contested-logistics-transition-timeline-d96264bbabc1.html): The saved timeline keeps awards, commissioning, qualification, activation and planned milestones distinct.
+- [Trace installation power from policy to demonstrated operation](sources/fortress-america-and-installation-energy-independence-research-pa-def383c764ca.html): Separate FORTRESS America program formation from statutory critical-load requirements, financed projects, commissioning, black-start exercises and sustained islanded operation.
 - Connect: [See the regional infrastructure behind a supply chain](stories/national-change-local-life.html#what-is-already-here): Production corridors, water, power and specialist firms explain what a location can contribute.
 - Connect: [Follow the capital behind physical capacity](stories/science-to-capability.html#financing): Public assets, private investment, operating cash and obligations can support the same project through different entities.
 ### When does an operating event become money owed?
@@ -1095,6 +1110,7 @@ Congressional committees can seek documents, hear testimony, amend legislation o
 - [Track the object after the committee acts](sources/committee-activity-synthesis-2026-07-26-05a5acfd2b85.html): Bills, nominations and oversight requests pass through different actors and later outcome gates.
 - [Compare conduct questions with statement accountability](sources/2026-07-21-the-epstein-statement-trap-18181c6edae9.html): The Chronicle reading follows denials, memory locks, refusals and production duties without claiming concealment motive, false statements or perjury.
 - [Open the broader hearing source library](sources/source-archive-index-527253ed6730.html): Committee memoranda, prepared testimony, bills and saved hearing records retain their own source and quotation limits.
+- [Read the four Trump indictments as separate legal records](sources/readme-6b7cb62412b8.html): Compare charges, count units, superseding instruments, judicial rulings, verdict, dismissals and nolle without turning allegations into findings or procedural endings into acquittals.
 - Connect: [What evidence would let us put it right?](stories/government-in-practice.html#make-the-outcome-reconstructable): Connect oversight to records custody, performance evidence and the person or institution able to correct an error.
 ### Rebuild the response before judging its history
 
@@ -1184,6 +1200,7 @@ The August 29 reconciliation records where a separate follow-up’s candidates l
 - [September 17-20 · Follow the technology and control stack](sources/wave-10-merge-2eeacf3400a2.html): The fixed-window merge joins EDGAR, market data, 23x5 resilience, SEC/CFTC routes, Federal Reserve governance, DTCC and the proposed government-wide procurement rewrite.
 - [September 16-22 · Reconcile direct sites through the entity tree](sources/wave-10-merge-d2935e2afe9e.html): The deep review joins legal text to component sites, manuals, records, data, oversight and operating receipts while preserving small delegations, gates, exact clocks and named access limits.
 - [September 21-25 · Reconcile the post-baseline weekly](sources/wave-10-merge-ff1b0d353ac8.html): The Friday-close merge separates effective procedural changes from frameworks, pledges, planned implementation, court and oversight objects, owner folds and access holds.
+- [September 26-30 · Test the fiscal-year-close surge across federal and adjacent systems](sources/wave-10-merge-49986ee5e016.html): The provisional same-day merge distinguishes effective rules, interfaces, committee actions, adjacent market operations, acquisition vehicles and audit findings from obligations, payments, settlement, delivered capability and final-day completion.
 - Connect: [Inspect the personnel and service machinery](stories/government-in-practice.html#software-inside-the-decision): The OPM and agency-AI studies supply the process beneath the later operating receipts.
 - Connect: [Follow the independent check](stories/claims-records-and-accountability.html#the-oversight-chain): Use oversight and response evidence to test whether implementation delivered what was claimed.
 ## Who can make the government act?

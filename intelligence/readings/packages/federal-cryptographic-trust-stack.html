@@ -2,7 +2,8 @@
 
 Completed: 2026-08-11  
 Status: current Workbench research; not vault canon  
-Evidence cutoff: 2026-08-11
+Evidence cutoff: 2026-08-11 foundation; dated PQC extensions through
+2026-10-01 18:59 EDT
 
 ## Executive ruling
 
@@ -320,6 +321,42 @@ Primary sources: [EO 14412](https://www.whitehouse.gov/presidential-actions/2026
 [OMB M-26-15](https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf) ·
 [NIST final PQC standards](https://csrc.nist.gov/News/2024/postquantum-cryptography-fips-approved) ·
 [FPKI CITE](https://www.idmanagement.gov/implement/fpkicite/)
+
+### October 1, 2026 — NSA&#x27;s public PQC hub adds a routing layer, not a new rule
+
+NSA launched a public [Post-Quantum Cryptography Resource Hub](https://www.nsa.gov/cybersecurity/post-quantum-cryptography-resource-hub/)
+for Department of War, National Security Systems and Defense Industrial Base
+audiences. The launch matters because it gives the NSS migration a common
+public entrance and explicitly separates confidentiality risk (“Harvest Now,
+Decrypt Later”) from authentication and signature risk (“Trust Now, Forge
+Later” in the longer article). It does not create the 2027 or 2030 duties. NSA&#x27;s
+[launch release](https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/4615285/nsa-announces-post-quantum-cryptography-measures-to-safeguard-national-security/)
+attributes those gates to CNSS Policy 15.
+
+The implementation layer is already further along than the hub alone shows.
+NSA&#x27;s approved March 2026 CSfC updates place ML-KEM-1024 and ML-DSA-87 into
+mobile-access, campus-wireless, multi-site, data-at-rest and key-management
+architectures. In the current packages those are generally **objective**
+requirements: a mapped classical threshold can remain where the objective is
+not feasible. The evidence ladder therefore remains policy → algorithm →
+protection profile → validated component → registered solution → authorized
+deployment → observed operation.
+
+The launch page compresses the NSS clock. January 1, 2027 is the new-product,
+service or acquisition gate; December 31, 2030 is the phase-out/capability gate;
+December 31, 2031 is the later CNSA 2.0 use mandate, subject to applicable
+exceptions and waivers; and 2035 remains the NSS quantum-resistance objective.
+The hub also contained a literal “Executive Order XX” placeholder at the
+cutoff, while the press release correctly named EO 14412. Preserve the exact
+launch snapshot rather than silently repairing it.
+
+The full launch-day reading, all three visible hub articles, capability-package
+crosswalk, source defects and return gates are in
+`NSA_POST_QUANTUM_CRYPTOGRAPHY_RESOURCE_HUB_2026-10-01.md`.
+The linked DIB services are general voluntary cyber-defense services, not PQC
+certification; the primer&#x27;s blockchain reference is a hash-integrity analogy,
+not a federal ledger selection; and no named NSS, Treasury payment rail or
+federal identity system cutover was established in this bounded review.
 
 ## 11. M7 provenance correction
 

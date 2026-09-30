@@ -7,6 +7,8 @@
   "question": "How does an official release turn heterogeneous records into a public story, and where must the evidence chain stop?",
   "bluf": "The method compares institutional release and presentation architectures across official disclosures while enforcing one firewall: similarity in selection, declassification, bundling, framing or amplification is not evidence of shared actors, causes, operations or outcomes.",
   "evidence_cutoff": "2026-07-27",
+  "evidence_cutoff_note": "Bounded official-release architecture snapshot through 2026-07-27. New releases and downstream actions require their own official source objects and fresh verification.",
+  "use_note": "Internal recall only for comparing official release-process architecture through 2026-07-27: selection, declassification, bundling, framing, amplification and follow-on action. Architectural similarity is not evidence of shared actors, causes, operations, subject matter or outcomes; new releases and downstream actions require their own official objects and fresh verification.",
   "library_state": "current",
   "entities": [
     "ODNI",
@@ -40,11 +42,12 @@
   "material_counts": {
     "total": 2,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 1
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 0,
+    "orientation": 0,
+    "findings": 1,
     "evidence": 0,
     "monitoring": 0,
     "methods": 0,
@@ -63,13 +66,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -77,17 +82,17 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "1d0fe155678313a1"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "1d0fe155678313a1"
+      ]
     },
     {
       "id": "evidence",
@@ -131,7 +136,7 @@
     {
       "material_id": "1d0fe155678313a1",
       "title": "DNI Release Architecture Crosswalk — Election and COVID/Biolab",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

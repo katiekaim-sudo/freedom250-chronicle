@@ -7,6 +7,8 @@
   "question": "What materially changed across official U.S. federal sources during September 21–25 after reconciliation to the September 22 deep-review baseline?",
   "bluf": "After the September 22 baseline, the strongest new federal movement was procedural rather than a single government-wide program: DOT finalized individualized DBE/ACDBE eligibility, OFAC consolidated sanctions-penalty procedure, the FTC changed practice and ethics-clearance rules, USPS updated NEPA procedure and the Supreme Court kept Missouri's 2022 congressional map controlling for the underway election. EXIM's up-to-$7-billion Argentina framework, CMS's 37-state voluntary quality pledge, VA's planned partial Compact-health implementation and ATF's future-effective explosives rule are real but do not yet prove commitments, payments, operation or outcomes. Current Fed, SEC, Treasury, UNGA, defense and country work remains with existing owners.",
   "evidence_cutoff": "2026-09-25T23:59:59-04:00",
+  "evidence_cutoff_note": "The human weekly window is September 21–25. New discovery is strictly after the September 22 deep-review cutoff at 11:51:46 EDT, with boundary replay for date-only and delayed-publication sources.",
+  "use_note": "Use for the post-September-22 weekly material-change answer through Friday close. Follow folded topics to their current owners. Keep proposals, frameworks, voluntary pledges, rules, court orders, oversight findings, obligations, payments, deliveries and effects separate. Registration does not authorize Chronicle promotion, a canonical watch, Federal Group mutation, app/site shipment, commit or push.",
   "library_state": "current",
   "entities": [
     "U.S. federal government",
@@ -58,11 +60,12 @@
   "material_counts": {
     "total": 20,
     "public_reading": 1,
+    "public_machine_data": 0,
     "private_library_metadata": 19
   },
   "research_layer_counts": {
-    "orientation": 2,
-    "findings": 0,
+    "orientation": 1,
+    "findings": 1,
     "evidence": 9,
     "monitoring": 0,
     "methods": 0,
@@ -81,13 +84,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -95,9 +100,8 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 2,
+      "count": 1,
       "material_ids": [
-        "ff1b0d353ac83798",
         "8c5e28baff9d3aa2"
       ]
     },
@@ -105,8 +109,10 @@
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "ff1b0d353ac83798"
+      ]
     },
     {
       "id": "evidence",
@@ -168,7 +174,7 @@
     {
       "material_id": "ff1b0d353ac83798",
       "title": "Wave 10 — whole-government merge",
-      "artifact_role": "read_first",
+      "artifact_role": "synthesis",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",

@@ -5,15 +5,21 @@
   "research_id": "contested-logistics",
   "title": "Contested Logistics",
   "question": "How do ports, rail, sealift, airlift, fuel, repair, pre-positioning and private carriers convert industrial capacity into wartime movement?",
-  "bluf": "The mobilization utility: ports, rail, sealift, airlift, fuel, repair, pre-positioning and the private carriers that turn industrial capacity into wartime movement.",
-  "evidence_cutoff": "2026-07-15",
+  "bluf": "The mobilization utility now includes FORTRESS America, a September 30 department-wide resilience program whose energy objective is independent power for every major military installation. The program is established, but covered sites, load and endurance standards, funding, projects and tested delivery remain unresolved.",
+  "evidence_cutoff": "2026-09-30",
+  "evidence_cutoff_note": "The implementation study retains its July 15, 2026 baseline. A September 7 targeted reconciliation joins ten original Arsenal filings in the Military Modernization timeline. A separate September 25 timeline distinguishes the ILA–USMX strike and contract clocks. The September 30 focused delta records FORTRESS America, September 18 Army SCI conditional selections and August 27 Janus vendor/site selections. This is not a whole-package current-state refresh.",
+  "use_note": "U.S. contested-logistics structure through July 15, a bounded September 25 port-labor timeline and a September 30 FORTRESS America installation-energy delta. FORTRESS establishes a central program and major-installation independent-power objective; it does not establish every-base coverage, permanent off-grid operation, funding, construction or tested delivery.",
   "library_state": "current",
   "entities": [
     "TRANSCOM",
     "MARAD",
     "ports",
     "railroads",
-    "commercial carriers"
+    "commercial carriers",
+    "FORTRESS America",
+    "Under Secretary of War for Acquisition and Sustainment",
+    "Army Janus",
+    "Army Strategic Capital Initiative"
   ],
   "classification": {
     "section": "technology",
@@ -45,20 +51,21 @@
     ]
   },
   "material_counts": {
-    "total": 10,
+    "total": 11,
     "public_reading": 2,
-    "private_library_metadata": 8
+    "public_machine_data": 0,
+    "private_library_metadata": 9
   },
   "research_layer_counts": {
-    "orientation": 2,
-    "findings": 0,
-    "evidence": 0,
+    "orientation": 1,
+    "findings": 1,
+    "evidence": 1,
     "monitoring": 0,
     "methods": 0,
     "presentation": 0,
     "supporting": 8
   },
-  "latest_computer_edit_at": "2026-09-25T11:03:40Z",
+  "latest_computer_edit_at": "2026-09-30T23:52:03Z",
   "public_full_text": true,
   "full_text_url": "readings/packages/contested-logistics.html",
   "routes": {
@@ -70,13 +77,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -84,9 +93,8 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 2,
+      "count": 1,
       "material_ids": [
-        "e4cceffe38a01c28",
         "eee9f48fd1704d27"
       ]
     },
@@ -94,15 +102,19 @@
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "e4cceffe38a01c28"
+      ]
     },
     {
       "id": "evidence",
       "label": "Evidence and records",
       "meaning": "Primary-source custody, factual spines, evidence indexes and source ledgers.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "d96264bbabc10ab9"
+      ]
     },
     {
       "id": "monitoring",
@@ -137,7 +149,7 @@
         "34bdbdab741b8f8f",
         "2e5aa39e68605c30",
         "613d7f73a3808399",
-        "d96264bbabc10ab9",
+        "a00fa7308ce97025",
         "5661e89d4151ca18"
       ]
     }
@@ -146,18 +158,35 @@
     {
       "material_id": "e4cceffe38a01c28",
       "title": "Contested Logistics — Research Package",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-09-07T23:12:05Z",
+      "modified_at": "2026-09-30T23:52:03Z",
       "source_id": "e4cceffe38a01c28",
       "url": "sources/contested-logistics-research-package-e4cceffe38a0.html",
       "source_text": "sources/contested-logistics-research-package-e4cceffe38a0.md",
       "access_state": "public_full_text",
       "public_full_text": true,
       "reading_url": "readings/e4cceffe38a01c28.html",
+      "reading_basis": "public_html_full_text"
+    },
+    {
+      "material_id": "d96264bbabc10ab9",
+      "title": "Contested Logistics — Transition Timeline",
+      "artifact_role": "factual_spine",
+      "file_state": "current",
+      "availability": "public_reading",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-09-30T23:36:12Z",
+      "source_id": "d96264bbabc10ab9",
+      "url": "sources/contested-logistics-transition-timeline-d96264bbabc1.html",
+      "source_text": "sources/contested-logistics-transition-timeline-d96264bbabc1.md",
+      "access_state": "public_full_text",
+      "public_full_text": true,
+      "reading_url": "readings/d96264bbabc10ab9.html",
       "reading_basis": "public_html_full_text"
     },
     {
@@ -168,7 +197,7 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-16T03:25:51Z",
+      "modified_at": "2026-09-30T23:34:33Z",
       "access_state": "private_by_design",
       "public_full_text": false
     },
@@ -192,7 +221,7 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-16T03:21:16Z",
+      "modified_at": "2026-09-30T23:34:33Z",
       "access_state": "private_by_design",
       "public_full_text": false
     },
@@ -216,7 +245,7 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-16T03:24:50Z",
+      "modified_at": "2026-09-30T23:34:33Z",
       "access_state": "private_by_design",
       "public_full_text": false
     },
@@ -233,21 +262,16 @@
       "public_full_text": false
     },
     {
-      "material_id": "d96264bbabc10ab9",
-      "title": "Contested Logistics — Transition Timeline",
+      "material_id": "a00fa7308ce97025",
+      "title": "FORTRESS AMERICA INSTALLATION ENERGY INDEPENDENCE GATE 2026-09-30",
       "artifact_role": "supporting",
       "file_state": "current",
-      "availability": "public_reading",
+      "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-07-16T03:25:51Z",
-      "source_id": "d96264bbabc10ab9",
-      "url": "sources/contested-logistics-transition-timeline-d96264bbabc1.html",
-      "source_text": "sources/contested-logistics-transition-timeline-d96264bbabc1.md",
-      "access_state": "public_full_text",
-      "public_full_text": true,
-      "reading_url": "readings/d96264bbabc10ab9.html",
-      "reading_basis": "public_html_full_text"
+      "modified_at": "2026-09-30T23:52:03Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "5661e89d4151ca18",

@@ -7,6 +7,8 @@
   "question": "What did CFTC Market Participants Division Letter 26-25 change for passive software providers, what remains outside the position, and how does it affect the Observatory's CFTC, crypto, prediction-market, perpetual, agentic-finance and private-rail plotlines?",
   "bluf": "CFTC MPD Letter 26-25 generalizes the March Phantom position to qualifying passive software providers, expressly including non-crypto providers. A PSP may supply a standalone or embedded front end, market particular derivatives, solicit users to specific registrants and earn revenue-share or transaction fees without MPD recommending IB/AP registration enforcement solely for the covered activity. The pathway remains anchored to DCM/FCM/IB/DCO onboarding, custody, execution and clearing; excludes asset custody, express trade signals and routing/execution discretion; imposes disclosures, IB-like marketing controls, records, notices, CFTC consent and PSP-registrant joint liability; and is interim staff forbearance rather than Commission law, a spot regime, a DeFi safe harbor or operating evidence.",
   "evidence_cutoff": "2026-09-17T11:32:00-04:00",
+  "evidence_cutoff_note": "The complete seven-page Letter 26-25, release, staff-letter index, full Phantom predecessor, August CFTC roadmap, September 15 Senate cloture result and statutory preemption text were checked. No relying PSP notice, filed undertaking or operating use was located. The technology map is CFTC-only and does not import permission from the SEC's separate September 17 action.",
+  "use_note": "Treat the position as distribution-layer staff relief inside registered derivatives plumbing. Require a PSP notice, registrant undertaking, named launch and observed order before carrying an operating claim; do not extend it to spot trading, free-standing DeFi, customer-asset custody, autonomous recommendations or discretionary execution.",
   "library_state": "current",
   "entities": [
     "U.S. Commodity Futures Trading Commission",
@@ -51,16 +53,17 @@
   "material_counts": {
     "total": 3,
     "public_reading": 2,
+    "public_machine_data": 0,
     "private_library_metadata": 1
   },
   "research_layer_counts": {
-    "orientation": 1,
-    "findings": 0,
+    "orientation": 0,
+    "findings": 2,
     "evidence": 0,
     "monitoring": 0,
     "methods": 0,
     "presentation": 0,
-    "supporting": 2
+    "supporting": 1
   },
   "latest_computer_edit_at": "2026-09-29T02:11:41Z",
   "public_full_text": true,
@@ -74,13 +77,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -88,17 +93,18 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "d180cea1d70c5852"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 2,
+      "material_ids": [
+        "d180cea1d70c5852",
+        "b78c54aa1060e5b9"
+      ]
     },
     {
       "id": "evidence",
@@ -132,10 +138,9 @@
       "id": "supporting",
       "label": "Supporting material",
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
-      "count": 2,
+      "count": 1,
       "material_ids": [
-        "433cb0832e130b7f",
-        "b78c54aa1060e5b9"
+        "433cb0832e130b7f"
       ]
     }
   ],
@@ -143,7 +148,7 @@
     {
       "material_id": "d180cea1d70c5852",
       "title": "CFTC Passive Software No-Action Position — Full Reading and CFTC-Only Technology Impact",
-      "artifact_role": "read_first",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -158,21 +163,9 @@
       "reading_basis": "public_html_full_text"
     },
     {
-      "material_id": "433cb0832e130b7f",
-      "title": "CFTC IAC MEETING ANALYSIS 2026-08-20",
-      "artifact_role": "supporting",
-      "file_state": "current",
-      "availability": "private_library_metadata",
-      "custody_layer": "research_workbench",
-      "computer_object_type": "file",
-      "modified_at": "2026-08-27T21:45:45Z",
-      "access_state": "private_by_design",
-      "public_full_text": false
-    },
-    {
       "material_id": "b78c54aa1060e5b9",
       "title": "SEC–CFTC Current Authority and Operative Change Ledger",
-      "artifact_role": "supporting",
+      "artifact_role": "answer",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -185,6 +178,18 @@
       "public_full_text": true,
       "reading_url": "readings/b78c54aa1060e5b9.html",
       "reading_basis": "public_html_full_text"
+    },
+    {
+      "material_id": "433cb0832e130b7f",
+      "title": "CFTC IAC MEETING ANALYSIS 2026-08-20",
+      "artifact_role": "supporting",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-08-27T21:45:45Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     }
   ]
 }

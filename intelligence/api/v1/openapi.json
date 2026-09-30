@@ -192,6 +192,38 @@
           }
         }
       }
+    },
+    "/data/{data_id}.json": {
+      "get": {
+        "operationId": "getPublicMachineData",
+        "summary": "Get one complete positively selected structured research dataset",
+        "parameters": [
+          {
+            "name": "data_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Structured research dataset; preserve its schema, as-of date, vocabulary and scope boundary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown or non-public dataset"
+          }
+        }
+      }
     }
   },
   "externalDocs": {

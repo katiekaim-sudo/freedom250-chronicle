@@ -1,7 +1,7 @@
 # Contested Logistics — Transition Timeline
 
 **Status:** `current`  
-**Cutoff:** 2026-07-15  
+**Cutoff:** 2026-07-15 baseline; 2026-09-30 FORTRESS America focused delta
 **Rule:** authority, request, award, construction, readiness, activation, output, delivery and payment are separate clocks
 
 ## Occurred factual spine
@@ -23,6 +23,9 @@
 | 2026-06-18 | not publicly stated | not publicly stated | `conditional` | OSC / Energy Fuels | $725 million conditional loan commitment announced | proposes federal credit for domestic rare-earth separation/metallization; closing/disbursement remain | [Department release](https://www.war.gov/News/Releases/Release/Article/4520819/the-department-of-wars-office-of-strategic-capital-signs-725-million-conditiona/) |
 | 2026-07-09 | not publicly stated | Redstone Arsenal, Alabama | `strategy` | Army Materiel Command / OIB | Army published enterprise transformation status and recent conditional mineral leases | identifies central oversight/operations and public-private industrial expansion model | [Army](https://www.army.mil/article/293815/army_accelerates_sweeping_transformation_across_the_organic_industrial_base) |
 | 2026-07-13 | not publicly stated | Marion, Indiana | `awarded` | Economic Defense Unit / ReElement | $25 million Industrial Base Fund investment announced | funds domestic rare-earth refining expansion | [Department release](https://www.war.gov/News/Releases/Release/Article/4541423/department-of-war-announces-25-million-investment-with-reelement-technologies-t/) |
+| 2026-08-27 | not publicly stated | five Army installations | `selected` | Army / Janus | five vendor/site pairings announced for contractor-owned and -operated microreactors | starts milestone-based design and delivery paths; does not establish licensed, built or operating reactors | [Department story](https://www.war.gov/News/News-Stories/Article/Article/4584583/army-selects-vendors-sites-for-nuclear-microreactors/) |
+| 2026-09-18 | not publicly stated | six Army installations | `conditional` | Army / SCI Energy Resilience | conditional lease-solicitation awards announced to three developer teams | identifies early-stage developer/site pairings; lease execution, financing, construction and tests remain | [Army](https://www.army.mil/article/295486/army_announces_conditional_lease_solicitation_awards_for_commercial_power_generation_securing_installation_power_resilience) |
+| 2026-09-30 | not publicly stated | Quantico, Virginia / department-wide | `established` | Department / FORTRESS America | five-pillar homeland-defense resilience program announced; independent power for every major installation stated as energy objective | creates central program/governance and implementation clocks; does not establish fleet-wide delivery | [Department release](https://www.war.gov/News/Releases/Release/Article/4615424/secretary-hegseth-announces-six-major-initiatives-at-quantico-speech/) |
 
 ## Current operating-state anchors
 
@@ -40,6 +43,7 @@
 |---|---|---|---|---|---|
 | 2026 | `scheduled` | Project Pele | prototype operation/test path at INL | fueled criticality, power production and published safety/test result | [DOE](https://www.energy.gov/ne/articles/department-defense-breaks-ground-project-pele-microreactor) |
 | 2026 onward | `conditional` | Army SCI energy | select partners and negotiate enhanced-use leases | executed lease/PPA plus financing close | [Army](https://www.army.mil/article-amp/293293/army_launches_tranche_ii_of_strategic_capital_initiatives_focused_on_energy_resilience) |
+| by 2026-10-30 | `directed` | FORTRESS America | stand up program office under the Under Secretary for Acquisition and Sustainment | named office/lead, charter, implementation guidance and operating evidence | [Signed memorandum, access caveat recorded in focused note](https://media.defense.gov/2026/Sep/30/2004009303/-1/-1/1/ESTABLISHMENT-OF-FORTRESS-AMERICA-AS-A-DEPARTMENT-OF-WAR-PROGRAM-FOR-THE-DEFENSE-OF-THE-AMERICAN-HOMELAND.PDF) |
 | late 2020s | `conditional` | Eielson microreactor | final award, NRC licence, construction and operation | licence and operative power-purchase agreement | [Eielson AFB](https://www.eielson.af.mil/microreactor/) |
 | FY2030 | `scheduled` | JTMS | full user capability target | fielded users, reconciled transactions and audit evidence | [USTRANSCOM 2026](https://docs.house.gov/meetings/AS/AS28/20260318/119070/HHRG-119-AS28-20260318-SD004.pdf) |
 | 2027–2031 | `retiring` | Ready Reserve Force | 11 additional ships expected to retire | replacement acquisitions/new construction reach operational state | [USTRANSCOM 2026](https://docs.house.gov/meetings/AS/AS28/20260318/119070/HHRG-119-AS28-20260318-SD004.pdf) |

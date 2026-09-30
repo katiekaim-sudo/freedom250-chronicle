@@ -7,6 +7,8 @@
   "question": "What did the July 24 WHCA dinner remarks say, which themes are interpretive, and which passages still require direct replay verification?",
   "bluf": "The package establishes the July 24 WHCA dinner event, an authoritative White House replay and a reproducible third-party timestamped transcript suitable for close reading and research routing. It does not supply an official verbatim transcript, independently validate the President's claims or authorize exact quotation without direct video verification.",
   "evidence_cutoff": "2026-07-24",
+  "evidence_cutoff_note": "The event is fixed to July 24, 2026, but the transcript and high-load passages remain subject to the package's official-video audit queue.",
+  "use_note": "Internal recall for event identity, source stack, timestamped working transcript and bounded themes. This is not an official verbatim transcript: exact quotations, proper names, figures and high-load claims require direct official-video verification, and the speech's assertions are not established facts.",
   "library_state": "current",
   "entities": [
     "Donald J. Trump",
@@ -40,16 +42,17 @@
   "material_counts": {
     "total": 12,
     "public_reading": 3,
+    "public_machine_data": 0,
     "private_library_metadata": 9
   },
   "research_layer_counts": {
     "orientation": 2,
-    "findings": 0,
+    "findings": 1,
     "evidence": 1,
     "monitoring": 0,
     "methods": 1,
     "presentation": 3,
-    "supporting": 5
+    "supporting": 4
   },
   "latest_computer_edit_at": "2026-09-16T23:20:09Z",
   "public_full_text": true,
@@ -63,13 +66,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -87,8 +92,10 @@
       "id": "findings",
       "label": "Findings and synthesis",
       "meaning": "Research answers, cross-record synthesis and explicit claim testing.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "20ff532a8d031a2d"
+      ]
     },
     {
       "id": "evidence",
@@ -130,11 +137,10 @@
       "id": "supporting",
       "label": "Supporting material",
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
-      "count": 5,
+      "count": 4,
       "material_ids": [
-        "74a6bfd12dbc2e4a",
-        "20ff532a8d031a2d",
         "3603ad9fd300fa92",
+        "74a6bfd12dbc2e4a",
         "333c12b7dd6c92c0",
         "fdf635db0ea36d97"
       ]
@@ -144,7 +150,7 @@
     {
       "material_id": "01334b008906945c",
       "title": "July 24, 2026 Trump WHCA dinner remarks",
-      "artifact_role": "read_first",
+      "artifact_role": "router",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -159,38 +165,9 @@
       "reading_basis": "public_html_full_text"
     },
     {
-      "material_id": "74a6bfd12dbc2e4a",
-      "title": "FACTBASE TIMESTAMPED SOURCE",
-      "artifact_role": "supporting",
-      "file_state": "current",
-      "availability": "private_library_metadata",
-      "custody_layer": "research_workbench",
-      "computer_object_type": "file",
-      "modified_at": "2026-07-26T02:20:44Z",
-      "access_state": "private_by_design",
-      "public_full_text": false
-    },
-    {
-      "material_id": "20ff532a8d031a2d",
-      "title": "First-pass reading map — Trump at the 2026 WHCA dinner",
-      "artifact_role": "supporting",
-      "file_state": "current",
-      "availability": "public_reading",
-      "custody_layer": "research_workbench",
-      "computer_object_type": "file",
-      "modified_at": "2026-09-16T23:20:09Z",
-      "source_id": "20ff532a8d031a2d",
-      "url": "sources/first-pass-reading-map-20ff532a8d03.html",
-      "source_text": "sources/first-pass-reading-map-20ff532a8d03.md",
-      "access_state": "public_full_text",
-      "public_full_text": true,
-      "reading_url": "readings/20ff532a8d031a2d.html",
-      "reading_basis": "public_html_full_text"
-    },
-    {
       "material_id": "3603ad9fd300fa92",
       "title": "President Trump at the 2026 White House Correspondents' Association Dinner",
-      "artifact_role": "supporting",
+      "artifact_role": "other",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -203,6 +180,18 @@
       "public_full_text": true,
       "reading_url": "readings/3603ad9fd300fa92.html",
       "reading_basis": "public_html_full_text"
+    },
+    {
+      "material_id": "74a6bfd12dbc2e4a",
+      "title": "FACTBASE TIMESTAMPED SOURCE",
+      "artifact_role": "supporting",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-07-26T02:20:44Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     },
     {
       "material_id": "333c12b7dd6c92c0",
@@ -227,6 +216,23 @@
       "modified_at": "2026-08-27T21:48:32Z",
       "access_state": "private_by_design",
       "public_full_text": false
+    },
+    {
+      "material_id": "20ff532a8d031a2d",
+      "title": "First-pass reading map — Trump at the 2026 WHCA dinner",
+      "artifact_role": "synthesis",
+      "file_state": "current",
+      "availability": "public_reading",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-09-16T23:20:09Z",
+      "source_id": "20ff532a8d031a2d",
+      "url": "sources/first-pass-reading-map-20ff532a8d03.html",
+      "source_text": "sources/first-pass-reading-map-20ff532a8d03.md",
+      "access_state": "public_full_text",
+      "public_full_text": true,
+      "reading_url": "readings/20ff532a8d031a2d.html",
+      "reading_basis": "public_html_full_text"
     },
     {
       "material_id": "5e47ab00f2289ed5",

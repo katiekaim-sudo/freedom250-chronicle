@@ -7,6 +7,8 @@
   "question": "How can all saved government research, entity relationships, committee records, adjudicated movements and exact evidence gaps be explored in one governed hub without flattening institutions or replacing each package's evidence ownership?",
   "bluf": "The Government-Wide Research Hub brings every exact Catalog package card and the complete Registry shelf into the same navigable destination as the 642-node Federal Group chart, 401 governed attachment associations, 29 congressional bodies with exact committee-corpus artifacts, eight adjudicated movements and a typed gap board. Each package now opens as a wide reading room with curated routes, complete files and a package-scoped entity map that visibly separates exact joins from review-only Catalog mentions. Package browsing, attachment, coverage, movement and incompleteness remain separate evidence layers.",
   "evidence_cutoff": "2026-09-22T11:51:46-04:00",
+  "evidence_cutoff_note": "The authored movement registry contains eight adjudicated records through the stated research cutoff. Exact research attachments, complete Registry membership and typed gap projections are regenerated from their current named owners, with source hashes recorded at build time. Catalog entity labels remain review-only candidates. This is neither a live government-state feed, a second return queue nor the Government-Wide Source Monitor inbox.",
+  "use_note": "Use as the one browsing hub for saved government research, every registered file, the entity chart, committees, adjudicated movement and typed next checks. Reconcile already-completed research and exact custody before launching new searches. Follow every package, movement or gap to its controlling owner before citing facts. Catalog entity mentions are searchable but do not create chart attachments. Do not infer legal ownership from tree containment, admit raw monitor candidates, or treat Catalog registration as authorization for Chronicle promotion, a watch, Federal Group mutation, app/site shipment, commit or push.",
   "library_state": "current",
   "entities": [
     "United States",
@@ -63,6 +65,7 @@
   "material_counts": {
     "total": 23,
     "public_reading": 2,
+    "public_machine_data": 0,
     "private_library_metadata": 21
   },
   "research_layer_counts": {
@@ -71,10 +74,10 @@
     "evidence": 0,
     "monitoring": 0,
     "methods": 5,
-    "presentation": 0,
-    "supporting": 17
+    "presentation": 1,
+    "supporting": 16
   },
-  "latest_computer_edit_at": "2026-09-28T23:53:46Z",
+  "latest_computer_edit_at": "2026-09-30T12:41:10Z",
   "public_full_text": true,
   "full_text_url": "readings/packages/federal-government-movement-atlas.html",
   "routes": {
@@ -86,13 +89,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -143,14 +148,16 @@
       "id": "presentation",
       "label": "Presentation and projections",
       "meaning": "Human-facing visuals, generated projections and packaged deliverables.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "0a93cb59970cc7d0"
+      ]
     },
     {
       "id": "supporting",
       "label": "Supporting material",
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
-      "count": 17,
+      "count": 16,
       "material_ids": [
         "0a37540112416cd5",
         "086af05efbcefca2",
@@ -167,7 +174,6 @@
         "50eeb2444ea67e6c",
         "3c5d47d2b038e500",
         "af6a19bb304c1b1d",
-        "0a93cb59970cc7d0",
         "818ac7dadd67a10a"
       ]
     }
@@ -176,12 +182,12 @@
     {
       "material_id": "e5c441f668f76419",
       "title": "Government-Wide Research Hub",
-      "artifact_role": "read_first",
+      "artifact_role": "router",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-09-28T23:53:46Z",
+      "modified_at": "2026-09-30T12:41:10Z",
       "source_id": "e5c441f668f76419",
       "url": "sources/readme-e5c441f668f7.html",
       "source_text": "sources/readme-e5c441f668f7.md",
@@ -189,6 +195,22 @@
       "public_full_text": true,
       "reading_url": "readings/e5c441f668f76419.html",
       "reading_basis": "public_html_full_text"
+    },
+    {
+      "material_id": "0a93cb59970cc7d0",
+      "title": "See adjudicated movement through the entity tree",
+      "artifact_role": "generated_projection",
+      "file_state": "current",
+      "availability": "public_reading",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-09-30T12:40:29Z",
+      "source_id": "0a93cb59970cc7d0",
+      "url": "rooms/federal-government-movement-atlas.html",
+      "access_state": "public_full_text",
+      "public_full_text": true,
+      "reading_url": "readings/0a93cb59970cc7d0.html",
+      "reading_basis": "public_html_visible_text_plus_package_context"
     },
     {
       "material_id": "0a37540112416cd5",
@@ -210,7 +232,7 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-09-28T21:09:12Z",
+      "modified_at": "2026-09-30T12:40:29Z",
       "access_state": "private_by_design",
       "public_full_text": false
     },
@@ -234,7 +256,7 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-09-28T21:09:11Z",
+      "modified_at": "2026-09-30T12:40:29Z",
       "access_state": "private_by_design",
       "public_full_text": false
     },
@@ -246,7 +268,7 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-09-28T21:09:11Z",
+      "modified_at": "2026-09-30T12:40:29Z",
       "access_state": "private_by_design",
       "public_full_text": false
     },
@@ -270,7 +292,7 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-09-28T21:09:11Z",
+      "modified_at": "2026-09-30T12:40:29Z",
       "access_state": "private_by_design",
       "public_full_text": false
     },
@@ -282,7 +304,7 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-09-28T21:09:11Z",
+      "modified_at": "2026-09-30T12:40:29Z",
       "access_state": "private_by_design",
       "public_full_text": false
     },
@@ -369,22 +391,6 @@
       "modified_at": "2026-09-22T23:31:03Z",
       "access_state": "private_by_design",
       "public_full_text": false
-    },
-    {
-      "material_id": "0a93cb59970cc7d0",
-      "title": "See adjudicated movement through the entity tree",
-      "artifact_role": "supporting",
-      "file_state": "current",
-      "availability": "public_reading",
-      "custody_layer": "research_workbench",
-      "computer_object_type": "file",
-      "modified_at": "2026-09-28T21:09:12Z",
-      "source_id": "0a93cb59970cc7d0",
-      "url": "rooms/federal-government-movement-atlas.html",
-      "access_state": "public_full_text",
-      "public_full_text": true,
-      "reading_url": "readings/0a93cb59970cc7d0.html",
-      "reading_basis": "public_html_full_text"
     },
     {
       "material_id": "818ac7dadd67a10a",

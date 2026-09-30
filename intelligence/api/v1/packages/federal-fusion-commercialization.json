@@ -7,6 +7,8 @@
   "question": "How does a U.S. fusion project move from public strategy and capital through machine milestones, licensing, site and grid gates to measured commercial electricity?",
   "bluf": "Fusion commercialization is a gated sequence, not one breakthrough: public strategy and capital, a named company and machine, technical milestones, licensing, site and interconnection control, generation, and measured grid delivery each require their own receipt.",
   "evidence_cutoff": "2026-08-15",
+  "evidence_cutoff_note": "Original cutoff 2026-08-15 15:28 EDT. The September 7 NEIMA attribution correction is a bounded later correction, not a refresh of every project state.",
+  "use_note": "Keep scientific gain, engineering gain, licensing, contract, construction, interconnection, generation and grid delivery as separate states. Company announcements do not by themselves establish agency disposition or operation.",
   "library_state": "current",
   "entities": [
     "DOE Office of Fusion",
@@ -54,12 +56,13 @@
   "material_counts": {
     "total": 3,
     "public_reading": 2,
+    "public_machine_data": 0,
     "private_library_metadata": 1
   },
   "research_layer_counts": {
-    "orientation": 1,
+    "orientation": 0,
     "findings": 0,
-    "evidence": 0,
+    "evidence": 1,
     "monitoring": 0,
     "methods": 0,
     "presentation": 0,
@@ -77,13 +80,15 @@
   },
   "availability_semantics": {
     "public_reading": "The public site contains both the original public view and a crawler-friendly static HTML reading edition. public_full_text is true.",
+    "public_machine_data": "The public site contains the complete positively selected structured dataset. public_full_text is true; reading_url and data_url identify the canonical JSON object.",
     "private_library_metadata": "The governed private Research Library contains the material, but the public site exposes only safe title, role and state metadata. public_full_text is false and access_state is private_by_design. Do not infer its contents."
   },
   "retrieval_instructions": [
     "Open full_text_url for the package before treating a summary as the underlying research.",
-    "For a material with public_full_text true, prefer reading_url; failure to retrieve it is an access or crawler problem, not a private-by-design signal.",
+    "For a public reading, prefer reading_url. For public_machine_data, open data_url and preserve its schema_version, data_as_of, scope_boundary and evidence vocabulary.",
+    "A failure to retrieve public_full_text is an access or crawler problem, not a private-by-design signal.",
     "For access_state private_by_design, use metadata only and do not infer contents.",
-    "Preserve the evidence cutoff. Verify time-sensitive claims with fresh primary sources.",
+    "Preserve the package evidence cutoff, evidence_cutoff_note and any material-specific as_of date. Verify time-sensitive claims with fresh primary sources.",
     "Keep fact, project inference, strongest rival, unresolved object and falsifier separate."
   ],
   "research_layers": [
@@ -91,10 +96,8 @@
       "id": "orientation",
       "label": "Orientation and control",
       "meaning": "Start-here documents, package routers and controlling orientation.",
-      "count": 1,
-      "material_ids": [
-        "187110145b918306"
-      ]
+      "count": 0,
+      "material_ids": []
     },
     {
       "id": "findings",
@@ -107,8 +110,10 @@
       "id": "evidence",
       "label": "Evidence and records",
       "meaning": "Primary-source custody, factual spines, evidence indexes and source ledgers.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "47346c8a435e33ca"
+      ]
     },
     {
       "id": "monitoring",
@@ -137,8 +142,8 @@
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
       "count": 2,
       "material_ids": [
-        "b0ac7ae0c4893b61",
-        "47346c8a435e33ca"
+        "187110145b918306",
+        "b0ac7ae0c4893b61"
       ]
     }
   ],
@@ -146,7 +151,7 @@
     {
       "material_id": "187110145b918306",
       "title": "Federal fusion commercialization bridge, 2020–2035",
-      "artifact_role": "read_first",
+      "artifact_role": "other",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -161,21 +166,9 @@
       "reading_basis": "public_html_full_text"
     },
     {
-      "material_id": "b0ac7ae0c4893b61",
-      "title": "FEDERAL FUSION DATE TIME PLACE LEDGER 2020-2035",
-      "artifact_role": "supporting",
-      "file_state": "current",
-      "availability": "private_library_metadata",
-      "custody_layer": "research_workbench",
-      "computer_object_type": "file",
-      "modified_at": "2026-09-08T18:17:52Z",
-      "access_state": "private_by_design",
-      "public_full_text": false
-    },
-    {
       "material_id": "47346c8a435e33ca",
       "title": "Federal fusion project, capital and regulatory registry, 2022–2035",
-      "artifact_role": "supporting",
+      "artifact_role": "evidence_index",
       "file_state": "current",
       "availability": "public_reading",
       "custody_layer": "research_workbench",
@@ -188,6 +181,18 @@
       "public_full_text": true,
       "reading_url": "readings/47346c8a435e33ca.html",
       "reading_basis": "public_html_full_text"
+    },
+    {
+      "material_id": "b0ac7ae0c4893b61",
+      "title": "FEDERAL FUSION DATE TIME PLACE LEDGER 2020-2035",
+      "artifact_role": "supporting",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-09-08T18:17:52Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
     }
   ]
 }

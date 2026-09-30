@@ -1,0 +1,393 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-aries-eclipse-moon-family-5e748b230f42.html">
+<title>build_aries_eclipse_moon_family</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_aries_eclipse_moon_family</h1><p class="mut">Portable source: 99 - Templates/build_aries_eclipse_moon_family.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the March 2025 Aries-eclipse Moon-family structural comparison.
+
+The comparison keeps the registered seed, +273-day First Quarter, and
++546-day Full phase as three distinct clocks.  It computes Washington Whole
+Sign staging, traditional dispositor circuits, ten-planet distribution,
+standing wheel-policy aspects, and one-degree declination contacts.  The
+output is astronomical/astrological context only: it assigns no causal,
+forecast, political-continuity, or evidence credit.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import argparse
+import itertools
+import json
+from pathlib import Path
+
+import swisseph as swe
+
+from build_aries_mars_pluto_choreography import (
+    FLAGS,
+    cast_chart,
+    julian_day,
+    parse_utc,
+    rounded,
+    signed_motion,
+)
+from wheel_lib import aspects_between
+
+
+HERE = Path(__file__).resolve().parent
+MOON_LINEAGES = HERE / &quot;moon_lineages.json&quot;
+MARS_PLUTO_CHOREOGRAPHY = HERE / &quot;aries_mars_pluto_choreography.json&quot;
+OUT = HERE / &quot;aries_eclipse_moon_family.json&quot;
+LINEAGE_ID = &quot;pessin:lun-2025-03-29-ne-solar&quot;
+ROLE_ORDER = (&quot;seed&quot;, &quot;first_quarter&quot;, &quot;full&quot;)
+
+
+def distribution(chart: dict) -&gt; dict:
+    ordered = sorted(
+        (
+            record[&quot;longitude_deg&quot;],
+            body,
+        )
+        for body, record in chart[&quot;positions&quot;].items()
+    )
+    gaps = []
+    for index, (longitude, body) in enumerate(ordered):
+        next_longitude, next_body = ordered[(index + 1) % len(ordered)]
+        gap = (next_longitude - longitude) % 360.0
+        gaps.append((gap, body, next_body, longitude, next_longitude))
+    gap, start_body, end_body, start_longitude, end_longitude = max(gaps)
+    return {
+        &quot;largest_empty_arc_deg&quot;: rounded(gap, 6),
+        &quot;occupied_span_deg&quot;: rounded(360.0 - gap, 6),
+        &quot;empty_arc_from&quot;: {
+            &quot;body&quot;: start_body,
+            &quot;longitude_deg&quot;: rounded(start_longitude, 6),
+        },
+        &quot;empty_arc_to&quot;: {
+            &quot;body&quot;: end_body,
+            &quot;longitude_deg&quot;: rounded(end_longitude, 6),
+        },
+        &quot;boundary&quot;: (
+            &quot;Raw circular distribution only; no Jones/Meyer or other named &quot;
+            &quot;shape family is assigned.&quot;
+        ),
+    }
+
+
+def declination_contacts(chart: dict) -&gt; list[dict]:
+    rows = []
+    positions = chart[&quot;positions&quot;]
+    for first, second in itertools.combinations(positions, 2):
+        first_declination = positions[first][&quot;declination_deg&quot;]
+        second_declination = positions[second][&quot;declination_deg&quot;]
+        orb = abs(abs(first_declination) - abs(second_declination))
+        if orb &lt;= 1.0 + 1e-9:
+            rows.append(
+                {
+                    &quot;first&quot;: first,
+                    &quot;second&quot;: second,
+                    &quot;relationship&quot;: (
+                        &quot;parallel&quot;
+                        if first_declination * second_declination &gt;= 0.0
+                        else &quot;contra_parallel&quot;
+                    ),
+                    &quot;orb_deg&quot;: rounded(orb, 6),
+                    &quot;first_declination_deg&quot;: first_declination,
+                    &quot;second_declination_deg&quot;: second_declination,
+                }
+            )
+    return sorted(rows, key=lambda row: (row[&quot;orb_deg&quot;], row[&quot;first&quot;], row[&quot;second&quot;]))
+
+
+def chart_record(member: dict, phase_events: dict[str, dict]) -&gt; dict:
+    phase_event = phase_events[member[&quot;phase_event_id&quot;]]
+    chart = cast_chart(parse_utc(phase_event[&quot;exact_utc&quot;]))
+    longitudes = {
+        body: record[&quot;longitude_deg&quot;] for body, record in chart[&quot;positions&quot;].items()
+    }
+    return {
+        &quot;role&quot;: member[&quot;role&quot;],
+        &quot;phase_event_id&quot;: member[&quot;phase_event_id&quot;],
+        &quot;chart_id&quot;: member[&quot;chart_id&quot;],
+        &quot;exact_utc&quot;: phase_event[&quot;exact_utc&quot;],
+        &quot;exact_local&quot;: phase_event[&quot;exact_local&quot;],
+        &quot;elapsed_days_from_seed&quot;: member[&quot;elapsed_days_from_seed&quot;],
+        &quot;zodiac_distance_from_seed_deg&quot;: member[&quot;zodiac_distance_from_seed_deg&quot;],
+        &quot;governing_ingress_id&quot;: member[&quot;governing_ingress_id&quot;],
+        &quot;chart&quot;: chart,
+        &quot;longitude_aspects&quot;: aspects_between(longitudes),
+        &quot;declination_contacts&quot;: declination_contacts(chart),
+        &quot;distribution&quot;: distribution(chart),
+    }
+
+
+def aspect_orb(longitude: float, reference: float, target_angle: float) -&gt; float:
+    separation = abs((longitude - reference + 180.0) % 360.0 - 180.0)
+    return abs(separation - target_angle)
+
+
+def nodal_separation_control(records: list[dict]) -&gt; dict:
+    rows = []
+    for record in records:
+        jd = julian_day(parse_utc(record[&quot;exact_utc&quot;]))
+        north_node = swe.calc_ut(jd, swe.TRUE_NODE, FLAGS)[0][0] % 360.0
+        south_node = (north_node + 180.0) % 360.0
+        moon = record[&quot;chart&quot;][&quot;positions&quot;][&quot;Moon&quot;]
+        sun = record[&quot;chart&quot;][&quot;positions&quot;][&quot;Sun&quot;]
+        moon_to_north = abs(signed_motion(north_node, moon[&quot;longitude_deg&quot;]))
+        moon_to_south = abs(signed_motion(south_node, moon[&quot;longitude_deg&quot;]))
+        sun_to_north = abs(signed_motion(north_node, sun[&quot;longitude_deg&quot;]))
+        sun_to_south = abs(signed_motion(south_node, sun[&quot;longitude_deg&quot;]))
+        rows.append(
+            {
+                &quot;role&quot;: record[&quot;role&quot;],
+                &quot;phase_event_id&quot;: record[&quot;phase_event_id&quot;],
+                &quot;exact_utc&quot;: record[&quot;exact_utc&quot;],
+                &quot;true_north_node_longitude_deg&quot;: rounded(north_node, 9),
+                &quot;true_south_node_longitude_deg&quot;: rounded(south_node, 9),
+                &quot;moon_longitude_deg&quot;: moon[&quot;longitude_deg&quot;],
+                &quot;moon_ecliptic_latitude_deg&quot;: moon[&quot;latitude_deg&quot;],
+                &quot;moon_nearest_node&quot;: (
+                    &quot;north&quot; if moon_to_north &lt;= moon_to_south else &quot;south&quot;
+                ),
+                &quot;moon_nearest_node_separation_deg&quot;: rounded(
+                    min(moon_to_north, moon_to_south), 6
+                ),
+                &quot;sun_nearest_node&quot;: (
+                    &quot;north&quot; if sun_to_north &lt;= sun_to_south else &quot;south&quot;
+                ),
+                &quot;sun_nearest_node_separation_deg&quot;: rounded(
+                    min(sun_to_north, sun_to_south), 6
+                ),
+                &quot;sun_moon_elongation_deg&quot;: rounded(
+                    abs(signed_motion(sun[&quot;longitude_deg&quot;], moon[&quot;longitude_deg&quot;])),
+                    6,
+                ),
+                &quot;shadow_state&quot;: (
+                    &quot;registered_partial_solar_eclipse&quot;
+                    if record[&quot;role&quot;] == &quot;seed&quot;
+                    else &quot;non_eclipse_moon_family_phase&quot;
+                ),
+            }
+        )
+
+    seed, first_quarter, full = rows
+    return {
+        &quot;status&quot;: &quot;computed_astronomy_context_zero_forecast_or_evidence_credit&quot;,
+        &quot;members&quot;: rows,
+        &quot;monotonic_checks&quot;: {
+            &quot;moon_nearest_node_separation_increases&quot;: all(
+                earlier[&quot;moon_nearest_node_separation_deg&quot;]
+                &lt; later[&quot;moon_nearest_node_separation_deg&quot;]
+                for earlier, later in zip(rows, rows[1:])
+            ),
+            &quot;absolute_moon_ecliptic_latitude_increases&quot;: all(
+                abs(earlier[&quot;moon_ecliptic_latitude_deg&quot;])
+                &lt; abs(later[&quot;moon_ecliptic_latitude_deg&quot;])
+                for earlier, later in zip(rows, rows[1:])
+            ),
+        },
+        &quot;seed_to_full&quot;: {
+            &quot;true_north_node_motion_deg&quot;: rounded(
+                signed_motion(
+                    seed[&quot;true_north_node_longitude_deg&quot;],
+                    full[&quot;true_north_node_longitude_deg&quot;],
+                ),
+                6,
+            ),
+            &quot;moon_family_longitude_motion_deg&quot;: rounded(
+                signed_motion(seed[&quot;moon_longitude_deg&quot;], full[&quot;moon_longitude_deg&quot;]),
+                6,
+            ),
+            &quot;nearest_node_separation_increase_deg&quot;: rounded(
+                full[&quot;moon_nearest_node_separation_deg&quot;]
+                - seed[&quot;moon_nearest_node_separation_deg&quot;],
+                6,
+            ),
+            &quot;absolute_moon_latitude_increase_deg&quot;: rounded(
+                abs(full[&quot;moon_ecliptic_latitude_deg&quot;])
+                - abs(seed[&quot;moon_ecliptic_latitude_deg&quot;]),
+                6,
+            ),
+        },
+        &quot;interpretive_boundary&quot;: (
+            &quot;The 273/546-day Moon-family phase clock is not an eclipse-recurrence &quot;
+            &quot;clock. The registered partial-solar-eclipse seed matures through a &quot;
+            &quot;non-eclipse First Quarter and Full Moon while the lights move farther &quot;
+            &quot;from the lunar-node axis and the Moon&#x27;s absolute ecliptic latitude &quot;
+            &quot;increases. This supports the literal distinction between shadowed seed &quot;
+            &quot;and unshadowed illumination; it does not add a vote, prove political &quot;
+            &quot;continuity, or make the later phase stronger because it is farther from &quot;
+            &quot;the node.&quot;
+        ),
+    }
+
+
+def cross_cycle_relay(records: list[dict], choreography: dict) -&gt; dict:
+    members = {row[&quot;role&quot;]: row for row in records}
+    anchors = {row[&quot;event_id&quot;]: row for row in choreography[&quot;anchors&quot;]}
+    conjunction = anchors[&quot;mars-pluto-conjunction-seed&quot;]
+    opposition = anchors[&quot;mars-opposite-pluto&quot;]
+    reference = conjunction[&quot;chart&quot;][&quot;positions&quot;][&quot;Pluto&quot;][&quot;longitude_deg&quot;]
+
+    rows = []
+
+    def add(
+        event_id: str,
+        point: str,
+        longitude: float,
+        aspect: str,
+        target_angle: float,
+        policy_orb: float = 1.0,
+        note: str | None = None,
+    ) -&gt; None:
+        orb = aspect_orb(longitude, reference, target_angle)
+        rows.append(
+            {
+                &quot;event_id&quot;: event_id,
+                &quot;point&quot;: point,
+                &quot;longitude_deg&quot;: rounded(longitude, 9),
+                &quot;relationship_to_mars_pluto_seed&quot;: aspect,
+                &quot;orb_deg&quot;: rounded(orb, 6),
+                &quot;orb_arcmin&quot;: rounded(orb * 60.0, 3),
+                &quot;policy_orb_deg&quot;: policy_orb,
+                &quot;admitted_under_policy&quot;: orb &lt;= policy_orb + 1e-9,
+                &quot;note&quot;: note,
+            }
+        )
+
+    add(
+        members[&quot;seed&quot;][&quot;phase_event_id&quot;],
+        &quot;Pluto&quot;,
+        members[&quot;seed&quot;][&quot;chart&quot;][&quot;positions&quot;][&quot;Pluto&quot;][&quot;longitude_deg&quot;],
+        &quot;same_degree&quot;,
+        0.0,
+        note=&quot;The eclipse seed already places Pluto on the later conjunction coordinate.&quot;,
+    )
+    add(
+        members[&quot;first_quarter&quot;][&quot;phase_event_id&quot;],
+        &quot;Pluto&quot;,
+        members[&quot;first_quarter&quot;][&quot;chart&quot;][&quot;positions&quot;][&quot;Pluto&quot;][&quot;longitude_deg&quot;],
+        &quot;same_degree&quot;,
+        0.0,
+        note=&quot;Pluto remains inside the one-degree corridor at the contextual First Quarter.&quot;,
+    )
+    add(
+        conjunction[&quot;event_id&quot;],
+        &quot;Mars and Pluto&quot;,
+        reference,
+        &quot;conjunction_seed&quot;,
+        0.0,
+        note=&quot;Reference coordinate for the 2026 Mars-Pluto family.&quot;,
+    )
+    add(
+        members[&quot;full&quot;][&quot;phase_event_id&quot;],
+        &quot;Pluto&quot;,
+        members[&quot;full&quot;][&quot;chart&quot;][&quot;positions&quot;][&quot;Pluto&quot;][&quot;longitude_deg&quot;],
+        &quot;same_degree&quot;,
+        0.0,
+    )
+    add(
+        members[&quot;full&quot;][&quot;phase_event_id&quot;],
+        &quot;Moon&quot;,
+        members[&quot;full&quot;][&quot;chart&quot;][&quot;positions&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;],
+        &quot;sextile&quot;,
+        60.0,
+        policy_orb=0.5,
+    )
+    add(
+        members[&quot;full&quot;][&quot;phase_event_id&quot;],
+        &quot;Sun&quot;,
+        members[&quot;full&quot;][&quot;chart&quot;][&quot;positions&quot;][&quot;Sun&quot;][&quot;longitude_deg&quot;],
+        &quot;trine&quot;,
+        120.0,
+        policy_orb=0.5,
+    )
+    add(
+        opposition[&quot;event_id&quot;],
+        &quot;Pluto&quot;,
+        opposition[&quot;chart&quot;][&quot;positions&quot;][&quot;Pluto&quot;][&quot;longitude_deg&quot;],
+        &quot;same_degree&quot;,
+        0.0,
+    )
+    add(
+        members[&quot;first_quarter&quot;][&quot;phase_event_id&quot;],
+        &quot;MC&quot;,
+        members[&quot;first_quarter&quot;][&quot;chart&quot;][&quot;midheaven&quot;][&quot;longitude_deg&quot;],
+        &quot;same_degree&quot;,
+        0.0,
+        note=(
+            &quot;The First-Quarter MC is a disclosed threshold miss: close to the corridor &quot;
+            &quot;but outside the one-degree angle-to-seed policy.&quot;
+        ),
+    )
+    return {
+        &quot;reference_event_id&quot;: conjunction[&quot;event_id&quot;],
+        &quot;reference_longitude_deg&quot;: rounded(reference, 9),
+        &quot;reference_sign&quot;: &quot;Aquarius&quot;,
+        &quot;reference_degree_in_sign&quot;: rounded(reference % 30.0, 6),
+        &quot;contacts&quot;: rows,
+        &quot;boundary&quot;: (
+            &quot;This is a direct geometry bridge between two independently owned clocks. &quot;
+            &quot;It does not merge the Moon family with the Mars-Pluto family or supply &quot;
+            &quot;another evidence or forecast vote.&quot;
+        ),
+    }
+
+
+def build_payload() -&gt; dict:
+    source = json.loads(MOON_LINEAGES.read_text(encoding=&quot;utf-8&quot;))
+    choreography = json.loads(MARS_PLUTO_CHOREOGRAPHY.read_text(encoding=&quot;utf-8&quot;))
+    lineage = next(row for row in source[&quot;lineages&quot;] if row[&quot;lineage_id&quot;] == LINEAGE_ID)
+    phase_events = {row[&quot;phase_event_id&quot;]: row for row in source[&quot;phase_events&quot;]}
+    members = {row[&quot;role&quot;]: row for row in lineage[&quot;members&quot;]}
+    records = [chart_record(members[role], phase_events) for role in ROLE_ORDER]
+    return {
+        &quot;schema&quot;: &quot;freedom250.aries-eclipse-moon-family.v2&quot;,
+        &quot;lineage_id&quot;: LINEAGE_ID,
+        &quot;degree_band&quot;: lineage[&quot;degree_band&quot;],
+        &quot;interpretation_status&quot;: lineage[&quot;interpretation_status&quot;],
+        &quot;source&quot;: &quot;99 - Templates/moon_lineages.json&quot;,
+        &quot;method&quot;: {
+            &quot;location&quot;: &quot;Washington, D.C.&quot;,
+            &quot;houses&quot;: &quot;Whole Sign&quot;,
+            &quot;rulers&quot;: &quot;traditional&quot;,
+            &quot;longitude_aspects&quot;: (
+                &quot;wheel_lib standing policy: three-degree major cap, two degrees &quot;
+                &quot;for Moon contacts and semisextiles&quot;
+            ),
+            &quot;declination_contacts&quot;: &quot;parallel or contra-parallel within one degree&quot;,
+            &quot;boundary&quot;: (
+                &quot;The registered phase clocks and computed charts provide context only. &quot;
+                &quot;They do not establish political continuity, causation, forecast credit, &quot;
+                &quot;or a separate event vote.&quot;
+            ),
+        },
+        &quot;members&quot;: records,
+        &quot;cross_cycle_degree_relay&quot;: cross_cycle_relay(records, choreography),
+        &quot;nodal_separation_control&quot;: nodal_separation_control(records),
+    }
+
+
+def main() -&gt; None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--check&quot;, action=&quot;store_true&quot;)
+    args = parser.parse_args()
+    content = json.dumps(build_payload(), indent=2, ensure_ascii=False) + &quot;\n&quot;
+    if args.check:
+        if not OUT.exists() or OUT.read_text(encoding=&quot;utf-8&quot;) != content:
+            raise SystemExit(f&quot;stale generated artifact: {OUT}&quot;)
+        print(f&quot;OK: {OUT}&quot;)
+        return
+    OUT.write_text(content, encoding=&quot;utf-8&quot;)
+    print(f&quot;Wrote {OUT}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

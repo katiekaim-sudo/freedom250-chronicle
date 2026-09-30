@@ -1,0 +1,284 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/phases-6e3d6e76ba59.html">
+<title>Ordered SLOWEST → FASTEST. The synodic angle is always measured from the slower to the faster,</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>Ordered SLOWEST → FASTEST. The synodic angle is always measured from the slower to the faster,</h1><p class="mut">Portable source: 99 - Templates/phases.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;phases.py — THE CLOCK WITH A HUNDRED HANDS. Every phase, computed. None guessed.
+
+KATIE&#x27;S RULING, 2026-07-12 (DR-020)
+-----------------------------------
+    &quot;Everything is in a phase of everything at all times. All planets are in some phase from
+     every synodic cycle. Every planet is in a phase from their homes, from their exaltations,
+     from previous aspects. It&#x27;s a never-ending clock with 100 layers and hands.&quot;
+
+She is right, and that is a PROBLEM as much as a truth. Ten planets give 45 synodic pairs; add
+each planet&#x27;s phase from its domicile and its exaltation, and its phase against its own natal
+position, and you have ~150 true statements about any given moment. **A reading that names them
+all is the address trap at cosmic scale** (Reading the Charts §8.3).
+
+So this module does the half a machine should do — it COMPUTES all of them, exactly — and it
+marks which ones a reading is allowed to NAME. The rest stay in the table: available, true,
+and unspoken.
+
+THE GRAMMAR — every cycle, whatever it is between, has the same three fields
+---------------------------------------------------------------------------
+    SEED   the conjunction — 0°. The thing is planted.
+    FRUIT  the opposition — 180°. The thing is fully lit, and fully seen.
+    DIRECTION  waxing (0→180): building toward the fruit.
+               waning (180→360): distributing it, dying back toward the next seed.
+
+Eight phases, after Rudhyar&#x27;s lunation cycle, applied to ANY pair:
+    New 0-45 · Crescent 45-90 · First Quarter 90-135 · Gibbous 135-180
+    Full 180-225 · Disseminating 225-270 · Last Quarter 270-315 · Balsamic 315-360
+
+That is the whole vocabulary. A Claude can now say ANY phase in one sentence-shape: *what cycle,
+what phase, which direction.*
+
+THE FOUR CLOCKS
+---------------
+1. SYNODIC   — every pair of bodies. 45 hands. The angle is measured from the SLOWER body to the
+               FASTER one, in the direction of the faster body&#x27;s motion, so &quot;waxing&quot; always means
+               &quot;since the last conjunction.&quot;
+2. DIGNITY   — Katie&#x27;s layer, and the reason this file exists. A planet is in a phase from its own
+               exaltation. Saturn is exalted in Libra, so **Saturn in Aries is the FULL phase of
+               its own exaltation** — the same want, the wrong tools, at maximum illumination.
+               Run as TWO LAYERS, per Katie:
+                 · SIGN  — the standing CONDITION (Whole Sign; Saturn is in its full season for
+                           three years, and no single day owns it).
+                 · DEGREE — the exact HAND (traditional exaltation degrees), which perfects on a
+                           computable date. Condition vs trigger — the vault&#x27;s own ladder.
+               Classical bodies only. Uranus, Neptune and Pluto have NO traditional dignity, and
+               this module will not invent one for them.
+3. RETURN    — a transiting planet against its own NATAL position. Conjunction = the return.
+               Opposition = the halfway house. (This is the clock that caught the 2026-07-22
+               Saturn opposition to the founding Saturn, which no queue had logged.)
+4. ASPECT-CYCLE — applying or separating, and which pass of a multi-pass transit. Reported as
+               `applying` / `separating` on every row; the passes themselves come from
+               `perfections()`.
+
+THE DISCIPLINE — what a reading may NAME (Katie&#x27;s ruling, option B)
+-------------------------------------------------------------------
+Compute all of it; narrate only what earns it. A row is marked `nameable=True` when ANY of:
+
+    (root)  its cycle involves the chart&#x27;s ROOT planet(s) or the CHART RULER — the master move
+            (a loop terminus = EVERY member is the root; pass them all)
+            (Reading the Charts §7.3) applied one layer up;
+    (era)   both bodies are OUTER (Uranus, Neptune, Pluto) — these set the era whatever the root
+            says, and DR-003 already binds us to read them as cycle seeds;
+    (exact) the phase sits within 1° of a perfection against a US NATAL point.
+
+Everything else is `nameable=False`. **It is not false. It is not hidden. It is BACKGROUND.**
+This is the fence Katie asked for: *&quot;the more the better, but note it so other Claudes don&#x27;t get
+confused with the bloat.&quot;* If you are writing prose and you find yourself naming a background
+row, stop — you have left the method and are listing addresses.
+
+USAGE
+-----
+    python3 &quot;99 - Templates/phases.py&quot; 2026-07-18          # the full table for a moment
+    python3 &quot;99 - Templates/phases.py&quot; 2026-07-18 --named  # only what a reading may say
+
+    from phases import phase_table, perfections
+&quot;&quot;&quot;
+import os
+import sys
+from datetime import datetime, timedelta, timezone
+
+try:
+    import swisseph as swe
+except ImportError:
+    sys.exit(&quot;pyswisseph missing — pip install pyswisseph (see nightly_sync_env_gotchas)&quot;)
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))) if os.path.dirname(os.path.abspath(__file__)) not in sys.path else None
+from swiss_ephemeris import FLAGS as FLG  # noqa: E402  2026-09-25: Swiss/JPL files, never silent Moshier
+SIGNS = [&quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;,
+         &quot;Libra&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;]
+
+# Ordered SLOWEST → FASTEST. The synodic angle is always measured from the slower to the faster,
+# so &quot;waxing&quot; reliably means &quot;since the last conjunction.&quot;
+BODIES = [(&quot;Pluto&quot;, swe.PLUTO), (&quot;Neptune&quot;, swe.NEPTUNE), (&quot;Uranus&quot;, swe.URANUS),
+          (&quot;Saturn&quot;, swe.SATURN), (&quot;Jupiter&quot;, swe.JUPITER), (&quot;Mars&quot;, swe.MARS),
+          (&quot;Sun&quot;, swe.SUN), (&quot;Venus&quot;, swe.VENUS), (&quot;Mercury&quot;, swe.MERCURY), (&quot;Moon&quot;, swe.MOON)]
+IDX = {n: i for i, (n, _) in enumerate(BODIES)}
+OUTER = {&quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;}
+
+# Traditional dignities. The outers are ABSENT on purpose — they have none, and a modern
+# invention would be a made-up degree, which is the one sin this vault does not forgive.
+EXALT_DEG = {&quot;Sun&quot;: (&quot;Aries&quot;, 19), &quot;Moon&quot;: (&quot;Taurus&quot;, 3), &quot;Mercury&quot;: (&quot;Virgo&quot;, 15),
+             &quot;Venus&quot;: (&quot;Pisces&quot;, 27), &quot;Mars&quot;: (&quot;Capricorn&quot;, 28), &quot;Jupiter&quot;: (&quot;Cancer&quot;, 15),
+             &quot;Saturn&quot;: (&quot;Libra&quot;, 21)}
+DOMICILE = {&quot;Sun&quot;: [&quot;Leo&quot;], &quot;Moon&quot;: [&quot;Cancer&quot;], &quot;Mercury&quot;: [&quot;Gemini&quot;, &quot;Virgo&quot;],
+            &quot;Venus&quot;: [&quot;Taurus&quot;, &quot;Libra&quot;], &quot;Mars&quot;: [&quot;Aries&quot;, &quot;Scorpio&quot;],
+            &quot;Jupiter&quot;: [&quot;Sagittarius&quot;, &quot;Pisces&quot;], &quot;Saturn&quot;: [&quot;Capricorn&quot;, &quot;Aquarius&quot;]}
+
+PHASES = [(0, &quot;New&quot;), (45, &quot;Crescent&quot;), (90, &quot;First Quarter&quot;), (135, &quot;Gibbous&quot;),
+          (180, &quot;Full&quot;), (225, &quot;Disseminating&quot;), (270, &quot;Last Quarter&quot;), (315, &quot;Balsamic&quot;)]
+
+# The US natal chart — DR-002. July 2 1776, 5:10 PM LMT, Philadelphia. NOT Sibley, not July 4.
+US_NATAL_JD = swe.julday(1776, 7, 2, 17 + 10 / 60 + 75.1652 / 15.0)
+
+
+def _lon(pl, jd):
+    try:
+        x, _ = swe.calc_ut(jd, pl, FLG)
+    except Exception:
+        x, _ = swe.calc_ut(jd, pl, swe.FLG_MOSEPH | swe.FLG_SPEED)
+    return x[0], x[3]                      # longitude, speed
+
+
+def jd_of(dt):
+    dt = dt.astimezone(timezone.utc) if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+    return swe.julday(dt.year, dt.month, dt.day, dt.hour + dt.minute / 60 + dt.second / 3600)
+
+
+def fmt(l):
+    s, d = int(l // 30) % 12, l % 30
+    return f&quot;{int(d)}°{int(round((d % 1) * 60)):02d}&#x27; {SIGNS[s]}&quot;
+
+
+def phase_of(angle):
+    &quot;&quot;&quot;(name, direction) for a 0-360 phase angle. This is the whole vocabulary.&quot;&quot;&quot;
+    a = angle % 360
+    name = PHASES[0][1]
+    for lo, nm in PHASES:
+        if a &gt;= lo:
+            name = nm
+    return name, (&quot;waxing&quot; if a &lt; 180 else &quot;waning&quot;)
+
+
+def us_natal():
+    return {n: _lon(pl, US_NATAL_JD)[0] for n, pl in BODIES}
+
+
+def _as_load(*groups):
+    &quot;&quot;&quot;root may be one planet or every member of a loop. chart_ruler is usually one name.&quot;&quot;&quot;
+    out = set()
+    for g in groups:
+        if not g:
+            continue
+        if isinstance(g, str):
+            out.add(g)
+        else:
+            out.update(p for p in g if p)
+    return out
+
+
+def phase_table(dt, root=None, chart_ruler=None):
+    &quot;&quot;&quot;Every hand on the clock at `dt`. Rows are dicts; `nameable` marks what may be SPOKEN.
+
+    `root` / `chart_ruler` — the planets the chart already made load-bearing (Reading the Charts
+    §7.3). If the terminus is a loop, pass every member as `root` (string or iterable).
+    Leave them None and only the (era) and (exact) exceptions mark rows nameable — honest, but thinner.&quot;&quot;&quot;
+    jd = jd_of(dt)
+    pos = {n: _lon(pl, jd) for n, pl in BODIES}
+    nat = us_natal()
+    load = _as_load(root, chart_ruler)
+    rows = []
+
+    # ── clock 1: the 45 synodic pairs ────────────────────────────────────────────────
+    for i, (slow, _) in enumerate(BODIES):
+        for fast, _ in BODIES[i + 1:]:
+            ls, lf = pos[slow][0], pos[fast][0]
+            angle = (lf - ls) % 360
+            nm, dr = phase_of(angle)
+            rel = pos[fast][1] - pos[slow][1]      # closing or opening?
+            rows.append(dict(
+                clock=&quot;synodic&quot;, cycle=f&quot;{slow}–{fast}&quot;, angle=angle, phase=nm, direction=dr,
+                detail=f&quot;{fast} {fmt(lf)} · {slow} {fmt(ls)}&quot;,
+                applying=(rel &gt; 0 and angle &lt; 180) or (rel &lt; 0 and angle &gt; 180),
+                nameable=({slow, fast} &lt;= OUTER) or bool(load &amp; {slow, fast})))
+
+    # ── clock 2: DIGNITY — Katie&#x27;s layer, two layers deep ────────────────────────────
+    for n, (sign, deg) in EXALT_DEG.items():
+        l = pos[n][0]
+        seed = SIGNS.index(sign) * 30 + deg          # the exaltation DEGREE = the seed
+        angle = (l - seed) % 360
+        nm, dr = phase_of(angle)
+        cur = SIGNS[int(l // 30) % 12]
+        fall = SIGNS[(SIGNS.index(sign) + 6) % 12]
+        cond = (&quot;EXALTED&quot; if cur == sign else &quot;FALL&quot; if cur == fall else
+                &quot;DOMICILE&quot; if cur in DOMICILE[n] else
+                &quot;DETRIMENT&quot; if cur in [SIGNS[(SIGNS.index(s) + 6) % 12] for s in DOMICILE[n]]
+                else &quot;peregrine&quot;)
+        rows.append(dict(
+            clock=&quot;dignity&quot;, cycle=f&quot;{n} from its exaltation ({deg}° {sign})&quot;,
+            angle=angle, phase=nm, direction=dr,
+            # BOTH LAYERS, per Katie: the sign is the standing CONDITION (whole-sign, years long);
+            # the degree is the exact HAND, and it perfects on a date you can compute.
+            detail=f&quot;{n} {fmt(l)} — sign layer: in {cur}, {cond} · degree layer: &quot;
+                   f&quot;{angle:.2f}° from the seed, {abs(180 - angle):.2f}° from FULL&quot;,
+            applying=(angle &lt; 180) == (pos[n][1] &gt; 0),
+            nameable=(n in load) or cond in (&quot;EXALTED&quot;, &quot;FALL&quot;)))
+
+    # ── clock 3: RETURN — transiting body against its own natal place ────────────────
+    for n, _ in BODIES:
+        if n == &quot;Moon&quot;:
+            continue                                  # 27 days; it is noise at this scale
+        angle = (pos[n][0] - nat[n]) % 360
+        nm, dr = phase_of(angle)
+        orb = min(angle % 180, 180 - (angle % 180))
+        rows.append(dict(
+            clock=&quot;return&quot;, cycle=f&quot;{n} to the US natal {n}&quot;, angle=angle, phase=nm, direction=dr,
+            detail=f&quot;transiting {fmt(pos[n][0])} · natal {fmt(nat[n])} — {orb:.2f}° from exact&quot;,
+            applying=pos[n][1] &gt; 0,
+            nameable=(orb &lt;= 1.0) or (n in load)))    # the (exact) exception — this caught Saturn
+
+    return rows
+
+
+def perfections(body, target_lon, start, stop):
+    &quot;&quot;&quot;Every pass of `body` over `target_lon` — the multi-pass truth (DR-003&#x27;s discipline).
+    A transit is almost never one date: it hits, stations, comes back.&quot;&quot;&quot;
+    pl = dict(BODIES)[body]
+    def d(t):
+        x = (_lon(pl, jd_of(t))[0] - target_lon) % 360
+        return x - 360 if x &gt; 180 else x
+    out, cur, prev = [], start, None
+    while cur &lt; stop:
+        v = d(cur)
+        if prev is not None and (prev &lt; 0) != (v &lt; 0) and abs(prev - v) &lt; 5:
+            lo, hi = cur - timedelta(days=1), cur
+            for _ in range(35):
+                m = lo + (hi - lo) / 2
+                if (d(lo) &lt; 0) != (d(m) &lt; 0): hi = m
+                else: lo = m
+            out.append((lo, _lon(pl, jd_of(lo))[1] &lt; 0))     # (when, retrograde?)
+        prev = v
+        cur += timedelta(days=1)
+    return out
+
+
+def main():
+    when = sys.argv[1] if len(sys.argv) &gt; 1 and not sys.argv[1].startswith(&quot;-&quot;) else None
+    dt = datetime.fromisoformat(when).replace(tzinfo=timezone.utc) if when \
+        else datetime.now(timezone.utc)
+    only = &quot;--named&quot; in sys.argv
+
+    # 2026 Cancer: Mercury ↔ Moon loop. Both members are the root (DR-020 fence).
+    rows = phase_table(dt, root=(&quot;Mercury&quot;, &quot;Moon&quot;), chart_ruler=&quot;Mercury&quot;)
+    print(&quot;=&quot; * 78)
+    print(f&quot;THE CLOCK WITH A HUNDRED HANDS — {dt:%Y-%m-%d %H:%M} UTC&quot;)
+    print(&quot;  root assumed: Mercury ↔ Moon loop (2026 Cancer). Pass your own; a loop = every member.&quot;)
+    print(&quot;=&quot; * 78)
+    for clock in (&quot;dignity&quot;, &quot;return&quot;, &quot;synodic&quot;):
+        sel = [r for r in rows if r[&quot;clock&quot;] == clock and (r[&quot;nameable&quot;] or not only)]
+        named = sum(1 for r in rows if r[&quot;clock&quot;] == clock and r[&quot;nameable&quot;])
+        tot = sum(1 for r in rows if r[&quot;clock&quot;] == clock)
+        print(f&quot;\n── {clock.upper()} — {named} nameable of {tot}&quot;)
+        for r in sorted(sel, key=lambda r: (not r[&quot;nameable&quot;], r[&quot;cycle&quot;])):
+            mark = &quot;★&quot; if r[&quot;nameable&quot;] else &quot;·&quot;
+            print(f&quot; {mark} {r[&#x27;cycle&#x27;]:34s} {r[&#x27;phase&#x27;]:14s} {r[&#x27;direction&#x27;]:7s} &quot;
+                  f&quot;{&#x27;applying&#x27; if r[&#x27;applying&#x27;] else &#x27;separating&#x27;:10s} {r[&#x27;detail&#x27;]}&quot;)
+    print(&quot;\n&quot; + &quot;-&quot; * 78)
+    print(&quot;★ = a reading MAY name it (root · era · exact-to-natal).  · = BACKGROUND: true,&quot;)
+    print(&quot;    computed, and NOT to be narrated. Naming a background row is the address trap.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

@@ -1,0 +1,503 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-astrology-files-9b7f0b4227e6.html">
+<title>build_astrology_files</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_astrology_files</h1><p class="mut">Portable source: 99 - Templates/build_astrology_files.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the Chronicle-owned Astrology Files data and room.
+
+Astrology Files is an independent Sky &amp; Charts collection.  It does not read
+the Freedom 250 Research Workbench, Research Registry, or Research Desk data.
+The catalog owns collection-level presentation; the registry owns exact file
+membership.  Every source path must resolve beneath ``03 - Astrology/Astrology
+Files`` so the projection cannot silently reach into government Research.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import csv
+import datetime as dt
+import hashlib
+import html
+import io
+import json
+import re
+import shutil
+from pathlib import Path
+from urllib.parse import quote
+
+from atomic_io import atomic_write_text
+
+
+HERE = Path(__file__).resolve().parent
+VAULT = HERE.parent
+ASTROLOGY_ROOT = VAULT / &quot;03 - Astrology&quot; / &quot;Astrology Files&quot;
+CATALOG = ASTROLOGY_ROOT / &quot;ASTROLOGY FILES CATALOG.json&quot;
+REGISTRY = ASTROLOGY_ROOT / &quot;ASTROLOGY FILES REGISTRY.json&quot;
+DATA_OUT = VAULT / &quot;99 - Templates&quot; / &quot;astrology_files_data.json&quot;
+HTML_OUT = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot; / &quot;Astrology Reference Room.html&quot;
+VISUAL_OUT = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot; / &quot;Astrology Files Assets&quot;
+
+ASTROLOGY_ID_RE = re.compile(r&quot;[a-z0-9]+(?:-[a-z0-9]+)*\Z&quot;)
+READABLE_SUFFIXES = {&quot;.md&quot;, &quot;.txt&quot;, &quot;.json&quot;, &quot;.csv&quot;, &quot;.tsv&quot;, &quot;.py&quot;, &quot;.js&quot;, &quot;.css&quot;}
+PACKAGE_STATES = {&quot;current&quot;, &quot;archive&quot;}
+FILE_STATES = {&quot;current&quot;, &quot;draft&quot;, &quot;archive&quot;}
+MAX_TEXT_BYTES = 1_500_000
+
+
+def die(message: str) -&gt; None:
+    raise SystemExit(f&quot;Astrology Files build FAILED: {message}&quot;)
+
+
+def load_json(path: Path):
+    try:
+        return json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+    except Exception as exc:
+        die(f&quot;cannot read {path}: {exc}&quot;)
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def require_text(owner: str, value: dict, field: str) -&gt; str:
+    result = value.get(field)
+    if not isinstance(result, str) or not result.strip():
+        die(f&quot;{owner} requires nonblank {field}&quot;)
+    return result.strip()
+
+
+def safe_source(relative: str, *, owner: str) -&gt; Path:
+    &quot;&quot;&quot;Resolve one catalog/registry path and prove Astrology Files ownership.&quot;&quot;&quot;
+    if not isinstance(relative, str) or not relative.strip():
+        die(f&quot;{owner} has a blank path&quot;)
+    candidate = Path(relative)
+    if candidate.is_absolute() or &quot;..&quot; in candidate.parts:
+        die(f&quot;{owner} has unsafe path {relative!r}&quot;)
+    required_prefix = Path(&quot;03 - Astrology&quot;) / &quot;Astrology Files&quot;
+    try:
+        candidate.relative_to(required_prefix)
+    except ValueError:
+        die(
+            f&quot;{owner} must use a vault-relative path beneath &quot;
+            f&quot;03 - Astrology/Astrology Files: {relative!r}&quot;
+        )
+    root = ASTROLOGY_ROOT.resolve()
+    target = (VAULT / candidate).resolve()
+    try:
+        target.relative_to(root)
+    except ValueError:
+        die(f&quot;{owner} escapes Astrology Files: {relative!r}&quot;)
+    if not target.exists():
+        die(f&quot;{owner} points to missing Astrology Files path {relative!r}&quot;)
+    return target
+
+
+def safe_asset_name(value: str, source: Path, *, owner: str) -&gt; str:
+    name = value.strip() if isinstance(value, str) else &quot;&quot;
+    name = name or source.name
+    if Path(name).name != name or name in {&quot;.&quot;, &quot;..&quot;}:
+        die(f&quot;{owner} has unsafe asset_name {name!r}&quot;)
+    return name
+
+
+def safe_markdown(text: str) -&gt; str:
+    &quot;&quot;&quot;Small, deliberately non-executable Markdown reader.&quot;&quot;&quot;
+    # Obsidian metadata governs the document but is not part of its reading
+    # surface. Strip only a real opening YAML fence; later horizontal rules stay.
+    if text.startswith(&quot;\ufeff&quot;):
+        text = text.lstrip(&quot;\ufeff&quot;)
+    if text.startswith(&quot;---\n&quot;) or text.startswith(&quot;---\r\n&quot;):
+        frontmatter_end = re.search(r&quot;\r?\n---\r?\n&quot;, text[3:])
+        if frontmatter_end:
+            text = text[3 + frontmatter_end.end():]
+    lines = text.splitlines()
+    output: list[str] = []
+    paragraph: list[str] = []
+    quote: list[str] = []
+    in_list = False
+    in_code = False
+
+    def inline(value: str) -&gt; str:
+        value = html.escape(value, quote=True)
+        value = re.sub(r&quot;`([^`]+)`&quot;, r&quot;&lt;code&gt;\1&lt;/code&gt;&quot;, value)
+        value = re.sub(r&quot;\*\*([^*]+)\*\*&quot;, r&quot;&lt;strong&gt;\1&lt;/strong&gt;&quot;, value)
+        return value
+
+    def flush() -&gt; None:
+        nonlocal paragraph
+        if paragraph:
+            output.append(&quot;&lt;p&gt;&quot; + inline(&quot; &quot;.join(x.strip() for x in paragraph)) + &quot;&lt;/p&gt;&quot;)
+            paragraph = []
+
+    def flush_quote() -&gt; None:
+        nonlocal quote
+        if quote:
+            output.append(&quot;&lt;blockquote&gt;&lt;p&gt;&quot; + inline(&quot; &quot;.join(quote)) + &quot;&lt;/p&gt;&lt;/blockquote&gt;&quot;)
+            quote = []
+
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith(&quot;```&quot;):
+            flush()
+            flush_quote()
+            if in_list:
+                output.append(&quot;&lt;/ul&gt;&quot;)
+                in_list = False
+            output.append(&quot;&lt;/code&gt;&lt;/pre&gt;&quot; if in_code else &quot;&lt;pre&gt;&lt;code&gt;&quot;)
+            in_code = not in_code
+            continue
+        if in_code:
+            output.append(html.escape(line) + &quot;\n&quot;)
+            continue
+        if stripped.startswith(&quot;&gt;&quot;):
+            flush()
+            if in_list:
+                output.append(&quot;&lt;/ul&gt;&quot;)
+                in_list = False
+            quote.append(stripped[1:].lstrip())
+            continue
+        flush_quote()
+        heading = re.match(r&quot;^(#{1,6})\s+(.+)$&quot;, stripped)
+        bullet = re.match(r&quot;^[-*]\s+(.+)$&quot;, stripped)
+        if heading:
+            flush()
+            if in_list:
+                output.append(&quot;&lt;/ul&gt;&quot;)
+                in_list = False
+            level = len(heading.group(1))
+            output.append(f&quot;&lt;h{level}&gt;{inline(heading.group(2))}&lt;/h{level}&gt;&quot;)
+        elif bullet:
+            flush()
+            if not in_list:
+                output.append(&quot;&lt;ul&gt;&quot;)
+                in_list = True
+            output.append(&quot;&lt;li&gt;&quot; + inline(bullet.group(1)) + &quot;&lt;/li&gt;&quot;)
+        elif not stripped:
+            flush()
+            if in_list:
+                output.append(&quot;&lt;/ul&gt;&quot;)
+                in_list = False
+        else:
+            if in_list:
+                output.append(&quot;&lt;/ul&gt;&quot;)
+                in_list = False
+            paragraph.append(line)
+    flush()
+    flush_quote()
+    if in_list:
+        output.append(&quot;&lt;/ul&gt;&quot;)
+    if in_code:
+        output.append(&quot;&lt;/code&gt;&lt;/pre&gt;&quot;)
+    return &quot;&quot;.join(output)
+
+
+def render_delimited(text: str, delimiter: str) -&gt; str:
+    rows = list(csv.reader(io.StringIO(text), delimiter=delimiter))
+    if not rows:
+        return &quot;&lt;p&gt;This file is empty.&lt;/p&gt;&quot;
+    clipped = rows[:1000]
+    width = max(len(row) for row in clipped)
+    body: list[str] = [&quot;&lt;div class=table-wrap&gt;&lt;table&gt;&quot;]
+    for row_no, row in enumerate(clipped):
+        tag = &quot;th&quot; if row_no == 0 else &quot;td&quot;
+        body.append(&quot;&lt;tr&gt;&quot; + &quot;&quot;.join(f&quot;&lt;{tag}&gt;{html.escape(cell)}&lt;/{tag}&gt;&quot; for cell in row + [&quot;&quot;] * (width - len(row))) + &quot;&lt;/tr&gt;&quot;)
+    body.append(&quot;&lt;/table&gt;&lt;/div&gt;&quot;)
+    if len(rows) &gt; len(clipped):
+        body.append(f&quot;&lt;p&gt;Showing the first {len(clipped):,} rows.&lt;/p&gt;&quot;)
+    return &quot;&quot;.join(body)
+
+
+def render_document(path: Path) -&gt; tuple[str, bool]:
+    if path.is_dir() or path.suffix.lower() not in READABLE_SUFFIXES:
+        return &quot;&quot;, False
+    raw = path.read_bytes()
+    truncated = len(raw) &gt; MAX_TEXT_BYTES
+    text = raw[:MAX_TEXT_BYTES].decode(&quot;utf-8&quot;, errors=&quot;replace&quot;)
+    suffix = path.suffix.lower()
+    if suffix == &quot;.md&quot;:
+        rendered = safe_markdown(text)
+    elif suffix == &quot;.json&quot;:
+        try:
+            text = json.dumps(json.loads(text), ensure_ascii=False, indent=2)
+        except json.JSONDecodeError:
+            pass
+        rendered = &quot;&lt;pre&gt;&lt;code&gt;&quot; + html.escape(text) + &quot;&lt;/code&gt;&lt;/pre&gt;&quot;
+    elif suffix in {&quot;.csv&quot;, &quot;.tsv&quot;}:
+        rendered = render_delimited(text, &quot;,&quot; if suffix == &quot;.csv&quot; else &quot;\t&quot;)
+    else:
+        rendered = &quot;&lt;pre&gt;&lt;code&gt;&quot; + html.escape(text) + &quot;&lt;/code&gt;&lt;/pre&gt;&quot;
+    if truncated:
+        rendered += &quot;&lt;p&gt;&lt;em&gt;Preview truncated; the full file remains at the listed path.&lt;/em&gt;&lt;/p&gt;&quot;
+    return rendered, truncated
+
+
+def normalize_ids(value, *, owner: str) -&gt; list[str]:
+    if not isinstance(value, list) or not value:
+        die(f&quot;{owner} requires a nonempty astrology_ids list&quot;)
+    if any(not isinstance(item, str) or not ASTROLOGY_ID_RE.fullmatch(item) for item in value):
+        die(f&quot;{owner} has a malformed astrology_id&quot;)
+    if len(value) != len(set(value)):
+        die(f&quot;{owner} has duplicate astrology_ids&quot;)
+    return value
+
+
+def validate_catalog(document: object) -&gt; tuple[dict, list[dict]]:
+    if not isinstance(document, dict) or document.get(&quot;schema&quot;) != &quot;f250.astrology-files-catalog/v1&quot;:
+        die(&quot;Catalog schema must be f250.astrology-files-catalog/v1&quot;)
+    packages = document.get(&quot;packages&quot;)
+    if not isinstance(packages, list) or not packages:
+        die(&quot;Catalog packages must be a nonempty list&quot;)
+    seen: set[str] = set()
+    normalized: list[dict] = []
+    for package in packages:
+        if not isinstance(package, dict):
+            die(&quot;Catalog contains a non-object package&quot;)
+        astrology_id = require_text(&quot;Catalog package&quot;, package, &quot;astrology_id&quot;)
+        if not ASTROLOGY_ID_RE.fullmatch(astrology_id) or astrology_id in seen:
+            die(f&quot;Catalog has malformed or duplicate astrology_id {astrology_id!r}&quot;)
+        if &quot;research_id&quot; in package:
+            die(f&quot;{astrology_id} uses retired research_id; use astrology_id&quot;)
+        seen.add(astrology_id)
+        for field in (&quot;title&quot;, &quot;lane&quot;, &quot;summary&quot;, &quot;developed_through&quot;):
+            require_text(astrology_id, package, field)
+        if package.get(&quot;shelf&quot;) not in PACKAGE_STATES:
+            die(f&quot;{astrology_id} has invalid shelf&quot;)
+        item = dict(package)
+        item[&quot;library_state&quot;] = item[&quot;shelf&quot;]
+        normalized.append(item)
+    declared = document.get(&quot;astrology_ids&quot;)
+    if declared is not None and set(normalize_ids(declared, owner=&quot;Catalog&quot;)) != seen:
+        die(&quot;Catalog astrology_ids must exactly match package astrology_id values&quot;)
+    return document, normalized
+
+
+def validate_registry(document: object, known_ids: set[str]) -&gt; tuple[dict, list[dict]]:
+    if not isinstance(document, dict) or document.get(&quot;schema&quot;) != &quot;f250.astrology-files-registry/v1&quot;:
+        die(&quot;Registry schema must be f250.astrology-files-registry/v1&quot;)
+    rows = document.get(&quot;artifacts&quot;)
+    if not isinstance(rows, list) or not rows:
+        die(&quot;Registry artifacts must be a nonempty list&quot;)
+    seen: set[str] = set()
+    normalized: list[dict] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            die(&quot;Registry contains a non-object artifact&quot;)
+        path = require_text(&quot;Registry artifact&quot;, row, &quot;path&quot;)
+        if path in seen:
+            die(f&quot;Registry has duplicate path {path!r}&quot;)
+        seen.add(path)
+        ids = normalize_ids(row.get(&quot;astrology_ids&quot;), owner=f&quot;Registry {path}&quot;)
+        dangling = sorted(set(ids) - known_ids)
+        if dangling:
+            die(f&quot;Registry {path} has unknown astrology_ids {dangling}&quot;)
+        state = row.get(&quot;file_state&quot;, row.get(&quot;state&quot;, &quot;current&quot;))
+        if state not in FILE_STATES:
+            die(f&quot;Registry {path} has invalid file_state {state!r}&quot;)
+        source = safe_source(path, owner=f&quot;Registry {path}&quot;)
+        item = dict(row)
+        expected_bytes = row.get(&quot;bytes&quot;)
+        expected_hash = row.get(&quot;sha256&quot;)
+        actual_bytes = source.stat().st_size if source.is_file() else 0
+        actual_hash = sha256(source) if source.is_file() else &quot;&quot;
+        if expected_bytes is not None and expected_bytes != actual_bytes:
+            die(f&quot;Registry {path} bytes mismatch: expected {expected_bytes}, found {actual_bytes}&quot;)
+        if expected_hash not in (None, &quot;&quot;) and expected_hash != actual_hash:
+            die(f&quot;Registry {path} sha256 mismatch&quot;)
+        controlling = row.get(&quot;controlling_path&quot;)
+        if controlling not in (None, &quot;&quot;, path):
+            safe_source(controlling, owner=f&quot;Registry {path} controlling_path&quot;)
+        item.update({
+            &quot;artifact_id&quot;: &quot;astro-&quot; + hashlib.sha256(path.encode()).hexdigest()[:16],
+            &quot;path&quot;: path,
+            &quot;absolute_path&quot;: str(source),
+            &quot;astrology_ids&quot;: ids,
+            &quot;file_state&quot;: state,
+            &quot;display_title&quot;: row.get(&quot;title&quot;) or source.name,
+            &quot;artifact_role&quot;: row.get(&quot;artifact_role&quot;, row.get(&quot;role&quot;, &quot;other&quot;)),
+            &quot;description&quot;: row.get(&quot;description&quot;, &quot;&quot;),
+            &quot;size_bytes&quot;: actual_bytes,
+            &quot;bytes&quot;: actual_bytes,
+            &quot;sha256&quot;: actual_hash,
+        })
+        item[&quot;content_html&quot;], item[&quot;content_truncated&quot;] = render_document(source)
+        item[&quot;readable&quot;] = bool(item[&quot;content_html&quot;])
+        normalized.append(item)
+    aliases = {}
+    for row in normalized:
+        for alias in (row[&quot;path&quot;], row.get(&quot;legacy_workbench_path&quot;)):
+            if not alias:
+                continue
+            candidate = Path(alias)
+            if candidate.is_absolute() or &quot;..&quot; in candidate.parts:
+                die(f&quot;Registry has unsafe legacy path {alias!r}&quot;)
+            if alias in aliases and aliases[alias] != row[&quot;path&quot;]:
+                die(f&quot;Registry has ambiguous Astrology document alias {alias!r}&quot;)
+            aliases[alias] = row[&quot;path&quot;]
+    for astrology_id in known_ids:
+        if not any(astrology_id in row[&quot;astrology_ids&quot;] for row in normalized):
+            die(f&quot;{astrology_id} has no Registry artifacts&quot;)
+    return document, normalized
+
+
+def document_ref(value: object, *, owner: str, registry_by_path: dict[str, dict]) -&gt; dict:
+    if not isinstance(value, dict):
+        die(f&quot;{owner} must be an object&quot;)
+    if value.get(&quot;scope&quot;, &quot;vault&quot;) != &quot;vault&quot;:
+        die(f&quot;{owner} scope must be vault&quot;)
+    path = require_text(owner, value, &quot;path&quot;)
+    if path not in registry_by_path:
+        die(f&quot;{owner} path is not in Astrology Files Registry: {path!r}&quot;)
+    item = dict(registry_by_path[path])
+    if value.get(&quot;role&quot;):
+        item[&quot;role&quot;] = value[&quot;role&quot;]
+    return item
+
+
+def stage_visual(value: object, *, owner: str, registry_by_path: dict[str, dict], seen_assets: set[str]) -&gt; dict:
+    if not isinstance(value, dict):
+        die(f&quot;{owner} visual must be an object&quot;)
+    if value.get(&quot;scope&quot;, &quot;vault&quot;) != &quot;vault&quot;:
+        die(f&quot;{owner} visual scope must be vault&quot;)
+    path = require_text(f&quot;{owner} visual&quot;, value, &quot;path&quot;)
+    if path not in registry_by_path:
+        die(f&quot;{owner} visual is not in Astrology Files Registry: {path!r}&quot;)
+    source = safe_source(path, owner=f&quot;{owner} visual&quot;)
+    asset_name = safe_asset_name(value.get(&quot;asset_name&quot;, &quot;&quot;), source, owner=owner)
+    if asset_name in seen_assets:
+        die(f&quot;duplicate Astrology Files visual asset_name {asset_name!r}&quot;)
+    seen_assets.add(asset_name)
+    destination = VISUAL_OUT / asset_name
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if source.is_dir():
+        shutil.copytree(source, destination, dirs_exist_ok=True)
+        launch = destination / &quot;index.html&quot;
+        if not launch.is_file():
+            die(f&quot;{owner} visual directory has no index.html&quot;)
+    else:
+        shutil.copy2(source, destination)
+        launch = destination
+    result = dict(value)
+    result.update({
+        &quot;path&quot;: path,
+        &quot;absolute_path&quot;: str(source),
+        &quot;asset_name&quot;: asset_name,
+        &quot;local_path&quot;: quote(&quot;Astrology Files Assets/&quot; + asset_name) + (&quot;/index.html&quot; if source.is_dir() else &quot;&quot;),
+    })
+    return result
+
+
+def build_snapshot() -&gt; dict:
+    catalog_doc, packages = validate_catalog(load_json(CATALOG))
+    known_ids = {package[&quot;astrology_id&quot;] for package in packages}
+    registry_doc, artifacts = validate_registry(load_json(REGISTRY), known_ids)
+    registry_by_path = {row[&quot;path&quot;]: row for row in artifacts}
+    refs_by_id = {
+        astrology_id: [row for row in artifacts if astrology_id in row[&quot;astrology_ids&quot;]]
+        for astrology_id in known_ids
+    }
+    seen_assets: set[str] = set()
+    enriched: list[dict] = []
+    for package in packages:
+        astrology_id = package[&quot;astrology_id&quot;]
+        p = dict(package)
+        read_first = document_ref(p.get(&quot;read_first&quot;), owner=f&quot;{astrology_id} read_first&quot;, registry_by_path=registry_by_path)
+        supporting = [
+            document_ref(item, owner=f&quot;{astrology_id} supporting&quot;, registry_by_path=registry_by_path)
+            for item in p.get(&quot;supporting&quot;, [])
+        ]
+        selected = {read_first[&quot;path&quot;], *(item[&quot;path&quot;] for item in supporting)}
+        remaining = [dict(item) for item in refs_by_id[astrology_id] if item[&quot;path&quot;] not in selected]
+        artifact_refs = p.get(&quot;artifact_refs&quot;)
+        if not isinstance(artifact_refs, list) or len(artifact_refs) != len(set(artifact_refs)):
+            die(f&quot;{astrology_id} artifact_refs must be a unique list&quot;)
+        registry_paths = {item[&quot;path&quot;] for item in refs_by_id[astrology_id]}
+        if set(artifact_refs) != registry_paths:
+            missing = sorted(registry_paths - set(artifact_refs))
+            extra = sorted(set(artifact_refs) - registry_paths)
+            die(f&quot;{astrology_id} artifact_refs do not match Registry (missing={missing}, extra={extra})&quot;)
+        p[&quot;read_first&quot;] = read_first
+        p[&quot;supporting&quot;] = supporting
+        p[&quot;documents&quot;] = [read_first, *supporting, *remaining]
+        p[&quot;registry_refs&quot;] = [item[&quot;path&quot;] for item in refs_by_id[astrology_id]]
+        p[&quot;visuals&quot;] = [
+            stage_visual(item, owner=astrology_id, registry_by_path=registry_by_path, seen_assets=seen_assets)
+            for item in p.get(&quot;visuals&quot;, [])
+        ]
+        enriched.append(p)
+    by_id = {package[&quot;astrology_id&quot;]: package for package in enriched}
+    for package in enriched:
+        relations = package.get(&quot;relations&quot;, {})
+        if relations is None:
+            relations = {}
+        if not isinstance(relations, dict):
+            die(f&quot;{package[&#x27;astrology_id&#x27;]} relations must be an object&quot;)
+        targets = [relations.get(&quot;parent_id&quot;), relations.get(&quot;rolled_into_id&quot;)]
+        for key in (&quot;supersedes_ids&quot;, &quot;related_ids&quot;):
+            values = relations.get(key, [])
+            if not isinstance(values, list):
+                die(f&quot;{package[&#x27;astrology_id&#x27;]} {key} must be a list&quot;)
+            targets.extend(values)
+        dangling = [target for target in targets if target and target not in by_id]
+        if dangling:
+            die(f&quot;{package[&#x27;astrology_id&#x27;]} has dangling relationships {dangling}&quot;)
+        package[&quot;relationship_links&quot;] = [
+            {&quot;astrology_id&quot;: target, &quot;title&quot;: by_id[target][&quot;title&quot;]}
+            for target in dict.fromkeys(target for target in targets if target)
+        ]
+    generated_at = dt.datetime.now().astimezone().isoformat(timespec=&quot;seconds&quot;)
+    return {
+        &quot;schema_version&quot;: &quot;f250.astrology-files-data/v1&quot;,
+        &quot;generated_at&quot;: generated_at,
+        &quot;purpose&quot;: catalog_doc.get(&quot;purpose&quot;, &quot;&quot;),
+        &quot;workflow_boundary&quot;: catalog_doc.get(&quot;workflow_boundary&quot;, {}),
+        &quot;method_boundary&quot;: &quot;Mundane facts are followed first. Astrology is analyzed separately. Natural overlaps are compared afterward; astrology never creates, upgrades, corroborates, or substitutes for factual evidence.&quot;,
+        &quot;authority&quot;: str(ASTROLOGY_ROOT),
+        &quot;source_hashes&quot;: {
+            &quot;catalog_sha256&quot;: sha256(CATALOG),
+            &quot;registry_sha256&quot;: sha256(REGISTRY),
+        },
+        &quot;packages&quot;: enriched,
+        &quot;artifacts&quot;: artifacts,
+        &quot;lanes&quot;: list(dict.fromkeys(package[&quot;lane&quot;] for package in enriched)),
+        &quot;stats&quot;: {
+            &quot;saved_astrology&quot;: len(enriched),
+            &quot;current&quot;: sum(package[&quot;library_state&quot;] == &quot;current&quot; for package in enriched),
+            &quot;archive&quot;: sum(package[&quot;library_state&quot;] == &quot;archive&quot; for package in enriched),
+            &quot;artifacts&quot;: len(artifacts),
+            &quot;readable_artifacts&quot;: sum(item[&quot;readable&quot;] for item in artifacts),
+            &quot;visuals&quot;: sum(len(package.get(&quot;visuals&quot;, [])) for package in enriched),
+        },
+    }
+
+
+def build_html(data: dict) -&gt; str:
+    payload = json.dumps(data, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;)).replace(&quot;&lt;/&quot;, &quot;&lt;\\/&quot;)
+    template = r&#x27;&#x27;&#x27;&lt;!doctype html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Astrology Files — Freedom 250 Observatory&lt;/title&gt;
+&lt;style&gt;:root{--paper:#f3efe7;--panel:#fffdf8;--ink:#24211d;--muted:#716a60;--line:#d9d0c1;--violet:#7552a3;--shadow:0 12px 34px rgba(45,35,27,.17)}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font:15px/1.5 Arial,sans-serif}button,input{font:inherit;color:inherit}.top{position:sticky;top:0;z-index:20;background:rgba(243,239,231,.96);border-bottom:1px solid var(--line);padding:18px 22px}.mast{max-width:1250px;margin:auto;display:flex;justify-content:space-between;gap:18px;align-items:end}.eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet);font-weight:800}.title{font:700 30px/1.1 Georgia,serif}.sub,.stats{font-size:12px;color:var(--muted)}.wrap{max-width:1250px;margin:auto;padding:22px 22px 70px}.intro{max-width:820px;margin:0 0 16px;color:var(--muted)}.boundary{border-left:4px solid var(--violet);background:#f4eef9;padding:10px 13px;margin:0 0 17px;max-width:900px}.toolbar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}.search{flex:1;min-width:260px;border:1px solid var(--line);background:var(--panel);padding:10px 12px;border-radius:8px}.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:7px 11px;cursor:pointer;font-size:12px}.chip.active{border-color:var(--violet);box-shadow:inset 0 0 0 1px var(--violet)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}.card{min-height:205px;text-align:left;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:15px;cursor:pointer;display:flex;flex-direction:column}.card:hover{border-color:var(--violet);box-shadow:var(--shadow);transform:translateY(-1px)}.lane{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--violet);font-weight:800}.card h2{font:700 19px/1.25 Georgia,serif;margin:7px 0}.bluf{font-size:13px;color:#4c463f;flex:1}.cutoff{font-size:11px;color:var(--muted);margin-top:10px}.archive{display:inline-block;border:1px solid #c8b4df;color:var(--violet);border-radius:4px;padding:2px 6px;font-size:9px;text-transform:uppercase}.empty{border:1px dashed var(--line);padding:28px;text-align:center;color:var(--muted);border-radius:9px}.overlay{position:fixed;inset:0;background:rgba(23,19,28,.52);z-index:80;display:none}.overlay.open{display:block}.drawer{position:absolute;right:0;top:0;width:min(830px,97vw);height:100%;overflow:auto;background:var(--panel);padding:25px 28px 70px;box-shadow:-12px 0 42px rgba(0,0,0,.24)}.close{position:sticky;top:0;float:right;border:1px solid var(--line);background:var(--panel);border-radius:999px;width:36px;height:36px;cursor:pointer}.drawer h2{font:700 28px/1.15 Georgia,serif;margin:6px 44px 10px 0}.lead{font:17px/1.55 Georgia,serif}.rule{border-left:4px solid var(--violet);background:#f4eef9;padding:11px 13px;margin:16px 0}.rule b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--violet);margin-bottom:4px}.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0}.fact{border:1px solid var(--line);border-radius:6px;padding:9px;font-size:12px}.fact b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.drawer h3{font:700 17px Georgia,serif;margin:22px 0 8px}.links,.relations{display:flex;gap:6px;flex-wrap:wrap}.small{border:1px solid var(--line);background:var(--paper);border-radius:5px;padding:5px 8px;font-size:10px;cursor:pointer;color:var(--violet)}.docs{display:grid;gap:7px}.doc{border:1px solid var(--line);border-radius:7px;padding:10px;cursor:pointer}.doc.selected{border-color:var(--violet);box-shadow:inset 4px 0 0 var(--violet)}.doc b{display:block}.path{font:9px/1.4 ui-monospace,monospace;color:var(--muted);word-break:break-all}.reader{border-top:1px solid var(--line);margin-top:18px;padding-top:16px}.reader-body{font:14px/1.65 Georgia,serif}.reader-body pre{white-space:pre-wrap;overflow:auto;background:#eee8dc;padding:10px}.table-wrap{overflow:auto}.reader-body table{border-collapse:collapse;font:11px/1.35 ui-monospace,monospace}.reader-body th,.reader-body td{border:1px solid var(--line);padding:4px 6px;vertical-align:top}.visual{width:100%;text-align:left;border:1px solid var(--line);background:var(--paper);border-radius:7px;padding:10px;cursor:pointer}.visual-frame{position:fixed;inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);border:0;background:#fff;z-index:120;display:none;border-radius:8px}.visual-frame.open{display:block}.visual-close{position:fixed;right:24px;top:24px;z-index:121;display:none}.visual-close.open{display:block}html[data-theme=&quot;dark&quot;]{--paper:#17141b;--panel:#211d26;--ink:#eee8f4;--muted:#afa5b5;--line:#48404f;--violet:#c6a3ef}html[data-theme=&quot;dark&quot;] .rule,html[data-theme=&quot;dark&quot;] .boundary{background:#2b2333}html[data-theme=&quot;dark&quot;] .reader-body pre{background:#17141b}@media(max-width:650px){.mast{display:block}.stats{margin-top:8px}.facts{grid-template-columns:1fr}.drawer{padding:18px 17px 55px}.wrap{padding:18px 13px 55px}}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+&lt;header class=&quot;top&quot;&gt;&lt;div class=&quot;mast&quot;&gt;&lt;div&gt;&lt;div class=&quot;eyebrow&quot;&gt;Sky &amp;amp; Charts&lt;/div&gt;&lt;div class=&quot;title&quot;&gt;Astrology Files&lt;/div&gt;&lt;div class=&quot;sub&quot; id=&quot;stamp&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;stats&quot; id=&quot;stats&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/header&gt;&lt;main class=&quot;wrap&quot;&gt;&lt;p class=&quot;intro&quot;&gt;Methods, chart experiments, persona work and interpretive overlays live here as their own Observatory collection—not in government Research.&lt;/p&gt;&lt;div class=&quot;boundary&quot; id=&quot;boundary&quot;&gt;&lt;/div&gt;&lt;div class=&quot;toolbar&quot;&gt;&lt;input id=&quot;search&quot; class=&quot;search&quot; type=&quot;search&quot; placeholder=&quot;Search astrology files, methods, charts and personas…&quot; aria-label=&quot;Search Astrology Files&quot;&gt;&lt;button class=&quot;chip active&quot; data-lane=&quot;all&quot;&gt;All&lt;/button&gt;&lt;span id=&quot;lanes&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;grid&quot; id=&quot;grid&quot;&gt;&lt;/div&gt;&lt;/main&gt;
+&lt;div class=&quot;overlay&quot; id=&quot;overlay&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;drawerTitle&quot;&gt;&lt;aside class=&quot;drawer&quot;&gt;&lt;button class=&quot;close&quot; id=&quot;close&quot; aria-label=&quot;Close Astrology File&quot;&gt;×&lt;/button&gt;&lt;div id=&quot;drawer&quot;&gt;&lt;/div&gt;&lt;/aside&gt;&lt;/div&gt;&lt;button class=&quot;small visual-close&quot; id=&quot;visualClose&quot;&gt;Close visual&lt;/button&gt;&lt;iframe class=&quot;visual-frame&quot; id=&quot;visualFrame&quot; title=&quot;Astrology visual&quot;&gt;&lt;/iframe&gt;&lt;script id=&quot;astrology-data&quot; type=&quot;application/json&quot;&gt;__DATA__&lt;/script&gt;
+&lt;script&gt;(function(){&#x27;use strict&#x27;;var D=JSON.parse(document.getElementById(&#x27;astrology-data&#x27;).textContent),items=D.packages||[],byId={},docByPath={},docByArtifact={},lane=&#x27;all&#x27;,query=&#x27;&#x27;,docs=[];items.forEach(function(p){byId[p.astrology_id]=p;(p.documents||[]).forEach(function(d){[d.path,d.legacy_workbench_path].filter(Boolean).forEach(function(path){var hit=docByPath[path];if(hit&amp;&amp;hit.doc.path!==d.path)throw new Error(&#x27;Ambiguous Astrology document alias: &#x27;+path);docByPath[path]={package:p,doc:d};});docByArtifact[d.artifact_id]={package:p,doc:d};});});function esc(s){var d=document.createElement(&#x27;div&#x27;);d.textContent=s==null?&#x27;&#x27;:String(s);return d.innerHTML;}function card(p){return &#x27;&lt;button class=&quot;card&quot; data-open=&quot;&#x27;+esc(p.astrology_id)+&#x27;&quot;&gt;&lt;div class=&quot;lane&quot;&gt;&#x27;+esc(p.lane)+&#x27;&lt;/div&gt;&lt;h2&gt;&#x27;+esc(p.title)+&#x27;&lt;/h2&gt;&lt;p class=&quot;bluf&quot;&gt;&#x27;+esc(p.summary)+&#x27;&lt;/p&gt;&#x27;+(p.library_state===&#x27;archive&#x27;?&#x27;&lt;div&gt;&lt;span class=&quot;archive&quot;&gt;Archive&lt;/span&gt;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;div class=&quot;cutoff&quot;&gt;Developed through &#x27;+esc(p.developed_through)+&#x27; · &#x27;+(p.documents||[]).length+&#x27; files&lt;/div&gt;&lt;/button&gt;&#x27;;}function render(){var q=query.toLowerCase(),rows=items.filter(function(p){return(lane===&#x27;all&#x27;||p.lane===lane)&amp;&amp;(!q||[p.title,p.summary,p.question,p.purpose,(p.entities||[]).join(&#x27; &#x27;),(p.search_terms||[]).join(&#x27; &#x27;),(p.registry_refs||[]).join(&#x27; &#x27;)].join(&#x27; &#x27;).toLowerCase().indexOf(q)&gt;=0);});document.getElementById(&#x27;grid&#x27;).innerHTML=rows.length?rows.map(card).join(&#x27;&#x27;):&#x27;&lt;div class=&quot;empty&quot;&gt;No Astrology Files match this search.&lt;/div&gt;&#x27;;}function docRow(d,i){return &#x27;&lt;div class=&quot;doc&quot; tabindex=&quot;0&quot; data-doc=&quot;&#x27;+i+&#x27;&quot;&gt;&lt;b&gt;&#x27;+esc(d.role||d.artifact_role||(i?&#x27;Saved file&#x27;:&#x27;Start here&#x27;))+&#x27;&lt;/b&gt;&lt;div&gt;&#x27;+esc(d.display_title||d.path.split(&#x27;/&#x27;).pop())+&#x27;&lt;/div&gt;&lt;div class=&quot;path&quot;&gt;&#x27;+esc(d.path)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;}function showDoc(i){var d=docs[i];if(!d)return;document.querySelectorAll(&#x27;[data-doc]&#x27;).forEach(function(x){x.classList.toggle(&#x27;selected&#x27;,Number(x.dataset.doc)===i);});document.getElementById(&#x27;readerTitle&#x27;).textContent=d.display_title||d.path.split(&#x27;/&#x27;).pop();document.getElementById(&#x27;readerBody&#x27;).innerHTML=d.content_html||&#x27;&lt;p&gt;This file is preserved at:&lt;/p&gt;&lt;div class=&quot;path&quot;&gt;&#x27;+esc(d.absolute_path)+&#x27;&lt;/div&gt;&#x27;;}function openItem(id,path,artifactId){var p=byId[id];if(!p)return;docs=p.documents||[];var intent=p.question||p.purpose||&#x27;&#x27;,relations=(p.relationship_links||[]).map(function(r){return &#x27;&lt;button class=&quot;small&quot; data-open=&quot;&#x27;+esc(r.astrology_id)+&#x27;&quot;&gt;&#x27;+esc(r.title)+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;),views=(p.view_links||[]).map(function(v){return &#x27;&lt;button class=&quot;small&quot; data-tab=&quot;&#x27;+esc(v.tab)+&#x27;&quot;&gt;↗ &#x27;+esc(v.label)+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;),visuals=(p.visuals||[]).map(function(v){return &#x27;&lt;button class=&quot;visual&quot; data-visual=&quot;&#x27;+esc(v.local_path)+&#x27;&quot;&gt;&#x27;+esc(v.title||v.asset_name)+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27;&#x27;);document.getElementById(&#x27;drawer&#x27;).innerHTML=&#x27;&lt;div class=&quot;lane&quot;&gt;&#x27;+esc(p.lane)+&#x27;&lt;/div&gt;&lt;h2 id=&quot;drawerTitle&quot;&gt;&#x27;+esc(p.title)+&#x27;&lt;/h2&gt;&lt;p class=&quot;lead&quot;&gt;&#x27;+esc(p.summary)+&#x27;&lt;/p&gt;&#x27;+(intent?&#x27;&lt;div class=&quot;rule&quot;&gt;&lt;b&gt;Purpose / question&lt;/b&gt;&#x27;+esc(intent)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;div class=&quot;facts&quot;&gt;&lt;div class=&quot;fact&quot;&gt;&lt;b&gt;Developed through&lt;/b&gt;&#x27;+esc(p.developed_through)+&#x27;&lt;/div&gt;&lt;div class=&quot;fact&quot;&gt;&lt;b&gt;Saved material&lt;/b&gt;&#x27;+docs.length+&#x27; files · &#x27;+(p.visuals||[]).length+&#x27; visuals&lt;/div&gt;&lt;/div&gt;&#x27;+(p.use_note?&#x27;&lt;div class=&quot;rule&quot;&gt;&lt;b&gt;Useful context&lt;/b&gt;&#x27;+esc(p.use_note)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+(relations?&#x27;&lt;h3&gt;Related Astrology Files&lt;/h3&gt;&lt;div class=&quot;relations&quot;&gt;&#x27;+relations+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+(views?&#x27;&lt;h3&gt;Sky &amp;amp; Charts&lt;/h3&gt;&lt;div class=&quot;links&quot;&gt;&#x27;+views+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+(visuals?&#x27;&lt;h3&gt;Interactive visuals&lt;/h3&gt;&#x27;+visuals:&#x27;&#x27;)+&#x27;&lt;h3&gt;Files&lt;/h3&gt;&lt;div class=&quot;docs&quot;&gt;&#x27;+docs.map(docRow).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;section class=&quot;reader&quot;&gt;&lt;h3 id=&quot;readerTitle&quot;&gt;&lt;/h3&gt;&lt;div class=&quot;reader-body&quot; id=&quot;readerBody&quot;&gt;&lt;/div&gt;&lt;/section&gt;&#x27;;document.getElementById(&#x27;overlay&#x27;).classList.add(&#x27;open&#x27;);document.body.style.overflow=&#x27;hidden&#x27;;var index=0,exactDocument=false;if(path)docs.some(function(d,i){if(d.path===path){index=i;exactDocument=true;return true;}return false;});else if(artifactId)docs.some(function(d,i){if(d.artifact_id===artifactId){index=i;exactDocument=true;return true;}return false;});showDoc(index);if(exactDocument)document.getElementById(&#x27;readerTitle&#x27;).scrollIntoView({block:&#x27;start&#x27;});}function openDocument(m){var hit=(m.path&amp;&amp;docByPath[m.path])||(m.artifact_id&amp;&amp;docByArtifact[m.artifact_id]);if(hit)openItem(hit.package.astrology_id,hit.doc.path,hit.doc.artifact_id);}function close(){document.getElementById(&#x27;overlay&#x27;).classList.remove(&#x27;open&#x27;);document.body.style.overflow=&#x27;&#x27;;}document.addEventListener(&#x27;click&#x27;,function(e){var b=e.target.closest(&#x27;button,[data-open],[data-tab],[data-doc],[data-visual]&#x27;);if(!b)return;if(b.dataset.open)openItem(b.dataset.open);else if(b.dataset.tab)window.parent.postMessage({action:&#x27;navigateTo&#x27;,tab:b.dataset.tab},&#x27;*&#x27;);else if(b.dataset.doc!==undefined)showDoc(Number(b.dataset.doc));else if(b.dataset.visual){document.getElementById(&#x27;visualFrame&#x27;).src=b.dataset.visual;document.getElementById(&#x27;visualFrame&#x27;).classList.add(&#x27;open&#x27;);document.getElementById(&#x27;visualClose&#x27;).classList.add(&#x27;open&#x27;);}else if(b.id===&#x27;visualClose&#x27;){document.getElementById(&#x27;visualFrame&#x27;).classList.remove(&#x27;open&#x27;);document.getElementById(&#x27;visualFrame&#x27;).removeAttribute(&#x27;src&#x27;);b.classList.remove(&#x27;open&#x27;);}else if(b.id===&#x27;close&#x27;)close();else if(b.dataset.lane!==undefined){document.querySelectorAll(&#x27;[data-lane]&#x27;).forEach(function(x){x.classList.remove(&#x27;active&#x27;);});b.classList.add(&#x27;active&#x27;);lane=b.dataset.lane;render();}});document.getElementById(&#x27;overlay&#x27;).addEventListener(&#x27;click&#x27;,function(e){if(e.target===this)close();});document.getElementById(&#x27;search&#x27;).addEventListener(&#x27;input&#x27;,function(){query=this.value.trim();render();});window.addEventListener(&#x27;message&#x27;,function(e){var m=e.data||{};if(m.action===&#x27;setTheme&#x27;)document.documentElement.setAttribute(&#x27;data-theme&#x27;,m.theme||&#x27;light&#x27;);if((m.action===&#x27;openAstrology&#x27;||m.action===&#x27;openResearch&#x27;)&amp;&amp;m.id)openItem(m.id,m.path,m.artifact_id);if(m.action===&#x27;openAstrologyDocument&#x27;||m.action===&#x27;openResearchDocument&#x27;)openDocument(m);});document.getElementById(&#x27;lanes&#x27;).innerHTML=(D.lanes||[]).map(function(l){return &#x27;&lt;button class=&quot;chip&quot; data-lane=&quot;&#x27;+esc(l)+&#x27;&quot;&gt;&#x27;+esc(l)+&#x27;&lt;/button&gt;&#x27;;}).join(&#x27; &#x27;);document.getElementById(&#x27;boundary&#x27;).textContent=D.method_boundary||&#x27;&#x27;;document.getElementById(&#x27;stamp&#x27;).textContent=&#x27;Built &#x27;+D.generated_at.replace(&#x27;T&#x27;,&#x27; &#x27;)+&#x27; · independent Sky &amp; Charts collection&#x27;;document.getElementById(&#x27;stats&#x27;).textContent=D.stats.saved_astrology+&#x27; collections · &#x27;+D.stats.artifacts+&#x27; files · &#x27;+D.stats.archive+&#x27; archived&#x27;;render();})();&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;&#x27;&#x27;&#x27;
+    return template.replace(&quot;__DATA__&quot;, payload)
+
+
+def main() -&gt; None:
+    data = build_snapshot()
+    atomic_write_text(DATA_OUT, json.dumps(data, ensure_ascii=False, indent=2) + &quot;\n&quot;)
+    atomic_write_text(HTML_OUT, build_html(data))
+    print(
+        f&quot;Astrology Files: {data[&#x27;stats&#x27;][&#x27;saved_astrology&#x27;]} collections, &quot;
+        f&quot;{data[&#x27;stats&#x27;][&#x27;artifacts&#x27;]} files, {data[&#x27;stats&#x27;][&#x27;visuals&#x27;]} visuals&quot;
+    )
+    print(f&quot;Wrote {DATA_OUT}&quot;)
+    print(f&quot;Wrote {HTML_OUT}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

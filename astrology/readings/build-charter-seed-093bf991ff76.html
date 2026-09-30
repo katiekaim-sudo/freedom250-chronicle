@@ -1,0 +1,145 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-charter-seed-093bf991ff76.html">
+<title>order matters — specific before generic</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>order matters — specific before generic</h1><p class="mut">Portable source: 99 - Templates/build_charter_seed.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;build_charter_seed.py — parse The Charter Queue corpus into charter_seed.json.
+
+Copied from build_castration_seed.py per _Claude-Context/PATTERN — Timeline Machine Build.md.
+
+Reads &#x27;04 - Synthesis/Cross-cuts/The Charter Queue — Factual Timeline.md&#x27;
+(entry format: &#x27;### DATE — title&#x27; / **Status:** / [**Time:**] / **Entities:** / **Track:** / body / **Source:**)
+
+Seven tracks (the legal operating clock of the private monetary stack):
+  door     — the OCC charter queue (application -&gt; conditional -&gt; final -&gt; consummated)
+  gate     — Federal Reserve account access. The door nobody has walked through.
+  ledger   — clearing &amp; depository permission (PSSC, DTC tokenization, Collateral AppChain)
+  rulebook — the incumbents absorbing the new rails while keeping the constitution
+  coin     — the issuers and their obligors: who owes the holder money, who can freeze it
+  interior — the permissioned bank rails (Fnality, Partior, Canton, Kinexys, Broadridge)
+  stack    — the acquisitions; vertical integration outrunning any protocol merger
+
+NEW vs the castration seed: an optional &#x27;**Time:**&#x27; field (HH:MM, local D.C.).
+Per feedback_event_chart_time_convention, an ACTUAL STATED TIME beats noon —
+Paxos&#x27;s charter conversion was effective 5:00 p.m., 2025-12-12.
+
+Re-run after editing the timeline note; the seed is derived, the note is canonical.
+&quot;&quot;&quot;
+import os, re, json
+
+HERE  = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+SRC   = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;,
+                     &quot;The Charter Queue — Factual Timeline.md&quot;)
+OUT   = os.path.join(HERE, &quot;charter_seed.json&quot;)
+
+TRACK_MAP = [
+    (r&quot;the door&quot;,     &quot;door&quot;),
+    (r&quot;the gate&quot;,     &quot;gate&quot;),
+    (r&quot;the ledger&quot;,   &quot;ledger&quot;),
+    (r&quot;the rulebook&quot;, &quot;rulebook&quot;),
+    (r&quot;the coin&quot;,     &quot;coin&quot;),
+    (r&quot;the interior&quot;, &quot;interior&quot;),
+    (r&quot;the stack&quot;,    &quot;stack&quot;),
+]
+# order matters — specific before generic
+ACTOR_MAP = [
+    (r&quot;\bocc\b&quot;,                              &quot;OCC&quot;),
+    (r&quot;federal reserve|kansas city&quot;,          &quot;Federal Reserve&quot;),
+    (r&quot;supreme court|custodia&quot;,               &quot;Courts&quot;),
+    (r&quot;\bsec\b&quot;,                              &quot;SEC&quot;),
+    (r&quot;nydfs&quot;,                                &quot;NYDFS&quot;),
+    (r&quot;bank of england|hm treasury&quot;,          &quot;Bank of England&quot;),
+    (r&quot;dtcc|dtc\b|cede&quot;,                      &quot;DTCC&quot;),
+    (r&quot;swift&quot;,                                &quot;Swift&quot;),
+    (r&quot;visa&quot;,                                 &quot;Visa&quot;),
+    (r&quot;mastercard&quot;,                           &quot;Mastercard&quot;),
+    (r&quot;j\.p\. morgan|kinexys|jpm&quot;,            &quot;J.P. Morgan&quot;),
+    (r&quot;circle&quot;,                               &quot;Circle&quot;),
+    (r&quot;ripple|standard custody&quot;,              &quot;Ripple&quot;),
+    (r&quot;paxos|pssc&quot;,                           &quot;Paxos&quot;),
+    (r&quot;coinbase&quot;,                             &quot;Coinbase&quot;),
+    (r&quot;kraken|payward&quot;,                       &quot;Kraken&quot;),
+    (r&quot;anchorage|anchor labs&quot;,                &quot;Anchorage&quot;),
+    (r&quot;bitgo&quot;,                                &quot;BitGo&quot;),
+    (r&quot;stripe|bridge&quot;,                        &quot;Stripe / Bridge&quot;),
+    (r&quot;zerohash&quot;,                             &quot;zerohash&quot;),
+    (r&quot;sofi&quot;,                                 &quot;SoFi&quot;),
+    (r&quot;fiserv&quot;,                               &quot;Fiserv&quot;),
+    (r&quot;moneygram&quot;,                            &quot;MoneyGram&quot;),
+    (r&quot;fnality&quot;,                              &quot;Fnality&quot;),
+    (r&quot;partior|dbs|deutsche bank&quot;,            &quot;Partior&quot;),
+    (r&quot;canton|digital asset|chainlink&quot;,       &quot;Canton / Digital Asset&quot;),
+    (r&quot;broadridge|hqlax&quot;,                     &quot;Broadridge&quot;),
+]
+
+def classify(track_line):
+    t = track_line.lower()
+    for pat, tr in TRACK_MAP:
+        if re.search(pat, t):
+            return tr
+    return &quot;door&quot;
+
+def actor(entities):
+    e = entities.lower()
+    for pat, a in ACTOR_MAP:
+        if re.search(pat, e):
+            return a
+    return &quot;Other&quot;
+
+def parse_timeline(md):
+    items = []
+    for m in re.finditer(r&quot;^### (.+?) — (.+?)\n(.*?)(?=^### |^## |\Z)&quot;, md, re.M | re.S):
+        rawdate, title, block = m.group(1).strip(), m.group(2).strip(), m.group(3)
+        def field(name):
+            fm = re.search(r&quot;\*\*&quot; + name + r&quot;:\*\*\s*(.+)&quot;, block)
+            return fm.group(1).strip() if fm else &quot;&quot;
+        status = field(&quot;Status&quot;).rstrip(&quot;\\&quot;).strip()
+        ents   = field(&quot;Entities&quot;).rstrip(&quot;\\&quot;).strip()
+        track  = field(&quot;Track&quot;)
+        tm     = field(&quot;Time&quot;)
+        paras = [p.strip() for p in block.split(&quot;\n\n&quot;)
+                 if p.strip() and not p.strip().startswith((&quot;**&quot;, &quot;#&quot;, &quot;-&quot;, &quot;---&quot;))]
+        summary = paras[0].replace(&quot;\n&quot;, &quot; &quot;) if paras else &quot;&quot;
+        src = re.search(r&quot;\*\*Sources?:\*\*\s*\[(.+?)\]\((.+?)\)&quot;, block)
+        d = re.match(r&quot;(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?&quot;, rawdate)
+        date = &quot;-&quot;.join(x for x in d.groups() if x) if d else rawdate
+        it = {
+            &quot;date&quot;: date, &quot;date_display&quot;: rawdate, &quot;title&quot;: title,
+            &quot;status&quot;: status, &quot;actor&quot;: actor(ents), &quot;entities&quot;: ents,
+            &quot;track&quot;: classify(track), &quot;track_source&quot;: track,
+            &quot;summary&quot;: summary,
+            &quot;source_label&quot;: src.group(1) if src else &quot;&quot;,
+            &quot;url&quot;: src.group(2) if src else &quot;&quot;,
+            &quot;origin&quot;: &quot;timeline&quot;,
+        }
+        if re.match(r&quot;^\d{1,2}:\d{2}$&quot;, tm):
+            it[&quot;time&quot;] = tm          # stated time beats noon (Katie&#x27;s convention)
+        items.append(it)
+    return items
+
+def main():
+    md = open(SRC, encoding=&quot;utf-8&quot;).read()
+    items = parse_timeline(md)
+    items.sort(key=lambda x: x[&quot;date&quot;])
+    json.dump({&quot;_comment&quot;: &quot;Derived seed — canonical source is &#x27;The Charter Queue — Factual Timeline&#x27; (Cross-cuts). &quot;
+                           &quot;Re-run build_charter_seed.py after editing it. Never hand-edit this file.&quot;,
+               &quot;items&quot;: items},
+              open(OUT, &quot;w&quot;, encoding=&quot;utf-8&quot;), indent=1, ensure_ascii=False)
+    from collections import Counter
+    print(len(items), &quot;items -&gt;&quot;, OUT)
+    print(&quot;tracks:&quot;, dict(Counter(i[&quot;track&quot;] for i in items)))
+    print(&quot;actors:&quot;, dict(Counter(i[&quot;actor&quot;] for i in items)))
+    print(&quot;status:&quot;, dict(Counter(i[&quot;status&quot;].split(&quot; &quot;)[0] for i in items)))
+    print(&quot;timed :&quot;, [i[&quot;title&quot;] for i in items if &quot;time&quot; in i])
+    print(&quot;chartless (month-precision):&quot;, sum(1 for i in items if len(i[&quot;date&quot;].split(&quot;-&quot;)) &lt; 3))
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

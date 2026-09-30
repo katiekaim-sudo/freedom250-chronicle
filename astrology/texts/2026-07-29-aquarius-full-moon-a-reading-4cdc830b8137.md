@@ -1,0 +1,34 @@
+---
+title: "2026-07-29 Aquarius Full Moon — A Reading"
+type: chart_reading
+reading_id: lun-2026-07-29-fu
+chart_kind: full_moon
+author: Aster
+status: live_working
+updated: 2026-08-15
+---
+
+# 2026-07-29 Aquarius Full Moon — A Reading
+
+This Full Moon reveals a confrontation between concentrated power out of public view and the systems that must carry its consequences. The Sun and Jupiter are almost exactly conjunct in Leo in the twelfth house, opposite the Aquarius Moon in the sixth with Pluto close beside it. At the constructive pole, protected work behind the scenes can reorganize an overburdened system and give workers, services, health, or the armed forces a more capable structure. At the shadow pole, confidence and authority become insulated while the working body absorbs the cost.
+
+The Sun is dignified and Jupiter is cazimi, so the hidden side of the axis is not weak. It may contain real leadership, protection, or strategic reach. Yet the twelfth house keeps motive, preparation, and consequence from being equally visible. Across the chart, the Moon with Pluto makes the response of the sixth house intense and difficult to keep procedural. A system may confront what it has suppressed and become more honest; it may also answer pressure with surveillance, compulsion, or a purge.
+
+Virgo rises at the final degree, with Mercury ruling from Cancer in the eleventh. Congress, allies, and networks carry the chart’s explanation, but Mercury’s separating square from fallen Saturn in the eighth shows the explanation meeting old legal, debt, or structural limits. A precise Venus–Mars square sets the nation’s stated values and bodily welfare against government action. The contact can force a needed correction between policy and lived conditions, or turn competence and force into adversaries even when they are meant to serve the same whole.
+
+This culmination directly activates the Cancer ingress Pluto: the Moon conjoins it and the Sun opposes it within a degree and a half. The quarter’s ninth-house pressure—law, courts, doctrine, foreign systems, and long-distance exchange—therefore enters the month through the working-body axis. The U.S. overlay is equally exact: the lights and Jupiter sit on the founding Node, Saturn is opposite the founding Saturn, and Uranus is on the founding Ascendant. These contacts make the threshold national in scale without telling us which manifestation must occur.
+
+The chart belongs to the Cancer New Moon month that began July 14 and culminates here before the August 12 solar eclipse changes the monthly weather. Around July 29, watch what becomes visible about the relationship between protected decision-making and operational reality. The constructive test is whether hidden capacity returns as public service. The shadow test is whether a powerful center interprets every strain in the working body as permission to concentrate still more power.
+
+## Technical proof
+
+- Chart: 2026-07-29 14:35:43 UTC / 10:35:43 EDT, Washington, D.C.; day chart.
+- Ascendant: 29°19′ Virgo. MC: 29°13′ Gemini.
+- Full Moon: Sun 6°30′ Leo in the 12th opposite Moon 6°30′ Aquarius in the 6th.
+- Sun conjoins Jupiter at 6°25′ Leo, orb 0.070°; Jupiter is cazimi. Moon opposes Jupiter by the same orb.
+- Moon conjoins Pluto at 4°13′ Aquarius, orb 2.271°. Sun opposes Pluto, orb 2.271°.
+- Venus at 21°33′ Virgo in the 1st squares Mars at 21°26′ Gemini in the 10th, orb 0.115°.
+- The lights activate ingress Pluto at 5°03′ Aquarius: Moon conjunction / Sun opposition, orb 1.439°.
+- U.S. contacts include Saturn opposite U.S. Saturn, orb about 0.01°; Uranus conjunct U.S. Ascendant, orb 0.065°; and the Sun, Moon, and Jupiter on the U.S. nodal axis within 0.161°.
+- Governing climate: 2026 Cancer ingress. Monthly seed: 2026-07-14 Cancer New Moon. Next seed: 2026-08-12 Leo solar eclipse.
+

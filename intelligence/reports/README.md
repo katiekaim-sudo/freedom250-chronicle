@@ -24,7 +24,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Education and University Funding](education-university-funding.md) — cutoff 2026-08-17
 - [Emerging Fraud — Identity, Eligibility and the Payment Gate](emerging-fraud-identity-payment-gate.md) — cutoff 2026-07-15
 - [Epstein Interview Statement Accountability](epstein-interview-statement-accountability.md) — cutoff 2026-07-21
-- [Federal Agency AI Plans and Infrastructure](federal-agency-ai-plans-infrastructure.md) — cutoff 2026-09-28
+- [Federal Agency AI Plans and Infrastructure](federal-agency-ai-plans-infrastructure.md) — cutoff 2026-09-29
 - [Federal Budget — FY2026 to FY2027](federal-budget-fy2026-fy2027.md) — cutoff 2026-09-11T19:55:13-04:00
 - [Federal Force, Surveillance and Emergency Authority Maps](federal-force-surveillance-and-emergency-authority.md) — cutoff 2026-08-15
 - [Federal Government Deep Website Review — September 16–22, 2026](federal-government-deep-website-review-2026-09-22.md) — cutoff 2026-09-22T11:51:46-04:00

@@ -1,0 +1,87 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/chart-conventions-8916f4d8bde5.html">
+<title>chart_conventions</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>chart_conventions</h1><p class="mut">Portable source: 99 - Templates/chart_conventions.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Shared location and clock rules for Freedom 250 mundane charts.
+
+National mundane charts are always cast for Washington, D.C.  Exact stated
+event times preserve the real instant, then the wheel is relocated to D.C.;
+untimed daytime/date-only records use noon/midnight in Washington itself.
+
+Natal and founding charts are a separate class and keep their actual birthplace.
+See DECISION LOG DR-047 and Reading the Charts — START HERE §9.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+
+DC_LAT = 38.9072
+DC_LON = -77.0369
+DC = (DC_LAT, DC_LON)
+DC_TZ_NAME = &quot;America/New_York&quot;
+DC_TZ = ZoneInfo(DC_TZ_NAME)
+UTC = timezone.utc
+DC_LABEL = &quot;Washington, D.C.&quot;
+
+
+def julian_day(moment: datetime) -&gt; float:
+    &quot;&quot;&quot;Return a UT Julian day for an aware datetime.&quot;&quot;&quot;
+    if moment.tzinfo is None:
+        raise ValueError(&quot;julian_day requires a timezone-aware datetime&quot;)
+    ut = moment.astimezone(UTC)
+    hour = ut.hour + ut.minute / 60 + ut.second / 3600 + ut.microsecond / 3_600_000_000
+    return swe.julday(ut.year, ut.month, ut.day, hour)
+
+
+def clock_label(moment: datetime, *, seconds: bool = False) -&gt; str:
+    &quot;&quot;&quot;Human clock label with the zone abbreviation of ``moment``.&quot;&quot;&quot;
+    fmt = &quot;%I:%M:%S %p&quot; if seconds else &quot;%I:%M %p&quot;
+    clock = moment.strftime(fmt).lstrip(&quot;0&quot;)
+    return f&quot;{clock} {moment.tzname() or &#x27;ET&#x27;}&quot;
+
+
+def washington_label(moment: datetime, *, seconds: bool = False) -&gt; str:
+    &quot;&quot;&quot;Render any instant as a user-facing Washington local-time caption.&quot;&quot;&quot;
+    return f&quot;{clock_label(moment.astimezone(DC_TZ), seconds=seconds)} · {DC_LABEL}&quot;
+
+
+def mundane_event_instant(
+    date_iso: str,
+    *,
+    stated_time: str | None = None,
+    source_tz: str | None = None,
+    date_only: bool = False,
+) -&gt; tuple[float, datetime, str]:
+    &quot;&quot;&quot;Resolve an event under DR-047 and return ``(jd_ut, dc_local, basis)``.
+
+    A stated clock is interpreted in the source timezone because it identifies a
+    real-world instant.  Without a stated clock, the convention is deliberately
+    Washington-local: noon for a known daytime event, midnight for date-only.
+    &quot;&quot;&quot;
+    y, month, day = (int(x) for x in date_iso.split(&quot;-&quot;))
+    if stated_time:
+        parts = [int(x) for x in stated_time.split(&quot;:&quot;)]
+        hour, minute = parts[:2]
+        second = parts[2] if len(parts) &gt; 2 else 0
+        source = ZoneInfo(source_tz or DC_TZ_NAME)
+        local = datetime(y, month, day, hour, minute, second, tzinfo=source)
+        basis = &quot;exact stated event instant&quot;
+    else:
+        hour = 0 if date_only else 12
+        local = datetime(y, month, day, hour, 0, tzinfo=DC_TZ)
+        basis = &quot;midnight D.C. date-only convention&quot; if date_only else &quot;noon D.C. daytime convention&quot;
+    dc_local = local.astimezone(DC_TZ)
+    return julian_day(local), dc_local, basis
+</pre></main></body></html>

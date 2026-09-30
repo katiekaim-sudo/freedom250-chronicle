@@ -1,0 +1,115 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-moon-family-political-reservoir-7c784371efae.html">
+<title>test_moon_family_political_reservoir</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_moon_family_political_reservoir</h1><p class="mut">Portable source: 99 - Templates/test_moon_family_political_reservoir.py</p><pre>from __future__ import annotations
+
+import hashlib
+import json
+import unittest
+from pathlib import Path
+
+import build_moon_family_political_reservoir as reservoir
+
+
+ROOT = Path(__file__).resolve().parent.parent
+CATALOG = ROOT / &quot;03 - Astrology&quot; / &quot;Astrology Files&quot; / &quot;ASTROLOGY FILES CATALOG.json&quot;
+REGISTRY = ROOT / &quot;03 - Astrology&quot; / &quot;Astrology Files&quot; / &quot;ASTROLOGY FILES REGISTRY.json&quot;
+
+
+class MoonFamilyPoliticalReservoirTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.payload = reservoir.build_payload()
+
+    def test_population_and_clock_states(self):
+        self.assertEqual(self.payload[&quot;counts&quot;], {
+            &quot;families&quot;: 13,
+            &quot;retrospective_comparisons_complete&quot;: 9,
+            &quot;pre_full_comparisons_prepared&quot;: 1,
+            &quot;prospective_maturations_withheld&quot;: 3,
+        })
+        states = {row[&quot;comparison_state&quot;] for row in self.payload[&quot;records&quot;]}
+        self.assertEqual(states, {
+            &quot;retrospective_comparison_complete&quot;,
+            &quot;pre_full_comparison_prepared&quot;,
+            &quot;prospective_maturation_withheld&quot;,
+        })
+
+    def test_retrospective_routes_and_future_withholding(self):
+        for row in self.payload[&quot;records&quot;]:
+            if row[&quot;full_phase&quot;][&quot;clock_state_at_cutoff&quot;] == &quot;occurred&quot;:
+                self.assertEqual(row[&quot;comparison_state&quot;], &quot;retrospective_comparison_complete&quot;)
+                self.assertTrue(row[&quot;research_routes&quot;])
+            elif row[&quot;comparison_state&quot;] == &quot;pre_full_comparison_prepared&quot;:
+                self.assertEqual(row[&quot;seed&quot;][&quot;chart_id&quot;], &quot;lun-2025-03-29-ne-solar&quot;)
+                self.assertTrue(row[&quot;research_routes&quot;])
+            else:
+                self.assertEqual(row[&quot;comparison_state&quot;], &quot;prospective_maturation_withheld&quot;)
+                self.assertEqual(row[&quot;research_routes&quot;], [])
+
+    def test_capricorn_has_backbone_and_same_window_control(self):
+        capricorn = next(
+            row for row in self.payload[&quot;records&quot;]
+            if row[&quot;seed&quot;][&quot;chart_id&quot;] == &quot;lun-2024-12-30-ne&quot;
+        )
+        ids = {route[&quot;research_id&quot;] for route in capricorn[&quot;research_routes&quot;]}
+        self.assertEqual(ids, {
+            &quot;treasury-irs&quot;,
+            &quot;december-2024-rule-perimeter-operating-identity-window&quot;,
+        })
+        control = next(
+            route for route in capricorn[&quot;research_routes&quot;]
+            if route[&quot;research_id&quot;] == &quot;december-2024-rule-perimeter-operating-identity-window&quot;
+        )
+        self.assertIn(&quot;not an additional astrology vote&quot;, control[&quot;role&quot;])
+
+    def test_authority_boundary(self):
+        boundary = self.payload[&quot;authority_boundary&quot;]
+        for key in (
+            &quot;workbench_content_imported&quot;,
+            &quot;astrology_selected_evidence&quot;,
+            &quot;same_window_objects_are_extra_votes&quot;,
+            &quot;thematic_similarity_is_maturation&quot;,
+            &quot;locked_readings_changed&quot;,
+        ):
+            self.assertFalse(boundary[key])
+        self.assertEqual(boundary[&quot;evidence_credit&quot;], &quot;zero&quot;)
+        self.assertEqual(boundary[&quot;forecast_ledger_credit&quot;], &quot;zero&quot;)
+
+    def test_source_receipts_are_current(self):
+        for receipt in self.payload[&quot;source_receipts&quot;]:
+            path = ROOT / receipt[&quot;path&quot;]
+            self.assertTrue(path.is_file(), receipt[&quot;path&quot;])
+            self.assertEqual(receipt[&quot;bytes&quot;], path.stat().st_size)
+            self.assertEqual(receipt[&quot;sha256&quot;], hashlib.sha256(path.read_bytes()).hexdigest())
+
+    def test_catalog_and_registry_route_the_companion(self):
+        catalog = json.loads(CATALOG.read_text(encoding=&quot;utf-8&quot;))
+        package = next(
+            row for row in catalog[&quot;packages&quot;]
+            if row[&quot;astrology_id&quot;] == &quot;full-moon-family-triage-2026&quot;
+        )
+        self.assertIn(reservoir.RESERVOIR_NOTE, package[&quot;artifact_refs&quot;])
+        registry = json.loads(REGISTRY.read_text(encoding=&quot;utf-8&quot;))
+        registered = [
+            row for row in registry[&quot;artifacts&quot;]
+            if row[&quot;path&quot;] == reservoir.RESERVOIR_NOTE
+        ]
+        self.assertEqual(len(registered), 1)
+        self.assertIn(&quot;full-moon-family-triage-2026&quot;, registered[0][&quot;astrology_ids&quot;])
+
+    def test_generated_artifact_matches_builder(self):
+        stored = json.loads(reservoir.OUT.read_text(encoding=&quot;utf-8&quot;))
+        self.assertEqual(stored, self.payload)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

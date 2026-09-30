@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-2026-ingress-lunation-seams-0dcc112889ea.html">
+<title>test_2026_ingress_lunation_seams</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_2026_ingress_lunation_seams</h1><p class="mut">Portable source: 99 - Templates/test_2026_ingress_lunation_seams.py</p><pre>from __future__ import annotations
+
+import json
+import unittest
+
+import build_2026_ingress_lunation_seams as seams
+
+
+class IngressLunationSeamTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.payload = seams.build_payload()
+        cls.rows = {row[&quot;season&quot;]: row for row in cls.payload[&quot;seams&quot;]}
+
+    def test_four_cardinal_seams_are_registered(self):
+        self.assertEqual(list(self.rows), [&quot;Aries&quot;, &quot;Cancer&quot;, &quot;Libra&quot;, &quot;Capricorn&quot;])
+        self.assertTrue(
+            self.payload[&quot;year_pattern&quot;][
+                &quot;every_ingress_occurs_inside_a_new_moon_chapter_planted_under_predecessor_ingress&quot;
+            ]
+        )
+
+    def test_ingress_enters_progressively_older_lunar_chapter(self):
+        ages = self.payload[&quot;year_pattern&quot;][&quot;chapter_ages_days&quot;]
+        self.assertTrue(all(a &lt; b for a, b in zip(ages, ages[1:])))
+        self.assertAlmostEqual(ages[0], 1.557276, places=6)
+        self.assertAlmostEqual(ages[-1], 12.832211, places=6)
+
+    def test_first_full_moon_arrives_progressively_sooner(self):
+        leads = self.payload[&quot;year_pattern&quot;][&quot;days_to_first_full_moon&quot;]
+        self.assertTrue(all(a &gt; b for a, b in zip(leads, leads[1:])))
+        self.assertAlmostEqual(leads[0], 12.476396, places=6)
+        self.assertAlmostEqual(leads[-1], 2.193055, places=6)
+
+    def test_every_seed_and_ingress_is_circuit_rooted(self):
+        self.assertTrue(
+            self.payload[&quot;year_pattern&quot;][
+                &quot;every_seed_and_ingress_has_bounded_cycle_root_not_final_dispositor&quot;
+            ]
+        )
+
+    def test_expected_root_handoffs(self):
+        aries = self.rows[&quot;Aries&quot;][&quot;seed_to_ingress_root_transition&quot;]
+        self.assertTrue(aries[&quot;source_root_is_subset&quot;])
+        self.assertEqual(aries[&quot;added_members&quot;], [&quot;Mars&quot;])
+        cancer = self.rows[&quot;Cancer&quot;][&quot;seed_to_ingress_root_transition&quot;]
+        self.assertTrue(cancer[&quot;same_root_set&quot;])
+        libra = self.rows[&quot;Libra&quot;][&quot;seed_to_ingress_root_transition&quot;]
+        self.assertEqual(libra[&quot;shared_members&quot;], [&quot;Mars&quot;, &quot;Moon&quot;])
+        self.assertEqual(libra[&quot;removed_members&quot;], [&quot;Mercury&quot;, &quot;Venus&quot;])
+        self.assertEqual(libra[&quot;added_members&quot;], [&quot;Saturn&quot;])
+        capricorn = self.rows[&quot;Capricorn&quot;][&quot;seed_to_ingress_root_transition&quot;]
+        self.assertTrue(capricorn[&quot;source_root_is_subset&quot;])
+        self.assertEqual(capricorn[&quot;added_members&quot;], [&quot;Mars&quot;, &quot;Mercury&quot;, &quot;Saturn&quot;])
+
+    def test_sagittarius_seed_lands_on_capricorn_descendant(self):
+        contacts = self.rows[&quot;Capricorn&quot;][&quot;seed_degree_contacts_to_incoming_ingress&quot;]
+        dsc = next(row for row in contacts if row[&quot;point&quot;] == &quot;DSC&quot;)
+        self.assertEqual(dsc[&quot;aspect&quot;], &quot;conjunction&quot;)
+        self.assertLess(dsc[&quot;orb_deg&quot;], 0.027)
+        self.assertEqual(dsc[&quot;strength_band&quot;], &quot;exact_relay&quot;)
+
+    def test_libra_seam_is_explicit_contact_control(self):
+        self.assertEqual(
+            self.rows[&quot;Libra&quot;][&quot;seed_degree_contacts_to_incoming_ingress&quot;], []
+        )
+
+    def test_bounded_year_control_prevents_uniqueness_claim(self):
+        control = self.payload[&quot;bounded_year_control&quot;]
+        self.assertEqual(control[&quot;all_four_ingresses_waxing_years&quot;], [2018, 2026])
+        self.assertIn(2026, control[&quot;strictly_increasing_without_wrap_years&quot;])
+        self.assertIn(&quot;not unique&quot;, control[&quot;boundary&quot;])
+
+    def test_future_boundary_and_zero_credit(self):
+        self.assertEqual(
+            self.rows[&quot;Capricorn&quot;][&quot;knowledge_state_at_2026_09_25&quot;],
+            &quot;prospective_at_cutoff&quot;,
+        )
+        boundary = self.payload[&quot;authority_boundary&quot;]
+        self.assertEqual(boundary[&quot;factual_evidence_credit&quot;], &quot;zero&quot;)
+        self.assertEqual(boundary[&quot;forecast_ledger_credit&quot;], &quot;zero&quot;)
+        self.assertFalse(boundary[&quot;causal_claim&quot;])
+
+    def test_absent_future_closing_chart_is_not_invented(self):
+        closing = self.rows[&quot;Capricorn&quot;][&quot;chapter_closing_new_moon&quot;]
+        self.assertEqual(
+            closing[&quot;chart_registration_state&quot;],
+            &quot;exact_clock_only_chart_bone_absent_at_cutoff&quot;,
+        )
+        self.assertEqual(closing[&quot;interpretive_fields&quot;], &quot;withheld&quot;)
+
+    def test_generated_artifact_matches_builder(self):
+        stored = json.loads(seams.OUT.read_text(encoding=&quot;utf-8&quot;))
+        self.assertEqual(stored, self.payload)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

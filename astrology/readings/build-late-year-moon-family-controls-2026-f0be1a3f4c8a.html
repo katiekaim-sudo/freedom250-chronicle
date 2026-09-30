@@ -1,0 +1,234 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-late-year-moon-family-controls-2026-f0be1a3f4c8a.html">
+<title>build_late_year_moon_family_controls_2026</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_late_year_moon_family_controls_2026</h1><p class="mut">Portable source: 99 - Templates/build_late_year_moon_family_controls_2026.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the prospective late-2026 Moon-family control group.
+
+Taurus, Gemini, and the December Cancer Full phases are future as of the
+development cutoff. The output compares their already-registered charts and
+past seed/First-Quarter frames without treating the Full phases as occurred,
+selecting political maturations, or granting evidence or Forecast Ledger credit.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from build_aquarius_moon_family import (
+    PLANETS,
+    angular_distance,
+    apply_governed_positions,
+    calculated_chart,
+    cross_chart_contacts,
+    parse_utc,
+)
+from build_scorpio_moon_family import horizon, horizon_event, node_state
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+HISTORY = HERE / &quot;mundane_history.json&quot;
+LINEAGES = HERE / &quot;moon_lineages.json&quot;
+TRIAGE = HERE / &quot;full_moon_family_triage_2026.json&quot;
+OUTPUT = HERE / &quot;late_year_moon_family_controls_2026.json&quot;
+
+FAMILIES = (
+    {
+        &quot;key&quot;: &quot;taurus&quot;,
+        &quot;lineage_id&quot;: &quot;pessin:lun-2025-04-27-ne&quot;,
+        &quot;seed_id&quot;: &quot;lun-2025-04-27-ne&quot;,
+        &quot;quarter_id&quot;: &quot;lunation-2026-01-26-fq&quot;,
+        &quot;full_id&quot;: &quot;lun-2026-10-26-fu&quot;,
+    },
+    {
+        &quot;key&quot;: &quot;gemini&quot;,
+        &quot;lineage_id&quot;: &quot;pessin:lun-2025-05-27-ne&quot;,
+        &quot;seed_id&quot;: &quot;lun-2025-05-27-ne&quot;,
+        &quot;quarter_id&quot;: &quot;lunation-2026-02-24-fq&quot;,
+        &quot;full_id&quot;: &quot;lun-2026-11-24-fu&quot;,
+    },
+    {
+        &quot;key&quot;: &quot;cancer_december&quot;,
+        &quot;lineage_id&quot;: &quot;pessin:lun-2025-06-25-ne&quot;,
+        &quot;seed_id&quot;: &quot;lun-2025-06-25-ne&quot;,
+        &quot;quarter_id&quot;: &quot;lunation-2026-03-25-fq&quot;,
+        &quot;full_id&quot;: &quot;lun-2026-12-24-fu&quot;,
+    },
+)
+
+
+def selected_declinations(chart: dict, maximum: float = 0.25) -&gt; list[dict]:
+    return [
+        row for row in chart[&quot;declination_relationships_within_1_deg&quot;]
+        if row[&quot;orb_deg&quot;] &lt;= maximum
+    ]
+
+
+def build_family(config: dict, history: dict, lineages: dict, triage: dict) -&gt; dict:
+    seed_source = next(row for row in history[&quot;charts&quot;] if row[&quot;id&quot;] == config[&quot;seed_id&quot;])
+    lineage = next(row for row in lineages[&quot;lineages&quot;] if row[&quot;lineage_id&quot;] == config[&quot;lineage_id&quot;])
+    phases = {row[&quot;phase_event_id&quot;]: row for row in lineages[&quot;phase_events&quot;]}
+    quarter_source = phases[config[&quot;quarter_id&quot;]]
+    full_source = phases[config[&quot;full_id&quot;]]
+    full_bone = json.loads((HERE / &quot;chart_reading_bones&quot; / f&quot;{config[&#x27;full_id&#x27;]}.json&quot;).read_text())
+    triage_row = next(row for row in triage[&quot;families&quot;] if row[&quot;lineage_id&quot;] == config[&quot;lineage_id&quot;])
+
+    seed = calculated_chart(parse_utc(seed_source[&quot;utc&quot;]))
+    quarter = calculated_chart(parse_utc(quarter_source[&quot;exact_utc&quot;]))
+    full = calculated_chart(parse_utc(full_source[&quot;exact_utc&quot;]))
+    seed = apply_governed_positions(
+        seed,
+        {row[&quot;name&quot;]: row[&quot;lon&quot;] for row in seed_source[&quot;points&quot;] if row[&quot;name&quot;] in PLANETS},
+        asc=seed_source[&quot;asc&quot;],
+        mc=seed_source[&quot;mc&quot;],
+    )
+    quarter = apply_governed_positions(
+        quarter,
+        {&quot;Sun&quot;: quarter_source[&quot;sun_lon_deg&quot;], &quot;Moon&quot;: quarter_source[&quot;moon_lon_deg&quot;]},
+    )
+    full = apply_governed_positions(
+        full,
+        {body: full_bone[&quot;pos&quot;][body][&quot;lon&quot;] for body in PLANETS},
+        asc=full_bone[&quot;asc&quot;],
+        mc=full_bone[&quot;mc&quot;],
+        declinations={body: full_bone[&quot;pos&quot;][body][&quot;dec&quot;] for body in PLANETS},
+    )
+
+    seed_node = next(row[&quot;lon&quot;] for row in seed_source[&quot;points&quot;] if row[&quot;name&quot;] == &quot;Node&quot;)
+    seed[&quot;node_geometry&quot;] = node_state(seed, seed_node)
+    quarter[&quot;node_geometry&quot;] = node_state(quarter)
+    full[&quot;node_geometry&quot;] = node_state(full, full_bone[&quot;node&quot;][&quot;lon&quot;])
+    for chart in (seed, quarter, full):
+        chart[&quot;horizon&quot;] = horizon(chart)
+
+    full_jd = full[&quot;julian_day_ut&quot;]
+    previous_sunrise = horizon_event(full_jd, swe.SUN, &quot;rise&quot;, &quot;previous&quot;)
+    next_sunset = horizon_event(full_jd, swe.SUN, &quot;set&quot;, &quot;next&quot;)
+    previous_moonset = horizon_event(full_jd, swe.MOON, &quot;set&quot;, &quot;previous&quot;)
+    next_moonrise = horizon_event(full_jd, swe.MOON, &quot;rise&quot;, &quot;next&quot;)
+
+    return {
+        &quot;key&quot;: config[&quot;key&quot;],
+        &quot;lineage_id&quot;: lineage[&quot;lineage_id&quot;],
+        &quot;family_members&quot;: lineage[&quot;members&quot;],
+        &quot;interpretation_status&quot;: lineage[&quot;interpretation_status&quot;],
+        &quot;story_verdict&quot;: lineage[&quot;story_verdict&quot;],
+        &quot;phase_state_as_of_2026_09_25&quot;: {
+            &quot;seed&quot;: &quot;occurred&quot;,
+            &quot;first_quarter&quot;: &quot;occurred&quot;,
+            &quot;full&quot;: &quot;future_not_interpreted_as_occurred&quot;,
+        },
+        &quot;phase_eclipse_states&quot;: {
+            &quot;seed&quot;: bool(phases[config[&quot;seed_id&quot;]][&quot;eclipse&quot;]),
+            &quot;first_quarter&quot;: bool(quarter_source[&quot;eclipse&quot;]),
+            &quot;full&quot;: bool(full_source[&quot;eclipse&quot;]),
+        },
+        &quot;charts&quot;: {&quot;seed&quot;: seed, &quot;first_quarter&quot;: quarter, &quot;full&quot;: full},
+        &quot;degree_relays&quot;: {
+            &quot;seed_moon_degree_deg&quot;: seed[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;],
+            &quot;first_quarter_moon_degree_deg&quot;: quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;],
+            &quot;full_moon_degree_deg&quot;: full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;],
+            &quot;seed_to_first_quarter_deg&quot;: round(
+                angular_distance(seed[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;], quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;]), 9
+            ),
+            &quot;seed_to_full_deg&quot;: round(
+                angular_distance(seed[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;], full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;]), 9
+            ),
+            &quot;first_quarter_to_full_deg&quot;: round(
+                angular_distance(quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;], full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;]), 9
+            ),
+            &quot;meaning_boundary&quot;: &quot;same-sign Pessin-family continuity does not require an exact coordinate return&quot;,
+        },
+        &quot;node_path&quot;: [
+            seed[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+            quarter[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+            full[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+        ],
+        &quot;house_migrations&quot;: triage_row[&quot;relays&quot;][&quot;house_migrations&quot;],
+        &quot;root_handoff&quot;: {
+            &quot;seed&quot;: seed[&quot;dispositors&quot;],
+            &quot;first_quarter&quot;: quarter[&quot;dispositors&quot;],
+            &quot;full&quot;: full[&quot;dispositors&quot;],
+        },
+        &quot;distribution&quot;: {
+            &quot;seed&quot;: seed[&quot;distribution&quot;],
+            &quot;first_quarter&quot;: quarter[&quot;distribution&quot;],
+            &quot;full&quot;: full[&quot;distribution&quot;],
+            &quot;quarter_to_full_largest_empty_arc_change_deg&quot;: round(
+                full[&quot;distribution&quot;][&quot;largest_empty_arc_deg&quot;] - quarter[&quot;distribution&quot;][&quot;largest_empty_arc_deg&quot;], 6
+            ),
+            &quot;quarter_to_full_occupied_span_change_deg&quot;: round(
+                full[&quot;distribution&quot;][&quot;occupied_span_deg&quot;] - quarter[&quot;distribution&quot;][&quot;occupied_span_deg&quot;], 6
+            ),
+        },
+        &quot;quarter_to_full_contacts_within_1_25_deg&quot;: cross_chart_contacts(quarter, full, 1.25),
+        &quot;full_declinations_within_quarter_degree&quot;: selected_declinations(full),
+        &quot;full_phase_astronomy&quot;: {
+            &quot;registered_shape&quot;: triage_row[&quot;full&quot;].get(&quot;registered_shape&quot;),
+            &quot;sun_true_altitude_deg&quot;: full[&quot;bodies&quot;][&quot;Sun&quot;][&quot;true_altitude_deg&quot;],
+            &quot;moon_true_altitude_deg&quot;: full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;true_altitude_deg&quot;],
+            &quot;horizon&quot;: full[&quot;horizon&quot;],
+            &quot;previous_sunrise&quot;: previous_sunrise,
+            &quot;next_sunset&quot;: next_sunset,
+            &quot;previous_moonset&quot;: previous_moonset,
+            &quot;next_moonrise&quot;: next_moonrise,
+        },
+    }
+
+
+def main() -&gt; None:
+    history = json.loads(HISTORY.read_text())
+    lineages = json.loads(LINEAGES.read_text())
+    triage = json.loads(TRIAGE.read_text())
+    families = [build_family(config, history, lineages, triage) for config in FAMILIES]
+
+    full_degrees = [row[&quot;degree_relays&quot;][&quot;full_moon_degree_deg&quot;] for row in families]
+    empty_arc_changes = [row[&quot;distribution&quot;][&quot;quarter_to_full_largest_empty_arc_change_deg&quot;] for row in families]
+    occupied_changes = [row[&quot;distribution&quot;][&quot;quarter_to_full_occupied_span_change_deg&quot;] for row in families]
+    result = {
+        &quot;schema&quot;: &quot;freedom250.late-year-moon-family-controls/v1&quot;,
+        &quot;developed_through&quot;: &quot;2026-09-25&quot;,
+        &quot;authority_boundary&quot;: {
+            &quot;calculation&quot;: &quot;registered seed and Full-phase coordinates with Swiss Ephemeris calculation of missing First-Quarter frames and secondary geometry&quot;,
+            &quot;temporal&quot;: &quot;all three Full phases are future as of the cutoff and are not described as occurred&quot;,
+            &quot;interpretation&quot;: &quot;prospective structural control only; locked chart readings remain unchanged&quot;,
+            &quot;political_maturation&quot;: &quot;withheld until each Full phase has occurred and an independently researched official-source record can be tested without hindsight substitution&quot;,
+            &quot;evidence_credit&quot;: &quot;zero&quot;,
+        },
+        &quot;families&quot;: families,
+        &quot;group_findings&quot;: {
+            &quot;all_full_phases_registered_splay&quot;: all(
+                row[&quot;full_phase_astronomy&quot;][&quot;registered_shape&quot;] == &quot;splay&quot; for row in families
+            ),
+            &quot;full_moon_degree_min_deg&quot;: round(min(full_degrees), 9),
+            &quot;full_moon_degree_max_deg&quot;: round(max(full_degrees), 9),
+            &quot;full_moon_degree_range_deg&quot;: round(max(full_degrees) - min(full_degrees), 9),
+            &quot;quarter_to_full_largest_empty_arc_changes_deg&quot;: empty_arc_changes,
+            &quot;quarter_to_full_occupied_span_changes_deg&quot;: occupied_changes,
+            &quot;finding&quot;: &quot;wide degree drift coexists with a shared late-year splay transition: each family sharply contracts its largest empty arc and expands its occupied field from First Quarter to Full phase&quot;,
+            &quot;control_value&quot;: &quot;family continuity can be carried by phase identity, house migration, root change, distribution and astronomy even when the Moon does not return to a tight earlier degree&quot;,
+        },
+        &quot;source_paths&quot;: [
+            &quot;99 - Templates/mundane_history.json&quot;,
+            &quot;99 - Templates/moon_lineages.json&quot;,
+            &quot;99 - Templates/full_moon_family_triage_2026.json&quot;,
+            &quot;99 - Templates/chart_reading_bones/lun-2026-10-26-fu.json&quot;,
+            &quot;99 - Templates/chart_reading_bones/lun-2026-11-24-fu.json&quot;,
+            &quot;99 - Templates/chart_reading_bones/lun-2026-12-24-fu.json&quot;,
+        ],
+    }
+    OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + &quot;\n&quot;)
+    print(f&quot;Wrote {OUTPUT}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

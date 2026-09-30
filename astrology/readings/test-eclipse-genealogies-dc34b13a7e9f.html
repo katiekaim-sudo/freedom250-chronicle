@@ -1,0 +1,317 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-eclipse-genealogies-dc34b13a7e9f.html">
+<title>test_eclipse_genealogies</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_eclipse_genealogies</h1><p class="mut">Portable source: 99 - Templates/test_eclipse_genealogies.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Invariant tests for the typed 2025-2026 eclipse genealogies.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+DATA = HERE / &quot;eclipse_genealogies.json&quot;
+
+
+class EclipseGenealogyTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -&gt; None:
+        cls.payload = json.loads(DATA.read_text(encoding=&quot;utf-8&quot;))
+        cls.events = {event[&quot;date&quot;]: event for event in cls.payload[&quot;events&quot;]}
+
+    def test_complete_ordered_sequence(self) -&gt; None:
+        self.assertEqual(
+            [event[&quot;date&quot;] for event in self.payload[&quot;events&quot;]],
+            [
+                &quot;2024-10-02&quot;,
+                &quot;2025-03-14&quot;,
+                &quot;2025-03-29&quot;,
+                &quot;2025-09-07&quot;,
+                &quot;2025-09-21&quot;,
+                &quot;2026-02-17&quot;,
+                &quot;2026-03-03&quot;,
+                &quot;2026-08-12&quot;,
+                &quot;2026-08-28&quot;,
+            ],
+        )
+
+    def test_saros_family_preserves_series_not_calendar_date(self) -&gt; None:
+        for event in self.payload[&quot;events&quot;]:
+            current = event[&quot;current_eclipse&quot;]
+            family = event[&quot;saros_family&quot;]
+            self.assertEqual(family[&quot;series&quot;], current[&quot;saros&quot;])
+            self.assertEqual(family[&quot;previous&quot;][&quot;saros&quot;], current[&quot;saros&quot;])
+            self.assertEqual(family[&quot;next&quot;][&quot;saros&quot;], current[&quot;saros&quot;])
+            self.assertAlmostEqual(
+                abs(family[&quot;previous&quot;][&quot;interval_from_current_days&quot;]),
+                self.payload[&quot;constants&quot;][&quot;saros_mean_days&quot;],
+                delta=0.05,
+            )
+
+        self.assertEqual(
+            self.events[&quot;2025-03-29&quot;][&quot;saros_family&quot;][&quot;previous&quot;][&quot;maximum&quot;][&quot;utc&quot;][:10],
+            &quot;2007-03-19&quot;,
+        )
+        self.assertEqual(
+            self.events[&quot;2026-03-03&quot;][&quot;saros_family&quot;][&quot;previous&quot;][&quot;maximum&quot;][&quot;utc&quot;][:10],
+            &quot;2008-02-21&quot;,
+        )
+
+    def test_metonic_echo_is_close_in_degree_but_not_same_saros(self) -&gt; None:
+        for event in self.payload[&quot;events&quot;]:
+            previous = event[&quot;metonic_echo&quot;][&quot;previous&quot;]
+            self.assertLess(previous[&quot;absolute_degree_drift_from_current_deg&quot;], 0.5)
+            self.assertAlmostEqual(
+                abs(previous[&quot;interval_from_current_days&quot;]),
+                self.payload[&quot;constants&quot;][&quot;metonic_mean_days&quot;],
+                delta=0.75,
+            )
+            if previous[&quot;is_eclipse&quot;]:
+                self.assertEqual(previous[&quot;saros_delta_from_current&quot;], -10)
+                self.assertNotEqual(
+                    previous[&quot;eclipse&quot;][&quot;saros&quot;], event[&quot;current_eclipse&quot;][&quot;saros&quot;]
+                )
+
+    def test_high_value_metonic_examples_remain_typed(self) -&gt; None:
+        aries = self.events[&quot;2025-03-29&quot;][&quot;metonic_echo&quot;][&quot;previous&quot;]
+        self.assertEqual(aries[&quot;syzygy&quot;][&quot;utc&quot;][:10], &quot;2006-03-29&quot;)
+        self.assertEqual(aries[&quot;eclipse&quot;][&quot;type&quot;], &quot;total&quot;)
+        self.assertEqual(aries[&quot;eclipse&quot;][&quot;saros&quot;], 139)
+        self.assertEqual(self.events[&quot;2025-03-29&quot;][&quot;current_eclipse&quot;][&quot;saros&quot;], 149)
+
+        virgo = self.events[&quot;2026-03-03&quot;][&quot;metonic_echo&quot;][&quot;previous&quot;]
+        self.assertEqual(virgo[&quot;syzygy&quot;][&quot;utc&quot;][:10], &quot;2007-03-03&quot;)
+        self.assertEqual(virgo[&quot;eclipse&quot;][&quot;saros&quot;], 123)
+        self.assertEqual(self.events[&quot;2026-03-03&quot;][&quot;current_eclipse&quot;][&quot;saros&quot;], 133)
+
+        pisces = self.events[&quot;2026-08-28&quot;][&quot;metonic_echo&quot;][&quot;previous&quot;]
+        self.assertEqual(pisces[&quot;syzygy&quot;][&quot;utc&quot;][:10], &quot;2007-08-28&quot;)
+        self.assertEqual(pisces[&quot;eclipse&quot;][&quot;type&quot;], &quot;total&quot;)
+        self.assertEqual(pisces[&quot;eclipse&quot;][&quot;saros&quot;], 128)
+        self.assertEqual(self.events[&quot;2026-08-28&quot;][&quot;current_eclipse&quot;][&quot;saros&quot;], 138)
+
+    def test_metonic_phase_return_need_not_be_an_eclipse(self) -&gt; None:
+        self.assertFalse(
+            self.events[&quot;2026-02-17&quot;][&quot;metonic_echo&quot;][&quot;previous&quot;][&quot;is_eclipse&quot;]
+        )
+        self.assertFalse(
+            self.events[&quot;2026-08-12&quot;][&quot;metonic_echo&quot;][&quot;previous&quot;][&quot;is_eclipse&quot;]
+        )
+
+    def test_saros_metonic_braid_is_one_anchor_with_two_branches(self) -&gt; None:
+        braided_dates = {
+            &quot;2024-10-02&quot;,
+            &quot;2025-03-14&quot;,
+            &quot;2025-03-29&quot;,
+            &quot;2025-09-07&quot;,
+            &quot;2025-09-21&quot;,
+            &quot;2026-03-03&quot;,
+            &quot;2026-08-28&quot;,
+        }
+        for date, event in self.events.items():
+            braid = event[&quot;saros_metonic_braid&quot;]
+            if date not in braided_dates:
+                self.assertIsNone(braid)
+                continue
+            self.assertIsNotNone(braid)
+            self.assertEqual(braid[&quot;series_step_between_branches&quot;], 10)
+            self.assertAlmostEqual(
+                braid[&quot;branch_separation_synodic_months&quot;], 12.0, delta=0.03
+            )
+            self.assertGreater(braid[&quot;branch_separation_days&quot;], 353.5)
+            self.assertLess(braid[&quot;branch_separation_days&quot;], 355.2)
+            self.assertEqual(
+                braid[&quot;shared_ancestor&quot;][&quot;saros&quot;], braid[&quot;saros_branch&quot;][&quot;saros&quot;]
+            )
+
+        self.assertEqual(
+            self.events[&quot;2025-03-29&quot;][&quot;saros_metonic_braid&quot;][&quot;saros_branch&quot;]
+            [&quot;maximum&quot;][&quot;utc&quot;][:10],
+            &quot;2024-04-08&quot;,
+        )
+        self.assertEqual(
+            self.events[&quot;2026-03-03&quot;][&quot;saros_metonic_braid&quot;][&quot;saros_branch&quot;]
+            [&quot;maximum&quot;][&quot;utc&quot;][:10],
+            &quot;2025-03-14&quot;,
+        )
+
+    def test_moon_family_is_a_third_identity_with_an_honest_null(self) -&gt; None:
+        for date, event in self.events.items():
+            family = event[&quot;moon_family&quot;]
+            if date == &quot;2025-09-21&quot;:
+                self.assertEqual(
+                    family[&quot;status&quot;], &quot;no_complete_lineage_in_current_projection&quot;
+                )
+            else:
+                self.assertEqual(family[&quot;status&quot;], &quot;complete_lineage_registered&quot;)
+                self.assertTrue(family[&quot;lineage_id&quot;].startswith(&quot;pessin:&quot;))
+                self.assertNotIn(&quot;saros&quot;, family)
+
+    def test_mars_control_audit_uses_the_same_three_contexts_without_a_score(self) -&gt; None:
+        for event in self.payload[&quot;events&quot;]:
+            audit = event[&quot;mars_command_control_audit&quot;]
+            self.assertEqual(
+                [context[&quot;label&quot;] for context in audit[&quot;contexts&quot;]],
+                [&quot;metonic_ancestor&quot;, &quot;saros_ancestor&quot;, &quot;current_eclipse&quot;],
+            )
+            self.assertNotIn(&quot;score&quot;, audit)
+            self.assertIn(&quot;no additive score&quot;, audit[&quot;contract&quot;])
+            for context in audit[&quot;contexts&quot;]:
+                self.assertIn(&quot;mars_in_command_structure&quot;, context)
+                self.assertIn(&quot;root_members&quot;, context)
+                self.assertEqual(len(context[&quot;planet_houses&quot;]), 10)
+                self.assertEqual(set(context[&quot;planet_houses&quot;].values()).issubset(
+                    set(range(1, 13))
+                ), True)
+                self.assertIn(&quot;out_of_bounds&quot;, context[&quot;mars&quot;])
+                geometry = context[&quot;distribution_geometry&quot;]
+                self.assertEqual(
+                    geometry[&quot;status&quot;],
+                    &quot;measurement_only_named_family_owner_unopened&quot;,
+                )
+                self.assertIsNone(geometry[&quot;family_label&quot;])
+                self.assertEqual(len(geometry[&quot;point_records&quot;]), 10)
+                self.assertEqual(len(geometry[&quot;circular_gaps&quot;]), 10)
+                self.assertAlmostEqual(geometry[&quot;gap_sum_deg&quot;], 360.0, places=5)
+                self.assertIn(
+                    &quot;applying_major_contacts_to_institutional_slow_bodies&quot;, context
+                )
+
+    def test_aries_lineage_has_three_distinct_mars_command_mechanisms(self) -&gt; None:
+        contexts = {
+            context[&quot;label&quot;]: context
+            for context in self.events[&quot;2025-03-29&quot;][&quot;mars_command_control_audit&quot;][
+                &quot;contexts&quot;
+            ]
+        }
+        metonic = contexts[&quot;metonic_ancestor&quot;]
+        saros = contexts[&quot;saros_ancestor&quot;]
+        current = contexts[&quot;current_eclipse&quot;]
+
+        self.assertTrue(metonic[&quot;mars_in_dispositor_root&quot;])
+        self.assertTrue(metonic[&quot;mars&quot;][&quot;out_of_bounds&quot;])
+        self.assertIn(
+            (&quot;Pluto&quot;, &quot;opposition&quot;),
+            {
+                (row[&quot;body&quot;], row[&quot;aspect&quot;])
+                for row in metonic[
+                    &quot;applying_major_contacts_to_institutional_slow_bodies&quot;
+                ]
+            },
+        )
+
+        self.assertTrue(saros[&quot;mars_rules_chart&quot;])
+        self.assertIn(
+            (&quot;Saturn&quot;, &quot;opposition&quot;),
+            {
+                (row[&quot;body&quot;], row[&quot;aspect&quot;])
+                for row in saros[
+                    &quot;applying_major_contacts_to_institutional_slow_bodies&quot;
+                ]
+            },
+        )
+        self.assertIn(
+            (&quot;Neptune&quot;, &quot;conjunction&quot;),
+            {
+                (row[&quot;body&quot;], row[&quot;aspect&quot;])
+                for row in saros[
+                    &quot;applying_major_contacts_to_institutional_slow_bodies&quot;
+                ]
+            },
+        )
+
+        self.assertTrue(current[&quot;mars_rules_chart&quot;])
+        self.assertTrue(current[&quot;mars_in_dispositor_root&quot;])
+        self.assertTrue(current[&quot;mars&quot;][&quot;out_of_bounds&quot;])
+        self.assertTrue(
+            self.events[&quot;2025-03-29&quot;][&quot;mars_command_control_audit&quot;][&quot;summary&quot;]
+            [&quot;all_three_in_command_structure&quot;]
+        )
+
+    def test_aries_lineage_is_unique_inside_the_registered_control_set(self) -&gt; None:
+        comparison = self.payload[&quot;mars_command_control_comparison&quot;]
+        self.assertEqual(comparison[&quot;lineage_count&quot;], 9)
+        self.assertEqual(comparison[&quot;chart_context_count&quot;], 27)
+        self.assertEqual(
+            comparison[&quot;all_three_command_structure_event_ids&quot;],
+            [&quot;lun-2025-03-29-ne-solar&quot;],
+        )
+        for field in (
+            &quot;command_structure_charts&quot;,
+            &quot;angular_mars_charts&quot;,
+            &quot;applying_slow_body_contact_charts&quot;,
+        ):
+            self.assertEqual(comparison[&quot;maxima&quot;][field][&quot;value&quot;], 3)
+            self.assertEqual(
+                comparison[&quot;maxima&quot;][field][&quot;event_ids&quot;],
+                [&quot;lun-2025-03-29-ne-solar&quot;],
+            )
+
+    def test_aries_lineage_uniquely_keeps_mars_in_one_house(self) -&gt; None:
+        comparison = self.payload[&quot;house_distribution_comparison&quot;]
+        self.assertEqual(comparison[&quot;lineage_count&quot;], 9)
+        self.assertEqual(comparison[&quot;chart_context_count&quot;], 27)
+        self.assertEqual(
+            comparison[&quot;same_mars_house_all_three_event_ids&quot;],
+            [&quot;lun-2025-03-29-ne-solar&quot;],
+        )
+        aries = next(
+            row
+            for row in comparison[&quot;rows&quot;]
+            if row[&quot;event_id&quot;] == &quot;lun-2025-03-29-ne-solar&quot;
+        )
+        self.assertEqual(aries[&quot;mars_house_sequence&quot;], [4, 4, 4])
+        self.assertEqual(
+            aries[&quot;context_order&quot;],
+            [&quot;metonic_ancestor&quot;, &quot;saros_ancestor&quot;, &quot;current_eclipse&quot;],
+        )
+        self.assertAlmostEqual(
+            aries[&quot;largest_empty_arc_sequence_deg&quot;][0], 103.507, places=3
+        )
+        self.assertAlmostEqual(
+            aries[&quot;largest_empty_arc_sequence_deg&quot;][1], 120.245, places=3
+        )
+        self.assertAlmostEqual(
+            aries[&quot;largest_empty_arc_sequence_deg&quot;][2], 190.723, places=3
+        )
+
+    def test_all_planet_control_limits_same_house_persistence_to_two_cases(self) -&gt; None:
+        comparison = self.payload[&quot;all_planet_house_persistence_comparison&quot;]
+        self.assertEqual(comparison[&quot;planet_count&quot;], 10)
+        self.assertEqual(comparison[&quot;lineage_count&quot;], 9)
+        self.assertEqual(comparison[&quot;planet_lineage_sequence_count&quot;], 90)
+        self.assertEqual(comparison[&quot;chart_placement_count&quot;], 270)
+        records = comparison[&quot;persistent_same_house_records&quot;]
+        self.assertEqual(
+            [
+                (record[&quot;event_id&quot;], record[&quot;planet&quot;], record[&quot;house&quot;])
+                for record in records
+            ],
+            [
+                (&quot;lun-2025-03-29-ne-solar&quot;, &quot;Mars&quot;, 4),
+                (&quot;lun-2025-09-21-ne-solar&quot;, &quot;Uranus&quot;, 6),
+            ],
+        )
+        self.assertEqual(
+            [
+                (record[&quot;event_id&quot;], record[&quot;planet&quot;], record[&quot;house&quot;])
+                for record in comparison[
+                    &quot;classical_angular_command_persistence_records&quot;
+                ]
+            ],
+            [(&quot;lun-2025-03-29-ne-solar&quot;, &quot;Mars&quot;, 4)],
+        )
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

@@ -1,0 +1,428 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/add-mundane-midpoints-2a2270cb64cc.html">
+<title>preferred anchor: just before the dark-mode block at the end of &lt;body&gt;;</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>preferred anchor: just before the dark-mode block at the end of &lt;body&gt;;</h1><p class="mut">Portable source: 99 - Templates/add_mundane_midpoints.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Project the native wheels and mundane midpoint engine into Ingress Charts.
+
+This is the sole owner of both feature blocks. It reads the target once,
+validates every marker/anchor before mutation, refreshes both projections from
+their canonical sources, and writes atomically only when bytes change.
+
+What the injected JS block does (all at page runtime, from the chart data
+ALREADY embedded in the page — no position data is duplicated here):
+
+  1. For each ingress card (INGRESS_DATA): computes the 78 midpoints of
+     10 planets + Node + ASC + MC. Planet longitudes are parsed from the
+     `pos` strings exactly the way the page&#x27;s own ingressRec() does
+     (regex deg°min&#x27; + sign offset); ASC/MC come from the curated
+     ascDeg/mcDeg fields (full ecliptic longitudes).
+     NOTE: INGRESS_DATA&#x27;s `deg` field is inconsistent (sometimes full
+     longitude, sometimes deg-within-sign) — deliberately NOT used.
+  2. Adds a &quot;Midpoint Trees&quot; section to every card: pick any of the 13
+     points, see every pair whose midpoint sits on it within 1.0° mod-45,
+     plus a fixed &quot;Crisis axes&quot; line (Munkasey&#x27;s MA/SA MA/UR MA/PL SA/PL
+     SA/NE UR/PL tested against Sun, Moon, ASC, MC, Node).
+  3. Hooks the synastry overlay tool: wraps window.computeOverlay and
+     appends &quot;Midpoint strikes&quot; — the selected lunation&#x27;s Sun and Moon
+     tested against the selected ingress chart&#x27;s 78 midpoints at 1.0°
+     mod-45. Lunation longitudes are read from CHARTS[&quot;__lunation__&quot;],
+     which computeOverlay itself publishes for the biwheel (LUN_DATA is
+     closed inside the overlay IIFE and not reachable any other way).
+  4. Every row click-toggles an indented quip (pair meaning from
+     midpoint_meanings.json + interp_quips tech.mundanemidpoint).
+
+Mod-45 hit test: d = ((x - m) mod 45); hit when min(d, 45-d) &lt;= 1.0.
+(The +/-180° midpoint ambiguity vanishes mod 45, so (a+b)/2 suffices.)
+&quot;&quot;&quot;
+import json
+import os
+import stat
+import tempfile
+from pathlib import Path
+
+from wheel_lib import WHEEL_JS
+
+HERE = Path(__file__).resolve().parent
+VAULT = HERE.parent
+TARGET = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot; / &quot;Ingress Charts.html&quot;
+
+NATIVE_START = &quot;&lt;!-- NATIVE-WHEELS-START --&gt;&quot;
+NATIVE_END = &quot;&lt;!-- NATIVE-WHEELS-END --&gt;&quot;
+
+NATIVE_BLOCK = (NATIVE_START + &quot;&quot;&quot;
+&lt;script&gt;
+&quot;&quot;&quot; + WHEEL_JS + &quot;&quot;&quot;
+function ingressRec(ch){
+  const SO=[&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;];
+  const pos=ch.planets.map(p=&gt;{
+    const m=p.pos.match(/(\\d+)°(\\d+)&#x27;/); const d=(+m[1])+(+m[2])/60;
+    const lon=SO.indexOf(p.sign)*30+d;
+    return [p.name, p.sign, m[0], p.retro?1:0, Math.round(lon*100)/100];
+  });
+  const DEFS=[[0,&quot;conjunct&quot;],[30,&quot;semisextile&quot;],[60,&quot;sextile&quot;],[90,&quot;square&quot;],[120,&quot;trine&quot;],[150,&quot;quincunx&quot;],[180,&quot;opposite&quot;]];
+  const PT=n=&gt;n===&quot;Chiron&quot;||n===&quot;Node&quot;||n===&quot;SNode&quot;||n===&quot;America&quot;;
+  const asp=[];
+  for(let i=0;i&lt;pos.length;i++) for(let j=i+1;j&lt;pos.length;j++){
+    const isPt=PT(pos[i][0])||PT(pos[j][0]);
+    if(PT(pos[i][0])&amp;&amp;PT(pos[j][0])) continue;
+    const sep=Math.abs(((pos[i][4]-pos[j][4]+180)%360+360)%360-180);
+    DEFS.forEach(d=&gt;{
+      if(isPt&amp;&amp;d[0]!==0&amp;&amp;d[0]!==90&amp;&amp;d[0]!==180) return;
+      const cap=isPt?2:((pos[i][0]===&quot;Moon&quot;||pos[j][0]===&quot;Moon&quot;||d[0]===30)?2:3);
+      const orb=Math.abs(sep-d[0]);
+      if(orb&lt;=cap) asp.push({t:pos[i][0]+&quot; &quot;+d[1]+&quot; &quot;+pos[j][0], o:Math.round(orb*100)/100, x:orb&lt;=0.3?1:0, ap:0});
+    });
+  }
+  asp.sort((a,b)=&gt;a.o-b.o);
+  return {pos:pos, asp:asp, asc:ch.ascDeg,
+          __date: ch.title.replace(&quot; Solar Ingress&quot;,&quot;&quot;),
+          cap1: ch.rising+&quot; rising · Whole Sign · Washington D.C.&quot;,
+          cap2: ch.date};
+}
+function paintIngressWheels(){
+  if (typeof INGRESS_DATA===&quot;undefined&quot;) return;
+  INGRESS_DATA.forEach(function(ch){
+    var el=document.querySelector(&#x27;.native-wheel[data-chart=&quot;&#x27;+ch.id+&#x27;&quot;]&#x27;);
+    if (el &amp;&amp; !el.dataset.done){ el.innerHTML=wheelSVG(ingressRec(ch), null, false); el.dataset.done=&quot;1&quot;; }
+  });
+}
+paintIngressWheels(); window.addEventListener(&#x27;load&#x27;, paintIngressWheels);
+&lt;/script&gt;
+&quot;&quot;&quot; + NATIVE_END).strip()
+
+OLD_IMG_TITLE = &quot;&quot;&quot;    // Chart Wheel (Astro Gold screenshot)
+    html += &#x27;&lt;div class=&quot;section-title&quot;&gt;Chart Wheel &lt;span style=&quot;font-size:0.72rem;color:var(--faint);font-weight:400;font-style:italic&quot;&gt;— Astro Gold · Whole Sign · Washington, D.C.&lt;/span&gt;&lt;/div&gt;&#x27;;&quot;&quot;&quot;
+
+NATIVE_CARD_BLOCK = &quot;&quot;&quot;    // Chart Wheel — native Observatory render (added 2026-06-09)
+    html += &#x27;&lt;div class=&quot;section-title&quot;&gt;Chart Wheel &lt;span style=&quot;font-size:0.72rem;color:var(--faint);font-weight:400;font-style:italic&quot;&gt;— Observatory render · Whole Sign · Washington, D.C.&lt;/span&gt;&lt;/div&gt;&#x27;;
+    html += &#x27;&lt;div style=&quot;max-width:620px;margin:0.6rem auto 1.2rem&quot;&gt;&lt;div class=&quot;native-wheel&quot; data-chart=&quot;&#x27;+chart.id+&#x27;&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+    // Astro Gold reference screenshot
+    html += &#x27;&lt;div class=&quot;section-title&quot;&gt;Astro Gold reference &lt;span style=&quot;font-size:0.72rem;color:var(--faint);font-weight:400;font-style:italic&quot;&gt;— click to expand&lt;/span&gt;&lt;/div&gt;&#x27;;&quot;&quot;&quot;
+
+MARKER_START = &quot;&lt;!-- F250-MUNDANE-MIDPOINTS-START --&gt;&quot;
+MARKER_END   = &quot;&lt;!-- F250-MUNDANE-MIDPOINTS-END --&gt;&quot;
+
+# preferred anchor: just before the dark-mode block at the end of &lt;body&gt;;
+# fallback: just before &lt;/body&gt; itself.
+ANCHOR_PRIMARY  = &quot;&lt;!-- F250-DARKMODE-START --&gt;&quot;
+ANCHOR_FALLBACK = &quot;&lt;/body&gt;&quot;
+
+
+def load_lexicon():
+    with (HERE / &quot;midpoint_meanings.json&quot;).open(encoding=&quot;utf-8&quot;) as f:
+        meanings = json.load(f)
+    with (HERE / &quot;interp_quips.json&quot;).open(encoding=&quot;utf-8&quot;) as f:
+        quips = json.load(f)
+    tech = quips.get(&quot;tech&quot;, {}).get(
+        &quot;mundanemidpoint&quot;,
+        &quot;event charts speak midpoints loudest (Munkasey) — in mundane work treat a lit axis literally&quot;)
+    return meanings, tech
+
+
+def build_block(meanings, tech):
+    mean_js = json.dumps(meanings, ensure_ascii=False)
+    tech_js = json.dumps(tech, ensure_ascii=False)
+    return MARKER_START + &quot;&quot;&quot;
+&lt;style&gt;
+.mm-section{margin-top:0.4rem}
+.mm-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:4px 9px;margin-bottom:3px;background:var(--card-bg,#fffdf7);border:1px solid var(--border,#e2d8c2);border-left:3px solid var(--gold,#c9a227);border-radius:0 4px 4px 0;font-size:12.5px;cursor:pointer;font-family:&#x27;Iowan Old Style&#x27;,Georgia,serif}
+.mm-row:hover{background:var(--card-bg-alt,#f4f0e8)}
+.mm-row.mm-crisis{border-left-color:var(--red,#b3402e)}
+.mm-quip{display:none;margin:-1px 0 6px 20px;padding:4px 9px;font-size:11.5px;font-style:italic;color:var(--secondary,#5b554a);border-left:2px dotted var(--border-dark,#d4c9b0);font-family:&#x27;Iowan Old Style&#x27;,Georgia,serif}
+.mm-delta{font-size:10.5px;color:var(--faint,#8a7d68);white-space:nowrap;margin-left:8px}
+.mm-select{font-size:12.5px;padding:5px 9px;border:1px solid var(--border-dark,#d4c9b0);border-radius:4px;background:var(--card-bg,#fffdf7);font-family:inherit;margin:0.3rem 0 0.5rem}
+.mm-none{color:var(--faint,#8a7d68);font-size:12px;font-style:italic;margin:2px 0 6px}
+&lt;/style&gt;
+&lt;script&gt;
+(function(){
+// === MUNDANE MIDPOINT ENGINE (Munkasey, mod-45) ===
+var MM_MEAN = &quot;&quot;&quot; + mean_js + &quot;&quot;&quot;;
+var MM_TECH = &quot;&quot;&quot; + tech_js + &quot;&quot;&quot;;
+var MM_SO   = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;];
+var MM_CODE = {Sun:&quot;SU&quot;,Moon:&quot;MO&quot;,Mercury:&quot;ME&quot;,Venus:&quot;VE&quot;,Mars:&quot;MA&quot;,Jupiter:&quot;JU&quot;,Saturn:&quot;SA&quot;,Uranus:&quot;UR&quot;,Neptune:&quot;NE&quot;,Pluto:&quot;PL&quot;,Node:&quot;NN&quot;,ASC:&quot;AS&quot;,MC:&quot;MC&quot;};
+var MM_ORDER= [&quot;SU&quot;,&quot;MO&quot;,&quot;ME&quot;,&quot;VE&quot;,&quot;MA&quot;,&quot;JU&quot;,&quot;SA&quot;,&quot;UR&quot;,&quot;NE&quot;,&quot;PL&quot;,&quot;NN&quot;,&quot;AS&quot;,&quot;MC&quot;];
+var MM_CRISIS={&quot;MA/SA&quot;:1,&quot;MA/UR&quot;:1,&quot;MA/PL&quot;:1,&quot;SA/PL&quot;:1,&quot;SA/NE&quot;:1,&quot;UR/PL&quot;:1};
+var MM_ORB  = 1.0;
+
+function mmNorm(x){return ((x%360)+360)%360;}
+function mmD45(x,m){var d=mmNorm(x-m)%45;return Math.min(d,45-d);}
+function mmFmtLon(l){l=mmNorm(l);var s=Math.floor(l/30),d=l-s*30,dd=Math.floor(d),mm=Math.round((d-dd)*60);if(mm===60){dd++;mm=0;}return dd+&quot;\\u00b0&quot;+(mm&lt;10?&quot;0&quot;:&quot;&quot;)+mm+&quot;&#x27; &quot;+MM_SO[s];}
+
+// 13 points: parse pos strings like the page&#x27;s own ingressRec() — the deg
+// field in INGRESS_DATA is unreliable (mixed full/within-sign longitudes).
+function mmPoints(ch){
+  var pts=[];
+  ch.planets.forEach(function(p){
+    var code=MM_CODE[p.name]; if(!code) return;            // skips Chiron, America
+    var m=p.pos.match(/(\\d+)\\u00b0(\\d+)&#x27;/); if(!m) return;
+    pts.push({name:p.name,code:code,lon:mmNorm(MM_SO.indexOf(p.sign)*30+(+m[1])+(+m[2])/60),label:p.pos});
+  });
+  pts.push({name:&quot;ASC&quot;,code:&quot;AS&quot;,lon:mmNorm(ch.ascDeg),label:ch.asc});
+  pts.push({name:&quot;MC&quot;, code:&quot;MC&quot;,lon:mmNorm(ch.mcDeg), label:ch.mc});
+  return pts;
+}
+
+// all 78 pairs, key earlier-code-first (midpoint_meanings.json convention)
+function mmMidpoints(pts){
+  var out=[];
+  for(var i=0;i&lt;pts.length;i++)for(var j=i+1;j&lt;pts.length;j++){
+    var a=pts[i],b=pts[j];
+    if(MM_ORDER.indexOf(a.code)&gt;MM_ORDER.indexOf(b.code)){var t=a;a=b;b=t;}
+    out.push({key:a.code+&quot;/&quot;+b.code,names:a.name+&quot;/&quot;+b.name,lon:mmNorm((a.lon+b.lon)/2)});
+  }
+  return out;
+}
+
+function mmRows(list){
+  return list.map(function(r){
+    var mean=MM_MEAN[r.key]||&quot;&quot;;
+    return &#x27;&lt;div class=&quot;mm-row&#x27;+(r.crisis?&#x27; mm-crisis&#x27;:&#x27;&#x27;)+&#x27;&quot; title=&quot;click for the reading&quot;&gt;&#x27;
+      +&#x27;&lt;span&gt;&lt;b&gt;&#x27;+r.key+&#x27;&lt;/b&gt; &lt;span style=&quot;color:var(--secondary,#5b554a)&quot;&gt;&#x27;+r.names+&#x27;&lt;/span&gt;&#x27;
+      +(r.tag?&#x27; &lt;span style=&quot;color:var(--faint,#8a7d68);font-size:10.5px&quot;&gt;&#x27;+r.tag+&#x27;&lt;/span&gt;&#x27;:&#x27;&#x27;)
+      +&#x27; &lt;i style=&quot;color:var(--faint,#8a7d68);font-size:11px&quot;&gt;&#x27;+mean+&#x27;&lt;/i&gt;&lt;/span&gt;&#x27;
+      +&#x27;&lt;span class=&quot;mm-delta&quot;&gt;\\u0394 &#x27;+r.delta.toFixed(2)+&#x27;\\u00b0&lt;/span&gt;&lt;/div&gt;&#x27;
+      +&#x27;&lt;div class=&quot;mm-quip&quot;&gt;&#x27;+r.key+&#x27; \\u2014 &#x27;+mean+&#x27; \\u00b7 &#x27;+MM_TECH+&#x27;&lt;/div&gt;&#x27;;
+  }).join(&#x27;&#x27;);
+}
+
+// quip toggle — one delegated listener for every mm-row on the page
+document.addEventListener(&#x27;click&#x27;,function(e){
+  var r=e.target&amp;&amp;e.target.closest?e.target.closest(&#x27;.mm-row&#x27;):null; if(!r)return;
+  var q=r.nextElementSibling;
+  if(q&amp;&amp;q.classList.contains(&#x27;mm-quip&#x27;)) q.style.display=(q.style.display===&#x27;block&#x27;)?&#x27;none&#x27;:&#x27;block&#x27;;
+});
+
+// --- per-card &quot;Midpoint Trees&quot; section -----------------------------------
+function mmCardSection(ch){
+  var body=document.getElementById(&#x27;body-&#x27;+ch.id);
+  if(!body||body.querySelector(&#x27;.mm-section&#x27;))return;
+  var pts=mmPoints(ch), mps=mmMidpoints(pts);
+
+  var wrap=document.createElement(&#x27;div&#x27;); wrap.className=&#x27;mm-section&#x27;;
+  var html=&#x27;&lt;div class=&quot;section-title&quot;&gt;Midpoint Trees &lt;span style=&quot;font-size:0.72rem;color:var(--faint);font-weight:400;font-style:italic&quot;&gt;\\u2014 mod-45 \\u00b7 \\u22641.0\\u00b0 \\u00b7 Munkasey&lt;/span&gt;&lt;/div&gt;&#x27;;
+
+  // fixed crisis-axes line: MA/SA MA/UR MA/PL SA/PL SA/NE UR/PL on Su/Mo/ASC/MC/NN
+  var anchors=pts.filter(function(p){return [&quot;SU&quot;,&quot;MO&quot;,&quot;AS&quot;,&quot;MC&quot;,&quot;NN&quot;].indexOf(p.code)&gt;=0;});
+  var hits=[];
+  mps.forEach(function(mp){
+    if(!MM_CRISIS[mp.key])return;
+    anchors.forEach(function(a){
+      var d=mmD45(a.lon,mp.lon);
+      if(d&lt;=MM_ORB)hits.push({key:mp.key,names:mp.names+&quot; = &quot;+a.name,tag:&quot;mp &quot;+mmFmtLon(mp.lon),delta:d,crisis:true});
+    });
+  });
+  hits.sort(function(a,b){return a.delta-b.delta;});
+  html+=&#x27;&lt;div style=&quot;font-size:0.78rem;color:var(--secondary);margin:0.2rem 0 0.3rem&quot;&gt;&lt;strong style=&quot;color:var(--red,#b3402e)&quot;&gt;Crisis axes&lt;/strong&gt; &lt;span style=&quot;color:var(--faint)&quot;&gt;(Munkasey pairs on Sun, Moon, ASC, MC, Node)&lt;/span&gt;&#x27;
+    +(hits.length?&#x27;:&#x27;:&#x27; \\u2014 &lt;i&gt;none within 1.0\\u00b0 \\u2014 quiet on the crisis axes.&lt;/i&gt;&#x27;)+&#x27;&lt;/div&gt;&#x27;;
+  if(hits.length)html+=mmRows(hits);
+
+  // the tree picker
+  html+=&#x27;&lt;div style=&quot;font-size:0.78rem;color:var(--secondary);margin-top:0.4rem&quot;&gt;Pairs sitting on &#x27;
+    +&#x27;&lt;select class=&quot;mm-select&quot; id=&quot;mm-sel-&#x27;+ch.id+&#x27;&quot;&gt;&#x27;
+    +pts.map(function(p,i){return &#x27;&lt;option value=&quot;&#x27;+i+&#x27;&quot;&gt;&#x27;+p.name+&#x27; \\u2014 &#x27;+p.label+&#x27;&lt;/option&gt;&#x27;;}).join(&#x27;&#x27;)
+    +&#x27;&lt;/select&gt;&lt;/div&gt;&lt;div id=&quot;mm-tree-&#x27;+ch.id+&#x27;&quot;&gt;&lt;/div&gt;&#x27;;
+
+  wrap.innerHTML=html;
+  body.appendChild(wrap);
+
+  function paint(){
+    var sel=document.getElementById(&#x27;mm-sel-&#x27;+ch.id), out=document.getElementById(&#x27;mm-tree-&#x27;+ch.id);
+    var x=pts[+sel.value];
+    var on=mps.filter(function(mp){return mmD45(x.lon,mp.lon)&lt;=MM_ORB;})
+              .map(function(mp){return {key:mp.key,names:mp.names+&quot; = &quot;+x.name,tag:&quot;mp &quot;+mmFmtLon(mp.lon),delta:mmD45(x.lon,mp.lon),crisis:!!MM_CRISIS[mp.key]};})
+              .sort(function(a,b){return a.delta-b.delta;});
+    out.innerHTML=on.length?mmRows(on):&#x27;&lt;div class=&quot;mm-none&quot;&gt;nothing on &#x27;+x.name+&#x27; within 1.0\\u00b0 (mod-45).&lt;/div&gt;&#x27;;
+  }
+  document.getElementById(&#x27;mm-sel-&#x27;+ch.id).addEventListener(&#x27;change&#x27;,paint);
+  paint();
+}
+
+function mmInitCards(){
+  if(typeof INGRESS_DATA===&quot;undefined&quot;)return;
+  INGRESS_DATA.forEach(function(ch){try{mmCardSection(ch);}catch(e){}});
+}
+if(document.readyState===&quot;loading&quot;)
+  document.addEventListener(&#x27;DOMContentLoaded&#x27;,function(){setTimeout(mmInitCards,0);});
+else setTimeout(mmInitCards,0);
+
+// --- synastry overlay: &quot;Midpoint strikes&quot; --------------------------------
+// LUN_DATA lives inside the overlay IIFE; computeOverlay publishes the
+// selected lunation&#x27;s full longitudes as CHARTS[&quot;__lunation__&quot;] for the
+// biwheel — we read them from there. Ingress is matched by option title.
+function mmOverlay(){
+  var res=document.getElementById(&#x27;ov-results&#x27;); if(!res)return;
+  var old=document.getElementById(&#x27;mm-strikes&#x27;); if(old)old.remove();
+  var sel=document.getElementById(&#x27;ov-ingress&#x27;);
+  if(!sel||sel.selectedIndex&lt;0||typeof INGRESS_DATA===&quot;undefined&quot;)return;
+  var title=sel.options[sel.selectedIndex].textContent.split(&quot; \\u2014 &quot;)[0];
+  var ch=null;
+  for(var i=0;i&lt;INGRESS_DATA.length;i++)if(INGRESS_DATA[i].title===title){ch=INGRESS_DATA[i];break;}
+  if(!ch)return;
+  var lun=(window.CHARTS&amp;&amp;window.CHARTS[&quot;__lunation__&quot;])||null;
+
+  var div=document.createElement(&#x27;div&#x27;); div.id=&#x27;mm-strikes&#x27;;
+  div.style.cssText=&quot;margin-top:18px;font-family:&#x27;Iowan Old Style&#x27;,Georgia,serif&quot;;
+  var h=&#x27;&lt;h3 style=&quot;font-size:12px;color:#3d2b1f;border-bottom:1px solid #d4c9b0;padding-bottom:4px;margin:0 0 8px;text-transform:uppercase;letter-spacing:0.8px&quot;&gt;Midpoint strikes &lt;span style=&quot;color:#8a7d68;font-weight:400;text-transform:none;letter-spacing:0&quot;&gt;(Munkasey \\u2014 event charts speak midpoints loudest)&lt;/span&gt;&lt;/h3&gt;&#x27;;
+  h+=&#x27;&lt;p style=&quot;font-size:11px;color:#8a7d68;font-style:italic;margin:0 0 8px&quot;&gt;Lunation \\u2192 ingress midpoints \\u00b7 the lunation\\u2019s Sun and Moon against the &#x27;+ch.title+&#x27;\\u2019s 78 midpoints \\u00b7 mod-45 \\u00b7 \\u22641.0\\u00b0&lt;/p&gt;&#x27;;
+
+  if(!lun||typeof lun.Sun!==&quot;number&quot;||typeof lun.Moon!==&quot;number&quot;){
+    h+=&#x27;&lt;div class=&quot;mm-none&quot;&gt;lunation positions unavailable (wheel engine not loaded yet) \\u2014 reselect a lunation.&lt;/div&gt;&#x27;;
+    div.innerHTML=h; res.appendChild(div); return;
+  }
+  var mps=mmMidpoints(mmPoints(ch)), rows=[];
+  [[&quot;\\u2609 Lun Sun&quot;,lun.Sun],[&quot;\\u263d Lun Moon&quot;,lun.Moon]].forEach(function(L){
+    mps.forEach(function(mp){
+      var d=mmD45(L[1],mp.lon);
+      if(d&lt;=MM_ORB)rows.push({key:mp.key,names:L[0]+&quot; &quot;+mmFmtLon(L[1])+&quot; = &quot;+mp.names,tag:&quot;mp &quot;+mmFmtLon(mp.lon),delta:d,crisis:!!MM_CRISIS[mp.key]});
+    });
+  });
+  rows.sort(function(a,b){return a.delta-b.delta;});
+  h+=rows.length?mmRows(rows):&#x27;&lt;div class=&quot;mm-none&quot;&gt;no strikes \\u2014 this lunation slides past the ingress midpoint field.&lt;/div&gt;&#x27;;
+  div.innerHTML=h; res.appendChild(div);
+}
+
+(function hook(){
+  if(typeof window.computeOverlay!==&quot;function&quot;){setTimeout(hook,150);return;}
+  var orig=window.computeOverlay;
+  window.computeOverlay=function(){orig();try{mmOverlay();}catch(e){}};
+  // the page&#x27;s first auto-run (setTimeout(computeOverlay,120) inside the
+  // overlay IIFE) captured the ORIGINAL function reference before this
+  // wrapper existed — poll briefly so the initial render gets strikes too.
+  var tries=0;
+  (function first(){
+    if(document.getElementById(&#x27;mm-strikes&#x27;))return;
+    var r=document.getElementById(&#x27;ov-results&#x27;);
+    if(r&amp;&amp;r.innerHTML){try{mmOverlay();}catch(e){}return;}
+    if(++tries&lt;25)setTimeout(first,200);
+  })();
+})();
+})();
+&lt;/script&gt;
+&quot;&quot;&quot; + MARKER_END + &quot;\n&quot;
+
+
+def fail(message):
+    raise SystemExit(&quot;INGRESS PROJECTOR FAILED: &quot; + message)
+
+
+def upsert_owned_block(source, start, end, block, anchors, label):
+    start_count = source.count(start)
+    end_count = source.count(end)
+    if start_count != end_count or start_count &gt; 1:
+        fail(
+            f&quot;{label} marker ownership is ambiguous &quot;
+            f&quot;({start_count} start, {end_count} end)&quot;
+        )
+    if start_count == 1:
+        begin = source.index(start)
+        end_at = source.find(end, begin)
+        if end_at &lt; 0:
+            fail(f&quot;{label} end marker precedes its start marker&quot;)
+        finish = end_at + len(end)
+        return source[:begin] + block + source[finish:]
+    for anchor in anchors:
+        count = source.count(anchor)
+        if count &gt; 1:
+            fail(f&quot;{label} insertion anchor is ambiguous: {anchor}&quot;)
+        if count == 1:
+            return source.replace(anchor, block + &quot;\n&quot; + anchor, 1)
+    fail(f&quot;{label} has no governed insertion anchor&quot;)
+
+
+def project(source, meanings, tech):
+    native_cards = source.count(&#x27;class=&quot;native-wheel&quot; data-chart=&#x27;)
+    old_cards = source.count(OLD_IMG_TITLE)
+    if (native_cards, old_cards) not in ((1, 0), (0, 1)):
+        fail(
+            &quot;native card ownership must be exactly one projected fragment or &quot;
+            f&quot;one legacy anchor; found {native_cards} projected, {old_cards} legacy&quot;
+        )
+
+    # Every operation below is in memory. A failed later gate cannot partially
+    # rewrite the generated target on disk.
+    projected = source
+    if native_cards == 0:
+        projected = projected.replace(OLD_IMG_TITLE, NATIVE_CARD_BLOCK, 1)
+    projected = upsert_owned_block(
+        projected,
+        NATIVE_START,
+        NATIVE_END,
+        NATIVE_BLOCK,
+        (MARKER_START, ANCHOR_PRIMARY, ANCHOR_FALLBACK),
+        &quot;native wheel&quot;,
+    )
+    midpoint_block = build_block(meanings, tech).rstrip(&quot;\n&quot;)
+    projected = upsert_owned_block(
+        projected,
+        MARKER_START,
+        MARKER_END,
+        midpoint_block,
+        (ANCHOR_PRIMARY, ANCHOR_FALLBACK),
+        &quot;mundane midpoint&quot;,
+    )
+
+    if projected.count(&#x27;class=&quot;native-wheel&quot; data-chart=&#x27;) != 1:
+        fail(&quot;native card projection did not settle to one owner&quot;)
+    for start, end, label in (
+        (NATIVE_START, NATIVE_END, &quot;native wheel&quot;),
+        (MARKER_START, MARKER_END, &quot;mundane midpoint&quot;),
+    ):
+        if projected.count(start) != 1 or projected.count(end) != 1:
+            fail(f&quot;{label} projection did not settle to one marker pair&quot;)
+    if projected.index(NATIVE_START) &gt; projected.index(MARKER_START):
+        fail(&quot;native wheel block must precede the midpoint block&quot;)
+    return projected
+
+
+def read_exact(path):
+    with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as handle:
+        return handle.read()
+
+
+def atomic_write(path, content):
+    temporary = None
+    mode = stat.S_IMODE(path.stat().st_mode)
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode=&quot;w&quot;,
+            encoding=&quot;utf-8&quot;,
+            newline=&quot;&quot;,
+            dir=path.parent,
+            delete=False,
+        ) as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+            os.fchmod(handle.fileno(), mode)
+            temporary = handle.name
+        os.replace(temporary, path)
+        temporary = None
+    finally:
+        if temporary and os.path.exists(temporary):
+            os.unlink(temporary)
+
+
+def main():
+    source = read_exact(TARGET)
+    meanings, tech = load_lexicon()
+    projected = project(source, meanings, tech)
+    if projected == source:
+        print(&quot;= Ingress Charts.html: native wheels + midpoint engine already current&quot;)
+        return
+    atomic_write(TARGET, projected)
+    print(&quot;✓ Ingress Charts.html: native wheels + midpoint engine projected&quot;)
+    print(&quot;  · 78 meanings embedded from midpoint_meanings.json&quot;)
+    print(&quot;  · tech quip: &quot; + tech[:60] + &quot;…&quot;)
+    print(&quot;  · 8 canonical wheels + card trees + crisis axes + midpoint strikes&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

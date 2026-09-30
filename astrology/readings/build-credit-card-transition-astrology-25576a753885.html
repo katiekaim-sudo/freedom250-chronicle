@@ -1,0 +1,528 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-credit-card-transition-astrology-25576a753885.html">
+<title>Locked U.S. chart from the live Monetary Chronicle engine.</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · current</div><h1>Locked U.S. chart from the live Monetary Chronicle engine.</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Money x Sky/Retail Payment Terminal Transition 2026-07-28/build_credit_card_transition_astrology.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Compute the research-only credit-card transition astrology dataset.
+
+Method boundary:
+- geocentric tropical Swiss Ephemeris;
+- locked Freedom 250 U.S. chart (1776-07-02, 17:10 LMT, Philadelphia);
+- date-only anchors are cast at 12:00 UTC only as a planetary-position proxy;
+- no event angles or houses are emitted for date-only anchors;
+- month/year-only anchors are chronology bands and receive no point chart;
+- Apple Pay&#x27;s approximately 10:47 a.m. PDT reveal is a contemporaneously
+  reported context clock (±2 minutes), not an Apple-authenticated timestamp.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+import swisseph as swe
+
+
+OUT = Path(__file__).with_name(&quot;CREDIT_CARD_TRANSITION_ASTROLOGY_DATA_2026-07-28.json&quot;)
+
+SIGNS = [
+    &quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;,
+    &quot;Libra&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;,
+]
+PLANETS = {
+    &quot;Sun&quot;: swe.SUN,
+    &quot;Moon&quot;: swe.MOON,
+    &quot;Mercury&quot;: swe.MERCURY,
+    &quot;Venus&quot;: swe.VENUS,
+    &quot;Mars&quot;: swe.MARS,
+    &quot;Jupiter&quot;: swe.JUPITER,
+    &quot;Saturn&quot;: swe.SATURN,
+    &quot;Uranus&quot;: swe.URANUS,
+    &quot;Neptune&quot;: swe.NEPTUNE,
+    &quot;Pluto&quot;: swe.PLUTO,
+    &quot;True Node&quot;: swe.TRUE_NODE,
+}
+OUTERS = [&quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;]
+ASPECTS = [
+    (&quot;conjunction&quot;, 0.0),
+    (&quot;opposition&quot;, 180.0),
+    (&quot;square&quot;, 90.0),
+    (&quot;trine&quot;, 120.0),
+    (&quot;sextile&quot;, 60.0),
+]
+TRADITIONAL_RULERS = {
+    &quot;Aries&quot;: &quot;Mars&quot;,
+    &quot;Taurus&quot;: &quot;Venus&quot;,
+    &quot;Gemini&quot;: &quot;Mercury&quot;,
+    &quot;Cancer&quot;: &quot;Moon&quot;,
+    &quot;Leo&quot;: &quot;Sun&quot;,
+    &quot;Virgo&quot;: &quot;Mercury&quot;,
+    &quot;Libra&quot;: &quot;Venus&quot;,
+    &quot;Scorpio&quot;: &quot;Mars&quot;,
+    &quot;Sagittarius&quot;: &quot;Jupiter&quot;,
+    &quot;Capricorn&quot;: &quot;Saturn&quot;,
+    &quot;Aquarius&quot;: &quot;Saturn&quot;,
+    &quot;Pisces&quot;: &quot;Jupiter&quot;,
+}
+EVENTS = [
+    {
+        &quot;id&quot;: &quot;bankamericard&quot;,
+        &quot;label&quot;: &quot;BankAmericard “Fresno Drop”&quot;,
+        &quot;date&quot;: &quot;1958-09-18&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;Fresno, California&quot;,
+        &quot;clock_grade&quot;: &quot;B&quot;,
+        &quot;institutional_layer&quot;: &quot;portable revolving bank credit&quot;,
+        &quot;source&quot;: &quot;https://myemail-api.constantcontact.com/Fresno-City---County-Historical-Society-Grapevine-Newsletter.html?aid=69_GtuGTaaQ&amp;soid=1102885321646&quot;,
+        &quot;boundary&quot;: &quot;Day supported; mailing/delivery had no single public execution time.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;interbank&quot;,
+        &quot;label&quot;: &quot;Interbankard, Inc. incorporated&quot;,
+        &quot;date&quot;: &quot;1966-11-03&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;Delaware filing; exact filing place not load-bearing&quot;,
+        &quot;clock_grade&quot;: &quot;A-&quot;,
+        &quot;institutional_layer&quot;: &quot;multi-bank cooperative network&quot;,
+        &quot;source&quot;: &quot;https://www.sec.gov/Archives/edgar/data/1141391/000119312505208278/ddef14a.htm&quot;,
+        &quot;source_secondary&quot;: &quot;https://s2.q4cdn.com/242125233/files/doc_downloads/organizational_documents/2017/FINAL-Amended-and-Restated-Certificate-of-Incorporation-of-Mastercard-International-Incorporated.pdf&quot;,
+        &quot;boundary&quot;: &quot;Legal incorporation date is supported; the earlier bankers’ organizing meeting has no public exact clock.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;tila&quot;,
+        &quot;label&quot;: &quot;Truth in Lending Act signed&quot;,
+        &quot;date&quot;: &quot;1968-05-29&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;Washington, D.C.&quot;,
+        &quot;clock_grade&quot;: &quot;A-&quot;,
+        &quot;institutional_layer&quot;: &quot;standardized public disclosure wrapper&quot;,
+        &quot;source&quot;: &quot;https://www.govinfo.gov/content/pkg/STATUTE-82/pdf/STATUTE-82-Pg146.pdf&quot;,
+        &quot;boundary&quot;: &quot;Enactment day is secure; enactment place and signing time are withheld.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;card_protections&quot;,
+        &quot;label&quot;: &quot;Unsolicited-card and liability amendments&quot;,
+        &quot;date&quot;: &quot;1970-10-26&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;Enactment place not publicly established&quot;,
+        &quot;clock_grade&quot;: &quot;A date / place withheld&quot;,
+        &quot;institutional_layer&quot;: &quot;issuance, fraud and cardholder-liability rules&quot;,
+        &quot;source&quot;: &quot;https://www.govinfo.gov/content/pkg/STATUTE-84/pdf/STATUTE-84-Pg1114-2.pdf&quot;,
+        &quot;boundary&quot;: &quot;Enactment day and city are secure; signing time is not publicly stated.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;base_i&quot;,
+        &quot;label&quot;: &quot;BASE I limited-production start&quot;,
+        &quot;date&quot;: &quot;1973-04-04&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;Distributed Visa network; no single locality&quot;,
+        &quot;clock_grade&quot;: &quot;B&quot;,
+        &quot;institutional_layer&quot;: &quot;electronic authorization&quot;,
+        &quot;source&quot;: &quot;https://www.visa.co.il/content/dam/VCOM/download/corporate/media/visanet-technology/visa-net-booklet.pdf&quot;,
+        &quot;source_secondary&quot;: &quot;https://era.ed.ac.uk/bitstream/handle/1842/2672/Stearns%20DL%20thesis%2007.pdf&quot;,
+        &quot;boundary&quot;: &quot;Visa supports 1973; April 4 comes from a scholarly history based on contemporary/internal records. No locality-derived chart.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;base_ii&quot;,
+        &quot;label&quot;: &quot;BASE II full-scale network operation&quot;,
+        &quot;date&quot;: &quot;1974-11-01&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;Distributed across 86 processing centers&quot;,
+        &quot;clock_grade&quot;: &quot;A-/B+&quot;,
+        &quot;institutional_layer&quot;: &quot;electronic clearing and settlement&quot;,
+        &quot;source&quot;: &quot;https://fraser.stlouisfed.org/files/docs/publications/weeklybanknews/weeklybanknews_19741106.pdf&quot;,
+        &quot;source_secondary&quot;: &quot;https://www.visa.co.il/content/dam/VCOM/download/corporate/media/visanet-technology/visa-net-booklet.pdf&quot;,
+        &quot;boundary&quot;: &quot;Operation date is supported; no single place or instant exists for the distributed rollout.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;marquette&quot;,
+        &quot;label&quot;: &quot;Marquette rate-exportation decision&quot;,
+        &quot;date&quot;: &quot;1978-12-18&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;Washington, D.C.&quot;,
+        &quot;clock_grade&quot;: &quot;A-&quot;,
+        &quot;institutional_layer&quot;: &quot;national pricing of revolving card credit&quot;,
+        &quot;source&quot;: &quot;https://www.govinfo.gov/app/details/USREPORTS-439/USREPORTS-439-299&quot;,
+        &quot;boundary&quot;: &quot;Decision day and court are secure; announcement time is not publicly stated.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;securitization&quot;,
+        &quot;label&quot;: &quot;Credit-card receivables securitization begins&quot;,
+        &quot;date&quot;: &quot;1986–1987&quot;,
+        &quot;precision&quot;: &quot;year-band&quot;,
+        &quot;place&quot;: &quot;United States&quot;,
+        &quot;clock_grade&quot;: &quot;D&quot;,
+        &quot;institutional_layer&quot;: &quot;capital-markets funding of revolving receivables&quot;,
+        &quot;source&quot;: &quot;https://www.fdic.gov/credit-card-securitization-manual/chapter-ii-securitization-transaction-overview&quot;,
+        &quot;source_secondary&quot;: &quot;https://www.minneapolisfed.org/article/1995/will-the-securitization-revolution-spread&quot;,
+        &quot;boundary&quot;: &quot;A March 1986 private placement and the FDIC’s 1987 public-history anchor are definition-sensitive. No point chart.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;apple_pay&quot;,
+        &quot;label&quot;: &quot;Apple Pay announced&quot;,
+        &quot;date&quot;: &quot;2014-09-09&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;Cupertino, California&quot;,
+        &quot;clock_grade&quot;: &quot;A date / B+ reported reveal minute&quot;,
+        &quot;institutional_layer&quot;: &quot;tokenized wallet credential over card rails&quot;,
+        &quot;source&quot;: &quot;https://www.apple.com/newsroom/2014/09/09Apple-Announces-Apple-Pay/&quot;,
+        &quot;source_secondary&quot;: &quot;https://www.macrumors.com/2014/09/09/iphone-6-iwatch-event-live/&quot;,
+        &quot;boundary&quot;: &quot;Apple establishes the day and city. A contemporaneous liveblog timestamps Cook’s reveal at approximately 10:47 a.m. PDT; use ±2 minutes.&quot;,
+        &quot;context_utc&quot;: &quot;2014-09-09T17:47:00Z&quot;,
+        &quot;context_lat&quot;: 37.3230,
+        &quot;context_lon&quot;: -122.0322,
+    },
+    {
+        &quot;id&quot;: &quot;emv_shift&quot;,
+        &quot;label&quot;: &quot;U.S. EMV counterfeit-fraud liability shift&quot;,
+        &quot;date&quot;: &quot;2015-10-01&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;United States&quot;,
+        &quot;clock_grade&quot;: &quot;A-&quot;,
+        &quot;institutional_layer&quot;: &quot;private liability rule accelerates terminal migration&quot;,
+        &quot;source&quot;: &quot;https://usa.visa.com/content/dam/VCOM/global/partner-with-us/documents/visa-liability-shift.pdf&quot;,
+        &quot;boundary&quot;: &quot;Effective day is secure; this is a distributed rule, not one local event.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;stablecoin_settlement&quot;,
+        &quot;label&quot;: &quot;Visa announces U.S. USDC network settlement&quot;,
+        &quot;date&quot;: &quot;2025-12-16&quot;,
+        &quot;precision&quot;: &quot;day&quot;,
+        &quot;place&quot;: &quot;United States&quot;,
+        &quot;clock_grade&quot;: &quot;A-&quot;,
+        &quot;institutional_layer&quot;: &quot;new settlement asset behind unchanged card acceptance&quot;,
+        &quot;source&quot;: &quot;https://corporate.visa.com/en/sites/visa-perspectives/newsroom/visa-launches-stablecoin-settlement-in-the-united-states.html&quot;,
+        &quot;boundary&quot;: &quot;Announcement day is primary; publication time is not used.&quot;,
+    },
+]
+
+
+def julday(dt: datetime) -&gt; float:
+    dt = dt.astimezone(timezone.utc)
+    hour = dt.hour + dt.minute / 60 + dt.second / 3600 + dt.microsecond / 3_600_000_000
+    return swe.julday(dt.year, dt.month, dt.day, hour)
+
+
+def position(jd: float, body: str) -&gt; tuple[float, float]:
+    values, _ = swe.calc_ut(jd, PLANETS[body], swe.FLG_SWIEPH | swe.FLG_SPEED)
+    return values[0] % 360, values[3]
+
+
+def sign(longitude: float) -&gt; str:
+    return SIGNS[int(longitude // 30) % 12]
+
+
+def format_position(longitude: float) -&gt; str:
+    return f&quot;{longitude % 30:.2f}° {sign(longitude)}&quot;
+
+
+def angular_distance(a: float, b: float) -&gt; float:
+    return abs((a - b + 180) % 360 - 180)
+
+
+def applying_state(jd: float, moving: str, target: float, aspect_angle: float) -&gt; str:
+    now = abs(angular_distance(position(jd, moving)[0], target) - aspect_angle)
+    later = abs(angular_distance(position(jd + 0.25, moving)[0], target) - aspect_angle)
+    return &quot;applying&quot; if later &lt; now else &quot;separating&quot;
+
+
+def mutual_applying_state(jd: float, first: str, second: str, aspect_angle: float) -&gt; str:
+    now = abs(angular_distance(position(jd, first)[0], position(jd, second)[0]) - aspect_angle)
+    later = abs(
+        angular_distance(position(jd + 0.25, first)[0], position(jd + 0.25, second)[0])
+        - aspect_angle
+    )
+    return &quot;applying&quot; if later &lt; now else &quot;separating&quot;
+
+
+def aspect_hit(a: float, b: float, max_orb: float) -&gt; tuple[str, float, float] | None:
+    separation = angular_distance(a, b)
+    candidates = [(name, angle, abs(separation - angle)) for name, angle in ASPECTS]
+    name, angle, orb = min(candidates, key=lambda item: item[2])
+    if orb &lt;= max_orb:
+        return name, angle, orb
+    return None
+
+
+def midpoint(a: float, b: float) -&gt; float:
+    return (a + ((b - a) % 360) / 2) % 360
+
+
+def whole_sign_house(longitude: float, ascendant: float) -&gt; int:
+    return ((int(longitude // 30) - int(ascendant // 30)) % 12) + 1
+
+
+def traditional_dispositor(body: str, positions: dict) -&gt; str:
+    return TRADITIONAL_RULERS[sign(positions[body][&quot;longitude&quot;])]
+
+
+def dispositor_path(body: str, positions: dict) -&gt; list[str]:
+    path = [body]
+    seen = {body}
+    current = body
+    for _ in range(12):
+        ruler = traditional_dispositor(current, positions)
+        path.append(ruler)
+        if ruler == current or ruler in seen:
+            break
+        seen.add(ruler)
+        current = ruler
+    return path
+
+
+# Locked U.S. chart from the live Monetary Chronicle engine.
+PHL_LON = -75.1652
+US_UT_HOUR = 17 + 10 / 60 - PHL_LON / 15
+US_JD = swe.julday(1776, 7, 2, US_UT_HOUR)
+US_NATAL = {body: position(US_JD, body)[0] for body in PLANETS}
+US_MONEY = {
+    body: US_NATAL[body]
+    for body in [&quot;Venus&quot;, &quot;Jupiter&quot;, &quot;Sun&quot;, &quot;Mercury&quot;, &quot;Moon&quot;, &quot;Pluto&quot;]
+}
+US_MIDPOINTS = {
+    &quot;Venus/Jupiter&quot;: midpoint(US_NATAL[&quot;Venus&quot;], US_NATAL[&quot;Jupiter&quot;]),
+    &quot;Sun/Jupiter&quot;: midpoint(US_NATAL[&quot;Sun&quot;], US_NATAL[&quot;Jupiter&quot;]),
+    &quot;Moon/Pluto&quot;: midpoint(US_NATAL[&quot;Moon&quot;], US_NATAL[&quot;Pluto&quot;]),
+    &quot;Saturn/Pluto&quot;: midpoint(US_NATAL[&quot;Saturn&quot;], US_NATAL[&quot;Pluto&quot;]),
+}
+
+
+def point_record(event: dict) -&gt; dict:
+    dt = datetime.fromisoformat(event[&quot;date&quot;]).replace(
+        hour=12, minute=0, second=0, tzinfo=timezone.utc
+    )
+    jd = julday(dt)
+    positions = {}
+    for body in PLANETS:
+        longitude, speed = position(jd, body)
+        positions[body] = {
+            &quot;longitude&quot;: round(longitude, 6),
+            &quot;position&quot;: format_position(longitude),
+            &quot;retrograde&quot;: speed &lt; 0,
+        }
+
+    outer_cycles = []
+    for i, first in enumerate(OUTERS):
+        for second in OUTERS[i + 1:]:
+            hit = aspect_hit(positions[first][&quot;longitude&quot;], positions[second][&quot;longitude&quot;], 8.0)
+            if hit:
+                name, angle, orb = hit
+                outer_cycles.append(
+                    {
+                        &quot;pair&quot;: f&quot;{first}–{second}&quot;,
+                        &quot;aspect&quot;: name,
+                        &quot;orb&quot;: round(orb, 3),
+                    }
+                )
+
+    us_hits = []
+    for moving in OUTERS:
+        moving_lon = positions[moving][&quot;longitude&quot;]
+        for natal_body, natal_lon in US_MONEY.items():
+            hit = aspect_hit(moving_lon, natal_lon, 3.0)
+            if hit:
+                name, angle, orb = hit
+                us_hits.append(
+                    {
+                        &quot;transit&quot;: moving,
+                        &quot;aspect&quot;: name,
+                        &quot;natal&quot;: natal_body,
+                        &quot;orb&quot;: round(orb, 3),
+                        &quot;state&quot;: applying_state(jd, moving, natal_lon, angle),
+                    }
+                )
+
+    midpoint_hits = []
+    for moving in OUTERS:
+        moving_lon = positions[moving][&quot;longitude&quot;]
+        for midpoint_name, midpoint_lon in US_MIDPOINTS.items():
+            separation = angular_distance(moving_lon, midpoint_lon)
+            nearest = min([0, 45, 90, 135, 180], key=lambda angle: abs(separation - angle))
+            orb = abs(separation - nearest)
+            if orb &lt;= 1.5:
+                midpoint_hits.append(
+                    {
+                        &quot;transit&quot;: moving,
+                        &quot;midpoint&quot;: midpoint_name,
+                        &quot;harmonic_angle&quot;: nearest,
+                        &quot;orb&quot;: round(orb, 3),
+                    }
+                )
+
+    # Moon/sign stability over the civil UTC date. This is metadata only; it
+    # prevents a noon proxy from silently manufacturing a lunar sign.
+    start_jd = swe.julday(dt.year, dt.month, dt.day, 0)
+    end_jd = swe.julday(dt.year, dt.month, dt.day, 24 - 1 / 3600)
+    moon_start = position(start_jd, &quot;Moon&quot;)[0]
+    moon_end = position(end_jd, &quot;Moon&quot;)[0]
+    moon_stability = {
+        &quot;start&quot;: format_position(moon_start),
+        &quot;end&quot;: format_position(moon_end),
+        &quot;same_sign_all_utc_date&quot;: sign(moon_start) == sign(moon_end),
+    }
+
+    record = {
+        **event,
+        &quot;proxy_utc&quot;: dt.isoformat().replace(&quot;+00:00&quot;, &quot;Z&quot;),
+        &quot;positions&quot;: positions,
+        &quot;outer_cycles&quot;: sorted(outer_cycles, key=lambda item: item[&quot;orb&quot;]),
+        &quot;us_money_axis_hits&quot;: sorted(us_hits, key=lambda item: item[&quot;orb&quot;]),
+        &quot;us_money_midpoint_hits&quot;: sorted(midpoint_hits, key=lambda item: item[&quot;orb&quot;]),
+        &quot;moon_stability&quot;: moon_stability,
+        &quot;angles_withheld&quot;: True,
+        &quot;houses_withheld&quot;: True,
+    }
+
+    if event.get(&quot;context_utc&quot;):
+        cdt = datetime.fromisoformat(event[&quot;context_utc&quot;].replace(&quot;Z&quot;, &quot;+00:00&quot;))
+        cjd = julday(cdt)
+        _, ascmc = swe.houses(
+            cjd, event[&quot;context_lat&quot;], event[&quot;context_lon&quot;], b&quot;W&quot;
+        )
+        context_positions = {}
+        for body in PLANETS:
+            longitude, speed = position(cjd, body)
+            context_positions[body] = {
+                &quot;longitude&quot;: round(longitude, 6),
+                &quot;position&quot;: format_position(longitude),
+                &quot;retrograde&quot;: speed &lt; 0,
+                &quot;whole_sign_house&quot;: whole_sign_house(longitude, ascmc[0]),
+            }
+        context_aspects = []
+        context_bodies = list(PLANETS)
+        for index, first in enumerate(context_bodies):
+            for second in context_bodies[index + 1:]:
+                max_orb = 8.0 if first in {&quot;Sun&quot;, &quot;Moon&quot;} or second in {&quot;Sun&quot;, &quot;Moon&quot;} else 6.0
+                hit = aspect_hit(
+                    context_positions[first][&quot;longitude&quot;],
+                    context_positions[second][&quot;longitude&quot;],
+                    max_orb,
+                )
+                if hit:
+                    name, angle, orb = hit
+                    context_aspects.append(
+                        {
+                            &quot;pair&quot;: f&quot;{first}–{second}&quot;,
+                            &quot;aspect&quot;: name,
+                            &quot;orb&quot;: round(orb, 3),
+                            &quot;state&quot;: mutual_applying_state(cjd, first, second, angle),
+                        }
+                    )
+        angle_contacts = []
+        for body, p in context_positions.items():
+            for angle_name, angle_longitude in ((&quot;Ascendant&quot;, ascmc[0]), (&quot;MC&quot;, ascmc[1])):
+                separation = angular_distance(p[&quot;longitude&quot;], angle_longitude)
+                for aspect_name, aspect_angle in (
+                    (&quot;conjunction&quot;, 0.0),
+                    (&quot;opposition&quot;, 180.0),
+                    (&quot;square&quot;, 90.0),
+                ):
+                    orb = abs(separation - aspect_angle)
+                    if orb &lt;= 3.0:
+                        angle_contacts.append(
+                            {
+                                &quot;planet&quot;: body,
+                                &quot;aspect&quot;: aspect_name,
+                                &quot;angle&quot;: angle_name,
+                                &quot;orb&quot;: round(orb, 3),
+                            }
+                        )
+                        break
+        ascendant_ruler = TRADITIONAL_RULERS[sign(ascmc[0])]
+        record[&quot;contextual_container_clock&quot;] = {
+            &quot;utc&quot;: event[&quot;context_utc&quot;],
+            &quot;local&quot;: &quot;2014-09-09 10:47 PDT&quot;,
+            &quot;ascendant&quot;: {
+                &quot;longitude&quot;: round(ascmc[0], 6),
+                &quot;position&quot;: format_position(ascmc[0]),
+            },
+            &quot;mc&quot;: {
+                &quot;longitude&quot;: round(ascmc[1], 6),
+                &quot;position&quot;: format_position(ascmc[1]),
+            },
+            &quot;positions&quot;: context_positions,
+            &quot;aspects&quot;: sorted(context_aspects, key=lambda item: item[&quot;orb&quot;]),
+            &quot;angle_contacts&quot;: sorted(angle_contacts, key=lambda item: item[&quot;orb&quot;]),
+            &quot;chart_ruler&quot;: ascendant_ruler,
+            &quot;chart_ruler_path&quot;: dispositor_path(ascendant_ruler, context_positions),
+            &quot;dispositor_paths&quot;: {
+                body: dispositor_path(body, context_positions)
+                for body in context_positions
+            },
+            &quot;boundary&quot;: &quot;Contemporaneously reported Apple Pay reveal frame (±2 minutes); excluded from cross-event signature counts.&quot;,
+        }
+    return record
+
+
+records = []
+for event in EVENTS:
+    if event[&quot;precision&quot;] in {&quot;year&quot;, &quot;year-band&quot;}:
+        records.append(
+            {
+                **event,
+                &quot;point_chart&quot;: None,
+                &quot;angles_withheld&quot;: True,
+                &quot;houses_withheld&quot;: True,
+            }
+        )
+    else:
+        records.append(point_record(event))
+
+
+def signature_counts(records: list[dict]) -&gt; dict:
+    cycle_counts: dict[str, int] = {}
+    natal_counts: dict[str, int] = {}
+    midpoint_counts: dict[str, int] = {}
+    for record in records:
+        for hit in record.get(&quot;outer_cycles&quot;, []):
+            key = f&quot;{hit[&#x27;pair&#x27;]} {hit[&#x27;aspect&#x27;]}&quot;
+            cycle_counts[key] = cycle_counts.get(key, 0) + 1
+        for hit in record.get(&quot;us_money_axis_hits&quot;, []):
+            key = f&quot;{hit[&#x27;transit&#x27;]} {hit[&#x27;aspect&#x27;]} US {hit[&#x27;natal&#x27;]}&quot;
+            natal_counts[key] = natal_counts.get(key, 0) + 1
+        for hit in record.get(&quot;us_money_midpoint_hits&quot;, []):
+            key = f&quot;{hit[&#x27;transit&#x27;]} {hit[&#x27;harmonic_angle&#x27;]}° US {hit[&#x27;midpoint&#x27;]}&quot;
+            midpoint_counts[key] = midpoint_counts.get(key, 0) + 1
+    return {
+        &quot;outer_cycles&quot;: dict(sorted(cycle_counts.items(), key=lambda item: (-item[1], item[0]))),
+        &quot;us_money_axis_hits&quot;: dict(sorted(natal_counts.items(), key=lambda item: (-item[1], item[0]))),
+        &quot;us_money_midpoint_hits&quot;: dict(sorted(midpoint_counts.items(), key=lambda item: (-item[1], item[0]))),
+    }
+
+
+payload = {
+    &quot;generated_at&quot;: datetime.now(timezone.utc).isoformat(),
+    &quot;method&quot;: {
+        &quot;ephemeris&quot;: &quot;pyswisseph; geocentric tropical&quot;,
+        &quot;proxy&quot;: &quot;12:00 UTC for planetary longitude only on day-precision anchors&quot;,
+        &quot;house_system&quot;: &quot;Whole Sign is project standard; event houses withheld without an exact public clock&quot;,
+        &quot;us_chart&quot;: &quot;1776-07-02 17:10 LMT Philadelphia; locked Sagittarius-rising chart&quot;,
+        &quot;cross_event_orbs&quot;: {
+            &quot;outer_mutual&quot;: &quot;8° descriptive background&quot;,
+            &quot;outer_to_us_money_axis&quot;: &quot;3°&quot;,
+            &quot;mod45_money_midpoints&quot;: &quot;1.5°&quot;,
+        },
+        &quot;speech_level&quot;: &quot;archetypal and structural; not concretely causal or predictive&quot;,
+    },
+    &quot;us_money_axis&quot;: {
+        body: {
+            &quot;longitude&quot;: round(longitude, 6),
+            &quot;position&quot;: format_position(longitude),
+        }
+        for body, longitude in US_MONEY.items()
+    },
+    &quot;events&quot;: records,
+    &quot;cross_event_counts&quot;: signature_counts(records),
+}
+
+OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + &quot;\n&quot;)
+print(OUT)
+print(f&quot;events={len(records)} point_charts={sum(&#x27;positions&#x27; in record for record in records)}&quot;)
+</pre></main></body></html>

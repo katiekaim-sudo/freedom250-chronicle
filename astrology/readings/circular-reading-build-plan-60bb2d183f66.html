@@ -1,0 +1,363 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/circular-reading-build-plan-60bb2d183f66.html">
+<title>Mundane Organism — Circular Reading Build Plan</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">chart reading · draft</div><h1>Mundane Organism — Circular Reading Build Plan</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Methods &amp; Architecture/Freedom 250 Mundane Astrology Organism 2026-08-11/CIRCULAR_READING_BUILD_PLAN.md</p><h1>Mundane Organism — Circular Reading Build Plan</h1>
+<p><strong>Saved:</strong> 2026-08-11<br />
+<strong>Status:</strong> approved working direction; implementation has not begun<br />
+<strong>Authority:</strong> this is a workbench plan, subordinate to Katie&#x27;s current rulings
+and the live Freedom 250 vault<br />
+<strong>Companion:</strong> <code>MUNDANE_ORGANISM_BUILD_HANDOFF.md</code></p>
+<h2>Decision</h2>
+<p>Preserve the donor organism&#x27;s whole → part → whole → part reading rhythm.
+Simplify natal-specific content and visible navigation, not the owner discipline
+that keeps the astrology intact.</p>
+<p>Preserve motion as the temporal invariant. Planets retain their archetypal
+motivations without becoming fixed plot assignments; relationships carry arcs.
+A chart freezes one state of an arc, while the organism must allow Katie to
+move backward and forward through its ordered history without pretending that
+retrogradation, repeated exactness, or an ingress boundary erases lived time.</p>
+<p>The computer architecture must distinguish two very different kinds of
+circularity:</p>
+<pre><code class="language-text">Astrological topology and navigation
+    may be circular and reversible.
+
+Facts, authority, permissions and invalidation
+    must remain acyclic, versioned and fail-closed.
+</code></pre>
+<p>This permits repeated exploration of the same complete chart without allowing
+the loop itself to manufacture facts, meaning, Evidence, prominence or
+Judgment.</p>
+<h2>The reading spiral</h2>
+<pre><code class="language-text">Period whole
+↕
+Chart whole
+↔ intact part in context
+↔ current relationship state and its prior/next chapters
+↔ local relationships and routes
+↔ provisional understanding inside the same whole
+↔ another useful part or scale
+↔ same chart whole
+↕
+Same period whole
+</code></pre>
+<p>Every movement retains the same canonical identities:</p>
+<ul>
+<li><code>period_ref</code>, where applicable;</li>
+<li><code>chart_ref</code>;</li>
+<li><code>snapshot_ref</code>;</li>
+<li><code>house_frame_ref</code>;</li>
+<li>selected <code>subject_ref</code>;</li>
+<li>ordered <code>traversal_stack</code>.</li>
+</ul>
+<p>Focus changes projection and visibility only. It does not change chart scope,
+facts, relationship counts, owner authority, Evidence state or the current
+permission boundary.</p>
+<h2>Three maps that must remain separate</h2>
+<h3>1. Astrological topology</h3>
+<p>Planets, Signs, Houses, relationships, figures, axes, ruler routes, dispositor
+loops, phases, continuous pair histories and the whole chart coexist in one
+field. This topology may be cyclic.</p>
+<h3>2. Navigation</h3>
+<p>Katie may move freely among the whole chart, one focused actor, its Sign
+equipment, House arena, relationships, governance routes, symbolic lenses and
+back to the whole. Navigation doors carry focus and context, never meaning or
+Evidence.</p>
+<h3>3. Authority and dependency</h3>
+<pre><code class="language-text">verified inputs
+→ immutable facts
+→ governed semantic owners
+→ chart-specific contributions
+→ whole-chart structure
+→ candidate claims
+→ Evidence and counterevidence
+→ Katie Judgment
+→ Translation
+→ optional separate Forecast
+</code></pre>
+<p>This route is one-directional. Judgment may request another inspection but may
+not rewrite facts, doctrine or the canonical snapshot.</p>
+<h2>What remains structurally separate</h2>
+<p>Keep these distinctions even when the interface groups them behind fewer
+doors:</p>
+<ul>
+<li>chart/period identity and exact clock authority;</li>
+<li>immutable coordinates and one Whole Sign house frame;</li>
+<li>exact angles as points rather than substitutes for complete Houses;</li>
+<li>mundane Planet functions;</li>
+<li>modality, element and unique-Sign records;</li>
+<li>mundane House domains;</li>
+<li>canonical Aspect relationships and whole Aspect web;</li>
+<li>stable planetary-pair identity, time-indexed relationship state, seed-family
+  and pass identity, and ordered relationship history;</li>
+<li>condition and essential dignity;</li>
+<li>traditional rulership, House governance and dispositors;</li>
+<li>whole-chart structure;</li>
+<li>symbolic and specialist extensions;</li>
+<li>Evidence, Judgment, Translation and Forecast permissions;</li>
+<li>technical proof, provenance and unresolved states.</li>
+</ul>
+<p>These layers answer different questions. Combining them would make the
+interface shorter while making the astrology less coherent.</p>
+<h2>What can be simplified or deferred</h2>
+<p>Remove or defer donor material whose job is specifically natal or personal:</p>
+<ul>
+<li>personal-development and counseling questions;</li>
+<li>natal personality wording;</li>
+<li>personal ASC/DSC psychological semantics;</li>
+<li>natal Moon-state meaning unless independently adopted for mundane work;</li>
+<li>founder/client voice machinery;</li>
+<li>personal timing techniques not separately governed for mundane use;</li>
+<li>any donor room that exists only to support an individual-person reading.</li>
+</ul>
+<p>The first visible Mundane Chart Room can group the remaining depth behind seven
+primary doors:</p>
+<ol>
+<li>Whole chart</li>
+<li>Civic actors — Planets</li>
+<li>Operating fields — Signs</li>
+<li>National arenas — Houses</li>
+<li>Relationships — current dialogue and arc through time</li>
+<li>Governance and condition</li>
+<li>Symbols and specialist layers</li>
+</ol>
+<p>The deeper owner rooms remain inspectable through progressive disclosure.</p>
+<h2>Build sequence</h2>
+<h3>Step 1 — Lock six structural contracts</h3>
+<p>Before application implementation, govern:</p>
+<ol>
+<li><strong>Chart identity</strong> — target, event, clock, locality, technique, snapshot and
+   house frame.</li>
+<li><strong>Relationship-time identity</strong> — stable pair identity; exact-instant,
+   coordinate/ephemeris-frame and engine-version state identity; seed-family
+   and exact-pass identity; ordered chronology; the five-Aspect direct-dialogue
+   policy; chart-specific DR-020 phase-narration admission; separate seed-echo
+   projection; and chart/period reference behavior.</li>
+<li><strong>Period identity</strong> — bounded period, governing ingress, referenced member
+   charts, and referenced slices of relationship histories that began before or
+   continue beyond the period.</li>
+<li><strong>Circular navigation</strong> — chart, selected part, local neighborhood,
+   traversal stack and return-to-whole behavior.</li>
+<li><strong>Owner contract</strong> — separate ownership of facts, meanings, contributions,
+   Judgment and Translation.</li>
+<li><strong>Extension contract</strong> — the controlled entry route for Sabians, midpoints,
+   nodes, declination, 916 America and later layers.</li>
+</ol>
+<p>This step locks schemas and permissions. It does not require final prose for
+all thirty-four core semantic records.</p>
+<h3>Step 2 — Build a semantic-closed skeleton</h3>
+<p>Create the mundane Lobby, Chart Room, Period Weather Room and Organism map with
+the complete intended room roster visible but semantic execution closed.</p>
+<p>Prove these navigation loops with identity-only or factual placeholders:</p>
+<pre><code class="language-text">Whole → Planet → Sign → House → Aspect → Whole
+Whole → House → ruler/governance → Planet → Whole
+Whole → Aspect → both actors → whole web → Whole
+Whole → relationship state → prior/next chapters → both actors → Whole
+Period → ingress → lunation → focused part → chart whole → Period
+Period → relationship-clock slice → chart state → same relationship history → Period
+</code></pre>
+<p>Every unavailable meaning displays <code>provisional</code>, <code>unresolved</code> or <code>unbuilt</code>.
+Nothing falls back to natal wording.</p>
+<h3>Step 3 — Build core semantics in thin complete passes</h3>
+<h4>Pass A — structural roster</h4>
+<p>Create lightweight governed records for all ten Planets, twelve Signs and
+twelve Houses. Every record receives provenance, lifecycle state, dependencies
+and Katie disposition even when its semantic prose remains provisional.</p>
+<h4>Pass B — Sign grammar and dignity</h4>
+<p>Implement the current working construction:</p>
+<pre><code class="language-text">Modality supplies the movement.
+Element shapes and carries the movement.
+The unique Sign is the irreducible collective expression of both.
+Dignity describes the Planet&amp;#x27;s condition within that operating environment.
+</code></pre>
+<p>Build three modality records, four element records, twelve distinct Sign
+foundations and the dignity-condition interface together. Modality and element
+constrain a Sign but do not generate its complete meaning.</p>
+<h4>Pass C — mundane Planets</h4>
+<p>Author each Planet independently as a collective motivation, civic actor or
+function, institutional expression, gift, shadow and polarity. Archetypal
+continuity may be source evidence; natal owner wording is not inherited.</p>
+<h4>Pass D — mundane Houses</h4>
+<p>Author the twelve national and institutional arenas, including their axes,
+families, governance boundaries and exact-angle distinction. Keep derivative
+routes dependent on the twelve radical House owners rather than creating 144
+new authorities.</p>
+<h4>Pass E — shared relationships and structural routes</h4>
+<p>Connect the adopted Aspect operators, applying/separating facts, whole-web
+patterns, and the continuous relationship-time contract: stable pair identity,
+exact snapshot state, seed-family/pass identity, and ordered transitions. Then
+connect conditions, rulership, House governance and dispositors. None of these
+facts assigns final importance or fixed plot ownership by itself.</p>
+<h3>Step 4 — Prove one complete chart spiral</h3>
+<p>Run one exact mundane chart through:</p>
+<pre><code class="language-text">chart whole
+→ one actor
+→ Sign equipment
+→ House arena
+→ condition and dignity
+→ current relationships
+→ one relationship&amp;#x27;s phase, motion and accumulated history
+→ governance and root
+→ return to same whole
+→ inspect another useful part
+</code></pre>
+<p>The return-to-whole surface may maintain a separate provisional synthesis
+workspace showing:</p>
+<ul>
+<li>what the focused part contributed;</li>
+<li>what tension or ambiguity remains;</li>
+<li>which other part may deserve inspection;</li>
+<li>what the organism cannot yet conclude.</li>
+</ul>
+<p>This synthesis references facts and semantic owners. It never writes backward
+into either one.</p>
+<h3>Step 5 — Add the extension framework</h3>
+<p>Use four extension families:</p>
+<table>
+<thead>
+<tr>
+<th>Extension family</th>
+<th>Examples</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Factual geometry</td>
+<td>declination, midpoints, planetary nodes, 916 America</td>
+<td>Add separately owned computed facts</td>
+</tr>
+<tr>
+<td>Symbolic lenses</td>
+<td>Sabian symbols</td>
+<td>Add optional symbolic imagery</td>
+</tr>
+<tr>
+<td>Timing adapters</td>
+<td>returns, progressions, Moon Families, dignity and other non-pair phase clocks</td>
+<td>Place the chart in a governed time system; planetary relationship time remains core structure rather than an optional decoration</td>
+</tr>
+<tr>
+<td>Evidence bridges</td>
+<td>Chronicle events and observed outcomes</td>
+<td>Reference independent real-world records</td>
+</tr>
+</tbody>
+</table>
+<p>Every extension declares:</p>
+<ul>
+<li><code>extension_id</code> and version;</li>
+<li>extension family;</li>
+<li>eligible chart types and points;</li>
+<li>factual input references;</li>
+<li>canonical source and semantic owner;</li>
+<li>admission and narration rules;</li>
+<li>Evidence, prominence and Forecast credit;</li>
+<li>invalidation dependencies;</li>
+<li>interface projection;</li>
+<li>unavailable and unresolved behavior.</li>
+</ul>
+<p>An extension may enrich the reading without redefining Planet, Sign, House or
+Aspect.</p>
+<h3>Step 6 — Use Sabian symbols as the first extension</h3>
+<p>Sabians are the ideal extension test because the factual lookup and symbol
+corpus already exist while their interpretive permission must stay bounded.</p>
+<p>The mundane Sabian extension must:</p>
+<ul>
+<li>read the canonical 360 symbols from the Freedom 250 method workbook;</li>
+<li>use the governed degree-band lookup
+  <code>symbol number = floor(degrees within sign) + 1</code>;</li>
+<li>preserve exact longitude and never round to the visually nearest degree;</li>
+<li>keep symbol, keynote, poles and provenance in its own dossier;</li>
+<li>appear as an optional symbolic lens for an eligible selected point;</li>
+<li>enter synthesis only after technical chart structure is understood;</li>
+<li>carry no automatic Evidence, prominence, convergence or Forecast credit;</li>
+<li>respect DR-023: no Sabian analysis for quarter moons, and exact syzygy is
+  required for New Moon, Full Moon and eclipse degree work.</li>
+</ul>
+<p>Do not mint a competing JSON symbol corpus. The workbook owns the atomic
+lookup; the prose method owns how and when the symbols may be used.</p>
+<p>The donor&#x27;s focused-Sabian interface can be adapted as a visual reference: a
+full zodiac field preserving exact angular position plus a synchronized point
+inspector. Its natal payload and permissions do not cross automatically.</p>
+<h3>Step 7 — Add the thin Period Weather loop</h3>
+<p>The first period container requires only:</p>
+<ul>
+<li><code>period_ref</code>, target, locality and bounded interval;</li>
+<li>governing-ingress reference;</li>
+<li>ordered member-chart references;</li>
+<li>typed <code>governs</code> and <code>triggers</code> relations;</li>
+<li>bounded references to continuous relationship histories, with exact state
+  identities at each member chart;</li>
+<li>entry into one intact chart and return to the same period.</li>
+</ul>
+<p>Eclipses, Moon Families, era context, national/entity overlays, institutional
+clocks, Chronicle events and saved-period libraries enter later as separately
+gated adapters. The first period release does not wait for every timing layer.</p>
+<h3>Step 8 — Open Judgment and speech last</h3>
+<p>After the circular exploration and core owners are stable:</p>
+<ol>
+<li>form candidate claims;</li>
+<li>verify exact fact and semantic lineage;</li>
+<li>account for counterevidence;</li>
+<li>return to the whole chart or period;</li>
+<li>send a complete candidate to Katie for <code>keep / revise / reject / hold</code>;</li>
+<li>produce the symbolic mundane reading;</li>
+<li>produce concrete civic Translation;</li>
+<li>optionally register a separate falsifiable Forecast Ledger call.</li>
+</ol>
+<h2>Thin-spiral delivery strategy</h2>
+<p>Do not build one enormous subsystem to completion before the rest of the chart
+exists. Deliver several complete but increasingly deep passes:</p>
+<pre><code class="language-text">all rooms as truthful placeholders
+→ one complete factual chart
+→ one complete whole-part-whole loop
+→ core semantic breadth
+→ semantic depth
+→ one symbolic extension
+→ one governing period
+→ Judgment and Translation
+→ Observatory integration
+</code></pre>
+<p>Visible concentric rings and rooms are navigation, not construction order.
+Construction proceeds base-to-derived through durable owners and several thin
+full passes.</p>
+<h2>Acceptance tests for circular reading</h2>
+<p>The circular architecture is ready only when all of these hold:</p>
+<ul>
+<li>returning from a part restores the exact same chart and snapshot;</li>
+<li>the traversal stack preserves the route without duplicating meaning;</li>
+<li>selecting a different part changes visibility, not facts or counts;</li>
+<li>the whole view can show a new provisional synthesis without mutating owners;</li>
+<li>a ruler loop or Aspect circuit cannot become a permission or invalidation
+  loop;</li>
+<li>one relationship has one canonical identity across all projections;</li>
+<li>co-temporal charts may reference one astronomical relationship state while
+  retaining distinct chart, snapshot, locality, and house-frame identities;</li>
+<li>co-temporal charts may make different DR-020 phase-narration decisions while
+  sharing that state; direct geometry and seed echoes remain separate lanes;</li>
+<li>the whole-chart Aspect web may retain quincunx without admitting it to the
+  five-Aspect relationship-clock direct-dialogue roster;</li>
+<li>a retrograde return or repeated perfection receives a new state/pass identity
+  while preserving the same pair and seed-family history;</li>
+<li>Aries resets the mundane year and non-Aries succession follows the incumbent
+  rising-modality validity rule; neither kind of boundary resets the
+  relationship arc;</li>
+<li>no planet or pair becomes the permanent owner of a plot;</li>
+<li>no focused part becomes a miniature chart or independent Evidence vote;</li>
+<li>an optional extension can be disabled without damaging the core chart;</li>
+<li>unavailable extension material fails closed;</li>
+<li>technical proof remains available without leading the reading experience.</li>
+</ul>
+<h2>Immediate next action</h2>
+<p>Begin with the six-contract architecture pass. Then build the
+semantic-closed navigation skeleton and start the Sign/modality/element/dignity
+review as the first semantic thin pass.</p>
+<p>Do not begin by deep-copying the Sentient Sun repository, completing every
+specialist technique, or wiring an unfinished organism into the Observatory.</p></main></body></html>

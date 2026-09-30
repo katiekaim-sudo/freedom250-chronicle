@@ -1,0 +1,279 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-deriv-houses-bffdbfc96c8e.html">
+<title>---- wheel engine ----</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>---- wheel engine ----</h1><p class="mut">Portable source: 99 - Templates/build_deriv_houses.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;
+build_deriv_houses.py — builds the Derivative Houses tab (the turned-chart calculator).
+
+Pick a chart (the locked US Sagittarius chart, or any of the 8 governing/nuance
+ingress charts) and an ACTOR (a mundane house). The view re-counts the wheel from
+that actor&#x27;s house, draws a turned-house numeral ring (colored by aspectual group),
+and reads each turned house off the live chart&#x27;s planets — with the mundane meaning
+pulled from the Derivative Houses dictionary.
+
+Reuses wheel_lib.WHEEL_JS (drawn-glyph Whole-Sign wheel). New interactions use
+addEventListener under the compatibility/testability policy; the current wrapper
+has `csp: null`. Reads readings from `deriv_dict.json` (parsed from the vault
+dictionary note) so the view and the note never diverge.
+
+Inputs (in 99 - Templates / outputs):
+  - wheel_lib.py            (WHEEL_JS)
+  - deriv_dict.json         (the 144 mundane readings, parsed from the dictionary note)
+Output:
+  - 04 - Synthesis/Cross-cuts/Derivative Houses.html
+&quot;&quot;&quot;
+import json, re, pathlib
+
+HERE = pathlib.Path(__file__).resolve().parent
+VAULT = HERE.parent
+OUT = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot; / &quot;Derivative Houses.html&quot;
+
+# ---- wheel engine ----
+wl = (HERE / &quot;wheel_lib.py&quot;).read_text()
+WHEEL_JS = wl.split(&quot;WHEEL_JS = r&#x27;&#x27;&#x27;&quot;)[1].split(&quot;&#x27;&#x27;&#x27;&quot;)[0]
+
+# ---- dictionary (parsed straight from the vault note, so view never diverges) ----
+def parse_dict_from_note():
+    md = (VAULT / &quot;00 - Index&quot; / &quot;Derivative Houses — The Mundane Dictionary.md&quot;).read_text()
+    parts = re.split(r&#x27;\n## (\d+) · &#x27;, md); d = {}
+    for i in range(1, len(parts), 2):
+        num = int(parts[i]); body = parts[i+1]; name = body.split(&#x27;(&#x27;)[0].strip()
+        gm = re.search(r&#x27;\*\*Groups —\*\* (.+)&#x27;, body); groups = gm.group(1).strip() if gm else &quot;&quot;
+        rows = []
+        for line in body.splitlines():
+            m = re.match(r&#x27;\|\s*(\d+)\s+([^|]+?)\s*\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|&#x27;, line)
+            if m:
+                rows.append({&quot;n&quot;: int(m.group(1)), &quot;label&quot;: m.group(2).strip(), &quot;radical&quot;: int(m.group(3)),
+                             &quot;matter&quot;: m.group(4).strip(), &quot;reading&quot;: m.group(5).strip()})
+        if len(rows) == 12: d[str(num)] = {&quot;name&quot;: name, &quot;groups&quot;: groups, &quot;rows&quot;: rows}
+    return d
+DICT = parse_dict_from_note()
+assert len(DICT) == 12, f&quot;dictionary parse got {len(DICT)} actors (expected 12)&quot;
+
+SGN = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,
+       &quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+
+def dms(lon):
+    d = int(lon % 30); m = int(round((lon % 1)*60))
+    if m == 60: d += 1; m = 0
+    return f&quot;{d}°{m:02d}&#x27;&quot;
+
+# ---- CHARTS: US Sag (locked) + 8 ingresses ----
+def chart_from_pos(cid, title, sub, asc, pos_list):
+    asc_idx = int(asc // 30)
+    pos = []
+    for name, sign, lon, retro in pos_list:
+        pos.append([name, sign, dms(lon), bool(retro), round(lon, 4)])
+    return {&quot;id&quot;: cid, &quot;title&quot;: title, &quot;sub&quot;: sub, &quot;asc&quot;: round(asc, 4),
+            &quot;asc_idx&quot;: asc_idx, &quot;pos&quot;: pos}
+
+CHARTS = []
+
+# US Sagittarius chart (Master Reference §5b) — exact positions
+us_sag = [
+    (&quot;Sun&quot;,&quot;Cancer&quot;,101.4167,False),(&quot;Moon&quot;,&quot;Capricorn&quot;,298.3333,False),
+    (&quot;Mercury&quot;,&quot;Cancer&quot;,114.9833,True),(&quot;Venus&quot;,&quot;Cancer&quot;,90.65,False),
+    (&quot;Jupiter&quot;,&quot;Cancer&quot;,95.4833,False),(&quot;Mars&quot;,&quot;Gemini&quot;,80.0167,False),
+    (&quot;Saturn&quot;,&quot;Libra&quot;,194.75,False),(&quot;Uranus&quot;,&quot;Gemini&quot;,68.8167,False),
+    (&quot;Neptune&quot;,&quot;Virgo&quot;,172.3833,False),(&quot;Pluto&quot;,&quot;Capricorn&quot;,297.6,False),
+    (&quot;Node&quot;,&quot;Leo&quot;,126.5833,False),
+]
+CHARTS.append(chart_from_pos(&quot;us-sag&quot;, &quot;The United States — Sagittarius rising&quot;,
+    &quot;July 2, 1776 · ~5:10 PM LMT · Philadelphia · the locked chart&quot;, 250.7333, us_sag))
+
+# 8 ingress charts (from Ingress Charts.html ING_DATA)
+# pull ingress charts straight from the Ingress Charts view (no json dependency)
+_ic = (VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot; / &quot;Ingress Charts.html&quot;).read_text()
+ING = json.loads(re.search(r&#x27;const ING_DATA = (\[.*?\]);&#x27;, _ic, re.S).group(1))
+GOV = {&quot;2025-aries&quot;,&quot;2026-aries&quot;,&quot;2026-cancer&quot;,&quot;2026-libra&quot;,&quot;2027-aries&quot;,&quot;2028-aries&quot;}
+for c in ING:
+    pos_list = []
+    for name, (lon, sign, house) in c[&quot;p&quot;].items():
+        pos_list.append((name, sign, lon, False))
+    sub = (&quot;governing chart · &quot; if c[&quot;id&quot;] in GOV else &quot;nuance chart · &quot;) + c[&quot;date&quot;] + &quot; · &quot; + c[&quot;rising&quot;] + &quot; rising&quot;
+    CHARTS.append(chart_from_pos(c[&quot;id&quot;], c[&quot;title&quot;], sub, c[&quot;asc_deg&quot;], pos_list))
+
+DATA = {&quot;CHARTS&quot;: CHARTS, &quot;DICT&quot;: DICT}
+
+HTML = r&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;Derivative Houses — the turned chart&lt;/title&gt;
+&lt;style&gt;
+:root{ --bg:#faf8f3; --ink:#2b2620; --mut:#8a8377; --line:#e2d8c4; --card:#fffdf8;
+ --gold:#c9a227; --blue:#3a6ea5; --green:#4a7d5f; --red:#b3402e; --amber:#a8821f; --grey:#8a8377; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:&quot;Iowan Old Style&quot;,Palatino,Georgia,serif;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 20px 60px}
+h1{font-size:24px;margin:0 0 2px}
+.sub{color:var(--mut);font-style:italic;font-size:14px;margin-bottom:14px}
+.controls{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:14px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.ctl label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);margin-bottom:3px}
+select{font-family:inherit;font-size:14px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink);min-width:230px}
+.layout{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+.wheelcol{flex:1 1 420px;max-width:560px}
+.readcol{flex:1 1 460px;min-width:340px}
+#wheel{width:100%}
+.legend{display:flex;flex-wrap:wrap;gap:5px 12px;margin:8px 2px 2px;font-size:12px;color:var(--mut)}
+.legend b{font-weight:normal}
+.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.actorhead{margin:2px 0 8px;font-size:15px}
+.actorhead .nm{font-weight:bold;font-size:18px}
+.grpline{font-size:12.5px;color:var(--mut);margin:2px 0 12px;line-height:1.6}
+.row{border:1px solid var(--line);border-left-width:5px;border-radius:8px;background:var(--card);padding:9px 12px;margin-bottom:8px}
+.row .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.row .nh{font-size:12px;color:var(--mut)}
+.row .nh b{color:var(--ink)}
+.row .matter{font-weight:bold;font-size:14.5px}
+.row .reading{font-size:13.5px;margin:3px 0 0}
+.row .planets{font-size:12.5px;color:#5b554a;margin-top:5px}
+.row .planets .pl{display:inline-block;margin-right:9px;white-space:nowrap}
+.row .planets .dig{font-style:italic;color:var(--mut)}
+.row.empty .planets{color:#b5a98c;font-style:italic}
+.grp-self{border-left-color:var(--gold)} .grp-trine{border-left-color:var(--blue)}
+.grp-sextile{border-left-color:var(--green)} .grp-cross{border-left-color:var(--red)}
+.grp-inconj{border-left-color:var(--amber)} .grp-semis{border-left-color:var(--grey)}
+.tag{font-size:10px;text-transform:uppercase;letter-spacing:.04em;padding:1px 6px;border-radius:4px;color:#fff}
+.tag-self{background:var(--gold)} .tag-trine{background:var(--blue)} .tag-sextile{background:var(--green)}
+.tag-cross{background:var(--red)} .tag-inconj{background:var(--amber)} .tag-semis{background:var(--grey)}
+.note{font-size:12px;color:var(--mut);margin-top:14px;font-style:italic;line-height:1.6}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;&lt;div class=&quot;wrap&quot;&gt;
+&lt;h1&gt;Derivative Houses &lt;span style=&quot;font-weight:normal;color:var(--mut);font-size:18px&quot;&gt;— the turned chart&lt;/span&gt;&lt;/h1&gt;
+&lt;div class=&quot;sub&quot;&gt;Turn any mundane chart from any actor&#x27;s chair. The wheel re-counts; each turned house reads off the live planets.&lt;/div&gt;
+&lt;div class=&quot;controls&quot;&gt;
+  &lt;div class=&quot;ctl&quot;&gt;&lt;label for=&quot;chartSel&quot;&gt;Chart&lt;/label&gt;&lt;select id=&quot;chartSel&quot;&gt;&lt;/select&gt;&lt;/div&gt;
+  &lt;div class=&quot;ctl&quot;&gt;&lt;label for=&quot;actorSel&quot;&gt;Turn from — the actor on the 1st&lt;/label&gt;&lt;select id=&quot;actorSel&quot;&gt;&lt;/select&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;layout&quot;&gt;
+  &lt;div class=&quot;wheelcol&quot;&gt;&lt;div id=&quot;wheel&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;legend&quot;&gt;
+      &lt;span&gt;&lt;span class=&quot;dot&quot; style=&quot;background:var(--gold)&quot;&gt;&lt;/span&gt;&lt;b&gt;the actor (1st)&lt;/b&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;dot&quot; style=&quot;background:var(--blue)&quot;&gt;&lt;/span&gt;&lt;b&gt;support · trine&lt;/b&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;dot&quot; style=&quot;background:var(--green)&quot;&gt;&lt;/span&gt;&lt;b&gt;opportunity · sextile&lt;/b&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;dot&quot; style=&quot;background:var(--red)&quot;&gt;&lt;/span&gt;&lt;b&gt;crisis · cross&lt;/b&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;dot&quot; style=&quot;background:var(--amber)&quot;&gt;&lt;/span&gt;&lt;b&gt;nagging · inconjunct&lt;/b&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;dot&quot; style=&quot;background:var(--grey)&quot;&gt;&lt;/span&gt;&lt;b&gt;adjacent · semisextile&lt;/b&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;note&quot;&gt;The numerals on the inner ring are the &lt;b&gt;radical&lt;/b&gt; houses; the colored ring is the chart &lt;b&gt;turned&lt;/b&gt; from your chosen actor (its house = 1). A turned house locates the topic on real planets &amp;mdash; the verdict is the planets&#x27; condition, read in the whole chart. A D.C. chart shows how the &lt;i&gt;nation experiences&lt;/i&gt; an actor, not that actor&#x27;s own reality.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;readcol&quot;&gt;
+    &lt;div class=&quot;actorhead&quot;&gt;From the chair of &lt;span class=&quot;nm&quot; id=&quot;actorName&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;grpline&quot; id=&quot;grpline&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;readings&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+%%WHEEL_JS%%
+&lt;/script&gt;
+&lt;script&gt;
+var DATA = %%DATA%%;
+var CHARTS_DH = DATA.CHARTS, DICT = DATA.DICT;
+var SGN=[&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;];
+var ACTOR_NAMES={1:&quot;The People&quot;,2:&quot;The Economy&quot;,3:&quot;The Press&quot;,4:&quot;The Opposition / the Land&quot;,5:&quot;The Markets&quot;,6:&quot;Workers &amp; the Military&quot;,7:&quot;A Foreign Power&quot;,8:&quot;International Finance&quot;,9:&quot;The Courts &amp; Law&quot;,10:&quot;The Government&quot;,11:&quot;The Legislature&quot;,12:&quot;The Hidden&quot;};
+function derived(H,N){return ((H-1)+(N-1))%12+1;}
+// group of a turned-house number N (1..12), by aspect offset to the actor
+function grpOf(N){var o=(N-1)%12; if(o===0)return&quot;self&quot;;
+  if(o===4||o===8)return&quot;trine&quot;; if(o===2||o===10)return&quot;sextile&quot;;
+  if(o===3||o===9||o===6)return&quot;cross&quot;; if(o===5||o===7)return&quot;inconj&quot;; return&quot;semis&quot;;}
+var GRPCOL={self:&quot;#c9a227&quot;,trine:&quot;#3a6ea5&quot;,sextile:&quot;#4a7d5f&quot;,cross:&quot;#b3402e&quot;,inconj:&quot;#a8821f&quot;,semis:&quot;#8a8377&quot;};
+var GRPLAB={self:&quot;the actor&quot;,trine:&quot;support&quot;,sextile:&quot;opportunity&quot;,cross:&quot;crisis&quot;,inconj:&quot;nagging&quot;,semis:&quot;adjacent&quot;};
+// classical dignity (7 visibles) for flavor
+var RUL={Sun:[&quot;Leo&quot;],Moon:[&quot;Cancer&quot;],Mercury:[&quot;Gemini&quot;,&quot;Virgo&quot;],Venus:[&quot;Taurus&quot;,&quot;Libra&quot;],Mars:[&quot;Aries&quot;,&quot;Scorpio&quot;],Jupiter:[&quot;Sagittarius&quot;,&quot;Pisces&quot;],Saturn:[&quot;Capricorn&quot;,&quot;Aquarius&quot;]};
+var EXA={Sun:&quot;Aries&quot;,Moon:&quot;Taurus&quot;,Mercury:&quot;Virgo&quot;,Venus:&quot;Pisces&quot;,Mars:&quot;Capricorn&quot;,Jupiter:&quot;Cancer&quot;,Saturn:&quot;Libra&quot;};
+var DET={Sun:[&quot;Aquarius&quot;],Moon:[&quot;Capricorn&quot;],Mercury:[&quot;Sagittarius&quot;,&quot;Pisces&quot;],Venus:[&quot;Aries&quot;,&quot;Scorpio&quot;],Mars:[&quot;Taurus&quot;,&quot;Libra&quot;],Jupiter:[&quot;Gemini&quot;,&quot;Virgo&quot;],Saturn:[&quot;Cancer&quot;,&quot;Leo&quot;]};
+var FAL={Sun:&quot;Libra&quot;,Moon:&quot;Scorpio&quot;,Mercury:&quot;Pisces&quot;,Venus:&quot;Virgo&quot;,Mars:&quot;Cancer&quot;,Jupiter:&quot;Capricorn&quot;,Saturn:&quot;Aries&quot;};
+function dignity(p,sign){ if(EXA[p]===sign)return&quot;exalted&quot;; if(FAL[p]===sign)return&quot;fall&quot;;
+  if(RUL[p]&amp;&amp;RUL[p].indexOf(sign)&gt;=0)return&quot;ruler&quot;; if(DET[p]&amp;&amp;DET[p].indexOf(sign)&gt;=0)return&quot;detriment&quot;; return&quot;&quot;;}
+var PGLY={Sun:&quot;☉&quot;,Moon:&quot;☽&quot;,Mercury:&quot;☿&quot;,Venus:&quot;♀&quot;,Mars:&quot;♂&quot;,Jupiter:&quot;♃&quot;,Saturn:&quot;♄&quot;,Uranus:&quot;♅&quot;,Neptune:&quot;♆&quot;,Pluto:&quot;♇&quot;,Node:&quot;☊&quot;};
+
+function chartById(id){for(var i=0;i&lt;CHARTS_DH.length;i++)if(CHARTS_DH[i].id===id)return CHARTS_DH[i];return CHARTS_DH[0];}
+function planetsByHouse(ch){ // radical house -&gt; [ {name,sign,retro,lon} ]
+  var by={}; for(var h=1;h&lt;=12;h++)by[h]=[];
+  ch.pos.forEach(function(p){var lon=p[4]; var house=((Math.floor(lon/30)-ch.asc_idx+12)%12)+1; by[house].push({name:p[0],sign:p[1],retro:p[3],lon:lon});});
+  return by;
+}
+
+function render(){
+  var ch=chartById(document.getElementById(&quot;chartSel&quot;).value);
+  var actor=parseInt(document.getElementById(&quot;actorSel&quot;).value,10);
+  // base wheel
+  var rec={pos:ch.pos, asp:[], asc:ch.asc, __date:ch.title, cap1:ch.sub, cap2:&quot;Whole Sign · turned from &quot;+ACTOR_NAMES[actor]};
+  var svg=wheelSVG(rec);
+  // turned-house numeral ring, injected before &lt;/svg&gt;
+  var cx=330,cy=330, cusp=Math.floor(ch.asc/30)*30;
+  function pt(r,L){var a=(180+(L-cusp))*Math.PI/180; return [cx+r*Math.cos(a), cy-r*Math.sin(a)];}
+  var ring=[&#x27;&lt;g font-family=&quot;Iowan Old Style,Palatino,Georgia,serif&quot;&gt;&#x27;];
+  for(var i=0;i&lt;12;i++){
+    var R=i+1;                             // radical house number of this sector (i = sectors from the Ascendant)
+    var N=((R-actor+12)%12)+1;             // its turned-house number from the actor
+    var g=grpOf(N), col=GRPCOL[g];
+    var L=((ch.asc_idx+i)%12)*30 + 15;     // sector midpoint degree (sign of this sector)
+    var p=pt(196,L);
+    var rad=(N===1)?13:11;
+    ring.push(&#x27;&lt;circle cx=&quot;&#x27;+p[0].toFixed(1)+&#x27;&quot; cy=&quot;&#x27;+p[1].toFixed(1)+&#x27;&quot; r=&quot;&#x27;+rad+&#x27;&quot; fill=&quot;&#x27;+col+&#x27;&quot; fill-opacity=&quot;&#x27;+(N===1?0.95:0.82)+&#x27;&quot; stroke=&quot;#fffdf8&quot; stroke-width=&quot;1&quot;/&gt;&#x27;);
+    ring.push(&#x27;&lt;text x=&quot;&#x27;+p[0].toFixed(1)+&#x27;&quot; y=&quot;&#x27;+p[1].toFixed(1)+&#x27;&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;&#x27;+(N===1?13:11)+&#x27;&quot; font-weight=&quot;bold&quot; fill=&quot;#fff&quot;&gt;&#x27;+N+&#x27;&lt;/text&gt;&#x27;);
+  }
+  ring.push(&#x27;&lt;/g&gt;&#x27;);
+  svg=svg.replace(&quot;&lt;/svg&gt;&quot;, ring.join(&quot;&quot;)+&quot;&lt;/svg&gt;&quot;);
+  document.getElementById(&quot;wheel&quot;).innerHTML=svg;
+
+  // readings
+  document.getElementById(&quot;actorName&quot;).textContent=ACTOR_NAMES[actor];
+  var rows=DICT[actor].rows, byH=planetsByHouse(ch);
+  // group summary line
+  var summ={trine:[],sextile:[],cross:[],inconj:[],semis:[]};
+  rows.forEach(function(r){var g=grpOf(r.n); if(summ[g])summ[g].push(r.matter);});
+  var gl=[];
+  [[&quot;cross&quot;,&quot;crisis&quot;],[&quot;trine&quot;,&quot;support&quot;],[&quot;sextile&quot;,&quot;opportunity&quot;],[&quot;inconj&quot;,&quot;nagging&quot;],[&quot;semis&quot;,&quot;adjacent&quot;]].forEach(function(pair){
+    var k=pair[0]; gl.push(&#x27;&lt;span style=&quot;color:&#x27;+GRPCOL[k]+&#x27;&quot;&gt;●&lt;/span&gt; &lt;b style=&quot;color:var(--ink)&quot;&gt;&#x27;+pair[1]+&#x27;:&lt;/b&gt; &#x27;+summ[k].join(&quot;, &quot;));
+  });
+  document.getElementById(&quot;grpline&quot;).innerHTML=gl.join(&quot; &amp;nbsp;·&amp;nbsp; &quot;);
+
+  var out=[];
+  rows.forEach(function(r){
+    var g=grpOf(r.n), radical=r.radical;
+    var pls=byH[radical]||[];
+    var plhtml;
+    if(pls.length){ plhtml=pls.map(function(o){var dg=dignity(o.name,o.sign); var gl=PGLY[o.name]||o.name;
+        return &#x27;&lt;span class=&quot;pl&quot;&gt;&#x27;+gl+&#x27; &#x27;+o.name+(o.retro?&#x27; ℞&#x27;:&#x27;&#x27;)+&#x27; &lt;span class=&quot;dig&quot;&gt;&#x27;+o.sign+(dg?&#x27; · &#x27;+dg:&#x27;&#x27;)+&#x27;&lt;/span&gt;&lt;/span&gt;&#x27;;}).join(&quot;&quot;);
+    } else { plhtml=&#x27;— no planets in this house&#x27;; }
+    out.push(&#x27;&lt;div class=&quot;row grp-&#x27;+g+(pls.length?&#x27;&#x27;:&#x27; empty&#x27;)+&#x27;&quot;&gt;&#x27;
+      +&#x27;&lt;div class=&quot;top&quot;&gt;&lt;div class=&quot;matter&quot;&gt;&#x27;+r.matter+&#x27;&lt;/div&gt;&#x27;
+      +&#x27;&lt;span class=&quot;tag tag-&#x27;+g+&#x27;&quot;&gt;&#x27;+GRPLAB[g]+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;
+      +&#x27;&lt;div class=&quot;nh&quot;&gt;the actor’s &lt;b&gt;&#x27;+ordn(r.n)+&#x27; house&lt;/b&gt; → radical &lt;b&gt;&#x27;+radical+&#x27;&lt;/b&gt; (&#x27;+r.label+&#x27;)&lt;/div&gt;&#x27;
+      +&#x27;&lt;div class=&quot;reading&quot;&gt;&#x27;+r.reading+&#x27;&lt;/div&gt;&#x27;
+      +&#x27;&lt;div class=&quot;planets&quot;&gt;&#x27;+plhtml+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;);
+  });
+  document.getElementById(&quot;readings&quot;).innerHTML=out.join(&quot;&quot;);
+}
+function ordn(n){var s=[&quot;th&quot;,&quot;st&quot;,&quot;nd&quot;,&quot;rd&quot;],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+
+// populate controls
+(function(){
+  var cs=document.getElementById(&quot;chartSel&quot;);
+  CHARTS_DH.forEach(function(c){var o=document.createElement(&quot;option&quot;);o.value=c.id;o.textContent=c.title;cs.appendChild(o);});
+  var as=document.getElementById(&quot;actorSel&quot;);
+  [10,1,7,2,4,11,9,8,5,6,3,12].forEach(function(h){var o=document.createElement(&quot;option&quot;);o.value=h;o.textContent=h+&quot; — &quot;+ACTOR_NAMES[h];as.appendChild(o);});
+  cs.value=&quot;us-sag&quot;; as.value=&quot;10&quot;;
+  cs.addEventListener(&quot;change&quot;,render);
+  as.addEventListener(&quot;change&quot;,render);
+  render();
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+&quot;&quot;&quot;
+
+HTML = HTML.replace(&quot;%%WHEEL_JS%%&quot;, WHEEL_JS).replace(&quot;%%DATA%%&quot;, json.dumps(DATA))
+OUT.write_text(HTML)
+print(&quot;wrote&quot;, OUT, f&quot;({len(HTML)} bytes)&quot;)
+print(&quot;charts:&quot;, [c[&#x27;id&#x27;] for c in CHARTS])
+</pre></main></body></html>

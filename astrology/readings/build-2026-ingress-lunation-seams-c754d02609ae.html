@@ -1,0 +1,371 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-2026-ingress-lunation-seams-c754d02609ae.html">
+<title>build_2026_ingress_lunation_seams</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_2026_ingress_lunation_seams</h1><p class="mut">Portable source: 99 - Templates/build_2026_ingress_lunation_seams.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the 2026 ingress-lunation seam audit.
+
+Every cardinal ingress occurs inside a lunar chapter that began before the
+seasonal handoff.  This builder joins each 2026 ingress to its inherited New
+Moon, first Full Moon, and chapter-closing New Moon; compares dispositor roots
+and raw distribution; measures lunar age at the ingress; and tests seed-degree
+contacts to the incoming seasonal frame.
+
+The monthly chapter clock, Pessin Moon-family clock, and ingress-governance
+clock remain distinct.  The result supplies no event, causal, forecast, or
+factual-evidence credit and does not modify locked Pass 1 readings.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+
+from phases import phase_of
+
+
+HERE = Path(__file__).resolve().parent
+HISTORY = HERE / &quot;mundane_history.json&quot;
+BONES = HERE / &quot;chart_reading_bones&quot;
+OUT = HERE / &quot;ingress_lunation_seams_2026.json&quot;
+
+SEAMS = (
+    {
+        &quot;season&quot;: &quot;Aries&quot;,
+        &quot;seed_id&quot;: &quot;lun-2026-03-19-ne&quot;,
+        &quot;ingress_id&quot;: &quot;ingress-2026-aries&quot;,
+        &quot;full_id&quot;: &quot;lun-2026-04-02-fu&quot;,
+        &quot;next_new_id&quot;: &quot;lun-2026-04-17-ne&quot;,
+        &quot;knowledge_state&quot;: &quot;retrospective&quot;,
+    },
+    {
+        &quot;season&quot;: &quot;Cancer&quot;,
+        &quot;seed_id&quot;: &quot;lun-2026-06-15-ne&quot;,
+        &quot;ingress_id&quot;: &quot;ingress-2026-cancer&quot;,
+        &quot;full_id&quot;: &quot;lun-2026-06-29-fu&quot;,
+        &quot;next_new_id&quot;: &quot;lun-2026-07-14-ne&quot;,
+        &quot;knowledge_state&quot;: &quot;retrospective&quot;,
+    },
+    {
+        &quot;season&quot;: &quot;Libra&quot;,
+        &quot;seed_id&quot;: &quot;lun-2026-09-11-ne&quot;,
+        &quot;ingress_id&quot;: &quot;ingress-2026-libra&quot;,
+        &quot;full_id&quot;: &quot;lun-2026-09-26-fu&quot;,
+        &quot;next_new_id&quot;: &quot;lun-2026-10-10-ne&quot;,
+        &quot;knowledge_state&quot;: &quot;ingress_occurred_full_and_close_future_at_cutoff&quot;,
+    },
+    {
+        &quot;season&quot;: &quot;Capricorn&quot;,
+        &quot;seed_id&quot;: &quot;lun-2026-12-09-ne&quot;,
+        &quot;ingress_id&quot;: &quot;ingress-2026-capricorn&quot;,
+        &quot;full_id&quot;: &quot;lun-2026-12-24-fu&quot;,
+        &quot;next_new_id&quot;: &quot;lun-2027-01-07-ne&quot;,
+        &quot;knowledge_state&quot;: &quot;prospective_at_cutoff&quot;,
+    },
+)
+
+ASPECTS = (
+    (&quot;conjunction&quot;, 0.0),
+    (&quot;sextile&quot;, 60.0),
+    (&quot;square&quot;, 90.0),
+    (&quot;trine&quot;, 120.0),
+    (&quot;opposition&quot;, 180.0),
+)
+TRADITIONAL_BODIES = (
+    &quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;,
+    &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;,
+)
+
+
+def rounded(value: float, places: int = 9) -&gt; float:
+    return round(float(value), places)
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_bone(chart_id: str) -&gt; dict:
+    return json.loads((BONES / f&quot;{chart_id}.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+
+
+def optional_chart_summary(chart_id: str, history_row: dict) -&gt; dict:
+    &quot;&quot;&quot;Return a governed chart summary without inventing an absent bone.
+
+    The January 2027 chapter-closing New Moon has an exact registered clock in
+    mundane_history.json but no chart-reading bone at this cutoff.  Its clock is
+    sufficient to delimit the inherited lunar chapter; dispositors and shape
+    must remain unavailable until the chart itself is registered.
+    &quot;&quot;&quot;
+    bone_path = BONES / f&quot;{chart_id}.json&quot;
+    if bone_path.exists():
+        summary = chart_summary(chart_id, history_row, load_bone(chart_id))
+        summary[&quot;chart_registration_state&quot;] = &quot;registered_chart_bone&quot;
+        return summary
+    return {
+        &quot;chart_id&quot;: chart_id,
+        &quot;label&quot;: history_row[&quot;label&quot;],
+        &quot;exact_utc&quot;: history_row[&quot;utc&quot;],
+        &quot;exact_local&quot;: history_row[&quot;local&quot;],
+        &quot;chart_registration_state&quot;: &quot;exact_clock_only_chart_bone_absent_at_cutoff&quot;,
+        &quot;interpretive_fields&quot;: &quot;withheld&quot;,
+    }
+
+
+def point_longitudes(chart: dict) -&gt; dict[str, float]:
+    points = {
+        body: chart[&quot;pos&quot;][body][&quot;lon&quot;] % 360.0
+        for body in TRADITIONAL_BODIES
+    }
+    points.update({
+        &quot;ASC&quot;: chart[&quot;asc&quot;] % 360.0,
+        &quot;DSC&quot;: (chart[&quot;asc&quot;] + 180.0) % 360.0,
+        &quot;MC&quot;: chart[&quot;mc&quot;] % 360.0,
+        &quot;IC&quot;: (chart[&quot;mc&quot;] + 180.0) % 360.0,
+    })
+    return points
+
+
+def angular_distance(first: float, second: float) -&gt; float:
+    return abs((second - first + 180.0) % 360.0 - 180.0)
+
+
+def seed_degree_contacts(seed: dict, ingress: dict) -&gt; list[dict]:
+    seed_degree = seed[&quot;pos&quot;][&quot;Sun&quot;][&quot;lon&quot;] % 360.0
+    rows = []
+    for point, longitude in point_longitudes(ingress).items():
+        separation = angular_distance(seed_degree, longitude)
+        aspect, angle = min(ASPECTS, key=lambda item: abs(separation - item[1]))
+        orb = abs(separation - angle)
+        if orb &lt;= 3.5 + 1e-12:
+            rows.append({
+                &quot;point&quot;: point,
+                &quot;point_longitude_deg&quot;: rounded(longitude),
+                &quot;aspect&quot;: aspect,
+                &quot;aspect_angle_deg&quot;: angle,
+                &quot;orb_deg&quot;: rounded(orb, 6),
+                &quot;strength_band&quot;: &quot;exact_relay&quot; if orb &lt;= 1.0 + 1e-12 else &quot;contextual_contact&quot;,
+            })
+    return sorted(rows, key=lambda row: (row[&quot;orb_deg&quot;], row[&quot;point&quot;]))
+
+
+def chart_summary(chart_id: str, history_row: dict, bone: dict) -&gt; dict:
+    return {
+        &quot;chart_id&quot;: chart_id,
+        &quot;label&quot;: history_row[&quot;label&quot;],
+        &quot;exact_utc&quot;: history_row[&quot;utc&quot;],
+        &quot;exact_local&quot;: history_row[&quot;local&quot;],
+        &quot;ascendant_sign&quot;: bone[&quot;asc_sign&quot;],
+        &quot;chart_ruler&quot;: bone[&quot;ruler&quot;],
+        &quot;final_dispositors&quot;: bone[&quot;finals&quot;],
+        &quot;bounded_cycles&quot;: bone[&quot;loops&quot;],
+        &quot;root_members&quot;: bone[&quot;root_members&quot;],
+        &quot;occupied_span_deg&quot;: rounded(bone[&quot;occupied_deg&quot;], 6),
+        &quot;largest_empty_arc_deg&quot;: rounded(bone[&quot;empty_deg&quot;], 6),
+        &quot;named_shape_status&quot;: &quot;legacy_stored_label_not_used_as_live_authority&quot;,
+    }
+
+
+def root_transition(source: dict, target: dict) -&gt; dict:
+    source_roots = set(source[&quot;root_members&quot;])
+    target_roots = set(target[&quot;root_members&quot;])
+    return {
+        &quot;shared_members&quot;: sorted(source_roots &amp; target_roots),
+        &quot;added_members&quot;: sorted(target_roots - source_roots),
+        &quot;removed_members&quot;: sorted(source_roots - target_roots),
+        &quot;same_root_set&quot;: source_roots == target_roots,
+        &quot;source_root_is_subset&quot;: source_roots &lt;= target_roots,
+        &quot;overlap_count&quot;: len(source_roots &amp; target_roots),
+        &quot;union_count&quot;: len(source_roots | target_roots),
+        &quot;jaccard&quot;: rounded(len(source_roots &amp; target_roots) / len(source_roots | target_roots), 6),
+    }
+
+
+def history_positions(row: dict) -&gt; dict[str, float]:
+    return {point[&quot;name&quot;]: point[&quot;lon&quot;] for point in row[&quot;points&quot;]}
+
+
+def build_control(history_rows: list[dict]) -&gt; dict:
+    complete_years = []
+    all_waxing_years = []
+    increasing_years = []
+    for year in range(2017, 2029):
+        rows = {
+            row[&quot;sign&quot;]: row
+            for row in history_rows
+            if row[&quot;chart_type&quot;] == &quot;ingress&quot; and row[&quot;year&quot;] == year
+        }
+        if set(rows) != {&quot;Aries&quot;, &quot;Cancer&quot;, &quot;Libra&quot;, &quot;Capricorn&quot;}:
+            continue
+        elongations = []
+        for sign in (&quot;Aries&quot;, &quot;Cancer&quot;, &quot;Libra&quot;, &quot;Capricorn&quot;):
+            positions = history_positions(rows[sign])
+            elongations.append((positions[&quot;Moon&quot;] - positions[&quot;Sun&quot;]) % 360.0)
+        complete_years.append({
+            &quot;year&quot;: year,
+            &quot;ingress_moon_sun_elongations_deg&quot;: [rounded(value, 6) for value in elongations],
+            &quot;all_waxing&quot;: all(value &lt; 180.0 for value in elongations),
+            &quot;strictly_increasing_without_wrap&quot;: all(
+                earlier &lt; later for earlier, later in zip(elongations, elongations[1:])
+            ),
+        })
+        if all(value &lt; 180.0 for value in elongations):
+            all_waxing_years.append(year)
+        if all(earlier &lt; later for earlier, later in zip(elongations, elongations[1:])):
+            increasing_years.append(year)
+    return {
+        &quot;coverage&quot;: &quot;2017-2028 complete four-ingress years in mundane_history.json&quot;,
+        &quot;years&quot;: complete_years,
+        &quot;all_four_ingresses_waxing_years&quot;: all_waxing_years,
+        &quot;strictly_increasing_without_wrap_years&quot;: increasing_years,
+        &quot;boundary&quot;: (
+            &quot;The 2026 all-waxing progression is uncommon inside this bounded twelve-year control &quot;
+            &quot;but not unique and not an all-history rarity claim.&quot;
+        ),
+    }
+
+
+def build_payload() -&gt; dict:
+    history = json.loads(HISTORY.read_text(encoding=&quot;utf-8&quot;))
+    history_index = {row[&quot;id&quot;]: row for row in history[&quot;charts&quot;]}
+    rows = []
+    for spec in SEAMS:
+        seed_history = history_index[spec[&quot;seed_id&quot;]]
+        ingress_history = history_index[spec[&quot;ingress_id&quot;]]
+        full_history = history_index[spec[&quot;full_id&quot;]]
+        next_new_history = history_index[spec[&quot;next_new_id&quot;]]
+        seed = load_bone(spec[&quot;seed_id&quot;])
+        ingress = load_bone(spec[&quot;ingress_id&quot;])
+        full = load_bone(spec[&quot;full_id&quot;])
+        ingress_positions = history_positions(ingress_history)
+        elongation = (ingress_positions[&quot;Moon&quot;] - ingress_positions[&quot;Sun&quot;]) % 360.0
+        phase_name, phase_direction = phase_of(elongation)
+        chapter_days = next_new_history[&quot;jd_ut&quot;] - seed_history[&quot;jd_ut&quot;]
+        age_days = ingress_history[&quot;jd_ut&quot;] - seed_history[&quot;jd_ut&quot;]
+        to_full_days = full_history[&quot;jd_ut&quot;] - ingress_history[&quot;jd_ut&quot;]
+        seed_summary = chart_summary(spec[&quot;seed_id&quot;], seed_history, seed)
+        ingress_summary = chart_summary(spec[&quot;ingress_id&quot;], ingress_history, ingress)
+        full_summary = chart_summary(spec[&quot;full_id&quot;], full_history, full)
+        next_new_summary = optional_chart_summary(spec[&quot;next_new_id&quot;], next_new_history)
+        rows.append({
+            &quot;season&quot;: spec[&quot;season&quot;],
+            &quot;knowledge_state_at_2026_09_25&quot;: spec[&quot;knowledge_state&quot;],
+            &quot;inherited_new_moon&quot;: seed_summary,
+            &quot;incoming_ingress&quot;: ingress_summary,
+            &quot;first_full_moon&quot;: full_summary,
+            &quot;chapter_closing_new_moon&quot;: next_new_summary,
+            &quot;lunar_phase_at_ingress&quot;: {
+                &quot;moon_from_sun_oriented_elongation_deg&quot;: rounded(elongation, 6),
+                &quot;phase_name&quot;: phase_name,
+                &quot;phase_direction&quot;: phase_direction,
+                &quot;chapter_age_days&quot;: rounded(age_days, 6),
+                &quot;chapter_duration_days&quot;: rounded(chapter_days, 6),
+                &quot;chapter_elapsed_percent&quot;: rounded(100.0 * age_days / chapter_days, 6),
+                &quot;days_from_ingress_to_first_full_moon&quot;: rounded(to_full_days, 6),
+            },
+            &quot;seed_to_ingress_root_transition&quot;: root_transition(seed_summary, ingress_summary),
+            &quot;ingress_to_full_root_transition&quot;: root_transition(ingress_summary, full_summary),
+            &quot;seed_to_ingress_distribution&quot;: {
+                &quot;occupied_span_change_deg&quot;: rounded(
+                    ingress_summary[&quot;occupied_span_deg&quot;] - seed_summary[&quot;occupied_span_deg&quot;], 6
+                ),
+                &quot;largest_empty_arc_change_deg&quot;: rounded(
+                    ingress_summary[&quot;largest_empty_arc_deg&quot;] - seed_summary[&quot;largest_empty_arc_deg&quot;], 6
+                ),
+            },
+            &quot;seed_degree_contacts_to_incoming_ingress&quot;: seed_degree_contacts(seed, ingress),
+            &quot;clock_boundary&quot;: (
+                &quot;The inherited New Moon governs the local monthly chapter until the next New Moon. &quot;
+                &quot;The ingress changes seasonal authority at its exact clock. The first Full Moon also &quot;
+                &quot;belongs to its separately registered Pessin Moon family; these clocks are not merged.&quot;
+            ),
+        })
+
+    ages = [row[&quot;lunar_phase_at_ingress&quot;][&quot;chapter_age_days&quot;] for row in rows]
+    leads = [row[&quot;lunar_phase_at_ingress&quot;][&quot;days_from_ingress_to_first_full_moon&quot;] for row in rows]
+    return {
+        &quot;schema&quot;: &quot;freedom250.ingress-lunation-seams-2026/v1&quot;,
+        &quot;status&quot;: &quot;retrospective_to_current_with_prospective_late_year_structure&quot;,
+        &quot;developed_through&quot;: &quot;2026-09-25&quot;,
+        &quot;authority_boundary&quot;: {
+            &quot;governance&quot;: &quot;Ingress -&gt; inherited/current lunation -&gt; separately typed eclipse and Moon-family clocks&quot;,
+            &quot;locked_readings_preserved&quot;: True,
+            &quot;future_boundary&quot;: (
+                &quot;Libra&#x27;s Full Moon and close and the complete Capricorn seam are prospective at the cutoff; &quot;
+                &quot;their structure is not narrated as occurred political fact.&quot;
+            ),
+            &quot;factual_evidence_credit&quot;: &quot;zero&quot;,
+            &quot;forecast_ledger_credit&quot;: &quot;zero&quot;,
+            &quot;causal_claim&quot;: False,
+        },
+        &quot;seams&quot;: rows,
+        &quot;year_pattern&quot;: {
+            &quot;every_ingress_occurs_inside_a_new_moon_chapter_planted_under_predecessor_ingress&quot;: True,
+            &quot;every_seed_and_ingress_has_bounded_cycle_root_not_final_dispositor&quot;: all(
+                not row[&quot;inherited_new_moon&quot;][&quot;final_dispositors&quot;]
+                and not row[&quot;incoming_ingress&quot;][&quot;final_dispositors&quot;]
+                and row[&quot;inherited_new_moon&quot;][&quot;bounded_cycles&quot;]
+                and row[&quot;incoming_ingress&quot;][&quot;bounded_cycles&quot;]
+                for row in rows
+            ),
+            &quot;chapter_ages_strictly_increase&quot;: all(a &lt; b for a, b in zip(ages, ages[1:])),
+            &quot;days_to_first_full_moon_strictly_decrease&quot;: all(a &gt; b for a, b in zip(leads, leads[1:])),
+            &quot;chapter_ages_days&quot;: ages,
+            &quot;days_to_first_full_moon&quot;: leads,
+            &quot;finding&quot;: (
+                &quot;Across 2026 the seasonal handoff enters progressively later in its inherited lunar chapter, &quot;
+                &quot;while the first Full Moon arrives progressively sooner after the ingress. Seasonal authority &quot;
+                &quot;changes, but the local Moon story never restarts at the seam.&quot;
+            ),
+        },
+        &quot;bounded_year_control&quot;: build_control(history[&quot;charts&quot;]),
+        &quot;interpretive_synthesis&quot;: {
+            &quot;aries&quot;: (
+                &quot;The Pisces seed&#x27;s Jupiter-Moon circuit is expanded by Mars at the Aries ingress; &quot;
+                &quot;a nearly unchanged concentrated sky acquires an action carrier.&quot;
+            ),
+            &quot;cancer&quot;: (
+                &quot;The Gemini seed&#x27;s Mercury-Moon circuit survives the Cancer ingress unchanged; &quot;
+                &quot;the season changes while the message-public/foundation-material feedback loop does not.&quot;
+            ),
+            &quot;libra&quot;: (
+                &quot;The Virgo seed&#x27;s Mercury-Venus-Mars-Moon loop loses record and value at the seam, &quot;
+                &quot;retains Mars-Moon, and gains Saturn; agreement becomes force, public need and boundary.&quot;
+            ),
+            &quot;capricorn&quot;: (
+                &quot;The Sagittarius seed&#x27;s Sun-Jupiter mission circuit is absorbed into the five-body winter &quot;
+                &quot;operating chain, while the seed degree lands on the incoming Descendant within 0.027 degrees.&quot;
+            ),
+            &quot;whole_year&quot;: (
+                &quot;The year does not move from four clean seasonal beginnings. It carries four inherited lunar &quot;
+                &quot;questions across the threshold: action is added, dialogue is preserved, agreement is hardened &quot;
+                &quot;into boundary, and mission is absorbed into an institutional operating circuit.&quot;
+            ),
+        },
+        &quot;provenance&quot;: {
+            &quot;builder&quot;: &quot;99 - Templates/build_2026_ingress_lunation_seams.py&quot;,
+            &quot;history&quot;: &quot;99 - Templates/mundane_history.json&quot;,
+            &quot;history_sha256&quot;: sha256(HISTORY),
+            &quot;bones_index&quot;: &quot;99 - Templates/chart_reading_bones/index.json&quot;,
+            &quot;bones_index_sha256&quot;: sha256(BONES / &quot;index.json&quot;),
+            &quot;calculation_scope&quot;: &quot;registered Washington, D.C. Whole Sign chart bones and exact mundane history clocks&quot;,
+        },
+    }
+
+
+def main() -&gt; None:
+    payload = build_payload()
+    OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+    print(f&quot;Wrote {OUT}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

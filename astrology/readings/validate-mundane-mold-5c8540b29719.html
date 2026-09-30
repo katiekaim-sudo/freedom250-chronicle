@@ -1,0 +1,520 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/validate-mundane-mold-5c8540b29719.html">
+<title>validate_mundane_mold</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · current</div><h1>validate_mundane_mold</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Methods &amp; Architecture/Freedom 250 Mundane Astrology Organism 2026-08-11/validate_mundane_mold.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Read-only structural validator for the Freedom 250 mundane organism mold.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parent
+ATLAS = ROOT / &quot;mundane_method_atlas.json&quot;
+PLANET_OWNER = ROOT / &quot;mundane_planet_function_owner.json&quot;
+PLANET_CANDIDATES = ROOT / &quot;MUNDANE_PLANET_OWNER_CANDIDATES.json&quot;
+SIGN_OWNER = ROOT / &quot;mundane_sign_owner_registry.json&quot;
+SIGN_CANDIDATES = ROOT / &quot;MUNDANE_SIGN_OWNER_CANDIDATES.json&quot;
+HOUSE_OWNER = ROOT / &quot;mundane_house_owner_registry.json&quot;
+HOUSE_CANDIDATES = ROOT / &quot;MUNDANE_HOUSE_OWNER_CANDIDATES.json&quot;
+STANDARD_PLANET_IDS = [
+    &quot;sun&quot;,
+    &quot;moon&quot;,
+    &quot;mercury&quot;,
+    &quot;venus&quot;,
+    &quot;mars&quot;,
+    &quot;jupiter&quot;,
+    &quot;saturn&quot;,
+    &quot;uranus&quot;,
+    &quot;neptune&quot;,
+    &quot;pluto&quot;,
+]
+STANDARD_SIGN_IDS = [
+    &quot;aries&quot;, &quot;taurus&quot;, &quot;gemini&quot;, &quot;cancer&quot;, &quot;leo&quot;, &quot;virgo&quot;,
+    &quot;libra&quot;, &quot;scorpio&quot;, &quot;sagittarius&quot;, &quot;capricorn&quot;, &quot;aquarius&quot;, &quot;pisces&quot;,
+]
+STANDARD_HOUSE_IDS = list(range(1, 13))
+
+
+def unique_ids(records: list[dict], field: str, label: str, errors: list[str]) -&gt; None:
+    values = [record.get(field) for record in records]
+    missing = [index for index, value in enumerate(values) if value in {None, &quot;&quot;}]
+    if missing:
+        errors.append(f&quot;{label}: missing {field} at indexes {missing}&quot;)
+    duplicates = sorted({value for value in values if values.count(value) &gt; 1})
+    if duplicates:
+        errors.append(f&quot;{label}: duplicate {field}: {duplicates}&quot;)
+
+
+def main() -&gt; int:
+    data = json.loads(ATLAS.read_text(encoding=&quot;utf-8&quot;))
+    planet_owner = json.loads(PLANET_OWNER.read_text(encoding=&quot;utf-8&quot;))
+    planet_candidates = json.loads(PLANET_CANDIDATES.read_text(encoding=&quot;utf-8&quot;))
+    sign_owner = json.loads(SIGN_OWNER.read_text(encoding=&quot;utf-8&quot;))
+    sign_candidates = json.loads(SIGN_CANDIDATES.read_text(encoding=&quot;utf-8&quot;))
+    house_owner = json.loads(HOUSE_OWNER.read_text(encoding=&quot;utf-8&quot;))
+    house_candidates = json.loads(HOUSE_CANDIDATES.read_text(encoding=&quot;utf-8&quot;))
+    errors: list[str] = []
+
+    if data.get(&quot;schema_version&quot;) != 1:
+        errors.append(&quot;schema_version must be 1&quot;)
+
+    boundary = data.get(&quot;governing_boundary&quot;, {})
+    if set(boundary.get(&quot;semantic_adaptation_owners&quot;, [])) != {&quot;planets&quot;, &quot;signs&quot;, &quot;houses&quot;}:
+        errors.append(&quot;semantic adaptation owners must be exactly planets, signs, and houses&quot;)
+    if set(boundary.get(&quot;substantive_mundane_translation_owners&quot;, [])) != {&quot;planets&quot;, &quot;signs&quot;, &quot;houses&quot;}:
+        errors.append(&quot;substantive mundane translation owners must be exactly planets, signs, and houses&quot;)
+    if set(boundary.get(&quot;shared_core_review_owners&quot;, [])) != {&quot;aspects&quot;}:
+        errors.append(&quot;shared-core review owners must contain only aspects&quot;)
+    if &quot;aspects&quot; not in boundary.get(&quot;shared_operator_owners&quot;, []):
+        errors.append(&quot;aspects must remain a shared operator owner&quot;)
+    if boundary.get(&quot;natal_donor_policy&quot;) != &quot;architecture_only_no_semantic_fallback&quot;:
+        errors.append(&quot;natal donor must remain architecture-only with no semantic fallback&quot;)
+
+    planets = data.get(&quot;planets&quot;, [])
+    signs = data.get(&quot;signs&quot;, [])
+    houses = data.get(&quot;houses&quot;, [])
+    aspects = data.get(&quot;aspect_operators&quot;, [])
+    chart_types = data.get(&quot;chart_types&quot;, [])
+    owner_families = data.get(&quot;owner_families&quot;, [])
+
+    if len(planets) != 10:
+        errors.append(f&quot;expected 10 Planets, found {len(planets)}&quot;)
+    if [record.get(&quot;planet_id&quot;) for record in planets] != STANDARD_PLANET_IDS:
+        errors.append(&quot;atlas Planet roster and order must be the canonical ten&quot;)
+    if len(signs) != 12:
+        errors.append(f&quot;expected 12 Signs, found {len(signs)}&quot;)
+    if len(houses) != 12:
+        errors.append(f&quot;expected 12 Houses, found {len(houses)}&quot;)
+
+    unique_ids(planets, &quot;planet_id&quot;, &quot;Planets&quot;, errors)
+    unique_ids(signs, &quot;sign_id&quot;, &quot;Signs&quot;, errors)
+    unique_ids(houses, &quot;house_no&quot;, &quot;Houses&quot;, errors)
+    unique_ids(aspects, &quot;aspect_id&quot;, &quot;Aspects&quot;, errors)
+    unique_ids(chart_types, &quot;chart_type_id&quot;, &quot;Chart types&quot;, errors)
+    unique_ids(owner_families, &quot;owner_id&quot;, &quot;Owner families&quot;, errors)
+
+    if [record.get(&quot;sign_id&quot;) for record in signs] != STANDARD_SIGN_IDS:
+        errors.append(&quot;atlas Sign roster and order must be the canonical twelve&quot;)
+    if [record.get(&quot;house_no&quot;) for record in houses] != STANDARD_HOUSE_IDS:
+        errors.append(&quot;House numbers must be exactly 1 through 12&quot;)
+
+    sign_construction = data.get(&quot;sign_construction&quot;, {})
+    modalities = sign_construction.get(&quot;modalities&quot;, [])
+    elements = sign_construction.get(&quot;elements&quot;, [])
+    unique_ids(modalities, &quot;modality_id&quot;, &quot;Modalities&quot;, errors)
+    unique_ids(elements, &quot;element_id&quot;, &quot;Elements&quot;, errors)
+    if len(modalities) != 3:
+        errors.append(f&quot;expected 3 Modality movement owners, found {len(modalities)}&quot;)
+    if len(elements) != 4:
+        errors.append(f&quot;expected 4 Element shaping owners, found {len(elements)}&quot;)
+    modality_counts = {
+        key: sum(sign.get(&quot;modality_id&quot;) == key for sign in signs)
+        for key in (&quot;cardinal&quot;, &quot;fixed&quot;, &quot;mutable&quot;)
+    }
+    element_counts = {
+        key: sum(sign.get(&quot;element_id&quot;) == key for sign in signs)
+        for key in (&quot;fire&quot;, &quot;earth&quot;, &quot;air&quot;, &quot;water&quot;)
+    }
+    if any(count != 4 for count in modality_counts.values()):
+        errors.append(f&quot;each Modality must be referenced by exactly 4 Signs: {modality_counts}&quot;)
+    if any(count != 3 for count in element_counts.values()):
+        errors.append(f&quot;each Element must be referenced by exactly 3 Signs: {element_counts}&quot;)
+
+    dignity = data.get(&quot;dignity_construction&quot;, {})
+    required_dignity_prohibitions = {
+        &quot;not_strength_score&quot;,
+        &quot;not_importance_score&quot;,
+        &quot;not_prominence&quot;,
+        &quot;not_whole_chart_judgment&quot;,
+    }
+    if not required_dignity_prohibitions.issubset(set(dignity.get(&quot;prohibitions&quot;, []))):
+        errors.append(&quot;dignity must remain Sign-tool condition, not score/prominence/Judgment&quot;)
+    if any(record.get(&quot;mode&quot;) != &quot;shared&quot; for record in aspects):
+        errors.append(&quot;every Aspect operator must be marked shared&quot;)
+    required_aspect_ids = {&quot;conjunction&quot;, &quot;sextile&quot;, &quot;square&quot;, &quot;trine&quot;, &quot;quincunx&quot;, &quot;opposition&quot;}
+    if {record.get(&quot;aspect_id&quot;) for record in aspects} != required_aspect_ids:
+        errors.append(&quot;shared Aspect roster must be conjunction, sextile, square, trine, quincunx, and opposition&quot;)
+
+    relationship_time = data.get(&quot;relationship_time_construction&quot;, {})
+    if relationship_time.get(&quot;status&quot;) != &quot;katie_doctrine_adopted_2026_08_30_runtime_unbuilt&quot;:
+        errors.append(&quot;relationship-time doctrine status must preserve the adopted-but-unbuilt boundary&quot;)
+    required_state_identity_fields = {
+        &quot;relationship_ref&quot;,
+        &quot;exact_instant_ref&quot;,
+        &quot;coordinate_frame_ref&quot;,
+        &quot;ephemeris_ref&quot;,
+        &quot;engine_version_ref&quot;,
+    }
+    if set(relationship_time.get(&quot;state_identity_fields&quot;, [])) != required_state_identity_fields:
+        errors.append(&quot;relationship state must be keyed by pair, exact instant, coordinate frame, ephemeris, and engine version&quot;)
+    if set(relationship_time.get(&quot;observation_reference_fields&quot;, [])) != {&quot;chart_ref&quot;, &quot;snapshot_ref&quot;, &quot;relationship_state_ref&quot;}:
+        errors.append(&quot;charts and snapshots must reference rather than own the astronomical relationship state&quot;)
+    if set(relationship_time.get(&quot;chart_observation_projection_fields&quot;, [])) != {&quot;direct_geometry_visibility&quot;, &quot;phase_narration_admission&quot;, &quot;phase_narration_grounds&quot;, &quot;seed_echo_refs&quot;}:
+        errors.append(&quot;chart observation must keep direct geometry, phase-narration admission, and seed echoes separate&quot;)
+    if set(relationship_time.get(&quot;phase_narration_ground_ids&quot;, [])) != {&quot;chart_root&quot;, &quot;chart_ruler&quot;, &quot;outer_pair_era&quot;, &quot;exact_us_natal_contact&quot;}:
+        errors.append(&quot;phase-narration grounds must be exactly the DR-020 root, ruler, era, and exact-U.S.-natal gates&quot;)
+    if relationship_time.get(&quot;projection_lane_rule&quot;) != &quot;direct_geometry_is_visible_regardless_of_phase_narration_phase_narration_is_chart_dependent_under_DR_020_and_seed_echoes_remain_separate&quot;:
+        errors.append(&quot;relationship chart projection must preserve the three independent Long Clock lanes&quot;)
+    if set(relationship_time.get(&quot;seed_identity_fields&quot;, [])) != {&quot;seed_family_ref_when_applicable&quot;, &quot;pass_ref_when_applicable&quot;}:
+        errors.append(&quot;relationship-time owner must preserve separate seed-family and exact-pass identities&quot;)
+    if relationship_time.get(&quot;state_sharing_rule&quot;) != &quot;co_temporal_charts_may_reference_one_astronomical_state_while_preserving_distinct_chart_snapshot_locality_and_house_frame_identities&quot;:
+        errors.append(&quot;co-temporal chart state sharing must preserve distinct chart and house-frame identities&quot;)
+    if relationship_time.get(&quot;state_fields&quot;) != [&quot;computed_phase_or_governed_exception&quot;, &quot;direct_relationship_aspect_or_null&quot;, &quot;orb_or_null&quot;, &quot;immediate_relative_motion&quot;]:
+        errors.append(&quot;relationship state fields must keep phase, governed direct Aspect, orb, and immediate motion separate&quot;)
+    direct_policy = relationship_time.get(&quot;relationship_direct_aspect_policy&quot;, {})
+    if direct_policy.get(&quot;policy_ref&quot;) != &quot;relationship_clock_major_five_v1&quot;:
+        errors.append(&quot;relationship-clock direct-Aspect policy must be versioned&quot;)
+    if direct_policy.get(&quot;admitted_aspect_ids&quot;) != [&quot;conjunction&quot;, &quot;sextile&quot;, &quot;square&quot;, &quot;trine&quot;, &quot;opposition&quot;]:
+        errors.append(&quot;relationship-clock direct dialogue must use only the governed five major Aspects&quot;)
+    if direct_policy.get(&quot;inactive_value&quot;, &quot;missing&quot;) is not None:
+        errors.append(&quot;relationship-clock direct dialogue must use null when no governed Aspect is active&quot;)
+    if direct_policy.get(&quot;whole_chart_quincunx_policy&quot;) != &quot;remains_in_whole_aspect_web_not_relationship_clock_direct_dialogue&quot;:
+        errors.append(&quot;whole-chart quincunx must remain outside relationship-clock direct dialogue&quot;)
+    if &quot;exact_pass_within_seed_family&quot; not in relationship_time.get(&quot;history_events&quot;, []):
+        errors.append(&quot;relationship history must distinguish an exact pass within its seed family&quot;)
+    if &quot;seed_family_pass&quot; in relationship_time.get(&quot;history_events&quot;, []):
+        errors.append(&quot;ambiguous seed_family_pass history event is forbidden&quot;)
+    if relationship_time.get(&quot;retrograde_rule&quot;) != &quot;geometry_may_reverse_or_reopen_but_chronological_history_and_state_identity_never_rewind&quot;:
+        errors.append(&quot;retrograde rule must separate reversible geometry from irreversible chronology&quot;)
+    if relationship_time.get(&quot;ingress_rule&quot;) != &quot;aries_always_resets_mundane_year_non_aries_cardinal_ingress_succeeds_only_when_incumbent_rising_modality_term_permits_and_no_ingress_resets_synodic_history&quot;:
+        errors.append(&quot;relationship-time ingress rule must preserve Aries reset, conditional non-Aries succession, and synodic continuity&quot;)
+    if relationship_time.get(&quot;plot_rule&quot;) != &quot;many_to_many_no_planet_or_pair_ownership&quot;:
+        errors.append(&quot;relationship-time owner must prohibit fixed Planet or pair plot ownership&quot;)
+    braid_policy = relationship_time.get(&quot;braid_projection_policy&quot;, {})
+    if braid_policy.get(&quot;status&quot;) != &quot;katie_doctrine_adopted_2026_08_30_runtime_unbuilt&quot;:
+        errors.append(&quot;relationship-braid doctrine must remain adopted but runtime-unbuilt&quot;)
+    if braid_policy.get(&quot;owner_scope&quot;) != &quot;chart_or_period_interpretation_projection_not_shared_astronomical_state_and_not_evidence&quot;:
+        errors.append(&quot;relationship braids must remain interpretation projections rather than shared state or Evidence&quot;)
+    if set(braid_policy.get(&quot;strand_role_ids&quot;, [])) != {&quot;lead_mechanism&quot;, &quot;co_mechanism&quot;, &quot;supporting_context&quot;, &quot;outcompeted&quot;, &quot;unresolved&quot;}:
+        errors.append(&quot;relationship-braid strands must use the five adopted role dispositions&quot;)
+    if set(braid_policy.get(&quot;presence_mode_ids&quot;, [])) != {&quot;inherited_substrate&quot;, &quot;active_dialogue&quot;, &quot;seed_echo&quot;}:
+        errors.append(&quot;relationship-braid strands must distinguish substrate, dialogue, and echo&quot;)
+    if set(braid_policy.get(&quot;required_braid_fields&quot;, [])) != {&quot;plot_ref&quot;, &quot;factual_cutoff&quot;, &quot;governing_chart_checkpoint_ref&quot;, &quot;strand_refs&quot;}:
+        errors.append(&quot;relationship braids must retain plot, cutoff, checkpoint, and strand identities&quot;)
+    if set(braid_policy.get(&quot;required_strand_fields&quot;, [])) != {&quot;relationship_state_ref&quot;, &quot;role&quot;, &quot;presence_mode&quot;, &quot;win_lose_test&quot;, &quot;continuity_case&quot;, &quot;counterevidence&quot;}:
+        errors.append(&quot;relationship-braid strands must retain state, role, presence, test, continuity, and counterevidence&quot;)
+    if braid_policy.get(&quot;non_additivity_rule&quot;) != &quot;multiple_symbolic_fits_never_add_convergence_evidence_or_forecast_confidence&quot;:
+        errors.append(&quot;relationship braids must not stack symbolic fits into convergence or forecast confidence&quot;)
+    if braid_policy.get(&quot;tempo_hypothesis_rule&quot;) != &quot;long_cycle_condition_faster_carrier_lunation_or_eclipse_visibility_is_testable_not_mandatory&quot;:
+        errors.append(&quot;the nested-tempo braid must remain a testable hypothesis rather than a fixed hierarchy&quot;)
+    relationship_permissions = relationship_time.get(&quot;permissions&quot;, {})
+    if relationship_permissions != {&quot;evidence_credit&quot;: 0, &quot;convergence_credit&quot;: 0, &quot;plot_ownership&quot;: &quot;none&quot;, &quot;forecast_authority&quot;: &quot;none&quot;}:
+        errors.append(&quot;relationship-time owner must retain zero Evidence/convergence credit and no plot/Forecast authority&quot;)
+    if relationship_time.get(&quot;current_runtime_result&quot;) != &quot;fail_closed_no_relationship_time_owner_loadable&quot;:
+        errors.append(&quot;unbuilt relationship-time runtime must fail closed&quot;)
+    if relationship_time.get(&quot;runtime_coverage_rule&quot;) != &quot;only_separately_governed_pair_rosters_may_load&quot;:
+        errors.append(&quot;relationship-time runtime may load only a separately governed pair roster&quot;)
+
+    planet_construction = data.get(&quot;planet_construction&quot;, {})
+    if planet_construction.get(&quot;owner_mold_ref&quot;) != PLANET_OWNER.name:
+        errors.append(&quot;atlas Planet construction must reference the Planet owner mold&quot;)
+    if planet_construction.get(&quot;candidate_registry_ref&quot;) != PLANET_CANDIDATES.name:
+        errors.append(&quot;atlas Planet construction must reference the candidate registry&quot;)
+    if planet_construction.get(&quot;current_runtime_result&quot;) != &quot;fail_closed_no_planet_semantics_loadable&quot;:
+        errors.append(&quot;unratified Planet semantics must fail closed&quot;)
+
+    owner_ids = planet_owner.get(&quot;required_planet_ids&quot;, [])
+    owner_records = planet_owner.get(&quot;records&quot;, {})
+    if owner_ids != STANDARD_PLANET_IDS:
+        errors.append(&quot;Planet owner required roster must be the canonical ten&quot;)
+    if list(owner_records) != STANDARD_PLANET_IDS:
+        errors.append(&quot;Planet owner records must be the canonical ten in canonical order&quot;)
+    for planet_id in STANDARD_PLANET_IDS:
+        record = owner_records.get(planet_id, {})
+        if record.get(&quot;record_ref&quot;) != f&quot;mundane-planet-function:{planet_id}&quot;:
+            errors.append(f&quot;Planet owner record_ref mismatch for {planet_id}&quot;)
+        if record.get(&quot;canonical_body_ref&quot;) != f&quot;planet:{planet_id}&quot;:
+            errors.append(f&quot;Planet owner canonical body mismatch for {planet_id}&quot;)
+        if record.get(&quot;record_state&quot;) != &quot;unreviewed&quot;:
+            errors.append(f&quot;unratified Planet owner must remain unreviewed: {planet_id}&quot;)
+        if record.get(&quot;active_revision_ref&quot;) is not None:
+            errors.append(f&quot;unratified Planet owner has active revision: {planet_id}&quot;)
+        if record.get(&quot;promotion_receipt_ref&quot;) is not None:
+            errors.append(f&quot;unratified Planet owner has promotion receipt: {planet_id}&quot;)
+
+    permissions = planet_owner.get(&quot;permissions&quot;, {})
+    for field in (&quot;prominence_credit&quot;, &quot;evidence_credit&quot;, &quot;convergence_credit&quot;):
+        if permissions.get(field) != 0:
+            errors.append(f&quot;Planet owner {field} must be zero&quot;)
+    for field in (
+        &quot;connector_authority&quot;,
+        &quot;analytical_order_authority&quot;,
+        &quot;judgment_authority&quot;,
+        &quot;timing_authority&quot;,
+        &quot;translation_authority&quot;,
+        &quot;forecast_authority&quot;,
+        &quot;client_authority&quot;,
+    ):
+        if permissions.get(field) != &quot;none&quot;:
+            errors.append(f&quot;Planet owner {field} must be none&quot;)
+
+    candidate_planets = planet_candidates.get(&quot;planets&quot;, [])
+    if [record.get(&quot;planet_id&quot;) for record in candidate_planets] != STANDARD_PLANET_IDS:
+        errors.append(&quot;Planet candidate registry must contain the canonical ten in canonical order&quot;)
+    unique_ids(candidate_planets, &quot;planet_id&quot;, &quot;Planet candidates&quot;, errors)
+    unique_ids(candidate_planets, &quot;candidate_ref&quot;, &quot;Planet candidates&quot;, errors)
+    required_candidate_fields = (
+        &quot;collective_motivation&quot;,
+        &quot;civic_function&quot;,
+        &quot;possible_carriers&quot;,
+        &quot;institutional_expressions&quot;,
+        &quot;gift_pole&quot;,
+        &quot;shadow_pole&quot;,
+        &quot;mythic_register&quot;,
+        &quot;scale_rule&quot;,
+        &quot;scope_conditions&quot;,
+        &quot;review_questions&quot;,
+        &quot;source_refs&quot;,
+    )
+    for record in candidate_planets:
+        planet_id = record.get(&quot;planet_id&quot;)
+        if record.get(&quot;candidate_ref&quot;) != f&quot;candidate:mundane-planet-function:{planet_id}:v1&quot;:
+            errors.append(f&quot;Planet candidate_ref mismatch for {planet_id}&quot;)
+        if record.get(&quot;candidate_state&quot;) != &quot;complete_for_review&quot;:
+            errors.append(f&quot;Planet candidate is not complete_for_review: {planet_id}&quot;)
+        if record.get(&quot;katie_disposition&quot;) != &quot;pending&quot;:
+            errors.append(f&quot;unreviewed Planet candidate must have pending Katie disposition: {planet_id}&quot;)
+        for field in required_candidate_fields:
+            if not record.get(field):
+                errors.append(f&quot;Planet candidate {planet_id} lacks {field}&quot;)
+        if record.get(&quot;gift_pole&quot;) == record.get(&quot;shadow_pole&quot;):
+            errors.append(f&quot;Planet candidate poles collapse for {planet_id}&quot;)
+        if not any(str(ref).startswith(&quot;workbook_planets:&quot;) for ref in record.get(&quot;source_refs&quot;, [])):
+            errors.append(f&quot;Planet candidate lacks workbook lineage: {planet_id}&quot;)
+
+    candidate_by_id = {record.get(&quot;planet_id&quot;): record for record in candidate_planets}
+    moon = candidate_by_id.get(&quot;moon&quot;, {})
+    if not any(&quot;DR-009&quot; in str(ref) for ref in moon.get(&quot;source_refs&quot;, [])):
+        errors.append(&quot;Moon candidate must preserve the sanctioned DR-009 Campion people sense&quot;)
+    for planet_id in (&quot;uranus&quot;, &quot;neptune&quot;, &quot;pluto&quot;):
+        condition = f&quot;formal_governance_uses_the_traditional_seven_while_{planet_id}_may_define_an_era_field&quot;
+        if condition not in candidate_by_id.get(planet_id, {}).get(&quot;scope_conditions&quot;, []):
+            errors.append(f&quot;outer-Planet formal-governance condition missing for {planet_id}&quot;)
+
+    for record in planets:
+        planet_id = record.get(&quot;planet_id&quot;)
+        if record.get(&quot;record_ref&quot;) != f&quot;mundane-planet-function:{planet_id}&quot;:
+            errors.append(f&quot;atlas Planet owner reference mismatch for {planet_id}&quot;)
+        if record.get(&quot;candidate_ref&quot;) != f&quot;candidate:mundane-planet-function:{planet_id}:v1&quot;:
+            errors.append(f&quot;atlas Planet candidate reference mismatch for {planet_id}&quot;)
+        if record.get(&quot;review_state&quot;) != &quot;candidate_pending_katie&quot;:
+            errors.append(f&quot;atlas Planet review state mismatch for {planet_id}&quot;)
+
+    sign_construction = data.get(&quot;sign_construction&quot;, {})
+    if sign_construction.get(&quot;owner_registry_ref&quot;) != SIGN_OWNER.name:
+        errors.append(&quot;atlas Sign construction must reference the Sign owner registry&quot;)
+    if sign_construction.get(&quot;candidate_registry_ref&quot;) != SIGN_CANDIDATES.name:
+        errors.append(&quot;atlas Sign construction must reference the Sign candidate registry&quot;)
+    if sign_construction.get(&quot;current_runtime_result&quot;) != &quot;fail_closed_no_sign_semantics_loadable&quot;:
+        errors.append(&quot;unratified Sign semantics must fail closed&quot;)
+    if sign_owner.get(&quot;required_sign_ids&quot;) != STANDARD_SIGN_IDS:
+        errors.append(&quot;Sign owner required roster must be the canonical twelve&quot;)
+    sign_owner_records = sign_owner.get(&quot;records&quot;, {})
+    if list(sign_owner_records) != STANDARD_SIGN_IDS:
+        errors.append(&quot;Sign owner records must be the canonical twelve in canonical order&quot;)
+    for sign_id in STANDARD_SIGN_IDS:
+        record = sign_owner_records.get(sign_id, {})
+        if record.get(&quot;record_ref&quot;) != f&quot;mundane-sign-owner:{sign_id}&quot;:
+            errors.append(f&quot;Sign owner record_ref mismatch for {sign_id}&quot;)
+        if record.get(&quot;record_state&quot;) != &quot;unreviewed&quot;:
+            errors.append(f&quot;unratified Sign owner must remain unreviewed: {sign_id}&quot;)
+        if record.get(&quot;active_revision_ref&quot;) is not None or record.get(&quot;promotion_receipt_ref&quot;) is not None:
+            errors.append(f&quot;unratified Sign owner is loadable or promoted: {sign_id}&quot;)
+
+    candidate_signs = sign_candidates.get(&quot;signs&quot;, [])
+    if [record.get(&quot;sign_id&quot;) for record in candidate_signs] != STANDARD_SIGN_IDS:
+        errors.append(&quot;Sign candidate registry must contain the canonical twelve in canonical order&quot;)
+    unique_ids(candidate_signs, &quot;candidate_ref&quot;, &quot;Sign candidates&quot;, errors)
+    for record in candidate_signs:
+        sign_id = record.get(&quot;sign_id&quot;)
+        if record.get(&quot;candidate_ref&quot;) != f&quot;candidate:mundane-sign-expression:{sign_id}:v1&quot;:
+            errors.append(f&quot;Sign candidate_ref mismatch for {sign_id}&quot;)
+        if record.get(&quot;candidate_state&quot;) != &quot;complete_for_review&quot; or record.get(&quot;katie_disposition&quot;) != &quot;pending&quot;:
+            errors.append(f&quot;Sign candidate lifecycle mismatch for {sign_id}&quot;)
+        for field in (&quot;modality_id&quot;, &quot;element_id&quot;, &quot;unique_collective_configuration&quot;, &quot;collective_provisions&quot;, &quot;gift_potential&quot;, &quot;shadow_potential&quot;, &quot;review_questions&quot;, &quot;source_refs&quot;):
+            if not record.get(field):
+                errors.append(f&quot;Sign candidate {sign_id} lacks {field}&quot;)
+        owner_record = sign_owner_records.get(sign_id, {})
+        if owner_record.get(&quot;modality_ref&quot;) != f&quot;modality:{record.get(&#x27;modality_id&#x27;)}&quot;:
+            errors.append(f&quot;Sign Modality reference mismatch for {sign_id}&quot;)
+        if owner_record.get(&quot;element_ref&quot;) != f&quot;element:{record.get(&#x27;element_id&#x27;)}&quot;:
+            errors.append(f&quot;Sign Element reference mismatch for {sign_id}&quot;)
+    for record in signs:
+        sign_id = record.get(&quot;sign_id&quot;)
+        if record.get(&quot;owner_ref&quot;) != f&quot;mundane-sign-owner:{sign_id}&quot;:
+            errors.append(f&quot;atlas Sign owner reference mismatch for {sign_id}&quot;)
+        if record.get(&quot;candidate_ref&quot;) != f&quot;candidate:mundane-sign-expression:{sign_id}:v1&quot;:
+            errors.append(f&quot;atlas Sign candidate reference mismatch for {sign_id}&quot;)
+        if record.get(&quot;review_state&quot;) != &quot;candidate_pending_katie&quot;:
+            errors.append(f&quot;atlas Sign review state mismatch for {sign_id}&quot;)
+        for forbidden in (&quot;operator&quot;, &quot;field&quot;, &quot;gift&quot;, &quot;shadow&quot;, &quot;ruler&quot;, &quot;house&quot;):
+            if forbidden in record:
+                errors.append(f&quot;atlas Sign index contains inline semantic or cross-family field {forbidden}: {sign_id}&quot;)
+
+    house_construction = data.get(&quot;house_construction&quot;, {})
+    if house_construction.get(&quot;owner_registry_ref&quot;) != HOUSE_OWNER.name:
+        errors.append(&quot;atlas House construction must reference the House owner registry&quot;)
+    if house_construction.get(&quot;candidate_registry_ref&quot;) != HOUSE_CANDIDATES.name:
+        errors.append(&quot;atlas House construction must reference the House candidate registry&quot;)
+    if house_construction.get(&quot;current_runtime_result&quot;) != &quot;fail_closed_no_house_semantics_loadable&quot;:
+        errors.append(&quot;unratified House semantics must fail closed&quot;)
+    if house_owner.get(&quot;required_house_ids&quot;) != STANDARD_HOUSE_IDS:
+        errors.append(&quot;House owner required roster must be exactly 1 through 12&quot;)
+    house_owner_records = house_owner.get(&quot;records&quot;, {})
+    if list(house_owner_records) != [str(number) for number in STANDARD_HOUSE_IDS]:
+        errors.append(&quot;House owner records must be exactly 1 through 12 in order&quot;)
+    for house_no in STANDARD_HOUSE_IDS:
+        record = house_owner_records.get(str(house_no), {})
+        if record.get(&quot;record_ref&quot;) != f&quot;mundane-house-arena:{house_no}&quot;:
+            errors.append(f&quot;House owner record_ref mismatch for {house_no}&quot;)
+        if record.get(&quot;record_state&quot;) != &quot;unreviewed&quot;:
+            errors.append(f&quot;unratified House owner must remain unreviewed: {house_no}&quot;)
+        if record.get(&quot;active_revision_ref&quot;) is not None or record.get(&quot;promotion_receipt_ref&quot;) is not None:
+            errors.append(f&quot;unratified House owner is loadable or promoted: {house_no}&quot;)
+
+    candidate_houses = house_candidates.get(&quot;houses&quot;, [])
+    if [record.get(&quot;house_no&quot;) for record in candidate_houses] != STANDARD_HOUSE_IDS:
+        errors.append(&quot;House candidate registry must contain exactly 1 through 12 in order&quot;)
+    unique_ids(candidate_houses, &quot;candidate_ref&quot;, &quot;House candidates&quot;, errors)
+    for record in candidate_houses:
+        house_no = record.get(&quot;house_no&quot;)
+        if record.get(&quot;candidate_ref&quot;) != f&quot;candidate:mundane-house-arena:{house_no}:v1&quot;:
+            errors.append(f&quot;House candidate_ref mismatch for {house_no}&quot;)
+        if record.get(&quot;candidate_state&quot;) != &quot;complete_for_review&quot; or record.get(&quot;katie_disposition&quot;) != &quot;pending&quot;:
+            errors.append(f&quot;House candidate lifecycle mismatch for {house_no}&quot;)
+        for field in (&quot;title&quot;, &quot;arena_definition&quot;, &quot;topic_records&quot;, &quot;review_questions&quot;, &quot;source_refs&quot;):
+            if not record.get(field):
+                errors.append(f&quot;House candidate {house_no} lacks {field}&quot;)
+        for forbidden in (&quot;planet&quot;, &quot;sign&quot;, &quot;ruler&quot;, &quot;angle&quot;, &quot;cusp&quot;, &quot;occupant&quot;, &quot;derivative_routes&quot;):
+            if forbidden in record:
+                errors.append(f&quot;House candidate contains cross-family field {forbidden}: {house_no}&quot;)
+    for record in houses:
+        house_no = record.get(&quot;house_no&quot;)
+        if record.get(&quot;owner_ref&quot;) != f&quot;mundane-house-arena:{house_no}&quot;:
+            errors.append(f&quot;atlas House owner reference mismatch for {house_no}&quot;)
+        if record.get(&quot;candidate_ref&quot;) != f&quot;candidate:mundane-house-arena:{house_no}:v1&quot;:
+            errors.append(f&quot;atlas House candidate reference mismatch for {house_no}&quot;)
+        if record.get(&quot;review_state&quot;) != &quot;candidate_pending_katie&quot;:
+            errors.append(f&quot;atlas House review state mismatch for {house_no}&quot;)
+        for forbidden in (&quot;domain&quot;, &quot;includes&quot;, &quot;planet&quot;, &quot;sign&quot;, &quot;ruler&quot;, &quot;angle&quot;, &quot;cusp&quot;):
+            if forbidden in record:
+                errors.append(f&quot;atlas House index contains inline semantic or cross-family field {forbidden}: {house_no}&quot;)
+
+    house_five = next(record for record in candidate_houses if record.get(&quot;house_no&quot;) == 5)
+    house_eleven = next(record for record in candidate_houses if record.get(&quot;house_no&quot;) == 11)
+    if house_five.get(&quot;unresolved_allocations&quot;) != [&quot;upper_legislative_chamber&quot;]:
+        errors.append(&quot;House 5 upper-chamber allocation must remain unresolved&quot;)
+    if house_eleven.get(&quot;unresolved_allocations&quot;) != [&quot;lower_legislative_chamber&quot;]:
+        errors.append(&quot;House 11 lower-chamber allocation must remain unresolved&quot;)
+
+    for label, records in ((&quot;Planet&quot;, planets), (&quot;Sign&quot;, signs), (&quot;House&quot;, houses)):
+        for record in records:
+            if not str(record.get(&quot;source_ref&quot;, &quot;&quot;)).startswith(&quot;workbook:&quot;):
+                errors.append(f&quot;{label} record lacks workbook source_ref: {record}&quot;)
+
+    required_chart_types = {
+        &quot;cardinal_ingress&quot;,
+        &quot;new_moon&quot;,
+        &quot;full_moon&quot;,
+        &quot;solar_eclipse&quot;,
+        &quot;lunar_eclipse&quot;,
+        &quot;national_radix&quot;,
+        &quot;entity_radix&quot;,
+        &quot;event_chart&quot;,
+    }
+    present_chart_types = {record.get(&quot;chart_type_id&quot;) for record in chart_types}
+    missing_chart_types = sorted(required_chart_types - present_chart_types)
+    if missing_chart_types:
+        errors.append(f&quot;missing required mundane chart types: {missing_chart_types}&quot;)
+
+    major_conjunction = next(
+        (record for record in chart_types if record.get(&quot;chart_type_id&quot;) == &quot;major_conjunction&quot;),
+        None,
+    )
+    if major_conjunction is None:
+        errors.append(&quot;missing major_conjunction specialist chart type&quot;)
+    else:
+        if major_conjunction.get(&quot;clock_requirement&quot;) != &quot;exact_perfection&quot;:
+            errors.append(&quot;major_conjunction chart clock must be exact_perfection&quot;)
+        if major_conjunction.get(&quot;cycle_test_policy&quot;) != &quot;co_presence_window_required_in_period_weather&quot;:
+            errors.append(&quot;major-conjunction cycle test must route to Period Weather co-presence&quot;)
+
+    scope_ids = {record.get(&quot;scope_id&quot;) for record in data.get(&quot;scopes&quot;, [])}
+    if scope_ids != {&quot;single_chart_skin&quot;, &quot;period_skin&quot;}:
+        errors.append(f&quot;scope roster must be single_chart_skin + period_skin, found {scope_ids}&quot;)
+    scopes_by_id = {record.get(&quot;scope_id&quot;): record for record in data.get(&quot;scopes&quot;, [])}
+    if set(scopes_by_id.get(&quot;single_chart_skin&quot;, {}).get(&quot;references&quot;, [])) != {&quot;relationship_state_refs&quot;, &quot;relationship_observation_projection_refs&quot;}:
+        errors.append(&quot;single-chart skin must reference both astronomical states and chart-specific relationship projections&quot;)
+    if scopes_by_id.get(&quot;period_skin&quot;, {}).get(&quot;references&quot;) != [&quot;relationship_history_slice_refs&quot;]:
+        errors.append(&quot;period skin must reference, not own or copy, relationship-history slices&quot;)
+
+    period_roles = set(data.get(&quot;period_member_roles&quot;, []))
+    required_roles = {&quot;relationship_clock_slice&quot;, &quot;era_driver&quot;, &quot;governing_ingress&quot;, &quot;trigger_lunation&quot;, &quot;eclipse&quot;, &quot;anchor_radix&quot;, &quot;observed_event&quot;}
+    missing_roles = sorted(required_roles - period_roles)
+    if missing_roles:
+        errors.append(f&quot;missing period roles: {missing_roles}&quot;)
+
+    invariants = set(data.get(&quot;invariants&quot;, []))
+    for invariant in (
+        &quot;calculate_each_fact_once&quot;,
+        &quot;one_chart_snapshot_one_house_frame_owner&quot;,
+        &quot;one_aspect_one_canonical_relationship&quot;,
+        &quot;one_pair_one_stable_relationship_identity&quot;,
+        &quot;every_relationship_state_and_exact_pass_has_distinct_time_identity&quot;,
+        &quot;co_temporal_charts_may_reference_one_astronomical_relationship_state&quot;,
+        &quot;chronology_moves_forward_when_relative_geometry_reverses&quot;,
+        &quot;period_skin_references_intact_charts&quot;,
+        &quot;period_skin_references_relationship_history_without_reset_or_copy&quot;,
+        &quot;missing_mundane_semantics_fail_closed&quot;,
+    ):
+        if invariant not in invariants:
+            errors.append(f&quot;missing invariant: {invariant}&quot;)
+
+    owner_ids = {record.get(&quot;owner_id&quot;) for record in owner_families}
+    if &quot;planetary_relationship_time&quot; not in owner_ids:
+        errors.append(&quot;missing planetary_relationship_time owner family&quot;)
+
+    gates = set(data.get(&quot;gates&quot;, []))
+    for gate in (
+        &quot;no_ingress_boundary_resets_a_synodic_relationship&quot;,
+        &quot;no_retrograde_return_reuses_a_state_or_pass_identity&quot;,
+        &quot;no_planet_or_pair_receives_fixed_plot_ownership&quot;,
+        &quot;no_relationship_braid_stacks_symbolic_fits_into_convergence&quot;,
+        &quot;no_quincunx_in_relationship_clock_direct_dialogue&quot;,
+        &quot;no_temporal_co_occurrence_as_causation_or_evidence&quot;,
+        &quot;no_arc_scores_inside_universal_mundane_doctrine&quot;,
+        &quot;no_forecast_without_separate_registry_record&quot;,
+    ):
+        if gate not in gates:
+            errors.append(f&quot;missing relationship-time gate: {gate}&quot;)
+
+    if errors:
+        for error in errors:
+            print(f&quot;ERROR {error}&quot;)
+        print(f&quot;MUNDANE MOLD: NEEDS REVIEW ({len(errors)} errors)&quot;)
+        return 1
+
+    print(
+        &quot;MUNDANE MOLD VALID: &quot;
+        f&quot;{len(planets)} Planet owner shells + {len(candidate_planets)} complete candidates, &quot;
+        f&quot;{len(signs)} Sign owner shells + {len(candidate_signs)} complete candidates, &quot;
+        f&quot;{len(houses)} House owner shells + {len(candidate_houses)} complete candidates, &quot;
+        f&quot;{len(modalities)} Modalities, {len(elements)} Elements, &quot;
+        f&quot;{len(aspects)} shared Aspects, {len(chart_types)} chart types, &quot;
+        f&quot;{len(owner_families)} owner families&quot;
+    )
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

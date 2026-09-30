@@ -1,0 +1,494 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-planetary-relationship-clocks-4542710be3e3.html">
+<title>build_planetary_relationship_clocks</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · draft</div><h1>build_planetary_relationship_clocks</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Persona &amp; Relationship Work/Planetary Relationship Clocks 2026-08-30/build_planetary_relationship_clocks.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the review-only 28-pair Planetary Relationship Clock graph.
+
+This is a sibling projection of the universal DR-020 phase table.  It does not
+change DR-065&#x27;s governed ten-hand Long Clocks instrument, chart-reading bones,
+Transit Weather, factual plot ownership, or the Forecast Ledger.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+from typing import Any
+
+
+HERE = Path(__file__).resolve().parent
+DEFAULT_VAULT = Path(&quot;Chronicle/&quot;)
+DEFAULT_REGISTRY = HERE / &quot;planetary_relationship_registry.json&quot;
+DEFAULT_OUTPUT = HERE / &quot;planetary_relationship_clock_graph.json&quot;
+LATE_YEAR_HANDOFF_CHART_IDS = [
+    &quot;lun-2026-12-09-ne&quot;,
+    &quot;ingress-2026-capricorn&quot;,
+    &quot;lun-2026-12-24-fu&quot;,
+]
+
+
+def load_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    if not spec or not spec.loader:
+        raise RuntimeError(f&quot;Cannot load {path}&quot;)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_json(path: Path) -&gt; dict[str, Any]:
+    return json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+
+
+def motion_state(delta: float, relative_speed: float) -&gt; tuple[str, bool, bool]:
+    if abs(delta) &lt;= 1e-7:
+        return &quot;exact&quot;, False, False
+    if abs(relative_speed) &lt;= 1e-8:
+        return &quot;stationary&quot;, False, False
+    applying = delta * relative_speed &lt; 0.0
+    return (&quot;applying&quot; if applying else &quot;separating&quot;), applying, not applying
+
+
+def aspect_strength(orb_deg: float) -&gt; str:
+    if orb_deg &lt;= 0.25:
+        return &quot;exact&quot;
+    if orb_deg &lt;= 1.5:
+        return &quot;tight&quot;
+    return &quot;active&quot;
+
+
+def relationship_field_metrics(states: list[dict[str, Any]]) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Derive the direct/phase overlap without turning either lane into a score.&quot;&quot;&quot;
+    direct_ids = [state[&quot;cycle_id&quot;] for state in states if state[&quot;direct_aspect&quot;]]
+    nameable_ids = [
+        state[&quot;cycle_id&quot;]
+        for state in states
+        if state[&quot;dr020_nameability&quot;][&quot;earned&quot;]
+    ]
+    direct_set = set(direct_ids)
+    nameable_set = set(nameable_ids)
+    ordered_ids = [state[&quot;cycle_id&quot;] for state in states]
+    both_ids = [cycle_id for cycle_id in ordered_ids if cycle_id in direct_set and cycle_id in nameable_set]
+    direct_only_ids = [cycle_id for cycle_id in ordered_ids if cycle_id in direct_set and cycle_id not in nameable_set]
+    phase_only_ids = [cycle_id for cycle_id in ordered_ids if cycle_id in nameable_set and cycle_id not in direct_set]
+    silent_ids = [cycle_id for cycle_id in ordered_ids if cycle_id not in direct_set and cycle_id not in nameable_set]
+    return {
+        &quot;direct_count&quot;: len(direct_ids),
+        &quot;nameable_phase_count&quot;: len(nameable_ids),
+        &quot;both_count&quot;: len(both_ids),
+        &quot;direct_only_count&quot;: len(direct_only_ids),
+        &quot;phase_only_count&quot;: len(phase_only_ids),
+        &quot;silent_count&quot;: len(silent_ids),
+        &quot;both_cycle_ids&quot;: both_ids,
+        &quot;direct_only_cycle_ids&quot;: direct_only_ids,
+        &quot;phase_only_cycle_ids&quot;: phase_only_ids,
+        &quot;silent_cycle_ids&quot;: silent_ids,
+    }
+
+
+def corpus_field_control(chart_rows: list[dict[str, Any]]) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Expose corpus controls for a late-year field handoff found in review.&quot;&quot;&quot;
+    direct_exceeds = [
+        chart[&quot;chart_id&quot;]
+        for chart in chart_rows
+        if chart[&quot;field_metrics&quot;][&quot;direct_count&quot;]
+        &gt; chart[&quot;field_metrics&quot;][&quot;nameable_phase_count&quot;]
+    ]
+    max_direct_only = max(
+        chart[&quot;field_metrics&quot;][&quot;direct_only_count&quot;] for chart in chart_rows
+    )
+    max_direct_only_ids = [
+        chart[&quot;chart_id&quot;]
+        for chart in chart_rows
+        if chart[&quot;field_metrics&quot;][&quot;direct_only_count&quot;] == max_direct_only
+    ]
+    by_id = {chart[&quot;chart_id&quot;]: chart for chart in chart_rows}
+    missing = [chart_id for chart_id in LATE_YEAR_HANDOFF_CHART_IDS if chart_id not in by_id]
+    if missing:
+        raise ValueError(f&quot;Missing late-year handoff charts: {missing}&quot;)
+
+    handoff_rows = []
+    for chart_id in LATE_YEAR_HANDOFF_CHART_IDS:
+        chart = by_id[chart_id]
+        handoff_rows.append(
+            {
+                &quot;chart_id&quot;: chart_id,
+                &quot;date&quot;: chart[&quot;date&quot;],
+                **{
+                    key: chart[&quot;field_metrics&quot;][key]
+                    for key in (
+                        &quot;direct_count&quot;,
+                        &quot;nameable_phase_count&quot;,
+                        &quot;both_count&quot;,
+                        &quot;direct_only_count&quot;,
+                        &quot;phase_only_count&quot;,
+                        &quot;silent_count&quot;,
+                    )
+                },
+            }
+        )
+
+    dec09 = by_id[LATE_YEAR_HANDOFF_CHART_IDS[0]]
+    capricorn = by_id[LATE_YEAR_HANDOFF_CHART_IDS[1]]
+    ordered_cycle_ids = [state[&quot;cycle_id&quot;] for state in dec09[&quot;cycles&quot;]]
+    dec09_direct = set(dec09[&quot;active_direct_cycle_ids&quot;])
+    capricorn_direct = set(capricorn[&quot;active_direct_cycle_ids&quot;])
+    dec09_nameable = set(dec09[&quot;nameable_cycle_ids&quot;])
+    capricorn_nameable = set(capricorn[&quot;nameable_cycle_ids&quot;])
+    metric_keys = (
+        &quot;direct_count&quot;,
+        &quot;nameable_phase_count&quot;,
+        &quot;both_count&quot;,
+        &quot;direct_only_count&quot;,
+        &quot;phase_only_count&quot;,
+        &quot;silent_count&quot;,
+    )
+    chronological = sorted(chart_rows, key=lambda chart: chart[&quot;utc&quot;])
+    count_twins = []
+    for earlier, later in zip(chronological, chronological[1:]):
+        if any(
+            earlier[&quot;field_metrics&quot;][key] != later[&quot;field_metrics&quot;][key]
+            for key in metric_keys
+        ):
+            continue
+        earlier_direct = set(earlier[&quot;active_direct_cycle_ids&quot;])
+        later_direct = set(later[&quot;active_direct_cycle_ids&quot;])
+        earlier_nameable = set(earlier[&quot;nameable_cycle_ids&quot;])
+        later_nameable = set(later[&quot;nameable_cycle_ids&quot;])
+        order = [state[&quot;cycle_id&quot;] for state in later[&quot;cycles&quot;]]
+        count_twins.append(
+            {
+                &quot;from_chart_id&quot;: earlier[&quot;chart_id&quot;],
+                &quot;to_chart_id&quot;: later[&quot;chart_id&quot;],
+                &quot;from_date&quot;: earlier[&quot;date&quot;],
+                &quot;to_date&quot;: later[&quot;date&quot;],
+                &quot;shared_counts&quot;: {
+                    key: later[&quot;field_metrics&quot;][key] for key in metric_keys
+                },
+                &quot;direct_cycle_ids_left&quot;: [
+                    cycle_id for cycle_id in order
+                    if cycle_id in earlier_direct and cycle_id not in later_direct
+                ],
+                &quot;direct_cycle_ids_entered&quot;: [
+                    cycle_id for cycle_id in order
+                    if cycle_id in later_direct and cycle_id not in earlier_direct
+                ],
+                &quot;phase_nameability_ids_left&quot;: [
+                    cycle_id for cycle_id in order
+                    if cycle_id in earlier_nameable and cycle_id not in later_nameable
+                ],
+                &quot;phase_nameability_ids_entered&quot;: [
+                    cycle_id for cycle_id in order
+                    if cycle_id in later_nameable and cycle_id not in earlier_nameable
+                ],
+            }
+        )
+    return {
+        &quot;boundary&quot;: {
+            &quot;direct_aspect_and_phase_nameability_are_independent&quot;: True,
+            &quot;counts_are_census_not_strength_score&quot;: True,
+            &quot;no_evidence_or_forecast_credit&quot;: True,
+        },
+        &quot;direct_exceeds_nameable_phase&quot;: {
+            &quot;chart_count&quot;: len(direct_exceeds),
+            &quot;chart_ids&quot;: direct_exceeds,
+        },
+        &quot;maximum_direct_only&quot;: {
+            &quot;count&quot;: max_direct_only,
+            &quot;chart_ids&quot;: max_direct_only_ids,
+        },
+        &quot;consecutive_equal_count_identity_turnovers&quot;: count_twins,
+        &quot;late_year_handoff&quot;: {
+            &quot;chart_ids&quot;: LATE_YEAR_HANDOFF_CHART_IDS,
+            &quot;rows&quot;: handoff_rows,
+            &quot;december_09_to_capricorn_ingress&quot;: {
+                &quot;direct_count_delta&quot;: (
+                    capricorn[&quot;field_metrics&quot;][&quot;direct_count&quot;]
+                    - dec09[&quot;field_metrics&quot;][&quot;direct_count&quot;]
+                ),
+                &quot;nameable_phase_count_delta&quot;: (
+                    capricorn[&quot;field_metrics&quot;][&quot;nameable_phase_count&quot;]
+                    - dec09[&quot;field_metrics&quot;][&quot;nameable_phase_count&quot;]
+                ),
+                &quot;direct_cycle_ids_left&quot;: [
+                    cycle_id
+                    for cycle_id in ordered_cycle_ids
+                    if cycle_id in dec09_direct and cycle_id not in capricorn_direct
+                ],
+                &quot;direct_cycle_ids_entered&quot;: [
+                    cycle_id
+                    for cycle_id in ordered_cycle_ids
+                    if cycle_id in capricorn_direct and cycle_id not in dec09_direct
+                ],
+                &quot;phase_nameability_ids_gained&quot;: [
+                    cycle_id
+                    for cycle_id in ordered_cycle_ids
+                    if cycle_id in capricorn_nameable and cycle_id not in dec09_nameable
+                ],
+                &quot;phase_nameability_ids_lost&quot;: [
+                    cycle_id
+                    for cycle_id in ordered_cycle_ids
+                    if cycle_id in dec09_nameable and cycle_id not in capricorn_nameable
+                ],
+            },
+        },
+    }
+
+
+def state_for_chart(
+    *,
+    cycle: dict[str, Any],
+    bone: dict[str, Any],
+    phases: Any,
+    synodic: Any,
+    tier_order: dict[str, int],
+) -&gt; dict[str, Any]:
+    slow, fast = synodic.slow_fast(cycle[&quot;pair&quot;])
+    positions = {slow: bone[&quot;pos&quot;][slow][&quot;lon&quot;], fast: bone[&quot;pos&quot;][fast][&quot;lon&quot;]}
+    speeds = {slow: bone[&quot;pos&quot;][slow][&quot;spd&quot;], fast: bone[&quot;pos&quot;][fast][&quot;spd&quot;]}
+    angle = (positions[fast] - positions[slow]) % 360.0
+    relative_speed = speeds[fast] - speeds[slow]
+    raw_phase_name, raw_phase_direction = phases.phase_of(angle)
+    chapter, orb_deg, delta = synodic.nearest_chapter(angle)
+    orb_limit = synodic.ORB_LIMITS[chapter[&quot;aspect_id&quot;]]
+    active = orb_deg &lt;= orb_limit
+    movement, applying, separating = motion_state(delta, relative_speed)
+    direct_aspect = None
+    if active:
+        direct_aspect = {
+            &quot;aspect_id&quot;: chapter[&quot;aspect_id&quot;],
+            &quot;chapter_id&quot;: chapter[&quot;chapter_id&quot;],
+            &quot;angle_deg&quot;: chapter[&quot;angle_deg&quot;],
+            &quot;orb_deg&quot;: round(orb_deg, 6),
+            &quot;orb_limit_deg&quot;: orb_limit,
+            &quot;applying&quot;: applying,
+            &quot;separating&quot;: separating,
+            &quot;motion_state&quot;: movement,
+            &quot;strength&quot;: aspect_strength(orb_deg),
+            &quot;flow_kind&quot;: chapter[&quot;flow_kind&quot;],
+        }
+
+    limited_model = cycle[&quot;phase_model&quot;] == &quot;limited_geocentric_elongation&quot;
+    if limited_model:
+        # Mercury-Venus never reaches a geocentric opposition and its directed
+        # hand reverses.  The universal phase table can still identify the raw
+        # angular sector, but that sector is not an admissible synodic phase.
+        phase_name = None
+        phase_direction = None
+        nameability = {
+            &quot;earned&quot;: False,
+            &quot;reasons&quot;: [&quot;phase_contract_unresolved&quot;],
+            &quot;evidence&quot;: [],
+            &quot;applies_to&quot;: &quot;phase_narrative_only&quot;,
+            &quot;does_not_hide_direct_aspect&quot;: True,
+        }
+    else:
+        phase_name = raw_phase_name
+        phase_direction = raw_phase_direction
+        nameability = synodic.phase_nameability(bone, cycle)
+    return {
+        &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+        &quot;tier_id&quot;: cycle[&quot;tier_id&quot;],
+        &quot;tier_order&quot;: tier_order[cycle[&quot;tier_id&quot;]],
+        &quot;cycle_order&quot;: cycle[&quot;order&quot;],
+        &quot;pair&quot;: list(cycle[&quot;pair&quot;]),
+        &quot;slow_body&quot;: slow,
+        &quot;fast_body&quot;: fast,
+        &quot;relationship_status&quot;: cycle[&quot;status&quot;],
+        &quot;source_path&quot;: cycle[&quot;source_path&quot;],
+        &quot;phase_model&quot;: cycle[&quot;phase_model&quot;],
+        &quot;phase_model_limited&quot;: limited_model,
+        &quot;phase_model_note&quot;: cycle.get(&quot;phase_model_note&quot;),
+        &quot;geometry&quot;: {
+            &quot;elongation_deg&quot;: round(angle, 6),
+            &quot;phase_name&quot;: phase_name,
+            &quot;phase_direction&quot;: phase_direction,
+            &quot;phase_contract_available&quot;: not limited_model,
+            &quot;raw_directed_sector_label&quot;: raw_phase_name if limited_model else None,
+            &quot;raw_directed_sector_direction&quot;: raw_phase_direction if limited_model else None,
+            &quot;relative_speed_deg_per_day&quot;: round(relative_speed, 9),
+            &quot;positions_deg&quot;: {
+                slow: round(positions[slow], 6),
+                fast: round(positions[fast], 6),
+            },
+            &quot;nearest_major_chapter_id&quot;: chapter[&quot;chapter_id&quot;],
+            &quot;nearest_major_chapter_angle_deg&quot;: chapter[&quot;angle_deg&quot;],
+            &quot;nearest_major_chapter_orb_deg&quot;: round(orb_deg, 6),
+            &quot;nearest_major_chapter_within_orb&quot;: active,
+        },
+        &quot;direct_aspect&quot;: direct_aspect,
+        &quot;dr020_nameability&quot;: nameability,
+        &quot;interpretive_status&quot;: &quot;active_direct_aspect&quot; if active else &quot;between_major_aspects&quot;,
+        &quot;reading_boundary&quot;: {
+            &quot;direct_aspect_always_visible&quot;: True,
+            &quot;phase_prose_requires_dr020_nameability&quot;: True,
+            &quot;plotline_test_is_separate_review_lane&quot;: True,
+            &quot;evidence_credit&quot;: 0,
+        },
+    }
+
+
+def build(vault_root: Path, registry_path: Path) -&gt; dict[str, Any]:
+    registry = load_json(registry_path)
+    cycles = registry[&quot;cycles&quot;]
+    tiers = registry[&quot;tiers&quot;]
+    tier_order = {row[&quot;tier_id&quot;]: row[&quot;order&quot;] for row in tiers}
+    if len(cycles) != 28 or len({row[&quot;cycle_id&quot;] for row in cycles}) != 28:
+        raise ValueError(&quot;Relationship registry must contain exactly 28 unique cycles&quot;)
+
+    phases_path = vault_root / &quot;99 - Templates&quot; / &quot;phases.py&quot;
+    synodic_path = vault_root / &quot;99 - Templates&quot; / &quot;synodic_cycles.py&quot;
+    chart_index_path = vault_root / &quot;99 - Templates&quot; / &quot;chart_reading_bones&quot; / &quot;index.json&quot;
+    phases = load_module(&quot;f250_relationship_phases&quot;, phases_path)
+    synodic = load_module(&quot;f250_relationship_synodic&quot;, synodic_path)
+    chart_index = load_json(chart_index_path)
+    charts = chart_index.get(&quot;charts&quot;, [])
+    if len(charts) != 30:
+        raise ValueError(f&quot;Expected 30 governed chart bones, found {len(charts)}&quot;)
+
+    cycle_catalog = []
+    for cycle in cycles:
+        source = vault_root / cycle[&quot;source_path&quot;]
+        if not source.exists():
+            raise FileNotFoundError(source)
+        cycle_catalog.append(
+            {
+                **cycle,
+                &quot;source_sha256&quot;: sha256(source),
+            }
+        )
+
+    chart_rows = []
+    for chart_meta in charts:
+        bone_path = (
+            vault_root
+            / &quot;99 - Templates&quot;
+            / &quot;chart_reading_bones&quot;
+            / f&quot;{chart_meta[&#x27;id&#x27;]}.json&quot;
+        )
+        bone = load_json(bone_path)
+        states = [
+            state_for_chart(
+                cycle=cycle,
+                bone=bone,
+                phases=phases,
+                synodic=synodic,
+                tier_order=tier_order,
+            )
+            for cycle in cycles
+        ]
+        states.sort(key=lambda row: (row[&quot;tier_order&quot;], row[&quot;cycle_order&quot;]))
+        metrics = relationship_field_metrics(states)
+        chart_rows.append(
+            {
+                &quot;chart_id&quot;: chart_meta[&quot;id&quot;],
+                &quot;chart_type&quot;: chart_meta[&quot;type&quot;],
+                &quot;date&quot;: chart_meta[&quot;date&quot;],
+                &quot;utc&quot;: bone[&quot;utc&quot;],
+                &quot;governing&quot;: chart_meta.get(&quot;governing&quot;),
+                &quot;rising_sign&quot;: bone[&quot;asc_sign&quot;],
+                &quot;chart_ruler&quot;: bone.get(&quot;ruler&quot;),
+                &quot;root_members&quot;: bone.get(&quot;root_members&quot;) or [],
+                &quot;nameable_cycle_ids&quot;: [
+                    state[&quot;cycle_id&quot;]
+                    for state in states
+                    if state[&quot;dr020_nameability&quot;][&quot;earned&quot;]
+                ],
+                &quot;active_direct_cycle_ids&quot;: [
+                    state[&quot;cycle_id&quot;] for state in states if state[&quot;direct_aspect&quot;]
+                ],
+                &quot;field_metrics&quot;: metrics,
+                &quot;cycles&quot;: states,
+                &quot;source_bone_path&quot;: str(bone_path.relative_to(vault_root)),
+                &quot;source_bone_sha256&quot;: sha256(bone_path),
+            }
+        )
+
+    inside_ids = [row[&quot;cycle_id&quot;] for row in cycles if row[&quot;status&quot;] == &quot;candidate_relationship_clock&quot;]
+    long_ids = [row[&quot;cycle_id&quot;] for row in cycles if row[&quot;status&quot;] == &quot;active_long_clock&quot;]
+    return {
+        &quot;schema&quot;: &quot;freedom250.planetary-relationship-clock-graph/v0.2&quot;,
+        &quot;status&quot;: &quot;proposal_for_review&quot;,
+        &quot;deterministic&quot;: True,
+        &quot;scope&quot;: {
+            &quot;bodies&quot;: [&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;],
+            &quot;sun_excluded&quot;: True,
+            &quot;moon_excluded&quot;: True,
+            &quot;relationship_count&quot;: 28,
+            &quot;inside_relationship_count&quot;: 18,
+            &quot;inside_phaseable_relationship_count&quot;: 17,
+            &quot;limited_geometry_relationship_count&quot;: 1,
+            &quot;existing_long_clock_count&quot;: 10,
+        },
+        &quot;governance&quot;: registry[&quot;authority_boundary&quot;],
+        &quot;method&quot;: {
+            &quot;phase_authority&quot;: &quot;DR-020 via 99 - Templates/phases.py&quot;,
+            &quot;direct_aspect_orbs&quot;: &quot;Katie&#x27;s workbook orbs via 99 - Templates/synodic_cycles.py&quot;,
+            &quot;long_clocks_boundary&quot;: &quot;DR-065 remains exactly ten governed hands&quot;,
+            &quot;phase_and_direct_aspect_independent&quot;: True,
+            &quot;plotline_join_authority&quot;: &quot;review_only_many_to_many&quot;,
+            &quot;mercury_venus_exception&quot;: &quot;limited geocentric elongation; do not imply a physically unavailable opposition/full-phase arc&quot;,
+        },
+        &quot;source&quot;: {
+            &quot;registry_path&quot;: str(registry_path),
+            &quot;registry_sha256&quot;: sha256(registry_path),
+            &quot;phase_engine_path&quot;: str(phases_path.relative_to(vault_root)),
+            &quot;phase_engine_sha256&quot;: sha256(phases_path),
+            &quot;direct_aspect_engine_path&quot;: str(synodic_path.relative_to(vault_root)),
+            &quot;direct_aspect_engine_sha256&quot;: sha256(synodic_path),
+            &quot;chart_index_path&quot;: str(chart_index_path.relative_to(vault_root)),
+            &quot;chart_index_sha256&quot;: sha256(chart_index_path),
+        },
+        &quot;tiers&quot;: tiers,
+        &quot;cycle_catalog&quot;: cycle_catalog,
+        &quot;coverage&quot;: {
+            &quot;chart_count&quot;: len(chart_rows),
+            &quot;relationship_count&quot;: len(cycles),
+            &quot;relationship_state_count&quot;: len(chart_rows) * len(cycles),
+            &quot;inside_relationship_state_count&quot;: len(chart_rows) * len(inside_ids),
+            &quot;inside_phaseable_state_count&quot;: len(chart_rows) * 17,
+            &quot;limited_geometry_state_count&quot;: len(chart_rows),
+            &quot;existing_long_clock_state_count&quot;: len(chart_rows) * len(long_ids),
+        },
+        &quot;corpus_field_control&quot;: corpus_field_control(chart_rows),
+        &quot;charts&quot;: chart_rows,
+    }
+
+
+def main() -&gt; int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--vault-root&quot;, type=Path, default=DEFAULT_VAULT)
+    parser.add_argument(&quot;--registry&quot;, type=Path, default=DEFAULT_REGISTRY)
+    parser.add_argument(&quot;--output&quot;, type=Path, default=DEFAULT_OUTPUT)
+    args = parser.parse_args()
+
+    payload = build(args.vault_root, args.registry)
+    args.output.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + &quot;\n&quot;,
+        encoding=&quot;utf-8&quot;,
+    )
+    print(
+        &quot;RELATIONSHIP CLOCKS: wrote &quot;
+        f&quot;{args.output} · {payload[&#x27;coverage&#x27;][&#x27;chart_count&#x27;]} charts · &quot;
+        f&quot;{payload[&#x27;coverage&#x27;][&#x27;relationship_state_count&#x27;]} states&quot;
+    )
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-full-moon-family-triage-2026-ea38e6a9026b.html">
+<title>test_full_moon_family_triage_2026</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_full_moon_family_triage_2026</h1><p class="mut">Portable source: 99 - Templates/test_full_moon_family_triage_2026.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Focused invariants for the 2026 Full-Moon-family structural triage.&quot;&quot;&quot;
+
+import json
+import unittest
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+DATA = json.loads((HERE / &quot;full_moon_family_triage_2026.json&quot;).read_text())
+
+
+class FullMoonFamilyTriage2026Tests(unittest.TestCase):
+    def setUp(self):
+        self.rows = DATA[&quot;families&quot;]
+        self.by_sign = {row[&quot;full&quot;][&quot;moon_sign&quot;]: row for row in self.rows}
+
+    def test_complete_2026_roster_and_zero_credit(self):
+        self.assertEqual(DATA[&quot;family_count&quot;], 13)
+        self.assertEqual(len(self.rows), 13)
+        self.assertEqual(DATA[&quot;authority_boundary&quot;][&quot;ranking&quot;].split(&quot;;&quot;)[0], &quot;none&quot;)
+        self.assertEqual(DATA[&quot;authority_boundary&quot;][&quot;evidence_credit&quot;], &quot;zero&quot;)
+
+    def test_every_family_preserves_unreviewed_lineage_state(self):
+        self.assertTrue(all(row[&quot;interpretation_status&quot;] == &quot;unreviewed&quot; for row in self.rows))
+        self.assertTrue(all(row[&quot;story_verdict&quot;] is None for row in self.rows))
+
+    def test_shadow_arrives_only_for_virgo_and_pisces(self):
+        signs = {
+            row[&quot;full&quot;][&quot;moon_sign&quot;]
+            for row in self.rows
+            if row[&quot;shadow_transition&quot;] == &quot;shadow_arrives_at_harvest&quot;
+        }
+        self.assertEqual(signs, {&quot;Virgo&quot;, &quot;Pisces&quot;})
+
+    def test_shadow_releases_only_for_libra_and_aries(self):
+        signs = {
+            row[&quot;full&quot;][&quot;moon_sign&quot;]
+            for row in self.rows
+            if row[&quot;shadow_transition&quot;] == &quot;shadow_releases_before_harvest&quot;
+        }
+        self.assertEqual(signs, {&quot;Libra&quot;, &quot;Aries&quot;})
+
+    def test_aquarius_and_virgo_are_quarter_degree_relays(self):
+        tight = {
+            row[&quot;full&quot;][&quot;moon_sign&quot;]
+            for row in self.rows
+            if row[&quot;relays&quot;][&quot;first_quarter_to_full_moon_degree_gap_deg&quot;] &lt;= 0.25
+        }
+        self.assertEqual(tight, {&quot;Virgo&quot;, &quot;Aquarius&quot;})
+
+    def test_aquarius_remains_the_tightest_relay(self):
+        order = DATA[&quot;quarter_to_full_degree_gap_order&quot;]
+        self.assertEqual(order[0][&quot;moon_sign&quot;], &quot;Aquarius&quot;)
+        self.assertLess(order[0][&quot;gap_deg&quot;], 0.002)
+        self.assertEqual(order[1][&quot;moon_sign&quot;], &quot;Virgo&quot;)
+
+    def test_every_full_phase_has_locked_reading_and_shape(self):
+        self.assertTrue(all(row[&quot;full&quot;][&quot;reading_id&quot;] for row in self.rows))
+        self.assertTrue(all(row[&quot;full&quot;][&quot;registered_shape&quot;] for row in self.rows))
+
+    def test_house_migrations_cover_ten_planets(self):
+        for row in self.rows:
+            migrations = row[&quot;relays&quot;][&quot;house_migrations&quot;]
+            self.assertEqual(set(migrations), {
+                &quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;,
+                &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;,
+            })
+            self.assertTrue(all(len(path) == 3 for path in migrations.values()))
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

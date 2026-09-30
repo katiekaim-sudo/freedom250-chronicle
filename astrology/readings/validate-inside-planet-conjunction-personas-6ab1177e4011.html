@@ -1,0 +1,440 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/validate-inside-planet-conjunction-personas-6ab1177e4011.html">
+<title>validate_inside_planet_conjunction_personas</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · draft</div><h1>validate_inside_planet_conjunction_personas</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Persona &amp; Relationship Work/Inside Planet Conjunction Persona Hearings 2026-08-30/validate_inside_planet_conjunction_personas.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Fail-closed validator for the inside-planet conjunction persona package.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import csv
+import hashlib
+import importlib.util
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+BUILDER_PATH = HERE / &quot;build_inside_planet_conjunction_personas.py&quot;
+INDEX_PATH = HERE / &quot;data/index.json&quot;
+FAMILY_DIR = HERE / &quot;data/families&quot;
+MV_PATH = HERE / &quot;data/exceptions/mercury-venus.json&quot;
+MANIFEST_PATH = HERE / &quot;manifest.json&quot;
+CSV_PATH = HERE / &quot;PACKAGE_ARTIFACT_MANIFEST.csv&quot;
+
+
+def load_module(path: Path, name: str) -&gt; Any:
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f&quot;Could not load {path}&quot;)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+BUILD = load_module(BUILDER_PATH, &quot;f250_inside_persona_validator_builder&quot;)
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def check(condition: bool, message: str, errors: list[str]) -&gt; None:
+    if not condition:
+        errors.append(message)
+
+
+def jd_of(value: str) -&gt; float:
+    return BUILD.LONG.BASE.jd_of(datetime.fromisoformat(value).astimezone(timezone.utc))
+
+
+def body_state(jd_ut: float, body: str) -&gt; tuple[float, float, int]:
+    position, flags = swe.calc_ut(
+        jd_ut,
+        BUILD.LONG.PLANET_CODES[body],
+        swe.FLG_MOSEPH | swe.FLG_SPEED,
+    )
+    return float(position[0] % 360.0), float(position[3]), int(flags)
+
+
+def validate_pass(
+    record: dict[str, Any], pair: list[str], label: str, errors: list[str]
+) -&gt; None:
+    moment = jd_of(record[&quot;utc&quot;])
+    a_lon = body_state(moment, pair[0])[0]
+    b_lon = body_state(moment, pair[1])[0]
+    residual = BUILD.LONG.BASE.angular_distance(a_lon, b_lon) * 3600.0
+    target = float(record[&quot;target_longitude&quot;])
+    target_delta = max(
+        BUILD.LONG.BASE.angular_distance(target, a_lon),
+        BUILD.LONG.BASE.angular_distance(target, b_lon),
+    ) * 3600.0
+    check(residual &lt;= 0.01, f&quot;{label}: pair root residual {residual} arcsec&quot;, errors)
+    check(target_delta &lt;= 0.01, f&quot;{label}: stored target delta {target_delta} arcsec&quot;, errors)
+    verification = record[&quot;verification&quot;]
+    check(
+        float(verification[&quot;pair_residual_arcseconds&quot;]) &lt;= 0.01,
+        f&quot;{label}: recorded root residual exceeds tolerance&quot;,
+        errors,
+    )
+    chart = record[&quot;chart&quot;]
+    check(
+        chart[&quot;event&quot;][&quot;utc&quot;] == datetime.fromisoformat(record[&quot;utc&quot;]).astimezone(timezone.utc).isoformat(timespec=&quot;microseconds&quot;),
+        f&quot;{label}: chart event identity drift&quot;,
+        errors,
+    )
+    check(
+        chart[&quot;ephemeris_flags&quot;][&quot;fallback_observed&quot;],
+        f&quot;{label}: expected explicit Moshier fallback receipt&quot;,
+        errors,
+    )
+    chart_path = HERE / record[&quot;chart_file&quot;]
+    check(chart_path.exists(), f&quot;{label}: missing chart {chart_path}&quot;, errors)
+
+
+def validate_persona(
+    family: dict[str, Any], label: str, errors: list[str]
+) -&gt; None:
+    lifecycle = family[&quot;persona_lifecycle&quot;]
+    status = lifecycle[&quot;status&quot;]
+    persona = family[&quot;persona&quot;]
+    overlay = family[&quot;radix_persona_overlay&quot;]
+    if status == BUILD.ELIGIBLE:
+        check(persona is not None, f&quot;{label}: eligible persona missing&quot;, errors)
+        check(overlay is not None, f&quot;{label}: eligible overlay missing&quot;, errors)
+        if persona is None:
+            return
+        candidate = lifecycle[&quot;persona_candidate&quot;]
+        target = float(persona[&quot;target_longitude&quot;])
+        event_jd = jd_of(candidate[&quot;utc&quot;])
+        sun_lon = body_state(event_jd, &quot;Sun&quot;)[0]
+        residual = BUILD.LONG.BASE.angular_distance(sun_lon, target) * 3600.0
+        check(residual &lt;= 0.01, f&quot;{label}: persona solar residual {residual}&quot;, errors)
+        gate = lifecycle[&quot;successor_gate&quot;]
+        check(gate is not None, f&quot;{label}: missing successor gate&quot;, errors)
+        if gate:
+            check(
+                event_jd &lt; jd_of(gate[&quot;successor_first_pass_utc&quot;]),
+                f&quot;{label}: eligible candidate does not precede successor&quot;,
+                errors,
+            )
+            check(
+                gate[&quot;candidate_precedes_successor&quot;] is True,
+                f&quot;{label}: eligible gate flag false&quot;,
+                errors,
+            )
+        files = persona[&quot;chart_files&quot;]
+        check(len(files) == 2, f&quot;{label}: eligible persona needs two chart files&quot;, errors)
+        for relative in files:
+            check((HERE / relative).exists(), f&quot;{label}: missing {relative}&quot;, errors)
+        fast_scope = overlay[&quot;seed_to_persona_change_gate&quot;].get(&quot;fast_body_scope&quot;, {})
+        check(
+            fast_scope.get(&quot;bodies&quot;) == [&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;],
+            f&quot;{label}: fast-body change gate missing&quot;,
+            errors,
+        )
+    elif status == BUILD.SUPERSEDED:
+        check(persona is None, f&quot;{label}: successor-collision persona was rendered&quot;, errors)
+        check(overlay is None, f&quot;{label}: successor-collision overlay was rendered&quot;, errors)
+        candidate = lifecycle[&quot;persona_candidate&quot;]
+        gate = lifecycle[&quot;successor_gate&quot;]
+        check(candidate is not None and gate is not None, f&quot;{label}: supersession receipt incomplete&quot;, errors)
+        if candidate and gate:
+            check(
+                jd_of(candidate[&quot;utc&quot;]) &gt;= jd_of(gate[&quot;successor_first_pass_utc&quot;]),
+                f&quot;{label}: successor-collision candidate actually precedes successor&quot;,
+                errors,
+            )
+            check(
+                gate[&quot;candidate_precedes_successor&quot;] is False,
+                f&quot;{label}: successor-collision gate flag true&quot;,
+                errors,
+            )
+        check(
+            &quot;explicit gate result&quot; in lifecycle[&quot;meaning&quot;],
+            f&quot;{label}: missing explicit gate-result wording&quot;,
+            errors,
+        )
+    elif status == BUILD.NO_SUCCESSOR:
+        check(persona is None, f&quot;{label}: bracketing persona was rendered&quot;, errors)
+        check(overlay is None, f&quot;{label}: bracketing overlay was rendered&quot;, errors)
+        check(
+            lifecycle[&quot;persona_candidate&quot;] is None,
+            f&quot;{label}: bracketing candidate should be withheld&quot;,
+            errors,
+        )
+        check(
+            family[&quot;identity&quot;][&quot;window_role&quot;] == &quot;first_after_window&quot;,
+            f&quot;{label}: no-successor family is not bracketing-only&quot;,
+            errors,
+        )
+    else:
+        errors.append(f&quot;{label}: unknown persona status {status}&quot;)
+
+
+def current_artifacts() -&gt; list[dict[str, Any]]:
+    paths = sorted(
+        path
+        for path in HERE.rglob(&quot;*&quot;)
+        if path.is_file()
+        and path not in {MANIFEST_PATH, CSV_PATH}
+        and &quot;__pycache__&quot; not in path.parts
+    )
+    return [
+        {
+            &quot;path&quot;: str(path.relative_to(HERE)),
+            **BUILD.artifact_metadata(path),
+            &quot;bytes&quot;: path.stat().st_size,
+            &quot;sha256&quot;: sha256(path),
+        }
+        for path in paths
+    ]
+
+
+def main() -&gt; int:
+    errors: list[str] = []
+    for required in (INDEX_PATH, MV_PATH, MANIFEST_PATH, CSV_PATH):
+        check(required.exists(), f&quot;missing required artifact {required}&quot;, errors)
+    if errors:
+        print(&quot;FAIL&quot;)
+        for error in errors:
+            print(f&quot;- {error}&quot;)
+        return 1
+
+    index = json.loads(INDEX_PATH.read_text(encoding=&quot;utf-8&quot;))
+    family_paths = sorted(FAMILY_DIR.glob(&quot;*.json&quot;))
+    check(index[&quot;schema&quot;] == BUILD.SCHEMA, &quot;index schema mismatch&quot;, errors)
+    check(index[&quot;status&quot;] == BUILD.STATUS, &quot;index status mismatch&quot;, errors)
+    check(len(family_paths) == 55, f&quot;expected 55 family files, found {len(family_paths)}&quot;, errors)
+    check(len(index[&quot;families&quot;]) == 55, &quot;index family count mismatch&quot;, errors)
+
+    status_counts = {BUILD.ELIGIBLE: 0, BUILD.SUPERSEDED: 0, BUILD.NO_SUCCESSOR: 0}
+    total_passes = 0
+    multipass_count = 0
+    observed_ids: set[str] = set()
+    persona_paths: list[str] = []
+    index_by_id = {row[&quot;seed_family_id&quot;]: row for row in index[&quot;families&quot;]}
+    for path in family_paths:
+        family = json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+        identity = family[&quot;identity&quot;]
+        family_id = identity[&quot;seed_family_id&quot;]
+        label = family_id
+        observed_ids.add(family_id)
+        check(family[&quot;schema&quot;] == BUILD.SCHEMA, f&quot;{label}: schema mismatch&quot;, errors)
+        check(family[&quot;status&quot;] == BUILD.STATUS, f&quot;{label}: status mismatch&quot;, errors)
+        check(
+            family[&quot;persona_lifecycle&quot;][&quot;one_shared_persona_maximum&quot;] is True,
+            f&quot;{label}: one-persona maximum weakened&quot;,
+            errors,
+        )
+        boundary = family[&quot;authority_boundary&quot;]
+        for field in (
+            &quot;official_research_evidence&quot;,
+            &quot;event_proof&quot;,
+            &quot;timing_or_forecast_authority&quot;,
+            &quot;plot_ownership&quot;,
+            &quot;independent_vote&quot;,
+            &quot;live_vault_promotion&quot;,
+        ):
+            check(boundary[field] is False, f&quot;{label}: authority field {field} weakened&quot;, errors)
+        check(
+            boundary[&quot;astrology_reference_only&quot;] is True,
+            f&quot;{label}: Astrology Reference fence weakened&quot;,
+            errors,
+        )
+        passes = family[&quot;exact_passes&quot;]
+        total_passes += len(passes)
+        multipass_count += len(passes) &gt; 1
+        check(
+            identity[&quot;provisional_display_anchor_pass_id&quot;] == passes[0][&quot;pass_id&quot;],
+            f&quot;{label}: provisional display anchor is not earliest pass&quot;,
+            errors,
+        )
+        check(
+            family[&quot;anchor_decision&quot;][&quot;proposed_pass_id&quot;] == passes[0][&quot;pass_id&quot;],
+            f&quot;{label}: anchor decision drift&quot;,
+            errors,
+        )
+        expected_review = (
+            &quot;proposed_earliest_pass_pending_human_disposition&quot;
+            if len(passes) &gt; 1
+            else &quot;unambiguous_single_pass_coordinate_pending_clock_adoption&quot;
+        )
+        check(
+            family[&quot;anchor_decision&quot;][&quot;review_status&quot;] == expected_review,
+            f&quot;{label}: anchor review status drift&quot;,
+            errors,
+        )
+        for position, record in enumerate(passes):
+            validate_pass(record, identity[&quot;pair&quot;], f&quot;{label}/p{position + 1}&quot;, errors)
+        status = family[&quot;persona_lifecycle&quot;][&quot;status&quot;]
+        if status in status_counts:
+            status_counts[status] += 1
+        if family[&quot;persona&quot;]:
+            persona_paths.extend(family[&quot;persona&quot;][&quot;chart_files&quot;])
+        index_row = index_by_id.get(family_id)
+        check(index_row is not None, f&quot;{label}: missing from index&quot;, errors)
+        if index_row:
+            check(index_row[&quot;persona_status&quot;] == status, f&quot;{label}: index status drift&quot;, errors)
+            check(index_row[&quot;pass_count&quot;] == len(passes), f&quot;{label}: index pass count drift&quot;, errors)
+            check(
+                index_row[&quot;data_file&quot;] == f&quot;data/families/{family_id}.json&quot;,
+                f&quot;{label}: index data route drift&quot;,
+                errors,
+            )
+        validate_persona(family, label, errors)
+
+    check(total_passes == 73, f&quot;expected 73 exact passes, found {total_passes}&quot;, errors)
+    check(multipass_count == 7, f&quot;expected 7 multipass families, found {multipass_count}&quot;, errors)
+    check(status_counts[BUILD.ELIGIBLE] == 35, f&quot;eligible count {status_counts[BUILD.ELIGIBLE]}&quot;, errors)
+    check(
+        status_counts[BUILD.SUPERSEDED] == 3,
+        f&quot;successor-collision count {status_counts[BUILD.SUPERSEDED]}&quot;,
+        errors,
+    )
+    check(status_counts[BUILD.NO_SUCCESSOR] == 17, f&quot;bracketing count {status_counts[BUILD.NO_SUCCESSOR]}&quot;, errors)
+    check(set(index_by_id) == observed_ids, &quot;index-to-family identity parity failed&quot;, errors)
+    check(len(persona_paths) == len(set(persona_paths)) == 70, &quot;persona chart paths are not unique&quot;, errors)
+    check(
+        index[&quot;coverage&quot;][&quot;persona_status_counts&quot;] == status_counts,
+        &quot;index persona status summary drift&quot;,
+        errors,
+    )
+    expected_successor_collisions = {
+        &quot;mercury-uranus-2025&quot;,
+        &quot;venus-jupiter-2025&quot;,
+        &quot;venus-uranus-2025&quot;,
+    }
+    actual_successor_collisions = {
+        path.stem
+        for path in family_paths
+        if json.loads(path.read_text(encoding=&quot;utf-8&quot;))[&quot;persona_lifecycle&quot;][&quot;status&quot;]
+        == BUILD.SUPERSEDED
+    }
+    check(
+        actual_successor_collisions == expected_successor_collisions,
+        f&quot;successor-collision set {actual_successor_collisions}&quot;,
+        errors,
+    )
+
+    mv = json.loads(MV_PATH.read_text(encoding=&quot;utf-8&quot;))
+    check(len(mv[&quot;crossings&quot;]) == 6, &quot;Mercury-Venus crossing count mismatch&quot;, errors)
+    check(
+        sum(row[&quot;window_relation&quot;] == &quot;in_window&quot; for row in mv[&quot;crossings&quot;]) == 4,
+        &quot;Mercury-Venus in-window count mismatch&quot;,
+        errors,
+    )
+    check(
+        mv[&quot;persona_lifecycle&quot;][&quot;status&quot;] == BUILD.NON_PHASEABLE,
+        &quot;Mercury-Venus persona status mismatch&quot;,
+        errors,
+    )
+    check(
+        mv[&quot;persona_lifecycle&quot;][&quot;persona_candidate&quot;] is None,
+        &quot;Mercury-Venus persona candidate should not exist&quot;,
+        errors,
+    )
+    for position, record in enumerate(mv[&quot;crossings&quot;]):
+        validate_pass(record, [&quot;Mercury&quot;, &quot;Venus&quot;], f&quot;mercury-venus/x{position + 1}&quot;, errors)
+
+    seed_files = list((HERE / &quot;charts/seeds&quot;).glob(&quot;*.svg&quot;))
+    persona_files = list((HERE / &quot;charts/personas&quot;).glob(&quot;*.svg&quot;))
+    overlay_files = list((HERE / &quot;charts/overlays&quot;).glob(&quot;*.svg&quot;))
+    check(len(seed_files) == 79, f&quot;seed chart count {len(seed_files)}&quot;, errors)
+    check(len(persona_files) == 35, f&quot;persona chart count {len(persona_files)}&quot;, errors)
+    check(len(overlay_files) == 35, f&quot;overlay chart count {len(overlay_files)}&quot;, errors)
+
+    manifest = json.loads(MANIFEST_PATH.read_text(encoding=&quot;utf-8&quot;))
+    required_sources = {
+        str(BUILD.READING_START),
+        str(BUILD.DECISION_LOG),
+        str(BUILD.RELATIONSHIP_METHOD),
+        str(BUILD.LONG.PERSONA_METHOD_PATH),
+    }
+    check(
+        required_sources.issubset(manifest[&quot;source_hashes&quot;]),
+        &quot;governing method sources are not all pinned&quot;,
+        errors,
+    )
+    for raw_path, expected_hash in manifest[&quot;source_hashes&quot;].items():
+        source = Path(raw_path)
+        check(source.exists(), f&quot;manifest source missing {source}&quot;, errors)
+        if source.exists():
+            check(sha256(source) == expected_hash, f&quot;source hash drift {source}&quot;, errors)
+    actual_artifacts = current_artifacts()
+    for row in actual_artifacts:
+        for field in (
+            &quot;artifact_role&quot;,
+            &quot;custody_class&quot;,
+            &quot;producer&quot;,
+            &quot;rebuildability&quot;,
+            &quot;search_visibility&quot;,
+        ):
+            check(bool(row[field]), f&quot;artifact {row[&#x27;path&#x27;]} missing {field}&quot;, errors)
+    check(
+        manifest[&quot;artifacts&quot;] == actual_artifacts,
+        &quot;artifact manifest differs from current package files&quot;,
+        errors,
+    )
+    with CSV_PATH.open(encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as handle:
+        reader = csv.DictReader(handle)
+        check(
+            set(reader.fieldnames or [])
+            == {
+                &quot;relative_path&quot;,
+                &quot;bytes&quot;,
+                &quot;sha256&quot;,
+                &quot;custody_class&quot;,
+                &quot;artifact_role&quot;,
+                &quot;producer_path&quot;,
+                &quot;rebuildability&quot;,
+                &quot;search_visibility&quot;,
+            },
+            &quot;CSV custody manifest columns do not match Workbench schema&quot;,
+            errors,
+        )
+        csv_rows = list(reader)
+    normalized_csv = [
+        {
+            &quot;relative_path&quot;: row[&quot;relative_path&quot;],
+            &quot;bytes&quot;: int(row[&quot;bytes&quot;]),
+            &quot;sha256&quot;: row[&quot;sha256&quot;],
+            &quot;custody_class&quot;: row[&quot;custody_class&quot;],
+            &quot;artifact_role&quot;: row[&quot;artifact_role&quot;],
+            &quot;producer_path&quot;: row[&quot;producer_path&quot;],
+            &quot;rebuildability&quot;: row[&quot;rebuildability&quot;],
+            &quot;search_visibility&quot;: row[&quot;search_visibility&quot;],
+        }
+        for row in csv_rows
+    ]
+    check(
+        normalized_csv == BUILD.delegation_rows(actual_artifacts),
+        &quot;CSV custody manifest mismatch&quot;,
+        errors,
+    )
+
+    if errors:
+        print(f&quot;FAIL {len(errors)} error(s)&quot;)
+        for error in errors:
+            print(f&quot;- {error}&quot;)
+        return 1
+    print(
+        &quot;PASS families=55 passes=73 conjunction_charts=79 &quot;
+        &quot;personas=35 successor_collisions=3 bracketing=17 mercury_venus=6&quot;
+    )
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

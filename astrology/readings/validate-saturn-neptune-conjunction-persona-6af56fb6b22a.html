@@ -1,0 +1,1005 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/validate-saturn-neptune-conjunction-persona-6af56fb6b22a.html">
+<title>validate_saturn_neptune_conjunction_persona</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · archive</div><h1>validate_saturn_neptune_conjunction_persona</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Persona &amp; Relationship Work/Persona Pilots/Deep Current Persona Charts Saturn-Neptune 2026-08-22/validate_saturn_neptune_conjunction_persona.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Fail-closed validation for the Saturn-Neptune 2026 persona pilot.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.util
+import json
+import re
+import subprocess
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+CHARTS = HERE / &quot;charts&quot;
+DATA_PATH = HERE / &quot;SATURN_NEPTUNE_2026_CONJUNCTION_PERSONA.json&quot;
+MANIFEST_PATH = CHARTS / &quot;conjunction_persona_manifest.json&quot;
+BUILDER_PATH = HERE / &quot;build_saturn_neptune_conjunction_persona.py&quot;
+README_PATH = HERE / &quot;README.md&quot;
+HEARING_PATH = HERE / &quot;SATURN_NEPTUNE_2026_PERSONA_HEARING.md&quot;
+GALLERY_PATH = CHARTS / &quot;Saturn–Neptune 2026 — Conjunction Persona Gallery.html&quot;
+STANDALONE_PATH = CHARTS / &quot;Saturn–Neptune 2026 — Conjunction Persona — Standalone.svg&quot;
+BIWHEEL_PATH = CHARTS / &quot;Saturn–Neptune 2026 — Conjunction Persona + Radix — Biwheel.svg&quot;
+VAULT = Path(&quot;Chronicle/&quot;)
+SEED_REGISTRY = VAULT / &quot;99 - Templates&quot; / &quot;synodic_seed_families.json&quot;
+SYNODIC_ENGINE = VAULT / &quot;99 - Templates&quot; / &quot;synodic_cycles.py&quot;
+EXPECTED_TARGET = 0.752728085
+EXPECTED_SEED = &quot;2026-02-20T16:52:10.880812+00:00&quot;
+EXPECTED_PERSONA = &quot;2026-03-21T08:56:41.280458+00:00&quot;
+PLANETS = {
+    &quot;Sun&quot;,
+    &quot;Moon&quot;,
+    &quot;Mercury&quot;,
+    &quot;Venus&quot;,
+    &quot;Mars&quot;,
+    &quot;Jupiter&quot;,
+    &quot;Saturn&quot;,
+    &quot;Uranus&quot;,
+    &quot;Neptune&quot;,
+    &quot;Pluto&quot;,
+}
+PLANET_ORDER = (
+    &quot;Sun&quot;,
+    &quot;Moon&quot;,
+    &quot;Mercury&quot;,
+    &quot;Venus&quot;,
+    &quot;Mars&quot;,
+    &quot;Jupiter&quot;,
+    &quot;Saturn&quot;,
+    &quot;Uranus&quot;,
+    &quot;Neptune&quot;,
+    &quot;Pluto&quot;,
+)
+BODY_CODES = {
+    &quot;Sun&quot;: swe.SUN,
+    &quot;Moon&quot;: swe.MOON,
+    &quot;Mercury&quot;: swe.MERCURY,
+    &quot;Venus&quot;: swe.VENUS,
+    &quot;Mars&quot;: swe.MARS,
+    &quot;Jupiter&quot;: swe.JUPITER,
+    &quot;Saturn&quot;: swe.SATURN,
+    &quot;Uranus&quot;: swe.URANUS,
+    &quot;Neptune&quot;: swe.NEPTUNE,
+    &quot;Pluto&quot;: swe.PLUTO,
+    &quot;Node&quot;: swe.TRUE_NODE,
+}
+MINOR_POINTS = {&quot;Chiron&quot;, &quot;Node&quot;, &quot;America&quot;}
+HARD_ASPECTS = {&quot;conjunction&quot;, &quot;square&quot;, &quot;opposition&quot;}
+MUNDANE_MAJOR_RULES = (
+    (&quot;conjunction&quot;, 0.0, 8.0),
+    (&quot;sextile&quot;, 60.0, 5.0),
+    (&quot;square&quot;, 90.0, 7.0),
+    (&quot;trine&quot;, 120.0, 7.0),
+    (&quot;opposition&quot;, 180.0, 8.0),
+)
+HUBER_ANGLE_RULES = (
+    (&quot;conjunction&quot;, 0.0),
+    (&quot;opposition&quot;, 180.0),
+    (&quot;trine&quot;, 120.0),
+    (&quot;square&quot;, 90.0),
+    (&quot;sextile&quot;, 60.0),
+    (&quot;quincunx&quot;, 150.0),
+    (&quot;semisextile&quot;, 30.0),
+)
+HUBER_CLASS = {
+    &quot;Sun&quot;: 0,
+    &quot;Moon&quot;: 0,
+    &quot;Mercury&quot;: 1,
+    &quot;Venus&quot;: 1,
+    &quot;Jupiter&quot;: 1,
+    &quot;Mars&quot;: 2,
+    &quot;Saturn&quot;: 2,
+    &quot;Uranus&quot;: 3,
+    &quot;Neptune&quot;: 3,
+    &quot;Pluto&quot;: 3,
+    &quot;Chiron&quot;: 3,
+}
+HUBER_ORB = {
+    &quot;conjunction&quot;: (9.0, 7.0, 6.0, 5.0),
+    &quot;opposition&quot;: (9.0, 7.0, 6.0, 5.0),
+    &quot;trine&quot;: (8.0, 6.0, 5.0, 4.0),
+    &quot;square&quot;: (6.0, 5.0, 4.0, 3.0),
+    &quot;sextile&quot;: (5.0, 4.0, 3.0, 2.0),
+    &quot;quincunx&quot;: (5.0, 4.0, 3.0, 2.0),
+    &quot;semisextile&quot;: (3.0, 2.0, 1.5, 1.0),
+}
+ANGLE_PARTNERS = PLANET_ORDER + (&quot;Chiron&quot;,)
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def signed_delta(a: float, b: float) -&gt; float:
+    return ((a - b + 540.0) % 360.0) - 180.0
+
+
+def jd_of(moment: datetime) -&gt; float:
+    utc = moment.astimezone(timezone.utc)
+    hour = (
+        utc.hour
+        + utc.minute / 60.0
+        + utc.second / 3600.0
+        + utc.microsecond / 3_600_000_000.0
+    )
+    return swe.julday(utc.year, utc.month, utc.day, hour)
+
+
+def jd_to_utc(jd_ut: float) -&gt; datetime:
+    from datetime import timedelta
+
+    return datetime(2000, 1, 1, 12, tzinfo=timezone.utc) + timedelta(
+        days=jd_ut - 2451545.0
+    )
+
+
+def angular_distance(a: float, b: float) -&gt; float:
+    return abs(signed_delta(a, b))
+
+
+def body_state(jd_ut: float, body: str) -&gt; tuple[float, float]:
+    result = swe.calc_ut(
+        jd_ut,
+        BODY_CODES[body],
+        swe.FLG_MOSEPH | swe.FLG_SPEED,
+    )[0]
+    return result[0] % 360.0, result[3]
+
+
+def speed_root(jd_lo: float, jd_hi: float, body: str) -&gt; float:
+    speed_lo = body_state(jd_lo, body)[1]
+    speed_hi = body_state(jd_hi, body)[1]
+    if speed_lo * speed_hi &gt; 0.0:
+        raise RuntimeError(f&quot;speed root not bracketed for {body}&quot;)
+    for _ in range(90):
+        mid = (jd_lo + jd_hi) / 2.0
+        speed_mid = body_state(mid, body)[1]
+        if speed_lo * speed_mid &lt;= 0.0:
+            jd_hi = mid
+            speed_hi = speed_mid
+        else:
+            jd_lo = mid
+            speed_lo = speed_mid
+    return (jd_lo + jd_hi) / 2.0
+
+
+def independent_station_events(
+    start_jd: float, end_jd: float, bodies: tuple[str, ...]
+) -&gt; list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for body in bodies:
+        prior_jd = start_jd
+        prior_speed = body_state(prior_jd, body)[1]
+        while prior_jd &lt; end_jd:
+            current_jd = min(prior_jd + 0.125, end_jd)
+            current_speed = body_state(current_jd, body)[1]
+            if prior_speed * current_speed &lt; 0.0:
+                root_jd = speed_root(prior_jd, current_jd, body)
+                before = body_state(root_jd - 1.0 / 1440.0, body)[1]
+                after = body_state(root_jd + 1.0 / 1440.0, body)[1]
+                longitude = body_state(root_jd, body)[0]
+                rows.append(
+                    {
+                        &quot;body&quot;: body,
+                        &quot;utc&quot;: jd_to_utc(root_jd),
+                        &quot;longitude&quot;: longitude,
+                        &quot;direction_before&quot;: &quot;direct&quot; if before &gt; 0 else &quot;retrograde&quot;,
+                        &quot;direction_after&quot;: &quot;direct&quot; if after &gt; 0 else &quot;retrograde&quot;,
+                    }
+                )
+            prior_jd = current_jd
+            prior_speed = current_speed
+    return sorted(rows, key=lambda row: row[&quot;utc&quot;])
+
+
+def independent_major_aspects(
+    positions: dict[str, float],
+) -&gt; dict[tuple[str, str], dict[str, Any]]:
+    output: dict[tuple[str, str], dict[str, Any]] = {}
+    for index, body_a in enumerate(PLANET_ORDER):
+        for body_b in PLANET_ORDER[index + 1 :]:
+            separation = angular_distance(positions[body_a], positions[body_b])
+            aspect, angle, limit = min(
+                MUNDANE_MAJOR_RULES,
+                key=lambda row: abs(separation - row[1]),
+            )
+            orb = abs(separation - angle)
+            if orb &lt;= limit:
+                output[tuple(sorted((body_a, body_b)))] = {
+                    &quot;aspect&quot;: aspect,
+                    &quot;orb_deg&quot;: orb,
+                }
+    return output
+
+
+def load_module(path: Path, name: str) -&gt; Any:
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f&quot;could not load {path}&quot;)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def check(condition: bool, message: str, errors: list[str]) -&gt; None:
+    if not condition:
+        errors.append(message)
+
+
+def validate_links(errors: list[str]) -&gt; None:
+    html = GALLERY_PATH.read_text(encoding=&quot;utf-8&quot;)
+    local_refs = re.findall(r&#x27;(?:src|href)=&quot;([^&quot;]+)&quot;&#x27;, html)
+    for ref in local_refs:
+        if ref.startswith((&quot;http://&quot;, &quot;https://&quot;, &quot;#&quot;)):
+            continue
+        target = (GALLERY_PATH.parent / ref).resolve()
+        check(target.exists(), f&quot;gallery link is missing: {ref}&quot;, errors)
+
+
+def validate_manifest(data: dict[str, Any], manifest: dict[str, Any], errors: list[str]) -&gt; None:
+    check(manifest.get(&quot;status&quot;) == data.get(&quot;status&quot;), &quot;manifest status drift&quot;, errors)
+    check(
+        manifest.get(&quot;review_status&quot;) == &quot;awaiting_katie_review&quot;,
+        &quot;manifest review status is not awaiting Katie&quot;,
+        errors,
+    )
+    check(
+        manifest.get(&quot;review_disposition&quot;) is None,
+        &quot;manifest must not infer a Katie disposition&quot;,
+        errors,
+    )
+    output_paths = {
+        DATA_PATH.name: DATA_PATH,
+        GALLERY_PATH.name: GALLERY_PATH,
+        STANDALONE_PATH.name: STANDALONE_PATH,
+        BIWHEEL_PATH.name: BIWHEEL_PATH,
+        BUILDER_PATH.name: BUILDER_PATH,
+    }
+    for name, expected_hash in manifest.get(&quot;sha256&quot;, {}).items():
+        path = output_paths.get(name)
+        check(path is not None, f&quot;manifest hashes unknown output: {name}&quot;, errors)
+        if path is not None:
+            check(path.exists(), f&quot;manifest output is missing: {path}&quot;, errors)
+            if path.exists():
+                check(sha256(path) == expected_hash, f&quot;output hash drift: {name}&quot;, errors)
+    check(
+        set(output_paths) == set(manifest.get(&quot;sha256&quot;, {})),
+        &quot;manifest output hash inventory is incomplete or excessive&quot;,
+        errors,
+    )
+    for source, expected_hash in manifest.get(&quot;source_sha256&quot;, {}).items():
+        path = Path(source)
+        check(path.exists(), f&quot;source dependency is missing: {path}&quot;, errors)
+        if path.exists():
+            check(sha256(path) == expected_hash, f&quot;source hash drift: {path}&quot;, errors)
+    source_names = {Path(path).name for path in manifest.get(&quot;source_sha256&quot;, {})}
+    for required in {
+        &quot;synodic_seed_families.json&quot;,
+        &quot;synodic_cycles.py&quot;,
+        &quot;chart_conventions.py&quot;,
+        &quot;PERSONA_CHARTS_CLEAN_METHOD_REFERENCE.md&quot;,
+        &quot;Mundane Astrology — Master Reference.md&quot;,
+        &quot;chart_calculator.py&quot;,
+        &quot;reading_engine.py&quot;,
+        &quot;wheel_lib.py&quot;,
+        &quot;america.py&quot;,
+        &quot;america_ephemeris.json&quot;,
+    }:
+        check(required in source_names, f&quot;source hash inventory omits {required}&quot;, errors)
+    runtime = manifest.get(&quot;runtime&quot;, {})
+    check(bool(runtime.get(&quot;pyswisseph&quot;)), &quot;runtime lacks pyswisseph version&quot;, errors)
+    check(
+        runtime.get(&quot;persona_primary_solver&quot;) == &quot;solcross_ut with FLG_SWIEPH&quot;,
+        &quot;primary persona solver provenance drift&quot;,
+        errors,
+    )
+
+
+def validate_seed_authority(data: dict[str, Any], errors: list[str]) -&gt; None:
+    engine = load_module(SYNODIC_ENGINE, &quot;f250_persona_validator_synodic&quot;)
+    registry = engine.load_seed_registry(SEED_REGISTRY)
+    validation = engine.validate_seed_registry(registry)
+    check(validation[&quot;ok&quot;], f&quot;live seed registry fails: {validation[&#x27;errors&#x27;]}&quot;, errors)
+    cycles = [row for row in registry[&quot;cycles&quot;] if row[&quot;cycle_id&quot;] == &quot;saturn-neptune&quot;]
+    check(len(cycles) == 1, &quot;live registry does not have one Saturn-Neptune cycle&quot;, errors)
+    if len(cycles) != 1:
+        return
+    cycle = cycles[0]
+    check(cycle[&quot;pair&quot;] == [&quot;Saturn&quot;, &quot;Neptune&quot;], &quot;governed pair drift&quot;, errors)
+    check(cycle[&quot;seed_family_id&quot;] == &quot;saturn-neptune-2026&quot;, &quot;seed family drift&quot;, errors)
+    check(
+        cycle[&quot;display_anchor_pass_id&quot;] == &quot;saturn-neptune-20260220-p1&quot;,
+        &quot;display anchor drift&quot;,
+        errors,
+    )
+    check(len(cycle[&quot;passes&quot;]) == 1, &quot;Saturn-Neptune pass count drift&quot;, errors)
+    anchor = cycle[&quot;passes&quot;][0]
+    check(anchor[&quot;utc&quot;] == EXPECTED_SEED, &quot;governed seed UTC drift&quot;, errors)
+    check(abs(anchor[&quot;longitude_deg&quot;] - EXPECTED_TARGET) &lt; 1e-12, &quot;target drift&quot;, errors)
+    canonical = engine.seed_chart(
+        &quot;saturn-neptune&quot;,
+        &quot;saturn-neptune-20260220-p1&quot;,
+        vault_root=VAULT,
+        seed_registry_path=SEED_REGISTRY,
+    )
+    comparison = data[&quot;radix&quot;][&quot;verification&quot;][&quot;canonical_seed_chart_comparison&quot;]
+    radix = data[&quot;radix&quot;]
+    check(canonical[&quot;utc&quot;] == radix[&quot;event&quot;][&quot;utc&quot;], &quot;canonical seed UTC mismatch&quot;, errors)
+    recomputed = {
+        &quot;asc&quot;: abs(signed_delta(canonical[&quot;asc&quot;], radix[&quot;frame&quot;][&quot;asc&quot;])) * 3600.0,
+        &quot;mc&quot;: abs(signed_delta(canonical[&quot;mc&quot;], radix[&quot;frame&quot;][&quot;mc&quot;])) * 3600.0,
+        &quot;planets&quot;: {
+            body: abs(
+                signed_delta(
+                    canonical[&quot;positions&quot;][body][&quot;lon&quot;],
+                    radix[&quot;positions&quot;][body][&quot;longitude&quot;],
+                )
+            )
+            * 3600.0
+            for body in PLANET_ORDER
+        },
+    }
+    deltas = [recomputed[&quot;asc&quot;], recomputed[&quot;mc&quot;]]
+    deltas.extend(recomputed[&quot;planets&quot;].values())
+    check(max(deltas) &lt;= 0.01, &quot;serialized radix disagrees with canonical seed by &gt;0.01 arcsec&quot;, errors)
+    check(
+        abs(recomputed[&quot;asc&quot;] - comparison[&quot;asc_delta_arcseconds&quot;]) &lt;= 0.00001,
+        &quot;stored ASC comparison receipt disagrees with recomputation&quot;,
+        errors,
+    )
+    check(
+        abs(recomputed[&quot;mc&quot;] - comparison[&quot;mc_delta_arcseconds&quot;]) &lt;= 0.00001,
+        &quot;stored MC comparison receipt disagrees with recomputation&quot;,
+        errors,
+    )
+    for body in PLANET_ORDER:
+        check(
+            abs(
+                recomputed[&quot;planets&quot;][body]
+                - comparison[&quot;planet_delta_arcseconds&quot;][body]
+            )
+            &lt;= 0.00001,
+            f&quot;stored {body} comparison receipt disagrees with recomputation&quot;,
+            errors,
+        )
+
+
+def validate_exactness(data: dict[str, Any], errors: list[str]) -&gt; None:
+    radix = data[&quot;radix&quot;]
+    persona = data[&quot;persona&quot;]
+    check(radix[&quot;event&quot;][&quot;utc&quot;] == EXPECTED_SEED, &quot;serialized seed UTC drift&quot;, errors)
+    check(persona[&quot;event&quot;][&quot;utc&quot;] == EXPECTED_PERSONA, &quot;serialized persona UTC drift&quot;, errors)
+    check(abs(radix[&quot;target_longitude&quot;] - EXPECTED_TARGET) &lt; 1e-12, &quot;serialized target drift&quot;, errors)
+    seed_moment = datetime.fromisoformat(radix[&quot;event&quot;][&quot;utc&quot;])
+    persona_moment = datetime.fromisoformat(persona[&quot;event&quot;][&quot;utc&quot;])
+    check(persona_moment &gt; seed_moment, &quot;persona is not later than seed&quot;, errors)
+    check(0 &lt; persona[&quot;days_after_radix&quot;] &lt; 370, &quot;persona is not first-year later solar contact&quot;, errors)
+    seed_jd = jd_of(seed_moment)
+    saturn = swe.calc_ut(seed_jd, swe.SATURN, swe.FLG_MOSEPH | swe.FLG_SPEED)[0][0]
+    neptune = swe.calc_ut(seed_jd, swe.NEPTUNE, swe.FLG_MOSEPH | swe.FLG_SPEED)[0][0]
+    check(abs(signed_delta(saturn, neptune)) * 3600 &lt; 0.01, &quot;seed is not exact Saturn-Neptune conjunction&quot;, errors)
+    persona_jd = jd_of(persona_moment)
+    sun = swe.calc_ut(persona_jd, swe.SUN, swe.FLG_SWIEPH | swe.FLG_SPEED)[0][0]
+    check(abs(signed_delta(sun, EXPECTED_TARGET)) * 3600 &lt; 0.01, &quot;persona Sun misses target&quot;, errors)
+    check(
+        abs(persona[&quot;verification&quot;][&quot;sun_minus_target_arcseconds&quot;]) &lt; 0.01,
+        &quot;stored persona residual exceeds 0.01 arcsec&quot;,
+        errors,
+    )
+    check(
+        persona[&quot;verification&quot;][&quot;swiss_solcross_vs_moshier_bisection_seconds&quot;] &lt; 0.1,
+        &quot;independent persona solvers differ by &gt;=0.1 seconds&quot;,
+        errors,
+    )
+
+
+def validate_boundaries(data: dict[str, Any], errors: list[str]) -&gt; None:
+    check(data.get(&quot;schema&quot;) == &quot;freedom250.deep-current-conjunction-persona/v1&quot;, &quot;data schema drift&quot;, errors)
+    check(data.get(&quot;status&quot;) == &quot;research_only_not_adopted&quot;, &quot;data is not research-only&quot;, errors)
+    check(data.get(&quot;review_status&quot;) == &quot;awaiting_katie_review&quot;, &quot;data review status drift&quot;, errors)
+    check(data.get(&quot;review_disposition&quot;) is None, &quot;data infers a Katie disposition&quot;, errors)
+    boundary = data[&quot;evidence_boundary&quot;]
+    check(boundary[&quot;admission&quot;] == &quot;conditional_subordinate_zero_vote&quot;, &quot;admission drift&quot;, errors)
+    check(boundary[&quot;timing_authority&quot;] is False, &quot;persona gained timing authority&quot;, errors)
+    check(boundary[&quot;event_proof&quot;] is False, &quot;persona gained event-proof status&quot;, errors)
+    check(boundary[&quot;one_shared_chart&quot;] is True, &quot;one-chart rule drift&quot;, errors)
+    check(boundary[&quot;focal_lenses&quot;] == [&quot;Saturn&quot;, &quot;Neptune&quot;], &quot;focal lenses drift&quot;, errors)
+    check(data[&quot;seed_family&quot;][&quot;pass_count&quot;] == 1, &quot;serialized seed pass count drift&quot;, errors)
+    check(data[&quot;seed_family&quot;][&quot;independent_verification_status&quot;] == &quot;astro_gold_pending&quot;, &quot;external verification status drift&quot;, errors)
+    check(data[&quot;settings&quot;][&quot;houses&quot;] == &quot;Whole Sign&quot;, &quot;house-system drift&quot;, errors)
+    check(data[&quot;settings&quot;][&quot;rulers&quot;] == &quot;traditional&quot;, &quot;ruler-policy drift&quot;, errors)
+    check(data[&quot;settings&quot;][&quot;node&quot;] == &quot;true&quot;, &quot;node-policy drift&quot;, errors)
+    for chart_name in (&quot;radix&quot;, &quot;persona&quot;):
+        chart = data[chart_name]
+        check(&quot;SNode&quot; in chart[&quot;positions&quot;], f&quot;{chart_name} omits SNode&quot;, errors)
+        check(&quot;america_916&quot; in chart[&quot;minor_points&quot;], f&quot;{chart_name} omits 916 America&quot;, errors)
+        policy = chart[&quot;minor_point_policy&quot;]
+        check(policy[&quot;point_to_point&quot;] is False, f&quot;{chart_name} permits point-to-point aspects&quot;, errors)
+        for row in chart[&quot;mundane_major_aspects&quot;]:
+            check(row[&quot;a&quot;] in PLANETS and row[&quot;b&quot;] in PLANETS, f&quot;{chart_name} major lane contains nonplanet&quot;, errors)
+        for row in chart[&quot;minor_point_aspects&quot;]:
+            check(row[&quot;a&quot;] in MINOR_POINTS, f&quot;{chart_name} minor lane source is not a minor point&quot;, errors)
+            check(row[&quot;b&quot;] in PLANETS, f&quot;{chart_name} minor lane target is not a planet&quot;, errors)
+            check(row[&quot;aspect&quot;] in HARD_ASPECTS, f&quot;{chart_name} minor lane contains flowing aspect&quot;, errors)
+            check(row[&quot;orb_deg&quot;] &lt;= 2.0, f&quot;{chart_name} minor lane exceeds 2 degrees&quot;, errors)
+    for row in data[&quot;radix_persona_overlay&quot;][&quot;contacts&quot;]:
+        check(row[&quot;orb_deg&quot;] &lt;= 2.0, &quot;radix-persona overlay exceeds 2 degrees&quot;, errors)
+        if row[&quot;persona_factor&quot;] in MINOR_POINTS:
+            check(
+                row[&quot;radix_factor&quot;] in PLANETS,
+                f&quot;persona {row[&#x27;persona_factor&#x27;]} overlays a nonplanet&quot;,
+                errors,
+            )
+            check(
+                row[&quot;aspect&quot;] in HARD_ASPECTS,
+                f&quot;persona {row[&#x27;persona_factor&#x27;]} has a nonhard overlay&quot;,
+                errors,
+            )
+        if row[&quot;radix_factor&quot;] in MINOR_POINTS:
+            check(
+                row[&quot;persona_factor&quot;] in PLANETS,
+                f&quot;radix {row[&#x27;radix_factor&#x27;]} overlays a nonplanet&quot;,
+                errors,
+            )
+            check(
+                row[&quot;aspect&quot;] in HARD_ASPECTS,
+                f&quot;radix {row[&#x27;radix_factor&#x27;]} has a nonhard overlay&quot;,
+                errors,
+            )
+    mc_uranus = [
+        row
+        for row in data[&quot;radix_persona_overlay&quot;][&quot;contacts&quot;]
+        if row[&quot;persona_factor&quot;] == &quot;MC&quot; and row[&quot;radix_factor&quot;] == &quot;Uranus&quot;
+    ]
+    check(len(mc_uranus) == 1, &quot;expected one persona-MC/radix-Uranus overlay&quot;, errors)
+    if len(mc_uranus) == 1:
+        check(
+            mc_uranus[0][&quot;dependency_class&quot;]
+            == &quot;dependent_correlated_overlay_zero_vote&quot;,
+            &quot;persona-MC/radix-Uranus is not dependency-labeled&quot;,
+            errors,
+        )
+
+
+def validate_change_gate(data: dict[str, Any], errors: list[str]) -&gt; None:
+    gate = data.get(&quot;seed_to_persona_change_gate&quot;, {})
+    check(
+        &quot;carryover, not a finding&quot; in gate.get(&quot;rule&quot;, &quot;&quot;),
+        &quot;slow-body carryover rule is missing&quot;,
+        errors,
+    )
+    check(
+        gate.get(&quot;outer_planets&quot;) == [&quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;],
+        &quot;outer-planet taxonomy drift&quot;,
+        errors,
+    )
+    seed_jd = jd_of(datetime.fromisoformat(data[&quot;radix&quot;][&quot;event&quot;][&quot;utc&quot;]))
+    persona_jd = jd_of(datetime.fromisoformat(data[&quot;persona&quot;][&quot;event&quot;][&quot;utc&quot;]))
+    tracked = (&quot;Mercury&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;)
+    independent_stations = independent_station_events(seed_jd, persona_jd, tracked)
+    serialized_stations = sorted(
+        gate.get(&quot;station_events_between&quot;, []),
+        key=lambda row: row[&quot;utc&quot;],
+    )
+    check(
+        len(independent_stations) == len(serialized_stations) == 3,
+        &quot;station-event count disagrees with independent speed-root scan&quot;,
+        errors,
+    )
+    for computed, stored in zip(independent_stations, serialized_stations):
+        check(computed[&quot;body&quot;] == stored[&quot;body&quot;], &quot;station body drift&quot;, errors)
+        check(
+            computed[&quot;direction_before&quot;] == stored[&quot;direction_before&quot;]
+            and computed[&quot;direction_after&quot;] == stored[&quot;direction_after&quot;],
+            f&quot;{computed[&#x27;body&#x27;]} station direction drift&quot;,
+            errors,
+        )
+        stored_utc = datetime.fromisoformat(stored[&quot;utc&quot;])
+        check(
+            abs((computed[&quot;utc&quot;] - stored_utc).total_seconds()) &lt; 0.1,
+            f&quot;{computed[&#x27;body&#x27;]} station time differs from independent root&quot;,
+            errors,
+        )
+        check(
+            angular_distance(computed[&quot;longitude&quot;], stored[&quot;longitude&quot;]) * 3600.0
+            &lt; 0.01,
+            f&quot;{computed[&#x27;body&#x27;]} station longitude drift&quot;,
+            errors,
+        )
+        independent_hours = (persona_jd - jd_of(computed[&quot;utc&quot;])) * 24.0
+        check(
+            abs(independent_hours - stored[&quot;hours_before_persona&quot;]) &lt; 0.0001,
+            f&quot;{computed[&#x27;body&#x27;]} hours-before-persona drift&quot;,
+            errors,
+        )
+
+    computed_station_bodies = {row[&quot;body&quot;] for row in independent_stations}
+    slow_bodies = (&quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;)
+    check(
+        gate.get(&quot;tracked_slow_bodies&quot;) == list(slow_bodies),
+        &quot;serialized tracked slow-body roster or order drift&quot;,
+        errors,
+    )
+    check(
+        gate.get(&quot;outer_planets&quot;) == [&quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;],
+        &quot;serialized outer-planet taxonomy drift&quot;,
+        errors,
+    )
+    independent_sign_changes: list[str] = []
+    for body in slow_bodies:
+        signs: set[int] = set()
+        probe = seed_jd
+        while probe &lt;= persona_jd:
+            signs.add(int(body_state(probe, body)[0] // 30))
+            probe += 0.125
+        signs.add(int(body_state(persona_jd, body)[0] // 30))
+        if len(signs) &gt; 1:
+            independent_sign_changes.append(body)
+    check(independent_sign_changes == [], &quot;independent scan found a slow-body sign change&quot;, errors)
+    check(gate.get(&quot;slow_body_sign_changes&quot;) == [], &quot;serialized slow-body sign changes drift&quot;, errors)
+    carryover = gate.get(&quot;slow_body_carryover&quot;, {})
+    for body in slow_bodies:
+        row = carryover.get(body, {})
+        check(
+            row.get(&quot;stationed_between&quot;) == (body in computed_station_bodies),
+            f&quot;{body} serialized station flag disagrees with scan&quot;,
+            errors,
+        )
+        check(row.get(&quot;changed_sign&quot;) is False, f&quot;{body} serialized sign flag drift&quot;, errors)
+
+    seed_positions = {
+        body: body_state(seed_jd, body)[0]
+        for body in PLANET_ORDER + (&quot;Node&quot;,)
+    }
+    persona_positions = {
+        body: body_state(persona_jd, body)[0]
+        for body in PLANET_ORDER + (&quot;Node&quot;,)
+    }
+    _cusps, ascmc = swe.houses_ex(
+        persona_jd,
+        float(data[&quot;persona&quot;][&quot;event&quot;][&quot;latitude&quot;]),
+        float(data[&quot;persona&quot;][&quot;event&quot;][&quot;longitude&quot;]),
+        b&quot;W&quot;,
+        swe.FLG_SWIEPH | swe.FLG_SPEED,
+    )
+    mc_uranus_orb = abs(
+        angular_distance(float(ascmc[1]), persona_positions[&quot;Uranus&quot;]) - 180.0
+    )
+    saturn_pluto_seed_orb = abs(
+        angular_distance(seed_positions[&quot;Saturn&quot;], seed_positions[&quot;Pluto&quot;]) - 60.0
+    )
+    saturn_pluto_persona_orb = abs(
+        angular_distance(persona_positions[&quot;Saturn&quot;], persona_positions[&quot;Pluto&quot;])
+        - 60.0
+    )
+    saturn_uranus_seed_orb = abs(
+        angular_distance(seed_positions[&quot;Saturn&quot;], seed_positions[&quot;Uranus&quot;]) - 60.0
+    )
+    saturn_uranus_persona_orb = abs(
+        angular_distance(persona_positions[&quot;Saturn&quot;], persona_positions[&quot;Uranus&quot;])
+        - 60.0
+    )
+    mars_jupiter_orb = abs(
+        angular_distance(persona_positions[&quot;Mars&quot;], persona_positions[&quot;Jupiter&quot;])
+        - 120.0
+    )
+    future_mars = body_state(persona_jd + 1.0 / 24.0, &quot;Mars&quot;)[0]
+    future_jupiter = body_state(persona_jd + 1.0 / 24.0, &quot;Jupiter&quot;)[0]
+    mars_jupiter_applying = (
+        abs(angular_distance(future_mars, future_jupiter) - 120.0)
+        &lt; mars_jupiter_orb
+    )
+    mercury_node_orb = angular_distance(
+        persona_positions[&quot;Mercury&quot;], persona_positions[&quot;Node&quot;]
+    )
+    venus_jupiter_seed_orb = abs(
+        angular_distance(seed_positions[&quot;Venus&quot;], seed_positions[&quot;Jupiter&quot;])
+        - 120.0
+    )
+    venus_jupiter_persona_orb = abs(
+        angular_distance(persona_positions[&quot;Venus&quot;], persona_positions[&quot;Jupiter&quot;])
+        - 90.0
+    )
+
+    changes = {
+        row.get(&quot;factor&quot;): row
+        for row in gate.get(&quot;promoted_question_relevant_changes&quot;, [])
+    }
+    for factor in {
+        &quot;Jupiter&quot;,
+        &quot;Mercury&quot;,
+        &quot;persona MC and Uranus&quot;,
+        &quot;Saturn and Pluto&quot;,
+        &quot;Saturn and Uranus&quot;,
+        &quot;Venus and Jupiter&quot;,
+    }:
+        check(factor in changes, f&quot;promoted change list omits {factor}&quot;, errors)
+    if &quot;persona MC and Uranus&quot; in changes:
+        row = changes[&quot;persona MC and Uranus&quot;]
+        check(abs(row[&quot;orb_deg&quot;] - mc_uranus_orb) &lt; 0.00001, &quot;MC-Uranus orb is not independently reproduced&quot;, errors)
+        check(
+            row.get(&quot;novelty_owner&quot;) == &quot;derived_persona_MC_not_uranus_near_return&quot;,
+            &quot;MC-Uranus novelty owner drift&quot;,
+            errors,
+        )
+        check(
+            row.get(&quot;classification&quot;)
+            == &quot;potentially_additive_derived_relation_zero_vote&quot;,
+            &quot;MC-Uranus classification drift&quot;,
+            errors,
+        )
+    if &quot;Saturn and Pluto&quot; in changes:
+        row = changes[&quot;Saturn and Pluto&quot;]
+        check(abs(row[&quot;seed_mundane_orb_deg&quot;] - saturn_pluto_seed_orb) &lt; 0.00001, &quot;seed Saturn-Pluto orb drift&quot;, errors)
+        check(abs(row[&quot;persona_huber_orb_deg&quot;] - round(saturn_pluto_persona_orb, 2)) &lt; 0.00001, &quot;persona Saturn-Pluto Huber orb drift&quot;, errors)
+        check(saturn_pluto_seed_orb &gt; 3.0 and saturn_pluto_persona_orb &lt; 2.0, &quot;Saturn-Pluto Huber entry is not reproduced&quot;, errors)
+        check(
+            row.get(&quot;classification&quot;)
+            == &quot;tightness_change_not_a_new_outer_return_vote&quot;,
+            &quot;Saturn-Pluto classification drift&quot;,
+            errors,
+        )
+    if &quot;Saturn and Uranus&quot; in changes:
+        row = changes[&quot;Saturn and Uranus&quot;]
+        check(abs(row[&quot;seed_mundane_orb_deg&quot;] - saturn_uranus_seed_orb) &lt; 0.00001, &quot;seed Saturn-Uranus orb drift&quot;, errors)
+        check(abs(row[&quot;persona_sextile_orb_deg&quot;] - saturn_uranus_persona_orb) &lt; 0.00001, &quot;persona Saturn-Uranus orb drift&quot;, errors)
+        check(saturn_uranus_seed_orb &lt;= 5.0 &lt; saturn_uranus_persona_orb, &quot;Saturn-Uranus lane exit is not reproduced&quot;, errors)
+        check(
+            row.get(&quot;classification&quot;) == &quot;relationship_admission_change_zero_vote&quot;,
+            &quot;Saturn-Uranus classification drift&quot;,
+            errors,
+        )
+    if &quot;Jupiter&quot; in changes:
+        row = changes[&quot;Jupiter&quot;]
+        check(abs(row[&quot;related_persona_contact&quot;][&quot;orb_deg&quot;] - mars_jupiter_orb) &lt; 0.00001, &quot;Mars-Jupiter orb drift&quot;, errors)
+        check(
+            row[&quot;related_persona_contact&quot;].get(&quot;applying&quot;)
+            == mars_jupiter_applying,
+            &quot;Mars-Jupiter applying status drift&quot;,
+            errors,
+        )
+        check(
+            row.get(&quot;classification&quot;)
+            == &quot;potentially_additive_condition_change_zero_vote&quot;,
+            &quot;Jupiter classification drift&quot;,
+            errors,
+        )
+        check(
+            row.get(&quot;station&quot;, {}).get(&quot;utc&quot;)
+            in {item[&quot;utc&quot;] for item in serialized_stations if item[&quot;body&quot;] == &quot;Jupiter&quot;},
+            &quot;Jupiter promoted station is not the validated station event&quot;,
+            errors,
+        )
+    if &quot;Mercury&quot; in changes:
+        row = changes[&quot;Mercury&quot;]
+        check(abs(row[&quot;related_persona_contact&quot;][&quot;orb_deg&quot;] - mercury_node_orb) &lt; 0.00001, &quot;Mercury-Node orb drift&quot;, errors)
+        check(
+            row[&quot;related_persona_contact&quot;].get(&quot;point_status&quot;)
+            == &quot;nonacting_minor_point&quot;,
+            &quot;Mercury-Node point status drift&quot;,
+            errors,
+        )
+        check(
+            row.get(&quot;classification&quot;)
+            == &quot;potentially_additive_condition_change_zero_vote&quot;,
+            &quot;Mercury classification drift&quot;,
+            errors,
+        )
+        check(
+            row.get(&quot;station&quot;, {}).get(&quot;utc&quot;)
+            in {
+                item[&quot;utc&quot;]
+                for item in serialized_stations
+                if item[&quot;body&quot;] == &quot;Mercury&quot;
+                and item[&quot;direction_after&quot;] == &quot;direct&quot;
+            },
+            &quot;Mercury promoted station is not the validated direct station&quot;,
+            errors,
+        )
+    if &quot;Venus and Jupiter&quot; in changes:
+        row = changes[&quot;Venus and Jupiter&quot;]
+        check(abs(row[&quot;seed_trine_orb_deg&quot;] - venus_jupiter_seed_orb) &lt; 0.00001, &quot;seed Venus-Jupiter orb drift&quot;, errors)
+        check(abs(row[&quot;persona_square_orb_deg&quot;] - venus_jupiter_persona_orb) &lt; 0.00001, &quot;persona Venus-Jupiter orb drift&quot;, errors)
+        check(
+            row.get(&quot;classification&quot;)
+            == &quot;question_relevant_counterweight_fast_partner_driven_zero_vote&quot;,
+            &quot;Venus-Jupiter classification drift&quot;,
+            errors,
+        )
+
+    ledger = gate.get(&quot;relationship_deltas&quot;, {})
+    for key in (
+        &quot;mundane_major_ten_planet&quot;,
+        &quot;huber_source_plus_katie_chiron_overlay&quot;,
+        &quot;nonacting_minor_point&quot;,
+        &quot;persona_derived_angle_relationships&quot;,
+    ):
+        check(isinstance(ledger.get(key), list), f&quot;relationship delta ledger omits {key}&quot;, errors)
+    check(
+        &quot;selective, not exhaustive&quot; in gate.get(&quot;promotion_rule&quot;, &quot;&quot;),
+        &quot;promotion selection is not explicitly bounded&quot;,
+        errors,
+    )
+    serialized_angles = ledger.get(&quot;persona_derived_angle_relationships&quot;, [])
+    check(
+        serialized_angles == data[&quot;persona&quot;].get(&quot;angle_aspects&quot;),
+        &quot;derived-angle delta ledger is not identical to the persona angle lane&quot;,
+        errors,
+    )
+    expected_angles: list[dict[str, Any]] = []
+    point_longitudes = {&quot;ASC&quot;: float(ascmc[0]), &quot;MC&quot;: float(ascmc[1])}
+    for point, point_longitude in point_longitudes.items():
+        for body in ANGLE_PARTNERS:
+            if body in persona_positions:
+                body_longitude = persona_positions[body]
+            else:
+                body_longitude = float(
+                    data[&quot;persona&quot;][&quot;positions&quot;][body][&quot;longitude&quot;]
+                )
+            separation = angular_distance(point_longitude, body_longitude)
+            for aspect, angle in HUBER_ANGLE_RULES:
+                allowed = HUBER_ORB[aspect][HUBER_CLASS[body]]
+                orb = abs(separation - angle)
+                if orb &lt;= allowed:
+                    expected_angles.append(
+                        {
+                            &quot;point&quot;: point,
+                            &quot;planet&quot;: body,
+                            &quot;aspect&quot;: aspect,
+                            &quot;orb_deg&quot;: round(orb, 6),
+                            &quot;orb_limit_deg&quot;: allowed,
+                            &quot;near_exact&quot;: orb &lt;= 1.0,
+                            &quot;authority&quot;: (
+                                &quot;Katie angle overlay; partner planet Huber allowance&quot;
+                            ),
+                        }
+                    )
+                    break
+    expected_angles.sort(key=lambda row: row[&quot;orb_deg&quot;])
+    check(
+        serialized_angles == expected_angles,
+        &quot;derived-angle delta ledger differs from independent angle reconstruction&quot;,
+        errors,
+    )
+    independent_seed_major = independent_major_aspects(seed_positions)
+    independent_persona_major = independent_major_aspects(persona_positions)
+    stored_major = {
+        tuple(row[&quot;pair&quot;]): row
+        for row in ledger.get(&quot;mundane_major_ten_planet&quot;, [])
+    }
+    expected_pairs = set(independent_seed_major) | set(independent_persona_major)
+    check(
+        set(stored_major) == expected_pairs,
+        &quot;mundane relationship-delta ledger is not the complete independent union&quot;,
+        errors,
+    )
+    for pair in expected_pairs &amp; set(stored_major):
+        stored = stored_major[pair]
+        seed_row = independent_seed_major.get(pair)
+        persona_row = independent_persona_major.get(pair)
+        if seed_row is None:
+            expected_change = &quot;gained&quot;
+        elif persona_row is None:
+            expected_change = &quot;lost&quot;
+        elif seed_row[&quot;aspect&quot;] != persona_row[&quot;aspect&quot;]:
+            expected_change = &quot;operator_changed&quot;
+        else:
+            expected_change = &quot;persisted_with_condition_change&quot;
+        check(stored[&quot;change&quot;] == expected_change, f&quot;{pair} delta classification drift&quot;, errors)
+        for label, computed, serialized in (
+            (&quot;seed&quot;, seed_row, stored.get(&quot;seed&quot;)),
+            (&quot;persona&quot;, persona_row, stored.get(&quot;persona&quot;)),
+        ):
+            check((computed is None) == (serialized is None), f&quot;{pair} {label} admission drift&quot;, errors)
+            if computed is not None and serialized is not None:
+                check(computed[&quot;aspect&quot;] == serialized[&quot;aspect&quot;], f&quot;{pair} {label} operator drift&quot;, errors)
+                check(abs(computed[&quot;orb_deg&quot;] - serialized[&quot;orb_deg&quot;]) &lt; 0.00001, f&quot;{pair} {label} orb drift&quot;, errors)
+
+    def validate_serialized_lane(
+        ledger_key: str,
+        chart_key: str,
+    ) -&gt; None:
+        def chart_index(chart_name: str) -&gt; dict[tuple[str, str], dict[str, Any]]:
+            return {
+                tuple(sorted((row[&quot;a&quot;], row[&quot;b&quot;]))): {
+                    &quot;aspect&quot;: row.get(&quot;aspect&quot;, row.get(&quot;type&quot;)),
+                    &quot;orb_deg&quot;: row.get(&quot;orb_deg&quot;, row.get(&quot;orb&quot;)),
+                }
+                for row in data[chart_name][chart_key]
+            }
+
+        seed_lane = chart_index(&quot;radix&quot;)
+        persona_lane = chart_index(&quot;persona&quot;)
+        stored_lane = {
+            tuple(row[&quot;pair&quot;]): row
+            for row in ledger.get(ledger_key, [])
+        }
+        union = set(seed_lane) | set(persona_lane)
+        check(
+            set(stored_lane) == union,
+            f&quot;{ledger_key} is not the complete admitted union&quot;,
+            errors,
+        )
+        for pair in union &amp; set(stored_lane):
+            seed_row = seed_lane.get(pair)
+            persona_row = persona_lane.get(pair)
+            row = stored_lane[pair]
+            if seed_row is None:
+                expected_change = &quot;gained&quot;
+            elif persona_row is None:
+                expected_change = &quot;lost&quot;
+            elif seed_row[&quot;aspect&quot;] != persona_row[&quot;aspect&quot;]:
+                expected_change = &quot;operator_changed&quot;
+            else:
+                expected_change = &quot;persisted_with_condition_change&quot;
+            check(
+                row[&quot;change&quot;] == expected_change,
+                f&quot;{ledger_key} {pair} delta classification drift&quot;,
+                errors,
+            )
+            for label, computed, serialized in (
+                (&quot;seed&quot;, seed_row, row.get(&quot;seed&quot;)),
+                (&quot;persona&quot;, persona_row, row.get(&quot;persona&quot;)),
+            ):
+                check(
+                    (computed is None) == (serialized is None),
+                    f&quot;{ledger_key} {pair} {label} admission drift&quot;,
+                    errors,
+                )
+                if computed is not None and serialized is not None:
+                    check(
+                        computed[&quot;aspect&quot;] == serialized[&quot;aspect&quot;],
+                        f&quot;{ledger_key} {pair} {label} operator drift&quot;,
+                        errors,
+                    )
+                    check(
+                        abs(computed[&quot;orb_deg&quot;] - serialized[&quot;orb_deg&quot;])
+                        &lt; 0.00001,
+                        f&quot;{ledger_key} {pair} {label} orb drift&quot;,
+                        errors,
+                    )
+
+    validate_serialized_lane(
+        &quot;huber_source_plus_katie_chiron_overlay&quot;,
+        &quot;huber_aspects&quot;,
+    )
+    validate_serialized_lane(
+        &quot;nonacting_minor_point&quot;,
+        &quot;minor_point_aspects&quot;,
+    )
+
+
+def generated_hashes() -&gt; dict[str, str]:
+    return {
+        path.name: sha256(path)
+        for path in (
+            DATA_PATH,
+            STANDALONE_PATH,
+            BIWHEEL_PATH,
+            GALLERY_PATH,
+            MANIFEST_PATH,
+        )
+    }
+
+
+def rebuild(errors: list[str]) -&gt; None:
+    runs: list[dict[str, str]] = []
+    for run_number in (1, 2):
+        result = subprocess.run(
+            [sys.executable, &quot;-B&quot;, str(BUILDER_PATH)],
+            cwd=HERE.parent.parent,
+            capture_output=True,
+            text=True,
+            timeout=30,
+            check=False,
+        )
+        check(
+            result.returncode == 0,
+            f&quot;determinism rebuild {run_number} failed: {result.stderr[:500]}&quot;,
+            errors,
+        )
+        if result.returncode != 0:
+            return
+        runs.append(generated_hashes())
+    check(runs[0] == runs[1], &quot;two consecutive rebuild hash sets differ&quot;, errors)
+
+
+def main() -&gt; int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        &quot;--rebuild&quot;,
+        action=&quot;store_true&quot;,
+        help=&quot;Opt in to two persistent package rebuilds and compare their hashes.&quot;,
+    )
+    args = parser.parse_args()
+    errors: list[str] = []
+    required = [
+        README_PATH,
+        HEARING_PATH,
+        DATA_PATH,
+        MANIFEST_PATH,
+        BUILDER_PATH,
+        Path(__file__),
+        GALLERY_PATH,
+        STANDALONE_PATH,
+        BIWHEEL_PATH,
+    ]
+    for path in required:
+        check(path.exists(), f&quot;required artifact is missing: {path}&quot;, errors)
+    if errors:
+        for error in errors:
+            print(f&quot;FAIL {error}&quot;)
+        return 1
+
+    data = json.loads(DATA_PATH.read_text(encoding=&quot;utf-8&quot;))
+    manifest = json.loads(MANIFEST_PATH.read_text(encoding=&quot;utf-8&quot;))
+    validate_seed_authority(data, errors)
+    validate_exactness(data, errors)
+    validate_boundaries(data, errors)
+    validate_change_gate(data, errors)
+    validate_manifest(data, manifest, errors)
+    validate_links(errors)
+
+    gallery_text = GALLERY_PATH.read_text(encoding=&quot;utf-8&quot;)
+    check(&quot;EST&quot; in gallery_text, &quot;gallery seed label does not preserve EST&quot;, errors)
+    check(&quot;EDT&quot; in gallery_text, &quot;gallery persona label does not preserve EDT&quot;, errors)
+    check(&quot;UTC-05:00&quot; not in gallery_text, &quot;gallery exposes fixed-offset seed label&quot;, errors)
+    check(&quot;UTC-04:00&quot; not in gallery_text, &quot;gallery exposes fixed-offset persona label&quot;, errors)
+
+    for svg in (STANDALONE_PATH, BIWHEEL_PATH):
+        text = svg.read_text(encoding=&quot;utf-8&quot;)
+        check(text.startswith(&quot;&lt;svg&quot;), f&quot;not an SVG: {svg.name}&quot;, errors)
+        check(
+            &#x27;color=&quot;#9a917f&quot;&#x27; in text,
+            f&quot;render omits the wheel library&#x27;s SNode glyph color: {svg.name}&quot;,
+            errors,
+        )
+        check(
+            &#x27;color=&quot;#1d3f8c&quot;&#x27; in text,
+            f&quot;render omits the wheel library&#x27;s 916 America glyph color: {svg.name}&quot;,
+            errors,
+        )
+        check(&quot;EDT&quot; in text, f&quot;render does not preserve EDT: {svg.name}&quot;, errors)
+        check(&quot;UTC-04:00&quot; not in text, f&quot;render exposes fixed offset: {svg.name}&quot;, errors)
+    builder_text = BUILDER_PATH.read_text(encoding=&quot;utf-8&quot;)
+    check(&quot;import make_reading&quot; not in builder_text, &quot;builder imports retired make_reading&quot;, errors)
+
+    if args.rebuild and not errors:
+        rebuild(errors)
+
+    if errors:
+        for error in errors:
+            print(f&quot;FAIL {error}&quot;)
+        print(f&quot;Validation failed with {len(errors)} error(s).&quot;)
+        return 1
+    print(&quot;PASS Saturn-Neptune 2026 conjunction persona package&quot;)
+    print(&quot;PASS governed seed identity and live registry validation&quot;)
+    print(&quot;PASS independent exactness checks and canonical seed agreement&quot;)
+    print(&quot;PASS one-chart/two-lens, zero-vote, and minor-point boundaries&quot;)
+    print(&quot;PASS slow-body carryover versus station/sign/relationship change gate&quot;)
+    print(&quot;PASS output/source hashes, links, and wheel content&quot;)
+    if args.rebuild:
+        print(&quot;PASS two consecutive rebuilds are byte-identical across 5 generated outputs&quot;)
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    sys.exit(main())
+</pre></main></body></html>

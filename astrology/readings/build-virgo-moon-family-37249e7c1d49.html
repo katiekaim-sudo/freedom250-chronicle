@@ -1,0 +1,231 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-virgo-moon-family-37249e7c1d49.html">
+<title>build_virgo_moon_family</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_virgo_moon_family</h1><p class="mut">Portable source: 99 - Templates/build_virgo_moon_family.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the September 2024 Virgo Moon-family comparison.
+
+This output supports a contextual companion reread. It preserves the locked
+March 3, 2026 eclipse reading and grants astrology no factual, causal,
+convergence, or Forecast Ledger credit.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import swisseph as swe
+
+from build_aquarius_moon_family import (
+    PLANETS,
+    angular_distance,
+    apply_governed_positions,
+    calculated_chart,
+    cross_chart_contacts,
+    parse_utc,
+)
+
+
+HERE = Path(__file__).resolve().parent
+HISTORY = HERE / &quot;mundane_history.json&quot;
+LINEAGES = HERE / &quot;moon_lineages.json&quot;
+FULL_BONE = HERE / &quot;chart_reading_bones&quot; / &quot;lun-2026-03-03-fu-lunar.json&quot;
+ECLIPSE_LOCAL = HERE / &quot;eclipse_local_circumstances.json&quot;
+TRIAGE = HERE / &quot;full_moon_family_triage_2026.json&quot;
+OUTPUT = HERE / &quot;virgo_moon_family_2024_2026.json&quot;
+
+
+def node_state(chart: dict, governed_node_lon: float | None = None) -&gt; dict:
+    node = governed_node_lon
+    if node is None:
+        node = swe.calc_ut(
+            chart[&quot;julian_day_ut&quot;], swe.TRUE_NODE, swe.FLG_SWIEPH | swe.FLG_SPEED
+        )[0][0] % 360.0
+    south = (node + 180.0) % 360.0
+    moon = chart[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;]
+    nearest = min(angular_distance(moon, node), angular_distance(moon, south))
+    return {
+        &quot;true_north_node_longitude_deg&quot;: round(node, 9),
+        &quot;true_south_node_longitude_deg&quot;: round(south, 9),
+        &quot;moon_distance_to_nearest_node_axis_deg&quot;: round(nearest, 9),
+        &quot;moon_ecliptic_latitude_deg&quot;: chart[&quot;bodies&quot;][&quot;Moon&quot;][&quot;ecliptic_latitude_deg&quot;],
+    }
+
+
+def horizon(chart: dict) -&gt; dict:
+    above = [body for body in PLANETS if chart[&quot;bodies&quot;][body][&quot;true_altitude_deg&quot;] &gt; 0]
+    return {
+        &quot;above_true_horizon&quot;: above,
+        &quot;below_or_on_true_horizon&quot;: [body for body in PLANETS if body not in above],
+        &quot;above_count&quot;: len(above),
+        &quot;below_or_on_count&quot;: len(PLANETS) - len(above),
+    }
+
+
+def selected_aspects(chart: dict, maximum: float = 3.0) -&gt; list[dict]:
+    return [row for row in chart[&quot;aspects_within_3_deg&quot;] if row[&quot;orb_deg&quot;] &lt;= maximum]
+
+
+def selected_declinations(chart: dict, maximum: float = 0.25) -&gt; list[dict]:
+    return [
+        row for row in chart[&quot;declination_relationships_within_1_deg&quot;]
+        if row[&quot;orb_deg&quot;] &lt;= maximum
+    ]
+
+
+def main() -&gt; None:
+    history = json.loads(HISTORY.read_text())
+    lineages = json.loads(LINEAGES.read_text())
+    full_bone = json.loads(FULL_BONE.read_text())
+    eclipse_local = json.loads(ECLIPSE_LOCAL.read_text())
+    triage = json.loads(TRIAGE.read_text())
+
+    seed_source = next(row for row in history[&quot;charts&quot;] if row[&quot;id&quot;] == &quot;lun-2024-09-03-ne&quot;)
+    lineage = next(row for row in lineages[&quot;lineages&quot;] if row[&quot;lineage_id&quot;] == &quot;pessin:lun-2024-09-03-ne&quot;)
+    phases = {row[&quot;phase_event_id&quot;]: row for row in lineages[&quot;phase_events&quot;]}
+    quarter_source = phases[&quot;lunation-2025-06-03-fq&quot;]
+    full_source = phases[&quot;lun-2026-03-03-fu-lunar&quot;]
+    triage_row = next(row for row in triage[&quot;families&quot;] if row[&quot;lineage_id&quot;] == lineage[&quot;lineage_id&quot;])
+
+    seed = calculated_chart(parse_utc(seed_source[&quot;utc&quot;]))
+    quarter = calculated_chart(parse_utc(quarter_source[&quot;exact_utc&quot;]))
+    full = calculated_chart(parse_utc(full_source[&quot;exact_utc&quot;]))
+    seed = apply_governed_positions(
+        seed,
+        {row[&quot;name&quot;]: row[&quot;lon&quot;] for row in seed_source[&quot;points&quot;] if row[&quot;name&quot;] in PLANETS},
+        asc=seed_source[&quot;asc&quot;],
+        mc=seed_source[&quot;mc&quot;],
+    )
+    quarter = apply_governed_positions(
+        quarter,
+        {&quot;Sun&quot;: quarter_source[&quot;sun_lon_deg&quot;], &quot;Moon&quot;: quarter_source[&quot;moon_lon_deg&quot;]},
+    )
+    full = apply_governed_positions(
+        full,
+        {body: full_bone[&quot;pos&quot;][body][&quot;lon&quot;] for body in PLANETS},
+        asc=full_bone[&quot;asc&quot;],
+        mc=full_bone[&quot;mc&quot;],
+        declinations={body: full_bone[&quot;pos&quot;][body][&quot;dec&quot;] for body in PLANETS},
+    )
+
+    seed_node = next(row[&quot;lon&quot;] for row in seed_source[&quot;points&quot;] if row[&quot;name&quot;] == &quot;Node&quot;)
+    seed[&quot;node_geometry&quot;] = node_state(seed, seed_node)
+    quarter[&quot;node_geometry&quot;] = node_state(quarter)
+    full[&quot;node_geometry&quot;] = node_state(full, full_bone[&quot;node&quot;][&quot;lon&quot;])
+    for chart in (seed, quarter, full):
+        chart[&quot;horizon&quot;] = horizon(chart)
+
+    qf_contacts = cross_chart_contacts(quarter, full, 0.25)
+    full_eclipse = next(row for row in eclipse_local[&quot;events&quot;] if row[&quot;date&quot;] == &quot;2026-03-03&quot;)
+    moonset_jd = full_eclipse[&quot;washington&quot;][&quot;moonset_during_eclipse&quot;][&quot;jd_ut&quot;]
+    syzygy_jd = full_eclipse[&quot;global&quot;][&quot;syzygy&quot;][&quot;jd_ut&quot;]
+
+    result = {
+        &quot;schema&quot;: &quot;freedom250.virgo-moon-family/v1&quot;,
+        &quot;developed_through&quot;: &quot;2026-09-25&quot;,
+        &quot;lineage_id&quot;: lineage[&quot;lineage_id&quot;],
+        &quot;interpretation_status_before_reread&quot;: lineage[&quot;interpretation_status&quot;],
+        &quot;story_verdict_before_reread&quot;: lineage[&quot;story_verdict&quot;],
+        &quot;authority_boundary&quot;: {
+            &quot;calculation&quot;: &quot;registered seed and Full-phase coordinates with Swiss Ephemeris calculation of the missing First-Quarter frame and secondary geometry&quot;,
+            &quot;verification&quot;: &quot;Astro Gold remains pending wherever the source registry says pending&quot;,
+            &quot;interpretation&quot;: &quot;contextual companion only; locked March 3, 2026 Pass 1 remains unchanged&quot;,
+            &quot;evidence_credit&quot;: &quot;zero&quot;,
+        },
+        &quot;family_members&quot;: lineage[&quot;members&quot;],
+        &quot;phase_eclipse_states&quot;: {
+            &quot;seed&quot;: bool(phases[&quot;lun-2024-09-03-ne&quot;][&quot;eclipse&quot;]),
+            &quot;first_quarter&quot;: bool(quarter_source[&quot;eclipse&quot;]),
+            &quot;full&quot;: bool(full_source[&quot;eclipse&quot;]),
+        },
+        &quot;charts&quot;: {
+            &quot;seed_2024_09_03&quot;: seed,
+            &quot;first_quarter_2025_06_03&quot;: quarter,
+            &quot;full_2026_03_03&quot;: full,
+        },
+        &quot;degree_relays&quot;: {
+            &quot;seed_moon_degree_deg&quot;: round(seed[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;first_quarter_moon_degree_deg&quot;: round(quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;full_moon_degree_deg&quot;: round(full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;seed_to_full_moon_delta_deg&quot;: triage_row[&quot;relays&quot;][&quot;seed_to_full_moon_degree_gap_deg&quot;],
+            &quot;first_quarter_to_full_moon_delta_deg&quot;: triage_row[&quot;relays&quot;][&quot;first_quarter_to_full_moon_degree_gap_deg&quot;],
+            &quot;first_quarter_to_full_moon_delta_arcminutes&quot;: round(
+                triage_row[&quot;relays&quot;][&quot;first_quarter_to_full_moon_degree_gap_deg&quot;] * 60.0, 6
+            ),
+            &quot;quarter_to_full_contacts_within_quarter_degree&quot;: qf_contacts,
+            &quot;meaning_boundary&quot;: &quot;same-sign Pessin family continuity; degree proximity is one structural relay, not an extra factual or causal vote&quot;,
+        },
+        &quot;node_approach&quot;: {
+            &quot;seed_nearest_axis_deg&quot;: seed[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+            &quot;first_quarter_nearest_axis_deg&quot;: quarter[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+            &quot;full_nearest_axis_deg&quot;: full[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+            &quot;finding&quot;: &quot;an ordinary seed reaches Full phase as a total lunar eclipse; shadow arrives at the harvest&quot;,
+        },
+        &quot;house_migrations&quot;: triage_row[&quot;relays&quot;][&quot;house_migrations&quot;],
+        &quot;root_handoff&quot;: {
+            &quot;seed&quot;: seed[&quot;dispositors&quot;],
+            &quot;first_quarter&quot;: quarter[&quot;dispositors&quot;],
+            &quot;full&quot;: full[&quot;dispositors&quot;],
+            &quot;finding&quot;: &quot;Venus plus a Mercury-Sun circuit becomes a Mercury final at First Quarter, then a Jupiter-Moon-Mercury circuit at Full phase&quot;,
+        },
+        &quot;distribution_continuity&quot;: {
+            &quot;seed&quot;: seed[&quot;distribution&quot;],
+            &quot;first_quarter&quot;: quarter[&quot;distribution&quot;],
+            &quot;full&quot;: full[&quot;distribution&quot;],
+            &quot;first_quarter_to_full_largest_gap_change_deg&quot;: round(
+                full[&quot;distribution&quot;][&quot;largest_empty_arc_deg&quot;]
+                - quarter[&quot;distribution&quot;][&quot;largest_empty_arc_deg&quot;], 6
+            ),
+            &quot;same_boundary_bodies_at_quarter_and_full&quot;: (
+                quarter[&quot;distribution&quot;][&quot;empty_arc_from_body&quot;] == full[&quot;distribution&quot;][&quot;empty_arc_from_body&quot;]
+                and quarter[&quot;distribution&quot;][&quot;empty_arc_to_body&quot;] == full[&quot;distribution&quot;][&quot;empty_arc_to_body&quot;]
+            ),
+            &quot;finding&quot;: &quot;the First-Quarter and Full-phase raw distributions retain the Moon-to-Pluto empty-arc boundary and differ by less than one degree&quot;,
+        },
+        &quot;aspect_development&quot;: {
+            &quot;seed_within_3_deg&quot;: selected_aspects(seed),
+            &quot;seed_declinations_within_quarter_degree&quot;: selected_declinations(seed),
+            &quot;first_quarter_within_3_deg&quot;: selected_aspects(quarter),
+            &quot;full_within_3_deg&quot;: selected_aspects(full),
+            &quot;full_declinations_within_quarter_degree&quot;: selected_declinations(full),
+            &quot;quarter_neptune_to_full_saturn&quot;: next(
+                row for row in qf_contacts
+                if row[&quot;from_body&quot;] == &quot;Neptune&quot; and row[&quot;to_body&quot;] == &quot;Saturn&quot;
+            ),
+        },
+        &quot;astronomical_geometry&quot;: {
+            &quot;global&quot;: full_eclipse[&quot;global&quot;],
+            &quot;washington&quot;: full_eclipse[&quot;washington&quot;],
+            &quot;moonset_before_syzygy_seconds&quot;: round((syzygy_jd - moonset_jd) * 86400.0, 3),
+            &quot;finding&quot;: &quot;Washington sees maximum totality at the western horizon; the Moon sets before exact syzygy&quot;,
+        },
+        &quot;factual_comparison&quot;: {
+            &quot;research_id&quot;: &quot;sec-credit-rating-recordkeeping-orders-2024-2026&quot;,
+            &quot;read_first&quot;: &quot;Research Packages/SEC Credit Rating Recordkeeping Orders 2024-2026/SEC_CREDIT_RATING_RECORDKEEPING_ORDERS_MATURATION_2024_2026.md&quot;,
+            &quot;seed_date_object&quot;: &quot;six final SEC NRSRO recordkeeping orders entered September 3, 2024; all six firms admitted the orders&#x27; facts and violations&quot;,
+            &quot;maturation_state_at_full_phase&quot;: &quot;four orders created a multi-stage independent-consultant process whose key reports were intended to remain nonpublic; the public objects prove required remediation, not successful completion&quot;,
+            &quot;selection_boundary&quot;: &quot;selected independently from official SEC objects; astrology supplied no evidence credit and does not prove causation, coordination or outcome&quot;,
+            &quot;negative_control&quot;: &quot;elapsed time and a mandated review do not establish that the public received the consultant findings or a completion receipt&quot;,
+        },
+        &quot;source_paths&quot;: [
+            &quot;99 - Templates/mundane_history.json&quot;,
+            &quot;99 - Templates/moon_lineages.json&quot;,
+            &quot;99 - Templates/chart_reading_bones/lun-2026-03-03-fu-lunar.json&quot;,
+            &quot;99 - Templates/eclipse_local_circumstances.json&quot;,
+            &quot;99 - Templates/full_moon_family_triage_2026.json&quot;,
+        ],
+    }
+    OUTPUT.write_text(json.dumps(result, indent=2) + &quot;\n&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+
+</pre></main></body></html>

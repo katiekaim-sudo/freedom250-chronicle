@@ -1,0 +1,734 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/mundane-organism-build-handoff-29d183f1522f.html">
+<title>Freedom 250 Mundane Astrology Organism — Build Handoff</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · draft</div><h1>Freedom 250 Mundane Astrology Organism — Build Handoff</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Methods &amp; Architecture/Freedom 250 Mundane Astrology Organism 2026-08-11/MUNDANE_ORGANISM_BUILD_HANDOFF.md</p><h1>Freedom 250 Mundane Astrology Organism — Build Handoff</h1>
+<p><strong>Handoff date:</strong> 2026-08-11<br />
+<strong>Package state:</strong> working design mold; implementation has not begun<br />
+<strong>Authority:</strong> none; Katie&#x27;s current rulings and the live Freedom 250 vault win<br />
+<strong>Target product:</strong> a separately governed Mundane Living Chart instrument inside
+Freedom 250 Observatory<br />
+<strong>Natal donor boundary:</strong> Sentient Sun remains untouched and authoritative only
+for its own natal organism</p>
+<p><strong>Relationship-time amendment:</strong> 2026-08-30 — Katie confirmed that Planets
+retain archetypal motivations without receiving fixed plot assignments; their
+relationships carry changing arcs through continuous time.</p>
+<h2>Executive decision</h2>
+<p>Build the mundane organism into Freedom 250 Observatory.</p>
+<p>It is not too large for the Observatory because it will be one deep,
+lazy-loaded instrument rather than another top-level application or a flat set
+of new tabs. Its proposed home is:</p>
+<pre><code class="language-text">Freedom 250 Observatory
+└── Sky &amp;amp; Charts
+    └── Workbench
+        └── Mundane Living Chart
+            ├── Lobby
+            ├── Mundane Chart Room
+            ├── Period Weather Room
+            └── Organism / Method
+</code></pre>
+<p>At the time of this handoff, the live Sky &amp; Charts registry contains fourteen
+intact instruments; the older DR-043 decision text still describes its original
+thirteen-instrument state. Mundane Living Chart would currently become the
+fifteenth. It must be registered as a separate child instrument, loaded only
+when selected, and remain directly addressable. It must not become a second
+Observatory Home or a new source of astrological authority.</p>
+<p>The existing Ingress Charts, American Charts, World Charts, Lunar Weather, Moon
+Families, Transit Weather, Chart Comparison, Derivative Houses and other tools
+remain intact. They should eventually offer governed <strong>Open in Mundane Living
+Chart</strong> routes after each source child exposes a stable typed chart or period ID
+and Sky &amp; Charts gains a governed message action and resolver. Visible labels or
+copied embedded payloads cannot serve as identity. The organism then reads the
+selected object by canonical reference; it does not replace the source tool&#x27;s
+job or duplicate its calculations.</p>
+<h2>Why this is the right fit</h2>
+<p>Freedom 250 already contains the mundane method, chart engines, time ladder,
+national and entity charts, event clocks, timing instruments, worked readings,
+and the Chronicle evidence system. The missing object is the deep-reading
+environment that keeps all those parts visible as one governed astrological
+organism.</p>
+<p>Sky &amp; Charts already solves the interface-size problem through job-based
+progressive disclosure, search, remembered state and lazy loading. The organism
+is therefore <strong>deep rather than broad</strong>: its internal complexity appears only
+after Katie enters the instrument and opens the relevant room or cabinet.</p>
+<h2>What has already been produced</h2>
+<p>This package currently contains:</p>
+<ol>
+<li><code>README.md</code> — package router and authority boundary.</li>
+<li><code>CIRCULAR_READING_BUILD_PLAN.md</code> — the approved whole → part → whole reading
+   architecture, thin-pass build sequence, extension framework and acceptance
+   tests.</li>
+<li><code>KNOWLEDGE_INVENTORY.md</code> — source map, doctrine inventory, semantic
+   conflicts and runtime gaps.</li>
+<li><code>MUNDANE_ORGANISM_DESIGN.md</code> — architecture, identities, owner families,
+   interfaces, gates and initial implementation sequence.</li>
+<li><code>mundane_method_atlas.json</code> — machine-readable v1 mold.</li>
+<li><code>validate_mundane_mold.py</code> — read-only structural validator.</li>
+<li>This handoff — operational restart and implementation plan.</li>
+</ol>
+<p>The atlas currently validates:</p>
+<pre><code class="language-text">10 Planets
+12 Signs
+12 Houses
+3 Modalities
+4 Elements
+6 currently declared shared Aspect operators
+17 chart types
+18 owner families
+</code></pre>
+<p>This is structural coverage, not a claim that all semantics are ratified or
+that a runnable application exists.</p>
+<h2>Katie&#x27;s rulings and provisional design consequences</h2>
+<p>The separation of mundane from natal astrology, the direction of the Planet,
+Sign and House adaptation, the modality/element emphasis, dignity as Sign
+condition, and the overall shared-Aspect boundary are Katie&#x27;s rulings. Exact
+field schemas and candidate semantic wording remain provisional until their
+Phase 0 disposition.</p>
+<h3>The mundane and natal organisms are separate</h3>
+<p>Mundane astrology and personal astrology use the same sky but ask different
+questions. The new organism is a sibling specialization, not a mode switch
+inside Sentient Sun and not a renamed natal reader.</p>
+<h3>Reuse the chassis; rewrite the mundane meaning</h3>
+<p>The Sentient Sun donor contributes architecture: identities, rooms, navigation,
+owner separation, reversible focus, validation, source/generated boundaries
+and build gates. Natal semantic content does not become mundane content merely
+because the schema is reusable.</p>
+<h3>Planets</h3>
+<p>Author each mundane Planet owner independently. Archetypal continuity may be
+source evidence, but no natal Planet wording or owner is inherited. The adopted
+owner must state the collective motivation, civic actor or function,
+institutional expressions, gift, shadow and mundane translation. A Planet is
+the actor or motivating function, not the arena.</p>
+<h3>Signs</h3>
+<p>Modality and Element classifications are highly reusable astrological
+structure, but every mundane Sign is an independently governed owner. Mundane
+readings place more weight on its two structural inputs:</p>
+<pre><code class="language-text">Modality supplies the movement.
+Element shapes and carries the movement.
+The unique Sign is the irreducible collective expression of both.
+</code></pre>
+<p>Shared modality and element facts constrain and inform twelve distinct governed
+Sign records or foundations under the Sign owner family; they do not generate
+or authorize their semantics. The Signs are not produced by joining one
+modality keyword to one element keyword. Natal prose is neither an input nor a
+fallback for mundane Sign meaning.</p>
+<h3>Houses</h3>
+<p>Each House is independently authored as a national, civic, institutional, and
+collective arena.
+Whole Sign Houses remain the governed frame. Exact ASC, DSC, MC and IC remain
+points and do not silently redefine the complete Houses.</p>
+<h3>Aspects</h3>
+<p>Aspect geometry and operator meanings remain shared. Mundane work changes the
+actors at the endpoints and the civic translation of their relationship; it
+does not create a second square, trine or opposition.</p>
+<h3>Relationships through time</h3>
+<p>The organism must not confuse a Planet&#x27;s enduring motivation with permanent
+ownership of a story. A Planet may serve several plots at once, and each plot
+may recruit several planetary relationships. Pair-to-story use is many-to-many.</p>
+<p>One pair retains one stable <code>relationship_ref</code>. A <code>relationship_state_ref</code> is
+keyed by that pair, the exact instant, coordinate/ephemeris frame, and engine
+version—not by the observing chart. It contains the phase or governed
+exception, current governed relationship-clock Aspect and orb, and immediate
+relative motion. Charts and snapshots reference the state; co-temporal charts
+may share it while retaining distinct chart, snapshot, locality, and house-frame
+identities. Different instants always produce different states. Seed families
+and every exact pass retain their own identities. The ordered history records
+entry, perfection, separation, reapplication, phase-boundary crossings, and
+later returns.</p>
+<p>The chart observation keeps the Long Clocks&#x27; three lanes independent. Direct
+five-Aspect geometry remains visible regardless of narration. Phase prose is
+admitted or withheld per chart under DR-020, with the exact ground recorded as
+chart root, chart ruler, outer-pair era exception, or exact governed U.S.-natal
+contact. Seed echoes remain a third projection and cannot create a direct
+Aspect or phase-narration permission. Two co-temporal charts may therefore share
+one astronomical state while receiving different phase-narration decisions.</p>
+<p>The whole-chart Aspect web keeps its six adopted operators, including quincunx.
+The relationship-clock direct-dialogue roster is narrower: conjunction,
+sextile, square, trine, and opposition, with <code>null</code> when none is active. A
+quincunx may remain visible in the whole Aspect web; it does not silently become
+a governed relationship-clock direct dialogue.</p>
+<p>Retrograde motion may reverse the directed hand or reopen a geometric
+condition, but historical time never runs backward. A later pass is a new
+encounter carrying the history accumulated since the earlier one. Aries always
+resets the mundane year; Cancer, Libra, and Capricorn succeed only when the
+incumbent ingress&#x27;s rising-sign validity term permits it. Neither kind of
+boundary resets a synodic relationship. The Period Weather Room therefore
+references bounded slices of continuous relationship histories rather than
+beginning them at the ingress.</p>
+<p>A plotline braid belongs in a chart/period interpretation projection, never in
+the shared relationship state and never as Evidence. Each strand must name one
+non-duplicative role (<code>lead_mechanism</code>, <code>co_mechanism</code>, <code>supporting_context</code>,
+<code>outcompeted</code>, or <code>unresolved</code>) and one presence mode
+(<code>inherited_substrate</code>, <code>active_dialogue</code>, or <code>seed_echo</code>). Retain the factual
+cutoff, governing checkpoint, win/lose test, continuity case, and
+counterevidence. Multiple symbolic matches never add convergence or forecast
+confidence. Long-cycle condition → faster carrier → lunation/eclipse
+visibility is an available hypothesis, not a hard-coded hierarchy.</p>
+<h3>Dignity and condition</h3>
+<p>Dignity describes the condition or fit of the Sign-supplied equipment for the
+Planet using it:</p>
+<ul>
+<li>domicile indicates a native operating condition and exaltation an elevated
+  or specialized operating condition;</li>
+<li>detriment and fall indicate awkward, contrary or costly tools;</li>
+<li>neutral records no special essential-dignity classification; it does not
+  imply that the Planet&#x27;s overall condition is neutral.</li>
+</ul>
+<p>Dignity is not a strength score, importance score, prominence score or final
+Judgment. A Planet in fall may still govern the chart. Angularity,
+dispositorship, exact relationships and whole-chart structure may contribute
+visibility or structural prominence; only Judgment assigns materiality,
+hierarchy or final job.</p>
+<h3>Judgment, Translation and Forecast</h3>
+<p>These remain separate permissions:</p>
+<ol>
+<li>symbolic mundane reading;</li>
+<li>concrete civic Translation;</li>
+<li>optional falsifiable Forecast Ledger call.</li>
+</ol>
+<p>Astrological structure does not automatically become prose, and prose does not
+automatically become a forecast. Katie&#x27;s disposition gate is
+<code>keep / revise / reject / hold</code> after a complete candidate answer and its
+deterministic validation receipt.</p>
+<h2>Authority and product boundary</h2>
+<p>The durable ownership chain should be:</p>
+<pre><code class="language-text">Katie&amp;#x27;s ruling + Decision Log
+→ governed method and semantic owners in the live vault
+→ machine-readable mundane method atlas
+→ existing factual calculation owners and mundane adapters
+→ deterministic validation and assembly gate
+→ generated canonical Mundane Living Chart child view
+→ Sky &amp;amp; Charts lazy-loaded host
+→ sync_observatory_app.sh staging
+→ governed Tauri build and install
+→ frozen Mac app projection
+</code></pre>
+<p>The boundaries are non-negotiable:</p>
+<ul>
+<li>The Research Workbench package is design evidence until selectively promoted.</li>
+<li>The live vault owns adopted method and semantics.</li>
+<li>Calculation modules own reproducible facts, not meaning by themselves.</li>
+<li>Generated JSON and HTML are products, never semantic owners.</li>
+<li>The Observatory is a projection and retrieval surface, never a second vault.</li>
+<li>The packaged app is a frozen governed projection of the vault build.</li>
+<li>Sentient Sun continues to own natal astrology only.</li>
+</ul>
+<p>Before implementation starts, choose exact vault destinations for the adopted
+mundane atlas, semantic owner documents and implementation code. Do not make
+the Workbench package a hidden runtime dependency.</p>
+<h2>Product topology</h2>
+<h3>Lobby</h3>
+<p>The Lobby establishes the exact object being studied:</p>
+<ul>
+<li>target nation, government, institution, entity, jurisdiction or event;</li>
+<li>chart-producing event;</li>
+<li>chart type or saved governing period;</li>
+<li>clock authority and precision;</li>
+<li>casting locality;</li>
+<li>technique and coordinate policy;</li>
+<li>one Whole Sign house frame where the technique permits Houses.</li>
+</ul>
+<p>There is no default-today chart and no silent noon fallback where exact time is
+required.</p>
+<h3>Mundane chart-type registry</h3>
+<p>The intake must name the actual mundane technique rather than offer a generic
+natal-shaped chart selector. The first registry contains:</p>
+<ul>
+<li><strong>Core weather:</strong> cardinal ingress, exact New Moon, exact Full Moon, solar
+  eclipse and lunar eclipse.</li>
+<li><strong>Receiving bodies and anchors:</strong> national radix, entity radix and founding
+  chart.</li>
+<li><strong>Event clocks:</strong> event chart, filing chart, deadline chart and live-transit
+  instrument.</li>
+<li><strong>Specialist techniques:</strong> solar return, progression, profection, exact major
+  conjunction/perfection chart and declination Cycle chart.</li>
+</ul>
+<p>U.S. national mundane weather uses Washington, D.C. angles. National, entity
+and founding radices retain the source-governed birthplace or foundation-place
+rule. Every registry entry declares its clock precision, locality policy,
+whether it may own Houses and which period roles it may fill.</p>
+<p>A governing period is a reference container, not an eighteenth chart type. An
+exact outer-planet conjunction/perfection may own a chart, but DR-003 requires
+the cycle to be tested through its complete co-presence window. That window and
+its repeated perfections belong to Period Weather; exactness alone is never the
+cycle test.</p>
+<h3>Mundane Chart Room</h3>
+<p>The Chart Room owns one immutable chart snapshot. Its proposed cabinets are:</p>
+<ul>
+<li>identity, event, clock and locality;</li>
+<li>wheel and exact frame;</li>
+<li>civic actors — Planets;</li>
+<li>operating fields — Signs;</li>
+<li>national arenas — Houses;</li>
+<li>relationships — current Aspect dialogue and continuous relationship history;</li>
+<li>condition and dignity;</li>
+<li>rulership, governance and root;</li>
+<li>specialist geometry;</li>
+<li>whole-chart structure;</li>
+<li>technical proof and coverage.</li>
+</ul>
+<p>Focus changes what is visible, never what is true. One Aspect has one canonical
+identity everywhere it appears. One chart snapshot has exactly one Whole Sign
+house-frame owner.</p>
+<h3>Period Weather Room</h3>
+<p>A period is not a giant multichart. It is a bounded reference container:</p>
+<pre><code class="language-text">continuous planetary relationship arcs
+→ bounded relationship-clock slices
+→ era context
+→ governing ingress
+→ lunation sequence
+→ eclipse and Moon-family context
+→ national/entity/founding-chart contacts
+→ institutional and factual clocks
+→ observed Chronicle events
+</code></pre>
+<p>Each member chart remains independently identified and calculated. Selecting a
+member opens its intact Chart Room. The period stores typed references and
+relations rather than copied chart payloads or blended house frames.</p>
+<p>The required first period container is intentionally small:</p>
+<ul>
+<li><code>period_ref</code>, target, locality and bounded interval;</li>
+<li>one governing-ingress reference;</li>
+<li>ordered member-chart references;</li>
+<li>bounded relationship-history references and each member chart&#x27;s exact
+  relationship-state references;</li>
+<li>typed <code>governs</code> and <code>triggers</code> relations.</li>
+</ul>
+<p>Era drivers, eclipse and Moon-family lineage, national/entity overlays,
+institutional clocks, the Chronicle event bridge and a saved-period library are
+optional later adapters. The first useful period does not wait for all of them.</p>
+<h3>Organism / Method</h3>
+<p>The technical organism exposes:</p>
+<ul>
+<li>semantic and factual owners;</li>
+<li>built, documented, unresolved and unbuilt states;</li>
+<li>dependencies and invalidation;</li>
+<li>navigation and relationship identities;</li>
+<li>fact, semantic, Judgment, Translation and Forecast permissions;</li>
+<li>source provenance and validation receipts.</li>
+</ul>
+<p>The human-facing answer should lead. Machine state and proof belong beneath
+progressive disclosure rather than dominating the reading experience.</p>
+<h2>Reuse and rewrite map</h2>
+<h3>Reuse or adapt</h3>
+<ul>
+<li>astronomical coordinates and chart mathematics;</li>
+<li>tropical zodiac and Whole Sign frame;</li>
+<li>exact angles and point identities;</li>
+<li>Aspect geometry, operator identities, applying/separating facts and whole-web
+  mechanics;</li>
+<li>stable planetary-pair identity, phase geometry, relative motion, conjunction
+  families, exact passes, and ordered relationship-transition history;</li>
+<li>traditional rulership and essential-dignity facts;</li>
+<li>condition, retrogradation, stations and solar proximity mechanics;</li>
+<li>dispositor-chain structure;</li>
+<li>projection, room, focus, traversal and whole-return mechanics;</li>
+<li>source snapshots, validators, atomic builds and release gates;</li>
+<li>existing Freedom 250 ingress, lunation, eclipse, national/entity and timing
+  calculators.</li>
+</ul>
+<h3>Rewrite or newly govern</h3>
+<ul>
+<li>mundane Planet functions and civic actors;</li>
+<li>collective Sign presentation and its modality/element emphasis;</li>
+<li>all twelve national and institutional House domains;</li>
+<li>mundane Planet–Sign and Planet–House contributions;</li>
+<li>civic House governance and actor routing;</li>
+<li>mundane whole-chart Judgment and Translation;</li>
+<li>target, event, clock, locality and chart-type intake;</li>
+<li>the reference-only governing-period skin;</li>
+<li>Chronicle association and Evidence boundaries.</li>
+</ul>
+<h3>Do not transplant</h3>
+<ul>
+<li>natal Planet, House or developmental wording;</li>
+<li>natal intake and saved-birth-chart assumptions;</li>
+<li>the monolithic Sentient Sun live-data compiler;</li>
+<li>named generated payloads, readings or fixtures as runtime dependencies;</li>
+<li>named voice/client payloads as generic mundane runtime inputs;</li>
+<li>natal Moon-state, ASC or DSC semantics without independent mundane adoption;</li>
+<li>Freedom 250 arc weights as universal mundane doctrine;</li>
+<li>runtime interpretation shortcuts that outrun documented authority.</li>
+</ul>
+<p>Shared Aspect mechanics do not authorize every mundane use. Endpoint actors,
+pair-specific civic Judgment, salience/admission and any Forecast use remain
+mundane adapter or later-reasoning responsibilities. A Sun–Neptune risk ruling,
+for example, is a mundane pair judgment—not a new square, conjunction or
+opposition operator.</p>
+<p>The current mold declares six shared operators. Sentient Sun&#x27;s active shared
+foundation also documents the 30° semisextile. Its mundane adoption is
+<code>unresolved</code>, not silently excluded or already authorized; Phase 0 must either
+add it to the shared roster or record why it remains documented-only.</p>
+<h2>Recommended implementation plan</h2>
+<h3>Phase 0 — Governance and ratification</h3>
+<p><strong>Goal:</strong> establish the authoritative mundane owner set before building against
+provisional language.</p>
+<p>Work:</p>
+<ol>
+<li>Select the exact live-vault home for the adopted atlas and owner documents.</li>
+<li>Review the ten Planet, twelve Sign and twelve House seeds with Katie.</li>
+<li>Resolve named doctrine conflicts rather than blending them silently.</li>
+<li>Ratify the shared Aspect boundary and dignity-as-condition wording.</li>
+<li>Ratify the continuous relationship-time contract while keeping the governed
+   pair roster and inside-planet clock promotion as separate decisions.</li>
+<li>Lock the chart-type registry schema, the initially supported chart types,
+   clock rules, locality rules and one-house-frame contract. Other documented
+   types remain <code>documented_only</code> or <code>future</code>.</li>
+<li>Record adopted rulings in the Decision Log or the method owner it names.</li>
+</ol>
+<p>Planet checkpoint as of 2026-08-11: the complete ten-Planet candidate roster,
+human review surface and closed owner lifecycle shell now exist. All ten remain
+pending Katie disposition; none has an active semantic revision. The review
+surface also corrects the workbook shorthand that equates gift with dignity and
+shadow with affliction: both poles are intrinsic, while dignity describes the
+quality of Sign-supplied tools.</p>
+<p>Sign and House checkpoint as of 2026-08-11: twelve complete independent Sign
+candidates and twelve complete independent House arena candidates now exist in
+closed lifecycle shells. Sign content begins with Modality movement and Element
+shaping but requires an independently reviewed unique expression. House content
+is arena-only. Natural-sign/natural-ruler analogies, Planet assignments, exact
+angles and derivative routes are absent from the radical House owners. The
+fifth/eleventh chamber allocation remains explicitly unresolved.</p>
+<p>The registry schema must keep <code>method_status</code>, <code>runtime_status</code> and
+<code>permitted_use</code> separate. During review, also decide whether filing and deadline
+are event kinds under the event-chart technique, and whether live transit is a
+runtime/view mode rather than an independent chart technique.</p>
+<p>Exit gate:</p>
+<ul>
+<li>every core semantic atom is <code>ratified</code>, <code>provisional</code> or <code>unresolved</code>;</li>
+<li>no provisional atom can execute as adopted meaning;</li>
+<li>every owner has provenance and a versioned identity.</li>
+</ul>
+<h3>Phase 1 — Semantic-closed mundane identity chassis</h3>
+<p><strong>Goal:</strong> create a new namespace without copying the natal organism wholesale.</p>
+<p>Work:</p>
+<ol>
+<li>Start from the donor&#x27;s small generic candidates: <code>chart_projection.py</code>,
+   <code>build_support.py</code>, Navigation Spine schema/test patterns and validator
+   orchestration patterns.</li>
+<li>Rename and rebind every route, output, adapter and template.</li>
+<li>Build Lobby, Chart Room, Period Weather Room and Organism shells.</li>
+<li>Implement immutable chart and period identity records.</li>
+<li>Keep all semantic execution closed.</li>
+</ol>
+<p>Treat <code>living_chart_app.py</code>, the HTML template, assembler and construction-state
+generators as adaptation references until every named fixture path, route,
+output and natal payload assumption has been removed.</p>
+<p>Exit gate:</p>
+<ul>
+<li>no Sentient Sun name, route, output or fixture is required at runtime;</li>
+<li>navigation round-trips without changing facts;</li>
+<li>missing owners visibly fail closed.</li>
+</ul>
+<h3>Phase 2 — One factual chart end to end</h3>
+<p><strong>Goal:</strong> connect the new shell to existing Freedom 250 calculations without
+calculating the same fact twice.</p>
+<p>Work:</p>
+<ol>
+<li>Build the mundane chart adapter.</li>
+<li>Materialize target, event, clock, locality, technique and snapshot identity.</li>
+<li>Emit coordinates, angles, one Whole Sign frame, occupancy, Aspects,
+   traditional dignity, condition, rulership and dispositor facts.</li>
+<li>Add a mandatory technical-inspection receipt.</li>
+<li>Render one complete calibration chart with no automated Judgment.</li>
+</ol>
+<p>Exit gate:</p>
+<ul>
+<li>each fact is calculated once and referenced everywhere else;</li>
+<li>exact inputs reproduce the same snapshot;</li>
+<li>changing focus cannot change counts, facts or authority;</li>
+<li>Houses and exact angles are semantically available only when the clock
+  authority produces a defensible local frame. Noon or midnight proxies may
+  produce explicitly synthetic display coordinates, but cannot silently own
+  event-House or event-angle meaning;</li>
+<li>unsupported layers say <code>unresolved</code> rather than borrowing natal prose.</li>
+</ul>
+<h3>Phase 3 — Core mundane semantics</h3>
+<p><strong>Goal:</strong> make one chart intelligible through governed mundane owners.</p>
+<p>Work:</p>
+<ol>
+<li>Connect ratified Planet functions.</li>
+<li>Connect modality, element and unique-Sign owners.</li>
+<li>Connect the twelve mundane House domains.</li>
+<li>Add Planet–Sign and Planet–House contribution packets.</li>
+<li>Add Aspect-web, condition, governance and root structure.</li>
+<li>Add references to exact shared relationship states, chart-specific DR-020
+   narration projections, separate seed echoes, and one continuous relationship
+   history without assigning either Planet or pair a plot.</li>
+<li>Build a whole-chart structural return before prose.</li>
+</ol>
+<p>Exit gate:</p>
+<ul>
+<li>every semantic statement maps to an exact owner and exact chart facts;</li>
+<li>address labels and adjacency cannot masquerade as interpretation;</li>
+<li>dignity modifies condition only;</li>
+<li>the whole-chart return preserves all meaningful tensions and both poles.</li>
+</ul>
+<h3>Phase 4 — One governing period end to end</h3>
+<p><strong>Goal:</strong> make the nested mundane time ladder inspectable without blending
+charts.</p>
+<p>Work:</p>
+<ol>
+<li>Build the minimal period adapter with identity, bounded interval,
+   governing-ingress reference, ordered chart references and typed
+   <code>governs</code>/<code>triggers</code> relations.</li>
+<li>Reference bounded slices of continuous planetary relationship histories;
+   preserve distinct state and exact-pass identities through retrograde returns
+   and across ingress boundaries.</li>
+<li>Preserve separate chart snapshots and Evidence identities.</li>
+<li>Add era context only when an adopted cycle owner earns it.</li>
+<li>Add eclipse/Moon-family lineage and national/entity contacts as separately
+   gated adapters.</li>
+<li>Add institutional clocks and the read-only Chronicle event bridge after
+   their identity and Evidence contracts are ratified.</li>
+</ol>
+<p>Exit gate:</p>
+<ul>
+<li>the period contains references, never duplicate chart payloads;</li>
+<li>the period neither starts nor resets a relationship history;</li>
+<li>every trigger retains its typed <code>governs</code>/<code>triggers</code> relation plus the exact
+  governing chart or contact reference;</li>
+<li>Chronicle capture remains independent of astrology;</li>
+<li>temporal co-occurrence alone grants no Evidence.</li>
+</ul>
+<p>This phase plus Phase 3 is the first genuinely useful release: <strong>one complete
+mundane chart and one inspectable governing period</strong>. Automated prose is not
+required for success.</p>
+<h3>Evidence-family boundary</h3>
+<p>Before Judgment opens, the organism must keep these record families distinct:</p>
+<ul>
+<li><strong>computed chart facts</strong> — reproducible coordinates, frames, relationships,
+  conditions and typed period membership;</li>
+<li><strong>adopted semantic authority</strong> — versioned meanings and connector rules;</li>
+<li><strong>Chronicle factual evidence</strong> — independently captured real-world records;</li>
+<li><strong>observed outcomes</strong> — what occurred inside or after a registered window;</li>
+<li><strong>counterevidence</strong> — facts or outcomes that weaken a candidate claim;</li>
+<li><strong>forecast scoring</strong> — evaluation of a separately registered literal call.</li>
+</ul>
+<p>Repeated display and cross-family counts do not create independent support.
+Chronicle co-occurrence cannot upgrade interpretive confidence merely because
+an event happened near an astrological contact.</p>
+<h3>Phase 5 — Judgment, speech and review</h3>
+<p><strong>Goal:</strong> open reasoning only after facts, owners and whole structure are stable.</p>
+<p>Work:</p>
+<ol>
+<li>Implement candidate-claim formation.</li>
+<li>Implement Evidence-family and counterevidence accounting.</li>
+<li>Add deterministic validation before human review.</li>
+<li>Open Katie&#x27;s <code>keep / revise / reject / hold</code> disposition gate.</li>
+<li>Produce symbolic reading and civic Translation as separate outputs.</li>
+<li>Keep Forecast Ledger registration optional and separately permissioned.</li>
+</ol>
+<p>Exit gate:</p>
+<ul>
+<li>no prose is released without its fact and semantic lineage;</li>
+<li>revisions never silently alter the underlying facts;</li>
+<li>a forecast has a literal claim, literal window and separate registry state.</li>
+</ul>
+<h3>Phase 6 — Observatory integration</h3>
+<p><strong>Goal:</strong> make the stable instrument available without making the Observatory
+larger at startup or changing existing tools&#x27; jobs.</p>
+<p>Work:</p>
+<ol>
+<li>Produce a standalone generated <code>Mundane Living Chart.html</code> child view.</li>
+<li>Add its builder and validator to governed build/check coverage.</li>
+<li>Generate the child under <code>04 - Synthesis/Cross-cuts/</code> and register its
+   builder in <code>99 - Templates/build_manifest.json</code> and refresh ordering.</li>
+<li>Register the child under Sky &amp; Charts → Workbench by editing
+   <code>99 - Templates/build_sky_charts.py</code> → <code>SUBVIEWS</code>; never hand-edit generated
+   <code>Sky &amp;amp; Charts.html</code>.</li>
+<li>Give it a stable <code>data-sky-id</code>, filename, aliases, direct/legacy route and
+   date-action policy.</li>
+<li>Add it to recursive wrapper validation and declare its theme classification
+   and injector behavior. If the child embeds data, update stale-scan exemptions
+   in both <code>check_vault.py</code> and <code>refresh_synthesis.py</code>.</li>
+<li>Lazy-load only the selected child and selected chart or period payload.</li>
+<li>Preserve direct routing, search aliases, favorites and recents. Sky &amp; Charts
+   owns its remembered last-selected instrument; the child separately owns any
+   remembered internal room or focus preference.</li>
+<li>Add governed <strong>Open in Mundane Living Chart</strong> links from relevant chart
+   libraries and timing tools.</li>
+<li>Stage the Mac app only through the existing vault sync/build chain.</li>
+</ol>
+<p>Exit gate:</p>
+<ul>
+<li>unopened organism code and data do not load at Observatory startup;</li>
+<li>every local child route resolves in vault, staging and packaged projections;</li>
+<li>responsive layout, fit-to-viewport, zoom/pan and collision-aware chart labels
+  pass visual QA;</li>
+<li>app behavior creates no new astrological authority.</li>
+</ul>
+<h3>Phase 7 — Self-sustaining operation</h3>
+<p><strong>Goal:</strong> make ordinary semantic, calculation and interface changes safe and
+traceable without reconstructing the architecture each time.</p>
+<p>Work:</p>
+<ol>
+<li>Generate construction status and remaining-owner projections from the atlas.</li>
+<li>Maintain source-only, focused and release validation lanes.</li>
+<li>Add contract tests for owner identity, permissions, chart/period references,
+   one-house-frame policy and navigation round trips.</li>
+<li>Add source/generated drift checks and deterministic rebuild checks.</li>
+<li>Document one maintenance route and one release route.</li>
+<li>Keep generated artifacts out of semantic review and versioned owners out of
+   generated output files.</li>
+</ol>
+<p>Exit gate:</p>
+<ul>
+<li>an owner change invalidates only its true downstream dependents;</li>
+<li>a UI change invalidates no astrology;</li>
+<li>a calculation change cannot silently alter meaning owners;</li>
+<li>a semantic change cannot silently alter astronomy;</li>
+<li>a clean release can be rebuilt from governed sources and verified
+  deterministically.</li>
+</ul>
+<h2>What “self-sustaining” means here</h2>
+<p>The organism will be self-sustaining when its structure carries its own
+maintenance instructions and failure boundaries:</p>
+<ul>
+<li>one versioned machine atlas inventories owners, states, dependencies and
+  permissions;</li>
+<li>every fact and semantic contribution has a canonical identity;</li>
+<li>generated status tells the next builder what is built, unresolved or blocked;</li>
+<li>validators reject missing provenance, duplicate calculations, natal fallback,
+  stale outputs and permission leaks;</li>
+<li>the build graph knows which products must regenerate after each kind of
+  change;</li>
+<li>Katie reviews complete candidate meaning or prose rather than repairing
+  machine fragments;</li>
+<li>new chart types enter through the typed registry and cannot bypass clock,
+  locality, frame or Evidence rules;</li>
+<li>the Observatory can expose more depth without loading or displaying all of it
+  at once.</li>
+</ul>
+<p>Self-sustaining does not mean self-authorizing. New doctrine, Judgment and
+Forecast permissions always remain governed.</p>
+<h2>Critical fail-closed rules</h2>
+<ul>
+<li>No natal semantic fallback.</li>
+<li>No default-today chart.</li>
+<li>No silent precision upgrade or noon proxy where exact time is required.</li>
+<li>No Houses or angles without a verified frame.</li>
+<li>No second house frame silently projected onto a comparison.</li>
+<li>No blended multichart payload presented as one chart.</li>
+<li>No period governance without a versioned ingress-validity rule.</li>
+<li>No ingress boundary, including Aries, represented as the beginning or reset
+  of a synodic relationship.</li>
+<li>No retrograde return or repeated perfection represented as the same state or
+  pass occurring twice.</li>
+<li>No Planet or pair assigned permanent ownership of a plot.</li>
+<li>No trigger claim without a typed <code>governs</code>/<code>triggers</code> relation and exact
+  governing chart or contact reference.</li>
+<li>No event-to-astrology causal claim from temporal proximity.</li>
+<li>No Judgment from counts, centrality, angularity or dignity alone.</li>
+<li>No generated HTML or JSON as semantic authority.</li>
+<li>No Freedom 250 arc score in symbolic or level-one reading prose.</li>
+<li>No Forecast without a separately registered, falsifiable call.</li>
+</ul>
+<h2>Known doctrine and runtime review items</h2>
+<p>These are review lanes, not permission to choose silently:</p>
+<ol>
+<li>Moon as political class/public mood versus broader masses/general public.</li>
+<li>Neptune risk weighting versus the required multivalent two-pole reading.</li>
+<li>Pluto&#x27;s importance in mundane work across divergent sources.</li>
+<li>Venus&#x27;s actor boundary across diplomacy, women, arts, currency and value.</li>
+<li>Fifth-house Senate language versus the eleventh-house legislature owner.</li>
+<li>Traditional rulership as formal governance versus modern co-rulers embedded
+   in some lower machine material.</li>
+<li>Explicit separation of lunar nodes from planetary orbital nodes.</li>
+<li>Shared-fact adapter coverage missing from the current core dossier,
+   including applying/separating and dissociate Aspect texture, DC/IC,
+   declination admission, eclipse path/duration, true Moon-family lineage and
+   the two-way Full Moon reading.</li>
+<li>Mandatory 916 America integration gaps in some core mundane modules.</li>
+<li>Chart-confidence behavior when national or entity birth time is uncertain.</li>
+<li>Dignity phase measured from a Planet&#x27;s exaltation as a separate mundane
+    timing owner; it may reuse the traditional exaltation fact but must not be
+    folded into essential-dignity classification.</li>
+<li>Continuous planetary relationship time is now a required structural owner:
+    stable pair identity, exact chart state, seed-family and pass identity, and
+    ordered transition history. The governed pair roster and live runtime
+    coverage remain separate decisions; the 2026-08-30 Workbench relationship
+    clocks do not promote themselves into the organism.</li>
+</ol>
+<h2>Decisions that can wait until their gate</h2>
+<p>Do not block early factual work on these, but do not silently decide them:</p>
+<ul>
+<li>final user-facing instrument name;</li>
+<li>the first calibration chart and governing period;</li>
+<li>which specialist layers enter the first useful release;</li>
+<li>whether a saved-period library is part of the first interface pass;</li>
+<li>exact visual styling after the donor chassis is separated from natal content;</li>
+<li>whether compact summaries later appear in a currently governed
+  timing/discovery surface, if one exists when that gate opens.</li>
+</ul>
+<p>Any compact cross-view summary remains a link or bounded projection. It must not
+embed the whole organism or create a second interpretation owner.</p>
+<h2>Cold restart route</h2>
+<p>A future builder should resume in this order:</p>
+<ol>
+<li>Read the live vault router:
+   <code>Freedom 250 Chronicle/_Claude-Context/README.md</code>.</li>
+<li>Refresh the vault Primer if current operational state matters.</li>
+<li>Read <code>00 - Index/DECISION LOG.md</code>.</li>
+<li>Read <code>00 - Index/Reading the Charts — START HERE.md</code>.</li>
+<li>Read <code>00 - Index/Mundane Astrology — Master Reference.md</code>, the governed
+   mundane method/atlas owner and the semantic owner set.</li>
+<li>Read this handoff.</li>
+<li>Read <code>KNOWLEDGE_INVENTORY.md</code>.</li>
+<li>Read <code>MUNDANE_ORGANISM_DESIGN.md</code>.</li>
+<li>Inspect <code>mundane_method_atlas.json</code> and run
+   <code>validate_mundane_mold.py</code>.</li>
+<li>Before app work, read <code>_Claude-Context/BOOT — Build a View.md</code>,
+    <code>_Claude-Context/VIEWS REGISTRY.md</code> and
+    <code>00 - Index/Observatory — Unified Experience Architecture.md</code>.</li>
+<li>Inspect the live code and git state; do not infer it from this dated
+    handoff.</li>
+</ol>
+<h2>Exact next action when work resumes</h2>
+<p>Start with <strong>Phase 0: governance and ratification</strong>, not an app fork.</p>
+<p>Begin Katie&#x27;s Planet review with <strong>Sun / Moon</strong>, then proceed through Mercury,
+Venus / Mars, Jupiter / Saturn, and Uranus / Neptune / Pluto. The complete
+surface is <code>MUNDANE_PLANET_OWNER_REVIEW.md</code>; machine candidates are in
+<code>MUNDANE_PLANET_OWNER_CANDIDATES.json</code>; the deliberately closed ten-record
+owner shell is <code>mundane_planet_function_owner.json</code>.</p>
+<p>The equivalent Sign and House surface is now
+<code>MUNDANE_SIGN_AND_HOUSE_OWNER_REVIEW.md</code>. Review Signs after ratifying the three
+Modality and four Element inputs; review Houses by axis. Each atom shows:</p>
+<ul>
+<li>current proposed wording;</li>
+<li>modality and element structural inputs where relevant;</li>
+<li>source provenance;</li>
+<li>known divergences;</li>
+<li>dependent connectors;</li>
+<li>Katie disposition;</li>
+<li>resulting atlas state.</li>
+</ul>
+<p>Once those atoms and the chart identity contract are sufficiently ratified,
+extract the smallest semantic-closed mundane identity chassis and prove one
+factual chart end to end. Do not begin by copying the complete Sentient Sun
+repository or by wiring an unfinished organism into the Observatory shell.</p>
+<h2>Current verification receipt</h2>
+<p>At handoff creation:</p>
+<ul>
+<li>the mundane mold validator passes its declared structural scope;</li>
+<li>no Sentient Sun files were edited;</li>
+<li>no live Freedom 250 vault method, view or app source was edited by this
+  package;</li>
+<li>no generated Observatory view exists yet;</li>
+<li>no automated Judgment, Translation or Forecast permission is open.</li>
+</ul>
+<p>2026-08-30 amendment verification:</p>
+<ul>
+<li>relationship-time is now explicit in the design, circular-reading plan,
+  handoff, knowledge inventory, machine atlas, and mold validator;</li>
+<li>the amendment changes the design contract only—no app fork, generated view,
+  semantic owner activation, pair-roster promotion, or forecast was opened.</li>
+</ul>
+<p>This receipt is dated evidence only. Re-run the package validator and inspect
+live vault/app status before relying on it in a later session.</p></main></body></html>

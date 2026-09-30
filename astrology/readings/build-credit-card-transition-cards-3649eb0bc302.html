@@ -1,0 +1,597 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-credit-card-transition-cards-3649eb0bc302.html">
+<title>build_credit_card_transition_cards</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · current</div><h1>build_credit_card_transition_cards</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Money x Sky/Retail Payment Terminal Transition 2026-07-28/astrology-workbench/build_credit_card_transition_cards.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the Observatory-native credit-card transition astrology card plot.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+import html
+import importlib.util
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+PACKAGE = HERE.parent
+CARDS_PATH = HERE / &quot;credit_card_transition_cards.json&quot;
+ASTRO_PATH = PACKAGE / &quot;CREDIT_CARD_TRANSITION_ASTROLOGY_DATA_2026-07-28.json&quot;
+US_PATH = HERE / &quot;vendor&quot; / &quot;us_rec.json&quot;
+WHEEL_PATH = HERE / &quot;vendor&quot; / &quot;wheel_lib.py&quot;
+OUT_PATH = HERE / &quot;outputs&quot; / &quot;Credit Card Transition — Money × Sky.html&quot;
+MANIFEST_PATH = HERE / &quot;outputs&quot; / &quot;build_manifest.json&quot;
+
+_wlspec = importlib.util.spec_from_file_location(&quot;wheel_lib&quot;, WHEEL_PATH)
+wheel_lib = importlib.util.module_from_spec(_wlspec)
+assert _wlspec.loader
+_wlspec.loader.exec_module(wheel_lib)
+
+
+def read_json(path: Path):
+    return json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+
+
+def dump_for_script(value) -&gt; str:
+    return json.dumps(value, ensure_ascii=False).replace(&quot;&lt;/&quot;, &quot;&lt;\\/&quot;)
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def wheel_name(name: str) -&gt; str:
+    return &quot;Node&quot; if name == &quot;True Node&quot; else name
+
+
+def pos_tuple(name: str, record: dict) -&gt; list:
+    longitude = float(record[&quot;longitude&quot;])
+    degree = int(longitude % 30)
+    minute = int(round(((longitude % 30) - degree) * 60))
+    if minute == 60:
+        degree += 1
+        minute = 0
+    return [
+        wheel_name(name),
+        record[&quot;position&quot;].split(&quot;° &quot;, 1)[1],
+        f&quot;{degree}°{minute:02d}&#x27;&quot;,
+        bool(record.get(&quot;retrograde&quot;)),
+        longitude,
+    ]
+
+
+def event_wheel_record(event: dict, context_key: str = &quot;contextual_container_clock&quot;) -&gt; dict:
+    context = event[context_key]
+    lons = {
+        wheel_name(name): float(value[&quot;longitude&quot;])
+        for name, value in context[&quot;positions&quot;].items()
+    }
+    planet_lons = {
+        name: longitude
+        for name, longitude in lons.items()
+        if name not in {&quot;Chiron&quot;, &quot;Node&quot;, &quot;SNode&quot;, &quot;America&quot;}
+    }
+    aspects = wheel_lib.aspects_between(planet_lons)
+    for point in (&quot;Node&quot;, &quot;Chiron&quot;, &quot;America&quot;):
+        if point in lons:
+            aspects += wheel_lib.point_aspects({point: lons[point]}, planet_lons)
+    aspects.sort(key=lambda item: item[&quot;o&quot;])
+    return {
+        &quot;pos&quot;: [pos_tuple(name, value) for name, value in context[&quot;positions&quot;].items()],
+        &quot;asp&quot;: aspects,
+        &quot;asc&quot;: float(context[&quot;ascendant&quot;][&quot;longitude&quot;]),
+        &quot;__date&quot;: context.get(&quot;display&quot;, context[&quot;local&quot;]),
+        &quot;cap1&quot;: context.get(
+            &quot;cap1&quot;,
+            f&quot;{event[&#x27;label&#x27;]} · {context[&#x27;local&#x27;]}&quot;,
+        ),
+        &quot;cap2&quot;: context.get(
+            &quot;cap2&quot;,
+            &quot;Whole Sign · explicitly classified research clock&quot;,
+        ),
+        &quot;mc&quot;: float(context[&quot;mc&quot;][&quot;longitude&quot;]),
+    }
+
+
+def geometry_html(event: dict) -&gt; str:
+    parts = []
+    for hit in event.get(&quot;outer_cycles&quot;, [])[:4]:
+        parts.append(
+            f&quot;&lt;li&gt;&lt;b&gt;{html.escape(hit[&#x27;pair&#x27;])}&lt;/b&gt; {html.escape(hit[&#x27;aspect&#x27;])}&quot;
+            f&quot; &lt;span&gt;{hit[&#x27;orb&#x27;]:.2f}°&lt;/span&gt;&lt;/li&gt;&quot;
+        )
+    for hit in event.get(&quot;us_money_axis_hits&quot;, [])[:5]:
+        parts.append(
+            f&quot;&lt;li&gt;&lt;b&gt;{html.escape(hit[&#x27;transit&#x27;])}&lt;/b&gt; {html.escape(hit[&#x27;aspect&#x27;])} &quot;
+            f&quot;U.S. {html.escape(hit[&#x27;natal&#x27;])} &lt;span&gt;{hit[&#x27;orb&#x27;]:.2f}° · &quot;
+            f&quot;{html.escape(hit[&#x27;state&#x27;])}&lt;/span&gt;&lt;/li&gt;&quot;
+        )
+    for hit in event.get(&quot;us_money_midpoint_hits&quot;, [])[:4]:
+        parts.append(
+            f&quot;&lt;li&gt;&lt;b&gt;{html.escape(hit[&#x27;transit&#x27;])}&lt;/b&gt; {hit[&#x27;harmonic_angle&#x27;]}° &quot;
+            f&quot;U.S. {html.escape(hit[&#x27;midpoint&#x27;])} midpoint &quot;
+            f&quot;&lt;span&gt;{hit[&#x27;orb&#x27;]:.2f}°&lt;/span&gt;&lt;/li&gt;&quot;
+        )
+    for hit in event.get(&quot;minor_point_aspects&quot;, [])[:4]:
+        parts.append(
+            f&quot;&lt;li&gt;&lt;b&gt;{html.escape(hit[&#x27;point&#x27;])}&lt;/b&gt; {html.escape(hit[&#x27;aspect&#x27;])} &quot;
+            f&quot;{html.escape(hit[&#x27;planet&#x27;])} &lt;span&gt;{hit[&#x27;orb&#x27;]:.2f}°&lt;/span&gt;&lt;/li&gt;&quot;
+        )
+    if event.get(&quot;contextual_container_clock&quot;):
+        context = event[&quot;contextual_container_clock&quot;]
+        for hit in context[&quot;angle_contacts&quot;]:
+            parts.insert(
+                0,
+                f&quot;&lt;li&gt;&lt;b&gt;{html.escape(hit[&#x27;planet&#x27;])}&lt;/b&gt; &quot;
+                f&quot;{html.escape(hit[&#x27;aspect&#x27;])} {html.escape(hit[&#x27;angle&#x27;])} &quot;
+                f&quot;&lt;span&gt;{hit[&#x27;orb&#x27;]:.2f}°&lt;/span&gt;&lt;/li&gt;&quot;,
+            )
+        for hit in context[&quot;aspects&quot;][:5]:
+            parts.insert(
+                1,
+                f&quot;&lt;li&gt;&lt;b&gt;{html.escape(hit[&#x27;pair&#x27;])}&lt;/b&gt; {html.escape(hit[&#x27;aspect&#x27;])} &quot;
+                f&quot;&lt;span&gt;{hit[&#x27;orb&#x27;]:.2f}° · {html.escape(hit[&#x27;state&#x27;])}&lt;/span&gt;&lt;/li&gt;&quot;,
+            )
+    if not parts:
+        return (
+            &#x27;&lt;p class=&quot;withheld&quot;&gt;No point geometry. This chronology band is intentionally &#x27;
+            &quot;not charted.&lt;/p&gt;&quot;
+        )
+    return &quot;&lt;ul class=\&quot;geometry\&quot;&gt;&quot; + &quot;&quot;.join(parts) + &quot;&lt;/ul&gt;&quot;
+
+
+def buildup_html(items: list[dict]) -&gt; str:
+    return &quot;&quot;.join(
+        &#x27;&lt;div class=&quot;stage&quot;&gt;&lt;div class=&quot;sdate&quot;&gt;&#x27;
+        + html.escape(item[&quot;date&quot;])
+        + &#x27;&lt;/div&gt;&lt;div class=&quot;slab&quot;&gt;&lt;div class=&quot;stag&quot;&gt;&#x27;
+        + html.escape(item[&quot;label&quot;])
+        + &#x27;&lt;/div&gt;&lt;div class=&quot;snote&quot;&gt;&#x27;
+        + html.escape(item[&quot;note&quot;])
+        + &quot;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&quot;
+        for item in items
+    )
+
+
+def render(cards: dict, astro: dict, us_rec: dict) -&gt; str:
+    events = {event[&quot;id&quot;]: event for event in astro[&quot;events&quot;]}
+    tracks = cards[&quot;tracks&quot;]
+    overlays = {}
+    chart_records = {}
+    merged_cards = []
+    for card in cards[&quot;cards&quot;]:
+        event = events[card[&quot;id&quot;]]
+        merged = {**card, &quot;event&quot;: event}
+        merged_cards.append(merged)
+        if event.get(&quot;positions&quot;):
+            if event.get(&quot;contextual_container_clock&quot;):
+                context = event[&quot;contextual_container_clock&quot;]
+                chart_records[card[&quot;id&quot;]] = {
+                    &quot;mode&quot;: &quot;event&quot;,
+                    &quot;record&quot;: event_wheel_record(event),
+                    &quot;caption&quot;: context.get(
+                        &quot;caption&quot;,
+                        &quot;Event chart; use the visible clock boundary before reading angles or houses.&quot;,
+                    ),
+                }
+                if event.get(&quot;dc_companion_clock&quot;):
+                    dc_context = event[&quot;dc_companion_clock&quot;]
+                    chart_records[f&quot;{card[&#x27;id&#x27;]}__dc&quot;] = {
+                        &quot;mode&quot;: &quot;event&quot;,
+                        &quot;record&quot;: event_wheel_record(event, &quot;dc_companion_clock&quot;),
+                        &quot;caption&quot;: dc_context.get(
+                            &quot;caption&quot;,
+                            &quot;Washington, D.C. relocation companion at the same instant.&quot;,
+                        ),
+                    }
+            else:
+                overlays[card[&quot;id&quot;]] = {
+                    wheel_name(name): float(value[&quot;longitude&quot;])
+                    for name, value in event[&quot;positions&quot;].items()
+                }
+                chart_records[card[&quot;id&quot;]] = {&quot;mode&quot;: &quot;us-overlay&quot;}
+
+    track_css = &quot;\n&quot;.join(
+        f&quot;.t-{key} .card{{border-left-color:{meta[&#x27;color&#x27;]}}}&quot;
+        f&quot; .t-{key} .tk{{background:{meta[&#x27;color&#x27;]}22;color:{meta[&#x27;color&#x27;]};&quot;
+        f&quot;border:1px solid {meta[&#x27;color&#x27;]}55}}&quot;
+        f&quot; .chip[data-track=\&quot;{key}\&quot;].on{{background:{meta[&#x27;color&#x27;]}33;&quot;
+        f&quot;border-color:{meta[&#x27;color&#x27;]};color:#eee}}&quot;
+        for key, meta in tracks.items()
+    )
+    legend = &quot;&quot;.join(
+        &#x27;&lt;div class=&quot;leg t-&#x27;
+        + html.escape(key)
+        + &#x27;&quot;&gt;&lt;span class=&quot;tk&quot;&gt;&#x27;
+        + html.escape(meta[&quot;label&quot;])
+        + &quot;&lt;/span&gt;&lt;p&gt;&quot;
+        + html.escape(meta[&quot;description&quot;])
+        + &quot;&lt;/p&gt;&lt;/div&gt;&quot;
+        for key, meta in tracks.items()
+    )
+    track_chips = &quot;&quot;.join(
+        &#x27;&lt;button class=&quot;chip on&quot; data-track=&quot;&#x27;
+        + html.escape(key)
+        + &#x27;&quot;&gt;&#x27;
+        + html.escape(meta[&quot;label&quot;])
+        + &quot;&lt;/button&gt;&quot;
+        for key, meta in tracks.items()
+    )
+
+    entries = []
+    last_year = None
+    for card in merged_cards:
+        event = card[&quot;event&quot;]
+        year = event[&quot;date&quot;][:4]
+        if year != last_year:
+            entries.append(f&#x27;&lt;div class=&quot;yr&quot;&gt;{html.escape(year)}&lt;/div&gt;&#x27;)
+            last_year = year
+        chartable = card[&quot;id&quot;] in chart_records
+        quality = event.get(
+            &quot;chart_quality&quot;,
+            &quot;context chart&quot;
+            if event.get(&quot;contextual_container_clock&quot;)
+            else &quot;planetary proxy&quot;
+            if chartable
+            else &quot;chronology only&quot;,
+        )
+        chart_buttons = []
+        if chartable:
+            chart_buttons.append(
+                f&#x27;&lt;button class=&quot;cbtn&quot; data-chart=&quot;{html.escape(card[&quot;id&quot;])}&quot; &#x27;
+                f&#x27;data-slot=&quot;{html.escape(card[&quot;id&quot;])}&quot; data-label=&quot;local chart&quot;&gt;&#x27;
+                &quot;local chart ▾&lt;/button&gt;&quot;
+            )
+            if event.get(&quot;dc_companion_clock&quot;):
+                chart_buttons.append(
+                    f&#x27;&lt;button class=&quot;cbtn&quot; data-chart=&quot;{html.escape(card[&quot;id&quot;])}__dc&quot; &#x27;
+                    f&#x27;data-slot=&quot;{html.escape(card[&quot;id&quot;])}&quot; data-label=&quot;D.C. companion&quot;&gt;&#x27;
+                    &quot;D.C. companion ▾&lt;/button&gt;&quot;
+                )
+        chart_button = &quot;&quot;.join(chart_buttons)
+        source_links = [
+            f&#x27;&lt;a href=&quot;{html.escape(event[&quot;source&quot;])}&quot; target=&quot;_blank&quot; &#x27;
+            f&#x27;rel=&quot;noopener&quot;&gt;primary / controlling source&lt;/a&gt;&#x27;
+        ]
+        if event.get(&quot;source_secondary&quot;):
+            source_links.append(
+                f&#x27;&lt;a href=&quot;{html.escape(event[&quot;source_secondary&quot;])}&quot; target=&quot;_blank&quot; &#x27;
+                f&#x27;rel=&quot;noopener&quot;&gt;supporting source&lt;/a&gt;&#x27;
+            )
+        entries.append(
+            f&quot;&quot;&quot;&lt;article class=&quot;entry t-{html.escape(card[&#x27;track&#x27;])}&quot; data-track=&quot;{html.escape(card[&#x27;track&#x27;])}&quot;&gt;
+  &lt;div class=&quot;d&quot;&gt;{html.escape(card[&#x27;date_display&#x27;])}&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;div class=&quot;meta&quot;&gt;
+      &lt;span class=&quot;tk&quot;&gt;{html.escape(tracks[card[&#x27;track&#x27;]][&#x27;label&#x27;])}&lt;/span&gt;
+      &lt;span class=&quot;actor&quot;&gt;{html.escape(card[&#x27;actor&#x27;])}&lt;/span&gt;
+      &lt;span class=&quot;st st-occurred&quot;&gt;occurred&lt;/span&gt;
+      &lt;span class=&quot;clock&quot;&gt;clock {html.escape(event[&#x27;clock_grade&#x27;])}&lt;/span&gt;
+      &lt;span class=&quot;quality&quot;&gt;{html.escape(quality)}&lt;/span&gt;
+      {chart_button}
+    &lt;/div&gt;
+    &lt;h3&gt;{html.escape(card[&#x27;title&#x27;])}&lt;/h3&gt;
+    &lt;p class=&quot;fact&quot;&gt;{html.escape(card[&#x27;factual&#x27;])}&lt;/p&gt;
+    &lt;div class=&quot;sources&quot;&gt;{&#x27; · &#x27;.join(source_links)}&lt;/div&gt;
+    &lt;details class=&quot;dd&quot;&gt;
+      &lt;summary&gt;open buildup + reading&lt;/summary&gt;
+      &lt;div class=&quot;block&quot;&gt;
+        &lt;div class=&quot;blabel&quot;&gt;The buildup&lt;/div&gt;
+        &lt;div class=&quot;story&quot;&gt;{buildup_html(card[&#x27;buildup&#x27;])}&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;block qblock&quot;&gt;
+        &lt;div class=&quot;blabel&quot;&gt;The historical question&lt;/div&gt;
+        &lt;p&gt;{html.escape(card[&#x27;question&#x27;])}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;block&quot;&gt;
+        &lt;div class=&quot;blabel&quot;&gt;Exact geometry shown&lt;/div&gt;
+        {geometry_html(event)}
+      &lt;/div&gt;
+      &lt;div class=&quot;block reading&quot;&gt;
+        &lt;div class=&quot;blabel&quot;&gt;Structural reading · symbolic, not causal&lt;/div&gt;
+        &lt;p&gt;{html.escape(card[&#x27;reading&#x27;])}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;block caveat&quot;&gt;
+        &lt;div class=&quot;blabel&quot;&gt;Counterweight / provenance&lt;/div&gt;
+        &lt;p&gt;{html.escape(card[&#x27;counterweight&#x27;])}&lt;/p&gt;
+        &lt;p class=&quot;boundary&quot;&gt;{html.escape(event[&#x27;boundary&#x27;])}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/details&gt;
+    &lt;div class=&quot;astro-slot&quot; data-slot=&quot;{html.escape(card[&#x27;id&#x27;])}&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;&quot;&quot;&quot;
+        )
+
+    tests_plus = &quot;&quot;.join(f&quot;&lt;li&gt;{html.escape(item)}&lt;/li&gt;&quot; for item in cards[&quot;tests&quot;][&quot;strengthens&quot;])
+    tests_minus = &quot;&quot;.join(f&quot;&lt;li&gt;{html.escape(item)}&lt;/li&gt;&quot; for item in cards[&quot;tests&quot;][&quot;weakens&quot;])
+    findings = cards.get(
+        &quot;findings&quot;,
+        [
+            {&quot;title&quot;: &quot;1958 · credential&quot;, &quot;text&quot;: &quot;A bank promise becomes portable before it becomes electronic.&quot;},
+            {&quot;title&quot;: &quot;1966–74 · control plane&quot;, &quot;text&quot;: &quot;Shared rules, authorization and settlement turn the card into a network.&quot;},
+            {&quot;title&quot;: &quot;2014 · adapter&quot;, &quot;text&quot;: &quot;Apple Pay changes the presented credential while preserving card rails.&quot;},
+            {&quot;title&quot;: &quot;2025 · deeper swap&quot;, &quot;text&quot;: &quot;Stablecoin can enter settlement behind an unchanged acceptance surface.&quot;},
+        ],
+    )
+    findings_html = &quot;&quot;.join(
+        &#x27;&lt;div class=&quot;finding&quot;&gt;&lt;div class=&quot;n&quot;&gt;&#x27;
+        + html.escape(item[&quot;title&quot;])
+        + &quot;&lt;/div&gt;&lt;p&gt;&quot;
+        + html.escape(item[&quot;text&quot;])
+        + &quot;&lt;/p&gt;&lt;/div&gt;&quot;
+        for item in findings
+    )
+    method = cards.get(&quot;method&quot;)
+    if method:
+        method_paragraph = html.escape(method[&quot;paragraph&quot;])
+        method_items = &quot;&quot;.join(f&quot;&lt;li&gt;{html.escape(item)}&lt;/li&gt;&quot; for item in method[&quot;items&quot;])
+    else:
+        method_paragraph = (
+            &quot;Geocentric tropical Swiss Ephemeris; locked U.S. Sagittarius-rising chart &quot;
+            &quot;(2 July 1776, ~5:10 p.m. LMT, Philadelphia); Whole Sign houses on the locked chart. &quot;
+            &quot;Day-only anchors use 12:00 UTC solely to place planets on the zodiac. Their event &quot;
+            &quot;angles and houses are withheld. Apple Pay’s reported ~10:47 a.m. PDT reveal frame is &quot;
+            &quot;the sole context chart; the 1986–87 securitization band is not charted.&quot;
+        )
+        method_items = &quot;&quot;.join(
+            f&quot;&lt;li&gt;{html.escape(item)}&lt;/li&gt;&quot;
+            for item in [
+                &quot;Outer-to-U.S. money-axis contacts: 3°; mod-45 money midpoints: 1.5°.&quot;,
+                &quot;Outer mutual aspects are descriptive background, not an event score.&quot;,
+                &quot;Cross-event repeats are not independent observations; several dates belong to one historical build.&quot;,
+                &quot;The project’s own daily backtest was null. No concrete causation, destiny or timing prediction is claimed.&quot;,
+                &quot;The 916 America point is unavailable for these historical dates and is not extrapolated.&quot;,
+            ]
+        )
+    event_data = dump_for_script(
+        [
+            {
+                &quot;id&quot;: card[&quot;id&quot;],
+                &quot;track&quot;: card[&quot;track&quot;],
+                &quot;actor&quot;: card[&quot;actor&quot;],
+                &quot;title&quot;: card[&quot;title&quot;],
+                &quot;date&quot;: card[&quot;date_display&quot;],
+            }
+            for card in merged_cards
+        ]
+    )
+    records_data = dump_for_script(chart_records)
+    overlay_data = dump_for_script(overlays)
+    us_data = dump_for_script(us_rec[&quot;sag&quot;])
+
+    return f&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;{html.escape(cards[&#x27;title&#x27;])}&lt;/title&gt;
+&lt;style&gt;
+:root{{--bg:#0e1116;--panel:#161b24;--ink:#d6dae2;--dim:#8a93a3;--line:#2a3242;--accent:#c8a24a;--paper:#f6f2e8}}
+*{{box-sizing:border-box}}
+body{{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,&#x27;Segoe UI&#x27;,Helvetica,Arial,sans-serif}}
+.wrap{{max-width:1020px;margin:0 auto;padding:28px 20px 80px}}
+header h1{{font-family:Georgia,serif;font-size:32px;margin:0 0 4px;color:#f0e9d8}}
+header .thesis{{font-family:Georgia,serif;font-style:italic;color:var(--accent);font-size:17px;margin:2px 0 10px;max-width:82ch}}
+header p.sub{{color:var(--dim);margin:0 0 18px;max-width:84ch}}
+.finding-grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:16px 0 22px}}
+.finding{{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:11px 12px}}
+.finding .n{{font-family:Georgia,serif;color:#f0e9d8;font-size:17px}}
+.finding p{{color:var(--dim);font-size:12.5px;margin:4px 0 0}}
+.legend{{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin:14px 0 22px}}
+.leg{{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px}}
+.leg p{{margin:6px 0 0;color:var(--dim);font-size:13px}}
+.tk{{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:10px}}
+.bar{{position:sticky;top:0;background:linear-gradient(var(--bg) 84%,transparent);padding:10px 0 14px;z-index:5}}
+.chips{{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}}
+.chip{{background:#1a2130;border:1px solid var(--line);color:var(--dim);border-radius:14px;padding:3px 11px;font-size:12.5px;cursor:pointer}}
+.chip.on{{color:#eee;border-color:#59657c;background:#232c3e}}
+.count{{color:var(--dim);font-size:12.5px;margin-left:4px;align-self:center}}
+.yr{{font-family:Georgia,serif;font-size:22px;color:#f0e9d8;border-bottom:1px solid var(--line);margin:30px 0 4px;padding-bottom:4px}}
+.entry{{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:10px 0}}
+.entry .d{{color:var(--dim);font-size:12.5px;text-align:right;padding-top:14px;font-variant-numeric:tabular-nums}}
+.card{{background:var(--panel);border:1px solid var(--line);border-left:3px solid #555;border-radius:8px;padding:12px 14px}}
+.card h3{{margin:0 0 5px;font-size:16px;color:#e8ebf2;font-weight:600}}
+.meta{{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:7px}}
+.actor,.clock,.quality{{font-size:11px;color:#c7cedb;background:#242e42;border-radius:10px;padding:2px 8px}}
+.clock{{color:#d8c694;background:#2b281d}} .quality{{color:#9fb7d6;background:#1c2635}}
+.st{{font-size:11px;border-radius:10px;padding:2px 8px;border:1px solid}}
+.st-occurred{{color:#9fd6a9;border-color:#3d6b46}}
+.fact{{margin:4px 0 6px;color:#aeb6c4;font-size:13.5px}}
+.sources{{display:flex;flex-wrap:wrap;gap:4px;color:#667080;font-size:12px}}
+.sources a{{color:#7fa8d9;text-decoration:none}} .sources a:hover{{text-decoration:underline}}
+.dd{{margin-top:10px;border-top:1px solid #242d3d;padding-top:8px}}
+.dd&gt;summary{{cursor:pointer;color:#c8a24a;font-size:12px;letter-spacing:.02em;list-style:none}}
+.dd&gt;summary::-webkit-details-marker{{display:none}}
+.dd&gt;summary:before{{content:&quot;＋ &quot;;color:#7e8797}} .dd[open]&gt;summary:before{{content:&quot;− &quot;}}
+.block{{margin:11px 0 0;padding:10px 12px;background:#121720;border:1px solid #242d3d;border-radius:7px}}
+.blabel{{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#8f9aac;margin-bottom:6px}}
+.block p{{margin:0;color:#aeb6c4;font-size:13.2px}}
+.qblock p{{font-family:Georgia,serif;font-style:italic;color:#d8dce5;font-size:14px}}
+.reading{{border-color:#544729}} .caveat{{border-color:#493235}}
+.boundary{{margin-top:7px!important;color:#7f8998!important;font-size:11.5px!important}}
+.story{{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}}
+.stage{{display:grid;grid-template-columns:64px 1fr;gap:8px;align-items:start}}
+.sdate{{font-family:Georgia,serif;color:#d4b65d;font-size:12px;padding-top:2px}}
+.slab{{border-left:2px solid #3b465a;padding-left:9px}}
+.stag{{color:#dbe0e9;font-size:12.5px;font-weight:600}} .snote{{color:#8f99aa;font-size:12px;margin-top:2px}}
+.geometry{{margin:0;padding-left:18px;columns:2;column-gap:26px}}
+.geometry li{{break-inside:avoid;color:#aeb6c4;font-size:12.5px;margin-bottom:4px}}
+.geometry b{{color:#d9dee7;font-weight:600}} .geometry span{{color:#7f8999}}
+.withheld{{font-style:italic;color:#8f99aa!important}}
+.astro-slot{{margin-top:10px}}
+.astro-wrap{{background:var(--paper);border-radius:8px;padding:8px}}
+.astro-slot svg{{max-width:640px;width:100%;height:auto;margin:auto;background:var(--paper);border-radius:8px}}
+.chart-cap{{color:#8f99aa;font-size:11.5px;margin:6px 3px 1px}}
+.cbtn{{background:#1a2130;border:1px solid var(--line);color:#c8a24a;border-radius:12px;padding:2px 10px;font-size:11.5px;cursor:pointer;margin-left:auto}}
+.tests{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}}
+.tests&gt;div{{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px}}
+.tests h2{{font-family:Georgia,serif;font-size:17px;margin:0 0 8px}}
+.tests .plus h2{{color:#9fd6a9}} .tests .minus h2{{color:#e0a48a}}
+.tests li{{color:#aeb6c4;font-size:13px;margin-bottom:6px}}
+.method{{margin-top:28px;background:#111720;border:1px solid var(--line);border-radius:8px;padding:13px 15px}}
+.method h2{{font-family:Georgia,serif;font-size:17px;margin:0 0 6px;color:#ece5d3}}
+.method p,.method li{{color:#929dac;font-size:12.5px}}
+footer{{color:var(--dim);font-size:12px;margin-top:28px;border-top:1px solid var(--line);padding-top:10px}}
+{track_css}
+@media(max-width:760px){{.finding-grid{{grid-template-columns:1fr 1fr}}.entry{{grid-template-columns:1fr}}.entry .d{{text-align:left;padding-top:0}}.tests{{grid-template-columns:1fr}}}}
+@media(max-width:520px){{.finding-grid,.story{{grid-template-columns:1fr}}.geometry{{columns:1}}}}
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class=&quot;wrap&quot;&gt;
+&lt;header&gt;
+  &lt;h1&gt;{html.escape(cards[&#x27;title&#x27;])}&lt;/h1&gt;
+  &lt;div class=&quot;thesis&quot;&gt;{html.escape(cards[&#x27;thesis&#x27;])}&lt;/div&gt;
+  &lt;p class=&quot;sub&quot;&gt;{html.escape(cards[&#x27;method_note&#x27;])}&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class=&quot;finding-grid&quot;&gt;
+  {findings_html}
+&lt;/div&gt;
+&lt;div class=&quot;legend&quot;&gt;{legend}&lt;/div&gt;
+&lt;div class=&quot;bar&quot;&gt;&lt;div class=&quot;chips&quot; id=&quot;trackChips&quot;&gt;{track_chips}&lt;span class=&quot;count&quot; id=&quot;count&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;main id=&quot;timeline&quot;&gt;{&#x27;&#x27;.join(entries)}&lt;/main&gt;
+&lt;div class=&quot;tests&quot;&gt;
+  &lt;div class=&quot;plus&quot;&gt;&lt;h2&gt;{html.escape(cards[&quot;tests&quot;].get(&quot;strengthens_title&quot;, &quot;The adapter story gets stronger if…&quot;))}&lt;/h2&gt;&lt;ul&gt;{tests_plus}&lt;/ul&gt;&lt;/div&gt;
+  &lt;div class=&quot;minus&quot;&gt;&lt;h2&gt;{html.escape(cards[&quot;tests&quot;].get(&quot;weakens_title&quot;, &quot;The adapter story weakens if…&quot;))}&lt;/h2&gt;&lt;ul&gt;{tests_minus}&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;section class=&quot;method&quot;&gt;
+  &lt;h2&gt;Clock and method discipline&lt;/h2&gt;
+  &lt;p&gt;{method_paragraph}&lt;/p&gt;
+  &lt;ul&gt;{method_items}&lt;/ul&gt;
+&lt;/section&gt;
+&lt;footer&gt;{html.escape(cards.get(&quot;footer&quot;, &quot;Research-only Observatory card plot · factual chronology first · source and clock grade on every card&quot;))} · generated {datetime.now(timezone.utc).strftime(&#x27;%Y-%m-%d&#x27;)}.&lt;/footer&gt;
+&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;card-data&quot;&gt;{event_data}&lt;/script&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;chart-records&quot;&gt;{records_data}&lt;/script&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;chart-overlays&quot;&gt;{overlay_data}&lt;/script&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;us-record&quot;&gt;{us_data}&lt;/script&gt;
+&lt;script&gt;{wheel_lib.WHEEL_JS}&lt;/script&gt;
+&lt;script&gt;
+(function(){{
+&quot;use strict&quot;;
+var DATA=JSON.parse(document.getElementById(&quot;card-data&quot;).textContent);
+var RECORDS=JSON.parse(document.getElementById(&quot;chart-records&quot;).textContent);
+var CHARTS_LOCAL=JSON.parse(document.getElementById(&quot;chart-overlays&quot;).textContent);
+var US=JSON.parse(document.getElementById(&quot;us-record&quot;).textContent);
+window.CHARTS=CHARTS_LOCAL;
+var open={{}};
+var active={{}};
+document.querySelectorAll(&quot;[data-track]&quot;).forEach(function(node){{
+  if(node.classList.contains(&quot;chip&quot;)) active[node.dataset.track]=true;
+}});
+function updateCount(){{
+  var shown=0;
+  document.querySelectorAll(&quot;.entry&quot;).forEach(function(entry){{
+    var yes=!!active[entry.dataset.track];
+    entry.hidden=!yes;
+    if(yes) shown++;
+  }});
+  document.querySelectorAll(&quot;.yr&quot;).forEach(function(year){{
+    var next=year.nextElementSibling, any=false;
+    while(next &amp;&amp; !next.classList.contains(&quot;yr&quot;)){{
+      if(next.classList.contains(&quot;entry&quot;) &amp;&amp; !next.hidden) any=true;
+      next=next.nextElementSibling;
+    }}
+    year.hidden=!any;
+  }});
+  document.getElementById(&quot;count&quot;).textContent=shown+&quot; of &quot;+DATA.length+&quot; shown&quot;;
+}}
+function paint(id,slotId){{
+  var slot=document.querySelector(&#x27;.astro-slot[data-slot=&quot;&#x27;+CSS.escape(slotId)+&#x27;&quot;]&#x27;);
+  var info=RECORDS[id];
+  if(!slot||!info)return;
+  var svg;
+  if(info.mode===&quot;event&quot;){{
+    svg=wheelSVG(info.record,null,false);
+    slot.innerHTML=&#x27;&lt;div class=&quot;astro-wrap&quot;&gt;&#x27;+svg+&#x27;&lt;/div&gt;&lt;p class=&quot;chart-cap&quot;&gt;&#x27;+info.caption+&#x27;&lt;/p&gt;&#x27;;
+  }} else {{
+    svg=wheelSVG(US,id,true);
+    slot.innerHTML=&#x27;&lt;div class=&quot;astro-wrap&quot;&gt;&#x27;+svg+&#x27;&lt;/div&gt;&lt;p class=&quot;chart-cap&quot;&gt;Locked U.S. chart inside · event-day planetary proxy outside. The inner houses belong to the U.S. chart; no event angles or houses are implied.&lt;/p&gt;&#x27;;
+  }}
+}}
+document.addEventListener(&quot;click&quot;,function(ev){{
+  var chart=ev.target.closest?ev.target.closest(&quot;.cbtn&quot;):null;
+  if(chart){{
+    var id=chart.dataset.chart;
+    var slotId=chart.dataset.slot||id;
+    open[slotId]=open[slotId]===id?null:id;
+    document.querySelectorAll(&#x27;.cbtn[data-slot=&quot;&#x27;+CSS.escape(slotId)+&#x27;&quot;]&#x27;).forEach(function(btn){{
+      var label=btn.dataset.label||&quot;chart&quot;;
+      btn.textContent=label+(open[slotId]===btn.dataset.chart?&quot; ▴&quot;:&quot; ▾&quot;);
+    }});
+    if(open[slotId])paint(id,slotId);
+    else{{
+      var slot=document.querySelector(&#x27;.astro-slot[data-slot=&quot;&#x27;+CSS.escape(slotId)+&#x27;&quot;]&#x27;);
+      if(slot)slot.innerHTML=&quot;&quot;;
+    }}
+    return;
+  }}
+  var chip=ev.target.closest?ev.target.closest(&quot;.chip[data-track]&quot;):null;
+  if(!chip)return;
+  active[chip.dataset.track]=!active[chip.dataset.track];
+  chip.classList.toggle(&quot;on&quot;,active[chip.dataset.track]);
+  updateCount();
+}});
+updateCount();
+}})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;
+
+
+def main() -&gt; None:
+    cards = read_json(CARDS_PATH)
+    astro = read_json(ASTRO_PATH)
+    us_rec = read_json(US_PATH)
+    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    output = render(cards, astro, us_rec)
+    OUT_PATH.write_text(output, encoding=&quot;utf-8&quot;)
+    manifest = {
+        &quot;generated_at&quot;: datetime.now(timezone.utc).isoformat(),
+        &quot;artifact&quot;: OUT_PATH.name,
+        &quot;artifact_sha256&quot;: sha256(OUT_PATH),
+        &quot;cards&quot;: len(cards[&quot;cards&quot;]),
+        &quot;chartable_cards&quot;: sum(
+            1 for event in astro[&quot;events&quot;] if event.get(&quot;positions&quot;)
+        ),
+        &quot;wheel_records&quot;: sum(
+            1 + int(bool(event.get(&quot;dc_companion_clock&quot;)))
+            for event in astro[&quot;events&quot;]
+            if event.get(&quot;positions&quot;)
+        ),
+        &quot;chronology_only_cards&quot;: sum(
+            1 for event in astro[&quot;events&quot;] if not event.get(&quot;positions&quot;)
+        ),
+        &quot;source_hashes&quot;: {
+            CARDS_PATH.name: sha256(CARDS_PATH),
+            ASTRO_PATH.name: sha256(ASTRO_PATH),
+            &quot;vendor/wheel_lib.py&quot;: sha256(WHEEL_PATH),
+            &quot;vendor/us_rec.json&quot;: sha256(US_PATH),
+        },
+        &quot;wheel_engine&quot;: {
+            &quot;source&quot;: &quot;Freedom 250 Chronicle/99 - Templates/wheel_lib.py&quot;,
+            &quot;sha256&quot;: sha256(WHEEL_PATH),
+        },
+        &quot;boundaries&quot;: cards.get(
+            &quot;boundaries&quot;,
+            [
+                &quot;Date-only cards are planetary longitude proxies; event angles and houses are withheld.&quot;,
+                &quot;Apple Pay uses a contemporaneously reported reveal minute with a ±2-minute boundary.&quot;,
+                &quot;The 1986–1987 securitization band is chronology-only.&quot;,
+                &quot;No astrological strength or similarity score is computed.&quot;,
+            ],
+        ),
+    }
+    MANIFEST_PATH.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + &quot;\n&quot;,
+        encoding=&quot;utf-8&quot;,
+    )
+    print(f&quot;wrote {OUT_PATH} ({len(output) // 1024} KB)&quot;)
+    print(f&quot;wrote {MANIFEST_PATH}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

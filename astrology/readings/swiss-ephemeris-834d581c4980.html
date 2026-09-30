@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/swiss-ephemeris-834d581c4980.html">
+<title>swiss_ephemeris</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>swiss_ephemeris</h1><p class="mut">Portable source: 99 - Templates/swiss_ephemeris.py</p><pre>&quot;&quot;&quot;One ephemeris for the Freedom 250 astrology engine.
+
+Every engine module that computes planetary positions imports FLAGS from here.
+Importing this module points pyswisseph at the vendored Swiss Ephemeris data
+files in ``99 - Templates/ephe`` (sepl_18 / semo_18 from the JPL DE441 release,
+plus seas_18 for asteroids; coverage 1800-2400 AD). The earlier DE406-based
+files are kept in ``ephe/de406`` only for reproducing pre-correction numbers:
+DE406 is ~0.5&quot; off for Pluto and ~0.25&quot; for Neptune in the 2020s.
+
+Why this exists (2026-09-25 ephemeris correction): several builders forced the
+analytical Moshier ephemeris. That is harmless for ordinary lunation and
+ingress charts, but slow outer-planet conjunctions close at ~0.01°/day, so a
+one-arcsecond position error moves the exact moment by ~45 minutes and the
+conjunction chart&#x27;s Ascendant by several degrees. Requesting FLG_SWIEPH
+without setting the path is not enough either: pyswisseph then falls back to
+Moshier silently. ``require_swiss`` refuses that silent fallback.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import swisseph as swe
+
+EPHE_DIR = Path(__file__).resolve().parent / &quot;ephe&quot;
+FLAGS = swe.FLG_SWIEPH | swe.FLG_SPEED
+EPHEMERIS_LABEL = &quot;Swiss Ephemeris files (JPL DE441-based sepl_18/semo_18), 99 - Templates/ephe&quot;
+PRIOR_RELEASE_DIR = EPHE_DIR / &quot;de406&quot;  # pre-2026-09-25 vendored files, kept only for reproducing old numbers
+COVERAGE_JD = (swe.julday(1800, 1, 1), swe.julday(2399, 12, 31))
+
+swe.set_ephe_path(str(EPHE_DIR))
+
+
+def require_swiss(jd_ut: float = 2451545.0) -&gt; int:
+    &quot;&quot;&quot;Assert that the Swiss files (not Moshier) answer a calculation at jd_ut.&quot;&quot;&quot;
+    swe.set_ephe_path(str(EPHE_DIR))
+    returned = swe.calc_ut(jd_ut, swe.PLUTO, FLAGS)[1]
+    if not returned &amp; swe.FLG_SWIEPH:
+        raise RuntimeError(
+            f&quot;Swiss Ephemeris files were not used (returned flags {returned}); &quot;
+            f&quot;expected data files in {EPHE_DIR}. Refusing a silent Moshier fallback.&quot;
+        )
+    return FLAGS
+
+
+require_swiss()
+</pre></main></body></html>

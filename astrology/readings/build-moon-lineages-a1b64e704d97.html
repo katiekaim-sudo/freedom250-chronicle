@@ -1,0 +1,171 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-moon-lineages-a1b64e704d97.html">
+<title>A seed inside the chart horizon needs its complete 819-day Pessin tail even</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>A seed inside the chart horizon needs its complete 819-day Pessin tail even</h1><p class="mut">Portable source: 99 - Templates/build_moon_lineages.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Compute true Pessin Moon Family lineages and inject them into Moon Families.
+
+A lineage = a New Moon (seed) plus its First Quarter (~9 lunar months later),
+Full Moon (~18) and Last Quarter (~27) at the SAME sign and degree (±6°).
+The full 2¼-year story of one seed — Pessin&#x27;s Lunar Gestation Cycle proper,
+complementing the degree-band families already in the tab.
+
+Each member carries the chronicle&#x27;s ±3-day window: note count, top plotlines,
+top subplots. Chains are auto-titled by the seed window&#x27;s dominant subplot.
+
+Injects JSON between the LINEAGES-DATA markers in
+`04 - Synthesis/Cross-cuts/Moon Families.html`. Needs pyswisseph.
+Re-run after big ingests to refresh the event overlays (safe to repeat).
+&quot;&quot;&quot;
+import re, json, glob, os
+import swisseph as swe
+from datetime import date as Date, timedelta
+from collections import Counter
+
+HERE  = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+MF    = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;, &quot;Moon Families.html&quot;)
+EVENTS= os.path.join(VAULT, &quot;01 - Events&quot;)
+
+START = Date(2023, 1, 1)
+HORIZON_END = Date(2029, 1, 31)
+# A seed inside the chart horizon needs its complete 819-day Pessin tail even
+# though those later quarter/full phases are context, not added chart-shelf rows.
+CALC_END = Date(2031, 4, 30)
+SIGNS = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+BANDS = [(0,8,&quot;The Threshold&quot;),(8,16,&quot;The Great Harvest&quot;),(16,24,&quot;The Quiet Sowing&quot;),(24,30,&quot;The Eclipse Storm&quot;)]
+# Pessin spacing in days, verified empirically against the ephemeris:
+# NM -&gt; FQ at same degree = 273d (9 synodic months + ¼ phase), FM = 546d, LQ = 819d
+SPACING = {&quot;fq&quot;: 273.0, &quot;fm&quot;: 546.0, &quot;lq&quot;: 819.0}
+
+def lon(jd, p): return swe.calc_ut(jd, p)[0][0]
+
+def lunations():
+    names = {0:&quot;nm&quot;, 90:&quot;fq&quot;, 180:&quot;fm&quot;, 270:&quot;lq&quot;}
+    days = [(START + timedelta(days=i)) for i in range((CALC_END - START).days + 1)]
+    out = []
+    prev = None
+    for d in days:
+        j = swe.julday(d.year, d.month, d.day, 0.0)
+        ph = (lon(j,1) - lon(j,0)) % 360
+        if prev is not None:
+            for ang, code in names.items():
+                a = (prev[1] - ang + 180) % 360 - 180
+                b = (ph - ang + 180) % 360 - 180
+                if a * b &lt;= 0 and abs(a - b) &lt; 90:
+                    lo, hi = prev[0], j
+                    f = lambda x, ang=ang: ((lon(x,1)-lon(x,0)) % 360 - ang + 180) % 360 - 180
+                    flo = f(lo)
+                    for _ in range(40):
+                        mid = (lo + hi) / 2
+                        if flo * f(mid) &lt;= 0: hi = mid
+                        else: lo, flo = mid, f(mid)
+                    x = (lo + hi) / 2
+                    y, mo, dd, _ = swe.revjul(x)
+                    ml = lon(x, 1)
+                    node = lon(x, swe.TRUE_NODE)
+                    sun = lon(x, 0)
+                    ndist = min(abs((sun - node + 180) % 360 - 180), abs((sun - node) % 360 - 180) % 180)
+                    ecl = (code in (&quot;nm&quot;,&quot;fm&quot;)) and is_real_eclipse(x, code)
+                    out.append({&quot;date&quot;: f&quot;{y:04d}-{mo:02d}-{dd:02d}&quot;, &quot;ph&quot;: code, &quot;jd&quot;: x,
+                                &quot;sign&quot;: SIGNS[int(ml//30)], &quot;deg&quot;: round(ml % 30, 1),
+                                &quot;fdeg&quot;: ml, &quot;ec&quot;: bool(ecl)})
+        prev = (j, ph)
+    return out
+
+_ECL_CACHE={&quot;nm&quot;:set(),&quot;fm&quot;:set()}
+def _scan_real_eclipses(jd0, jd1):
+    &quot;&quot;&quot;Exact eclipse dates via swisseph (replaces the old &lt;17-deg node heuristic,
+    which produced false eclipses; verified 2026-06-10).&quot;&quot;&quot;
+    for kind,fn in ((&quot;nm&quot;,swe.sol_eclipse_when_glob),(&quot;fm&quot;,swe.lun_eclipse_when)):
+        jd=jd0
+        while jd&lt;jd1:
+            rf,tret=fn(jd,swe.FLG_SWIEPH,0)
+            mx=tret[0]
+            if mx&gt;=jd1: break
+            _ECL_CACHE[kind].add(round(mx))
+            jd=mx+5
+def is_real_eclipse(jd, code):
+    if not _ECL_CACHE[&quot;nm&quot;] and not _ECL_CACHE[&quot;fm&quot;]:
+        _scan_real_eclipses(jd-3000, jd+3000)
+    return any(abs(round(jd)-e)&lt;=1 for e in _ECL_CACHE[code])
+
+def day_events():
+    idx = {}
+    for f in glob.glob(os.path.join(EVENTS, &quot;2*.md&quot;)):
+        d = os.path.basename(f)[:10]
+        t = open(f, encoding=&quot;utf-8&quot;).read()
+        pm = re.search(r&#x27;primary_plotline:\s*&quot;?([^&quot;\n]+)&quot;?&#x27;, t)
+        sm = re.search(r&#x27;^subplot:\s*&quot;([^&quot;\n]+)&quot;&#x27;, t, re.M)
+        idx.setdefault(d, []).append((pm.group(1).strip() if pm else &quot;?&quot;, sm.group(1).strip() if sm else None))
+    return idx
+
+def window_stats(idx, dstr, span=3):
+    d0 = Date.fromisoformat(dstr)
+    plots, subs = Counter(), Counter()
+    n = 0
+    for i in range(-span, span+1):
+        for p, s in idx.get((d0 + timedelta(days=i)).isoformat(), []):
+            n += 1; plots[p] += 1
+            if s: subs[s] += 1
+    return n, plots.most_common(3), subs.most_common(3)
+
+def band(deg):
+    for a, b, name in BANDS:
+        if a &lt;= deg &lt; b: return name
+    return &quot;The Eclipse Storm&quot;
+
+def degree_distance(a, b):
+    &quot;&quot;&quot;Shortest zodiacal distance; preserves families that straddle 0° Aries.&quot;&quot;&quot;
+    return abs((a - b + 180) % 360 - 180)
+
+def main():
+    luns = lunations()
+    idx = day_events()
+    nms = [l for l in luns if l[&quot;ph&quot;] == &quot;nm&quot; and &quot;2023-06-01&quot; &lt;= l[&quot;date&quot;] &lt;= HORIZON_END.isoformat()]
+    chains = []
+    for nm in nms:
+        members = [nm]
+        ok = True
+        for code in (&quot;fq&quot;, &quot;fm&quot;, &quot;lq&quot;):
+            target = nm[&quot;jd&quot;] + SPACING[code]
+            cands = [l for l in luns if l[&quot;ph&quot;] == code and abs(l[&quot;jd&quot;] - target) &lt;= 18
+                     and degree_distance(l[&quot;fdeg&quot;], nm[&quot;fdeg&quot;]) &lt;= 6]
+            if not cands: ok = False; break
+            members.append(min(cands, key=lambda l: abs(l[&quot;deg&quot;] - nm[&quot;deg&quot;])))
+        if not ok: continue
+        # keep chains touching the chronicle&#x27;s interesting window
+        if not any(&quot;2024-09-01&quot; &lt;= m[&quot;date&quot;] &lt;= HORIZON_END.isoformat() for m in members): continue
+        mem_out = []
+        for m in members:
+            n, plots, subs = window_stats(idx, m[&quot;date&quot;])
+            mem_out.append({&quot;ph&quot;: m[&quot;ph&quot;], &quot;date&quot;: m[&quot;date&quot;], &quot;sign&quot;: m[&quot;sign&quot;], &quot;deg&quot;: m[&quot;deg&quot;],
+                            &quot;ec&quot;: m[&quot;ec&quot;], &quot;n&quot;: n, &quot;plots&quot;: [list(x) for x in plots],
+                            &quot;subs&quot;: [list(x) for x in subs]})
+        planted = mem_out[0][&quot;subs&quot;][0][0] if mem_out[0][&quot;subs&quot;] else (
+                  mem_out[0][&quot;plots&quot;][0][0] if mem_out[0][&quot;plots&quot;] else &quot;&quot;)
+        chains.append({&quot;seed_date&quot;: nm[&quot;date&quot;], &quot;sign&quot;: nm[&quot;sign&quot;], &quot;deg&quot;: nm[&quot;deg&quot;],
+                       &quot;band&quot;: band(nm[&quot;deg&quot;]), &quot;eclipse&quot;: any(m[&quot;ec&quot;] for m in mem_out),
+                       &quot;planted&quot;: planted, &quot;members&quot;: mem_out})
+    blob = json.dumps({&quot;coverage&quot;:{&quot;seed_through&quot;:HORIZON_END.isoformat(),
+                                    &quot;complete_tail_through&quot;:CALC_END.isoformat()},
+                       &quot;chains&quot;: chains}, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;))
+    html = open(MF, encoding=&quot;utf-8&quot;).read()
+    new = re.sub(r&quot;(/\* LINEAGES-DATA-START \*/).*?(/\* LINEAGES-DATA-END \*/)&quot;,
+                 lambda m: m.group(1) + &quot;const LINEAGES=&quot; + blob + &quot;;&quot; + m.group(2),
+                 html, flags=re.S)
+    if new == html:
+        print(&quot;⚠ LINEAGES markers not found&quot;); return
+    open(MF, &quot;w&quot;, encoding=&quot;utf-8&quot;).write(new)
+    hot = sum(1 for c in chains for m in c[&quot;members&quot;] if &quot;2026-06-01&quot; &lt;= m[&quot;date&quot;] &lt;= &quot;2026-12-31&quot;)
+    print(f&quot;✓ {len(chains)} lineage chains injected ({hot} phases land Jun–Dec 2026)&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

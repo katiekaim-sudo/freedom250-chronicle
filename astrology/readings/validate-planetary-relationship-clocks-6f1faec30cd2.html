@@ -1,0 +1,328 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/validate-planetary-relationship-clocks-6f1faec30cd2.html">
+<title>validate_planetary_relationship_clocks</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · draft</div><h1>validate_planetary_relationship_clocks</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Persona &amp; Relationship Work/Planetary Relationship Clocks 2026-08-30/validate_planetary_relationship_clocks.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Validate the review-only 28-pair Planetary Relationship Clock package.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import importlib.util
+import json
+import tempfile
+from pathlib import Path
+from typing import Any
+
+
+HERE = Path(__file__).resolve().parent
+VAULT = Path(&quot;Chronicle/&quot;)
+REGISTRY = HERE / &quot;planetary_relationship_registry.json&quot;
+GRAPH = HERE / &quot;planetary_relationship_clock_graph.json&quot;
+FAMILIES = HERE / &quot;inside_planet_conjunction_families.json&quot;
+LONG_CLOCKS = VAULT / &quot;99 - Templates&quot; / &quot;chart_synodic_stacks.json&quot;
+BUILDER = HERE / &quot;build_planetary_relationship_clocks.py&quot;
+
+
+def load_json(path: Path) -&gt; dict[str, Any]:
+    return json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+
+
+def load_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    if not spec or not spec.loader:
+        raise RuntimeError(f&quot;Cannot load {path}&quot;)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def require(condition: bool, message: str) -&gt; None:
+    if not condition:
+        raise AssertionError(message)
+
+
+def compare_long_clock_geometry(graph: dict[str, Any]) -&gt; None:
+    governed = load_json(LONG_CLOCKS)
+    governed_charts = {row[&quot;chart_id&quot;]: row for row in governed[&quot;charts&quot;]}
+    graph_charts = {row[&quot;chart_id&quot;]: row for row in graph[&quot;charts&quot;]}
+    require(set(governed_charts) == set(graph_charts), &quot;Chart IDs differ from Long Clocks&quot;)
+
+    for chart_id, old_chart in governed_charts.items():
+        old_cycles = {row[&quot;cycle_id&quot;]: row for row in old_chart[&quot;cycles&quot;]}
+        new_cycles = {
+            row[&quot;cycle_id&quot;]: row
+            for row in graph_charts[chart_id][&quot;cycles&quot;]
+            if row[&quot;relationship_status&quot;] == &quot;active_long_clock&quot;
+        }
+        require(set(old_cycles) == set(new_cycles), f&quot;{chart_id}: ten-clock identity drift&quot;)
+        for cycle_id, old in old_cycles.items():
+            new = new_cycles[cycle_id]
+            old_geometry = old[&quot;geometry&quot;]
+            new_geometry = new[&quot;geometry&quot;]
+            for key in (
+                &quot;elongation_deg&quot;,
+                &quot;phase_name&quot;,
+                &quot;phase_direction&quot;,
+                &quot;relative_speed_deg_per_day&quot;,
+            ):
+                require(
+                    old_geometry[key] == new_geometry[key],
+                    f&quot;{chart_id}/{cycle_id}: geometry mismatch at {key}&quot;,
+                )
+            require(
+                old_geometry[&quot;nearest_chapter_id&quot;]
+                == new_geometry[&quot;nearest_major_chapter_id&quot;],
+                f&quot;{chart_id}/{cycle_id}: nearest chapter mismatch&quot;,
+            )
+            old_aspect = old.get(&quot;active_aspect&quot;)
+            new_aspect = new.get(&quot;direct_aspect&quot;)
+            require(bool(old_aspect) == bool(new_aspect), f&quot;{chart_id}/{cycle_id}: active-aspect mismatch&quot;)
+            if old_aspect and new_aspect:
+                for key in (
+                    &quot;aspect_id&quot;,
+                    &quot;chapter_id&quot;,
+                    &quot;angle_deg&quot;,
+                    &quot;orb_deg&quot;,
+                    &quot;orb_limit_deg&quot;,
+                    &quot;applying&quot;,
+                    &quot;separating&quot;,
+                    &quot;motion_state&quot;,
+                    &quot;strength&quot;,
+                    &quot;flow_kind&quot;,
+                ):
+                    require(old_aspect[key] == new_aspect[key], f&quot;{chart_id}/{cycle_id}: aspect mismatch at {key}&quot;)
+
+
+def validate() -&gt; dict[str, int]:
+    registry = load_json(REGISTRY)
+    graph = load_json(GRAPH)
+    families = load_json(FAMILIES)
+    cycles = registry[&quot;cycles&quot;]
+    cycle_ids = {row[&quot;cycle_id&quot;] for row in cycles}
+    unordered_pairs = {frozenset(row[&quot;pair&quot;]) for row in cycles}
+    bodies = set(graph[&quot;scope&quot;][&quot;bodies&quot;])
+    expected_bodies = {&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;}
+
+    require(
+        graph[&quot;schema&quot;] == &quot;freedom250.planetary-relationship-clock-graph/v0.2&quot;,
+        &quot;Relationship graph schema drift&quot;,
+    )
+    require(graph[&quot;status&quot;] == &quot;proposal_for_review&quot;, &quot;Graph must remain review-only&quot;)
+    require(graph[&quot;deterministic&quot;] is True, &quot;Graph must declare deterministic output&quot;)
+    require(bodies == expected_bodies, &quot;Non-luminary body set drift&quot;)
+    require(&quot;Sun&quot; not in bodies and &quot;Moon&quot; not in bodies, &quot;Luminary leaked into relationship graph&quot;)
+    require(len(cycles) == len(cycle_ids) == len(unordered_pairs) == 28, &quot;Expected 28 unique non-luminary pairs&quot;)
+
+    long_ids = {row[&quot;cycle_id&quot;] for row in cycles if row[&quot;status&quot;] == &quot;active_long_clock&quot;}
+    inside_ids = {row[&quot;cycle_id&quot;] for row in cycles if row[&quot;status&quot;] == &quot;candidate_relationship_clock&quot;}
+    require(len(long_ids) == 10, &quot;DR-065 Long Clocks must remain exactly ten&quot;)
+    require(len(inside_ids) == 18, &quot;Expected the exact 18-pair inside-planet complement&quot;)
+    require(not long_ids &amp; inside_ids and long_ids | inside_ids == cycle_ids, &quot;Relationship status partition is invalid&quot;)
+
+    chart_rows = graph[&quot;charts&quot;]
+    require(len(chart_rows) == 30, &quot;Expected exactly 30 governed chart bones&quot;)
+    require(graph[&quot;coverage&quot;][&quot;relationship_state_count&quot;] == 840, &quot;Expected 840 relationship states&quot;)
+    require(graph[&quot;coverage&quot;][&quot;inside_relationship_state_count&quot;] == 540, &quot;Expected 540 inside-pair states&quot;)
+    require(graph[&quot;coverage&quot;][&quot;inside_phaseable_state_count&quot;] == 510, &quot;Expected 510 phaseable inside-pair states&quot;)
+    require(graph[&quot;coverage&quot;][&quot;limited_geometry_state_count&quot;] == 30, &quot;Expected 30 limited Mercury-Venus states&quot;)
+    require(graph[&quot;coverage&quot;][&quot;existing_long_clock_state_count&quot;] == 300, &quot;Expected 300 existing Long Clock states&quot;)
+
+    mercury_venus_seen = 0
+    forbidden_keys = {&quot;seed_family_id&quot;, &quot;seed_family_label&quot;, &quot;display_anchor_pass_id&quot;, &quot;long_clocks_route&quot;, &quot;plotline_id&quot;, &quot;verdict&quot;, &quot;causal_claim&quot;}
+    for chart in chart_rows:
+        states = chart[&quot;cycles&quot;]
+        require(len(states) == 28, f&quot;{chart[&#x27;chart_id&#x27;]}: expected 28 states&quot;)
+        require({row[&quot;cycle_id&quot;] for row in states} == cycle_ids, f&quot;{chart[&#x27;chart_id&#x27;]}: cycle set drift&quot;)
+        require(
+            chart[&quot;active_direct_cycle_ids&quot;] == [row[&quot;cycle_id&quot;] for row in states if row[&quot;direct_aspect&quot;]],
+            f&quot;{chart[&#x27;chart_id&#x27;]}: active direct ID list drift&quot;,
+        )
+        require(
+            chart[&quot;nameable_cycle_ids&quot;] == [row[&quot;cycle_id&quot;] for row in states if row[&quot;dr020_nameability&quot;][&quot;earned&quot;]],
+            f&quot;{chart[&#x27;chart_id&#x27;]}: nameable ID list drift&quot;,
+        )
+        builder = load_module(&quot;f250_relationship_builder_metrics&quot;, BUILDER)
+        require(
+            chart[&quot;field_metrics&quot;] == builder.relationship_field_metrics(states),
+            f&quot;{chart[&#x27;chart_id&#x27;]}: relationship field metrics drift&quot;,
+        )
+        metrics = chart[&quot;field_metrics&quot;]
+        require(
+            metrics[&quot;both_count&quot;]
+            + metrics[&quot;direct_only_count&quot;]
+            + metrics[&quot;phase_only_count&quot;]
+            + metrics[&quot;silent_count&quot;]
+            == 28,
+            f&quot;{chart[&#x27;chart_id&#x27;]}: relationship field partition drift&quot;,
+        )
+        for state in states:
+            require(state[&quot;reading_boundary&quot;][&quot;evidence_credit&quot;] == 0, &quot;Astrology state acquired evidence credit&quot;)
+            require(not (forbidden_keys &amp; set(state)), f&quot;{chart[&#x27;chart_id&#x27;]}/{state[&#x27;cycle_id&#x27;]}: authority leakage&quot;)
+            if state[&quot;cycle_id&quot;] == &quot;mercury-venus&quot;:
+                mercury_venus_seen += 1
+                require(state[&quot;phase_model_limited&quot;] is True, &quot;Mercury-Venus exception flag missing&quot;)
+                require(state[&quot;phase_model&quot;] == &quot;limited_geocentric_elongation&quot;, &quot;Mercury-Venus model drift&quot;)
+                require(state[&quot;geometry&quot;][&quot;phase_contract_available&quot;] is False, &quot;Mercury-Venus phase contract leaked&quot;)
+                require(state[&quot;geometry&quot;][&quot;phase_name&quot;] is None, &quot;Mercury-Venus received an inadmissible phase name&quot;)
+                require(state[&quot;geometry&quot;][&quot;phase_direction&quot;] is None, &quot;Mercury-Venus received an inadmissible phase direction&quot;)
+                require(state[&quot;dr020_nameability&quot;][&quot;earned&quot;] is False, &quot;Mercury-Venus phase prose became nameable&quot;)
+            elif state[&quot;relationship_status&quot;] == &quot;candidate_relationship_clock&quot;:
+                require(state[&quot;phase_model_limited&quot;] is False, f&quot;Unexpected limited phase model: {state[&#x27;cycle_id&#x27;]}&quot;)
+                require(state[&quot;geometry&quot;][&quot;phase_contract_available&quot;] is True, f&quot;Phase contract missing: {state[&#x27;cycle_id&#x27;]}&quot;)
+    require(mercury_venus_seen == 30, &quot;Mercury-Venus exception must appear once per chart&quot;)
+
+    field_control = graph[&quot;corpus_field_control&quot;]
+    require(
+        field_control[&quot;direct_exceeds_nameable_phase&quot;]
+        == {&quot;chart_count&quot;: 1, &quot;chart_ids&quot;: [&quot;lun-2026-12-09-ne&quot;]},
+        &quot;December 9 direct/nameable corpus control drift&quot;,
+    )
+    require(
+        field_control[&quot;maximum_direct_only&quot;]
+        == {&quot;count&quot;: 9, &quot;chart_ids&quot;: [&quot;lun-2026-12-09-ne&quot;]},
+        &quot;Maximum direct-only corpus control drift&quot;,
+    )
+    count_twins = field_control[&quot;consecutive_equal_count_identity_turnovers&quot;]
+    require(
+        [(row[&quot;from_chart_id&quot;], row[&quot;to_chart_id&quot;]) for row in count_twins]
+        == [
+            (&quot;lun-2026-03-19-ne&quot;, &quot;ingress-2026-aries&quot;),
+            (&quot;lun-2026-09-11-ne&quot;, &quot;ingress-2026-libra&quot;),
+        ],
+        &quot;Equal-count identity-turnover roster drift&quot;,
+    )
+    require(
+        not count_twins[0][&quot;direct_cycle_ids_left&quot;]
+        and not count_twins[0][&quot;direct_cycle_ids_entered&quot;],
+        &quot;Aries ingress should preserve the direct relationship cast&quot;,
+    )
+    require(
+        count_twins[0][&quot;phase_nameability_ids_left&quot;]
+        == [&quot;venus-saturn&quot;, &quot;venus-uranus&quot;, &quot;venus-neptune&quot;, &quot;venus-pluto&quot;],
+        &quot;Aries ingress Venus-led phase handoff drift&quot;,
+    )
+    require(
+        count_twins[0][&quot;phase_nameability_ids_entered&quot;]
+        == [&quot;mars-saturn&quot;, &quot;mars-uranus&quot;, &quot;mars-neptune&quot;, &quot;mars-pluto&quot;],
+        &quot;Aries ingress Mars-led phase handoff drift&quot;,
+    )
+    require(
+        len(count_twins[1][&quot;direct_cycle_ids_left&quot;])
+        == len(count_twins[1][&quot;direct_cycle_ids_entered&quot;])
+        == len(count_twins[1][&quot;phase_nameability_ids_left&quot;])
+        == len(count_twins[1][&quot;phase_nameability_ids_entered&quot;])
+        == 4,
+        &quot;Libra ingress equal-count cast turnover drift&quot;,
+    )
+    expected_handoff_rows = [
+        {
+            &quot;chart_id&quot;: &quot;lun-2026-12-09-ne&quot;,
+            &quot;date&quot;: &quot;2026-12-09&quot;,
+            &quot;direct_count&quot;: 16,
+            &quot;nameable_phase_count&quot;: 14,
+            &quot;both_count&quot;: 7,
+            &quot;direct_only_count&quot;: 9,
+            &quot;phase_only_count&quot;: 7,
+            &quot;silent_count&quot;: 5,
+        },
+        {
+            &quot;chart_id&quot;: &quot;ingress-2026-capricorn&quot;,
+            &quot;date&quot;: &quot;2026-12-21&quot;,
+            &quot;direct_count&quot;: 8,
+            &quot;nameable_phase_count&quot;: 25,
+            &quot;both_count&quot;: 8,
+            &quot;direct_only_count&quot;: 0,
+            &quot;phase_only_count&quot;: 17,
+            &quot;silent_count&quot;: 3,
+        },
+        {
+            &quot;chart_id&quot;: &quot;lun-2026-12-24-fu&quot;,
+            &quot;date&quot;: &quot;2026-12-24&quot;,
+            &quot;direct_count&quot;: 9,
+            &quot;nameable_phase_count&quot;: 25,
+            &quot;both_count&quot;: 9,
+            &quot;direct_only_count&quot;: 0,
+            &quot;phase_only_count&quot;: 16,
+            &quot;silent_count&quot;: 3,
+        },
+    ]
+    require(
+        field_control[&quot;late_year_handoff&quot;][&quot;rows&quot;] == expected_handoff_rows,
+        &quot;December relationship-field handoff drift&quot;,
+    )
+    handoff_delta = field_control[&quot;late_year_handoff&quot;][&quot;december_09_to_capricorn_ingress&quot;]
+    require(handoff_delta[&quot;direct_count_delta&quot;] == -8, &quot;December direct-count delta drift&quot;)
+    require(handoff_delta[&quot;nameable_phase_count_delta&quot;] == 11, &quot;December phase-nameability delta drift&quot;)
+    require(len(handoff_delta[&quot;direct_cycle_ids_left&quot;]) == 9, &quot;Expected nine direct relationships to leave&quot;)
+    require(len(handoff_delta[&quot;direct_cycle_ids_entered&quot;]) == 1, &quot;Expected one direct relationship to enter&quot;)
+    require(len(handoff_delta[&quot;phase_nameability_ids_gained&quot;]) == 11, &quot;Expected eleven phase admissions&quot;)
+    require(not handoff_delta[&quot;phase_nameability_ids_lost&quot;], &quot;Unexpected phase admission loss&quot;)
+
+    family_rows = families[&quot;families&quot;]
+    family_ids = [row[1] for row in family_rows]
+    pass_rows = [event for family in family_rows for event in family[4]]
+    pass_ids = [row[0] for row in pass_rows]
+    family_cycle_ids = {row[0] for row in family_rows}
+    phaseable_inside_ids = inside_ids - {&quot;mercury-venus&quot;}
+    require(families[&quot;status&quot;] == &quot;proposal_only_not_vault_authority&quot;, &quot;Family ledger authority drift&quot;)
+    require(families[&quot;coverage&quot;][&quot;phaseable_pair_count&quot;] == 17, &quot;Family ledger phaseable-pair count drift&quot;)
+    require(families[&quot;coverage&quot;][&quot;phaseable_seed_family_count&quot;] == 55, &quot;Family ledger family count drift&quot;)
+    require(families[&quot;coverage&quot;][&quot;phaseable_exact_pass_count&quot;] == 73, &quot;Family ledger exact-pass count drift&quot;)
+    require(len(family_rows) == len(set(family_ids)) == 55, &quot;Expected 55 unique conjunction families&quot;)
+    require(len(pass_rows) == len(set(pass_ids)) == 73, &quot;Expected 73 unique exact conjunction passes&quot;)
+    require(family_cycle_ids == phaseable_inside_ids, &quot;Family ledger does not cover the exact 17 phaseable inside pairs&quot;)
+    require(families[&quot;mercury_venus_exception&quot;][&quot;status&quot;] == &quot;unresolved_not_admitted&quot;, &quot;Mercury-Venus exception became admitted&quot;)
+    require(len(families[&quot;mercury_venus_exception&quot;][&quot;crossings&quot;]) == 6, &quot;Expected six unresolved Mercury-Venus crossings&quot;)
+
+    compare_long_clock_geometry(graph)
+
+    builder = load_module(&quot;f250_relationship_builder_validation&quot;, BUILDER)
+    rebuilt = builder.build(VAULT, REGISTRY)
+    require(rebuilt == graph, &quot;Checked-in graph is not a byte-meaningful deterministic rebuild&quot;)
+
+    phases = load_module(&quot;f250_phases_validation&quot;, VAULT / &quot;99 - Templates&quot; / &quot;phases.py&quot;)
+    boundary_expectations = {
+        0.0: (&quot;New&quot;, &quot;waxing&quot;),
+        45.0: (&quot;Crescent&quot;, &quot;waxing&quot;),
+        90.0: (&quot;First Quarter&quot;, &quot;waxing&quot;),
+        135.0: (&quot;Gibbous&quot;, &quot;waxing&quot;),
+        180.0: (&quot;Full&quot;, &quot;waning&quot;),
+        225.0: (&quot;Disseminating&quot;, &quot;waning&quot;),
+        270.0: (&quot;Last Quarter&quot;, &quot;waning&quot;),
+        315.0: (&quot;Balsamic&quot;, &quot;waning&quot;),
+    }
+    for angle, expected in boundary_expectations.items():
+        require(phases.phase_of(angle) == expected, f&quot;Phase boundary drift at {angle} degrees&quot;)
+
+    return {
+        &quot;charts&quot;: len(chart_rows),
+        &quot;relationships&quot;: len(cycles),
+        &quot;states&quot;: sum(len(row[&quot;cycles&quot;]) for row in chart_rows),
+        &quot;long_clock_parity_states&quot;: len(chart_rows) * len(long_ids),
+        &quot;inside_states&quot;: len(chart_rows) * len(inside_ids),
+        &quot;seed_families&quot;: len(family_rows),
+        &quot;exact_seed_passes&quot;: len(pass_rows),
+    }
+
+
+def main() -&gt; int:
+    counts = validate()
+    print(
+        &quot;RELATIONSHIP CLOCKS VALID: &quot;
+        f&quot;{counts[&#x27;charts&#x27;]} charts · {counts[&#x27;relationships&#x27;]} relationships · &quot;
+        f&quot;{counts[&#x27;states&#x27;]} states · {counts[&#x27;long_clock_parity_states&#x27;]} Long Clock parity states · &quot;
+        f&quot;{counts[&#x27;inside_states&#x27;]} inside-pair states · {counts[&#x27;seed_families&#x27;]} seed families · &quot;
+        f&quot;{counts[&#x27;exact_seed_passes&#x27;]} exact seed passes&quot;
+    )
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

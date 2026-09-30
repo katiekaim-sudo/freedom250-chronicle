@@ -1,0 +1,128 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/validate-credit-card-transition-cards-bac6087ff0aa.html">
+<title>validate_credit_card_transition_cards</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · current</div><h1>validate_credit_card_transition_cards</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Money x Sky/Retail Payment Terminal Transition 2026-07-28/astrology-workbench/validate_credit_card_transition_cards.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Static integrity checks for the credit-card transition card plot.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+import sys
+from html.parser import HTMLParser
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+CARDS = HERE / &quot;credit_card_transition_cards.json&quot;
+ASTRO = HERE.parent / &quot;CREDIT_CARD_TRANSITION_ASTROLOGY_DATA_2026-07-28.json&quot;
+OUTPUT = HERE / &quot;outputs&quot; / &quot;Credit Card Transition — Money × Sky.html&quot;
+MANIFEST = HERE / &quot;outputs&quot; / &quot;build_manifest.json&quot;
+
+
+class AuditParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.articles = 0
+        self.details = 0
+        self.chart_buttons = 0
+        self.source_links = 0
+        self.ids: set[str] = set()
+
+    def handle_starttag(self, tag, attrs):
+        data = dict(attrs)
+        classes = set(data.get(&quot;class&quot;, &quot;&quot;).split())
+        if tag == &quot;article&quot; and &quot;entry&quot; in classes:
+            self.articles += 1
+        if tag == &quot;details&quot; and &quot;dd&quot; in classes:
+            self.details += 1
+        if tag == &quot;button&quot; and &quot;cbtn&quot; in classes:
+            self.chart_buttons += 1
+        if tag == &quot;a&quot; and data.get(&quot;href&quot;, &quot;&quot;).startswith(&quot;http&quot;):
+            self.source_links += 1
+        if &quot;id&quot; in data:
+            if data[&quot;id&quot;] in self.ids:
+                raise ValueError(f&quot;duplicate HTML id: {data[&#x27;id&#x27;]}&quot;)
+            self.ids.add(data[&quot;id&quot;])
+
+
+def fail(message: str) -&gt; None:
+    print(f&quot;FAIL: {message}&quot;, file=sys.stderr)
+    raise SystemExit(1)
+
+
+def main() -&gt; None:
+    cards = json.loads(CARDS.read_text(encoding=&quot;utf-8&quot;))
+    astro = json.loads(ASTRO.read_text(encoding=&quot;utf-8&quot;))
+    manifest = json.loads(MANIFEST.read_text(encoding=&quot;utf-8&quot;))
+    output = OUTPUT.read_text(encoding=&quot;utf-8&quot;)
+
+    card_ids = [card[&quot;id&quot;] for card in cards[&quot;cards&quot;]]
+    event_ids = [event[&quot;id&quot;] for event in astro[&quot;events&quot;]]
+    if len(card_ids) != len(set(card_ids)):
+        fail(&quot;card ids are not unique&quot;)
+    if set(card_ids) != set(event_ids):
+        fail(f&quot;card/event id mismatch: cards={set(card_ids)} events={set(event_ids)}&quot;)
+    if card_ids != event_ids:
+        fail(&quot;card and event ordering diverges&quot;)
+
+    point_events = [event for event in astro[&quot;events&quot;] if event.get(&quot;positions&quot;)]
+    context_events = [
+        event for event in astro[&quot;events&quot;] if event.get(&quot;contextual_container_clock&quot;)
+    ]
+    if [event[&quot;id&quot;] for event in context_events] != [&quot;apple_pay&quot;]:
+        fail(&quot;only Apple Pay may carry a context clock&quot;)
+    for event in point_events:
+        if event[&quot;id&quot;] != &quot;apple_pay&quot;:
+            if not event.get(&quot;angles_withheld&quot;) or not event.get(&quot;houses_withheld&quot;):
+                fail(f&quot;{event[&#x27;id&#x27;]} silently acquired event angles or houses&quot;)
+    securitization = next(event for event in astro[&quot;events&quot;] if event[&quot;id&quot;] == &quot;securitization&quot;)
+    if securitization.get(&quot;point_chart&quot;) is not None or securitization.get(&quot;positions&quot;):
+        fail(&quot;securitization must remain chronology-only&quot;)
+
+    parser = AuditParser()
+    parser.feed(output)
+    expected_cards = len(cards[&quot;cards&quot;])
+    expected_charts = len(point_events)
+    if parser.articles != expected_cards:
+        fail(f&quot;expected {expected_cards} cards, found {parser.articles}&quot;)
+    if parser.details != expected_cards:
+        fail(f&quot;expected {expected_cards} detail drawers, found {parser.details}&quot;)
+    if parser.chart_buttons != expected_charts:
+        fail(f&quot;expected {expected_charts} chart buttons, found {parser.chart_buttons}&quot;)
+    if parser.source_links &lt; expected_cards:
+        fail(&quot;one or more cards lacks a source link&quot;)
+    for required in (
+        &quot;open buildup + reading&quot;,
+        &quot;Exact geometry shown&quot;,
+        &quot;Counterweight / provenance&quot;,
+        &quot;The adapter story gets stronger if&quot;,
+        &quot;The adapter story weakens if&quot;,
+        &quot;The project’s own daily backtest was null&quot;,
+        &quot;No astrological strength or similarity score is computed&quot;,
+    ):
+        if required not in output and required not in json.dumps(manifest, ensure_ascii=False):
+            fail(f&quot;missing required method text: {required}&quot;)
+    if &quot;☉&quot; in output or &quot;♄&quot; in output or &quot;♇&quot; in output:
+        fail(&quot;font astrology glyphs found; canonical wheel requires path glyphs&quot;)
+    if manifest[&quot;cards&quot;] != expected_cards:
+        fail(&quot;manifest card count is stale&quot;)
+
+    print(
+        &quot;PASS:&quot;,
+        f&quot;{parser.articles} cards;&quot;,
+        f&quot;{parser.chart_buttons} chart buttons;&quot;,
+        f&quot;{parser.source_links} source links;&quot;,
+        &quot;clock boundaries intact&quot;,
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

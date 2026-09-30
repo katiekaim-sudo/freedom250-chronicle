@@ -1,0 +1,225 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/mundane-dossier-b850fd765d11.html">
+<title>Workbook Aspects tab (not a flat 6°). Ledger named_aspect orb stays separate.</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>Workbook Aspects tab (not a flat 6°). Ledger named_aspect orb stays separate.</h1><p class="mut">Portable source: 99 - Templates/mundane_dossier.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;MUNDANE DOSSIER — assemble every simultaneous truth about an ingress chart.
+
+NOT a score. This surfaces all the layers an astrologer holds at once — placements,
+aspects, midpoint pictures, planetary-node contacts, derivative-house turns, and the
+lunations/moon-families the ingress feeds — accurately computed (never fabricated),
+so a synthesis READING can be woven from real data. The weaving is done by hand,
+in Katie&#x27;s voice; this just lays the true material on the table.
+
+Usage:  python3 mundane_dossier.py 2026 Aries
+&quot;&quot;&quot;
+import os, sys, json
+import swisseph as swe
+from datetime import date as Date, timedelta, datetime, timezone
+HERE=os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0,HERE)
+import mundane_engine as ME
+from america import america_lon
+
+# Workbook Aspects tab (not a flat 6°). Ledger named_aspect orb stays separate.
+WORKBOOK_ORB = {0: 8.0, 60: 5.0, 90: 7.0, 120: 7.0, 180: 8.0}
+EXALT_DEG = {&quot;Sun&quot;: 19, &quot;Moon&quot;: 3, &quot;Mercury&quot;: 15, &quot;Venus&quot;: 27,
+             &quot;Mars&quot;: 28, &quot;Jupiter&quot;: 15, &quot;Saturn&quot;: 21}
+
+MIDMEAN=json.load(open(os.path.join(HERE,&quot;midpoint_meanings.json&quot;)))
+ABBR={&quot;Sun&quot;:&quot;SU&quot;,&quot;Moon&quot;:&quot;MO&quot;,&quot;Mercury&quot;:&quot;ME&quot;,&quot;Venus&quot;:&quot;VE&quot;,&quot;Mars&quot;:&quot;MA&quot;,&quot;Jupiter&quot;:&quot;JU&quot;,
+      &quot;Saturn&quot;:&quot;SA&quot;,&quot;Uranus&quot;:&quot;UR&quot;,&quot;Neptune&quot;:&quot;NE&quot;,&quot;Pluto&quot;:&quot;PL&quot;,&quot;Node&quot;:&quot;NN&quot;,&quot;ASC&quot;:&quot;AS&quot;,&quot;MC&quot;:&quot;MC&quot;}
+NODE_PLANETS={&quot;Jupiter&quot;:5,&quot;Saturn&quot;:6,&quot;Uranus&quot;:7,&quot;Neptune&quot;:8,&quot;Pluto&quot;:9}
+HOUSE_DOMAIN={1:&quot;the people&quot;,2:&quot;the economy&quot;,3:&quot;the press&quot;,4:&quot;the land/opposition&quot;,5:&quot;markets/speculation&quot;,
+ 6:&quot;workers &amp; the armed forces&quot;,7:&quot;foreign powers / open war&quot;,8:&quot;international finance / death&quot;,
+ 9:&quot;courts, law &amp; religion&quot;,10:&quot;the government in power&quot;,11:&quot;the legislature &amp; allies&quot;,12:&quot;the hidden — intel, prisons, secret enemies&quot;}
+
+def dist45(a,b):
+    d=abs((a-b))%45.0; return min(d,45-d)
+def midpoint(a,b):
+    m=((a+b)/2)%360
+    if abs(((m-a+180)%360-180))&gt;90: m=(m+180)%360
+    return m
+
+def mid_meaning(p1,p2):
+    k1=f&quot;{ABBR[p1]}/{ABBR[p2]}&quot;; k2=f&quot;{ABBR[p2]}/{ABBR[p1]}&quot;
+    return MIDMEAN.get(k1) or MIDMEAN.get(k2) or &quot;&quot;
+
+def dossier(year, sign):
+    ch=ME.cast_ingress(year,sign)
+    pos=ch[&quot;pos&quot;]; asc=ch[&quot;asc&quot;]; mc=ch[&quot;mc&quot;]
+    pts={**{n:pos[n][&quot;lon&quot;] for n in pos}, &quot;ASC&quot;:asc, &quot;MC&quot;:mc}
+    # --- aspects among planets+angles (workbook orbs) ---
+    asplist=[]
+    names=list(pts)
+    for i,a in enumerate(names):
+        for b in names[i+1:]:
+            sep=abs((pts[a]-pts[b]+180)%360-180)
+            for ang,nm in ME.ASPECTS.items():
+                lim = WORKBOOK_ORB.get(ang)
+                if lim is None:
+                    continue
+                if abs(sep-ang)&lt;=lim:
+                    asplist.append((round(abs(sep-ang),2),a,nm,b)); break
+    asplist.sort()
+    # --- midpoint pictures striking a PRIORITY point (Sun/Moon/ASC/MC) within 1° ---
+    prio=[&quot;Sun&quot;,&quot;Moon&quot;,&quot;ASC&quot;,&quot;MC&quot;]
+    strikes=[]
+    for C in prio:
+        for i,a in enumerate(names):
+            for b in names[i+1:]:
+                if C in (a,b): continue
+                m=midpoint(pts[a],pts[b])
+                if dist45(pts[C],m)&lt;=1.0:
+                    strikes.append((round(dist45(pts[C],m),2),C,a,b,mid_meaning(a,b)))
+    strikes.sort()
+    # --- planetary node contacts (Jones; OSCU geocentric), ingress planet on a node deg ≤2.5° ---
+    jd=ch[&quot;jd&quot;]; nodes={}
+    for nm,pid in NODE_PLANETS.items():
+        r=swe.nod_aps_ut(jd,pid,swe.NODBIT_OSCU)
+        nodes[nm]=(r[0][0],r[1][0])  # asc(NN), desc(SN)
+    node_hits=[]
+    for pnm,pl in pos.items():
+        for onm,(nn,sn) in nodes.items():
+            for lbl,nd in ((&quot;NN&quot;,nn),(&quot;SN&quot;,sn)):
+                s=abs((pl[&quot;lon&quot;]-nd+180)%360-180)
+                if s&lt;=2.5:
+                    node_hits.append((round(s,2),pnm,onm,lbl,ME.sign_of(nd),round(nd%30,1)))
+    node_hits.sort()
+    # --- derivative turns from key actors: where do the afflicted/angular planets land ---
+    asc_idx=int(asc//30)
+    def turn(actor_house):
+        rows=[]
+        for pnm,pl in pos.items():
+            radical=pl[&quot;house&quot;]
+            derived=((radical-actor_house)%12)+1
+            rows.append((pnm,radical,derived,HOUSE_DOMAIN[derived],pl[&quot;cond&quot;]))
+        return rows
+    # --- lunations: last NM on/before ingress (may sit days before) through validity end ---
+    vm=ME.validity_months(ch[&quot;asc_modality&quot;])
+    idate=Date.fromisoformat(ch[&quot;date&quot;]); end=idate+timedelta(days=int(vm*30.4))
+    lookback=(idate-timedelta(days=40)).isoformat()
+    raw=ME.lunations(lookback, end.isoformat())
+    opening=None
+    for l in raw:
+        if l[&quot;kind&quot;]==&quot;new&quot; and Date.fromisoformat(l[&quot;date&quot;])&lt;=idate:
+            opening=l
+    if opening:
+        od=Date.fromisoformat(opening[&quot;date&quot;])
+        luns=[l for l in raw if Date.fromisoformat(l[&quot;date&quot;])&gt;=od]
+    else:
+        luns=[l for l in raw if Date.fromisoformat(l[&quot;date&quot;])&gt;=idate]
+    BANDS=[(0,8,&quot;The Threshold&quot;),(8,16,&quot;The Great Harvest&quot;),(16,24,&quot;The Quiet Sowing&quot;),(24,32,&quot;The Eclipse Storm&quot;)]
+    def band(deg):
+        for a,b,n in BANDS:
+            if a&lt;=deg&lt;b: return n
+        return &quot;The Eclipse Storm&quot;
+    lun_rows=[]
+    for l in luns:
+        hits=ME.triggers(l,ch)
+        is_open=bool(opening and l[&quot;date&quot;]==opening[&quot;date&quot;] and l[&quot;kind&quot;]==&quot;new&quot;)
+        lun_rows.append((l[&quot;date&quot;],l[&quot;kind&quot;],l[&quot;sign&quot;],l[&quot;deg&quot;],band(l[&quot;deg&quot;]),hits[:2],
+                         l.get(&quot;eclipse&quot;),is_open))
+    moves=window_moves(idate, end)
+    return {&quot;chart&quot;:ch,&quot;aspects&quot;:asplist,&quot;strikes&quot;:strikes,&quot;nodes&quot;:nodes,&quot;node_hits&quot;:node_hits,
+            &quot;turns&quot;:{&quot;the people (1st)&quot;:turn(1),&quot;the government (10th)&quot;:turn(10)},
+            &quot;lunations&quot;:lun_rows,&quot;validity_months&quot;:vm,&quot;moves&quot;:moves}
+
+# Mercury–Pluto; skip Sun (no station) and Moon (too fast to list).
+_MOVE_BODIES=((&quot;Mercury&quot;,2),(&quot;Venus&quot;,3),(&quot;Mars&quot;,4),(&quot;Jupiter&quot;,5),
+              (&quot;Saturn&quot;,6),(&quot;Uranus&quot;,7),(&quot;Neptune&quot;,8),(&quot;Pluto&quot;,9))
+
+def window_moves(start, end):
+    &quot;&quot;&quot;Stations and sign-changes inside the ingress validity (noon samples; day-level).&quot;&quot;&quot;
+    events=[]; prev={}
+    d=start
+    while d&lt;=end:
+        jd=swe.julday(d.year,d.month,d.day,12.0)
+        for nm,pid in _MOVE_BODIES:
+            xx=swe.calc_ut(jd,pid)[0]
+            lon,spd=xx[0],xx[3]
+            if nm in prev:
+                plon,pspd=prev[nm]
+                if pspd*spd&lt;=0 and (abs(pspd)+abs(spd))&gt;1e-8:
+                    events.append((d.isoformat(),nm,
+                                   &quot;stations retrograde&quot; if spd&lt;0 else &quot;stations direct&quot;,
+                                   ME.sign_of(lon),ME.deg_in_sign(lon)))
+                if ME.sign_of(lon)!=ME.sign_of(plon):
+                    events.append((d.isoformat(),nm,
+                                   f&quot;{ME.sign_of(plon)} → {ME.sign_of(lon)}&quot;,
+                                   ME.sign_of(lon),ME.deg_in_sign(lon)))
+            prev[nm]=(lon,spd)
+        d+=timedelta(days=1)
+    return events
+
+def show(year,sign):
+    d=dossier(year,sign); ch=d[&quot;chart&quot;]; sn=ch[&quot;sun_neptune&quot;]
+    print(&quot;=&quot;*74); print(f&quot;  {year} {sign} INGRESS — cast for Washington D.C., Whole Sign&quot;); print(&quot;=&quot;*74)
+    print(f&quot;  {ch[&#x27;date&#x27;]}  ·  {ch[&#x27;asc_sign&#x27;]} rising ({ch[&#x27;asc_modality&#x27;]}, governs {d[&#x27;validity_months&#x27;]} months)  ·  MC {ch[&#x27;mc_sign&#x27;]}&quot;)
+    loop = &quot;  (LOOP — circle of service, not a vacancy)&quot; if ch[&#x27;dispositor_loop&#x27;] else &quot;&quot;
+    print(f&quot;  Chart ruler: {ch[&#x27;chart_ruler&#x27;]}   Dispositor: {&#x27; → &#x27;.join(ch[&#x27;dispositor_chain&#x27;])}{loop}&quot;)
+    print(f&quot;  Sun–Neptune: {sn[&#x27;aspect&#x27;]} (orb {sn[&#x27;orb&#x27;]}°)  — the recurring signature&quot;)
+    y, mo, dd, h = swe.revjul(ch[&quot;jd&quot;])
+    hour = int(h); minute = int((h - hour) * 60)
+    am_dt = datetime(y, mo, dd, hour, minute, tzinfo=timezone.utc)
+    am = america_lon(am_dt)
+    if am is None:
+        print(&quot;  916 America: unavailable&quot;)
+    else:
+        am_h = ((int(((am % 360) + 1e-6) // 30) - int(ch[&quot;asc&quot;] // 30)) % 12) + 1
+        print(f&quot;  916 America: {ME.deg_in_sign(am):5.1f}° {ME.sign_of(am):11s} {am_h:&gt;2d}H&quot;)
+    print(&quot;\n  PLACEMENTS&quot;)
+    for nm,pl in ch[&quot;pos&quot;].items():
+        extra = &quot;&quot;
+        if &quot;exalted&quot; in pl[&quot;cond&quot;] and nm in EXALT_DEG:
+            extra = f&quot;  exalt-deg {EXALT_DEG[nm]}° (orb {abs(pl[&#x27;deg&#x27;]-EXALT_DEG[nm]):.2f}°)&quot;
+        print(f&quot;    {nm:8s} {pl[&#x27;deg&#x27;]:5.1f}° {pl[&#x27;sign&#x27;]:11s} {pl[&#x27;house&#x27;]:&gt;2d}H  {&#x27;/&#x27;.join(pl[&#x27;cond&#x27;]) or &#x27;peregrine&#x27;}{&#x27;  RETRO&#x27; if pl[&#x27;retro&#x27;] else &#x27;&#x27;}{extra}&quot;)
+    print(&quot;\n  TIGHTEST ASPECTS&quot;)
+    for orb,a,nm,b in d[&quot;aspects&quot;][:10]:
+        print(f&quot;    {a} {nm} {b}  ({orb}°)&quot;)
+    print(&quot;\n  MIDPOINT PICTURES on the lights &amp; angles (≤1°)&quot;)
+    for orb,C,a,b,mean in d[&quot;strikes&quot;][:10]:
+        print(f&quot;    {C} = {a}/{b}  ({orb}°)  — {mean}&quot;)
+    if not d[&quot;strikes&quot;]: print(&quot;    (none within 1°)&quot;)
+    print(&quot;\n  PLANETARY-NODE CONTACTS (Jones, ≤2.5°)&quot;)
+    for orb,p,o,lbl,sg,dg in d[&quot;node_hits&quot;][:10]:
+        flag = &quot;  ⚔ war-rule: escalation&quot; if (o in (&quot;Saturn&quot;,&quot;Pluto&quot;) ) else (&quot;  ☮ war-rule: resolution&quot; if o==&quot;Neptune&quot; else &quot;&quot;)
+        print(f&quot;    {p} on {o} {lbl} ({sg} {dg}°)  ({orb}°){flag}&quot;)
+    if not d[&quot;node_hits&quot;]: print(&quot;    (none within 2.5°)&quot;)
+    print(&quot;\n  DERIVATIVE TURN — from THE GOVERNMENT (10th on the 1st): where the players land&quot;)
+    for pnm,rad,der,dom,cond in d[&quot;turns&quot;][&quot;the government (10th)&quot;]:
+        if pnm in (&quot;Sun&quot;,&quot;Moon&quot;,&quot;Mars&quot;,&quot;Saturn&quot;,&quot;Pluto&quot;) or (&quot;detriment&quot; in cond or &quot;fall&quot; in cond or &quot;exalted&quot; in cond):
+            print(f&quot;    {pnm:8s} (radical {rad}H) → government&#x27;s {der}H = {dom}&quot;)
+    print(&quot;\n  LUNATIONS (opening NM may sit before the ingress · eclipses named)&quot;)
+    for date,kind,sg,dg,bd,hits,ecl,is_open in d[&quot;lunations&quot;]:
+        t = f&quot;TRIGGERS: {hits[0][&#x27;lun_point&#x27;]} {hits[0][&#x27;aspect&#x27;]} {hits[0][&#x27;ingress_planet&#x27;]} {hits[0][&#x27;ingress_house&#x27;]}H ({hits[0][&#x27;orb&#x27;]}°)&quot; if hits else &quot;Greer-quiet (check US natal before calling empty)&quot;
+        flags=[]
+        if is_open: flags.append(&quot;OPENING&quot;)
+        if ecl:
+            parts=ecl.split(&quot; &quot;,1)
+            extra=parts[1] if len(parts)==2 else ecl
+            if ecl.startswith(&quot;solar&quot;):
+                flags.append(f&quot;SOLAR ECLIPSE ({extra})&quot;)
+            elif ecl.startswith(&quot;lunar&quot;):
+                flags.append(f&quot;LUNAR ECLIPSE ({extra})&quot;)
+            else:
+                flags.append(ecl.upper())
+        flag=(&quot;  &quot;+&quot;, &quot;.join(flags)) if flags else &quot;&quot;
+        print(f&quot;    {date}  {kind:4s} {sg:11s}{dg:4.1f}°  [{bd:17s}]{flag}  {t}&quot;)
+    print(&quot;\n  IN-WINDOW STATIONS &amp; SIGN CHANGES&quot;)
+    if d[&quot;moves&quot;]:
+        for date,nm,what,sg,dg in d[&quot;moves&quot;]:
+            print(f&quot;    {date}  {nm:8s}  {what}  ({dg:.1f}° {sg})&quot;)
+    else:
+        print(&quot;    (none)&quot;)
+
+if __name__==&quot;__main__&quot;:
+    yr=int(sys.argv[1]) if len(sys.argv)&gt;1 else 2026
+    sg=sys.argv[2] if len(sys.argv)&gt;2 else &quot;Aries&quot;
+    show(yr,sg)
+</pre></main></body></html>

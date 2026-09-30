@@ -1,0 +1,389 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-world-charts-774daab48a97.html">
+<title>============================================================================</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>============================================================================</h1><p class="mut">Portable source: 99 - Templates/build_world_charts.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build &quot;The World Charts&quot; — national natal charts for the main powers, as one
+instrument, matching The American Charts system (Whole Sign, hand-drawn wheels).
+
+Ten nations, each with a locked PRIMARY founding chart plus 1-2 kept ALTERNATES
+(the Campion / Book-of-World-Horoscopes candidates). No rectification scoreboard
+and no lineage growth — just solid, sourced natal charts to read mundanely and to
+receive ingress / lunation / eclipse transits, the way we already do for the US.
+
+All positions via Swiss Ephemeris — never hand-typed (vault data-integrity rule).
+Reuses wheel_lib.WHEEL_JS / aspects_between / placidus_cusps. Whole Sign throughout,
+each chart cast for its own capital (or the city of the founding act). Times flagged
+PROVISIONAL where the historical clock is uncertain — treat those angles/Moon as soft.
+
+Output: The World Charts.html  (addEventListener, no inline onclick).
+&quot;&quot;&quot;
+import swisseph as swe, json, os, datetime
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+def load_wheel():
+    for p in [os.path.join(HERE, &quot;wheel_lib.py&quot;),
+              os.path.join(HERE, &quot;99 - Templates&quot;, &quot;wheel_lib.py&quot;)]:
+        if os.path.exists(p):
+            import importlib.util
+            spec = importlib.util.spec_from_file_location(&quot;wheel_lib&quot;, p)
+            m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+            return m.WHEEL_JS, m.aspects_between, m.placidus_cusps
+    raise SystemExit(&quot;wheel_lib.py not found&quot;)
+WHEEL_JS, aspects_between, placidus_cusps = load_wheel()
+
+SGN = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,
+       &quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+RULER = {&quot;Aries&quot;:&quot;Mars&quot;,&quot;Taurus&quot;:&quot;Venus&quot;,&quot;Gemini&quot;:&quot;Mercury&quot;,&quot;Cancer&quot;:&quot;Moon&quot;,
+         &quot;Leo&quot;:&quot;Sun&quot;,&quot;Virgo&quot;:&quot;Mercury&quot;,&quot;Libra&quot;:&quot;Venus&quot;,&quot;Scorpio&quot;:&quot;Mars&quot;,
+         &quot;Sagittarius&quot;:&quot;Jupiter&quot;,&quot;Capricorn&quot;:&quot;Saturn&quot;,&quot;Aquarius&quot;:&quot;Saturn&quot;,&quot;Pisces&quot;:&quot;Jupiter&quot;}
+DOM={&quot;Sun&quot;:[&quot;Leo&quot;],&quot;Moon&quot;:[&quot;Cancer&quot;],&quot;Mercury&quot;:[&quot;Gemini&quot;,&quot;Virgo&quot;],&quot;Venus&quot;:[&quot;Taurus&quot;,&quot;Libra&quot;],
+     &quot;Mars&quot;:[&quot;Aries&quot;,&quot;Scorpio&quot;],&quot;Jupiter&quot;:[&quot;Sagittarius&quot;,&quot;Pisces&quot;],&quot;Saturn&quot;:[&quot;Capricorn&quot;,&quot;Aquarius&quot;]}
+EXALT={&quot;Sun&quot;:&quot;Aries&quot;,&quot;Moon&quot;:&quot;Taurus&quot;,&quot;Mercury&quot;:&quot;Virgo&quot;,&quot;Venus&quot;:&quot;Pisces&quot;,&quot;Mars&quot;:&quot;Capricorn&quot;,
+       &quot;Jupiter&quot;:&quot;Cancer&quot;,&quot;Saturn&quot;:&quot;Libra&quot;}
+DETRI={&quot;Sun&quot;:[&quot;Aquarius&quot;],&quot;Moon&quot;:[&quot;Capricorn&quot;],&quot;Mercury&quot;:[&quot;Sagittarius&quot;,&quot;Pisces&quot;],
+       &quot;Venus&quot;:[&quot;Aries&quot;,&quot;Scorpio&quot;],&quot;Mars&quot;:[&quot;Taurus&quot;,&quot;Libra&quot;],&quot;Jupiter&quot;:[&quot;Gemini&quot;,&quot;Virgo&quot;],
+       &quot;Saturn&quot;:[&quot;Cancer&quot;,&quot;Leo&quot;]}
+FALL={&quot;Sun&quot;:&quot;Libra&quot;,&quot;Moon&quot;:&quot;Scorpio&quot;,&quot;Mercury&quot;:&quot;Pisces&quot;,&quot;Venus&quot;:&quot;Virgo&quot;,&quot;Mars&quot;:&quot;Cancer&quot;,
+      &quot;Jupiter&quot;:&quot;Capricorn&quot;,&quot;Saturn&quot;:&quot;Aries&quot;}
+PLANETS=[(&quot;Sun&quot;,swe.SUN),(&quot;Moon&quot;,swe.MOON),(&quot;Mercury&quot;,swe.MERCURY),(&quot;Venus&quot;,swe.VENUS),
+         (&quot;Mars&quot;,swe.MARS),(&quot;Jupiter&quot;,swe.JUPITER),(&quot;Saturn&quot;,swe.SATURN),(&quot;Uranus&quot;,swe.URANUS),
+         (&quot;Neptune&quot;,swe.NEPTUNE),(&quot;Pluto&quot;,swe.PLUTO),(&quot;Node&quot;,swe.TRUE_NODE)]
+AXIS={&quot;Cancer&quot;:&quot;the people &amp; home vs the state &amp; structure&quot;,&quot;Capricorn&quot;:&quot;the state &amp; structure vs the people &amp; home&quot;,
+      &quot;Leo&quot;:&quot;the leader vs the collective&quot;,&quot;Aquarius&quot;:&quot;the collective vs the leader&quot;,
+      &quot;Aries&quot;:&quot;sovereignty &amp; self vs partnership&quot;,&quot;Libra&quot;:&quot;partnership &amp; treaties vs sovereignty&quot;,
+      &quot;Taurus&quot;:&quot;national wealth vs shared/hidden power&quot;,&quot;Scorpio&quot;:&quot;hidden power &amp; crisis vs national wealth&quot;,
+      &quot;Gemini&quot;:&quot;the press &amp; word vs belief &amp; law&quot;,&quot;Sagittarius&quot;:&quot;belief, law &amp; abroad vs the press &amp; word&quot;,
+      &quot;Virgo&quot;:&quot;labour &amp; service vs ideals&quot;,&quot;Pisces&quot;:&quot;ideals &amp; dissolution vs labour&quot;}
+
+def jd_of(y,mo,d,localhour,tz):
+    &quot;&quot;&quot;tz = hours East of UT (local = UT + tz).&quot;&quot;&quot;
+    return swe.julday(y,mo,d,0.0) + (localhour - tz)/24.0
+
+def fmt_dms(lon):
+    deg=int(lon%30); mn=int(round((lon%1)*60))
+    if mn==60: deg+=1; mn=0
+    return f&quot;{deg}°{mn:02d}&#x27;&quot;
+def signdeg(lon): return f&quot;{SGN[int(lon//30)]} {fmt_dms(lon)}&quot;
+def ordn(n):
+    n=int(n); s=&#x27;th&#x27; if 10&lt;=n%100&lt;=20 else {1:&#x27;st&#x27;,2:&#x27;nd&#x27;,3:&#x27;rd&#x27;}.get(n%10,&#x27;th&#x27;); return f&quot;{n}{s}&quot;
+def dignity(planet, sign):
+    if planet in DOM and sign in DOM[planet]: return (&quot;domicile&quot;,&quot;+&quot;)
+    if EXALT.get(planet)==sign: return (&quot;exalted&quot;,&quot;+&quot;)
+    if planet in DETRI and sign in DETRI[planet]: return (&quot;detriment&quot;,&quot;−&quot;)
+    if FALL.get(planet)==sign: return (&quot;fall&quot;,&quot;−&quot;)
+    return (&quot;&quot;,&quot;&quot;)
+
+def compute_chart(jd, lat, lon):
+    cusps, ascmc = swe.houses(jd, lat, lon, b&#x27;W&#x27;)
+    asc, mc = ascmc[0], ascmc[1]
+    asc_idx = int(asc//30)
+    pl_cusps, pl_mc = placidus_cusps(jd, lat, lon)
+    pos=[]; lons={}
+    for name,pid in PLANETS:
+        res=swe.calc_ut(jd,pid); l=res[0][0]; spd=res[0][3]
+        sign=SGN[int(l//30)]; house=((int(l//30)-asc_idx)%12)+1
+        pos.append({&quot;name&quot;:name,&quot;sign&quot;:sign,&quot;lon&quot;:l,&quot;dms&quot;:fmt_dms(l),&quot;retro&quot;:spd&lt;0,&quot;house&quot;:house})
+        lons[name]=l
+    return {&quot;asc&quot;:asc,&quot;mc&quot;:mc,&quot;asc_idx&quot;:asc_idx,&quot;pos&quot;:pos,&quot;lons&quot;:lons,&quot;cusps&quot;:pl_cusps,&quot;pl_mc&quot;:pl_mc}
+
+# ============================================================================
+# The nations. tz = hours East of UT at the founding moment (standard zone / LMT).
+# prov=True flags a provisional clock time (angles + Moon degree are soft).
+# ============================================================================
+NATIONS=[
+ {&quot;code&quot;:&quot;de&quot;,&quot;name&quot;:&quot;Germany&quot;,&quot;flag&quot;:&quot;🇩🇪&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;reun&quot;,&quot;label&quot;:&quot;Reunification 1990&quot;,&quot;primary&quot;:True,&quot;prov&quot;:False,
+    &quot;y&quot;:1990,&quot;mo&quot;:10,&quot;d&quot;:3,&quot;h&quot;:0.0,&quot;tz&quot;:1,&quot;place&quot;:&quot;Berlin&quot;,&quot;lat&quot;:52.5200,&quot;lon&quot;:13.4050,
+    &quot;time&quot;:&quot;3 Oct 1990 · 00:00 CET · Berlin&quot;,
+    &quot;src&quot;:&quot;Unification Treaty in force at midnight — the current Federal Republic, whole. Campion&#x27;s modern-Germany chart.&quot;},
+   {&quot;key&quot;:&quot;frg&quot;,&quot;label&quot;:&quot;Federal Republic 1949&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1949,&quot;mo&quot;:5,&quot;d&quot;:24,&quot;h&quot;:0.0,&quot;tz&quot;:1,&quot;place&quot;:&quot;Bonn&quot;,&quot;lat&quot;:50.7374,&quot;lon&quot;:7.0982,
+    &quot;time&quot;:&quot;24 May 1949 · 00:00 CET · Bonn (time provisional)&quot;,
+    &quot;src&quot;:&quot;Basic Law in force — West Germany, the Cold-War / Adenauer-era state (the MKUltra-years Germany).&quot;},
+   {&quot;key&quot;:&quot;reich&quot;,&quot;label&quot;:&quot;Empire 1871&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1871,&quot;mo&quot;:1,&quot;d&quot;:18,&quot;h&quot;:12.0,&quot;tz&quot;:0.894,&quot;place&quot;:&quot;Berlin (proclaimed Versailles)&quot;,&quot;lat&quot;:52.5200,&quot;lon&quot;:13.4050,
+    &quot;time&quot;:&quot;18 Jan 1871 · ~noon LMT · proclaimed at Versailles (time provisional)&quot;,
+    &quot;src&quot;:&quot;Proclamation of the German Empire — the first unified nation-state.&quot;}]},
+ {&quot;code&quot;:&quot;gb&quot;,&quot;name&quot;:&quot;United Kingdom&quot;,&quot;flag&quot;:&quot;🇬🇧&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;uk1801&quot;,&quot;label&quot;:&quot;United Kingdom 1801&quot;,&quot;primary&quot;:True,&quot;prov&quot;:False,
+    &quot;y&quot;:1801,&quot;mo&quot;:1,&quot;d&quot;:1,&quot;h&quot;:0.0,&quot;tz&quot;:0.0,&quot;place&quot;:&quot;London&quot;,&quot;lat&quot;:51.5074,&quot;lon&quot;:-0.1278,
+    &quot;time&quot;:&quot;1 Jan 1801 · 00:00 LMT · London&quot;,
+    &quot;src&quot;:&quot;Act of Union (GB + Ireland) in force at midnight — Campion&#x27;s standard modern UK chart.&quot;},
+   {&quot;key&quot;:&quot;gb1707&quot;,&quot;label&quot;:&quot;Great Britain 1707&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1707,&quot;mo&quot;:5,&quot;d&quot;:1,&quot;h&quot;:0.0,&quot;tz&quot;:0.0,&quot;place&quot;:&quot;London&quot;,&quot;lat&quot;:51.5074,&quot;lon&quot;:-0.1278,
+    &quot;time&quot;:&quot;1 May 1707 · 00:00 LMT · London (time provisional)&quot;,
+    &quot;src&quot;:&quot;Union of England &amp; Scotland — the birth of Great Britain.&quot;}]},
+ {&quot;code&quot;:&quot;ru&quot;,&quot;name&quot;:&quot;Russia&quot;,&quot;flag&quot;:&quot;🇷🇺&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;rf1991&quot;,&quot;label&quot;:&quot;Russian Federation 1991&quot;,&quot;primary&quot;:True,&quot;prov&quot;:True,
+    &quot;y&quot;:1991,&quot;mo&quot;:12,&quot;d&quot;:25,&quot;h&quot;:19.5333,&quot;tz&quot;:3,&quot;place&quot;:&quot;Moscow&quot;,&quot;lat&quot;:55.7558,&quot;lon&quot;:37.6173,
+    &quot;time&quot;:&quot;25 Dec 1991 · 19:32 MSK · Moscow&quot;,
+    &quot;src&quot;:&quot;Soviet flag lowered over the Kremlin as Gorbachev resigns — the Russian Federation stands alone.&quot;},
+   {&quot;key&quot;:&quot;sov1917&quot;,&quot;label&quot;:&quot;Revolution 1917&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1917,&quot;mo&quot;:11,&quot;d&quot;:7,&quot;h&quot;:21.75,&quot;tz&quot;:2,&quot;place&quot;:&quot;Petrograd&quot;,&quot;lat&quot;:59.9343,&quot;lon&quot;:30.3351,
+    &quot;time&quot;:&quot;7 Nov 1917 · ~21:45 · Petrograd (time provisional)&quot;,
+    &quot;src&quot;:&quot;Bolshevik seizure of power / storming of the Winter Palace — the Soviet century&#x27;s seed.&quot;},
+   {&quot;key&quot;:&quot;rsfsr1990&quot;,&quot;label&quot;:&quot;Sovereignty 1990&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1990,&quot;mo&quot;:6,&quot;d&quot;:12,&quot;h&quot;:0.0,&quot;tz&quot;:3,&quot;place&quot;:&quot;Moscow&quot;,&quot;lat&quot;:55.7558,&quot;lon&quot;:37.6173,
+    &quot;time&quot;:&quot;12 Jun 1990 · 00:00 MSK · Moscow (time provisional)&quot;,
+    &quot;src&quot;:&quot;Declaration of State Sovereignty of the RSFSR — &#x27;Russia Day&#x27;, the Federation&#x27;s other candidate seed.&quot;}]},
+ {&quot;code&quot;:&quot;cn&quot;,&quot;name&quot;:&quot;China (PRC)&quot;,&quot;flag&quot;:&quot;🇨🇳&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;prc1949&quot;,&quot;label&quot;:&quot;People&#x27;s Republic 1949&quot;,&quot;primary&quot;:True,&quot;prov&quot;:False,
+    &quot;y&quot;:1949,&quot;mo&quot;:10,&quot;d&quot;:1,&quot;h&quot;:15.0,&quot;tz&quot;:8,&quot;place&quot;:&quot;Beijing&quot;,&quot;lat&quot;:39.9042,&quot;lon&quot;:116.4074,
+    &quot;time&quot;:&quot;1 Oct 1949 · 15:00 · Beijing (Tiananmen)&quot;,
+    &quot;src&quot;:&quot;Mao proclaims the People&#x27;s Republic from the Gate of Heavenly Peace — the near-universal PRC chart.&quot;},
+   {&quot;key&quot;:&quot;roc1912&quot;,&quot;label&quot;:&quot;Republic of China 1912&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1912,&quot;mo&quot;:1,&quot;d&quot;:1,&quot;h&quot;:0.0,&quot;tz&quot;:8,&quot;place&quot;:&quot;Nanjing&quot;,&quot;lat&quot;:32.0603,&quot;lon&quot;:118.7969,
+    &quot;time&quot;:&quot;1 Jan 1912 · 00:00 · Nanjing (time provisional)&quot;,
+    &quot;src&quot;:&quot;Sun Yat-sen inaugurates the Republic — the end of the empire.&quot;}]},
+ {&quot;code&quot;:&quot;fr&quot;,&quot;name&quot;:&quot;France&quot;,&quot;flag&quot;:&quot;🇫🇷&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;v1958&quot;,&quot;label&quot;:&quot;Fifth Republic 1958&quot;,&quot;primary&quot;:True,&quot;prov&quot;:True,
+    &quot;y&quot;:1958,&quot;mo&quot;:10,&quot;d&quot;:4,&quot;h&quot;:0.0,&quot;tz&quot;:1,&quot;place&quot;:&quot;Paris&quot;,&quot;lat&quot;:48.8566,&quot;lon&quot;:2.3522,
+    &quot;time&quot;:&quot;4 Oct 1958 · 00:00 CET · Paris (time provisional)&quot;,
+    &quot;src&quot;:&quot;Constitution of the Fifth Republic promulgated — de Gaulle&#x27;s state, France today.&quot;},
+   {&quot;key&quot;:&quot;r1792&quot;,&quot;label&quot;:&quot;First Republic 1792&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1792,&quot;mo&quot;:9,&quot;d&quot;:22,&quot;h&quot;:0.0,&quot;tz&quot;:0.157,&quot;place&quot;:&quot;Paris&quot;,&quot;lat&quot;:48.8566,&quot;lon&quot;:2.3522,
+    &quot;time&quot;:&quot;22 Sep 1792 · 00:00 LMT · Paris (time provisional)&quot;,
+    &quot;src&quot;:&quot;Abolition of the monarchy / First Republic — also the autumnal equinox.&quot;}]},
+ {&quot;code&quot;:&quot;jp&quot;,&quot;name&quot;:&quot;Japan&quot;,&quot;flag&quot;:&quot;🇯🇵&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;jp1947&quot;,&quot;label&quot;:&quot;Postwar State 1947&quot;,&quot;primary&quot;:True,&quot;prov&quot;:False,
+    &quot;y&quot;:1947,&quot;mo&quot;:5,&quot;d&quot;:3,&quot;h&quot;:0.0,&quot;tz&quot;:9,&quot;place&quot;:&quot;Tokyo&quot;,&quot;lat&quot;:35.6762,&quot;lon&quot;:139.6503,
+    &quot;time&quot;:&quot;3 May 1947 · 00:00 JST · Tokyo&quot;,
+    &quot;src&quot;:&quot;Postwar Constitution takes effect at midnight — modern democratic Japan.&quot;},
+   {&quot;key&quot;:&quot;jp1889&quot;,&quot;label&quot;:&quot;Meiji Empire 1889&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1889,&quot;mo&quot;:2,&quot;d&quot;:11,&quot;h&quot;:0.0,&quot;tz&quot;:9,&quot;place&quot;:&quot;Tokyo&quot;,&quot;lat&quot;:35.6762,&quot;lon&quot;:139.6503,
+    &quot;time&quot;:&quot;11 Feb 1889 · 00:00 JST · Tokyo (time provisional)&quot;,
+    &quot;src&quot;:&quot;Meiji Constitution promulgated — the modern imperial state.&quot;}]},
+ {&quot;code&quot;:&quot;il&quot;,&quot;name&quot;:&quot;Israel&quot;,&quot;flag&quot;:&quot;🇮🇱&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;il1948&quot;,&quot;label&quot;:&quot;State of Israel 1948&quot;,&quot;primary&quot;:True,&quot;prov&quot;:False,
+    &quot;y&quot;:1948,&quot;mo&quot;:5,&quot;d&quot;:14,&quot;h&quot;:16.0,&quot;tz&quot;:2,&quot;place&quot;:&quot;Tel Aviv&quot;,&quot;lat&quot;:32.0853,&quot;lon&quot;:34.7818,
+    &quot;time&quot;:&quot;14 May 1948 · 16:00 · Tel Aviv&quot;,
+    &quot;src&quot;:&quot;Ben-Gurion reads the Declaration of Independence ~4 pm — the well-attested Israel chart.&quot;},
+   {&quot;key&quot;:&quot;il_mandate&quot;,&quot;label&quot;:&quot;Mandate ends 1948&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1948,&quot;mo&quot;:5,&quot;d&quot;:15,&quot;h&quot;:0.0,&quot;tz&quot;:2,&quot;place&quot;:&quot;Tel Aviv&quot;,&quot;lat&quot;:32.0853,&quot;lon&quot;:34.7818,
+    &quot;time&quot;:&quot;15 May 1948 · 00:00 · Tel Aviv (time provisional)&quot;,
+    &quot;src&quot;:&quot;British Mandate ends at midnight — the legal-sovereignty alternate.&quot;}]},
+ {&quot;code&quot;:&quot;ir&quot;,&quot;name&quot;:&quot;Iran&quot;,&quot;flag&quot;:&quot;🇮🇷&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;ir1979&quot;,&quot;label&quot;:&quot;Islamic Republic 1979&quot;,&quot;primary&quot;:True,&quot;prov&quot;:True,
+    &quot;y&quot;:1979,&quot;mo&quot;:4,&quot;d&quot;:1,&quot;h&quot;:15.0,&quot;tz&quot;:3.5,&quot;place&quot;:&quot;Tehran&quot;,&quot;lat&quot;:35.6892,&quot;lon&quot;:51.3890,
+    &quot;time&quot;:&quot;1 Apr 1979 · ~15:00 · Tehran (time provisional)&quot;,
+    &quot;src&quot;:&quot;Khomeini proclaims the Islamic Republic after the referendum — the current state.&quot;},
+   {&quot;key&quot;:&quot;ir_rev&quot;,&quot;label&quot;:&quot;Revolution victory 1979&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1979,&quot;mo&quot;:2,&quot;d&quot;:11,&quot;h&quot;:14.0,&quot;tz&quot;:3.5,&quot;place&quot;:&quot;Tehran&quot;,&quot;lat&quot;:35.6892,&quot;lon&quot;:51.3890,
+    &quot;time&quot;:&quot;11 Feb 1979 · ~14:00 · Tehran (time provisional)&quot;,
+    &quot;src&quot;:&quot;Fall of the monarchy — the revolution&#x27;s day of victory.&quot;}]},
+ {&quot;code&quot;:&quot;ua&quot;,&quot;name&quot;:&quot;Ukraine&quot;,&quot;flag&quot;:&quot;🇺🇦&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;ua1991&quot;,&quot;label&quot;:&quot;Independence 1991&quot;,&quot;primary&quot;:True,&quot;prov&quot;:True,
+    &quot;y&quot;:1991,&quot;mo&quot;:8,&quot;d&quot;:24,&quot;h&quot;:18.0,&quot;tz&quot;:3,&quot;place&quot;:&quot;Kyiv&quot;,&quot;lat&quot;:50.4501,&quot;lon&quot;:30.5234,
+    &quot;time&quot;:&quot;24 Aug 1991 · ~18:00 · Kyiv (time/zone provisional)&quot;,
+    &quot;src&quot;:&quot;Verkhovna Rada adopts the Act of Independence — modern Ukraine.&quot;},
+   {&quot;key&quot;:&quot;unr1918&quot;,&quot;label&quot;:&quot;People&#x27;s Republic 1918&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1918,&quot;mo&quot;:1,&quot;d&quot;:22,&quot;h&quot;:12.0,&quot;tz&quot;:2,&quot;place&quot;:&quot;Kyiv&quot;,&quot;lat&quot;:50.4501,&quot;lon&quot;:30.5234,
+    &quot;time&quot;:&quot;22 Jan 1918 · ~noon · Kyiv (time provisional)&quot;,
+    &quot;src&quot;:&quot;Ukrainian People&#x27;s Republic declares full independence — the historical alternate.&quot;}]},
+ {&quot;code&quot;:&quot;in&quot;,&quot;name&quot;:&quot;India&quot;,&quot;flag&quot;:&quot;🇮🇳&quot;,&quot;charts&quot;:[
+   {&quot;key&quot;:&quot;in1947&quot;,&quot;label&quot;:&quot;Independence 1947&quot;,&quot;primary&quot;:True,&quot;prov&quot;:False,
+    &quot;y&quot;:1947,&quot;mo&quot;:8,&quot;d&quot;:15,&quot;h&quot;:0.0,&quot;tz&quot;:5.5,&quot;place&quot;:&quot;New Delhi&quot;,&quot;lat&quot;:28.6139,&quot;lon&quot;:77.2090,
+    &quot;time&quot;:&quot;15 Aug 1947 · 00:00 IST · New Delhi&quot;,
+    &quot;src&quot;:&quot;Independence at the stroke of midnight — Nehru&#x27;s &#x27;tryst with destiny&#x27;.&quot;},
+   {&quot;key&quot;:&quot;in1950&quot;,&quot;label&quot;:&quot;Republic 1950&quot;,&quot;primary&quot;:False,&quot;prov&quot;:True,
+    &quot;y&quot;:1950,&quot;mo&quot;:1,&quot;d&quot;:26,&quot;h&quot;:10.25,&quot;tz&quot;:5.5,&quot;place&quot;:&quot;New Delhi&quot;,&quot;lat&quot;:28.6139,&quot;lon&quot;:77.2090,
+    &quot;time&quot;:&quot;26 Jan 1950 · ~10:15 · New Delhi (time provisional)&quot;,
+    &quot;src&quot;:&quot;Constitution in force — the Republic of India.&quot;}]},
+]
+
+def wheel_rec(chart,label,time):
+    posJS=[[p[&quot;name&quot;],p[&quot;sign&quot;],p[&quot;dms&quot;],p[&quot;retro&quot;],round(p[&quot;lon&quot;],4)] for p in chart[&quot;pos&quot;]]
+    main={p[&quot;name&quot;]:p[&quot;lon&quot;] for p in chart[&quot;pos&quot;] if p[&quot;name&quot;]!=&quot;Node&quot;}
+    asp=aspects_between(main)
+    ruler=RULER[SGN[chart[&quot;asc_idx&quot;]]]
+    return {&quot;pos&quot;:posJS,&quot;asp&quot;:asp,&quot;asc&quot;:round(chart[&quot;asc&quot;],4),&quot;cusps&quot;:chart[&quot;cusps&quot;],
+            &quot;mc&quot;:chart[&quot;pl_mc&quot;],&quot;__date&quot;:label,&quot;cap1&quot;:time,
+            &quot;cap2&quot;:f&quot;{ruler} rules · Whole Sign&quot;}
+
+def placements_html(chart):
+    rows=[]
+    for p in chart[&quot;pos&quot;]:
+        glyph=&quot;☊ N.Node&quot; if p[&quot;name&quot;]==&quot;Node&quot; else p[&quot;name&quot;]
+        dig,mk=dignity(p[&quot;name&quot;],p[&quot;sign&quot;])
+        cls=&quot;dig-pos&quot; if mk==&quot;+&quot; else (&quot;dig-neg&quot; if mk==&quot;−&quot; else &quot;&quot;)
+        rows.append(f&quot;&lt;tr&gt;&lt;td&gt;{glyph}&lt;/td&gt;&lt;td&gt;{p[&#x27;sign&#x27;]} {p[&#x27;dms&#x27;]}{&#x27; ℞&#x27; if p[&#x27;retro&#x27;] else &#x27;&#x27;}&lt;/td&gt;&quot;
+                    f&quot;&lt;td class=&#x27;hc&#x27;&gt;{p[&#x27;house&#x27;]}&lt;/td&gt;&lt;td class=&#x27;{cls}&#x27;&gt;{dig}&lt;/td&gt;&lt;/tr&gt;&quot;)
+    return (&quot;&lt;table class=&#x27;pl&#x27;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Body&lt;/th&gt;&lt;th&gt;Position&lt;/th&gt;&lt;th&gt;Hse&lt;/th&gt;&quot;
+            &quot;&lt;th&gt;Dignity&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&quot;+&quot;&quot;.join(rows)+&quot;&lt;/tbody&gt;&lt;/table&gt;&quot;)
+
+def read_html(chart, ch):
+    &quot;&quot;&quot;Structural skeleton read from the data — for Katie to flesh out, not a verdict.&quot;&quot;&quot;
+    ai=chart[&quot;asc_idx&quot;]; rising=SGN[ai]; ruler=RULER[rising]
+    rlon=chart[&quot;lons&quot;][ruler]; rsign=SGN[int(rlon//30)]; rhouse=((int(rlon//30)-ai)%12)+1
+    rdig,rmk=dignity(ruler,rsign)
+    digtxt=(f&quot;, &lt;b&gt;{rdig}&lt;/b&gt;&quot; if rdig else &quot;&quot;)
+    sun=chart[&quot;lons&quot;][&quot;Sun&quot;]; sh=((int(sun//30)-ai)%12)+1
+    moon=chart[&quot;lons&quot;][&quot;Moon&quot;]; msign=SGN[int(moon//30)]; opp=SGN[(int(moon//30)+6)%12]
+    mh=((int(moon//30)-ai)%12)+1
+    # tightest body to an angle
+    asc=chart[&quot;asc&quot;]; mc=chart[&quot;mc&quot;]; best=None
+    for p in chart[&quot;pos&quot;]:
+        if p[&quot;name&quot;]==&quot;Node&quot;: continue
+        for an,al in [(&quot;Ascendant&quot;,asc),(&quot;MC&quot;,mc),(&quot;Descendant&quot;,(asc+180)%360),(&quot;IC&quot;,(mc+180)%360)]:
+            o=abs((p[&quot;lon&quot;]-al+180)%360-180)
+            if o&lt;=3 and (best is None or o&lt;best[2]): best=(p[&quot;name&quot;],an,round(o,1))
+    ang = (f&quot;&lt;b&gt;{best[0]}&lt;/b&gt; sits on the &lt;b&gt;{best[1]}&lt;/b&gt; ({best[2]}°) — a signature to read first.&quot;
+           if best else &quot;No planet within 3° of an angle.&quot;)
+    prov = &quot;&lt;div class=&#x27;provwarn&#x27;&gt;⚠ Time provisional — treat the Ascendant, MC, houses and the Moon&#x27;s exact degree as soft; the planetary signs are solid.&lt;/div&gt;&quot; if ch[&quot;prov&quot;] else &quot;&quot;
+    return (prov+
+      f&quot;&lt;p&gt;&lt;b&gt;{rising} rising&lt;/b&gt;, so &lt;b&gt;{ruler}&lt;/b&gt; is the nation&#x27;s ruler — its animating drive — here in &quot;
+      f&quot;&lt;b&gt;{rsign}&lt;/b&gt;{digtxt}, in the &lt;b&gt;{ordn(rhouse)} house&lt;/b&gt;. That placement is the root: take the reading &quot;
+      f&quot;there first.&lt;/p&gt;&quot;
+      f&quot;&lt;p&gt;&lt;b&gt;Sun&lt;/b&gt; (the leadership / the sovereign function) falls in the &lt;b&gt;{ordn(sh)} house&lt;/b&gt;; &quot;
+      f&quot;&lt;b&gt;Moon&lt;/b&gt; (the people, the mood, the body of the nation) is in &lt;b&gt;{msign}&lt;/b&gt; — the &quot;
+      f&quot;&lt;b&gt;{msign}/{opp}&lt;/b&gt; family: {AXIS.get(msign,&#x27;&#x27;)} — running through the &lt;b&gt;{ordn(mh)} house&lt;/b&gt;.&lt;/p&gt;&quot;
+      f&quot;&lt;p&gt;{ang}&lt;/p&gt;&quot;)
+
+# build records + fragments
+REC={}; META={}
+for nat in NATIONS:
+    REC[nat[&quot;code&quot;]]={}; charts_meta={}
+    order=[]
+    for c in nat[&quot;charts&quot;]:
+        jd=jd_of(c[&quot;y&quot;],c[&quot;mo&quot;],c[&quot;d&quot;],c[&quot;h&quot;],c[&quot;tz&quot;])
+        chart=compute_chart(jd,c[&quot;lat&quot;],c[&quot;lon&quot;])
+        REC[nat[&quot;code&quot;]][c[&quot;key&quot;]]=wheel_rec(chart,c[&quot;label&quot;],c[&quot;time&quot;])
+        charts_meta[c[&quot;key&quot;]]={&quot;label&quot;:c[&quot;label&quot;],&quot;primary&quot;:c[&quot;primary&quot;],&quot;time&quot;:c[&quot;time&quot;],
+            &quot;src&quot;:c[&quot;src&quot;],&quot;place&quot;:c[&quot;place&quot;],&quot;prov&quot;:c[&quot;prov&quot;],
+            &quot;asc&quot;:signdeg(chart[&quot;asc&quot;]),&quot;mc&quot;:signdeg(chart[&quot;mc&quot;]),
+            &quot;ruler&quot;:RULER[SGN[chart[&quot;asc_idx&quot;]]],
+            &quot;pl&quot;:placements_html(chart),&quot;read&quot;:read_html(chart,c)}
+        order.append(c[&quot;key&quot;])
+    META[nat[&quot;code&quot;]]={&quot;name&quot;:nat[&quot;name&quot;],&quot;flag&quot;:nat[&quot;flag&quot;],&quot;order&quot;:order,&quot;charts&quot;:charts_meta}
+
+NAT_ORDER=[n[&quot;code&quot;] for n in NATIONS]
+
+def _readf(p):
+    for c in [os.path.join(HERE,p), os.path.join(HERE,&quot;99 - Templates&quot;,p)]:
+        if os.path.exists(c): return open(c).read()
+    return &quot;{}&quot;
+COMP=_readf(&quot;composite_us_pairs.json&quot;)  # US × each nation progressed composite (swisseph-verified, Sabian)
+
+HTML = &quot;&quot;&quot;&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;The World Charts&lt;/title&gt;
+&lt;style&gt;
+:root{--bg:#faf8f3;--ink:#23201a;--mut:#8a8377;--line:#e3d9c2;--gold:#a8821f;--red:#7a2e1d;--blue:#3a6ea5;--grn:#2e8b74;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:&quot;Iowan Old Style&quot;,Palatino,Georgia,serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
+h1{font-size:30px;margin:0 0 2px;letter-spacing:.3px}
+.sub{color:var(--mut);font-style:italic;margin:0 0 18px}
+.lead{font-size:15px;max-width:780px;margin:0 0 20px}
+.nations{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.nat{cursor:pointer;border:1px solid var(--line);background:#fff;padding:7px 13px;border-radius:20px;font-family:inherit;font-size:14px;color:var(--ink)}
+.nat.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.tab{cursor:pointer;border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:8px;font-family:inherit;font-size:14px;color:var(--ink)}
+.tab .tt{font-size:11px;color:var(--mut);display:block}
+.tab.on{background:var(--gold);color:#fff;border-color:var(--gold)}
+.tab.on .tt{color:#f3ead0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:12px;background:#fffdf8;padding:16px 18px;margin:0 0 20px}
+.card h2{font-size:18px;margin:0 0 8px}.card h3{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:16px 0 6px;font-weight:normal}
+#wheelbox svg{max-width:520px;margin:0 auto;display:block}
+.idn{font-size:14.5px}.idn .src{color:var(--gold);font-style:italic}
+.angles{font-size:13px;color:var(--mut);margin:6px 0 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+.pl td,.pl th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+.pl .hc{text-align:center;color:var(--mut)}
+.dig-pos{color:var(--grn)}.dig-neg{color:var(--red)}
+.provwarn{background:#fbeee0;border:1px solid #e6c48f;border-radius:8px;padding:8px 11px;font-size:12.5px;color:#7a4a1d;margin:0 0 10px}
+.note{font-size:12.5px;color:var(--mut);max-width:800px;margin-top:16px}
+.phpill{display:inline-block;background:var(--ink);color:#fff;border-radius:12px;padding:2px 10px;font-size:12.5px}
+.card ul.ct{list-style:none;padding:0;margin:6px 0 0;font-size:12.5px}
+.card ul.ct li{padding:3px 0;border-bottom:1px solid var(--line)}
+b{font-weight:bold}
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class=&quot;wrap&quot;&gt;
+&lt;h1&gt;The World Charts&lt;/h1&gt;
+&lt;p class=&quot;sub&quot;&gt;The main powers as natal charts — read the same way we read America.&lt;/p&gt;
+&lt;p class=&quot;lead&quot;&gt;Ten nations, each with a &lt;b&gt;locked primary&lt;/b&gt; founding chart and its kept &lt;b&gt;alternates&lt;/b&gt; (the standard mundane candidates). Cast from Swiss Ephemeris, Whole Sign houses, each chart set for its own capital or the city of the founding act. These are the bodies that receive the ingress, lunation and eclipse transits — the mundane counterparts to the US chart, without growing each nation&#x27;s full lineage. Where the founding clock is uncertain, the chart is flagged &lt;b&gt;provisional&lt;/b&gt; (angles &amp;amp; Moon soft, planet signs solid).&lt;/p&gt;
+&lt;div class=&quot;nations&quot; id=&quot;nations&quot;&gt;__NATIONS__&lt;/div&gt;
+&lt;div class=&quot;tabs&quot; id=&quot;tabs&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;panel&quot;&gt;&lt;/div&gt;
+&lt;p class=&quot;note&quot;&gt;Built __DATE__ · positions from Swiss Ephemeris, never hand-entered · Whole Sign houses · each chart cast for its founding city · founding moments per the standard mundane sources (Campion, &lt;i&gt;The Book of World Horoscopes&lt;/i&gt;), primaries chosen as the current-state chart. The skeleton reads are structural starting points — motivation-first, taken to the ruler — not finished interpretations. See the companion note for the full source list and the provisional-time flags.&lt;/p&gt;
+&lt;script&gt;
+__WHEEL_JS__
+var REC=__REC__, META=__META__, NAT_ORDER=__NATORDER__;
+var COMP=__COMP__;
+var PHINT={New:&#x27;a re-opening / reset&#x27;,Crescent:&#x27;early momentum&#x27;,&#x27;1stQ&#x27;:&#x27;a building crisis&#x27;,Gibbous:&#x27;perfecting toward the peak&#x27;,Full:&#x27;the defining confrontation&#x27;,Disseminating:&#x27;sharing the harvest&#x27;,LastQ:&#x27;a rupture / reckoning&#x27;,Balsamic:&#x27;dark of the moon — dissolving toward reseed&#x27;};
+function compositeCard(code){
+  var cp=COMP[code]; if(!cp) return &#x27;&#x27;;
+  var n=cp.now, h=&#x27;&lt;div class=&quot;card&quot;&gt;&lt;h2&gt;US × &#x27;+cp.name.replace(&#x27; (PRC)&#x27;,&#x27;&#x27;)+&#x27; — progressed composite&lt;/h2&gt;&#x27;;
+  if(cp.prov) h+=&#x27;&lt;div class=&quot;provwarn&quot;&gt;Founding time provisional — the composite Moon &amp;amp; exact phase are soft.&lt;/div&gt;&#x27;;
+  h+=&#x27;&lt;p&gt;&lt;span class=&quot;phpill&quot;&gt;&#x27;+n.phase+&#x27;&lt;/span&gt; &lt;span style=&quot;color:#8a8377&quot;&gt;&#x27;+n.elong+&#x27;° into the ~30-yr cycle — &#x27;+(PHINT[n.phase]||&#x27;&#x27;)+&#x27;&lt;/span&gt;&lt;/p&gt;&#x27;;
+  h+=&#x27;&lt;p&gt;&lt;b&gt;Composite now:&lt;/b&gt; Sun &#x27;+n.sun+&#x27; · Moon &#x27;+n.moon+&#x27;&lt;br&gt;&lt;span style=&quot;font-style:italic;color:#5b5347&quot;&gt;“&#x27;+n.sunsab+&#x27;”&lt;/span&gt;&lt;/p&gt;&#x27;;
+  if(n.aspects&amp;&amp;n.aspects.length) h+=&#x27;&lt;p&gt;&lt;b&gt;Tightest ties:&lt;/b&gt; &#x27;+n.aspects.slice(0,4).map(function(a){return a[1]+&#x27; &lt;span style=&quot;color:#8a8377&quot;&gt;&#x27;+a[0].toFixed(2)+&#x27;°&lt;/span&gt;&#x27;+(a[2]?&#x27; ★&#x27;:&#x27;&#x27;);}).join(&#x27; · &#x27;)+&#x27;&lt;/p&gt;&#x27;;
+  if(cp.timeline&amp;&amp;cp.timeline.length) h+=&#x27;&lt;h3&gt;The relationship’s Moon phases&lt;/h3&gt;&lt;ul class=&quot;ct&quot;&gt;&#x27;+cp.timeline.map(function(t){return &#x27;&lt;li&gt;&lt;b&gt;&#x27;+t.ym+&#x27;&lt;/b&gt; &#x27;+t.phase+&#x27; · &#x27;+t.signdeg+&#x27; &lt;span style=&quot;color:#8a8377&quot;&gt;&#x27;+t.sabian+&#x27;&lt;/span&gt;&lt;/li&gt;&#x27;;}).join(&#x27;&#x27;)+&#x27;&lt;/ul&gt;&#x27;;
+  h+=&#x27;&lt;p class=&quot;note&quot;&gt;New = re-opening · Full = confrontation · Last Quarter = rupture (★ = in a cardinal sign). US chart × this nation’s primary, both secondary-progressed then composited (Blaschke). Full digest: “The Progressed Nation.”&lt;/p&gt;&lt;/div&gt;&#x27;;
+  return h;
+}
+var curNat=NAT_ORDER[0], curKey=null;
+function renderNations(){
+  document.getElementById(&#x27;nations&#x27;).innerHTML=NAT_ORDER.map(function(code){
+    return &#x27;&lt;button class=&quot;nat&#x27;+(code===curNat?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; data-n=&quot;&#x27;+code+&#x27;&quot;&gt;&#x27;+META[code].flag+&#x27; &#x27;+META[code].name+&#x27;&lt;/button&gt;&#x27;;
+  }).join(&#x27;&#x27;);
+}
+function renderTabs(){
+  var m=META[curNat];
+  document.getElementById(&#x27;tabs&#x27;).innerHTML=m.order.map(function(k){
+    var c=m.charts[k];
+    return &#x27;&lt;button class=&quot;tab&#x27;+(k===curKey?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot; data-k=&quot;&#x27;+k+&#x27;&quot;&gt;&lt;span class=&quot;tl&quot;&gt;&#x27;+(c.primary?&#x27;★ &#x27;:&#x27;&#x27;)+c.label+&#x27;&lt;/span&gt;&lt;span class=&quot;tt&quot;&gt;&#x27;+c.place+(c.prov?&#x27; · time ~&#x27;:&#x27;&#x27;)+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;;
+  }).join(&#x27;&#x27;);
+}
+function renderPanel(){
+  var m=META[curNat], c=m.charts[curKey], r=REC[curNat][curKey];
+  var html=&#x27;&lt;div class=&quot;grid&quot;&gt;&#x27;
+   +&#x27;&lt;div&gt;&lt;div id=&quot;wheelbox&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;
+   +&#x27;&lt;div&gt;&lt;div class=&quot;card idn&quot;&gt;&lt;h2&gt;&#x27;+m.flag+&#x27; &#x27;+m.name+&#x27; — &#x27;+c.label+&#x27;&lt;/h2&gt;&#x27;
+   +&#x27;&lt;p class=&quot;src&quot;&gt;&#x27;+c.src+&#x27;&lt;/p&gt;&#x27;
+   +&#x27;&lt;p class=&quot;angles&quot;&gt;&lt;b&gt;&#x27;+c.time+&#x27;&lt;/b&gt;&lt;br&gt;Ascendant &#x27;+c.asc+&#x27; · MC &#x27;+c.mc+&#x27; · ruler &#x27;+c.ruler+&#x27;&lt;/p&gt;&#x27;
+   +&#x27;&lt;h3&gt;The skeleton read&lt;/h3&gt;&#x27;+c.read+&#x27;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&#x27;
+   +&#x27;&lt;div class=&quot;card&quot;&gt;&lt;h2&gt;Placements&lt;/h2&gt;&#x27;+c.pl+&#x27;&lt;/div&gt;&#x27;
+   +compositeCard(curNat);
+  document.getElementById(&#x27;panel&#x27;).innerHTML=html;
+  document.getElementById(&#x27;wheelbox&#x27;).innerHTML=wheelSVG(r,null,false);
+}
+function pickNation(code){curNat=code; curKey=META[code].order.find(function(k){return META[code].charts[k].primary;})||META[code].order[0]; renderNations(); renderTabs(); renderPanel();}
+document.getElementById(&#x27;nations&#x27;).addEventListener(&#x27;click&#x27;,function(e){var b=e.target.closest(&#x27;.nat&#x27;); if(b) pickNation(b.dataset.n);});
+document.getElementById(&#x27;tabs&#x27;).addEventListener(&#x27;click&#x27;,function(e){var b=e.target.closest(&#x27;.tab&#x27;); if(b){curKey=b.dataset.k; renderTabs(); renderPanel();}});
+pickNation(NAT_ORDER[0]);
+&lt;/script&gt;
+&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;
+
+nations_html=&quot;&quot;.join(
+  f&#x27;&lt;button class=&quot;nat{&quot; on&quot; if i==0 else &quot;&quot;}&quot; data-n=&quot;{n[&quot;code&quot;]}&quot;&gt;{n[&quot;flag&quot;]} {n[&quot;name&quot;]}&lt;/button&gt;&#x27;
+  for i,n in enumerate(NATIONS))
+
+out=(HTML.replace(&quot;__NATIONS__&quot;,nations_html)
+        .replace(&quot;__DATE__&quot;,datetime.date.today().isoformat())
+        .replace(&quot;__WHEEL_JS__&quot;,WHEEL_JS)
+        .replace(&quot;__REC__&quot;,json.dumps(REC))
+        .replace(&quot;__META__&quot;,json.dumps(META))
+        .replace(&quot;__NATORDER__&quot;,json.dumps(NAT_ORDER))
+        .replace(&quot;__COMP__&quot;,COMP))
+
+OUT=os.environ.get(&quot;OUT&quot;,&quot;The World Charts.html&quot;)
+with open(OUT,&quot;w&quot;) as fh: fh.write(out)
+print(&quot;wrote&quot;,OUT,len(out),&quot;bytes ·&quot;,len(NATIONS),&quot;nations ·&quot;,
+      sum(len(n[&quot;charts&quot;]) for n in NATIONS),&quot;charts&quot;)
+# quick verification dump
+for n in NATIONS:
+    for c in n[&quot;charts&quot;]:
+        jd=jd_of(c[&quot;y&quot;],c[&quot;mo&quot;],c[&quot;d&quot;],c[&quot;h&quot;],c[&quot;tz&quot;])
+        ch=compute_chart(jd,c[&quot;lat&quot;],c[&quot;lon&quot;])
+        print(f&quot;  {n[&#x27;name&#x27;]:14s} {c[&#x27;label&#x27;]:26s} ASC {signdeg(ch[&#x27;asc&#x27;]):16s} &quot;
+              f&quot;Sun {signdeg(ch[&#x27;lons&#x27;][&#x27;Sun&#x27;]):16s} Moon {signdeg(ch[&#x27;lons&#x27;][&#x27;Moon&#x27;])}&quot;)
+</pre></main></body></html>

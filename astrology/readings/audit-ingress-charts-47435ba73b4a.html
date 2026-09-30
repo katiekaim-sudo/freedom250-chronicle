@@ -1,0 +1,230 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/audit-ingress-charts-47435ba73b4a.html">
+<title>audit_ingress_charts</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>audit_ingress_charts</h1><p class="mut">Portable source: 99 - Templates/audit_ingress_charts.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Audit (and fix) the 8 ingress charts against the Swiss Ephemeris.
+
+Found 2026-06-09: the four NUANCE chart notes (2025 Cancer/Libra/Capricorn,
+2026 Capricorn) carried fabricated positions from an earlier session — e.g.
+2026 Capricorn Venus written as 10° Aquarius vs the true 13°47&#x27; Scorpio.
+The four governing charts were clean.
+
+  python3 audit_ingress_charts.py          # report discrepancies only
+  python3 audit_ingress_charts.py --fix    # rewrite bad note tables and repair the
+                                            ing_data.json / HTML overlay frames
+
+After --fix: re-run build_almanac.py and build_lunation_wheels.py (they read
+the notes&#x27; positions), and sync to observatory-app/public/. Interpretive PROSE
+in the notes is NOT touched — wrong-sign mentions are listed for Katie.
+&quot;&quot;&quot;
+import re, os, sys, glob, json
+import swisseph as swe
+
+HERE  = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+ASTRO = os.path.join(VAULT, &quot;03 - Astrology&quot;)
+IC    = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;, &quot;Ingress Charts.html&quot;)
+ING_JSON = os.path.join(HERE, &quot;ing_data.json&quot;)
+
+SIGNS=[&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+PL={0:&quot;Sun&quot;,1:&quot;Moon&quot;,2:&quot;Mercury&quot;,3:&quot;Venus&quot;,4:&quot;Mars&quot;,5:&quot;Jupiter&quot;,6:&quot;Saturn&quot;,7:&quot;Uranus&quot;,8:&quot;Neptune&quot;,9:&quot;Pluto&quot;}
+GLYPH={&quot;Sun&quot;:&quot;☉&quot;,&quot;Moon&quot;:&quot;☽&quot;,&quot;Mercury&quot;:&quot;☿&quot;,&quot;Venus&quot;:&quot;♀&quot;,&quot;Mars&quot;:&quot;♂&quot;,&quot;Jupiter&quot;:&quot;♃&quot;,&quot;Saturn&quot;:&quot;♄&quot;,&quot;Uranus&quot;:&quot;♅&quot;,&quot;Neptune&quot;:&quot;♆&quot;,&quot;Pluto&quot;:&quot;♇&quot;}
+ABBR={&quot;Sun&quot;:&quot;Su&quot;,&quot;Moon&quot;:&quot;Mo&quot;,&quot;Mercury&quot;:&quot;Me&quot;,&quot;Venus&quot;:&quot;Ve&quot;,&quot;Mars&quot;:&quot;Ma&quot;,&quot;Jupiter&quot;:&quot;Ju&quot;,&quot;Saturn&quot;:&quot;Sa&quot;,&quot;Uranus&quot;:&quot;Ur&quot;,&quot;Neptune&quot;:&quot;Ne&quot;,&quot;Pluto&quot;:&quot;Pl&quot;}
+DOM={&quot;Sun&quot;:[&quot;Leo&quot;],&quot;Moon&quot;:[&quot;Cancer&quot;],&quot;Mercury&quot;:[&quot;Gemini&quot;,&quot;Virgo&quot;],&quot;Venus&quot;:[&quot;Taurus&quot;,&quot;Libra&quot;],
+     &quot;Mars&quot;:[&quot;Aries&quot;,&quot;Scorpio&quot;],&quot;Jupiter&quot;:[&quot;Sagittarius&quot;,&quot;Pisces&quot;],&quot;Saturn&quot;:[&quot;Capricorn&quot;,&quot;Aquarius&quot;]}
+EXALT={&quot;Sun&quot;:&quot;Aries&quot;,&quot;Moon&quot;:&quot;Taurus&quot;,&quot;Mercury&quot;:&quot;Virgo&quot;,&quot;Venus&quot;:&quot;Pisces&quot;,&quot;Mars&quot;:&quot;Capricorn&quot;,&quot;Jupiter&quot;:&quot;Cancer&quot;,&quot;Saturn&quot;:&quot;Libra&quot;}
+INGRESSES=[(2025,3,0,&quot;2025 Aries&quot;),(2025,6,90,&quot;2025 Cancer&quot;),(2025,9,180,&quot;2025 Libra&quot;),(2025,12,270,&quot;2025 Capricorn&quot;),
+           (2026,3,0,&quot;2026 Aries&quot;),(2026,6,90,&quot;2026 Cancer&quot;),(2026,9,180,&quot;2026 Libra&quot;),(2026,12,270,&quot;2026 Capricorn&quot;)]
+
+def zodiac_index(lon): return int((((lon % 360) + 1e-7) % 360) // 30)
+
+def sign_of(lon): return SIGNS[zodiac_index(lon)]
+
+def fmt(l): return f&quot;{int(l%30)}°{int((l%1)*60):02d}&#x27; {sign_of(l)}&quot;
+
+def opp(sign): return SIGNS[(SIGNS.index(sign)+6)%12]
+
+def find_ingress(year,mg,target):
+    f=lambda j: ((swe.calc_ut(j,0)[0][0]-target+180)%360)-180
+    lo=hi=swe.julday(year,mg,15,0.0); hi+=20
+    while f(lo)&gt;0: lo-=5
+    while f(hi)&lt;0: hi+=5
+    for _ in range(50):
+        mid=(lo+hi)/2
+        if f(mid)&lt;0: lo=mid
+        else: hi=mid
+    return (lo+hi)/2
+
+def conditions(name,sign,lon,sun_lon,retro):
+    out=[]
+    if sign in DOM.get(name,[]): out.append(&quot;DOMICILE&quot;)
+    if EXALT.get(name)==sign: out.append(&quot;EXALTED&quot;)
+    if sign in [opp(s) for s in DOM.get(name,[])]: out.append(&quot;DETRIMENT&quot;)
+    if EXALT.get(name) and opp(EXALT[name])==sign: out.append(&quot;FALL&quot;)
+    if name!=&quot;Sun&quot;:
+        d=abs((lon-sun_lon+180)%360-180)
+        if d&lt;8.5: out.append(f&quot;COMBUST ({d:.1f}°)&quot;)
+    if retro: out.append(&quot;RETROGRADE&quot;)
+    return out or [&quot;Peregrine&quot;]
+
+def truth_for(name):
+    y,mg,t=[ (a,b,c) for a,b,c,n in INGRESSES if n==name ][0]
+    j=find_ingress(y,mg,t)
+    asc,mc=swe.houses(j,38.9072,-77.0369,b&#x27;W&#x27;)[1][0:2]
+    rows={}
+    sun=swe.calc_ut(j,0)[0][0]
+    for p in sorted(PL):
+        r=swe.calc_ut(j,p)[0]
+        eq=swe.calc_ut(j,p,swe.FLG_SWIEPH|swe.FLG_EQUATORIAL)[0]
+        rows[PL[p]]={&quot;lon&quot;:r[0],&quot;speed&quot;:r[3],&quot;retro&quot;:r[3]&lt;0,&quot;decl&quot;:eq[1]}
+    node=swe.calc_ut(j,swe.TRUE_NODE)[0][0]
+    return {&quot;jd&quot;:j,&quot;asc&quot;:asc,&quot;mc&quot;:mc,&quot;rows&quot;:rows,&quot;node&quot;:node,&quot;sun&quot;:sun}
+
+def ord_(n):
+    suf=&quot;th&quot; if 10&lt;=n%100&lt;=20 else {1:&quot;st&quot;,2:&quot;nd&quot;,3:&quot;rd&quot;}.get(n%10,&quot;th&quot;)
+    return f&quot;{n}{suf}&quot;
+
+def house_of(lon,asc):
+    return (zodiac_index(lon)-zodiac_index(asc))%12+1
+
+def decl_str(d):
+    hemi=&quot;N&quot; if d&gt;=0 else &quot;S&quot;; d=abs(d)
+    return f&quot;{int(d):02d}°{hemi}{int((d%1)*60):02d}&#x27;&quot;
+
+def audit(fix=False):
+    notes={}
+    for f in glob.glob(os.path.join(ASTRO,&quot;20*Solar Ingress.md&quot;)):
+        t=open(f,encoding=&quot;utf-8&quot;).read()
+        nm=re.search(r&#x27;year:\s*(\d{4})&#x27;,t).group(1)+&quot; &quot;+re.search(r&#x27;ingress:\s*(\w+)&#x27;,t).group(1)
+        notes[nm]=f
+    bad_charts=[]
+    prose_flags=[]
+    for nm,f in sorted(notes.items()):
+        t=open(f,encoding=&quot;utf-8&quot;).read()
+        T=truth_for(nm)
+        diffs=[]
+        for m in re.finditer(r&#x27;^\| (Sun|Moon|Mercury|Venus|Mars|Jupiter|Saturn|Uranus|Neptune|Pluto) \| (\d+)°(\d+)\&#x27; (\w+)&#x27;,t,re.M):
+            p,d,mn,s=m.group(1),int(m.group(2)),int(m.group(3)),m.group(4)
+            if s not in SIGNS: continue
+            note=SIGNS.index(s)*30+d+mn/60
+            dd=abs((note-T[&quot;rows&quot;][p][&quot;lon&quot;]+180)%360-180)
+            if dd&gt;0.2: diffs.append((p,s,dd))
+        status=&quot;⚠&quot; if diffs else &quot;✓&quot;
+        print(f&quot;{status} {nm}: {len(diffs)} bad positions&quot; + (&quot;&quot; if not diffs else &quot; — &quot;+&quot;, &quot;.join(f&quot;{p} (Δ{d:.1f}°)&quot; for p,_,d in diffs)))
+        if not diffs: continue
+        bad_charts.append(nm)
+        if not fix: continue
+        # ---- rewrite the planet table in the note ----
+        asc=T[&quot;asc&quot;]
+        hdr=&quot;| Planet | Position | Sign | House | Speed | Condition |\n|--------|----------|------|-------|-------|-----------|&quot;
+        lines=[hdr]
+        for p in [PL[i] for i in sorted(PL)]:
+            R=T[&quot;rows&quot;][p]; l=R[&quot;lon&quot;]; s=sign_of(l)
+            cond=&quot;, &quot;.join(conditions(p,s,l,T[&quot;sun&quot;],R[&quot;retro&quot;]))
+            cond_md=cond if cond==&quot;Peregrine&quot; else f&quot;**{cond}**&quot;
+            lines.append(f&quot;| {p} | {fmt(l)} | {s} | {ord_(house_of(l,asc))} | {R[&#x27;speed&#x27;]:+.2f}°/d | {cond_md} |&quot;)
+        lines.append(f&quot;| N. Node | {fmt(T[&#x27;node&#x27;])} | {sign_of(T[&#x27;node&#x27;])} | {ord_(house_of(T[&#x27;node&#x27;],asc))} | — | — |&quot;)
+        new_table=&quot;\n&quot;.join(lines)
+        t2=re.sub(r&#x27;\| Planet \|[^\n]*\n\|[-| ]+\n(\| [^\n]+\n)+&#x27;, new_table+&quot;\n&quot;, t, count=1)
+        # fix the Date/Time line + frontmatter time if off
+        y,mo,d_,h=swe.revjul(T[&quot;jd&quot;])
+        tstr=f&quot;{int(h):02d}:{int(h%1*60):02d}:{int(((h%1*60)%1)*60):02d}&quot;
+        t2=re.sub(r&#x27;(time_utc:\s*&quot;)[^&quot;]*(&quot;)&#x27;, rf&#x27;\g&lt;1&gt;{tstr}\g&lt;2&gt;&#x27;, t2)
+        # flag prose mentioning now-wrong signs
+        for p,old_sign,_ in diffs:
+            new_sign=sign_of(T[&quot;rows&quot;][p][&quot;lon&quot;])
+            if old_sign!=new_sign and re.search(rf&#x27;{p} in {old_sign}&#x27;, t2):
+                prose_flags.append(f&quot;{nm}: prose says &#x27;{p} in {old_sign}&#x27; — true sign is {new_sign}&quot;)
+        if t2!=t: open(f,&quot;w&quot;,encoding=&quot;utf-8&quot;).write(t2)
+        print(f&quot;   fixed table + time in note&quot;)
+
+    # ---- audit the compact overlay frame registry ----
+    ing_rows=json.load(open(ING_JSON,encoding=&quot;utf-8&quot;))
+    by_id={row[&quot;id&quot;]:row for row in ing_rows}
+    frame_bad=[]
+    for _,_,_,nm in INGRESSES:
+        cid=nm.lower().replace(&quot; &quot;,&quot;-&quot;)
+        row=by_id.get(cid)
+        if not row:
+            raise RuntimeError(f&quot;{cid} missing from ing_data.json&quot;)
+        T=truth_for(nm)
+        rising=sign_of(T[&quot;asc&quot;])
+        asc_delta=abs((float(row.get(&quot;asc_deg&quot;,0))-T[&quot;asc&quot;]+180)%360-180)
+        p_bad=[]
+        for p in [PL[i] for i in sorted(PL)]:
+            got=(row.get(&quot;p&quot;) or {}).get(p)
+            true_lon=T[&quot;rows&quot;][p][&quot;lon&quot;]
+            if (not isinstance(got,list) or len(got)&lt;3 or
+                abs((float(got[0])-true_lon+180)%360-180)&gt;0.2 or
+                got[1]!=sign_of(true_lon) or int(got[2])!=house_of(true_lon,T[&quot;asc&quot;])):
+                p_bad.append(p)
+        if asc_delta&gt;0.2 or row.get(&quot;rising&quot;)!=rising or p_bad:
+            frame_bad.append(nm)
+            detail=[]
+            if asc_delta&gt;0.2 or row.get(&quot;rising&quot;)!=rising:
+                detail.append(f&quot;ASC {row.get(&#x27;rising&#x27;)} {row.get(&#x27;asc_deg&#x27;)} → {rising} {T[&#x27;asc&#x27;]:.2f}&quot;)
+            if p_bad: detail.append(&quot;p-map &quot;+&quot;, &quot;.join(p_bad))
+            print(f&quot;⚠ {nm}: overlay frame drift — {&#x27;; &#x27;.join(detail)}&quot;)
+            if fix:
+                row[&quot;rising&quot;]=rising
+                row[&quot;asc_deg&quot;]=round(T[&quot;asc&quot;],2)
+                row[&quot;p&quot;]={
+                    p:[round(T[&quot;rows&quot;][p][&quot;lon&quot;],2),sign_of(T[&quot;rows&quot;][p][&quot;lon&quot;]),house_of(T[&quot;rows&quot;][p][&quot;lon&quot;],T[&quot;asc&quot;])]
+                    for p in [PL[i] for i in sorted(PL)]
+                }
+        else:
+            print(f&quot;✓ {nm}: overlay frame&quot;)
+
+    if fix and frame_bad:
+        with open(ING_JSON,&quot;w&quot;,encoding=&quot;utf-8&quot;) as handle:
+            json.dump(ing_rows,handle,ensure_ascii=False,separators=(&quot;,&quot;,&quot;:&quot;))
+            handle.write(&quot;\n&quot;)
+        print(f&quot;\n✓ ing_data.json overlay frames fixed for: {&#x27;, &#x27;.join(frame_bad)}&quot;)
+
+    # ---- fix the HTML data stores ----
+    if fix and bad_charts:
+        html=open(IC,encoding=&quot;utf-8&quot;).read()
+        for nm in bad_charts:
+            cid=nm.lower().replace(&quot; &quot;,&quot;-&quot;)
+            T=truth_for(nm); asc=T[&quot;asc&quot;]
+            # INGRESS_DATA planets array
+            pl_js=&quot;,\n      &quot;.join(
+                &quot;{name:\&quot;%s\&quot;, glyph:\&quot;%s\&quot;, abbr:\&quot;%s\&quot;, pos:\&quot;%s\&quot;, sign:\&quot;%s\&quot;, deg:%.2f, house:%d, speed:\&quot;%+.2f\&quot;, conditions:%s, retro:%s}&quot; % (
+                 p, GLYPH[p], ABBR[p], fmt(T[&quot;rows&quot;][p][&quot;lon&quot;]), sign_of(T[&quot;rows&quot;][p][&quot;lon&quot;]),
+                 T[&quot;rows&quot;][p][&quot;lon&quot;]%30, house_of(T[&quot;rows&quot;][p][&quot;lon&quot;],asc), T[&quot;rows&quot;][p][&quot;speed&quot;],
+                 json.dumps(conditions(p,sign_of(T[&quot;rows&quot;][p][&quot;lon&quot;]),T[&quot;rows&quot;][p][&quot;lon&quot;],T[&quot;sun&quot;],T[&quot;rows&quot;][p][&quot;retro&quot;]) if conditions(p,sign_of(T[&quot;rows&quot;][p][&quot;lon&quot;]),T[&quot;rows&quot;][p][&quot;lon&quot;],T[&quot;sun&quot;],T[&quot;rows&quot;][p][&quot;retro&quot;])!=[&quot;Peregrine&quot;] else []),
+                 &quot;true&quot; if T[&quot;rows&quot;][p][&quot;retro&quot;] else &quot;false&quot;)
+                for p in [PL[i] for i in sorted(PL)])
+            html=re.sub(r&#x27;(id: &quot;&#x27;+cid+r&#x27;&quot;,[\s\S]*?planets: \[)[\s\S]*?(\n    \])&#x27;,
+                        lambda m: m.group(1)+&quot;\n      &quot;+pl_js+m.group(2), html, count=1)
+            # ING_DATA p-map
+            pmap={p:[round(T[&quot;rows&quot;][p][&quot;lon&quot;],2),sign_of(T[&quot;rows&quot;][p][&quot;lon&quot;]),house_of(T[&quot;rows&quot;][p][&quot;lon&quot;],asc)] for p in [PL[i] for i in sorted(PL)]}
+            html=re.sub(r&#x27;(&quot;id&quot;:&quot;&#x27;+cid+r&#x27;&quot;[^{]*?&quot;p&quot;:)\{[^}]*\}\}&#x27;,
+                        lambda m: m.group(1)+json.dumps(pmap,ensure_ascii=False,separators=(&quot;,&quot;,&quot;:&quot;))+&quot;}&quot;, html, count=1)
+            # DECL_DATA
+            dmap=&quot;,&quot;.join(f&#x27;\n    &quot;{p}&quot;:&quot;{decl_str(T[&quot;rows&quot;][p][&quot;decl&quot;])}&quot;&#x27; for p in [PL[i] for i in sorted(PL)])
+            html=re.sub(r&#x27;(&quot;&#x27;+cid+r&#x27;&quot;: \{)[^}]*(\})&#x27;, lambda m: m.group(1)+dmap+&quot;\n  &quot;+m.group(2), html, count=1)
+        open(IC,&quot;w&quot;,encoding=&quot;utf-8&quot;).write(html)
+        print(f&quot;\n✓ Ingress Charts.html data stores fixed for: {&#x27;, &#x27;.join(bad_charts)}&quot;)
+    if fix and frame_bad:
+        html=open(IC,encoding=&quot;utf-8&quot;).read()
+        compact=json.dumps(ing_rows,ensure_ascii=False,separators=(&quot;,&quot;,&quot;:&quot;))
+        html,n=re.subn(r&#x27;const ING_DATA = \[.*?\];&#x27;, &#x27;const ING_DATA = &#x27;+compact+&#x27;;&#x27;, html, count=1, flags=re.S)
+        if n!=1: raise RuntimeError(&quot;could not replace const ING_DATA in Ingress Charts.html&quot;)
+        open(IC,&quot;w&quot;,encoding=&quot;utf-8&quot;).write(html)
+        print(&quot;✓ Ingress Charts.html overlay registry synchronized&quot;)
+    if prose_flags:
+        print(&quot;\n⚠ PROSE REVIEW NEEDED (interpretation text mentions the old wrong positions):&quot;)
+        for x in prose_flags: print(&quot;   -&quot;, x)
+    return bad_charts, frame_bad
+
+if __name__==&quot;__main__&quot;:
+    audit(fix=&quot;--fix&quot; in sys.argv)
+</pre></main></body></html>

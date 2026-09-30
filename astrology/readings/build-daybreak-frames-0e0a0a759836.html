@@ -1,0 +1,113 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-daybreak-frames-0e0a0a759836.html">
+<title>build_daybreak_frames</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_daybreak_frames</h1><p class="mut">Portable source: 99 - Templates/build_daybreak_frames.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Materialize deterministic Daybreak geometry before Almanac projection.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import json
+import os
+import tempfile
+from pathlib import Path
+
+import daybreak_engine as engine
+
+SCHEMA = &quot;f250.daybreak-frames/v1&quot;
+
+
+def _date(value: str) -&gt; dt.date:
+    return dt.date.fromisoformat(value)
+
+
+def _write_atomic(path: Path, payload: dict) -&gt; None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    raw = json.dumps(payload, ensure_ascii=False, sort_keys=False, separators=(&quot;,&quot;, &quot;:&quot;)) + &quot;\n&quot;
+    with tempfile.NamedTemporaryFile(
+        mode=&quot;w&quot;, encoding=&quot;utf-8&quot;, dir=path.parent, prefix=f&quot;.{path.name}.&quot;, delete=False
+    ) as handle:
+        handle.write(raw)
+        temporary = Path(handle.name)
+    os.replace(temporary, path)
+
+
+def _prior_payload(path: Path) -&gt; dict | None:
+    if not path.exists():
+        return None
+    try:
+        prior = json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+        if prior.get(&quot;schema&quot;) != SCHEMA:
+            return None
+        value = dt.datetime.fromisoformat(prior[&quot;generated_at&quot;])
+        return prior if value.tzinfo is not None else None
+    except (OSError, ValueError, TypeError, KeyError, json.JSONDecodeError):
+        return None
+
+
+def _same_facts(left: dict, right: dict) -&gt; bool:
+    left_facts = dict(left)
+    right_facts = dict(right)
+    left_facts.pop(&quot;generated_at&quot;, None)
+    right_facts.pop(&quot;generated_at&quot;, None)
+    return left_facts == right_facts
+
+
+def main() -&gt; int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--start&quot;, type=_date, default=dt.date(2026, 1, 1))
+    parser.add_argument(&quot;--end&quot;, type=_date, default=dt.date(2026, 12, 31))
+    parser.add_argument(&quot;--vault-root&quot;, type=Path, default=engine.DEFAULT_VAULT_ROOT)
+    parser.add_argument(&quot;--experiment&quot;, type=Path)
+    parser.add_argument(
+        &quot;--output&quot;,
+        type=Path,
+        default=Path(__file__).resolve().parent / &quot;daybreak_frames.json&quot;,
+    )
+    parser.add_argument(&quot;--generated-at&quot;, help=&quot;timezone-aware ISO timestamp for deterministic receipts&quot;)
+    args = parser.parse_args()
+    if args.end &lt; args.start:
+        parser.error(&quot;--end must be on or after --start&quot;)
+    generated_at = None
+    if args.generated_at:
+        generated_at = dt.datetime.fromisoformat(args.generated_at)
+        if generated_at.tzinfo is None:
+            parser.error(&quot;--generated-at must be timezone-aware&quot;)
+    payload = engine.build_payload(
+        args.start,
+        args.end,
+        vault_root=args.vault_root,
+        experiment_path=args.experiment,
+        generated_at=generated_at,
+    )
+    if not args.generated_at:
+        prior = _prior_payload(args.output)
+        if prior is not None and _same_facts(prior, payload):
+            payload[&quot;generated_at&quot;] = prior[&quot;generated_at&quot;]
+    _write_atomic(args.output, payload)
+    print(
+        json.dumps(
+            {
+                &quot;status&quot;: &quot;ok&quot;,
+                &quot;output&quot;: str(args.output),
+                &quot;schema&quot;: payload[&quot;schema&quot;],
+                &quot;coverage&quot;: payload[&quot;coverage&quot;],
+                &quot;sha256&quot;: engine.canonical_sha256(payload),
+            },
+            sort_keys=True,
+        )
+    )
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

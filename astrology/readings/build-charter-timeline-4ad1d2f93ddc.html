@@ -1,0 +1,308 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-charter-timeline-4ad1d2f93ddc.html">
+<title>build_charter_timeline</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_charter_timeline</h1><p class="mut">Portable source: 99 - Templates/build_charter_timeline.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;build_charter_timeline.py — The Charter Queue (sub-view of The Machines, obs-om).
+
+Copied from build_castration_timeline.py per _Claude-Context/PATTERN — Timeline Machine Build.md.
+
+The legal operating clock of the private monetary stack: who applied, who was approved,
+who was let in — and who is still waiting at the Federal Reserve&#x27;s door. Third room of the
+One Machine, beside The Castration Timeline (the state binds its own bank) and The Judicial
+Watch (the courts draw perimeters). One question in three rooms: who may act on the money?
+
+Data from charter_seed.json + charter_astro.json (derived — run build_charter_seed.py then
+build_charter_astro.py first). Canonical sources are the two Cross-cuts notes:
+&#x27;The Charter Queue — Factual Timeline&#x27; + &#x27;The Waiting Room&#x27;.
+
+CSP-safe: event delegation only, no inline handlers. No toISOString().
+Dark-native (Machines family); dark-mode/interp injectors deliberately omitted.
+&quot;&quot;&quot;
+import os, json, html, importlib.util
+
+HERE  = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+CC    = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;)
+SEED  = os.path.join(HERE, &quot;charter_seed.json&quot;)
+ASTRO = os.path.join(HERE, &quot;charter_astro.json&quot;)
+OUT   = os.path.join(CC, &quot;The Charter Queue.html&quot;)
+
+_wlspec = importlib.util.spec_from_file_location(&quot;wheel_lib&quot;, os.path.join(HERE, &quot;wheel_lib.py&quot;))
+wl = importlib.util.module_from_spec(_wlspec); _wlspec.loader.exec_module(wl)
+
+TRACKS = {
+    &quot;door&quot;:     (&quot;The Door&quot;,     &quot;#d4a017&quot;, &quot;The OCC charter queue — applied, conditional, final, consummated. Five in one afternoon; the same agency that chartered the National Banks in 1863.&quot;),
+    &quot;gate&quot;:     (&quot;The Gate&quot;,     &quot;#e05252&quot;, &quot;Federal Reserve account access. Kraken has a limited-purpose Tier 3 account; digital-asset national-trust Master Account access is a separate unresolved question.&quot;),
+    &quot;ledger&quot;:   (&quot;The Ledger&quot;,   &quot;#4a9eda&quot;, &quot;Clearing and depository permission — PSSC&#x27;s temporary registration, DTC&#x27;s tokenization service, the Collateral AppChain.&quot;),
+    &quot;rulebook&quot;: (&quot;The Rulebook&quot;, &quot;#a06cd5&quot;, &quot;The incumbents absorbing the new rails while keeping the constitution — Swift, Visa, Mastercard, the capital-treatment guidance.&quot;),
+    &quot;coin&quot;:     (&quot;The Coin&quot;,     &quot;#3dbd7d&quot;, &quot;The issuers and their obligors. Who owes the holder money — and who can freeze it.&quot;),
+    &quot;interior&quot;: (&quot;The Interior&quot;, &quot;#e0883a&quot;, &quot;The permissioned bank rails — Fnality, Partior, Canton, Kinexys, Broadridge. Where regulated balance sheets actually meet.&quot;),
+    &quot;stack&quot;:    (&quot;The Stack&quot;,    &quot;#c86d9e&quot;, &quot;The acquisitions. Vertical integration is outrunning every protocol merger — buy the missing layer, do not build a coalition.&quot;),
+}
+TRACK_ORDER = [&quot;door&quot;, &quot;gate&quot;, &quot;ledger&quot;, &quot;rulebook&quot;, &quot;coin&quot;, &quot;interior&quot;, &quot;stack&quot;]
+
+STATUS_KEYS = [(&quot;Occurred&quot;, &quot;occurred&quot;), (&quot;Public&quot;, &quot;position&quot;), (&quot;Proposed&quot;, &quot;proposed&quot;),
+               (&quot;Research&quot;, &quot;research&quot;), (&quot;Scheduled&quot;, &quot;scheduled&quot;)]
+
+def status_key(s):
+    for prefix, key in STATUS_KEYS:
+        if s.startswith(prefix):
+            return key
+    return &quot;occurred&quot;
+
+STRENGTHENS = [
+    &quot;Any cohort member gets a publicly confirmed Federal Reserve master account&quot;,
+    &quot;Anchorage&#x27;s nine-month access request is granted&quot;,
+    &quot;Custodia wins, or the Court takes the case&quot;,
+    &quot;DTC&#x27;s first tokenized entitlement settles against a NAMED cash leg&quot;,
+    &quot;A second, third and fourth conversion consummate and open for business&quot;,
+    &quot;Kraken&#x27;s claimed limited-purpose account appears in a public regulator record&quot;,
+]
+WEAKENS = [
+    &quot;The Fed denies Anchorage outright and the queue keeps growing anyway&quot;,
+    &quot;The DTC service slips again, past the Dec 31 clearing mandate&quot;,
+    &quot;Circle&#x27;s charter opens but never takes reserve management&quot;,
+    &quot;FIUSD never names an issuer or a redemption obligor&quot;,
+    &quot;The first insolvency shows the tokens were only ever a receipt&quot;,
+    &quot;Nothing was rebuilt: the incumbents absorb it all and no new body ever gets an account&quot;,
+]
+
+def render(items, astro):
+    data = json.dumps(items, ensure_ascii=False).replace(&quot;&lt;/&quot;, &quot;&lt;\\/&quot;)
+    astro_data = json.dumps(astro, ensure_ascii=False).replace(&quot;&lt;/&quot;, &quot;&lt;\\/&quot;)
+    track_css = &quot;\n&quot;.join(
+        f&quot;.t-{k} .card{{border-left-color:{c}}} .t-{k} .tk{{background:{c}22;color:{c};border:1px solid {c}55}}&quot;
+        f&quot; .chip[data-track=\&quot;{k}\&quot;].on{{background:{c}33;border-color:{c};color:#eee}}&quot;
+        for k, (_, c, _) in TRACKS.items())
+    track_chips = &quot;&quot;.join(
+        f&#x27;&lt;button class=&quot;chip on&quot; data-track=&quot;{k}&quot; title=&quot;{html.escape(b)}&quot;&gt;{html.escape(lbl)}&lt;/button&gt;&#x27;
+        for k, (lbl, c, b) in ((k, TRACKS[k]) for k in TRACK_ORDER))
+    legend = &quot;&quot;.join(
+        f&#x27;&lt;div class=&quot;leg t-{k}&quot;&gt;&lt;span class=&quot;tk&quot;&gt;{html.escape(lbl)}&lt;/span&gt;&lt;p&gt;{html.escape(b)}&lt;/p&gt;&lt;/div&gt;&#x27;
+        for k, (lbl, c, b) in ((k, TRACKS[k]) for k in TRACK_ORDER))
+    tests = (&quot;&quot;.join(f&quot;&lt;li&gt;{html.escape(t)}&lt;/li&gt;&quot; for t in STRENGTHENS),
+             &quot;&quot;.join(f&quot;&lt;li&gt;{html.escape(t)}&lt;/li&gt;&quot; for t in WEAKENS))
+
+    return f&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;The Charter Queue&lt;/title&gt;
+&lt;style&gt;
+:root{{--bg:#0e1116;--panel:#161b24;--ink:#d6dae2;--dim:#8a93a3;--line:#2a3242;--accent:#c8a24a}}
+*{{box-sizing:border-box}}
+body{{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,&#x27;Segoe UI&#x27;,Helvetica,Arial,sans-serif}}
+.wrap{{max-width:980px;margin:0 auto;padding:28px 20px 80px}}
+header h1{{font-family:Georgia,serif;font-size:30px;margin:0 0 4px;color:#f0e9d8}}
+header .thesis{{font-family:Georgia,serif;font-style:italic;color:var(--accent);font-size:17px;margin:2px 0 10px}}
+header p.sub{{color:var(--dim);margin:0 0 18px;max-width:70ch}}
+.gatebox{{background:#1d1418;border:1px solid #5c2b2b;border-left:3px solid #e05252;border-radius:8px;padding:11px 14px;margin:0 0 18px}}
+.gatebox b{{color:#e8a0a0}}
+.gatebox p{{margin:4px 0 0;color:#b9a3a3;font-size:13.5px}}
+.legend{{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin:14px 0 22px}}
+.leg{{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px}}
+.leg p{{margin:6px 0 0;color:var(--dim);font-size:13px}}
+.tk{{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:10px}}
+.bar{{position:sticky;top:0;background:linear-gradient(var(--bg) 82%,transparent);padding:10px 0 14px;z-index:5}}
+.chips{{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}}
+.chip{{background:#1a2130;border:1px solid var(--line);color:var(--dim);border-radius:14px;padding:3px 11px;font-size:12.5px;cursor:pointer}}
+.chip.on{{color:#eee;border-color:#59657c;background:#232c3e}}
+.count{{color:var(--dim);font-size:12.5px;margin-left:4px}}
+.yr{{font-family:Georgia,serif;font-size:22px;color:#f0e9d8;border-bottom:1px solid var(--line);margin:30px 0 4px;padding-bottom:4px}}
+.entry{{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:10px 0}}
+.entry .d{{color:var(--dim);font-size:12.5px;text-align:right;padding-top:14px;font-variant-numeric:tabular-nums}}
+.card{{background:var(--panel);border:1px solid var(--line);border-left:3px solid #555;border-radius:8px;padding:11px 14px}}
+.card h3{{margin:0 0 5px;font-size:15.5px;color:#e8ebf2;font-weight:600}}
+.meta{{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}}
+.actor{{font-size:11px;color:#c7cedb;background:#242e42;border-radius:10px;padding:2px 8px}}
+.st{{font-size:11px;border-radius:10px;padding:2px 8px;border:1px solid}}
+.st-occurred{{color:#9fd6a9;border-color:#3d6b46}}
+.st-position{{color:#c9b7e8;border-color:#5d4a80;font-style:italic}}
+.st-proposed{{color:#e8d28a;border-color:#8a7433;border-style:dashed}}
+.st-research{{color:#9fc4d6;border-color:#3d5d6b;border-style:dotted}}
+.st-scheduled{{color:#e0a48a;border-color:#8a5433;background:#2a1e16}}
+.card p{{margin:4px 0 6px;color:#aeb6c4;font-size:13.5px}}
+.card a{{color:#7fa8d9;font-size:12.5px;text-decoration:none}}
+.card a:hover{{text-decoration:underline}}
+.astro-slot{{margin-top:8px}}
+.astro-slot svg{{max-width:560px;width:100%;height:auto;background:#f6f2e8;border-radius:8px}}
+.cbtn{{background:#1a2130;border:1px solid var(--line);color:#c8a24a;border-radius:12px;padding:2px 10px;font-size:11.5px;cursor:pointer;margin-left:auto}}
+.moon{{font-size:11px;color:#9aa7bd;background:#1c2434;border-radius:10px;padding:2px 8px}}
+.nochart{{font-size:10.5px;color:#5a6478;margin-left:auto;font-style:italic}}
+.conv{{font-size:10.5px;color:#66708f;margin-left:6px}}
+.future .yr{{color:var(--accent)}}
+.tests{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}}
+.tests&gt;div{{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px}}
+.tests h2{{font-family:Georgia,serif;font-size:17px;margin:0 0 8px}}
+.tests .plus h2{{color:#9fd6a9}} .tests .minus h2{{color:#e0a48a}}
+.tests li{{color:#aeb6c4;font-size:13px;margin-bottom:6px}}
+footer{{color:var(--dim);font-size:12px;margin-top:34px;border-top:1px solid var(--line);padding-top:10px}}
+{track_css}
+@media(max-width:640px){{.entry{{grid-template-columns:1fr}}.entry .d{{text-align:left;padding-top:0}}.tests{{grid-template-columns:1fr}}}}
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class=&quot;wrap&quot;&gt;
+&lt;header&gt;
+  &lt;h1&gt;The Charter Queue&lt;/h1&gt;
+  &lt;div class=&quot;thesis&quot;&gt;The OCC hands out charters like candy. The Federal Reserve hands out nothing.&lt;/div&gt;
+  &lt;p class=&quot;sub&quot;&gt;The &lt;em&gt;legal operating clock&lt;/em&gt; of the private monetary stack &amp;mdash; application, conditional approval,
+  final approval, consummation, and account access. Not the company build clock: a press release moves that one;
+  only a regulator moves this one. Third room of the One Machine, beside &lt;em&gt;The Castration Timeline&lt;/em&gt; (the state
+  binds its own bank) and &lt;em&gt;The Judicial Watch&lt;/em&gt; (the courts draw perimeters). One question in three rooms:
+  &lt;strong&gt;who may act on the money?&lt;/strong&gt;&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class=&quot;gatebox&quot;&gt;
+  &lt;b&gt;The finding, in one line.&lt;/b&gt;
+  &lt;p&gt;Not one member of this cohort has a publicly confirmed Federal Reserve master account. Circle has a final charter and no account.
+  Paxos and BitGo are consummated and numbered &amp;mdash; no account. Anchorage has been a chartered national bank for five years and its
+  access request, filed 2025-08-28, is &lt;em&gt;still pending&lt;/em&gt;. The charter queue is a waiting room outside a door that has not opened
+  &amp;mdash; which makes &lt;strong&gt;Custodia the load-bearing case of the entire private stack.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;legend&quot;&gt;{legend}&lt;/div&gt;
+&lt;div class=&quot;bar&quot;&gt;
+  &lt;div class=&quot;chips&quot; id=&quot;trackChips&quot;&gt;{track_chips}&lt;/div&gt;
+  &lt;div class=&quot;chips&quot; id=&quot;statusChips&quot;&gt;
+    &lt;button class=&quot;chip on&quot; data-status=&quot;occurred&quot;&gt;Occurred&lt;/button&gt;
+    &lt;button class=&quot;chip on&quot; data-status=&quot;position&quot;&gt;Public position&lt;/button&gt;
+    &lt;button class=&quot;chip on&quot; data-status=&quot;proposed&quot;&gt;Proposed&lt;/button&gt;
+    &lt;button class=&quot;chip on&quot; data-status=&quot;research&quot;&gt;Research&lt;/button&gt;
+    &lt;button class=&quot;chip on&quot; data-status=&quot;scheduled&quot;&gt;Scheduled&lt;/button&gt;
+    &lt;span class=&quot;count&quot; id=&quot;count&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;chips&quot; id=&quot;actorChips&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;tl&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;tests&quot;&gt;
+  &lt;div class=&quot;plus&quot;&gt;&lt;h2&gt;The story gets stronger if&amp;hellip;&lt;/h2&gt;&lt;ul&gt;{tests[0]}&lt;/ul&gt;&lt;/div&gt;
+  &lt;div class=&quot;minus&quot;&gt;&lt;h2&gt;The story weakens if&amp;hellip;&lt;/h2&gt;&lt;ul&gt;{tests[1]}&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;footer&gt;Derived view &amp;mdash; edit the two Cross-cuts notes (&lt;em&gt;The Charter Queue &amp;mdash; Factual Timeline&lt;/em&gt; &amp;middot; &lt;em&gt;The Waiting Room&lt;/em&gt;),
+then re-run build_charter_seed.py &amp;rarr; build_charter_astro.py &amp;rarr; build_charter_timeline.py.
+Charts: a stated time beats noon D.C.; scheduled dates cast midnight &amp;ldquo;day of&amp;rdquo;; Whole Sign; month-precision dates get no chart.
+Company metrics are self-reported and are never promoted to fact. Sub-view of The Machines (obs-om).&lt;/footer&gt;
+&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;cq-data&quot;&gt;{data}&lt;/script&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;cq-astro&quot;&gt;{astro_data}&lt;/script&gt;
+&lt;script&gt;{wl.WHEEL_JS}&lt;/script&gt;
+&lt;script&gt;
+(function(){{
+&quot;use strict&quot;;
+var DATA = JSON.parse(document.getElementById(&#x27;cq-data&#x27;).textContent);
+var ASTRO = JSON.parse(document.getElementById(&#x27;cq-astro&#x27;).textContent).charts || {{}};
+var openCharts = {{}};
+var state = {{track:{{}}, status:{{}}, actor:null}};
+document.querySelectorAll(&#x27;#trackChips .chip&#x27;).forEach(function(c){{state.track[c.dataset.track]=true;}});
+document.querySelectorAll(&#x27;#statusChips .chip&#x27;).forEach(function(c){{state.status[c.dataset.status]=true;}});
+
+var ACTORS = [];
+DATA.forEach(function(d){{ if(ACTORS.indexOf(d.actor)&lt;0) ACTORS.push(d.actor); }});
+ACTORS.sort();
+var ac = document.getElementById(&#x27;actorChips&#x27;);
+ac.innerHTML = &#x27;&lt;button class=&quot;chip on&quot; data-actor=&quot;__all&quot;&gt;All actors&lt;/button&gt;&#x27; +
+  ACTORS.map(function(a){{return &#x27;&lt;button class=&quot;chip&quot; data-actor=&quot;&#x27;+a+&#x27;&quot;&gt;&#x27;+a+&#x27;&lt;/button&gt;&#x27;;}}).join(&#x27;&#x27;);
+
+function esc(s){{var d=document.createElement(&#x27;div&#x27;);d.textContent=s||&#x27;&#x27;;return d.innerHTML;}}
+function stLabel(k){{return {{occurred:&#x27;occurred&#x27;,position:&#x27;public position&#x27;,proposed:&#x27;proposed&#x27;,research:&#x27;research&#x27;,scheduled:&#x27;scheduled&#x27;}}[k];}}
+
+function render(){{
+  var tl=document.getElementById(&#x27;tl&#x27;), out=[], lastYear=null, shown=0;
+  var futureOpen=false;
+  DATA.forEach(function(d){{
+    if(!state.track[d.track]) return;
+    if(!state.status[d.statusKey]) return;
+    if(state.actor &amp;&amp; d.actor!==state.actor) return;
+    shown++;
+    var yr=d.date.slice(0,4);
+    if(d.statusKey===&#x27;scheduled&#x27; &amp;&amp; !futureOpen){{
+      out.push(&#x27;&lt;div class=&quot;future&quot;&gt;&lt;div class=&quot;yr&quot;&gt;The fuse ahead &amp;mdash; formally scheduled&lt;/div&gt;&lt;/div&gt;&#x27;);
+      futureOpen=true; lastYear=null;
+    }}
+    if(yr!==lastYear &amp;&amp; !futureOpen){{ out.push(&#x27;&lt;div class=&quot;yr&quot;&gt;&#x27;+yr+&#x27;&lt;/div&gt;&#x27;); lastYear=yr; }}
+    var akey = d.date+&#x27;|&#x27;+d.title, ch = ASTRO[akey];
+    out.push(&#x27;&lt;div class=&quot;entry t-&#x27;+d.track+&#x27;&quot;&gt;&#x27;
+      +&#x27;&lt;div class=&quot;d&quot;&gt;&#x27;+esc(d.date_display)+&#x27;&lt;/div&gt;&#x27;
+      +&#x27;&lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;meta&quot;&gt;&#x27;
+      +&#x27;&lt;span class=&quot;tk&quot;&gt;&#x27;+esc(d.trackLabel)+&#x27;&lt;/span&gt;&#x27;
+      +&#x27;&lt;span class=&quot;actor&quot;&gt;&#x27;+esc(d.actor)+&#x27;&lt;/span&gt;&#x27;
+      +&#x27;&lt;span class=&quot;st st-&#x27;+d.statusKey+&#x27;&quot;&gt;&#x27;+stLabel(d.statusKey)+&#x27;&lt;/span&gt;&#x27;
+      +(ch?&#x27;&lt;span class=&quot;moon&quot;&gt;Moon &#x27;+esc(ch.moonSign)+&#x27;&lt;/span&gt;&#x27;:&#x27;&#x27;)
+      +(ch?&#x27;&lt;button class=&quot;cbtn&quot; data-akey=&quot;&#x27;+esc(akey)+&#x27;&quot;&gt;&#x27;+(openCharts[akey]?&#x27;chart \\u25B4&#x27;:&#x27;chart \\u25BE&#x27;)+&#x27;&lt;/button&gt;&#x27;
+          :&#x27;&lt;span class=&quot;nochart&quot;&gt;month precision &amp;mdash; no chart&lt;/span&gt;&#x27;)
+      +&#x27;&lt;/div&gt;&lt;h3&gt;&#x27;+esc(d.title)+&#x27;&lt;/h3&gt;&#x27;
+      +&#x27;&lt;p&gt;&#x27;+esc(d.summary)+&#x27;&lt;/p&gt;&#x27;
+      +(d.url?&#x27;&lt;a href=&quot;&#x27;+esc(d.url)+&#x27;&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&#x27;+esc(d.source_label||&#x27;source&#x27;)+&#x27;&lt;/a&gt;&#x27;
+             :&#x27;&lt;span style=&quot;color:#66708033;font-size:12px&quot;&gt;&#x27;+esc(d.source_label)+&#x27;&lt;/span&gt;&#x27;)
+      +(ch?&#x27;&lt;span class=&quot;conv&quot;&gt;&#x27;+esc(ch.convention)+&#x27; \\u00B7 Whole Sign&lt;/span&gt;&#x27;:&#x27;&#x27;)
+      +&#x27;&lt;div class=&quot;astro-slot&quot; data-slot=&quot;&#x27;+esc(akey)+&#x27;&quot;&gt;&lt;/div&gt;&#x27;
+      +&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;);
+  }});
+  tl.innerHTML=out.join(&#x27;&#x27;);
+  document.getElementById(&#x27;count&#x27;).textContent = shown+&#x27; of &#x27;+DATA.length+&#x27; shown&#x27;;
+  Object.keys(openCharts).forEach(function(k){{ if(openCharts[k]) paint(k); }});
+}}
+
+function paint(akey){{
+  var slot=document.querySelector(&#x27;.astro-slot[data-slot=&quot;&#x27;+CSS.escape(akey)+&#x27;&quot;]&#x27;);
+  var ch=ASTRO[akey];
+  if(!slot||!ch) return;
+  if(!ch.__svg){{
+    var d=DATA.filter(function(x){{return x.date+&#x27;|&#x27;+x.title===akey;}})[0]||{{}};
+    ch.__svg=wheelSVG({{pos:ch.pos,asp:ch.asp,asc:ch.asc,__date:d.date_display||&#x27;&#x27;,
+      cap1:d.title||&#x27;&#x27;, cap2:ch.convention+&#x27; \\u00B7 Whole Sign \\u00B7 &#x27;+(d.trackLabel||&#x27;&#x27;)}},null,false);
+  }}
+  slot.innerHTML=ch.__svg;
+}}
+
+document.addEventListener(&#x27;click&#x27;, function(ev){{
+  var cb = ev.target.closest ? ev.target.closest(&#x27;.cbtn&#x27;) : null;
+  if(cb){{
+    var k=cb.dataset.akey;
+    openCharts[k]=!openCharts[k];
+    cb.textContent=openCharts[k]?&#x27;chart \\u25B4&#x27;:&#x27;chart \\u25BE&#x27;;
+    if(openCharts[k]) paint(k);
+    else {{ var s=document.querySelector(&#x27;.astro-slot[data-slot=&quot;&#x27;+CSS.escape(k)+&#x27;&quot;]&#x27;); if(s) s.innerHTML=&#x27;&#x27;; }}
+    return;
+  }}
+  var c = ev.target.closest ? ev.target.closest(&#x27;.chip&#x27;) : null;
+  if(!c) return;
+  if(c.dataset.track){{ state.track[c.dataset.track]=!state.track[c.dataset.track]; c.classList.toggle(&#x27;on&#x27;); }}
+  else if(c.dataset.status){{ state.status[c.dataset.status]=!state.status[c.dataset.status]; c.classList.toggle(&#x27;on&#x27;); }}
+  else if(c.dataset.actor){{
+    var all = c.dataset.actor===&#x27;__all&#x27;;
+    state.actor = all ? null : c.dataset.actor;
+    document.querySelectorAll(&#x27;#actorChips .chip&#x27;).forEach(function(x){{x.classList.toggle(&#x27;on&#x27;, x===c);}});
+  }}
+  render();
+}});
+
+window.addEventListener(&#x27;message&#x27;, function(ev){{
+  var m = ev.data||{{}};
+  if(m.action===&#x27;filterTrack&#x27; &amp;&amp; m.track &amp;&amp; state.track.hasOwnProperty(m.track)){{
+    Object.keys(state.track).forEach(function(k){{state.track[k]=(k===m.track);}});
+    document.querySelectorAll(&#x27;#trackChips .chip&#x27;).forEach(function(x){{x.classList.toggle(&#x27;on&#x27;, x.dataset.track===m.track);}});
+    render();
+  }}
+}});
+render();
+}})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;
+
+def main():
+    seed = json.load(open(SEED, encoding=&quot;utf-8&quot;))[&quot;items&quot;]
+    astro = json.load(open(ASTRO, encoding=&quot;utf-8&quot;)) if os.path.exists(ASTRO) else {&quot;charts&quot;: {}}
+    for d in seed:
+        d[&quot;statusKey&quot;] = status_key(d[&quot;status&quot;])
+        d[&quot;trackLabel&quot;] = TRACKS[d[&quot;track&quot;]][0]
+    seed.sort(key=lambda x: (x[&quot;statusKey&quot;] == &quot;scheduled&quot;, x[&quot;date&quot;]))
+    out = render(seed, astro)
+    open(OUT, &quot;w&quot;, encoding=&quot;utf-8&quot;).write(out)
+    print(&quot;wrote&quot;, OUT, f&quot;({len(out)//1024} KB, {len(seed)} entries)&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

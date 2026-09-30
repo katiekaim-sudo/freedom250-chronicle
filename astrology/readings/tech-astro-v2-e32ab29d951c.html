@@ -1,0 +1,158 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/tech-astro-v2-e32ab29d951c.html">
+<title>---- Pessin lineage: +/-546d at the same degree ----------------------------</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>---- Pessin lineage: +/-546d at the same degree ----------------------------</h1><p class="mut">Portable source: 99 - Templates/tech_astro_v2.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;tech_astro_v2.py — the DEEPER astrology layer for The Tech Machine.
+
+The same v2 layers The Hearings and The Money Machine carry, applied to the tech
+filings. Builds on tech_astro.py (v1: per-filing chart + read + family + seed):
+
+  1. PESSIN LINEAGE — the filing&#x27;s seed New Moon traced FORWARD +546d to its 2027
+     Full-Moon harvest, and its contemporaneous bloom traced BACK -546d to the
+     2024 origin New Moon it descends from; the XRP/Ripple lineage flag when that
+     origin is the Oct-2-2024 Libra solar eclipse (10° Lib) or the Dec-30-2024
+     Capricorn New Moon (9° Cap) the Hearings work pinned as the Ripple planting.
+
+  2. GREER OVERLAYS — danger aspects (Sun-Neptune / Sun-Saturn worst, then
+     Mars-Saturn, Moon-Saturn, Sun-Mars) and combustion, off the filing chart.
+
+  + THE BRIDGE — which of the 9 HFSC hearings shares this filing&#x27;s seed New Moon.
+    A hearing and a filing born of the same lunation are one gestation: the
+    legislative face and the administrative face of a single seed.
+
+Reads tech_machine_astro.json (per-filing rec + seed, from tech_astro.py) and the
+9 hearing seeds (HLIN) out of The Hearings.html. Swiss Ephemeris (Moshier) for the
++/-546d lineation. Output: 99 - Templates/tech_machine_astro_v2.json (keyed by url).
+
+  python3 tech_astro_v2.py
+&quot;&quot;&quot;
+import os, re, json, datetime
+import swisseph as swe
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+XC = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;)
+HR_HTML = os.path.join(XC, &quot;The Hearings.html&quot;)
+ASTRO = os.path.join(HERE, &quot;tech_machine_astro.json&quot;)
+OUT = os.path.join(HERE, &quot;tech_machine_astro_v2.json&quot;)
+
+SH = [&quot;Ari&quot;,&quot;Tau&quot;,&quot;Gem&quot;,&quot;Can&quot;,&quot;Leo&quot;,&quot;Vir&quot;,&quot;Lib&quot;,&quot;Sco&quot;,&quot;Sag&quot;,&quot;Cap&quot;,&quot;Aqu&quot;,&quot;Pis&quot;]
+FLAGS = swe.FLG_MOSEPH | swe.FLG_SPEED
+def sep(a,b): return abs((a-b+180)%360-180)
+def shrt(l): return SH[int(l//30)%12]
+
+# ---- Pessin lineage: +/-546d at the same degree ----------------------------
+def jd(dateiso, h=12.0):
+    y,mo,d = map(int, dateiso.split(&quot;-&quot;)); return swe.julday(y,mo,d,h)
+def _lunation_near(j0, want_full):
+    def err(j):
+        s=swe.calc_ut(j,swe.SUN,FLAGS)[0][0]; m=swe.calc_ut(j,swe.MOON,FLAGS)[0][0]
+        e=abs((m-s+180)%360-180)
+        return abs(e-180) if want_full else e
+    best=None
+    for k in range(-72,73):
+        j=j0+k*0.25; e=err(j)
+        if best is None or e&lt;best[0]: best=(e,j)
+    jb=best[1]
+    for k in range(-25,26):
+        j=jb+k*0.02; e=err(j)
+        if e&lt;best[0]: best=(e,j)
+    j=best[1]; body = swe.MOON if want_full else swe.SUN
+    lon=swe.calc_ut(j,body,FLAGS)[0][0]%360
+    y,mo,d,_=swe.revjul(j)
+    return f&quot;{y:04d}-{mo:02d}-{d:02d}&quot;, lon
+def new_moon_near(j0):  return _lunation_near(j0, False)
+def full_moon_near(j0): return _lunation_near(j0, True)
+
+XRP_ORIGINS = [(&quot;2024-10-02&quot;,189.5,&quot;the Oct-2-2024 Libra solar eclipse that planted the Ripple/XRP rails&quot;),
+               (&quot;2024-12-30&quot;,279.5,&quot;the Dec-30-2024 Capricorn New Moon that planted the Ripple/XRP rails&quot;)]
+def lineage(seed):
+    sdate = seed[&quot;date&quot;]; js = jd(sdate)
+    hd, hl = full_moon_near(js + 546)
+    bd, bl = full_moon_near(js + 14.75)
+    od, ol = new_moon_near(jd(bd) - 546)
+    xrp=None
+    for xd,xl,lab in XRP_ORIGINS:
+        if sep(ol, xl) &lt;= 8 and abs((datetime.date.fromisoformat(od)-datetime.date.fromisoformat(xd)).days) &lt;= 20:
+            xrp=lab; break
+    return {
+        &quot;harvest&quot;: {&quot;date&quot;:hd, &quot;deg&quot;:f&quot;{shrt(hl)} {hl%30:.0f}°&quot;},
+        &quot;bloom&quot;:   {&quot;date&quot;:bd, &quot;deg&quot;:f&quot;{shrt(bl)} {bl%30:.0f}°&quot;},
+        &quot;origin&quot;:  {&quot;date&quot;:od, &quot;deg&quot;:f&quot;{shrt(ol)} {ol%30:.0f}°&quot;},
+        &quot;xrp&quot;: xrp,
+    }
+
+# ---- Greer danger aspects off the filing chart -----------------------------
+DANGER = {
+ (&quot;Sun&quot;,&quot;Neptune&quot;): &quot;Sun–Neptune — the single most dangerous signature: dissolution, the solvent on the state&#x27;s own eyes&quot;,
+ (&quot;Sun&quot;,&quot;Saturn&quot;): &quot;Sun–Saturn — loss of power, the weight of the old order on the act&quot;,
+ (&quot;Mars&quot;,&quot;Saturn&quot;): &quot;Mars–Saturn — the cut that draws blood, force against the structure&quot;,
+ (&quot;Moon&quot;,&quot;Saturn&quot;): &quot;Moon–Saturn — misfortune to the political class&quot;,
+ (&quot;Sun&quot;,&quot;Mars&quot;): &quot;Sun–Mars — belligerence at the top&quot;,
+ (&quot;Sun&quot;,&quot;Uranus&quot;): &quot;Sun–Uranus — the break, the new machine forced through (apt for invention, hard on order)&quot;,
+}
+def filing_lons(rec): return {p[0]: p[4] for p in rec[&quot;pos&quot;]}
+def greer(rec):
+    lons = filing_lons(rec); out=[]
+    for (a,b),txt in DANGER.items():
+        if a in lons and b in lons:
+            s=sep(lons[a],lons[b])
+            for ang in (0,90,180):
+                if abs(s-ang)&lt;=6:
+                    out.append({&quot;pair&quot;:f&quot;{a}–{b}&quot;,&quot;aspect&quot;:{0:&quot;conjunct&quot;,90:&quot;square&quot;,180:&quot;opposite&quot;}[ang],&quot;o&quot;:round(abs(s-ang),2),&quot;txt&quot;:txt})
+                    break
+    comb=[p for p in lons if p not in (&quot;Sun&quot;,&quot;Node&quot;) and sep(lons[p],lons[&quot;Sun&quot;])&lt;=8.5]
+    out.sort(key=lambda x:x[&quot;o&quot;])
+    return {&quot;danger&quot;:out, &quot;combust&quot;:comb}
+
+# ---- the bridge: which hearing shares this filing&#x27;s seed New Moon -----------
+def load_hearings():
+    if not os.path.exists(HR_HTML): return [], []
+    h = open(HR_HTML, encoding=&quot;utf-8&quot;).read()
+    m = re.search(r&#x27;const HLIN\s*=\s*(\[.*?\]);&#x27;, h, re.S)
+    HLIN = json.loads(m.group(1)) if m else []
+    meta = re.search(r&#x27;const HEARINGS\s*=\s*\[(.*?)\];&#x27;, h, re.S)
+    dates=[]
+    if meta:
+        for o in re.findall(r&#x27;\{.*?\}&#x27;, meta.group(1), re.S):
+            mm=re.search(r&#x27;date\s*:\s*([&quot;\&#x27;])((?:\\.|(?!\1).)*?)\1&#x27;, o, re.S)
+            dates.append(mm.group(2) if mm else &quot;&quot;)
+    return HLIN, dates
+def hearing_for(seed, HLIN, hdates):
+    sd = datetime.date.fromisoformat(seed[&quot;date&quot;])
+    for i,a in enumerate(HLIN):
+        m = re.match(r&quot;(\d{4}-\d{2}-\d{2})&quot;, a.get(&quot;seed&quot;,&quot;&quot;))
+        if not m: continue
+        hsd = datetime.date.fromisoformat(m.group(1))
+        if abs((sd-hsd).days) &lt;= 3:
+            return {&quot;idx&quot;:i+1, &quot;date&quot;:hdates[i] if i&lt;len(hdates) else &quot;&quot;, &quot;seed&quot;:a[&quot;seed&quot;]}
+    return None
+
+def main():
+    A = json.load(open(ASTRO, encoding=&quot;utf-8&quot;))
+    HLIN, hdates = load_hearings()
+    out={}
+    nx=nbridge=0
+    for url, a in A.items():
+        seed = a.get(&quot;seed&quot;); rec = a.get(&quot;rec&quot;)
+        if not seed or not rec: continue
+        lin = lineage(seed)
+        g = greer(rec)
+        hr = hearing_for(seed, HLIN, hdates)
+        if lin[&quot;xrp&quot;]: nx+=1
+        if hr: nbridge+=1
+        out[url] = {&quot;lineage&quot;: lin, &quot;danger&quot;: g[&quot;danger&quot;], &quot;combust&quot;: g[&quot;combust&quot;], &quot;hearing&quot;: hr}
+    json.dump(out, open(OUT,&quot;w&quot;,encoding=&quot;utf-8&quot;), ensure_ascii=False, separators=(&quot;,&quot;,&quot;:&quot;))
+    print(f&quot;computed v2 for {len(out)} filings -&gt; {OUT}&quot;)
+    print(f&quot;  Ripple/XRP lineage: {nx}   shared-hearing bridge: {nbridge}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

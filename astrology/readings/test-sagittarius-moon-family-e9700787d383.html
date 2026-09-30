@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-sagittarius-moon-family-e9700787d383.html">
+<title>test_sagittarius_moon_family</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_sagittarius_moon_family</h1><p class="mut">Portable source: 99 - Templates/test_sagittarius_moon_family.py</p><pre>from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+DATA = json.loads((HERE / &quot;sagittarius_moon_family_2024_2027.json&quot;).read_text())
+
+
+class SagittariusMoonFamilyTests(unittest.TestCase):
+    def test_family_identity_and_future_boundary(self):
+        self.assertEqual(DATA[&quot;lineage_id&quot;], &quot;pessin:lun-2024-12-01-ne&quot;)
+        self.assertEqual(len(DATA[&quot;family_members&quot;]), 4)
+        self.assertEqual(
+            DATA[&quot;phase_state_as_of_developed_through&quot;][&quot;last_quarter&quot;],
+            &quot;future_not_interpreted_as_occurred&quot;,
+        )
+
+    def test_family_remains_ordinary(self):
+        self.assertEqual(set(DATA[&quot;phase_eclipse_states&quot;].values()), {False})
+
+    def test_moon_and_pluto_climb_through_harvest(self):
+        stage = DATA[&quot;stage_development&quot;]
+        self.assertEqual(stage[&quot;moon_houses&quot;][:3], [4, 6, 8])
+        self.assertEqual(stage[&quot;pluto_houses&quot;][:3], [6, 8, 10])
+        self.assertEqual(stage[&quot;ascendant_signs&quot;], [&quot;Virgo&quot;, &quot;Cancer&quot;, &quot;Taurus&quot;, &quot;Scorpio&quot;])
+
+    def test_seed_degree_returns_at_full_and_last_quarter(self):
+        relay = DATA[&quot;degree_relays&quot;]
+        self.assertLess(relay[&quot;seed_to_full_delta_deg&quot;], 0.381)
+        self.assertLess(relay[&quot;seed_to_last_quarter_delta_deg&quot;], 0.167)
+        self.assertLess(relay[&quot;seed_to_last_quarter_delta_deg&quot;], relay[&quot;seed_to_full_delta_deg&quot;])
+
+    def test_root_resolves_to_mercury_at_full(self):
+        roots = DATA[&quot;root_development&quot;]
+        self.assertIn([&quot;Jupiter&quot;, &quot;Mercury&quot;], roots[&quot;seed&quot;][&quot;bounded_cycles&quot;])
+        self.assertIn([&quot;Jupiter&quot;, &quot;Moon&quot;], roots[&quot;first_quarter&quot;][&quot;bounded_cycles&quot;])
+        self.assertIn([&quot;Mercury&quot;, &quot;Sun&quot;], roots[&quot;first_quarter&quot;][&quot;bounded_cycles&quot;])
+        self.assertEqual(roots[&quot;full&quot;][&quot;final_dispositors&quot;], [&quot;Mercury&quot;])
+        self.assertIn([&quot;Jupiter&quot;, &quot;Moon&quot;], roots[&quot;full&quot;][&quot;bounded_cycles&quot;])
+
+    def test_quarter_opens_then_full_reconcentrates(self):
+        changes = DATA[&quot;distribution_development&quot;][&quot;occupied_span_changes_deg&quot;]
+        self.assertGreater(changes[&quot;seed_to_first_quarter&quot;], 63.5)
+        self.assertLess(changes[&quot;first_quarter_to_full&quot;], -75.9)
+
+    def test_record_power_and_force_power_relays_are_exact(self):
+        power = DATA[&quot;seed_harvest_power_relay&quot;]
+        self.assertLess(power[&quot;seed_mercury_pluto_parallel_orb_deg&quot;], 0.021)
+        self.assertLess(power[&quot;seed_mars_to_full_pluto_opposition_orb_deg&quot;], 0.585)
+
+    def test_full_phase_is_visible_before_sunrise(self):
+        full = DATA[&quot;astronomical_geometry&quot;][&quot;full_phase&quot;]
+        self.assertGreater(full[&quot;moon_true_altitude_deg&quot;], 0.0)
+        self.assertLess(full[&quot;sun_true_altitude_deg&quot;], 0.0)
+        self.assertLess(full[&quot;next_moonset&quot;][&quot;julian_day_ut&quot;], full[&quot;next_sunrise&quot;][&quot;julian_day_ut&quot;])
+
+    def test_factual_comparison_preserves_authority_states(self):
+        factual = DATA[&quot;factual_comparison&quot;]
+        self.assertEqual(
+            factual[&quot;research_id&quot;],
+            &quot;december-2024-beneficial-ownership-reporting-perimeter&quot;,
+        )
+        self.assertEqual(len(factual[&quot;objects&quot;]), 1)
+        self.assertIn(&quot;preliminary injunction is not repeal&quot;, factual[&quot;negative_control&quot;])
+        self.assertIn(&quot;final rule&quot;, factual[&quot;objects&quot;][0][&quot;state_by_cutoff&quot;])
+
+    def test_zero_evidence_credit(self):
+        self.assertEqual(DATA[&quot;authority_boundary&quot;][&quot;evidence_credit&quot;], &quot;zero&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

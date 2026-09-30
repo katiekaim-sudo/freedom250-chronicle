@@ -1,0 +1,131 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/inject-mm-moonfamilies-39c34f572d00.html">
+<title>inject_mm_moonfamilies</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>inject_mm_moonfamilies</h1><p class="mut">Portable source: 99 - Templates/inject_mm_moonfamilies.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Inject a &#x27;Money Machine&#x27; sub-tab into Moon Families.html.
+
+Adds the payment-rail filings to the Moon Families view, grouped by the lunar
+family their preceding New Moon seeded (Pessin bands). Idempotent (markers).
+The new tab plugs into the existing generic .mf-tab/.mf-sec switcher — no JS
+change to the host file. Re-run after the corpus or astro data changes.
+
+  python3 inject_mm_moonfamilies.py [--ingest-dir DIR]
+&quot;&quot;&quot;
+import os, sys, json, html, glob, importlib.util
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+MF = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;, &quot;Moon Families.html&quot;)
+
+mm = importlib.util.module_from_spec(importlib.util.spec_from_file_location(&quot;mm&quot;, os.path.join(HERE,&quot;build_money_machine.py&quot;)))
+importlib.util.spec_from_file_location(&quot;mm&quot;, os.path.join(HERE,&quot;build_money_machine.py&quot;)).loader.exec_module(mm)
+ASTRO = json.load(open(os.path.join(HERE,&quot;money_machine_astro.json&quot;),encoding=&quot;utf-8&quot;)) if os.path.exists(os.path.join(HERE,&quot;money_machine_astro.json&quot;)) else {}
+
+FAM_ORDER = [&quot;The Threshold&quot;,&quot;The Great Harvest&quot;,&quot;The Quiet Sowing&quot;,&quot;The Eclipse Storm&quot;]
+FAM_GLOSS = {
+ &quot;The Threshold&quot;:&quot;0–8° · a cycle barely opening&quot;,
+ &quot;The Great Harvest&quot;:&quot;8–16° · the chronicle&#x27;s bloom family — 2024 seeds coming due&quot;,
+ &quot;The Quiet Sowing&quot;:&quot;16–24° · a quiet planting, results held back&quot;,
+ &quot;The Eclipse Storm&quot;:&quot;24–32° · late-degree, eclipse-charged — seeds for a 2027 harvest&quot;}
+FAM_COL = {&quot;The Threshold&quot;:&quot;#4a9d7f&quot;,&quot;The Great Harvest&quot;:&quot;#9a7d28&quot;,
+           &quot;The Quiet Sowing&quot;:&quot;#4a72b0&quot;,&quot;The Eclipse Storm&quot;:&quot;#5a4a8a&quot;}
+TLABEL = {&quot;check&quot;:&quot;The Check&quot;,&quot;rails&quot;:&quot;The Rails&quot;,&quot;gate&quot;:&quot;The Gate&quot;,&quot;stablecoins&quot;:&quot;Stablecoins&quot;}
+
+def esc(s): return html.escape(str(s if s is not None else &quot;&quot;))
+
+def build_items():
+    items = mm.load_seed()
+    idir = sys.argv[sys.argv.index(&quot;--ingest-dir&quot;)+1] if &quot;--ingest-dir&quot; in sys.argv else \
+           &quot;/sessions/amazing-lucid-brown/mnt/outputs/mm_ingest/clean&quot;
+    if os.path.isdir(idir):
+        for jf in sorted(glob.glob(os.path.join(idir,&quot;*.json&quot;))):
+            try: items += json.load(open(jf,encoding=&quot;utf-8&quot;))
+            except Exception: pass
+    fin = mm.finalize(items)
+    rows=[]
+    for it in fin:
+        url=(it.get(&quot;url&quot;) or &quot;&quot;).split(&quot;?&quot;)[0]
+        a=ASTRO.get(url)
+        if not a: continue
+        rows.append({&quot;url&quot;:url,&quot;title&quot;:it[&quot;title&quot;],&quot;us&quot;:mm.us_date(it[&quot;date&quot;]),
+                     &quot;date&quot;:it[&quot;date&quot;],&quot;agency&quot;:it[&quot;agency&quot;],&quot;track&quot;:it[&quot;track&quot;],
+                     &quot;family&quot;:a[&quot;family&quot;],&quot;seed&quot;:a.get(&quot;seed&quot;,{})})
+    return rows
+
+def section_html(rows):
+    byf={f:[] for f in FAM_ORDER}
+    for r in rows: byf.setdefault(r[&quot;family&quot;],[]).append(r)
+    n=len(rows); storm=len(byf.get(&quot;The Eclipse Storm&quot;,[]))
+    parts=[]
+    parts.append(&#x27;&lt;div class=&quot;mf-sec&quot; id=&quot;sec-moneymachine&quot;&gt;&#x27;)
+    parts.append(&#x27;&lt;style&gt;&#x27;
+      &#x27;#sec-moneymachine .mmf-intro{font-size:.95rem;line-height:1.6;color:#5a4e3a;max-width:760px;margin:0 0 16px}&#x27;
+      &#x27;#sec-moneymachine .mmf-fam{margin:0 0 18px;border:1px solid #e3dccd;border-radius:10px;background:#fffdf7;overflow:hidden}&#x27;
+      &#x27;#sec-moneymachine .mmf-fh{padding:9px 14px;border-left:4px solid #ccc;font-weight:700;color:#3a3020}&#x27;
+      &#x27;#sec-moneymachine .mmf-fh small{font-weight:400;color:#938876;font-style:italic;margin-left:8px}&#x27;
+      &#x27;#sec-moneymachine .mmf-row{display:flex;gap:10px;align-items:baseline;padding:6px 14px;border-top:1px solid #f0eadd;&#x27;
+        &#x27;cursor:pointer;font-size:.9rem}&#x27;
+      &#x27;#sec-moneymachine .mmf-row:hover{background:#f4eedd}&#x27;
+      &#x27;#sec-moneymachine .mmf-d{color:#938876;font-family:system-ui,sans-serif;font-size:.78rem;white-space:nowrap;min-width:84px}&#x27;
+      &#x27;#sec-moneymachine .mmf-t{color:#2b2620}&#x27;
+      &#x27;#sec-moneymachine .mmf-ag{color:#938876;font-size:.78rem;font-style:italic}&#x27;
+      &#x27;#sec-moneymachine .mmf-badge{font-family:system-ui,sans-serif;font-size:.7rem;border-radius:9px;padding:0 7px;&#x27;
+        &#x27;border:1px solid #d4c9b0;color:#5a4e3a;white-space:nowrap}&#x27;
+      &#x27;&lt;/style&gt;&#x27;)
+    parts.append(&#x27;&lt;h2 style=&quot;font-size:1.25rem;color:#3a3020;margin:0 0 6px&quot;&gt;The Money Machine — filings by lunar family&lt;/h2&gt;&#x27;)
+    parts.append(f&#x27;&lt;p class=&quot;mmf-intro&quot;&gt;The payment-rail filings of the second Trump term, sorted into the Pessin families their &#x27;
+      f&#x27;preceding New Moon seeded. The tell: &lt;b&gt;{storm} of {n}&lt;/b&gt; land in &lt;b&gt;The Eclipse Storm&lt;/b&gt; (24–32°) — the late-degree, &#x27;
+      f&#x27;eclipse-charged band whose harvest comes in &lt;b&gt;2027&lt;/b&gt;. The same lineage the Fed hearings followed: planted now, reaped at &#x27;
+      f&#x27;the markup. Click any filing to open it in The Money Machine.&lt;/p&gt;&#x27;)
+    for f in FAM_ORDER:
+        rs=sorted(byf.get(f,[]), key=lambda r:r[&quot;date&quot;], reverse=True)
+        if not rs: continue
+        col=FAM_COL[f]
+        parts.append(f&#x27;&lt;div class=&quot;mmf-fam&quot;&gt;&lt;div class=&quot;mmf-fh&quot; style=&quot;border-left-color:{col}&quot;&gt;{esc(f)} &#x27;
+                     f&#x27;&lt;small&gt;{esc(FAM_GLOSS[f])} · {len(rs)} filing{&quot;s&quot; if len(rs)!=1 else &quot;&quot;}&lt;/small&gt;&lt;/div&gt;&#x27;)
+        for r in rs:
+            parts.append(f&#x27;&lt;div class=&quot;mmf-row&quot; data-mmurl=&quot;{esc(r[&quot;url&quot;])}&quot;&gt;&#x27;
+                         f&#x27;&lt;span class=&quot;mmf-d&quot;&gt;{esc(r[&quot;us&quot;])}&lt;/span&gt;&#x27;
+                         f&#x27;&lt;span class=&quot;mmf-t&quot;&gt;{esc(r[&quot;title&quot;])} &lt;span class=&quot;mmf-ag&quot;&gt;— {esc(r[&quot;agency&quot;])}&lt;/span&gt;&lt;/span&gt;&#x27;
+                         f&#x27;&lt;span class=&quot;mmf-badge&quot; style=&quot;margin-left:auto&quot;&gt;{esc(TLABEL.get(r[&quot;track&quot;],r[&quot;track&quot;]))}&lt;/span&gt;&lt;/div&gt;&#x27;)
+        parts.append(&#x27;&lt;/div&gt;&#x27;)
+    parts.append(&#x27;&lt;script&gt;(function(){var s=document.getElementById(&quot;sec-moneymachine&quot;);if(!s)return;&#x27;
+      &#x27;s.addEventListener(&quot;click&quot;,function(e){var r=e.target.closest(&quot;[data-mmurl]&quot;);if(!r)return;&#x27;
+      &#x27;try{if(window.parent&amp;&amp;window.parent.navigateTo)window.parent.navigateTo(&quot;obs-mm&quot;,{});&#x27;
+      &#x27;else if(window.parent&amp;&amp;window.parent._switchTab)window.parent._switchTab(&quot;obs-mm&quot;);}catch(_){}});})();&lt;/script&gt;&#x27;)
+    parts.append(&#x27;&lt;/div&gt;&#x27;)
+    return &quot;\n&quot;.join(parts)
+
+def upsert(text, start, end, block, anchor_before):
+    blk = f&quot;{start}\n{block}\n{end}&quot;
+    import re
+    pat = re.compile(re.escape(start)+r&quot;[\s\S]*?&quot;+re.escape(end))
+    if pat.search(text): return pat.sub(lambda m: blk, text, count=1)
+    return text.replace(anchor_before, blk+&quot;\n&quot;+anchor_before, 1)
+
+def main():
+    import re
+    rows = build_items()
+    t = open(MF, encoding=&quot;utf-8&quot;).read()
+    # 1) tab button — idempotent insert right after the Featured Storylines button
+    btn = &#x27;&lt;button class=&quot;mf-tab&quot; data-sec=&quot;sec-moneymachine&quot;&gt;The Money Machine&lt;/button&gt;&#x27;
+    if &#x27;data-sec=&quot;sec-moneymachine&quot;&#x27; not in t.split(&#x27;&lt;!-- Timeline --&gt;&#x27;)[0]:
+        t = re.sub(r&#x27;&lt;!--MM-MOONFAM-TAB-START--&gt;[\s\S]*?&lt;!--MM-MOONFAM-TAB-END--&gt;&#x27;, &#x27;&#x27;, t)
+        marker = &#x27;&lt;button class=&quot;mf-tab&quot; data-sec=&quot;sec-storylines&quot;&gt;Featured Storylines&lt;/button&gt;&#x27;
+        t = t.replace(marker, marker + &#x27;\n  &lt;!--MM-MOONFAM-TAB-START--&gt;&#x27; + btn + &#x27;&lt;!--MM-MOONFAM-TAB-END--&gt;&#x27;, 1)
+    # 2) section — upsert before the Timeline section
+    sec = section_html(rows)
+    t = upsert(t, &quot;&lt;!--MM-MOONFAM-SEC-START--&gt;&quot;, &quot;&lt;!--MM-MOONFAM-SEC-END--&gt;&quot;, sec, &#x27;&lt;!-- Timeline --&gt;&#x27;)
+    open(MF, &quot;w&quot;, encoding=&quot;utf-8&quot;).write(t)
+    print(f&quot;injected Money Machine sub-tab into Moon Families ({len(rows)} filings)&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

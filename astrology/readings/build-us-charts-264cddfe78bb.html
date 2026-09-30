@@ -1,0 +1,660 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-us-charts-264cddfe78bb.html">
+<title>---- pull the shared wheel engine ------------------------------------------</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>---- pull the shared wheel engine ------------------------------------------</h1><p class="mut">Portable source: 99 - Templates/build_us_charts.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build &quot;The American Charts&quot; — the candidate US national charts as one instrument.
+
+Casts every serious July 2 / July 4 1776 candidate, computes Whole Sign houses,
+dignities, the annual-profection ladder (with the Freedom 250 / age-250 highlight),
+the US Pluto return, and a rectification SCOREBOARD that tests each chart&#x27;s angles
++ solar-arc directions + profected year-lord against eight American hinge-points.
+
+All positions via Swiss Ephemeris — never hand-typed (vault data-integrity rule).
+Reuses wheel_lib.WHEEL_JS for the wheels. Whole Sign throughout. Output:
+04 - Synthesis/Cross-cuts/The American Charts.html  (addEventListener, no inline onclick).
+&quot;&quot;&quot;
+import swisseph as swe, json, os, datetime
+
+# ---- pull the shared wheel engine ------------------------------------------
+HERE = os.path.dirname(os.path.abspath(__file__))
+def load_wheel_js():
+    for p in [os.path.join(HERE, &quot;wheel_lib.py&quot;),
+              os.path.join(HERE, &quot;99 - Templates&quot;, &quot;wheel_lib.py&quot;)]:
+        if os.path.exists(p):
+            import importlib.util
+            spec = importlib.util.spec_from_file_location(&quot;wheel_lib&quot;, p)
+            m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+            return m.WHEEL_JS, m.aspects_between, m.placidus_cusps
+    raise SystemExit(&quot;wheel_lib.py not found&quot;)
+WHEEL_JS, aspects_between, placidus_cusps = load_wheel_js()
+
+SGN = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,
+       &quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+RULER = {&quot;Aries&quot;:&quot;Mars&quot;,&quot;Taurus&quot;:&quot;Venus&quot;,&quot;Gemini&quot;:&quot;Mercury&quot;,&quot;Cancer&quot;:&quot;Moon&quot;,
+         &quot;Leo&quot;:&quot;Sun&quot;,&quot;Virgo&quot;:&quot;Mercury&quot;,&quot;Libra&quot;:&quot;Venus&quot;,&quot;Scorpio&quot;:&quot;Mars&quot;,
+         &quot;Sagittarius&quot;:&quot;Jupiter&quot;,&quot;Capricorn&quot;:&quot;Saturn&quot;,&quot;Aquarius&quot;:&quot;Saturn&quot;,&quot;Pisces&quot;:&quot;Jupiter&quot;}
+# essential dignity by sign (traditional)
+DOM={&quot;Sun&quot;:[&quot;Leo&quot;],&quot;Moon&quot;:[&quot;Cancer&quot;],&quot;Mercury&quot;:[&quot;Gemini&quot;,&quot;Virgo&quot;],&quot;Venus&quot;:[&quot;Taurus&quot;,&quot;Libra&quot;],
+     &quot;Mars&quot;:[&quot;Aries&quot;,&quot;Scorpio&quot;],&quot;Jupiter&quot;:[&quot;Sagittarius&quot;,&quot;Pisces&quot;],&quot;Saturn&quot;:[&quot;Capricorn&quot;,&quot;Aquarius&quot;]}
+EXALT={&quot;Sun&quot;:&quot;Aries&quot;,&quot;Moon&quot;:&quot;Taurus&quot;,&quot;Mercury&quot;:&quot;Virgo&quot;,&quot;Venus&quot;:&quot;Pisces&quot;,&quot;Mars&quot;:&quot;Capricorn&quot;,
+       &quot;Jupiter&quot;:&quot;Cancer&quot;,&quot;Saturn&quot;:&quot;Libra&quot;}
+DETRI={&quot;Sun&quot;:[&quot;Aquarius&quot;],&quot;Moon&quot;:[&quot;Capricorn&quot;],&quot;Mercury&quot;:[&quot;Sagittarius&quot;,&quot;Pisces&quot;],
+       &quot;Venus&quot;:[&quot;Aries&quot;,&quot;Scorpio&quot;],&quot;Mars&quot;:[&quot;Taurus&quot;,&quot;Libra&quot;],&quot;Jupiter&quot;:[&quot;Gemini&quot;,&quot;Virgo&quot;],
+       &quot;Saturn&quot;:[&quot;Cancer&quot;,&quot;Leo&quot;]}
+FALL={&quot;Sun&quot;:&quot;Libra&quot;,&quot;Moon&quot;:&quot;Scorpio&quot;,&quot;Mercury&quot;:&quot;Pisces&quot;,&quot;Venus&quot;:&quot;Virgo&quot;,&quot;Mars&quot;:&quot;Cancer&quot;,
+      &quot;Jupiter&quot;:&quot;Capricorn&quot;,&quot;Saturn&quot;:&quot;Aries&quot;}
+
+PLANETS=[(&quot;Sun&quot;,swe.SUN),(&quot;Moon&quot;,swe.MOON),(&quot;Mercury&quot;,swe.MERCURY),(&quot;Venus&quot;,swe.VENUS),
+         (&quot;Mars&quot;,swe.MARS),(&quot;Jupiter&quot;,swe.JUPITER),(&quot;Saturn&quot;,swe.SATURN),(&quot;Uranus&quot;,swe.URANUS),
+         (&quot;Neptune&quot;,swe.NEPTUNE),(&quot;Pluto&quot;,swe.PLUTO),(&quot;Node&quot;,swe.TRUE_NODE)]
+OUTERS=[&quot;Jupiter&quot;,&quot;Saturn&quot;,&quot;Uranus&quot;,&quot;Neptune&quot;,&quot;Pluto&quot;]
+
+PHL_LAT, PHL_LON = 39.9526, -75.1652
+LMT = 5.011  # Philadelphia LMT-&gt;UT hours
+
+def jd_lmt(y,mo,d,lmt_hours):
+    return swe.julday(y,mo,d, lmt_hours + LMT)
+
+def lon_of(jd, pid):
+    return swe.calc_ut(jd, pid)[0]
+
+def dignity(planet, sign):
+    if planet in DOM and sign in DOM[planet]: return (&quot;domicile&quot;,&quot;+&quot;)
+    if EXALT.get(planet)==sign: return (&quot;exalted&quot;,&quot;+&quot;)
+    if planet in DETRI and sign in DETRI[planet]: return (&quot;detriment&quot;,&quot;−&quot;)
+    if FALL.get(planet)==sign: return (&quot;fall&quot;,&quot;−&quot;)
+    return (&quot;&quot;,&quot;&quot;)
+
+def fmt_dms(lon):
+    deg=int(lon%30); mn=int(round((lon%1)*60))
+    if mn==60: deg+=1; mn=0
+    return f&quot;{deg}°{mn:02d}&#x27;&quot;
+
+def ordn(n):
+    n=int(n)
+    s=&#x27;th&#x27; if 10&lt;=n%100&lt;=20 else {1:&#x27;st&#x27;,2:&#x27;nd&#x27;,3:&#x27;rd&#x27;}.get(n%10,&#x27;th&#x27;)
+    return f&quot;{n}{s}&quot;
+
+def compute_chart(jd):
+    asc, mc = None, None
+    cusps, ascmc = swe.houses(jd, PHL_LAT, PHL_LON, b&#x27;W&#x27;)
+    asc, mc = ascmc[0], ascmc[1]
+    asc_idx = int(asc//30)
+    pl_cusps, pl_mc = placidus_cusps(jd, PHL_LAT, PHL_LON)   # for the WS/Placidus toggle
+    pos=[]; lons={}
+    for name,pid in PLANETS:
+        res=swe.calc_ut(jd,pid); lon=res[0][0]; spd=res[0][3]
+        sign=SGN[int(lon//30)]
+        house=((int(lon//30)-asc_idx)%12)+1
+        retro = spd&lt;0
+        pos.append({&quot;name&quot;:name,&quot;sign&quot;:sign,&quot;lon&quot;:lon,&quot;dms&quot;:fmt_dms(lon),
+                    &quot;retro&quot;:retro,&quot;house&quot;:house})
+        lons[name]=lon
+    return {&quot;asc&quot;:asc,&quot;mc&quot;:mc,&quot;asc_idx&quot;:asc_idx,&quot;pos&quot;:pos,&quot;lons&quot;:lons,
+            &quot;cusps&quot;:pl_cusps,&quot;pl_mc&quot;:pl_mc}
+
+# --- candidate charts -------------------------------------------------------
+CANDS=[
+ {&quot;key&quot;:&quot;sag&quot;,&quot;label&quot;:&quot;Sagittarius Rising&quot;,&quot;time&quot;:&quot;July 2, 1776 · ~5:10 PM LMT&quot;,&quot;canon&quot;:True,
+  &quot;jd&quot;:jd_lmt(1776,7,2,17+10/60),&quot;tradition&quot;:&quot;★ THE CHART — locked in&quot;,
+  &quot;blurb&quot;:&quot;&lt;b&gt;Locked in as the chart of the United States.&lt;/b&gt; Jupiter — &lt;b&gt;exalted&lt;/b&gt; in Cancer — rules the nation, and Saturn is &lt;b&gt;exalted&lt;/b&gt; too: both of the country&#x27;s societal planets at their finest tools. The Cancer stellium falls in the &lt;b&gt;8th house&lt;/b&gt; — other people&#x27;s money, debt, the reserve currency, death &amp;amp; rebirth: the faith-and-finance empire. Chosen over July 4 because its Moon is a live &lt;b&gt;Capricorn&lt;/b&gt; (conjunct Pluto, on the people-vs-government axis), not Sibley&#x27;s void Aquarius.&quot;},
+ {&quot;key&quot;:&quot;gem&quot;,&quot;label&quot;:&quot;Gemini Rising&quot;,&quot;time&quot;:&quot;July 2, 1776 · ~2:13 AM LMT&quot;,&quot;canon&quot;:False,
+  &quot;jd&quot;:jd_lmt(1776,7,2,2+13/60),&quot;tradition&quot;:&quot;alternate — commercial-republic / domestic-money overlay (July 2, not Zain’s July 4)&quot;,
+  &quot;blurb&quot;:&quot;The kept alternate. Mercury (℞) rules; the Cancer stellium falls in the &lt;b&gt;2nd house&lt;/b&gt; — the nation&#x27;s own treasury and values; Mars and Uranus &lt;b&gt;rise in the 1st&lt;/b&gt; (a body born armed, restless, Promethean). Across 17 turning-points this chart owns the &lt;i&gt;domestic&lt;/i&gt;-money crises — the truer chart of America&#x27;s own body and money.&quot;},
+ {&quot;key&quot;:&quot;sib&quot;,&quot;label&quot;:&quot;Sibley (July 4)&quot;,&quot;time&quot;:&quot;July 4, 1776 · 5:10 PM LMT&quot;,&quot;canon&quot;:False,
+  &quot;jd&quot;:jd_lmt(1776,7,4,17+10/60),&quot;tradition&quot;:&quot;the standard chart — shown for contrast&quot;,
+  &quot;blurb&quot;:&quot;The textbook US chart, kept for contrast. Same Sag-rising, 8th-house-Sun architecture as the locked chart — but two days on, the Moon has slipped into late Aquarius and goes &lt;b&gt;void of course&lt;/b&gt;. Rejected for exactly that: “We are NOT a void-moon nation.”&quot;},
+]
+for c in CANDS:
+    c[&quot;chart&quot;]=compute_chart(c[&quot;jd&quot;])
+
+# --- profection ladder ------------------------------------------------------
+def profection_row(asc_idx, age):
+    sign=SGN[(asc_idx+age)%12]
+    return {&quot;age&quot;:age,&quot;house&quot;:(age%12)+1,&quot;sign&quot;:sign,&quot;lord&quot;:RULER[sign]}
+
+def profection_ladder(asc_idx):
+    # the run-up to and through Freedom 250
+    return [profection_row(asc_idx,a) for a in range(246,254)]
+
+# --- US Pluto return (transiting Pluto back to natal Pluto) ------------------
+def pluto_return_passes(natal_pluto_lon):
+    passes=[]; prev=None
+    jd=swe.julday(2020,1,1,0); end=swe.julday(2024,1,1,0)
+    while jd&lt;end:
+        l=swe.calc_ut(jd,swe.PLUTO)[0][0]
+        d=(l-natal_pluto_lon+180)%360-180
+        if prev is not None and (prev&lt;0)!=(d&lt;0) and abs(d)&lt;1:
+            y,m,dd,_=swe.revjul(jd); passes.append(f&quot;{m:02d}/{y}&quot;)
+        prev=d; jd+=5
+    # dedupe consecutive
+    out=[]
+    for p in passes:
+        if not out or out[-1]!=p: out.append(p)
+    return out
+
+# --- solar arc + transit helpers --------------------------------------------
+def solar_arc(natal_jd, event_jd, natal_sun):
+    prog_jd = natal_jd + (event_jd-natal_jd)/365.2422
+    prog_sun = swe.calc_ut(prog_jd, swe.SUN)[0][0]
+    return (prog_sun - natal_sun) % 360
+
+def hits_angle(lon, asc, mc, orb):
+    best=None
+    for ang_name,ang in [(&quot;ASC&quot;,asc),(&quot;MC&quot;,mc),(&quot;DSC&quot;,(asc+180)%360),(&quot;IC&quot;,(mc+180)%360)]:
+        for asp,a in [(&quot;conj&quot;,0),(&quot;sq&quot;,90),(&quot;opp&quot;,180)]:
+            sep=abs((lon-ang+180)%360-180)
+            o=abs(sep-a) if asp!=&quot;conj&quot; else min(sep,abs(sep-0))
+            o=abs((lon-ang+180)%360-180 - a)
+            o=abs(abs((lon-ang+180)%360-180)-a)
+            if o&lt;=orb:
+                if best is None or o&lt;best[2]:
+                    best=(ang_name,asp,round(o,1))
+    return best
+
+# --- the rectification scoreboard -------------------------------------------
+EVENTS=[
+ (&quot;1781-10-19&quot;,&quot;Yorktown — the Revolution won&quot;,(1781,10,19)),
+ (&quot;1861-04-12&quot;,&quot;Fort Sumter — Civil War begins&quot;,(1861,4,12)),
+ (&quot;1913-12-23&quot;,&quot;The Federal Reserve Act — the Fed is born&quot;,(1913,12,23)),
+ (&quot;1929-10-29&quot;,&quot;Black Tuesday — the Crash&quot;,(1929,10,29)),
+ (&quot;1933-03-06&quot;,&quot;FDR&#x27;s bank holiday / gold seizure&quot;,(1933,3,6)),
+ (&quot;1941-12-07&quot;,&quot;Pearl Harbor&quot;,(1941,12,7)),
+ (&quot;1944-07-22&quot;,&quot;Bretton Woods — the dollar system built&quot;,(1944,7,22)),
+ (&quot;1963-11-22&quot;,&quot;JFK assassination&quot;,(1963,11,22)),
+ (&quot;1971-08-15&quot;,&quot;Nixon closes the gold window&quot;,(1971,8,15)),
+ (&quot;1974-08-09&quot;,&quot;Nixon resigns — Watergate&quot;,(1974,8,9)),
+ (&quot;1989-11-09&quot;,&quot;Berlin Wall falls — Cold War ends&quot;,(1989,11,9)),
+ (&quot;2001-09-11&quot;,&quot;9/11&quot;,(2001,9,11)),
+ (&quot;2008-09-15&quot;,&quot;Lehman — the GFC&quot;,(2008,9,15)),
+ (&quot;2016-11-08&quot;,&quot;Trump elected — the populist turn&quot;,(2016,11,8)),
+ (&quot;2020-03-11&quot;,&quot;COVID declared a pandemic&quot;,(2020,3,11)),
+ (&quot;2022-02-24&quot;,&quot;Ukraine invaded — the US Pluto return&quot;,(2022,2,24)),
+ (&quot;2026-06-15&quot;,&quot;Iran peace deal — signed today (LIVE)&quot;,(2026,6,15)),
+]
+
+def score_event(cand, ev):
+    chart=cand[&quot;chart&quot;]; asc=chart[&quot;asc&quot;]; mc=chart[&quot;mc&quot;]; asc_idx=chart[&quot;asc_idx&quot;]
+    natal_jd=cand[&quot;jd&quot;]; natal=chart[&quot;lons&quot;]
+    y,m,d=ev[2]; ejd=swe.julday(y,m,d,17.0)
+    score=0; reasons=[]
+    # 1) transiting outers to the angles (≤2°) — the rectification gold
+    for p in OUTERS:
+        tl=swe.calc_ut(ejd, dict(PLANETS)[p])[0][0]
+        h=hits_angle(tl, asc, mc, 2.0)
+        if h: score+=3; reasons.append(f&quot;tr {p} {h[1]} {h[0]} {h[2]}°&quot;)
+    # 2) solar-arc directed planets to the angles (≤1°)
+    arc=solar_arc(natal_jd, ejd, natal[&quot;Sun&quot;])
+    for p in [&quot;Sun&quot;,&quot;Mars&quot;,&quot;Saturn&quot;,&quot;Uranus&quot;,&quot;Pluto&quot;]:
+        dl=(natal[p]+arc)%360
+        h=hits_angle(dl, asc, mc, 1.0)
+        if h: score+=2; reasons.append(f&quot;SA {p} {h[1]} {h[0]} {h[2]}°&quot;)
+    # 3) profected year-lord activated by a transiting outer (conj ≤2°)
+    age=y-1776 - (0 if (m,d)&gt;=(7,2 if cand[&#x27;key&#x27;]!=&#x27;sib&#x27; else 4) else 1)
+    prof=profection_row(asc_idx, age)
+    lord_lon=natal[prof[&quot;lord&quot;]]
+    for p in OUTERS:
+        tl=swe.calc_ut(ejd, dict(PLANETS)[p])[0][0]
+        sep=abs((tl-lord_lon+180)%360-180)
+        if min(sep,abs(sep-180),abs(sep-90))&lt;=2.0:
+            score+=2; reasons.append(f&quot;year-lord {prof[&#x27;lord&#x27;]} hit by tr {p}&quot;); break
+    # 4) angular-house emphasis: transiting outers sitting in angular houses (1/4/7/10)
+    ang_h=0
+    for p in OUTERS:
+        tl=swe.calc_ut(ejd, dict(PLANETS)[p])[0][0]
+        hh=((int(tl//30)-asc_idx)%12)+1
+        if hh in (1,4,7,10): ang_h+=1
+    if ang_h: score+=ang_h; reasons.append(f&quot;{ang_h} outer(s) in angular houses&quot;)
+    return score, reasons
+
+SCORE={}
+for c in CANDS:
+    SCORE[c[&quot;key&quot;]]={&quot;total&quot;:0,&quot;rows&quot;:{}}
+    for ev in EVENTS:
+        s,r=score_event(c,ev)
+        SCORE[c[&quot;key&quot;]][&quot;rows&quot;][ev[0]]={&quot;s&quot;:s,&quot;r&quot;:r}
+        SCORE[c[&quot;key&quot;]][&quot;total&quot;]+=s
+
+# ---- emit data for the wheels ---------------------------------------------
+def wheel_rec(cand):
+    chart=cand[&quot;chart&quot;]
+    posJS=[[p[&quot;name&quot;],p[&quot;sign&quot;],p[&quot;dms&quot;],p[&quot;retro&quot;],round(p[&quot;lon&quot;],4)] for p in chart[&quot;pos&quot;]]
+    main={p[&quot;name&quot;]:p[&quot;lon&quot;] for p in chart[&quot;pos&quot;] if p[&quot;name&quot;] in
+          [&quot;Sun&quot;,&quot;Moon&quot;,&quot;Mercury&quot;,&quot;Venus&quot;,&quot;Mars&quot;,&quot;Jupiter&quot;,&quot;Saturn&quot;,&quot;Uranus&quot;,&quot;Neptune&quot;,&quot;Pluto&quot;]}
+    asp=aspects_between(main)
+    return {&quot;pos&quot;:posJS,&quot;asp&quot;:asp,&quot;asc&quot;:round(chart[&quot;asc&quot;],4),
+            &quot;cusps&quot;:chart[&quot;cusps&quot;],&quot;mc&quot;:chart[&quot;pl_mc&quot;],
+            &quot;__date&quot;:cand[&quot;label&quot;],&quot;cap1&quot;:cand[&quot;time&quot;],
+            &quot;cap2&quot;:f&quot;{RULER[SGN[chart[&#x27;asc_idx&#x27;]]]} rules · Whole Sign · D.C. mundane&quot;}
+
+REC={c[&quot;key&quot;]:wheel_rec(c) for c in CANDS}
+PLUTO_PASSES=pluto_return_passes(CANDS[0][&quot;chart&quot;][&quot;lons&quot;][&quot;Pluto&quot;])
+
+# build per-chart static html fragments (placements, identity, profections, now)
+def placements_html(cand):
+    chart=cand[&quot;chart&quot;]
+    rows=[]
+    for p in chart[&quot;pos&quot;]:
+        if p[&quot;name&quot;]==&quot;Node&quot;: glyph=&quot;☊ N.Node&quot;
+        elif p[&quot;name&quot;]==&quot;Chiron&quot;: glyph=&quot;⚷ Chiron&quot;
+        else: glyph=p[&quot;name&quot;]
+        dig,sgnmark=dignity(p[&quot;name&quot;],p[&quot;sign&quot;]) if p[&quot;name&quot;] in DOM else (&quot;&quot;,&quot;&quot;)
+        digcls=&quot;dig-pos&quot; if sgnmark==&quot;+&quot; else (&quot;dig-neg&quot; if sgnmark==&quot;−&quot; else &quot;&quot;)
+        rows.append(f&quot;&lt;tr&gt;&lt;td&gt;{glyph}&lt;/td&gt;&lt;td&gt;{p[&#x27;sign&#x27;]} {p[&#x27;dms&#x27;]}{&#x27; ℞&#x27; if p[&#x27;retro&#x27;] else &#x27;&#x27;}&lt;/td&gt;&quot;
+                    f&quot;&lt;td class=&#x27;hc&#x27;&gt;{p[&#x27;house&#x27;]}&lt;/td&gt;&lt;td class=&#x27;{digcls}&#x27;&gt;{dig}&lt;/td&gt;&lt;/tr&gt;&quot;)
+    return (&quot;&lt;table class=&#x27;pl&#x27;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Body&lt;/th&gt;&lt;th&gt;Position&lt;/th&gt;&lt;th&gt;Hse&lt;/th&gt;&quot;
+            &quot;&lt;th&gt;Dignity&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&quot;+&quot;&quot;.join(rows)+&quot;&lt;/tbody&gt;&lt;/table&gt;&quot;)
+
+def profection_html(cand):
+    chart=cand[&quot;chart&quot;]; asc_idx=chart[&quot;asc_idx&quot;]
+    rows=[]
+    for r in profection_ladder(asc_idx):
+        hl = (r[&quot;age&quot;]==250)
+        rows.append(f&quot;&lt;tr class=&#x27;{&#x27;f250&#x27; if hl else &#x27;&#x27;}&#x27;&gt;&lt;td&gt;{r[&#x27;age&#x27;]}&lt;/td&gt;&quot;
+                    f&quot;&lt;td&gt;{ordn(r[&#x27;house&#x27;])}&lt;/td&gt;&lt;td&gt;{r[&#x27;sign&#x27;]}&lt;/td&gt;&lt;td&gt;{r[&#x27;lord&#x27;]}&lt;/td&gt;&quot;
+                    f&quot;&lt;td&gt;{&#x27;◄ FREEDOM 250&#x27; if hl else &#x27;&#x27;}&lt;/td&gt;&lt;/tr&gt;&quot;)
+    return (&quot;&lt;table class=&#x27;pf&#x27;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;House&lt;/th&gt;&lt;th&gt;Sign&lt;/th&gt;&quot;
+            &quot;&lt;th&gt;Lord of the Year&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&quot;+&quot;&quot;.join(rows)+&quot;&lt;/tbody&gt;&lt;/table&gt;&quot;)
+
+def now_html(cand):
+    chart=cand[&quot;chart&quot;]; asc=chart[&quot;asc&quot;]; mc=chart[&quot;mc&quot;]
+    njd=swe.julday(2026,6,15,17.0)
+    out=[]
+    for p in OUTERS:
+        tl=swe.calc_ut(njd,dict(PLANETS)[p])[0][0]
+        h=hits_angle(tl,asc,mc,3.0)
+        if h: out.append(f&quot;transiting &lt;b&gt;{p}&lt;/b&gt; {h[1]} the &lt;b&gt;{h[0]}&lt;/b&gt; ({h[2]}°)&quot;)
+    # current profection (age 250 from July 2 2026; on Jun 15 2026 still 249)
+    age_now=249
+    pr=profection_row(chart[&quot;asc_idx&quot;],age_now)
+    nxt=profection_row(chart[&quot;asc_idx&quot;],250)
+    s=(f&quot;&lt;p&gt;&lt;b&gt;Now (June 2026):&lt;/b&gt; profected to the &lt;b&gt;{ordn(pr[&#x27;house&#x27;])} house, {pr[&#x27;sign&#x27;]}&lt;/b&gt; &quot;
+       f&quot;— year-lord &lt;b&gt;{pr[&#x27;lord&#x27;]}&lt;/b&gt;. On July 2 it rolls into the &lt;b&gt;{ordn(nxt[&#x27;house&#x27;])} &quot;
+       f&quot;({nxt[&#x27;sign&#x27;]}), lord {nxt[&#x27;lord&#x27;]}&lt;/b&gt; — the Freedom 250 year.&lt;/p&gt;&quot;)
+    if out: s+=&quot;&lt;p&gt;&quot;+&quot;; &quot;.join(out)+&quot;.&lt;/p&gt;&quot;
+    else: s+=&quot;&lt;p&gt;&lt;i&gt;No outer planet within 3° of an angle right now.&lt;/i&gt;&lt;/p&gt;&quot;
+    return s
+
+# ===== Pessin: the lunar gestation layer ====================================
+def phase_role(elong):
+    e=elong%360
+    bands=[(180,&quot;Full Moon — bloom / revelation&quot;,&quot;Born at the instant of revelation — Pessin&#x27;s “all the cards on the table.” The Declaration &lt;i&gt;is&lt;/i&gt; the Full Moon: a public unveiling.&quot;),
+           (225,&quot;disseminating — broadcasting&quot;,&quot;Born to spread the word — the evangelist phase, demonstrating its creed to the world. (Two days past the revelation.)&quot;),
+           (270,&quot;Last Quarter — release&quot;,&quot;Born at the turning-in: collecting the seed for the next cycle.&quot;),
+           (135,&quot;waxing gibbous — refinement&quot;,&quot;Born just shy of the revelation, still perfecting the idea.&quot;),
+           (90,&quot;First Quarter — breaking ground&quot;,&quot;Born in the crisis of action.&quot;),
+           (45,&quot;waxing crescent — struggle&quot;,&quot;Born struggling out of the seed.&quot;),
+           (315,&quot;balsamic — the dying seed&quot;,&quot;Born at a cycle&#x27;s end, an old soul.&quot;),
+           (0,&quot;New Moon — seed&quot;,&quot;Born invisible, a pure beginning.&quot;)]
+    return min(bands,key=lambda b:abs((e-b[0]+180)%360-180))[1:]
+
+def find_newmoon_before(jd_t):
+    jd=jd_t-45; prev=None; last=None
+    while jd&lt;jd_t:
+        s=swe.calc_ut(jd,swe.SUN)[0][0]; m=swe.calc_ut(jd,swe.MOON)[0][0]
+        d=(m-s+180)%360-180
+        if prev is not None and prev&lt;0 and d&gt;=0:
+            lo,hi=jd-0.5,jd
+            for _ in range(42):
+                mid=(lo+hi)/2
+                s2=swe.calc_ut(mid,swe.SUN)[0][0]; m2=swe.calc_ut(mid,swe.MOON)[0][0]
+                if (m2-s2+180)%360-180&lt;0: lo=mid
+                else: hi=mid
+            last=hi
+        prev=d; jd+=0.5
+    return last, swe.calc_ut(last,swe.SUN)[0][0]
+
+def eclipses_between(jds,jde):
+    out=[]; j=jds
+    while j&lt;jde:
+        rf,tret=swe.sol_eclipse_when_glob(j,swe.FLG_SWIEPH,0); t=tret[0]
+        if t&gt;jde: break
+        sun=swe.calc_ut(t,swe.SUN)[0][0]; node=swe.calc_ut(t,swe.TRUE_NODE)[0][0]
+        dN=abs((sun-node+180)%360-180); dS=abs((sun-(node+180)+180)%360-180)
+        typ=&quot;Total&quot; if rf&amp;swe.ECL_TOTAL else(&quot;Annular&quot; if rf&amp;swe.ECL_ANNULAR else(&quot;Hybrid&quot; if rf&amp;swe.ECL_HYBRID else &quot;Partial&quot;))
+        y,mo,d,_=swe.revjul(t)
+        out.append({&quot;kind&quot;:&quot;Solar&quot;,&quot;type&quot;:typ,&quot;lon&quot;:sun%360,&quot;node&quot;:&quot;N&quot; if dN&lt;dS else &quot;S&quot;,&quot;date&quot;:f&quot;{mo:02d}/{d:02d}/{y}&quot;,&quot;y&quot;:y,&quot;m&quot;:mo,&quot;d&quot;:d})
+        j=t+10
+    j=jds
+    while j&lt;jde:
+        rf,tret=swe.lun_eclipse_when(j,swe.FLG_SWIEPH,0); t=tret[0]
+        if t&gt;jde: break
+        moon=swe.calc_ut(t,swe.MOON)[0][0]
+        typ=&quot;Total&quot; if rf&amp;swe.ECL_TOTAL else(&quot;Partial&quot; if rf&amp;swe.ECL_PARTIAL else &quot;Penumbral&quot;)
+        y,mo,d,_=swe.revjul(t)
+        out.append({&quot;kind&quot;:&quot;Lunar&quot;,&quot;type&quot;:typ,&quot;lon&quot;:moon%360,&quot;node&quot;:None,&quot;date&quot;:f&quot;{mo:02d}/{d:02d}/{y}&quot;,&quot;y&quot;:y,&quot;m&quot;:mo,&quot;d&quot;:d})
+        j=t+10
+    out.sort(key=lambda e:(e[&quot;y&quot;],e[&quot;m&quot;],e[&quot;d&quot;]))
+    return out
+
+SEED_JD,  SEED_SUN  = find_newmoon_before(CANDS[0][&quot;jd&quot;])             # the founding seed
+RESEED_JD,RESEED_SUN= find_newmoon_before(swe.julday(2026,7,2,12.0))  # the Freedom 250 seed
+ECL = eclipses_between(swe.julday(2026,7,2,0), swe.julday(2027,8,1,0))
+
+def signdeg(lon): return f&quot;{SGN[int(lon//30)]} {fmt_dms(lon)}&quot;
+def house_of(lon, ai): return ((int(lon//30)-ai)%12)+1
+AXIS={&quot;Cancer&quot;:&quot;the people &amp;amp; home vs the government &amp;amp; structure&quot;,
+      &quot;Capricorn&quot;:&quot;the government &amp;amp; structure vs the people &amp;amp; home&quot;,
+      &quot;Leo&quot;:&quot;the executive vs the legislature&quot;,&quot;Aquarius&quot;:&quot;the legislature vs the executive&quot;,
+      &quot;Aries&quot;:&quot;sovereignty vs partnership&quot;,&quot;Libra&quot;:&quot;partnership vs sovereignty&quot;,
+      &quot;Taurus&quot;:&quot;national wealth vs shared/hidden power&quot;,&quot;Scorpio&quot;:&quot;hidden power vs national wealth&quot;,
+      &quot;Gemini&quot;:&quot;the press &amp;amp; word vs belief &amp;amp; law&quot;,&quot;Sagittarius&quot;:&quot;belief &amp;amp; law vs the press &amp;amp; word&quot;,
+      &quot;Virgo&quot;:&quot;labour vs ideals&quot;,&quot;Pisces&quot;:&quot;ideals vs labour&quot;}
+
+def pessin_html(cand):
+    ch=cand[&quot;chart&quot;]; ai=ch[&quot;asc_idx&quot;]
+    sun=ch[&quot;lons&quot;][&quot;Sun&quot;]; moon=ch[&quot;lons&quot;][&quot;Moon&quot;]
+    pname,prole=phase_role((moon-sun)%360)
+    msign=SGN[int(moon//30)]; opp=SGN[(int(moon//30)+6)%12]
+    seed_h=house_of(SEED_SUN,ai); reseed_h=house_of(RESEED_SUN,ai)
+    moon_h=house_of(moon,ai); opp_h=house_of(moon+180,ai)
+    r=[]
+    r.append(f&quot;&lt;p&gt;&lt;b&gt;Founding phase:&lt;/b&gt; {pname}. {prole}&lt;/p&gt;&quot;)
+    r.append(f&quot;&lt;p&gt;&lt;b&gt;The Family axis:&lt;/b&gt; natal Moon in &lt;b&gt;{msign}&lt;/b&gt; ({signdeg(moon)}) — the &quot;
+             f&quot;&lt;b&gt;{msign}/{opp}&lt;/b&gt; family: {AXIS.get(msign,&#x27;&#x27;)}. Here it runs through the &quot;
+             f&quot;&lt;b&gt;{ordn(moon_h)} &amp;amp; {ordn(opp_h)} houses&lt;/b&gt;.&lt;/p&gt;&quot;)
+    r.append(f&quot;&lt;p&gt;&lt;b&gt;The original seed:&lt;/b&gt; independence was seeded at the New Moon of &quot;
+             f&quot;&lt;b&gt;{signdeg(SEED_SUN)}&lt;/b&gt; (06/16/1776) — a Gemini seed: a &lt;i&gt;document, a debate, the written word.&lt;/i&gt; &quot;
+             f&quot;It plants in this chart&#x27;s &lt;b&gt;{ordn(seed_h)} house&lt;/b&gt;.&lt;/p&gt;&quot;)
+    r.append(f&quot;&lt;p&gt;&lt;b&gt;The Freedom 250 re-seed:&lt;/b&gt; the year&#x27;s New Moon — &lt;b&gt;{signdeg(RESEED_SUN)}&lt;/b&gt; (06/15/2026) — &quot;
+             f&quot;falls within ~1° of the founding seed. &lt;i&gt;The founding degree, re-planted for the 250th year.&lt;/i&gt; &quot;
+             f&quot;It plants in this chart&#x27;s &lt;b&gt;{ordn(reseed_h)} house&lt;/b&gt;.&lt;/p&gt;&quot;)
+    elines=[]
+    for e in ECL:
+        h=house_of(e[&quot;lon&quot;],ai)
+        nd=(&quot;North Node — the nation &lt;b&gt;initiates&lt;/b&gt;&quot; if e[&quot;node&quot;]==&quot;N&quot; else
+            (&quot;South Node — the nation &lt;b&gt;responds&lt;/b&gt;&quot; if e[&quot;node&quot;]==&quot;S&quot; else &quot;lunar — revelation / crisis&quot;))
+        hit=&quot;&quot;
+        for nm,nl in [(&quot;natal Moon&quot;,moon),(&quot;natal Sun&quot;,sun),(&quot;the ASC&quot;,ch[&quot;asc&quot;]),(&quot;the MC&quot;,ch[&quot;mc&quot;])]:
+            o=abs((e[&quot;lon&quot;]-nl+180)%360-180)
+            oo=abs((e[&quot;lon&quot;]-(nl+180)+180)%360-180)
+            if o&lt;=3: hit=f&quot; — &lt;b&gt;conjunct {nm}&lt;/b&gt; ({o:.1f}°)&quot;; break
+            if oo&lt;=3: hit=f&quot; — &lt;b&gt;opposite {nm}&lt;/b&gt; ({oo:.1f}°)&quot;; break
+        elines.append(f&quot;&lt;li&gt;{e[&#x27;date&#x27;]} {e[&#x27;kind&#x27;]} ({e[&#x27;type&#x27;]}) &lt;b&gt;{signdeg(e[&#x27;lon&#x27;])}&lt;/b&gt; · {nd} · &quot;
+                      f&quot;&lt;b&gt;{ordn(h)} house&lt;/b&gt;{hit}&lt;/li&gt;&quot;)
+    r.append(&quot;&lt;p&gt;&lt;b&gt;Eclipses lighting the 250th year:&lt;/b&gt;&lt;/p&gt;&lt;ul class=&#x27;ecl&#x27;&gt;&quot;+&quot;&quot;.join(elines)+&quot;&lt;/ul&gt;&quot;)
+    return &quot;&quot;.join(r)
+
+# ===== The Timing Stack — the locked Sagittarius chart, run forward =========
+def timing_stack():
+    sag=[c for c in CANDS if c[&quot;key&quot;]==&quot;sag&quot;][0]
+    ch=sag[&quot;chart&quot;]; njd=sag[&quot;jd&quot;]; ai=ch[&quot;asc_idx&quot;]
+    asc=ch[&quot;asc&quot;]; mc=ch[&quot;mc&quot;]; natal=ch[&quot;lons&quot;]
+    main=[&quot;Sun&quot;,&quot;Moon&quot;,&quot;Mercury&quot;,&quot;Venus&quot;,&quot;Mars&quot;,&quot;Jupiter&quot;,&quot;Saturn&quot;,&quot;Uranus&quot;,&quot;Neptune&quot;,&quot;Pluto&quot;]
+    pid={n:dict(PLANETS)[n] for n in main}
+    def hse(l): return ((int(l//30)-ai)%12)+1
+    # profection
+    pn_now=profection_row(ai,249); pn_250=profection_row(ai,250)
+    prof=(f&quot;&lt;p&gt;Right now (age 249) the nation runs a &lt;b&gt;{ordn(pn_now[&#x27;house&#x27;])}-house {pn_now[&#x27;sign&#x27;]}&lt;/b&gt; &quot;
+          f&quot;profection — year-lord &lt;b&gt;{pn_now[&#x27;lord&#x27;]}&lt;/b&gt; (the administration year). On &lt;b&gt;July 2, 2026&lt;/b&gt; it &quot;
+          f&quot;rolls into the &lt;b&gt;{ordn(pn_250[&#x27;house&#x27;])}-house {pn_250[&#x27;sign&#x27;]}&lt;/b&gt; year — lord &lt;b&gt;{pn_250[&#x27;lord&#x27;]}&lt;/b&gt;, &quot;
+          f&quot;with the nation&#x27;s &lt;b&gt;exalted Saturn&lt;/b&gt; sitting right in that profected 11th. The 11th = the legislature, &quot;
+          f&quot;allies, collective hopes — the legislative-reset year (true for any rising; only sign &amp;amp; lord change). &quot;
+          f&quot;Year-lord {pn_250[&#x27;lord&#x27;]} is natally Cancer in the 8th, so 2026–27 transits to {pn_250[&#x27;lord&#x27;]} are the triggers.&lt;/p&gt;&quot;)
+    # secondary progressions
+    nowjd=swe.julday(2026,6,15,12.0); pj=njd+(nowjd-njd)/365.2422
+    prog={n:swe.calc_ut(pj,pid[n])[0][0] for n in main}
+    nxt=None; cur=int(prog[&quot;Sun&quot;]//30)
+    for yy in range(2026,2055):
+        s=int(swe.calc_ut(njd+(swe.julday(yy,7,1,12)-njd)/365.2422,swe.SUN)[0][0]//30)
+        if s!=cur: nxt=(SGN[s],yy); break
+    rows=[]
+    for p,pl in prog.items():
+        for nn,nl in natal.items():
+            o=abs((pl-nl+180)%360-180)
+            for ang,a in [(&quot;conjunct&quot;,0),(&quot;sextile&quot;,60),(&quot;square&quot;,90),(&quot;trine&quot;,120),(&quot;opposite&quot;,180)]:
+                if abs(o-a)&lt;=1.0: rows.append((abs(o-a),f&quot;prog {p} {ang} natal {nn} ({abs(o-a):.1f}°)&quot;))
+    rows.sort()
+    prog_h=(f&quot;&lt;p&gt;Progressed Sun &lt;b&gt;{signdeg(prog[&#x27;Sun&#x27;])}&lt;/b&gt; — the old national identity in its final &quot;
+        f&quot;&lt;b&gt;Piscean dissolution&lt;/b&gt;; it enters &lt;b&gt;{nxt[0]} ~{nxt[1]}&lt;/b&gt;, the next 30-year re-founding chapter. &quot;
+        f&quot;Progressed Moon &lt;b&gt;{signdeg(prog[&#x27;Moon&#x27;])}&lt;/b&gt; (the ~2.5-year public mood). Live progressed contacts:&lt;/p&gt;&quot;
+        f&quot;&lt;ul class=&#x27;ecl&#x27;&gt;{&#x27;&#x27;.join(f&#x27;&lt;li&gt;{t}&lt;/li&gt;&#x27; for _,t in rows[:6])}&lt;/ul&gt;&quot;)
+    # solar arc
+    arc=(prog[&quot;Sun&quot;]-natal[&quot;Sun&quot;])%360; sa=[]
+    for p,pl in natal.items():
+        dl=(pl+arc)%360
+        for nn,nl in list(natal.items())+[(&quot;ASC&quot;,asc),(&quot;MC&quot;,mc)]:
+            if nn==p: continue
+            o=abs((dl-nl+180)%360-180)
+            for ang,a in [(&quot;conj&quot;,0),(&quot;sq&quot;,90),(&quot;opp&quot;,180),(&quot;trine&quot;,120),(&quot;sextile&quot;,60)]:
+                if abs(o-a)&lt;=1.2: sa.append((abs(o-a),f&quot;SA {p} {ang} {nn} ({abs(o-a):.1f}°)&quot;))
+    sa.sort()
+    sa_h=(f&quot;&lt;p&gt;Solar arc = &lt;b&gt;{arc:.1f}°&lt;/b&gt;. Directed contacts within ~1°:&lt;/p&gt;&quot;+
+          (&quot;&lt;ul class=&#x27;ecl&#x27;&gt;&quot;+&quot;&quot;.join(f&quot;&lt;li&gt;{t}&lt;/li&gt;&quot; for _,t in sa[:5])+&quot;&lt;/ul&gt;&quot; if sa else
+           &quot;&lt;p&gt;&lt;i&gt;Between major directed contacts at the moment — the active arc hits cluster on the 2026–27 ingress dates in the scoreboard below.&lt;/i&gt;&lt;/p&gt;&quot;))
+    # solar return 2026 (DC)
+    DC=(38.9072,-77.0369); jd=swe.julday(2026,7,1,0.0)
+    for _ in range(80):
+        d=(swe.calc_ut(jd,swe.SUN)[0][0]-natal[&quot;Sun&quot;]+180)%360-180
+        if abs(d)&lt;0.005: break
+        jd-=d/1.0
+    sasc=swe.houses(jd,*DC,b&#x27;W&#x27;)[1][0]; smc=swe.houses(jd,*DC,b&#x27;W&#x27;)[1][1]; sidx=int(sasc//30)
+    srsun=swe.calc_ut(jd,swe.SUN)[0][0]; srmoon=swe.calc_ut(jd,swe.MOON)[0][0]
+    y,mo,dd,_=swe.revjul(jd)
+    sr_h=(f&quot;&lt;p&gt;The 250th-birthday year-chart, cast for Washington, D.C. ({mo:02d}/{dd:02d}/{y}): &quot;
+        f&quot;&lt;b&gt;{signdeg(sasc)} rising&lt;/b&gt; — conjunct the nation&#x27;s natal Uranus (Gemini 8°): a disruptive, awakening &quot;
+        f&quot;year for the body politic. SR &lt;b&gt;MC {signdeg(smc)}&lt;/b&gt; with the SR &lt;b&gt;Moon {signdeg(srmoon)}&lt;/b&gt; right on it &quot;
+        f&quot;— the public mood and the government&#x27;s year both turned to the new paradigm / the legislature. SR Sun lands in &quot;
+        f&quot;the SR &lt;b&gt;{ordn(((int(srsun//30)-sidx)%12)+1)} house&lt;/b&gt; — a money year. The year-chart reads as a &quot;
+        f&quot;publicly-led monetary &amp;amp; paradigm disruption.&lt;/p&gt;&quot;)
+    # ZR lots
+    day = hse(natal[&quot;Sun&quot;]) in (7,8,9,10,11,12)
+    if day: LoF=(asc+natal[&quot;Moon&quot;]-natal[&quot;Sun&quot;])%360; LoS=(asc+natal[&quot;Sun&quot;]-natal[&quot;Moon&quot;])%360
+    else:   LoF=(asc+natal[&quot;Sun&quot;]-natal[&quot;Moon&quot;])%360; LoS=(asc+natal[&quot;Moon&quot;]-natal[&quot;Sun&quot;])%360
+    zr_h=(f&quot;&lt;p&gt;The chart is a &lt;b&gt;day chart&lt;/b&gt; (Sun above the horizon, 8th house). The Lots that zodiacal releasing &quot;
+        f&quot;runs from: &lt;b&gt;Fortune {signdeg(LoF)}&lt;/b&gt; ({ordn(hse(LoF))} house — body &amp;amp; circumstance, here in the 7th of &quot;
+        f&quot;open enemies &amp;amp; treaties) and &lt;b&gt;Spirit {signdeg(LoS)}&lt;/b&gt; ({ordn(hse(LoS))} house — action &amp;amp; intent, here &quot;
+        f&quot;in the 6th of the armed forces &amp;amp; labour). ZR releases time-lord chapters from these signs, each sign&#x27;s length &quot;
+        f&quot;set by its ruler&#x27;s lesser years (Cap/Aqu 30 · Can 25 · Gem/Vir 20 · Leo 19 · Ari/Sco 15 · Sag/Pis 12 · Tau/Lib 8). &quot;
+        f&quot;&lt;b&gt;The live L1/L2 timeline and the “loosing of the bond” jumps are deferred&lt;/b&gt; until the Hellenistic source is &quot;
+        f&quot;in hand — per this project&#x27;s rule never to commit a technique from memory. The Lots themselves are exact and ready.&lt;/p&gt;&quot;)
+    return (&#x27;&lt;div class=&quot;card tstack&quot;&gt;&lt;h2&gt;The United States, running — the timing stack&lt;/h2&gt;&#x27;
+        &#x27;&lt;p class=&quot;idn&quot;&gt;Now that the chart is set, here is the locked &lt;b&gt;Sagittarius&lt;/b&gt; chart run forward by the &#x27;
+        &#x27;classical time-lord and directed techniques — the nation\&#x27;s own chart as a clock for the Freedom 250 year.&lt;/p&gt;&#x27;
+        &#x27;&lt;h3&gt;Annual profection — the year-lord&lt;/h3&gt;&#x27;+prof
+        +&#x27;&lt;h3&gt;Secondary progressions&lt;/h3&gt;&#x27;+prog_h
+        +&#x27;&lt;h3&gt;Solar arc directions&lt;/h3&gt;&#x27;+sa_h
+        +&#x27;&lt;h3&gt;Solar return 2026 — the year-chart, cast for D.C.&lt;/h3&gt;&#x27;+sr_h
+        +&#x27;&lt;h3&gt;Zodiacal releasing — the Lots&lt;/h3&gt;&#x27;+zr_h+&#x27;&lt;/div&gt;&#x27;)
+
+FRAG={c[&quot;key&quot;]:{&quot;pl&quot;:placements_html(c),&quot;pf&quot;:profection_html(c),&quot;now&quot;:now_html(c),
+                &quot;pess&quot;:pessin_html(c),
+                &quot;blurb&quot;:c[&quot;blurb&quot;],&quot;trad&quot;:c[&quot;tradition&quot;],&quot;time&quot;:c[&quot;time&quot;]} for c in CANDS}
+TIMING_SECTION=timing_stack()
+
+# scoreboard html
+winner=max(SCORE,key=lambda k:SCORE[k][&quot;total&quot;])
+labels={c[&quot;key&quot;]:c[&quot;label&quot;] for c in CANDS}
+def scoreboard_html():
+    head=&quot;&lt;tr&gt;&lt;th class=&#x27;evh&#x27;&gt;American hinge-point&lt;/th&gt;&quot;+&quot;&quot;.join(
+        f&quot;&lt;th&gt;{labels[c[&#x27;key&#x27;]]}&lt;/th&gt;&quot; for c in CANDS)+&quot;&lt;/tr&gt;&quot;
+    body=[]
+    for ev in EVENTS:
+        best=max(CANDS,key=lambda c:SCORE[c[&quot;key&quot;]][&quot;rows&quot;][ev[0]][&quot;s&quot;])[&quot;key&quot;]
+        cells=[]
+        for c in CANDS:
+            cell=SCORE[c[&quot;key&quot;]][&quot;rows&quot;][ev[0]]
+            win=&quot;winrow&quot; if c[&quot;key&quot;]==best and cell[&quot;s&quot;]&gt;0 else &quot;&quot;
+            tip=&quot; · &quot;.join(cell[&quot;r&quot;][:4]) if cell[&quot;r&quot;] else &quot;—&quot;
+            cells.append(f&quot;&lt;td class=&#x27;{win}&#x27;&gt;&lt;span class=&#x27;sc&#x27;&gt;{cell[&#x27;s&#x27;]}&lt;/span&gt;&quot;
+                         f&quot;&lt;span class=&#x27;rs&#x27;&gt;{tip}&lt;/span&gt;&lt;/td&gt;&quot;)
+        live=&quot;(LIVE)&quot; in ev[1]; lbl=ev[1].replace(&quot; (LIVE)&quot;,&quot;&quot;)
+        badge=&quot; &lt;span class=&#x27;livebadge&#x27;&gt;● live today&lt;/span&gt;&quot; if live else &quot;&quot;
+        rc=&quot; class=&#x27;liverow&#x27;&quot; if live else &quot;&quot;
+        body.append(f&quot;&lt;tr{rc}&gt;&quot;
+                    f&quot;&lt;td class=&#x27;evh&#x27;&gt;&lt;b&gt;{ev[0][:4]}&lt;/b&gt; {lbl}{badge}&lt;/td&gt;&quot;+&quot;&quot;.join(cells)+&quot;&lt;/tr&gt;&quot;)
+    tot=&quot;&lt;tr class=&#x27;totrow&#x27;&gt;&lt;td class=&#x27;evh&#x27;&gt;TOTAL&lt;/td&gt;&quot;+&quot;&quot;.join(
+        f&quot;&lt;td class=&#x27;{&#x27;wintot&#x27; if c[&#x27;key&#x27;]==winner else &#x27;&#x27;}&#x27;&gt;{SCORE[c[&#x27;key&#x27;]][&#x27;total&#x27;]}&lt;/td&gt;&quot;
+        for c in CANDS)+&quot;&lt;/tr&gt;&quot;
+    return (&quot;&lt;table class=&#x27;sb&#x27;&gt;&lt;thead&gt;&quot;+head+&quot;&lt;/thead&gt;&lt;tbody&gt;&quot;+&quot;&quot;.join(body)+tot+&quot;&lt;/tbody&gt;&lt;/table&gt;&quot;)
+
+# ---------------------------------------------------------------------------
+HTML = &quot;&quot;&quot;&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;The American Charts&lt;/title&gt;
+&lt;style&gt;
+:root{--bg:#faf8f3;--ink:#23201a;--mut:#8a8377;--line:#e3d9c2;--gold:#a8821f;--red:#7a2e1d;--blue:#3a6ea5;--grn:#2e8b74;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:&quot;Iowan Old Style&quot;,Palatino,Georgia,serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
+h1{font-size:30px;margin:0 0 2px;letter-spacing:.3px}
+.sub{color:var(--mut);font-style:italic;margin:0 0 18px}
+.lead{font-size:15.5px;max-width:760px;margin:0 0 22px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.tab{cursor:pointer;border:1px solid var(--line);background:#fff;padding:9px 15px;border-radius:8px;font-family:inherit;font-size:14.5px;color:var(--ink)}
+.tab .tt{font-size:11.5px;color:var(--mut);display:block}
+.tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab.on .tt{color:#cfc6b4}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:12px;background:#fffdf8;padding:16px 18px;margin:0 0 20px}
+.card h2{font-size:18px;margin:0 0 8px}
+.card h3{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:18px 0 6px;font-weight:normal}
+#wheelbox svg{max-width:520px;margin:0 auto;display:block}
+.idn{font-size:14.5px}
+.idn .trad{color:var(--gold);font-style:italic}
+table{border-collapse:collapse;width:100%;font-size:13px}
+.pl td,.pl th,.pf td,.pf th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+.pl .hc{text-align:center;color:var(--mut)}
+.dig-pos{color:var(--grn)}.dig-neg{color:var(--red)}
+.pf .f250{background:#fbf2d6;font-weight:bold}
+.pf .f250 td{border-color:#e6d28f}
+.sb{font-size:12.5px;margin-top:6px}
+.sb th{background:#f1ead8;padding:8px;border:1px solid var(--line);text-align:center}
+.sb th.evh{text-align:left;width:34%}
+.sb td{border:1px solid var(--line);padding:7px 8px;vertical-align:top;text-align:center}
+.sb td.evh{text-align:left}
+.sb .sc{font-size:17px;font-weight:bold;display:block}
+.sb .rs{font-size:10.5px;color:var(--mut);display:block;line-height:1.3;margin-top:2px}
+.sb .winrow{background:#eef5ee}
+.sb .winrow .sc{color:var(--grn)}
+.sb .totrow td{background:#f1ead8;font-size:18px;font-weight:bold}
+.sb .wintot{background:#dff0df;color:var(--grn)}
+.sb .liverow td{background:#eef6f0}.sb .liverow td.evh{border-left:4px solid var(--grn)}
+.livebadge{color:var(--grn);font-size:10.5px;font-weight:bold;margin-left:6px}
+.tstack{border-left:4px solid var(--gold)}
+.tstack h3{color:var(--red)}
+.note{font-size:12.5px;color:var(--mut);max-width:780px;margin-top:14px}
+.verdict{background:#fbf2d6;border:1px solid #e6d28f;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14.5px}
+.ecl{margin:6px 0 0;padding-left:18px;font-size:12.5px}.ecl li{margin:4px 0}
+.moonbar{background:#eef0f6;border:1px solid #cdd4e6;border-left:4px solid var(--blue);border-radius:10px;padding:13px 18px;margin:0 0 22px;font-size:14.5px;max-width:840px}
+.locked{background:#fbf2d6;border:1px solid #e6d28f;border-left:4px solid var(--gold);border-radius:10px;padding:13px 18px;margin:0 0 16px;font-size:14.5px;max-width:840px}
+.tab.canon{border-color:var(--gold)}
+.tab.canon.on{background:var(--gold);border-color:var(--gold);color:#fff}
+.tab.canon.on .tt{color:#f3ead0}
+b{font-weight:bold}
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class=&quot;wrap&quot;&gt;
+&lt;h1&gt;The American Charts&lt;/h1&gt;
+&lt;p class=&quot;sub&quot;&gt;July 2, 1776 · Sagittarius rising — &lt;b&gt;the chart, chosen.&lt;/b&gt; The alternates kept for the truths they still tell.&lt;/p&gt;
+&lt;div class=&quot;locked&quot;&gt;★ &lt;b&gt;Locked in.&lt;/b&gt; The United States = &lt;b&gt;July 2, 1776 · ~5:10 PM LMT · Philadelphia · Sagittarius 10°44′ rising&lt;/b&gt;, ruled by an &lt;b&gt;exalted Jupiter&lt;/b&gt; in Cancer — with &lt;b&gt;Saturn exalted&lt;/b&gt; too (both societal planets at their finest). Chosen after testing every candidate against __NEV__ turning-points; the Gemini and Sibley charts remain below as alternates.&lt;/div&gt;
+&lt;p class=&quot;lead&quot;&gt;No clock survives from the day Congress voted for independence, so several charts were possible — each a different room of the same house. This instrument casts them all from Swiss Ephemeris, runs the timing layers on each (annual profections, the Pluto return, transits to the angles), and lets them &lt;b&gt;confess against history&lt;/b&gt;: __NEV__ American turning-points from Yorktown to today, scored by how hard each chart&#x27;s &lt;i&gt;own&lt;/i&gt; angles, solar-arc directions, and year-lord were lit when the event struck. The chart that knew American history best — Sagittarius rising, July 2 — is now locked in; the others stay as the truths they still tell.&lt;/p&gt;
+&lt;div class=&quot;moonbar&quot;&gt;__MOONBAR__&lt;/div&gt;
+&lt;div class=&quot;tabs&quot; id=&quot;tabs&quot;&gt;__TABS__&lt;/div&gt;
+&lt;div id=&quot;panel&quot;&gt;&lt;/div&gt;
+
+__TIMINGSTACK__
+
+&lt;div class=&quot;card&quot;&gt;
+&lt;h2&gt;The rectification scoreboard&lt;/h2&gt;
+&lt;p class=&quot;idn&quot;&gt;Each cell scores that chart at that event: &lt;b&gt;+3&lt;/b&gt; per transiting outer planet on an angle (≤2°), &lt;b&gt;+2&lt;/b&gt; per solar-arc direction to an angle (≤1°), &lt;b&gt;+2&lt;/b&gt; if the profected year-lord was struck by a transiting outer, &lt;b&gt;+1&lt;/b&gt; per outer planet sitting in an angular house. Only the things that &lt;i&gt;differ between charts&lt;/i&gt; are scored — transit-to-natal-planet hits are identical across all three, so they&#x27;re left out. The green cell wins each row. The final row is &lt;b&gt;today&#x27;s Iran peace deal&lt;/b&gt; — a live test, not a historical anchor: it simply shows whose angles are lit right now.&lt;/p&gt;
+__SCOREBOARD__
+&lt;div class=&quot;verdict&quot;&gt;__VERDICT__&lt;/div&gt;
+&lt;p class=&quot;note&quot;&gt;A caveat in Katie&#x27;s spirit: __NEV__ events is a fuller jury, but a scoreboard is still a blunt instrument for something as alive as a national chart. Treat it as suggestive testimony, not a verdict from on high. The charts each still tell a truth — this only asks which one tells it on time. Method: angles and MC from the listed candidate clock times (Philadelphia LMT → UT); solar arc = secondary-progressed Sun&#x27;s travel; profection by Whole-Sign rising; all bodies midnight-to-noon UT Swiss Ephemeris.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p class=&quot;note&quot;&gt;Built __DATE__ · positions computed from Swiss Ephemeris, never hand-entered · Whole Sign houses · charts cast for Philadelphia (founding) — mundane transits read for D.C. per project convention. Asteroid 916 America omitted here (needs the cached Horizons grid); add via minor_points.py on a later pass.&lt;/p&gt;
+
+&lt;script&gt;
+__WHEEL_JS__
+var CHARTS={};
+var REC=__REC__;
+var FRAG=__FRAG__;
+var ORDER=__ORDER__;
+function render(key){
+  var r=REC[key], f=FRAG[key];
+  document.querySelectorAll(&#x27;.tab&#x27;).forEach(function(t){t.classList.toggle(&#x27;on&#x27;,t.dataset.k===key);});
+  var html=&#x27;&#x27;
+   +&#x27;&lt;div class=&quot;grid&quot;&gt;&#x27;
+   +&#x27;&lt;div&gt;&lt;div id=&quot;wheelbox&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#x27;
+   +&#x27;&lt;div&gt;&lt;div class=&quot;card idn&quot;&gt;&lt;h2&gt;&#x27;+document.querySelector(\&#x27;.tab[data-k=&quot;\&#x27;+key+\&#x27;&quot;] .tl\&#x27;).textContent+&#x27;&lt;/h2&gt;&#x27;
+   +&#x27;&lt;p class=&quot;trad&quot;&gt;&#x27;+f.trad+&#x27; — &#x27;+f.time+&#x27;&lt;/p&gt;&#x27;
+   +&#x27;&lt;p&gt;&#x27;+f.blurb+&#x27;&lt;/p&gt;&#x27;
+   +&#x27;&lt;h3&gt;Placements&lt;/h3&gt;&#x27;+f.pl+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;
+   +&#x27;&lt;/div&gt;&#x27;
+   +&#x27;&lt;div class=&quot;grid&quot;&gt;&#x27;
+   +&#x27;&lt;div class=&quot;card&quot;&gt;&lt;h2&gt;The profection ladder&lt;/h2&gt;&#x27;
+   +&#x27;&lt;p class=&quot;idn&quot;&gt;Each year of national life advances the year-lord one Whole-Sign house from the rising. Watch what governs the 250th year:&lt;/p&gt;&#x27;+f.pf+&#x27;&lt;/div&gt;&#x27;
+   +&#x27;&lt;div class=&quot;card&quot;&gt;&lt;h2&gt;Right now&lt;/h2&gt;&#x27;+f.now+&#x27;&lt;/div&gt;&#x27;
+   +&#x27;&lt;/div&gt;&#x27;
+   +&#x27;&lt;div class=&quot;card&quot;&gt;&lt;h2&gt;Lunar gestation — Pessin (the Moon families)&lt;/h2&gt;&#x27;
+   +&#x27;&lt;p class=&quot;idn&quot;&gt;Every national storyline is a lunation cycle — seeded at a New Moon, revealed at the Full, the same degrees recurring as a family across the years. Here is this chart\&#x27;s lunar lineage.&lt;/p&gt;&#x27;+f.pess+&#x27;&lt;/div&gt;&#x27;;
+  document.getElementById(&#x27;panel&#x27;).innerHTML=html;
+  document.getElementById(&#x27;wheelbox&#x27;).innerHTML=wheelSVG(r,null,false);
+}
+document.getElementById(&#x27;tabs&#x27;).addEventListener(&#x27;click&#x27;,function(e){
+  var t=e.target.closest(&#x27;.tab&#x27;); if(t) render(t.dataset.k);
+});
+render(ORDER[0]);
+&lt;/script&gt;
+&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;
+
+tabs=&quot;&quot;.join(
+ f&#x27;&lt;button class=&quot;tab{&quot; on&quot; if i==0 else &quot;&quot;}{&quot; canon&quot; if c.get(&quot;canon&quot;) else &quot;&quot;}&quot; data-k=&quot;{c[&quot;key&quot;]}&quot;&gt;&#x27;
+ f&#x27;&lt;span class=&quot;tl&quot;&gt;{&quot;★ &quot; if c.get(&quot;canon&quot;) else &quot;&quot;}{c[&quot;label&quot;]}&lt;/span&gt;&lt;span class=&quot;tt&quot;&gt;{c[&quot;time&quot;]}&lt;/span&gt;&lt;/button&gt;&#x27;
+ for i,c in enumerate(CANDS))
+
+t_gem,t_sag,t_sib=SCORE[&#x27;gem&#x27;][&#x27;total&#x27;],SCORE[&#x27;sag&#x27;][&#x27;total&#x27;],SCORE[&#x27;sib&#x27;][&#x27;total&#x27;]
+verdict=(f&quot;The bigger jury reveals something better than a single winner. The scoreboard can cleanly separate the &quot;
+  f&quot;&lt;b&gt;Gemini-rising body&lt;/b&gt; from the &lt;b&gt;Sagittarius-rising pair&lt;/b&gt; — and when it does, American history sorts itself &quot;
+  f&quot;&lt;b&gt;by house&lt;/b&gt;. The Gemini chart (Cancer money in the &lt;b&gt;2nd&lt;/b&gt; — our OWN money) lights up for the domestic-money &quot;
+  f&quot;crises and internal upheavals: the 1929 Crash, FDR&#x27;s 1933 gold seizure, Nixon&#x27;s 1971 gold window, Watergate, COVID. &quot;
+  f&quot;The Sagittarius chart (Cancer money in the &lt;b&gt;8th&lt;/b&gt; — the SYSTEM and other people&#x27;s money) lights up for the &quot;
+  f&quot;structural and foreign turns: the 1913 birth of the Fed, 1944 Bretton Woods, Pearl Harbor, 9/11, the 2016 populist &quot;
+  f&quot;turn, the 2022 Pluto-return war. Each rising tells its truth — and the events sort themselves between the two rooms.&quot;)
+verdict+=(f&quot;&lt;br&gt;&lt;br&gt;Totals: Sibley {t_sib} · Sagittarius (July 2) {t_sag} · Gemini {t_gem}. &lt;b&gt;But read the top two with &quot;
+  f&quot;great care.&lt;/b&gt; Sibley and the Sagittarius-July-2 chart are the &lt;b&gt;same chart ±2 days&lt;/b&gt; (ascendants 252° vs 251°), so &quot;
+  f&quot;this test cannot truly separate them — their gap is orb-noise — and it is &lt;i&gt;blind to the Moon&lt;/i&gt;, which is the only real &quot;
+  f&quot;difference between them: July 2&#x27;s Capricorn Moon applying to Pluto vs July 4&#x27;s void Aquarius Moon. On the Moon — your whole &quot;
+  f&quot;objection — July 2 wins decisively. So the honest reading of {len(EVENTS)} turning-points: the rising is &lt;b&gt;Sagittarian&lt;/b&gt; &quot;
+  f&quot;(the 8th-house, freedom-crusader, debt-empire America), and the day is &lt;b&gt;July 2&lt;/b&gt;. The Gemini chart isn&#x27;t wrong — it&#x27;s &quot;
+  f&quot;the truer chart of the nation&#x27;s &lt;i&gt;own&lt;/i&gt; money and body — but Sagittarius rising carries the system, and the system is &quot;
+  f&quot;this chronicle&#x27;s spine.&quot;)
+verdict+=(f&quot;&lt;br&gt;&lt;br&gt;For all candidates, the &lt;b&gt;US Pluto return&lt;/b&gt; (transiting Pluto back to natal Pluto &quot;
+          f&quot;{CANDS[0][&#x27;chart&#x27;][&#x27;pos&#x27;][9][&#x27;sign&#x27;]} {CANDS[0][&#x27;chart&#x27;][&#x27;pos&#x27;][9][&#x27;dms&#x27;]}) completed in &quot;
+          +(&quot;, &quot;.join(PLUTO_PASSES) if PLUTO_PASSES else &quot;2022&quot;)
+          +&quot; — the once-in-248-years rebirth of the national power-core, now behind us as Pluto enters Aquarius. That is the backdrop the whole chronicle is written against.&quot;)
+
+cap_ecl=next((e for e in ECL if SGN[int(e[&quot;lon&quot;]//30)]==&quot;Capricorn&quot; and e[&quot;kind&quot;]==&quot;Lunar&quot;),None)
+moonbar=(&quot;&lt;b&gt;The lunar headline.&lt;/b&gt; The New Moon seeding the Freedom 250 year — &lt;b&gt;&quot;+signdeg(RESEED_SUN)+
+  &quot;&lt;/b&gt; on 06/15/2026 — falls within ~1° of the New Moon that seeded independence itself (&lt;b&gt;&quot;+signdeg(SEED_SUN)+
+  &quot;&lt;/b&gt;, 06/16/1776): &lt;i&gt;the founding seed-degree, re-planted 250 years on.&lt;/i&gt;&quot;)
+if cap_ecl:
+    moonbar+=(&quot; And on &quot;+cap_ecl[&quot;date&quot;]+&quot; a lunar eclipse at &lt;b&gt;&quot;+signdeg(cap_ecl[&quot;lon&quot;])+
+      &quot;&lt;/b&gt; falls on the US natal Moon — re-lighting the founding Cancer–Capricorn axis (the people vs the government) to close the year.&quot;)
+
+out=(HTML
+  .replace(&quot;__MOONBAR__&quot;,moonbar)
+  .replace(&quot;__TIMINGSTACK__&quot;,TIMING_SECTION)
+  .replace(&quot;__NEV__&quot;,str(len(EVENTS)))
+  .replace(&quot;__TABS__&quot;,tabs)
+  .replace(&quot;__SCOREBOARD__&quot;,scoreboard_html())
+  .replace(&quot;__VERDICT__&quot;,verdict)
+  .replace(&quot;__DATE__&quot;,datetime.date.today().isoformat())
+  .replace(&quot;__WHEEL_JS__&quot;,WHEEL_JS)
+  .replace(&quot;__REC__&quot;,json.dumps(REC))
+  .replace(&quot;__FRAG__&quot;,json.dumps(FRAG))
+  .replace(&quot;__ORDER__&quot;,json.dumps([c[&quot;key&quot;] for c in CANDS])))
+
+OUT=os.environ.get(&quot;OUT&quot;,&quot;The American Charts.html&quot;)
+with open(OUT,&quot;w&quot;) as fh: fh.write(out)
+print(&quot;wrote&quot;,OUT,len(out),&quot;bytes&quot;)
+print(&quot;scores:&quot;,{labels[k]:SCORE[k][&quot;total&quot;] for k in SCORE},&quot;winner:&quot;,labels[winner])
+print(&quot;pluto passes:&quot;,PLUTO_PASSES)
+</pre></main></body></html>

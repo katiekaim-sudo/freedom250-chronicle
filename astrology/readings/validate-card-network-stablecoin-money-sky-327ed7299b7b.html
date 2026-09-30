@@ -1,0 +1,202 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/validate-card-network-stablecoin-money-sky-327ed7299b7b.html">
+<title>validate_card_network_stablecoin_money_sky</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · current</div><h1>validate_card_network_stablecoin_money_sky</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Money x Sky/Retail Payment Terminal Transition 2026-07-28/card-network-stablecoin-astrology-workbench/validate_card_network_stablecoin_money_sky.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Static integrity checks for the stablecoin product-line Money × Sky surface.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+import json
+import sys
+from collections import Counter
+from html.parser import HTMLParser
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+SHARED = HERE.parent / &quot;astrology-workbench&quot;
+CARDS = HERE / &quot;card_network_stablecoin_astrology_cards.json&quot;
+ASTRO = HERE / &quot;CARD_NETWORK_STABLECOIN_ASTROLOGY_DATA_2026-07-29.json&quot;
+OUTPUT = HERE / &quot;outputs&quot; / &quot;Card Networks Add Stablecoin Product Lines — Money × Sky.html&quot;
+MANIFEST = HERE / &quot;outputs&quot; / &quot;build_manifest.json&quot;
+
+EXPECTED_IDS = [
+    &quot;apple_pay_control&quot;,
+    &quot;visa_acquirer_usdc&quot;,
+    &quot;visa_bridge_launch&quot;,
+    &quot;fiserv_fiusd&quot;,
+    &quot;visa_us_settlement&quot;,
+    &quot;visa_bridge_expansion&quot;,
+    &quot;square_bitcoin_terms&quot;,
+    &quot;mastercard_bvnk&quot;,
+    &quot;stripe_sessions&quot;,
+    &quot;paypal_crypto_terms&quot;,
+    &quot;mastercard_settlement&quot;,
+    &quot;hyperwallet_pyusd&quot;,
+    &quot;jcb_circle_mou&quot;,
+    &quot;visa_vsp&quot;,
+]
+
+
+class AuditParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.articles = 0
+        self.details = 0
+        self.chart_buttons = 0
+        self.source_links = 0
+        self.ids: set[str] = set()
+
+    def handle_starttag(self, tag, attrs):
+        data = dict(attrs)
+        classes = set(data.get(&quot;class&quot;, &quot;&quot;).split())
+        if tag == &quot;article&quot; and &quot;entry&quot; in classes:
+            self.articles += 1
+        if tag == &quot;details&quot; and &quot;dd&quot; in classes:
+            self.details += 1
+        if tag == &quot;button&quot; and &quot;cbtn&quot; in classes:
+            self.chart_buttons += 1
+        if tag == &quot;a&quot; and data.get(&quot;href&quot;, &quot;&quot;).startswith(&quot;http&quot;):
+            self.source_links += 1
+        if &quot;id&quot; in data:
+            if data[&quot;id&quot;] in self.ids:
+                fail(f&quot;duplicate HTML id: {data[&#x27;id&#x27;]}&quot;)
+            self.ids.add(data[&quot;id&quot;])
+
+
+def fail(message: str) -&gt; None:
+    print(f&quot;FAIL: {message}&quot;, file=sys.stderr)
+    raise SystemExit(1)
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main() -&gt; None:
+    cards = json.loads(CARDS.read_text(encoding=&quot;utf-8&quot;))
+    astro = json.loads(ASTRO.read_text(encoding=&quot;utf-8&quot;))
+    manifest = json.loads(MANIFEST.read_text(encoding=&quot;utf-8&quot;))
+    output = OUTPUT.read_text(encoding=&quot;utf-8&quot;)
+
+    card_ids = [card[&quot;id&quot;] for card in cards[&quot;cards&quot;]]
+    event_ids = [event[&quot;id&quot;] for event in astro[&quot;events&quot;]]
+    if card_ids != EXPECTED_IDS or event_ids != EXPECTED_IDS:
+        fail(&quot;card/event ids or ordering diverge from the frozen 14-anchor ledger&quot;)
+    if len(set(event_ids)) != 14:
+        fail(&quot;event ids are not unique&quot;)
+
+    modes = Counter(event[&quot;clock_mode&quot;] for event in astro[&quot;events&quot;])
+    if modes != Counter({&quot;reported&quot;: 1, &quot;noon_proxy&quot;: 1, &quot;midnight_proxy&quot;: 12}):
+        fail(f&quot;clock classes changed: {dict(modes)}&quot;)
+    if astro.get(&quot;clock_counts&quot;) != {
+        &quot;reported&quot;: 1,
+        &quot;noon_proxy&quot;: 1,
+        &quot;midnight_proxy&quot;: 12,
+    }:
+        fail(&quot;dataset clock-count control is stale&quot;)
+
+    for event in astro[&quot;events&quot;]:
+        context = event.get(&quot;contextual_container_clock&quot;)
+        if not context:
+            fail(f&quot;{event[&#x27;id&#x27;]} lacks its inspectable chart record&quot;)
+        dc_context = event.get(&quot;dc_companion_clock&quot;)
+        if not dc_context:
+            fail(f&quot;{event[&#x27;id&#x27;]} lacks its same-instant D.C. companion&quot;)
+        if context[&quot;utc&quot;] != dc_context[&quot;utc&quot;]:
+            fail(f&quot;{event[&#x27;id&#x27;]} D.C. companion changed the instant&quot;)
+        for point in (&quot;True Node&quot;, &quot;SNode&quot;, &quot;Chiron&quot;):
+            if point not in context[&quot;positions&quot;] or point not in dc_context[&quot;positions&quot;]:
+                fail(f&quot;{event[&#x27;id&#x27;]} lacks required point {point}&quot;)
+        assumed = event[&quot;clock_mode&quot;] != &quot;reported&quot;
+        if event.get(&quot;angles_assumed&quot;) is not assumed:
+            fail(f&quot;{event[&#x27;id&#x27;]} angle-assumption flag is wrong&quot;)
+        if event.get(&quot;houses_assumed&quot;) is not assumed:
+            fail(f&quot;{event[&#x27;id&#x27;]} house-assumption flag is wrong&quot;)
+        caption = context.get(&quot;caption&quot;, &quot;&quot;)
+        if assumed and &quot;Synthetic&quot; not in caption:
+            fail(f&quot;{event[&#x27;id&#x27;]} does not label the convention chart synthetic&quot;)
+        if not assumed and &quot;Reported&quot; not in caption:
+            fail(&quot;Apple Pay does not retain its reported-clock caption&quot;)
+        if assumed and &quot;remain convention-derived&quot; not in dc_context.get(&quot;caption&quot;, &quot;&quot;):
+            fail(f&quot;{event[&#x27;id&#x27;]} D.C. companion hides its synthetic-angle boundary&quot;)
+    stripe = next(event for event in astro[&quot;events&quot;] if event[&quot;id&quot;] == &quot;stripe_sessions&quot;)
+    if stripe[&quot;local_time&quot;] != &quot;12:00&quot; or stripe[&quot;clock_mode&quot;] != &quot;noon_proxy&quot;:
+        fail(&quot;Stripe must remain the sole noon-convention chart&quot;)
+    apple = next(event for event in astro[&quot;events&quot;] if event[&quot;id&quot;] == &quot;apple_pay_control&quot;)
+    if apple[&quot;local_time&quot;] != &quot;10:47&quot; or apple[&quot;clock_mode&quot;] != &quot;reported&quot;:
+        fail(&quot;Apple Pay reported control clock changed&quot;)
+    america_available = [
+        event[&quot;id&quot;] for event in astro[&quot;events&quot;] if &quot;America&quot; in event[&quot;positions&quot;]
+    ]
+    america_unavailable = [
+        event[&quot;id&quot;] for event in astro[&quot;events&quot;] if &quot;America&quot; not in event[&quot;positions&quot;]
+    ]
+    if america_unavailable != [&quot;apple_pay_control&quot;, &quot;visa_acquirer_usdc&quot;]:
+        fail(f&quot;unexpected America cache boundary: {america_unavailable}&quot;)
+    if len(america_available) != 12:
+        fail(&quot;916 America should be present on the twelve 2025–2026 anchors&quot;)
+    if astro.get(&quot;america_counts&quot;) != {&quot;available&quot;: 12, &quot;unavailable&quot;: 2}:
+        fail(&quot;America count control is stale&quot;)
+    if astro.get(&quot;dc_companion_count&quot;) != 14:
+        fail(&quot;D.C. companion count control is stale&quot;)
+
+    parser = AuditParser()
+    parser.feed(output)
+    if parser.articles != 14 or parser.details != 14 or parser.chart_buttons != 28:
+        fail(
+            &quot;HTML counts changed: &quot;
+            f&quot;articles={parser.articles}, details={parser.details}, charts={parser.chart_buttons}&quot;
+        )
+    if parser.source_links &lt; 14:
+        fail(&quot;one or more cards lacks a source link&quot;)
+    for required in (
+        &quot;1 reported-time chart, 1 noon-convention chart and 12 midnight-convention charts&quot;,
+        &quot;14 local charts plus 14 Washington, D.C. same-instant companions&quot;,
+        &quot;916 America: 12 cache-supported anchors&quot;,
+        &quot;synthetic research geometry&quot;,
+        &quot;daily backtest was null&quot;,
+        &quot;No astrological strength or similarity score is computed&quot;,
+        &quot;Adjacent March and July 2026 releases are temporal clusters&quot;,
+    ):
+        if required not in output and required not in json.dumps(manifest, ensure_ascii=False):
+            fail(f&quot;missing method boundary: {required}&quot;)
+    if &quot;☉&quot; in output or &quot;♄&quot; in output or &quot;♇&quot; in output:
+        fail(&quot;font astrology glyphs found; canonical wheel requires path glyphs&quot;)
+
+    if manifest[&quot;cards&quot;] != 14 or manifest[&quot;chartable_cards&quot;] != 14:
+        fail(&quot;manifest counts are stale&quot;)
+    if manifest.get(&quot;wheel_records&quot;) != 28:
+        fail(&quot;manifest D.C.-companion wheel count is stale&quot;)
+    if manifest[&quot;chronology_only_cards&quot;] != 0:
+        fail(&quot;all 14 anchors should be chartable under the user&#x27;s convention&quot;)
+    expected_hashes = {
+        CARDS.name: sha256(CARDS),
+        ASTRO.name: sha256(ASTRO),
+        &quot;vendor/wheel_lib.py&quot;: sha256(SHARED / &quot;vendor&quot; / &quot;wheel_lib.py&quot;),
+        &quot;vendor/us_rec.json&quot;: sha256(SHARED / &quot;vendor&quot; / &quot;us_rec.json&quot;),
+    }
+    if manifest[&quot;source_hashes&quot;] != expected_hashes:
+        fail(&quot;manifest source hashes are stale&quot;)
+
+    print(
+        &quot;PASS:&quot;,
+        &quot;14 cards;&quot;,
+        &quot;28 wheels;&quot;,
+        f&quot;{parser.source_links} source links;&quot;,
+        &quot;clock ledger 1 reported / 1 noon / 12 midnight;&quot;,
+        &quot;synthetic-angle boundary intact&quot;,
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

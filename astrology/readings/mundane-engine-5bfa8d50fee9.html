@@ -1,0 +1,325 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/mundane-engine-5bfa8d50fee9.html">
+<title>traditional rulerships (for dispositor chains — guarantees the classical loops)</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>traditional rulerships (for dispositor chains — guarantees the classical loops)</h1><p class="mut">Portable source: 99 - Templates/mundane_engine.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;THE MUNDANE ENGINE — ingress / lunation / eclipse, cast for D.C., Whole Sign.
+
+Reads the chronicle the way mundane astrology actually works (the nested
+hierarchy), NOT via daily charts. Spec: 00 - Index/Mundane Engine — Method Spec.md.
+Config (editable, Katie owns it): mundane_significators.json.
+
+Public API:
+  cast_ingress(year, sign)          -&gt; full ingress chart dict (positions, dignity,
+                                       combust, houses, chart_ruler, dispositor loop,
+                                       sun_neptune, named_aspects)
+  arc_scores(chart)                 -&gt; {arc: score}, with a reasoning trace
+  governing_ingress(date)           -&gt; the ingress chart governing that date (Greer rule)
+  lunations(start, end)             -&gt; New/Full Moons cast for D.C.
+  triggers(lunation, ingress)       -&gt; [(ingress_point, aspect, orb)] hard hits, or []
+  signature(date)                   -&gt; the full read for a date: governing ingress +
+                                       its arc emphasis + active lunation trigger +
+                                       predicted dominant arc + reasoning
+Needs pyswisseph. CSP/JS-free (pure compute module; views consume its JSON).
+&quot;&quot;&quot;
+import os, re, glob, json
+import swisseph as swe
+from datetime import date as Date, timedelta
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+EPHE = os.path.join(HERE, &quot;ephe&quot;)
+if os.path.isdir(EPHE): swe.set_ephe_path(EPHE)
+CFG = json.load(open(os.path.join(HERE, &quot;mundane_significators.json&quot;)))
+DC = CFG[&quot;dc&quot;]; W = CFG[&quot;weights&quot;]; ORB = CFG[&quot;orbs&quot;]
+INTERP = os.path.join(VAULT, &quot;03 - Astrology&quot;, &quot;Interpretations&quot;)
+
+SIGNS = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+MODALITY = {0:&quot;cardinal&quot;,1:&quot;fixed&quot;,2:&quot;mutable&quot;}  # by sign_idx % 3
+PLANETS = {&quot;Sun&quot;:0,&quot;Moon&quot;:1,&quot;Mercury&quot;:2,&quot;Venus&quot;:3,&quot;Mars&quot;:4,&quot;Jupiter&quot;:5,&quot;Saturn&quot;:6,&quot;Uranus&quot;:7,&quot;Neptune&quot;:8,&quot;Pluto&quot;:9}
+# traditional rulerships (for dispositor chains — guarantees the classical loops)
+RULER = {&quot;Aries&quot;:&quot;Mars&quot;,&quot;Taurus&quot;:&quot;Venus&quot;,&quot;Gemini&quot;:&quot;Mercury&quot;,&quot;Cancer&quot;:&quot;Moon&quot;,&quot;Leo&quot;:&quot;Sun&quot;,
+         &quot;Virgo&quot;:&quot;Mercury&quot;,&quot;Libra&quot;:&quot;Venus&quot;,&quot;Scorpio&quot;:&quot;Mars&quot;,&quot;Sagittarius&quot;:&quot;Jupiter&quot;,
+         &quot;Capricorn&quot;:&quot;Saturn&quot;,&quot;Aquarius&quot;:&quot;Saturn&quot;,&quot;Pisces&quot;:&quot;Jupiter&quot;}
+EXALT = {&quot;Sun&quot;:&quot;Aries&quot;,&quot;Moon&quot;:&quot;Taurus&quot;,&quot;Mercury&quot;:&quot;Virgo&quot;,&quot;Venus&quot;:&quot;Pisces&quot;,&quot;Mars&quot;:&quot;Capricorn&quot;,&quot;Jupiter&quot;:&quot;Cancer&quot;,&quot;Saturn&quot;:&quot;Libra&quot;}
+# Each planet has one detriment sign per domicile (Mercury, Venus, Mars, Jupiter and Saturn have two).
+# 2026-09-25: the earlier dict comprehension kept only the LAST sign per planet, silently dropping
+# Jupiter/Gemini, Mercury/Sagittarius, Mars/Libra, Venus/Scorpio and Saturn/Cancer.
+DETRI = {p: [] for p in (&quot;Sun&quot;,&quot;Moon&quot;,&quot;Mercury&quot;,&quot;Venus&quot;,&quot;Mars&quot;,&quot;Jupiter&quot;,&quot;Saturn&quot;)}
+for _p, _s in [(&quot;Mars&quot;,&quot;Aries&quot;),(&quot;Venus&quot;,&quot;Taurus&quot;),(&quot;Mercury&quot;,&quot;Gemini&quot;),(&quot;Moon&quot;,&quot;Cancer&quot;),(&quot;Sun&quot;,&quot;Leo&quot;),
+               (&quot;Mercury&quot;,&quot;Virgo&quot;),(&quot;Venus&quot;,&quot;Libra&quot;),(&quot;Mars&quot;,&quot;Scorpio&quot;),(&quot;Jupiter&quot;,&quot;Sagittarius&quot;),
+               (&quot;Saturn&quot;,&quot;Capricorn&quot;),(&quot;Saturn&quot;,&quot;Aquarius&quot;),(&quot;Jupiter&quot;,&quot;Pisces&quot;)]:
+    DETRI[_p].append(SIGNS[(SIGNS.index(_s)+6)%12])
+FALL = {p:SIGNS[(SIGNS.index(s)+6)%12] for p,s in EXALT.items()}
+ASPECTS = {0:&quot;conjunction&quot;,60:&quot;sextile&quot;,90:&quot;square&quot;,120:&quot;trine&quot;,180:&quot;opposition&quot;}
+HARD = {&quot;conjunction&quot;,&quot;square&quot;,&quot;opposition&quot;}
+
+def lon(jd,p): return swe.calc_ut(jd,p)[0][0]
+def sign_of(l): return SIGNS[int(((l%360)+1e-6)//30)%12]   # epsilon-robust at sign boundaries
+def deg_in_sign(l): return round(((l%360)+1e-6)%30, 2)
+
+# ---------- ingress moment ----------
+def ingress_jd(year, sign):
+    &quot;&quot;&quot;jd (UT) when the Sun enters 0° of a cardinal sign.&quot;&quot;&quot;
+    target = SIGNS.index(sign)*30  # 0/90/180/270
+    guess = {&quot;Aries&quot;:(3,20),&quot;Cancer&quot;:(6,21),&quot;Libra&quot;:(9,22),&quot;Capricorn&quot;:(12,21)}[sign]
+    lo = swe.julday(year, guess[0], guess[1]-4, 0.0)
+    hi = swe.julday(year, guess[0], guess[1]+4, 0.0)
+    def f(jd):
+        d = (lon(jd,0) - target + 180) % 360 - 180
+        return d
+    for _ in range(60):
+        mid=(lo+hi)/2
+        if f(lo)*f(mid)&lt;=0: hi=mid
+        else: lo=mid
+    return (lo+hi)/2
+
+# ---------- chart ----------
+def condition(planet, sgn, combust):
+    tags=[]
+    if RULER.get(sgn)==planet: tags.append(&quot;domicile&quot;)
+    if EXALT.get(planet)==sgn: tags.append(&quot;exalted&quot;)
+    if sgn in DETRI.get(planet, ()): tags.append(&quot;detriment&quot;)
+    if FALL.get(planet)==sgn: tags.append(&quot;fall&quot;)
+    if combust: tags.append(&quot;combust&quot;)
+    return tags
+
+def cast_ingress(year, sign):
+    jd = ingress_jd(year, sign)
+    cusps, ascmc = swe.houses(jd, DC[&quot;lat&quot;], DC[&quot;lon&quot;], b&#x27;W&#x27;)
+    asc = ascmc[0]; asc_sign = sign_of(asc); asc_idx = int(asc//30)
+    mc = ascmc[1]
+    sun_lon = float(SIGNS.index(sign)*30)  # the Sun is at 0° of the ingress sign BY DEFINITION
+    pos={}
+    for nm,pid in PLANETS.items():
+        l = sun_lon if nm==&quot;Sun&quot; else lon(jd,pid)
+        sgn=sign_of(l)
+        house = ((int(((l%360)+1e-6)//30)-asc_idx)%12)+1
+        combust = (nm!=&quot;Sun&quot; and abs((l-sun_lon+180)%360-180) &lt;= ORB[&quot;combust&quot;])
+        spd = swe.calc_ut(jd,pid)[0][3]
+        pos[nm]={&quot;lon&quot;:l,&quot;sign&quot;:sgn,&quot;deg&quot;:deg_in_sign(l),&quot;house&quot;:house,
+                 &quot;retro&quot;:spd&lt;0,&quot;combust&quot;:combust,&quot;cond&quot;:condition(nm,sgn,combust)}
+    # chart ruler + dispositor chain (traditional)
+    chart_ruler = RULER[asc_sign]
+    chain=[]; seen=set(); cur=chart_ruler; loop=False
+    while cur and cur not in seen:
+        seen.add(cur); chain.append(cur); nxt=RULER[pos[cur][&quot;sign&quot;]]
+        if nxt in seen: chain.append(nxt); loop=True; break
+        cur=nxt
+    # Sun-Neptune tracker
+    sn_orb = abs((pos[&quot;Sun&quot;][&quot;lon&quot;]-pos[&quot;Neptune&quot;][&quot;lon&quot;]+180)%360-180)
+    sn_asp=None
+    for ang,nm in ASPECTS.items():
+        if abs(sn_orb-ang)&lt;=ORB[&quot;named_aspect&quot;]: sn_asp=(nm,round(min(abs(sn_orb-ang),abs(sn_orb-(360-ang))),2)); break
+    # named aspects present
+    named=[]
+    for kind in (&quot;dangerous&quot;,&quot;fortunate&quot;):
+        for a,b in CFG[&quot;named_aspects&quot;][kind]:
+            sep=abs((pos[a][&quot;lon&quot;]-pos[b][&quot;lon&quot;]+180)%360-180)
+            for ang,nm in ASPECTS.items():
+                if abs(sep-ang)&lt;=ORB[&quot;named_aspect&quot;]:
+                    hostile = nm in HARD
+                    named.append({&quot;pair&quot;:[a,b],&quot;aspect&quot;:nm,&quot;orb&quot;:round(abs(sep-ang),2),
+                                  &quot;kind&quot;:kind,&quot;active&quot;:(hostile if kind==&quot;dangerous&quot; else nm in (&quot;conjunction&quot;,&quot;trine&quot;,&quot;sextile&quot;))})
+                    break
+    y,mo,dd,h = swe.revjul(jd)
+    return {&quot;year&quot;:year,&quot;sign&quot;:sign,&quot;jd&quot;:jd,&quot;date&quot;:f&quot;{y:04d}-{mo:02d}-{dd:02d}&quot;,
+            &quot;asc&quot;:asc,&quot;asc_sign&quot;:asc_sign,&quot;asc_modality&quot;:MODALITY[SIGNS.index(asc_sign)%3],
+            &quot;mc&quot;:mc,&quot;mc_sign&quot;:sign_of(mc),&quot;pos&quot;:pos,&quot;chart_ruler&quot;:chart_ruler,
+            &quot;dispositor_chain&quot;:chain,&quot;dispositor_loop&quot;:loop,
+            &quot;sun_neptune&quot;:{&quot;aspect&quot;:sn_asp[0] if sn_asp else None,&quot;orb&quot;:sn_asp[1] if sn_asp else None},
+            &quot;named_aspects&quot;:named}
+
+def validity_months(asc_modality):
+    return {&quot;fixed&quot;:12,&quot;cardinal&quot;:6,&quot;mutable&quot;:3}[asc_modality]
+
+# ---------- pair -&gt; arc (parsed live from interpretation notes) ----------
+_PAIR_ARC=None
+def pair_arc_map():
+    global _PAIR_ARC
+    if _PAIR_ARC is not None: return _PAIR_ARC
+    m={}; n2k=CFG[&quot;arc_name_to_key&quot;]
+    for f in glob.glob(os.path.join(INTERP,&quot;*.md&quot;)):
+        base=os.path.basename(f)[:-3]
+        parts=re.split(r&quot;[–-]&quot;, base)
+        if len(parts)&lt;2: continue
+        pair=tuple(p.strip() for p in parts[:2])
+        txt=open(f,encoding=&quot;utf-8&quot;,errors=&quot;ignore&quot;).read()
+        seg=txt.split(&quot;Chronicle arcs&quot;)[-1] if &quot;Chronicle arcs&quot; in txt else &quot;&quot;
+        arcs=set()
+        for name,key in n2k.items():
+            if name in seg: arcs.add(key)
+        trigger = &quot;trigger&quot; in seg.lower() and &quot;activates&quot; in seg.lower()
+        if arcs: m[frozenset(pair)]={&quot;arcs&quot;:sorted(arcs),&quot;trigger&quot;:trigger}
+    _PAIR_ARC=m
+    return m
+
+def _arc_for_pair(a,b):
+    return pair_arc_map().get(frozenset((a,b)))
+
+# ---------- arc scoring for an ingress ----------
+def arc_scores(chart):
+    sc={k:0.0 for k in CFG[&quot;arc_names&quot;]}
+    trace=[]
+    def add(arcmap, amount, why):
+        for arc,wt in arcmap.items():
+            sc[arc]+=amount*wt
+        trace.append((round(amount,2),why))
+    # era background
+    for name,drv in CFG[&quot;era_drivers&quot;].items():
+        add(drv[&quot;arcs&quot;], W[&quot;era_background&quot;]*drv[&quot;weight&quot;], f&quot;era: {name}&quot;)
+    # planets by house + by planet, weighted by condition/angularity/ruler
+    for nm,pl in chart[&quot;pos&quot;].items():
+        mult=1.0; cond=pl[&quot;cond&quot;]
+        if pl[&quot;house&quot;] in (1,4,7,10): mult*=W[&quot;angular_mult&quot;]
+        if nm==chart[&quot;chart_ruler&quot;]: mult*=W[&quot;chart_ruler_mult&quot;]
+        dig = (&quot;domicile&quot; in cond or &quot;exalted&quot; in cond)
+        deb = (&quot;detriment&quot; in cond or &quot;fall&quot; in cond)
+        bonus = (W[&quot;dignified_bonus&quot;] if dig else 0)+(W[&quot;debilitated_penalty&quot;] if deb else 0)+(W[&quot;combust_penalty&quot;] if pl[&quot;combust&quot;] else 0)
+        base = max(0.1, W[&quot;planet_base&quot;]*mult + bonus)
+        # house domain arc
+        ha=CFG[&quot;house_arc&quot;].get(str(pl[&quot;house&quot;]),{})
+        if ha: add(ha, W[&quot;house_base&quot;]*mult, f&quot;{nm} in {pl[&#x27;house&#x27;]}H {&#x27;/&#x27;.join(cond) or &#x27;peregrine&#x27;}&quot;)
+        # planet actor arc
+        pa=CFG[&quot;planet_arc&quot;].get(nm,{})
+        if pa: add(pa, base, f&quot;{nm} actor&quot;)
+    # named aspects (active ones) -&gt; their pair&#x27;s arc
+    for na in chart[&quot;named_aspects&quot;]:
+        if not na[&quot;active&quot;]: continue
+        pa=_arc_for_pair(*na[&quot;pair&quot;])
+        arcs = {a:1.0 for a in pa[&quot;arcs&quot;]} if pa else {}
+        if arcs:
+            amt=W[&quot;named_aspect&quot;]*(1.0 if na[&quot;kind&quot;]==&quot;dangerous&quot; else 0.6)
+            add(arcs, amt, f&quot;{na[&#x27;pair&#x27;][0]}–{na[&#x27;pair&#x27;][1]} {na[&#x27;aspect&#x27;]} ({na[&#x27;kind&#x27;]})&quot;)
+    # Sun-Neptune tracker (always weighted — the recurring signature)
+    if chart[&quot;sun_neptune&quot;][&quot;aspect&quot;]:
+        pa=_arc_for_pair(&quot;Sun&quot;,&quot;Neptune&quot;)
+        if pa: add({a:1.0 for a in pa[&quot;arcs&quot;]}, W[&quot;named_aspect&quot;], f&quot;Sun–Neptune {chart[&#x27;sun_neptune&#x27;][&#x27;aspect&#x27;]} (the tracker)&quot;)
+    ranked=sorted(sc.items(), key=lambda kv:-kv[1])
+    return {&quot;scores&quot;:sc,&quot;ranked&quot;:ranked,&quot;top&quot;:ranked[0][0],&quot;trace&quot;:trace}
+
+# ---------- governing ingress for a date ----------
+def governing_ingress(d):
+    d=Date.fromisoformat(d) if isinstance(d,str) else d
+    # candidate cardinal ingresses in the ~15 months before d
+    cands=[]
+    for yr in (d.year-1, d.year):
+        for sgn in (&quot;Aries&quot;,&quot;Cancer&quot;,&quot;Libra&quot;,&quot;Capricorn&quot;):
+            ch=cast_ingress(yr,sgn)
+            idate=Date.fromisoformat(ch[&quot;date&quot;])
+            if idate&lt;=d: cands.append((idate,ch))
+    cands.sort()
+    # walk forward: each chart governs validity_months unless superseded by the next cardinal it doesn&#x27;t outlast
+    gov=None
+    for idate,ch in cands:
+        end=idate+timedelta(days=int(validity_months(ch[&quot;asc_modality&quot;])*30.4))
+        if idate&lt;=d&lt;=end: gov=ch  # latest one still in force
+    if gov is None and cands: gov=cands[-1][1]
+    return gov
+
+# ---------- lunations ----------
+def _lunation_eclipse(jd, code):
+    &quot;&quot;&quot;Tag a New/Full Moon if Swiss Eph finds a solar/lunar eclipse within 0.8d.
+    `kind` stays new/full so callers do not break. Type is Total/Annular/Hybrid/Partial/Penumbral.&quot;&quot;&quot;
+    if code == &quot;new&quot;:
+        rf, tret = swe.sol_eclipse_when_glob(jd - 0.8, swe.FLG_SWIEPH, 0)
+        t = tret[0]
+        if abs(t - jd) &lt; 0.8:
+            typ = (&quot;Total&quot; if rf &amp; swe.ECL_TOTAL else &quot;Annular&quot; if rf &amp; swe.ECL_ANNULAR
+                   else &quot;Hybrid&quot; if rf &amp; swe.ECL_HYBRID else &quot;Partial&quot;)
+            return f&quot;solar {typ}&quot;
+    else:
+        rf, tret = swe.lun_eclipse_when(jd - 0.8, swe.FLG_SWIEPH, 0)
+        t = tret[0]
+        if abs(t - jd) &lt; 0.8:
+            typ = (&quot;Total&quot; if rf &amp; swe.ECL_TOTAL else &quot;Partial&quot; if rf &amp; swe.ECL_PARTIAL
+                   else &quot;Penumbral&quot;)
+            return f&quot;lunar {typ}&quot;
+    return None
+
+def lunations(start, end):
+    start=Date.fromisoformat(start) if isinstance(start,str) else start
+    end=Date.fromisoformat(end) if isinstance(end,str) else end
+    out=[]; prev=None; d=start
+    while d&lt;=end:
+        jd=swe.julday(d.year,d.month,d.day,0.0)
+        ph=(lon(jd,1)-lon(jd,0))%360
+        for ang,code in ((0,&quot;new&quot;),(180,&quot;full&quot;)):
+            if prev is not None:
+                a=(prev[1]-ang+180)%360-180; b=(ph-ang+180)%360-180
+                if a*b&lt;=0 and abs(a-b)&lt;90:
+                    loo,hi=prev[0],jd; f=lambda x,ang=ang:((lon(x,1)-lon(x,0))%360-ang+180)%360-180; flo=f(loo)
+                    for _ in range(40):
+                        mid=(loo+hi)/2
+                        if flo*f(mid)&lt;=0: hi=mid
+                        else: loo,flo=mid,f(mid)
+                    x=(loo+hi)/2; y,mo,dd,_=swe.revjul(x)
+                    out.append({&quot;date&quot;:f&quot;{y:04d}-{mo:02d}-{dd:02d}&quot;,&quot;kind&quot;:code,&quot;jd&quot;:x,
+                                &quot;sun&quot;:lon(x,0),&quot;moon&quot;:lon(x,1),&quot;sign&quot;:sign_of(lon(x,1) if code==&quot;full&quot; else lon(x,0)),
+                                &quot;deg&quot;:round((lon(x,0) if code==&quot;new&quot; else lon(x,1))%30,1),
+                                &quot;eclipse&quot;:_lunation_eclipse(x, code)})
+        prev=(jd,ph); d+=timedelta(days=1)
+    return out
+
+def triggers(lunation, ingress):
+    &quot;&quot;&quot;Does the lunation&#x27;s Sun/Moon hit an ingress position by conj/opp/square (≤orb)?&quot;&quot;&quot;
+    hits=[]
+    lpts={&quot;lunSun&quot;:lunation[&quot;sun&quot;],&quot;lunMoon&quot;:lunation[&quot;moon&quot;]}
+    for lname,ll in lpts.items():
+        for pname,pl in ingress[&quot;pos&quot;].items():
+            sep=abs((ll-pl[&quot;lon&quot;]+180)%360-180)
+            for ang,nm in ASPECTS.items():
+                if nm in HARD and abs(sep-ang)&lt;=ORB[&quot;lunation_to_ingress&quot;]:
+                    hits.append({&quot;lun_point&quot;:lname,&quot;ingress_planet&quot;:pname,&quot;ingress_house&quot;:pl[&quot;house&quot;],
+                                 &quot;aspect&quot;:nm,&quot;orb&quot;:round(abs(sep-ang),2)})
+    return sorted(hits,key=lambda h:h[&quot;orb&quot;])
+
+# ---------- top-level signature for a date ----------
+def signature(d):
+    gov=governing_ingress(d)
+    asc=arc_scores(gov)
+    # active lunation: the most recent new/full at or before d, within 31 days
+    dd=Date.fromisoformat(d) if isinstance(d,str) else d
+    luns=lunations((dd-timedelta(days=32)).isoformat(), dd.isoformat())
+    active=luns[-1] if luns else None
+    lun_hits=triggers(active,gov) if active else []
+    # boost the arc carried by the tightest hit&#x27;s house/planet
+    boost=dict(asc[&quot;scores&quot;])
+    fired=None
+    if lun_hits:
+        h=lun_hits[0]; ha=CFG[&quot;house_arc&quot;].get(str(h[&quot;ingress_house&quot;]),{})
+        for arc,wt in ha.items(): boost[arc]+=W[&quot;lunation_trigger_boost&quot;]*wt
+        fired=h
+    ranked=sorted(boost.items(),key=lambda kv:-kv[1])
+    return {&quot;date&quot;:(d if isinstance(d,str) else d.isoformat()),
+            &quot;governing_ingress&quot;:f&quot;{gov[&#x27;year&#x27;]} {gov[&#x27;sign&#x27;]}&quot;,&quot;asc_sign&quot;:gov[&quot;asc_sign&quot;],
+            &quot;validity_months&quot;:validity_months(gov[&quot;asc_modality&quot;]),
+            &quot;ingress_top_arc&quot;:asc[&quot;top&quot;],&quot;ingress_ranked&quot;:asc[&quot;ranked&quot;],
+            &quot;lunation&quot;:(active[&quot;date&quot;]+&quot; &quot;+active[&quot;kind&quot;]+&quot; Moon &quot;+active[&quot;sign&quot;] if active else None),
+            &quot;lunation_triggers&quot;:bool(lun_hits),&quot;fired&quot;:fired,
+            &quot;predicted_arc&quot;:ranked[0][0],&quot;ranked&quot;:ranked,
+            &quot;reasoning&quot;:asc[&quot;trace&quot;]}
+
+if __name__==&quot;__main__&quot;:
+    import sys
+    # quick self-test: cast the 8 ingresses and print their top arc + key features
+    print(&quot;MUNDANE ENGINE — ingress self-test\n&quot;+&quot;=&quot;*60)
+    for yr in (2025,2026):
+        for sgn in (&quot;Aries&quot;,&quot;Cancer&quot;,&quot;Libra&quot;,&quot;Capricorn&quot;):
+            ch=cast_ingress(yr,sgn); a=arc_scores(ch)
+            sn=ch[&quot;sun_neptune&quot;]
+            print(f&quot;{yr} {sgn:9s} | ASC {ch[&#x27;asc_sign&#x27;]:11s}({ch[&#x27;asc_modality&#x27;][:4]} {validity_months(ch[&#x27;asc_modality&#x27;])}mo) &quot;
+                  f&quot;| ruler {ch[&#x27;chart_ruler&#x27;]:7s} {&#x27;LOOP&#x27; if ch[&#x27;dispositor_loop&#x27;] else &#x27;   &#x27;} &quot;
+                  f&quot;| Sun-Nep {str(sn[&#x27;aspect&#x27;] or &#x27;-&#x27;):11s}{sn[&#x27;orb&#x27;] if sn[&#x27;orb&#x27;] is not None else &#x27;&#x27;:&lt;5} &quot;
+                  f&quot;| TOP: {a[&#x27;top&#x27;]} ({a[&#x27;ranked&#x27;][0][1]:.1f})&quot;)
+    if len(sys.argv)&gt;1:
+        print(&quot;\nSIGNATURE for&quot;,sys.argv[1])
+        s=signature(sys.argv[1])
+        print(json.dumps({k:v for k,v in s.items() if k!=&quot;reasoning&quot;},indent=1,default=str))
+</pre></main></body></html>

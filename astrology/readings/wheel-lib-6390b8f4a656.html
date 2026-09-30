@@ -1,0 +1,342 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/wheel-lib-6390b8f4a656.html">
+<title>wheel_lib</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>wheel_lib</h1><p class="mut">Portable source: 99 - Templates/wheel_lib.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Shared SVG chart-wheel engine for the Freedom 250 Observatory.
+
+WHEEL_JS holds the canonical `wheelSVG(rec, gname, withOverlay)` JavaScript —
+a pure string-builder (no DOM): testable in node, renderable to PNG for visual
+verification. Used by build_almanac.py, add_mundane_midpoints.py, and
+build_lunation_wheels.py. Edit the wheel HERE, then re-run those projectors.
+
+rec = {pos:[[name,sign,dms,retro,lon],...], asp:[{t,o,x,ap},...], asc: deg,
+       rise?: str, __date: str, cap1?: str, cap2?: str}
+A global `CHARTS` (ingress positions) must exist where the overlay is used.
+Katie-approved conventions: hand-drawn glyph paths (never font glyphs),
+midnight-UT ephemeris, Whole Sign houses, Huber aspect colors, element-tinted
+sign band with italic serif sign abbreviations.
+&quot;&quot;&quot;
+
+WHEEL_JS = r&#x27;&#x27;&#x27;// ===== The Wheel — pure-string SVG biwheel (testable outside the DOM) =====
+function wheelSVG(rec, gname, withOverlay){
+  const SGN=[&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;];
+  const SAB={Aries:&quot;Ari&quot;,Taurus:&quot;Tau&quot;,Gemini:&quot;Gem&quot;,Cancer:&quot;Can&quot;,Leo:&quot;Leo&quot;,Virgo:&quot;Vir&quot;,Libra:&quot;Lib&quot;,Scorpio:&quot;Sco&quot;,Sagittarius:&quot;Sag&quot;,Capricorn:&quot;Cap&quot;,Aquarius:&quot;Aqu&quot;,Pisces:&quot;Pis&quot;};
+  const PAB={Sun:&quot;Su&quot;,Moon:&quot;Mo&quot;,Mercury:&quot;Me&quot;,Venus:&quot;Ve&quot;,Mars:&quot;Ma&quot;,Jupiter:&quot;Ju&quot;,Saturn:&quot;Sa&quot;,Uranus:&quot;Ur&quot;,Neptune:&quot;Ne&quot;,Pluto:&quot;Pl&quot;,Chiron:&quot;Ch&quot;,Node:&quot;NN&quot;,SNode:&quot;SN&quot;,America:&quot;Am&quot;,ASC:&quot;AS&quot;};
+  const ELEM={Aries:&quot;#b3402e&quot;,Leo:&quot;#b3402e&quot;,Sagittarius:&quot;#b3402e&quot;,Taurus:&quot;#4a7d5f&quot;,Virgo:&quot;#4a7d5f&quot;,Capricorn:&quot;#4a7d5f&quot;,Gemini:&quot;#a8821f&quot;,Libra:&quot;#a8821f&quot;,Aquarius:&quot;#a8821f&quot;,Cancer:&quot;#3a6ea5&quot;,Scorpio:&quot;#3a6ea5&quot;,Pisces:&quot;#3a6ea5&quot;};
+  const ASPC={conjunct:&quot;#c9a227&quot;,semisextile:&quot;#5a8a4a&quot;,sextile:&quot;#3a6ea5&quot;,trine:&quot;#3a6ea5&quot;,square:&quot;#b3402e&quot;,opposite:&quot;#b3402e&quot;,quincunx:&quot;#5a8a4a&quot;};
+  const PCOL={Sun:&quot;#b07d2b&quot;,Moon:&quot;#8d7960&quot;,Mercury:&quot;#7b5ea7&quot;,Venus:&quot;#2e8b74&quot;,Mars:&quot;#c0504d&quot;,Jupiter:&quot;#5b554a&quot;,Saturn:&quot;#7a2e1d&quot;,Uranus:&quot;#3a6ea5&quot;,Neptune:&quot;#4a5fa5&quot;,Pluto:&quot;#6e3d5e&quot;,Chiron:&quot;#a3622e&quot;,Node:&quot;#6b6257&quot;,SNode:&quot;#9a917f&quot;,America:&quot;#1d3f8c&quot;};
+  // hand-drawn glyph paths in a 20x20 box — immune to emoji font substitution
+  const GLY={
+   Sun:&#x27;&lt;circle cx=&quot;10&quot; cy=&quot;10&quot; r=&quot;5.6&quot;/&gt;&lt;circle cx=&quot;10&quot; cy=&quot;10&quot; r=&quot;1.5&quot; fill=&quot;currentColor&quot; stroke=&quot;none&quot;/&gt;&#x27;,
+   Moon:&#x27;&lt;path d=&quot;M 11.5 3.9 A 6.3 6.3 0 1 0 11.5 16.1 A 7.1 7.1 0 0 1 11.5 3.9 Z&quot; fill=&quot;currentColor&quot; stroke=&quot;none&quot;/&gt;&#x27;,
+   Mercury:&#x27;&lt;circle cx=&quot;10&quot; cy=&quot;8.6&quot; r=&quot;3.4&quot;/&gt;&lt;path d=&quot;M 6.6 2.4 A 3.5 3.5 0 0 0 13.4 2.4&quot;/&gt;&lt;line x1=&quot;10&quot; y1=&quot;12&quot; x2=&quot;10&quot; y2=&quot;17.4&quot;/&gt;&lt;line x1=&quot;7.2&quot; y1=&quot;14.7&quot; x2=&quot;12.8&quot; y2=&quot;14.7&quot;/&gt;&#x27;,
+   Venus:&#x27;&lt;circle cx=&quot;10&quot; cy=&quot;7.2&quot; r=&quot;4.1&quot;/&gt;&lt;line x1=&quot;10&quot; y1=&quot;11.3&quot; x2=&quot;10&quot; y2=&quot;17.6&quot;/&gt;&lt;line x1=&quot;6.9&quot; y1=&quot;14.4&quot; x2=&quot;13.1&quot; y2=&quot;14.4&quot;/&gt;&#x27;,
+   Mars:&#x27;&lt;circle cx=&quot;8.4&quot; cy=&quot;11.6&quot; r=&quot;4.3&quot;/&gt;&lt;line x1=&quot;11.5&quot; y1=&quot;8.5&quot; x2=&quot;15.9&quot; y2=&quot;4.1&quot;/&gt;&lt;polyline points=&quot;12.3,4.1 15.9,4.1 15.9,7.7&quot; fill=&quot;none&quot;/&gt;&#x27;,
+   Jupiter:&#x27;&lt;path d=&quot;M 4.4 6.4 A 3.5 3.5 0 0 1 11.2 5.6 Q 11.2 9.4 5.2 13.1 L 16 13.1&quot; fill=&quot;none&quot;/&gt;&lt;line x1=&quot;12.9&quot; y1=&quot;9.4&quot; x2=&quot;12.9&quot; y2=&quot;17.4&quot;/&gt;&#x27;,
+   Saturn:&#x27;&lt;line x1=&quot;7.4&quot; y1=&quot;3.2&quot; x2=&quot;7.4&quot; y2=&quot;11&quot;/&gt;&lt;line x1=&quot;4.8&quot; y1=&quot;5.8&quot; x2=&quot;10&quot; y2=&quot;5.8&quot;/&gt;&lt;path d=&quot;M 7.4 11 Q 7.4 8.9 9.9 8.9 Q 12.9 8.9 12.9 12 Q 12.9 14.6 10.5 16 Q 9.9 16.5 10.4 17.5&quot; fill=&quot;none&quot;/&gt;&#x27;,
+   Uranus:&#x27;&lt;line x1=&quot;5.7&quot; y1=&quot;3.4&quot; x2=&quot;5.7&quot; y2=&quot;11&quot;/&gt;&lt;line x1=&quot;14.3&quot; y1=&quot;3.4&quot; x2=&quot;14.3&quot; y2=&quot;11&quot;/&gt;&lt;line x1=&quot;5.7&quot; y1=&quot;7.2&quot; x2=&quot;14.3&quot; y2=&quot;7.2&quot;/&gt;&lt;line x1=&quot;10&quot; y1=&quot;7.2&quot; x2=&quot;10&quot; y2=&quot;12.3&quot;/&gt;&lt;circle cx=&quot;10&quot; cy=&quot;14.7&quot; r=&quot;2.5&quot;/&gt;&lt;circle cx=&quot;10&quot; cy=&quot;14.7&quot; r=&quot;0.9&quot; fill=&quot;currentColor&quot; stroke=&quot;none&quot;/&gt;&#x27;,
+   Neptune:&#x27;&lt;path d=&quot;M 4.6 3.8 Q 4.6 10.4 10 10.4 Q 15.4 10.4 15.4 3.8&quot; fill=&quot;none&quot;/&gt;&lt;line x1=&quot;10&quot; y1=&quot;3.4&quot; x2=&quot;10&quot; y2=&quot;17.2&quot;/&gt;&lt;line x1=&quot;6.9&quot; y1=&quot;14.2&quot; x2=&quot;13.1&quot; y2=&quot;14.2&quot;/&gt;&#x27;,
+   Pluto:&#x27;&lt;circle cx=&quot;10&quot; cy=&quot;5.4&quot; r=&quot;2.1&quot;/&gt;&lt;path d=&quot;M 5.8 6 A 4.2 4.2 0 0 0 14.2 6&quot; fill=&quot;none&quot;/&gt;&lt;line x1=&quot;10&quot; y1=&quot;10.2&quot; x2=&quot;10&quot; y2=&quot;17.4&quot;/&gt;&lt;line x1=&quot;7&quot; y1=&quot;14.2&quot; x2=&quot;13&quot; y2=&quot;14.2&quot;/&gt;&#x27;,
+   Chiron:&#x27;&lt;circle cx=&quot;10&quot; cy=&quot;14.6&quot; r=&quot;3.1&quot;/&gt;&lt;line x1=&quot;10&quot; y1=&quot;2.2&quot; x2=&quot;10&quot; y2=&quot;11.5&quot;/&gt;&lt;line x1=&quot;10&quot; y1=&quot;7.6&quot; x2=&quot;14.4&quot; y2=&quot;3.4&quot;/&gt;&lt;line x1=&quot;10&quot; y1=&quot;7.6&quot; x2=&quot;14.4&quot; y2=&quot;11.4&quot;/&gt;&#x27;,
+   Node:&#x27;&lt;circle cx=&quot;5.6&quot; cy=&quot;15.2&quot; r=&quot;1.9&quot;/&gt;&lt;circle cx=&quot;14.4&quot; cy=&quot;15.2&quot; r=&quot;1.9&quot;/&gt;&lt;path d=&quot;M 6.9 13.8 A 6.4 6.4 0 1 1 13.1 13.8&quot; fill=&quot;none&quot;/&gt;&#x27;,
+   SNode:&#x27;&lt;circle cx=&quot;5.6&quot; cy=&quot;4.8&quot; r=&quot;1.9&quot;/&gt;&lt;circle cx=&quot;14.4&quot; cy=&quot;4.8&quot; r=&quot;1.9&quot;/&gt;&lt;path d=&quot;M 6.9 6.2 A 6.4 6.4 0 1 0 13.1 6.2&quot; fill=&quot;none&quot;/&gt;&#x27;,
+   America:&#x27;&lt;path d=&quot;M 10 2.8 L 8.35 7.73 L 3.34 7.84 L 7.34 10.87 L 5.89 15.66 L 10 12.8 L 14.11 15.66 L 12.66 10.87 L 16.66 7.84 L 11.65 7.73 Z&quot; fill=&quot;none&quot; stroke-linejoin=&quot;round&quot;/&gt;&#x27;
+  };
+  const KKSIGNS=[&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;];
+  const KKPLANETS={Sun:1,Moon:1,Mercury:1,Venus:1,Mars:1,Jupiter:1,Saturn:1,Uranus:1,Neptune:1,Pluto:1};
+  function kkspec(name,L){ if(!KKPLANETS[name])return &quot;&quot;;
+    const sg=KKSIGNS[Math.floor((((L%360)+360)%360)/30)];
+    return &quot;planet:&quot;+name+&quot;;sign:&quot;+sg; }
+  function glyph(name,x,y,scale,color,sw,kk){
+    return `&lt;g transform=&quot;translate(${f2(x-10*scale)} ${f2(y-10*scale)}) scale(${scale})&quot; color=&quot;${color}&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;${sw||1.5}&quot; stroke-linecap=&quot;round&quot; fill=&quot;none&quot;${kk?` data-kk=&quot;${kk}&quot; style=&quot;cursor:pointer&quot;`:&quot;&quot;}&gt;${kk?`&lt;circle cx=&quot;10&quot; cy=&quot;10&quot; r=&quot;13&quot; fill=&quot;transparent&quot; stroke=&quot;none&quot;/&gt;`:&quot;&quot;}${GLY[name]||&quot;&quot;}&lt;/g&gt;`;
+  }
+  const cx=330, cy=330;
+  // gname may be a single chart name (classic) or an array of names (multi-ring overlay)
+  const gnames = Array.isArray(gname) ? gname : (gname ? [gname] : []);
+  const ovCharts = withOverlay ? gnames.map(function(n){
+      return {name:n, c:(n &amp;&amp; typeof CHARTS!==&quot;undefined&quot; &amp;&amp; CHARTS &amp;&amp; CHARTS[n])||null};
+    }).filter(function(o){return o.c;}) : [];
+  const chart = ovCharts.length ? ovCharts[0].c
+    : ((gnames[0] &amp;&amp; typeof CHARTS!==&quot;undefined&quot; &amp;&amp; CHARTS &amp;&amp; CHARTS[gnames[0]])||null);
+  const ov = ovCharts.length&gt;0;
+  const asc = (rec.asc!==null &amp;&amp; rec.asc!==undefined) ? rec.asc : (chart ? chart.ASC : 0);
+  const cusp = Math.floor(asc/30)*30;
+  // optional Placidus cusps (12 longitudes; [0]=Asc,[9]=MC) — enables the WS/Placidus toggle
+  const placCusps = (rec.cusps &amp;&amp; rec.cusps.length===12) ? rec.cusps.map(Number) : null;
+  const placMc = (rec.mc!==undefined &amp;&amp; rec.mc!==null) ? Number(rec.mc) : (placCusps?placCusps[9]:null);
+  function pt(r, L){ const a=(180+(L-cusp))*Math.PI/180; return [cx+r*Math.cos(a), cy-r*Math.sin(a)]; }
+  function f2(x){ return Math.round(x*100)/100; }
+  const s=[];
+  const EXT = Math.max(0, ovCharts.length-1)*38;  // extra rings expand the canvas
+  s.push(&#x27;&lt;svg class=&quot;f250-wheel&quot; viewBox=&quot;&#x27;+(-EXT)+&#x27; &#x27;+(-EXT)+&#x27; &#x27;+(660+2*EXT)+&#x27; &#x27;+(660+2*EXT)+&#x27;&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;width:100%;height:auto;display:block&quot; font-family=&quot;Iowan Old Style,Palatino,Georgia,serif&quot;&gt;&#x27;);
+  // zodiac band
+  for(let i=0;i&lt;12;i++){
+    const a1=i*30, a2=a1+30;
+    const [x1,y1]=pt(276,a1),[x2,y2]=pt(276,a2),[x3,y3]=pt(240,a2),[x4,y4]=pt(240,a1);
+    s.push(`&lt;path d=&quot;M${f2(x1)} ${f2(y1)} A276 276 0 0 0 ${f2(x2)} ${f2(y2)} L${f2(x3)} ${f2(y3)} A240 240 0 0 1 ${f2(x4)} ${f2(y4)} Z&quot; fill=&quot;${ELEM[SGN[i]]}&quot; fill-opacity=&quot;0.10&quot; stroke=&quot;#d9cfb8&quot; stroke-width=&quot;1&quot;/&gt;`);
+    const [lx,ly]=pt(258,a1+15);
+    s.push(`&lt;text x=&quot;${f2(lx)}&quot; y=&quot;${f2(ly)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;13.5&quot; font-style=&quot;italic&quot; fill=&quot;${ELEM[SGN[i]]}&quot;&gt;${SAB[SGN[i]]}&lt;/text&gt;`);
+  }
+  // degree ticks every 10
+  for(let L=0;L&lt;360;L+=10){
+    const big=(L%30===0);
+    const [x1,y1]=pt(240,L),[x2,y2]=pt(big?232:236,L);
+    s.push(`&lt;line x1=&quot;${f2(x1)}&quot; y1=&quot;${f2(y1)}&quot; x2=&quot;${f2(x2)}&quot; y2=&quot;${f2(y2)}&quot; stroke=&quot;#c9bda0&quot; stroke-width=&quot;${big?1.4:0.7}&quot;/&gt;`);
+  }
+  s.push(`&lt;circle cx=&quot;${cx}&quot; cy=&quot;${cy}&quot; r=&quot;240&quot; fill=&quot;none&quot; stroke=&quot;#d9cfb8&quot; stroke-width=&quot;1&quot;/&gt;`);
+  s.push(`&lt;circle cx=&quot;${cx}&quot; cy=&quot;${cy}&quot; r=&quot;148&quot; fill=&quot;none&quot; stroke=&quot;#e7dcc2&quot; stroke-width=&quot;1&quot;/&gt;`);
+  // ===== house systems: Whole Sign (default) + optional Placidus, toggleable =====
+  // -- Whole Sign layer (the analytical default) --
+  s.push(&#x27;&lt;g class=&quot;f250-hs f250-hs-ws&quot;&gt;&#x27;);
+  {
+    const ascIdx=Math.floor(asc/30);
+    for(let i=0;i&lt;12;i++){
+      const L=((ascIdx+i)%12)*30;
+      const [x1,y1]=pt(148,L),[x2,y2]=pt(240,L);
+      s.push(`&lt;line x1=&quot;${f2(x1)}&quot; y1=&quot;${f2(y1)}&quot; x2=&quot;${f2(x2)}&quot; y2=&quot;${f2(y2)}&quot; stroke=&quot;#e7dcc2&quot; stroke-width=&quot;0.8&quot;/&gt;`);
+      const [hx,hy]=pt(160,L+15);
+      s.push(`&lt;text x=&quot;${f2(hx)}&quot; y=&quot;${f2(hy)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;9.5&quot; fill=&quot;#b5a98c&quot;&gt;${i+1}&lt;/text&gt;`);
+    }
+  }
+  s.push(&#x27;&lt;/g&gt;&#x27;);
+  // -- Placidus layer (hidden by default; drawn only when cusps are supplied) --
+  if(placCusps){
+    s.push(&#x27;&lt;g class=&quot;f250-hs f250-hs-pla&quot; style=&quot;display:none&quot;&gt;&#x27;);
+    // intercepted signs: a sign that contains NO cusp is swallowed inside one house
+    const cuspSign=placCusps.map(c=&gt;Math.floor((((c%360)+360)%360)/30));
+    for(let sg=0;sg&lt;12;sg++){
+      if(cuspSign.indexOf(sg)===-1){
+        const a1=sg*30,a2=a1+30;
+        const [x1,y1]=pt(276,a1),[x2,y2]=pt(276,a2),[x3,y3]=pt(240,a2),[x4,y4]=pt(240,a1);
+        s.push(`&lt;path d=&quot;M${f2(x1)} ${f2(y1)} A276 276 0 0 0 ${f2(x2)} ${f2(y2)} L${f2(x3)} ${f2(y3)} A240 240 0 0 1 ${f2(x4)} ${f2(y4)} Z&quot; fill=&quot;#7a2e1d&quot; fill-opacity=&quot;0.13&quot; stroke=&quot;none&quot;/&gt;`);
+        const [ilx,ily]=pt(286,a1+15);
+        s.push(`&lt;text x=&quot;${f2(ilx)}&quot; y=&quot;${f2(ily)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;7&quot; fill=&quot;#7a2e1d&quot; font-style=&quot;italic&quot;&gt;intercept&lt;/text&gt;`);
+      }
+    }
+    // unequal cusp spokes + house numbers (angular cusps emphasized)
+    for(let i=0;i&lt;12;i++){
+      const c=placCusps[i], cn=placCusps[(i+1)%12];
+      const ang=(i===0||i===3||i===6||i===9);
+      const [x1,y1]=pt(148,c),[x2,y2]=pt(240,c);
+      s.push(`&lt;line x1=&quot;${f2(x1)}&quot; y1=&quot;${f2(y1)}&quot; x2=&quot;${f2(x2)}&quot; y2=&quot;${f2(y2)}&quot; stroke=&quot;${ang?&#x27;#b89a5a&#x27;:&#x27;#e0d4b8&#x27;}&quot; stroke-width=&quot;${ang?1.3:0.8}&quot;/&gt;`);
+      let span=(((cn-c)%360)+360)%360; const midL=(c+span/2)%360;
+      const [hx,hy]=pt(162,midL);
+      s.push(`&lt;text x=&quot;${f2(hx)}&quot; y=&quot;${f2(hy)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;9.5&quot; fill=&quot;#a8821f&quot; font-weight=&quot;bold&quot;&gt;${i+1}&lt;/text&gt;`);
+    }
+    if(placMc!==null){
+      const [m1x,m1y]=pt(240,placMc),[m2x,m2y]=pt(292,placMc);
+      s.push(`&lt;line x1=&quot;${f2(m1x)}&quot; y1=&quot;${f2(m1y)}&quot; x2=&quot;${f2(m2x)}&quot; y2=&quot;${f2(m2y)}&quot; stroke=&quot;#7a2e1d&quot; stroke-width=&quot;1.3&quot; stroke-dasharray=&quot;2 2&quot;/&gt;`);
+      const [mtx,mty]=pt(304,placMc);
+      s.push(`&lt;text x=&quot;${f2(mtx)}&quot; y=&quot;${f2(mty)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;10&quot; font-weight=&quot;bold&quot; fill=&quot;#7a2e1d&quot;&gt;MC&lt;/text&gt;`);
+    }
+    s.push(&#x27;&lt;/g&gt;&#x27;);
+  }
+  // ASC arrow at the exact Ascendant degree (shared by both house systems).
+  // rec.noAsLabel (sunrise charts — estimated AS) keeps the line but drops the &quot;AS&quot; letters
+  {
+    const [ax1,ay1]=pt(240,asc),[ax2,ay2]=pt(rec.noAsLabel?286:290,asc);
+    s.push(`&lt;line x1=&quot;${f2(ax1)}&quot; y1=&quot;${f2(ay1)}&quot; x2=&quot;${f2(ax2)}&quot; y2=&quot;${f2(ay2)}&quot; stroke=&quot;#7a2e1d&quot; stroke-width=&quot;1.6&quot;${rec.noAsLabel?&#x27; stroke-dasharray=&quot;5 3&quot;&#x27;:&#x27;&#x27;}/&gt;`);
+    if(!rec.noAsLabel){
+      const [atx,aty]=pt(302,asc);
+      s.push(`&lt;text x=&quot;${f2(atx)}&quot; y=&quot;${f2(aty)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;11&quot; font-weight=&quot;bold&quot; fill=&quot;#7a2e1d&quot;&gt;AS&lt;/text&gt;`);
+    }
+  }
+  // WS/Placidus toggle (only when Placidus cusps are present)
+  if(placCusps){
+    const bx=-EXT+12, by=-EXT+12;
+    s.push(`&lt;g class=&quot;f250-htoggle&quot; font-size=&quot;11&quot;&gt;`);
+    s.push(`&lt;g data-hbtn=&quot;ws&quot; style=&quot;cursor:pointer&quot;&gt;&lt;rect x=&quot;${bx}&quot; y=&quot;${by}&quot; width=&quot;94&quot; height=&quot;21&quot; rx=&quot;10.5&quot; fill=&quot;#7a2e1d&quot; stroke=&quot;#7a2e1d&quot;/&gt;&lt;text x=&quot;${bx+47}&quot; y=&quot;${by+11}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; fill=&quot;#fff&quot;&gt;Whole Sign&lt;/text&gt;&lt;/g&gt;`);
+    s.push(`&lt;g data-hbtn=&quot;pla&quot; style=&quot;cursor:pointer&quot;&gt;&lt;rect x=&quot;${bx+100}&quot; y=&quot;${by}&quot; width=&quot;80&quot; height=&quot;21&quot; rx=&quot;10.5&quot; fill=&quot;#f5efe2&quot; stroke=&quot;#c9bda0&quot;/&gt;&lt;text x=&quot;${bx+100+40}&quot; y=&quot;${by+11}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; fill=&quot;#7a2e1d&quot;&gt;Placidus&lt;/text&gt;&lt;/g&gt;`);
+    s.push(`&lt;/g&gt;`);
+  }
+  // fan-out helper
+  function fan(items){ // items: [{key,L}] -&gt; Map key-&gt;display angle (v5 centered clusters)
+    // v5 (2026-06-10): forward-push fan replaced — it let late-sign clusters
+    // collide across 0° Aries and dragged glyphs far downwind. Now planets
+    // merge into clusters; each cluster spreads symmetrically around the
+    // circular mean of its TRUE degrees, so drift is minimal and wrap-safe.
+    const GAP=8, norm=L=&gt;((L%360)+360)%360;
+    let clusters=items.map(o=&gt;({mem:[o]}));
+    const cen=cl=&gt;{let x=0,y=0;cl.mem.forEach(m=&gt;{const r=norm(m.L)*Math.PI/180;x+=Math.cos(r);y+=Math.sin(r);});return norm(Math.atan2(y,x)*180/Math.PI);};
+    const half=cl=&gt;(cl.mem.length-1)*GAP/2;
+    for(let guard=0;guard&lt;60;guard++){
+      clusters.forEach(cl=&gt;cl.c=cen(cl));
+      clusters.sort((a,b)=&gt;a.c-b.c);
+      let merged=false;
+      for(let i=0;i&lt;clusters.length&amp;&amp;clusters.length&gt;1;i++){
+        const a=clusters[i], b=clusters[(i+1)%clusters.length];
+        if(norm(b.c-a.c)-half(a)-half(b)&lt;GAP){
+          a.mem=a.mem.concat(b.mem); clusters.splice(clusters.indexOf(b),1); merged=true; break;
+        }
+      }
+      if(!merged) break;
+    }
+    const map=new Map();
+    clusters.forEach(cl=&gt;{
+      const c=cen(cl), n=cl.mem.length;
+      const ord=cl.mem.slice().sort((x,y)=&gt;(((norm(x.L)-c+540)%360)-180)-(((norm(y.L)-c+540)%360)-180));
+      ord.forEach((m,i)=&gt;map.set(m.key, norm(c-(n-1)*GAP/2+i*GAP)));
+    });
+    return map;
+  }
+  // aspect lines (inner)
+  const lonOf={}; rec.pos.forEach(p=&gt;lonOf[p[0]]=p[4]);
+  rec.asp.forEach(a=&gt;{
+    const w=a.t.split(&quot; &quot;); const l1=lonOf[w[0]], l2=lonOf[w[2]];
+    if(l1===undefined||l2===undefined) return;
+    const [x1,y1]=pt(146,l1),[x2,y2]=pt(146,l2);
+    const c=ASPC[w[1]]||&quot;#8a8377&quot;;
+    s.push(`&lt;line x1=&quot;${f2(x1)}&quot; y1=&quot;${f2(y1)}&quot; x2=&quot;${f2(x2)}&quot; y2=&quot;${f2(y2)}&quot; stroke=&quot;${c}&quot; stroke-width=&quot;${a.x?2.4:(a.o&lt;=1?1.7:1)}&quot; stroke-opacity=&quot;${a.o&lt;=1?0.9:0.45}&quot;/&gt;`);
+  });
+  // transit planets — Astro Gold-style layout v4 (2026-06-10, Katie-approved):
+  // ONE radius, glyphs side by side with degrees below, planets SPREAD to fill
+  // their sign&#x27;s wedge when crowded (never crossing a sign boundary). The rim
+  // tick + a thin connector still mark each planet&#x27;s true degree.
+  function layoutPlanets(items){
+    const out=new Map();
+    const bySign={};
+    items.forEach(m=&gt;{
+      const k=Math.floor((((m.L%360)+360)%360)/30);
+      (bySign[k]=bySign[k]||[]).push(m);
+    });
+    Object.keys(bySign).forEach(k=&gt;{
+      const g=bySign[k].slice().sort((a,b)=&gt;a.L-b.L);
+      const s0=Number(k)*30, n=g.length;
+      const lo=s0+4.5, hi=s0+25.5;                       // stay inside the wedge
+      const GAP=n&gt;1?Math.min(9,(hi-lo)/(n-1)):0;         // side-by-side spacing
+      const D=g.map(m=&gt;Math.max(lo,Math.min(hi,m.L)));
+      for(let i=1;i&lt;n;i++) if(D[i]&lt;D[i-1]+GAP) D[i]=D[i-1]+GAP;
+      for(let i=n-1;i&gt;=0;i--){const cap=hi-(n-1-i)*GAP; if(D[i]&gt;cap)D[i]=cap;}
+      for(let i=1;i&lt;n;i++) if(D[i]&lt;D[i-1]+GAP) D[i]=D[i-1]+GAP;
+      g.forEach((m,i)=&gt;out.set(m.key,D[i]));
+    });
+    return out;
+  }
+  const tLay=layoutPlanets(rec.pos.map(p=&gt;({key:p[0],L:p[4]})));
+  rec.pos.forEach(p=&gt;{
+    const L=p[4], D=tLay.has(p[0])?tLay.get(p[0]):L;
+    const [tx1,ty1]=pt(240,L),[tx2,ty2]=pt(228,L);
+    s.push(`&lt;line x1=&quot;${f2(tx1)}&quot; y1=&quot;${f2(ty1)}&quot; x2=&quot;${f2(tx2)}&quot; y2=&quot;${f2(ty2)}&quot; stroke=&quot;#5b554a&quot; stroke-width=&quot;1.3&quot;/&gt;`);
+    const [dx,dy]=pt(146,L);
+    s.push(`&lt;circle cx=&quot;${f2(dx)}&quot; cy=&quot;${f2(dy)}&quot; r=&quot;2.2&quot; fill=&quot;#5b554a&quot;/&gt;`);
+    const [px,py]=pt(206,D);
+    s.push(glyph(p[0],px,py,1.05,PCOL[p[0]]||&quot;#23201a&quot;,1.6,kkspec(p[0],L)));
+    const [qx,qy]=pt(184,D);
+    s.push(`&lt;text x=&quot;${f2(qx)}&quot; y=&quot;${f2(qy)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;8.5&quot; fill=&quot;#8a8377&quot;&gt;${p[2]}${p[3]?&quot; ℞&quot;:&quot;&quot;}&lt;/text&gt;`);
+    // thin connector from the glyph out to its true-degree tick when shifted
+    const shift=Math.abs((D-L+180)%360-180);
+    if(shift&gt;1.5){ const [c1x,c1y]=pt(218,D),[c2x,c2y]=pt(226,L);
+      s.push(`&lt;line x1=&quot;${f2(c1x)}&quot; y1=&quot;${f2(c1y)}&quot; x2=&quot;${f2(c2x)}&quot; y2=&quot;${f2(c2y)}&quot; stroke=&quot;#c9bda0&quot; stroke-width=&quot;0.6&quot;/&gt;`); }
+  });
+  // overlay ring(s) — classic single governing chart, or several stacked rings
+  if(ov){
+    const RINGC=[&quot;#9b6a3f&quot;,&quot;#3a6ea5&quot;,&quot;#6e3d5e&quot;];
+    ovCharts.forEach(function(oc,ri){
+      const off=38*ri, col=RINGC[ri%3];
+      if(ri&gt;0) s.push(`&lt;circle cx=&quot;${cx}&quot; cy=&quot;${cy}&quot; r=&quot;${276+off}&quot; fill=&quot;none&quot; stroke=&quot;${col}&quot; stroke-opacity=&quot;0.25&quot; stroke-width=&quot;1&quot;/&gt;`);
+      const pts=Object.entries(oc.c).filter(([k])=&gt;k!==&quot;ASC&quot;).map(([k,v])=&gt;({key:k,L:v}));
+      // reserve the AS arrow/label&#x27;s angle so no overlay glyph hides beneath it
+      // (not needed when the label is dropped — sunrise charts)
+      const oFan=fan(rec.noAsLabel?pts:pts.concat([{key:&quot;__asc&quot;,L:asc}]));
+      pts.forEach(o=&gt;{
+        const [x1,y1]=pt(276+off,o.L),[x2,y2]=pt(286+off,o.L);
+        s.push(`&lt;line x1=&quot;${f2(x1)}&quot; y1=&quot;${f2(y1)}&quot; x2=&quot;${f2(x2)}&quot; y2=&quot;${f2(y2)}&quot; stroke=&quot;${col}&quot; stroke-width=&quot;1.4&quot;/&gt;`);
+        const D=oFan.get(o.key);
+        const [lx,ly]=pt(299+off,D);
+        if(GLY[o.key]) s.push(glyph(o.key,lx,ly,0.66,col,1.9,kkspec(o.key,o.L)));
+        else s.push(`&lt;text x=&quot;${f2(lx)}&quot; y=&quot;${f2(ly)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;10&quot; font-weight=&quot;bold&quot; fill=&quot;${col}&quot;&gt;${PAB[o.key]||o.key}&lt;/text&gt;`);
+        const [mx,my]=pt(313+off,D);
+        s.push(`&lt;text x=&quot;${f2(mx)}&quot; y=&quot;${f2(my)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;7.5&quot; fill=&quot;${col}&quot; fill-opacity=&quot;0.75&quot;&gt;${Math.floor(o.L%30)}°&lt;/text&gt;`);
+        // thin connector back to the true-degree tick when fanned away
+        const oShift=Math.abs((D-o.L+540)%360-180);
+        if(oShift&gt;4){ const [k1x,k1y]=pt(292+off,D),[k2x,k2y]=pt(287+off,o.L);
+          s.push(`&lt;line x1=&quot;${f2(k1x)}&quot; y1=&quot;${f2(k1y)}&quot; x2=&quot;${f2(k2x)}&quot; y2=&quot;${f2(k2y)}&quot; stroke=&quot;${col}&quot; stroke-opacity=&quot;0.45&quot; stroke-width=&quot;0.6&quot;/&gt;`); }
+      });
+    });
+  }
+  // center
+  s.push(`&lt;text x=&quot;${cx}&quot; y=&quot;${cy-14}&quot; text-anchor=&quot;middle&quot; font-size=&quot;12&quot; font-weight=&quot;bold&quot; fill=&quot;#5b554a&quot;&gt;${rec.__date||&quot;&quot;}&lt;/text&gt;`);
+  const cap1 = rec.cap1 || (rec.rise ? (&quot;sunrise &quot;+rec.rise+&quot; ET · houses from the day&#x27;s ASC&quot;) : &quot;houses from the chart Ascendant&quot;);
+  const cap2 = rec.cap2 || (ov ? (ovCharts.length&gt;1 ? &quot;rings: &quot;+ovCharts.map(function(o){return o.name;}).join(&quot; · &quot;) : ovCharts[0].name+&quot; ingress on the outer ring&quot;) : &quot;planets: midnight UT&quot;);
+  s.push(`&lt;text x=&quot;${cx}&quot; y=&quot;${cy+3}&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-style=&quot;italic&quot; fill=&quot;#8a8377&quot;&gt;${cap1}&lt;/text&gt;`);
+  s.push(`&lt;text x=&quot;${cx}&quot; y=&quot;${cy+18}&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot; font-style=&quot;italic&quot; fill=&quot;#8a8377&quot;&gt;${cap2}&lt;/text&gt;`);
+  s.push(&#x27;&lt;/svg&gt;&#x27;);
+  return s.join(&quot;&quot;);
+}
+// one delegated, idempotent listener handles the WS/Placidus toggle on every wheel
+;(function(){
+  if(typeof document===&quot;undefined&quot;||window.__f250HouseToggle)return;
+  window.__f250HouseToggle=1;
+  document.addEventListener(&quot;click&quot;,function(ev){
+    var b=(ev.target&amp;&amp;ev.target.closest)?ev.target.closest(&quot;[data-hbtn]&quot;):null;
+    if(!b)return;
+    var svg=b.closest(&quot;svg.f250-wheel&quot;); if(!svg)return;
+    var pla=svg.querySelector(&quot;.f250-hs-pla&quot;), ws=svg.querySelector(&quot;.f250-hs-ws&quot;);
+    if(!pla)return;
+    var on=(b.getAttribute(&quot;data-hbtn&quot;)===&quot;pla&quot;);
+    if(ws)ws.style.display=on?&quot;none&quot;:&quot;&quot;;
+    pla.style.display=on?&quot;&quot;:&quot;none&quot;;
+    var bw=svg.querySelector(&#x27;[data-hbtn=&quot;ws&quot;] rect&#x27;), bp=svg.querySelector(&#x27;[data-hbtn=&quot;pla&quot;] rect&#x27;);
+    var tw=svg.querySelector(&#x27;[data-hbtn=&quot;ws&quot;] text&#x27;), tp=svg.querySelector(&#x27;[data-hbtn=&quot;pla&quot;] text&#x27;);
+    if(bw){bw.setAttribute(&quot;fill&quot;,on?&quot;#f5efe2&quot;:&quot;#7a2e1d&quot;);bw.setAttribute(&quot;stroke&quot;,on?&quot;#c9bda0&quot;:&quot;#7a2e1d&quot;);}
+    if(tw)tw.setAttribute(&quot;fill&quot;,on?&quot;#7a2e1d&quot;:&quot;#fff&quot;);
+    if(bp){bp.setAttribute(&quot;fill&quot;,on?&quot;#7a2e1d&quot;:&quot;#f5efe2&quot;);bp.setAttribute(&quot;stroke&quot;,on?&quot;#7a2e1d&quot;:&quot;#c9bda0&quot;);}
+    if(tp)tp.setAttribute(&quot;fill&quot;,on?&quot;#fff&quot;:&quot;#7a2e1d&quot;);
+  });
+})();&#x27;&#x27;&#x27;
+
+def placidus_cusps(jd_ut, lat, lon):
+    &quot;&quot;&quot;Placidus house cusps for a chart, for the wheel&#x27;s WS/Placidus toggle.
+    Returns (cusps12, mc): cusps12 = 12 ecliptic longitudes for houses 1..12
+    (cusps12[0] = Ascendant, cusps12[9] = MC). Attach to a rec as
+    rec[&#x27;cusps&#x27;] = cusps12 ; rec[&#x27;mc&#x27;] = mc. Whole Sign stays the default view.&quot;&quot;&quot;
+    import swisseph as swe
+    cusps, ascmc = swe.houses(jd_ut, lat, lon, b&#x27;P&#x27;)
+    c = list(cusps)
+    if len(c) &gt;= 13:            # some builds return a 1-indexed length-13 tuple
+        c = c[1:13]
+    return [round(x % 360, 4) for x in c[:12]], round(ascmc[1] % 360, 4)
+
+
+ASPECT_DEFS = [(0, &quot;conjunct&quot;), (30, &quot;semisextile&quot;), (60, &quot;sextile&quot;), (90, &quot;square&quot;),
+               (120, &quot;trine&quot;), (150, &quot;quincunx&quot;), (180, &quot;opposite&quot;)]
+
+def point_aspects(point_lons, lons, cap=2.0):
+    &quot;&quot;&quot;Katie&#x27;s tight policy for the minor points (Chiron / Node / America):
+    conjunction, square, opposition only, ≤2° orb, point-to-planet only
+    (no point-to-point pairs — noise). Returns wheel-format aspect dicts.&quot;&quot;&quot;
+    out = []
+    for pn, pl in point_lons.items():
+        for qn, ql in lons.items():
+            sep = abs((pl - ql + 180) % 360 - 180)
+            for ang, nm in [(0, &quot;conjunct&quot;), (90, &quot;square&quot;), (180, &quot;opposite&quot;)]:
+                orb = abs(sep - ang)
+                if orb &lt;= cap:
+                    out.append({&quot;t&quot;: f&quot;{pn} {nm} {qn}&quot;, &quot;o&quot;: round(orb, 2),
+                                &quot;x&quot;: 1 if orb &lt;= 0.3 else 0, &quot;ap&quot;: 0, &quot;pt&quot;: 1})
+    out.sort(key=lambda a: a[&quot;o&quot;])
+    return out
+
+def aspects_between(lons, moon_name=&quot;Moon&quot;, cap_major=3.0, cap_tight=2.0):
+    &quot;&quot;&quot;lons: {planet: longitude}. Returns aspect dicts in the wheel&#x27;s format.&quot;&quot;&quot;
+    keys = list(lons)
+    out = []
+    for i, p1 in enumerate(keys):
+        for p2 in keys[i+1:]:
+            sep = abs((lons[p1] - lons[p2] + 180) % 360 - 180)
+            for ang, nm in ASPECT_DEFS:
+                cap = cap_tight if (moon_name in (p1, p2) or ang == 30) else cap_major
+                orb = abs(sep - ang)
+                if orb &lt;= cap:
+                    out.append({&quot;t&quot;: f&quot;{p1} {nm} {p2}&quot;, &quot;o&quot;: round(orb, 2),
+                                &quot;x&quot;: 1 if orb &lt;= 0.3 else 0, &quot;ap&quot;: 0})
+    out.sort(key=lambda a: a[&quot;o&quot;])
+    return out
+</pre></main></body></html>

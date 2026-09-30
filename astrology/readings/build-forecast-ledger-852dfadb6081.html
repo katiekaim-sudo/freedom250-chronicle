@@ -1,0 +1,689 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-forecast-ledger-852dfadb6081.html">
+<title>build_forecast_ledger</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">registry or ledger · active</div><h1>build_forecast_ledger</h1><p class="mut">Portable source: 99 - Templates/build_forecast_ledger.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Prediction Scorecard — named archetypes from the readings, scored by presence.
+
+The predicted object is the motif named in a Pass 1 reading. Presence in
+Attention (saved events), Official/Research (Research Desk packets, watches),
+or Entity is a win. Seven-arc folder dominance is retired.
+
+Literal DR-004 calls from forecast_curated.json remain a separate strip.
+They are not mixed into the archetype presence rate.
+
+Pessin harvests, mundane-engine one-arc triggers, and story-thread spike
+tests are no longer generated here.
+&quot;&quot;&quot;
+from __future__ import annotations
+
+import glob
+import html
+import json
+import os
+import re
+from collections import Counter
+from datetime import date as Date, datetime, timedelta
+from pathlib import Path
+
+from atomic_io import atomic_write_text
+
+HERE = Path(__file__).resolve().parent
+VAULT = HERE.parent
+EVENTS = VAULT / &quot;01 - Events&quot;
+OUTHTML = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot; / &quot;Forecast Ledger.html&quot;
+LEDGER = HERE / &quot;forecast_ledger.json&quot;
+WATCHLISTS = VAULT / &quot;03 - Astrology&quot; / &quot;archetype_watch_lists.json&quot;
+CURATED = HERE / &quot;forecast_curated.json&quot;
+WATCHCAL = HERE / &quot;watch_calendar.json&quot;
+RESEARCH = HERE / &quot;research_desk_data.json&quot;
+
+DISPOSITIONS = (&quot;lines_up&quot;, &quot;partial&quot;, &quot;miss&quot;, &quot;unresolved&quot;, &quot;pending&quot;)
+LABEL = {
+    &quot;lines_up&quot;: &quot;Lines up&quot;,
+    &quot;partial&quot;: &quot;Partial&quot;,
+    &quot;miss&quot;: &quot;Miss&quot;,
+    &quot;unresolved&quot;: &quot;Unresolved&quot;,
+    &quot;pending&quot;: &quot;Pending&quot;,
+}
+
+
+def today_local() -&gt; Date:
+    return Date.today()
+
+
+def parse_day(value: str | None) -&gt; Date | None:
+    if not value:
+        return None
+    text = str(value).strip()[:10]
+    try:
+        return Date.fromisoformat(text)
+    except ValueError:
+        pass
+    for fmt in (&quot;%b %d, %Y&quot;, &quot;%B %d, %Y&quot;, &quot;%Y-%m-%d&quot;):
+        try:
+            return datetime.strptime(str(value).strip()[:40], fmt).date()
+        except ValueError:
+            continue
+    return None
+
+
+def load_events():
+    idx = {}
+    for path in glob.glob(str(EVENTS / &quot;2*.md&quot;)):
+        day = os.path.basename(path)[:10]
+        try:
+            Date.fromisoformat(day)
+        except ValueError:
+            continue
+        raw = open(path, encoding=&quot;utf-8&quot;, errors=&quot;ignore&quot;).read(2500)
+        title_m = re.search(r&#x27;^title:\s*&quot;?([^&quot;\n]+)&quot;?&#x27;, raw, re.M)
+        plot_m = re.search(r&#x27;primary_plotline:\s*&quot;?([^&quot;\n]+)&quot;?&#x27;, raw)
+        sub_m = re.search(r&#x27;^subplot:\s*&quot;([^&quot;\n]+)&quot;&#x27;, raw, re.M)
+        idx.setdefault(day, []).append({
+            &quot;date&quot;: day,
+            &quot;title&quot;: title_m.group(1).strip() if title_m else os.path.basename(path),
+            &quot;plot&quot;: plot_m.group(1).strip() if plot_m else &quot;&quot;,
+            &quot;sub&quot;: sub_m.group(1).strip() if sub_m else &quot;&quot;,
+            &quot;stem&quot;: os.path.splitext(os.path.basename(path))[0],
+        })
+    return idx
+
+
+def load_packages():
+    if not RESEARCH.exists():
+        return []
+    try:
+        data = json.loads(RESEARCH.read_text(encoding=&quot;utf-8&quot;))
+    except (OSError, json.JSONDecodeError):
+        return []
+    out = []
+    for pkg in data.get(&quot;packages&quot;) or []:
+        if not isinstance(pkg, dict):
+            continue
+        rid = pkg.get(&quot;research_id&quot;) or pkg.get(&quot;primary_research_id&quot;)
+        if not rid:
+            continue
+        out.append({
+            &quot;research_id&quot;: rid,
+            &quot;title&quot;: pkg.get(&quot;title&quot;) or rid,
+            &quot;lane&quot;: pkg.get(&quot;lane&quot;) or &quot;&quot;,
+            &quot;question&quot;: pkg.get(&quot;question&quot;) or &quot;&quot;,
+            &quot;bluf&quot;: pkg.get(&quot;bluf&quot;) or &quot;&quot;,
+            &quot;cutoff&quot;: str(pkg.get(&quot;evidence_cutoff&quot;) or &quot;&quot;)[:10],
+        })
+    return out
+
+
+def load_watch_calendar():
+    if not WATCHCAL.exists():
+        return []
+    try:
+        data = json.loads(WATCHCAL.read_text(encoding=&quot;utf-8&quot;))
+    except (OSError, json.JSONDecodeError):
+        return []
+    return [w for w in (data.get(&quot;entries&quot;) or data.get(&quot;watches&quot;) or []) if isinstance(w, dict)]
+
+
+def load_watchlists():
+    data = json.loads(WATCHLISTS.read_text(encoding=&quot;utf-8&quot;))
+    if data.get(&quot;schema&quot;) != &quot;f250.archetype-presence/v1&quot;:
+        raise SystemExit(&quot;archetype_watch_lists.json schema drifted&quot;)
+    charts = data.get(&quot;charts&quot;) or []
+    if not charts:
+        raise SystemExit(&quot;archetype_watch_lists.json has no charts&quot;)
+    return data
+
+
+def in_window(day: str, start: str, end: str) -&gt; bool:
+    return bool(day and start &lt;= day &lt;= end)
+
+
+def event_blob(ev: dict) -&gt; str:
+    return &quot; &quot;.join([ev.get(&quot;title&quot;, &quot;&quot;), ev.get(&quot;plot&quot;, &quot;&quot;), ev.get(&quot;sub&quot;, &quot;&quot;)]).lower()
+
+
+def motif_needles(motif: dict) -&gt; list[str]:
+    needles = [n.lower() for n in (motif.get(&quot;needles&quot;) or []) if n]
+    needles += [s.lower() for s in (motif.get(&quot;subplots&quot;) or []) if s]
+    return needles
+
+
+def match_text(text: str, needles: list[str]) -&gt; bool:
+    hay = (text or &quot;&quot;).lower()
+    return any(n and n in hay for n in needles)
+
+
+def collect_attention(idx: dict, start: str, end: str, motif: dict, limit: int = 6) -&gt; list[dict]:
+    subs = {s.lower() for s in (motif.get(&quot;subplots&quot;) or []) if s}
+    needles = motif_needles(motif)
+    hits = []
+    counts = Counter()
+    d0 = Date.fromisoformat(start)
+    d1 = Date.fromisoformat(end)
+    day = d0
+    while day &lt;= d1:
+        key = day.isoformat()
+        for ev in idx.get(key, []):
+            blob = event_blob(ev)
+            sub = (ev.get(&quot;sub&quot;) or &quot;&quot;).lower()
+            if sub in subs or match_text(blob, needles):
+                counts[ev.get(&quot;sub&quot;) or ev.get(&quot;plot&quot;) or &quot;note&quot;] += 1
+                if len(hits) &lt; limit:
+                    hits.append({
+                        &quot;lane&quot;: &quot;Attention&quot;,
+                        &quot;date&quot;: ev[&quot;date&quot;],
+                        &quot;label&quot;: ev[&quot;title&quot;][:140],
+                        &quot;sub&quot;: ev.get(&quot;sub&quot;) or &quot;&quot;,
+                        &quot;route&quot;: {&quot;tab&quot;: &quot;obs-df&quot;, &quot;date&quot;: ev[&quot;date&quot;]},
+                    })
+        day += timedelta(days=1)
+    return hits, dict(counts)
+
+
+def collect_official(packages: list, watches: list, start: str, end: str, motif: dict) -&gt; list[dict]:
+    hits = []
+    wanted = set(motif.get(&quot;research_ids&quot;) or [])
+    watch_ids = set(motif.get(&quot;watch_ids&quot;) or [])
+    needles = motif_needles(motif)
+    for pkg in packages:
+        rid = pkg[&quot;research_id&quot;]
+        cutoff = pkg.get(&quot;cutoff&quot;) or &quot;&quot;
+        in_ids = rid in wanted
+        in_time = bool(cutoff) and in_window(cutoff, start, end)
+        if in_ids or (in_time and match_text(pkg[&quot;title&quot;] + &quot; &quot; + pkg.get(&quot;question&quot;, &quot;&quot;), needles)):
+            hits.append({
+                &quot;lane&quot;: &quot;Official&quot;,
+                &quot;date&quot;: cutoff or start,
+                &quot;label&quot;: pkg[&quot;title&quot;],
+                &quot;kind&quot;: &quot;research-packet&quot;,
+                &quot;research_id&quot;: rid,
+                &quot;route&quot;: {&quot;tab&quot;: &quot;obs-rd&quot;, &quot;researchId&quot;: rid},
+            })
+    for watch in watches:
+        wid = watch.get(&quot;watch_id&quot;) or &quot;&quot;
+        wdate = str(watch.get(&quot;date&quot;) or &quot;&quot;)[:10]
+        wend = str(watch.get(&quot;end&quot;) or wdate)[:10]
+        overlaps = wdate and not (wend &lt; start or wdate &gt; end)
+        if wid in watch_ids or (overlaps and match_text(
+            (watch.get(&quot;label&quot;) or &quot;&quot;) + &quot; &quot; + (watch.get(&quot;detail&quot;) or &quot;&quot;), needles
+        )):
+            if not overlaps and wid not in watch_ids:
+                continue
+            hits.append({
+                &quot;lane&quot;: &quot;Official&quot;,
+                &quot;date&quot;: wdate or start,
+                &quot;label&quot;: watch.get(&quot;label&quot;) or wid,
+                &quot;kind&quot;: &quot;watch&quot;,
+                &quot;watch_id&quot;: wid,
+                &quot;route&quot;: {&quot;tab&quot;: &quot;obs-sd&quot;, &quot;date&quot;: wdate or start},
+            })
+    # de-dupe by label+date
+    seen = set()
+    uniq = []
+    for hit in hits:
+        key = (hit.get(&quot;research_id&quot;) or hit.get(&quot;watch_id&quot;) or hit[&quot;label&quot;], hit[&quot;date&quot;])
+        if key in seen:
+            continue
+        seen.add(key)
+        uniq.append(hit)
+    return uniq[:12]
+
+
+def chart_disposition(motifs: list[dict]) -&gt; str:
+    statuses = [m[&quot;status&quot;] for m in motifs]
+    if any(s == &quot;lines_up&quot; for s in statuses):
+        return &quot;lines_up&quot;
+    if any(s == &quot;partial&quot; for s in statuses):
+        return &quot;partial&quot;
+    if any(s == &quot;unresolved&quot; for s in statuses):
+        return &quot;unresolved&quot;
+    if any(s == &quot;miss&quot; for s in statuses):
+        return &quot;miss&quot;
+    return &quot;pending&quot;
+
+
+def score_charts(watchlists: dict, idx: dict, packages: list, watches: list, data_end: str):
+    scored_charts = []
+    for chart in watchlists.get(&quot;charts&quot;) or []:
+        start = chart[&quot;window_start&quot;]
+        end = chart[&quot;window_end&quot;]
+        closed = end &lt;= data_end
+        motifs_out = []
+        for motif in chart.get(&quot;motifs&quot;) or []:
+            attention, counts = collect_attention(idx, start, end, motif)
+            official = collect_official(packages, watches, start, end, motif)
+            authored = motif.get(&quot;disposition&quot;)
+            if authored in DISPOSITIONS:
+                status = authored
+            elif not closed:
+                status = &quot;pending&quot;
+            elif official or attention:
+                status = &quot;lines_up&quot;
+            else:
+                status = &quot;miss&quot;
+            if not closed and status != &quot;pending&quot; and authored not in DISPOSITIONS:
+                status = &quot;pending&quot;
+            motifs_out.append({
+                &quot;id&quot;: motif[&quot;id&quot;],
+                &quot;chart_id&quot;: chart[&quot;id&quot;],
+                &quot;reading_id&quot;: chart.get(&quot;reading_id&quot;),
+                &quot;name&quot;: motif[&quot;name&quot;],
+                &quot;poles&quot;: motif.get(&quot;poles&quot;) or {},
+                &quot;status&quot;: status,
+                &quot;note&quot;: motif.get(&quot;disposition_note&quot;) or &quot;&quot;,
+                &quot;credit&quot;: chart.get(&quot;credit&quot;) or &quot;calibration&quot;,
+                &quot;attention&quot;: attention,
+                &quot;official&quot;: official,
+                &quot;attention_counts&quot;: counts,
+                &quot;research_ids&quot;: motif.get(&quot;research_ids&quot;) or [],
+                &quot;window_start&quot;: start,
+                &quot;window_end&quot;: end,
+                &quot;window_center&quot;: chart.get(&quot;date&quot;) or start,
+            })
+        scored_charts.append({
+            &quot;id&quot;: chart[&quot;id&quot;],
+            &quot;reading_id&quot;: chart.get(&quot;reading_id&quot;),
+            &quot;kind&quot;: chart.get(&quot;kind&quot;),
+            &quot;season&quot;: chart.get(&quot;season&quot;),
+            &quot;label&quot;: chart.get(&quot;label&quot;),
+            &quot;date&quot;: chart.get(&quot;date&quot;),
+            &quot;window_start&quot;: start,
+            &quot;window_end&quot;: end,
+            &quot;credit&quot;: chart.get(&quot;credit&quot;) or &quot;calibration&quot;,
+            &quot;question&quot;: chart.get(&quot;question&quot;) or &quot;&quot;,
+            &quot;status&quot;: chart_disposition(motifs_out),
+            &quot;motifs&quot;: motifs_out,
+        })
+    return scored_charts
+
+
+def score_literals(idx: dict, packages: list, watches: list, data_end: str):
+    if not CURATED.exists():
+        return []
+    try:
+        calls = json.loads(CURATED.read_text(encoding=&quot;utf-8&quot;)).get(&quot;calls&quot;) or []
+    except (OSError, json.JSONDecodeError):
+        return []
+    out = []
+    for call in calls:
+        center = call.get(&quot;window_center&quot;)
+        if not center:
+            continue
+        span = int(call.get(&quot;span&quot;) or 3)
+        start = (Date.fromisoformat(center) - timedelta(days=span)).isoformat()
+        end = (Date.fromisoformat(center) + timedelta(days=span)).isoformat()
+        closed = end &lt;= data_end
+        sub = call.get(&quot;predicted_sub&quot;) or &quot;&quot;
+        stop = {&quot;that&quot;, &quot;this&quot;, &quot;with&quot;, &quot;from&quot;, &quot;have&quot;, &quot;been&quot;, &quot;into&quot;, &quot;over&quot;, &quot;under&quot;}
+        needles = [sub.lower()] if sub else []
+        needles += [w for w in re.findall(r&quot;[a-z0-9-]{4,}&quot;, sub.lower()) if w not in stop]
+        n = 0
+        d0 = Date.fromisoformat(start)
+        d1 = Date.fromisoformat(end)
+        day = d0
+        while day &lt;= d1:
+            for ev in idx.get(day.isoformat(), []):
+                if sub and (ev.get(&quot;sub&quot;) or &quot;&quot;) == sub:
+                    n += 1
+                elif needles and match_text(event_blob(ev), needles):
+                    n += 1
+            day += timedelta(days=1)
+        official = []
+        fake_motif = {&quot;needles&quot;: needles, &quot;subplots&quot;: [sub] if sub else [], &quot;research_ids&quot;: [], &quot;watch_ids&quot;: []}
+        official = collect_official(packages, watches, start, end, fake_motif)
+        if not closed:
+            status = &quot;pending&quot;
+        elif n or official:
+            status = &quot;lines_up&quot;
+        else:
+            status = &quot;unresolved&quot; if not sub else &quot;miss&quot;
+        row = dict(call)
+        row.update({
+            &quot;status&quot;: status,
+            &quot;actual_sub_n&quot;: n,
+            &quot;official_n&quot;: len(official),
+            &quot;window_start&quot;: start,
+            &quot;window_end&quot;: end,
+            &quot;call_class&quot;: &quot;literal&quot;,
+            &quot;score_mode&quot;: &quot;archetype_presence&quot;,
+        })
+        out.append(row)
+    return out
+
+
+def tally(charts: list) -&gt; dict:
+    motifs = [m for c in charts for m in c[&quot;motifs&quot;]]
+    def count(status, rows):
+        return sum(1 for r in rows if r[&quot;status&quot;] == status)
+    scored = [m for m in motifs if m[&quot;status&quot;] in (&quot;lines_up&quot;, &quot;partial&quot;, &quot;miss&quot;, &quot;unresolved&quot;)]
+    charts_scored = [c for c in charts if c[&quot;status&quot;] in (&quot;lines_up&quot;, &quot;partial&quot;, &quot;miss&quot;, &quot;unresolved&quot;)]
+    prospective = [m for m in motifs if m.get(&quot;credit&quot;) == &quot;prospective&quot;]
+    calibration = [m for m in motifs if m.get(&quot;credit&quot;) != &quot;prospective&quot;]
+
+    def rate(rows, key=&quot;lines_up&quot;):
+        closed = [r for r in rows if r[&quot;status&quot;] in (&quot;lines_up&quot;, &quot;partial&quot;, &quot;miss&quot;, &quot;unresolved&quot;)]
+        if not closed:
+            return None
+        return sum(1 for r in closed if r[&quot;status&quot;] == key) / len(closed)
+
+    presence = rate(motifs)
+    present_or_partial = None
+    closed = [m for m in motifs if m[&quot;status&quot;] in (&quot;lines_up&quot;, &quot;partial&quot;, &quot;miss&quot;, &quot;unresolved&quot;)]
+    if closed:
+        present_or_partial = sum(1 for m in closed if m[&quot;status&quot;] in (&quot;lines_up&quot;, &quot;partial&quot;)) / len(closed)
+    sc = {
+        &quot;method&quot;: &quot;archetype_presence&quot;,
+        &quot;n_total&quot;: len(motifs),
+        &quot;scored&quot;: len(scored),
+        &quot;lines_up&quot;: count(&quot;lines_up&quot;, motifs),
+        &quot;partials&quot;: count(&quot;partial&quot;, motifs),
+        &quot;miss&quot;: count(&quot;miss&quot;, motifs),
+        &quot;unresolved&quot;: count(&quot;unresolved&quot;, motifs),
+        &quot;pending&quot;: count(&quot;pending&quot;, motifs),
+        &quot;presence_rate&quot;: presence,
+        &quot;present_or_partial_rate&quot;: present_or_partial,
+        &quot;chart_total&quot;: len(charts),
+        &quot;chart_scored&quot;: len(charts_scored),
+        &quot;chart_lines_up&quot;: count(&quot;lines_up&quot;, charts),
+        &quot;chart_pending&quot;: count(&quot;pending&quot;, charts),
+        &quot;prospective_scored&quot;: len([m for m in prospective if m[&quot;status&quot;] in (&quot;lines_up&quot;, &quot;partial&quot;, &quot;miss&quot;, &quot;unresolved&quot;)]),
+        &quot;prospective_lines_up&quot;: count(&quot;lines_up&quot;, prospective),
+        &quot;calibration_scored&quot;: len([m for m in calibration if m[&quot;status&quot;] in (&quot;lines_up&quot;, &quot;partial&quot;, &quot;miss&quot;, &quot;unresolved&quot;)]),
+        &quot;calibration_lines_up&quot;: count(&quot;lines_up&quot;, calibration),
+        # Compatibility aliases for older primer/badge readers during the cutover.
+        &quot;hits&quot;: count(&quot;lines_up&quot;, motifs),
+        &quot;hit_rate&quot;: presence,
+        &quot;chance&quot;: None,
+    }
+    return sc, motifs
+
+
+def pct(value) -&gt; str:
+    if value is None:
+        return &quot;—&quot;
+    return f&quot;{value * 100:.0f}%&quot;
+
+
+def esc(value) -&gt; str:
+    return html.escape(str(value or &quot;&quot;), quote=True)
+
+
+def evidence_html(items: list) -&gt; str:
+    if not items:
+        return &#x27;&lt;p class=&quot;muted&quot;&gt;None retrieved in this window.&lt;/p&gt;&#x27;
+    bits = []
+    for item in items:
+        label = esc(item.get(&quot;label&quot;))
+        date = esc(item.get(&quot;date&quot;))
+        lane = esc(item.get(&quot;lane&quot;))
+        route = item.get(&quot;route&quot;) or {}
+        tab = route.get(&quot;tab&quot;) or &quot;&quot;
+        attrs = f&#x27;data-tab=&quot;{esc(tab)}&quot;&#x27;
+        if route.get(&quot;date&quot;):
+            attrs += f&#x27; data-date=&quot;{esc(route[&quot;date&quot;])}&quot;&#x27;
+        if route.get(&quot;researchId&quot;):
+            attrs += f&#x27; data-research=&quot;{esc(route[&quot;researchId&quot;])}&quot;&#x27;
+        bits.append(
+            f&#x27;&lt;button type=&quot;button&quot; class=&quot;ev&quot; {attrs}&gt;&#x27;
+            f&#x27;&lt;span class=&quot;ev-lane&quot;&gt;{lane}&lt;/span&gt; {date} · {label}&lt;/button&gt;&#x27;
+        )
+    return &#x27;&lt;div class=&quot;ev-list&quot;&gt;&#x27; + &quot;&quot;.join(bits) + &quot;&lt;/div&gt;&quot;
+
+
+def render(charts: list, literals: list, sc: dict, data_end: str) -&gt; str:
+    css = &quot;&quot;&quot;
+*{box-sizing:border-box}
+body{margin:0;padding:22px 22px 48px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;
+  background:#faf8f3;color:#2b2620;line-height:1.5}
+h1{font-size:26px;margin:0 0 4px}
+.sub{color:#7a6f60;margin:0 0 18px;font-size:14px;max-width:70rem}
+.card{background:#fff;border:1px solid #e7e0d4;border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.score{display:flex;gap:22px;flex-wrap:wrap;align-items:baseline}
+.score .big{font-size:34px;font-weight:800}
+.score .lbl,.lbl{font-size:11px;color:#7a6f60;text-transform:uppercase;letter-spacing:.04em}
+.note{font-size:13px;color:#54493b;background:#f3eee3;border-radius:8px;padding:10px 12px;margin-top:10px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.filters button{border:1px solid #e7e0d4;background:#fff;border-radius:999px;padding:6px 12px;
+  font:600 12px/1 -apple-system,Segoe UI,Roboto,sans-serif;color:#54493b;cursor:pointer}
+.filters button[aria-pressed=&quot;true&quot;]{background:#2b2620;color:#faf8f3;border-color:#2b2620}
+.chart{border:1px solid #e7e0d4;border-radius:12px;background:#fff;margin-bottom:14px;overflow:hidden}
+.chart-h{padding:14px 16px 10px;border-bottom:1px solid #efe9dd}
+.chart-h h2{font-size:18px;margin:0 0 4px}
+.q{color:#54493b;font-size:13px;margin:6px 0 0}
+.meta{font-size:12px;color:#7a6f60}
+.motif{padding:12px 16px;border-top:1px solid #f3eee3}
+.motif h3{font-size:15px;margin:0 0 6px}
+.poles{font-size:12px;color:#54493b;margin:0 0 8px}
+.badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+  border-radius:6px;padding:2px 7px;margin-right:6px}
+.badge.lines_up{background:#e4f3ea;color:#2f7d4f}
+.badge.partial{background:#fff3d6;color:#8a6a12}
+.badge.miss{background:#f8e1de;color:#b5453f}
+.badge.unresolved{background:#ece8f4;color:#5b4d7a}
+.badge.pending{background:#eeeae2;color:#7a6f60}
+.badge.credit{background:#f3eee3;color:#7a6f60;font-weight:600}
+.ev-list{display:flex;flex-direction:column;gap:6px}
+.ev{text-align:left;border:1px solid #efe9dd;background:#fbf7ee;border-radius:8px;padding:7px 9px;
+  font-size:12px;color:#2b2620;cursor:pointer}
+.ev:hover,.ev:focus{outline:none;border-color:#b8860b;background:#fff8e8}
+.ev-lane{font-weight:800;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:#7a6f60;margin-right:6px}
+.muted{color:#9a8f7e;font-size:12px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:800px){.cols{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:7px 9px;vertical-align:top;border-bottom:1px solid #efe9dd}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#9a8f7e}
+.literal-row{cursor:pointer}
+.literal-row:hover{background:#fbf7ee}
+&quot;&quot;&quot;
+    chart_html = []
+    for chart in charts:
+        motifs = &quot;&quot;.join(
+            f&quot;&quot;&quot;&lt;article class=&quot;motif&quot; data-call-id=&quot;{esc(m[&#x27;id&#x27;])}&quot; data-status=&quot;{esc(m[&#x27;status&#x27;])}&quot;&gt;
+  &lt;h3&gt;&lt;span class=&quot;badge {esc(m[&#x27;status&#x27;])}&quot;&gt;{esc(LABEL[m[&#x27;status&#x27;]])}&lt;/span&gt; {esc(m[&#x27;name&#x27;])}&lt;/h3&gt;
+  &lt;p class=&quot;poles&quot;&gt;&lt;b&gt;Constructive.&lt;/b&gt; {esc((m.get(&#x27;poles&#x27;) or {}).get(&#x27;constructive&#x27;))}
+     &lt;b&gt;Shadow.&lt;/b&gt; {esc((m.get(&#x27;poles&#x27;) or {}).get(&#x27;shadow&#x27;))}&lt;/p&gt;
+  {&quot;&lt;p class=&#x27;muted&#x27;&gt;&quot; + esc(m[&#x27;note&#x27;]) + &quot;&lt;/p&gt;&quot; if m.get(&quot;note&quot;) else &quot;&quot;}
+  &lt;div class=&quot;cols&quot;&gt;
+    &lt;div&gt;&lt;div class=&quot;lbl&quot;&gt;Attention&lt;/div&gt;{evidence_html(m.get(&quot;attention&quot;) or [])}&lt;/div&gt;
+    &lt;div&gt;&lt;div class=&quot;lbl&quot;&gt;Official / Research&lt;/div&gt;{evidence_html(m.get(&quot;official&quot;) or [])}&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;&quot;&quot;&quot;
+            for m in chart[&quot;motifs&quot;]
+        )
+        chart_html.append(
+            f&quot;&quot;&quot;&lt;section class=&quot;chart&quot; data-season=&quot;{esc(chart.get(&#x27;season&#x27;))}&quot; data-kind=&quot;{esc(chart.get(&#x27;kind&#x27;))}&quot;
+  data-credit=&quot;{esc(chart.get(&#x27;credit&#x27;))}&quot; data-status=&quot;{esc(chart[&#x27;status&#x27;])}&quot; data-date=&quot;{esc(chart.get(&#x27;date&#x27;))}&quot;
+  data-call-id=&quot;{esc(chart[&#x27;id&#x27;])}&quot;&gt;
+  &lt;div class=&quot;chart-h&quot;&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;span class=&quot;badge {esc(chart[&#x27;status&#x27;])}&quot;&gt;{esc(LABEL[chart[&#x27;status&#x27;]])}&lt;/span&gt;
+      &lt;span class=&quot;badge credit&quot;&gt;{esc(chart.get(&#x27;credit&#x27;))}&lt;/span&gt;
+      {esc(chart.get(&#x27;window_start&#x27;))} → {esc(chart.get(&#x27;window_end&#x27;))} · {esc(chart.get(&#x27;kind&#x27;))}&lt;/div&gt;
+    &lt;h2&gt;{esc(chart[&#x27;label&#x27;])}&lt;/h2&gt;
+    &lt;p class=&quot;q&quot;&gt;{esc(chart.get(&#x27;question&#x27;))}&lt;/p&gt;
+    &lt;p class=&quot;meta&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;ev&quot; data-tab=&quot;obs-sky&quot; data-chart=&quot;{esc(chart.get(&#x27;reading_id&#x27;) or chart[&#x27;id&#x27;])}&quot;&gt;Open Chart Reading&lt;/button&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  {motifs}
+&lt;/section&gt;&quot;&quot;&quot;
+        )
+    lit_rows = []
+    for call in sorted(literals, key=lambda c: c.get(&quot;window_center&quot;) or &quot;&quot;):
+        lit_rows.append(
+            f&#x27;&lt;tr class=&quot;literal-row&quot; data-date=&quot;{esc(call.get(&quot;window_center&quot;))}&quot; data-call-id=&quot;{esc(call.get(&quot;id&quot;))}&quot;&gt;&#x27;
+            f&#x27;&lt;td&gt;{esc(call.get(&quot;window_center&quot;))}&lt;/td&gt;&#x27;
+            f&#x27;&lt;td&gt;&lt;span class=&quot;badge {esc(call.get(&quot;status&quot;))}&quot;&gt;{esc(LABEL.get(call.get(&quot;status&quot;), call.get(&quot;status&quot;)))}&lt;/span&gt;&lt;/td&gt;&#x27;
+            f&#x27;&lt;td&gt;{esc(call.get(&quot;framework&quot;))}&lt;/td&gt;&#x27;
+            f&#x27;&lt;td&gt;{esc(call.get(&quot;predicted_sub&quot;) or call.get(&quot;id&quot;))}&lt;/td&gt;&#x27;
+            f&#x27;&lt;td class=&quot;muted&quot;&gt;{esc(call.get(&quot;basis&quot;))}&lt;/td&gt;&lt;/tr&gt;&#x27;
+        )
+    presence = pct(sc.get(&quot;presence_rate&quot;))
+    both = pct(sc.get(&quot;present_or_partial_rate&quot;))
+    chart_rate = pct(
+        (sc[&quot;chart_lines_up&quot;] / sc[&quot;chart_scored&quot;]) if sc.get(&quot;chart_scored&quot;) else None
+    )
+    return f&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;Prediction Scorecard&lt;/title&gt;
+&lt;style&gt;{css}&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Prediction Scorecard&lt;/h1&gt;
+&lt;p class=&quot;sub&quot;&gt;Named archetypes from the ingress and lunation readings. Presence in Attention, Official/Research, or Entity is a win. Seven-arc folder races are retired. Generated {esc(today_local().isoformat())} · data through {esc(data_end)}.&lt;/p&gt;
+&lt;div class=&quot;card&quot;&gt;
+  &lt;div class=&quot;score&quot;&gt;
+    &lt;div&gt;&lt;div class=&quot;big&quot;&gt;{esc(presence)}&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;motif presence&lt;/div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;div class=&quot;big&quot;&gt;{esc(both)}&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;lines up or partial&lt;/div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;div class=&quot;big&quot;&gt;{esc(chart_rate)}&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;charts that lined up&lt;/div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;div class=&quot;big&quot;&gt;{sc[&#x27;lines_up&#x27;]}/{sc[&#x27;scored&#x27;]}&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;motifs scored&lt;/div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;div class=&quot;big&quot;&gt;{sc[&#x27;pending&#x27;]}&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;pending&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;note&quot;&gt;A win is the reading’s named room showing up, not the loudest X folder. Official/Research uses Research Desk packets and the watch calendar, not bookmark volume. Calibration charts were frozen after their windows and get no forecast credit. Prospective charts were frozen before. Exact-day literal misses still miss. The State Transition Watch remains a stricter separate instrument.&lt;/div&gt;
+  &lt;div class=&quot;note&quot;&gt;Calibration: {sc[&#x27;calibration_lines_up&#x27;]} lined up of {sc[&#x27;calibration_scored&#x27;]} scored.
+    Prospective: {sc[&#x27;prospective_lines_up&#x27;]} lined up of {sc[&#x27;prospective_scored&#x27;]} scored.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;filters&quot; role=&quot;toolbar&quot; aria-label=&quot;Filter charts&quot;&gt;
+  &lt;button type=&quot;button&quot; data-filter=&quot;all&quot; aria-pressed=&quot;true&quot;&gt;All&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-filter=&quot;season:cancer&quot;&gt;Cancer&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-filter=&quot;season:aries&quot;&gt;Aries&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-filter=&quot;credit:prospective&quot;&gt;Prospective&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-filter=&quot;credit:calibration&quot;&gt;Calibration&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-filter=&quot;kind:ingress&quot;&gt;Climate&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-filter=&quot;kind:lunation&quot;&gt;Weather&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id=&quot;charts&quot;&gt;{&quot;&quot;.join(chart_html)}&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;
+  &lt;h2&gt;Literal calls (separate strip)&lt;/h2&gt;
+  &lt;p class=&quot;muted&quot;&gt;DR-004 calls from &lt;code&gt;forecast_curated.json&lt;/code&gt;. Scored by presence of the named subplot, not by arc dominance. Not mixed into the motif rate.&lt;/p&gt;
+  &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;window&lt;/th&gt;&lt;th&gt;result&lt;/th&gt;&lt;th&gt;framework&lt;/th&gt;&lt;th&gt;named object&lt;/th&gt;&lt;th&gt;basis&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;{&quot;&quot;.join(lit_rows) or &#x27;&lt;tr&gt;&lt;td colspan=&quot;5&quot; class=&quot;muted&quot;&gt;None.&lt;/td&gt;&lt;/tr&gt;&#x27;}&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){{
+  function post(msg){{ try{{ parent.postMessage(msg, &#x27;*&#x27;); }}catch(_){{}} }}
+  function filter(key){{
+    var charts = document.querySelectorAll(&#x27;.chart&#x27;);
+    charts.forEach(function(ch){{
+      var show = true;
+      if(key === &#x27;all&#x27;) show = true;
+      else if(key.indexOf(&#x27;season:&#x27;)===0) show = ch.dataset.season === key.slice(7);
+      else if(key.indexOf(&#x27;credit:&#x27;)===0) show = ch.dataset.credit === key.slice(7);
+      else if(key === &#x27;kind:ingress&#x27;) show = ch.dataset.kind === &#x27;ingress&#x27;;
+      else if(key === &#x27;kind:lunation&#x27;) show = ch.dataset.kind !== &#x27;ingress&#x27;;
+      ch.style.display = show ? &#x27;&#x27; : &#x27;none&#x27;;
+    }});
+  }}
+  document.addEventListener(&#x27;click&#x27;, function(e){{
+    var btn = e.target.closest(&#x27;[data-filter]&#x27;);
+    if(btn){{
+      document.querySelectorAll(&#x27;[data-filter]&#x27;).forEach(function(b){{ b.setAttribute(&#x27;aria-pressed&#x27;, b===btn ? &#x27;true&#x27;:&#x27;false&#x27;); }});
+      filter(btn.getAttribute(&#x27;data-filter&#x27;));
+      return;
+    }}
+    var ev = e.target.closest(&#x27;.ev&#x27;);
+    if(ev){{
+      var tab = ev.getAttribute(&#x27;data-tab&#x27;);
+      if(tab === &#x27;obs-df&#x27; &amp;&amp; ev.getAttribute(&#x27;data-date&#x27;)){{
+        post({{action:&#x27;navigateTo&#x27;, tab:&#x27;obs-df&#x27;, date:ev.getAttribute(&#x27;data-date&#x27;)}});
+      }} else if(tab === &#x27;obs-rd&#x27; &amp;&amp; ev.getAttribute(&#x27;data-research&#x27;)){{
+        post({{action:&#x27;navigateTo&#x27;, tab:&#x27;obs-rd&#x27;, childAction:&#x27;openResearch&#x27;, id:ev.getAttribute(&#x27;data-research&#x27;)}});
+        post({{action:&#x27;openResearch&#x27;, id:ev.getAttribute(&#x27;data-research&#x27;)}});
+      }} else if(ev.getAttribute(&#x27;data-chart&#x27;)){{
+        post({{action:&#x27;navigateTo&#x27;, tab:&#x27;obs-cr&#x27;, childAction:&#x27;selectReading&#x27;, chart_id:ev.getAttribute(&#x27;data-chart&#x27;)}});
+      }} else if(tab === &#x27;obs-sd&#x27; &amp;&amp; ev.getAttribute(&#x27;data-date&#x27;)){{
+        post({{action:&#x27;navigateTo&#x27;, tab:&#x27;obs-sd&#x27;, date:ev.getAttribute(&#x27;data-date&#x27;)}});
+      }}
+      return;
+    }}
+    var row = e.target.closest(&#x27;.literal-row[data-date]&#x27;);
+    if(row){{ post({{action:&#x27;navigateTo&#x27;, tab:&#x27;obs-df&#x27;, date:row.dataset.date}}); }}
+  }});
+  function focusId(id){{
+    if(!id) return;
+    var target = document.querySelector(&#x27;[data-call-id=&quot;&#x27;+id+&#x27;&quot;]&#x27;);
+    if(!target) return;
+    target.scrollIntoView({{behavior:&#x27;smooth&#x27;, block:&#x27;center&#x27;}});
+  }}
+  function focusDate(date){{
+    if(!date) return;
+    var all = Array.from(document.querySelectorAll(&#x27;.chart[data-date], .literal-row[data-date]&#x27;));
+    var target = all.find(function(el){{ return el.dataset.date === date; }});
+    if(target) target.scrollIntoView({{behavior:&#x27;smooth&#x27;, block:&#x27;center&#x27;}});
+  }}
+  window.addEventListener(&#x27;message&#x27;, function(e){{
+    if(!e.data) return;
+    if(e.data.action===&#x27;goToCall&#x27; &amp;&amp; e.data.callId) focusId(e.data.callId);
+    if((e.data.action===&#x27;goToDate&#x27;||e.data.action===&#x27;scrollToDate&#x27;) &amp;&amp; e.data.date) focusDate(e.data.date);
+  }});
+}})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+&quot;&quot;&quot;
+
+
+def predictions_projection(charts: list, literals: list) -&gt; list:
+    rows = []
+    for chart in charts:
+        for motif in chart[&quot;motifs&quot;]:
+            rows.append({
+                &quot;id&quot;: motif[&quot;id&quot;],
+                &quot;framework&quot;: &quot;Archetype presence&quot;,
+                &quot;call_class&quot;: &quot;archetype&quot;,
+                &quot;made_on&quot;: &quot;2026-08-15&quot; if motif.get(&quot;credit&quot;) == &quot;calibration&quot; else &quot;2026-08-15&quot;,
+                &quot;window_center&quot;: motif[&quot;window_center&quot;],
+                &quot;window_start&quot;: motif[&quot;window_start&quot;],
+                &quot;window_end&quot;: motif[&quot;window_end&quot;],
+                &quot;status&quot;: motif[&quot;status&quot;],
+                &quot;basis&quot;: motif[&quot;name&quot;],
+                &quot;credit&quot;: motif.get(&quot;credit&quot;),
+                &quot;reading_id&quot;: motif.get(&quot;reading_id&quot;),
+                &quot;chart_id&quot;: motif.get(&quot;chart_id&quot;),
+            })
+    for call in literals:
+        rows.append(call)
+    return rows
+
+
+def main():
+    watchlists = load_watchlists()
+    idx = load_events()
+    data_end = max(idx) if idx else today_local().isoformat()
+    packages = load_packages()
+    watches = load_watch_calendar()
+    charts = score_charts(watchlists, idx, packages, watches, data_end)
+    literals = score_literals(idx, packages, watches, data_end)
+    sc, motifs = tally(charts)
+    payload = {
+        &quot;schema&quot;: &quot;f250.archetype-presence/v1&quot;,
+        &quot;generated&quot;: datetime.now().isoformat(),
+        &quot;data_end&quot;: data_end,
+        &quot;method&quot;: watchlists.get(&quot;method&quot;),
+        &quot;scorecard&quot;: sc,
+        &quot;charts&quot;: charts,
+        &quot;predictions&quot;: predictions_projection(charts, literals),
+        &quot;literals&quot;: [
+            {&quot;id&quot;: c.get(&quot;id&quot;), &quot;status&quot;: c.get(&quot;status&quot;), &quot;window_center&quot;: c.get(&quot;window_center&quot;),
+             &quot;framework&quot;: c.get(&quot;framework&quot;), &quot;predicted_sub&quot;: c.get(&quot;predicted_sub&quot;)}
+            for c in literals
+        ],
+    }
+    LEDGER.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding=&quot;utf-8&quot;)
+    atomic_write_text(OUTHTML, render(charts, literals, sc, data_end))
+    print(
+        f&quot;✓ Prediction Scorecard: {sc[&#x27;n_total&#x27;]} motifs &quot;
+        f&quot;({sc[&#x27;scored&#x27;]} scored: {sc[&#x27;lines_up&#x27;]} lines up / {sc[&#x27;partials&#x27;]} partial / &quot;
+        f&quot;{sc[&#x27;miss&#x27;]} miss / {sc[&#x27;unresolved&#x27;]} unresolved; {sc[&#x27;pending&#x27;]} pending). &quot;
+        f&quot;presence {pct(sc[&#x27;presence_rate&#x27;])}.&quot;
+    )
+    print(f&quot;  → {OUTHTML}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

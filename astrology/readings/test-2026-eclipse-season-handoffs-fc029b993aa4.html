@@ -1,0 +1,132 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-2026-eclipse-season-handoffs-fc029b993aa4.html">
+<title>test_2026_eclipse_season_handoffs</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_2026_eclipse_season_handoffs</h1><p class="mut">Portable source: 99 - Templates/test_2026_eclipse_season_handoffs.py</p><pre>from __future__ import annotations
+
+import json
+import unittest
+
+import build_2026_eclipse_season_handoffs as handoffs
+
+
+class EclipseSeasonHandoffTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.payload = handoffs.build_payload()
+        cls.rows = {row[&quot;season&quot;]: row for row in cls.payload[&quot;seasons&quot;]}
+
+    def test_two_2026_eclipse_seasons_are_joined(self):
+        self.assertEqual(list(self.rows), [&quot;winter&quot;, &quot;summer&quot;])
+
+    def test_winter_replaces_one_closed_loop_with_another(self):
+        transition = self.rows[&quot;winter&quot;][&quot;root_transition&quot;]
+        self.assertTrue(transition[&quot;complete_replacement&quot;])
+        self.assertTrue(transition[&quot;both_frames_without_final_dispositor&quot;])
+        self.assertEqual(transition[&quot;seed_root_members&quot;], [&quot;Mars&quot;, &quot;Saturn&quot;])
+        self.assertEqual(transition[&quot;full_root_members&quot;], [&quot;Jupiter&quot;, &quot;Mercury&quot;, &quot;Moon&quot;])
+
+    def test_winter_stage_and_command_exchange_axes(self):
+        rows = self.rows[&quot;winter&quot;][&quot;cross_chart_relays&quot;]
+        mars_mc = next(row for row in rows if row[&quot;source&quot;] == &quot;seed Mars&quot; and row[&quot;target&quot;] == &quot;Full MC&quot;)
+        self.assertEqual(mars_mc[&quot;aspect&quot;], &quot;sextile&quot;)
+        self.assertLess(mars_mc[&quot;orb_deg&quot;], 0.071)
+        mc_sun = next(row for row in rows if row[&quot;source&quot;] == &quot;seed MC&quot; and row[&quot;target&quot;] == &quot;Full Sun&quot;)
+        self.assertEqual(mc_sun[&quot;aspect&quot;], &quot;square&quot;)
+        self.assertLess(mc_sun[&quot;orb_deg&quot;], 0.679)
+
+    def test_winter_declination_corridors_tighten(self):
+        rows = self.rows[&quot;winter&quot;][&quot;persistent_declination_relationships&quot;]
+        pairs = {tuple(row[&quot;pair&quot;]): row for row in rows}
+        self.assertTrue(pairs[(&quot;Jupiter&quot;, &quot;Pluto&quot;)][&quot;tightens&quot;])
+        self.assertTrue(pairs[(&quot;Neptune&quot;, &quot;Saturn&quot;)][&quot;tightens&quot;])
+
+    def test_summer_preserves_venus_and_changes_sun_to_mercury(self):
+        transition = self.rows[&quot;summer&quot;][&quot;root_transition&quot;]
+        self.assertEqual(transition[&quot;shared_members&quot;], [&quot;Venus&quot;])
+        self.assertEqual(transition[&quot;removed_members&quot;], [&quot;Sun&quot;])
+        self.assertEqual(transition[&quot;added_members&quot;], [&quot;Mercury&quot;])
+        self.assertEqual(transition[&quot;seed_final_dispositors&quot;], [&quot;Sun&quot;, &quot;Venus&quot;])
+        self.assertEqual(transition[&quot;full_final_dispositors&quot;], [&quot;Mercury&quot;, &quot;Venus&quot;])
+
+    def test_summer_both_full_roots_receive_exact_seed_relays(self):
+        receipts = {row[&quot;target&quot;]: row for row in self.rows[&quot;summer&quot;][&quot;full_root_receipts&quot;]}
+        self.assertLess(receipts[&quot;Venus&quot;][&quot;orb_deg&quot;], 0.0014)
+        self.assertEqual(receipts[&quot;Venus&quot;][&quot;source&quot;], &quot;Moon&quot;)
+        self.assertLess(receipts[&quot;Mercury&quot;][&quot;orb_deg&quot;], 0.0245)
+        self.assertEqual(receipts[&quot;Mercury&quot;][&quot;source&quot;], &quot;Uranus&quot;)
+
+    def test_summer_mars_pluto_contra_parallel_tightens(self):
+        rows = self.rows[&quot;summer&quot;][&quot;persistent_declination_relationships&quot;]
+        mars_pluto = next(row for row in rows if row[&quot;pair&quot;] == [&quot;Mars&quot;, &quot;Pluto&quot;])
+        self.assertTrue(mars_pluto[&quot;tightens&quot;])
+        self.assertFalse(mars_pluto[&quot;longitude_major_aspect_at_seed&quot;])
+        self.assertFalse(mars_pluto[&quot;longitude_major_aspect_at_full&quot;])
+
+    def test_both_eclipse_chapters_expand_the_occupied_field(self):
+        self.assertAlmostEqual(
+            self.rows[&quot;winter&quot;][&quot;distribution_transition&quot;][&quot;occupied_span_change_deg&quot;],
+            56.66,
+            places=2,
+        )
+        self.assertAlmostEqual(
+            self.rows[&quot;summer&quot;][&quot;distribution_transition&quot;][&quot;occupied_span_change_deg&quot;],
+            14.46,
+            places=2,
+        )
+
+    def test_local_visibility_never_changes_governance(self):
+        self.assertEqual(
+            self.rows[&quot;winter&quot;][&quot;solar_seed&quot;][&quot;local_stage&quot;][&quot;washington_status&quot;],
+            &quot;not_visible&quot;,
+        )
+        self.assertEqual(
+            self.rows[&quot;winter&quot;][&quot;lunar_disclosure&quot;][&quot;local_stage&quot;][&quot;washington_status&quot;],
+            &quot;sets_during_eclipse&quot;,
+        )
+        self.assertEqual(
+            self.rows[&quot;summer&quot;][&quot;solar_seed&quot;][&quot;local_stage&quot;][&quot;washington_type&quot;],
+            &quot;partial&quot;,
+        )
+        self.assertAlmostEqual(
+            self.rows[&quot;summer&quot;][&quot;lunar_disclosure&quot;][&quot;local_stage&quot;][&quot;visible_partial_lunar_minutes&quot;],
+            198.167,
+            places=3,
+        )
+
+    def test_twelve_chapter_control_prevents_overclaim(self):
+        control = self.payload[&quot;bounded_lunation_control&quot;]
+        self.assertEqual(control[&quot;chapter_count&quot;], 12)
+        self.assertEqual(
+            control[&quot;complete_root_replacement_no_final_dispositor_chapters&quot;],
+            [&quot;lun-2026-02-17-ne-solar&quot;],
+        )
+        self.assertEqual(
+            control[&quot;all_full_roots_exactly_reached_chapters&quot;],
+            [&quot;lun-2026-08-12-ne-solar&quot;],
+        )
+        self.assertEqual(
+            control[&quot;seed_angle_to_full_light_within_1_deg_chapters&quot;],
+            [&quot;lun-2026-02-17-ne-solar&quot;],
+        )
+
+    def test_zero_credit_boundary(self):
+        boundary = self.payload[&quot;authority_boundary&quot;]
+        self.assertEqual(boundary[&quot;factual_evidence_credit&quot;], &quot;zero&quot;)
+        self.assertEqual(boundary[&quot;forecast_ledger_credit&quot;], &quot;zero&quot;)
+        self.assertFalse(boundary[&quot;causal_claim&quot;])
+
+    def test_generated_artifact_matches_builder(self):
+        stored = json.loads(handoffs.OUT.read_text(encoding=&quot;utf-8&quot;))
+        self.assertEqual(stored, self.payload)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

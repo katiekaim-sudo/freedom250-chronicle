@@ -1,0 +1,130 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-whole-chart-packet-index-ecf56899bc33.html">
+<title>test_whole_chart_packet_index</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_whole_chart_packet_index</h1><p class="mut">Portable source: 99 - Templates/test_whole_chart_packet_index.py</p><pre>from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+import build_whole_chart_packet_index as packets
+
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+class WholeChartPacketIndexTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -&gt; None:
+        cls.payload = packets.build_payload()
+        cls.history = json.loads((ROOT / packets.SOURCES[&quot;history&quot;]).read_text(encoding=&quot;utf-8&quot;))
+        cls.bones = json.loads((ROOT / packets.SOURCES[&quot;bones_index&quot;]).read_text(encoding=&quot;utf-8&quot;))
+        cls.history_by_id = {row[&quot;id&quot;]: row for row in cls.history[&quot;charts&quot;]}
+        cls.bone_by_id = {row[&quot;id&quot;]: row for row in cls.bones[&quot;charts&quot;]}
+        cls.packet_by_id = {row[&quot;chart_id&quot;]: row for row in cls.payload[&quot;packets&quot;]}
+
+    def test_complete_registered_population_and_groups(self) -&gt; None:
+        self.assertEqual(self.payload[&quot;schema&quot;], &quot;freedom250.whole-chart-packet-index/v1&quot;)
+        self.assertEqual(self.payload[&quot;counts&quot;][&quot;packet_count&quot;], 30)
+        self.assertEqual(self.payload[&quot;counts&quot;][&quot;ingress_packet_count&quot;], 5)
+        self.assertEqual(self.payload[&quot;counts&quot;][&quot;lunation_packet_count&quot;], 25)
+        self.assertEqual(
+            {row[&quot;chart_id&quot;] for row in self.payload[&quot;packets&quot;]},
+            set(self.bone_by_id),
+        )
+        self.assertEqual(
+            [(row[&quot;group_id&quot;], row[&quot;packet_count&quot;]) for row in self.payload[&quot;groups&quot;]],
+            [(&quot;ingress_governors&quot;, 5), (&quot;new_moon_seeds&quot;, 12), (&quot;full_moon_culminations&quot;, 13)],
+        )
+
+    def test_identity_clocks_readings_and_bones_are_exact_routes(self) -&gt; None:
+        for chart_id, packet in self.packet_by_id.items():
+            history = self.history_by_id[chart_id]
+            self.assertEqual(packet[&quot;exact_clock&quot;][&quot;utc&quot;], history[&quot;utc&quot;])
+            self.assertEqual(packet[&quot;exact_clock&quot;][&quot;local&quot;], history[&quot;local&quot;])
+            self.assertEqual(packet[&quot;reading_ref&quot;][&quot;source&quot;], history[&quot;reading_source&quot;])
+            self.assertEqual(
+                packet[&quot;reading_ref&quot;][&quot;selection_message&quot;],
+                {&quot;action&quot;: &quot;selectReading&quot;, &quot;chart_id&quot;: chart_id},
+            )
+            self.assertTrue((ROOT / packet[&quot;bones_ref&quot;][&quot;path&quot;]).is_file())
+
+    def test_reference_only_boundary_has_no_chart_payloads(self) -&gt; None:
+        forbidden_keys = {&quot;positions&quot;, &quot;houses&quot;, &quot;aspects&quot;, &quot;points&quot;, &quot;placidus_cusps&quot;, &quot;root_members&quot;}
+
+        def walk(value):
+            if isinstance(value, dict):
+                self.assertTrue(forbidden_keys.isdisjoint(value.keys()))
+                for child in value.values():
+                    walk(child)
+            elif isinstance(value, list):
+                for child in value:
+                    walk(child)
+
+        walk(self.payload[&quot;packets&quot;])
+        self.assertFalse(self.payload[&quot;authority_boundary&quot;][&quot;chart_payload_copied&quot;])
+
+    def test_ingress_governance_is_typed_without_false_self_inheritance(self) -&gt; None:
+        for chart_id, packet in self.packet_by_id.items():
+            governor = packet[&quot;governing_ingress_ref&quot;]
+            if packet[&quot;chart_type&quot;] == &quot;ingress&quot;:
+                self.assertEqual(governor[&quot;state&quot;], &quot;this_packet_establishes_governance&quot;)
+                self.assertEqual(governor[&quot;chart_id&quot;], chart_id)
+            else:
+                expected = self.history_by_id[chart_id][&quot;governing_ingress_id&quot;]
+                self.assertEqual(governor[&quot;state&quot;], &quot;governed_lunation&quot;)
+                self.assertEqual(governor[&quot;chart_id&quot;], expected)
+
+    def test_lineage_counts_and_aries_full_moon_routes(self) -&gt; None:
+        self.assertEqual(self.payload[&quot;counts&quot;][&quot;moon_family_link_count&quot;], 13)
+        self.assertEqual(self.payload[&quot;counts&quot;][&quot;eclipse_genealogy_link_count&quot;], 4)
+        aries = self.packet_by_id[&quot;lun-2026-09-26-fu&quot;]
+        self.assertEqual(aries[&quot;governing_ingress_ref&quot;][&quot;chart_id&quot;], &quot;ingress-2026-libra&quot;)
+        self.assertEqual(
+            {row[&quot;pattern_id&quot;] for row in aries[&quot;applicable_pattern_refs&quot;]},
+            {
+                &quot;aries_full_moon_mars_pluto_sequence&quot;,
+                &quot;barbault_basket_ai_arc&quot;,
+                &quot;thirteen_moon_family_harvests&quot;,
+                &quot;distributed_field_recursive_command&quot;,
+            },
+        )
+        self.assertEqual(
+            aries[&quot;lunation_or_eclipse_lineage_refs&quot;][0][&quot;lineage_id&quot;],
+            &quot;pessin:lun-2025-03-29-ne-solar&quot;,
+        )
+
+    def test_2026_physical_geometry_is_complete_and_inherited_2025_governor_is_explicit(self) -&gt; None:
+        for chart_id, packet in self.packet_by_id.items():
+            for key in (&quot;inner_planet_motion_ref&quot;, &quot;outer_planet_geometry_ref&quot;):
+                state = packet[&quot;analysis_refs&quot;][key][&quot;state&quot;]
+                if chart_id == &quot;ingress-2025-capricorn&quot;:
+                    self.assertEqual(state, &quot;not_in_control_population&quot;)
+                else:
+                    self.assertEqual(state, &quot;available&quot;)
+
+    def test_source_receipts_are_unique_and_current(self) -&gt; None:
+        receipts = self.payload[&quot;source_receipts&quot;]
+        paths = [row[&quot;path&quot;] for row in receipts]
+        self.assertEqual(paths, sorted(set(paths)))
+        for row in receipts:
+            if row[&quot;path&quot;] == packets.SOURCES[&quot;synodic_stacks&quot;]:
+                self.assertEqual(row[&quot;charts_sha256&quot;], packets.stacks_charts_sha256())
+            else:
+                self.assertEqual(row[&quot;sha256&quot;], packets.sha256(row[&quot;path&quot;]))
+
+    def test_generated_artifact_matches_builder(self) -&gt; None:
+        stored = json.loads(packets.OUT.read_text(encoding=&quot;utf-8&quot;))
+        self.assertEqual(stored, self.payload)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

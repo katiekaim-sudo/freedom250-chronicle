@@ -1,0 +1,356 @@
+#!/usr/bin/env python3
+"""Build the November 2024 Scorpio Moon-family comparison.
+
+This output supports a contextual companion reread. It preserves the locked
+May 1, 2026 Full-Moon reading and grants astrology no factual, causal,
+convergence, corroborative, or Forecast Ledger credit.
+"""
+
+from __future__ import annotations
+
+import datetime as dt
+import json
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+from build_aquarius_moon_family import (
+    PLANETS,
+    angular_distance,
+    apply_governed_positions,
+    calculated_chart,
+    cross_chart_contacts,
+    parse_utc,
+    sky_separation,
+)
+
+
+HERE = Path(__file__).resolve().parent
+HISTORY = HERE / "mundane_history.json"
+LINEAGES = HERE / "moon_lineages.json"
+FULL_BONE = HERE / "chart_reading_bones" / "lun-2026-05-01-fu.json"
+TRIAGE = HERE / "full_moon_family_triage_2026.json"
+OUTPUT = HERE / "scorpio_moon_family_2024_2026.json"
+WASHINGTON = (-77.0369, 38.9072, 0.0)
+
+
+def jd_instant(jd: float) -> dict:
+    year, month, day, decimal_hour = swe.revjul(jd, swe.GREG_CAL)
+    hour = int(decimal_hour)
+    minute_float = (decimal_hour - hour) * 60.0
+    minute = int(minute_float)
+    second_float = (minute_float - minute) * 60.0
+    second = int(second_float)
+    microsecond = round((second_float - second) * 1_000_000)
+    if microsecond == 1_000_000:
+        second += 1
+        microsecond = 0
+    utc = dt.datetime(year, month, day, hour, minute, second, microsecond, tzinfo=dt.timezone.utc)
+    local = utc.astimezone(ZoneInfo("America/New_York"))
+    return {
+        "julian_day_ut": round(jd, 9),
+        "utc": utc.isoformat().replace("+00:00", "Z"),
+        "washington_local": local.isoformat(),
+    }
+
+
+def horizon_event(jd: float, body: int, kind: str, direction: str) -> dict:
+    flag = swe.CALC_RISE if kind == "rise" else swe.CALC_SET
+    start = jd if direction == "next" else jd - 1.1
+    candidates: list[float] = []
+    cursor = start
+    for _ in range(3):
+        result, times = swe.rise_trans(
+            cursor,
+            body,
+            flag | swe.BIT_DISC_CENTER,
+            WASHINGTON,
+            0.0,
+            10.0,
+            swe.FLG_SWIEPH | swe.FLG_SPEED,
+        )
+        if result != 0:
+            raise RuntimeError(f"No {kind} event found")
+        candidates.append(times[0])
+        cursor = times[0] + 0.01
+    matches = [value for value in candidates if value <= jd] if direction == "previous" else [value for value in candidates if value >= jd]
+    if not matches:
+        raise RuntimeError(f"No {direction} {kind} event found")
+    event_jd = max(matches) if direction == "previous" else min(matches)
+    return {
+        "kind": kind,
+        "direction": direction,
+        "model": "Swiss Ephemeris apparent disc-center horizon event",
+        **jd_instant(event_jd),
+    }
+
+
+def node_state(chart: dict, governed_node_lon: float | None = None) -> dict:
+    node = governed_node_lon
+    if node is None:
+        node = swe.calc_ut(chart["julian_day_ut"], swe.TRUE_NODE, swe.FLG_SWIEPH | swe.FLG_SPEED)[0][0] % 360.0
+    south = (node + 180.0) % 360.0
+    moon = chart["bodies"]["Moon"]["longitude_deg"]
+    return {
+        "true_north_node_longitude_deg": round(node, 9),
+        "true_south_node_longitude_deg": round(south, 9),
+        "moon_distance_to_nearest_node_axis_deg": round(
+            min(angular_distance(moon, node), angular_distance(moon, south)), 9
+        ),
+        "moon_ecliptic_latitude_deg": chart["bodies"]["Moon"]["ecliptic_latitude_deg"],
+    }
+
+
+def horizon(chart: dict) -> dict:
+    above = [body for body in PLANETS if chart["bodies"][body]["true_altitude_deg"] > 0]
+    return {
+        "above_true_horizon": above,
+        "below_or_on_true_horizon": [body for body in PLANETS if body not in above],
+        "above_count": len(above),
+        "below_or_on_count": len(PLANETS) - len(above),
+    }
+
+
+def selected_aspects(chart: dict, maximum: float = 3.0) -> list[dict]:
+    return [row for row in chart["aspects_within_3_deg"] if row["orb_deg"] <= maximum]
+
+
+def selected_declinations(chart: dict, maximum: float = 0.25) -> list[dict]:
+    return [
+        row for row in chart["declination_relationships_within_1_deg"]
+        if row["orb_deg"] <= maximum
+    ]
+
+
+def next_mars_pluto_opposition(start_jd: float) -> dict:
+    """Find the next exact geocentric Mars-Pluto opposition after start_jd."""
+    flags = swe.FLG_SWIEPH | swe.FLG_SPEED
+
+    def residual(jd: float) -> float:
+        mars = swe.calc_ut(jd, swe.MARS, flags)[0][0]
+        pluto = swe.calc_ut(jd, swe.PLUTO, flags)[0][0]
+        return ((mars - pluto - 180.0 + 180.0) % 360.0) - 180.0
+
+    lo = start_jd
+    hi = start_jd + 5.0
+    if residual(lo) * residual(hi) > 0:
+        raise RuntimeError("Mars-Pluto opposition was not bracketed")
+    for _ in range(80):
+        mid = (lo + hi) / 2.0
+        if residual(lo) * residual(mid) <= 0:
+            hi = mid
+        else:
+            lo = mid
+    exact_jd = (lo + hi) / 2.0
+    return {
+        "aspect": "Mars opposition Pluto",
+        "model": "Swiss Ephemeris geocentric ecliptic longitude",
+        **jd_instant(exact_jd),
+    }
+
+
+def main() -> None:
+    history = json.loads(HISTORY.read_text())
+    lineages = json.loads(LINEAGES.read_text())
+    full_bone = json.loads(FULL_BONE.read_text())
+    triage = json.loads(TRIAGE.read_text())
+
+    seed_source = next(row for row in history["charts"] if row["id"] == "lun-2024-11-01-ne")
+    lineage = next(
+        row for row in lineages["lineages"]
+        if row["lineage_id"] == "pessin:lun-2024-11-01-ne"
+    )
+    phases = {row["phase_event_id"]: row for row in lineages["phase_events"]}
+    quarter_source = phases["lunation-2025-08-01-fq"]
+    full_source = phases["lun-2026-05-01-fu"]
+    last_quarter_source = phases["lunation-2027-01-29-lq"]
+    triage_row = next(
+        row for row in triage["families"] if row["lineage_id"] == lineage["lineage_id"]
+    )
+
+    seed = calculated_chart(parse_utc(seed_source["utc"]))
+    quarter = calculated_chart(parse_utc(quarter_source["exact_utc"]))
+    full = calculated_chart(parse_utc(full_source["exact_utc"]))
+    seed = apply_governed_positions(
+        seed,
+        {row["name"]: row["lon"] for row in seed_source["points"] if row["name"] in PLANETS},
+        asc=seed_source["asc"],
+        mc=seed_source["mc"],
+    )
+    quarter = apply_governed_positions(
+        quarter,
+        {"Sun": quarter_source["sun_lon_deg"], "Moon": quarter_source["moon_lon_deg"]},
+    )
+    full = apply_governed_positions(
+        full,
+        {body: full_bone["pos"][body]["lon"] for body in PLANETS},
+        asc=full_bone["asc"],
+        mc=full_bone["mc"],
+        declinations={body: full_bone["pos"][body]["dec"] for body in PLANETS},
+    )
+
+    seed_node = next(row["lon"] for row in seed_source["points"] if row["name"] == "Node")
+    seed["node_geometry"] = node_state(seed, seed_node)
+    quarter["node_geometry"] = node_state(quarter)
+    full["node_geometry"] = node_state(full, full_bone["node"]["lon"])
+    for chart in (seed, quarter, full):
+        chart["horizon"] = horizon(chart)
+
+    seed_quarter_contacts = cross_chart_contacts(seed, quarter, 1.25)
+    seed_full_contacts = cross_chart_contacts(seed, full, 1.25)
+    quarter_full_contacts = cross_chart_contacts(quarter, full, 1.25)
+    seed_quarter_delta = angular_distance(
+        seed["bodies"]["Moon"]["longitude_deg"],
+        quarter["bodies"]["Moon"]["longitude_deg"],
+    )
+    full_jd = full["julian_day_ut"]
+    previous_sunrise = horizon_event(full_jd, swe.SUN, "rise", "previous")
+    next_sunset = horizon_event(full_jd, swe.SUN, "set", "next")
+    previous_moonset = horizon_event(full_jd, swe.MOON, "set", "previous")
+    next_moonrise = horizon_event(full_jd, swe.MOON, "rise", "next")
+
+    result = {
+        "schema": "freedom250.scorpio-moon-family/v1",
+        "developed_through": "2026-09-25",
+        "lineage_id": lineage["lineage_id"],
+        "interpretation_status_before_reread": lineage["interpretation_status"],
+        "story_verdict_before_reread": lineage["story_verdict"],
+        "authority_boundary": {
+            "calculation": "registered seed and Full-phase coordinates with Swiss Ephemeris calculation of the missing First-Quarter frame and secondary geometry",
+            "verification": "Astro Gold remains pending wherever the source registry says pending",
+            "interpretation": "contextual companion only; locked May 1, 2026 Pass 1 remains unchanged",
+            "evidence_credit": "zero",
+        },
+        "family_members": lineage["members"],
+        "future_member_boundary": {
+            "phase_event_id": last_quarter_source["phase_event_id"],
+            "exact_local": last_quarter_source["exact_local"],
+            "status_as_of_developed_through": "future_not_interpreted_as_occurred",
+        },
+        "phase_eclipse_states": {
+            "seed": bool(phases["lun-2024-11-01-ne"]["eclipse"]),
+            "first_quarter": bool(quarter_source["eclipse"]),
+            "full": bool(full_source["eclipse"]),
+        },
+        "charts": {
+            "seed_2024_11_01": seed,
+            "first_quarter_2025_08_01": quarter,
+            "full_2026_05_01": full,
+        },
+        "degree_relays": {
+            "seed_moon_degree_deg": round(seed["bodies"]["Moon"]["degree_in_sign"], 9),
+            "first_quarter_moon_degree_deg": round(quarter["bodies"]["Moon"]["degree_in_sign"], 9),
+            "full_moon_degree_deg": round(full["bodies"]["Moon"]["degree_in_sign"], 9),
+            "seed_to_first_quarter_moon_delta_deg": round(seed_quarter_delta, 9),
+            "seed_to_first_quarter_moon_delta_arcminutes": round(seed_quarter_delta * 60.0, 6),
+            "seed_to_full_moon_delta_deg": triage_row["relays"]["seed_to_full_moon_degree_gap_deg"],
+            "first_quarter_to_full_moon_delta_deg": triage_row["relays"]["first_quarter_to_full_moon_degree_gap_deg"],
+            "seed_to_first_quarter_contacts_within_1_25_deg": seed_quarter_contacts,
+            "seed_to_full_contacts_within_1_25_deg": seed_full_contacts,
+            "quarter_to_full_contacts_within_1_25_deg": quarter_full_contacts,
+            "meaning_boundary": "same-sign Pessin family continuity; exact degree contacts do not add factual or causal evidence",
+        },
+        "node_recession": {
+            "seed_nearest_axis_deg": seed["node_geometry"]["moon_distance_to_nearest_node_axis_deg"],
+            "first_quarter_nearest_axis_deg": quarter["node_geometry"]["moon_distance_to_nearest_node_axis_deg"],
+            "full_nearest_axis_deg": full["node_geometry"]["moon_distance_to_nearest_node_axis_deg"],
+            "finding": "the ordinary family moves progressively farther from the nodal axis and never becomes an eclipse at seed, quarter or harvest",
+        },
+        "house_migrations": triage_row["relays"]["house_migrations"],
+        "root_handoff": {
+            "seed": seed["dispositors"],
+            "first_quarter": quarter["dispositors"],
+            "full": full["dispositors"],
+            "finding": "a Mars-Moon mutual reception gives way to a sole Sun final at First Quarter and a sole Mars final at Full phase",
+        },
+        "distribution_development": {
+            "seed": seed["distribution"],
+            "first_quarter": quarter["distribution"],
+            "full": full["distribution"],
+            "seed_to_first_quarter_occupied_span_change_deg": round(
+                quarter["distribution"]["occupied_span_deg"] - seed["distribution"]["occupied_span_deg"], 6
+            ),
+            "first_quarter_to_full_occupied_span_change_deg": round(
+                full["distribution"]["occupied_span_deg"] - quarter["distribution"]["occupied_span_deg"], 6
+            ),
+            "finding": "First Quarter is the widest occupied phase; the Full phase recontracts and changes the empty-arc boundary from Moon-to-Pluto to Jupiter-to-Moon",
+        },
+        "quarter_prefiguration": {
+            "registered_contacts": triage_row["relays"]["quarter_light_to_full_nonlight_contacts_within_one_degree"],
+            "finding": "the First-Quarter Sun configures the later Full-phase Saturn and Venus, preparing the near-exact Venus-Saturn agreement mechanism before harvest",
+        },
+        "aspect_development": {
+            "seed_within_3_deg": selected_aspects(seed),
+            "seed_declinations_within_quarter_degree": selected_declinations(seed),
+            "first_quarter_within_3_deg": selected_aspects(quarter),
+            "first_quarter_declinations_within_quarter_degree": selected_declinations(quarter),
+            "full_within_3_deg": selected_aspects(full),
+            "full_declinations_within_quarter_degree": selected_declinations(full),
+            "seed_to_first_quarter_contacts_within_1_25_deg": seed_quarter_contacts,
+            "seed_to_full_contacts_within_1_25_deg": seed_full_contacts,
+            "quarter_to_full_contacts_within_1_25_deg": quarter_full_contacts,
+        },
+        "seed_mars_pluto_context": {
+            "seed_orb_deg": next(
+                row["orb_deg"]
+                for row in seed["aspects_within_3_deg"]
+                if {row["a"], row["b"]} == {"Mars", "Pluto"}
+            ),
+            "next_exact_opposition": next_mars_pluto_opposition(seed["julian_day_ut"]),
+            "hours_seed_to_exact": round(
+                (next_mars_pluto_opposition(seed["julian_day_ut"])["julian_day_ut"] - seed["julian_day_ut"]) * 24.0,
+                6,
+            ),
+            "finding": "the Scorpio seed perfects less than two days before the exact Mars-Pluto opposition, so force-versus-concentrated-power belongs to the family at inception rather than being added retrospectively at harvest",
+        },
+        "astronomical_geometry": {
+            "local_horizon": {
+                "seed": seed["horizon"],
+                "first_quarter": quarter["horizon"],
+                "full": full["horizon"],
+            },
+            "full_phase": {
+                "moon_true_altitude_deg": full["bodies"]["Moon"]["true_altitude_deg"],
+                "sun_true_altitude_deg": full["bodies"]["Sun"]["true_altitude_deg"],
+                "previous_sunrise": previous_sunrise,
+                "minutes_since_sunrise": round((full_jd - previous_sunrise["julian_day_ut"]) * 1440.0, 3),
+                "next_sunset": next_sunset,
+                "minutes_until_sunset": round((next_sunset["julian_day_ut"] - full_jd) * 1440.0, 3),
+                "previous_moonset": previous_moonset,
+                "minutes_since_moonset": round((full_jd - previous_moonset["julian_day_ut"]) * 1440.0, 3),
+                "next_moonrise": next_moonrise,
+                "minutes_until_moonrise": round((next_moonrise["julian_day_ut"] - full_jd) * 1440.0, 3),
+                "venus_pluto_longitude_separation_deg": round(
+                    angular_distance(full["bodies"]["Venus"]["longitude_deg"], full["bodies"]["Pluto"]["longitude_deg"]), 6
+                ),
+                "venus_pluto_true_sky_separation_deg": round(
+                    sky_separation(full["bodies"]["Venus"], full["bodies"]["Pluto"]), 6
+                ),
+                "scale_boundary": "geocentric angular geometry and local altitude supply physical context only; they do not prove astrological causation or assign interpretive weight",
+            },
+        },
+        "factual_comparison": {
+            "research_id": "international-monetary-transition",
+            "read_first": "Research Packages/International Monetary Transition/13 - International Crypto Map 2026/country_research/HK_PRIMARY_SOURCE_BASELINE_2026-09-15.md",
+            "seed_state": "by the November 1, 2024 seed, HKMA's stablecoin-issuer sandbox was operating with three participants admitted in July and testing business models and supervisory expectations; sandbox admission was not a licence",
+            "legislative_gate": "the Stablecoins Bill was gazetted December 6, 2024, passed May 21, 2025 and then became the Stablecoins Ordinance",
+            "first_quarter_state": "the ordinance and supervisory regime commenced exactly on August 1, 2025; HKMA began accepting applications, but commencement did not itself licence an issuer or launch a coin",
+            "full_phase_state": "HKMA granted the first two issuer licences on April 10, 2026, twenty-one days before the May 1 Full Moon; the official release said business preparations and launch were to follow in coming months",
+            "later_development": "May 2026 SFC-HKMA rules opened a regulated intermediary framework for authorised relevant stablecoins; this still did not prove a public token launch, reserve balance, circulation, liquidity or first redemption",
+            "selection_boundary": "selected independently from HKMA, FSTB and SFC records already reconciled in the Workbench; astrology supplied no evidence credit and does not prove causation, coordination or outcome",
+            "negative_control": "sandbox participation was not a licence; regime commencement was not a licence; a licence was not a coin launch; and intermediary permission was not issuance, circulation or successful redemption",
+        },
+        "source_paths": [
+            "99 - Templates/mundane_history.json",
+            "99 - Templates/moon_lineages.json",
+            "99 - Templates/chart_reading_bones/lun-2026-05-01-fu.json",
+            "99 - Templates/full_moon_family_triage_2026.json",
+        ],
+    }
+    OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    print(f"Wrote {OUTPUT}")
+
+
+if __name__ == "__main__":
+    main()

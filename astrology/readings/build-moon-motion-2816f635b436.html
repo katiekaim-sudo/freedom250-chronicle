@@ -1,0 +1,293 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-moon-motion-2816f635b436.html">
+<title>build_moon_motion</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_moon_motion</h1><p class="mut">Portable source: 99 - Templates/build_moon_motion.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build factual Moon-motion geometry for governed downstream adapters.
+
+This builder keeps Pessin&#x27;s 273/546/819-day lineage distinct from an
+approximate half-year New-to-Full candidate geometry. It imports only the
+calculation helpers from the legacy Moon Families injector; it never parses the
+generated Moon Families or Lunar Weather HTML and carries no event/story data.
+&quot;&quot;&quot;
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+from atomic_io import atomic_write_text
+import build_moon_lineages as calculation
+
+HERE = Path(__file__).resolve().parent
+VAULT = HERE.parent
+OUTPUT = HERE / &quot;moon_lineages.json&quot;
+MUNDANE = HERE / &quot;mundane_history.json&quot;
+READINGS = VAULT / &quot;03 - Astrology&quot; / &quot;chart_reading_registry.json&quot;
+METHOD = VAULT / &quot;00 - Index&quot; / &quot;Pessin — Lunar Shadows III Study Notes.md&quot;
+METHOD_ROUTER = VAULT / &quot;00 - Index&quot; / &quot;Reading the Charts — START HERE.md&quot;
+LEGACY_CALCULATOR = HERE / &quot;build_moon_lineages.py&quot;
+NY = ZoneInfo(&quot;America/New_York&quot;)
+PHASE_LABEL = {&quot;nm&quot;: &quot;new_moon&quot;, &quot;fq&quot;: &quot;first_quarter&quot;, &quot;fm&quot;: &quot;full_moon&quot;, &quot;lq&quot;: &quot;last_quarter&quot;}
+PHASE_ROLE = {&quot;nm&quot;: &quot;seed&quot;, &quot;fq&quot;: &quot;first_quarter&quot;, &quot;fm&quot;: &quot;full&quot;, &quot;lq&quot;: &quot;last_quarter&quot;}
+CANONICAL_JD_TOLERANCE_DAYS = 0.0001
+ECHO_KEYS = {
+    &quot;echo_id&quot;, &quot;echo_kind&quot;, &quot;method_status&quot;, &quot;seed_chart_id&quot;, &quot;seed_phase_event_id&quot;,
+    &quot;return_chart_id&quot;, &quot;return_phase_event_id&quot;, &quot;elapsed_days&quot;, &quot;zodiac_distance_deg&quot;,
+    &quot;interpretation_status&quot;, &quot;continuity_verdict&quot;,
+}
+
+
+def load(path: Path):
+    return json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def iso_utc(jd: float) -&gt; str:
+    year, month, day, hour = swe.revjul(jd)
+    value = datetime(year, month, day, tzinfo=timezone.utc) + timedelta(hours=hour)
+    return value.isoformat(timespec=&quot;microseconds&quot;).replace(&quot;+00:00&quot;, &quot;Z&quot;)
+
+
+def iso_local(jd: float) -&gt; str:
+    return datetime.fromisoformat(iso_utc(jd).replace(&quot;Z&quot;, &quot;+00:00&quot;)).astimezone(NY).isoformat(timespec=&quot;microseconds&quot;)
+
+
+def _canonicalize(lunations: list[dict]) -&gt; tuple[set[str], list[dict]]:
+    mundane = load(MUNDANE)
+    reading_ids = {row[&quot;id&quot;] for row in load(READINGS)[&quot;readings&quot;]}
+    charts = mundane[&quot;charts&quot;]
+    catalog_lunations = [row for row in charts if row.get(&quot;chart_type&quot;) == &quot;lunation&quot;]
+    ingresses = sorted(
+        (row for row in charts if row.get(&quot;chart_type&quot;) == &quot;ingress&quot; and row.get(&quot;standing&quot;) == &quot;governing&quot;),
+        key=lambda row: row[&quot;jd_ut&quot;],
+    )
+    by_phase_date = {}
+    for row in catalog_lunations:
+        code = &quot;nm&quot; if row.get(&quot;kind&quot;) == &quot;new&quot; else &quot;fm&quot;
+        by_phase_date.setdefault((code, row[&quot;utc_date&quot;]), []).append(row)
+    for event in lunations:
+        event[&quot;exact_utc&quot;] = iso_utc(event[&quot;jd&quot;])
+        event[&quot;exact_local&quot;] = iso_local(event[&quot;jd&quot;])
+        event[&quot;sun_lon&quot;] = calculation.lon(event[&quot;jd&quot;], swe.SUN)
+        event[&quot;moon_lon&quot;] = calculation.lon(event[&quot;jd&quot;], swe.MOON)
+        matches = by_phase_date.get((event[&quot;ph&quot;], event[&quot;date&quot;]), [])
+        event[&quot;canonical&quot;] = min(matches, key=lambda row: abs(row[&quot;jd_ut&quot;] - event[&quot;jd&quot;])) if matches else None
+        if event[&quot;canonical&quot;] and abs(event[&quot;canonical&quot;][&quot;jd_ut&quot;] - event[&quot;jd&quot;]) &gt; CANONICAL_JD_TOLERANCE_DAYS:
+            raise ValueError(f&quot;Moon-motion calculation drift for {event[&#x27;canonical&#x27;][&#x27;id&#x27;]}&quot;)
+        governors = [row for row in ingresses if row[&quot;jd_ut&quot;] &lt;= event[&quot;jd&quot;]]
+        event[&quot;governing_ingress_id&quot;] = governors[-1][&quot;id&quot;] if governors else None
+        if event[&quot;canonical&quot;] and event[&quot;canonical&quot;].get(&quot;governing_ingress_id&quot;) != event[&quot;governing_ingress_id&quot;]:
+            raise ValueError(f&quot;Moon-motion ingress drift for {event[&#x27;canonical&#x27;][&#x27;id&#x27;]}&quot;)
+    return reading_ids, ingresses
+
+
+def phase_event(event: dict, reading_ids: set[str]) -&gt; dict:
+    canonical = event[&quot;canonical&quot;]
+    chart_id = canonical[&quot;id&quot;] if canonical else None
+    phase_event_id = chart_id or f&quot;lunation-{event[&#x27;date&#x27;]}-{event[&#x27;ph&#x27;]}&quot;
+    moon_lon = event[&quot;moon_lon&quot;]
+    sun_lon = event[&quot;sun_lon&quot;]
+    if canonical:
+        moon_lon = next(row[&quot;lon&quot;] for row in canonical[&quot;points&quot;] if row[&quot;name&quot;] == &quot;Moon&quot;)
+        sun_lon = next(row[&quot;lon&quot;] for row in canonical[&quot;points&quot;] if row[&quot;name&quot;] == &quot;Sun&quot;)
+    return {
+        &quot;phase_event_id&quot;: phase_event_id,
+        &quot;chart_id&quot;: chart_id,
+        &quot;phase&quot;: PHASE_LABEL[event[&quot;ph&quot;]],
+        &quot;exact_utc&quot;: canonical[&quot;utc&quot;].replace(&quot;+00:00&quot;, &quot;Z&quot;) if canonical else event[&quot;exact_utc&quot;],
+        &quot;exact_local&quot;: canonical[&quot;local&quot;] if canonical else event[&quot;exact_local&quot;],
+        &quot;place_id&quot;: &quot;washington-dc&quot;,
+        &quot;sun_lon_deg&quot;: round(sun_lon, 9),
+        &quot;moon_lon_deg&quot;: round(moon_lon, 9),
+        &quot;moon_sign&quot;: calculation.SIGNS[int(moon_lon // 30)],
+        &quot;moon_degree&quot;: round(moon_lon % 30, 1),
+        &quot;eclipse&quot;: None if event[&quot;ph&quot;] not in {&quot;nm&quot;, &quot;fm&quot;} else bool(canonical.get(&quot;eclipse&quot;) if canonical else event[&quot;ec&quot;]),
+        &quot;governing_ingress_id&quot;: event[&quot;governing_ingress_id&quot;],
+        &quot;reading_id&quot;: chart_id if chart_id in reading_ids else None,
+        &quot;route&quot;: {&quot;tab&quot;: &quot;obs-lw&quot;, &quot;date&quot;: event[&quot;date&quot;]},
+    }
+
+
+def validate_payload(payload: dict) -&gt; None:
+    events = {row[&quot;phase_event_id&quot;]: row for row in payload[&quot;phase_events&quot;]}
+    for lineage in payload[&quot;lineages&quot;]:
+        members = lineage[&quot;members&quot;]
+        if [row[&quot;role&quot;] for row in members] != [&quot;seed&quot;, &quot;first_quarter&quot;, &quot;full&quot;, &quot;last_quarter&quot;]:
+            raise ValueError(f&quot;Pessin lineage phase order drift: {lineage[&#x27;lineage_id&#x27;]}&quot;)
+        seed_sign = events[members[0][&quot;phase_event_id&quot;]][&quot;moon_sign&quot;]
+        if any(events[row[&quot;phase_event_id&quot;]][&quot;moon_sign&quot;] != seed_sign for row in members):
+            raise ValueError(f&quot;Pessin lineage crosses signs: {lineage[&#x27;lineage_id&#x27;]}&quot;)
+    for echo in payload[&quot;echo_candidates&quot;]:
+        if set(echo) != ECHO_KEYS:
+            raise ValueError(f&quot;Half-year echo schema drift: {echo.get(&#x27;echo_id&#x27;, &#x27;unknown&#x27;)}&quot;)
+        if (
+            echo[&quot;echo_kind&quot;] != &quot;approx_half_year_degree_echo&quot;
+            or echo[&quot;method_status&quot;] != &quot;candidate_projection&quot;
+            or echo[&quot;interpretation_status&quot;] != &quot;unreviewed&quot;
+            or echo[&quot;continuity_verdict&quot;] is not None
+            or not 165 &lt;= echo[&quot;elapsed_days&quot;] &lt;= 201
+            or not 0 &lt;= echo[&quot;zodiac_distance_deg&quot;] &lt;= 6
+        ):
+            raise ValueError(f&quot;Half-year echo authority drift: {echo[&#x27;echo_id&#x27;]}&quot;)
+
+
+def build_payload() -&gt; dict:
+    lunations = calculation.lunations()
+    reading_ids, _ = _canonicalize(lunations)
+    by_key = {(row[&quot;ph&quot;], row[&quot;date&quot;]): row for row in lunations}
+    new_moons = [row for row in lunations if row[&quot;ph&quot;] == &quot;nm&quot;
+                 and &quot;2023-06-01&quot; &lt;= row[&quot;date&quot;] &lt;= calculation.HORIZON_END.isoformat()]
+    used_keys = set()
+    lineages = []
+    for seed in new_moons:
+        members = [seed]
+        for code in (&quot;fq&quot;, &quot;fm&quot;, &quot;lq&quot;):
+            target = seed[&quot;jd&quot;] + calculation.SPACING[code]
+            candidates = [row for row in lunations if row[&quot;ph&quot;] == code
+                          and abs(row[&quot;jd&quot;] - target) &lt;= 18
+                          and row[&quot;sign&quot;] == seed[&quot;sign&quot;]
+                          and calculation.degree_distance(row[&quot;fdeg&quot;], seed[&quot;fdeg&quot;]) &lt;= 6]
+            if not candidates:
+                members = []
+                break
+            members.append(min(candidates, key=lambda row: (
+                calculation.degree_distance(row[&quot;fdeg&quot;], seed[&quot;fdeg&quot;]), abs(row[&quot;jd&quot;] - target))))
+        if not members or not any(&quot;2024-09-01&quot; &lt;= row[&quot;date&quot;] &lt;= calculation.HORIZON_END.isoformat() for row in members):
+            continue
+        seed_ref = phase_event(seed, reading_ids)
+        member_rows = []
+        for member in members:
+            used_keys.add((member[&quot;ph&quot;], member[&quot;date&quot;]))
+            ref = phase_event(member, reading_ids)
+            member_rows.append({
+                &quot;role&quot;: PHASE_ROLE[member[&quot;ph&quot;]],
+                &quot;phase_event_id&quot;: ref[&quot;phase_event_id&quot;],
+                &quot;chart_id&quot;: ref[&quot;chart_id&quot;],
+                &quot;governing_ingress_id&quot;: ref[&quot;governing_ingress_id&quot;],
+                &quot;elapsed_days_from_seed&quot;: round(member[&quot;jd&quot;] - seed[&quot;jd&quot;], 6),
+                &quot;zodiac_distance_from_seed_deg&quot;: round(calculation.degree_distance(member[&quot;fdeg&quot;], seed[&quot;fdeg&quot;]), 6),
+            })
+        lineages.append({
+            &quot;lineage_id&quot;: f&quot;pessin:{seed_ref[&#x27;chart_id&#x27;] or seed_ref[&#x27;phase_event_id&#x27;]}&quot;,
+            &quot;seed_chart_id&quot;: seed_ref[&quot;chart_id&quot;],
+            &quot;seed_phase_event_id&quot;: seed_ref[&quot;phase_event_id&quot;],
+            &quot;degree_band&quot;: calculation.band(seed[&quot;deg&quot;]),
+            &quot;members&quot;: member_rows,
+            &quot;interpretation_status&quot;: &quot;unreviewed&quot;,
+            &quot;story_verdict&quot;: None,
+        })
+
+    echoes = []
+    for seed in new_moons:
+        seed_ref = phase_event(seed, reading_ids)
+        matches = [row for row in lunations if row[&quot;ph&quot;] == &quot;fm&quot;
+                   and abs((row[&quot;jd&quot;] - seed[&quot;jd&quot;]) - 183.0) &lt;= 18
+                   and calculation.degree_distance(row[&quot;fdeg&quot;], seed[&quot;fdeg&quot;]) &lt;= 6]
+        for returned in sorted(matches, key=lambda row: row[&quot;jd&quot;]):
+            return_ref = phase_event(returned, reading_ids)
+            used_keys.add((returned[&quot;ph&quot;], returned[&quot;date&quot;]))
+            echoes.append({
+                &quot;echo_id&quot;: f&quot;half-year:{seed_ref[&#x27;chart_id&#x27;] or seed_ref[&#x27;phase_event_id&#x27;]}:{return_ref[&#x27;chart_id&#x27;] or return_ref[&#x27;phase_event_id&#x27;]}&quot;,
+                &quot;echo_kind&quot;: &quot;approx_half_year_degree_echo&quot;,
+                &quot;method_status&quot;: &quot;candidate_projection&quot;,
+                &quot;seed_chart_id&quot;: seed_ref[&quot;chart_id&quot;],
+                &quot;seed_phase_event_id&quot;: seed_ref[&quot;phase_event_id&quot;],
+                &quot;return_chart_id&quot;: return_ref[&quot;chart_id&quot;],
+                &quot;return_phase_event_id&quot;: return_ref[&quot;phase_event_id&quot;],
+                &quot;elapsed_days&quot;: round(returned[&quot;jd&quot;] - seed[&quot;jd&quot;], 6),
+                &quot;zodiac_distance_deg&quot;: round(calculation.degree_distance(returned[&quot;fdeg&quot;], seed[&quot;fdeg&quot;]), 6),
+                &quot;interpretation_status&quot;: &quot;unreviewed&quot;,
+                &quot;continuity_verdict&quot;: None,
+            })
+    phase_events = [phase_event(by_key[key], reading_ids)
+                    for key in sorted(used_keys, key=lambda item: by_key[item][&quot;jd&quot;])]
+    ids = [row[&quot;phase_event_id&quot;] for row in phase_events]
+    if len(ids) != len(set(ids)):
+        raise ValueError(&quot;Moon-motion phase event IDs must be unique&quot;)
+    payload = {
+        &quot;schema&quot;: &quot;f250.moon-motion/v1&quot;,
+        &quot;status&quot;: &quot;generated_factual_projection&quot;,
+        &quot;coverage&quot;: {
+            &quot;calculation_from&quot;: calculation.START.isoformat(),
+            &quot;seed_from&quot;: &quot;2023-06-01&quot;,
+            &quot;seed_through&quot;: calculation.HORIZON_END.isoformat(),
+            &quot;complete_tail_through&quot;: calculation.CALC_END.isoformat(),
+        },
+        &quot;method&quot;: {
+            &quot;owner_path&quot;: str(METHOD.relative_to(VAULT)),
+            &quot;lineage_rule&quot;: &quot;same_sign_and_degree_near_273_546_819_days&quot;,
+            &quot;target_days&quot;: {&quot;first_quarter&quot;: 273, &quot;full&quot;: 546, &quot;last_quarter&quot;: 819},
+            &quot;date_tolerance_days&quot;: 18,
+            &quot;degree_tolerance_deg&quot;: 6,
+            &quot;canonical_chart_time_tolerance_seconds&quot;: CANONICAL_JD_TOLERANCE_DAYS * 86400,
+            &quot;half_year_echo&quot;: {
+                &quot;status&quot;: &quot;candidate_projection_not_adopted_pessin_phase&quot;,
+                &quot;target_days&quot;: 183,
+                &quot;date_tolerance_days&quot;: 18,
+                &quot;degree_tolerance_deg&quot;: 6
+            },
+            &quot;source_tension&quot;: &quot;The current Pessin digest says First Quarter is roughly three months and also says nine months between same-degree phases. The factual engine follows the established 273/546/819-day implementation; Studio does not silently resolve the prose conflict.&quot;
+        },
+        &quot;phase_events&quot;: phase_events,
+        &quot;lineages&quot;: lineages,
+        &quot;echo_candidates&quot;: echoes,
+        &quot;source_receipts&quot;: {
+            str(MUNDANE.relative_to(VAULT)): {&quot;sha256&quot;: sha256(MUNDANE)},
+            str(READINGS.relative_to(VAULT)): {&quot;sha256&quot;: sha256(READINGS)},
+            str(METHOD.relative_to(VAULT)): {&quot;sha256&quot;: sha256(METHOD)},
+            str(METHOD_ROUTER.relative_to(VAULT)): {&quot;sha256&quot;: sha256(METHOD_ROUTER)},
+            str(LEGACY_CALCULATOR.relative_to(VAULT)): {&quot;sha256&quot;: sha256(LEGACY_CALCULATOR)}
+        },
+        &quot;boundaries&quot;: {
+            &quot;story_assignment&quot;: False,
+            &quot;continuity_verdict&quot;: False,
+            &quot;prediction&quot;: False,
+            &quot;forecast_credit&quot;: False,
+            &quot;factual_evidence_credit&quot;: False,
+            &quot;ranking&quot;: False,
+            &quot;attention_proximity_in_factual_adapter&quot;: False,
+            &quot;half_year_echo_is_adopted_pessin_phase&quot;: False
+        }
+    }
+    validate_payload(payload)
+    return payload
+
+
+def render(payload: dict) -&gt; str:
+    return json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + &quot;\n&quot;
+
+
+def main(argv=None) -&gt; int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--check&quot;, action=&quot;store_true&quot;)
+    parser.add_argument(&quot;--output&quot;, type=Path, default=OUTPUT)
+    args = parser.parse_args(argv)
+    content = render(build_payload())
+    if args.check:
+        clean = args.output.exists() and args.output.read_text(encoding=&quot;utf-8&quot;) == content
+        print(&quot;MOON MOTION CHECK: CLEAN&quot; if clean else &quot;MOON MOTION CHECK: STALE&quot;)
+        return 0 if clean else 1
+    atomic_write_text(args.output, content)
+    payload = json.loads(content)
+    print(f&quot;MOON MOTION BUILT: {len(payload[&#x27;lineages&#x27;])} Pessin lineages · {len(payload[&#x27;echo_candidates&#x27;])} half-year candidates&quot;)
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

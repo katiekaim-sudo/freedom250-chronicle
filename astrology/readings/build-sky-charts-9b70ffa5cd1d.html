@@ -1,0 +1,1774 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-sky-charts-9b70ffa5cd1d.html">
+<title>SINGLE GOVERNED SUBVIEW REGISTRY.</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>SINGLE GOVERNED SUBVIEW REGISTRY.</h1><p class="mut">Portable source: 99 - Templates/build_sky_charts.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the registry-driven Freedom 250 Astrology Hub host.
+
+The compatibility file remains ``Sky &amp; Charts.html``. The registry below is the
+sole governed inventory for the hub UI, child iframes, legacy routes, date
+behavior, and shell-discovery payload. Keep those concerns together: a tool
+cannot silently appear in one surface and disappear from another.
+
+Examples:
+    python3 build_sky_charts.py
+    python3 build_sky_charts.py --output &quot;/private/tmp/Sky &amp; Charts.html&quot;
+    python3 build_sky_charts.py --source-dir &quot;/path/to/Cross-cuts&quot;
+    python3 build_sky_charts.py --check --output &quot;/path/to/Sky &amp; Charts.html&quot;
+    python3 build_sky_charts.py --print-registry
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import argparse
+import html
+import json
+import os
+from pathlib import Path
+import re
+import sys
+from typing import Any
+
+from atomic_io import atomic_write_text
+
+
+HOST_ID = &quot;obs-sky&quot;
+OUTPUT_NAME = &quot;Sky &amp; Charts.html&quot;
+LAST_SUBVIEW_KEY = &quot;f250-sky-last-subview&quot;
+THEME_KEY = &quot;f250-theme&quot;
+HERE = Path(__file__).resolve().parent
+VAULT_ROOT = HERE.parent
+CROSS_CUTS_DIR = VAULT_ROOT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot;
+PATTERN_ATLAS_PATH = HERE / &quot;pattern_atlas_2026.json&quot;
+WHOLE_CHART_PACKET_INDEX_PATH = HERE / &quot;whole_chart_packet_index.json&quot;
+PATTERN_ATLAS_DOCUMENT = (
+    &quot;03 - Astrology/Astrology Files/&quot;
+    &quot;Working Papers — Sept 2026/&quot;
+    &quot;2026 PATTERN ATLAS — REORIENTATION MAP.md&quot;
+)
+
+THESIS_DOCUMENT = (
+    &quot;03 - Astrology/Astrology Files/The Sky We&#x27;re Living Through/&quot;
+    &quot;THE SKY WE&#x27;RE LIVING THROUGH — 2020s Thesis.md&quot;
+)
+
+CORRECTION_LABELS = {
+    &quot;holds&quot;: &quot;Holds&quot;,
+    &quot;holds_as_rhythm&quot;: &quot;Holds · rhythm&quot;,
+    &quot;holds_with_corrected_clocks&quot;: &quot;Holds · clocks corrected&quot;,
+    &quot;strengthened&quot;: &quot;Strengthened&quot;,
+    &quot;mostly_ordinary&quot;: &quot;Mostly ordinary&quot;,
+    &quot;new&quot;: &quot;New · 2020s thesis&quot;,
+}
+
+SECTIONS: tuple[dict[str, str], ...] = (
+    {
+        &quot;id&quot;: &quot;orientation&quot;,
+        &quot;label&quot;: &quot;Start Here&quot;,
+        &quot;description&quot;: &quot;Orient the present sky, the intact chart, and the pattern through time.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;sky&quot;,
+        &quot;label&quot;: &quot;Present Sky&quot;,
+        &quot;description&quot;: &quot;The living sky — calendar, moon, slow-planet weather, and the watchlist.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;chart-library&quot;,
+        &quot;label&quot;: &quot;Chart Library&quot;,
+        &quot;description&quot;: &quot;Canonical mundane, national, world, and personal charts.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;workbench&quot;,
+        &quot;label&quot;: &quot;Workbench&quot;,
+        &quot;description&quot;: &quot;Compute, compare, locate, and turn a chart.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;readings-files&quot;,
+        &quot;label&quot;: &quot;Readings &amp; Files&quot;,
+        &quot;description&quot;: &quot;Authored readings and forecasts, plus the astrology reference files.&quot;,
+    },
+)
+
+# SINGLE GOVERNED SUBVIEW REGISTRY.
+# `legacy_views` preserves old shell routes. The first entry is canonical for
+# favorites/recents and hostSubChanged. `date_action` is the message understood
+# by that child when the shell&#x27;s global date changes.
+SUBVIEWS: tuple[dict[str, Any], ...] = (
+    {
+        &quot;sub&quot;: &quot;astrology-hub&quot;,
+        &quot;label&quot;: &quot;Astrology Hub&quot;,
+        &quot;section&quot;: &quot;orientation&quot;,
+        &quot;filename&quot;: None,
+        &quot;legacy_views&quot;: (&quot;obs-sky-home&quot;,),
+        &quot;aliases&quot;: (
+            &quot;astrology&quot;, &quot;astrology home&quot;, &quot;astrology hub home&quot;, &quot;start here&quot;,
+            &quot;orientation&quot;, &quot;whole chart&quot;, &quot;pattern atlas&quot;,
+        ),
+        &quot;date_action&quot;: None,
+        &quot;description&quot;: &quot;Begin with the present sky, one intact chart, and the pattern through time.&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;sky-calendar&quot;,
+        &quot;label&quot;: &quot;Sky Calendar&quot;,
+        &quot;section&quot;: &quot;sky&quot;,
+        # Wrapper hosting Calendar.html + Almanac.html (absorbs `almanac`).
+        &quot;filename&quot;: &quot;Sky Calendar.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-cal&quot;, &quot;obs-al&quot;),
+        &quot;aliases&quot;: (
+            &quot;calendar&quot;, &quot;month&quot;, &quot;monthly sky&quot;, &quot;the sky calendar&quot;,
+            &quot;almanac&quot;, &quot;daybreak almanac&quot;, &quot;day&quot;, &quot;daily sky&quot;, &quot;ephemeris&quot;,
+            &quot;daybreak&quot;, &quot;sun asc&quot;, &quot;sunrise&quot;,
+            &quot;Calendar.html&quot;, &quot;Almanac.html&quot;,
+        ),
+        &quot;date_action&quot;: &quot;goToDate&quot;,
+        &quot;description&quot;: &quot;Month grid ↔ any day&#x27;s full sky&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;lunar-weather&quot;,
+        &quot;label&quot;: &quot;Moon &amp; Eclipses&quot;,
+        &quot;section&quot;: &quot;sky&quot;,
+        # Wrapper hosting Lunar Weather.html + Moon Families.html
+        # (absorbs `moon-families`).
+        &quot;filename&quot;: &quot;Moon &amp; Eclipses.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-lw&quot;, &quot;obs-mf&quot;),
+        &quot;aliases&quot;: (
+            &quot;lunations&quot;, &quot;moon weather&quot;, &quot;new moon&quot;, &quot;full moon&quot;, &quot;lunar weather&quot;,
+            &quot;moon-families&quot;, &quot;moon families&quot;, &quot;lunar families&quot;, &quot;gestation&quot;, &quot;pessin&quot;,
+            &quot;Lunar Weather.html&quot;, &quot;Moon Families.html&quot;,
+        ),
+        &quot;date_action&quot;: &quot;scrollToDate&quot;,
+        &quot;description&quot;: &quot;Every lunation and eclipse, plus the families timeline&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;transit-weather&quot;,
+        &quot;label&quot;: &quot;Transits &amp; Cycles&quot;,
+        &quot;section&quot;: &quot;sky&quot;,
+        # Wrapper hosting Transit Weather.html + Deep Currents.html + Live Orrery.html
+        # (absorbs `deep-currents`; the Orrery remains a child, not a new host row).
+        &quot;filename&quot;: &quot;Transits &amp; Cycles.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-tw&quot;, &quot;obs-dc&quot;),
+        &quot;aliases&quot;: (
+            &quot;transits&quot;, &quot;weather&quot;, &quot;planetary weather&quot;, &quot;transit weather&quot;,
+            &quot;deep-currents&quot;, &quot;deep currents&quot;, &quot;outer planets&quot;, &quot;slow sky&quot;,
+            &quot;era weather&quot;, &quot;synodic cycles&quot;, &quot;long clocks&quot;, &quot;the long clocks&quot;,
+            &quot;orrery&quot;, &quot;live orrery&quot;, &quot;planetary motion&quot;, &quot;ongoing planetary world&quot;,
+            &quot;Transit Weather.html&quot;, &quot;Deep Currents.html&quot;, &quot;Live Orrery.html&quot;,
+        ),
+        &quot;date_action&quot;: &quot;scrollToDate&quot;,
+        &quot;description&quot;: &quot;Planetary weather, long clocks, and the moving solar system&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;astrology-spine&quot;,
+        &quot;label&quot;: &quot;Sky Watchlist&quot;,
+        &quot;section&quot;: &quot;sky&quot;,
+        &quot;filename&quot;: &quot;Astrology Spine.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-as&quot;,),
+        &quot;aliases&quot;: (
+            &quot;astrology spine&quot;, &quot;forecast spine&quot;, &quot;astrology timeline&quot;,
+            &quot;prospective timeline&quot;, &quot;overlap map&quot;, &quot;institutional waves&quot;,
+            &quot;regime waves&quot;, &quot;executive order astrology&quot;, &quot;eo spine&quot;,
+        ),
+        &quot;date_action&quot;: &quot;goToDate&quot;,
+        &quot;description&quot;: &quot;What&#x27;s coming and what hasn&#x27;t resolved yet&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;ingress-charts&quot;,
+        &quot;label&quot;: &quot;Ingress Charts&quot;,
+        &quot;section&quot;: &quot;chart-library&quot;,
+        &quot;filename&quot;: &quot;Ingress Charts.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-ic&quot;,),
+        &quot;aliases&quot;: (&quot;ingresses&quot;, &quot;mundane ingresses&quot;, &quot;aries ingress&quot;),
+        &quot;date_action&quot;: None,
+        &quot;description&quot;: &quot;Seasonal mundane charts and their overlays.&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;american-charts&quot;,
+        &quot;label&quot;: &quot;The US Chart&quot;,
+        &quot;section&quot;: &quot;chart-library&quot;,
+        # Wrapper hosting The American Charts.html + US Time Machine.html
+        # (absorbs `us-time-machine`).
+        &quot;filename&quot;: &quot;The US Chart.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-ac&quot;, &quot;obs-tm&quot;),
+        &quot;aliases&quot;: (
+            &quot;america charts&quot;, &quot;us charts&quot;, &quot;united states charts&quot;, &quot;american charts&quot;,
+            &quot;us-time-machine&quot;, &quot;us time machine&quot;, &quot;time machine&quot;, &quot;us history&quot;,
+            &quot;generational clock&quot;,
+            &quot;The American Charts.html&quot;, &quot;US Time Machine.html&quot;,
+        ),
+        &quot;date_action&quot;: None,
+        &quot;description&quot;: &quot;The canonical national-chart library, plus the U.S. chart at any historical date.&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;world-charts&quot;,
+        &quot;label&quot;: &quot;World Charts&quot;,
+        &quot;section&quot;: &quot;chart-library&quot;,
+        &quot;filename&quot;: &quot;The World Charts.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-wc&quot;,),
+        &quot;aliases&quot;: (&quot;country charts&quot;, &quot;mundane charts&quot;, &quot;global charts&quot;),
+        &quot;date_action&quot;: None,
+        &quot;description&quot;: &quot;Country and world-entity chart library.&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;katies-sky&quot;,
+        &quot;label&quot;: &quot;My Chart&quot;,
+        &quot;section&quot;: &quot;chart-library&quot;,
+        &quot;filename&quot;: &quot;Katies Sky.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-kk&quot;, &quot;obs-ks&quot;),
+        &quot;aliases&quot;: (&quot;katie&quot;, &quot;personal sky&quot;, &quot;natal&quot;, &quot;my sky&quot;, &quot;katie&#x27;s sky&quot;, &quot;katies sky&quot;),
+        &quot;date_action&quot;: &quot;goToDate&quot;,
+        &quot;description&quot;: &quot;Katie&#x27;s personal astrology, kept visibly distinct.&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;chart-comparison&quot;,
+        &quot;label&quot;: &quot;Chart Comparison&quot;,
+        &quot;section&quot;: &quot;workbench&quot;,
+        &quot;filename&quot;: &quot;Chart Comparison.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-cc&quot;,),
+        &quot;aliases&quot;: (&quot;comparison&quot;, &quot;synastry&quot;, &quot;multi-ring&quot;, &quot;chart overlays&quot;),
+        &quot;date_action&quot;: &quot;goToDate&quot;,
+        &quot;description&quot;: &quot;Compare four charts under one explicit house frame.&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;astro-map&quot;,
+        &quot;label&quot;: &quot;Astro Map&quot;,
+        &quot;section&quot;: &quot;workbench&quot;,
+        &quot;filename&quot;: &quot;Astro Map.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-am&quot;,),
+        &quot;aliases&quot;: (&quot;map&quot;, &quot;astrocartography&quot;, &quot;chart map&quot;),
+        &quot;date_action&quot;: None,
+        &quot;description&quot;: &quot;Explore calculated AC/DC/MC/IC chart lines, overlays, and eclipse geography on a rotatable full Earth.&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;derivative-houses&quot;,
+        &quot;label&quot;: &quot;Derivative Houses&quot;,
+        &quot;section&quot;: &quot;workbench&quot;,
+        &quot;filename&quot;: &quot;Derivative Houses.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-dh&quot;,),
+        &quot;aliases&quot;: (&quot;turned houses&quot;, &quot;mundane dictionary&quot;, &quot;houses&quot;),
+        &quot;date_action&quot;: None,
+        &quot;description&quot;: &quot;Turn the chart from an actor or institutional house.&quot;,
+    },
+    {
+        &quot;sub&quot;: &quot;chart-readings&quot;,
+        &quot;label&quot;: &quot;Chart Readings&quot;,
+        &quot;section&quot;: &quot;readings-files&quot;,
+        # Wrapper hosting Chart Readings.html + Readings &amp; Predictions.html
+        # (absorbs `readings-predictions`).
+        &quot;filename&quot;: &quot;Readings.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-cr&quot;, &quot;obs-rp&quot;),
+        &quot;aliases&quot;: (
+            &quot;readings&quot;, &quot;pass 1&quot;, &quot;weaves&quot;, &quot;interpretations&quot;, &quot;chart interpretations&quot;,
+            &quot;readings-predictions&quot;, &quot;readings &amp; predictions&quot;, &quot;predictions&quot;,
+            &quot;forecasts&quot;, &quot;dated readings&quot;, &quot;forecast synthesis&quot;, &quot;saved readings&quot;,
+            &quot;outcome review&quot;,
+            &quot;Chart Readings.html&quot;, &quot;Readings &amp; Predictions.html&quot;,
+        ),
+        &quot;date_action&quot;: &quot;goToDate&quot;,
+        &quot;description&quot;: (
+            &quot;Aster readings, record censuses, and storyline comparisons, plus dated &quot;
+            &quot;authored synthesis, conditional forecasts, and exact scored calls.&quot;
+        ),
+    },
+    {
+        &quot;sub&quot;: &quot;astrology-reference-room&quot;,
+        &quot;label&quot;: &quot;Astrology Files&quot;,
+        &quot;section&quot;: &quot;readings-files&quot;,
+        &quot;filename&quot;: &quot;Astrology Reference Room.html&quot;,
+        &quot;legacy_views&quot;: (&quot;obs-arr&quot;,),
+        &quot;aliases&quot;: (
+            &quot;astrology files&quot;, &quot;astrology reference&quot;, &quot;astrology reference room&quot;, &quot;astrology methods&quot;,
+            &quot;astrology experiments&quot;, &quot;persona hearings&quot;, &quot;mundane astrology organism&quot;,
+        ),
+        &quot;date_action&quot;: None,
+        &quot;description&quot;: (
+            &quot;The Chronicle-owned home for astrology methods, chart experiments, &quot;
+            &quot;persona work and interpretive overlays. It is its own astrology collection, &quot;
+            &quot;not government Research or a research reference shelf.&quot;
+        ),
+    },
+)
+
+# Every route retired by a merge preserves both the surviving host row and the
+# requested inner wrapper subview. Without `inner_sub`, legacy routes collapse
+# to the wrapper&#x27;s first tab and silently open the wrong instrument.
+ABSORBED_ROUTES: dict[str, dict[str, str]] = {
+    &quot;almanac&quot;: {&quot;survivor&quot;: &quot;sky-calendar&quot;, &quot;inner_sub&quot;: &quot;almanac&quot;},
+    &quot;obs-al&quot;: {&quot;survivor&quot;: &quot;sky-calendar&quot;, &quot;inner_sub&quot;: &quot;almanac&quot;},
+    &quot;obs-cal&quot;: {&quot;survivor&quot;: &quot;sky-calendar&quot;, &quot;inner_sub&quot;: &quot;calendar&quot;},
+    &quot;moon-families&quot;: {&quot;survivor&quot;: &quot;lunar-weather&quot;, &quot;inner_sub&quot;: &quot;moon-families&quot;},
+    &quot;obs-mf&quot;: {&quot;survivor&quot;: &quot;lunar-weather&quot;, &quot;inner_sub&quot;: &quot;moon-families&quot;},
+    &quot;obs-lw&quot;: {&quot;survivor&quot;: &quot;lunar-weather&quot;, &quot;inner_sub&quot;: &quot;lunar-weather&quot;},
+    &quot;deep-currents&quot;: {&quot;survivor&quot;: &quot;transit-weather&quot;, &quot;inner_sub&quot;: &quot;deep-currents&quot;},
+    &quot;obs-dc&quot;: {&quot;survivor&quot;: &quot;transit-weather&quot;, &quot;inner_sub&quot;: &quot;deep-currents&quot;},
+    &quot;obs-tw&quot;: {&quot;survivor&quot;: &quot;transit-weather&quot;, &quot;inner_sub&quot;: &quot;transit-weather&quot;},
+    &quot;us-time-machine&quot;: {&quot;survivor&quot;: &quot;american-charts&quot;, &quot;inner_sub&quot;: &quot;us-time-machine&quot;},
+    &quot;obs-tm&quot;: {&quot;survivor&quot;: &quot;american-charts&quot;, &quot;inner_sub&quot;: &quot;us-time-machine&quot;},
+    &quot;obs-ac&quot;: {&quot;survivor&quot;: &quot;american-charts&quot;, &quot;inner_sub&quot;: &quot;american-charts&quot;},
+    &quot;readings-predictions&quot;: {&quot;survivor&quot;: &quot;chart-readings&quot;, &quot;inner_sub&quot;: &quot;readings-predictions&quot;},
+    &quot;obs-rp&quot;: {&quot;survivor&quot;: &quot;chart-readings&quot;, &quot;inner_sub&quot;: &quot;readings-predictions&quot;},
+    &quot;obs-cr&quot;: {&quot;survivor&quot;: &quot;chart-readings&quot;, &quot;inner_sub&quot;: &quot;chart-readings&quot;},
+}
+
+
+def fail(message: str) -&gt; None:
+    raise SystemExit(f&quot;Astrology Hub build FAILED: {message}&quot;)
+
+
+def validate_registry(source_dir: Path | None = None) -&gt; None:
+    expected_sections = [row[&quot;id&quot;] for row in SECTIONS]
+    section_ids = set(expected_sections)
+    if len(section_ids) != len(expected_sections):
+        fail(&quot;duplicate section id&quot;)
+
+    seen_subs: set[str] = set()
+    seen_legacy: set[str] = set()
+    seen_files: set[str] = set()
+    for index, tool in enumerate(SUBVIEWS):
+        required = {
+            &quot;sub&quot;,
+            &quot;label&quot;,
+            &quot;section&quot;,
+            &quot;filename&quot;,
+            &quot;legacy_views&quot;,
+            &quot;aliases&quot;,
+            &quot;date_action&quot;,
+            &quot;description&quot;,
+        }
+        missing = required.difference(tool)
+        if missing:
+            fail(f&quot;registry row {index} lacks {&#x27;, &#x27;.join(sorted(missing))}&quot;)
+
+        sub = tool[&quot;sub&quot;]
+        if not isinstance(sub, str) or not sub or sub != sub.lower():
+            fail(f&quot;invalid stable sub id: {sub!r}&quot;)
+        if sub in seen_subs:
+            fail(f&quot;duplicate sub id: {sub}&quot;)
+        seen_subs.add(sub)
+
+        if tool[&quot;section&quot;] not in section_ids:
+            fail(f&quot;{sub} names unknown section {tool[&#x27;section&#x27;]!r}&quot;)
+        filename = tool[&quot;filename&quot;]
+        if filename is None:
+            if sub != &quot;astrology-hub&quot;:
+                fail(f&quot;only astrology-hub may use the native host view&quot;)
+        else:
+            if not str(filename).endswith(&quot;.html&quot;):
+                fail(f&quot;{sub} filename is not HTML&quot;)
+            if filename in seen_files:
+                fail(f&quot;duplicate iframe target: {filename}&quot;)
+            seen_files.add(filename)
+
+        legacy_views = tool[&quot;legacy_views&quot;]
+        if not legacy_views or not all(
+            isinstance(item, str) and item.startswith(&quot;obs-&quot;)
+            for item in legacy_views
+        ):
+            fail(f&quot;{sub} must have at least one obs-* legacy route&quot;)
+        for legacy in legacy_views:
+            if legacy in seen_legacy:
+                fail(f&quot;duplicate legacy route: {legacy}&quot;)
+            seen_legacy.add(legacy)
+
+        if tool[&quot;date_action&quot;] not in {None, &quot;goToDate&quot;, &quot;scrollToDate&quot;}:
+            fail(f&quot;{sub} has unsupported date action {tool[&#x27;date_action&#x27;]!r}&quot;)
+
+        if source_dir is not None and filename is not None and not (source_dir / filename).is_file():
+            fail(f&quot;missing child view: {source_dir / filename}&quot;)
+
+    used_sections = {tool[&quot;section&quot;] for tool in SUBVIEWS}
+    if used_sections != section_ids:
+        fail(
+            &quot;empty or unused sections: &quot;
+            + &quot;, &quot;.join(sorted(section_ids.symmetric_difference(used_sections)))
+        )
+
+    by_sub = {tool[&quot;sub&quot;]: tool for tool in SUBVIEWS}
+    for route, spec in ABSORBED_ROUTES.items():
+        if set(spec) != {&quot;survivor&quot;, &quot;inner_sub&quot;}:
+            fail(f&quot;absorbed route {route!r} must name survivor and inner_sub&quot;)
+        survivor_sub = spec[&quot;survivor&quot;]
+        inner_sub = spec[&quot;inner_sub&quot;]
+        survivor = by_sub.get(survivor_sub)
+        if survivor is None:
+            fail(f&quot;absorbed route {route!r} names missing survivor {survivor_sub!r}&quot;)
+        if route.startswith(&quot;obs-&quot;):
+            if route not in survivor[&quot;legacy_views&quot;]:
+                fail(f&quot;legacy route {route!r} must survive on {survivor_sub}.legacy_views&quot;)
+        elif route != survivor_sub and route not in survivor[&quot;aliases&quot;]:
+            fail(f&quot;retired sub id {route!r} must survive on {survivor_sub}.aliases&quot;)
+        if inner_sub != survivor_sub and inner_sub not in survivor[&quot;aliases&quot;]:
+            fail(f&quot;absorbed route {route!r} has undeclared inner_sub {inner_sub!r}&quot;)
+
+
+def shell_registry() -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Return the public, serializable registry consumed by the shell.&quot;&quot;&quot;
+    section_labels = {row[&quot;id&quot;]: row[&quot;label&quot;] for row in SECTIONS}
+    tools: list[dict[str, Any]] = []
+    for tool in SUBVIEWS:
+        tools.append(
+            {
+                &quot;id&quot;: tool[&quot;legacy_views&quot;][0],
+                &quot;host&quot;: HOST_ID,
+                &quot;sub&quot;: tool[&quot;sub&quot;],
+                &quot;legacyView&quot;: tool[&quot;legacy_views&quot;][0],
+                &quot;legacyViews&quot;: list(tool[&quot;legacy_views&quot;]),
+                &quot;label&quot;: tool[&quot;label&quot;],
+                &quot;section&quot;: section_labels[tool[&quot;section&quot;]],
+                &quot;sectionId&quot;: tool[&quot;section&quot;],
+                &quot;filename&quot;: tool[&quot;filename&quot;],
+                &quot;aliases&quot;: list(tool[&quot;aliases&quot;]),
+                &quot;absorbedRoutes&quot;: {
+                    route: spec[&quot;inner_sub&quot;]
+                    for route, spec in ABSORBED_ROUTES.items()
+                    if spec[&quot;survivor&quot;] == tool[&quot;sub&quot;]
+                },
+                &quot;dateAction&quot;: tool[&quot;date_action&quot;],
+                &quot;description&quot;: tool[&quot;description&quot;],
+            }
+        )
+    return tools
+
+
+def js_safe_json(value: Any, *, indent: int | None = None) -&gt; str:
+    # Prevent a future registry label from terminating its JSON script element.
+    return (
+        json.dumps(value, ensure_ascii=False, indent=indent, separators=None if indent else (&quot;,&quot;, &quot;:&quot;))
+        .replace(&quot;&amp;&quot;, &quot;\\u0026&quot;)
+        .replace(&quot;&lt;&quot;, &quot;\\u003c&quot;)
+        .replace(&quot;&gt;&quot;, &quot;\\u003e&quot;)
+        .replace(&quot;\u2028&quot;, &quot;\\u2028&quot;)
+        .replace(&quot;\u2029&quot;, &quot;\\u2029&quot;)
+    )
+
+
+def build_sections() -&gt; str:
+    blocks: list[str] = []
+    for section in SECTIONS:
+        buttons: list[str] = []
+        for tool in (row for row in SUBVIEWS if row[&quot;section&quot;] == section[&quot;id&quot;]):
+            haystack = &quot; &quot;.join(
+                (
+                    tool[&quot;label&quot;],
+                    tool[&quot;description&quot;],
+                    *tool[&quot;aliases&quot;],
+                    *tool[&quot;legacy_views&quot;],
+                )
+            ).lower()
+            buttons.append(
+                f&quot;&quot;&quot;          &lt;button class=&quot;sky-tool&quot; type=&quot;button&quot;
+            data-sky-id=&quot;{html.escape(tool[&#x27;sub&#x27;], quote=True)}&quot;
+            data-search=&quot;{html.escape(haystack, quote=True)}&quot;
+            aria-controls=&quot;sky-view-{html.escape(tool[&#x27;sub&#x27;], quote=True)}&quot;&gt;
+            &lt;span class=&quot;sky-tool-name&quot;&gt;{html.escape(tool[&#x27;label&#x27;])}&lt;/span&gt;
+            &lt;span class=&quot;sky-tool-desc&quot;&gt;{html.escape(tool[&#x27;description&#x27;])}&lt;/span&gt;
+          &lt;/button&gt;&quot;&quot;&quot;
+            )
+        blocks.append(
+            f&quot;&quot;&quot;        &lt;section class=&quot;sky-section&quot; data-section=&quot;{html.escape(section[&#x27;id&#x27;], quote=True)}&quot;&gt;
+          &lt;h2&gt;{html.escape(section[&#x27;label&#x27;])}&lt;/h2&gt;
+          &lt;p&gt;{html.escape(section[&#x27;description&#x27;])}&lt;/p&gt;
+          &lt;div class=&quot;sky-tool-list&quot;&gt;
+{os.linesep.join(buttons)}
+          &lt;/div&gt;
+        &lt;/section&gt;&quot;&quot;&quot;
+        )
+    return os.linesep.join(blocks)
+
+
+def load_pattern_atlas() -&gt; dict[str, Any]:
+    if not PATTERN_ATLAS_PATH.is_file():
+        fail(f&quot;missing Pattern Atlas projection: {PATTERN_ATLAS_PATH}&quot;)
+    try:
+        atlas = json.loads(PATTERN_ATLAS_PATH.read_text(encoding=&quot;utf-8&quot;))
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(f&quot;cannot read Pattern Atlas projection: {exc}&quot;)
+    if atlas.get(&quot;schema&quot;) != &quot;freedom250.pattern-atlas-2026/v1&quot;:
+        fail(&quot;unsupported Pattern Atlas schema&quot;)
+    routes = atlas.get(&quot;priority_synthesis_routes&quot;)
+    patterns = atlas.get(&quot;pattern_records&quot;)
+    if not isinstance(routes, list) or not routes:
+        fail(&quot;Pattern Atlas has no priority synthesis routes&quot;)
+    if not isinstance(patterns, list) or not patterns:
+        fail(&quot;Pattern Atlas has no pattern records&quot;)
+    return atlas
+
+
+def load_whole_chart_packet_index() -&gt; dict[str, Any]:
+    if not WHOLE_CHART_PACKET_INDEX_PATH.is_file():
+        fail(f&quot;missing whole-chart packet index: {WHOLE_CHART_PACKET_INDEX_PATH}&quot;)
+    try:
+        packet_index = json.loads(WHOLE_CHART_PACKET_INDEX_PATH.read_text(encoding=&quot;utf-8&quot;))
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(f&quot;cannot read whole-chart packet index: {exc}&quot;)
+    if packet_index.get(&quot;schema&quot;) != &quot;freedom250.whole-chart-packet-index/v1&quot;:
+        fail(&quot;unsupported whole-chart packet index schema&quot;)
+    packets = packet_index.get(&quot;packets&quot;)
+    if not isinstance(packets, list) or len(packets) != 30:
+        fail(&quot;whole-chart packet index must expose exactly 30 registered packets&quot;)
+    return packet_index
+
+
+def build_priority_routes(atlas: dict[str, Any]) -&gt; str:
+    patterns = {
+        row.get(&quot;pattern_id&quot;): row
+        for row in atlas[&quot;pattern_records&quot;]
+        if isinstance(row, dict) and row.get(&quot;pattern_id&quot;)
+    }
+    cards: list[str] = []
+    for route in sorted(atlas[&quot;priority_synthesis_routes&quot;], key=lambda row: row[&quot;priority&quot;]):
+        pattern_refs = route.get(&quot;pattern_refs&quot;) or []
+        primary = patterns.get(pattern_refs[0]) if pattern_refs else None
+        documents = primary.get(&quot;companion_refs&quot;) if primary else None
+        document = route.get(&quot;document_ref&quot;) or (documents[0] if documents else PATTERN_ATLAS_DOCUMENT)
+        steps = &quot;&quot;.join(
+            f&quot;&lt;li&gt;{html.escape(str(step))}&lt;/li&gt;&quot;
+            for step in (route.get(&quot;next_work&quot;) or [])
+        )
+        cards.append(
+            f&quot;&quot;&quot;          &lt;article class=&quot;hub-route&quot;&gt;
+            &lt;div class=&quot;hub-route-kicker&quot;&gt;Priority {int(route[&#x27;priority&#x27;])}&lt;/div&gt;
+            &lt;h3&gt;{html.escape(route[&#x27;question&#x27;])}&lt;/h3&gt;
+            &lt;ol&gt;{steps}&lt;/ol&gt;
+            &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-document=&quot;{html.escape(document, quote=True)}&quot;&gt;Open the route packet&lt;/button&gt;
+          &lt;/article&gt;&quot;&quot;&quot;
+        )
+    return os.linesep.join(cards)
+
+
+def build_pattern_strip(atlas: dict[str, Any]) -&gt; str:
+    cards: list[str] = []
+    for record in atlas[&quot;pattern_records&quot;]:
+        correction = record.get(&quot;correction_2026_09_25&quot;) or {}
+        status = str(correction.get(&quot;status&quot;, &quot;&quot;))
+        label = CORRECTION_LABELS.get(status, status.replace(&quot;_&quot;, &quot; &quot;).capitalize())
+        refs = record.get(&quot;companion_refs&quot;) or []
+        document = refs[0] if refs else PATTERN_ATLAS_DOCUMENT
+        cards.append(
+            f&quot;&quot;&quot;          &lt;button class=&quot;hub-pattern&quot; type=&quot;button&quot; data-open-document=&quot;{html.escape(document, quote=True)}&quot;&gt;
+            &lt;em data-status=&quot;{html.escape(status, quote=True)}&quot;&gt;{html.escape(label)}&lt;/em&gt;
+            &lt;strong&gt;{html.escape(record[&#x27;title&#x27;])}&lt;/strong&gt;
+            &lt;span&gt;{html.escape(str(correction.get(&#x27;note&#x27;, record.get(&#x27;next_question&#x27;, &#x27;&#x27;))))}&lt;/span&gt;
+          &lt;/button&gt;&quot;&quot;&quot;
+        )
+    return os.linesep.join(cards)
+
+
+def build_packet_shelf(packet_index: dict[str, Any]) -&gt; str:
+    packets_by_group: dict[str, list[dict[str, Any]]] = {}
+    for packet in packet_index[&quot;packets&quot;]:
+        packets_by_group.setdefault(packet[&quot;packet_group&quot;], []).append(packet)
+    groups: list[str] = []
+    for position, group in enumerate(packet_index[&quot;groups&quot;]):
+        packet_rows = packets_by_group.get(group[&quot;group_id&quot;], [])
+        buttons: list[str] = []
+        for packet in packet_rows:
+            state = packet[&quot;knowledge_state_at_cutoff&quot;]
+            state_label = &quot;Prospective at cutoff&quot; if state == &quot;prospective&quot; else &quot;Occurred by cutoff&quot;
+            buttons.append(
+                f&quot;&quot;&quot;              &lt;button class=&quot;hub-packet&quot; type=&quot;button&quot;
+                data-open-reading=&quot;{html.escape(packet[&#x27;chart_id&#x27;], quote=True)}&quot;&gt;
+                &lt;strong&gt;{html.escape(packet[&#x27;label&#x27;])}&lt;/strong&gt;
+                &lt;span&gt;{html.escape(packet[&#x27;display_kind&#x27;])} · {html.escape(packet[&#x27;exact_clock&#x27;][&#x27;local&#x27;][:10])}&lt;/span&gt;
+                &lt;em data-state=&quot;{html.escape(state, quote=True)}&quot;&gt;{state_label}&lt;/em&gt;
+              &lt;/button&gt;&quot;&quot;&quot;
+            )
+        open_attr = &quot; open&quot; if position == 0 else &quot;&quot;
+        groups.append(
+            f&quot;&quot;&quot;          &lt;details class=&quot;hub-packet-group&quot;{open_attr}&gt;
+            &lt;summary&gt;&lt;span&gt;{html.escape(group[&#x27;label&#x27;])}&lt;/span&gt;&lt;strong&gt;{int(group[&#x27;packet_count&#x27;])}&lt;/strong&gt;&lt;/summary&gt;
+            &lt;div class=&quot;hub-packet-grid&quot;&gt;
+{os.linesep.join(buttons)}
+            &lt;/div&gt;
+          &lt;/details&gt;&quot;&quot;&quot;
+        )
+    return os.linesep.join(groups)
+
+
+def build_hub_home(atlas: dict[str, Any], packet_index: dict[str, Any]) -&gt; str:
+    summary = atlas[&quot;coverage_summary&quot;]
+    developed_through = html.escape(str(atlas.get(&quot;developed_through&quot;, &quot;unknown&quot;)))
+    orientation_document = html.escape(PATTERN_ATLAS_DOCUMENT, quote=True)
+    thesis_document = html.escape(THESIS_DOCUMENT, quote=True)
+    hub_packets = [
+        {
+            &quot;chartId&quot;: packet[&quot;chart_id&quot;],
+            &quot;label&quot;: packet[&quot;label&quot;],
+            &quot;kind&quot;: packet[&quot;display_kind&quot;],
+            &quot;group&quot;: packet[&quot;packet_group&quot;],
+            &quot;utc&quot;: packet[&quot;exact_clock&quot;][&quot;utc&quot;],
+            &quot;local&quot;: packet[&quot;exact_clock&quot;][&quot;local&quot;],
+        }
+        for packet in packet_index[&quot;packets&quot;]
+    ]
+    hub_packets_json = js_safe_json(hub_packets)
+    return f&quot;&quot;&quot;      &lt;section class=&quot;sky-view hub-view&quot; id=&quot;sky-view-astrology-hub&quot;
+        data-sky-id=&quot;astrology-hub&quot; role=&quot;region&quot; aria-label=&quot;Astrology Hub&quot; hidden&gt;
+        &lt;div class=&quot;hub-scroll&quot;&gt;
+          &lt;section class=&quot;hub-front&quot; aria-labelledby=&quot;hub-front-title&quot;&gt;
+            &lt;div class=&quot;hub-kicker&quot;&gt;The corrected pattern routes · {developed_through}&lt;/div&gt;
+            &lt;h1 id=&quot;hub-front-title&quot;&gt;Where the sky&#x27;s story stands&lt;/h1&gt;
+            &lt;p class=&quot;hub-front-deck&quot;&gt;Start with what already happened, then what is live, then what is building. Every clock here was recomputed on the JPL DE441 ephemeris (DR-080); patterns that did not survive were retired, and patterns that are merely built into the geometry are marked ordinary.&lt;/p&gt;
+            &lt;div class=&quot;hub-link-row hub-front-links&quot;&gt;
+              &lt;button class=&quot;hub-primary&quot; type=&quot;button&quot; data-open-document=&quot;{thesis_document}&quot;&gt;Read the 2020s thesis&lt;/button&gt;
+              &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-document=&quot;{orientation_document}&quot;&gt;Codex&#x27;s Pattern Atlas (working paper)&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;hub-route-grid hub-front-routes&quot;&gt;
+{build_priority_routes(atlas)}
+            &lt;/div&gt;
+            &lt;div class=&quot;hub-pattern-strip&quot; aria-label=&quot;Pattern records and their correction status&quot;&gt;
+{build_pattern_strip(atlas)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+          &lt;header class=&quot;hub-orrery&quot; data-hub-mode=&quot;sky&quot; aria-labelledby=&quot;hub-live-title&quot;&gt;
+            &lt;div class=&quot;hub-stars&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;hub-live-top&quot;&gt;
+              &lt;div class=&quot;hub-live-brand&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;strong&gt;The living sky&lt;/strong&gt;&lt;/div&gt;
+              &lt;div class=&quot;hub-mode-nav&quot; role=&quot;group&quot; aria-label=&quot;Astrology Hub view&quot;&gt;
+                &lt;button type=&quot;button&quot; data-hub-mode-button=&quot;sky&quot; aria-pressed=&quot;true&quot;&gt;Live sky&lt;/button&gt;
+                &lt;button type=&quot;button&quot; data-hub-mode-button=&quot;story&quot; aria-pressed=&quot;false&quot;&gt;Storylines&lt;/button&gt;
+                &lt;button type=&quot;button&quot; data-hub-mode-button=&quot;explore&quot; aria-pressed=&quot;false&quot;&gt;Explore&lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;hub-live-clock&quot;&gt;&lt;strong id=&quot;hub-live-date&quot;&gt;Today&lt;/strong&gt;&lt;span&gt;Washington, D.C.&lt;/span&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;hub-live-intro&quot;&gt;
+              &lt;div class=&quot;hub-live-eyebrow&quot; id=&quot;hub-live-eyebrow&quot;&gt;The sky right now&lt;/div&gt;
+              &lt;h1 id=&quot;hub-live-title&quot;&gt;What is moving?&lt;/h1&gt;
+              &lt;p id=&quot;hub-live-deck&quot;&gt;Begin with the whole sky. Touch a planet in the living solar system, follow a relationship, then open the exact Earth-centered chart when you want the particulars.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;hub-system-wrap&quot;&gt;
+              &lt;div class=&quot;hub-solar-system&quot; role=&quot;img&quot; aria-label=&quot;Slow schematic solar system; open Planetary Motion for exact date-driven positions&quot;&gt;
+                &lt;span class=&quot;hub-orbit o1&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-orbit o2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-orbit o3&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-orbit o4&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-orbit o5&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-orbit o6&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-orbit o7&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-orbit o8&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;button class=&quot;hub-sun&quot; type=&quot;button&quot; data-hub-body=&quot;Sun&quot; aria-label=&quot;Sun&quot;&gt;&lt;span&gt;Sun&lt;/span&gt;&lt;/button&gt;
+                &lt;span class=&quot;hub-carrier c-mercury&quot; style=&quot;--angle:202deg;--neg-angle:-202deg;--dur:380s&quot;&gt;&lt;button class=&quot;hub-body&quot; type=&quot;button&quot; data-hub-body=&quot;Mercury&quot; aria-label=&quot;Mercury&quot;&gt;&lt;span class=&quot;hub-planet mercury&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hub-planet-label&quot;&gt;Mercury&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-carrier c-venus&quot; style=&quot;--angle:325deg;--neg-angle:-325deg;--dur:500s&quot;&gt;&lt;button class=&quot;hub-body&quot; type=&quot;button&quot; data-hub-body=&quot;Venus&quot; aria-label=&quot;Venus&quot;&gt;&lt;span class=&quot;hub-planet venus&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hub-planet-label&quot;&gt;Venus&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-carrier c-earth&quot; style=&quot;--angle:301deg;--neg-angle:-301deg;--dur:640s&quot;&gt;&lt;button class=&quot;hub-body is-selected&quot; type=&quot;button&quot; data-hub-body=&quot;Earth&quot; aria-label=&quot;Earth and Moon&quot;&gt;&lt;span class=&quot;hub-planet earth&quot;&gt;&lt;i aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;span class=&quot;hub-planet-label&quot;&gt;Earth + Moon&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-carrier c-mars&quot; style=&quot;--angle:163deg;--neg-angle:-163deg;--dur:780s&quot;&gt;&lt;button class=&quot;hub-body&quot; type=&quot;button&quot; data-hub-body=&quot;Mars&quot; aria-label=&quot;Mars&quot;&gt;&lt;span class=&quot;hub-planet mars&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hub-planet-label&quot;&gt;Mars&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-carrier c-jupiter&quot; style=&quot;--angle:201deg;--neg-angle:-201deg;--dur:1100s&quot;&gt;&lt;button class=&quot;hub-body&quot; type=&quot;button&quot; data-hub-body=&quot;Jupiter&quot; aria-label=&quot;Jupiter&quot;&gt;&lt;span class=&quot;hub-planet jupiter&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hub-planet-label&quot;&gt;Jupiter&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-carrier c-saturn&quot; style=&quot;--angle:312deg;--neg-angle:-312deg;--dur:1400s&quot;&gt;&lt;button class=&quot;hub-body&quot; type=&quot;button&quot; data-hub-body=&quot;Saturn&quot; aria-label=&quot;Saturn&quot;&gt;&lt;span class=&quot;hub-planet saturn&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hub-planet-label&quot;&gt;Saturn&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-carrier c-uranus&quot; style=&quot;--angle:224deg;--neg-angle:-224deg;--dur:1680s&quot;&gt;&lt;button class=&quot;hub-body&quot; type=&quot;button&quot; data-hub-body=&quot;Uranus&quot; aria-label=&quot;Uranus&quot;&gt;&lt;span class=&quot;hub-planet uranus&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hub-planet-label&quot;&gt;Uranus&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-carrier c-neptune&quot; style=&quot;--angle:326deg;--neg-angle:-326deg;--dur:1960s&quot;&gt;&lt;button class=&quot;hub-body&quot; type=&quot;button&quot; data-hub-body=&quot;Neptune&quot; aria-label=&quot;Neptune&quot;&gt;&lt;span class=&quot;hub-planet neptune&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hub-planet-label&quot;&gt;Neptune&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-carrier c-pluto&quot; style=&quot;--angle:15deg;--neg-angle:-15deg;--dur:2320s&quot;&gt;&lt;button class=&quot;hub-body&quot; type=&quot;button&quot; data-hub-body=&quot;Pluto&quot; aria-label=&quot;Pluto&quot;&gt;&lt;span class=&quot;hub-planet pluto&quot;&gt;&lt;/span&gt;&lt;span class=&quot;hub-planet-label&quot;&gt;Pluto&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-relation hub-relation-one&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hub-relation hub-relation-two&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;aside class=&quot;hub-story-panel&quot; aria-live=&quot;polite&quot;&gt;
+              &lt;div class=&quot;hub-story-kicker&quot; id=&quot;hub-story-kicker&quot;&gt;Approaching chapter&lt;/div&gt;
+              &lt;h2 id=&quot;hub-story-title&quot;&gt;The next registered chart&lt;/h2&gt;
+              &lt;p id=&quot;hub-story-text&quot;&gt;The exact chart clock will appear here.&lt;/p&gt;
+              &lt;div class=&quot;hub-story-meta&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;em id=&quot;hub-story-meta&quot;&gt;One sky · several scales&lt;/em&gt;&lt;/div&gt;
+              &lt;button class=&quot;hub-story-link&quot; type=&quot;button&quot; data-open-orrery&gt;Open exact planetary motion&lt;/button&gt;
+            &lt;/aside&gt;
+            &lt;div class=&quot;hub-entry-dock&quot; aria-label=&quot;Primary Astrology Hub entries&quot;&gt;
+              &lt;button class=&quot;hub-entry primary&quot; type=&quot;button&quot; data-hub-next-reading&gt;&lt;strong&gt;Enter this chart&lt;/strong&gt;&lt;span&gt;governor + exact whole-chart packet&lt;/span&gt;&lt;/button&gt;
+              &lt;button class=&quot;hub-entry&quot; type=&quot;button&quot; data-open-orrery&gt;&lt;strong&gt;Turn the real sky&lt;/strong&gt;&lt;span&gt;date-driven Planetary Motion&lt;/span&gt;&lt;/button&gt;
+              &lt;button class=&quot;hub-entry&quot; type=&quot;button&quot; data-scroll-explore&gt;&lt;strong&gt;Explore the library&lt;/strong&gt;&lt;span&gt;all charts, patterns and files&lt;/span&gt;&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;hub-scale-note&quot;&gt;Schematic scale and pace · exact positions live in Planetary Motion&lt;/div&gt;
+          &lt;/header&gt;
+          &lt;script id=&quot;f250-hub-packets&quot; type=&quot;application/json&quot;&gt;{hub_packets_json}&lt;/script&gt;
+
+          &lt;div class=&quot;hub-depth&quot; id=&quot;hubExplore&quot;&gt;
+
+          &lt;section class=&quot;hub-section&quot; aria-labelledby=&quot;hub-three-scales&quot;&gt;
+            &lt;div class=&quot;hub-section-head&quot;&gt;
+              &lt;div&gt;
+                &lt;div class=&quot;hub-kicker&quot;&gt;The orientation&lt;/div&gt;
+                &lt;h2 id=&quot;hub-three-scales&quot;&gt;Three scales, one reading&lt;/h2&gt;
+              &lt;/div&gt;
+              &lt;p&gt;Do not stack isolated techniques. Move outward from the governed moment while keeping the chart whole.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;hub-scale-grid&quot;&gt;
+              &lt;article class=&quot;hub-scale&quot;&gt;
+                &lt;div class=&quot;hub-number&quot;&gt;01&lt;/div&gt;
+                &lt;h3&gt;The present sky&lt;/h3&gt;
+                &lt;p&gt;Establish the governing ingress, lunation or eclipse chapter, exact relationships, stations, handoffs, and physical geometry.&lt;/p&gt;
+                &lt;div class=&quot;hub-link-row&quot;&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-sub=&quot;sky-calendar&quot;&gt;Sky Calendar&lt;/button&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-sub=&quot;lunar-weather&quot;&gt;Moon &amp;amp; Eclipses&lt;/button&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-sub=&quot;transit-weather&quot;&gt;Transits &amp;amp; Cycles&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/article&gt;
+              &lt;article class=&quot;hub-scale&quot;&gt;
+                &lt;div class=&quot;hub-number&quot;&gt;02&lt;/div&gt;
+                &lt;h3&gt;The whole chart&lt;/h3&gt;
+                &lt;p&gt;Hold its exact clock, locality, house frame, angles, aspect web, distribution, dispositor root, declination, and reading together.&lt;/p&gt;
+                &lt;div class=&quot;hub-link-row&quot;&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-sub=&quot;ingress-charts&quot;&gt;Ingress Charts&lt;/button&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-sub=&quot;chart-readings&quot;&gt;Chart Readings&lt;/button&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-sub=&quot;chart-comparison&quot;&gt;Chart Comparison&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/article&gt;
+              &lt;article class=&quot;hub-scale&quot;&gt;
+                &lt;div class=&quot;hub-number&quot;&gt;03&lt;/div&gt;
+                &lt;h3&gt;The pattern through time&lt;/h3&gt;
+                &lt;p&gt;Trace Moon families, synodic chapters, inherited conjunction radices, seed-degree relays, and astronomical motion without giving any one pattern an extra vote.&lt;/p&gt;
+                &lt;div class=&quot;hub-link-row&quot;&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-document=&quot;{thesis_document}&quot;&gt;2020s Thesis&lt;/button&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-document=&quot;{orientation_document}&quot;&gt;Pattern Atlas&lt;/button&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-sub=&quot;astrology-spine&quot;&gt;Sky Watchlist&lt;/button&gt;
+                  &lt;button class=&quot;hub-link&quot; type=&quot;button&quot; data-open-sub=&quot;astrology-reference-room&quot;&gt;Astrology Files&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/article&gt;
+            &lt;/div&gt;
+          &lt;/section&gt;
+
+          &lt;section class=&quot;hub-section hub-reading-order&quot; aria-labelledby=&quot;hub-reading-order&quot;&gt;
+            &lt;div class=&quot;hub-section-head&quot;&gt;
+              &lt;div&gt;
+                &lt;div class=&quot;hub-kicker&quot;&gt;Reading order&lt;/div&gt;
+                &lt;h2 id=&quot;hub-reading-order&quot;&gt;Five moves before judgment&lt;/h2&gt;
+              &lt;/div&gt;
+              &lt;p&gt;The hub is an orientation layer. It routes to the owners beneath it and creates no second chart or interpretation.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;ol class=&quot;hub-steps&quot;&gt;
+              &lt;li&gt;&lt;strong&gt;Name the governor.&lt;/strong&gt;&lt;span&gt;Ingress, lunar chapter, and the exact clock.&lt;/span&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;strong&gt;Read the whole chart.&lt;/strong&gt;&lt;span&gt;Angles, houses, relationships, root, shape, and declination in one frame.&lt;/span&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;strong&gt;Trace inheritance.&lt;/strong&gt;&lt;span&gt;Moon family, conjunction radix, seed degrees, and earlier chapter handoffs.&lt;/span&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;strong&gt;Add real motion.&lt;/strong&gt;&lt;span&gt;Stations, solar phase, heliocentric geometry, distance, and visibility as context.&lt;/span&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;strong&gt;Compare the world last.&lt;/strong&gt;&lt;span&gt;Join independently sourced political records only in an explicit comparison layer.&lt;/span&gt;&lt;/li&gt;
+            &lt;/ol&gt;
+          &lt;/section&gt;
+
+          &lt;section class=&quot;hub-section&quot; aria-labelledby=&quot;hub-whole-chart-packets&quot;&gt;
+            &lt;div class=&quot;hub-section-head&quot;&gt;
+              &lt;div&gt;
+                &lt;div class=&quot;hub-kicker&quot;&gt;Whole-chart entry&lt;/div&gt;
+                &lt;h2 id=&quot;hub-whole-chart-packets&quot;&gt;Choose one intact chart&lt;/h2&gt;
+              &lt;/div&gt;
+              &lt;p&gt;Each of the {int(packet_index[&#x27;counts&#x27;][&#x27;packet_count&#x27;])} packets preserves one exact chart and routes to its governor, lineage, synodic stack, physical motion, pattern studies, and authored reading.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;hub-packet-shelf&quot;&gt;
+{build_packet_shelf(packet_index)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+
+          &lt;section class=&quot;hub-section hub-coverage&quot; aria-labelledby=&quot;hub-coverage&quot;&gt;
+            &lt;div class=&quot;hub-section-head&quot;&gt;
+              &lt;div&gt;
+                &lt;div class=&quot;hub-kicker&quot;&gt;Coverage already in hand&lt;/div&gt;
+                &lt;h2 id=&quot;hub-coverage&quot;&gt;The system remembers the deep work&lt;/h2&gt;
+              &lt;/div&gt;
+              &lt;p&gt;Counts are read from the generated Pattern Atlas, never typed into the hub.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;hub-stat-grid&quot;&gt;
+              &lt;div&gt;&lt;strong&gt;{int(summary[&#x27;registered_2026_ingress_and_syzygy_charts&#x27;])}&lt;/strong&gt;&lt;span&gt;registered 2026 ingress and syzygy charts&lt;/span&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;strong&gt;{int(summary[&#x27;full_moon_families&#x27;])}&lt;/strong&gt;&lt;span&gt;Full-Moon families&lt;/span&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;strong&gt;{int(summary[&#x27;inner_planet_snapshots&#x27;])}&lt;/strong&gt;&lt;span&gt;inner-planet motion snapshots&lt;/span&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;strong&gt;{int(summary[&#x27;outer_planet_snapshots&#x27;])}&lt;/strong&gt;&lt;span&gt;outer-planet geometry snapshots&lt;/span&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;strong&gt;{int(summary[&#x27;coverage_domain_count&#x27;])}&lt;/strong&gt;&lt;span&gt;mapped analysis domains&lt;/span&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;strong&gt;{int(summary[&#x27;pattern_record_count&#x27;])}&lt;/strong&gt;&lt;span&gt;cross-chart pattern records&lt;/span&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/section&gt;
+
+          &lt;aside class=&quot;hub-boundary&quot;&gt;
+            &lt;strong&gt;Keep the lanes honest.&lt;/strong&gt;
+            &lt;span&gt;Computed sky, authored interpretation, prospective calls, and political evidence remain separate at the source. Their meeting belongs in a named comparison—not in an automatic score.&lt;/span&gt;
+          &lt;/aside&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;&quot;&quot;&quot;
+
+
+def build_views() -&gt; str:
+    atlas = load_pattern_atlas()
+    packet_index = load_whole_chart_packet_index()
+    blocks: list[str] = []
+    for tool in SUBVIEWS:
+        safe_sub = html.escape(tool[&quot;sub&quot;], quote=True)
+        if tool[&quot;filename&quot;] is None:
+            blocks.append(build_hub_home(atlas, packet_index))
+            continue
+        blocks.append(
+            f&quot;&quot;&quot;      &lt;section class=&quot;sky-view&quot; id=&quot;sky-view-{safe_sub}&quot;
+        data-sky-id=&quot;{safe_sub}&quot; role=&quot;region&quot;
+        aria-label=&quot;{html.escape(tool[&#x27;label&#x27;], quote=True)}&quot; hidden&gt;
+        &lt;iframe data-sky-id=&quot;{safe_sub}&quot;
+          data-src=&quot;{html.escape(tool[&#x27;filename&#x27;], quote=True)}&quot;
+          title=&quot;{html.escape(tool[&#x27;label&#x27;], quote=True)}&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;
+      &lt;/section&gt;&quot;&quot;&quot;
+        )
+    return os.linesep.join(blocks)
+
+
+HTML_TEMPLATE = r&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,viewport-fit=cover&quot;&gt;
+&lt;meta name=&quot;color-scheme&quot; content=&quot;light dark&quot;&gt;
+&lt;title&gt;Astrology Hub — Freedom 250 Observatory&lt;/title&gt;
+&lt;style&gt;
+:root{
+  --sky-bg:#f4f0e6;--sky-panel:#fbf8f1;--sky-card:#fffdf8;
+  --sky-ink:#28251f;--sky-muted:#736b5d;--sky-faint:#9b9282;
+  --sky-line:#d8d0c1;--sky-accent:#8a542f;--sky-accent-soft:#efe1d2;
+  --sky-focus:#2f6d8a;--sky-shadow:rgba(43,35,24,.16);
+  color-scheme:light;
+}
+html[data-theme=&quot;dark&quot;]{
+  --sky-bg:#16140f;--sky-panel:#1d1a13;--sky-card:#242017;
+  --sky-ink:#e6dfd0;--sky-muted:#b9b09c;--sky-faint:#857d6c;
+  --sky-line:#3a3426;--sky-accent:#d99570;--sky-accent-soft:#35271d;
+  --sky-focus:#70b7d4;--sky-shadow:rgba(0,0,0,.4);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--sky-bg);color:var(--sky-ink)}
+body{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif}
+button,input{font:inherit}
+button:focus-visible,input:focus-visible{outline:3px solid color-mix(in srgb,var(--sky-focus) 48%,transparent);outline-offset:2px}
+.sky-shell{display:grid;grid-template-columns:272px minmax(0,1fr);height:100%}
+.sky-rail{
+  min-width:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 14px 36px;
+  background:var(--sky-panel);border-right:1px solid var(--sky-line)
+}
+.sky-brand{display:flex;align-items:start;justify-content:space-between;gap:12px;padding:1px 6px 13px}
+.sky-brand h1{font:700 22px/1.12 Georgia,&quot;Times New Roman&quot;,serif;margin:0;color:var(--sky-ink)}
+.sky-brand span{display:block;margin-top:4px;color:var(--sky-muted);font-size:11px;line-height:1.35}
+.sky-close{display:none;border:1px solid var(--sky-line);border-radius:999px;width:34px;height:34px;background:var(--sky-card);color:var(--sky-ink);cursor:pointer}
+.sky-search{position:relative;margin:0 4px 17px}
+.sky-search label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.sky-search input{
+  width:100%;border:1px solid var(--sky-line);border-radius:9px;background:var(--sky-card);
+  color:var(--sky-ink);padding:9px 10px 9px 31px;font-size:12px
+}
+.sky-search::before{content:&quot;⌕&quot;;position:absolute;left:10px;top:6px;color:var(--sky-faint);font-size:18px;z-index:1}
+.sky-section{margin:0 0 20px}
+.sky-section[hidden]{display:none}
+.sky-section h2{margin:0 6px 3px;color:var(--sky-accent);font-size:10px;line-height:1.2;letter-spacing:.15em;text-transform:uppercase}
+.sky-section&gt;p{margin:0 6px 7px;color:var(--sky-faint);font:italic 11px/1.35 Georgia,serif}
+.sky-tool-list{display:grid;gap:3px}
+.sky-tool{
+  display:block;width:100%;border:1px solid transparent;border-radius:8px;background:transparent;
+  color:var(--sky-ink);text-align:left;padding:8px 9px;cursor:pointer
+}
+.sky-tool:hover{background:var(--sky-card);border-color:var(--sky-line)}
+.sky-tool.active{background:var(--sky-accent-soft);border-color:color-mix(in srgb,var(--sky-accent) 38%,var(--sky-line));box-shadow:inset 3px 0 0 var(--sky-accent)}
+.sky-tool[hidden]{display:none}
+.sky-tool-name{display:block;font-size:13px;font-weight:700;line-height:1.25}
+.sky-tool-desc{display:block;margin-top:2px;color:var(--sky-muted);font-size:10px;line-height:1.28}
+.sky-main{min-width:0;display:grid;grid-template-rows:42px minmax(0,1fr);height:100%;background:var(--sky-bg)}
+.sky-topbar{
+  display:flex;align-items:center;gap:9px;min-width:0;padding:0 15px;
+  background:var(--sky-panel);border-bottom:1px solid var(--sky-line)
+}
+.sky-menu{
+  display:none;border:1px solid var(--sky-line);border-radius:7px;background:var(--sky-card);
+  color:var(--sky-ink);padding:6px 9px;cursor:pointer
+}
+.sky-breadcrumb{display:flex;align-items:center;gap:7px;min-width:0;font-size:12px;color:var(--sky-muted);white-space:nowrap}
+.sky-breadcrumb .host{color:var(--sky-faint)}
+.sky-breadcrumb .sep{color:var(--sky-line)}
+.sky-breadcrumb .section{color:var(--sky-muted)}
+.sky-breadcrumb .tool{overflow:hidden;text-overflow:ellipsis;color:var(--sky-ink);font-weight:700}
+.sky-shortcut{margin-left:auto;color:var(--sky-faint);font-size:10px;white-space:nowrap}
+.sky-stage{position:relative;min-width:0;min-height:0}
+.sky-view{position:absolute;inset:0;background:var(--sky-bg)}
+.sky-view[hidden]{display:none}
+.sky-view iframe{display:block;width:100%;height:100%;border:0;background:var(--sky-bg)}
+.hub-view{overflow:hidden}
+.hub-scroll{height:100%;overflow:auto;overscroll-behavior:contain;padding:0;scrollbar-gutter:stable;background:var(--sky-bg)}
+.hub-depth{width:min(1180px,calc(100% - clamp(32px,8vw,116px)));margin:0 auto;padding:6px 0 clamp(36px,5vw,70px)}
+.hub-orrery{
+  --hub-ink:#eef8ff;--hub-muted:#9bb5c8;--hub-cyan:#66dcff;--hub-gold:#ffcc69;
+  --hub-red:#ff715f;--hub-blue:#6f9dff;--hub-violet:#b292ff;--hub-line:rgba(126,211,255,.19);
+  position:relative;width:100%;min-height:max(690px,calc(100vh - 42px));overflow:hidden;
+  color:var(--hub-ink);background:
+    radial-gradient(circle at 58% 47%,rgba(255,190,70,.12),transparent 17%),
+    radial-gradient(circle at 14% 10%,rgba(53,143,219,.16),transparent 31%),
+    linear-gradient(145deg,#030911,#071624)
+}
+.hub-stars,.hub-stars::before,.hub-stars::after{
+  position:absolute;inset:0;content:&quot;&quot;;pointer-events:none;background-image:
+    radial-gradient(circle,rgba(213,241,255,.82) 0 1px,transparent 1.4px),
+    radial-gradient(circle,rgba(100,211,255,.46) 0 1px,transparent 1.5px);
+  background-size:83px 83px,137px 137px;background-position:7px 19px,43px 61px;opacity:.34
+}
+.hub-stars::before{transform:translate(31px,22px);opacity:.28}.hub-stars::after{transform:translate(-19px,41px);opacity:.18}
+.hub-live-top{position:relative;z-index:14;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:19px 26px;border-bottom:1px solid rgba(130,214,255,.13);background:linear-gradient(180deg,rgba(3,9,17,.88),rgba(3,9,17,.22))}
+.hub-live-brand{display:flex;align-items:center;gap:10px;min-width:0;color:var(--hub-muted);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.hub-live-brand&gt;span{width:27px;height:27px;flex:0 0 auto;border-radius:50%;background:radial-gradient(circle at 38% 34%,#fff5b4 0 8%,#ffc95b 30%,#f1842b 68%,#9e2f17 100%);box-shadow:0 0 22px rgba(255,190,86,.58)}
+.hub-live-brand strong{color:var(--hub-ink);font-weight:700;white-space:nowrap}
+.hub-mode-nav{display:flex;gap:5px;padding:4px;border:1px solid rgba(131,210,255,.14);border-radius:999px;background:rgba(3,11,19,.66)}
+.hub-mode-nav button{border:0;border-radius:999px;background:transparent;color:var(--hub-muted);padding:8px 13px;min-height:34px;font-size:11px;font-weight:700;cursor:pointer}
+.hub-mode-nav button[aria-pressed=&quot;true&quot;]{background:rgba(91,208,255,.15);color:var(--hub-ink);box-shadow:inset 0 0 0 1px rgba(102,220,255,.28)}
+.hub-live-clock{text-align:right;color:var(--hub-muted);font-size:11px;line-height:1.4;white-space:nowrap}.hub-live-clock strong,.hub-live-clock span{display:block}.hub-live-clock strong{color:var(--hub-ink);font-weight:700}
+.hub-live-intro{position:absolute;z-index:10;left:clamp(25px,4.3vw,68px);top:clamp(100px,16vh,150px);width:min(390px,39%)}
+.hub-live-eyebrow,.hub-story-kicker{color:var(--hub-cyan);font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.hub-live-intro h1{margin:10px 0 14px;font:700 clamp(40px,6vw,76px)/.94 Georgia,&quot;Times New Roman&quot;,serif;letter-spacing:-.04em}
+.hub-live-intro p{max-width:355px;margin:0;color:var(--hub-muted);font:16px/1.55 Georgia,&quot;Times New Roman&quot;,serif}
+.hub-system-wrap{position:absolute;inset:62px 0 0;overflow:hidden}
+.hub-solar-system{position:absolute;left:61%;top:49%;width:min(680px,66vw);aspect-ratio:1;transform:translate(-50%,-50%)}
+.hub-orbit{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid var(--hub-line);border-radius:50%;pointer-events:none;box-shadow:inset 0 0 12px rgba(56,178,229,.035)}
+.hub-orbit.o1{width:16%;height:16%}.hub-orbit.o2{width:25%;height:25%}.hub-orbit.o3{width:35%;height:35%}.hub-orbit.o4{width:46%;height:46%}.hub-orbit.o5{width:58%;height:58%}.hub-orbit.o6{width:70%;height:70%}.hub-orbit.o7{width:83%;height:83%}.hub-orbit.o8{width:96%;height:96%}
+.hub-sun{position:absolute;z-index:7;left:50%;top:50%;width:60px;height:60px;transform:translate(-50%,-50%);display:grid;place-items:center;border:0;border-radius:50%;background:radial-gradient(circle at 36% 32%,#fff6b5 0 5%,#ffd15d 23%,#ff8b32 63%,#d44018 100%);box-shadow:0 0 38px rgba(255,172,67,.78),0 0 94px rgba(255,142,53,.23);color:#2d1705;cursor:pointer}
+.hub-sun span{font-size:9px;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
+.hub-carrier{position:absolute;left:50%;top:50%;transform:rotate(var(--angle));transform-origin:0 0;pointer-events:none}
+.hub-carrier.c-mercury{width:8%}.hub-carrier.c-venus{width:12.5%}.hub-carrier.c-earth{width:17.5%}.hub-carrier.c-mars{width:23%}.hub-carrier.c-jupiter{width:29%}.hub-carrier.c-saturn{width:35%}.hub-carrier.c-uranus{width:41.5%}.hub-carrier.c-neptune{width:48%}.hub-carrier.c-pluto{width:48%}
+.hub-body{position:absolute;left:100%;top:0;transform:translate(-50%,-50%) rotate(var(--neg-angle));pointer-events:auto;border:0;background:transparent;color:var(--hub-ink);padding:0;min-width:46px;min-height:46px;display:grid;place-items:center;cursor:pointer}
+.hub-planet{display:block;position:relative;width:var(--planet-size);height:var(--planet-size);border-radius:50%;background:var(--planet-fill);box-shadow:0 0 14px var(--planet-halo);transition:transform .2s ease,box-shadow .2s ease}
+.hub-body:hover .hub-planet,.hub-body:focus-visible .hub-planet,.hub-body.is-selected .hub-planet{transform:scale(1.28);box-shadow:0 0 26px var(--planet-halo),0 0 0 6px rgba(102,220,255,.08)}
+.hub-planet-label{position:absolute;top:calc(50% + 15px);left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hub-muted);white-space:nowrap}.hub-body.is-selected .hub-planet-label{color:var(--hub-ink)}
+.hub-planet.mercury{--planet-size:8px;--planet-fill:#aaa9a4;--planet-halo:rgba(210,210,205,.65)}
+.hub-planet.venus{--planet-size:11px;--planet-fill:#f1c77d;--planet-halo:rgba(241,199,125,.7)}
+.hub-planet.earth{--planet-size:14px;--planet-fill:linear-gradient(135deg,#63d1e6,#245bbb);--planet-halo:rgba(82,192,231,.84)}
+.hub-planet.earth i{position:absolute;width:5px;height:5px;border-radius:50%;background:#d9ecff;right:-9px;top:-3px;box-shadow:0 0 8px #d9ecff}
+.hub-planet.mars{--planet-size:10px;--planet-fill:#d65c3e;--planet-halo:rgba(255,103,71,.78)}
+.hub-planet.jupiter{--planet-size:22px;--planet-fill:linear-gradient(#d9b389 0 24%,#f0d5a9 25% 42%,#a87855 43% 55%,#e4c79d 56%);--planet-halo:rgba(230,195,147,.72)}
+.hub-planet.saturn{--planet-size:18px;--planet-fill:#ddc487;--planet-halo:rgba(221,196,135,.75)}
+.hub-planet.saturn::after{content:&quot;&quot;;position:absolute;left:50%;top:50%;width:30px;height:8px;transform:translate(-50%,-50%) rotate(-16deg);border:1px solid rgba(235,211,149,.82);border-radius:50%}
+.hub-planet.uranus{--planet-size:14px;--planet-fill:#8fd5d6;--planet-halo:rgba(143,213,214,.75)}
+.hub-planet.neptune{--planet-size:14px;--planet-fill:#426ecb;--planet-halo:rgba(85,130,241,.86)}
+.hub-planet.pluto{--planet-size:7px;--planet-fill:#c7b6a2;--planet-halo:rgba(205,184,163,.68)}
+.hub-relation{position:absolute;z-index:4;height:1px;background:linear-gradient(90deg,transparent,var(--hub-cyan),transparent);transform-origin:left center;opacity:0;transition:opacity .25s ease;box-shadow:0 0 8px rgba(102,220,255,.5);pointer-events:none}
+.hub-relation-one{left:29%;top:62%;width:50%;transform:rotate(-13deg)}.hub-relation-two{left:47%;top:28%;width:35%;transform:rotate(11deg)}
+.hub-orrery[data-hub-mode=&quot;story&quot;] .hub-relation{opacity:.8}
+.hub-story-panel{position:absolute;z-index:12;right:clamp(24px,4vw,58px);bottom:82px;width:min(345px,36%);padding:18px 19px;border:1px solid rgba(119,209,250,.18);border-radius:16px;background:rgba(6,20,33,.84);backdrop-filter:blur(16px);box-shadow:0 20px 55px rgba(0,0,0,.3)}
+.hub-story-panel h2{margin:7px 0 8px;font:700 24px/1.08 Georgia,&quot;Times New Roman&quot;,serif}.hub-story-panel p{margin:0;color:var(--hub-muted);font-size:12px;line-height:1.5}
+.hub-story-meta{display:flex;gap:8px;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid rgba(133,214,251,.14);color:var(--hub-muted);font-size:10px}.hub-story-meta span{width:7px;height:7px;border-radius:50%;background:var(--hub-cyan);box-shadow:0 0 12px var(--hub-cyan);flex:0 0 auto}.hub-story-meta em{font-style:normal}
+.hub-story-link{margin-top:12px;border:0;background:transparent;color:var(--hub-cyan);padding:0;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
+.hub-entry-dock{position:absolute;z-index:13;left:clamp(24px,4vw,58px);bottom:28px;display:flex;gap:9px;align-items:center;max-width:58%}
+.hub-entry{min-height:48px;padding:10px 13px;border:1px solid rgba(117,208,248,.18);border-radius:12px;background:rgba(3,13,22,.76);color:var(--hub-ink);text-align:left;backdrop-filter:blur(12px);cursor:pointer}.hub-entry strong,.hub-entry span{display:block}.hub-entry strong{font-size:11px}.hub-entry span{margin-top:2px;color:var(--hub-muted);font-size:9px}.hub-entry.primary{border-color:transparent;background:var(--hub-cyan);color:#03111a}.hub-entry.primary span{color:rgba(3,17,26,.67)}
+.hub-scale-note{position:absolute;z-index:9;right:clamp(24px,4vw,58px);bottom:25px;color:rgba(155,181,200,.62);font-size:8px;letter-spacing:.07em;text-transform:uppercase}
+@media(prefers-reduced-motion:no-preference){
+  .hub-carrier{animation:hub-orbit var(--dur) linear infinite}.hub-body{animation:hub-counter var(--dur) linear infinite}
+  @keyframes hub-orbit{to{transform:rotate(calc(var(--angle) + 360deg))}}
+  @keyframes hub-counter{to{transform:translate(-50%,-50%) rotate(calc(var(--neg-angle) - 360deg))}}
+}
+.hub-hero{
+  position:relative;overflow:hidden;padding:clamp(30px,5vw,66px);border:1px solid var(--sky-line);
+  border-radius:24px;background:
+    radial-gradient(circle at 82% 15%,color-mix(in srgb,var(--sky-accent) 20%,transparent),transparent 36%),
+    linear-gradient(135deg,var(--sky-card),var(--sky-panel));box-shadow:0 18px 46px var(--sky-shadow)
+}
+.hub-hero::after{content:&quot;&quot;;position:absolute;right:-90px;bottom:-150px;width:330px;height:330px;border:1px solid color-mix(in srgb,var(--sky-accent) 32%,transparent);border-radius:50%;box-shadow:0 0 0 34px color-mix(in srgb,var(--sky-accent) 7%,transparent),0 0 0 78px color-mix(in srgb,var(--sky-accent) 5%,transparent);pointer-events:none}
+.hub-eyebrow,.hub-kicker,.hub-route-kicker{color:var(--sky-accent);font-size:10px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
+.hub-hero h1{position:relative;z-index:1;max-width:760px;margin:10px 0 13px;font:700 clamp(38px,6vw,74px)/.98 Georgia,&quot;Times New Roman&quot;,serif;letter-spacing:-.035em}
+.hub-deck{position:relative;z-index:1;max-width:760px;margin:0;color:var(--sky-muted);font:18px/1.55 Georgia,&quot;Times New Roman&quot;,serif}
+.hub-actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+.hub-primary,.hub-secondary,.hub-link{border:1px solid var(--sky-line);border-radius:999px;background:var(--sky-card);color:var(--sky-ink);padding:9px 13px;font-size:12px;font-weight:750;cursor:pointer}
+.hub-primary{border-color:var(--sky-accent);background:var(--sky-accent);color:var(--sky-bg);padding:10px 16px}
+.hub-primary:hover,.hub-secondary:hover,.hub-link:hover{transform:translateY(-1px);box-shadow:0 7px 18px var(--sky-shadow)}
+.hub-section{margin-top:clamp(38px,5vw,64px)}
+.hub-section-head{display:flex;align-items:end;justify-content:space-between;gap:26px;margin-bottom:18px;padding:0 3px}
+.hub-section-head h2{margin:5px 0 0;font:700 clamp(25px,3vw,38px)/1.05 Georgia,&quot;Times New Roman&quot;,serif;letter-spacing:-.02em}
+.hub-section-head&gt;p{max-width:470px;margin:0;color:var(--sky-muted);font-size:13px;line-height:1.55}
+.hub-scale-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.hub-scale,.hub-route{border:1px solid var(--sky-line);border-radius:16px;background:var(--sky-card);padding:23px}
+.hub-scale{display:flex;flex-direction:column;min-height:290px}
+.hub-number{color:var(--sky-faint);font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}
+.hub-scale h3,.hub-route h3{margin:12px 0 8px;font:700 22px/1.12 Georgia,&quot;Times New Roman&quot;,serif}
+.hub-scale p{margin:0;color:var(--sky-muted);font-size:13px;line-height:1.55}
+.hub-link-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:22px}
+.hub-link{padding:7px 10px;color:var(--sky-accent);font-size:11px}
+.hub-reading-order{border-top:1px solid var(--sky-line);border-bottom:1px solid var(--sky-line);padding:30px 0}
+.hub-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none;counter-reset:hub-step}
+.hub-steps li{counter-increment:hub-step;min-width:0;padding:16px;border-left:1px solid var(--sky-line)}
+.hub-steps li:first-child{border-left:0}
+.hub-steps li::before{content:&quot;0&quot; counter(hub-step);display:block;margin-bottom:14px;color:var(--sky-accent);font:700 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}
+.hub-steps strong,.hub-steps span{display:block}
+.hub-steps strong{font:700 16px/1.2 Georgia,&quot;Times New Roman&quot;,serif}
+.hub-steps span{margin-top:7px;color:var(--sky-muted);font-size:11px;line-height:1.45}
+.hub-route-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.hub-front{padding:clamp(26px,4vw,52px) clamp(16px,4vw,48px) clamp(20px,3vw,34px);border-bottom:1px solid var(--sky-line)}
+.hub-front h1{margin:8px 0 10px;font:700 clamp(30px,4vw,48px)/1.04 Georgia,&quot;Times New Roman&quot;,serif;letter-spacing:-.02em}
+.hub-front-deck{max-width:760px;margin:0;color:var(--sky-muted);font-size:14px;line-height:1.6}
+.hub-front-links{margin:18px 0 22px;padding-top:0}
+.hub-front-routes{grid-template-columns:repeat(3,minmax(0,1fr))}
+.hub-pattern-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:16px}
+.hub-pattern{display:flex;flex-direction:column;gap:6px;text-align:left;border:1px solid var(--sky-line);border-radius:12px;background:var(--sky-card);color:var(--sky-ink);padding:13px 14px;cursor:pointer;font:inherit}
+.hub-pattern strong{font:700 15px/1.25 Georgia,&quot;Times New Roman&quot;,serif}
+.hub-pattern span{color:var(--sky-muted);font-size:11.5px;line-height:1.45}
+.hub-pattern em{align-self:flex-start;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-accent);background:var(--sky-accent-soft);border-radius:999px;padding:3px 8px}
+.hub-pattern em[data-status=&quot;mostly_ordinary&quot;]{color:var(--sky-muted);background:transparent;border:1px solid var(--sky-line)}
+.hub-route h3{font-size:21px;line-height:1.25}
+.hub-route ol{margin:15px 0 19px;padding-left:20px;color:var(--sky-muted);font-size:12px;line-height:1.48}
+.hub-route li+li{margin-top:6px}
+.hub-packet-shelf{display:grid;gap:9px}
+.hub-packet-group{border:1px solid var(--sky-line);border-radius:14px;background:var(--sky-card);overflow:hidden}
+.hub-packet-group summary{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 18px;cursor:pointer;font:700 17px/1.2 Georgia,&quot;Times New Roman&quot;,serif;list-style:none}
+.hub-packet-group summary::-webkit-details-marker{display:none}
+.hub-packet-group summary::before{content:&quot;+&quot;;order:2;color:var(--sky-accent);font:700 17px/1 ui-monospace,SFMono-Regular,Menlo,monospace}
+.hub-packet-group[open] summary::before{content:&quot;−&quot;}
+.hub-packet-group summary&gt;strong{order:1;margin-left:auto;color:var(--sky-faint);font:700 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace}
+.hub-packet-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;border-top:1px solid var(--sky-line);background:var(--sky-line)}
+.hub-packet{display:flex;min-width:0;min-height:112px;flex-direction:column;align-items:flex-start;border:0;background:var(--sky-card);color:var(--sky-ink);padding:16px;text-align:left;cursor:pointer}
+.hub-packet:hover{background:var(--sky-accent-soft)}
+.hub-packet strong{font:700 15px/1.3 Georgia,&quot;Times New Roman&quot;,serif}
+.hub-packet span{margin-top:6px;color:var(--sky-muted);font-size:10px;line-height:1.35}
+.hub-packet em{margin-top:auto;padding-top:12px;color:var(--sky-faint);font-size:9px;font-style:normal;letter-spacing:.08em;text-transform:uppercase}
+.hub-packet em[data-state=&quot;prospective&quot;]{color:var(--sky-accent)}
+.hub-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--sky-line);border-radius:16px;background:var(--sky-card);overflow:hidden}
+.hub-stat-grid&gt;div{padding:21px;border-left:1px solid var(--sky-line);border-top:1px solid var(--sky-line)}
+.hub-stat-grid&gt;div:nth-child(-n+3){border-top:0}
+.hub-stat-grid&gt;div:nth-child(3n+1){border-left:0}
+.hub-stat-grid strong,.hub-stat-grid span{display:block}
+.hub-stat-grid strong{color:var(--sky-accent);font:700 32px/1 Georgia,&quot;Times New Roman&quot;,serif}
+.hub-stat-grid span{margin-top:7px;color:var(--sky-muted);font-size:11px;line-height:1.35}
+.hub-boundary{display:flex;gap:18px;align-items:baseline;margin-top:42px;margin-bottom:20px;padding:18px 20px;border-left:4px solid var(--sky-accent);background:var(--sky-accent-soft);color:var(--sky-muted);font-size:12px;line-height:1.5}
+.hub-boundary strong{flex:0 0 auto;color:var(--sky-ink);font:700 16px/1.2 Georgia,&quot;Times New Roman&quot;,serif}
+.sky-empty{
+  display:none;margin:24px;border:1px dashed var(--sky-line);border-radius:10px;
+  color:var(--sky-muted);padding:26px;text-align:center;font-size:13px
+}
+.sky-empty.visible{display:block}
+.sky-backdrop{display:none}
+@media(max-width:900px){
+  .sky-shell{display:block}
+  .sky-rail{
+    position:fixed;z-index:30;inset:0 auto 0 0;width:min(340px,88vw);
+    box-shadow:12px 0 34px var(--sky-shadow);transform:translateX(-105%);
+    transition:transform .18s ease
+  }
+  body.sky-drawer-open .sky-rail{transform:translateX(0)}
+  .sky-close,.sky-menu{display:inline-grid;place-items:center}
+  .sky-backdrop{
+    display:block;position:fixed;z-index:20;inset:0;border:0;background:rgba(20,16,11,.48);
+    opacity:0;visibility:hidden;transition:opacity .18s ease,visibility .18s ease;cursor:default
+  }
+  body.sky-drawer-open .sky-backdrop{opacity:1;visibility:visible}
+  .sky-main{height:100%}
+  .sky-topbar{padding:0 10px}
+  .sky-shortcut{display:none}
+  .hub-orrery{min-height:790px}
+  .hub-live-top{padding:15px 18px;align-items:flex-start;flex-wrap:wrap}
+  .hub-mode-nav{order:3;width:100%;justify-content:center}
+  .hub-live-intro{left:20px;right:20px;top:116px;width:auto;text-align:center}
+  .hub-live-intro p{margin-left:auto;margin-right:auto}
+  .hub-solar-system{left:50%;top:51%;width:min(560px,86vw)}
+  .hub-story-panel{left:20px;right:20px;bottom:82px;width:auto}
+  .hub-entry-dock{left:20px;right:20px;bottom:19px;max-width:none;justify-content:center}
+  .hub-scale-note{display:none}
+  .hub-depth{width:min(100% - 36px,1180px)}
+  .hub-scale-grid{grid-template-columns:1fr}
+  .hub-packet-grid{grid-template-columns:1fr 1fr}
+  .hub-scale{min-height:0}
+  .hub-steps{grid-template-columns:1fr 1fr}
+  .hub-steps li:nth-child(odd){border-left:0}
+  .hub-steps li:nth-child(n+3){border-top:1px solid var(--sky-line)}
+}
+@media(max-width:520px){
+  .sky-breadcrumb .host,.sky-breadcrumb .section,.sky-breadcrumb .sep:first-of-type{display:none}
+  .hub-orrery{min-height:850px}
+  .hub-live-brand strong{font-size:10px}.hub-live-clock span{display:none}
+  .hub-mode-nav button{padding:7px 10px}
+  .hub-live-intro{top:115px}.hub-live-intro h1{font-size:46px}
+  .hub-live-intro p{font-size:14px}
+  .hub-solar-system{top:49%;width:410px}
+  .hub-planet-label{display:none}
+  .hub-story-panel{bottom:88px}
+  .hub-entry:nth-child(3){display:none}
+  .hub-entry{padding:9px 10px}
+  .hub-hero{padding:27px 22px;border-radius:17px}
+  .hub-hero h1{font-size:42px}
+  .hub-section-head{display:block}
+  .hub-section-head&gt;p{margin-top:9px}
+  .hub-route-grid,.hub-stat-grid,.hub-steps,.hub-front-routes{grid-template-columns:1fr}
+  .hub-packet-grid{grid-template-columns:1fr}
+  .hub-stat-grid&gt;div,.hub-stat-grid&gt;div:nth-child(-n+3){border-left:0;border-top:1px solid var(--sky-line)}
+  .hub-stat-grid&gt;div:first-child{border-top:0}
+  .hub-steps li,.hub-steps li:nth-child(odd){border-left:0;border-top:1px solid var(--sky-line)}
+  .hub-steps li:first-child{border-top:0}
+  .hub-boundary{display:block}
+  .hub-boundary span{display:block;margin-top:7px}
+}
+@media(prefers-reduced-motion:reduce){
+  .sky-rail,.sky-backdrop{transition:none}
+}
+/* Embedded under the Observatory shell: the Astrology menu owns navigation,
+   so the rail becomes an on-demand drawer at every width. */
+html.sky-embedded .sky-shell{display:block}
+html.sky-embedded .sky-rail{
+  position:fixed;z-index:30;inset:0 auto 0 0;width:min(340px,88vw);
+  box-shadow:12px 0 34px var(--sky-shadow);transform:translateX(-105%);
+  transition:transform .18s ease
+}
+html.sky-embedded body.sky-drawer-open .sky-rail{transform:translateX(0)}
+html.sky-embedded .sky-close,html.sky-embedded .sky-menu{display:inline-grid;place-items:center}
+html.sky-embedded .sky-backdrop{
+  display:block;position:fixed;z-index:20;inset:0;border:0;background:rgba(20,16,11,.48);
+  opacity:0;visibility:hidden;transition:opacity .18s ease,visibility .18s ease;cursor:default
+}
+html.sky-embedded body.sky-drawer-open .sky-backdrop{opacity:1;visibility:visible}
+html.sky-embedded .sky-main{height:100%}
+@media(prefers-reduced-motion:reduce){
+  html.sky-embedded .sky-rail,html.sky-embedded .sky-backdrop{transition:none}
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;try{if(window.self!==window.top)document.documentElement.classList.add(&quot;sky-embedded&quot;)}catch(_){document.documentElement.classList.add(&quot;sky-embedded&quot;)}&lt;/script&gt;
+&lt;div class=&quot;sky-shell&quot;&gt;
+  &lt;aside class=&quot;sky-rail&quot; id=&quot;skyRail&quot; aria-label=&quot;Astrology Hub instruments&quot;&gt;
+    &lt;div class=&quot;sky-brand&quot;&gt;
+      &lt;div&gt;&lt;h1&gt;Astrology Hub&lt;/h1&gt;&lt;span&gt;One orientation. __INSTRUMENT_COUNT__ instruments. No lost depth.&lt;/span&gt;&lt;/div&gt;
+      &lt;button class=&quot;sky-close&quot; id=&quot;skyClose&quot; type=&quot;button&quot; aria-label=&quot;Close instruments&quot;&gt;×&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;sky-search&quot;&gt;
+      &lt;label for=&quot;skySearch&quot;&gt;Filter instruments&lt;/label&gt;
+      &lt;input id=&quot;skySearch&quot; type=&quot;search&quot; placeholder=&quot;Find an instrument…&quot; autocomplete=&quot;off&quot;&gt;
+    &lt;/div&gt;
+    &lt;nav id=&quot;skyNav&quot; aria-label=&quot;Astrology Hub&quot;&gt;
+__SECTIONS__
+    &lt;/nav&gt;
+    &lt;div class=&quot;sky-empty&quot; id=&quot;skyEmpty&quot;&gt;No instrument matches that search.&lt;/div&gt;
+  &lt;/aside&gt;
+  &lt;button class=&quot;sky-backdrop&quot; id=&quot;skyBackdrop&quot; type=&quot;button&quot; tabindex=&quot;-1&quot; aria-label=&quot;Close instruments&quot;&gt;&lt;/button&gt;
+  &lt;main class=&quot;sky-main&quot;&gt;
+    &lt;header class=&quot;sky-topbar&quot;&gt;
+      &lt;button class=&quot;sky-menu&quot; id=&quot;skyMenu&quot; type=&quot;button&quot; aria-controls=&quot;skyRail&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Open instruments&quot;&gt;☰&lt;/button&gt;
+      &lt;div class=&quot;sky-breadcrumb&quot; id=&quot;skyBreadcrumb&quot; aria-live=&quot;polite&quot;&gt;
+        &lt;span class=&quot;host&quot;&gt;Astrology Hub&lt;/span&gt;&lt;span class=&quot;sep&quot;&gt;/&lt;/span&gt;
+        &lt;span class=&quot;section&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sep&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;tool&quot;&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;span class=&quot;sky-shortcut&quot;&gt;/ find · ⌥↑/↓ switch&lt;/span&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;sky-stage&quot; id=&quot;skyStage&quot;&gt;
+__VIEWS__
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt;
+&lt;script id=&quot;f250-sky-tool-registry&quot; type=&quot;application/json&quot;&gt;__REGISTRY__&lt;/script&gt;
+&lt;script&gt;
+(function(){
+  &quot;use strict&quot;;
+  var HOST_ID=__HOST_ID__;
+  var LAST_KEY=__LAST_KEY__;
+  var THEME_KEY=__THEME_KEY__;
+  var registry=JSON.parse(document.getElementById(&quot;f250-sky-tool-registry&quot;).textContent);
+  var hubPacketNode=document.getElementById(&quot;f250-hub-packets&quot;);
+  var hubPackets=hubPacketNode ? JSON.parse(hubPacketNode.textContent) : [];
+  window.F250_SKY_TOOL_REGISTRY=registry;
+
+  var bySub=Object.create(null);
+  var aliases=Object.create(null);
+  var routeTargets=Object.create(null);
+  registry.forEach(function(tool){
+    bySub[tool.sub]=tool;
+    [tool.sub,tool.id,tool.legacyView,tool.filename,tool.label]
+      .concat(tool.legacyViews||[],tool.aliases||[])
+      .forEach(function(value){
+        if(value) aliases[String(value).trim().toLowerCase()]=tool.sub;
+      });
+    Object.keys(tool.absorbedRoutes||{}).forEach(function(route){
+      routeTargets[String(route).trim().toLowerCase()]={sub:tool.sub,innerSub:tool.absorbedRoutes[route]};
+    });
+  });
+
+  var rail=document.getElementById(&quot;skyRail&quot;);
+  var menu=document.getElementById(&quot;skyMenu&quot;);
+  var closeButton=document.getElementById(&quot;skyClose&quot;);
+  var backdrop=document.getElementById(&quot;skyBackdrop&quot;);
+  var nav=document.getElementById(&quot;skyNav&quot;);
+  var search=document.getElementById(&quot;skySearch&quot;);
+  var empty=document.getElementById(&quot;skyEmpty&quot;);
+  var stage=document.getElementById(&quot;skyStage&quot;);
+  var crumbSection=document.querySelector(&quot;#skyBreadcrumb .section&quot;);
+  var crumbTool=document.querySelector(&quot;#skyBreadcrumb .tool&quot;);
+  var activeSub=null;
+  var currentDate=null;
+  var currentTheme=&quot;light&quot;;
+  var lastDrawerFocus=null;
+  var pendingBySub=Object.create(null);
+
+  var hubBodies={
+    Sun:{k:&quot;The light&quot;,t:&quot;Opposition puts Earth in the middle&quot;,p:&quot;The Earth-centered chart names the relationship we experience. The physical view shows the arrangement; the exact chart shows where the light lands in Washington.&quot;,m:&quot;Astronomy supplies context, not a second vote&quot;},
+    Moon:{k:&quot;The chapter keeper&quot;,t:&quot;The Moon carries the immediate plot&quot;,p:&quot;New Moons seed, Full Moons illuminate, eclipses deepen the chapter, and quarter Moons show the turn. Open the exact lunar chart for its houses, roots and lineage.&quot;,m:&quot;Moon families continue beyond one lunation&quot;},
+    Mercury:{k:&quot;Terms and transmission&quot;,t:&quot;Mercury carries the record&quot;,p:&quot;Mercury moves language, evidence, negotiation and technical terms through the wider field. Its station, solar phase and chart role decide how loudly it speaks.&quot;,m:&quot;Fast motion translates the long clocks&quot;},
+    Venus:{k:&quot;Value and accord&quot;,t:&quot;Venus sets the terms of worth&quot;,p:&quot;Venus can carry agreement, resources, legitimacy and judgment. Its actual condition matters more than an isolated keyword.&quot;,m:&quot;Open the whole chart before judging&quot;},
+    Mars:{k:&quot;Action in the field&quot;,t:&quot;Mars makes the pressure visible&quot;,p:&quot;Mars brings movement, enforcement, rupture and courage into the present chapter. Its relationship history shows what confrontation is reaching a new phase.&quot;,m:&quot;Follow the pair, not one dramatic headline&quot;},
+    Jupiter:{k:&quot;Scale and judgment&quot;,t:&quot;Jupiter enlarges what it touches&quot;,p:&quot;Jupiter can widen law, belief, jurisdiction and opportunity. The intact chart tells us whether expansion is support, excess or both.&quot;,m:&quot;Scale is a condition, not a conclusion&quot;},
+    Saturn:{k:&quot;The institutional edge&quot;,t:&quot;Saturn gives the chapter a boundary&quot;,p:&quot;Saturn marks rule, duration, duty, legitimacy and material constraint. Its slow relationship clocks outlast any single lunation.&quot;,m:&quot;The long clock remains in motion&quot;},
+    Uranus:{k:&quot;The break in continuity&quot;,t:&quot;Uranus changes the operating pattern&quot;,p:&quot;Uranus can expose the unstable hinge between an inherited system and a new one. Exact aspects and house placement show where the break is active.&quot;,m:&quot;Disruption does not name the outcome&quot;},
+    Neptune:{k:&quot;Image and permeability&quot;,t:&quot;Neptune changes what can be seen&quot;,p:&quot;Neptune carries image, atmosphere, faith, diffusion and uncertainty. Declination and solar geometry add physical context to its longitude story.&quot;,m:&quot;Keep symbol, visibility and evidence separate&quot;},
+    Pluto:{k:&quot;Long-cycle pressure&quot;,t:&quot;Pluto holds the far end of the field&quot;,p:&quot;Pluto marks concentrated power, exposure, compulsion and remaking across long spans. A later opposition belongs to the history seeded at conjunction.&quot;,m:&quot;A phase is a development, not a replay&quot;}
+  };
+  var hubModeCopy={
+    sky:{e:&quot;The sky right now&quot;,t:&quot;What is moving?&quot;,d:&quot;Begin with the whole sky. Touch a planet in the living solar system, follow a relationship, then open the exact Earth-centered chart when you want the particulars.&quot;},
+    story:{e:&quot;The story in motion&quot;,t:&quot;What is coming due?&quot;,d:&quot;See the governing lunar chapter, the next exact confrontation and the longer clocks as one moving sequence—then enter the intact chart.&quot;},
+    explore:{e:&quot;The deeper rooms&quot;,t:&quot;Choose your doorway.&quot;,d:&quot;The charts, methods and pattern studies are still here. They wait beneath the experience, organized by the question you want to ask.&quot;}
+  };
+  function hubMomentMs(value){
+    if(!value) return Date.now();
+    var text=String(value);
+    if(/^\d{4}-\d{2}-\d{2}$/.test(text)) text+=&quot;T12:00:00Z&quot;;
+    var parsed=Date.parse(text);
+    return Number.isFinite(parsed) ? parsed : Date.now();
+  }
+  function hubDateText(ms,includeTime){
+    var options={timeZone:&quot;America/New_York&quot;,month:&quot;long&quot;,day:&quot;numeric&quot;,year:&quot;numeric&quot;};
+    if(includeTime) Object.assign(options,{hour:&quot;numeric&quot;,minute:&quot;2-digit&quot;,timeZoneName:&quot;short&quot;});
+    return new Date(ms).toLocaleString(&quot;en-US&quot;,options);
+  }
+  function hubCleanLabel(label){return String(label||&quot;&quot;).replace(/^\d{4}-\d{2}-\d{2}\s+/,&quot;&quot;);}
+  function updateHubMoment(value){
+    var dateEl=document.getElementById(&quot;hub-live-date&quot;);
+    var nextButton=document.querySelector(&quot;[data-hub-next-reading]&quot;);
+    if(!dateEl || !nextButton || !hubPackets.length) return;
+    var ms=hubMomentMs(value),day=86400000;
+    dateEl.textContent=hubDateText(ms,false);
+    var ordered=hubPackets.slice().sort(function(a,b){return Date.parse(a.utc)-Date.parse(b.utc);});
+    var lunar=ordered.filter(function(packet){return packet.group!==&quot;ingress_governors&quot;;});
+    var next=ordered.find(function(packet){return Date.parse(packet.utc)&gt;=ms;})||null;
+    var previousLunar=null;
+    lunar.forEach(function(packet){if(Date.parse(packet.utc)&lt;=ms) previousLunar=packet;});
+    var nearNext=next &amp;&amp; Date.parse(next.utc)&gt;=ms &amp;&amp; Date.parse(next.utc)-ms&lt;=3*day;
+    var feature=nearNext ? next : (previousLunar||next||lunar[lunar.length-1]);
+    if(!feature) return;
+    nextButton.dataset.chartId=feature.chartId;
+    nextButton.querySelector(&quot;strong&quot;).textContent=nearNext ? &quot;Enter the approaching chart&quot; : &quot;Enter the governing chart&quot;;
+    var selected=document.querySelector(&quot;[data-hub-body].is-selected&quot;);
+    if(selected &amp;&amp; selected.dataset.hubBody!==&quot;Earth&quot;) return;
+    document.getElementById(&quot;hub-story-kicker&quot;).textContent=nearNext ? &quot;Approaching chapter&quot; : (next ? &quot;Governing lunar chapter&quot; : &quot;Latest registered lunar chapter&quot;);
+    document.getElementById(&quot;hub-story-title&quot;).textContent=hubCleanLabel(feature.label);
+    document.getElementById(&quot;hub-story-text&quot;).textContent=feature.kind+&quot; · &quot;+hubDateText(Date.parse(feature.utc),true)+&quot;. Open the intact chart for houses, angles, roots, lineage and the complete relationship field.&quot;;
+    document.getElementById(&quot;hub-story-meta&quot;).textContent=next &amp;&amp; feature!==next ? &quot;Next threshold: &quot;+hubCleanLabel(next.label) : &quot;Exact whole-chart packet ready&quot;;
+  }
+  function setHubBody(name){
+    document.querySelectorAll(&quot;[data-hub-body]&quot;).forEach(function(button){button.classList.toggle(&quot;is-selected&quot;,button.dataset.hubBody===name);});
+    if(name===&quot;Earth&quot;){updateHubMoment(currentDate);return;}
+    var body=hubBodies[name];
+    if(!body) return;
+    document.getElementById(&quot;hub-story-kicker&quot;).textContent=body.k;
+    document.getElementById(&quot;hub-story-title&quot;).textContent=body.t;
+    document.getElementById(&quot;hub-story-text&quot;).textContent=body.p;
+    document.getElementById(&quot;hub-story-meta&quot;).textContent=body.m;
+  }
+  function setHubMode(mode){
+    var root=document.querySelector(&quot;.hub-orrery&quot;),copy=hubModeCopy[mode]||hubModeCopy.sky;
+    if(!root) return;
+    root.dataset.hubMode=mode;
+    document.querySelectorAll(&quot;[data-hub-mode-button]&quot;).forEach(function(button){button.setAttribute(&quot;aria-pressed&quot;,button.dataset.hubModeButton===mode?&quot;true&quot;:&quot;false&quot;);});
+    document.getElementById(&quot;hub-live-eyebrow&quot;).textContent=copy.e;
+    document.getElementById(&quot;hub-live-title&quot;).textContent=copy.t;
+    document.getElementById(&quot;hub-live-deck&quot;).textContent=copy.d;
+    if(mode===&quot;story&quot;) setHubBody(&quot;Mars&quot;);
+    else if(mode===&quot;sky&quot;) setHubBody(&quot;Earth&quot;);
+    else{setHubBody(&quot;Earth&quot;);document.getElementById(&quot;hubExplore&quot;).scrollIntoView({behavior:&quot;smooth&quot;,block:&quot;start&quot;});}
+  }
+
+  function resolveSub(value){
+    if(value==null) return null;
+    var key=String(value).trim().toLowerCase();
+    return bySub[key] ? key : (aliases[key]||null);
+  }
+  function frameFor(sub){
+    var view=document.querySelector(&#x27;.sky-view[data-sky-id=&quot;&#x27;+sub+&#x27;&quot;]&#x27;);
+    return view ? view.querySelector(&#x27;iframe[data-sky-id=&quot;&#x27;+sub+&#x27;&quot;]&#x27;) : null;
+  }
+  function sourceSub(source){
+    for(var i=0;i&lt;registry.length;i+=1){
+      var frame=frameFor(registry[i].sub);
+      if(frame &amp;&amp; frame.contentWindow===source) return registry[i].sub;
+    }
+    return null;
+  }
+  function parentPost(message){
+    if(window.parent===window) return;
+    try{window.parent.postMessage(message,&quot;*&quot;);}catch(_){}
+  }
+  function sendFrame(frame,message){
+    if(!frame || !frame.contentWindow) return;
+    try{frame.contentWindow.postMessage(message,&quot;*&quot;);}catch(_){}
+  }
+  function postToSub(sub,message){
+    var frame=frameFor(sub);
+    if(!frame) return;
+    if(!frame.getAttribute(&quot;src&quot;)){
+      (pendingBySub[sub]||(pendingBySub[sub]=[])).push(message);
+      loadFrame(sub);
+      return;
+    }
+    sendFrame(frame,message);
+  }
+  function translatedDate(tool,date){
+    return tool.dateAction &amp;&amp; date ? {action:tool.dateAction,date:date} : null;
+  }
+  function hydrateFrame(sub){
+    var tool=bySub[sub],frame=frameFor(sub);
+    if(!tool || !frame) return;
+    sendFrame(frame,{action:&quot;setTheme&quot;,theme:currentTheme});
+    var dateMessage=translatedDate(tool,currentDate);
+    if(dateMessage) sendFrame(frame,dateMessage);
+    (pendingBySub[sub]||[]).splice(0).forEach(function(message){sendFrame(frame,message);});
+    sendFrame(frame,{action:&quot;redraw&quot;});
+  }
+  function loadFrame(sub){
+    var frame=frameFor(sub);
+    if(!frame || frame.getAttribute(&quot;src&quot;)) return frame;
+    frame.addEventListener(&quot;load&quot;,function(){hydrateFrame(sub);},{once:true});
+    frame.setAttribute(&quot;src&quot;,frame.dataset.src);
+    return frame;
+  }
+  function announce(tool){
+    parentPost({
+      action:&quot;hostSubChanged&quot;,host:HOST_ID,sub:tool.sub,
+      legacyView:tool.legacyView,label:tool.label
+    });
+  }
+  function setDrawer(open){
+    document.body.classList.toggle(&quot;sky-drawer-open&quot;,!!open);
+    menu.setAttribute(&quot;aria-expanded&quot;,open ? &quot;true&quot; : &quot;false&quot;);
+    if(open){
+      lastDrawerFocus=document.activeElement;
+      setTimeout(function(){
+        var active=nav.querySelector(&quot;.sky-tool.active&quot;);
+        (active||search).focus();
+      },0);
+    }else if(lastDrawerFocus &amp;&amp; document.contains(lastDrawerFocus)){
+      lastDrawerFocus.focus();
+      lastDrawerFocus=null;
+    }
+  }
+  function activate(value,options){
+    options=options||{};
+    var requestedKey=value==null ? &quot;&quot; : String(value).trim().toLowerCase();
+    var requestedTarget=routeTargets[requestedKey];
+    if(requestedTarget &amp;&amp; !options.innerSub) options.innerSub=requestedTarget.innerSub;
+    var sub=resolveSub(value);
+    if(!sub) return false;
+    var tool=bySub[sub];
+    var changed=activeSub!==sub;
+    activeSub=sub;
+
+    document.querySelectorAll(&quot;.sky-tool[data-sky-id]&quot;).forEach(function(button){
+      var on=button.dataset.skyId===sub;
+      button.classList.toggle(&quot;active&quot;,on);
+      if(on) button.setAttribute(&quot;aria-current&quot;,&quot;page&quot;);
+      else button.removeAttribute(&quot;aria-current&quot;);
+    });
+    document.querySelectorAll(&quot;.sky-view[data-sky-id]&quot;).forEach(function(view){
+      view.hidden=view.dataset.skyId!==sub;
+    });
+    crumbSection.textContent=tool.section;
+    crumbTool.textContent=tool.label;
+    document.title=tool.label+&quot; — Astrology Hub&quot;;
+    try{localStorage.setItem(LAST_KEY,sub);}catch(_){}
+
+    if(options.date){
+      currentDate=options.date;
+      updateHubMoment(currentDate);
+    }
+    var frame=frameFor(sub),wasUnloaded=!!(frame &amp;&amp; !frame.getAttribute(&quot;src&quot;));
+    if(wasUnloaded &amp;&amp; options.message){
+      (pendingBySub[sub]||(pendingBySub[sub]=[])).push(options.message);
+    }
+    loadFrame(sub);
+    if(!wasUnloaded){
+      if(options.date){
+        var dateMessage=translatedDate(tool,currentDate);
+        if(dateMessage) postToSub(sub,dateMessage);
+      }
+      if(options.message) postToSub(sub,options.message);
+    }
+    setTimeout(function(){postToSub(sub,{action:&quot;redraw&quot;});},changed ? 40 : 0);
+    if(options.closeDrawer!==false &amp;&amp; window.matchMedia(&quot;(max-width:900px)&quot;).matches) setDrawer(false);
+    if(changed || options.announce!==false) announce(tool);
+    return true;
+  }
+  function applyTheme(theme){
+    currentTheme=theme===&quot;dark&quot; ? &quot;dark&quot; : &quot;light&quot;;
+    document.documentElement.setAttribute(&quot;data-theme&quot;,currentTheme);
+    try{localStorage.setItem(THEME_KEY,currentTheme);}catch(_){}
+    registry.forEach(function(tool){
+      var frame=frameFor(tool.sub);
+      if(frame &amp;&amp; frame.getAttribute(&quot;src&quot;)) sendFrame(frame,{action:&quot;setTheme&quot;,theme:currentTheme});
+    });
+  }
+  function applyDate(date,excludeSub){
+    if(!date) return;
+    currentDate=date;
+    updateHubMoment(currentDate);
+    registry.forEach(function(tool){
+      if(tool.sub===excludeSub || !tool.dateAction) return;
+      var frame=frameFor(tool.sub);
+      if(frame &amp;&amp; frame.getAttribute(&quot;src&quot;)) sendFrame(frame,{action:tool.dateAction,date:date});
+    });
+    var active=bySub[activeSub];
+    if(active &amp;&amp; active.sub!==excludeSub &amp;&amp; active.dateAction){
+      var activeFrame=frameFor(active.sub);
+      if(activeFrame &amp;&amp; !activeFrame.getAttribute(&quot;src&quot;)) postToSub(active.sub,{action:active.dateAction,date:date});
+    }
+  }
+  function publicRegistry(){
+    return registry.map(function(tool){
+      return {
+        id:tool.id,host:tool.host,sub:tool.sub,legacyView:tool.legacyView,
+        legacyViews:(tool.legacyViews||[]).slice(),label:tool.label,
+        section:tool.section,sectionId:tool.sectionId,filename:tool.filename,
+        aliases:(tool.aliases||[]).slice(),absorbedRoutes:Object.assign({},tool.absorbedRoutes||{}),dateAction:tool.dateAction,
+        description:tool.description
+      };
+    });
+  }
+  function announceRegistry(action,requestId){
+    var message={action:action,host:HOST_ID,tools:publicRegistry()};
+    if(requestId!==undefined) message.requestId=requestId;
+    parentPost(message);
+  }
+  function routeOptions(message){
+    var forwarded={};
+    Object.keys(message).forEach(function(key){
+      if(key!==&quot;action&quot; &amp;&amp; key!==&quot;sub&quot; &amp;&amp; key!==&quot;tab&quot; &amp;&amp; key!==&quot;host&quot; &amp;&amp; key!==&quot;innerSub&quot;) forwarded[key]=message[key];
+    });
+    return forwarded;
+  }
+  function childRouteMessage(message){
+    var childMessage=routeOptions(message);
+    delete childMessage.date; // activate() translates the governed date once.
+    if(message.innerSub){
+      var nested={action:&quot;goToSub&quot;,sub:message.innerSub};
+      if(message.date) nested.date=message.date;
+      if(Object.keys(childMessage).length) nested.childMessage=childMessage;
+      return nested;
+    }
+    if(childMessage.childAction){
+      childMessage.action=childMessage.childAction;
+      delete childMessage.childAction;
+    }
+    return Object.keys(childMessage).length ? childMessage : null;
+  }
+  function isDateMessage(message){
+    return !!(message &amp;&amp; message.date &amp;&amp;
+      [&quot;setDate&quot;,&quot;dateChanged&quot;,&quot;goToDate&quot;,&quot;scrollToDate&quot;].indexOf(message.action)&gt;=0);
+  }
+  function handleParentMessage(message){
+    if(!message || typeof message!==&quot;object&quot;) return;
+    if(message.action===&quot;getToolRegistry&quot;){
+      announceRegistry(&quot;toolRegistry&quot;,message.requestId);
+      return;
+    }
+    if(message.action===&quot;goToSub&quot;){
+      activate(message.sub,{date:message.date,innerSub:message.innerSub,message:childRouteMessage(message)});
+      return;
+    }
+    if(message.action===&quot;setTheme&quot;){
+      applyTheme(message.theme);
+      return;
+    }
+    if(message.action===&quot;redraw&quot;){
+      postToSub(activeSub,message);
+      return;
+    }
+    if(message.action===&quot;escape&quot;){
+      if(document.body.classList.contains(&quot;sky-drawer-open&quot;)) setDrawer(false);
+      else postToSub(activeSub,message);
+      return;
+    }
+    if(isDateMessage(message)){
+      applyDate(message.date,null);
+      return;
+    }
+    // Route legacy sky tabs sent as ordinary shell navigation.
+    if(message.action===&quot;navigateTo&quot; &amp;&amp; resolveSub(message.tab)){
+      activate(message.tab,{date:message.date,message:childRouteMessage(message)});
+      return;
+    }
+    // All non-host controls, including {type:&quot;astromap&quot;,chart}, reach the
+    // active child unchanged.
+    postToSub(activeSub,message);
+  }
+  function handleChildMessage(message,childSub){
+    if(!message || typeof message!==&quot;object&quot;) return;
+    if(message.action===&quot;navigateTo&quot; &amp;&amp; resolveSub(message.tab)){
+      activate(message.tab,{date:message.date,message:childRouteMessage(message)});
+      return;
+    }
+    if(message.action===&quot;goToMap&quot; &amp;&amp; message.chart){
+      activate(&quot;astro-map&quot;,{message:{type:&quot;astromap&quot;,chart:message.chart}});
+      return;
+    }
+    if(message.type===&quot;goToArc&quot; &amp;&amp; message.arc){
+      parentPost({action:&quot;navigateTo&quot;,tab:&quot;obs-cm&quot;,arc:message.arc});
+      return;
+    }
+    if(message.action===&quot;dateChanged&quot; &amp;&amp; message.date){
+      currentDate=message.date;
+      parentPost(message);
+      return;
+    }
+    parentPost(message);
+  }
+  function filterTools(query){
+    var needle=String(query||&quot;&quot;).trim().toLowerCase();
+    var visible=0;
+    document.querySelectorAll(&quot;.sky-section&quot;).forEach(function(section){
+      var sectionVisible=0;
+      section.querySelectorAll(&quot;.sky-tool&quot;).forEach(function(button){
+        var match=!needle || button.dataset.search.indexOf(needle)&gt;=0;
+        button.hidden=!match;
+        if(match){sectionVisible+=1;visible+=1;}
+      });
+      section.hidden=sectionVisible===0;
+    });
+    empty.classList.toggle(&quot;visible&quot;,visible===0);
+  }
+  function visibleButtons(){
+    return Array.prototype.slice.call(nav.querySelectorAll(&quot;.sky-tool:not([hidden])&quot;))
+      .filter(function(button){return !button.closest(&quot;.sky-section&quot;).hidden;});
+  }
+  function moveButtonFocus(current,delta){
+    var buttons=visibleButtons();
+    if(!buttons.length) return;
+    var index=buttons.indexOf(current);
+    index=index&lt;0 ? 0 : (index+delta+buttons.length)%buttons.length;
+    buttons[index].focus();
+  }
+
+  nav.addEventListener(&quot;click&quot;,function(event){
+    var button=event.target.closest(&quot;.sky-tool[data-sky-id]&quot;);
+    if(button) activate(button.dataset.skyId);
+  });
+  stage.addEventListener(&quot;click&quot;,function(event){
+    var modeButton=event.target.closest(&quot;[data-hub-mode-button]&quot;);
+    if(modeButton){setHubMode(modeButton.dataset.hubModeButton);return;}
+    var bodyButton=event.target.closest(&quot;[data-hub-body]&quot;);
+    if(bodyButton){setHubBody(bodyButton.dataset.hubBody);return;}
+    var orreryButton=event.target.closest(&quot;[data-open-orrery]&quot;);
+    if(orreryButton){
+      activate(&quot;transit-weather&quot;,{message:{action:&quot;goToSub&quot;,sub:&quot;orrery&quot;}});
+      return;
+    }
+    var exploreButton=event.target.closest(&quot;[data-scroll-explore]&quot;);
+    if(exploreButton){setHubMode(&quot;explore&quot;);return;}
+    var nextReadingButton=event.target.closest(&quot;[data-hub-next-reading]&quot;);
+    if(nextReadingButton &amp;&amp; nextReadingButton.dataset.chartId){
+      activate(&quot;chart-readings&quot;,{
+        message:{action:&quot;selectReading&quot;,chart_id:nextReadingButton.dataset.chartId}
+      });
+      return;
+    }
+    var readingButton=event.target.closest(&quot;[data-open-reading]&quot;);
+    if(readingButton){
+      activate(&quot;chart-readings&quot;,{
+        message:{action:&quot;selectReading&quot;,chart_id:readingButton.dataset.openReading}
+      });
+      return;
+    }
+    var subButton=event.target.closest(&quot;[data-open-sub]&quot;);
+    if(subButton){activate(subButton.dataset.openSub);return;}
+    var documentButton=event.target.closest(&quot;[data-open-document]&quot;);
+    if(documentButton){
+      activate(&quot;astrology-reference-room&quot;,{
+        message:{action:&quot;openAstrologyDocument&quot;,path:documentButton.dataset.openDocument}
+      });
+    }
+  });
+  nav.addEventListener(&quot;keydown&quot;,function(event){
+    var button=event.target.closest(&quot;.sky-tool[data-sky-id]&quot;);
+    if(!button) return;
+    if(event.key===&quot;ArrowDown&quot;){event.preventDefault();moveButtonFocus(button,1);}
+    else if(event.key===&quot;ArrowUp&quot;){event.preventDefault();moveButtonFocus(button,-1);}
+    else if(event.key===&quot;Home&quot;){event.preventDefault();var buttons=visibleButtons();if(buttons[0])buttons[0].focus();}
+    else if(event.key===&quot;End&quot;){event.preventDefault();var buttons=visibleButtons();if(buttons.length)buttons[buttons.length-1].focus();}
+  });
+  search.addEventListener(&quot;input&quot;,function(){filterTools(search.value);});
+  menu.addEventListener(&quot;click&quot;,function(){setDrawer(true);});
+  closeButton.addEventListener(&quot;click&quot;,function(){setDrawer(false);});
+  backdrop.addEventListener(&quot;click&quot;,function(){setDrawer(false);});
+  document.addEventListener(&quot;keydown&quot;,function(event){
+    if(event.key===&quot;/&quot; &amp;&amp; !event.metaKey &amp;&amp; !event.ctrlKey &amp;&amp; !event.altKey &amp;&amp;
+       !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){
+      event.preventDefault();
+      if(window.matchMedia(&quot;(max-width:900px)&quot;).matches) setDrawer(true);
+      search.focus();
+      return;
+    }
+    if(event.key===&quot;Escape&quot;){
+      if(document.body.classList.contains(&quot;sky-drawer-open&quot;)){setDrawer(false);return;}
+      if(document.activeElement===search &amp;&amp; search.value){search.value=&quot;&quot;;filterTools(&quot;&quot;);return;}
+      postToSub(activeSub,{action:&quot;escape&quot;});
+      return;
+    }
+    if(event.altKey &amp;&amp; (event.key===&quot;ArrowDown&quot; || event.key===&quot;ArrowUp&quot;)){
+      event.preventDefault();
+      var buttons=visibleButtons();
+      var index=registry.findIndex(function(tool){return tool.sub===activeSub;});
+      var next=index+(event.key===&quot;ArrowDown&quot; ? 1 : -1);
+      next=(next+registry.length)%registry.length;
+      activate(registry[next].sub);
+    }
+  });
+  window.addEventListener(&quot;message&quot;,function(event){
+    var childSub=sourceSub(event.source);
+    if(childSub){handleChildMessage(event.data,childSub);return;}
+    if(window.parent!==window &amp;&amp; event.source===window.parent) handleParentMessage(event.data);
+  });
+  window.addEventListener(&quot;resize&quot;,function(){
+    if(!window.matchMedia(&quot;(max-width:900px)&quot;).matches) setDrawer(false);
+    postToSub(activeSub,{action:&quot;redraw&quot;});
+  });
+
+  window.F250SkyCharts={
+    host:HOST_ID,
+    open:function(sub,options){return activate(sub,options||{});},
+    active:function(){return activeSub;},
+    getRegistry:publicRegistry
+  };
+
+  // Same-origin children historically call shell functions directly through
+  // `window.parent`. Preserve that API boundary while this wrapper is nested.
+  // Sky destinations stay inside the host; all other destinations bubble to
+  // the real shell as the same postMessage routes it already understands.
+  window.navigateTo=function(tab,options){
+    options=options||{};
+    if(resolveSub(tab)){
+      var forwarded=Object.assign({},options);
+      var date=forwarded.date;
+      delete forwarded.date;
+      if(resolveSub(tab)===&quot;astro-map&quot; &amp;&amp; forwarded.chart &amp;&amp; !forwarded.type){
+        forwarded.type=&quot;astromap&quot;;
+      }
+      if(forwarded.childAction){
+        forwarded.action=forwarded.childAction;
+        delete forwarded.childAction;
+      }
+      activate(tab,{
+        date:date,
+        message:Object.keys(forwarded).length ? forwarded : null
+      });
+      return;
+    }
+    parentPost(Object.assign({action:&quot;navigateTo&quot;,tab:tab},options));
+  };
+  window._switchTab=function(tab){window.navigateTo(tab,{});};
+  window.goToArc=function(arc){parentPost({action:&quot;navigateTo&quot;,tab:&quot;obs-cm&quot;,arc:arc});};
+  window.goToSubplot=function(subplot){parentPost({action:&quot;navigateTo&quot;,tab:&quot;obs-sm&quot;,subplot:subplot});};
+  window.goToPlotline=function(plotline){parentPost({action:&quot;navigateTo&quot;,tab:&quot;obs-sm&quot;,plotline:plotline});};
+  window.goToMonth=function(month){parentPost({action:&quot;navigateTo&quot;,tab:&quot;obs-mt&quot;,scrollToMonth:month});};
+  window.goToDay=function(date){parentPost({action:&quot;navigateTo&quot;,tab:&quot;obs-df&quot;,date:date});};
+  window.goToSky=function(date){activate(&quot;sky-calendar&quot;,{date:date});};
+  window.goToMap=function(chart){activate(&quot;astro-map&quot;,{message:{type:&quot;astromap&quot;,chart:chart}});};
+  window.goToMoneyMachine=function(seed){parentPost({action:&quot;goToMoneyMachine&quot;,date:seed});};
+  window.goToHearing=function(index){parentPost({action:&quot;navigateTo&quot;,tab:&quot;obs-hr&quot;,hearing:index});};
+  window.goToThread=function(id){parentPost({action:&quot;navigateTo&quot;,tab:&quot;obs-th&quot;,thread:id});};
+  window.goToThreeMachines=function(){parentPost({action:&quot;navigateTo&quot;,tab:&quot;obs-3m&quot;});};
+  window.goToResearch=function(id){parentPost({action:&quot;goToResearch&quot;,id:id});};
+  window.goToFederalGroup=function(entity){
+    parentPost(entity?{action:&quot;goToFederalGroup&quot;,entity:entity}:{action:&quot;goToFederalGroup&quot;});
+  };
+
+  try{currentTheme=localStorage.getItem(THEME_KEY)||&quot;light&quot;;}catch(_){}
+  applyTheme(currentTheme);
+  updateHubMoment(null);
+  setHubBody(&quot;Earth&quot;);
+  var saved=registry[0].sub;
+  try{saved=resolveSub(localStorage.getItem(LAST_KEY))||saved;}catch(_){}
+  activate(saved,{closeDrawer:false});
+  announceRegistry(&quot;registerTools&quot;);
+  setTimeout(function(){announceRegistry(&quot;registerTools&quot;);},250);
+})();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&quot;&quot;&quot;
+
+
+def render() -&gt; str:
+    registry_json = js_safe_json(shell_registry(), indent=2)
+    result = HTML_TEMPLATE
+    replacements = {
+        &quot;__INSTRUMENT_COUNT__&quot;: str(sum(1 for tool in SUBVIEWS if tool[&quot;filename&quot;] is not None)),
+        &quot;__SECTIONS__&quot;: build_sections(),
+        &quot;__VIEWS__&quot;: build_views(),
+        &quot;__REGISTRY__&quot;: registry_json,
+        &quot;__HOST_ID__&quot;: js_safe_json(HOST_ID),
+        &quot;__LAST_KEY__&quot;: js_safe_json(LAST_SUBVIEW_KEY),
+        &quot;__THEME_KEY__&quot;: js_safe_json(THEME_KEY),
+    }
+    for marker, value in replacements.items():
+        if marker not in result:
+            fail(f&quot;template marker absent: {marker}&quot;)
+        result = result.replace(marker, value)
+    if &quot;__&quot; in result:
+        unresolved = sorted(
+            {part.split(&quot;__&quot;, 1)[0] for part in result.split(&quot;__&quot;)[1::2] if part}
+        )
+        fail(f&quot;unresolved template marker near {unresolved[:3]}&quot;)
+    return result
+
+
+def strip_shared_projection_blocks(content: str) -&gt; str:
+    &quot;&quot;&quot;Compare the owned host while tolerating downstream shared injectors.&quot;&quot;&quot;
+    for start, end in (
+        (&quot;&lt;!-- F250-DARKMODE-START --&gt;&quot;, &quot;&lt;!-- F250-DARKMODE-END --&gt;&quot;),
+        (&quot;&lt;!--F250-INTERP-START--&gt;&quot;, &quot;&lt;!--F250-INTERP-END--&gt;&quot;),
+    ):
+        content = re.sub(re.escape(start) + r&quot;.*?&quot; + re.escape(end), &quot;&quot;, content, flags=re.S)
+    return re.sub(r&quot;\n{2,}(?=&lt;/body&gt;)&quot;, &quot;\n&quot;, content)
+
+
+def parse_args(argv: list[str]) -&gt; argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        &quot;--output&quot;,
+        type=Path,
+        default=CROSS_CUTS_DIR / OUTPUT_NAME,
+        help=f&quot;generated host path (default: vault Cross-cuts/{OUTPUT_NAME})&quot;,
+    )
+    parser.add_argument(
+        &quot;--source-dir&quot;,
+        type=Path,
+        default=CROSS_CUTS_DIR,
+        help=&quot;Cross-cuts directory used to validate every child iframe target&quot;,
+    )
+    parser.add_argument(
+        &quot;--check&quot;,
+        action=&quot;store_true&quot;,
+        help=&quot;exit nonzero if --output differs from a fresh render; do not write&quot;,
+    )
+    parser.add_argument(
+        &quot;--print-registry&quot;,
+        action=&quot;store_true&quot;,
+        help=&quot;print the shell-discovery registry as JSON and exit&quot;,
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -&gt; int:
+    args = parse_args(sys.argv[1:] if argv is None else argv)
+    source_dir = args.source_dir.resolve() if args.source_dir else None
+    validate_registry(source_dir)
+
+    if args.print_registry:
+        print(json.dumps(shell_registry(), ensure_ascii=False, indent=2))
+        return 0
+
+    content = render()
+    output = args.output.resolve()
+    if args.check:
+        if not output.is_file():
+            print(f&quot;Astrology Hub check FAILED: missing {output}&quot;, file=sys.stderr)
+            return 1
+        current = strip_shared_projection_blocks(output.read_text(encoding=&quot;utf-8&quot;))
+        if current.strip() != content.strip():
+            print(f&quot;Astrology Hub check FAILED: stale {output}&quot;, file=sys.stderr)
+            return 1
+        print(f&quot;Astrology Hub check OK: 1 orientation + {len(SUBVIEWS) - 1} instruments · {output}&quot;)
+        return 0
+
+    atomic_write_text(output, content)
+    print(
+        f&quot;Built {output} · 1 orientation + {len(SUBVIEWS) - 1} instruments · {len(SECTIONS)} sections&quot;
+        + (f&quot; · sources validated in {source_dir}&quot; if source_dir else &quot;&quot;)
+    )
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

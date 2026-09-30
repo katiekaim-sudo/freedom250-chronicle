@@ -1,0 +1,117 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-ingress-projector-e8eebc317d6f.html">
+<title>test_ingress_projector</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_ingress_projector</h1><p class="mut">Portable source: 99 - Templates/test_ingress_projector.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Parity and fail-closed tests for the one-owner Ingress projector.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import add_mundane_midpoints as projector
+
+
+class IngressProjectorTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -&gt; None:
+        cls.source = projector.read_exact(projector.TARGET)
+        cls.meanings, cls.tech = projector.load_lexicon()
+
+    def project(self, source: str | None = None) -&gt; str:
+        return projector.project(source or self.source, self.meanings, self.tech)
+
+    def test_projection_is_idempotent_and_single_owner(self) -&gt; None:
+        projected = self.project()
+        self.assertEqual(projector.project(projected, self.meanings, self.tech), projected)
+        self.assertEqual(projected.count(projector.NATIVE_START), 1)
+        self.assertEqual(projected.count(projector.NATIVE_END), 1)
+        self.assertEqual(projected.count(projector.MARKER_START), 1)
+        self.assertEqual(projected.count(projector.MARKER_END), 1)
+        self.assertEqual(projected.count(&#x27;class=&quot;native-wheel&quot; data-chart=&#x27;), 1)
+        self.assertLess(
+            projected.index(projector.NATIVE_START),
+            projected.index(projector.MARKER_START),
+        )
+
+    def test_canonical_wheel_and_live_midpoint_lexicon_are_projected(self) -&gt; None:
+        projected = self.project()
+        self.assertIn(projector.WHEEL_JS, projected)
+        self.assertIn(projector.build_block(self.meanings, self.tech).rstrip(&quot;\n&quot;), projected)
+        self.assertIn(&quot;var MM_ORB  = 1.0&quot;, projected)
+        self.assertIn(&quot;var MM_CRISIS=&quot;, projected)
+
+    def test_chart_payloads_are_not_rewritten(self) -&gt; None:
+        projected = self.project()
+        ingress_start = self.source.index(&quot;const INGRESS_DATA = [&quot;)
+        ingress_end = self.source.index(&quot;\n];&quot;, ingress_start) + 3
+        overlay_start = self.source.index(&quot;const ING_DATA = [&quot;)
+        overlay_end = self.source.index(&quot;;&quot;, overlay_start) + 1
+        self.assertEqual(
+            projected[ingress_start:ingress_end],
+            self.source[ingress_start:ingress_end],
+        )
+        self.assertIn(self.source[overlay_start:overlay_end], projected)
+
+    def test_duplicate_or_unbalanced_markers_fail_closed(self) -&gt; None:
+        duplicate = self.source.replace(
+            projector.NATIVE_START,
+            projector.NATIVE_START + projector.NATIVE_START,
+            1,
+        )
+        with self.assertRaises(SystemExit):
+            self.project(duplicate)
+        unbalanced = self.source.replace(projector.MARKER_END, &quot;&quot;, 1)
+        with self.assertRaises(SystemExit):
+            self.project(unbalanced)
+        reversed_markers = self.source.replace(
+            projector.MARKER_START, &quot;F250-MIDPOINT-TEMP&quot;, 1
+        ).replace(
+            projector.MARKER_END, projector.MARKER_START, 1
+        ).replace(
+            &quot;F250-MIDPOINT-TEMP&quot;, projector.MARKER_END, 1
+        )
+        with self.assertRaises(SystemExit):
+            self.project(reversed_markers)
+
+    def test_missing_owned_blocks_are_reinserted_in_order(self) -&gt; None:
+        source = self.source
+        for start, end in (
+            (projector.NATIVE_START, projector.NATIVE_END),
+            (projector.MARKER_START, projector.MARKER_END),
+        ):
+            begin = source.index(start)
+            finish = source.index(end, begin) + len(end)
+            source = source[:begin] + source[finish:]
+        projected = self.project(source)
+        self.assertEqual(projected.count(projector.NATIVE_START), 1)
+        self.assertEqual(projected.count(projector.MARKER_START), 1)
+        self.assertLess(
+            projected.index(projector.NATIVE_START),
+            projected.index(projector.MARKER_START),
+        )
+
+    def test_atomic_write_preserves_target_mode(self) -&gt; None:
+        with tempfile.TemporaryDirectory() as raw:
+            target = Path(raw) / &quot;Ingress Charts.html&quot;
+            target.write_text(&quot;before&quot;, encoding=&quot;utf-8&quot;)
+            target.chmod(0o644)
+            projector.atomic_write(target, &quot;after&quot;)
+            self.assertEqual(target.read_text(encoding=&quot;utf-8&quot;), &quot;after&quot;)
+            self.assertEqual(target.stat().st_mode &amp; 0o777, 0o644)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

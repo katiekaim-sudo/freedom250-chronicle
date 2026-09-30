@@ -1,0 +1,2016 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-astrology-spine-bdf0c5c867a7.html">
+<title>build_astrology_spine</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_astrology_spine</h1><p class="mut">Portable source: 99 - Templates/build_astrology_spine.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build The Astrology Spine — a moving, score-free Sky &amp; Charts map.
+
+The view is a projection only.  It reuses canonical chart/readings routes and
+does not cast, redraw, or reinterpret a wheel. Authored many-to-many Chronicle
+links live in ``03 - Astrology/astrology_spine_overlaps.json``; orbital facts
+come from Long Clocks, archetypal copy from the cycle-reading registry, and
+exact awaited-release dates and source links from ``watch_calendar.json``.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import datetime as dt
+import importlib.util
+import json
+import re
+from pathlib import Path
+from typing import Any
+from zoneinfo import ZoneInfo
+
+HERE = Path(__file__).resolve().parent
+VAULT = HERE.parent
+ASTRO = VAULT / &quot;03 - Astrology&quot;
+CROSS = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot;
+
+OVERLAPS = ASTRO / &quot;astrology_spine_overlaps.json&quot;
+PLOT_ROOMS = ASTRO / &quot;astrology_spine_plot_rooms.json&quot;
+REGIME_WAVES = ASTRO / &quot;institutional_regime_waves.json&quot;
+REGISTRY = ASTRO / &quot;chart_reading_registry.json&quot;
+TRANSITIONS = ASTRO / &quot;chart_transition_watches.json&quot;
+BONES = HERE / &quot;chart_reading_bones&quot; / &quot;index.json&quot;
+WATCH_CALENDAR = HERE / &quot;watch_calendar.json&quot;
+MOON_FAMILIES = CROSS / &quot;Moon Families.html&quot;
+SUBPLOT_RULES = HERE / &quot;subplot_rules.py&quot;
+SYNODIC_STACKS = HERE / &quot;chart_synodic_stacks.json&quot;
+SYNODIC_READINGS = ASTRO / &quot;synodic_cycle_readings.json&quot;
+SYNODIC_SEEDS = HERE / &quot;synodic_seed_families.json&quot;
+RELATIONSHIP_HISTORY = HERE / &quot;planetary_relationship_history.json&quot;
+AMERICA_EPHEMERIS = HERE / &quot;america_ephemeris.json&quot;
+MUNDANE_HISTORY = HERE / &quot;mundane_history.json&quot;
+RESEARCH_DESK = HERE / &quot;research_desk_data.json&quot;
+ENTITY_MAPS = VAULT / &quot;04 - Synthesis&quot; / &quot;Entity Theory&quot; / &quot;eo_entity_maps.json&quot;
+EO_DIR = VAULT / &quot;03 - Executive Orders&quot;
+OUT = CROSS / &quot;Astrology Spine.html&quot;
+
+SCHEMA = &quot;f250.astrology-spine/v2&quot;
+PLOT_SCHEMA = &quot;f250.astrology-spine-plots/v2&quot;
+RELATIONSHIP_HISTORY_SCHEMA = &quot;freedom250.planetary-relationships.geometry-history/v1&quot;
+REGIME_SCHEMA = &quot;f250.institutional-regime-waves/v2&quot;
+PLOT_WINDOWS = {&quot;y2024&quot;, &quot;aries2025&quot;, &quot;winter&quot;, &quot;aries2026&quot;, &quot;cancer&quot;, &quot;libra&quot;, &quot;cap&quot;}
+PLOT_KINDS = {&quot;watch&quot;, &quot;hypothesis&quot;, &quot;named_hole&quot;, &quot;inherited_record&quot;, &quot;record&quot;}
+LANES = {&quot;political_record&quot;, &quot;money_rules&quot;, &quot;operating_proof&quot;}
+WAVE_CLOCKS = {&quot;astrology&quot;, &quot;legal_person&quot;, &quot;decision_right&quot;, &quot;money&quot;, &quot;operating&quot;, &quot;contest&quot;}
+WAVE_MATURITIES = {&quot;proposed&quot;, &quot;authorized&quot;, &quot;effective&quot;, &quot;operating&quot;, &quot;contested&quot;, &quot;reversed&quot;, &quot;failed&quot;, &quot;unchanged&quot;}
+PLOT_MATURITIES = WAVE_MATURITIES
+STORYLINE_LIFECYCLES = {&quot;pilot&quot;, &quot;candidate&quot;, &quot;reviewed&quot;, &quot;retired&quot;}
+STORYLINE_MODES = {&quot;retrospective_calibration&quot;, &quot;prospective_watch&quot;, &quot;mixed_boundary&quot;}
+STORYLINE_ROLES = {&quot;lead mechanism&quot;, &quot;co-mechanism&quot;, &quot;supporting context&quot;, &quot;outcompeted&quot;, &quot;unresolved&quot;}
+PRESENCE_MODES = {&quot;inherited substrate&quot;, &quot;active dialogue&quot;, &quot;seed echo&quot;}
+CHECKPOINT_ROLES = {&quot;opening&quot;, &quot;intermediate&quot;, &quot;closing&quot;}
+CONVERGENCE_MODES = {&quot;co_timing&quot;, &quot;shared_note_co_membership&quot;}
+REVIEW_DISPOSITIONS = {&quot;Lines up&quot;, &quot;Partial&quot;, &quot;Miss&quot;, &quot;Unresolved&quot;}
+STORY_STATES = {
+    &quot;attention_doctrine_and_partial_operation&quot;,
+    &quot;authorized_not_effective&quot;,
+    &quot;contested&quot;,
+    &quot;doctrine_and_partial_implementation&quot;,
+    &quot;investigating_and_building_controls&quot;,
+    &quot;mixed_commitment_draw_build_and_operation&quot;,
+    &quot;mixed_operating_and_proposed&quot;,
+    &quot;mixed_plan_build_and_operation&quot;,
+    &quot;operating_and_expanding&quot;,
+    &quot;operating_and_rewriting&quot;,
+    &quot;operating_with_unresolved_risk&quot;,
+    &quot;partial_release_and_contested_record&quot;,
+    &quot;testing_and_transition&quot;,
+}
+TRADITIONAL_RULERS = {
+    &quot;Aries&quot;: &quot;Mars&quot;, &quot;Taurus&quot;: &quot;Venus&quot;, &quot;Gemini&quot;: &quot;Mercury&quot;, &quot;Cancer&quot;: &quot;Moon&quot;,
+    &quot;Leo&quot;: &quot;Sun&quot;, &quot;Virgo&quot;: &quot;Mercury&quot;, &quot;Libra&quot;: &quot;Venus&quot;, &quot;Scorpio&quot;: &quot;Mars&quot;,
+    &quot;Sagittarius&quot;: &quot;Jupiter&quot;, &quot;Capricorn&quot;: &quot;Saturn&quot;, &quot;Aquarius&quot;: &quot;Saturn&quot;, &quot;Pisces&quot;: &quot;Jupiter&quot;,
+}
+HOUSE_MEANINGS = {
+    1: &quot;the nation / the body&quot;, 2: &quot;the treasury&quot;, 3: &quot;the press / records / neighbours&quot;,
+    4: &quot;the land / opposition / foundations&quot;, 5: &quot;speculation / children / pleasure&quot;,
+    6: &quot;workers / health / armed services&quot;, 7: &quot;foreign relations / open enemy / treaty&quot;,
+    8: &quot;debt / taxes / shared consequence&quot;, 9: &quot;law / courts / foreign affairs&quot;,
+    10: &quot;the government / the office&quot;, 11: &quot;the legislature / allies&quot;, 12: &quot;the hidden / prisons / secret enemies&quot;,
+}
+
+
+def fail(message: str) -&gt; None:
+    raise SystemExit(f&quot;Astrology Spine: {message}&quot;)
+
+
+def load_json(path: Path) -&gt; Any:
+    try:
+        return json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(f&quot;cannot read {path.relative_to(VAULT)}: {exc}&quot;)
+
+
+def recursive_score_key(value: Any) -&gt; str | None:
+    if isinstance(value, dict):
+        for key, child in value.items():
+            if &quot;score&quot; in str(key).lower() and key != &quot;scores_allowed&quot;:
+                return str(key)
+            hit = recursive_score_key(child)
+            if hit:
+                return hit
+    elif isinstance(value, list):
+        for child in value:
+            hit = recursive_score_key(child)
+            if hit:
+                return hit
+    return None
+
+
+def parse_date(value: Any, label: str) -&gt; dt.date:
+    text = str(value or &quot;&quot;)
+    try:
+        return dt.date.fromisoformat(text)
+    except ValueError:
+        fail(f&quot;{label} must be an ISO date&quot;)
+
+
+def parse_moment_date(value: Any, label: str) -&gt; dt.date:
+    text = str(value or &quot;&quot;)
+    try:
+        if re.fullmatch(r&quot;\d{4}-\d{2}-\d{2}&quot;, text):
+            return dt.date.fromisoformat(text)
+        return dt.datetime.fromisoformat(text.replace(&quot;Z&quot;, &quot;+00:00&quot;)).date()
+    except ValueError:
+        fail(f&quot;{label} must be an ISO date or date-time&quot;)
+
+
+def require_vault_source(value: Any, label: str) -&gt; str:
+    source = str(value or &quot;&quot;).strip()
+    path = Path(source)
+    if not source or path.is_absolute() or &quot;..&quot; in path.parts:
+        fail(f&quot;{label} must be a vault-relative source path&quot;)
+    if not (VAULT / path).is_file():
+        fail(f&quot;{label} source missing: {source}&quot;)
+    return source
+
+
+def normalize_source_refs(value: Any, label: str) -&gt; list[dict[str, str]]:
+    if not isinstance(value, list):
+        fail(f&quot;{label} must be a source-reference list&quot;)
+    rows: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for raw in value:
+        if not isinstance(raw, dict):
+            fail(f&quot;{label} entries must be objects&quot;)
+        source = require_vault_source(raw.get(&quot;source&quot;), label)
+        if source in seen:
+            fail(f&quot;{label} repeats source {source!r}&quot;)
+        seen.add(source)
+        rows.append({&quot;source&quot;: source, &quot;note&quot;: str(raw.get(&quot;note&quot;) or &quot;&quot;).strip()})
+    return rows
+
+
+def first_heading(path: Path) -&gt; str:
+    text = path.read_text(encoding=&quot;utf-8&quot;)
+    match = re.search(r&quot;^#\s+(.+?)\s*$&quot;, text, re.M)
+    if not match:
+        fail(f&quot;reading has no H1: {path.relative_to(VAULT)}&quot;)
+    return match.group(1).strip()
+
+
+def load_subplot_rules() -&gt; dict[str, list[tuple[str, Any]]]:
+    spec = importlib.util.spec_from_file_location(&quot;f250_subplot_rules&quot;, SUBPLOT_RULES)
+    if spec is None or spec.loader is None:
+        fail(&quot;cannot import canonical subplot rules&quot;)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.RULES
+
+
+def extract_moon_data() -&gt; tuple[dict[str, Any], dict[str, Any]]:
+    text = MOON_FAMILIES.read_text(encoding=&quot;utf-8&quot;)
+    families_match = re.search(r&quot;const DATA = (\{.*?\});\n&quot;, text, re.S)
+    lineages_match = re.search(
+        r&quot;/\* LINEAGES-DATA-START \*/const LINEAGES=(\{.*?\});&quot;
+        r&quot;/\* LINEAGES-DATA-END \*/&quot;,
+        text,
+        re.S,
+    )
+    if not families_match or not lineages_match:
+        fail(&quot;Moon Families.html no longer exposes governed DATA/LINEAGES blocks&quot;)
+    return json.loads(families_match.group(1)), json.loads(lineages_match.group(1))
+
+
+def moon_context(
+    date: str,
+    kind: str,
+    families: dict[str, Any],
+    lineages: dict[str, Any],
+) -&gt; dict[str, Any] | None:
+    if kind not in {&quot;new&quot;, &quot;full&quot;}:
+        return None
+    family_hits: list[dict[str, Any]] = []
+    for family in families.get(&quot;families&quot;, {}).values():
+        for phase in family.get(&quot;phases&quot;, []):
+            for member in phase.get(&quot;members&quot;, []):
+                if member.get(&quot;date&quot;) == date:
+                    family_hits.append(
+                        {
+                            &quot;band&quot;: family.get(&quot;name&quot;),
+                            &quot;band_description&quot;: family.get(&quot;description&quot;),
+                            &quot;band_range&quot;: family.get(&quot;degree_range&quot;),
+                            &quot;band_phase&quot;: phase.get(&quot;type&quot;),
+                            &quot;member_sign&quot;: member.get(&quot;sign&quot;),
+                            &quot;member_degree&quot;: member.get(&quot;degree&quot;),
+                        }
+                    )
+    if len(family_hits) != 1:
+        fail(f&quot;expected one degree-band Moon-family match for {date}, got {len(family_hits)}&quot;)
+
+    phase_code = &quot;nm&quot; if kind == &quot;new&quot; else &quot;fm&quot;
+    lineage_hits: list[tuple[dict[str, Any], dict[str, Any]]] = []
+    for chain in lineages.get(&quot;chains&quot;, []):
+        for member in chain.get(&quot;members&quot;, []):
+            if member.get(&quot;date&quot;) == date and member.get(&quot;ph&quot;) == phase_code:
+                lineage_hits.append((chain, member))
+    if not lineage_hits and kind == &quot;new&quot;:
+        family = family_hits[0]
+        return {
+            **family,
+            &quot;lineage_phase&quot;: &quot;seed&quot;,
+            &quot;seed_date&quot;: date,
+            &quot;seed_sign&quot;: family.get(&quot;member_sign&quot;),
+            &quot;seed_degree&quot;: family.get(&quot;member_degree&quot;),
+            &quot;seed_eclipse&quot;: False,
+            &quot;planted_subplot&quot;: &quot;&quot;,
+        }
+    if len(lineage_hits) != 1:
+        fail(f&quot;expected one Pessin lineage match for {date}, got {len(lineage_hits)}&quot;)
+    chain, member = lineage_hits[0]
+    return {
+        **family_hits[0],
+        &quot;lineage_phase&quot;: &quot;seed&quot; if kind == &quot;new&quot; else &quot;full_moon_harvest&quot;,
+        &quot;seed_date&quot;: chain.get(&quot;seed_date&quot;),
+        &quot;seed_sign&quot;: chain.get(&quot;sign&quot;),
+        &quot;seed_degree&quot;: chain.get(&quot;deg&quot;),
+        &quot;seed_eclipse&quot;: bool(chain.get(&quot;eclipse&quot;)),
+        &quot;planted_subplot&quot;: chain.get(&quot;planted&quot;) or &quot;&quot;,
+        &quot;member_degree&quot;: member.get(&quot;deg&quot;) or family_hits[0].get(&quot;member_degree&quot;),
+    }
+
+
+def bone_detail(reading_id: str) -&gt; dict[str, Any]:
+    path = HERE / &quot;chart_reading_bones&quot; / f&quot;{reading_id}.json&quot;
+    if not path.is_file():
+        fail(f&quot;missing exact chart bone for {reading_id!r}&quot;)
+    return load_json(path)
+
+
+def current_phase_context(
+    families: dict[str, Any], lineages: dict[str, Any], as_of_utc: str
+) -&gt; dict[str, Any] | None:
+    &quot;&quot;&quot;Return the latest exact lunar phase at or before the Long Clocks snapshot.
+
+    Moon Families owns this already-computed geometry. Event counts in that
+    generated surface are deliberately ignored because they have a separate
+    refresh clock.
+    &quot;&quot;&quot;
+    candidates: list[dict[str, Any]] = []
+    for family in families.get(&quot;families&quot;, {}).values():
+        for phase in family.get(&quot;phases&quot;, []):
+            for member in phase.get(&quot;members&quot;, []):
+                date = str(member.get(&quot;date&quot;) or &quot;&quot;)
+                time_utc = str(member.get(&quot;time_utc&quot;) or &quot;00:00&quot;)
+                if not date:
+                    continue
+                exact = f&quot;{date}T{time_utc}:00+00:00&quot;
+                if exact &lt;= as_of_utc:
+                    candidates.append(
+                        {
+                            &quot;exact_utc&quot;: exact,
+                            &quot;date&quot;: date,
+                            &quot;phase&quot;: member.get(&quot;type&quot;) or phase.get(&quot;type&quot;),
+                            &quot;sign&quot;: member.get(&quot;sign&quot;) or member.get(&quot;moon_sign&quot;),
+                            &quot;degree&quot;: member.get(&quot;degree&quot;),
+                            &quot;band&quot;: family.get(&quot;name&quot;),
+                            &quot;eclipse&quot;: bool(member.get(&quot;eclipse&quot;)),
+                        }
+                    )
+    if not candidates:
+        return None
+    current = max(candidates, key=lambda row: row[&quot;exact_utc&quot;])
+    phase_codes = {
+        &quot;New Moon&quot;: &quot;nm&quot;,
+        &quot;First Quarter&quot;: &quot;fq&quot;,
+        &quot;Full Moon&quot;: &quot;fm&quot;,
+        &quot;Last Quarter&quot;: &quot;lq&quot;,
+    }
+    code = phase_codes.get(str(current.get(&quot;phase&quot;)))
+    hits: list[dict[str, Any]] = []
+    if code:
+        for chain in lineages.get(&quot;chains&quot;, []):
+            for member in chain.get(&quot;members&quot;, []):
+                if member.get(&quot;date&quot;) == current[&quot;date&quot;] and member.get(&quot;ph&quot;) == code:
+                    hits.append(chain)
+    if len(hits) == 1:
+        chain = hits[0]
+        current[&quot;lineage&quot;] = {
+            &quot;seed_date&quot;: chain.get(&quot;seed_date&quot;),
+            &quot;seed_sign&quot;: chain.get(&quot;sign&quot;),
+            &quot;seed_degree&quot;: chain.get(&quot;deg&quot;),
+            &quot;planted_subplot&quot;: chain.get(&quot;planted&quot;) or &quot;&quot;,
+        }
+    parsed = dt.datetime.fromisoformat(current[&quot;exact_utc&quot;])
+    current[&quot;exact_local&quot;] = parsed.astimezone(ZoneInfo(&quot;America/New_York&quot;)).isoformat()
+    return current
+
+
+def current_chapter_context(
+    as_of_utc: str,
+    bones: dict[str, dict[str, Any]],
+    readings: dict[str, dict[str, Any]],
+) -&gt; dict[str, Any] | None:
+    rows: list[dict[str, Any]] = []
+    for reading_id, bone in bones.items():
+        if bone.get(&quot;type&quot;) != &quot;lunation&quot; or bone.get(&quot;kind&quot;) != &quot;new&quot;:
+            continue
+        detail = bone_detail(reading_id)
+        utc = str(detail.get(&quot;utc&quot;) or &quot;&quot;)
+        registry = readings.get(reading_id)
+        if not utc or not registry:
+            continue
+        rows.append(
+            {
+                &quot;reading_id&quot;: reading_id,
+                &quot;exact_utc&quot;: utc,
+                &quot;exact_local&quot;: detail.get(&quot;edt&quot;),
+                &quot;title&quot;: first_heading(VAULT / str(registry.get(&quot;source&quot;))),
+                &quot;source&quot;: registry.get(&quot;source&quot;),
+                &quot;sign&quot;: bone.get(&quot;sign&quot;),
+                &quot;degree&quot;: bone.get(&quot;deg&quot;),
+                &quot;eclipse&quot;: bone.get(&quot;eclipse&quot;),
+                &quot;root&quot;: detail.get(&quot;root_members&quot;) or [],
+            }
+        )
+    rows.sort(key=lambda row: row[&quot;exact_utc&quot;])
+    past = [row for row in rows if row[&quot;exact_utc&quot;] &lt;= as_of_utc]
+    if not past:
+        return None
+    current = dict(past[-1])
+    future = [row for row in rows if row[&quot;exact_utc&quot;] &gt; current[&quot;exact_utc&quot;]]
+    if future:
+        current[&quot;governs_until_utc&quot;] = future[0][&quot;exact_utc&quot;]
+        current[&quot;governs_until_local&quot;] = future[0][&quot;exact_local&quot;]
+    return current
+
+
+def america_hand(as_of_utc: str) -&gt; dict[str, Any]:
+    data = load_json(AMERICA_EPHEMERIS)
+    date = as_of_utc[:10]
+    lon = (data.get(&quot;916 America&quot;) or {}).get(date)
+    if lon is None:
+        fail(f&quot;916 America cache does not cover {date}&quot;)
+    signs = [&quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;, &quot;Libra&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;]
+    idx = int(float(lon) // 30) % 12
+    return {
+        &quot;date&quot;: date,
+        &quot;longitude&quot;: float(lon),
+        &quot;sign&quot;: signs[idx],
+        &quot;degree&quot;: float(lon) % 30,
+        &quot;source&quot;: &quot;99 - Templates/america_ephemeris.json&quot;,
+        &quot;source_generated&quot;: data.get(&quot;_generated&quot;),
+        &quot;reading&quot;: &quot;04 - Synthesis/Cross-cuts/2026-08-20 - America Is the Covenant — Astrology-First Working Reading.md&quot;,
+    }
+
+
+def america_context(detail: dict[str, Any]) -&gt; dict[str, Any]:
+    america = detail.get(&quot;america&quot;) or {}
+    radical = int(america.get(&quot;house&quot;) or 0)
+    sign = str(america.get(&quot;sign&quot;) or &quot;&quot;)
+    if radical not in range(1, 13) or sign not in TRADITIONAL_RULERS:
+        fail(&quot;exact chart bone has no usable 916 America seat&quot;)
+    positions = detail.get(&quot;pos&quot;) or {}
+    steward = TRADITIONAL_RULERS[sign]
+    steward_pos = positions.get(steward) or {}
+    topics = []
+    for turned, label in ((1, &quot;American claim&quot;), (2, &quot;resources / price&quot;), (7, &quot;counterpart / challenger&quot;), (10, &quot;public standing&quot;)):
+        landed = ((radical + turned - 2) % 12) + 1
+        occupants = [name for name, row in positions.items() if row.get(&quot;house&quot;) == landed]
+        topics.append(
+            {
+                &quot;turned_house&quot;: turned,
+                &quot;label&quot;: label,
+                &quot;radical_house&quot;: landed,
+                &quot;radical_meaning&quot;: HOUSE_MEANINGS[landed],
+                &quot;occupants&quot;: occupants,
+            }
+        )
+    return {
+        &quot;longitude&quot;: america.get(&quot;lon&quot;),
+        &quot;position&quot;: america.get(&quot;lon_dms&quot;),
+        &quot;sign&quot;: sign,
+        &quot;degree&quot;: america.get(&quot;deg_in_sign&quot;),
+        &quot;radical_house&quot;: radical,
+        &quot;steward&quot;: steward,
+        &quot;steward_sign&quot;: steward_pos.get(&quot;sign&quot;),
+        &quot;steward_house&quot;: steward_pos.get(&quot;house&quot;),
+        &quot;steward_condition&quot;: steward_pos.get(&quot;cond&quot;) or [],
+        &quot;topics&quot;: topics,
+    }
+
+
+def build_umbrellas(
+    authored_rows: list[dict[str, Any]],
+    anchors: list[dict[str, Any]],
+    releases: list[dict[str, Any]],
+    subplot_rules: dict[str, list[tuple[str, Any]]],
+) -&gt; list[dict[str, Any]]:
+    stacks = load_json(SYNODIC_STACKS)
+    snapshot = stacks.get(&quot;snapshot&quot;) or {}
+    cycles = {row.get(&quot;cycle_id&quot;): row for row in snapshot.get(&quot;cycles&quot;, [])}
+    reading_rows = load_json(SYNODIC_READINGS).get(&quot;readings&quot;, [])
+    readings = {row.get(&quot;cycle_id&quot;): row for row in reading_rows}
+    anchor_ids = {row[&quot;reading_id&quot;] for row in anchors}
+    release_ids = {row[&quot;key&quot;] for row in releases}
+    seen: set[str] = set()
+    prepared: list[dict[str, Any]] = []
+    for row in authored_rows:
+        cycle_id = str(row.get(&quot;cycle_id&quot;) or &quot;&quot;)
+        if not cycle_id or cycle_id in seen:
+            fail(f&quot;duplicate or blank umbrella cycle_id {cycle_id!r}&quot;)
+        seen.add(cycle_id)
+        orbital = cycles.get(cycle_id)
+        archetype = readings.get(cycle_id)
+        if not orbital or not archetype:
+            fail(f&quot;umbrella {cycle_id!r} is missing orbital or archetypal authority&quot;)
+        carriers = [str(value) for value in row.get(&quot;carrier_reading_ids&quot;) or []]
+        watches = [str(value) for value in row.get(&quot;watch_ids&quot;) or []]
+        if not carriers or any(value not in anchor_ids for value in carriers):
+            fail(f&quot;umbrella {cycle_id!r} has an unknown chart carrier&quot;)
+        if any(value not in release_ids for value in watches):
+            fail(f&quot;umbrella {cycle_id!r} has an unresolved watch reference&quot;)
+        manifestations: list[dict[str, Any]] = []
+        for link in row.get(&quot;manifestations&quot;) or []:
+            plotline = str(link.get(&quot;plotline&quot;) or &quot;&quot;)
+            subplot = str(link.get(&quot;subplot&quot;) or &quot;&quot;)
+            state = str(link.get(&quot;state&quot;) or &quot;&quot;)
+            function = str(link.get(&quot;function&quot;) or &quot;&quot;).strip()
+            allowed = {label for label, _ in subplot_rules.get(plotline, [])}
+            if subplot not in allowed or state not in STORY_STATES or not function:
+                fail(f&quot;umbrella {cycle_id!r} has an invalid manifestation link&quot;)
+            manifestations.append({&quot;plotline&quot;: plotline, &quot;subplot&quot;: subplot, &quot;state&quot;: state, &quot;function&quot;: function})
+        if not manifestations:
+            fail(f&quot;umbrella {cycle_id!r} has no manifestations&quot;)
+        prepared.append(
+            {
+                &quot;cycle_id&quot;: cycle_id,
+                &quot;label&quot;: row.get(&quot;label&quot;),
+                &quot;current_note&quot;: row.get(&quot;current_note&quot;),
+                &quot;co_presence&quot;: row.get(&quot;co_presence&quot;),
+                &quot;carrier_reading_ids&quot;: carriers,
+                &quot;watch_ids&quot;: watches,
+                &quot;manifestations&quot;: manifestations,
+                &quot;archetype&quot;: archetype,
+                &quot;orbital&quot;: orbital,
+                &quot;as_of&quot;: snapshot.get(&quot;utc&quot;),
+            }
+        )
+    return prepared
+
+
+def build_conjunction_map(editorial: dict[str, Any]) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Join authored era groupings to calculate-once seed and phase facts.&quot;&quot;&quot;
+    if not editorial:
+        fail(&quot;conjunction_map is required&quot;)
+    seed_data = load_json(SYNODIC_SEEDS)
+    stacks = load_json(SYNODIC_STACKS)
+    reading_rows = load_json(SYNODIC_READINGS).get(&quot;readings&quot;, [])
+    seeds = {row.get(&quot;cycle_id&quot;): row for row in seed_data.get(&quot;cycles&quot;, [])}
+    snapshot = stacks.get(&quot;snapshot&quot;) or {}
+    cycles = {row.get(&quot;cycle_id&quot;): row for row in snapshot.get(&quot;cycles&quot;, [])}
+    readings = {row.get(&quot;cycle_id&quot;): row for row in reading_rows}
+    if not seeds or set(seeds) != set(cycles) or set(seeds) != set(readings):
+        fail(&quot;conjunction roots, orbital snapshot, and cycle readings no longer align&quot;)
+
+    groups: list[dict[str, Any]] = []
+    covered: list[str] = []
+    group_ids: set[str] = set()
+    for group in editorial.get(&quot;eras&quot;) or []:
+        group_id = str(group.get(&quot;id&quot;) or &quot;&quot;)
+        cycle_ids = [str(value) for value in group.get(&quot;cycle_ids&quot;) or []]
+        if not group_id or group_id in group_ids or not cycle_ids:
+            fail(&quot;conjunction_map has a blank/duplicate era or an empty cycle list&quot;)
+        group_ids.add(group_id)
+        if any(value not in seeds for value in cycle_ids):
+            fail(f&quot;conjunction era {group_id!r} references an unknown cycle&quot;)
+        covered.extend(cycle_ids)
+        groups.append(
+            {
+                &quot;id&quot;: group_id,
+                &quot;label&quot;: group.get(&quot;label&quot;),
+                &quot;years&quot;: group.get(&quot;years&quot;),
+                &quot;theme&quot;: group.get(&quot;theme&quot;),
+                &quot;cycle_ids&quot;: cycle_ids,
+            }
+        )
+    if len(covered) != len(set(covered)) or set(covered) != set(seeds):
+        fail(&quot;conjunction eras must cover each canonical cycle exactly once&quot;)
+
+    roots: list[dict[str, Any]] = []
+    for cycle_id in covered:
+        seed = seeds[cycle_id]
+        passes = seed.get(&quot;passes&quot;) or []
+        if not passes:
+            fail(f&quot;conjunction root {cycle_id!r} has no exact passes&quot;)
+        verification = sorted({str(row.get(&quot;independent_verification_status&quot;) or &quot;&quot;) for row in passes})
+        roots.append(
+            {
+                &quot;cycle_id&quot;: cycle_id,
+                &quot;pair&quot;: seed.get(&quot;pair&quot;) or [],
+                &quot;tier_id&quot;: seed.get(&quot;tier_id&quot;),
+                &quot;nominal_cycle_years&quot;: seed.get(&quot;nominal_cycle_years&quot;),
+                &quot;seed_family_label&quot;: seed.get(&quot;seed_family_label&quot;),
+                &quot;display_anchor_pass_id&quot;: seed.get(&quot;display_anchor_pass_id&quot;),
+                &quot;passes&quot;: passes,
+                &quot;independent_verification&quot;: verification,
+                &quot;orbital&quot;: cycles[cycle_id],
+                &quot;archetype&quot;: readings[cycle_id],
+            }
+        )
+
+    window = editorial.get(&quot;exact_window&quot;) or {}
+    start, end = str(window.get(&quot;start&quot;) or &quot;&quot;), str(window.get(&quot;end&quot;) or &quot;&quot;)
+    if not start or not end or start &gt; end:
+        fail(&quot;conjunction_map exact_window is invalid&quot;)
+    exacts: list[dict[str, Any]] = []
+    for cycle_id, events in (stacks.get(&quot;exact_event_catalog&quot;) or {}).items():
+        if cycle_id not in seeds:
+            continue
+        for event in events:
+            date = str(event.get(&quot;utc&quot;) or &quot;&quot;)[:10]
+            if start &lt;= date &lt;= end:
+                exacts.append(
+                    {
+                        &quot;cycle_id&quot;: cycle_id,
+                        &quot;pair&quot;: seeds[cycle_id].get(&quot;pair&quot;) or [],
+                        &quot;utc&quot;: event.get(&quot;utc&quot;),
+                        &quot;chapter_id&quot;: event.get(&quot;chapter_id&quot;),
+                        &quot;aspect_id&quot;: event.get(&quot;aspect_id&quot;),
+                        &quot;phase_name&quot;: event.get(&quot;phase_name&quot;),
+                        &quot;phase_direction&quot;: event.get(&quot;phase_direction&quot;),
+                        &quot;positions_deg&quot;: event.get(&quot;positions_deg&quot;) or {},
+                    }
+                )
+    exacts.sort(key=lambda row: str(row.get(&quot;utc&quot;) or &quot;&quot;))
+    if not exacts:
+        fail(&quot;conjunction_map exact_window resolved no exact contacts&quot;)
+    return {
+        &quot;title&quot;: editorial.get(&quot;title&quot;),
+        &quot;dek&quot;: editorial.get(&quot;dek&quot;),
+        &quot;groups&quot;: groups,
+        &quot;roots&quot;: roots,
+        &quot;exact_window&quot;: {
+            &quot;start&quot;: start,
+            &quot;end&quot;: end,
+            &quot;title&quot;: window.get(&quot;title&quot;),
+            &quot;note&quot;: window.get(&quot;note&quot;),
+            &quot;events&quot;: exacts,
+        },
+        &quot;as_of&quot;: snapshot.get(&quot;utc&quot;),
+        &quot;calculation_method&quot;: seed_data.get(&quot;calculation_method&quot;) or {},
+    }
+
+
+def resolve_watch_refs(
+    refs: list[dict[str, Any]], rows: list[dict[str, Any]], window: dict[str, str]
+) -&gt; list[dict[str, Any]]:
+    by_id: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        watch_id = str(row.get(&quot;watch_id&quot;) or &quot;&quot;)
+        if watch_id:
+            if watch_id in by_id:
+                fail(f&quot;duplicate watch_calendar watch_id {watch_id!r}&quot;)
+            by_id[watch_id] = row
+
+    resolved: list[dict[str, Any]] = []
+    used: set[str] = set()
+    for ref in refs:
+        lane = ref.get(&quot;lane&quot;)
+        if lane not in LANES:
+            fail(f&quot;invalid watch lane {lane!r}&quot;)
+        row: dict[str, Any] | None = None
+        key = str(ref.get(&quot;watch_id&quot;) or &quot;&quot;)
+        if key:
+            row = by_id.get(key)
+            if row is None:
+                fail(f&quot;unknown watch ref {key!r}&quot;)
+        else:
+            selector = ref.get(&quot;selector&quot;) or {}
+            date, label = selector.get(&quot;date&quot;), selector.get(&quot;label&quot;)
+            hits = [r for r in rows if r.get(&quot;date&quot;) == date and r.get(&quot;label&quot;) == label]
+            if len(hits) != 1:
+                fail(f&quot;watch selector {date!r} / {label!r} resolved {len(hits)} rows&quot;)
+            row = hits[0]
+            slug = re.sub(r&quot;[^a-z0-9]+&quot;, &quot;-&quot;, str(label).lower()).strip(&quot;-&quot;)[:44]
+            key = f&quot;calendar-{date}-{slug}&quot;
+        if key in used:
+            fail(f&quot;watch ref repeated: {key!r}&quot;)
+        used.add(key)
+        date = str(row.get(&quot;date&quot;) or &quot;&quot;)
+        if not (window[&quot;start&quot;] &lt;= date &lt;= window[&quot;end&quot;]):
+            fail(f&quot;watch ref {key!r} falls outside the authored window&quot;)
+        resolved.append(
+            {
+                &quot;key&quot;: key,
+                &quot;date&quot;: date,
+                &quot;end&quot;: row.get(&quot;end&quot;),
+                &quot;approx&quot;: bool(row.get(&quot;approx&quot;)),
+                &quot;label&quot;: row.get(&quot;label&quot;),
+                &quot;detail&quot;: row.get(&quot;detail&quot;) or &quot;&quot;,
+                &quot;source&quot;: row.get(&quot;source&quot;) or &quot;&quot;,
+                &quot;research_ids&quot;: row.get(&quot;research_ids&quot;) or [],
+                &quot;lane&quot;: lane,
+            }
+        )
+    return sorted(resolved, key=lambda row: (row[&quot;date&quot;], row[&quot;label&quot;]))
+
+
+def load_eo_inventory() -&gt; dict[int, dict[str, Any]]:
+    &quot;&quot;&quot;Resolve the local EO shelf without inventing signing-time precision.&quot;&quot;&quot;
+    rows: dict[int, dict[str, Any]] = {}
+    pattern = re.compile(r&quot;^(\d{4}-\d{2}-\d{2}) - EO (\d+) - (.+)\.md$&quot;)
+    for path in EO_DIR.glob(&quot;*.md&quot;):
+        match = pattern.match(path.name)
+        if not match:
+            continue
+        date, number_text, filename_title = match.groups()
+        number = int(number_text)
+        if number in rows:
+            fail(f&quot;duplicate EO number in local shelf: {number}&quot;)
+        title = filename_title
+        try:
+            title = first_heading(path).removeprefix(f&quot;EO {number} — &quot;).removeprefix(f&quot;EO {number} - &quot;)
+        except SystemExit:
+            pass
+        rows[number] = {
+            &quot;number&quot;: number,
+            &quot;date&quot;: date,
+            &quot;title&quot;: title,
+            &quot;path&quot;: str(path.relative_to(VAULT)),
+            &quot;time_precision&quot;: &quot;date&quot;,
+        }
+    return rows
+
+
+def prepare_regime_waves() -&gt; dict[str, Any]:
+    authored = load_json(REGIME_WAVES)
+    if authored.get(&quot;schema&quot;) != REGIME_SCHEMA:
+        fail(f&quot;institutional wave source must use {REGIME_SCHEMA}&quot;)
+    score_key = recursive_score_key(authored)
+    if score_key:
+        fail(f&quot;score-like field is forbidden in institutional waves: {score_key!r}&quot;)
+    method = authored.get(&quot;method&quot;) or {}
+    for flag in (
+        &quot;record_first_retrospective&quot;, &quot;rhyme_is_not_cause&quot;, &quot;daily_prediction_forbidden&quot;,
+        &quot;unchanged_is_valid&quot;, &quot;degree_band_is_not_lineage&quot;,
+    ):
+        if method.get(flag) is not True:
+            fail(f&quot;institutional-wave method must preserve {flag}&quot;)
+    for flag in (&quot;chart_first&quot;, &quot;pass1_freeze&quot;, &quot;storyline_comparison&quot;):
+        if method.get(flag) is not False:
+            fail(f&quot;institutional-wave method must explicitly keep {flag} false&quot;)
+    if method.get(&quot;comparison_mode&quot;) != &quot;retrospective_calibration&quot;:
+        fail(&quot;institutional waves must remain retrospective calibration&quot;)
+    if method.get(&quot;layer_role&quot;) != &quot;eo_led_maturity_overlay&quot;:
+        fail(&quot;institutional waves must identify as the EO-led maturity overlay&quot;)
+    if method.get(&quot;scores_allowed&quot;) is not False:
+        fail(&quot;institutional-wave method must explicitly forbid scores&quot;)
+    authority_layers = authored.get(&quot;authority_layers&quot;) or []
+    if [row.get(&quot;id&quot;) for row in authority_layers] != [
+        &quot;climate&quot;, &quot;official_story&quot;, &quot;eo_maturity&quot;, &quot;reorganization&quot;, &quot;entity_routes&quot;,
+    ]:
+        fail(&quot;institutional-wave authority stack is missing or out of order&quot;)
+    coverage_gaps = [str(value).strip() for value in authored.get(&quot;coverage_gaps&quot;) or [] if str(value).strip()]
+    if not str(authored.get(&quot;scope_statement&quot;) or &quot;&quot;).strip() or not coverage_gaps:
+        fail(&quot;institutional waves must expose their scope and coverage gaps&quot;)
+
+    history = load_json(MUNDANE_HISTORY)
+    charts = {str(row.get(&quot;id&quot;) or &quot;&quot;): row for row in history.get(&quot;charts&quot;, [])}
+    eo_inventory = load_eo_inventory()
+    entity_data = load_json(ENTITY_MAPS)
+    entity_numbers = {int(key) for key in (entity_data.get(&quot;maps&quot;) or {}) if str(key).isdigit()}
+    research_data = load_json(RESEARCH_DESK)
+    research_ids = {str(row.get(&quot;research_id&quot;) or &quot;&quot;) for row in research_data.get(&quot;packages&quot;, [])}
+    reading_registry = load_json(REGISTRY)
+    reading_ids = {str(row.get(&quot;id&quot;) or &quot;&quot;) for row in reading_registry.get(&quot;readings&quot;, [])}
+
+    def chart_ref(chart_id: str) -&gt; dict[str, Any]:
+        row = charts.get(chart_id)
+        if not row:
+            fail(f&quot;institutional wave references unknown chart {chart_id!r}&quot;)
+        has_reading = chart_id in reading_ids
+        return {
+            &quot;chart_id&quot;: chart_id,
+            &quot;label&quot;: row.get(&quot;label&quot;),
+            &quot;date&quot;: row.get(&quot;date&quot;),
+            &quot;utc&quot;: row.get(&quot;utc&quot;),
+            &quot;local&quot;: row.get(&quot;local&quot;),
+            &quot;chart_type&quot;: row.get(&quot;chart_type&quot;),
+            &quot;kind&quot;: row.get(&quot;kind&quot;),
+            &quot;sign&quot;: row.get(&quot;sign&quot;),
+            &quot;degree&quot;: row.get(&quot;degree&quot;),
+            &quot;eclipse&quot;: row.get(&quot;eclipse&quot;),
+            &quot;asc_sign&quot;: row.get(&quot;asc_sign&quot;),
+            &quot;root_members&quot;: row.get(&quot;root_members&quot;) or [],
+            &quot;governing_ingress_id&quot;: row.get(&quot;governing_ingress_id&quot;),
+            &quot;verification&quot;: row.get(&quot;verification&quot;) or {},
+            &quot;reading_state&quot;: &quot;authored&quot; if has_reading else &quot;computed_only&quot;,
+            &quot;reading_id&quot;: chart_id if has_reading else None,
+        }
+
+    def endpoint(spec: dict[str, Any]) -&gt; dict[str, Any]:
+        kind = str(spec.get(&quot;kind&quot;) or &quot;&quot;)
+        if kind == &quot;chart&quot;:
+            chart = chart_ref(str(spec.get(&quot;chart_id&quot;) or &quot;&quot;))
+            return {&quot;kind&quot;: kind, &quot;date&quot;: chart[&quot;date&quot;], &quot;utc&quot;: chart[&quot;utc&quot;], &quot;label&quot;: chart[&quot;label&quot;], &quot;chart&quot;: chart}
+        if kind in {&quot;event&quot;, &quot;cutoff&quot;}:
+            date = str(spec.get(&quot;date&quot;) or &quot;&quot;)
+            if not re.fullmatch(r&quot;\d{4}-\d{2}-\d{2}&quot;, date):
+                fail(f&quot;institutional wave has invalid {kind} date {date!r}&quot;)
+            return {&quot;kind&quot;: kind, &quot;date&quot;: date, &quot;utc&quot;: f&quot;{date}T00:00:00-04:00&quot;, &quot;label&quot;: spec.get(&quot;label&quot;) or date}
+        fail(f&quot;institutional wave has unknown endpoint kind {kind!r}&quot;)
+
+    waves: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
+    partials = 0
+    for expected_ordinal, source in enumerate(authored.get(&quot;waves&quot;) or [], 1):
+        wave_id = str(source.get(&quot;id&quot;) or &quot;&quot;)
+        if not wave_id or wave_id in seen_ids:
+            fail(f&quot;duplicate or blank institutional wave id {wave_id!r}&quot;)
+        seen_ids.add(wave_id)
+        if source.get(&quot;ordinal&quot;) != expected_ordinal:
+            fail(f&quot;institutional wave ordinal drift at {wave_id!r}&quot;)
+        status = str(source.get(&quot;status&quot;) or &quot;&quot;)
+        if status not in {&quot;closed&quot;, &quot;partial&quot;}:
+            fail(f&quot;institutional wave {wave_id!r} has invalid status&quot;)
+        partials += status == &quot;partial&quot;
+        start = endpoint(source.get(&quot;start&quot;) or {})
+        end = endpoint(source.get(&quot;end&quot;) or {})
+        hierarchy = source.get(&quot;chart_hierarchy&quot;) or {}
+        strict_governor = chart_ref(str(hierarchy.get(&quot;strict_governor_id&quot;) or &quot;&quot;))
+        local_frame_id = hierarchy.get(&quot;local_frame_id&quot;)
+        local_frame = chart_ref(str(local_frame_id)) if local_frame_id else None
+        if local_frame and local_frame[&quot;chart_id&quot;] == strict_governor[&quot;chart_id&quot;]:
+            fail(f&quot;institutional wave {wave_id!r} collapses strict governor and local frame&quot;)
+
+        scope = source.get(&quot;eo_scope&quot;) or {}
+        first = int(scope.get(&quot;expected_first&quot;) or 0)
+        last = int(scope.get(&quot;expected_last&quot;) or 0)
+        expected_count = int(scope.get(&quot;expected_count&quot;) or 0)
+        expected_numbers = list(range(first, last + 1))
+        if not first or last &lt; first or len(expected_numbers) != expected_count:
+            fail(f&quot;institutional wave {wave_id!r} has an incoherent EO range/count&quot;)
+        available_numbers = [number for number in expected_numbers if number in eo_inventory]
+        missing_numbers = [number for number in expected_numbers if number not in eo_inventory]
+        available_rows = [eo_inventory[number] for number in available_numbers]
+        entity_mapped = [number for number in available_numbers if number in entity_numbers]
+        boundary_rows = [
+            eo_inventory[number] if number in eo_inventory else {&quot;number&quot;: number, &quot;missing&quot;: True}
+            for number in scope.get(&quot;boundary_cases&quot;) or []
+        ]
+
+        beats: list[dict[str, Any]] = []
+        for beat in source.get(&quot;beats&quot;) or []:
+            chart = chart_ref(str(beat.get(&quot;chart_id&quot;) or &quot;&quot;))
+            beats.append({**beat, &quot;chart&quot;: chart})
+        if not beats:
+            fail(f&quot;institutional wave {wave_id!r} has no lunar beats&quot;)
+        new_moon_indexes = [idx for idx, beat in enumerate(beats) if beat[&quot;chart&quot;].get(&quot;kind&quot;) == &quot;new&quot;]
+        for position, idx in enumerate(new_moon_indexes):
+            beat = beats[idx]
+            chapter_start = str(beat[&quot;chart&quot;].get(&quot;date&quot;) or &quot;&quot;)
+            next_start = (
+                str(beats[new_moon_indexes[position + 1]][&quot;chart&quot;].get(&quot;date&quot;) or &quot;&quot;)
+                if position + 1 &lt; len(new_moon_indexes) else &quot;9999-12-31&quot;
+            )
+            scope_start = str(scope.get(&quot;signed_from&quot;) or &quot;&quot;)
+            scope_end = str(scope.get(&quot;signed_through&quot;) or &quot;&quot;)
+            in_chapter = [
+                row for row in available_rows
+                if max(chapter_start, scope_start) &lt;= row[&quot;date&quot;] &lt; next_start and row[&quot;date&quot;] &lt;= scope_end
+            ]
+            beat[&quot;eo_count&quot;] = len(in_chapter)
+            beat[&quot;eo_numbers&quot;] = [row[&quot;number&quot;] for row in in_chapter]
+
+        evidence: list[dict[str, Any]] = []
+        for item in source.get(&quot;evidence&quot;) or []:
+            if item.get(&quot;clock&quot;) not in WAVE_CLOCKS:
+                fail(f&quot;institutional wave evidence {item.get(&#x27;id&#x27;)!r} has unknown clock&quot;)
+            if item.get(&quot;maturity&quot;) not in WAVE_MATURITIES:
+                fail(f&quot;institutional wave evidence {item.get(&#x27;id&#x27;)!r} has unknown maturity&quot;)
+            missing_research = sorted(set(item.get(&quot;research_ids&quot;) or []) - research_ids)
+            if missing_research:
+                fail(f&quot;institutional wave evidence {item.get(&#x27;id&#x27;)!r} has unknown research ids {missing_research}&quot;)
+            item_numbers = [int(number) for number in item.get(&quot;eo_numbers&quot;) or []]
+            evidence.append({
+                **item,
+                &quot;eo_coverage&quot;: {
+                    &quot;available&quot;: [number for number in item_numbers if number in eo_inventory],
+                    &quot;missing&quot;: [number for number in item_numbers if number not in eo_inventory],
+                },
+            })
+
+        summary = source.get(&quot;summary&quot;) or {}
+        required_summary = {&quot;factual_movement&quot;, &quot;archetypal_movement&quot;, &quot;working_synthesis&quot;, &quot;governing_question&quot;, &quot;constructive&quot;, &quot;shadow&quot;, &quot;continuity&quot;, &quot;handoff&quot;}
+        if required_summary - set(summary):
+            fail(f&quot;institutional wave {wave_id!r} is missing summary fields&quot;)
+        official_story = source.get(&quot;official_story&quot;)
+        if official_story:
+            official_reading_id = str(official_story.get(&quot;reading_id&quot;) or &quot;&quot;)
+            if official_reading_id not in reading_ids:
+                fail(f&quot;institutional wave {wave_id!r} references unknown official story {official_reading_id!r}&quot;)
+        waves.append({
+            &quot;id&quot;: wave_id,
+            &quot;ordinal&quot;: source[&quot;ordinal&quot;],
+            &quot;status&quot;: status,
+            &quot;title&quot;: source.get(&quot;title&quot;),
+            &quot;research_path&quot;: source.get(&quot;research_path&quot;),
+            &quot;start&quot;: start,
+            &quot;end&quot;: end,
+            &quot;chart_hierarchy&quot;: {
+                **hierarchy,
+                &quot;strict_governor&quot;: strict_governor,
+                &quot;local_frame&quot;: local_frame,
+            },
+            &quot;root_note&quot;: source.get(&quot;root_note&quot;),
+            &quot;slow_movement&quot;: source.get(&quot;slow_movement&quot;),
+            &quot;summary&quot;: summary,
+            &quot;official_story&quot;: official_story,
+            &quot;eo_scope&quot;: {
+                **scope,
+                &quot;available_count&quot;: len(available_rows),
+                &quot;available_numbers&quot;: available_numbers,
+                &quot;missing_numbers&quot;: missing_numbers,
+                &quot;coverage_state&quot;: &quot;complete&quot; if not missing_numbers else &quot;gapped&quot;,
+                &quot;entity_mapped_count&quot;: len(entity_mapped),
+                &quot;orders&quot;: available_rows,
+                &quot;boundary_rows&quot;: boundary_rows,
+            },
+            &quot;beats&quot;: beats,
+            &quot;evidence&quot;: evidence,
+        })
+
+    if len(waves) != 7 or partials != 1 or waves[-1][&quot;status&quot;] != &quot;partial&quot;:
+        fail(&quot;institutional wave series must contain six closed waves and one final partial wave&quot;)
+    for previous, current in zip(waves, waves[1:]):
+        if previous[&quot;end&quot;].get(&quot;kind&quot;) == &quot;chart&quot; and current[&quot;start&quot;].get(&quot;kind&quot;) == &quot;chart&quot;:
+            previous_chart = previous[&quot;end&quot;][&quot;chart&quot;][&quot;chart_id&quot;]
+            current_chart = current[&quot;start&quot;][&quot;chart&quot;][&quot;chart_id&quot;]
+            if previous_chart != current_chart:
+                fail(f&quot;institutional wave boundary gap: {previous[&#x27;id&#x27;]} → {current[&#x27;id&#x27;]}&quot;)
+
+    cross_wave = authored.get(&quot;cross_wave&quot;) or {}
+    required_cross = {&quot;title&quot;, &quot;thesis&quot;, &quot;institutional_image&quot;, &quot;transaction_rule&quot;, &quot;sequence&quot;, &quot;research_path&quot;}
+    if required_cross - set(cross_wave):
+        fail(&quot;institutional wave source is missing the cross-wave thesis&quot;)
+    sequence = cross_wave.get(&quot;sequence&quot;) or []
+    if [row.get(&quot;wave_id&quot;) for row in sequence] != [row[&quot;id&quot;] for row in waves]:
+        fail(&quot;cross-wave sequence must name every wave exactly once in ordinal order&quot;)
+    if any(not str(row.get(&quot;stage&quot;) or &quot;&quot;).strip() for row in sequence):
+        fail(&quot;every cross-wave sequence row needs a stage label&quot;)
+    if any(not str(row.get(&quot;research_path&quot;) or &quot;&quot;).strip() for row in waves):
+        fail(&quot;every institutional wave needs a Research Desk source path&quot;)
+
+    return {
+        &quot;schema&quot;: authored.get(&quot;schema&quot;),
+        &quot;updated&quot;: authored.get(&quot;updated&quot;),
+        &quot;status&quot;: authored.get(&quot;status&quot;),
+        &quot;title&quot;: authored.get(&quot;title&quot;),
+        &quot;window&quot;: authored.get(&quot;window&quot;),
+        &quot;method&quot;: method,
+        &quot;scope_statement&quot;: authored.get(&quot;scope_statement&quot;),
+        &quot;authority_layers&quot;: authority_layers,
+        &quot;coverage_gaps&quot;: coverage_gaps,
+        &quot;cross_wave&quot;: cross_wave,
+        &quot;waves&quot;: waves,
+    }
+
+
+def prepare_storylines(
+    authored: dict[str, Any],
+    subplot_rules: dict[str, list[tuple[str, Any]]],
+) -&gt; list[dict[str, Any]]:
+    relationship_data = load_json(RELATIONSHIP_HISTORY)
+    if relationship_data.get(&quot;schema&quot;) != RELATIONSHIP_HISTORY_SCHEMA:
+        fail(f&quot;relationship history must use {RELATIONSHIP_HISTORY_SCHEMA}&quot;)
+    if relationship_data.get(&quot;status&quot;) != &quot;generated&quot; or relationship_data.get(&quot;deterministic&quot;) is not True:
+        fail(&quot;relationship history must remain generated and deterministic&quot;)
+
+    relationship_ids: set[str] = set()
+    for row in relationship_data.get(&quot;cycle_catalog&quot;) or []:
+        relationship_id = str(row.get(&quot;relationship_id&quot;) or &quot;&quot;)
+        if not relationship_id or relationship_id in relationship_ids:
+            fail(f&quot;relationship history has a blank or duplicate relationship {relationship_id!r}&quot;)
+        relationship_ids.add(relationship_id)
+
+    chart_by_id: dict[str, dict[str, Any]] = {}
+    state_by_id: dict[str, dict[str, Any]] = {}
+    for chart in relationship_data.get(&quot;charts&quot;) or []:
+        chart_id = str(chart.get(&quot;chart_id&quot;) or &quot;&quot;)
+        if not chart_id or chart_id in chart_by_id:
+            fail(f&quot;relationship history has a blank or duplicate chart {chart_id!r}&quot;)
+        chart_by_id[chart_id] = chart
+        for state in chart.get(&quot;cycles&quot;) or []:
+            state_id = str(state.get(&quot;state_id&quot;) or &quot;&quot;)
+            if not state_id or state_id in state_by_id:
+                fail(f&quot;relationship history has a blank or duplicate state {state_id!r}&quot;)
+            state_by_id[state_id] = {&quot;chart_id&quot;: chart_id, &quot;state&quot;: state}
+    ordered_charts = sorted(
+        chart_by_id.items(),
+        key=lambda row: (str(row[1].get(&quot;utc&quot;) or &quot;&quot;), str(row[1].get(&quot;date&quot;) or &quot;&quot;), row[0]),
+    )
+    chart_order = {chart_id: ordinal for ordinal, (chart_id, _) in enumerate(ordered_charts)}
+
+    delta_by_id: dict[str, dict[str, Any]] = {}
+    for history in relationship_data.get(&quot;histories&quot;) or []:
+        relationship_id = str(history.get(&quot;relationship_id&quot;) or &quot;&quot;)
+        if relationship_id not in relationship_ids:
+            fail(f&quot;relationship history references unknown relationship {relationship_id!r}&quot;)
+        for delta in history.get(&quot;deltas&quot;) or []:
+            delta_id = str(delta.get(&quot;delta_id&quot;) or &quot;&quot;)
+            if not delta_id or delta_id in delta_by_id:
+                fail(f&quot;relationship history has a blank or duplicate delta {delta_id!r}&quot;)
+            delta_by_id[delta_id] = {&quot;relationship_id&quot;: relationship_id, &quot;delta&quot;: delta}
+
+    raw_storylines = authored.get(&quot;storylines&quot;)
+    if not isinstance(raw_storylines, list):
+        fail(&quot;plot-room source must carry an open-ended storylines list&quot;)
+
+    storylines: list[dict[str, Any]] = []
+    seen_storylines: set[str] = set()
+    for raw in raw_storylines:
+        if not isinstance(raw, dict):
+            fail(&quot;storyline entries must be objects&quot;)
+        storyline_id = str(raw.get(&quot;storyline_id&quot;) or &quot;&quot;)
+        if not re.fullmatch(r&quot;[a-z0-9]+(?:-[a-z0-9]+)*&quot;, storyline_id) or storyline_id in seen_storylines:
+            fail(f&quot;blank, malformed, or duplicate storyline_id {storyline_id!r}&quot;)
+        seen_storylines.add(storyline_id)
+        title = str(raw.get(&quot;title&quot;) or &quot;&quot;).strip()
+        question = str(raw.get(&quot;question&quot;) or &quot;&quot;).strip()
+        continuity_case = str(raw.get(&quot;continuity_case&quot;) or &quot;&quot;).strip()
+        if not title or not question or not continuity_case:
+            fail(f&quot;storyline {storyline_id!r} needs title, question, and continuity case&quot;)
+
+        lifecycle = raw.get(&quot;lifecycle&quot;) or {}
+        lifecycle_status = str(lifecycle.get(&quot;status&quot;) or &quot;&quot;)
+        lifecycle_reason = str(lifecycle.get(&quot;reason&quot;) or &quot;&quot;).strip()
+        lifecycle_at = str(lifecycle.get(&quot;status_at&quot;) or &quot;&quot;)
+        if lifecycle_status not in STORYLINE_LIFECYCLES or not lifecycle_reason:
+            fail(f&quot;storyline {storyline_id!r} has an invalid lifecycle&quot;)
+        parse_moment_date(lifecycle_at, f&quot;storyline {storyline_id!r} lifecycle.status_at&quot;)
+
+        plot_refs_raw = raw.get(&quot;plot_refs&quot;)
+        if not isinstance(plot_refs_raw, list) or not plot_refs_raw:
+            fail(f&quot;storyline {storyline_id!r} needs at least one canonical plot reference&quot;)
+        plot_refs: list[dict[str, str]] = []
+        seen_plot_refs: set[tuple[str, str]] = set()
+        for ref in plot_refs_raw:
+            if not isinstance(ref, dict):
+                fail(f&quot;storyline {storyline_id!r} plot refs must be objects&quot;)
+            plotline = str(ref.get(&quot;plotline&quot;) or &quot;&quot;)
+            subplot = str(ref.get(&quot;subplot&quot;) or &quot;&quot;)
+            if plotline not in subplot_rules:
+                fail(f&quot;storyline {storyline_id!r} references unknown plotline {plotline!r}&quot;)
+            if subplot and subplot not in {label for label, _ in subplot_rules.get(plotline, [])}:
+                fail(f&quot;storyline {storyline_id!r} references unknown subplot {plotline!r} / {subplot!r}&quot;)
+            key = (plotline, subplot)
+            if key in seen_plot_refs:
+                fail(f&quot;storyline {storyline_id!r} repeats plot ref {plotline!r} / {subplot!r}&quot;)
+            seen_plot_refs.add(key)
+            normalized_ref = {&quot;plotline&quot;: plotline}
+            if subplot:
+                normalized_ref[&quot;subplot&quot;] = subplot
+            plot_refs.append(normalized_ref)
+
+        frame = raw.get(&quot;factual_frame&quot;) or {}
+        comparison_mode = str(frame.get(&quot;comparison_mode&quot;) or &quot;&quot;)
+        if comparison_mode not in STORYLINE_MODES:
+            fail(f&quot;storyline {storyline_id!r} has an invalid comparison mode&quot;)
+        window = frame.get(&quot;window&quot;) or {}
+        window_start_text = str(window.get(&quot;start&quot;) or &quot;&quot;)
+        window_end_text = str(window.get(&quot;end&quot;) or &quot;&quot;)
+        cutoff_text = str(frame.get(&quot;cutoff&quot;) or &quot;&quot;)
+        window_start = parse_date(window_start_text, f&quot;storyline {storyline_id!r} window.start&quot;)
+        window_end = parse_date(window_end_text, f&quot;storyline {storyline_id!r} window.end&quot;)
+        cutoff_date = parse_moment_date(cutoff_text, f&quot;storyline {storyline_id!r} cutoff&quot;)
+        if window_start &gt; window_end:
+            fail(f&quot;storyline {storyline_id!r} window runs backward&quot;)
+        if comparison_mode == &quot;retrospective_calibration&quot; and cutoff_date &lt; window_end:
+            fail(f&quot;retrospective storyline {storyline_id!r} cutoff precedes its window end&quot;)
+        if comparison_mode == &quot;prospective_watch&quot; and cutoff_date &gt; window_start:
+            fail(f&quot;prospective storyline {storyline_id!r} was not frozen by its window start&quot;)
+        if comparison_mode == &quot;mixed_boundary&quot; and not window_start &lt;= cutoff_date &lt;= window_end:
+            fail(f&quot;mixed-boundary storyline {storyline_id!r} cutoff must fall inside its window&quot;)
+
+        attention_refs = normalize_source_refs(frame.get(&quot;attention_refs&quot;), f&quot;storyline {storyline_id!r} Attention&quot;)
+        official_refs = normalize_source_refs(frame.get(&quot;official_refs&quot;), f&quot;storyline {storyline_id!r} Official&quot;)
+        entity_refs = normalize_source_refs(frame.get(&quot;entity_refs&quot;), f&quot;storyline {storyline_id!r} Entity&quot;)
+        if not attention_refs and not official_refs and not entity_refs:
+            fail(f&quot;storyline {storyline_id!r} has no factual source in any evidence lane&quot;)
+
+        convergence_raw = frame.get(&quot;factual_convergence_refs&quot;, [])
+        if not isinstance(convergence_raw, list):
+            fail(f&quot;storyline {storyline_id!r} factual_convergence_refs must be a list&quot;)
+        convergence_refs: list[dict[str, Any]] = []
+        seen_convergence: set[tuple[str, str, str]] = set()
+        for ref in convergence_raw:
+            if not isinstance(ref, dict):
+                fail(f&quot;storyline {storyline_id!r} convergence refs must be objects&quot;)
+            mode = str(ref.get(&quot;mode&quot;) or &quot;&quot;)
+            if mode not in CONVERGENCE_MODES or ref.get(&quot;historical&quot;) is not True:
+                fail(f&quot;storyline {storyline_id!r} has an invalid or non-historical convergence ref&quot;)
+            source = require_vault_source(ref.get(&quot;source&quot;), f&quot;storyline {storyline_id!r} convergence&quot;)
+            historical_cutoff = str(ref.get(&quot;cutoff&quot;) or &quot;&quot;)
+            if parse_moment_date(historical_cutoff, f&quot;storyline {storyline_id!r} convergence cutoff&quot;) &gt; cutoff_date:
+                fail(f&quot;storyline {storyline_id!r} convergence source is newer than its factual cutoff&quot;)
+            key = (mode, source, historical_cutoff)
+            if key in seen_convergence:
+                fail(f&quot;storyline {storyline_id!r} repeats a convergence reference&quot;)
+            seen_convergence.add(key)
+            convergence_refs.append({
+                &quot;mode&quot;: mode,
+                &quot;historical&quot;: True,
+                &quot;source&quot;: source,
+                &quot;cutoff&quot;: historical_cutoff,
+                &quot;note&quot;: str(ref.get(&quot;note&quot;) or &quot;&quot;).strip(),
+            })
+
+        transition = raw.get(&quot;candidate_transition&quot;) or {}
+        transition_out = {
+            &quot;from&quot;: str(transition.get(&quot;from&quot;) or &quot;&quot;).strip(),
+            &quot;toward&quot;: str(transition.get(&quot;toward&quot;) or &quot;&quot;).strip(),
+            &quot;mechanism&quot;: str(transition.get(&quot;mechanism&quot;) or &quot;&quot;).strip(),
+        }
+        if not all(transition_out.values()):
+            fail(f&quot;storyline {storyline_id!r} needs a complete candidate transition&quot;)
+
+        checkpoint_raw = raw.get(&quot;checkpoint_refs&quot;)
+        if not isinstance(checkpoint_raw, list) or len(checkpoint_raw) &lt; 2:
+            fail(f&quot;storyline {storyline_id!r} needs at least opening and closing checkpoints&quot;)
+        checkpoint_refs: list[dict[str, str]] = []
+        checkpoint_ids: list[str] = []
+        for ref in checkpoint_raw:
+            if not isinstance(ref, dict):
+                fail(f&quot;storyline {storyline_id!r} checkpoint refs must be objects&quot;)
+            chart_id = str(ref.get(&quot;chart_id&quot;) or &quot;&quot;)
+            role = str(ref.get(&quot;role&quot;) or &quot;&quot;)
+            if chart_id not in chart_by_id or chart_id in checkpoint_ids or role not in CHECKPOINT_ROLES:
+                fail(f&quot;storyline {storyline_id!r} has an invalid or duplicate checkpoint {chart_id!r}&quot;)
+            chart_date = parse_date(chart_by_id[chart_id].get(&quot;date&quot;), f&quot;relationship chart {chart_id!r} date&quot;)
+            if not window_start &lt;= chart_date &lt;= window_end:
+                fail(f&quot;storyline {storyline_id!r} checkpoint {chart_id!r} falls outside its factual window&quot;)
+            checkpoint_ids.append(chart_id)
+            checkpoint_refs.append({&quot;chart_id&quot;: chart_id, &quot;role&quot;: role})
+        if checkpoint_refs[0][&quot;role&quot;] != &quot;opening&quot; or checkpoint_refs[-1][&quot;role&quot;] != &quot;closing&quot;:
+            fail(f&quot;storyline {storyline_id!r} must begin with opening and end with closing&quot;)
+        if any(ref[&quot;role&quot;] != &quot;intermediate&quot; for ref in checkpoint_refs[1:-1]):
+            fail(f&quot;storyline {storyline_id!r} interior checkpoints must be intermediate&quot;)
+        orders = [chart_order[chart_id] for chart_id in checkpoint_ids]
+        if orders != sorted(orders) or len(orders) != len(set(orders)):
+            fail(f&quot;storyline {storyline_id!r} checkpoints are not in governed chronological order&quot;)
+        checkpoint_set = set(checkpoint_ids)
+
+        strands_raw = raw.get(&quot;strands&quot;)
+        if not isinstance(strands_raw, list) or not strands_raw:
+            fail(f&quot;storyline {storyline_id!r} needs at least one relationship strand&quot;)
+        strands: list[dict[str, Any]] = []
+        seen_relationships: set[str] = set()
+        for strand in strands_raw:
+            if not isinstance(strand, dict):
+                fail(f&quot;storyline {storyline_id!r} strands must be objects&quot;)
+            relationship_id = str(strand.get(&quot;relationship_id&quot;) or &quot;&quot;)
+            role = str(strand.get(&quot;role&quot;) or &quot;&quot;)
+            if relationship_id not in relationship_ids or relationship_id in seen_relationships:
+                fail(f&quot;storyline {storyline_id!r} has an unknown or duplicate relationship {relationship_id!r}&quot;)
+            if role not in STORYLINE_ROLES:
+                fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} has an invalid role&quot;)
+            seen_relationships.add(relationship_id)
+            presence_modes = strand.get(&quot;presence_modes&quot;)
+            if not isinstance(presence_modes, list) or not presence_modes or len(presence_modes) != len(set(presence_modes)):
+                fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} needs unique presence modes&quot;)
+            if any(mode not in PRESENCE_MODES for mode in presence_modes):
+                fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} has an invalid presence mode&quot;)
+            if &quot;seed echo&quot; in presence_modes:
+                fail(
+                    f&quot;storyline {storyline_id!r} / {relationship_id!r} claims a seed echo &quot;
+                    &quot;without a governed v2 echo-reference field&quot;
+                )
+            win_if = str(strand.get(&quot;win_if&quot;) or &quot;&quot;).strip()
+            lose_if = str(strand.get(&quot;lose_if&quot;) or &quot;&quot;).strip()
+            if not win_if or not lose_if:
+                fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} needs win and lose tests&quot;)
+
+            state_ids_raw = strand.get(&quot;state_ids&quot;)
+            if not isinstance(state_ids_raw, list) or len(state_ids_raw) != len(checkpoint_ids) or len(state_ids_raw) != len(set(state_ids_raw)):
+                fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} needs one unique state per checkpoint&quot;)
+            state_rows: list[tuple[int, str, dict[str, Any]]] = []
+            for state_id_raw in state_ids_raw:
+                state_id = str(state_id_raw or &quot;&quot;)
+                resolved = state_by_id.get(state_id)
+                if not resolved or resolved[&quot;state&quot;].get(&quot;relationship_id&quot;) != relationship_id:
+                    fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} has an invalid state {state_id!r}&quot;)
+                state_rows.append((chart_order[resolved[&quot;chart_id&quot;]], state_id, resolved))
+            if {row[2][&quot;chart_id&quot;] for row in state_rows} != checkpoint_set:
+                fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} states do not cover its checkpoints exactly&quot;)
+            state_rows.sort(key=lambda row: row[0])
+            if &quot;active dialogue&quot; in presence_modes and not any(row[2][&quot;state&quot;].get(&quot;direct_aspect&quot;) for row in state_rows):
+                fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} claims active dialogue without a direct Aspect&quot;)
+
+            delta_ids_raw = strand.get(&quot;delta_ids&quot;)
+            if not isinstance(delta_ids_raw, list) or not delta_ids_raw or len(delta_ids_raw) != len(set(delta_ids_raw)):
+                fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} needs unique relationship deltas&quot;)
+            delta_rows: list[tuple[int, str]] = []
+            for delta_id_raw in delta_ids_raw:
+                delta_id = str(delta_id_raw or &quot;&quot;)
+                resolved = delta_by_id.get(delta_id)
+                if not resolved or resolved[&quot;relationship_id&quot;] != relationship_id:
+                    fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} has an invalid delta {delta_id!r}&quot;)
+                delta = resolved[&quot;delta&quot;]
+                from_chart = str(delta.get(&quot;from_chart_id&quot;) or &quot;&quot;)
+                to_chart = str(delta.get(&quot;to_chart_id&quot;) or &quot;&quot;)
+                if from_chart not in chart_order or to_chart not in chart_order:
+                    fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} delta has unknown endpoints&quot;)
+                if not orders[0] &lt;= chart_order[from_chart] &lt; chart_order[to_chart] &lt;= orders[-1]:
+                    fail(f&quot;storyline {storyline_id!r} / {relationship_id!r} delta falls outside its checkpoints&quot;)
+                delta_rows.append((chart_order[from_chart], delta_id))
+            delta_rows.sort(key=lambda row: row[0])
+            strands.append({
+                &quot;relationship_id&quot;: relationship_id,
+                &quot;role&quot;: role,
+                &quot;presence_modes&quot;: list(presence_modes),
+                &quot;state_ids&quot;: [row[1] for row in state_rows],
+                &quot;delta_ids&quot;: [row[1] for row in delta_rows],
+                &quot;win_if&quot;: win_if,
+                &quot;lose_if&quot;: lose_if,
+            })
+
+        counterevidence_refs = normalize_source_refs(
+            raw.get(&quot;counterevidence_refs&quot;), f&quot;storyline {storyline_id!r} counterevidence&quot;
+        )
+        review = raw.get(&quot;review&quot;) or {}
+        disposition = review.get(&quot;disposition&quot;)
+        closed_at = review.get(&quot;closed_at&quot;)
+        reviewed_by = str(review.get(&quot;reviewed_by&quot;) or &quot;&quot;).strip() or None
+        populated_review = disposition is not None or closed_at is not None or reviewed_by is not None
+        complete_review = disposition in REVIEW_DISPOSITIONS and closed_at is not None and reviewed_by is not None
+        if lifecycle_status in {&quot;pilot&quot;, &quot;candidate&quot;} and populated_review:
+            fail(f&quot;open storyline {storyline_id!r} cannot carry a closed review&quot;)
+        if lifecycle_status == &quot;reviewed&quot; and not complete_review:
+            fail(f&quot;reviewed storyline {storyline_id!r} needs disposition, close time, and reviewer&quot;)
+        if lifecycle_status == &quot;retired&quot; and populated_review and not complete_review:
+            fail(f&quot;retired storyline {storyline_id!r} has an incomplete historical review&quot;)
+        if complete_review:
+            if parse_moment_date(closed_at, f&quot;storyline {storyline_id!r} review.closed_at&quot;) &lt; cutoff_date:
+                fail(f&quot;storyline {storyline_id!r} review closed before its factual cutoff&quot;)
+            if not counterevidence_refs:
+                fail(f&quot;closed storyline {storyline_id!r} must retain sourced counterevidence&quot;)
+
+        storylines.append({
+            &quot;storyline_id&quot;: storyline_id,
+            &quot;title&quot;: title,
+            &quot;lifecycle&quot;: {&quot;status&quot;: lifecycle_status, &quot;status_at&quot;: lifecycle_at, &quot;reason&quot;: lifecycle_reason},
+            &quot;plot_refs&quot;: plot_refs,
+            &quot;factual_frame&quot;: {
+                &quot;comparison_mode&quot;: comparison_mode,
+                &quot;window&quot;: {&quot;start&quot;: window_start_text, &quot;end&quot;: window_end_text},
+                &quot;cutoff&quot;: cutoff_text,
+                &quot;attention_refs&quot;: attention_refs,
+                &quot;official_refs&quot;: official_refs,
+                &quot;entity_refs&quot;: entity_refs,
+                &quot;factual_convergence_refs&quot;: convergence_refs,
+            },
+            &quot;question&quot;: question,
+            &quot;candidate_transition&quot;: transition_out,
+            &quot;continuity_case&quot;: continuity_case,
+            &quot;checkpoint_refs&quot;: checkpoint_refs,
+            &quot;strands&quot;: strands,
+            &quot;counterevidence_refs&quot;: counterevidence_refs,
+            &quot;review&quot;: {
+                &quot;disposition&quot;: disposition if complete_review else None,
+                &quot;closed_at&quot;: str(closed_at) if complete_review else None,
+                &quot;reviewed_by&quot;: reviewed_by if complete_review else None,
+            },
+        })
+    return storylines
+
+
+def prepare_plot_rooms(
+    subplot_rules: dict[str, list[tuple[str, Any]]],
+    anchors: list[dict[str, Any]],
+    umbrellas: list[dict[str, Any]],
+    releases: list[dict[str, Any]],
+) -&gt; dict[str, Any]:
+    authored = load_json(PLOT_ROOMS)
+    if authored.get(&quot;schema&quot;) != PLOT_SCHEMA:
+        fail(f&quot;plot-room source must use {PLOT_SCHEMA}&quot;)
+    score_key = recursive_score_key(authored)
+    if score_key:
+        fail(f&quot;plot-room score-like field is forbidden: {score_key!r}&quot;)
+    method = authored.get(&quot;method&quot;) or {}
+    for flag in (&quot;chart_first&quot;, &quot;rhyme_is_not_cause&quot;, &quot;unchanged_is_valid&quot;):
+        if method.get(flag) is not True:
+            fail(f&quot;plot-room method must preserve {flag}&quot;)
+    for flag in (&quot;scores_allowed&quot;, &quot;automatic_story_assignment&quot;, &quot;automatic_strand_promotion&quot;, &quot;forecast_permission&quot;):
+        if method.get(flag) is not False:
+            fail(f&quot;plot-room method must explicitly keep {flag} false&quot;)
+    if method.get(&quot;astrology_evidence_credit&quot;) != &quot;none&quot;:
+        fail(&quot;plot-room method must give astrology no factual-evidence credit&quot;)
+
+    calendar_by_id: dict[str, dict[str, Any]] = {}
+    for row in load_json(WATCH_CALENDAR).get(&quot;entries&quot;, []):
+        watch_id = str(row.get(&quot;watch_id&quot;) or &quot;&quot;)
+        if watch_id:
+            calendar_by_id[watch_id] = row
+    release_by_watch = {row[&quot;key&quot;]: row for row in releases}
+
+    required_pairs: set[tuple[str, str]] = set()
+    for umbrella in umbrellas:
+        for link in umbrella.get(&quot;manifestations&quot;) or []:
+            required_pairs.add((link[&quot;plotline&quot;], link[&quot;subplot&quot;]))
+    for anchor in anchors:
+        for overlap in anchor.get(&quot;overlaps&quot;) or []:
+            required_pairs.add((overlap[&quot;plotline&quot;], overlap[&quot;subplot&quot;]))
+
+    rooms_out: list[dict[str, Any]] = []
+    seen_plotlines: set[str] = set()
+    seen_clocks: set[str] = set()
+    covered_pairs: set[tuple[str, str]] = set()
+    DATE = re.compile(r&quot;^\d{4}-\d{2}-\d{2}$&quot;)
+
+    for room in authored.get(&quot;rooms&quot;) or []:
+        plotline = str(room.get(&quot;plotline&quot;) or &quot;&quot;)
+        if not plotline or plotline in seen_plotlines:
+            fail(f&quot;blank or duplicate plot-room plotline {plotline!r}&quot;)
+        if plotline not in subplot_rules:
+            fail(f&quot;plot-room uses unknown plotline {plotline!r}&quot;)
+        seen_plotlines.add(plotline)
+        poles = room.get(&quot;poles&quot;) or {}
+        if not str(room.get(&quot;dek&quot;) or &quot;&quot;).strip() or not str(room.get(&quot;locked_question&quot;) or &quot;&quot;).strip():
+            fail(f&quot;plot-room {plotline!r} needs a dek and locked question&quot;)
+        if not str(poles.get(&quot;light&quot;) or &quot;&quot;).strip() or not str(poles.get(&quot;shadow&quot;) or &quot;&quot;).strip():
+            fail(f&quot;plot-room {plotline!r} needs both poles&quot;)
+        allowed = {label for label, _ in subplot_rules.get(plotline, [])}
+        subplots_out: list[dict[str, Any]] = []
+        seen_subplots: set[str] = set()
+        for sub in room.get(&quot;subplots&quot;) or []:
+            subplot = str(sub.get(&quot;subplot&quot;) or &quot;&quot;)
+            state = str(sub.get(&quot;state&quot;) or &quot;&quot;)
+            function = str(sub.get(&quot;function&quot;) or &quot;&quot;).strip()
+            if subplot in seen_subplots or subplot not in allowed or state not in STORY_STATES or not function:
+                fail(f&quot;plot-room {plotline!r} has an invalid subplot {subplot!r}&quot;)
+            seen_subplots.add(subplot)
+            covered_pairs.add((plotline, subplot))
+            clocks_out: list[dict[str, Any]] = []
+            for clock in sub.get(&quot;clocks&quot;) or []:
+                clock_id = str(clock.get(&quot;id&quot;) or &quot;&quot;)
+                if not clock_id or clock_id in seen_clocks:
+                    fail(f&quot;blank or duplicate plot-room clock {clock_id!r}&quot;)
+                seen_clocks.add(clock_id)
+                kind = str(clock.get(&quot;kind&quot;) or &quot;&quot;)
+                window = str(clock.get(&quot;window&quot;) or &quot;&quot;)
+                maturity = str(clock.get(&quot;maturity&quot;) or &quot;&quot;)
+                label = str(clock.get(&quot;label&quot;) or &quot;&quot;).strip()
+                why = str(clock.get(&quot;why&quot;) or &quot;&quot;).strip()
+                date = str(clock.get(&quot;date&quot;) or &quot;&quot;)
+                if kind not in PLOT_KINDS or window not in PLOT_WINDOWS or maturity not in PLOT_MATURITIES:
+                    fail(f&quot;clock {clock_id!r} has an invalid kind, window, or maturity&quot;)
+                if not label or not why or not DATE.match(date):
+                    fail(f&quot;clock {clock_id!r} needs a date, label, and why&quot;)
+                watch_id = str(clock.get(&quot;watch_id&quot;) or &quot;&quot;) or None
+                reading_id = str(clock.get(&quot;reading_id&quot;) or &quot;&quot;) or None
+                source = str(clock.get(&quot;source&quot;) or &quot;&quot;) or None
+                if kind == &quot;watch&quot;:
+                    if not watch_id or watch_id not in calendar_by_id:
+                        fail(f&quot;clock {clock_id!r} is a watch without a calendar id&quot;)
+                    calendar_date = str(calendar_by_id[watch_id].get(&quot;date&quot;) or &quot;&quot;)
+                    if date != calendar_date:
+                        fail(f&quot;clock {clock_id!r} date {date} != watch_calendar {calendar_date}&quot;)
+                elif kind in {&quot;hypothesis&quot;, &quot;named_hole&quot;, &quot;record&quot;}:
+                    if not source:
+                        fail(f&quot;clock {clock_id!r} needs a vault source path&quot;)
+                elif kind == &quot;inherited_record&quot;:
+                    if not reading_id and not source:
+                        fail(f&quot;clock {clock_id!r} inherited record needs a reading or source&quot;)
+                if source:
+                    source_path = VAULT / source
+                    if not source_path.is_file():
+                        fail(f&quot;clock {clock_id!r} source missing: {source}&quot;)
+                if reading_id and reading_id not in {row[&quot;reading_id&quot;] for row in anchors}:
+                    fail(f&quot;clock {clock_id!r} references unknown reading {reading_id!r}&quot;)
+                clocks_out.append(
+                    {
+                        &quot;id&quot;: clock_id,
+                        &quot;date&quot;: date,
+                        &quot;label&quot;: label,
+                        &quot;maturity&quot;: maturity,
+                        &quot;window&quot;: window,
+                        &quot;kind&quot;: kind,
+                        &quot;inherited&quot;: bool(clock.get(&quot;inherited&quot;)),
+                        &quot;why&quot;: why,
+                        &quot;open_clock&quot;: str(clock.get(&quot;open_clock&quot;) or &quot;&quot;).strip(),
+                        &quot;watch_id&quot;: watch_id,
+                        &quot;reading_id&quot;: reading_id,
+                        &quot;source&quot;: source,
+                        &quot;release&quot;: release_by_watch.get(watch_id) if watch_id else None,
+                    }
+                )
+            clocks_out.sort(key=lambda row: row[&quot;date&quot;])
+            if not clocks_out:
+                fail(f&quot;plot-room {plotline!r} / {subplot!r} has no clocks&quot;)
+            subplots_out.append(
+                {
+                    &quot;subplot&quot;: subplot,
+                    &quot;state&quot;: state,
+                    &quot;function&quot;: function,
+                    &quot;clocks&quot;: clocks_out,
+                }
+            )
+        if not subplots_out:
+            fail(f&quot;plot-room {plotline!r} has no subplots&quot;)
+        rooms_out.append(
+            {
+                &quot;plotline&quot;: plotline,
+                &quot;dek&quot;: str(room.get(&quot;dek&quot;) or &quot;&quot;).strip(),
+                &quot;locked_question&quot;: str(room.get(&quot;locked_question&quot;) or &quot;&quot;).strip(),
+                &quot;poles&quot;: {&quot;light&quot;: str(poles.get(&quot;light&quot;) or &quot;&quot;).strip(), &quot;shadow&quot;: str(poles.get(&quot;shadow&quot;) or &quot;&quot;).strip()},
+                &quot;subplots&quot;: subplots_out,
+                &quot;clock_count&quot;: sum(len(row[&quot;clocks&quot;]) for row in subplots_out),
+            }
+        )
+
+    missing = sorted(required_pairs - covered_pairs)
+    if missing:
+        fail(&quot;plot rooms missing required spine pairs: &quot; + &quot;; &quot;.join(f&quot;{a} / {b}&quot; for a, b in missing))
+    storylines = prepare_storylines(authored, subplot_rules)
+    return {
+        &quot;schema&quot;: PLOT_SCHEMA,
+        &quot;updated&quot;: authored.get(&quot;updated&quot;),
+        &quot;status&quot;: authored.get(&quot;status&quot;),
+        &quot;title&quot;: authored.get(&quot;title&quot;),
+        &quot;dek&quot;: authored.get(&quot;dek&quot;),
+        &quot;method&quot;: method,
+        &quot;rooms&quot;: rooms_out,
+        &quot;storylines&quot;: storylines,
+    }
+
+
+def climate_for(date: str) -&gt; dict[str, Any]:
+    # Strict Greer validity: Cancer takes over only after mutable Aries expires;
+    # fixed-rising Libra then governs six months. Capricorn is a nested winter
+    # frame and does not replace Libra.
+    if date &lt; &quot;2026-09-23&quot;:
+        return {&quot;governing&quot;: &quot;2026 Cancer&quot;, &quot;governing_reading_id&quot;: &quot;ingress-2026-cancer&quot;}
+    row: dict[str, Any] = {
+        &quot;governing&quot;: &quot;2026 Libra&quot;,
+        &quot;governing_reading_id&quot;: &quot;ingress-2026-libra&quot;,
+    }
+    if date &gt;= &quot;2026-12-21&quot;:
+        row.update({&quot;nested&quot;: &quot;2026 Capricorn&quot;, &quot;nested_reading_id&quot;: &quot;ingress-2026-capricorn&quot;})
+    return row
+
+
+def build_payload() -&gt; dict[str, Any]:
+    authored = load_json(OVERLAPS)
+    if authored.get(&quot;schema&quot;) != SCHEMA:
+        fail(f&quot;overlap source must use {SCHEMA}&quot;)
+    score_key = recursive_score_key(authored)
+    if score_key:
+        fail(f&quot;score-like field is forbidden: {score_key!r}&quot;)
+    method = authored.get(&quot;method&quot;) or {}
+    for flag in (&quot;chart_first&quot;, &quot;rhyme_is_not_cause&quot;, &quot;unchanged_is_valid&quot;, &quot;degree_band_is_not_lineage&quot;):
+        if method.get(flag) is not True:
+            fail(f&quot;method must preserve {flag}&quot;)
+    if method.get(&quot;scores_allowed&quot;) is not False:
+        fail(&quot;method must explicitly forbid scores&quot;)
+
+    registry = load_json(REGISTRY)
+    readings = {row[&quot;id&quot;]: row for row in registry.get(&quot;readings&quot;, [])}
+    transition_data = load_json(TRANSITIONS)
+    transitions = {row[&quot;reading_id&quot;]: row for row in transition_data.get(&quot;watches&quot;, [])}
+    bones_data = load_json(BONES)
+    bones = {row[&quot;id&quot;]: row for row in bones_data.get(&quot;charts&quot;, [])}
+    expected = set(transitions)
+    actual = {str(row.get(&quot;reading_id&quot;) or &quot;&quot;) for row in authored.get(&quot;anchors&quot;, [])}
+    if actual != expected:
+        fail(f&quot;anchor coverage drifted: missing={sorted(expected-actual)} extra={sorted(actual-expected)}&quot;)
+
+    subplot_rules = load_subplot_rules()
+    families, lineages = extract_moon_data()
+    anchors: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for authored_anchor in authored.get(&quot;anchors&quot;, []):
+        reading_id = str(authored_anchor.get(&quot;reading_id&quot;) or &quot;&quot;)
+        if reading_id in seen:
+            fail(f&quot;duplicate anchor {reading_id!r}&quot;)
+        seen.add(reading_id)
+        registry_row = readings.get(reading_id)
+        transition = transitions.get(reading_id)
+        bone = bones.get(reading_id)
+        if not registry_row or not transition or not bone:
+            fail(f&quot;anchor {reading_id!r} is missing registry, transition, or bone authority&quot;)
+
+        source_rel = str(registry_row.get(&quot;source&quot;) or &quot;&quot;)
+        source_path = VAULT / source_rel
+        if not source_path.is_file():
+            fail(f&quot;anchor source missing: {source_rel}&quot;)
+        source_text = source_path.read_text(encoding=&quot;utf-8&quot;)
+        if not re.search(rf&quot;^reading_id:\s*{re.escape(reading_id)}\s*$&quot;, source_text, re.M):
+            fail(f&quot;reading identity drifted in {source_rel}&quot;)
+
+        overlaps = authored_anchor.get(&quot;overlaps&quot;) or []
+        if not 1 &lt;= len(overlaps) &lt;= 4:
+            fail(f&quot;anchor {reading_id!r} needs one to four natural overlaps&quot;)
+        prepared_overlaps: list[dict[str, Any]] = []
+        for overlap in overlaps:
+            plotline = str(overlap.get(&quot;plotline&quot;) or &quot;&quot;)
+            subplot = str(overlap.get(&quot;subplot&quot;) or &quot;&quot;)
+            why = str(overlap.get(&quot;why&quot;) or &quot;&quot;).strip()
+            if not why:
+                fail(f&quot;anchor {reading_id!r} has an incomplete overlap hypothesis&quot;)
+            allowed = {label for label, _ in subplot_rules.get(plotline, [])}
+            if subplot not in allowed:
+                fail(f&quot;noncanonical overlap pair: {plotline!r} / {subplot!r}&quot;)
+            prepared_overlaps.append({&quot;plotline&quot;: plotline, &quot;subplot&quot;: subplot, &quot;why&quot;: why})
+
+        date = str(bone.get(&quot;date&quot;) or &quot;&quot;)
+        chart_kind = str(bone.get(&quot;kind&quot;) or bone.get(&quot;type&quot;) or &quot;&quot;)
+        moon = moon_context(date, chart_kind, families, lineages)
+        detail_bone = bone_detail(reading_id)
+        exact_utc = str(detail_bone.get(&quot;utc&quot;) or &quot;&quot;)
+        exact_local = str(detail_bone.get(&quot;edt&quot;) or &quot;&quot;)
+        anchors.append(
+            {
+                &quot;key&quot;: f&quot;anchor-{reading_id}&quot;,
+                &quot;reading_id&quot;: reading_id,
+                &quot;date&quot;: date,
+                &quot;display_date&quot;: exact_local[:10] if exact_local else date,
+                &quot;exact_utc&quot;: exact_utc,
+                &quot;exact_local&quot;: exact_local,
+                &quot;title&quot;: first_heading(source_path),
+                &quot;source&quot;: source_rel,
+                &quot;chart_type&quot;: bone.get(&quot;type&quot;),
+                &quot;chart_kind&quot;: chart_kind,
+                &quot;chart_role&quot;: transition.get(&quot;chart_role&quot;),
+                &quot;sign&quot;: bone.get(&quot;sign&quot;),
+                &quot;degree&quot;: bone.get(&quot;deg&quot;),
+                &quot;eclipse&quot;: bone.get(&quot;eclipse&quot;),
+                &quot;greer_quiet&quot;: bone.get(&quot;greer_quiet&quot;),
+                &quot;climate&quot;: climate_for(date),
+                &quot;ingress_key&quot;: reading_id.removeprefix(&quot;ingress-&quot;) if bone.get(&quot;type&quot;) == &quot;ingress&quot; else None,
+                &quot;authority_question&quot;: transition.get(&quot;authority_question&quot;),
+                &quot;decision_right&quot;: transition.get(&quot;decision_right&quot;),
+                &quot;current_holder&quot;: transition.get(&quot;current_holder&quot;),
+                &quot;claimant_or_constraint&quot;: transition.get(&quot;claimant_or_constraint&quot;),
+                &quot;transition&quot;: transition.get(&quot;transition&quot;),
+                &quot;mechanisms&quot;: transition.get(&quot;mechanisms&quot;) or [],
+                &quot;poles&quot;: transition.get(&quot;poles&quot;) or {},
+                &quot;arcs&quot;: (transition.get(&quot;synchronization&quot;) or {}).get(&quot;arcs&quot;) or [],
+                &quot;watch_for&quot;: (transition.get(&quot;synchronization&quot;) or {}).get(&quot;watch_for&quot;),
+                &quot;evidence_test&quot;: transition.get(&quot;evidence_test&quot;) or {},
+                &quot;moon&quot;: moon,
+                &quot;root&quot;: detail_bone.get(&quot;root_members&quot;) or [],
+                &quot;america&quot;: america_context(detail_bone),
+                &quot;overlaps&quot;: prepared_overlaps,
+            }
+        )
+
+    anchors.sort(key=lambda row: row[&quot;exact_utc&quot;] or row[&quot;date&quot;])
+    releases = resolve_watch_refs(
+        authored.get(&quot;watch_refs&quot;) or [],
+        load_json(WATCH_CALENDAR).get(&quot;entries&quot;, []),
+        authored[&quot;window&quot;],
+    )
+    umbrellas = build_umbrellas(authored.get(&quot;umbrellas&quot;) or [], anchors, releases, subplot_rules)
+    conjunction_map = build_conjunction_map(authored.get(&quot;conjunction_map&quot;) or {})
+    regime_waves = prepare_regime_waves()
+    plot_rooms = prepare_plot_rooms(subplot_rules, anchors, umbrellas, releases)
+    for anchor in anchors:
+        anchor[&quot;umbrella_ids&quot;] = [
+            row[&quot;cycle_id&quot;] for row in umbrellas if anchor[&quot;reading_id&quot;] in row[&quot;carrier_reading_ids&quot;]
+        ]
+    for release in releases:
+        release[&quot;umbrella_ids&quot;] = [
+            row[&quot;cycle_id&quot;] for row in umbrellas if release[&quot;key&quot;] in row[&quot;watch_ids&quot;]
+        ]
+    as_of = str((umbrellas[0].get(&quot;as_of&quot;) if umbrellas else &quot;&quot;) or &quot;&quot;)
+    return {
+        &quot;schema&quot;: SCHEMA,
+        &quot;built&quot;: dt.datetime.now(dt.timezone.utc).isoformat(timespec=&quot;seconds&quot;),
+        &quot;updated&quot;: authored.get(&quot;updated&quot;),
+        &quot;title&quot;: authored.get(&quot;title&quot;),
+        &quot;status&quot;: authored.get(&quot;status&quot;),
+        &quot;window&quot;: authored.get(&quot;window&quot;),
+        &quot;method&quot;: method,
+        &quot;as_of&quot;: as_of,
+        &quot;current_chapter&quot;: current_chapter_context(as_of, bones, readings),
+        &quot;current_phase&quot;: current_phase_context(families, lineages, as_of),
+        &quot;america_hand&quot;: america_hand(as_of),
+        &quot;conjunction_map&quot;: conjunction_map,
+        &quot;regime_waves&quot;: regime_waves,
+        &quot;plot_rooms&quot;: plot_rooms,
+        &quot;umbrellas&quot;: umbrellas,
+        &quot;anchors&quot;: anchors,
+        &quot;releases&quot;: releases,
+        &quot;climates&quot;: [
+            {&quot;label&quot;: &quot;Cancer climate&quot;, &quot;start&quot;: &quot;2026-06-21&quot;, &quot;end&quot;: &quot;2026-09-22&quot;, &quot;reading_id&quot;: &quot;ingress-2026-cancer&quot;, &quot;note&quot;: &quot;Mutable Aries expired; Cancer governs the quarter.&quot;},
+            {&quot;label&quot;: &quot;Libra climate&quot;, &quot;start&quot;: &quot;2026-09-23&quot;, &quot;end&quot;: &quot;2027-03-19&quot;, &quot;reading_id&quot;: &quot;ingress-2026-libra&quot;, &quot;note&quot;: &quot;Aries rising makes this a six-month governing frame.&quot;},
+            {&quot;label&quot;: &quot;Capricorn nested frame&quot;, &quot;start&quot;: &quot;2026-12-21&quot;, &quot;end&quot;: &quot;2027-03-19&quot;, &quot;reading_id&quot;: &quot;ingress-2026-capricorn&quot;, &quot;nested&quot;: True, &quot;note&quot;: &quot;A winter subframe inside still-governing Libra.&quot;},
+        ],
+        &quot;pattern_notes&quot;: [
+            &quot;One story can live beneath several planetary umbrellas, and one umbrella can move through many stories. These links are lenses, not ownership tags.&quot;,
+            &quot;A direct aspect, a cycle phase, and sign co-presence are different clocks. The view names them separately instead of holding the sky forever at exactitude.&quot;,
+            &quot;The governing ingress sets the room; the New Moon opens the chapter; Moon-family phases distribute and harvest the slower field through lived time.&quot;,
+            &quot;By plot is a third internal mode, not a second climate. Clocks live under canonical stories so a lunation card does not have to carry the whole reservoir.&quot;,
+        ],
+    }
+
+
+TEMPLATE = r&#x27;&#x27;&#x27;&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;The Astrology Spine — Freedom 250 Observatory&lt;/title&gt;
+&lt;style&gt;
+:root{--paper:#f7f1e4;--paper2:#fffdf7;--ink:#2b261e;--muted:#766d60;--line:#d9cdb8;--navy:#173b55;--navy2:#285f78;--gold:#ad8240;--rust:#a75238;--sage:#617a68;--violet:#6f5b82;--shadow:0 12px 36px rgba(58,43,22,.10)}
+html[data-theme=&quot;dark&quot;]{--paper:#17191b;--paper2:#202326;--ink:#f1eadc;--muted:#b8ad9d;--line:#45413b;--navy:#86bfd5;--navy2:#5e9cb8;--gold:#d4ae6c;--rust:#db846a;--sage:#91b89a;--violet:#b6a3ca;--shadow:0 14px 38px rgba(0,0,0,.3)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,&#x27;Times New Roman&#x27;,serif;min-height:100vh}.shell{max-width:1460px;margin:auto;padding:24px 28px 52px}.hero{border:1px solid var(--line);border-radius:18px;padding:26px 30px;background:radial-gradient(circle at 88% 10%,rgba(173,130,64,.15),transparent 34%),var(--paper2);box-shadow:var(--shadow)}.eyebrow,.meta,.chip,.filter,.action,.date,.lane,.rank,.mini-label,.empty{font-family:system-ui,-apple-system,sans-serif}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}h1{font-size:clamp(34px,5vw,68px);line-height:.96;margin:10px 0 14px;color:var(--navy);font-weight:500;letter-spacing:-.035em}.hero p{font-size:18px;line-height:1.55;max-width:900px;margin:0;color:var(--muted)}.hero-actions,.actions,.chips,.filters{display:flex;flex-wrap:wrap;gap:8px}.hero-actions{margin-top:20px}.action,.filter{appearance:none;border:1px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:999px;padding:8px 13px;font-size:12px;font-weight:750;cursor:pointer;text-decoration:none}.action:hover,.filter:hover,.filter.active{border-color:var(--gold);color:var(--navy);background:color-mix(in srgb,var(--gold) 12%,var(--paper2))}.action.primary{background:var(--navy);color:var(--paper2);border-color:var(--navy)}.method-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.pattern{padding:15px 16px;border:1px solid var(--line);border-radius:12px;background:var(--paper2);font-size:14px;line-height:1.45;color:var(--muted)}.pattern::before{content:&#x27;✦&#x27;;color:var(--gold);margin-right:7px}.climate{margin:18px 0 10px;border:1px solid var(--line);border-radius:14px;background:var(--paper2);padding:14px 16px}.climate-head{display:flex;justify-content:space-between;gap:14px;align-items:baseline;margin-bottom:10px}.climate-head h2{font-size:16px;margin:0;color:var(--navy)}.meta{font-size:11px;color:var(--muted)}.climate-track{display:grid;grid-template-columns:34fr 57fr 9fr;height:12px;border-radius:999px;overflow:hidden;background:var(--line)}.climate-track button{border:0;cursor:pointer}.climate-track .cancer{background:var(--navy2)}.climate-track .libra{background:var(--gold)}.climate-track .capricorn{background:var(--rust)}.climate-labels{display:grid;grid-template-columns:34fr 57fr 9fr;gap:8px;margin-top:8px;font-family:system-ui,sans-serif;font-size:11px;color:var(--muted)}.controls{position:sticky;top:0;z-index:8;display:flex;justify-content:space-between;gap:14px;align-items:center;margin:18px 0 12px;padding:10px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px)}.filters{min-width:0}.search{width:min(320px,35vw);border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:var(--paper2);color:var(--ink);font:13px system-ui,sans-serif}.workspace{display:grid;grid-template-columns:minmax(340px, .82fr) minmax(480px,1.6fr);gap:16px;align-items:start}.timeline{border:1px solid var(--line);border-radius:16px;background:var(--paper2);padding:10px;max-height:calc(100vh - 110px);overflow:auto}.timeline-row{position:relative;display:grid;grid-template-columns:80px 18px 1fr;gap:10px;width:100%;border:0;background:transparent;color:var(--ink);text-align:left;padding:9px 8px;cursor:pointer;border-radius:10px}.timeline-row:hover,.timeline-row.active{background:color-mix(in srgb,var(--gold) 11%,transparent)}.timeline-row .date{font-size:11px;color:var(--muted);padding-top:3px}.node{position:relative;width:14px;height:14px;border-radius:50%;margin-top:3px;border:3px solid var(--paper2);box-shadow:0 0 0 1px var(--line);background:var(--navy)}.timeline-row:not(:last-child) .node::after{content:&#x27;&#x27;;position:absolute;width:1px;height:42px;background:var(--line);top:14px;left:6px}.timeline-row.release .node{width:9px;height:9px;margin:5px 0 0 3px;border:0;box-shadow:none;background:var(--violet)}.timeline-row.release.money_rules .node{background:var(--gold)}.timeline-row.release.operating_proof .node{background:var(--sage)}.row-title{font-size:14px;line-height:1.28}.timeline-row.anchor .row-title{font-size:16px;color:var(--navy);font-weight:700}.row-sub{font:11px/1.35 system-ui,sans-serif;color:var(--muted);margin-top:3px}.detail{border:1px solid var(--line);border-radius:16px;background:var(--paper2);box-shadow:var(--shadow);min-height:620px}.detail-inner{padding:26px 28px 34px}.detail h2{font-size:clamp(26px,3.3vw,43px);line-height:1.05;margin:8px 0 12px;color:var(--navy);font-weight:500}.detail h3{font-size:17px;color:var(--navy);margin:25px 0 10px}.lead{font-size:19px;line-height:1.48;margin:0 0 17px}.chip{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-size:11px;color:var(--muted);background:var(--paper)}.chip.eclipse{border-color:var(--rust);color:var(--rust)}.chip.arc{cursor:pointer}.chip.arc:hover{border-color:var(--gold);color:var(--navy)}.transition{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.transition&gt;div,.family-box,.proof-box,.release-box{border:1px solid var(--line);border-radius:12px;padding:14px 15px;background:var(--paper)}.mini-label{font-size:10px;text-transform:uppercase;letter-spacing:.11em;font-weight:850;color:var(--gold);margin-bottom:5px}.transition p,.family-box p,.proof-box p,.release-box p{margin:0;font-size:14px;line-height:1.45;color:var(--muted)}.family-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.overlaps{display:grid;gap:10px}.overlap{border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:13px 15px;background:var(--paper)}.overlap.also_watch{border-left-color:var(--navy2)}.overlap-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.overlap h4{font-size:17px;margin:0;color:var(--navy)}.overlap h4 button{font:inherit;color:inherit;border:0;background:transparent;padding:0;cursor:pointer;text-align:left}.overlap h4 button:hover{text-decoration:underline}.rank{font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:850;color:var(--gold);white-space:nowrap}.overlap p{font-size:14px;line-height:1.48;margin:7px 0 0;color:var(--muted)}.subplot-link{font:12px system-ui,sans-serif;color:var(--rust);border:0;background:transparent;padding:0;margin-top:4px;cursor:pointer}.subplot-link:hover{text-decoration:underline}.nearby{display:grid;gap:8px}.nearby button{width:100%;display:grid;grid-template-columns:82px 1fr;gap:10px;text-align:left;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--paper);color:var(--ink);cursor:pointer}.nearby button:hover{border-color:var(--gold)}.nearby .nd{font:11px system-ui,sans-serif;color:var(--muted)}.nearby .nt{font-size:13px}.release-detail .lane{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:850;color:var(--violet)}.source-link{color:var(--navy);word-break:break-word}.empty{padding:30px;text-align:center;color:var(--muted)}.ethics{margin-top:22px;border-top:1px solid var(--line);padding-top:16px;font:12px/1.5 system-ui,sans-serif;color:var(--muted)}
+.now-stack{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.now-card{border:1px solid var(--line);border-radius:14px;background:var(--paper2);padding:15px}.now-card h2{font-size:16px;color:var(--navy);margin:5px 0 7px}.now-card p{font-size:12px;line-height:1.45;color:var(--muted);margin:0}.umbrella-shell{border:1px solid var(--line);border-radius:16px;background:var(--paper2);padding:16px;margin:16px 0}.umbrella-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end}.umbrella-head h2{margin:0;color:var(--navy);font-size:20px}.umbrella-head p{margin:0;max-width:660px;color:var(--muted);font-size:13px;line-height:1.4}.umbrella-rail{display:grid;grid-template-columns:repeat(6,minmax(145px,1fr));gap:8px;margin-top:13px;overflow:auto}.umbrella-card{border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);padding:12px;text-align:left;cursor:pointer;min-height:115px}.umbrella-card:hover,.umbrella-card.active{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,var(--paper))}.umbrella-card b{display:block;color:var(--navy);font-size:14px;line-height:1.2}.umbrella-card span{display:block;font:11px/1.35 system-ui,sans-serif;color:var(--muted);margin-top:7px}.manifestations{display:grid;gap:10px}.manifestation{border:1px solid var(--line);border-radius:12px;padding:14px 15px;background:var(--paper)}.manifestation h4{font-size:17px;margin:0;color:var(--navy)}.manifestation p{margin:7px 0 0;font-size:14px;line-height:1.45;color:var(--muted)}button.chip{cursor:pointer}.orbit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.rank{display:none}
+.mode-switch{display:flex;gap:8px;margin:14px 0 0;padding:5px;border:1px solid var(--line);border-radius:999px;background:var(--paper2);width:max-content;max-width:100%}.mode-button{appearance:none;border:0;border-radius:999px;background:transparent;color:var(--muted);padding:9px 14px;cursor:pointer;font:800 12px system-ui,sans-serif;white-space:nowrap}.mode-button.active{background:var(--navy);color:var(--paper2)}[hidden]{display:none!important}.wave-mode{margin-top:16px}.wave-intro{border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 10%,var(--paper2)),var(--paper2) 52%);padding:18px 20px}.wave-intro h2{color:var(--navy);font-weight:500;font-size:28px;margin:5px 0 8px}.wave-intro p{font-size:14px;line-height:1.5;color:var(--muted);margin:0;max-width:1050px}.wave-thesis-line{font-size:18px!important;color:var(--ink)!important;margin-top:10px!important}.wave-arc{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:6px;overflow:auto;margin:14px 0 0}.wave-arc button{position:relative;border:0;border-top:3px solid var(--gold);background:color-mix(in srgb,var(--gold) 8%,var(--paper));color:var(--navy);padding:10px 8px;text-align:left;cursor:pointer;font:800 11px/1.25 system-ui,sans-serif}.wave-arc button:not(:last-child)::after{content:&#x27;→&#x27;;position:absolute;right:-7px;top:8px;color:var(--gold);z-index:2}.wave-arc small{display:block;color:var(--muted);font-weight:600;margin-top:3px}.wave-rail{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:8px;overflow:auto;margin:12px 0}.wave-tab{border:1px solid var(--line);border-radius:13px;background:var(--paper2);color:var(--ink);padding:12px;text-align:left;cursor:pointer;min-height:98px}.wave-tab:hover,.wave-tab.active{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,var(--paper2))}.wave-tab b{display:block;color:var(--navy);font-size:13px;line-height:1.25}.wave-tab span{display:block;font:10px/1.4 system-ui,sans-serif;color:var(--muted);margin-top:6px}.wave-layout{display:grid;grid-template-columns:minmax(290px,.72fr) minmax(520px,1.6fr);gap:14px;align-items:start}.wave-sidebar,.wave-detail{border:1px solid var(--line);border-radius:16px;background:var(--paper2)}.wave-sidebar{padding:16px;position:sticky;top:12px}.wave-sidebar h3{font-size:18px;color:var(--navy);margin:5px 0 10px}.wave-sidebar p{font-size:13px;line-height:1.45;color:var(--muted);margin:7px 0}.wave-detail{padding:24px 26px}.wave-detail h2{font-size:clamp(28px,3.2vw,44px);font-weight:500;line-height:1.04;color:var(--navy);margin:6px 0 12px}.wave-detail h3{font-size:18px;color:var(--navy);margin:24px 0 10px}.wave-kicker{font:800 11px/1.4 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--gold)}.wave-thesis{font-size:20px;line-height:1.45;margin:0 0 16px}.wave-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.wave-panel{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:14px 15px}.wave-panel p{font-size:14px;line-height:1.47;color:var(--muted);margin:0}.wave-panel b{color:var(--ink)}.beat-list,.evidence-list{display:grid;gap:9px}.beat-card,.evidence-card{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:13px 14px}.beat-head,.evidence-head{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}.beat-card h4,.evidence-card h4{font-size:16px;color:var(--navy);margin:0}.beat-card p,.evidence-card p{font-size:13px;line-height:1.45;color:var(--muted);margin:7px 0 0}.beat-meta,.coverage{font:800 10px/1.35 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);white-space:nowrap}.coverage.gapped{color:var(--rust)}.coverage.boundary-note{white-space:normal;text-transform:none;letter-spacing:0}.eo-strip{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.eo-link{border:1px solid var(--line);border-radius:999px;background:var(--paper2);color:var(--navy);padding:5px 8px;cursor:pointer;font:750 10px system-ui,sans-serif}.eo-link:hover{border-color:var(--gold)}.hard-boundary{border-left:3px solid var(--rust);padding-left:10px}.wave-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.wave-actions button{border:1px solid var(--line);border-radius:999px;background:var(--paper2);color:var(--ink);padding:7px 10px;cursor:pointer;font:750 11px system-ui,sans-serif}.wave-actions button:hover{border-color:var(--gold);color:var(--navy)}
+.wave-layout,.wave-sidebar,.wave-detail,.wave-grid,.wave-panel,.beat-list,.evidence-list,.beat-card,.evidence-card{min-width:0}.wave-sidebar p,.wave-detail p,.wave-detail h4,.wave-actions button{overflow-wrap:anywhere}
+.root-shell{border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--navy) 8%,var(--paper2)),var(--paper2) 46%);padding:20px;margin:16px 0}.root-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px}.root-head h2{font-size:25px;font-weight:500;color:var(--navy);margin:4px 0 0}.root-head p{font-size:14px;line-height:1.48;color:var(--muted);max-width:730px;margin:0}.era-tabs{display:flex;gap:8px;overflow:auto;margin:16px 0 12px;padding-bottom:2px}.era-tab{border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);padding:8px 12px;white-space:nowrap;cursor:pointer;font:700 11px system-ui,sans-serif}.era-tab.active,.era-tab:hover{border-color:var(--gold);color:var(--navy);background:color-mix(in srgb,var(--gold) 11%,var(--paper))}.era-theme{border-left:3px solid var(--gold);padding:2px 0 2px 12px;font-size:14px;line-height:1.46;color:var(--muted);margin:0 0 13px}.root-workspace{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(430px,1.5fr);gap:12px}.root-list{display:grid;gap:8px}.root-card{border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);padding:12px 13px;text-align:left;cursor:pointer}.root-card:hover,.root-card.active{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 9%,var(--paper))}.root-card b{display:block;font-size:15px;color:var(--navy)}.root-card span{display:block;font:11px/1.4 system-ui,sans-serif;color:var(--muted);margin-top:4px}.root-detail{border:1px solid var(--line);border-radius:14px;background:var(--paper2);padding:18px 20px;min-height:240px}.root-detail h3{font-size:24px;font-weight:500;color:var(--navy);margin:5px 0 9px}.root-detail .lead{font-size:16px;margin-bottom:13px}.seed-passes{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.seed-pass{border:1px solid var(--line);border-radius:9px;background:var(--paper);padding:8px 9px;font:11px/1.35 system-ui,sans-serif;color:var(--muted)}.seed-pass b{color:var(--ink)}.clock-now{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.clock-now&gt;div{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:11px 12px}.clock-now p{font-size:12px;line-height:1.42;color:var(--muted);margin:4px 0 0}.exact-shell{margin-top:19px;border-top:1px solid var(--line);padding-top:17px}.exact-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}.exact-head h3{font-size:18px;color:var(--navy);margin:3px 0 0}.exact-head p{font:11px/1.4 system-ui,sans-serif;color:var(--muted);max-width:690px;margin:0}.exact-rail{display:flex;gap:8px;overflow:auto;padding:11px 1px 4px}.exact-event{min-width:185px;border:1px solid var(--line);border-radius:11px;background:var(--paper);color:var(--ink);padding:10px 11px;text-align:left;cursor:pointer}.exact-event:hover{border-color:var(--gold)}.exact-event time{display:block;font:800 10px system-ui,sans-serif;color:var(--gold);text-transform:uppercase;letter-spacing:.07em}.exact-event b{display:block;color:var(--navy);font-size:14px;margin:4px 0}.exact-event span{display:block;font:11px/1.36 system-ui,sans-serif;color:var(--muted)}
+.authority-stack{display:grid;grid-template-columns:repeat(5,minmax(150px,1fr));gap:7px;overflow:auto;margin-top:14px}.authority-layer{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:10px}.authority-layer b{display:block;font:800 11px/1.3 system-ui,sans-serif;color:var(--navy)}.authority-layer span{display:block;font:10px/1.4 system-ui,sans-serif;color:var(--muted);margin-top:4px}.scope-warning{margin-top:12px!important;border-left:3px solid var(--rust);padding-left:11px}.official-story{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 8%,var(--paper))}
+.plot-intro{border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--navy) 8%,var(--paper2)),var(--paper2) 52%);padding:16px 20px}.plot-intro h2{color:var(--navy);font-weight:500;font-size:28px;margin:4px 0 6px}.plot-intro p{font-size:14px;line-height:1.45;color:var(--muted);margin:0;max-width:980px}.plot-board{display:block;margin-top:4px}.plot-stage{border:1px solid var(--line);border-radius:16px;background:var(--paper2);padding:16px 18px 12px;overflow-x:auto}.plot-stage-head{margin-bottom:10px}.plot-stage-head h3{margin:3px 0 6px;color:var(--navy);font-size:26px;font-weight:500}.plot-stage-head p{margin:0;max-width:860px;color:var(--muted);font-size:15px;line-height:1.4}.plot-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:8px 0 0;font:700 10px/1.2 system-ui,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.plot-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px;border:2px solid}.plot-legend .watch i{border-color:var(--violet);background:var(--violet)}.plot-legend .hypothesis i{border-color:var(--gold);background:transparent}.plot-legend .named_hole i{border-color:var(--rust);background:var(--rust)}.plot-legend .inherited_record i{border-color:var(--navy);background:var(--navy)}.plot-legend .record i{border-color:var(--sage);background:var(--sage)}.plot-key,#plotRoomDek{margin:6px 0 0;font:13px/1.4 system-ui,sans-serif;color:var(--muted);max-width:860px}.plot-axis{position:relative;height:44px;margin:0 8px 0 210px}.plot-ticks{position:absolute;inset:0 0 22px}.plot-tick{position:absolute;top:0;transform:translateX(-50%);font:700 10px system-ui,sans-serif;color:var(--muted);white-space:nowrap}.plot-tick.first{transform:none}.plot-tick.last{transform:translateX(-100%)}.plot-bands{position:absolute;left:0;right:0;top:18px;height:10px;border-radius:7px;overflow:hidden}.plot-band{position:absolute;top:0;bottom:0}.plot-band.y2024{background:color-mix(in srgb,var(--muted) 16%,var(--paper))}.plot-band.y2025{background:color-mix(in srgb,var(--muted) 28%,var(--paper))}.plot-band.aries{background:color-mix(in srgb,var(--sage) 55%,var(--paper))}.plot-band.cancer{background:var(--navy2)}.plot-band.libra{background:var(--gold)}.plot-band.cap{background:var(--rust)}.plot-band-labels{position:absolute;left:0;right:0;top:30px;height:14px}.plot-band-labels span{position:absolute;transform:translateX(-50%);font:800 9px system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.plot-lanes{position:relative;min-width:760px}.plot-today-rail{position:absolute;left:210px;right:0;top:0;bottom:0;pointer-events:none;z-index:3}.plot-today{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed var(--rust);z-index:3;pointer-events:none}.plot-today span{position:absolute;top:-16px;transform:translateX(-50%);font:800 9px system-ui,sans-serif;color:var(--rust);letter-spacing:.08em;text-transform:uppercase;background:var(--paper2);padding:0 4px}.plot-lane{display:grid;grid-template-columns:210px minmax(0,1fr);min-height:72px;border-top:1px solid var(--line)}.plot-lane-label{padding:12px 12px 8px 2px}.plot-lane-label b{display:block;font:700 12px/1.25 system-ui,sans-serif;color:var(--navy)}.plot-lane-label span{display:block;font:10px/1.3 system-ui,sans-serif;color:var(--muted);margin-top:3px}.plot-track{position:relative;min-height:72px}.plot-track-bg{position:absolute;inset:14px 0;border-radius:8px;overflow:hidden;opacity:.18}.plot-node{position:absolute;top:50%;width:32px;height:32px;margin-left:-16px;border:0;background:transparent;transform:translateY(-50%);cursor:pointer;z-index:4;padding:0}.plot-dot{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;border:2px solid currentColor;background:transparent;pointer-events:none}.plot-node.watch{color:var(--violet)}.plot-node.hypothesis{color:var(--gold)}.plot-node.named_hole{color:var(--rust)}.plot-node.inherited_record{color:var(--navy)}.plot-node.record{color:var(--sage)}.plot-node.filled .plot-dot{background:currentColor}.plot-node:hover,.plot-node.active{z-index:7}.plot-node.active .plot-dot{box-shadow:0 0 0 4px color-mix(in srgb,currentColor 30%,transparent);transform:scale(1.12)}.plot-tip{position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);white-space:nowrap;font:700 10px/1.2 system-ui,sans-serif;color:var(--ink);background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:4px 7px;box-shadow:var(--shadow);pointer-events:none;max-width:220px;overflow:hidden;text-overflow:ellipsis}.plot-tip{display:none;z-index:8}.plot-node:hover .plot-tip{display:block}.plot-inspector{border:1px solid var(--line);border-radius:16px;background:var(--paper2);box-shadow:var(--shadow);padding:20px 22px 24px;margin-top:14px}.plot-inspector h3{font-size:26px;font-weight:500;color:var(--navy);margin:6px 0 8px;line-height:1.15}.plot-inspector p{font-size:15px;line-height:1.5;color:var(--muted);margin:0 0 10px}.plot-poles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 12px}.plot-poles div{border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:var(--paper)}.plot-poles p{margin:0;font-size:13px}.plot-empty{color:var(--muted);font-size:15px}
+@media(max-width:1100px){.now-stack{grid-template-columns:1fr 1fr}.umbrella-rail{grid-template-columns:repeat(3,minmax(180px,1fr))}}
+@media(max-width:980px){.method-strip{grid-template-columns:1fr}.workspace,.root-workspace,.wave-layout{grid-template-columns:1fr}.wave-sidebar{position:static}.timeline{max-height:390px}.detail{min-height:0}.controls{position:static;align-items:stretch;flex-direction:column}.search{width:100%;max-width:none}.family-grid{grid-template-columns:1fr}.umbrella-head,.root-head,.exact-head{display:block}.umbrella-head p,.root-head p,.exact-head p{margin-top:8px}.plot-poles{grid-template-columns:1fr}.plot-axis{margin-left:0}.plot-today-rail{left:0}}
+@media(max-width:600px){.shell{padding:14px 12px 36px}.hero{padding:21px 18px}.hero p{font-size:16px}.mode-switch{width:100%;overflow:auto}.now-stack,.wave-grid{grid-template-columns:1fr}.wave-rail{grid-template-columns:repeat(7,190px)}.wave-detail{padding:20px 17px}.beat-head,.evidence-head{flex-wrap:wrap}.beat-meta,.coverage{white-space:normal}.umbrella-rail{grid-template-columns:repeat(6,210px)}.root-shell{padding:16px}.clock-now{grid-template-columns:1fr}.climate-labels{font-size:9px}.timeline-row{grid-template-columns:70px 14px 1fr}.detail-inner{padding:21px 18px 28px}.transition,.orbit-grid{grid-template-columns:1fr}}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;shell&quot;&gt;
+  &lt;header class=&quot;hero&quot;&gt;
+    &lt;div class=&quot;eyebrow&quot;&gt;Sky &amp;amp; Charts · moving orbital map&lt;/div&gt;
+    &lt;h1&gt;The Astrology Spine&lt;/h1&gt;
+    &lt;p&gt;Real planetary cycles move through governing climates, lunar chapters, Chronicle manifestations, and awaited political gates. Umbrellas overlap freely: they organize the weather without owning a plotline or forcing an event.&lt;/p&gt;
+    &lt;div class=&quot;hero-actions&quot;&gt;
+      &lt;button class=&quot;action primary&quot; type=&quot;button&quot; data-focus-now&gt;Focus the next chart&lt;/button&gt;
+      &lt;button class=&quot;action&quot; type=&quot;button&quot; data-open-sub=&quot;chart-readings&quot;&gt;Open Chart Readings&lt;/button&gt;
+      &lt;button class=&quot;action&quot; type=&quot;button&quot; data-open-sub=&quot;moon-families&quot;&gt;Open Moon Families&lt;/button&gt;
+      &lt;button class=&quot;action&quot; type=&quot;button&quot; data-open-clocks&gt;Open Long Clocks&lt;/button&gt;
+      &lt;button class=&quot;action&quot; type=&quot;button&quot; data-open-comparison&gt;Compare charts&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;nav class=&quot;mode-switch&quot; aria-label=&quot;Astrology Spine modes&quot;&gt;
+    &lt;button class=&quot;mode-button active&quot; type=&quot;button&quot; data-mode=&quot;current&quot;&gt;Now &amp;amp; forward&lt;/button&gt;
+    &lt;button class=&quot;mode-button&quot; type=&quot;button&quot; data-mode=&quot;plots&quot;&gt;By plot&lt;/button&gt;
+    &lt;button class=&quot;mode-button&quot; type=&quot;button&quot; data-mode=&quot;waves&quot;&gt;Institutional waves · 2025→now&lt;/button&gt;
+  &lt;/nav&gt;
+  &lt;section class=&quot;wave-mode&quot; id=&quot;plotMode&quot; hidden&gt;
+    &lt;div class=&quot;plot-intro&quot;&gt;
+      &lt;div class=&quot;eyebrow&quot;&gt;Event timeline · same spine, no second climate&lt;/div&gt;
+      &lt;h2 id=&quot;plotTitle&quot;&gt;&lt;/h2&gt;
+      &lt;p id=&quot;plotDek&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;era-tabs&quot; id=&quot;plotRail&quot; role=&quot;tablist&quot; aria-label=&quot;Plotline rooms&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;plot-board&quot;&gt;
+      &lt;div class=&quot;plot-stage&quot;&gt;
+        &lt;div class=&quot;plot-stage-head&quot;&gt;
+          &lt;div class=&quot;eyebrow&quot; id=&quot;plotKicker&quot;&gt;Select a plot&lt;/div&gt;
+          &lt;h3 id=&quot;plotRoomTitle&quot;&gt;&lt;/h3&gt;
+          &lt;p id=&quot;plotRoomDek&quot;&gt;&lt;/p&gt;
+          &lt;p id=&quot;plotQuestion&quot;&gt;&lt;/p&gt;
+          &lt;div class=&quot;plot-legend&quot; aria-label=&quot;Event kinds&quot;&gt;
+            &lt;span class=&quot;record&quot;&gt;&lt;i&gt;&lt;/i&gt;Dated event&lt;/span&gt;
+            &lt;span class=&quot;inherited_record&quot;&gt;&lt;i&gt;&lt;/i&gt;On the chronicle&lt;/span&gt;
+            &lt;span class=&quot;watch&quot;&gt;&lt;i&gt;&lt;/i&gt;Still open&lt;/span&gt;
+            &lt;span class=&quot;hypothesis&quot;&gt;&lt;i&gt;&lt;/i&gt;Hypothesis&lt;/span&gt;
+            &lt;span class=&quot;named_hole&quot;&gt;&lt;i&gt;&lt;/i&gt;Named hole&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;plot-key&quot;&gt;Filled dots already happened. Open rings are unresolved. A watch is an event that has not closed yet.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;plot-axis&quot; id=&quot;plotAxis&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;plot-lanes&quot; id=&quot;plotLanes&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;aside class=&quot;plot-inspector&quot; id=&quot;plotInspector&quot; aria-live=&quot;polite&quot;&gt;&lt;/aside&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;wave-mode&quot; id=&quot;institutionalWaveMode&quot; hidden&gt;
+    &lt;div class=&quot;wave-intro&quot;&gt;
+      &lt;div class=&quot;eyebrow&quot;&gt;Record-first retrospective calibration · EO maturity layer&lt;/div&gt;
+      &lt;h2&gt;How the EO-led institutional layer matured inside the climate&lt;/h2&gt;
+      &lt;p class=&quot;wave-thesis-line&quot; id=&quot;waveCrossThesis&quot;&gt;&lt;/p&gt;
+      &lt;p id=&quot;waveMethod&quot;&gt;&lt;/p&gt;
+      &lt;div class=&quot;authority-stack&quot; id=&quot;waveAuthority&quot; aria-label=&quot;Interpretive authority stack&quot;&gt;&lt;/div&gt;
+      &lt;p class=&quot;scope-warning&quot; id=&quot;waveScope&quot;&gt;&lt;/p&gt;
+      &lt;div class=&quot;wave-arc&quot; id=&quot;waveArc&quot; aria-label=&quot;Cross-wave institutional sequence&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;wave-actions&quot;&gt;&lt;button type=&quot;button&quot; data-wave-doc=&quot;cross&quot;&gt;Read the full cross-wave synthesis&lt;/button&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;wave-rail&quot; id=&quot;waveRail&quot; role=&quot;tablist&quot; aria-label=&quot;Institutional regime waves&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;wave-layout&quot;&gt;
+      &lt;aside class=&quot;wave-sidebar&quot; id=&quot;waveSidebar&quot;&gt;&lt;/aside&gt;
+      &lt;article class=&quot;wave-detail&quot; id=&quot;waveDetail&quot; aria-live=&quot;polite&quot;&gt;&lt;/article&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;div id=&quot;currentSpineMode&quot;&gt;
+  &lt;section class=&quot;now-stack&quot; id=&quot;nowStack&quot; aria-label=&quot;The sky stack now&quot;&gt;&lt;/section&gt;
+  &lt;section class=&quot;root-shell&quot; id=&quot;conjunctionRoots&quot; aria-label=&quot;Long-cycle conjunction roots&quot;&gt;
+    &lt;div class=&quot;root-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;eyebrow&quot;&gt;Seed → phase → lived time&lt;/div&gt;&lt;h2 id=&quot;rootTitle&quot;&gt;&lt;/h2&gt;&lt;/div&gt;&lt;p id=&quot;rootDek&quot;&gt;&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=&quot;era-tabs&quot; id=&quot;eraTabs&quot; role=&quot;tablist&quot; aria-label=&quot;Conjunction eras&quot;&gt;&lt;/div&gt;
+    &lt;p class=&quot;era-theme&quot; id=&quot;eraTheme&quot;&gt;&lt;/p&gt;
+    &lt;div class=&quot;root-workspace&quot;&gt;
+      &lt;div class=&quot;root-list&quot; id=&quot;rootList&quot; aria-label=&quot;Cycle roots&quot;&gt;&lt;/div&gt;
+      &lt;article class=&quot;root-detail&quot; id=&quot;rootDetail&quot; aria-live=&quot;polite&quot;&gt;&lt;/article&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;exact-shell&quot;&gt;
+      &lt;div class=&quot;exact-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;eyebrow&quot;&gt;Exact orbital handoffs&lt;/div&gt;&lt;h3 id=&quot;exactTitle&quot;&gt;&lt;/h3&gt;&lt;/div&gt;&lt;p id=&quot;exactNote&quot;&gt;&lt;/p&gt;&lt;/div&gt;
+      &lt;div class=&quot;exact-rail&quot; id=&quot;exactRail&quot; aria-label=&quot;Exact 2026 long-cycle contacts&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;umbrella-shell&quot;&gt;
+    &lt;div class=&quot;umbrella-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;eyebrow&quot;&gt;Planetary umbrellas&lt;/div&gt;&lt;h2&gt;One sky, many co-mingling stories&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Select an umbrella to hear its orbital phase, both archetypal poles, current manifestations, chart carriers, and factual release gates. Selection filters the timeline; it does not score support.&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=&quot;umbrella-rail&quot; id=&quot;umbrellaRail&quot;&gt;&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;method-strip&quot; id=&quot;patternNotes&quot; aria-label=&quot;Patterns in the current sequence&quot;&gt;&lt;/section&gt;
+  &lt;section class=&quot;climate&quot;&gt;
+    &lt;div class=&quot;climate-head&quot;&gt;&lt;h2&gt;The governing frame&lt;/h2&gt;&lt;span class=&quot;meta&quot;&gt;Strict ingress validity · Capricorn stays nested under Libra&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;climate-track&quot; aria-label=&quot;Cancer, Libra and nested Capricorn frames&quot;&gt;
+      &lt;button class=&quot;cancer&quot; type=&quot;button&quot; data-reading=&quot;ingress-2026-cancer&quot; title=&quot;Cancer climate&quot;&gt;&lt;/button&gt;
+      &lt;button class=&quot;libra&quot; type=&quot;button&quot; data-reading=&quot;ingress-2026-libra&quot; title=&quot;Libra climate&quot;&gt;&lt;/button&gt;
+      &lt;button class=&quot;capricorn&quot; type=&quot;button&quot; data-reading=&quot;ingress-2026-capricorn&quot; title=&quot;Capricorn nested frame&quot;&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;climate-labels&quot;&gt;&lt;span&gt;Cancer · to Sep 22, 8:05 PM EDT&lt;/span&gt;&lt;span&gt;Libra · Sep 22 to Mar 19&lt;/span&gt;&lt;span&gt;Capricorn nested · Dec 21&lt;/span&gt;&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;controls&quot; aria-label=&quot;Timeline controls&quot;&gt;
+    &lt;div class=&quot;filters&quot; id=&quot;filters&quot;&gt;
+      &lt;button class=&quot;filter active&quot; type=&quot;button&quot; data-filter=&quot;all&quot;&gt;Everything&lt;/button&gt;
+      &lt;button class=&quot;filter&quot; type=&quot;button&quot; data-filter=&quot;astrology&quot;&gt;Charts&lt;/button&gt;
+      &lt;button class=&quot;filter&quot; type=&quot;button&quot; data-filter=&quot;releases&quot;&gt;Awaited releases&lt;/button&gt;
+      &lt;button class=&quot;filter&quot; type=&quot;button&quot; data-filter=&quot;political_record&quot;&gt;Political record&lt;/button&gt;
+      &lt;button class=&quot;filter&quot; type=&quot;button&quot; data-filter=&quot;money_rules&quot;&gt;Money &amp;amp; rules&lt;/button&gt;
+      &lt;button class=&quot;filter&quot; type=&quot;button&quot; data-filter=&quot;operating_proof&quot;&gt;Operating proof&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;input class=&quot;search&quot; id=&quot;search&quot; type=&quot;search&quot; placeholder=&quot;Find a plotline, subplot, chart, or release…&quot; autocomplete=&quot;off&quot;&gt;
+  &lt;/section&gt;
+  &lt;main class=&quot;workspace&quot;&gt;
+    &lt;section class=&quot;timeline&quot; id=&quot;timeline&quot; aria-label=&quot;Astrology and release timeline&quot;&gt;&lt;/section&gt;
+    &lt;aside class=&quot;detail&quot; id=&quot;detail&quot; aria-live=&quot;polite&quot;&gt;&lt;/aside&gt;
+  &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script id=&quot;astrology-spine-data&quot; type=&quot;application/json&quot;&gt;__DATA__&lt;/script&gt;
+&lt;script&gt;
+(function(){
+  &quot;use strict&quot;;
+  var DATA=JSON.parse(document.getElementById(&quot;astrology-spine-data&quot;).textContent);
+  var timeline=document.getElementById(&quot;timeline&quot;), detail=document.getElementById(&quot;detail&quot;), search=document.getElementById(&quot;search&quot;), umbrellaRail=document.getElementById(&quot;umbrellaRail&quot;);
+  var conjunction=DATA.conjunction_map||{}, waveData=DATA.regime_waves||{}, plotData=DATA.plot_rooms||{}, filter=&quot;all&quot;, activeKey=&quot;&quot;, activeUmbrella=&quot;&quot;, activeEra=&quot;2020-braid&quot;, activeRoot=&quot;&quot;, activeWave=(DATA.regime_waves&amp;&amp;DATA.regime_waves.waves[0]?DATA.regime_waves.waves[0].id:&quot;&quot;), activePlot=(plotData.rooms&amp;&amp;plotData.rooms[0]?plotData.rooms[0].plotline:&quot;&quot;), activeClock=&quot;&quot;;
+  var PLOT_DEFAULT_T0=&quot;2025-01-20&quot;, PLOT_DEFAULT_T1=&quot;2027-01-18&quot;;
+  var PLOT_T0=PLOT_DEFAULT_T0, PLOT_T1=PLOT_DEFAULT_T1;
+  var laneLabel={political_record:&quot;Political record&quot;,money_rules:&quot;Money &amp; rules&quot;,operating_proof:&quot;Operating proof&quot;};
+  var month=[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;];
+  function esc(v){return String(v==null?&quot;&quot;:v).replace(/[&amp;&lt;&gt;&quot;&#x27;]/g,function(c){return {&quot;&amp;&quot;:&quot;&amp;amp;&quot;,&quot;&lt;&quot;:&quot;&amp;lt;&quot;,&quot;&gt;&quot;:&quot;&amp;gt;&quot;,&#x27;&quot;&#x27;:&quot;&amp;quot;&quot;,&quot;&#x27;&quot;:&quot;&amp;#39;&quot;}[c]})}
+  function fmt(d){if(!d)return &quot;&quot;;var p=d.split(&quot;-&quot;);return month[+p[1]-1]+&quot; &quot;+(+p[2])+&quot;, &quot;+p[0]}
+  function exactLocal(d){if(!d)return &quot;&quot;;try{return new Intl.DateTimeFormat(&quot;en-US&quot;,{timeZone:&quot;America/New_York&quot;,month:&quot;short&quot;,day:&quot;numeric&quot;,year:&quot;numeric&quot;,hour:&quot;numeric&quot;,minute:&quot;2-digit&quot;,timeZoneName:&quot;short&quot;}).format(new Date(d))}catch(_){return d}}
+  function exactUTC(d){if(!d)return &quot;&quot;;try{return new Intl.DateTimeFormat(&quot;en-US&quot;,{timeZone:&quot;UTC&quot;,month:&quot;short&quot;,day:&quot;numeric&quot;,year:&quot;numeric&quot;,hour:&quot;numeric&quot;,minute:&quot;2-digit&quot;,hourCycle:&quot;h23&quot;,timeZoneName:&quot;short&quot;}).format(new Date(d))}catch(_){return d}}
+  function deg(v){return v==null?&quot;&quot;:Number(v).toFixed(2)+&quot;°&quot;}
+  function ord(v){var n=Number(v),m=n%100;if(m&gt;=11&amp;&amp;m&lt;=13)return n+&quot;th&quot;;return n+({1:&quot;st&quot;,2:&quot;nd&quot;,3:&quot;rd&quot;}[n%10]||&quot;th&quot;)}
+  function dayDiff(a,b){return Math.round((new Date(a+&quot;T12:00:00Z&quot;)-new Date(b+&quot;T12:00:00Z&quot;))/86400000)}
+  function post(msg){try{window.parent.postMessage(msg,&quot;*&quot;)}catch(_){}}
+  function openReading(id,date){post({action:&quot;navigateTo&quot;,tab:&quot;obs-cr&quot;,date:date,childAction:&quot;openReading&quot;,id:id})}
+  function waveById(id){return (waveData.waves||[]).find(function(x){return x.id===id})}
+  function chartAction(chart,label){if(!chart)return &quot;&quot;;return &#x27;&lt;button type=&quot;button&quot; data-wave-chart=&quot;&#x27;+esc(chart.chart_id)+&#x27;&quot;&gt;&#x27;+esc(label||chart.label)+&#x27;&lt;/button&gt;&#x27;}
+  function chartAuthorityAction(chart,label){if(!chart)return &quot;&quot;;var state=chart.reading_state===&quot;authored&quot;?&#x27;authored reading available&#x27;:&#x27;computed chart · no authored reading&#x27;;return chartAction(chart,(label||chart.label)+&#x27; · &#x27;+state)}
+  function eoButtons(numbers,limit){var rows=(numbers||[]),shown=rows.slice(0,limit||10),more=rows.length-shown.length;return shown.map(function(n){return &#x27;&lt;button class=&quot;eo-link&quot; type=&quot;button&quot; data-eo=&quot;&#x27;+esc(n)+&#x27;&quot;&gt;EO &#x27;+esc(n)+&#x27;&lt;/button&gt;&#x27;}).join(&quot;&quot;)+(more&gt;0?&#x27;&lt;button class=&quot;eo-link&quot; type=&quot;button&quot; data-wave-eos&gt;+&#x27;+more+&#x27; more in Executive Office&lt;/button&gt;&#x27;:&quot;&quot;)}
+  function setMode(mode){
+    document.getElementById(&quot;institutionalWaveMode&quot;).hidden=mode!==&quot;waves&quot;;
+    document.getElementById(&quot;currentSpineMode&quot;).hidden=mode!==&quot;current&quot;;
+    document.getElementById(&quot;plotMode&quot;).hidden=mode!==&quot;plots&quot;;
+    document.querySelectorAll(&quot;[data-mode]&quot;).forEach(function(button){button.classList.toggle(&quot;active&quot;,button.dataset.mode===mode)});
+    if(mode===&quot;waves&quot;){renderWaveRail();renderWave(activeWave)}
+    if(mode===&quot;plots&quot;){renderPlotRail();renderPlot(activePlot)}
+  }
+  function plotRoom(id){return (plotData.rooms||[]).find(function(x){return x.plotline===id})}
+  function windowLabel(w){return {y2024:&quot;2024 rails&quot;,aries2025:&quot;2025 Aries year&quot;,winter:&quot;Winter nested&quot;,aries2026:&quot;2026 Aries&quot;,cancer:&quot;2026 Cancer · open&quot;,libra:&quot;2026 Libra · watch&quot;,cap:&quot;2026 Cap nested · watch&quot;}[w]||w}
+  function kindLabelPlot(k){return {watch:&quot;Still open&quot;,hypothesis:&quot;Hypothesis&quot;,named_hole:&quot;Named hole · join existing map&quot;,inherited_record:&quot;On the chronicle&quot;,record:&quot;Dated event&quot;}[k]||k}
+  function plotDay(d){return Math.round((new Date(d+&quot;T12:00:00Z&quot;)-new Date(PLOT_T0+&quot;T12:00:00Z&quot;))/86400000)}
+  function plotPct(d){var span=plotDay(PLOT_T1);if(span&lt;=0)return 0;var x=plotDay(d);return Math.max(0,Math.min(100,(x/span)*100))}
+  function todayISO(){var n=new Date(),pad=function(x){return String(x).padStart(2,&quot;0&quot;)};return n.getFullYear()+&quot;-&quot;+pad(n.getMonth()+1)+&quot;-&quot;+pad(n.getDate())}
+  function earlierDate(a,b){return a&lt;b?a:b}
+  function laterDate(a,b){return a&gt;b?a:b}
+  function plotClocks(r){var rows=[];(r.subplots||[]).forEach(function(sub){(sub.clocks||[]).forEach(function(c){rows.push(Object.assign({subplot:sub.subplot,state:sub.state,subplot_function:sub.function},c))})});return rows}
+  function findPlotClock(r,id){return plotClocks(r).find(function(c){return c.id===id})}
+  function pickPlotClock(r){if(activeClock&amp;&amp;findPlotClock(r,activeClock))return activeClock;return &quot;&quot;}
+  function setPlotSpan(r){
+    PLOT_T0=PLOT_DEFAULT_T0;PLOT_T1=PLOT_DEFAULT_T1;
+    var dates=plotClocks(r).map(function(c){return c.date}).sort();
+    if(!dates.length)return;
+    if(dates[0]&lt;PLOT_T0) PLOT_T0=dates[0].slice(0,8)+&quot;01&quot;;
+    if(dates[dates.length-1]&gt;PLOT_T1) PLOT_T1=dates[dates.length-1];
+  }
+  function plotBand(cls,start,end){
+    if(!start||!end||end&lt;=start)return &quot;&quot;;
+    return &#x27;&lt;div class=&quot;plot-band &#x27;+cls+&#x27;&quot; style=&quot;left:&#x27;+plotPct(start)+&#x27;%;width:&#x27;+(plotPct(end)-plotPct(start))+&#x27;%&quot;&gt;&lt;/div&gt;&#x27;;
+  }
+  function plotClimateBands(){
+    return plotBand(&quot;y2024&quot;,PLOT_T0,earlierDate(PLOT_T1,&quot;2025-01-20&quot;))
+      +plotBand(&quot;y2025&quot;,laterDate(PLOT_T0,&quot;2025-01-20&quot;),earlierDate(PLOT_T1,&quot;2026-03-20&quot;))
+      +plotBand(&quot;aries&quot;,laterDate(PLOT_T0,&quot;2026-03-20&quot;),earlierDate(PLOT_T1,&quot;2026-06-21&quot;))
+      +plotBand(&quot;cancer&quot;,laterDate(PLOT_T0,&quot;2026-06-21&quot;),earlierDate(PLOT_T1,&quot;2026-09-23&quot;))
+      +plotBand(&quot;libra&quot;,laterDate(PLOT_T0,&quot;2026-09-23&quot;),earlierDate(PLOT_T1,&quot;2026-12-21&quot;))
+      +plotBand(&quot;cap&quot;,laterDate(PLOT_T0,&quot;2026-12-21&quot;),PLOT_T1);
+  }
+  function plotTickRows(){
+    var rows=[[PLOT_T0,month[+PLOT_T0.slice(5,7)-1]+&quot; &quot;+PLOT_T0.slice(0,4),&quot;first&quot;]];
+    var y=+PLOT_T0.slice(0,4), endY=+PLOT_T1.slice(0,4);
+    for(var yy=y;yy&lt;=endY;yy++){
+      [&quot;01-01&quot;,&quot;07-01&quot;].forEach(function(md){
+        var d=yy+&quot;-&quot;+md;
+        if(d&gt;PLOT_T0&amp;&amp;d&lt;PLOT_T1) rows.push([d,month[+md.slice(0,2)-1]+&quot; &quot;+yy,&quot;&quot;]);
+      });
+    }
+    rows.push([PLOT_T1,month[+PLOT_T1.slice(5,7)-1]+&quot; &quot;+PLOT_T1.slice(0,4),&quot;last&quot;]);
+    return rows;
+  }
+  function renderPlotAxis(){
+    var tickHtml=plotTickRows().map(function(row){return &#x27;&lt;span class=&quot;plot-tick &#x27;+row[2]+&#x27;&quot; style=&quot;left:&#x27;+plotPct(row[0])+&#x27;%&quot;&gt;&#x27;+esc(row[1])+&#x27;&lt;/span&gt;&#x27;}).join(&quot;&quot;);
+    var labels=[];
+    if(PLOT_T0&lt;&quot;2025-01-20&quot;) labels.push([PLOT_T0,earlierDate(PLOT_T1,&quot;2025-01-20&quot;),&quot;2024&quot;]);
+    [[&quot;2026-03-20&quot;,&quot;2026-06-21&quot;,&quot;Aries&quot;],[&quot;2026-06-21&quot;,&quot;2026-09-23&quot;,&quot;Cancer&quot;],[&quot;2026-09-23&quot;,&quot;2026-12-21&quot;,&quot;Libra&quot;],[&quot;2026-12-21&quot;,&quot;2027-01-18&quot;,&quot;Cap&quot;]].forEach(function(row){
+      if(row[1]&gt;PLOT_T0&amp;&amp;row[0]&lt;PLOT_T1) labels.push([laterDate(row[0],PLOT_T0),earlierDate(row[1],PLOT_T1),row[2]]);
+    });
+    var labelHtml=labels.map(function(row){return &#x27;&lt;span style=&quot;left:&#x27;+((plotPct(row[0])+plotPct(row[1]))/2)+&#x27;%&quot;&gt;&#x27;+esc(row[2])+&#x27;&lt;/span&gt;&#x27;}).join(&quot;&quot;);
+    document.getElementById(&quot;plotAxis&quot;).innerHTML=&#x27;&lt;div class=&quot;plot-ticks&quot;&gt;&#x27;+tickHtml+&#x27;&lt;/div&gt;&lt;div class=&quot;plot-bands&quot;&gt;&#x27;+plotClimateBands()+&#x27;&lt;/div&gt;&lt;div class=&quot;plot-band-labels&quot;&gt;&#x27;+labelHtml+&#x27;&lt;/div&gt;&#x27;;
+  }
+  function plotNodeHtml(c, stacked, stackIndex){
+    var filled=[&quot;operating&quot;,&quot;effective&quot;,&quot;failed&quot;].indexOf(c.maturity)&gt;=0?&quot; filled&quot;:&quot;&quot;;
+    var top=stacked?&#x27; top:calc(50% + &#x27;+(stackIndex*18-8)+&#x27;px);&#x27;:&#x27;&#x27;;
+    var tip=fmt(c.date)+&quot; · &quot;+c.label;
+    return &#x27;&lt;button class=&quot;plot-node &#x27;+esc(c.kind)+filled+(c.id===activeClock?&quot; active&quot;:&quot;&quot;)+&#x27;&quot; type=&quot;button&quot; data-plot-clock=&quot;&#x27;+esc(c.id)+&#x27;&quot; aria-label=&quot;&#x27;+esc(tip)+&#x27;&quot; style=&quot;left:&#x27;+plotPct(c.date)+&#x27;%&#x27;+top+&#x27;&quot;&gt;&lt;span class=&quot;plot-dot&quot;&gt;&lt;/span&gt;&lt;span class=&quot;plot-tip&quot;&gt;&#x27;+esc(tip)+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;;
+  }
+  function renderPlotInspector(r){
+    var c=findPlotClock(r,activeClock);
+    var el=document.getElementById(&quot;plotInspector&quot;);
+    if(!c){el.innerHTML=&#x27;&lt;div class=&quot;eyebrow&quot;&gt;Read an event&lt;/div&gt;&lt;p class=&quot;plot-empty&quot;&gt;This is a timeline. Hover a node for the name. Click to read what happened, or what is still open. The label hides when you move away.&lt;/p&gt;&#x27;;return}
+    var actions=&#x27;&lt;button type=&quot;button&quot; data-plotline-map=&quot;&#x27;+esc(r.plotline)+&#x27;&quot;&gt;Open Subplot Map&lt;/button&gt;&#x27;;
+    if(c.reading_id) actions+=&#x27;&lt;button type=&quot;button&quot; data-reading=&quot;&#x27;+esc(c.reading_id)+&#x27;&quot;&gt;Open chart reading&lt;/button&gt;&#x27;;
+    if(c.watch_id||c.date) actions+=&#x27;&lt;button type=&quot;button&quot; data-day=&quot;&#x27;+esc(c.date)+&#x27;&quot;&gt;Open that day&lt;/button&gt;&#x27;;
+    if(c.release&amp;&amp;c.release.source&amp;&amp;/^https?:/.test(c.release.source)) actions+=&#x27;&lt;a class=&quot;action&quot; href=&quot;&#x27;+esc(c.release.source)+&#x27;&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Official source ↗&lt;/a&gt;&#x27;;
+    el.innerHTML=&#x27;&lt;div class=&quot;eyebrow&quot;&gt;Selected event · click another node to change&lt;/div&gt;&lt;div class=&quot;eyebrow&quot; style=&quot;margin-top:6px&quot;&gt;&#x27;+esc(fmt(c.date))+&#x27; · &#x27;+esc(kindLabelPlot(c.kind))+&#x27;&lt;/div&gt;&lt;h3&gt;&#x27;+esc(c.label)+&#x27;&lt;/h3&gt;&lt;div class=&quot;chips&quot; style=&quot;margin:0 0 10px&quot;&gt;&lt;span class=&quot;chip&quot;&gt;&#x27;+esc(c.subplot)+&#x27;&lt;/span&gt;&lt;span class=&quot;chip&quot;&gt;&#x27;+esc(windowLabel(c.window))+&#x27;&lt;/span&gt;&lt;span class=&quot;chip&quot;&gt;&#x27;+esc(c.maturity.replaceAll(&quot;_&quot;,&quot; &quot;))+(c.inherited?&quot; · inherited&quot;:&quot;&quot;)+&#x27;&lt;/span&gt;&lt;/div&gt;&lt;p&gt;&#x27;+esc(c.why)+&#x27;&lt;/p&gt;&#x27;+(c.open_clock?&#x27;&lt;p class=&quot;hard-boundary&quot;&gt;&lt;b&gt;Still open:&lt;/b&gt; &#x27;+esc(c.open_clock)+&#x27;&lt;/p&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;div class=&quot;plot-poles&quot;&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;Light&lt;/div&gt;&lt;p&gt;&#x27;+esc(r.poles.light)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;Shadow&lt;/div&gt;&lt;p&gt;&#x27;+esc(r.poles.shadow)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;wave-actions&quot;&gt;&#x27;+actions+&#x27;&lt;/div&gt;&lt;div class=&quot;ethics&quot;&gt;This is a timeline of events. A watch is one kind of event, still unresolved. A node is not a ranking.&lt;/div&gt;&#x27;;
+  }
+  function selectPlotClock(id){
+    var r=plotRoom(activePlot);if(!r||!findPlotClock(r,id))return;
+    activeClock=id;
+    document.querySelectorAll(&quot;.plot-node&quot;).forEach(function(node){node.classList.toggle(&quot;active&quot;,node.getAttribute(&quot;data-plot-clock&quot;)===id)});
+    renderPlotInspector(r);
+    var panel=document.getElementById(&quot;plotInspector&quot;);
+    if(panel) panel.scrollIntoView({behavior:&quot;smooth&quot;,block:&quot;nearest&quot;});
+  }
+  function renderPlotRail(){
+    document.getElementById(&quot;plotTitle&quot;).textContent=plotData.title||&quot;By plot&quot;;
+    document.getElementById(&quot;plotDek&quot;).textContent=plotData.dek||&quot;&quot;;
+    document.getElementById(&quot;plotRail&quot;).innerHTML=(plotData.rooms||[]).map(function(r){return &#x27;&lt;button class=&quot;era-tab&#x27;+(r.plotline===activePlot?&#x27; active&#x27;:&#x27;&#x27;)+&#x27;&quot; type=&quot;button&quot; role=&quot;tab&quot; aria-selected=&quot;&#x27;+(r.plotline===activePlot?&#x27;true&#x27;:&#x27;false&#x27;)+&#x27;&quot; data-open-plot=&quot;&#x27;+esc(r.plotline)+&#x27;&quot;&gt;&#x27;+esc(r.plotline)+&#x27;&lt;/button&gt;&#x27;}).join(&quot;&quot;);
+  }
+  function renderPlot(id){
+    var r=plotRoom(id)||(plotData.rooms||[])[0];if(!r)return;activePlot=r.plotline;setPlotSpan(r);activeClock=pickPlotClock(r);renderPlotRail();
+    document.getElementById(&quot;plotKicker&quot;).textContent=r.clock_count+&quot; events · &quot;+r.subplots.length+&quot; lanes · click any node&quot;;
+    document.getElementById(&quot;plotRoomTitle&quot;).textContent=r.plotline;
+    document.getElementById(&quot;plotRoomDek&quot;).textContent=r.dek||&quot;&quot;;
+    document.getElementById(&quot;plotQuestion&quot;).textContent=r.locked_question;
+    renderPlotAxis();
+    var today=todayISO();
+    var todayHtml=(today&gt;=PLOT_T0&amp;&amp;today&lt;=PLOT_T1)?&#x27;&lt;div class=&quot;plot-today-rail&quot;&gt;&lt;div class=&quot;plot-today&quot; style=&quot;left:&#x27;+plotPct(today)+&#x27;%&quot;&gt;&lt;span&gt;today&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;:&quot;&quot;;
+    document.getElementById(&quot;plotLanes&quot;).innerHTML=todayHtml+r.subplots.map(function(sub){
+      var byDate={};
+      (sub.clocks||[]).forEach(function(c){var k=c.date;(byDate[k]||(byDate[k]=[])).push(c)});
+      var nodes=Object.keys(byDate).sort().map(function(date){
+        var stack=byDate[date];
+        return stack.map(function(c,i){return plotNodeHtml(c,stack.length&gt;1,i)}).join(&quot;&quot;);
+      }).join(&quot;&quot;);
+      return &#x27;&lt;div class=&quot;plot-lane&quot;&gt;&lt;div class=&quot;plot-lane-label&quot;&gt;&lt;b&gt;&#x27;+esc(sub.subplot)+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+esc(sub.state.replaceAll(&quot;_&quot;,&quot; &quot;))+&#x27;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;plot-track&quot;&gt;&lt;div class=&quot;plot-track-bg&quot;&gt;&#x27;+plotClimateBands()+&#x27;&lt;/div&gt;&#x27;+nodes+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+    }).join(&quot;&quot;);
+    renderPlotInspector(r);
+  }
+  function renderWaveRail(){
+    document.getElementById(&quot;waveRail&quot;).innerHTML=(waveData.waves||[]).map(function(w){var scope=w.eo_scope||{},state=scope.coverage_state===&quot;complete&quot;?scope.available_count+&quot; EOs&quot;:scope.available_count+&quot; of &quot;+scope.expected_count+&quot; EOs in vault&quot;;return &#x27;&lt;button class=&quot;wave-tab&#x27;+(w.id===activeWave?&#x27; active&#x27;:&#x27;&#x27;)+&#x27;&quot; type=&quot;button&quot; role=&quot;tab&quot; aria-selected=&quot;&#x27;+(w.id===activeWave?&#x27;true&#x27;:&#x27;false&#x27;)+&#x27;&quot; data-wave=&quot;&#x27;+esc(w.id)+&#x27;&quot;&gt;&lt;b&gt;Wave &#x27;+esc(w.ordinal)+&#x27; · &#x27;+esc(w.title)+&#x27;&lt;/b&gt;&lt;span&gt;EO tranche · &#x27;+esc(fmt(scope.signed_from))+&#x27; → &#x27;+esc(fmt(scope.signed_through))+&#x27;&lt;br&gt;&#x27;+esc(state)+(w.status===&quot;partial&quot;?&#x27; · interim through &#x27;+esc(fmt(w.end.date)):&#x27;&#x27;)+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;}).join(&quot;&quot;);
+  }
+  function renderWaveArc(){
+    var cross=waveData.cross_wave||{};
+    document.getElementById(&quot;waveCrossThesis&quot;).textContent=cross.thesis||&quot;&quot;;
+    document.getElementById(&quot;waveAuthority&quot;).innerHTML=(waveData.authority_layers||[]).map(function(row){return &#x27;&lt;div class=&quot;authority-layer&quot;&gt;&lt;b&gt;&#x27;+esc(row.label)+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+esc(row.role)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;}).join(&quot;&quot;);
+    document.getElementById(&quot;waveScope&quot;).innerHTML=&#x27;&lt;b&gt;Coverage boundary:&lt;/b&gt; &#x27;+esc(waveData.scope_statement||&#x27;&#x27;)+&#x27; Open gaps: &#x27;+esc((waveData.coverage_gaps||[]).join(&#x27;, &#x27;))+&#x27;.&#x27;;
+    document.getElementById(&quot;waveArc&quot;).innerHTML=(cross.sequence||[]).map(function(row,index){return &#x27;&lt;button type=&quot;button&quot; data-wave=&quot;&#x27;+esc(row.wave_id)+&#x27;&quot;&gt;&lt;b&gt;&#x27;+esc(row.stage)+&#x27;&lt;/b&gt;&lt;small&gt;Wave &#x27;+esc(index+1)+&#x27;&lt;/small&gt;&lt;/button&gt;&#x27;}).join(&quot;&quot;);
+  }
+  function renderWaveSidebar(w){
+    var h=w.chart_hierarchy||{},scope=w.eo_scope||{},local=h.local_frame,missing=scope.missing_numbers||[],boundaries=scope.boundary_rows||[],coverage=scope.coverage_state===&quot;complete&quot;?&#x27;Complete local EO shelf&#x27;:&#x27;Local EO gaps: &#x27;+missing.map(function(n){return &#x27;EO &#x27;+n}).join(&#x27;, &#x27;),boundaryNote=boundaries.length?&#x27;&lt;p class=&quot;coverage gapped boundary-note&quot;&gt;&lt;b&gt;Boundary object&#x27;+(boundaries.length===1?&#x27;&#x27;:&#x27;s&#x27;)+&#x27;:&lt;/b&gt; &#x27;+boundaries.map(function(row){var state=row.state||(row.missing?&#x27;missing locally&#x27;:&#x27;date-only; exact side unresolved&#x27;);return &#x27;EO &#x27;+esc(row.number)+&#x27; · &#x27;+esc(state.replaceAll(&#x27;_&#x27;,&#x27; &#x27;))}).join(&#x27;; &#x27;)+&#x27;&lt;/p&gt;&#x27;:&#x27;&#x27;;
+    document.getElementById(&quot;waveSidebar&quot;).innerHTML=&#x27;&lt;div class=&quot;wave-kicker&quot;&gt;Wave &#x27;+esc(w.ordinal)+&#x27; · &#x27;+esc(w.status)+&#x27;&lt;/div&gt;&lt;h3&gt;EO tranche · &#x27;+esc(fmt(scope.signed_from))+&#x27; → &#x27;+esc(fmt(scope.signed_through))+&#x27;&lt;/h3&gt;&lt;p&gt;&lt;b&gt;Astrology hearing:&lt;/b&gt; &#x27;+esc(fmt(w.start.date))+&#x27; → &#x27;+esc(fmt(w.end.date))+(w.status===&quot;partial&quot;?&#x27; evidence cutoff&#x27;:&#x27;&#x27;)+&#x27;.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Roster:&lt;/b&gt; EO &#x27;+esc(scope.expected_first)+&#x27;–&#x27;+esc(scope.expected_last)+&#x27; · &#x27;+esc(scope.expected_count)+&#x27; expected · &#x27;+esc(scope.available_count)+&#x27; available.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Count basis:&lt;/b&gt; &#x27;+esc(scope.count_basis||&#x27;authored roster&#x27;)+&#x27;.&lt;/p&gt;&lt;p class=&quot;coverage &#x27;+(scope.coverage_state===&quot;complete&quot;?&#x27;&#x27;:&#x27;gapped&#x27;)+&#x27;&quot;&gt;&#x27;+esc(coverage)+&#x27;&lt;/p&gt;&#x27;+boundaryNote+&#x27;&lt;div class=&quot;wave-actions&quot;&gt;&#x27;+chartAuthorityAction(h.strict_governor,&#x27;Strict governor · &#x27;+h.strict_governor.label)+(local?chartAuthorityAction(local,&#x27;Local frame · &#x27;+local.label):&#x27;&#x27;)+&#x27;&lt;button type=&quot;button&quot; data-wave-eos&gt;Open EO tranche&lt;/button&gt;&lt;button type=&quot;button&quot; data-wave-doc=&quot;wave&quot;&gt;Read full wave research&lt;/button&gt;&lt;/div&gt;&lt;h3&gt;Root&lt;/h3&gt;&lt;p&gt;&#x27;+esc(w.root_note)+&#x27;&lt;/p&gt;&lt;h3&gt;Slow movement&lt;/h3&gt;&lt;p&gt;&#x27;+esc(w.slow_movement)+&#x27;&lt;/p&gt;&lt;div class=&quot;ethics&quot;&gt;&lt;b&gt;Boundary rule:&lt;/b&gt; &#x27;+esc(scope.scope_basis)+&#x27;. The EO/research tranche and the exact astrological hearing are shown separately; date-only orders are never promoted to an exact signing-time claim.&lt;/div&gt;&#x27;;
+  }
+  function renderWave(waveId){
+    var w=waveById(waveId)||waveData.waves[0];if(!w)return;activeWave=w.id;renderWaveRail();renderWaveSidebar(w);
+    var summary=w.summary||{},scope=w.eo_scope||{};
+    var beats=(w.beats||[]).map(function(beat){var c=beat.chart||{},eclipse=c.eclipse?&#x27; · &#x27;+(c.eclipse.type||&#x27;eclipse&#x27;)+&#x27; &#x27;+c.eclipse.family+&#x27; eclipse&#x27;:&#x27;&#x27;,count=c.kind===&quot;new&quot;?&#x27;&lt;span class=&quot;beat-meta&quot;&gt;&#x27;+esc(beat.eo_count||0)+&#x27; EO&#x27;+(beat.eo_count===1?&#x27;&#x27;:&#x27;s&#x27;)+&#x27; in chapter&lt;/span&gt;&#x27;:&#x27;&lt;span class=&quot;beat-meta&quot;&gt;&#x27;+esc(beat.role)+&#x27;&lt;/span&gt;&#x27;;return &#x27;&lt;article class=&quot;beat-card&quot;&gt;&lt;div class=&quot;beat-head&quot;&gt;&lt;div&gt;&lt;h4&gt;&lt;button class=&quot;subplot-link&quot; type=&quot;button&quot; data-wave-chart=&quot;&#x27;+esc(c.chart_id)+&#x27;&quot;&gt;&#x27;+esc(c.label)+&#x27;&lt;/button&gt;&lt;/h4&gt;&lt;div class=&quot;meta&quot;&gt;&#x27;+esc(c.sign)+&#x27; &#x27;+esc(deg(c.degree))+eclipse+&#x27; · &#x27;+esc(beat.role)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+count+&#x27;&lt;/div&gt;&lt;p&gt;&#x27;+esc(beat.endorsement)+&#x27;&lt;/p&gt;&#x27;+(beat.eo_numbers&amp;&amp;beat.eo_numbers.length?&#x27;&lt;div class=&quot;eo-strip&quot;&gt;&#x27;+eoButtons(beat.eo_numbers,8)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/article&gt;&#x27;}).join(&quot;&quot;);
+    var evidence=(w.evidence||[]).map(function(item){var research=(item.research_ids||[]).map(function(id){return &#x27;&lt;button type=&quot;button&quot; data-research=&quot;&#x27;+esc(id)+&#x27;&quot;&gt;Research · &#x27;+esc(id)+&#x27;&lt;/button&gt;&#x27;}).join(&quot;&quot;),missing=(item.eo_coverage&amp;&amp;item.eo_coverage.missing||[]);return &#x27;&lt;article class=&quot;evidence-card&quot;&gt;&lt;div class=&quot;evidence-head&quot;&gt;&lt;h4&gt;&#x27;+esc(item.claim)+&#x27;&lt;/h4&gt;&lt;span class=&quot;beat-meta&quot;&gt;&#x27;+esc(item.clock.replaceAll(&#x27;_&#x27;,&#x27; &#x27;))+&#x27; · &#x27;+esc(item.maturity)+&#x27;&lt;/span&gt;&lt;/div&gt;&lt;p class=&quot;hard-boundary&quot;&gt;&lt;b&gt;Hard boundary:&lt;/b&gt; &#x27;+esc(item.hard_boundary)+&#x27;&lt;/p&gt;&lt;div class=&quot;eo-strip&quot;&gt;&#x27;+eoButtons(item.eo_numbers,8)+(missing.length?&#x27;&lt;span class=&quot;coverage gapped&quot;&gt;Missing locally: &#x27;+esc(missing.join(&#x27;, &#x27;))+&#x27;&lt;/span&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;div class=&quot;wave-actions&quot;&gt;&#x27;+research+&#x27;&lt;/div&gt;&lt;/article&gt;&#x27;}).join(&quot;&quot;);
+    var missingNote=scope.missing_numbers.length?&#x27;&lt;div class=&quot;wave-panel&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Coverage gap is visible&lt;/div&gt;&lt;p&gt;The official working range expects &#x27;+esc(scope.expected_count)+&#x27; orders; &#x27;+esc(scope.available_count)+&#x27; are present in the local vault. Missing: &#x27;+esc(scope.missing_numbers.map(function(n){return &#x27;EO &#x27;+n}).join(&#x27;, &#x27;))+&#x27;. No missing order is silently treated as mapped evidence.&lt;/p&gt;&lt;/div&gt;&#x27;:&#x27;&#x27;;
+    var official=w.official_story?&#x27;&lt;div class=&quot;wave-panel official-story&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Official seasonal weave remains above this layer&lt;/div&gt;&lt;p&gt;&lt;b&gt;&#x27;+esc(w.official_story.label)+&#x27;&lt;/b&gt;&lt;br&gt;&#x27;+esc(w.official_story.role)+&#x27;&lt;/p&gt;&lt;div class=&quot;wave-actions&quot;&gt;&lt;button type=&quot;button&quot; data-reading=&quot;&#x27;+esc(w.official_story.reading_id)+&#x27;&quot;&gt;Open official storyline weave&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;:&#x27;&lt;div class=&quot;wave-panel&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Authority boundary&lt;/div&gt;&lt;p&gt;This is the EO maturity layer. It does not elect the season’s official story or replace the locked climate reading.&lt;/p&gt;&lt;/div&gt;&#x27;;
+    document.getElementById(&quot;waveDetail&quot;).innerHTML=&#x27;&lt;div class=&quot;wave-kicker&quot;&gt;EO maturity overlay · Wave &#x27;+esc(w.ordinal)+&#x27; · &#x27;+esc(w.status)+(w.status===&quot;partial&quot;?&#x27; through &#x27;+fmt(w.end.date):&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;h2&gt;&#x27;+esc(w.title)+&#x27;&lt;/h2&gt;&#x27;+official+&#x27;&lt;p class=&quot;wave-thesis&quot;&gt;&#x27;+esc(summary.working_synthesis)+&#x27;&lt;/p&gt;&lt;div class=&quot;wave-grid&quot;&gt;&lt;div class=&quot;wave-panel&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Factual institutional movement&lt;/div&gt;&lt;p&gt;&#x27;+esc(summary.factual_movement)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;wave-panel&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Archetypal movement&lt;/div&gt;&lt;p&gt;&#x27;+esc(summary.archetypal_movement)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;h3&gt;The governing question&lt;/h3&gt;&lt;div class=&quot;wave-panel&quot;&gt;&lt;p&gt;&lt;b&gt;&#x27;+esc(summary.governing_question)+&#x27;&lt;/b&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;wave-grid&quot; style=&quot;margin-top:10px&quot;&gt;&lt;div class=&quot;wave-panel&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Constructive pole&lt;/div&gt;&lt;p&gt;&#x27;+esc(summary.constructive)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;wave-panel&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Shadow pole&lt;/div&gt;&lt;p&gt;&#x27;+esc(summary.shadow)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;wave-panel&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Continuity is a result&lt;/div&gt;&lt;p&gt;&#x27;+esc(summary.continuity)+&#x27;&lt;/p&gt;&lt;/div&gt;&#x27;+missingNote+&#x27;&lt;/div&gt;&lt;h3&gt;Lunar chapters and reveals&lt;/h3&gt;&lt;div class=&quot;beat-list&quot;&gt;&#x27;+beats+&#x27;&lt;/div&gt;&lt;h3&gt;What changed state by the evidence cutoff&lt;/h3&gt;&lt;div class=&quot;evidence-list&quot;&gt;&#x27;+evidence+&#x27;&lt;/div&gt;&lt;h3&gt;Handoff&lt;/h3&gt;&lt;div class=&quot;wave-panel&quot;&gt;&lt;p&gt;&#x27;+esc(summary.handoff)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;ethics&quot;&gt;&lt;b&gt;Observation rule:&lt;/b&gt; the ingress is climate, the New Moon opens a chapter, and a Full Moon reveals or harvests. These natural overlaps are unscored and non-causal. EO instruction, legal effect, operation, transaction, contest, reversal, and unchanged state remain separate clocks. This record-first retrospective layer cannot overwrite a Pass 1 or official storyline.&lt;/div&gt;&#x27;;
+  }
+  function cycleRoot(id){return (conjunction.roots||[]).find(function(x){return x.cycle_id===id})}
+  function cycleGroup(id){return (conjunction.groups||[]).find(function(g){return (g.cycle_ids||[]).indexOf(id)&gt;=0})}
+  function pairLabel(row){return (row.pair||[]).join(&quot;–&quot;)}
+  function renderEraTabs(){
+    document.getElementById(&quot;eraTabs&quot;).innerHTML=(conjunction.groups||[]).map(function(g){return &#x27;&lt;button class=&quot;era-tab&#x27;+(g.id===activeEra?&#x27; active&#x27;:&#x27;&#x27;)+&#x27;&quot; type=&quot;button&quot; role=&quot;tab&quot; aria-selected=&quot;&#x27;+(g.id===activeEra?&#x27;true&#x27;:&#x27;false&#x27;)+&#x27;&quot; data-era=&quot;&#x27;+esc(g.id)+&#x27;&quot;&gt;&#x27;+esc(g.label)+&#x27; · &#x27;+esc(g.years)+&#x27;&lt;/button&gt;&#x27;}).join(&quot;&quot;);
+  }
+  function renderRootDetail(root){
+    if(!root)return;
+    var o=root.orbital||{},g=o.geometry||{},a=o.active_aspect,n=o.exact_event_neighbors||{},prev=n.previous_major_exact||{},next=n.next_major_exact||{};
+    var relation=a?&#x27;&lt;b&gt;&#x27;+esc(a.aspect_id)+&#x27; · &#x27;+esc(deg(a.orb_deg))+&#x27; &#x27;+esc(a.motion_state)+&#x27;&lt;/b&gt;&#x27;:&#x27;&lt;b&gt;No direct major aspect inside the project orb&lt;/b&gt;&#x27;;
+    var passes=(root.passes||[]).map(function(p){return &#x27;&lt;div class=&quot;seed-pass&quot;&gt;&lt;b&gt;&#x27;+esc(exactUTC(p.utc))+&#x27;&lt;/b&gt;&lt;br&gt;&#x27;+esc(deg(p.degree_in_sign))+&#x27; &#x27;+esc(p.sign)+&#x27; · &#x27;+esc(p.relative_motion)+&#x27;&lt;br&gt;&#x27;+esc(p.independent_verification_status.replaceAll(&quot;_&quot;,&quot; &quot;))+&#x27;&lt;/div&gt;&#x27;}).join(&quot;&quot;);
+    document.getElementById(&quot;rootDetail&quot;).innerHTML=&#x27;&lt;div class=&quot;eyebrow&quot;&gt;&#x27;+esc(root.seed_family_label)+&#x27; · ~&#x27;+esc(root.nominal_cycle_years)+&#x27; years&lt;/div&gt;&lt;h3&gt;&#x27;+esc(pairLabel(root))+&#x27;&lt;/h3&gt;&lt;p class=&quot;lead&quot;&gt;&#x27;+esc(root.archetype.summary)+&#x27;&lt;/p&gt;&lt;div class=&quot;mini-label&quot;&gt;The conjunction seed&lt;/div&gt;&lt;div class=&quot;seed-passes&quot;&gt;&#x27;+passes+&#x27;&lt;/div&gt;&lt;div class=&quot;clock-now&quot;&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;Where the seed has reached by &#x27;+esc((conjunction.as_of||&quot;&quot;).slice(0,4))+&#x27;&lt;/div&gt;&lt;p&gt;&#x27;+esc(g.phase_name)+&#x27; / &#x27;+esc(g.phase_direction)+&#x27; · elongation &#x27;+esc(deg(g.elongation_deg))+&#x27;. &#x27;+relation+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;Exact chapter boundary&lt;/div&gt;&lt;p&gt;&#x27;+(prev.utc?&#x27;Previous &#x27;+esc(prev.aspect_id)+&#x27; &#x27;+esc(exactLocal(prev.utc))+&#x27;. &#x27;:&#x27;&#x27;)+(next.utc?&#x27;Next &#x27;+esc(next.aspect_id)+&#x27; &#x27;+esc(exactLocal(next.utc))+&#x27;.&#x27;:&#x27;No next exact boundary is present in the current catalog.&#x27;)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;transition&quot;&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;Constructive pole&lt;/div&gt;&lt;p&gt;&#x27;+esc(root.archetype.constructive)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;Shadow pole&lt;/div&gt;&lt;p&gt;&#x27;+esc(root.archetype.shadow)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;proof-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;The authority question carried through time&lt;/div&gt;&lt;p&gt;&#x27;+esc(root.archetype.authority_question)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;actions&quot; style=&quot;margin-top:13px&quot;&gt;&lt;button class=&quot;action primary&quot; type=&quot;button&quot; data-open-clocks data-cycle=&quot;&#x27;+esc(root.cycle_id)+&#x27;&quot;&gt;Open this Long Clock&lt;/button&gt;&lt;/div&gt;&#x27;;
+  }
+  function renderEra(){
+    var group=(conjunction.groups||[]).find(function(g){return g.id===activeEra})||conjunction.groups[0];if(!group)return;
+    activeEra=group.id;if((group.cycle_ids||[]).indexOf(activeRoot)&lt;0)activeRoot=group.cycle_ids[0];
+    document.getElementById(&quot;eraTheme&quot;).textContent=group.theme||&quot;&quot;;
+    document.getElementById(&quot;rootList&quot;).innerHTML=(group.cycle_ids||[]).map(function(id){var r=cycleRoot(id),g=(r.orbital||{}).geometry||{};return &#x27;&lt;button class=&quot;root-card&#x27;+(id===activeRoot?&#x27; active&#x27;:&#x27;&#x27;)+&#x27;&quot; type=&quot;button&quot; data-cycle-root=&quot;&#x27;+esc(id)+&#x27;&quot;&gt;&lt;b&gt;&#x27;+esc(pairLabel(r))+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+esc(r.seed_family_label)+&#x27;&lt;br&gt;Now: &#x27;+esc(g.phase_name)+&#x27; / &#x27;+esc(g.phase_direction)+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;}).join(&quot;&quot;);
+    renderRootDetail(cycleRoot(activeRoot));
+  }
+  function selectRoot(id){var group=cycleGroup(id);if(!group)return;activeRoot=id;activeEra=group.id;renderEraTabs();renderEra();document.getElementById(&quot;conjunctionRoots&quot;).scrollIntoView({behavior:&quot;smooth&quot;,block:&quot;start&quot;})}
+  function renderConjunctionMap(){
+    if(!(conjunction.groups||[]).length)return;
+    if(!conjunction.groups.some(function(g){return g.id===activeEra}))activeEra=conjunction.groups[0].id;
+    document.getElementById(&quot;rootTitle&quot;).textContent=conjunction.title||&quot;The conjunction roots&quot;;
+    document.getElementById(&quot;rootDek&quot;).textContent=conjunction.dek||&quot;&quot;;
+    var window=conjunction.exact_window||{};document.getElementById(&quot;exactTitle&quot;).textContent=window.title||&quot;Exact contacts&quot;;document.getElementById(&quot;exactNote&quot;).textContent=window.note||&quot;&quot;;
+    document.getElementById(&quot;exactRail&quot;).innerHTML=(window.events||[]).map(function(e){return &#x27;&lt;button class=&quot;exact-event&quot; type=&quot;button&quot; data-cycle-root=&quot;&#x27;+esc(e.cycle_id)+&#x27;&quot;&gt;&lt;time&gt;&#x27;+esc(fmt((e.utc||&quot;&quot;).slice(0,10)))+&#x27;&lt;/time&gt;&lt;b&gt;&#x27;+esc(pairLabel(e))+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+esc((e.chapter_id||e.aspect_id||&quot;&quot;).replaceAll(&quot;_&quot;,&quot; &quot;))+&#x27; · &#x27;+esc(e.phase_name)+&#x27; / &#x27;+esc(e.phase_direction)+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;}).join(&quot;&quot;);
+    renderEraTabs();renderEra();
+  }
+  function openSub(sub){post({action:&quot;navigateTo&quot;,tab:sub})}
+  function umbrella(id){return DATA.umbrellas.find(function(x){return x.cycle_id===id})}
+  function umbrellaChips(ids){return (ids||[]).map(function(id){var u=umbrella(id);return u?&#x27;&lt;button class=&quot;chip&quot; type=&quot;button&quot; data-umbrella=&quot;&#x27;+esc(id)+&#x27;&quot;&gt;&#x27;+esc(u.label)+&#x27;&lt;/button&gt;&#x27;:&#x27;&#x27;}).join(&quot;&quot;)}
+  function textOf(row){
+    var umbrellaText=(row.umbrella_ids||[]).map(function(id){var u=umbrella(id);return u?[u.label,u.current_note].join(&quot; &quot;):&quot;&quot;});
+    if(row.itemType===&quot;anchor&quot;) return [row.title,row.authority_question,row.watch_for].concat(row.arcs||[],umbrellaText,(row.overlaps||[]).flatMap(function(x){return [x.plotline,x.subplot,x.why]})).join(&quot; &quot;).toLowerCase();
+    return [row.label,row.detail,laneLabel[row.lane]].concat(umbrellaText).join(&quot; &quot;).toLowerCase();
+  }
+  function combined(){
+    var rows=[];
+    DATA.anchors.forEach(function(x){rows.push(Object.assign({itemType:&quot;anchor&quot;},x))});
+    DATA.releases.forEach(function(x){rows.push(Object.assign({itemType:&quot;release&quot;},x))});
+    rows.sort(function(a,b){return a.date.localeCompare(b.date)||(a.itemType===&quot;anchor&quot;?-1:1)});
+    return rows;
+  }
+  function matches(row){
+    var q=search.value.trim().toLowerCase();
+    var f=filter===&quot;all&quot;||(filter===&quot;astrology&quot;&amp;&amp;row.itemType===&quot;anchor&quot;)||(filter===&quot;releases&quot;&amp;&amp;row.itemType===&quot;release&quot;)||(row.lane===filter);
+    var u=!activeUmbrella||(row.umbrella_ids||[]).indexOf(activeUmbrella)&gt;=0;
+    return f&amp;&amp;u&amp;&amp;(!q||textOf(row).indexOf(q)&gt;=0);
+  }
+  function kindLabel(a){
+    if(a.chart_type===&quot;ingress&quot;)return &quot;Ingress · governing gate&quot;;
+    var phase=a.chart_kind===&quot;new&quot;?&quot;New Moon&quot;:&quot;Full Moon&quot;;
+    return phase+(a.eclipse?&quot; · &quot;+a.eclipse:&quot;&quot;)+(a.degree!=null?&quot; · &quot;+a.degree+&quot;° &quot;+a.sign:&quot;&quot;);
+  }
+  function renderNow(){
+    var chapter=DATA.current_chapter||{}, phase=DATA.current_phase||{}, lin=phase.lineage||{}, america=DATA.america_hand||{};
+    var cards=[
+      [&quot;Governing room&quot;,&quot;Cancer ingress&quot;,&quot;Mutable Aries expired; Cancer governs until the Libra ingress at &quot;+exactLocal(&quot;2026-09-23T00:05:00Z&quot;)+&quot;.&quot;],
+      [&quot;Lunar chapter&quot;,(chapter.eclipse?chapter.eclipse+&quot; · &quot;:&quot;&quot;)+(chapter.degree!=null?chapter.degree+&quot;° &quot;:&quot;&quot;)+(chapter.sign||&quot;&quot;),&quot;Opened &quot;+exactLocal(chapter.exact_utc)+&quot; · root &quot;+(chapter.root||[]).join(&quot; + &quot;)+&quot; · carries until &quot;+exactLocal(chapter.governs_until_utc)+&quot;.&quot;],
+      [&quot;Current phase strike&quot;,(phase.phase||&quot;&quot;)+&quot; · &quot;+(phase.degree!=null?phase.degree+&quot;° &quot;:&quot;&quot;)+(phase.sign||&quot;&quot;),&quot;Exact &quot;+exactLocal(phase.exact_utc)+(lin.seed_date?&quot; · harvesting the &quot;+fmt(lin.seed_date)+&quot; &quot;+lin.seed_sign+&quot; seed.&quot;:&quot;.&quot;)],
+      [&quot;916 America · daily hand&quot;,deg(america.degree)+&quot; &quot;+(america.sign||&quot;&quot;),&quot;The canonical daily JPL cache for &quot;+fmt(america.date)+&quot;; a moving America hand, not a dignity-bearing planet. The exact event charts own their individual seats and derivative turns.&quot;]
+    ];
+    document.getElementById(&quot;nowStack&quot;).innerHTML=cards.map(function(c,i){return &#x27;&lt;article class=&quot;now-card&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;&#x27;+esc(c[0])+&#x27;&lt;/div&gt;&lt;h2&gt;&#x27;+esc(c[1])+&#x27;&lt;/h2&gt;&lt;p&gt;&#x27;+esc(c[2])+&#x27;&lt;/p&gt;&#x27;+(i===1?&#x27;&lt;button class=&quot;subplot-link&quot; type=&quot;button&quot; data-reading=&quot;&#x27;+esc(chapter.reading_id)+&#x27;&quot;&gt;Open chapter →&lt;/button&gt;&#x27;:i===3?&#x27;&lt;button class=&quot;subplot-link&quot; type=&quot;button&quot; data-america-reading&gt;Open Aug 20 context →&lt;/button&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/article&gt;&#x27;}).join(&quot;&quot;);
+  }
+  function renderUmbrellaRail(){
+    umbrellaRail.innerHTML=&#x27;&lt;button type=&quot;button&quot; class=&quot;umbrella-card&#x27;+(!activeUmbrella?&#x27; active&#x27;:&#x27;&#x27;)+&#x27;&quot; data-clear-umbrella&gt;&lt;b&gt;All umbrellas&lt;/b&gt;&lt;span&gt;Let every orbital field co-mingle across the full spine.&lt;/span&gt;&lt;/button&gt;&#x27;+DATA.umbrellas.map(function(u){var g=u.orbital.geometry||{}, a=u.orbital.active_aspect;var clock=a?(a.aspect_id+&quot; · &quot;+deg(a.orb_deg)+&quot; &quot;+a.motion_state):(g.phase_name+&quot; · no direct major aspect&quot;);return &#x27;&lt;button type=&quot;button&quot; class=&quot;umbrella-card&#x27;+(activeUmbrella===u.cycle_id?&#x27; active&#x27;:&#x27;&#x27;)+&#x27;&quot; data-umbrella=&quot;&#x27;+esc(u.cycle_id)+&#x27;&quot;&gt;&lt;b&gt;&#x27;+esc(u.label)+&#x27;&lt;/b&gt;&lt;span&gt;&#x27;+esc(u.cycle_id.replace(&quot;-&quot;,&quot;–&quot;))+&#x27;&lt;br&gt;&#x27;+esc(clock)+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;}).join(&quot;&quot;);
+  }
+  function renderUmbrella(u){
+    var o=u.orbital,g=o.geometry||{},a=o.active_aspect,n=o.exact_event_neighbors||{}, prev=n.previous_same_chapter_exact||n.previous_major_exact||{}, next=n.next_same_chapter_exact||n.next_major_exact||{};
+    var aspect=a?&#x27;&lt;b&gt;&#x27;+esc(a.aspect_id)+&#x27; · &#x27;+esc(deg(a.orb_deg))+&#x27; &#x27;+esc(a.motion_state)+&#x27;&lt;/b&gt;&#x27;:&#x27;&lt;b&gt;No direct major aspect inside the project orb&lt;/b&gt;&#x27;;
+    var manifestations=u.manifestations.map(function(m){return &#x27;&lt;article class=&quot;manifestation&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;&#x27;+esc(m.state.replaceAll(&quot;_&quot;,&quot; &quot;))+&#x27;&lt;/div&gt;&lt;h4&gt;&lt;button type=&quot;button&quot; data-plotline=&quot;&#x27;+esc(m.plotline)+&#x27;&quot;&gt;&#x27;+esc(m.plotline)+&#x27;&lt;/button&gt;&lt;/h4&gt;&lt;button class=&quot;subplot-link&quot; type=&quot;button&quot; data-subplot=&quot;&#x27;+esc(m.subplot)+&#x27;&quot;&gt;&#x27;+esc(m.subplot)+&#x27; →&lt;/button&gt;&lt;p&gt;&#x27;+esc(m.function)+&#x27;&lt;/p&gt;&lt;/article&gt;&#x27;}).join(&quot;&quot;);
+    var carriers=u.carrier_reading_ids.map(function(id){var x=DATA.anchors.find(function(r){return r.reading_id===id});return x?&#x27;&lt;button class=&quot;chip&quot; type=&quot;button&quot; data-open=&quot;&#x27;+esc(x.key)+&#x27;&quot;&gt;&#x27;+esc(fmt(x.display_date))+&#x27; · &#x27;+esc(x.title.replace(&quot; — A Reading&quot;,&quot;&quot;))+&#x27;&lt;/button&gt;&#x27;:&#x27;&#x27;}).join(&quot;&quot;);
+    var watches=u.watch_ids.map(function(id){var x=DATA.releases.find(function(r){return r.key===id});return x?&#x27;&lt;button class=&quot;chip&quot; type=&quot;button&quot; data-open=&quot;&#x27;+esc(x.key)+&#x27;&quot;&gt;&#x27;+esc(fmt(x.date))+&#x27; · &#x27;+esc(x.label)+&#x27;&lt;/button&gt;&#x27;:&#x27;&#x27;}).join(&quot;&quot;);
+    detail.innerHTML=&#x27;&lt;div class=&quot;detail-inner&quot;&gt;&lt;div class=&quot;eyebrow&quot;&gt;Planetary umbrella · orbital snapshot &#x27;+esc(exactLocal(u.as_of))+&#x27;&lt;/div&gt;&lt;h2&gt;&#x27;+esc(u.label)+&#x27;&lt;/h2&gt;&lt;p class=&quot;lead&quot;&gt;&#x27;+esc(u.archetype.summary)+&#x27;&lt;/p&gt;&lt;div class=&quot;orbit-grid&quot;&gt;&lt;div class=&quot;proof-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Where the bodies are in the cycle&lt;/div&gt;&lt;p&gt;&#x27;+esc(u.cycle_id.replace(&quot;-&quot;,&quot;–&quot;))+&#x27; · &#x27;+esc(g.phase_name)+&#x27; / &#x27;+esc(g.phase_direction)+&#x27;. &#x27;+aspect+(prev.utc?&#x27; Previous exact &#x27;+esc(exactLocal(prev.utc))+&#x27;.&#x27;:&#x27;&#x27;)+(next.utc?&#x27; Next exact &#x27;+esc(exactLocal(next.utc))+&#x27;.&#x27;:&#x27;&#x27;)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;proof-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Current distinction&lt;/div&gt;&lt;p&gt;&#x27;+esc(u.current_note)+(u.co_presence?&#x27; &#x27;+esc(u.co_presence)+&#x27;.&#x27;:&#x27;&#x27;)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;h3&gt;The archetypal question&lt;/h3&gt;&lt;div class=&quot;proof-box&quot;&gt;&lt;p&gt;&#x27;+esc(u.archetype.authority_question)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;transition&quot;&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;Constructive pole&lt;/div&gt;&lt;p&gt;&#x27;+esc(u.archetype.constructive)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;Shadow pole&lt;/div&gt;&lt;p&gt;&#x27;+esc(u.archetype.shadow)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;proof-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Continuity is also a result&lt;/div&gt;&lt;p&gt;&#x27;+esc(u.archetype.continuity)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;h3&gt;Current Chronicle manifestations&lt;/h3&gt;&lt;div class=&quot;manifestations&quot;&gt;&#x27;+manifestations+&#x27;&lt;/div&gt;&lt;h3&gt;Charts carrying this field&lt;/h3&gt;&lt;div class=&quot;chips&quot;&gt;&#x27;+carriers+&#x27;&lt;/div&gt;&#x27;+(watches?&#x27;&lt;h3&gt;Awaited factual gates&lt;/h3&gt;&lt;div class=&quot;chips&quot;&gt;&#x27;+watches+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;div class=&quot;actions&quot; style=&quot;margin-top:18px&quot;&gt;&lt;button class=&quot;action primary&quot; type=&quot;button&quot; data-open-clocks data-cycle=&quot;&#x27;+esc(u.cycle_id)+&#x27;&quot;&gt;Open this Long Clock&lt;/button&gt;&lt;button class=&quot;action&quot; type=&quot;button&quot; data-open-comparison&gt;Compare carrier charts&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;ethics&quot;&gt;&lt;b&gt;Observation rule:&lt;/b&gt; recurrence is continuity, not independent confirmation. These manifestations share an archetypal umbrella; they are not ranked, owned by the planet, or required to produce a literal event.&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }
+  function renderTimeline(){
+    var rows=combined().filter(matches), h=&quot;&quot;;
+    rows.forEach(function(row){
+      var on=row.key===activeKey?&quot; active&quot;:&quot;&quot;;
+      if(row.itemType===&quot;anchor&quot;){
+        h+=&#x27;&lt;button type=&quot;button&quot; class=&quot;timeline-row anchor&#x27;+on+&#x27;&quot; data-open=&quot;&#x27;+esc(row.key)+&#x27;&quot;&gt;&lt;span class=&quot;date&quot;&gt;&#x27;+esc(fmt(row.display_date||row.date))+&#x27;&lt;/span&gt;&lt;span class=&quot;node&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;span class=&quot;row-title&quot;&gt;&#x27;+esc(row.title.replace(&quot; — A Reading&quot;,&quot;&quot;))+&#x27;&lt;/span&gt;&lt;span class=&quot;row-sub&quot;&gt;&#x27;+esc(kindLabel(row))+&#x27;&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;&#x27;;
+      }else{
+        h+=&#x27;&lt;button type=&quot;button&quot; class=&quot;timeline-row release &#x27;+esc(row.lane)+on+&#x27;&quot; data-open=&quot;&#x27;+esc(row.key)+&#x27;&quot;&gt;&lt;span class=&quot;date&quot;&gt;&#x27;+esc(fmt(row.date))+&#x27;&lt;/span&gt;&lt;span class=&quot;node&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;span class=&quot;row-title&quot;&gt;&#x27;+esc(row.label)+&#x27;&lt;/span&gt;&lt;span class=&quot;row-sub&quot;&gt;&#x27;+esc(laneLabel[row.lane])+&#x27;&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;&#x27;;
+      }
+    });
+    timeline.innerHTML=h||&#x27;&lt;div class=&quot;empty&quot;&gt;Nothing matches this filter.&lt;/div&gt;&#x27;;
+  }
+  function climateChips(c){
+    var h=&#x27;&lt;button class=&quot;chip&quot; type=&quot;button&quot; data-reading=&quot;&#x27;+esc(c.governing_reading_id)+&#x27;&quot;&gt;Governing: &#x27;+esc(c.governing)+&#x27;&lt;/button&gt;&#x27;;
+    if(c.nested)h+=&#x27;&lt;button class=&quot;chip&quot; type=&quot;button&quot; data-reading=&quot;&#x27;+esc(c.nested_reading_id)+&#x27;&quot;&gt;Nested: &#x27;+esc(c.nested)+&#x27;&lt;/button&gt;&#x27;;
+    return h;
+  }
+  function familyHtml(m){
+    if(!m)return &quot;&quot;;
+    var lineage=m.lineage_phase===&quot;seed&quot;?&#x27;A new Pessin seed begins here.&#x27;:&#x27;Pessin Full-Moon harvest of the &#x27;+fmt(m.seed_date)+&#x27; &#x27;+m.seed_sign+&#x27; seed.&#x27;;
+    if(m.planted_subplot) lineage+=&#x27; The seed window was registered to “&#x27;+m.planted_subplot+&#x27;.”&#x27;;
+    return &#x27;&lt;h3&gt;Moon family context&lt;/h3&gt;&lt;div class=&quot;family-grid&quot;&gt;&lt;div class=&quot;family-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Degree-band mood&lt;/div&gt;&lt;p&gt;&lt;b&gt;&#x27;+esc(m.band)+&#x27;&lt;/b&gt; · &#x27;+esc(m.band_range)+&#x27;. &#x27;+esc(m.band_description)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;family-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Pessin lineage&lt;/div&gt;&lt;p&gt;&#x27;+esc(lineage)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }
+  function nearbyReleases(a){
+    var rows=DATA.releases.filter(function(r){return Math.abs(dayDiff(r.date,a.date))&lt;=10});
+    if(!rows.length)return &quot;&quot;;
+    return &#x27;&lt;h3&gt;Awaited releases and gates nearby&lt;/h3&gt;&lt;div class=&quot;nearby&quot;&gt;&#x27;+rows.map(function(r){return &#x27;&lt;button type=&quot;button&quot; data-open=&quot;&#x27;+esc(r.key)+&#x27;&quot;&gt;&lt;span class=&quot;nd&quot;&gt;&#x27;+esc(fmt(r.date))+&#x27;&lt;br&gt;&#x27;+esc(laneLabel[r.lane])+&#x27;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&#x27;+esc(r.label)+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;}).join(&quot;&quot;)+&#x27;&lt;/div&gt;&#x27;;
+  }
+  function americaHtml(a){
+    var am=a.america;if(!am)return &quot;&quot;;
+    var topics=(am.topics||[]).map(function(t){return &#x27;&lt;div class=&quot;family-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;America’s turned &#x27;+ord(t.turned_house)+&#x27; · &#x27;+esc(t.label)+&#x27;&lt;/div&gt;&lt;p&gt;&lt;b&gt;Radical &#x27;+ord(t.radical_house)+&#x27;&lt;/b&gt; · &#x27;+esc(t.radical_meaning)+&#x27;. &#x27;+(t.occupants.length?&#x27;Occupied by &#x27;+esc(t.occupants.join(&quot; + &quot;))+&#x27;.&#x27;:&#x27;No classical planet physically occupies the landed house; judge its ruler in the full reading.&#x27;)+&#x27;&lt;/p&gt;&lt;/div&gt;&#x27;}).join(&quot;&quot;);
+    var condition=(am.steward_condition||[]).join(&quot;, &quot;)||&quot;no listed essential condition&quot;;
+    return &#x27;&lt;h3&gt;916 America · one derivative turn&lt;/h3&gt;&lt;div class=&quot;proof-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;America’s seat and steward&lt;/div&gt;&lt;p&gt;&lt;b&gt;&#x27;+esc(am.position)+&#x27; · radical &#x27;+ord(am.radical_house)+&#x27;.&lt;/b&gt; Treat that occupied radical house as America’s turned 1st. &#x27;+esc(am.steward)+&#x27; stewards the whole American claim from &#x27;+esc(am.steward_sign)+&#x27; in the radical &#x27;+ord(am.steward_house)+&#x27; (&#x27;+esc(condition)+&#x27;). Capacity is not goodness; strain is not an automatic bad outcome.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;family-grid&quot; style=&quot;margin-top:10px&quot;&gt;&#x27;+topics+&#x27;&lt;/div&gt;&#x27;;
+  }
+  function renderAnchor(a){
+    var eclipse=a.eclipse?&#x27;&lt;span class=&quot;chip eclipse&quot;&gt;&#x27;+esc(a.eclipse)+&#x27;&lt;/span&gt;&#x27;:&quot;&quot;;
+    var overlaps=(a.overlaps||[]).map(function(o){return &#x27;&lt;article class=&quot;overlap&quot;&gt;&lt;h4&gt;&lt;button type=&quot;button&quot; data-plotline=&quot;&#x27;+esc(o.plotline)+&#x27;&quot;&gt;&#x27;+esc(o.plotline)+&#x27;&lt;/button&gt;&lt;/h4&gt;&lt;button class=&quot;subplot-link&quot; type=&quot;button&quot; data-subplot=&quot;&#x27;+esc(o.subplot)+&#x27;&quot;&gt;&#x27;+esc(o.subplot)+&#x27; →&lt;/button&gt;&lt;p&gt;&#x27;+esc(o.why)+&#x27;&lt;/p&gt;&lt;/article&gt;&#x27;}).join(&quot;&quot;);
+    var arcs=(a.arcs||[]).map(function(x){return &#x27;&lt;button class=&quot;chip arc&quot; type=&quot;button&quot; data-arc=&quot;&#x27;+esc(x)+&#x27;&quot;&gt;&#x27;+esc(x)+&#x27;&lt;/button&gt;&#x27;}).join(&quot;&quot;);
+    var ingressAction=a.chart_type===&quot;ingress&quot;?&#x27;&lt;button class=&quot;action&quot; type=&quot;button&quot; data-ingress=&quot;&#x27;+esc(a.ingress_key)+&#x27;&quot;&gt;Open existing wheel&lt;/button&gt;&#x27;:&#x27;&lt;button class=&quot;action&quot; type=&quot;button&quot; data-lunar=&quot;&#x27;+esc(a.date)+&#x27;&quot;&gt;Open in Lunar Weather&lt;/button&gt;&#x27;;
+    detail.innerHTML=&#x27;&lt;div class=&quot;detail-inner&quot;&gt;&lt;div class=&quot;eyebrow&quot;&gt;&#x27;+esc(fmt(a.display_date||a.date))+&#x27; · &#x27;+esc(kindLabel(a))+&#x27;&lt;/div&gt;&lt;h2&gt;&#x27;+esc(a.title.replace(&quot; — A Reading&quot;,&quot;&quot;))+&#x27;&lt;/h2&gt;&lt;div class=&quot;chips&quot;&gt;&#x27;+climateChips(a.climate)+eclipse+umbrellaChips(a.umbrella_ids)+&#x27;&lt;/div&gt;&lt;p class=&quot;lead&quot;&gt;&#x27;+esc(a.authority_question)+&#x27;&lt;/p&gt;&lt;p class=&quot;meta&quot;&gt;Exact &#x27;+esc(exactLocal(a.exact_utc))+(a.root&amp;&amp;a.root.length?&#x27; · root &#x27;+esc(a.root.join(&quot; + &quot;)):&#x27;&#x27;)+&#x27;&lt;/p&gt;&lt;div class=&quot;actions&quot;&gt;&lt;button class=&quot;action primary&quot; type=&quot;button&quot; data-reading=&quot;&#x27;+esc(a.reading_id)+&#x27;&quot;&gt;Open full reading&lt;/button&gt;&#x27;+ingressAction+&#x27;&lt;button class=&quot;action&quot; type=&quot;button&quot; data-day=&quot;&#x27;+esc(a.display_date||a.date)+&#x27;&quot;&gt;That day&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;transition&quot;&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;From&lt;/div&gt;&lt;p&gt;&#x27;+esc(a.transition.from)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;mini-label&quot;&gt;Toward&lt;/div&gt;&lt;p&gt;&#x27;+esc(a.transition.toward)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;proof-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;What would synchronize&lt;/div&gt;&lt;p&gt;&#x27;+esc(a.watch_for)+&#x27;&lt;/p&gt;&lt;div class=&quot;chips&quot; style=&quot;margin-top:9px&quot;&gt;&#x27;+arcs+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+americaHtml(a)+familyHtml(a.moon)+&#x27;&lt;h3&gt;Natural Chronicle manifestations&lt;/h3&gt;&lt;div class=&quot;overlaps&quot;&gt;&#x27;+overlaps+&#x27;&lt;/div&gt;&#x27;+nearbyReleases(a)+&#x27;&lt;div class=&quot;ethics&quot;&gt;&lt;b&gt;Observation rule:&lt;/b&gt; these are unranked archetypal hypotheses, not assigned outcomes. Shared timing or vocabulary is not cause; unchanged, failed, reversed, and unresolved remain valid. The full reading and existing wheel retain authority over the chart.&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }
+  function renderRelease(r){
+    var research=(r.research_ids||[]).map(function(id){return &#x27;&lt;button class=&quot;action&quot; type=&quot;button&quot; data-research=&quot;&#x27;+esc(id)+&#x27;&quot;&gt;Research Desk · &#x27;+esc(id)+&#x27;&lt;/button&gt;&#x27;}).join(&quot;&quot;);
+    var source=/^https?:/.test(r.source)?&#x27;&lt;a class=&quot;action&quot; href=&quot;&#x27;+esc(r.source)+&#x27;&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Official source ↗&lt;/a&gt;&#x27;:&quot;&quot;;
+    detail.innerHTML=&#x27;&lt;div class=&quot;detail-inner release-detail&quot;&gt;&lt;span class=&quot;lane&quot;&gt;&#x27;+esc(laneLabel[r.lane])+&#x27;&lt;/span&gt;&lt;div class=&quot;eyebrow&quot; style=&quot;margin-top:8px&quot;&gt;&#x27;+esc(fmt(r.date))+(r.approx?&#x27; · approximate&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;h2&gt;&#x27;+esc(r.label)+&#x27;&lt;/h2&gt;&lt;div class=&quot;chips&quot; style=&quot;margin-bottom:14px&quot;&gt;&#x27;+umbrellaChips(r.umbrella_ids)+&#x27;&lt;/div&gt;&lt;div class=&quot;release-box&quot;&gt;&lt;div class=&quot;mini-label&quot;&gt;Canonical watch detail&lt;/div&gt;&lt;p&gt;&#x27;+esc(r.detail||&quot;No additional detail is recorded in the current watch calendar.&quot;)+&#x27;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;actions&quot; style=&quot;margin-top:16px&quot;&gt;&#x27;+source+&#x27;&lt;button class=&quot;action primary&quot; type=&quot;button&quot; data-day=&quot;&#x27;+esc(r.date)+&#x27;&quot;&gt;Open that day&lt;/button&gt;&#x27;+research+&#x27;&lt;/div&gt;&lt;div class=&quot;ethics&quot;&gt;Date, wording, and source are resolved directly from &lt;b&gt;watch_calendar.json&lt;/b&gt;. The planetary umbrellas supply interpretive context but do not alter the factual release state.&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }
+  function find(key){return combined().find(function(x){return x.key===key})}
+  function open(key,scroll){
+    var row=find(key);if(!row)return;activeKey=key;renderTimeline();
+    if(row.itemType===&quot;anchor&quot;)renderAnchor(row);else renderRelease(row);
+    if(scroll){var el=timeline.querySelector(&#x27;[data-open=&quot;&#x27;+key+&#x27;&quot;]&#x27;);if(el)el.scrollIntoView({behavior:&quot;smooth&quot;,block:&quot;center&quot;})}
+  }
+  function focusNow(){var n=new Date(),pad=function(x){return String(x).padStart(2,&quot;0&quot;)},today=n.getFullYear()+&quot;-&quot;+pad(n.getMonth()+1)+&quot;-&quot;+pad(n.getDate());var a=DATA.anchors.find(function(x){return x.date&gt;=today})||DATA.anchors[DATA.anchors.length-1];if(a)open(a.key,true)}
+  document.getElementById(&quot;patternNotes&quot;).innerHTML=DATA.pattern_notes.map(function(x){return &#x27;&lt;div class=&quot;pattern&quot;&gt;&#x27;+esc(x)+&#x27;&lt;/div&gt;&#x27;}).join(&quot;&quot;);
+  document.getElementById(&quot;waveMethod&quot;).textContent=(waveData.method||{}).reading_rule||&quot;&quot;;
+  renderWaveArc();
+  document.addEventListener(&quot;click&quot;,function(event){
+    var el=event.target.closest(&quot;[data-mode]&quot;);if(el){setMode(el.dataset.mode);return}
+    el=event.target.closest(&quot;[data-open-plot]&quot;);if(el){activeClock=&quot;&quot;;setMode(&quot;plots&quot;);renderPlot(el.dataset.openPlot);return}
+    el=event.target.closest(&quot;[data-plot-clock]&quot;);if(el){selectPlotClock(el.dataset.plotClock);return}
+    el=event.target.closest(&quot;[data-plotline-map]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-sm&quot;,plotline:el.dataset.plotlineMap});return}
+    el=event.target.closest(&quot;[data-wave]&quot;);if(el){renderWave(el.dataset.wave);return}
+    el=event.target.closest(&quot;[data-wave-chart]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-cc&quot;,childAction:&quot;openComparison&quot;,chartIds:[el.dataset.waveChart]});return}
+    el=event.target.closest(&quot;[data-eo]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-eo&quot;,eo:&quot;EO &quot;+el.dataset.eo});return}
+    el=event.target.closest(&quot;[data-wave-eos]&quot;);if(el){var w=waveById(activeWave),first=w&amp;&amp;w.eo_scope?w.eo_scope.expected_first:&quot;&quot;;post({action:&quot;navigateTo&quot;,tab:&quot;obs-eo&quot;,eo:first?&quot;EO &quot;+first:&quot;&quot;});return}
+    el=event.target.closest(&quot;[data-wave-doc]&quot;);if(el){var w=waveById(activeWave),path=el.dataset.waveDoc===&quot;cross&quot;?(waveData.cross_wave||{}).research_path:(w||{}).research_path;if(path){if(path.indexOf(&quot;03 - Astrology/Astrology Files/&quot;)===0)post({action:&quot;navigateTo&quot;,tab:&quot;astrology-reference-room&quot;,childAction:&quot;openAstrologyDocument&quot;,path:path});else post({action:&quot;goToResearchDocument&quot;,path:path});}return}
+    el=event.target.closest(&quot;[data-open]&quot;);if(el){open(el.dataset.open,false);return}
+    el=event.target.closest(&quot;[data-era]&quot;);if(el){activeEra=el.dataset.era;activeRoot=&quot;&quot;;renderEraTabs();renderEra();return}
+    el=event.target.closest(&quot;[data-cycle-root]&quot;);if(el){selectRoot(el.dataset.cycleRoot);return}
+    el=event.target.closest(&quot;[data-focus-now]&quot;);if(el){setMode(&quot;current&quot;);focusNow();return}
+    el=event.target.closest(&quot;[data-clear-umbrella]&quot;);if(el){activeUmbrella=&quot;&quot;;renderUmbrellaRail();renderTimeline();focusNow();return}
+    el=event.target.closest(&quot;[data-umbrella]&quot;);if(el){activeUmbrella=el.dataset.umbrella;renderUmbrellaRail();renderTimeline();renderUmbrella(umbrella(activeUmbrella));return}
+    el=event.target.closest(&quot;[data-open-clocks]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-dc&quot;,childAction:&quot;openClock&quot;,cycle_id:el.dataset.cycle||activeUmbrella||DATA.umbrellas[0].cycle_id});return}
+    el=event.target.closest(&quot;[data-open-comparison]&quot;);if(el){var ids=activeUmbrella?(umbrella(activeUmbrella).carrier_reading_ids||[]):[];post({action:&quot;navigateTo&quot;,tab:&quot;obs-cc&quot;,childAction:&quot;openComparison&quot;,chartIds:ids.slice(0,4)});return}
+    el=event.target.closest(&quot;[data-america-reading]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-df&quot;,date:DATA.america_hand.date});return}
+    el=event.target.closest(&quot;[data-filter]&quot;);if(el){filter=el.dataset.filter;document.querySelectorAll(&quot;[data-filter]&quot;).forEach(function(x){x.classList.toggle(&quot;active&quot;,x===el)});renderTimeline();return}
+    el=event.target.closest(&quot;[data-reading]&quot;);if(el){var a=DATA.anchors.find(function(x){return x.reading_id===el.dataset.reading});openReading(el.dataset.reading,a?a.date:&quot;&quot;);return}
+    el=event.target.closest(&quot;[data-lunar]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-lw&quot;,date:el.dataset.lunar});return}
+    el=event.target.closest(&quot;[data-ingress]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-ic&quot;,childAction:&quot;selectIngress&quot;,id:el.dataset.ingress});return}
+    el=event.target.closest(&quot;[data-open-sub]&quot;);if(el){openSub(el.dataset.openSub);return}
+    el=event.target.closest(&quot;[data-day]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-df&quot;,date:el.dataset.day});return}
+    el=event.target.closest(&quot;[data-plotline]&quot;);if(el){if(plotRoom(el.dataset.plotline)){setMode(&quot;plots&quot;);renderPlot(el.dataset.plotline);return}post({action:&quot;navigateTo&quot;,tab:&quot;obs-sm&quot;,plotline:el.dataset.plotline});return}
+    el=event.target.closest(&quot;[data-subplot]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-sm&quot;,subplot:el.dataset.subplot});return}
+    el=event.target.closest(&quot;[data-arc]&quot;);if(el){post({action:&quot;navigateTo&quot;,tab:&quot;obs-cm&quot;,arc:el.dataset.arc});return}
+    el=event.target.closest(&quot;[data-research]&quot;);if(el){post({action:&quot;goToResearch&quot;,id:el.dataset.research});return}
+  });
+  search.addEventListener(&quot;input&quot;,renderTimeline);
+  window.addEventListener(&quot;message&quot;,function(event){var m=event.data||{};if(m.action===&quot;setTheme&quot;){document.documentElement.setAttribute(&quot;data-theme&quot;,m.theme===&quot;dark&quot;?&quot;dark&quot;:&quot;light&quot;)}else if(m.action===&quot;openWave&quot;&amp;&amp;m.id){setMode(&quot;waves&quot;);renderWave(m.id)}else if(m.action===&quot;openPlot&quot;&amp;&amp;(m.plotline||m.id)){setMode(&quot;plots&quot;);renderPlot(m.plotline||m.id)}else if((m.action===&quot;goToDate&quot;||m.action===&quot;scrollToDate&quot;)&amp;&amp;m.date){var a=DATA.anchors.find(function(x){return x.date&gt;=m.date})||DATA.anchors[DATA.anchors.length-1];if(a){setMode(&quot;current&quot;);open(a.key,true)}}});
+  try{document.documentElement.setAttribute(&quot;data-theme&quot;,localStorage.getItem(&quot;f250-theme&quot;)||&quot;light&quot;)}catch(_){}
+  renderNow();renderConjunctionMap();renderUmbrellaRail();renderTimeline();renderWaveArc();renderWaveRail();renderWave(activeWave);focusNow();
+})();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&#x27;&#x27;&#x27;
+
+
+def main() -&gt; None:
+    payload = build_payload()
+    encoded = json.dumps(payload, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;))
+    encoded = encoded.replace(&quot;&lt;&quot;, &quot;\\u003c&quot;).replace(&quot;&gt;&quot;, &quot;\\u003e&quot;).replace(&quot;&amp;&quot;, &quot;\\u0026&quot;)
+    rendered = TEMPLATE.replace(&quot;__DATA__&quot;, encoded)
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(rendered, encoding=&quot;utf-8&quot;)
+    print(
+        f&quot;✓ Astrology Spine: {len(payload[&#x27;anchors&#x27;])} chart anchors, &quot;
+        f&quot;{len(payload[&#x27;releases&#x27;])} awaited releases, &quot;
+        f&quot;{len(payload[&#x27;plot_rooms&#x27;][&#x27;rooms&#x27;])} plot rooms → {OUT.relative_to(VAULT)}&quot;
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

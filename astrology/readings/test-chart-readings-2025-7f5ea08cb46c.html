@@ -1,0 +1,164 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-chart-readings-2025-7f5ea08cb46c.html">
+<title>test_chart_readings_2025</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_chart_readings_2025</h1><p class="mut">Portable source: 99 - Templates/test_chart_readings_2025.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Invariant tests for the 2025 retrospective shelf (DR-084) and the detriment table (DR-082).&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+import json
+import unittest
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+VAULT = HERE.parent
+ASTRO = VAULT / &quot;03 - Astrology&quot;
+REGISTRY = ASTRO / &quot;chart_reading_registry_2025.json&quot;
+BONES = HERE / &quot;chart_reading_bones_2025&quot;
+STACKS = HERE / &quot;chart_synodic_stacks_2025.json&quot;
+
+
+class Retrospective2025ShelfTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -&gt; None:
+        cls.registry = json.loads(REGISTRY.read_text(encoding=&quot;utf-8&quot;))
+        cls.index = json.loads((BONES / &quot;index.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+
+    def test_shelf_inventory(self) -&gt; None:
+        kinds = [row[&quot;kind&quot;] for row in self.registry[&quot;readings&quot;]]
+        self.assertEqual(kinds.count(&quot;pass1&quot;), 29)
+        self.assertEqual(kinds.count(&quot;census&quot;), 4)
+        self.assertEqual(kinds.count(&quot;comparison&quot;), 4)
+        self.assertEqual(self.registry[&quot;comparison_contract&quot;][&quot;expected_shelf_count&quot;], 37)
+        self.assertEqual(len(self.index[&quot;charts&quot;]), 29)
+
+    def test_every_chart_reading_has_a_bone_and_a_stack(self) -&gt; None:
+        pass1 = {row[&quot;id&quot;] for row in self.registry[&quot;readings&quot;] if row[&quot;kind&quot;] == &quot;pass1&quot;}
+        bones = {row[&quot;id&quot;] for row in self.index[&quot;charts&quot;]}
+        stacks = {row[&quot;chart_id&quot;] for row in json.loads(STACKS.read_text(encoding=&quot;utf-8&quot;))[&quot;charts&quot;]}
+        self.assertEqual(pass1, bones)
+        self.assertEqual(bones, stacks)
+        for chart_id in bones:
+            self.assertTrue((BONES / f&quot;{chart_id}.json&quot;).is_file(), chart_id)
+
+    def test_seasons_and_eclipses(self) -&gt; None:
+        seasons = {}
+        for row in self.index[&quot;charts&quot;]:
+            seasons.setdefault(row[&quot;season&quot;], []).append(row[&quot;id&quot;])
+        self.assertEqual(sorted(seasons), [&quot;2025-aries&quot;, &quot;2025-cancer&quot;, &quot;2025-libra&quot;, &quot;2025-winter&quot;])
+        self.assertEqual({k: len(v) for k, v in seasons.items()},
+                         {&quot;2025-winter&quot;: 7, &quot;2025-aries&quot;: 7, &quot;2025-cancer&quot;: 8, &quot;2025-libra&quot;: 7})
+        eclipses = sorted(row[&quot;id&quot;] for row in self.index[&quot;charts&quot;] if row.get(&quot;eclipse&quot;))
+        self.assertEqual(eclipses, [&quot;lun-2025-03-14-fu-lunar&quot;, &quot;lun-2025-03-29-ne-solar&quot;,
+                                    &quot;lun-2025-09-07-fu-lunar&quot;, &quot;lun-2025-09-21-ne-solar&quot;])
+
+    def test_frozen_baselines_hold(self) -&gt; None:
+        contract = self.registry[&quot;comparison_contract&quot;]
+        covered = []
+        for baseline in contract[&quot;baselines&quot;]:
+            self.assertTrue(baseline[&quot;immutable&quot;])
+            self.assertEqual(baseline[&quot;mode&quot;], &quot;retrospective_calibration&quot;)
+            rows = []
+            for component in baseline[&quot;components&quot;]:
+                raw = (ASTRO / component[&quot;artifact&quot;]).read_bytes()
+                self.assertEqual(hashlib.sha256(raw).hexdigest(), component[&quot;sha256&quot;])
+                rows.append(f&quot;{component[&#x27;reading_id&#x27;]}:{component[&#x27;sha256&#x27;]}\n&quot;)
+                covered.append(component[&quot;reading_id&quot;])
+            aggregate = hashlib.sha256(&quot;&quot;.join(rows).encode(&quot;utf-8&quot;)).hexdigest()
+            self.assertEqual(aggregate, baseline[&quot;aggregate_sha256&quot;])
+        self.assertEqual(sorted(covered), sorted(row[&quot;id&quot;] for row in self.index[&quot;charts&quot;]))
+
+    def test_comparisons_are_closed_retrospective_and_unscored(self) -&gt; None:
+        for comparison in self.registry[&quot;comparison_contract&quot;][&quot;comparisons&quot;]:
+            self.assertEqual(comparison[&quot;mode&quot;], &quot;retrospective_calibration&quot;)
+            self.assertEqual(comparison[&quot;state&quot;], &quot;closed&quot;)
+            evidence = json.loads((ASTRO / comparison[&quot;evidence_map&quot;]).read_text(encoding=&quot;utf-8&quot;))
+            self.assertFalse(evidence[&quot;boundary&quot;][&quot;forecast_credit_allowed&quot;])
+            self.assertFalse(evidence[&quot;method&quot;][&quot;scores_allowed&quot;])
+            for finding in evidence[&quot;findings&quot;]:
+                for item in finding[&quot;evidence&quot;]:
+                    self.assertIn(item[&quot;lane&quot;], {&quot;Attention&quot;, &quot;Official&quot;, &quot;Entity&quot;})
+
+    def test_known_chart_facts(self) -&gt; None:
+        aries = json.loads((BONES / &quot;ingress-2025-aries.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+        self.assertEqual(aries[&quot;asc_sign&quot;], &quot;Aquarius&quot;)
+        self.assertEqual(aries[&quot;root_members&quot;], [&quot;Moon&quot;, &quot;Mercury&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;])
+        self.assertIn(&quot;detriment&quot;, aries[&quot;pos&quot;][&quot;Jupiter&quot;][&quot;cond&quot;])  # DR-082
+        cap = json.loads((BONES / &quot;ingress-2024-capricorn.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+        self.assertEqual(cap[&quot;asc_sign&quot;], &quot;Scorpio&quot;)
+        self.assertEqual(cap[&quot;root_members&quot;], [&quot;Mercury&quot;, &quot;Jupiter&quot;])
+        self.assertIn(&quot;detriment&quot;, cap[&quot;pos&quot;][&quot;Mercury&quot;][&quot;cond&quot;])
+        eclipse = json.loads((BONES / &quot;lun-2025-09-21-ne-solar.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+        self.assertEqual(eclipse[&quot;eclipse_detail&quot;][&quot;saros&quot;], 154)
+
+
+class DetrimentTableTests(unittest.TestCase):
+    def test_engine_tags_both_detriments(self) -&gt; None:
+        import sys
+        sys.path.insert(0, str(HERE))
+        import mundane_engine as me
+        pairs = {&quot;Mercury&quot;: {&quot;Sagittarius&quot;, &quot;Pisces&quot;}, &quot;Venus&quot;: {&quot;Scorpio&quot;, &quot;Aries&quot;},
+                 &quot;Mars&quot;: {&quot;Libra&quot;, &quot;Taurus&quot;}, &quot;Jupiter&quot;: {&quot;Gemini&quot;, &quot;Virgo&quot;},
+                 &quot;Saturn&quot;: {&quot;Cancer&quot;, &quot;Leo&quot;}, &quot;Sun&quot;: {&quot;Aquarius&quot;}, &quot;Moon&quot;: {&quot;Capricorn&quot;}}
+        for planet, signs in pairs.items():
+            self.assertEqual(set(me.DETRI[planet]), signs, planet)
+            for sign in signs:
+                self.assertIn(&quot;detriment&quot;, me.condition(planet, sign, False))
+
+    def test_2026_bones_carry_the_correction(self) -&gt; None:
+        bone = json.loads((HERE / &quot;chart_reading_bones&quot; / &quot;lun-2026-09-26-fu.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+        self.assertIn(&quot;detriment&quot;, bone[&quot;pos&quot;][&quot;Venus&quot;][&quot;cond&quot;])
+        for path in (HERE / &quot;chart_reading_bones&quot;).glob(&quot;*-*.json&quot;):
+            data = json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+            for planet, body in data[&quot;pos&quot;].items():
+                if (planet, body[&quot;sign&quot;]) in {(&quot;Venus&quot;, &quot;Scorpio&quot;), (&quot;Mercury&quot;, &quot;Sagittarius&quot;),
+                                              (&quot;Jupiter&quot;, &quot;Gemini&quot;), (&quot;Mars&quot;, &quot;Libra&quot;),
+                                              (&quot;Saturn&quot;, &quot;Cancer&quot;)}:
+                    self.assertIn(&quot;detriment&quot;, body[&quot;cond&quot;], f&quot;{path.name} {planet}&quot;)
+
+
+class AmendmentLedgerTests(unittest.TestCase):
+    &quot;&quot;&quot;DR-085: corrections go in the ledger; sealed readings stay byte-identical to their watches.&quot;&quot;&quot;
+
+    def test_watched_readings_match_their_frozen_hash(self) -&gt; None:
+        registry = json.loads((ASTRO / &quot;chart_reading_registry.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+        source = {row[&quot;id&quot;]: row[&quot;source&quot;] for row in registry[&quot;readings&quot;]}
+        watches = json.loads((ASTRO / &quot;chart_transition_watches.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+        for watch in watches[&quot;watches&quot;]:
+            path = VAULT / source[watch[&quot;reading_id&quot;]]
+            live = hashlib.sha256(path.read_bytes()).hexdigest()
+            self.assertEqual(live, watch[&quot;baseline_sha256&quot;], watch[&quot;reading_id&quot;])
+
+    def test_no_amendment_inside_a_reading(self) -&gt; None:
+        for path in ASTRO.glob(&quot;*— A Reading.md&quot;):
+            self.assertNotIn(&quot;## Amendment —&quot;, path.read_text(encoding=&quot;utf-8&quot;), path.name)
+
+    def test_ledger_covers_every_dr082_chart(self) -&gt; None:
+        import re
+        ledger = (ASTRO / &quot;Chart Reading Amendments — Ledger.md&quot;).read_text(encoding=&quot;utf-8&quot;)
+        ids = set(re.findall(r&#x27;&lt;!-- amendment reading_id=&quot;([^&quot;]+)&quot; rule=&quot;DR-082&quot;&#x27;, ledger))
+        # the signs the old one-per-planet table dropped and DR-082 restored
+        added = {(&quot;Venus&quot;, &quot;Scorpio&quot;), (&quot;Mercury&quot;, &quot;Sagittarius&quot;), (&quot;Jupiter&quot;, &quot;Gemini&quot;),
+                 (&quot;Mars&quot;, &quot;Libra&quot;), (&quot;Saturn&quot;, &quot;Cancer&quot;)}
+        registry = json.loads((ASTRO / &quot;chart_reading_registry.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+        expected = set()
+        for row in registry[&quot;readings&quot;]:
+            if row[&quot;kind&quot;] != &quot;pass1&quot;:
+                continue
+            bone = json.loads((HERE / &quot;chart_reading_bones&quot; / f&quot;{row[&#x27;id&#x27;]}.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+            if any((pl, body[&quot;sign&quot;]) in added for pl, body in bone[&quot;pos&quot;].items()):
+                expected.add(row[&quot;id&quot;])
+        self.assertEqual(ids, expected)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

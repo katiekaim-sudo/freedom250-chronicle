@@ -1,0 +1,403 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-2026-eclipse-season-handoffs-73a510cb326e.html">
+<title>build_2026_eclipse_season_handoffs</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_2026_eclipse_season_handoffs</h1><p class="mut">Portable source: 99 - Templates/build_2026_eclipse_season_handoffs.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the paired solar-seed/lunar-disclosure audit for 2026.
+
+The builder preserves each locked eclipse reading while testing what changes
+between the solar eclipse that opens a monthly chapter and the lunar eclipse
+that reveals it: command roots, final dispositors, raw distribution, exact
+cross-chart relays, declination-only continuities, and Washington-local stage.
+
+The full 2026 New-Moon-to-Full-Moon roster supplies a bounded control.  No
+eclipse, visibility, or geometric pattern receives factual, causal, forecast,
+or corroborative credit.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+HISTORY = HERE / &quot;mundane_history.json&quot;
+BONES = HERE / &quot;chart_reading_bones&quot;
+LOCAL = HERE / &quot;eclipse_local_circumstances.json&quot;
+OUT = HERE / &quot;eclipse_season_handoffs_2026.json&quot;
+
+BODY_NAMES = (
+    &quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;,
+    &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;,
+)
+ASPECTS = (
+    (&quot;conjunction&quot;, 0.0),
+    (&quot;sextile&quot;, 60.0),
+    (&quot;square&quot;, 90.0),
+    (&quot;trine&quot;, 120.0),
+    (&quot;opposition&quot;, 180.0),
+)
+SEASONS = (
+    {
+        &quot;label&quot;: &quot;winter&quot;,
+        &quot;seed_id&quot;: &quot;lun-2026-02-17-ne-solar&quot;,
+        &quot;full_id&quot;: &quot;lun-2026-03-03-fu-lunar&quot;,
+        &quot;seed_date&quot;: &quot;2026-02-17&quot;,
+        &quot;full_date&quot;: &quot;2026-03-03&quot;,
+        &quot;knowledge_state&quot;: &quot;retrospective&quot;,
+    },
+    {
+        &quot;label&quot;: &quot;summer&quot;,
+        &quot;seed_id&quot;: &quot;lun-2026-08-12-ne-solar&quot;,
+        &quot;full_id&quot;: &quot;lun-2026-08-28-fu-lunar&quot;,
+        &quot;seed_date&quot;: &quot;2026-08-12&quot;,
+        &quot;full_date&quot;: &quot;2026-08-28&quot;,
+        &quot;knowledge_state&quot;: &quot;retrospective_astronomy_and_chart_structure_at_cutoff&quot;,
+    },
+)
+
+
+def rounded(value: float, places: int = 6) -&gt; float:
+    return round(float(value), places)
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_bone(chart_id: str) -&gt; dict:
+    return json.loads((BONES / f&quot;{chart_id}.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+
+
+def angle_points(chart: dict) -&gt; dict[str, float]:
+    return {
+        &quot;ASC&quot;: chart[&quot;asc&quot;] % 360.0,
+        &quot;DSC&quot;: (chart[&quot;asc&quot;] + 180.0) % 360.0,
+        &quot;MC&quot;: chart[&quot;mc&quot;] % 360.0,
+        &quot;IC&quot;: (chart[&quot;mc&quot;] + 180.0) % 360.0,
+    }
+
+
+def body_points(chart: dict) -&gt; dict[str, float]:
+    return {name: chart[&quot;pos&quot;][name][&quot;lon&quot;] % 360.0 for name in BODY_NAMES}
+
+
+def angular_distance(first: float, second: float) -&gt; float:
+    return abs((second - first + 180.0) % 360.0 - 180.0)
+
+
+def major_contact(first: float, second: float) -&gt; tuple[str, float]:
+    separation = angular_distance(first, second)
+    name, angle = min(ASPECTS, key=lambda row: abs(separation - row[1]))
+    return name, abs(separation - angle)
+
+
+def contact(source_label: str, source_lon: float, target_label: str, target_lon: float) -&gt; dict:
+    aspect, orb = major_contact(source_lon, target_lon)
+    return {
+        &quot;source&quot;: source_label,
+        &quot;target&quot;: target_label,
+        &quot;aspect&quot;: aspect,
+        &quot;orb_deg&quot;: rounded(orb),
+        &quot;source_longitude_deg&quot;: rounded(source_lon, 9),
+        &quot;target_longitude_deg&quot;: rounded(target_lon, 9),
+    }
+
+
+def root_transition(seed: dict, full: dict) -&gt; dict:
+    source = set(seed[&quot;root_members&quot;])
+    target = set(full[&quot;root_members&quot;])
+    return {
+        &quot;seed_root_members&quot;: sorted(source),
+        &quot;full_root_members&quot;: sorted(target),
+        &quot;shared_members&quot;: sorted(source &amp; target),
+        &quot;added_members&quot;: sorted(target - source),
+        &quot;removed_members&quot;: sorted(source - target),
+        &quot;complete_replacement&quot;: not bool(source &amp; target),
+        &quot;seed_final_dispositors&quot;: seed[&quot;finals&quot;],
+        &quot;full_final_dispositors&quot;: full[&quot;finals&quot;],
+        &quot;both_frames_without_final_dispositor&quot;: not seed[&quot;finals&quot;] and not full[&quot;finals&quot;],
+    }
+
+
+def persistent_declinations(seed: dict, full: dict) -&gt; list[dict]:
+    def key(row: dict) -&gt; tuple:
+        return (*sorted((row[&quot;a&quot;], row[&quot;b&quot;])), row[&quot;kind&quot;])
+
+    source = {key(row): row for row in seed[&quot;parallels&quot;]}
+    target = {key(row): row for row in full[&quot;parallels&quot;]}
+    rows = []
+    for pair_key in sorted(source.keys() &amp; target.keys()):
+        before = source[pair_key]
+        after = target[pair_key]
+        rows.append({
+            &quot;pair&quot;: list(pair_key[:2]),
+            &quot;kind&quot;: pair_key[2],
+            &quot;seed_orb_deg&quot;: rounded(before[&quot;orb&quot;]),
+            &quot;full_orb_deg&quot;: rounded(after[&quot;orb&quot;]),
+            &quot;tightens&quot;: after[&quot;orb&quot;] &lt; before[&quot;orb&quot;],
+            &quot;longitude_major_aspect_at_seed&quot;: any(
+                {row[&quot;a&quot;], row[&quot;b&quot;]} == set(pair_key[:2]) for row in seed[&quot;aspects&quot;]
+            ),
+            &quot;longitude_major_aspect_at_full&quot;: any(
+                {row[&quot;a&quot;], row[&quot;b&quot;]} == set(pair_key[:2]) for row in full[&quot;aspects&quot;]
+            ),
+        })
+    return rows
+
+
+def local_stage(event: dict) -&gt; dict:
+    global_row = event[&quot;global&quot;]
+    local = event[&quot;washington&quot;]
+    return {
+        &quot;date&quot;: event[&quot;date&quot;],
+        &quot;kind&quot;: event[&quot;kind&quot;],
+        &quot;global_type&quot;: global_row[&quot;type&quot;],
+        &quot;syzygy_utc&quot;: global_row[&quot;syzygy&quot;][&quot;utc&quot;],
+        &quot;greatest_eclipse_utc&quot;: global_row[&quot;maximum&quot;][&quot;utc&quot;],
+        &quot;syzygy_to_greatest_eclipse_signed_minutes&quot;: rounded(
+            global_row[&quot;syzygy_minus_maximum_minutes&quot;], 3
+        ),
+        &quot;washington_status&quot;: local[&quot;status&quot;],
+        &quot;washington_type&quot;: local[&quot;local_type&quot;],
+        &quot;true_altitude_at_syzygy_deg&quot;: rounded(
+            local.get(
+                &quot;sun_true_altitude_at_syzygy_deg&quot;,
+                local.get(&quot;moon_true_altitude_at_syzygy_deg&quot;),
+            ),
+            6,
+        ),
+        &quot;true_altitude_at_greatest_eclipse_deg&quot;: rounded(
+            local.get(
+                &quot;sun_true_altitude_at_global_max_deg&quot;,
+                local.get(&quot;moon_true_altitude_at_global_max_deg&quot;),
+            ),
+            6,
+        ),
+        &quot;observable_solar_minutes&quot;: local.get(&quot;observable_minutes&quot;),
+        &quot;visible_partial_lunar_minutes&quot;: (local.get(&quot;partial_phase&quot;) or {}).get(
+            &quot;minutes_above_horizon&quot;
+        ),
+        &quot;visible_total_lunar_minutes&quot;: (local.get(&quot;total_phase&quot;) or {}).get(
+            &quot;minutes_above_horizon&quot;
+        ),
+        &quot;umbral_magnitude&quot;: local.get(&quot;umbral_magnitude&quot;),
+    }
+
+
+def full_root_receipts(seed: dict, full: dict) -&gt; list[dict]:
+    seed_bodies = body_points(seed)
+    full_bodies = body_points(full)
+    receipts = []
+    for root in full[&quot;root_members&quot;]:
+        candidates = [
+            contact(body, longitude, root, full_bodies[root])
+            for body, longitude in seed_bodies.items()
+        ]
+        receipts.append(min(candidates, key=lambda row: (row[&quot;orb_deg&quot;], row[&quot;source&quot;])))
+    return receipts
+
+
+def minimum_seed_angle_to_full_light(seed: dict, full: dict) -&gt; dict:
+    candidates = [
+        contact(angle, longitude, light, body_points(full)[light])
+        for angle, longitude in angle_points(seed).items()
+        for light in (&quot;Sun&quot;, &quot;Moon&quot;)
+    ]
+    return min(candidates, key=lambda row: (row[&quot;orb_deg&quot;], row[&quot;source&quot;], row[&quot;target&quot;]))
+
+
+def chapter_pairs_2026(history_rows: list[dict]) -&gt; list[tuple[str, str]]:
+    rows = sorted(
+        [
+            row for row in history_rows
+            if row.get(&quot;utc&quot;, &quot;&quot;).startswith(&quot;2026-&quot;)
+            and row.get(&quot;chart_type&quot;) == &quot;lunation&quot;
+            and (BONES / f&quot;{row[&#x27;id&#x27;]}.json&quot;).exists()
+        ],
+        key=lambda row: row[&quot;jd_ut&quot;],
+    )
+    pairs = []
+    for index, seed in enumerate(rows):
+        if &quot;-ne&quot; not in seed[&quot;id&quot;]:
+            continue
+        full = next((row for row in rows[index + 1:] if &quot;-fu&quot; in row[&quot;id&quot;]), None)
+        close = next((row for row in rows[index + 1:] if &quot;-ne&quot; in row[&quot;id&quot;]), None)
+        if full and (close is None or full[&quot;jd_ut&quot;] &lt; close[&quot;jd_ut&quot;]):
+            pairs.append((seed[&quot;id&quot;], full[&quot;id&quot;]))
+    return pairs
+
+
+def build_control(history_rows: list[dict]) -&gt; dict:
+    rows = []
+    for seed_id, full_id in chapter_pairs_2026(history_rows):
+        seed = load_bone(seed_id)
+        full = load_bone(full_id)
+        transition = root_transition(seed, full)
+        receipts = full_root_receipts(seed, full)
+        angle_light = minimum_seed_angle_to_full_light(seed, full)
+        rows.append({
+            &quot;seed_id&quot;: seed_id,
+            &quot;full_id&quot;: full_id,
+            &quot;complete_root_replacement_with_no_final_dispositor_in_either_frame&quot;: (
+                transition[&quot;complete_replacement&quot;]
+                and transition[&quot;both_frames_without_final_dispositor&quot;]
+            ),
+            &quot;all_full_root_members_receive_seed_body_contact_within_0_25_deg&quot;: all(
+                receipt[&quot;orb_deg&quot;] &lt;= 0.25 for receipt in receipts
+            ),
+            &quot;full_root_receipts&quot;: receipts,
+            &quot;minimum_seed_angle_to_full_light&quot;: angle_light,
+        })
+    return {
+        &quot;scope&quot;: &quot;twelve registered 2026 New-Moon-to-first-Full-Moon chapters with chart bones&quot;,
+        &quot;chapter_count&quot;: len(rows),
+        &quot;chapters&quot;: rows,
+        &quot;complete_root_replacement_no_final_dispositor_chapters&quot;: [
+            row[&quot;seed_id&quot;] for row in rows
+            if row[&quot;complete_root_replacement_with_no_final_dispositor_in_either_frame&quot;]
+        ],
+        &quot;all_full_roots_exactly_reached_chapters&quot;: [
+            row[&quot;seed_id&quot;] for row in rows
+            if row[&quot;all_full_root_members_receive_seed_body_contact_within_0_25_deg&quot;]
+        ],
+        &quot;seed_angle_to_full_light_within_1_deg_chapters&quot;: [
+            row[&quot;seed_id&quot;] for row in rows
+            if row[&quot;minimum_seed_angle_to_full_light&quot;][&quot;orb_deg&quot;] &lt;= 1.0
+        ],
+        &quot;boundary&quot;: (
+            &quot;These are bounded 2026 structural controls, not all-history rarity or event-frequency claims.&quot;
+        ),
+    }
+
+
+def season_relays(label: str, seed: dict, full: dict) -&gt; list[dict]:
+    sb = body_points(seed)
+    fb = body_points(full)
+    sa = angle_points(seed)
+    fa = angle_points(full)
+    if label == &quot;winter&quot;:
+        return [
+            contact(&quot;seed Mars&quot;, sb[&quot;Mars&quot;], &quot;Full MC&quot;, fa[&quot;MC&quot;]),
+            contact(&quot;seed Mars&quot;, sb[&quot;Mars&quot;], &quot;Full IC&quot;, fa[&quot;IC&quot;]),
+            contact(&quot;seed MC&quot;, sa[&quot;MC&quot;], &quot;Full Sun&quot;, fb[&quot;Sun&quot;]),
+            contact(&quot;seed MC&quot;, sa[&quot;MC&quot;], &quot;Full Moon&quot;, fb[&quot;Moon&quot;]),
+            contact(&quot;seed IC&quot;, sa[&quot;IC&quot;], &quot;Full Sun&quot;, fb[&quot;Sun&quot;]),
+            contact(&quot;seed IC&quot;, sa[&quot;IC&quot;], &quot;Full Moon&quot;, fb[&quot;Moon&quot;]),
+        ]
+    return [
+        contact(&quot;seed Sun&quot;, sb[&quot;Sun&quot;], &quot;Full Venus&quot;, fb[&quot;Venus&quot;]),
+        contact(&quot;seed Moon&quot;, sb[&quot;Moon&quot;], &quot;Full Venus&quot;, fb[&quot;Venus&quot;]),
+        contact(&quot;seed Uranus&quot;, sb[&quot;Uranus&quot;], &quot;Full Mercury&quot;, fb[&quot;Mercury&quot;]),
+        contact(&quot;seed Uranus&quot;, sb[&quot;Uranus&quot;], &quot;Full Sun&quot;, fb[&quot;Sun&quot;]),
+        contact(&quot;seed Uranus&quot;, sb[&quot;Uranus&quot;], &quot;Full Moon&quot;, fb[&quot;Moon&quot;]),
+        contact(&quot;seed Venus&quot;, sb[&quot;Venus&quot;], &quot;Full Uranus&quot;, fb[&quot;Uranus&quot;]),
+    ]
+
+
+def build_payload() -&gt; dict:
+    history = json.loads(HISTORY.read_text(encoding=&quot;utf-8&quot;))
+    local = json.loads(LOCAL.read_text(encoding=&quot;utf-8&quot;))
+    local_by_date = {row[&quot;date&quot;]: row for row in local[&quot;events&quot;]}
+    rows = []
+    for spec in SEASONS:
+        seed = load_bone(spec[&quot;seed_id&quot;])
+        full = load_bone(spec[&quot;full_id&quot;])
+        rows.append({
+            &quot;season&quot;: spec[&quot;label&quot;],
+            &quot;knowledge_state_at_2026_09_25&quot;: spec[&quot;knowledge_state&quot;],
+            &quot;solar_seed&quot;: {
+                &quot;chart_id&quot;: spec[&quot;seed_id&quot;],
+                &quot;ascendant_sign&quot;: seed[&quot;asc_sign&quot;],
+                &quot;chart_ruler&quot;: seed[&quot;ruler&quot;],
+                &quot;root_members&quot;: seed[&quot;root_members&quot;],
+                &quot;final_dispositors&quot;: seed[&quot;finals&quot;],
+                &quot;occupied_span_deg&quot;: rounded(seed[&quot;occupied_deg&quot;]),
+                &quot;largest_empty_arc_deg&quot;: rounded(seed[&quot;empty_deg&quot;]),
+                &quot;local_stage&quot;: local_stage(local_by_date[spec[&quot;seed_date&quot;]]),
+            },
+            &quot;lunar_disclosure&quot;: {
+                &quot;chart_id&quot;: spec[&quot;full_id&quot;],
+                &quot;ascendant_sign&quot;: full[&quot;asc_sign&quot;],
+                &quot;chart_ruler&quot;: full[&quot;ruler&quot;],
+                &quot;root_members&quot;: full[&quot;root_members&quot;],
+                &quot;final_dispositors&quot;: full[&quot;finals&quot;],
+                &quot;occupied_span_deg&quot;: rounded(full[&quot;occupied_deg&quot;]),
+                &quot;largest_empty_arc_deg&quot;: rounded(full[&quot;empty_deg&quot;]),
+                &quot;local_stage&quot;: local_stage(local_by_date[spec[&quot;full_date&quot;]]),
+            },
+            &quot;root_transition&quot;: root_transition(seed, full),
+            &quot;distribution_transition&quot;: {
+                &quot;occupied_span_change_deg&quot;: rounded(full[&quot;occupied_deg&quot;] - seed[&quot;occupied_deg&quot;]),
+                &quot;largest_empty_arc_change_deg&quot;: rounded(full[&quot;empty_deg&quot;] - seed[&quot;empty_deg&quot;]),
+            },
+            &quot;persistent_declination_relationships&quot;: persistent_declinations(seed, full),
+            &quot;cross_chart_relays&quot;: season_relays(spec[&quot;label&quot;], seed, full),
+            &quot;full_root_receipts&quot;: full_root_receipts(seed, full),
+            &quot;clock_boundary&quot;: (
+                &quot;The solar eclipse governs the monthly chapter; the lunar eclipse reveals it. &quot;
+                &quot;Saros, Metonic, Pessin Moon-family, ingress and direct relationship clocks remain distinct.&quot;
+            ),
+        })
+
+    return {
+        &quot;schema&quot;: &quot;freedom250.eclipse-season-handoffs-2026/v1&quot;,
+        &quot;status&quot;: &quot;retrospective_structural_companion&quot;,
+        &quot;developed_through&quot;: &quot;2026-09-25&quot;,
+        &quot;authority_boundary&quot;: {
+            &quot;locked_readings_preserved&quot;: True,
+            &quot;factual_evidence_credit&quot;: &quot;zero&quot;,
+            &quot;forecast_ledger_credit&quot;: &quot;zero&quot;,
+            &quot;causal_claim&quot;: False,
+            &quot;future_claim&quot;: False,
+        },
+        &quot;seasons&quot;: rows,
+        &quot;bounded_lunation_control&quot;: build_control(history[&quot;charts&quot;]),
+        &quot;interpretive_synthesis&quot;: {
+            &quot;winter&quot;: (
+                &quot;The Aquarius identity seed and its Mars-Saturn command loop rotate into a Virgo-Pisces &quot;
+                &quot;relationship disclosure with a wholly new Jupiter-Moon-Mercury root. The seed Mars lands &quot;
+                &quot;on the Full chart&#x27;s meridian within 0.071 degrees while the seed meridian squares the Full &quot;
+                &quot;lights within 0.679 degrees: command and stage exchange jobs across the chapter.&quot;
+            ),
+            &quot;summer&quot;: (
+                &quot;The Leo public-authority seed retains Venus while exchanging Sun for Mercury at the root. &quot;
+                &quot;The seed lights sextile Full Venus within 0.0014 degrees and seed Uranus squares Full Mercury &quot;
+                &quot;within 0.0245 degrees, so both Full final dispositors receive an exact-band seed relay.&quot;
+            ),
+            &quot;whole&quot;: (
+                &quot;Both eclipse chapters open their occupied sky at Full phase, but winter changes the whole &quot;
+                &quot;command circuit while summer preserves a Venus bridge. Literal visibility also grows from &quot;
+                &quot;absent or partial solar staging toward a more embodied lunar disclosure without transferring &quot;
+                &quot;governance or supplying evidence credit.&quot;
+            ),
+        },
+        &quot;provenance&quot;: {
+            &quot;builder&quot;: &quot;99 - Templates/build_2026_eclipse_season_handoffs.py&quot;,
+            &quot;history&quot;: &quot;99 - Templates/mundane_history.json&quot;,
+            &quot;history_sha256&quot;: sha256(HISTORY),
+            &quot;local_circumstances&quot;: &quot;99 - Templates/eclipse_local_circumstances.json&quot;,
+            &quot;local_circumstances_sha256&quot;: sha256(LOCAL),
+            &quot;bones_index&quot;: &quot;99 - Templates/chart_reading_bones/index.json&quot;,
+            &quot;bones_index_sha256&quot;: sha256(BONES / &quot;index.json&quot;),
+        },
+    }
+
+
+def main() -&gt; None:
+    payload = build_payload()
+    OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+    print(f&quot;Wrote {OUT}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

@@ -1,0 +1,912 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-inside-planet-conjunction-personas-efa0f601fafd.html">
+<title>The current Sentient Sun calculator intentionally moved dignity ownership to</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · draft</div><h1>The current Sentient Sun calculator intentionally moved dignity ownership to</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Persona &amp; Relationship Work/Inside Planet Conjunction Persona Hearings 2026-08-30/build_inside_planet_conjunction_personas.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build factual conjunction and governed persona charts for 17 inside clocks.
+
+The package is proposal-only.  Every exact pass gets a conjunction chart.  A
+family gets at most one persona candidate, from its earliest exact pass, and a
+candidate is rendered only when it occurs before the next family&#x27;s first pass.
+Mercury-Venus crossings remain a separately calculated, non-phaseable lane.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import csv
+import hashlib
+import html
+import importlib.util
+import json
+import math
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+HERE = Path(__file__).resolve().parent
+ASTROLOGY_PACKAGES = HERE.parent
+SOURCE_PACKAGE = ASTROLOGY_PACKAGES / &quot;Planetary Relationship Clocks 2026-08-30&quot;
+FAMILY_SOURCE = SOURCE_PACKAGE / &quot;inside_planet_conjunction_families.json&quot;
+RELATIONSHIP_REGISTRY = SOURCE_PACKAGE / &quot;planetary_relationship_registry.json&quot;
+RELATIONSHIP_METHOD = SOURCE_PACKAGE / &quot;METHOD AND DOCTRINE REVIEW.md&quot;
+LONG_PACKAGE = ASTROLOGY_PACKAGES / &quot;Long Clock Persona Hearings 2026-08-23&quot;
+LONG_HELPER_PATH = LONG_PACKAGE / &quot;build_long_clock_personas.py&quot;
+SENTIENT_SUN = Path(&quot;[local-path-removed] Sun&quot;)
+TRADITIONAL_TABLES = SENTIENT_SUN / &quot;canonical_traditional_tables.py&quot;
+VAULT = Path(&quot;Chronicle/&quot;)
+READING_START = VAULT / &quot;00 - Index/Reading the Charts — START HERE.md&quot;
+DECISION_LOG = VAULT / &quot;00 - Index/DECISION LOG.md&quot;
+
+DATA_DIR = HERE / &quot;data&quot;
+FAMILY_DIR = DATA_DIR / &quot;families&quot;
+EXCEPTION_DIR = DATA_DIR / &quot;exceptions&quot;
+CHARTS_DIR = HERE / &quot;charts&quot;
+SEED_CHARTS_DIR = CHARTS_DIR / &quot;seeds&quot;
+PERSONA_CHARTS_DIR = CHARTS_DIR / &quot;personas&quot;
+OVERLAY_CHARTS_DIR = CHARTS_DIR / &quot;overlays&quot;
+INDEX_PATH = DATA_DIR / &quot;index.json&quot;
+EXCEPTION_PATH = EXCEPTION_DIR / &quot;mercury-venus.json&quot;
+CHART_INDEX_PATH = CHARTS_DIR / &quot;index.html&quot;
+MANIFEST_PATH = HERE / &quot;manifest.json&quot;
+ARTIFACT_CSV_PATH = HERE / &quot;PACKAGE_ARTIFACT_MANIFEST.csv&quot;
+
+
+def load_module(path: Path, name: str) -&gt; Any:
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f&quot;Could not load {path}&quot;)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+LONG = load_module(LONG_HELPER_PATH, &quot;f250_inside_persona_long_helpers&quot;)
+TABLES = load_module(TRADITIONAL_TABLES, &quot;f250_inside_persona_traditional_tables&quot;)
+
+# The current Sentient Sun calculator intentionally moved dignity ownership to
+# canonical_traditional_tables.py.  The reviewed Long Clock chart constructor
+# predates that cleanup, so this compatibility bridge points it to the current
+# canonical owner without restoring deleted API to Sentient Sun.
+LONG.calculator.dignity_label = TABLES.dignity_classification
+LONG.calculator.dignity_labels = TABLES.dignity_labels
+LONG.TRACKED_CHANGE_BODIES = (
+    &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;
+)
+
+BODY_NAME = {
+    &quot;mercury&quot;: &quot;Mercury&quot;,
+    &quot;venus&quot;: &quot;Venus&quot;,
+    &quot;mars&quot;: &quot;Mars&quot;,
+    &quot;jupiter&quot;: &quot;Jupiter&quot;,
+    &quot;saturn&quot;: &quot;Saturn&quot;,
+    &quot;uranus&quot;: &quot;Uranus&quot;,
+    &quot;neptune&quot;: &quot;Neptune&quot;,
+    &quot;pluto&quot;: &quot;Pluto&quot;,
+}
+
+SCHEMA = &quot;proposal.freedom250.inside-planet-conjunction-persona-hearings/v1&quot;
+STATUS = &quot;proposal_only_not_vault_authority&quot;
+ELIGIBLE = &quot;calculated_review_candidate_conditional_zero_vote&quot;
+SUPERSEDED = &quot;withheld_successor_seed_precedes_persona_crossing&quot;
+NO_SUCCESSOR = &quot;withheld_no_successor_boundary&quot;
+NON_PHASEABLE = &quot;withheld_non_phaseable_relationship&quot;
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def write_json(path: Path, payload: Any) -&gt; None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + &quot;\n&quot;, encoding=&quot;utf-8&quot;
+    )
+
+
+def parse_source() -&gt; tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any]]:
+    source = json.loads(FAMILY_SOURCE.read_text(encoding=&quot;utf-8&quot;))
+    cycle_meta = {
+        row[0]: {
+            &quot;cycle_id&quot;: row[0],
+            &quot;tier_id&quot;: row[1],
+            &quot;nominal_cadence_days&quot;: row[2],
+            &quot;nominal_cycle_years&quot;: row[3],
+            &quot;phase_contract&quot;: row[4],
+        }
+        for row in source[&quot;cycles&quot;]
+    }
+    families: list[dict[str, Any]] = []
+    for cycle_id, family_id, window_role, anchor_id, pass_rows in source[&quot;families&quot;]:
+        pair = [BODY_NAME[value] for value in cycle_id.split(&quot;-&quot;)]
+        passes = [
+            {
+                &quot;pass_id&quot;: row[0],
+                &quot;utc&quot;: row[1],
+                &quot;longitude_deg&quot;: float(row[2]),
+                &quot;sign&quot;: row[3],
+                &quot;degree_in_sign&quot;: float(row[4]),
+                &quot;relative_motion&quot;: row[5],
+            }
+            for row in pass_rows
+        ]
+        families.append(
+            {
+                **cycle_meta[cycle_id],
+                &quot;pair&quot;: pair,
+                &quot;seed_family_id&quot;: family_id,
+                &quot;window_role&quot;: window_role,
+                &quot;display_anchor_pass_id&quot;: anchor_id,
+                &quot;passes&quot;: passes,
+            }
+        )
+    return source, families, source[&quot;mercury_venus_exception&quot;]
+
+
+def next_family_map(families: list[dict[str, Any]]) -&gt; dict[str, dict[str, Any]]:
+    result: dict[str, dict[str, Any]] = {}
+    for cycle_id in sorted({row[&quot;cycle_id&quot;] for row in families}):
+        rows = sorted(
+            (row for row in families if row[&quot;cycle_id&quot;] == cycle_id),
+            key=lambda row: row[&quot;passes&quot;][0][&quot;utc&quot;],
+        )
+        for current, successor in zip(rows, rows[1:]):
+            result[current[&quot;seed_family_id&quot;]] = successor
+    return result
+
+
+def pass_root(family: dict[str, Any], pass_row: dict[str, Any]) -&gt; dict[str, Any]:
+    governed = LONG.verify_seed_root(family, pass_row)
+    return {
+        &quot;seed_utc&quot;: governed[&quot;seed_utc&quot;],
+        &quot;seed_jd&quot;: governed[&quot;seed_jd&quot;],
+        &quot;target_longitude&quot;: governed[&quot;target_longitude&quot;],
+        &quot;verification&quot;: governed[&quot;verification&quot;],
+    }
+
+
+def persona_lifecycle(
+    family: dict[str, Any], successor: dict[str, Any] | None
+) -&gt; dict[str, Any]:
+    anchor = family[&quot;passes&quot;][0]
+    root = pass_root(family, anchor)
+    common = {
+        &quot;one_shared_persona_maximum&quot;: True,
+        &quot;anchor_pass_id&quot;: anchor[&quot;pass_id&quot;],
+        &quot;coordinate_review_status&quot;: (
+            &quot;proposed_earliest_pass_pending_human_disposition&quot;
+            if len(family[&quot;passes&quot;]) &gt; 1
+            else &quot;unambiguous_single_pass_coordinate_pending_clock_adoption&quot;
+        ),
+        &quot;anchor_rule&quot;: (
+            &quot;The conjunction family remains the cycle seed. Its earliest chronological &quot;
+            &quot;exact pass supplies the deterministic display and persona coordinate. &quot;
+            &quot;Later passes are revision, development, or completion context and receive &quot;
+            &quot;no additional persona chart or independent vote.&quot;
+        ),
+    }
+    if family[&quot;window_role&quot;] == &quot;first_after_window&quot;:
+        return {
+            **common,
+            &quot;status&quot;: NO_SUCCESSOR,
+            &quot;persona_candidate&quot;: None,
+            &quot;successor_gate&quot;: None,
+            &quot;meaning&quot;: (
+                &quot;This family is retained only as the first bracket after the chart &quot;
+                &quot;window. Without its successor family, a solar-return candidate &quot;
+                &quot;cannot pass the anti-supersession gate.&quot;
+            ),
+        }
+    if successor is None:
+        raise RuntimeError(f&quot;Missing successor for governing family {family[&#x27;seed_family_id&#x27;]}&quot;)
+    event = LONG.find_persona_event(root[&quot;seed_jd&quot;], root[&quot;target_longitude&quot;])
+    successor_utc = datetime.fromisoformat(successor[&quot;passes&quot;][0][&quot;utc&quot;]).astimezone(
+        timezone.utc
+    )
+    successor_jd = LONG.BASE.jd_of(successor_utc)
+    margin_days = successor_jd - event[&quot;jd_ut&quot;]
+    status = ELIGIBLE if margin_days &gt; 0 else SUPERSEDED
+    later_family_passes = [
+        row for row in family[&quot;passes&quot;] if LONG.BASE.jd_of(
+            datetime.fromisoformat(row[&quot;utc&quot;]).astimezone(timezone.utc)
+        ) &gt; event[&quot;jd_ut&quot;]
+    ]
+    return {
+        **common,
+        &quot;status&quot;: status,
+        &quot;persona_candidate&quot;: {
+            &quot;utc&quot;: event[&quot;utc&quot;].isoformat(timespec=&quot;microseconds&quot;),
+            &quot;local&quot;: event[&quot;local&quot;].isoformat(timespec=&quot;microseconds&quot;),
+            &quot;jd_ut&quot;: round(float(event[&quot;jd_ut&quot;]), 12),
+            &quot;days_after_anchor&quot;: round(event[&quot;jd_ut&quot;] - root[&quot;seed_jd&quot;], 12),
+            &quot;verification&quot;: event[&quot;verification&quot;],
+        },
+        &quot;successor_gate&quot;: {
+            &quot;successor_family_id&quot;: successor[&quot;seed_family_id&quot;],
+            &quot;successor_first_pass_id&quot;: successor[&quot;passes&quot;][0][&quot;pass_id&quot;],
+            &quot;successor_first_pass_utc&quot;: successor_utc.isoformat(timespec=&quot;microseconds&quot;),
+            &quot;candidate_precedes_successor&quot;: margin_days &gt; 0,
+            &quot;margin_successor_minus_candidate_days&quot;: round(margin_days, 12),
+            &quot;rule&quot;: (
+                &quot;A conjunction persona is heard only if its first later solar &quot;
+                &quot;crossing occurs before the next seed family begins.&quot;
+            ),
+        },
+        &quot;family_pass_context_at_candidate&quot;: {
+            &quot;candidate_precedes_family_final_pass&quot;: bool(later_family_passes),
+            &quot;later_same_family_pass_ids&quot;: [row[&quot;pass_id&quot;] for row in later_family_passes],
+            &quot;meaning&quot;: (
+                &quot;The persona candidate occurs while the multipass family still has exact &quot;
+                &quot;recontacts ahead. Those recontacts remain revision or completion chapters, &quot;
+                &quot;not new seeds or new personas.&quot;
+                if later_family_passes
+                else &quot;The family has no later exact recontact after the persona candidate.&quot;
+            ),
+        },
+        &quot;meaning&quot;: (
+            &quot;The conjunction remained the governing family long enough to reach &quot;
+            &quot;its first later solar crossing; a conditional zero-vote persona may be heard.&quot;
+            if status == ELIGIBLE
+            else &quot;The candidate solar crossing occurs after the successor family&#x27;s first &quot;
+            &quot;exact pass. The persona is withheld under the proposed successor gate. This &quot;
+            &quot;missing persona is an explicit gate result, not an incomplete calculation.&quot;
+        ),
+    }
+
+
+def seed_chart(
+    family: dict[str, Any],
+    pass_row: dict[str, Any],
+    *,
+    paired_persona_utc: datetime | None = None,
+) -&gt; tuple[dict[str, Any], dict[str, Any]]:
+    root = pass_root(family, pass_row)
+    comparison_utc = paired_persona_utc or root[&quot;seed_utc&quot;]
+    coverage = LONG.america_pair_coverage(root[&quot;seed_utc&quot;], comparison_utc)
+    chart, raw = LONG.calculate_chart(
+        root[&quot;seed_utc&quot;], bool(coverage[&quot;include_in_both_charts&quot;]), coverage
+    )
+    record = {
+        &quot;pass_id&quot;: pass_row[&quot;pass_id&quot;],
+        &quot;utc&quot;: pass_row[&quot;utc&quot;],
+        &quot;target_longitude&quot;: pass_row[&quot;longitude_deg&quot;],
+        &quot;target_sign&quot;: pass_row[&quot;sign&quot;],
+        &quot;target_degree_in_sign&quot;: pass_row[&quot;degree_in_sign&quot;],
+        &quot;relative_motion&quot;: pass_row[&quot;relative_motion&quot;],
+        &quot;verification&quot;: root[&quot;verification&quot;],
+        &quot;chart&quot;: chart,
+        &quot;america_916_coverage&quot;: coverage,
+        &quot;raw_jd_receipt&quot;: round(float(raw[&quot;jd&quot;]), 12),
+    }
+    return record, raw
+
+
+def render_seed_chart(family: dict[str, Any], pass_record: dict[str, Any]) -&gt; Path:
+    pair_label = &quot;–&quot;.join(family[&quot;pair&quot;])
+    local = datetime.fromisoformat(pass_record[&quot;chart&quot;][&quot;event&quot;][&quot;local&quot;])
+    record = LONG.wheel_record(
+        pass_record[&quot;chart&quot;],
+        f&quot;{pair_label.upper()} CONJUNCTION · {pass_record[&#x27;pass_id&#x27;]}&quot;,
+        f&quot;{local.strftime(&#x27;%d %b %Y · %H:%M:%S %Z&#x27;)} · {LONG.PLACE}&quot;,
+        f&quot;family {family[&#x27;seed_family_id&#x27;]} · exact pass · proposal only&quot;,
+    )
+    path = SEED_CHARTS_DIR / f&quot;{pass_record[&#x27;pass_id&#x27;]}__conjunction.svg&quot;
+    path.write_text(LONG.BASE.render_svg(record), encoding=&quot;utf-8&quot;)
+    return path
+
+
+def amend_fast_gate(gate: dict[str, Any]) -&gt; dict[str, Any]:
+    gate[&quot;rule&quot;] = (
+        &quot;Mercury, Venus, and Mars are tracked for station, direction, sign, and &quot;
+        &quot;relationship changes because those changes can distinguish delivery. &quot;
+        &quot;Jupiter through Pluto retain the Long Clock slow-body dependency rule: &quot;
+        &quot;positional persistence within 31 days is automatically dependent, and &quot;
+        &quot;proximity after 31 days is never independently additive. Every retained &quot;
+        &quot;difference remains conditional and zero-vote.&quot;
+    )
+    gate[&quot;fast_body_scope&quot;] = {
+        &quot;bodies&quot;: [&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;],
+        &quot;role&quot;: &quot;tracked delivery context, never slow-body carryover or independent vote&quot;,
+    }
+    gate.pop(&quot;mercury_scope&quot;, None)
+    return gate
+
+
+def render_persona_charts(
+    family: dict[str, Any],
+    anchor_chart: dict[str, Any],
+    persona_chart: dict[str, Any],
+) -&gt; tuple[Path, Path]:
+    family_id = family[&quot;seed_family_id&quot;]
+    pair_label = &quot;–&quot;.join(family[&quot;pair&quot;])
+    local = datetime.fromisoformat(persona_chart[&quot;event&quot;][&quot;local&quot;])
+    event_label = local.strftime(&quot;%d %b %Y · %H:%M:%S %Z&quot;)
+    standalone_record = LONG.wheel_record(
+        persona_chart,
+        f&quot;{pair_label.upper()} CONJUNCTION PERSONA&quot;,
+        f&quot;{event_label} · {LONG.PLACE}&quot;,
+        f&quot;family {family_id} · conditional subsidiary · zero vote&quot;,
+    )
+    seed_record = LONG.wheel_record(
+        anchor_chart,
+        f&quot;{pair_label.upper()} SEED + PERSONA&quot;,
+        f&quot;{family[&#x27;display_anchor_pass_id&#x27;]} inside&quot;,
+        f&quot;persona outside · {event_label}&quot;,
+    )
+    outer_map = {
+        row[0]: float(row[4]) for row in LONG.wheel_positions(persona_chart)
+    }
+    standalone = PERSONA_CHARTS_DIR / f&quot;{family_id}__persona-standalone.svg&quot;
+    overlay = OVERLAY_CHARTS_DIR / f&quot;{family_id}__seed-persona-biwheel.svg&quot;
+    standalone.write_text(LONG.BASE.render_svg(standalone_record), encoding=&quot;utf-8&quot;)
+    overlay.write_text(
+        LONG.BASE.render_svg(
+            seed_record,
+            outer_name=f&quot;{pair_label} Conjunction Persona&quot;,
+            outer_map=outer_map,
+        ),
+        encoding=&quot;utf-8&quot;,
+    )
+    return standalone, overlay
+
+
+def build_family(
+    family: dict[str, Any], successor: dict[str, Any] | None
+) -&gt; tuple[dict[str, Any], dict[str, Any]]:
+    lifecycle = persona_lifecycle(family, successor)
+    candidate = lifecycle[&quot;persona_candidate&quot;]
+    persona_utc = (
+        datetime.fromisoformat(candidate[&quot;utc&quot;]).astimezone(timezone.utc)
+        if lifecycle[&quot;status&quot;] == ELIGIBLE
+        else None
+    )
+    pass_records: list[dict[str, Any]] = []
+    seed_files: list[str] = []
+    anchor_record: dict[str, Any] | None = None
+    anchor_raw: dict[str, Any] | None = None
+    for pass_row in family[&quot;passes&quot;]:
+        paired = persona_utc if pass_row[&quot;pass_id&quot;] == family[&quot;display_anchor_pass_id&quot;] else None
+        record, raw = seed_chart(family, pass_row, paired_persona_utc=paired)
+        path = render_seed_chart(family, record)
+        record[&quot;chart_file&quot;] = str(path.relative_to(HERE))
+        seed_files.append(record[&quot;chart_file&quot;])
+        pass_records.append(record)
+        if pass_row[&quot;pass_id&quot;] == family[&quot;display_anchor_pass_id&quot;]:
+            anchor_record, anchor_raw = record, raw
+    if anchor_record is None or anchor_raw is None:
+        raise RuntimeError(f&quot;Anchor not found for {family[&#x27;seed_family_id&#x27;]}&quot;)
+
+    persona_record: dict[str, Any] | None = None
+    overlay_record: dict[str, Any] | None = None
+    persona_files: list[str] = []
+    if lifecycle[&quot;status&quot;] == ELIGIBLE:
+        coverage = anchor_record[&quot;america_916_coverage&quot;]
+        persona_chart, persona_raw = LONG.calculate_chart(
+            persona_utc,
+            bool(coverage[&quot;include_in_both_charts&quot;]),
+            coverage,
+        )
+        anchor_chart = anchor_record[&quot;chart&quot;]
+        seed_jd = LONG.BASE.jd_of(datetime.fromisoformat(anchor_record[&quot;utc&quot;]))
+        persona_jd = LONG.BASE.jd_of(persona_utc)
+        gate = amend_fast_gate(
+            LONG.change_gate(seed_jd, persona_jd, anchor_chart, persona_chart)
+        )
+        focal = {
+            body: {
+                &quot;position&quot;: persona_chart[&quot;positions&quot;][body],
+                &quot;distance_from_persona_sun_deg&quot;: round(
+                    LONG.BASE.angular_distance(
+                        persona_chart[&quot;positions&quot;][body][&quot;longitude&quot;],
+                        persona_chart[&quot;positions&quot;][&quot;Sun&quot;][&quot;longitude&quot;],
+                    ),
+                    9,
+                ),
+                &quot;governance_route&quot;: persona_chart[&quot;governance_routes&quot;][body],
+                &quot;huber_contacts&quot;: LONG.BASE.contacts_for(
+                    body, persona_chart[&quot;huber_aspects&quot;]
+                ),
+                &quot;mundane_major_contacts&quot;: LONG.BASE.contacts_for(
+                    body, persona_chart[&quot;mundane_major_aspects&quot;]
+                ),
+            }
+            for body in family[&quot;pair&quot;]
+        }
+        standalone, biwheel = render_persona_charts(
+            family, anchor_chart, persona_chart
+        )
+        persona_files = [str(standalone.relative_to(HERE)), str(biwheel.relative_to(HERE))]
+        persona_record = {
+            &quot;definition&quot;: (
+                &quot;first later geocentric tropical Sun crossing of the fixed earliest-pass &quot;
+                &quot;conjunction longitude, admitted to a hearing only before the successor family&quot;
+            ),
+            &quot;target_longitude&quot;: anchor_record[&quot;target_longitude&quot;],
+            &quot;days_after_anchor&quot;: candidate[&quot;days_after_anchor&quot;],
+            &quot;verification&quot;: candidate[&quot;verification&quot;],
+            &quot;chart&quot;: persona_chart,
+            &quot;focal_lenses&quot;: focal,
+            &quot;chart_files&quot;: persona_files,
+            &quot;raw_jd_receipt&quot;: round(float(persona_raw[&quot;jd&quot;]), 12),
+        }
+        overlay_record = {
+            &quot;orb_policy&quot;: (
+                &quot;major cross contacts at 2 degrees; minor points hard-only and &quot;
+                &quot;planet-facing; all conditional and zero-vote&quot;
+            ),
+            &quot;contacts&quot;: LONG.cross_contacts(
+                anchor_chart,
+                persona_chart,
+                tuple(family[&quot;pair&quot;]),
+                bool(coverage[&quot;include_in_both_charts&quot;]),
+            ),
+            &quot;seed_to_persona_change_gate&quot;: gate,
+        }
+
+    payload = {
+        &quot;schema&quot;: SCHEMA,
+        &quot;status&quot;: STATUS,
+        &quot;identity&quot;: {
+            &quot;cycle_id&quot;: family[&quot;cycle_id&quot;],
+            &quot;tier_id&quot;: family[&quot;tier_id&quot;],
+            &quot;pair&quot;: family[&quot;pair&quot;],
+            &quot;seed_family_id&quot;: family[&quot;seed_family_id&quot;],
+            &quot;window_role&quot;: family[&quot;window_role&quot;],
+            &quot;provisional_display_anchor_pass_id&quot;: family[&quot;display_anchor_pass_id&quot;],
+        },
+        &quot;authority_boundary&quot;: {
+            &quot;review_posture&quot;: &quot;proposal_for_review&quot;,
+            &quot;astrology_reference_only&quot;: True,
+            &quot;official_research_evidence&quot;: False,
+            &quot;event_proof&quot;: False,
+            &quot;timing_or_forecast_authority&quot;: False,
+            &quot;plot_ownership&quot;: False,
+            &quot;independent_vote&quot;: False,
+            &quot;live_vault_promotion&quot;: False,
+            &quot;astro_gold_verification&quot;: &quot;pending&quot;,
+        },
+        &quot;cycle_context&quot;: {
+            &quot;nominal_cadence_days&quot;: family[&quot;nominal_cadence_days&quot;],
+            &quot;nominal_cycle_years&quot;: family[&quot;nominal_cycle_years&quot;],
+            &quot;phase_contract&quot;: family[&quot;phase_contract&quot;],
+            &quot;delivery_role&quot;: (
+                &quot;fast relationship clock that can differentiate delivery inside a larger &quot;
+                &quot;umbrella; it does not displace the ten Long Clocks&quot;
+            ),
+        },
+        &quot;anchor_decision&quot;: {
+            &quot;proposed_pass_id&quot;: family[&quot;passes&quot;][0][&quot;pass_id&quot;],
+            &quot;selection_basis&quot;: &quot;earliest_chronological_exact_pass&quot;,
+            &quot;review_status&quot;: (
+                &quot;proposed_earliest_pass_pending_human_disposition&quot;
+                if len(family[&quot;passes&quot;]) &gt; 1
+                else &quot;unambiguous_single_pass_coordinate_pending_clock_adoption&quot;
+            ),
+            &quot;multipass_family&quot;: len(family[&quot;passes&quot;]) &gt; 1,
+            &quot;later_pass_role&quot;: (
+                &quot;revision_development_completion_context_no_extra_persona_or_vote&quot;
+                if len(family[&quot;passes&quot;]) &gt; 1
+                else &quot;single_pass_anchor_and_family_pass_are_identical&quot;
+            ),
+        },
+        &quot;persona_lifecycle&quot;: lifecycle,
+        &quot;exact_passes&quot;: pass_records,
+        &quot;persona&quot;: persona_record,
+        &quot;radix_persona_overlay&quot;: overlay_record,
+        &quot;dependency_ledger&quot;: {
+            &quot;guaranteed&quot;: [
+                &quot;The persona Sun repeats the fixed anchor longitude.&quot;,
+                &quot;The conjunction pair shares one target and at most one family persona.&quot;,
+            ],
+            &quot;dependent&quot;: [
+                &quot;Later exact passes remain members of the same family until an opposition boundary intervenes.&quot;,
+                &quot;Slow-body positional persistence is not independent news.&quot;,
+                &quot;A persona withheld by the successor gate is an explicit gate result, not missing work.&quot;,
+            ],
+            &quot;potentially_additive_but_zero_vote&quot;: [
+                &quot;derived angles, houses, rulers, and dispositors&quot;,
+                &quot;focal-lens differentiation between the two conjunction bodies&quot;,
+                &quot;condition, station, sign, or material relationship changes&quot;,
+                &quot;non-mechanical tight radix-persona cross contacts&quot;,
+            ],
+        },
+        &quot;settings&quot;: {
+            &quot;zodiac&quot;: &quot;tropical&quot;,
+            &quot;center&quot;: &quot;geocentric&quot;,
+            &quot;houses&quot;: &quot;Whole Sign&quot;,
+            &quot;place&quot;: LONG.PLACE,
+            &quot;latitude&quot;: LONG.LATITUDE,
+            &quot;longitude&quot;: LONG.LONGITUDE,
+            &quot;rulers&quot;: &quot;traditional&quot;,
+            &quot;node&quot;: &quot;true&quot;,
+            &quot;ephemeris_runtime&quot;: &quot;returned flags recorded per chart; Moshier fallback is explicit&quot;,
+        },
+        &quot;provenance&quot;: {
+            &quot;family_ledger&quot;: str(FAMILY_SOURCE),
+        &quot;reviewed_long_clock_helper&quot;: str(LONG_HELPER_PATH),
+            &quot;canonical_dignity_tables&quot;: str(TRADITIONAL_TABLES),
+            &quot;builder&quot;: str(Path(__file__).resolve()),
+        },
+    }
+    summary = {
+        &quot;cycle_id&quot;: family[&quot;cycle_id&quot;],
+        &quot;seed_family_id&quot;: family[&quot;seed_family_id&quot;],
+        &quot;window_role&quot;: family[&quot;window_role&quot;],
+        &quot;pair&quot;: family[&quot;pair&quot;],
+        &quot;pass_count&quot;: len(pass_records),
+        &quot;provisional_anchor_pass_id&quot;: family[&quot;passes&quot;][0][&quot;pass_id&quot;],
+        &quot;persona_status&quot;: lifecycle[&quot;status&quot;],
+        &quot;persona_candidate_utc&quot;: candidate[&quot;utc&quot;] if candidate else None,
+        &quot;successor_family_id&quot;: (
+            lifecycle[&quot;successor_gate&quot;][&quot;successor_family_id&quot;]
+            if lifecycle[&quot;successor_gate&quot;]
+            else None
+        ),
+        &quot;data_file&quot;: f&quot;data/families/{family[&#x27;seed_family_id&#x27;]}.json&quot;,
+        &quot;seed_chart_files&quot;: seed_files,
+        &quot;persona_chart_files&quot;: persona_files,
+    }
+    return payload, summary
+
+
+def build_mercury_venus(exception: dict[str, Any]) -&gt; tuple[dict[str, Any], dict[str, Any]]:
+    family_stub = {&quot;cycle_id&quot;: &quot;mercury-venus&quot;, &quot;pair&quot;: [&quot;Mercury&quot;, &quot;Venus&quot;]}
+    records: list[dict[str, Any]] = []
+    chart_files: list[str] = []
+    for index, row in enumerate(exception[&quot;crossings&quot;], start=1):
+        pass_row = {
+            &quot;pass_id&quot;: f&quot;mercury-venus-{row[0][:10].replace(&#x27;-&#x27;, &#x27;&#x27;)}-x{index}&quot;,
+            &quot;utc&quot;: row[0],
+            &quot;longitude_deg&quot;: float(row[1]),
+            &quot;sign&quot;: row[2],
+            &quot;degree_in_sign&quot;: float(row[3]),
+            &quot;relative_motion&quot;: row[4],
+            &quot;window_relation&quot;: row[5],
+        }
+        record, _raw = seed_chart(family_stub, pass_row)
+        path = render_seed_chart(
+            {
+                &quot;pair&quot;: [&quot;Mercury&quot;, &quot;Venus&quot;],
+                &quot;seed_family_id&quot;: &quot;non-phaseable-crossing-lane&quot;,
+            },
+            record,
+        )
+        record[&quot;window_relation&quot;] = row[5]
+        record[&quot;chart_file&quot;] = str(path.relative_to(HERE))
+        chart_files.append(record[&quot;chart_file&quot;])
+        records.append(record)
+    payload = {
+        &quot;schema&quot;: &quot;proposal.freedom250.mercury-venus-conjunction-crossings/v1&quot;,
+        &quot;status&quot;: STATUS,
+        &quot;identity&quot;: {&quot;cycle_id&quot;: &quot;mercury-venus&quot;, &quot;pair&quot;: [&quot;Mercury&quot;, &quot;Venus&quot;]},
+        &quot;phase_contract&quot;: &quot;non_phaseable_under_current_geocentric_eight_phase_grammar&quot;,
+        &quot;persona_lifecycle&quot;: {
+            &quot;status&quot;: NON_PHASEABLE,
+            &quot;persona_candidate&quot;: None,
+            &quot;meaning&quot;: (
+                &quot;Exact conjunction crossings are real and receive factual charts, but the &quot;
+                &quot;relationship has no geocentric opposition or unique conjunction-to-opposition &quot;
+                &quot;family. A persona would falsely imply a governed seed family.&quot;
+            ),
+        },
+        &quot;exception_wording&quot;: exception[&quot;exception_wording&quot;],
+        &quot;cadence_warning&quot;: exception[&quot;cadence_warning&quot;],
+        &quot;crossings&quot;: records,
+        &quot;authority_boundary&quot;: {
+            &quot;proposal_for_review&quot;: True,
+            &quot;astrology_reference_only&quot;: True,
+            &quot;official_research_evidence&quot;: False,
+            &quot;persona_authorized&quot;: False,
+            &quot;live_vault_promotion&quot;: False,
+        },
+    }
+    summary = {
+        &quot;cycle_id&quot;: &quot;mercury-venus&quot;,
+        &quot;crossing_count&quot;: len(records),
+        &quot;in_window_crossing_count&quot;: sum(
+            row[&quot;window_relation&quot;] == &quot;in_window&quot; for row in records
+        ),
+        &quot;persona_status&quot;: NON_PHASEABLE,
+        &quot;data_file&quot;: &quot;data/exceptions/mercury-venus.json&quot;,
+        &quot;seed_chart_files&quot;: chart_files,
+    }
+    return payload, summary
+
+
+def build_chart_index(family_rows: list[dict[str, Any]], mv_row: dict[str, Any]) -&gt; str:
+    cards = []
+    for row in family_rows:
+        seed_links = &quot; &quot;.join(
+            f&#x27;&lt;a href=&quot;{html.escape(path.replace(&quot;charts/&quot;, &quot;&quot;))}&quot;&gt;{html.escape(Path(path).stem)}&lt;/a&gt;&#x27;
+            for path in row[&quot;seed_chart_files&quot;]
+        )
+        persona_links = &quot; &quot;.join(
+            f&#x27;&lt;a href=&quot;{html.escape(path.replace(&quot;charts/&quot;, &quot;&quot;))}&quot;&gt;{html.escape(Path(path).stem)}&lt;/a&gt;&#x27;
+            for path in row[&quot;persona_chart_files&quot;]
+        ) or &quot;&lt;span&gt;no rendered persona&lt;/span&gt;&quot;
+        cards.append(
+            f&#x27;&lt;article&gt;&lt;h2&gt;{html.escape(&quot;–&quot;.join(row[&quot;pair&quot;]))} · {html.escape(row[&quot;seed_family_id&quot;])}&lt;/h2&gt;&#x27;
+            f&#x27;&lt;p&gt;&lt;b&gt;{html.escape(row[&quot;persona_status&quot;].replace(&quot;_&quot;, &quot; &quot;))}&lt;/b&gt;&lt;/p&gt;&#x27;
+            f&#x27;&lt;p class=&quot;links&quot;&gt;&lt;strong&gt;Pass charts&lt;/strong&gt; {seed_links}&lt;/p&gt;&#x27;
+            f&#x27;&lt;p class=&quot;links&quot;&gt;&lt;strong&gt;Persona&lt;/strong&gt; {persona_links}&lt;/p&gt;&#x27;
+            f&#x27;&lt;p&gt;&lt;a href=&quot;../{html.escape(row[&quot;data_file&quot;])}&quot;&gt;Factual JSON receipt&lt;/a&gt;&lt;/p&gt;&lt;/article&gt;&#x27;
+        )
+    mv_links = &quot; &quot;.join(
+        f&#x27;&lt;a href=&quot;{html.escape(path.replace(&quot;charts/&quot;, &quot;&quot;))}&quot;&gt;{html.escape(Path(path).stem)}&lt;/a&gt;&#x27;
+        for path in mv_row[&quot;seed_chart_files&quot;]
+    )
+    return f&quot;&quot;&quot;&lt;!doctype html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Inside Planet Conjunction Persona Hearings&lt;/title&gt;
+&lt;style&gt;body{{margin:auto;max-width:1120px;padding:32px;font:16px/1.5 Georgia,serif;background:#f7f3e9;color:#29251f}}article{{background:#fffdf7;border:1px solid #d8cdbb;border-radius:14px;padding:18px;margin:16px 0}}h1,h2{{font-weight:400}}h2{{font-size:1.2rem}}a{{color:#564875}}.links{{display:grid;grid-template-columns:8rem 1fr;gap:8px}}span{{color:#786f63}}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Inside-planet conjunction charts and persona hearings&lt;/h1&gt;
+&lt;p&gt;Proposal-only Astrology Reference surface. Every exact pass is visible. A rendered persona candidate means only that the first later solar crossing of the proposed coordinate preceded the successor family; it remains conditional and zero-vote. A missing persona is an explicit gate result.&lt;/p&gt;
+{&#x27;&#x27;.join(cards)}
+&lt;article&gt;&lt;h2&gt;Mercury–Venus · non-phaseable exception&lt;/h2&gt;&lt;p&gt;&lt;b&gt;no persona authorized&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{mv_links}&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;../{mv_row[&#x27;data_file&#x27;]}&quot;&gt;Factual JSON receipt&lt;/a&gt;&lt;/p&gt;&lt;/article&gt;
+&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;
+
+
+def source_hashes() -&gt; dict[str, str]:
+    candidates = [
+        FAMILY_SOURCE,
+        RELATIONSHIP_REGISTRY,
+        RELATIONSHIP_METHOD,
+        LONG_HELPER_PATH,
+        LONG.BASE_BUILDER_PATH,
+        LONG.SYNODIC_PATH,
+        LONG.CONVENTIONS_PATH,
+        LONG.WHEEL_PATH,
+        LONG.AMERICA_PATH,
+        Path(LONG.america.CACHE),
+        SENTIENT_SUN / &quot;chart_calculator.py&quot;,
+        SENTIENT_SUN / &quot;reading_engine.py&quot;,
+        TRADITIONAL_TABLES,
+        LONG.PERSONA_METHOD_PATH,
+        READING_START,
+        DECISION_LOG,
+        Path(__file__).resolve(),
+    ]
+    missing = [str(path) for path in candidates if not path.exists()]
+    if missing:
+        raise RuntimeError(f&quot;Missing source dependencies: {missing}&quot;)
+    return {str(path): sha256(path) for path in candidates}
+
+
+def artifact_metadata(path: Path) -&gt; dict[str, str]:
+    relative = path.relative_to(HERE)
+    text = str(relative)
+    name = path.name
+    if name == &quot;README.md&quot;:
+        return {
+            &quot;artifact_role&quot;: &quot;router&quot;,
+            &quot;custody_class&quot;: &quot;workbench_controls&quot;,
+            &quot;producer&quot;: &quot;authored_workbench_source&quot;,
+            &quot;rebuildability&quot;: &quot;authored_not_regenerated&quot;,
+            &quot;search_visibility&quot;: &quot;sky_and_charts_candidate&quot;,
+        }
+    if name == &quot;CONJUNCTION PERSONA METHOD.md&quot;:
+        return {
+            &quot;artifact_role&quot;: &quot;method&quot;,
+            &quot;custody_class&quot;: &quot;workbench_controls&quot;,
+            &quot;producer&quot;: &quot;authored_workbench_source&quot;,
+            &quot;rebuildability&quot;: &quot;authored_not_regenerated&quot;,
+            &quot;search_visibility&quot;: &quot;sky_and_charts_candidate&quot;,
+        }
+    if path.suffix == &quot;.md&quot;:
+        return {
+            &quot;artifact_role&quot;: &quot;answer&quot;,
+            &quot;custody_class&quot;: &quot;workbench_controls&quot;,
+            &quot;producer&quot;: &quot;authored_workbench_source&quot;,
+            &quot;rebuildability&quot;: &quot;authored_not_regenerated&quot;,
+            &quot;search_visibility&quot;: &quot;sky_and_charts_candidate&quot;,
+        }
+    if name.startswith(&quot;build_&quot;) and path.suffix == &quot;.py&quot;:
+        return {
+            &quot;artifact_role&quot;: &quot;builder&quot;,
+            &quot;custody_class&quot;: &quot;workbench_controls&quot;,
+            &quot;producer&quot;: &quot;authored_workbench_source&quot;,
+            &quot;rebuildability&quot;: &quot;authored_not_regenerated&quot;,
+            &quot;search_visibility&quot;: &quot;technical_internal&quot;,
+        }
+    if name.startswith(&quot;validate_&quot;) and path.suffix == &quot;.py&quot;:
+        return {
+            &quot;artifact_role&quot;: &quot;validator&quot;,
+            &quot;custody_class&quot;: &quot;workbench_controls&quot;,
+            &quot;producer&quot;: &quot;authored_workbench_source&quot;,
+            &quot;rebuildability&quot;: &quot;authored_not_regenerated&quot;,
+            &quot;search_visibility&quot;: &quot;technical_internal&quot;,
+        }
+    if text == &quot;charts/index.html&quot;:
+        return {
+            &quot;artifact_role&quot;: &quot;deliverable&quot;,
+            &quot;custody_class&quot;: &quot;export_only&quot;,
+            &quot;producer&quot;: Path(__file__).name,
+            &quot;rebuildability&quot;: &quot;rebuildable_by_builder&quot;,
+            &quot;search_visibility&quot;: &quot;sky_and_charts_candidate&quot;,
+        }
+    if path.suffix == &quot;.svg&quot;:
+        return {
+            &quot;artifact_role&quot;: &quot;visual&quot;,
+            &quot;custody_class&quot;: &quot;export_only&quot;,
+            &quot;producer&quot;: Path(__file__).name,
+            &quot;rebuildability&quot;: &quot;rebuildable_by_builder&quot;,
+            &quot;search_visibility&quot;: &quot;technical_sidecar&quot;,
+        }
+    if path.suffix == &quot;.json&quot;:
+        return {
+            &quot;artifact_role&quot;: &quot;generated_projection&quot;,
+            &quot;custody_class&quot;: &quot;producer_controls&quot;,
+            &quot;producer&quot;: Path(__file__).name,
+            &quot;rebuildability&quot;: &quot;rebuildable_by_builder&quot;,
+            &quot;search_visibility&quot;: &quot;technical_sidecar&quot;,
+        }
+    return {
+        &quot;artifact_role&quot;: &quot;other&quot;,
+        &quot;custody_class&quot;: &quot;workbench_controls&quot;,
+        &quot;producer&quot;: &quot;authored_workbench_source&quot;,
+        &quot;rebuildability&quot;: &quot;authored_not_regenerated&quot;,
+        &quot;search_visibility&quot;: &quot;technical_internal&quot;,
+    }
+
+
+def artifact_rows() -&gt; list[dict[str, Any]]:
+    paths = sorted(
+        path
+        for path in HERE.rglob(&quot;*&quot;)
+        if path.is_file()
+        and path not in {MANIFEST_PATH, ARTIFACT_CSV_PATH}
+        and &quot;__pycache__&quot; not in path.parts
+    )
+    return [
+        {
+            &quot;path&quot;: str(path.relative_to(HERE)),
+            **artifact_metadata(path),
+            &quot;bytes&quot;: path.stat().st_size,
+            &quot;sha256&quot;: sha256(path),
+        }
+        for path in paths
+    ]
+
+
+def delegation_rows(rows: list[dict[str, Any]]) -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Project generated sidecars into the Workbench custody-manifest schema.&quot;&quot;&quot;
+
+    delegated_prefixes = (
+        &quot;data/families/&quot;,
+        &quot;data/exceptions/&quot;,
+        &quot;charts/seeds/&quot;,
+        &quot;charts/personas/&quot;,
+        &quot;charts/overlays/&quot;,
+    )
+    return [
+        {
+            &quot;relative_path&quot;: row[&quot;path&quot;],
+            &quot;bytes&quot;: row[&quot;bytes&quot;],
+            &quot;sha256&quot;: row[&quot;sha256&quot;],
+            &quot;custody_class&quot;: &quot;generated&quot;,
+            &quot;artifact_role&quot;: row[&quot;artifact_role&quot;],
+            &quot;producer_path&quot;: Path(__file__).name,
+            &quot;rebuildability&quot;: &quot;rebuildable&quot;,
+            &quot;search_visibility&quot;: &quot;technical&quot;,
+        }
+        for row in rows
+        if row[&quot;path&quot;].startswith(delegated_prefixes)
+    ]
+
+
+def main() -&gt; None:
+    for directory in (
+        FAMILY_DIR,
+        EXCEPTION_DIR,
+        SEED_CHARTS_DIR,
+        PERSONA_CHARTS_DIR,
+        OVERLAY_CHARTS_DIR,
+    ):
+        directory.mkdir(parents=True, exist_ok=True)
+    source, families, exception = parse_source()
+    successors = next_family_map(families)
+    summaries: list[dict[str, Any]] = []
+    for family in families:
+        payload, summary = build_family(
+            family, successors.get(family[&quot;seed_family_id&quot;])
+        )
+        write_json(FAMILY_DIR / f&quot;{family[&#x27;seed_family_id&#x27;]}.json&quot;, payload)
+        summaries.append(summary)
+        print(
+            f&quot;BUILT {family[&#x27;seed_family_id&#x27;]} passes={summary[&#x27;pass_count&#x27;]} &quot;
+            f&quot;persona={summary[&#x27;persona_status&#x27;]}&quot;
+        )
+    mv_payload, mv_summary = build_mercury_venus(exception)
+    write_json(EXCEPTION_PATH, mv_payload)
+    status_counts = {
+        status: sum(row[&quot;persona_status&quot;] == status for row in summaries)
+        for status in (ELIGIBLE, SUPERSEDED, NO_SUCCESSOR)
+    }
+    index = {
+        &quot;schema&quot;: SCHEMA,
+        &quot;status&quot;: STATUS,
+        &quot;created_utc_date&quot;: &quot;2026-08-30&quot;,
+        &quot;source_family_ledger&quot;: str(FAMILY_SOURCE),
+        &quot;chart_window&quot;: source[&quot;chart_window&quot;],
+        &quot;coverage&quot;: {
+            &quot;phaseable_pair_count&quot;: 17,
+            &quot;family_count&quot;: len(summaries),
+            &quot;exact_pass_count&quot;: sum(row[&quot;pass_count&quot;] for row in summaries),
+            &quot;governing_family_count&quot;: sum(
+                row[&quot;window_role&quot;] != &quot;first_after_window&quot; for row in summaries
+            ),
+            &quot;bracketing_only_family_count&quot;: sum(
+                row[&quot;window_role&quot;] == &quot;first_after_window&quot; for row in summaries
+            ),
+            &quot;persona_status_counts&quot;: status_counts,
+            &quot;rendered_persona_count&quot;: status_counts[ELIGIBLE],
+            &quot;mercury_venus_crossing_count&quot;: mv_summary[&quot;crossing_count&quot;],
+            &quot;mercury_venus_in_window_crossing_count&quot;: mv_summary[
+                &quot;in_window_crossing_count&quot;
+            ],
+        },
+        &quot;governing_rules&quot;: {
+            &quot;anchor&quot;: (
+                &quot;the conjunction family remains the seed; this package proposes its earliest &quot;
+                &quot;exact pass as the one fixed display and family-persona coordinate, pending &quot;
+                &quot;human disposition for multipass families&quot;
+            ),
+            &quot;multipass&quot;: &quot;later passes remain family context and get conjunction charts, never extra personas or votes&quot;,
+            &quot;successor_gate&quot;: &quot;persona candidate must precede the next family&#x27;s first exact pass&quot;,
+            &quot;missing_persona&quot;: &quot;an explicit lifecycle-gate result, never silently omitted&quot;,
+            &quot;mercury_venus&quot;: &quot;crossing charts only until a separate inferior-planet family doctrine exists&quot;,
+        },
+        &quot;families&quot;: summaries,
+        &quot;mercury_venus_exception&quot;: mv_summary,
+        &quot;authority_boundary&quot;: {
+            &quot;proposal_for_review&quot;: True,
+            &quot;astrology_reference_only&quot;: True,
+            &quot;official_research_evidence&quot;: False,
+            &quot;forecast_or_timing_authority&quot;: False,
+            &quot;plot_ownership&quot;: False,
+            &quot;live_vault_promotion&quot;: False,
+        },
+    }
+    write_json(INDEX_PATH, index)
+    CHART_INDEX_PATH.write_text(build_chart_index(summaries, mv_summary), encoding=&quot;utf-8&quot;)
+    rows = artifact_rows()
+    manifest = {
+        &quot;schema&quot;: &quot;proposal.freedom250.inside-planet-persona-manifest/v1&quot;,
+        &quot;status&quot;: STATUS,
+        &quot;source_hashes&quot;: source_hashes(),
+        &quot;artifact_count_excluding_manifests&quot;: len(rows),
+        &quot;artifacts&quot;: rows,
+    }
+    write_json(MANIFEST_PATH, manifest)
+    with ARTIFACT_CSV_PATH.open(&quot;w&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=(
+                &quot;relative_path&quot;,
+                &quot;bytes&quot;,
+                &quot;sha256&quot;,
+                &quot;custody_class&quot;,
+                &quot;artifact_role&quot;,
+                &quot;producer_path&quot;,
+                &quot;rebuildability&quot;,
+                &quot;search_visibility&quot;,
+            ),
+        )
+        writer.writeheader()
+        writer.writerows(delegation_rows(rows))
+    print(
+        &quot;COMPLETE &quot;
+        f&quot;families={len(summaries)} passes={sum(row[&#x27;pass_count&#x27;] for row in summaries)} &quot;
+        f&quot;personas={status_counts[ELIGIBLE]} successor_collisions={status_counts[SUPERSEDED]} &quot;
+        f&quot;bracketing={status_counts[NO_SUCCESSOR]} mercury_venus={mv_summary[&#x27;crossing_count&#x27;]}&quot;
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

@@ -1,0 +1,145 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-aries-eclipse-moon-family-52fcac77332f.html">
+<title>test_aries_eclipse_moon_family</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_aries_eclipse_moon_family</h1><p class="mut">Portable source: 99 - Templates/test_aries_eclipse_moon_family.py</p><pre>import json
+import unittest
+
+import build_aries_eclipse_moon_family as family
+
+
+class AriesEclipseMoonFamilyTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.payload = family.build_payload()
+        cls.members = {row[&quot;role&quot;]: row for row in cls.payload[&quot;members&quot;]}
+
+    def test_registered_three_clock_sequence(self):
+        self.assertEqual(list(self.members), [&quot;seed&quot;, &quot;first_quarter&quot;, &quot;full&quot;])
+        self.assertEqual(
+            self.members[&quot;first_quarter&quot;][&quot;phase_event_id&quot;],
+            &quot;lunation-2025-12-27-fq&quot;,
+        )
+        self.assertAlmostEqual(
+            self.members[&quot;first_quarter&quot;][&quot;elapsed_days_from_seed&quot;], 273.341685, places=6
+        )
+
+    def test_first_quarter_staging_and_root(self):
+        chart = self.members[&quot;first_quarter&quot;][&quot;chart&quot;]
+        self.assertEqual(chart[&quot;ascendant&quot;][&quot;sign&quot;], &quot;Taurus&quot;)
+        self.assertEqual(chart[&quot;chart_ruler&quot;], &quot;Venus&quot;)
+        self.assertEqual(chart[&quot;positions&quot;][&quot;Moon&quot;][&quot;house&quot;], 12)
+        self.assertEqual(chart[&quot;positions&quot;][&quot;Sun&quot;][&quot;house&quot;], 9)
+        self.assertEqual(chart[&quot;positions&quot;][&quot;Pluto&quot;][&quot;house&quot;], 10)
+        self.assertEqual(
+            chart[&quot;all_terminal_circuits&quot;], [[&quot;Jupiter&quot;, &quot;Moon&quot;, &quot;Mars&quot;, &quot;Saturn&quot;]]
+        )
+
+    def test_distribution_opens_across_the_family(self):
+        gaps = [self.members[role][&quot;distribution&quot;][&quot;largest_empty_arc_deg&quot;] for role in self.members]
+        self.assertGreater(gaps[0], gaps[1])
+        self.assertGreater(gaps[1], gaps[2])
+
+    def test_first_quarter_sun_pluto_parallel_is_tight(self):
+        contacts = self.members[&quot;first_quarter&quot;][&quot;declination_contacts&quot;]
+        row = next(
+            item
+            for item in contacts
+            if {item[&quot;first&quot;], item[&quot;second&quot;]} == {&quot;Sun&quot;, &quot;Pluto&quot;}
+        )
+        self.assertEqual(row[&quot;relationship&quot;], &quot;parallel&quot;)
+        self.assertLess(row[&quot;orb_deg&quot;], 0.05)
+
+    def test_eclipse_pluto_prefigures_mars_pluto_seed_degree(self):
+        contacts = self.payload[&quot;cross_cycle_degree_relay&quot;][&quot;contacts&quot;]
+        eclipse_pluto = next(
+            row
+            for row in contacts
+            if row[&quot;event_id&quot;] == &quot;lun-2025-03-29-ne-solar&quot; and row[&quot;point&quot;] == &quot;Pluto&quot;
+        )
+        first_quarter_pluto = next(
+            row
+            for row in contacts
+            if row[&quot;event_id&quot;] == &quot;lunation-2025-12-27-fq&quot; and row[&quot;point&quot;] == &quot;Pluto&quot;
+        )
+        self.assertLess(eclipse_pluto[&quot;orb_deg&quot;], 0.06)
+        self.assertLess(first_quarter_pluto[&quot;orb_deg&quot;], 1.0)
+        self.assertTrue(eclipse_pluto[&quot;admitted_under_policy&quot;])
+        self.assertTrue(first_quarter_pluto[&quot;admitted_under_policy&quot;])
+
+    def test_full_moon_lights_strike_mars_pluto_seed(self):
+        contacts = self.payload[&quot;cross_cycle_degree_relay&quot;][&quot;contacts&quot;]
+        light_contacts = [
+            row
+            for row in contacts
+            if row[&quot;event_id&quot;] == &quot;lun-2026-09-26-fu&quot; and row[&quot;point&quot;] in {&quot;Sun&quot;, &quot;Moon&quot;}
+        ]
+        self.assertEqual(len(light_contacts), 2)
+        self.assertTrue(all(row[&quot;orb_deg&quot;] &lt; 0.053 for row in light_contacts))
+        self.assertTrue(all(row[&quot;admitted_under_policy&quot;] for row in light_contacts))
+
+    def test_first_quarter_mc_is_disclosed_threshold_miss(self):
+        contacts = self.payload[&quot;cross_cycle_degree_relay&quot;][&quot;contacts&quot;]
+        mc = next(
+            row
+            for row in contacts
+            if row[&quot;event_id&quot;] == &quot;lunation-2025-12-27-fq&quot; and row[&quot;point&quot;] == &quot;MC&quot;
+        )
+        self.assertGreater(mc[&quot;orb_deg&quot;], 1.0)
+        self.assertLess(mc[&quot;orb_deg&quot;], 1.1)
+        self.assertFalse(mc[&quot;admitted_under_policy&quot;])
+
+    def test_eclipse_family_matures_away_from_shadow_geometry(self):
+        control = self.payload[&quot;nodal_separation_control&quot;]
+        rows = {row[&quot;role&quot;]: row for row in control[&quot;members&quot;]}
+        self.assertEqual(
+            rows[&quot;seed&quot;][&quot;shadow_state&quot;], &quot;registered_partial_solar_eclipse&quot;
+        )
+        self.assertEqual(
+            rows[&quot;full&quot;][&quot;shadow_state&quot;], &quot;non_eclipse_moon_family_phase&quot;
+        )
+        self.assertAlmostEqual(
+            rows[&quot;seed&quot;][&quot;moon_nearest_node_separation_deg&quot;],
+            11.576028,  # DE441 mundane history (DR-080); was 11.576031 on DE406
+            places=5,
+        )
+        self.assertAlmostEqual(
+            rows[&quot;full&quot;][&quot;moon_nearest_node_separation_deg&quot;],
+            34.09451,
+            places=5,
+        )
+        self.assertTrue(
+            control[&quot;monotonic_checks&quot;][
+                &quot;moon_nearest_node_separation_increases&quot;
+            ]
+        )
+        self.assertTrue(
+            control[&quot;monotonic_checks&quot;][
+                &quot;absolute_moon_ecliptic_latitude_increases&quot;
+            ]
+        )
+        self.assertLess(
+            control[&quot;seed_to_full&quot;][&quot;true_north_node_motion_deg&quot;], -27.8
+        )
+        self.assertGreater(
+            control[&quot;seed_to_full&quot;][&quot;nearest_node_separation_increase_deg&quot;],
+            22.5,
+        )
+        self.assertIn(
+            &quot;not an eclipse-recurrence clock&quot;, control[&quot;interpretive_boundary&quot;]
+        )
+
+    def test_generated_artifact_matches_builder(self):
+        stored = json.loads(family.OUT.read_text(encoding=&quot;utf-8&quot;))
+        self.assertEqual(stored, self.payload)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

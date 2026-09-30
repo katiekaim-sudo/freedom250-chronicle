@@ -1,0 +1,476 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/extend-ingress-charts-523381b7e044.html">
+<title>extend_ingress_charts</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>extend_ingress_charts</h1><p class="mut">Portable source: 99 - Templates/extend_ingress_charts.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Cast 2027–2028 cardinal ingresses and project them into Ingress Charts.
+
+Method: Reading the Charts / Mundane Engine spec. Washington D.C., Whole Sign,
+exact Sun at 0° of the cardinal sign, traditional rulers, 916 America, Greer
+standing with Aries always resetting the year. Bones only — no readings.
+
+Re-run is idempotent. Does not rewrite the 2025–2026 interpretive cards.
+Does not add Chart Readings Pass 1s or chart_reading_bones rows.
+&quot;&quot;&quot;
+from __future__ import annotations
+
+import json
+import re
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+import mundane_engine as ME
+from chart_conventions import DC_LAT, DC_LON, DC_TZ, clock_label
+from minor_points import all_points
+
+HERE = Path(__file__).resolve().parent
+VAULT = HERE.parent
+TARGET = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot; / &quot;Ingress Charts.html&quot;
+ING_JSON = HERE / &quot;ing_data.json&quot;
+ASTRO = VAULT / &quot;03 - Astrology&quot;
+HISTORY = HERE / &quot;mundane_history.json&quot;
+
+CARDINAL = (&quot;Aries&quot;, &quot;Cancer&quot;, &quot;Libra&quot;, &quot;Capricorn&quot;)
+YEARS = (2027, 2028)
+PLANET_ORDER = (&quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;)
+GLYPH = {
+    &quot;Sun&quot;: &quot;☉&quot;, &quot;Moon&quot;: &quot;☽&quot;, &quot;Mercury&quot;: &quot;☿&quot;, &quot;Venus&quot;: &quot;♀&quot;, &quot;Mars&quot;: &quot;♂&quot;,
+    &quot;Jupiter&quot;: &quot;♃&quot;, &quot;Saturn&quot;: &quot;♄&quot;, &quot;Uranus&quot;: &quot;♅&quot;, &quot;Neptune&quot;: &quot;♆&quot;, &quot;Pluto&quot;: &quot;♇&quot;,
+    &quot;Chiron&quot;: &quot;⚷&quot;, &quot;Node&quot;: &quot;☊&quot;, &quot;America&quot;: &quot;★&quot;,
+}
+ABBR = {
+    &quot;Sun&quot;: &quot;Su&quot;, &quot;Moon&quot;: &quot;Mo&quot;, &quot;Mercury&quot;: &quot;Me&quot;, &quot;Venus&quot;: &quot;Ve&quot;, &quot;Mars&quot;: &quot;Ma&quot;,
+    &quot;Jupiter&quot;: &quot;Ju&quot;, &quot;Saturn&quot;: &quot;Sa&quot;, &quot;Uranus&quot;: &quot;Ur&quot;, &quot;Neptune&quot;: &quot;Ne&quot;, &quot;Pluto&quot;: &quot;Pl&quot;,
+    &quot;Chiron&quot;: &quot;Ch&quot;, &quot;Node&quot;: &quot;NN&quot;, &quot;America&quot;: &quot;Am&quot;,
+}
+SIGN_ABBR = {
+    &quot;Aries&quot;: &quot;Ari&quot;, &quot;Taurus&quot;: &quot;Tau&quot;, &quot;Gemini&quot;: &quot;Gem&quot;, &quot;Cancer&quot;: &quot;Can&quot;,
+    &quot;Leo&quot;: &quot;Leo&quot;, &quot;Virgo&quot;: &quot;Vir&quot;, &quot;Libra&quot;: &quot;Lib&quot;, &quot;Scorpio&quot;: &quot;Sco&quot;,
+    &quot;Sagittarius&quot;: &quot;Sag&quot;, &quot;Capricorn&quot;: &quot;Cap&quot;, &quot;Aquarius&quot;: &quot;Aqu&quot;, &quot;Pisces&quot;: &quot;Pis&quot;,
+}
+SIGN_ELEMENT = {
+    &quot;Aries&quot;: &quot;fire&quot;, &quot;Taurus&quot;: &quot;earth&quot;, &quot;Gemini&quot;: &quot;air&quot;, &quot;Cancer&quot;: &quot;water&quot;,
+    &quot;Leo&quot;: &quot;fire&quot;, &quot;Virgo&quot;: &quot;earth&quot;, &quot;Libra&quot;: &quot;air&quot;, &quot;Scorpio&quot;: &quot;water&quot;,
+    &quot;Sagittarius&quot;: &quot;fire&quot;, &quot;Capricorn&quot;: &quot;earth&quot;, &quot;Aquarius&quot;: &quot;air&quot;, &quot;Pisces&quot;: &quot;water&quot;,
+}
+ASPECT_GLYPH = {
+    &quot;conjunction&quot;: &quot;☌&quot;, &quot;sextile&quot;: &quot;⚹&quot;, &quot;square&quot;: &quot;□&quot;, &quot;trine&quot;: &quot;△&quot;, &quot;opposition&quot;: &quot;☍&quot;,
+}
+WORKBOOK_ORB = {0: 8.0, 60: 5.0, 90: 7.0, 120: 7.0, 180: 8.0}
+MONTHS = (
+    &quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;,
+    &quot;July&quot;, &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;,
+)
+START = &quot;/* F250-INGRESS-2027-2028-START */&quot;
+END = &quot;/* F250-INGRESS-2027-2028-END */&quot;
+DECL_START = &quot;/* F250-DECL-2027-2028-START */&quot;
+DECL_END = &quot;/* F250-DECL-2027-2028-END */&quot;
+
+
+def utc_from_jd(jd: float) -&gt; datetime:
+    year, month, day, hour = swe.revjul(jd, swe.GREG_CAL)
+    return datetime(year, month, day, tzinfo=timezone.utc) + timedelta(hours=hour)
+
+
+def fmt_dms(lon: float, *, force_sign: str | None = None) -&gt; tuple[str, str, float]:
+    lon = lon % 360
+    sign = force_sign or ME.sign_of(lon)
+    if force_sign:
+        d = 0.0 if abs(((lon - ME.SIGNS.index(force_sign) * 30 + 180) % 360) - 180) &lt; 1e-6 else (lon % 30)
+        if force_sign == &quot;Aries&quot; and lon &gt; 359.5:
+            d = 0.0
+        if abs(d - 30) &lt; 1e-6:
+            d = 0.0
+    else:
+        d = ((lon % 360) + 1e-6) % 30
+        if d &gt;= 29.999:
+            d = 0.0
+            sign = ME.SIGNS[(ME.SIGNS.index(sign) + 1) % 12]
+    deg = int(d)
+    minute = int(round((d - deg) * 60))
+    if minute == 60:
+        deg += 1
+        minute = 0
+    return f&quot;{deg}°{minute:02d}&#x27; {sign}&quot;, sign, lon
+
+
+def fmt_decl(dec: float) -&gt; str:
+    hemi = &quot;N&quot; if dec &gt;= 0 else &quot;S&quot;
+    ad = abs(dec)
+    deg = int(ad)
+    minute = int(round((ad - deg) * 60))
+    if minute == 60:
+        deg += 1
+        minute = 0
+    return f&quot;{deg:02d}°{hemi}{minute:02d}&#x27;&quot;
+
+
+def fmt_speed(spd: float) -&gt; str:
+    sign = &quot;+&quot; if spd &gt;= 0 else &quot;−&quot;
+    return f&quot;{sign}{abs(spd):.2f}&quot;
+
+
+def standing_for(year: int, sign: str, history: dict[str, dict]) -&gt; str:
+    row = history.get(f&quot;ingress-{year}-{sign.lower()}&quot;)
+    return (row or {}).get(&quot;standing&quot;) or &quot;nested_cardinal_stage&quot;
+
+
+def year_king(year: int) -&gt; str:
+    return f&quot;{year} Aries&quot;
+
+
+def validity_line(year: int, sign: str, modality: str, standing: str) -&gt; str:
+    if standing == &quot;governing&quot; and sign == &quot;Aries&quot;:
+        return f&quot;Full year (Mar {year} – Mar {year + 1})&quot;
+    if standing == &quot;governing&quot;:
+        months = ME.validity_months(modality)
+        if months == 12:
+            return f&quot;Full year ({year})&quot;
+        if months == 6:
+            return f&quot;Six months (does not yield to the next cardinal)&quot;
+        return &quot;Three months, then the next cardinal takes over&quot;
+    return f&quot;Nested cardinal stage — does not replace {year_king(year)}&quot;
+
+
+def compute_chart(year: int, sign: str, history: dict[str, dict]) -&gt; dict:
+    ch = ME.cast_ingress(year, sign)
+    jd = ch[&quot;jd&quot;]
+    utc = utc_from_jd(jd)
+    local = utc.astimezone(DC_TZ)
+    extras = all_points(jd)
+    sun_lon = float(ME.SIGNS.index(sign) * 30)
+    standing = standing_for(year, sign, history)
+    modality = ch[&quot;asc_modality&quot;]
+    chart_id = f&quot;{year}-{sign.lower()}&quot;
+
+    planets = []
+    lons = {&quot;Sun&quot;: sun_lon}
+    for name in PLANET_ORDER:
+        pl = ch[&quot;pos&quot;][name]
+        lon = sun_lon if name == &quot;Sun&quot; else pl[&quot;lon&quot;]
+        lons[name] = lon
+        pos_s, sgn, _ = fmt_dms(lon, force_sign=sign if name == &quot;Sun&quot; else None)
+        xx = swe.calc_ut(jd, ME.PLANETS[name])[0]
+        eq = swe.calc_ut(jd, ME.PLANETS[name], swe.FLG_SWIEPH | swe.FLG_EQUATORIAL)[0]
+        combust_label = None
+        if name != &quot;Sun&quot;:
+            orb = abs((lon - sun_lon + 180) % 360 - 180)
+            if orb &lt;= 8.5:
+                combust_label = f&quot;COMBUST ({orb:.1f}°)&quot;
+        conds = []
+        for tag in pl.get(&quot;cond&quot;) or []:
+            if tag == &quot;combust&quot;:
+                continue
+            conds.append(tag.upper() if tag != &quot;peregrine&quot; else &quot;Peregrine&quot;)
+        if combust_label:
+            conds.append(combust_label)
+        if pl.get(&quot;retro&quot;) and &quot;RETROGRADE&quot; not in conds:
+            conds.append(&quot;RETROGRADE&quot;)
+        if not conds:
+            conds.append(&quot;Peregrine&quot;)
+        planets.append({
+            &quot;name&quot;: name, &quot;glyph&quot;: GLYPH[name], &quot;abbr&quot;: ABBR[name],
+            &quot;pos&quot;: pos_s.replace(f&quot; {sgn}&quot;, f&quot; {sgn}&quot;) if False else pos_s,
+            &quot;sign&quot;: sgn, &quot;deg&quot;: round(lon, 2), &quot;house&quot;: pl[&quot;house&quot;],
+            &quot;speed&quot;: fmt_speed(xx[3]), &quot;conditions&quot;: conds, &quot;retro&quot;: bool(xx[3] &lt; 0),
+            &quot;decl&quot;: fmt_decl(eq[1]),
+        })
+
+    extra_rows = []
+    for extra_name in (&quot;Chiron&quot;, &quot;Node&quot;, &quot;America&quot;):
+        lon, spd = extras[extra_name]
+        pos_s, sgn, _ = fmt_dms(lon)
+        house = ((int(((lon % 360) + 1e-6) // 30) - int(ch[&quot;asc&quot;] // 30)) % 12) + 1
+        if extra_name == &quot;Chiron&quot;:
+            eq = swe.calc_ut(jd, swe.CHIRON, swe.FLG_SWIEPH | swe.FLG_EQUATORIAL)[0][1]
+        elif extra_name == &quot;Node&quot;:
+            eq = swe.calc_ut(jd, swe.TRUE_NODE, swe.FLG_SWIEPH | swe.FLG_EQUATORIAL)[0][1]
+        else:
+            eq = None
+        extra_rows.append({
+            &quot;name&quot;: extra_name, &quot;glyph&quot;: GLYPH[extra_name], &quot;abbr&quot;: ABBR[extra_name],
+            &quot;pos&quot;: pos_s, &quot;sign&quot;: sgn, &quot;deg&quot;: round(lon % 360, 2), &quot;house&quot;: house,
+            &quot;speed&quot;: fmt_speed(spd), &quot;conditions&quot;: [], &quot;retro&quot;: bool(spd &lt; 0),
+            &quot;decl&quot;: fmt_decl(eq) if eq is not None else &quot;&quot;,
+        })
+        lons[extra_name] = lon
+
+    aspects = []
+    names = list(PLANET_ORDER)
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            sep = abs((lons[a] - lons[b] + 180) % 360 - 180)
+            for ang, quality in ME.ASPECTS.items():
+                if abs(sep - ang) &lt;= WORKBOOK_ORB[ang]:
+                    aspects.append({
+                        &quot;p1&quot;: a, &quot;type&quot;: ASPECT_GLYPH[quality], &quot;p2&quot;: b,
+                        &quot;orb&quot;: f&quot;{abs(sep - ang):.1f}°&quot;, &quot;quality&quot;: quality,
+                    })
+                    break
+    aspects.sort(key=lambda row: float(row[&quot;orb&quot;][:-1]))
+
+    chain = ch[&quot;dispositor_chain&quot;]
+    bits = []
+    for name in chain:
+        pl = ch[&quot;pos&quot;][name]
+        bits.append(f&quot;{name} ({SIGN_ABBR[pl[&#x27;sign&#x27;]]}/{pl[&#x27;house&#x27;]})&quot;)
+    dispositor = &quot; → &quot;.join(bits)
+    if ch[&quot;dispositor_loop&quot;]:
+        dispositor += &quot; ⟲&quot;
+
+    asc_s, _, _ = fmt_dms(ch[&quot;asc&quot;])
+    mc_s, _, _ = fmt_dms(ch[&quot;mc&quot;])
+    date_label = f&quot;{MONTHS[local.month - 1]} {local.day}, {local.year}&quot;
+    time_label = f&quot;{utc.strftime(&#x27;%H:%M:%S&#x27;)} UTC ({clock_label(local, seconds=True)})&quot;
+    rising = ch[&quot;asc_sign&quot;]
+    role = &quot;governing&quot; if standing == &quot;governing&quot; else &quot;nuance&quot;
+    summary = (
+        f&quot;{rising} rising, {modality.title()}. &quot;
+        + (&quot;Governs the year.&quot; if role == &quot;governing&quot; else f&quot;Nested under {year_king(year)}.&quot;)
+        + &quot; Bones only — no reading.&quot;
+    )
+    verdict = (
+        f&quot;Bones only. No reading yet. Chart ruler {ch[&#x27;chart_ruler&#x27;]}. &quot;
+        f&quot;Dispositor: {dispositor}. &quot;
+        f&quot;Greer standing: {standing.replace(&#x27;_&#x27;, &#x27; &#x27;)}.&quot;
+    )
+    card = {
+        &quot;id&quot;: chart_id,
+        &quot;group&quot;: year,
+        &quot;role&quot;: role,
+        &quot;title&quot;: f&quot;{year} {sign} Solar Ingress&quot;,
+        &quot;date&quot;: date_label,
+        &quot;time&quot;: time_label,
+        &quot;rising&quot;: rising,
+        &quot;risingElement&quot;: SIGN_ELEMENT[rising],
+        &quot;risingModality&quot;: modality.title(),
+        &quot;validity&quot;: validity_line(year, sign, modality, standing),
+        &quot;asc&quot;: asc_s,
+        &quot;ascDeg&quot;: round(ch[&quot;asc&quot;], 2),
+        &quot;mc&quot;: mc_s,
+        &quot;mcDeg&quot;: round(ch[&quot;mc&quot;], 2),
+        &quot;chartRuler&quot;: ch[&quot;chart_ruler&quot;],
+        &quot;summary&quot;: summary,
+        &quot;planets&quot;: planets + extra_rows,
+        &quot;aspects&quot;: aspects[:12],
+        &quot;dispositorText&quot;: dispositor,
+        &quot;verdict&quot;: verdict,
+        &quot;astroGold&quot;: False,
+        &quot;standing&quot;: standing,
+        &quot;jd&quot;: jd,
+        &quot;utc&quot;: utc.isoformat(),
+        &quot;iso_date&quot;: ch[&quot;date&quot;],
+        &quot;sign&quot;: sign,
+        &quot;year&quot;: year,
+    }
+    if role == &quot;nuance&quot;:
+        card[&quot;nuanceTo&quot;] = year_king(year)
+    overlay = {
+        &quot;id&quot;: chart_id,
+        &quot;title&quot;: f&quot;{year} {sign} Solar Ingress&quot;,
+        &quot;date&quot;: date_label,
+        &quot;rising&quot;: rising,
+        &quot;asc_deg&quot;: round(ch[&quot;asc&quot;], 2),
+        &quot;p&quot;: {
+            name: [round(lons[name], 2), next(p[&quot;sign&quot;] for p in planets if p[&quot;name&quot;] == name),
+                   next(p[&quot;house&quot;] for p in planets if p[&quot;name&quot;] == name)]
+            for name in PLANET_ORDER
+        },
+    }
+    decl = {p[&quot;name&quot;]: p[&quot;decl&quot;] for p in planets + extra_rows if p.get(&quot;decl&quot;)}
+    return {&quot;card&quot;: card, &quot;overlay&quot;: overlay, &quot;decl&quot;: decl, &quot;engine&quot;: ch}
+
+
+def js_object(value) -&gt; str:
+    return json.dumps(value, ensure_ascii=False, indent=2)
+
+
+def replace_marked(text: str, start: str, end: str, body: str) -&gt; str:
+    block = f&quot;{start}\n{body}\n{end}&quot;
+    if start in text and end in text:
+        return re.sub(
+            re.escape(start) + r&quot;[\s\S]*?&quot; + re.escape(end),
+            block,
+            text,
+            count=1,
+        )
+    return text
+
+
+def insert_ingress_cards(html: str, cards_js: str) -&gt; str:
+    block = f&quot;  {START}\n{cards_js}\n  {END}&quot;
+    if START in html:
+        return replace_marked(html, START, END, cards_js)
+    marker = &quot;    verdict: \&quot;The winter bridge to 2027&quot;
+    idx = html.find(marker)
+    if idx &lt; 0:
+        raise SystemExit(&quot;Could not find 2026 Capricorn card to append after&quot;)
+    close = html.find(&quot;\n];&quot;, idx)
+    if close &lt; 0:
+        raise SystemExit(&quot;Could not find INGRESS_DATA close&quot;)
+    return html[:close] + &quot;,\n&quot; + block + html[close:]
+
+
+def patch_ing_data(html: str, overlays: list[dict]) -&gt; str:
+    match = re.search(r&quot;const ING_DATA = (\[.*?\]);&quot;, html, re.S)
+    if not match:
+        raise SystemExit(&quot;ING_DATA missing&quot;)
+    data = json.loads(match.group(1))
+    data = [row for row in data if not re.match(r&quot;202[78]-&quot;, row[&quot;id&quot;])]
+    data.extend(overlays)
+    compact = json.dumps(data, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;))
+    return html[: match.start(1)] + compact + html[match.end(1) :]
+
+
+def patch_decl(html: str, decls: dict[str, dict[str, str]]) -&gt; str:
+    body = &quot;,\n&quot;.join(
+        f&#x27;  &quot;{cid}&quot;: {json.dumps(rows, ensure_ascii=False)}&#x27;
+        for cid, rows in decls.items()
+    )
+    block = f&quot;{DECL_START}\n{body}\n{DECL_END}&quot;
+    if DECL_START in html:
+        return replace_marked(html, DECL_START, DECL_END, body)
+    close = html.rfind(&quot;};&quot;, html.find(&quot;const DECL_DATA = {&quot;))
+    if close &lt; 0:
+        raise SystemExit(&quot;DECL_DATA close missing&quot;)
+    return html[:close] + &quot;,\n&quot; + block + &quot;\n&quot; + html[close:]
+
+
+def patch_astro_gold_img(html: str) -&gt; str:
+    if &quot;chart.astroGold !== false&quot; in html:
+        return html
+    start = html.find(&quot;    // Astro Gold reference screenshot&quot;)
+    end = html.find(&quot;    // Planet Table&quot;, start)
+    if start &lt; 0 or end &lt; 0:
+        raise SystemExit(&quot;Astro Gold image block not found&quot;)
+    original = html[start:end]
+    wrapped = (
+        &quot;    if (chart.astroGold !== false) {\n&quot;
+        + original
+        + &quot;    }\n\n&quot;
+    )
+    return html[:start] + wrapped + html[end:]
+
+
+def write_bones_note(card: dict) -&gt; Path:
+    year, sign = card[&quot;year&quot;], card[&quot;sign&quot;]
+    path = ASTRO / f&quot;{year} {sign} Solar Ingress.md&quot;
+    standing = card[&quot;standing&quot;]
+    rising = card[&quot;rising&quot;]
+    modality = card[&quot;risingModality&quot;]
+    utc = datetime.fromisoformat(card[&quot;utc&quot;])
+    time_utc = utc.strftime(&quot;%H:%M:%S&quot;)
+    role = &quot;governing&quot; if standing == &quot;governing&quot; else &quot;nuance&quot;
+    links = &quot;&quot;
+    if role == &quot;nuance&quot;:
+        links = f&#x27;governing_chart: &quot;[[{year} Aries Solar Ingress]]&quot;\n&#x27;
+    lines = [
+        &quot;---&quot;,
+        f&#x27;title: &quot;{year} {sign} Solar Ingress — Washington, D.C.&quot;&#x27;,
+        &quot;type: chart&quot;,
+        &quot;chart_type: ingress&quot;,
+        f&quot;ingress: {sign}&quot;,
+        f&quot;year: {year}&quot;,
+        f&quot;date: {card[&#x27;iso_date&#x27;]}&quot;,
+        f&#x27;time_utc: &quot;{time_utc}&quot;&#x27;,
+        &#x27;location: &quot;Washington, D.C.&quot;&#x27;,
+        &quot;house_system: Whole Sign&quot;,
+        f&quot;rising_sign: {rising}&quot;,
+        f&quot;rising_modality: {modality}&quot;,
+        f&#x27;validity: &quot;{card[&quot;validity&quot;]}&quot;&#x27;,
+        f&quot;chart_ruler: {card[&#x27;chartRuler&#x27;]}&quot;,
+        f&quot;role: {role}&quot;,
+        f&quot;{links}computed_via: \&quot;Swiss Ephemeris (pyswisseph) · mundane_engine.py\&quot;&quot;,
+        &quot;reading: none&quot;,
+        &quot;---&quot;,
+        &quot;&quot;,
+        f&quot;# {year} {sign} Solar Ingress — Washington, D.C.&quot;,
+        &quot;&quot;,
+        &quot;&gt; **Bones only.** Computed positions and conditions. No reading yet.&quot;,
+        &quot;&gt;&quot;,
+        f&quot;&gt; {card[&#x27;validity&#x27;]}. Chart ruler {card[&#x27;chartRuler&#x27;]}. &quot;
+        f&quot;{&#x27;Governs the year.&#x27; if role == &#x27;governing&#x27; else f&#x27;Nested under {year} Aries.&#x27;}&quot;,
+        &quot;&quot;,
+        &quot;---&quot;,
+        &quot;&quot;,
+        &quot;## The Chart&quot;,
+        &quot;&quot;,
+        f&quot;**Date/Time:** {card[&#x27;date&#x27;]}, {card[&#x27;time&#x27;]}&quot;,
+        &quot;**Location:** Washington, D.C. (38.9072°N, 77.0369°W)&quot;,
+        &quot;**House System:** Whole Sign&quot;,
+        f&quot;**Ascendant:** {card[&#x27;asc&#x27;]}&quot;,
+        f&quot;**MC:** {card[&#x27;mc&#x27;]}&quot;,
+        f&quot;**Rising Modality:** {modality}&quot;,
+        f&quot;**Greer standing:** {standing.replace(&#x27;_&#x27;, &#x27; &#x27;)}&quot;,
+        &quot;&quot;,
+        &quot;### Planet Positions&quot;,
+        &quot;&quot;,
+        &quot;| Planet | Position | Sign | House | Speed | Condition |&quot;,
+        &quot;|--------|----------|------|-------|-------|-----------|&quot;,
+    ]
+    for p in card[&quot;planets&quot;]:
+        cond = &quot;, &quot;.join(p[&quot;conditions&quot;]) if p[&quot;conditions&quot;] else &quot;—&quot;
+        if cond not in (&quot;—&quot;, &quot;Peregrine&quot;) and &quot;Peregrine&quot; not in cond:
+            cond = f&quot;**{cond}**&quot;
+        house = p[&quot;house&quot;]
+        ordinal = {1: &quot;1st&quot;, 2: &quot;2nd&quot;, 3: &quot;3rd&quot;}.get(house, f&quot;{house}th&quot;)
+        lines.append(
+            f&quot;| {p[&#x27;name&#x27;]} | {p[&#x27;pos&#x27;]} | {p[&#x27;sign&#x27;]} | {ordinal} | {p[&#x27;speed&#x27;]}°/d | {cond} |&quot;
+        )
+    lines += [
+        &quot;&quot;,
+        &quot;### Dispositor chain&quot;,
+        &quot;&quot;,
+        card[&quot;dispositorText&quot;],
+        &quot;&quot;,
+        &quot;Astro Gold verification is pending. Degrees are engine-computed, never from memory.&quot;,
+        &quot;&quot;,
+    ]
+    path.write_text(&quot;\n&quot;.join(lines), encoding=&quot;utf-8&quot;)
+    return path
+
+
+def main() -&gt; None:
+    history_rows = {
+        row[&quot;id&quot;]: row
+        for row in json.loads(HISTORY.read_text(encoding=&quot;utf-8&quot;))[&quot;charts&quot;]
+        if row[&quot;chart_type&quot;] == &quot;ingress&quot;
+    }
+    computed = [compute_chart(year, sign, history_rows) for year in YEARS for sign in CARDINAL]
+    cards = [row[&quot;card&quot;] for row in computed]
+    overlays = [row[&quot;overlay&quot;] for row in computed]
+    decls = {row[&quot;card&quot;][&quot;id&quot;]: row[&quot;decl&quot;] for row in computed}
+
+    html = TARGET.read_text(encoding=&quot;utf-8&quot;)
+    cards_js = &quot;,\n&quot;.join(js_object(card) for card in cards)
+    # Unquote top-level-ish is unnecessary; quoted JSON is valid JS.
+    html = insert_ingress_cards(html, cards_js)
+    html = patch_ing_data(html, overlays)
+    html = patch_decl(html, decls)
+    html = patch_astro_gold_img(html)
+    TARGET.write_text(html, encoding=&quot;utf-8&quot;)
+
+    ing = json.loads(ING_JSON.read_text(encoding=&quot;utf-8&quot;))
+    ing = [row for row in ing if not re.match(r&quot;202[78]-&quot;, row[&quot;id&quot;])]
+    ing.extend(overlays)
+    ING_JSON.write_text(json.dumps(ing, ensure_ascii=False) + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+
+    notes = [write_bones_note(card) for card in cards]
+    print(f&quot;✓ Ingress Charts: added {len(cards)} bones-only 2027–2028 charts&quot;)
+    print(f&quot;✓ ing_data.json: {len(ing)} overlay frames&quot;)
+    for path in notes:
+        print(f&quot;  {path.relative_to(VAULT)}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

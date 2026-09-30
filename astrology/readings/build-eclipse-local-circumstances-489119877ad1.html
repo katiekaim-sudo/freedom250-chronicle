@@ -1,0 +1,337 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-eclipse-local-circumstances-489119877ad1.html">
+<title>build_eclipse_local_circumstances</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_eclipse_local_circumstances</h1><p class="mut">Portable source: 99 - Templates/build_eclipse_local_circumstances.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build Washington-local circumstances for the 2024-2026 eclipse sequence.
+
+The global eclipse type, the Washington chart, and what an observer in
+Washington could physically witness are different facts.  This producer keeps
+those lanes separate and emits the local horizon circumstances needed by the
+mundane reading method.
+
+Swiss Ephemeris conventions used here:
+
+* longitude is east-positive, so Washington is negative;
+* solar ``when_loc`` returns an observable maximum at sunrise or sunset when
+  the geometric local maximum is below the horizon;
+* lunar global phase contacts are intersected with local moonrise/moonset to
+  show how much of each phase was actually above the Washington horizon.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+from chart_conventions import DC_LAT, DC_LON, DC_TZ_NAME
+
+
+HERE = Path(__file__).resolve().parent
+OUT = HERE / &quot;eclipse_local_circumstances.json&quot;
+GEOPOS = (DC_LON, DC_LAT, 7.0)
+UTC = timezone.utc
+
+EVENTS = (
+    (&quot;2024-10-02&quot;, &quot;solar&quot;),
+    (&quot;2025-03-14&quot;, &quot;lunar&quot;),
+    (&quot;2025-03-29&quot;, &quot;solar&quot;),
+    (&quot;2025-09-07&quot;, &quot;lunar&quot;),
+    (&quot;2025-09-21&quot;, &quot;solar&quot;),
+    (&quot;2026-02-17&quot;, &quot;solar&quot;),
+    (&quot;2026-03-03&quot;, &quot;lunar&quot;),
+    (&quot;2026-08-12&quot;, &quot;solar&quot;),
+    (&quot;2026-08-28&quot;, &quot;lunar&quot;),
+)
+
+
+def event_type(flags: int) -&gt; str:
+    if flags &amp; swe.ECL_ANNULAR_TOTAL:
+        return &quot;hybrid&quot;
+    if flags &amp; swe.ECL_TOTAL:
+        return &quot;total&quot;
+    if flags &amp; swe.ECL_ANNULAR:
+        return &quot;annular&quot;
+    if flags &amp; swe.ECL_PARTIAL:
+        return &quot;partial&quot;
+    if flags &amp; swe.ECL_PENUMBRAL:
+        return &quot;penumbral&quot;
+    return &quot;none&quot;
+
+
+def jd_from_date(date_iso: str, offset_days: int = 0) -&gt; float:
+    date = datetime.fromisoformat(date_iso).replace(tzinfo=UTC) + timedelta(days=offset_days)
+    return swe.julday(date.year, date.month, date.day, 0.0)
+
+
+def jd_datetime(jd: float) -&gt; datetime:
+    year, month, day, decimal_hour = swe.revjul(jd, swe.GREG_CAL)
+    return datetime(year, month, day, tzinfo=UTC) + timedelta(hours=decimal_hour)
+
+
+def instant(jd: float) -&gt; dict | None:
+    if not jd:
+        return None
+    moment = jd_datetime(jd)
+    return {
+        &quot;jd_ut&quot;: round(jd, 9),
+        &quot;utc&quot;: moment.isoformat(timespec=&quot;seconds&quot;).replace(&quot;+00:00&quot;, &quot;Z&quot;),
+        &quot;washington&quot;: moment.astimezone(ZoneInfo(DC_TZ_NAME)).isoformat(timespec=&quot;seconds&quot;),
+    }
+
+
+def minutes(begin_jd: float, end_jd: float) -&gt; float | None:
+    if not begin_jd or not end_jd or end_jd &lt; begin_jd:
+        return None
+    return round((end_jd - begin_jd) * 1440.0, 3)
+
+
+def signed_minutes(begin_jd: float, end_jd: float) -&gt; float:
+    return round((end_jd - begin_jd) * 1440.0, 3)
+
+
+def phase_visibility(begin_jd: float, end_jd: float, rise_jd: float, set_jd: float) -&gt; dict | None:
+    if not begin_jd or not end_jd:
+        return None
+    visible_begin = max(begin_jd, rise_jd) if rise_jd and begin_jd &lt;= rise_jd &lt;= end_jd else begin_jd
+    visible_end = min(end_jd, set_jd) if set_jd and begin_jd &lt;= set_jd &lt;= end_jd else end_jd
+    if visible_end &lt;= visible_begin:
+        return {&quot;visible&quot;: False, &quot;minutes_above_horizon&quot;: 0.0}
+    return {
+        &quot;visible&quot;: True,
+        &quot;visible_begin&quot;: instant(visible_begin),
+        &quot;visible_end&quot;: instant(visible_end),
+        &quot;minutes_above_horizon&quot;: minutes(visible_begin, visible_end),
+        &quot;full_phase_minutes&quot;: minutes(begin_jd, end_jd),
+    }
+
+
+def rounded(value: float, places: int = 6) -&gt; float:
+    return round(float(value), places)
+
+
+def phase_error(jd: float, target: float) -&gt; float:
+    sun = swe.calc_ut(jd, swe.SUN, swe.FLG_SWIEPH)[0][0]
+    moon = swe.calc_ut(jd, swe.MOON, swe.FLG_SWIEPH)[0][0]
+    return (moon - sun - target + 180.0) % 360.0 - 180.0
+
+
+def syzygy_near(global_max: float, target: float) -&gt; float:
+    points = [global_max - 0.5 + i / 100.0 for i in range(101)]
+    brackets = []
+    previous_jd = points[0]
+    previous_value = phase_error(previous_jd, target)
+    for jd in points[1:]:
+        value = phase_error(jd, target)
+        if previous_value == 0 or value == 0 or previous_value * value &lt; 0:
+            brackets.append((previous_jd, jd))
+        previous_jd, previous_value = jd, value
+    if not brackets:
+        raise RuntimeError(f&quot;No syzygy bracket near JD {global_max}&quot;)
+    lower, upper = min(brackets, key=lambda pair: abs(sum(pair) / 2.0 - global_max))
+    lower_value = phase_error(lower, target)
+    for _ in range(60):
+        middle = (lower + upper) / 2.0
+        middle_value = phase_error(middle, target)
+        if lower_value * middle_value &lt;= 0:
+            upper = middle
+        else:
+            lower, lower_value = middle, middle_value
+    return (lower + upper) / 2.0
+
+
+def solar_record(date_iso: str) -&gt; dict:
+    start = jd_from_date(date_iso, -2)
+    global_flags, global_times = swe.sol_eclipse_when_glob(start)
+    global_max = global_times[0]
+    syzygy = syzygy_near(global_max, 0.0)
+    where_flags, maximum_geopos, global_attr = swe.sol_eclipse_where(global_max)
+    local_flags, local_times, local_attr = swe.sol_eclipse_when_loc(start, GEOPOS)
+    visible = abs(local_times[0] - global_max) &lt; 1.0 and bool(local_flags &amp; swe.ECL_VISIBLE)
+    how_flags, how_attr = swe.sol_eclipse_how(global_max, GEOPOS)
+    syzygy_flags, syzygy_attr = swe.sol_eclipse_how(syzygy, GEOPOS)
+
+    record = {
+        &quot;date&quot;: date_iso,
+        &quot;kind&quot;: &quot;solar&quot;,
+        &quot;global&quot;: {
+            &quot;type&quot;: event_type(global_flags),
+            &quot;maximum&quot;: instant(global_max),
+            &quot;syzygy&quot;: instant(syzygy),
+            &quot;syzygy_minus_maximum_minutes&quot;: signed_minutes(global_max, syzygy),
+            &quot;partial_phase_begin&quot;: instant(global_times[2]),
+            &quot;partial_phase_end&quot;: instant(global_times[3]),
+            &quot;total_or_annular_begin&quot;: instant(global_times[4]),
+            &quot;total_or_annular_end&quot;: instant(global_times[5]),
+            &quot;maximum_location&quot;: {
+                &quot;longitude_east_positive&quot;: rounded(maximum_geopos[0]),
+                &quot;latitude&quot;: rounded(maximum_geopos[1]),
+            },
+            &quot;magnitude&quot;: rounded(global_attr[8]),
+            &quot;saros&quot;: int(global_attr[9]),
+            &quot;saros_member_engine_value&quot;: int(global_attr[10]),
+        },
+        &quot;washington&quot;: {
+            &quot;visible&quot;: visible,
+            &quot;sun_true_altitude_at_global_max_deg&quot;: rounded(how_attr[5]),
+            &quot;sun_apparent_altitude_at_global_max_deg&quot;: rounded(how_attr[6]),
+            &quot;local_eclipse_state_at_global_max&quot;: event_type(how_flags),
+            &quot;sun_true_altitude_at_syzygy_deg&quot;: rounded(syzygy_attr[5]),
+            &quot;sun_apparent_altitude_at_syzygy_deg&quot;: rounded(syzygy_attr[6]),
+            &quot;local_eclipse_state_at_syzygy&quot;: event_type(syzygy_flags),
+        },
+    }
+
+    if visible:
+        sunrise = local_times[5]
+        sunset = local_times[6]
+        observable_begin = sunrise or local_times[1]
+        observable_end = sunset or local_times[4]
+        status = &quot;visible&quot;
+        if sunrise:
+            status = &quot;visible_at_sunrise&quot;
+        elif sunset:
+            status = &quot;visible_at_sunset&quot;
+        record[&quot;washington&quot;].update(
+            {
+                &quot;status&quot;: status,
+                &quot;local_type&quot;: event_type(local_flags),
+                &quot;observable_maximum&quot;: instant(local_times[0]),
+                &quot;first_contact&quot;: instant(local_times[1]),
+                &quot;fourth_contact&quot;: instant(local_times[4]),
+                &quot;sunrise_during_eclipse&quot;: instant(sunrise),
+                &quot;sunset_during_eclipse&quot;: instant(sunset),
+                &quot;observable_begin&quot;: instant(observable_begin),
+                &quot;observable_end&quot;: instant(observable_end),
+                &quot;observable_minutes&quot;: minutes(observable_begin, observable_end),
+                &quot;magnitude_at_observable_maximum&quot;: rounded(local_attr[0]),
+                &quot;obscuration_at_observable_maximum&quot;: rounded(local_attr[2]),
+                &quot;sun_true_altitude_at_observable_maximum_deg&quot;: rounded(local_attr[5]),
+                &quot;sun_apparent_altitude_at_observable_maximum_deg&quot;: rounded(local_attr[6]),
+                &quot;azimuth_at_observable_maximum_deg&quot;: rounded(local_attr[4]),
+            }
+        )
+    else:
+        record[&quot;washington&quot;].update({&quot;status&quot;: &quot;not_visible&quot;, &quot;local_type&quot;: &quot;none&quot;})
+    return record
+
+
+def lunar_record(date_iso: str) -&gt; dict:
+    start = jd_from_date(date_iso, -2)
+    global_flags, global_times = swe.lun_eclipse_when(start)
+    global_max = global_times[0]
+    syzygy = syzygy_near(global_max, 180.0)
+    how_flags, how_attr = swe.lun_eclipse_how(global_max, GEOPOS)
+    syzygy_flags, syzygy_attr = swe.lun_eclipse_how(syzygy, GEOPOS)
+    local_flags, local_times, local_attr = swe.lun_eclipse_when_loc(start, GEOPOS)
+    visible = abs(local_times[0] - global_max) &lt; 1.0
+
+    record = {
+        &quot;date&quot;: date_iso,
+        &quot;kind&quot;: &quot;lunar&quot;,
+        &quot;global&quot;: {
+            &quot;type&quot;: event_type(global_flags),
+            &quot;maximum&quot;: instant(global_max),
+            &quot;syzygy&quot;: instant(syzygy),
+            &quot;syzygy_minus_maximum_minutes&quot;: signed_minutes(global_max, syzygy),
+            &quot;penumbral_begin&quot;: instant(global_times[6]),
+            &quot;penumbral_end&quot;: instant(global_times[7]),
+            &quot;partial_begin&quot;: instant(global_times[2]),
+            &quot;partial_end&quot;: instant(global_times[3]),
+            &quot;totality_begin&quot;: instant(global_times[4]),
+            &quot;totality_end&quot;: instant(global_times[5]),
+            &quot;umbral_magnitude&quot;: rounded(how_attr[0]),
+            &quot;penumbral_magnitude&quot;: rounded(how_attr[1]),
+            &quot;saros&quot;: int(how_attr[9]),
+            &quot;saros_member_engine_value&quot;: int(how_attr[10]),
+        },
+        &quot;washington&quot;: {
+            &quot;visible&quot;: visible,
+            &quot;moon_true_altitude_at_global_max_deg&quot;: rounded(how_attr[5]),
+            &quot;moon_apparent_altitude_at_global_max_deg&quot;: rounded(how_attr[6]),
+            &quot;moon_true_altitude_at_syzygy_deg&quot;: rounded(syzygy_attr[5]),
+            &quot;moon_apparent_altitude_at_syzygy_deg&quot;: rounded(syzygy_attr[6]),
+            &quot;local_eclipse_state_at_syzygy&quot;: event_type(syzygy_flags),
+        },
+    }
+
+    if visible:
+        moonrise = local_times[8]
+        moonset = local_times[9]
+        status = &quot;visible&quot;
+        if moonrise:
+            status = &quot;rises_during_eclipse&quot;
+        if moonset:
+            status = &quot;sets_during_eclipse&quot; if status == &quot;visible&quot; else &quot;rises_and_sets_during_eclipse&quot;
+        record[&quot;washington&quot;].update(
+            {
+                &quot;status&quot;: status,
+                &quot;local_type&quot;: event_type(local_flags),
+                &quot;maximum&quot;: instant(local_times[0]),
+                &quot;moonrise_during_eclipse&quot;: instant(moonrise),
+                &quot;moonset_during_eclipse&quot;: instant(moonset),
+                &quot;penumbral_phase&quot;: phase_visibility(global_times[6], global_times[7], moonrise, moonset),
+                &quot;partial_phase&quot;: phase_visibility(global_times[2], global_times[3], moonrise, moonset),
+                &quot;total_phase&quot;: phase_visibility(global_times[4], global_times[5], moonrise, moonset),
+                &quot;umbral_magnitude&quot;: rounded(local_attr[0]),
+                &quot;penumbral_magnitude&quot;: rounded(local_attr[1]),
+                &quot;azimuth_at_maximum_deg&quot;: rounded(local_attr[4]),
+            }
+        )
+    else:
+        record[&quot;washington&quot;].update({&quot;status&quot;: &quot;not_visible&quot;, &quot;local_type&quot;: &quot;none&quot;})
+    return record
+
+
+def main() -&gt; None:
+    swe.set_ephe_path(str(HERE / &quot;ephe&quot;))
+    records = [solar_record(date) if kind == &quot;solar&quot; else lunar_record(date) for date, kind in EVENTS]
+    payload = {
+        &quot;schema_version&quot;: 1,
+        &quot;title&quot;: &quot;Washington-local eclipse circumstances, 2024-2026&quot;,
+        &quot;authority&quot;: &quot;computed_astronomical_context_zero_astrological_evidence_credit&quot;,
+        &quot;location&quot;: {
+            &quot;label&quot;: &quot;Washington, D.C.&quot;,
+            &quot;latitude&quot;: DC_LAT,
+            &quot;longitude_east_positive&quot;: DC_LON,
+            &quot;altitude_m&quot;: GEOPOS[2],
+            &quot;timezone&quot;: DC_TZ_NAME,
+        },
+        &quot;engine&quot;: {&quot;name&quot;: &quot;Swiss Ephemeris&quot;, &quot;version&quot;: swe.version, &quot;ephemeris_path&quot;: &quot;99 - Templates/ephe&quot;},
+        &quot;method_notes&quot;: [
+            &quot;Global eclipse type and Washington-local visibility are separate facts.&quot;,
+            &quot;Solar observable maximum may be horizon-clipped by sunrise or sunset under Swiss Ephemeris conventions.&quot;,
+            &quot;Lunar phase visibility is the global phase interval intersected with Washington moonrise or moonset.&quot;,
+            &quot;True and apparent altitude are preserved separately; apparent altitude includes atmospheric refraction.&quot;,
+            &quot;Magnitude is a diameter ratio; solar obscuration is the covered fraction of the solar disc area.&quot;,
+            &quot;The exact Sun-Moon syzygy and greatest eclipse are separate instants and are both preserved.&quot;,
+            &quot;Saros member is labeled as an engine value because external catalogs can use a different member count.&quot;,
+        ],
+        &quot;source_urls&quot;: [
+            &quot;https://www.astro.com/swisseph/swephprg.htm&quot;,
+            &quot;https://eclipse.gsfc.nasa.gov/solar.html&quot;,
+            &quot;https://eclipse.gsfc.nasa.gov/lunar.html&quot;,
+            &quot;https://eclipse.gsfc.nasa.gov/SEcirc/SEcircNA/WashingtonDC1+21.html&quot;,
+        ],
+        &quot;events&quot;: records,
+    }
+    OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+    print(f&quot;Wrote {OUT}&quot;)
+    for record in records:
+        washington = record[&quot;washington&quot;]
+        print(record[&quot;date&quot;], record[&quot;kind&quot;], record[&quot;global&quot;][&quot;type&quot;], washington[&quot;status&quot;])
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

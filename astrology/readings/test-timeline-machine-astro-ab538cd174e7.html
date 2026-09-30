@@ -1,0 +1,135 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-timeline-machine-astro-ab538cd174e7.html">
+<title>test_timeline_machine_astro</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_timeline_machine_astro</h1><p class="mut">Portable source: 99 - Templates/test_timeline_machine_astro.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Pure-provider and current-input parity tests for timeline_machine_astro.&quot;&quot;&quot;
+import hashlib
+import json
+import os
+import unittest
+from pathlib import Path
+
+import build_castration_astro as castration
+import build_fine_print_astro as fine_print
+import timeline_machine_astro as subject
+
+HERE = Path(__file__).resolve().parent
+DATA_DIR = Path(os.environ.get(&quot;TIMELINE_ASTRO_FIXTURES&quot;, HERE))
+
+
+class FakeSwe:
+    SUN, MOON, MERCURY, VENUS, MARS = range(5)
+    JUPITER, SATURN, URANUS, NEPTUNE, PLUTO = range(5, 10)
+    TRUE_NODE, CHIRON = 10, 11
+    FLG_MOSEPH, FLG_SPEED = 1, 2
+
+    def __init__(self):
+        self.julday_calls = []
+
+    def julday(self, year, month, day, hour):
+        self.julday_calls.append((year, month, day, hour))
+        return year * 10000 + month * 100 + day + hour / 24
+
+    def calc_ut(self, jd, code, flags=None):
+        longitude = (code * 31.25 + jd % 1) % 360
+        return ([longitude, 0, 0, -1 if code == self.MERCURY else 1],)
+
+    def houses(self, jd, latitude, longitude, system):
+        return ((), (123.456,))
+
+
+class FakeWheel:
+    @staticmethod
+    def aspects_between(longitudes):
+        return [{&quot;t&quot;: &quot;base&quot;, &quot;o&quot;: 2.0}]
+
+    @staticmethod
+    def point_aspects(points, longitudes):
+        name = next(iter(points))
+        return [{&quot;t&quot;: name, &quot;o&quot;: {&quot;Node&quot;: 1.5, &quot;Chiron&quot;: 1.0, &quot;America&quot;: 0.5}[name]}]
+
+
+class FakeMinorPoints:
+    def __init__(self, longitude=222.25, unavailable=False):
+        self.longitude = longitude
+        self.unavailable = unavailable
+
+    def america_lon(self, jd):
+        if self.unavailable:
+            raise ValueError(&quot;outside grid&quot;)
+        return self.longitude
+
+
+class TimelineMachineAstroTests(unittest.TestCase):
+    def test_time_convention_is_dst_aware_and_month_precision_is_chartless(self):
+        fake = FakeSwe()
+        subject.jd_for(&quot;2026-07-01&quot;, False, fake)
+        subject.jd_for(&quot;2026-01-15&quot;, True, fake)
+        self.assertEqual(fake.julday_calls, [(2026, 7, 1, 16.0), (2026, 1, 15, 5.0)])
+        self.assertIsNone(subject.jd_for(&quot;2026-07&quot;, False, fake))
+
+    def test_fake_provider_payload_preserves_schema_and_conventions(self):
+        fake = FakeSwe()
+        items = [
+            {&quot;date&quot;: &quot;2026-07-01&quot;, &quot;title&quot;: &quot;release&quot;, &quot;status&quot;: &quot;Occurred&quot;},
+            {&quot;date&quot;: &quot;2026-01-15&quot;, &quot;title&quot;: &quot;deadline&quot;, &quot;status&quot;: &quot;Scheduled by rule&quot;},
+            {&quot;date&quot;: &quot;2026-07&quot;, &quot;title&quot;: &quot;month&quot;, &quot;status&quot;: &quot;Research&quot;},
+        ]
+        payload, without_america = subject.build_payload(
+            items, &quot;comment&quot;, &quot;generated&quot;, swe_module=fake, wheel_module=FakeWheel,
+            minor_points_module=FakeMinorPoints(), dc=(1.0, 2.0))
+        self.assertEqual(list(payload), [&quot;_comment&quot;, &quot;generated&quot;, &quot;charts&quot;])
+        self.assertEqual(list(payload[&quot;charts&quot;]),
+                         [&quot;2026-07-01|release&quot;, &quot;2026-01-15|deadline&quot;])
+        self.assertEqual(payload[&quot;charts&quot;][&quot;2026-07-01|release&quot;][&quot;convention&quot;], &quot;noon D.C.&quot;)
+        self.assertEqual(payload[&quot;charts&quot;][&quot;2026-01-15|deadline&quot;][&quot;convention&quot;],
+                         &quot;midnight D.C. (day of)&quot;)
+        positions = payload[&quot;charts&quot;][&quot;2026-07-01|release&quot;][&quot;pos&quot;]
+        by_name = {position[0]: position for position in positions}
+        self.assertAlmostEqual((by_name[&quot;Node&quot;][4] + 180) % 360, by_name[&quot;SNode&quot;][4])
+        self.assertIn(&quot;America&quot;, by_name)
+        self.assertEqual(without_america, 0)
+
+    def test_pre_grid_override_and_unavailable_grid_paths(self):
+        fake = FakeSwe()
+        key = &quot;2023-01-01|event&quot;
+        overridden, missing = subject.build_payload(
+            [{&quot;date&quot;: &quot;2023-01-01&quot;, &quot;title&quot;: &quot;event&quot;, &quot;status&quot;: &quot;Occurred&quot;}], &quot;c&quot;, &quot;g&quot;,
+            {key: 45.5}, fake, FakeWheel, FakeMinorPoints(unavailable=True), (1.0, 2.0))
+        self.assertEqual(missing, 0)
+        self.assertIn(&quot;America&quot;, [position[0] for position in overridden[&quot;charts&quot;][key][&quot;pos&quot;]])
+        no_override, missing = subject.build_payload(
+            [{&quot;date&quot;: &quot;2023-01-01&quot;, &quot;title&quot;: &quot;event&quot;, &quot;status&quot;: &quot;Occurred&quot;}], &quot;c&quot;, &quot;g&quot;,
+            None, fake, FakeWheel, FakeMinorPoints(unavailable=True), (1.0, 2.0))
+        self.assertEqual(missing, 1)
+        self.assertNotIn(&quot;America&quot;, [position[0] for position in no_override[&quot;charts&quot;][key][&quot;pos&quot;]])
+
+    def assert_current_input_hash(self, family, comment, generated, expected_hash):
+        seed = json.loads((DATA_DIR / f&quot;{family}_seed.json&quot;).read_text(encoding=&quot;utf-8&quot;))[&quot;items&quot;]
+        payload, _ = subject.build_payload(seed, comment, generated)
+        actual_bytes = json.dumps(payload, ensure_ascii=False, indent=None).encode(&quot;utf-8&quot;)
+        self.assertEqual(hashlib.sha256(actual_bytes).hexdigest(), expected_hash)
+
+    def test_castration_current_input_is_byte_identical(self):
+        self.assert_current_input_hash(
+            &quot;castration&quot;, castration.COMMENT, castration.GENERATED,
+            &quot;bc4de6066843ff2f65f26f78ed08211c7787480940c0cc8540fb1de5d1249194&quot;,
+        )
+
+    def test_fine_print_current_input_is_byte_identical(self):
+        self.assert_current_input_hash(
+            &quot;fine_print&quot;, fine_print.COMMENT, fine_print.GENERATED,
+            &quot;7afe82a399c661d40c3f42c346419c631b5553ccef5ae9d7632241cfbe873e43&quot;,
+        )
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

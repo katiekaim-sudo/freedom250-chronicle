@@ -1,0 +1,170 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/update-transit-markers-905af2fb2889.html">
+<title>plotline -&gt; arc key (mirror of check_vault CLUSTERS)</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>plotline -&gt; arc key (mirror of check_vault CLUSTERS)</h1><p class="mut">Portable source: 99 - Templates/update_transit_markers.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Update the political day-markers on Transit Weather.
+
+The POLITICAL array embedded in `04 - Synthesis/Cross-cuts/Transit Weather.html`
+is the source of the clickable day-story markers. It was originally hand-built
+and froze at 2026-05-29; this script keeps it alive.
+
+Modes:
+  --auto             scan event notes since the last marker; add a marker for any
+                     high-volume news day (count &gt;= 1.3x trailing-14-day median,
+                     min 12 notes). Label = the day&#x27;s loudest headline in its
+                     dominant plotline. Marked &quot;type&quot;:&quot;news&quot; + &quot;auto&quot;:true so
+                     they&#x27;re easy to find and re-word editorially.
+  --add DATE LABEL ARCKEY   add one curated marker (arckey: reckoning|war|money|
+                     homeland|greatpower|infowar|fringe)
+  --dry              print what would be added, write nothing
+
+Context fields (active transits, prev/next lunation) are computed from the data
+already embedded in Transit Weather / Lunar Weather. Run after the nightly sync
+(refresh_synthesis calls --auto). Always edits the vault HTML — the Observatory
+iframes it, so no rebuild needed; the desktop app needs a re-sync.
+&quot;&quot;&quot;
+import re, json, sys, glob, os, statistics
+from collections import Counter
+from datetime import date as Date, timedelta
+
+HERE  = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+TW    = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;, &quot;Transit Weather.html&quot;)
+LW    = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;, &quot;Lunar Weather.html&quot;)
+EVENTS= os.path.join(VAULT, &quot;01 - Events&quot;)
+
+ARC_KEYS = {
+ &quot;reckoning&quot;:&quot;The Great Reckoning&quot;, &quot;war&quot;:&quot;War Footing — Iran &amp; the Mideast&quot;,
+ &quot;money&quot;:&quot;The Monetary Reset&quot;, &quot;homeland&quot;:&quot;Border &amp; Homeland&quot;,
+ &quot;greatpower&quot;:&quot;Great-Power Realignment&quot;, &quot;infowar&quot;:&quot;The Information War&quot;,
+ &quot;fringe&quot;:&quot;Fringe, Disclosure &amp; Health&quot;,
+}
+# plotline -&gt; arc key (mirror of check_vault CLUSTERS)
+CLUSTERS = {
+ &quot;reckoning&quot;:[&quot;Epstein&quot;,&quot;Clintons&quot;,&quot;Arrests &amp; Legal&quot;,&quot;Government Fraud&quot;,&quot;Election Fraud&quot;,&quot;Scandals&quot;,&quot;Redistricting&quot;],
+ &quot;war&quot;:[&quot;Iran&quot;,&quot;Israel/Jews&quot;,&quot;Military&quot;,&quot;Terror &amp; Attacks&quot;],
+ &quot;money&quot;:[&quot;Crypto&quot;,&quot;Economy&quot;,&quot;Energy&quot;],
+ &quot;homeland&quot;:[&quot;Immigration&quot;,&quot;California&quot;,&quot;New York&quot;,&quot;Civil Unrest&quot;,&quot;Police/Crime&quot;],
+ &quot;greatpower&quot;:[&quot;China&quot;,&quot;Russia/Ukraine&quot;,&quot;Other International&quot;,&quot;Europe&quot;,&quot;Canada&quot;,&quot;Mexico&quot;,&quot;Cuba&quot;,&quot;India&quot;,&quot;Foreign Policy&quot;],
+ &quot;infowar&quot;:[&quot;Media Trust&quot;,&quot;Politics&quot;,&quot;Technology/AI&quot;,&quot;Supreme Court&quot;,&quot;Education&quot;,&quot;America&quot;,&quot;Right Wing Media&quot;],
+ &quot;fringe&quot;:[&quot;Q&quot;,&quot;Disclosure&quot;,&quot;Theories&quot;,&quot;Electromagnetism&quot;,&quot;The Missing Scientists&quot;,&quot;Space&quot;,&quot;Health&quot;,&quot;Covid&quot;,&quot;Weather/Nature&quot;,&quot;History&quot;],
+}
+PLOT2ARC = {p: k for k, pls in CLUSTERS.items() for p in pls}
+AB = {&quot;Sun&quot;:&quot;Sun&quot;,&quot;Moon&quot;:&quot;Moo&quot;,&quot;Mercury&quot;:&quot;Mer&quot;,&quot;Venus&quot;:&quot;Ven&quot;,&quot;Mars&quot;:&quot;Mar&quot;,&quot;Jupiter&quot;:&quot;Jup&quot;,
+      &quot;Saturn&quot;:&quot;Sat&quot;,&quot;Uranus&quot;:&quot;Ura&quot;,&quot;Neptune&quot;:&quot;Nep&quot;,&quot;Pluto&quot;:&quot;Plu&quot;}
+
+def load_political(html):
+    m = re.search(r&#x27;const POLITICAL\s*=\s*(\[.*?\]);&#x27;, html, re.S)
+    return json.loads(m.group(1)), m.span(1)
+
+def active_transits(html, d):
+    &quot;&quot;&quot;Names of outer/major synodic aspects in orb on date d, from the D lanes.&quot;&quot;&quot;
+    m = re.search(r&#x27;const D\s*=\s*(\{.*?\});\s*\n&#x27;, html, re.S)
+    data = json.loads(m.group(1))
+    out = []
+    for cat in data.get(&quot;cats&quot;, []):
+        if cat.get(&quot;key&quot;) not in (&quot;outer&quot;,):   # match original markers: outer cycles only
+            continue
+        for lane in cat.get(&quot;lanes&quot;, []):
+            for a in lane.get(&quot;aspects&quot;, []):
+                # [&quot;b&quot;, n, start, end, exact, count, &quot;Trine&quot;, &quot;Uranus&quot;, &quot;Pluto&quot;, &quot;Sign1&quot;, &quot;Sign2&quot;]
+                try: start, end, asp, p1, p2, s1, s2 = a[2], a[3], a[6], a[7], a[8], a[9], a[10]
+                except Exception: continue
+                if start &lt;= d &lt;= end:
+                    out.append(f&quot;{AB.get(p1,p1[:3])}–{AB.get(p2,p2[:3])} {asp} ({s1}/{s2})&quot;)
+    return out
+
+def lunations():
+    lw = open(LW, encoding=&quot;utf-8&quot;).read()
+    luns = []
+    for m in re.finditer(r&#x27;\{&quot;type&quot;:&quot;(New Moon|First Quarter|Full Moon|Last Quarter)&quot;,&quot;date&quot;:&quot;(\d{4}-\d{2}-\d{2})&quot;[^{]*?&quot;(?:moon_)?sign&quot;:&quot;([A-Za-z]+)&quot;&#x27;, lw):
+        luns.append((m.group(2), m.group(1), m.group(3)))
+    return sorted(set(luns))
+
+def lun_context(luns, d):
+    dd = Date.fromisoformat(d)
+    prev = nxt = None
+    for ld, typ, sign in luns:
+        l = Date.fromisoformat(ld)
+        if l &lt;= dd: prev = (ld, typ, sign, (dd - l).days)
+        elif nxt is None: nxt = (ld, typ, sign, (l - dd).days)
+    p = f&quot;{prev[1]} in {prev[2]} — {prev[0]} ({prev[3]}d before)&quot; if prev else None
+    n = f&quot;{nxt[1]} in {nxt[2]} — {nxt[0]} ({nxt[3]}d after)&quot; if nxt else None
+    return p, n
+
+def day_notes(d):
+    out = []
+    for f in sorted(glob.glob(os.path.join(EVENTS, f&quot;{d}*.md&quot;))):
+        t = open(f, encoding=&quot;utf-8&quot;).read()
+        pm = re.search(r&#x27;primary_plotline:\s*&quot;?([^&quot;\n]+)&quot;?&#x27;, t)
+        title = re.sub(r&#x27;^\d{4}-\d{2}-\d{2}-\d{4} - &#x27;, &#x27;&#x27;, os.path.basename(f))[:-3]
+        out.append((pm.group(1).strip() if pm else &quot;?&quot;, title))
+    return out
+
+def make_marker(html, luns, d, label, arckey, typ=&quot;news&quot;, auto=False):
+    p, n = lun_context(luns, d)
+    mk = {&quot;date&quot;: d, &quot;label&quot;: label, &quot;arc&quot;: arckey, &quot;arc_name&quot;: ARC_KEYS[arckey],
+          &quot;type&quot;: typ, &quot;transits&quot;: active_transits(html, d),
+          &quot;prev_lun&quot;: p, &quot;next_lun&quot;: n, &quot;eclipses&quot;: []}
+    if auto: mk[&quot;auto&quot;] = True
+    return mk
+
+def save(html, pol, span):
+    body = json.dumps(pol, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;))
+    new = html[:span[0]] + body + html[span[1]:]
+    open(TW, &quot;w&quot;, encoding=&quot;utf-8&quot;).write(new)
+
+def auto_candidates(pol):
+    last = max(p[&quot;date&quot;] for p in pol)
+    have = {p[&quot;date&quot;] for p in pol}
+    counts = Counter(os.path.basename(f)[:10] for f in glob.glob(os.path.join(EVENTS, &quot;2*.md&quot;)))
+    days = sorted(dd for dd in counts if dd &gt; last and dd &lt;= Date.today().isoformat())
+    adds = []
+    for dd in days:
+        if dd in have: continue
+        d0 = Date.fromisoformat(dd)
+        trail = [counts.get((d0 - timedelta(days=i)).isoformat(), 0) for i in range(1, 15)]
+        med = statistics.median(trail) if trail else 0
+        if counts[dd] &lt; max(12, 1.3 * med): continue
+        notes = day_notes(dd)
+        dom = Counter(p for p, _ in notes).most_common(1)[0][0]
+        in_dom = [t for p, t in notes if p == dom]
+        loud = [t for t in in_dom if re.match(r&#x27;(JUST IN|BREAKING)&#x27;, t)] or in_dom
+        label = re.sub(r&#x27;^(JUST IN|BREAKING)\s*&#x27;, &#x27;&#x27;, loud[0]).strip()
+        adds.append((dd, label, PLOT2ARC.get(dom, &quot;infowar&quot;)))
+    return adds
+
+def main():
+    html = open(TW, encoding=&quot;utf-8&quot;).read()
+    pol, span = load_political(html)
+    luns = lunations()
+    dry = &quot;--dry&quot; in sys.argv
+    added = []
+    if &quot;--add&quot; in sys.argv:
+        i = sys.argv.index(&quot;--add&quot;)
+        d, label, arckey = sys.argv[i+1], sys.argv[i+2], sys.argv[i+3]
+        assert arckey in ARC_KEYS, f&quot;arc key must be one of {list(ARC_KEYS)}&quot;
+        added.append(make_marker(html, luns, d, label, arckey))
+    if &quot;--auto&quot; in sys.argv:
+        for d, label, arckey in auto_candidates(pol):
+            added.append(make_marker(html, luns, d, label, arckey, auto=True))
+    for mk in added:
+        print(f&quot;  + {mk[&#x27;date&#x27;]}  [{mk[&#x27;arc&#x27;]}] {mk[&#x27;label&#x27;]}  (transits: {len(mk[&#x27;transits&#x27;])})&quot;)
+    if not added:
+        print(&quot;MARKERS: nothing to add&quot;); return
+    if dry:
+        print(&quot;(dry run — not written)&quot;); return
+    pol = sorted(pol + added, key=lambda p: p[&quot;date&quot;])
+    save(html, pol, span)
+    print(f&quot;MARKERS: {len(added)} added, {len(pol)} total -&gt; Transit Weather.html&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

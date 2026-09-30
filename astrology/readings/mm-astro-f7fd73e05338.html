@@ -1,0 +1,275 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/mm-astro-f7fd73e05338.html">
+<title>wheel_lib for aspects</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>wheel_lib for aspects</h1><p class="mut">Portable source: 99 - Templates/mm_astro.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;mm_astro.py — compute the astrology layer for The Money Machine.
+
+For each filing in the corpus (seed + ingest, via build_money_machine.finalize):
+  - cast a chart for the Federal Register PUBLICATION MOMENT: 12:00 ET in
+    Washington D.C. on the publication date (Katie&#x27;s choice 2026-06-17), Whole
+    Sign houses, midnight-free (the moment is noon-ET). Positions via pyswisseph
+    (Moshier flag — no ephe files in the sandbox).
+  - build a `rec` in wheel_lib&#x27;s format ({pos:[[name,sign,dms,retro,lon]], asc, asp})
+    so the existing wheelSVG() renders it.
+  - write a Greer-style mundane read (Moon = political class; 2nd = banks/Fed,
+    10th = Treasury/Executive, 11th = Congress, 8th = international finance;
+    combustion = swallowed by the executive; Sun-Neptune/Sun-Saturn = the danger
+    aspects; Neptune = the solvent) in Katie&#x27;s woven voice — no source labels.
+  - map the filing to its Moon Family: the preceding New Moon&#x27;s degree-band
+    (Threshold 0-8 / Great Harvest 8-16 / Quiet Sowing 16-24 / Eclipse Storm 24-32).
+
+Output: 99 - Templates/money_machine_astro.json  (keyed by filing url).
+v1 is the base wheel file. mm_astro_v2.py reads this and writes
+money_machine_astro_v2.json (Pessin / Greer / hearing bridge). Both are live.
+Do not delete either.
+Run in the sandbox (needs network? no — pure swe compute). Re-run any time.
+&quot;&quot;&quot;
+import os, sys, json, importlib.util
+import swisseph as swe
+from chart_conventions import (
+    DC_LABEL, DC_LAT, DC_LON, clock_label, mundane_event_instant,
+)
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+OUT  = os.path.join(HERE, &quot;money_machine_astro.json&quot;)
+
+# wheel_lib for aspects
+spec = importlib.util.spec_from_file_location(&quot;wheel_lib&quot;, os.path.join(HERE, &quot;wheel_lib.py&quot;))
+wl = importlib.util.module_from_spec(spec); spec.loader.exec_module(wl)
+# builder for the corpus
+bspec = importlib.util.spec_from_file_location(&quot;mm&quot;, os.path.join(HERE, &quot;build_money_machine.py&quot;))
+mm = importlib.util.module_from_spec(bspec); bspec.loader.exec_module(mm)
+
+SIGNS = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,
+         &quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+RULERS = {&quot;Aries&quot;:&quot;Mars&quot;,&quot;Taurus&quot;:&quot;Venus&quot;,&quot;Gemini&quot;:&quot;Mercury&quot;,&quot;Cancer&quot;:&quot;Moon&quot;,
+          &quot;Leo&quot;:&quot;Sun&quot;,&quot;Virgo&quot;:&quot;Mercury&quot;,&quot;Libra&quot;:&quot;Venus&quot;,&quot;Scorpio&quot;:&quot;Mars&quot;,
+          &quot;Sagittarius&quot;:&quot;Jupiter&quot;,&quot;Capricorn&quot;:&quot;Saturn&quot;,&quot;Aquarius&quot;:&quot;Saturn&quot;,&quot;Pisces&quot;:&quot;Jupiter&quot;}
+PLANETS = [(&quot;Sun&quot;,swe.SUN),(&quot;Moon&quot;,swe.MOON),(&quot;Mercury&quot;,swe.MERCURY),(&quot;Venus&quot;,swe.VENUS),
+           (&quot;Mars&quot;,swe.MARS),(&quot;Jupiter&quot;,swe.JUPITER),(&quot;Saturn&quot;,swe.SATURN),
+           (&quot;Uranus&quot;,swe.URANUS),(&quot;Neptune&quot;,swe.NEPTUNE),(&quot;Pluto&quot;,swe.PLUTO)]
+FLAGS = swe.FLG_MOSEPH | swe.FLG_SPEED
+
+# Greer mundane house significations (Katie&#x27;s vocabulary)
+HOUSE = {
+ 1:&quot;the people&quot;, 2:&quot;the economy, the banks, the Fed&#x27;s own money&quot;, 3:&quot;the press and the wires&quot;,
+ 4:&quot;the opposition and the land&quot;, 5:&quot;speculation and markets&quot;, 6:&quot;the workers and the civil service&quot;,
+ 7:&quot;foreign powers and treaties&quot;, 8:&quot;international finance, debt, death-and-rebirth of the system&quot;,
+ 9:&quot;the courts and the law&quot;, 10:&quot;the government in power — the Executive and the Treasury&quot;,
+ 11:&quot;the Congress and the legislature&quot;, 12:&quot;what is hidden — secrets, prisons, undoing&quot;}
+TRACK_HOUSES = {&quot;gate&quot;:[2,8,11], &quot;rails&quot;:[3,9,2], &quot;stablecoins&quot;:[2,8,11], &quot;check&quot;:[10,1,6]}
+
+def ordinal(n):
+    return f&quot;{n}{&#x27;th&#x27; if 11&lt;=n%100&lt;=13 else {1:&#x27;st&#x27;,2:&#x27;nd&#x27;,3:&#x27;rd&#x27;}.get(n%10,&#x27;th&#x27;)}&quot;
+def sgn(l): return SIGNS[int(l//30)%12]
+def dms(l):
+    d=int(l%30); m=int(round((l%30-d)*60))
+    if m==60: d+=1; m=0
+    return f&quot;{d}°{m:02d}&#x27;&quot;
+def sep(a,b): return abs((a-b+180)%360-180)
+def whouse(lon, asc): return ((int(lon//30) - int(asc//30)) % 12) + 1
+
+def jd_for(dateiso):
+    return mundane_event_instant(dateiso)[0]
+
+# ---- One-capital mundane ruling (DR-047, Katie 2026-08-09) ----
+# exact stated time  -&gt; preserve that real instant, cast with D.C. angles
+# daytime, no time   -&gt; noon Washington local
+# no time info       -&gt; midnight Washington local, &quot;day of&quot;
+# source place       -&gt; factual metadata only; never a second wheel
+
+def instant_for(it):
+    &quot;&quot;&quot;(jd, D.C. caption, basis) for a seed item under DR-047.&quot;&quot;&quot;
+    stated = it.get(&quot;etime&quot;) or None
+    date_only = not stated and it.get(&quot;timing&quot;) == &quot;none&quot;
+    jd, dc_local, basis = mundane_event_instant(
+        it[&quot;date&quot;], stated_time=stated,
+        source_tz=it.get(&quot;tz&quot;) or &quot;America/New_York&quot;,
+        date_only=date_only,
+    )
+    if stated:
+        clock = clock_label(dc_local)
+    elif date_only:
+        clock = f&quot;midnight {dc_local.tzname() or &#x27;ET&#x27;}&quot;
+    else:
+        clock = f&quot;noon {dc_local.tzname() or &#x27;ET&#x27;}&quot;
+    conv = f&quot;{clock} · {DC_LABEL}&quot;
+    return jd, conv, basis
+
+def chart(item):
+    &quot;&quot;&quot;item: dict with date (+ optional etime/timing/place/lat/lon/tz),
+    or a bare date string (legacy noon-D.C. behavior).&quot;&quot;&quot;
+    if isinstance(item, str): item = {&quot;date&quot;: item}
+    jd, conv, basis = instant_for(item)
+    lons={}; pos=[]
+    for nm,const in PLANETS:
+        r = swe.calc_ut(jd, const, FLAGS)[0]
+        l=r[0]%360; sp=r[3]
+        lons[nm]=l
+        pos.append([nm, sgn(l), dms(l), 1 if sp&lt;0 else 0, round(l,2)])
+    # true node
+    nr = swe.calc_ut(jd, swe.TRUE_NODE, FLAGS)[0]; nl=nr[0]%360
+    lons[&quot;Node&quot;]=nl; pos.append([&quot;Node&quot;, sgn(nl), dms(nl), 0, round(nl,2)])
+    asc = swe.houses(jd, DC_LAT, DC_LON, b&#x27;W&#x27;)[1][0] % 360
+    _plc, _plm = wl.placidus_cusps(jd, DC_LAT, DC_LON)
+    asp = wl.aspects_between({k:lons[k] for k in lons if k!=&quot;Node&quot;})
+    asp += wl.point_aspects({&quot;Node&quot;:lons[&quot;Node&quot;]}, {k:lons[k] for k in lons if k!=&quot;Node&quot;})
+    asp.sort(key=lambda a:a[&quot;o&quot;])
+    rec = {&quot;pos&quot;:pos, &quot;asc&quot;:round(asc,2), &quot;asp&quot;:asp, &quot;__date&quot;:item[&quot;date&quot;],
+           &quot;cusps&quot;:_plc, &quot;mc&quot;:_plm, &quot;conv&quot;:conv, &quot;cap2&quot;:conv, &quot;basis&quot;:basis,
+           &quot;event_place&quot;:item.get(&quot;place&quot;) or None}
+    return rec, lons, asc
+
+def prev_new_moon(dateiso):
+    &quot;&quot;&quot;Walk back up to 31 days to find the preceding New Moon (min elongation).&quot;&quot;&quot;
+    y,mo,d = map(int, dateiso.split(&quot;-&quot;))
+    base = swe.julday(y,mo,d,12.0)
+    best=None
+    j=base
+    while j &gt; base-31:
+        s=swe.calc_ut(j, swe.SUN, FLAGS)[0][0]; m=swe.calc_ut(j, swe.MOON, FLAGS)[0][0]
+        elong=abs((m-s+180)%360-180)
+        if best is None or elong&lt;best[0]: best=(elong, j, s)
+        j-=0.25
+    # refine ±0.5d
+    _,jb,_=best
+    for j in [jb+k*0.02 for k in range(-25,26)]:
+        s=swe.calc_ut(j, swe.SUN, FLAGS)[0][0]; m=swe.calc_ut(j, swe.MOON, FLAGS)[0][0]
+        elong=abs((m-s+180)%360-180)
+        if elong&lt;best[0]: best=(elong,j,s)
+    _,jnm,slon=best
+    yy,mm_,dd,_=swe.revjul(jnm)
+    return {&quot;date&quot;:f&quot;{yy:04d}-{mm_:02d}-{dd:02d}&quot;, &quot;lon&quot;:slon%360, &quot;sign&quot;:sgn(slon%360), &quot;deg&quot;:round(slon%30,1)}
+
+def family_for(deg):
+    if deg &lt; 8:  return &quot;The Threshold&quot;
+    if deg &lt; 16: return &quot;The Great Harvest&quot;
+    if deg &lt; 24: return &quot;The Quiet Sowing&quot;
+    return &quot;The Eclipse Storm&quot;
+
+FAM_GLOSS = {
+ &quot;The Threshold&quot;:&quot;a cycle just opening — 0–8°, the seed barely in the ground&quot;,
+ &quot;The Great Harvest&quot;:&quot;8–16° — the chronicle&#x27;s bloom family, the 2024 seeds coming due&quot;,
+ &quot;The Quiet Sowing&quot;:&quot;16–24° — a quiet planting, results held back&quot;,
+ &quot;The Eclipse Storm&quot;:&quot;24–32° — late-degree, eclipse-charged; seeds for a 2027 harvest&quot;}
+
+def read_for(item, lons, asc):
+    tr=item[&quot;track&quot;]
+    asc_sign=sgn(asc); ruler=RULERS[asc_sign]
+    moon_h=whouse(lons[&quot;Moon&quot;], asc); moon_s=sgn(lons[&quot;Moon&quot;])
+    ruler_h=whouse(lons[ruler], asc) if ruler in lons else None
+    nep_h=whouse(lons[&quot;Neptune&quot;], asc)
+    combust=[nm for nm in lons if nm not in (&quot;Sun&quot;,&quot;Node&quot;) and sep(lons[nm],lons[&quot;Sun&quot;])&lt;=8.5]
+    # danger aspects (hard orbs)
+    def hard(a,b,orb=6):
+        s=sep(lons[a],lons[b]);
+        for ang in (0,90,180):
+            if abs(s-ang)&lt;=orb: return {0:&quot;conjunct&quot;,90:&quot;square&quot;,180:&quot;opposite&quot;}[ang]
+        return None
+    sn=hard(&quot;Sun&quot;,&quot;Neptune&quot;); ss=hard(&quot;Sun&quot;,&quot;Saturn&quot;)
+    parts=[]
+    parts.append(f&quot;The Moon — the political class — rides {moon_s} in the {ordinal(moon_h)} ({HOUSE[moon_h]}).&quot;)
+    if ruler_h:
+        parts.append(f&quot;The chart&#x27;s ruler, {ruler} in {sgn(lons[ruler])}, falls in the {ordinal(ruler_h)} ({HOUSE[ruler_h]}).&quot;)
+    # track-weighted emphasis
+    emph=TRACK_HOUSES.get(tr,[])
+    tenants={}
+    for nm in lons:
+        h=whouse(lons[nm],asc)
+        tenants.setdefault(h,[]).append(nm)
+    for h in emph:
+        if tenants.get(h):
+            who=&quot;, &quot;.join(p for p in tenants[h] if p!=&quot;Node&quot;)
+            if who:
+                parts.append(f&quot;The {ordinal(h)} ({HOUSE[h]}) carries {who}.&quot;)
+                break
+    if combust:
+        parts.append(f&quot;{&#x27;, &#x27;.join(combust)} {&#x27;is&#x27; if len(combust)==1 else &#x27;are&#x27;} combust — swallowed by the Sun, the work of the executive done in its glare.&quot;)
+    if sn:
+        parts.append(f&quot;Sun {sn} Neptune: the solvent on the state&#x27;s own eyes — the most dangerous signature in this method.&quot;)
+    elif nep_h in (2,8,10):
+        parts.append(f&quot;Neptune, the solvent, sits in the {ordinal(nep_h)} ({HOUSE[nep_h]}) — dissolving what should be solid.&quot;)
+    if ss and not sn:
+        parts.append(f&quot;Sun {ss} Saturn: the weight of the old order pressing on the act.&quot;)
+    return &quot; &quot;.join(parts)
+
+def glance(item, fam, nm, convention=None):
+    if convention is None:
+        convention = instant_for(item)[1]
+    return f&quot;{item[&#x27;us&#x27;] if item.get(&#x27;us&#x27;) else item[&#x27;date&#x27;]} · {convention} · seeded by the {nm[&#x27;sign&#x27;]} New Moon ({nm[&#x27;deg&#x27;]}°, {fam}).&quot;
+
+def backfill_notes(astro):
+    &quot;&quot;&quot;Insert a &#x27;## Astrological signature&#x27; section into the Money Machine event
+    notes (idempotent), keyed by source_url.&quot;&quot;&quot;
+    import glob, re
+    EVENTS = os.path.join(os.path.dirname(HERE), &quot;01 - Events&quot;)
+    n=0
+    for f in glob.glob(os.path.join(EVENTS, &quot;2*.md&quot;)):
+        try: t=open(f,encoding=&quot;utf-8&quot;).read()
+        except Exception: continue
+        m=re.search(r&#x27;^source_url:\s*&quot;?([^&quot;\n]+)&#x27;, t, re.M)
+        if not m: continue
+        url=m.group(1).strip().split(&quot;?&quot;)[0]
+        a=astro.get(url)
+        if not a: continue
+        if &quot;## Astrological signature&quot; in t: continue
+        seed=a.get(&quot;seed&quot;,{})
+        sig=(f&quot;## Astrological signature\n\n{a[&#x27;read&#x27;]}\n\n&quot;
+             f&quot;**Moon family:** {a[&#x27;family&#x27;]} — seeded by the {seed.get(&#x27;sign&#x27;,&#x27;&#x27;)} New Moon &quot;
+             f&quot;({seed.get(&#x27;deg&#x27;,&#x27;&#x27;)}°) on {seed.get(&#x27;date&#x27;,&#x27;&#x27;)}.\n\n&quot;)
+        if &quot;## Why this matters&quot; in t:
+            t=t.replace(&quot;## Why this matters&quot;, sig+&quot;## Why this matters&quot;, 1)
+        else:
+            t=t.rstrip()+&quot;\n\n&quot;+sig
+        open(f,&quot;w&quot;,encoding=&quot;utf-8&quot;).write(t); n+=1
+    print(f&quot;backfilled astro signature into {n} note(s)&quot;)
+
+def main():
+    if &quot;--backfill-notes&quot; in sys.argv:
+        backfill_notes(json.load(open(OUT,encoding=&quot;utf-8&quot;)))
+        return
+    items = mm.load_seed()
+    import glob as _g
+    ing = os.path.join(HERE.replace(&quot;Freedom 250 Chronicle/99 - Templates&quot;,&quot;Freedom 250 Chronicle/99 - Templates&quot;), )
+    # ingest dir passed as arg, else default sandbox staging
+    idir = sys.argv[sys.argv.index(&quot;--ingest-dir&quot;)+1] if &quot;--ingest-dir&quot; in sys.argv else \
+           &quot;/sessions/amazing-lucid-brown/mnt/outputs/mm_ingest/clean&quot;
+    if os.path.isdir(idir):
+        for jf in sorted(_g.glob(os.path.join(idir,&quot;*.json&quot;))):
+            try: items += json.load(open(jf,encoding=&quot;utf-8&quot;))
+            except Exception: pass
+    fin = mm.finalize(items)
+    out={}
+    for it in fin:
+        url=(it.get(&quot;url&quot;) or &quot;&quot;).split(&quot;?&quot;)[0]
+        date=it.get(&quot;date&quot;,&quot;&quot;)
+        if not url or not date or len(date)!=10: continue
+        try:
+            rec, lons, asc = chart(it)
+            nm = prev_new_moon(date)
+            fam = family_for(nm[&quot;deg&quot;])
+            out[url] = {
+                &quot;rec&quot;: rec,
+                &quot;read&quot;: read_for(dict(it, us=mm.us_date(date)), lons, asc),
+                &quot;family&quot;: fam, &quot;family_gloss&quot;: FAM_GLOSS[fam],
+                &quot;seed&quot;: nm,
+                &quot;glance&quot;: glance(dict(it, us=mm.us_date(date)), fam, nm, rec[&quot;conv&quot;]),
+            }
+        except Exception as e:
+            print(&quot;  ! chart failed&quot;, date, it.get(&quot;title&quot;,&quot;&quot;)[:40], e)
+    json.dump(out, open(OUT,&quot;w&quot;,encoding=&quot;utf-8&quot;), ensure_ascii=False, separators=(&quot;,&quot;,&quot;:&quot;))
+    fams={}
+    for v in out.values(): fams[v[&quot;family&quot;]]=fams.get(v[&quot;family&quot;],0)+1
+    print(f&quot;computed {len(out)} charts -&gt; {OUT}&quot;)
+    print(&quot;by family:&quot;, fams)
+
+if __name__==&quot;__main__&quot;:
+    main()
+</pre></main></body></html>

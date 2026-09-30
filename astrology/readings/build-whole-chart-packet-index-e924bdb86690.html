@@ -1,0 +1,342 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-whole-chart-packet-index-e924bdb86690.html">
+<title>build_whole_chart_packet_index</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_whole_chart_packet_index</h1><p class="mut">Portable source: 99 - Templates/build_whole_chart_packet_index.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the reference-only whole-chart packet index for the Astrology Hub.
+
+This index is connective tissue, not a new chart owner. It keeps the identity
+of each registered ingress or syzygy together and points outward to the exact
+calculation, authored reading, governing period, lineage, relationship stack,
+physical geometry and cross-chart studies. It never copies placements, houses,
+aspects or judgments from those owners.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+import json
+from datetime import datetime
+from pathlib import Path
+from typing import Any
+
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+OUT = HERE / &quot;whole_chart_packet_index.json&quot;
+CUTOFF = &quot;2026-09-25&quot;
+CUTOFF_INSTANT = datetime.fromisoformat(&quot;2026-09-26T03:59:59+00:00&quot;)
+
+SOURCES = {
+    &quot;history&quot;: &quot;99 - Templates/mundane_history.json&quot;,
+    &quot;bones_index&quot;: &quot;99 - Templates/chart_reading_bones/index.json&quot;,
+    &quot;reading_registry&quot;: &quot;03 - Astrology/chart_reading_registry.json&quot;,
+    &quot;synodic_stacks&quot;: &quot;99 - Templates/chart_synodic_stacks.json&quot;,
+    &quot;moon_families&quot;: &quot;99 - Templates/full_moon_family_triage_2026.json&quot;,
+    &quot;eclipse_genealogies&quot;: &quot;99 - Templates/eclipse_genealogies.json&quot;,
+    &quot;eclipse_handoffs&quot;: &quot;99 - Templates/eclipse_season_handoffs_2026.json&quot;,
+    &quot;ingress_seams&quot;: &quot;99 - Templates/ingress_lunation_seams_2026.json&quot;,
+    &quot;long_clock_corridors&quot;: &quot;99 - Templates/long_clock_seed_corridors_2026.json&quot;,
+    &quot;radix_inheritance&quot;: &quot;99 - Templates/conjunction_radix_inheritance_2026.json&quot;,
+    &quot;sidereal_relays&quot;: &quot;99 - Templates/sidereal_stage_relays_2026.json&quot;,
+    &quot;inner_motion&quot;: &quot;99 - Templates/inner_planet_solar_motion_2026.json&quot;,
+    &quot;outer_geometry&quot;: &quot;99 - Templates/outer_planet_physical_geometry_2026.json&quot;,
+    &quot;pattern_atlas&quot;: &quot;99 - Templates/pattern_atlas_2026.json&quot;,
+}
+
+
+def load_json(relative_path: str) -&gt; dict[str, Any]:
+    return json.loads((ROOT / relative_path).read_text(encoding=&quot;utf-8&quot;))
+
+
+def sha256(relative_path: str) -&gt; str:
+    return hashlib.sha256((ROOT / relative_path).read_bytes()).hexdigest()
+
+
+def stacks_charts_sha256() -&gt; str:
+    &quot;&quot;&quot;Hash only the stacks&#x27; chart rows: the file re-stamps generated_at, as_of and its daily
+    snapshot every nightly, but the chart rows this index cites do not change with as_of.&quot;&quot;&quot;
+    rows = load_json(SOURCES[&quot;synodic_stacks&quot;])[&quot;charts&quot;]
+    return hashlib.sha256(json.dumps(
+        rows, ensure_ascii=False, sort_keys=True, separators=(&quot;,&quot;, &quot;:&quot;)
+    ).encode(&quot;utf-8&quot;)).hexdigest()
+
+
+def receipt(relative_path: str) -&gt; dict[str, Any]:
+    path = ROOT / relative_path
+    if not path.is_file():
+        raise FileNotFoundError(relative_path)
+    if relative_path == SOURCES[&quot;synodic_stacks&quot;]:
+        return {&quot;path&quot;: relative_path, &quot;selector&quot;: &quot;charts&quot;, &quot;charts_sha256&quot;: stacks_charts_sha256()}
+    return {&quot;path&quot;: relative_path, &quot;bytes&quot;: path.stat().st_size, &quot;sha256&quot;: sha256(relative_path)}
+
+
+def dataset_ref(source_key: str, selector: str, *, state: str = &quot;available&quot;) -&gt; dict[str, str]:
+    return {&quot;state&quot;: state, &quot;dataset&quot;: SOURCES[source_key], &quot;selector&quot;: selector}
+
+
+def unavailable_ref(source_key: str, reason: str) -&gt; dict[str, str]:
+    return {&quot;state&quot;: &quot;not_in_control_population&quot;, &quot;dataset&quot;: SOURCES[source_key], &quot;reason&quot;: reason}
+
+
+def rows_by_id(rows: list[dict[str, Any]], key: str) -&gt; dict[str, dict[str, Any]]:
+    result: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        value = str(row.get(key) or &quot;&quot;)
+        if not value or value in result:
+            raise ValueError(f&quot;duplicate or blank {key}: {value!r}&quot;)
+        result[value] = row
+    return result
+
+
+def find_role_refs(payload: dict[str, Any], chart_id: str, *, list_key: str, label_key: str) -&gt; list[dict[str, str]]:
+    refs: list[dict[str, str]] = []
+    for index, record in enumerate(payload.get(list_key, [])):
+        label = str(record.get(label_key) or index)
+        for role, value in record.items():
+            if isinstance(value, dict) and value.get(&quot;chart_id&quot;) == chart_id:
+                refs.append({&quot;record&quot;: label, &quot;role&quot;: role, &quot;selector&quot;: f&quot;{list_key}[{index}].{role}&quot;})
+    return refs
+
+
+def display_kind(bone: dict[str, Any]) -&gt; str:
+    if bone[&quot;type&quot;] == &quot;ingress&quot;:
+        return f&quot;{bone[&#x27;sign&#x27;]} ingress&quot;
+    eclipse = str(bone.get(&quot;eclipse&quot;) or &quot;&quot;).lower()
+    if &quot;solar&quot; in eclipse:
+        return &quot;Solar eclipse&quot;
+    if &quot;lunar&quot; in eclipse:
+        return &quot;Lunar eclipse&quot;
+    return &quot;New Moon&quot; if bone.get(&quot;kind&quot;) == &quot;new&quot; else &quot;Full Moon&quot;
+
+
+def packet_group(bone: dict[str, Any]) -&gt; str:
+    if bone[&quot;type&quot;] == &quot;ingress&quot;:
+        return &quot;ingress_governors&quot;
+    return &quot;new_moon_seeds&quot; if bone.get(&quot;kind&quot;) == &quot;new&quot; else &quot;full_moon_culminations&quot;
+
+
+def applicable_patterns(
+    chart_id: str,
+    bone: dict[str, Any],
+    pattern_records: list[dict[str, Any]],
+) -&gt; list[dict[str, str]]:
+    result: list[dict[str, str]] = []
+    for pattern in pattern_records:
+        pattern_id = pattern[&quot;pattern_id&quot;]
+        anchors = set(pattern.get(&quot;anchor_chart_refs&quot;) or [])
+        reason = None
+        if chart_id in anchors:
+            reason = &quot;explicit_anchor&quot;
+        elif pattern_id == &quot;thirteen_moon_family_harvests&quot; and bone.get(&quot;kind&quot;) == &quot;full&quot;:
+            reason = &quot;member_of_complete_2026_full_moon_population&quot;
+        elif pattern_id == &quot;distributed_field_recursive_command&quot;:
+            reason = &quot;member_of_complete_registered_packet_population&quot;
+        if reason:
+            result.append({&quot;pattern_id&quot;: pattern_id, &quot;applicability&quot;: reason})
+    return result
+
+
+def build_payload() -&gt; dict[str, Any]:
+    data = {key: load_json(path) for key, path in SOURCES.items()}
+    bones = data[&quot;bones_index&quot;][&quot;charts&quot;]
+    bone_by_id = rows_by_id(bones, &quot;id&quot;)
+    history_by_id = rows_by_id(data[&quot;history&quot;][&quot;charts&quot;], &quot;id&quot;)
+    pass1 = [row for row in data[&quot;reading_registry&quot;][&quot;readings&quot;] if row.get(&quot;kind&quot;) == &quot;pass1&quot;]
+    reading_by_id = rows_by_id(pass1, &quot;id&quot;)
+    stack_by_id = rows_by_id(data[&quot;synodic_stacks&quot;][&quot;charts&quot;], &quot;chart_id&quot;)
+    inner_ids = {row[&quot;chart_id&quot;] for row in data[&quot;inner_motion&quot;][&quot;charts&quot;]}
+    outer_ids = {row[&quot;chart_id&quot;] for row in data[&quot;outer_geometry&quot;][&quot;charts&quot;]}
+    long_clock_ids = {row[&quot;chart_id&quot;] for row in data[&quot;long_clock_corridors&quot;][&quot;charts&quot;]}
+    radix_ids = {row[&quot;chart_id&quot;] for row in data[&quot;radix_inheritance&quot;][&quot;charts&quot;]}
+    sidereal_ids = {row[&quot;chart_id&quot;] for row in data[&quot;sidereal_relays&quot;][&quot;chart_fingerprints&quot;]}
+    eclipse_ids = {row[&quot;event_id&quot;] for row in data[&quot;eclipse_genealogies&quot;][&quot;events&quot;]}
+    family_by_full_id = {
+        row[&quot;full&quot;][&quot;chart_id&quot;]: row
+        for row in data[&quot;moon_families&quot;][&quot;families&quot;]
+    }
+    patterns = data[&quot;pattern_atlas&quot;][&quot;pattern_records&quot;]
+
+    expected = set(bone_by_id)
+    for name, population in (
+        (&quot;history&quot;, set(history_by_id)),
+        (&quot;pass-1 reading&quot;, set(reading_by_id)),
+        (&quot;synodic stack&quot;, set(stack_by_id)),
+    ):
+        if expected - population:
+            raise ValueError(f&quot;{name} coverage missing {sorted(expected - population)}&quot;)
+    if len(expected) != 30:
+        raise ValueError(f&quot;expected 30 registered packets, found {len(expected)}&quot;)
+
+    packets: list[dict[str, Any]] = []
+    for bone in bones:
+        chart_id = bone[&quot;id&quot;]
+        chart = history_by_id[chart_id]
+        reading = reading_by_id[chart_id]
+        bone_path = f&quot;99 - Templates/chart_reading_bones/{chart_id}.json&quot;
+        if not (ROOT / bone_path).is_file():
+            raise FileNotFoundError(bone_path)
+        if chart.get(&quot;reading_source&quot;) != reading.get(&quot;source&quot;):
+            raise ValueError(f&quot;reading route drift for {chart_id}&quot;)
+        if stack_by_id[chart_id].get(&quot;utc&quot;) != chart.get(&quot;utc&quot;):
+            raise ValueError(f&quot;synodic clock drift for {chart_id}&quot;)
+
+        ingress_refs = find_role_refs(
+            data[&quot;ingress_seams&quot;], chart_id, list_key=&quot;seams&quot;, label_key=&quot;season&quot;
+        )
+        handoff_refs = find_role_refs(
+            data[&quot;eclipse_handoffs&quot;], chart_id, list_key=&quot;seasons&quot;, label_key=&quot;season&quot;
+        )
+        lineage: list[dict[str, str]] = []
+        if chart_id in family_by_full_id:
+            family = family_by_full_id[chart_id]
+            lineage.append({
+                &quot;lineage_type&quot;: &quot;moon_family&quot;,
+                &quot;lineage_id&quot;: family[&quot;lineage_id&quot;],
+                &quot;dataset&quot;: SOURCES[&quot;moon_families&quot;],
+                &quot;selector&quot;: f&quot;families[lineage_id={family[&#x27;lineage_id&#x27;]}]&quot;,
+            })
+        if chart_id in eclipse_ids:
+            lineage.append({
+                &quot;lineage_type&quot;: &quot;eclipse_genealogy&quot;,
+                &quot;lineage_id&quot;: chart_id,
+                &quot;dataset&quot;: SOURCES[&quot;eclipse_genealogies&quot;],
+                &quot;selector&quot;: f&quot;events[event_id={chart_id}]&quot;,
+            })
+        for ref in handoff_refs:
+            lineage.append({
+                &quot;lineage_type&quot;: &quot;eclipse_season_handoff&quot;,
+                &quot;lineage_id&quot;: ref[&quot;record&quot;],
+                &quot;role&quot;: ref[&quot;role&quot;],
+                &quot;dataset&quot;: SOURCES[&quot;eclipse_handoffs&quot;],
+                &quot;selector&quot;: ref[&quot;selector&quot;],
+            })
+
+        governor_id = chart.get(&quot;governing_ingress_id&quot;)
+        if bone[&quot;type&quot;] == &quot;ingress&quot;:
+            governor = {
+                &quot;state&quot;: &quot;this_packet_establishes_governance&quot;,
+                &quot;chart_id&quot;: chart_id,
+                &quot;relation&quot;: &quot;governing_ingress_origin&quot;,
+            }
+        else:
+            if not governor_id or governor_id not in history_by_id:
+                raise ValueError(f&quot;missing governing ingress for {chart_id}&quot;)
+            governor = {
+                &quot;state&quot;: &quot;governed_lunation&quot;,
+                &quot;chart_id&quot;: governor_id,
+                &quot;relation&quot;: &quot;governing_ingress&quot;,
+                &quot;chart_ref&quot;: f&quot;{SOURCES[&#x27;history&#x27;]}#charts[id={governor_id}]&quot;,
+                &quot;packet_state&quot;: &quot;indexed&quot; if governor_id in expected else &quot;external_chart_reference&quot;,
+            }
+
+        direct_2026_reason = &quot;The 2025 Capricorn ingress is the inherited annual governor but sits outside the 2026-only control population.&quot;
+        analyses = {
+            &quot;synodic_stack_ref&quot;: dataset_ref(&quot;synodic_stacks&quot;, f&quot;charts[chart_id={chart_id}]&quot;),
+            &quot;long_clock_seed_corridor_ref&quot;: dataset_ref(&quot;long_clock_corridors&quot;, f&quot;charts[chart_id={chart_id}]&quot;) if chart_id in long_clock_ids else unavailable_ref(&quot;long_clock_corridors&quot;, direct_2026_reason),
+            &quot;conjunction_radix_inheritance_ref&quot;: dataset_ref(&quot;radix_inheritance&quot;, f&quot;charts[chart_id={chart_id}]&quot;) if chart_id in radix_ids else unavailable_ref(&quot;radix_inheritance&quot;, direct_2026_reason),
+            &quot;sidereal_stage_ref&quot;: dataset_ref(&quot;sidereal_relays&quot;, f&quot;chart_fingerprints[chart_id={chart_id}]&quot;) if chart_id in sidereal_ids else unavailable_ref(&quot;sidereal_relays&quot;, direct_2026_reason),
+            &quot;inner_planet_motion_ref&quot;: dataset_ref(&quot;inner_motion&quot;, f&quot;charts[chart_id={chart_id}]&quot;) if chart_id in inner_ids else unavailable_ref(&quot;inner_motion&quot;, direct_2026_reason),
+            &quot;outer_planet_geometry_ref&quot;: dataset_ref(&quot;outer_geometry&quot;, f&quot;charts[chart_id={chart_id}]&quot;) if chart_id in outer_ids else unavailable_ref(&quot;outer_geometry&quot;, direct_2026_reason),
+        }
+
+        exact_utc = chart[&quot;utc&quot;]
+        packets.append({
+            &quot;chart_id&quot;: chart_id,
+            &quot;chart_type&quot;: bone[&quot;type&quot;],
+            &quot;packet_group&quot;: packet_group(bone),
+            &quot;display_kind&quot;: display_kind(bone),
+            &quot;label&quot;: chart[&quot;label&quot;],
+            &quot;knowledge_state_at_cutoff&quot;: &quot;occurred&quot; if datetime.fromisoformat(exact_utc) &lt;= CUTOFF_INSTANT else &quot;prospective&quot;,
+            &quot;chart_ref&quot;: f&quot;{SOURCES[&#x27;history&#x27;]}#charts[id={chart_id}]&quot;,
+            &quot;snapshot_ref&quot;: dataset_ref(&quot;history&quot;, f&quot;charts[id={chart_id}]&quot;),
+            &quot;bones_ref&quot;: {&quot;state&quot;: &quot;available&quot;, &quot;path&quot;: bone_path},
+            &quot;exact_clock&quot;: {&quot;utc&quot;: exact_utc, &quot;local&quot;: chart[&quot;local&quot;], &quot;source_ref&quot;: f&quot;{SOURCES[&#x27;history&#x27;]}#charts[id={chart_id}]&quot;},
+            &quot;locality_ref&quot;: {&quot;label&quot;: data[&quot;history&quot;][&quot;location&quot;][&quot;label&quot;], &quot;source_ref&quot;: f&quot;{SOURCES[&#x27;history&#x27;]}#location&quot;},
+            &quot;house_frame_ref&quot;: {
+                &quot;interpretive&quot;: f&quot;{bone_path}#pos.*.house&quot;,
+                &quot;comparison&quot;: f&quot;{SOURCES[&#x27;history&#x27;]}#charts[id={chart_id}].placidus_cusps&quot;,
+                &quot;boundary&quot;: &quot;Whole Sign is the interpretive frame; Placidus remains a separately displayed comparison frame.&quot;,
+            },
+            &quot;positions_and_angles_ref&quot;: {&quot;path&quot;: bone_path, &quot;selectors&quot;: [&quot;pos&quot;, &quot;asc&quot;, &quot;mc&quot;], &quot;computed_snapshot&quot;: f&quot;{SOURCES[&#x27;history&#x27;]}#charts[id={chart_id}]&quot;},
+            &quot;aspect_web_ref&quot;: {&quot;path&quot;: bone_path, &quot;selector&quot;: &quot;aspects&quot;},
+            &quot;dispositor_root_ref&quot;: {&quot;path&quot;: bone_path, &quot;selectors&quot;: [&quot;chains&quot;, &quot;finals&quot;, &quot;loops&quot;, &quot;root_members&quot;]},
+            &quot;distribution_ref&quot;: {&quot;path&quot;: bone_path, &quot;selectors&quot;: [&quot;shape&quot;, &quot;occupied_deg&quot;, &quot;empty_deg&quot;, &quot;empty_from&quot;, &quot;empty_to&quot;]},
+            &quot;declination_ref&quot;: {&quot;path&quot;: bone_path, &quot;selectors&quot;: [&quot;pos.*.declination&quot;, &quot;parallels&quot;]},
+            &quot;reading_ref&quot;: {&quot;reading_id&quot;: chart_id, &quot;kind&quot;: &quot;pass1&quot;, &quot;source&quot;: reading[&quot;source&quot;], &quot;selection_message&quot;: {&quot;action&quot;: &quot;selectReading&quot;, &quot;chart_id&quot;: chart_id}},
+            &quot;governing_ingress_ref&quot;: governor,
+            &quot;lunation_or_eclipse_lineage_refs&quot;: lineage,
+            &quot;ingress_lunation_seam_refs&quot;: [
+                {&quot;season&quot;: ref[&quot;record&quot;], &quot;role&quot;: ref[&quot;role&quot;], &quot;dataset&quot;: SOURCES[&quot;ingress_seams&quot;], &quot;selector&quot;: ref[&quot;selector&quot;]}
+                for ref in ingress_refs
+            ],
+            &quot;analysis_refs&quot;: analyses,
+            &quot;applicable_pattern_refs&quot;: applicable_patterns(chart_id, bone, patterns),
+        })
+
+    group_order = [&quot;ingress_governors&quot;, &quot;new_moon_seeds&quot;, &quot;full_moon_culminations&quot;]
+    group_labels = {
+        &quot;ingress_governors&quot;: &quot;Ingress governors&quot;,
+        &quot;new_moon_seeds&quot;: &quot;New Moons and solar eclipses&quot;,
+        &quot;full_moon_culminations&quot;: &quot;Full Moons and lunar eclipses&quot;,
+    }
+    groups = [
+        {
+            &quot;group_id&quot;: group,
+            &quot;label&quot;: group_labels[group],
+            &quot;packet_count&quot;: sum(row[&quot;packet_group&quot;] == group for row in packets),
+        }
+        for group in group_order
+    ]
+
+    return {
+        &quot;schema&quot;: &quot;freedom250.whole-chart-packet-index/v1&quot;,
+        &quot;status&quot;: &quot;reference_only_orientation_index&quot;,
+        &quot;developed_through&quot;: CUTOFF,
+        &quot;purpose&quot;: &quot;Keep each registered chart whole while routing outward to canonical calculations, readings, governing periods, lineages, physical motion and cross-chart studies.&quot;,
+        &quot;reference_contract&quot;: {
+            &quot;owns&quot;: [&quot;packet identity&quot;, &quot;exact clock&quot;, &quot;route availability&quot;, &quot;applicability&quot;],
+            &quot;does_not_own&quot;: [&quot;planetary positions&quot;, &quot;houses&quot;, &quot;aspect lists&quot;, &quot;semantic judgments&quot;, &quot;political facts&quot;, &quot;forecast calls&quot;],
+            &quot;copy_rule&quot;: &quot;Identity fields may be repeated for reliable routing. Chart payloads and judgments remain with their canonical owners.&quot;,
+        },
+        &quot;counts&quot;: {
+            &quot;packet_count&quot;: len(packets),
+            &quot;ingress_packet_count&quot;: sum(row[&quot;chart_type&quot;] == &quot;ingress&quot; for row in packets),
+            &quot;lunation_packet_count&quot;: sum(row[&quot;chart_type&quot;] == &quot;lunation&quot; for row in packets),
+            &quot;moon_family_link_count&quot;: sum(any(ref[&quot;lineage_type&quot;] == &quot;moon_family&quot; for ref in row[&quot;lunation_or_eclipse_lineage_refs&quot;]) for row in packets),
+            &quot;eclipse_genealogy_link_count&quot;: sum(any(ref[&quot;lineage_type&quot;] == &quot;eclipse_genealogy&quot; for ref in row[&quot;lunation_or_eclipse_lineage_refs&quot;]) for row in packets),
+        },
+        &quot;groups&quot;: groups,
+        &quot;packets&quot;: packets,
+        &quot;authority_boundary&quot;: {
+            &quot;locked_pass_1_readings_changed&quot;: False,
+            &quot;chart_payload_copied&quot;: False,
+            &quot;pattern_applicability_is_evidence&quot;: False,
+            &quot;political_fact_created&quot;: False,
+            &quot;causal_credit&quot;: &quot;zero&quot;,
+            &quot;forecast_ledger_credit&quot;: &quot;zero&quot;,
+        },
+        &quot;source_receipts&quot;: [receipt(path) for path in sorted(set(SOURCES.values()))],
+    }
+
+
+def main() -&gt; None:
+    payload = build_payload()
+    OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+    counts = payload[&quot;counts&quot;]
+    print(
+        f&quot;Wrote {OUT.name}: {counts[&#x27;packet_count&#x27;]} packets, &quot;
+        f&quot;{counts[&#x27;moon_family_link_count&#x27;]} Moon-family links, &quot;
+        f&quot;{counts[&#x27;eclipse_genealogy_link_count&#x27;]} eclipse genealogies.&quot;
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

@@ -1,0 +1,3041 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-chart-readings-4902e1eb257e.html">
+<title>DR-084: the 2025 retrospective shelf keeps its own registry, bones and stacks so the</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>DR-084: the 2025 retrospective shelf keeps its own registry, bones and stacks so the</h1><p class="mut">Portable source: 99 - Templates/build_chart_readings.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the Sky &amp; Charts Chart Readings instrument.
+
+Projects the vault-owned Aster reading shelf into a click-through Observatory
+reader. Markdown remains the editable authority; the HTML is its generated
+view.
+
+    python3 build_chart_readings.py
+    python3 build_chart_readings.py --check
+    python3 build_chart_readings.py --capture-baseline BASELINE_ID
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import hashlib
+import html
+import json
+import os
+import re
+import sys
+from pathlib import Path
+from typing import Any
+
+from atomic_io import atomic_write_text
+
+
+HERE = Path(__file__).resolve().parent
+DEFAULT_VAULT = HERE.parent
+if not (DEFAULT_VAULT / &quot;03 - Astrology&quot;).is_dir():
+    DEFAULT_VAULT = Path(
+        os.environ.get(
+            &quot;F250_CHRONICLE_VAULT&quot;,
+            Path.home() / &quot;Documents&quot; / &quot;Obsidian&quot; / &quot;Freedom 250 Chronicle&quot;,
+        )
+    ).expanduser().resolve()
+WHEEL_HOME = HERE if (HERE / &quot;wheel_lib.py&quot;).is_file() else DEFAULT_VAULT / &quot;99 - Templates&quot;
+if str(WHEEL_HOME) not in sys.path:
+    sys.path.insert(0, str(WHEEL_HOME))
+from wheel_lib import WHEEL_JS, point_aspects
+
+VAULT = DEFAULT_VAULT
+CROSS = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot;
+OUTPUT = CROSS / &quot;Chart Readings.html&quot;
+ASTROLOGY = VAULT / &quot;03 - Astrology&quot;
+REGISTRY = ASTROLOGY / &quot;chart_reading_registry.json&quot;
+BONES = VAULT / &quot;99 - Templates&quot; / &quot;chart_reading_bones&quot;
+SYNODIC_STACKS = VAULT / &quot;99 - Templates&quot; / &quot;chart_synodic_stacks.json&quot;
+# DR-084: the 2025 retrospective shelf keeps its own registry, bones and stacks so the
+# 2026 builders that read chart_reading_bones/ are untouched.
+REGISTRY_2025 = ASTROLOGY / &quot;chart_reading_registry_2025.json&quot;
+# DR-085: factual corrections to sealed readings live in one ledger, never inside the reading.
+AMENDMENT_LEDGER = ASTROLOGY / &quot;Chart Reading Amendments — Ledger.md&quot;
+AMENDMENT_RE = re.compile(
+    r&#x27;&lt;!-- amendment reading_id=&quot;([^&quot;]+)&quot; rule=&quot;(DR-\d{3})&quot; date=&quot;(\d{4}-\d{2}-\d{2})&quot; --&gt;\n&#x27;
+    r&#x27;## [^\n]*\n\n(.*?)(?=\n&lt;!-- amendment |\Z)&#x27;,
+    re.S,
+)
+
+
+def load_amendments() -&gt; dict[str, list[dict[str, str]]]:
+    &quot;&quot;&quot;reading_id -&gt; dated amendments from the ledger (empty when the ledger is absent).&quot;&quot;&quot;
+    if not AMENDMENT_LEDGER.is_file():
+        return {}
+    text = AMENDMENT_LEDGER.read_text(encoding=&quot;utf-8&quot;)
+    found: dict[str, list[dict[str, str]]] = {}
+    for rid, rule, date, body in AMENDMENT_RE.findall(text):
+        body = &quot; &quot;.join(body.split())
+        if not body:
+            fail(f&quot;empty amendment for {rid} in {AMENDMENT_LEDGER.name}&quot;)
+        found.setdefault(rid, []).append({&quot;rule&quot;: rule, &quot;date&quot;: date, &quot;body&quot;: body})
+    if text.count(&quot;&lt;!-- amendment &quot;) != sum(len(v) for v in found.values()):
+        fail(f&quot;{AMENDMENT_LEDGER.name} has a malformed amendment block&quot;)
+    return found
+
+
+def with_amendments(text: str, amendments: list[dict[str, str]]) -&gt; str:
+    &quot;&quot;&quot;Show ledger amendments under the sealed reading; the reading file itself is never edited.&quot;&quot;&quot;
+    for row in amendments:
+        text += (
+            f&quot;\n\n## Amendment — {row[&#x27;date&#x27;]} ({row[&#x27;rule&#x27;]})\n\n&gt; {row[&#x27;body&#x27;]}\n\n&quot;
+            &quot;*From the Chart Reading Amendments ledger. The reading above is the sealed original.*\n&quot;
+        )
+    return text
+BONES_2025 = VAULT / &quot;99 - Templates&quot; / &quot;chart_reading_bones_2025&quot;
+SYNODIC_STACKS_2025 = VAULT / &quot;99 - Templates&quot; / &quot;chart_synodic_stacks_2025.json&quot;
+SHELF_HAS_WATCHES = True
+SYNODIC_STACK_SCHEMA = &quot;freedom250.long-clocks.chart-stacks/v1&quot;
+SYNODIC_CYCLE_IDS = {
+    &quot;jupiter-saturn&quot;,
+    &quot;jupiter-uranus&quot;,
+    &quot;jupiter-neptune&quot;,
+    &quot;jupiter-pluto&quot;,
+    &quot;saturn-uranus&quot;,
+    &quot;saturn-neptune&quot;,
+    &quot;saturn-pluto&quot;,
+    &quot;uranus-neptune&quot;,
+    &quot;uranus-pluto&quot;,
+    &quot;neptune-pluto&quot;,
+}
+SYNODIC_TIERS = {&quot;era_currents&quot;, &quot;state_architecture&quot;, &quot;political_delivery&quot;}
+NAMEABILITY_REASONS = {&quot;root&quot;, &quot;chart_ruler&quot;, &quot;era&quot;, &quot;exact_us_natal&quot;}
+
+PLANET_ORDER = (
+    &quot;Sun&quot;,
+    &quot;Moon&quot;,
+    &quot;Mercury&quot;,
+    &quot;Venus&quot;,
+    &quot;Mars&quot;,
+    &quot;Jupiter&quot;,
+    &quot;Saturn&quot;,
+    &quot;Uranus&quot;,
+    &quot;Neptune&quot;,
+    &quot;Pluto&quot;,
+)
+SIGNS = (
+    &quot;Aries&quot;,
+    &quot;Taurus&quot;,
+    &quot;Gemini&quot;,
+    &quot;Cancer&quot;,
+    &quot;Leo&quot;,
+    &quot;Virgo&quot;,
+    &quot;Libra&quot;,
+    &quot;Scorpio&quot;,
+    &quot;Sagittarius&quot;,
+    &quot;Capricorn&quot;,
+    &quot;Aquarius&quot;,
+    &quot;Pisces&quot;,
+)
+KIND_TO_WHEEL = {
+    &quot;conjunction&quot;: &quot;conjunct&quot;,
+    &quot;opposition&quot;: &quot;opposite&quot;,
+    &quot;conjunct&quot;: &quot;conjunct&quot;,
+    &quot;opposite&quot;: &quot;opposite&quot;,
+    &quot;sextile&quot;: &quot;sextile&quot;,
+    &quot;square&quot;: &quot;square&quot;,
+    &quot;trine&quot;: &quot;trine&quot;,
+    &quot;semisextile&quot;: &quot;semisextile&quot;,
+    &quot;quincunx&quot;: &quot;quincunx&quot;,
+}
+
+SEASONS: tuple[dict[str, str], ...] = (
+    {
+        &quot;id&quot;: &quot;winter&quot;,
+        &quot;label&quot;: &quot;Winter 2026&quot;,
+        &quot;ingress&quot;: &quot;ingress-2025-capricorn&quot;,
+        &quot;ingress_sky&quot;: &quot;2025-capricorn&quot;,
+        &quot;window&quot;: &quot;Jan 3 – Mar 19&quot;,
+        &quot;blurb&quot;: &quot;Capricorn 2025 climate, six lunations, record census, and retrospective comparison.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;aries&quot;,
+        &quot;label&quot;: &quot;Aries 2026&quot;,
+        &quot;ingress&quot;: &quot;ingress-2026-aries&quot;,
+        &quot;ingress_sky&quot;: &quot;2026-aries&quot;,
+        &quot;window&quot;: &quot;Mar 20 – Jun 21&quot;,
+        &quot;blurb&quot;: &quot;Aries climate, six lunations, record census, and retrospective comparison.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;cancer&quot;,
+        &quot;label&quot;: &quot;Cancer 2026&quot;,
+        &quot;ingress&quot;: &quot;ingress-2026-cancer&quot;,
+        &quot;ingress_sky&quot;: &quot;2026-cancer&quot;,
+        &quot;window&quot;: &quot;Jun 21 – Sep 23&quot;,
+        &quot;blurb&quot;: &quot;Cancer climate, six lunations, record census, and mixed-boundary watch.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;libra&quot;,
+        &quot;label&quot;: &quot;Libra 2026&quot;,
+        &quot;ingress&quot;: &quot;ingress-2026-libra&quot;,
+        &quot;ingress_sky&quot;: &quot;2026-libra&quot;,
+        &quot;window&quot;: &quot;Sep 23 – Mar 2027&quot;,
+        &quot;blurb&quot;: &quot;Six-month Libra climate, six lunations, and the first clean prospective comparison.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;capricorn&quot;,
+        &quot;label&quot;: &quot;Capricorn 2026&quot;,
+        &quot;ingress&quot;: &quot;ingress-2026-capricorn&quot;,
+        &quot;ingress_sky&quot;: &quot;2026-capricorn&quot;,
+        &quot;window&quot;: &quot;Dec 21 →&quot;,
+        &quot;blurb&quot;: &quot;Nested winter subframe, opening Cancer Full Moon, and clean prospective watch.&quot;,
+    },
+)
+
+SEASONS_2025: tuple[dict[str, str], ...] = (
+    {
+        &quot;id&quot;: &quot;2025-winter&quot;,
+        &quot;label&quot;: &quot;Winter 2025 · retrospective&quot;,
+        &quot;ingress&quot;: &quot;ingress-2024-capricorn&quot;,
+        &quot;ingress_sky&quot;: &quot;&quot;,
+        &quot;window&quot;: &quot;Dec 21, 2024 – Mar 19, 2025&quot;,
+        &quot;blurb&quot;: &quot;The inauguration winter: 2024 Capricorn climate, six lunations, record census, and retrospective comparison.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;2025-aries&quot;,
+        &quot;label&quot;: &quot;Aries 2025 · retrospective&quot;,
+        &quot;ingress&quot;: &quot;ingress-2025-aries&quot;,
+        &quot;ingress_sky&quot;: &quot;2025-aries&quot;,
+        &quot;window&quot;: &quot;Mar 20 – Jun 20, 2025&quot;,
+        &quot;blurb&quot;: &quot;The year chart&#x27;s first quarter: Aries climate, six lunations, record census, and retrospective comparison.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;2025-cancer&quot;,
+        &quot;label&quot;: &quot;Cancer 2025 · retrospective&quot;,
+        &quot;ingress&quot;: &quot;ingress-2025-cancer&quot;,
+        &quot;ingress_sky&quot;: &quot;2025-cancer&quot;,
+        &quot;window&quot;: &quot;Jun 21 – Sep 21, 2025&quot;,
+        &quot;blurb&quot;: &quot;Nested Cancer frame beneath the Aries year: seven lunations with both September eclipses, record census, and retrospective comparison.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;2025-libra&quot;,
+        &quot;label&quot;: &quot;Libra 2025 · retrospective&quot;,
+        &quot;ingress&quot;: &quot;ingress-2025-libra&quot;,
+        &quot;ingress_sky&quot;: &quot;2025-libra&quot;,
+        &quot;window&quot;: &quot;Sep 22 – Dec 20, 2025&quot;,
+        &quot;blurb&quot;: &quot;Nested Libra frame beneath the Aries year: six lunations, record census, and retrospective comparison.&quot;,
+    },
+)
+
+GOVERNING_TO_SEASON_2025 = {
+    &quot;2024 Capricorn&quot;: &quot;2025-winter&quot;,
+    &quot;2025 Aries&quot;: &quot;2025-aries&quot;,
+    &quot;2025 Cancer&quot;: &quot;2025-cancer&quot;,
+    &quot;2025 Libra&quot;: &quot;2025-libra&quot;,
+}
+
+GOVERNING_TO_SEASON = {
+    &quot;2025 Capricorn&quot;: &quot;winter&quot;,
+    &quot;2026 Aries&quot;: &quot;aries&quot;,
+    &quot;2026 Cancer&quot;: &quot;cancer&quot;,
+    &quot;2026 Libra&quot;: &quot;libra&quot;,
+    &quot;2026 Capricorn&quot;: &quot;capricorn&quot;,
+}
+
+KIND_LABEL = {
+    &quot;pass1&quot;: &quot;Reading&quot;,
+    &quot;census&quot;: &quot;Record census&quot;,
+    &quot;weave&quot;: &quot;Storyline comparison&quot;,
+    &quot;comparison&quot;: &quot;Storyline comparison&quot;,
+}
+HEADING = re.compile(r&quot;^(#{1,6})\s+(.+)$&quot;)
+DARKMODE_BLOCK = re.compile(
+    r&quot;\s*&lt;!-- F250-DARKMODE-START --&gt;.*?&lt;!-- F250-DARKMODE-END --&gt;\s*&quot;,
+    re.S,
+)
+SHA256 = re.compile(r&quot;^[0-9a-f]{64}$&quot;)
+COMPARISON_MODES = {&quot;retrospective_calibration&quot;, &quot;prospective_watch&quot;}
+COMPARISON_STATES = {&quot;open&quot;, &quot;closed&quot;}
+DISPOSITIONS = {&quot;Lines up&quot;, &quot;Partial&quot;, &quot;Miss&quot;, &quot;Unresolved&quot;}
+EVIDENCE_LANES = {&quot;Attention&quot;, &quot;Official&quot;, &quot;Entity&quot;}
+STATE_TRANSITION_SCHEMA = &quot;f250.chart-readings.state-transition/v1&quot;
+STATE_TRANSITION_BOUNDARIES = {
+    &quot;mid_window_forward_addendum&quot;,
+    &quot;before_window_addendum&quot;,
+}
+STATE_TRANSITION_MATURITY = {
+    &quot;proposed&quot;,
+    &quot;authorized&quot;,
+    &quot;effective&quot;,
+    &quot;operating&quot;,
+    &quot;contested&quot;,
+    &quot;reversed&quot;,
+    &quot;failed&quot;,
+    &quot;unchanged&quot;,
+}
+FREEDOM_250_ARCS = {
+    &quot;The Monetary Reset&quot;,
+    &quot;The Information War&quot;,
+    &quot;War Footing — Iran &amp; the Mideast&quot;,
+    &quot;Border &amp; Homeland&quot;,
+    &quot;The Great Reckoning&quot;,
+    &quot;Great-Power Realignment&quot;,
+    &quot;Fringe, Disclosure &amp; Health&quot;,
+}
+EXACT_ROUTE_KEYS = {
+    &quot;eventKey&quot;,
+    &quot;hearing&quot;,
+    &quot;eo&quot;,
+    &quot;researchId&quot;,
+    &quot;entityId&quot;,
+    &quot;notePath&quot;,
+    &quot;targetId&quot;,
+}
+
+
+def fail(message: str) -&gt; None:
+    raise SystemExit(f&quot;Chart Readings build FAILED: {message}&quot;)
+
+
+def sha256_bytes(raw: bytes) -&gt; str:
+    return hashlib.sha256(raw).hexdigest()
+
+
+def aggregate_sha256(rows: list[tuple[str, str]]) -&gt; str:
+    payload = &quot;&quot;.join(f&quot;{reading_id}:{digest}\n&quot; for reading_id, digest in rows)
+    return sha256_bytes(payload.encode(&quot;utf-8&quot;))
+
+
+def canonical_object_sha256(value: dict[str, Any], omit: set[str] | None = None) -&gt; str:
+    omitted = omit or set()
+    payload = {key: child for key, child in value.items() if key not in omitted}
+    raw = json.dumps(
+        payload,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(&quot;,&quot;, &quot;:&quot;),
+    ).encode(&quot;utf-8&quot;)
+    return sha256_bytes(raw)
+
+
+def configure_paths(args: argparse.Namespace) -&gt; None:
+    global VAULT, CROSS, OUTPUT, ASTROLOGY, REGISTRY, BONES, SYNODIC_STACKS
+    global REGISTRY_2025, BONES_2025, SYNODIC_STACKS_2025, AMENDMENT_LEDGER
+    VAULT = args.vault.expanduser().resolve()
+    CROSS = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot;
+    ASTROLOGY = VAULT / &quot;03 - Astrology&quot;
+    REGISTRY = (
+        args.registry.expanduser().resolve()
+        if args.registry
+        else ASTROLOGY / &quot;chart_reading_registry.json&quot;
+    )
+    BONES = (
+        args.bones.expanduser().resolve()
+        if args.bones
+        else VAULT / &quot;99 - Templates&quot; / &quot;chart_reading_bones&quot;
+    )
+    SYNODIC_STACKS = (
+        args.synodic_stacks.expanduser().resolve()
+        if args.synodic_stacks
+        else VAULT / &quot;99 - Templates&quot; / &quot;chart_synodic_stacks.json&quot;
+    )
+    OUTPUT = (
+        args.output.expanduser().resolve()
+        if args.output
+        else CROSS / &quot;Chart Readings.html&quot;
+    )
+    # The 2025 retrospective shelf rides along only with the default registry;
+    # a fixture registry (--registry) is built alone.
+    REGISTRY_2025 = (
+        ASTROLOGY / &quot;chart_reading_registry_2025.json&quot;
+        if not args.registry
+        else ASTROLOGY / &quot;__no_2025_shelf__.json&quot;
+    )
+    BONES_2025 = VAULT / &quot;99 - Templates&quot; / &quot;chart_reading_bones_2025&quot;
+    SYNODIC_STACKS_2025 = VAULT / &quot;99 - Templates&quot; / &quot;chart_synodic_stacks_2025.json&quot;
+    AMENDMENT_LEDGER = (
+        ASTROLOGY / &quot;Chart Reading Amendments — Ledger.md&quot;
+        if not args.registry
+        else ASTROLOGY / &quot;__no_amendment_ledger__.md&quot;
+    )
+
+
+def sign_of(lon: float) -&gt; str:
+    return SIGNS[int(((lon % 360) + 360) % 360 // 30)]
+
+
+def short_dms(body: dict[str, Any], lon: float) -&gt; str:
+    raw = str(body.get(&quot;lon_dms&quot;) or &quot;&quot;)
+    match = re.match(r&quot;(\d+)°(\d+)&quot;, raw)
+    if match:
+        return f&quot;{match.group(1)}°{match.group(2)}&#x27;&quot;
+    deg = ((lon % 360) + 360) % 360 % 30
+    return f&quot;{int(deg)}°{int((deg % 1) * 60):02d}&#x27;&quot;
+
+
+def face_line(bone: dict[str, Any]) -&gt; str:
+    bits: list[str] = []
+    if bone.get(&quot;asc_dms&quot;):
+        bits.append(f&quot;{bone[&#x27;asc_dms&#x27;]} rising&quot;)
+    elif bone.get(&quot;asc_sign&quot;):
+        bits.append(f&quot;{bone[&#x27;asc_sign&#x27;]} rising&quot;)
+    if bone.get(&quot;sect&quot;):
+        bits.append(str(bone[&quot;sect&quot;]))
+    edt = str(bone.get(&quot;edt&quot;) or &quot;&quot;)
+    if edt:
+        bits.append(edt[:16].replace(&quot;T&quot;, &quot; &quot;) + &quot; ET&quot;)
+    return &quot; · &quot;.join(bits)
+
+
+def bone_to_rec(bone: dict[str, Any], label: str) -&gt; dict[str, Any]:
+    pos: list[list[Any]] = []
+    lons: dict[str, float] = {}
+    bodies = bone.get(&quot;pos&quot;) or {}
+    for name in PLANET_ORDER:
+        body = bodies.get(name)
+        if not isinstance(body, dict) or body.get(&quot;lon&quot;) is None:
+            continue
+        lon = float(body[&quot;lon&quot;])
+        pos.append(
+            [
+                name,
+                body.get(&quot;sign&quot;) or sign_of(lon),
+                short_dms(body, lon),
+                1 if body.get(&quot;retro&quot;) else 0,
+                round(lon, 2),
+            ]
+        )
+        lons[name] = lon
+    if len(pos) &lt; 8:
+        fail(f&quot;bones for {label!r} are missing planetary positions&quot;)
+
+    extras: dict[str, float] = {}
+    node = bone.get(&quot;node&quot;) or {}
+    if node.get(&quot;lon&quot;) is not None:
+        lon = float(node[&quot;lon&quot;])
+        pos.append([&quot;Node&quot;, sign_of(lon), short_dms(node, lon), 1, round(lon, 2)])
+        extras[&quot;Node&quot;] = lon
+    america = bone.get(&quot;america&quot;) or {}
+    if america.get(&quot;lon&quot;) is not None:
+        lon = float(america[&quot;lon&quot;])
+        pos.append(
+            [
+                &quot;America&quot;,
+                america.get(&quot;sign&quot;) or sign_of(lon),
+                short_dms(america, lon),
+                0,
+                round(lon, 2),
+            ]
+        )
+        extras[&quot;America&quot;] = lon
+
+    asp: list[dict[str, Any]] = []
+    for row in bone.get(&quot;aspects&quot;) or []:
+        kind = KIND_TO_WHEEL.get(str(row.get(&quot;kind&quot;) or &quot;&quot;), &quot;&quot;)
+        a, b = row.get(&quot;a&quot;), row.get(&quot;b&quot;)
+        if not kind or not a or not b:
+            continue
+        orb = float(row.get(&quot;orb&quot;) or 0)
+        asp.append(
+            {
+                &quot;t&quot;: f&quot;{a} {kind} {b}&quot;,
+                &quot;o&quot;: round(orb, 2),
+                &quot;x&quot;: 1 if orb &lt;= 0.3 else 0,
+                &quot;ap&quot;: 1 if row.get(&quot;applying&quot;) else 0,
+            }
+        )
+    if extras and lons:
+        asp.extend(point_aspects(extras, lons, cap=2.0))
+    asp.sort(key=lambda row: row[&quot;o&quot;])
+
+    edt = str(bone.get(&quot;edt&quot;) or &quot;&quot;)
+    cap2 = &quot;Whole Sign · Washington, D.C.&quot;
+    if edt:
+        cap2 = edt[:16].replace(&quot;T&quot;, &quot; &quot;) + &quot; ET · D.C.&quot;
+    rising = bone.get(&quot;asc_sign&quot;) or &quot;&quot;
+    return {
+        &quot;pos&quot;: pos,
+        &quot;asp&quot;: asp,
+        &quot;asc&quot;: round(float(bone[&quot;asc&quot;]), 2),
+        &quot;mc&quot;: round(float(bone[&quot;mc&quot;]), 2) if bone.get(&quot;mc&quot;) is not None else None,
+        &quot;__date&quot;: label,
+        &quot;cap1&quot;: f&quot;{rising} rising · Whole Sign&quot;.strip(&quot; ·&quot;)
+        if rising
+        else &quot;Whole Sign · D.C.&quot;,
+        &quot;cap2&quot;: cap2,
+    }
+
+
+def load_bone(stem: str) -&gt; dict[str, Any]:
+    path = BONES / f&quot;{stem}.json&quot;
+    if not path.is_file():
+        fail(f&quot;missing bones file {path.name}&quot;)
+    return load_json(path)
+
+
+def load_json(path: Path) -&gt; Any:
+    try:
+        return json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+    except Exception as exc:
+        fail(f&quot;cannot read {path}: {exc}&quot;)
+
+
+def _has_synodic_verdict(value: Any) -&gt; bool:
+    &quot;&quot;&quot;The chart join is geometry and identity only, never a finding generator.&quot;&quot;&quot;
+    forbidden = {&quot;interpretation&quot;, &quot;finding&quot;, &quot;claim&quot;, &quot;score&quot;, &quot;prediction&quot;, &quot;verdict&quot;, &quot;causal&quot;}
+    if isinstance(value, dict):
+        if forbidden.intersection(str(key).lower() for key in value):
+            return True
+        return any(_has_synodic_verdict(child) for child in value.values())
+    if isinstance(value, list):
+        return any(_has_synodic_verdict(child) for child in value)
+    return False
+
+
+def prepare_synodic_stacks(bones_index: dict[str, Any]) -&gt; dict[str, dict[str, Any]]:
+    &quot;&quot;&quot;Validate and narrow the Long Clocks join for the reading payload.
+
+    Three lanes remain independent:
+    - current chart geometry: every cycle inside a standard aspect orb;
+    - DR-020 phase narration: only engine-earned root/ruler, era, or exact-US rows;
+    - seed echoes: active chart-point contacts to a registered seed family.
+
+    The all-ten clock inventory remains factual Technical Proof.  No lane creates
+    a storyline comparison finding or implies causation.
+    &quot;&quot;&quot;
+    if not SYNODIC_STACKS.is_file():
+        fail(f&quot;synodic chart-stack data missing: {SYNODIC_STACKS}&quot;)
+    payload = load_json(SYNODIC_STACKS)
+    if not isinstance(payload, dict) or payload.get(&quot;schema&quot;) != SYNODIC_STACK_SCHEMA:
+        fail(f&quot;synodic chart stacks must use {SYNODIC_STACK_SCHEMA}&quot;)
+    if _has_synodic_verdict(payload):
+        fail(&quot;synodic chart stacks contain a forbidden verdict/finding field&quot;)
+    if &quot;approaching&quot; in json.dumps(payload, ensure_ascii=False).lower():
+        fail(&quot;synodic chart stacks use the prohibited approaching phase label&quot;)
+
+    raw_charts = payload.get(&quot;charts&quot;)
+    if isinstance(raw_charts, dict):
+        chart_rows = []
+        for chart_id, row in raw_charts.items():
+            if not isinstance(row, dict) or row.get(&quot;chart_id&quot;) != chart_id:
+                fail(f&quot;synodic chart-stack key/identity drifted: {chart_id!r}&quot;)
+            chart_rows.append(row)
+    elif isinstance(raw_charts, list):
+        chart_rows = raw_charts
+    else:
+        fail(&quot;synodic chart stacks need a charts object or list&quot;)
+
+    bone_rows = {
+        str(row.get(&quot;id&quot;) or &quot;&quot;): row
+        for row in bones_index.get(&quot;charts&quot;) or []
+        if row.get(&quot;id&quot;)
+    }
+    expected_chart_ids = set(bone_rows)
+    ingress_ids = {
+        chart_id for chart_id, row in bone_rows.items() if row.get(&quot;type&quot;) == &quot;ingress&quot;
+    }
+    expected_window_by_chart: dict[str, str] = {}
+    season_ingress = {season[&quot;id&quot;]: season[&quot;ingress&quot;] for season in SEASONS}
+    for chart_id, bone in bone_rows.items():
+        if bone.get(&quot;type&quot;) == &quot;ingress&quot;:
+            expected_window_by_chart[chart_id] = chart_id
+            continue
+        season_id = GOVERNING_TO_SEASON.get(str(bone.get(&quot;governing&quot;) or &quot;&quot;))
+        if not season_id or season_id not in season_ingress:
+            fail(f&quot;cannot derive synodic window for chart {chart_id!r}&quot;)
+        expected_window_by_chart[chart_id] = season_ingress[season_id]
+
+    prepared: dict[str, dict[str, Any]] = {}
+    for chart in chart_rows:
+        if not isinstance(chart, dict):
+            fail(&quot;synodic chart stack contains a non-object row&quot;)
+        chart_id = str(chart.get(&quot;chart_id&quot;) or &quot;&quot;)
+        if not chart_id or chart_id in prepared:
+            fail(f&quot;duplicate or blank synodic chart_id: {chart_id!r}&quot;)
+        bone = bone_rows.get(chart_id)
+        if not bone:
+            fail(f&quot;synodic chart stack points outside chart bones: {chart_id!r}&quot;)
+        if chart.get(&quot;date&quot;) != bone.get(&quot;date&quot;):
+            fail(f&quot;synodic chart-stack date drifted for {chart_id!r}&quot;)
+        if chart.get(&quot;chart_type&quot;) != bone.get(&quot;type&quot;):
+            fail(f&quot;synodic chart-stack type drifted for {chart_id!r}&quot;)
+        window_id = str(chart.get(&quot;window_id&quot;) or &quot;&quot;)
+        if window_id not in ingress_ids or window_id != expected_window_by_chart[chart_id]:
+            fail(f&quot;synodic window_id drifted for {chart_id!r}: {window_id!r}&quot;)
+        if not chart.get(&quot;utc&quot;):
+            fail(f&quot;synodic chart stack lacks exact chart instant for {chart_id!r}&quot;)
+
+        route = chart.get(&quot;long_clocks_route&quot;) or {}
+        if route.get(&quot;view&quot;) != &quot;long-clocks&quot; or route.get(&quot;mode&quot;) != &quot;moment&quot; or \
+           route.get(&quot;chart_id&quot;) != chart_id:
+            fail(f&quot;synodic moment route drifted for {chart_id!r}&quot;)
+
+        cycles = chart.get(&quot;cycles&quot;) or []
+        if not isinstance(cycles, list) or len(cycles) != len(SYNODIC_CYCLE_IDS):
+            fail(f&quot;synodic chart {chart_id!r} must compute all ten clock hands&quot;)
+        cycle_by_id: dict[str, dict[str, Any]] = {}
+        active_geometry: list[dict[str, Any]] = []
+        nameable_cycles: list[dict[str, Any]] = []
+        for cycle in cycles:
+            if not isinstance(cycle, dict):
+                fail(f&quot;synodic chart {chart_id!r} has a non-object cycle&quot;)
+            cycle_id = str(cycle.get(&quot;cycle_id&quot;) or &quot;&quot;)
+            if cycle_id not in SYNODIC_CYCLE_IDS or cycle_id in cycle_by_id:
+                fail(f&quot;synodic chart {chart_id!r} has invalid cycle_id {cycle_id!r}&quot;)
+            if cycle.get(&quot;tier_id&quot;) not in SYNODIC_TIERS or not cycle.get(&quot;pair&quot;):
+                fail(f&quot;synodic cycle identity is incomplete: {chart_id!r}/{cycle_id!r}&quot;)
+            geometry = cycle.get(&quot;geometry&quot;) or {}
+            for field in (
+                &quot;elongation_deg&quot;,
+                &quot;phase_direction&quot;,
+                &quot;nearest_chapter_id&quot;,
+                &quot;nearest_chapter_angle_deg&quot;,
+                &quot;nearest_chapter_orb_deg&quot;,
+            ):
+                if geometry.get(field) is None:
+                    fail(f&quot;synodic geometry lacks {field}: {chart_id!r}/{cycle_id!r}&quot;)
+            active_aspect = cycle.get(&quot;active_aspect&quot;)
+            if active_aspect is not None:
+                if not isinstance(active_aspect, dict) or not active_aspect.get(&quot;aspect_id&quot;):
+                    fail(f&quot;active synodic aspect is malformed: {chart_id!r}/{cycle_id!r}&quot;)
+                try:
+                    orb = float(active_aspect[&quot;orb_deg&quot;])
+                    orb_limit = float(active_aspect[&quot;orb_limit_deg&quot;])
+                except (KeyError, TypeError, ValueError):
+                    fail(f&quot;active synodic aspect lacks numeric orb: {chart_id!r}/{cycle_id!r}&quot;)
+                if orb &lt; 0 or orb &gt; orb_limit:
+                    fail(f&quot;active synodic aspect exceeds its orb: {chart_id!r}/{cycle_id!r}&quot;)
+                expected_strength = &quot;exact&quot; if orb &lt;= 0.25 else &quot;tight&quot; if orb &lt;= 1.5 else &quot;active&quot;
+                if active_aspect.get(&quot;strength&quot;) != expected_strength:
+                    fail(f&quot;active synodic aspect strength drifted: {chart_id!r}/{cycle_id!r}&quot;)
+                if not isinstance(active_aspect.get(&quot;applying&quot;), bool) or \
+                   not isinstance(active_aspect.get(&quot;separating&quot;), bool):
+                    fail(f&quot;active synodic aspect lacks motion state: {chart_id!r}/{cycle_id!r}&quot;)
+                active_geometry.append(cycle)
+
+            nameability = cycle.get(&quot;nameability&quot;) or {}
+            earned = nameability.get(&quot;earned&quot;)
+            reasons = set(nameability.get(&quot;reasons&quot;) or [])
+            if not isinstance(earned, bool) or not reasons.issubset(NAMEABILITY_REASONS):
+                fail(f&quot;DR-020 nameability is malformed: {chart_id!r}/{cycle_id!r}&quot;)
+            if earned != bool(reasons):
+                fail(f&quot;DR-020 earned/reasons disagree: {chart_id!r}/{cycle_id!r}&quot;)
+            if nameability.get(&quot;applies_to&quot;) != &quot;phase_narrative_only&quot; or \
+               nameability.get(&quot;does_not_hide_direct_aspect&quot;) is not True:
+                fail(f&quot;DR-020 lane boundary drifted: {chart_id!r}/{cycle_id!r}&quot;)
+            if cycle.get(&quot;tier_id&quot;) == &quot;era_currents&quot; and (not earned or &quot;era&quot; not in reasons):
+                fail(f&quot;era cycle is not nameable under DR-020: {chart_id!r}/{cycle_id!r}&quot;)
+            if earned:
+                nameable_cycles.append(cycle)
+
+            cycle_route = cycle.get(&quot;long_clocks_route&quot;) or {}
+            if cycle_route.get(&quot;view&quot;) != &quot;long-clocks&quot; or \
+               cycle_route.get(&quot;mode&quot;) != &quot;cycle&quot; or \
+               cycle_route.get(&quot;cycle_id&quot;) != cycle_id or \
+               cycle_route.get(&quot;chart_id&quot;) != chart_id:
+                fail(f&quot;synodic cycle route drifted: {chart_id!r}/{cycle_id!r}&quot;)
+            cycle_by_id[cycle_id] = cycle
+
+        if set(cycle_by_id) != SYNODIC_CYCLE_IDS:
+            fail(f&quot;synodic cycle coverage drifted for {chart_id!r}&quot;)
+        active_ids = list(chart.get(&quot;active_cycle_ids&quot;) or [])
+        expected_active_ids = [cycle[&quot;cycle_id&quot;] for cycle in active_geometry]
+        if active_ids != expected_active_ids:
+            fail(f&quot;active synodic cycle order/coverage drifted for {chart_id!r}&quot;)
+        nameable_ids = list(chart.get(&quot;nameable_cycle_ids&quot;) or [])
+        expected_nameable_ids = [cycle[&quot;cycle_id&quot;] for cycle in nameable_cycles]
+        if nameable_ids != expected_nameable_ids:
+            fail(f&quot;nameable synodic cycle order/coverage drifted for {chart_id!r}&quot;)
+
+        # Consume the engine&#x27;s canonical edge lane directly. It duplicates the
+        # current-aspect subset intentionally so Chart Readings never has to infer
+        # a direct edge from phase-nameability state.
+        active_edges = chart.get(&quot;active_edges&quot;) or []
+        if not isinstance(active_edges, list) or \
+           [edge.get(&quot;cycle_id&quot;) for edge in active_edges if isinstance(edge, dict)] != active_ids:
+            fail(f&quot;active synodic edge order/coverage drifted for {chart_id!r}&quot;)
+        aspect_fields = (
+            &quot;aspect_id&quot;, &quot;chapter_id&quot;, &quot;angle_deg&quot;, &quot;orb_deg&quot;, &quot;orb_limit_deg&quot;,
+            &quot;applying&quot;, &quot;separating&quot;, &quot;motion_state&quot;, &quot;strength&quot;, &quot;flow_kind&quot;,
+        )
+        for edge in active_edges:
+            if not isinstance(edge, dict):
+                fail(f&quot;active synodic edge is not an object for {chart_id!r}&quot;)
+            cycle_id = str(edge.get(&quot;cycle_id&quot;) or &quot;&quot;)
+            cycle = cycle_by_id.get(cycle_id)
+            aspect = (cycle or {}).get(&quot;active_aspect&quot;) or {}
+            edge_route = edge.get(&quot;long_clocks_route&quot;) or {}
+            if edge.get(&quot;edge_id&quot;) != f&quot;{chart_id}::{cycle_id}&quot; or \
+               edge.get(&quot;tier_id&quot;) != (cycle or {}).get(&quot;tier_id&quot;) or \
+               edge.get(&quot;pair&quot;) != (cycle or {}).get(&quot;pair&quot;) or \
+               any(edge.get(field) != aspect.get(field) for field in aspect_fields) or \
+               edge_route.get(&quot;view&quot;) != &quot;long-clocks&quot; or \
+               edge_route.get(&quot;mode&quot;) != &quot;cycle&quot; or \
+               edge_route.get(&quot;cycle_id&quot;) != cycle_id or \
+               edge_route.get(&quot;chart_id&quot;) != chart_id:
+                fail(f&quot;active synodic edge/cycle contract drifted: {chart_id!r}/{cycle_id!r}&quot;)
+
+        seed_echoes = chart.get(&quot;seed_echoes&quot;) or []
+        if not isinstance(seed_echoes, list):
+            fail(f&quot;seed echoes must be a list for {chart_id!r}&quot;)
+        echo_ids: set[str] = set()
+        active_seed_echoes: list[dict[str, Any]] = []
+        for echo in seed_echoes:
+            if not isinstance(echo, dict):
+                fail(f&quot;seed echo is not an object for {chart_id!r}&quot;)
+            echo_id = str(echo.get(&quot;echo_id&quot;) or &quot;&quot;)
+            if not echo_id or echo_id in echo_ids or echo.get(&quot;active&quot;) is not True:
+                fail(f&quot;seed echo identity/activity drifted for {chart_id!r}&quot;)
+            if echo.get(&quot;cycle_id&quot;) not in SYNODIC_CYCLE_IDS or not echo.get(&quot;seed_family_id&quot;):
+                fail(f&quot;seed echo lacks cycle/family identity: {chart_id!r}/{echo_id!r}&quot;)
+            for field in (&quot;matched_pass_id&quot;, &quot;point&quot;, &quot;aspect_id&quot;, &quot;orb_deg&quot;, &quot;orb_limit_deg&quot;):
+                if echo.get(field) is None:
+                    fail(f&quot;seed echo lacks {field}: {chart_id!r}/{echo_id!r}&quot;)
+            if float(echo[&quot;orb_deg&quot;]) &lt; 0 or float(echo[&quot;orb_deg&quot;]) &gt; float(echo[&quot;orb_limit_deg&quot;]):
+                fail(f&quot;seed echo exceeds its orb: {chart_id!r}/{echo_id!r}&quot;)
+            echo_route = echo.get(&quot;long_clocks_route&quot;) or {}
+            if echo_route.get(&quot;view&quot;) != &quot;long-clocks&quot; or \
+               echo_route.get(&quot;mode&quot;) != &quot;moment&quot; or \
+               echo_route.get(&quot;chart_id&quot;) != chart_id or \
+               echo_route.get(&quot;cycle_id&quot;) != echo.get(&quot;cycle_id&quot;) or \
+               echo_route.get(&quot;focus&quot;) != &quot;seed-echoes&quot;:
+                fail(f&quot;seed echo route drifted: {chart_id!r}/{echo_id!r}&quot;)
+            echo_ids.add(echo_id)
+            active_seed_echoes.append(echo)
+
+        prepared[chart_id] = {
+            &quot;chart_id&quot;: chart_id,
+            &quot;chart_type&quot;: chart[&quot;chart_type&quot;],
+            &quot;date&quot;: chart[&quot;date&quot;],
+            &quot;utc&quot;: chart[&quot;utc&quot;],
+            &quot;window_id&quot;: window_id,
+            &quot;active_geometry&quot;: active_edges,
+            &quot;nameable_cycles&quot;: nameable_cycles,
+            &quot;seed_echoes&quot;: active_seed_echoes,
+            &quot;technical_cycles&quot;: cycles,
+        }
+
+    if set(prepared) != expected_chart_ids:
+        fail(
+            &quot;synodic chart-stack coverage drifted: &quot;
+            f&quot;missing={sorted(expected_chart_ids - set(prepared))} &quot;
+            f&quot;extra={sorted(set(prepared) - expected_chart_ids)}&quot;
+        )
+    return prepared
+
+
+def resolve_vault_source(source_rel: str) -&gt; Path:
+    source = (VAULT / source_rel).resolve()
+    try:
+        source.relative_to(VAULT.resolve())
+    except ValueError:
+        fail(f&quot;reading source escapes vault: {source_rel}&quot;)
+    return source
+
+
+def resolve_registry_artifact(artifact_rel: str) -&gt; Path:
+    root = REGISTRY.parent.resolve()
+    artifact = (root / artifact_rel).resolve()
+    try:
+        artifact.relative_to(root)
+    except ValueError:
+        fail(f&quot;comparison artifact escapes registry folder: {artifact_rel}&quot;)
+    return artifact
+
+
+def has_score_field(value: Any) -&gt; bool:
+    if isinstance(value, dict):
+        for key, child in value.items():
+            if &quot;score&quot; in str(key).lower() or has_score_field(child):
+                return True
+    elif isinstance(value, list):
+        return any(has_score_field(child) for child in value)
+    return False
+
+
+def validate_exact_route(route: Any, evidence_id: str) -&gt; None:
+    if not isinstance(route, dict):
+        fail(f&quot;comparison evidence {evidence_id!r} has no exact route object&quot;)
+    if not route.get(&quot;view&quot;) or not route.get(&quot;action&quot;):
+        fail(f&quot;comparison evidence {evidence_id!r} route needs view and action&quot;)
+    params = route.get(&quot;params&quot;)
+    if not isinstance(params, dict) or not any(key in params for key in EXACT_ROUTE_KEYS):
+        fail(
+            f&quot;comparison evidence {evidence_id!r} route needs one exact target key: &quot;
+            f&quot;{sorted(EXACT_ROUTE_KEYS)}&quot;
+        )
+
+
+def capture_baseline(registry: dict[str, Any], baseline_id: str) -&gt; None:
+    contract = registry.get(&quot;comparison_contract&quot;) or {}
+    baselines = contract.get(&quot;baselines&quot;) or []
+    baseline = next(
+        (row for row in baselines if row.get(&quot;baseline_id&quot;) == baseline_id),
+        None,
+    )
+    if not isinstance(baseline, dict):
+        fail(f&quot;unknown comparison baseline {baseline_id!r}&quot;)
+    if (
+        baseline.get(&quot;immutable&quot;)
+        or baseline.get(&quot;captured_at&quot;)
+        or baseline.get(&quot;aggregate_sha256&quot;)
+    ):
+        fail(f&quot;baseline {baseline_id!r} is already pinned; overwrite is forbidden&quot;)
+
+    reading_configs = {
+        str(row.get(&quot;id&quot;) or &quot;&quot;): row
+        for row in registry.get(&quot;readings&quot;) or []
+        if row.get(&quot;kind&quot;) == &quot;pass1&quot;
+    }
+    artifact_dir = str(baseline.get(&quot;artifact_dir&quot;) or &quot;&quot;)
+    if not artifact_dir:
+        fail(f&quot;baseline {baseline_id!r} needs artifact_dir before capture&quot;)
+    components = baseline.get(&quot;components&quot;) or []
+    if not components:
+        fail(f&quot;baseline {baseline_id!r} has no component reading IDs&quot;)
+
+    planned: list[tuple[dict[str, Any], str, Path, bytes, str]] = []
+    for component in components:
+        reading_id = str(component.get(&quot;reading_id&quot;) or &quot;&quot;)
+        config = reading_configs.get(reading_id)
+        if not config:
+            fail(f&quot;baseline {baseline_id!r} references unknown chart reading {reading_id!r}&quot;)
+        if component.get(&quot;artifact&quot;) or component.get(&quot;sha256&quot;):
+            fail(
+                f&quot;baseline {baseline_id!r} component {reading_id!r} is partially pinned; &quot;
+                &quot;capture refuses mixed state&quot;
+            )
+        source_rel = str(config.get(&quot;source&quot;) or &quot;&quot;)
+        source = resolve_vault_source(source_rel)
+        if not source.is_file():
+            fail(f&quot;cannot capture missing live reading: {source_rel}&quot;)
+        artifact_rel = str(Path(artifact_dir) / source.name)
+        artifact = resolve_registry_artifact(artifact_rel)
+        if artifact.exists():
+            fail(f&quot;baseline capture refuses to overwrite {artifact}&quot;)
+        raw = source.read_bytes()
+        planned.append((component, artifact_rel, artifact, raw, sha256_bytes(raw)))
+
+    created: list[Path] = []
+    try:
+        for component, artifact_rel, artifact, raw, digest in planned:
+            artifact.parent.mkdir(parents=True, exist_ok=True)
+            descriptor = os.open(
+                artifact,
+                os.O_WRONLY | os.O_CREAT | os.O_EXCL,
+                0o644,
+            )
+            with os.fdopen(descriptor, &quot;wb&quot;) as handle:
+                handle.write(raw)
+            created.append(artifact)
+            component[&quot;artifact&quot;] = artifact_rel
+            component[&quot;sha256&quot;] = digest
+        baseline[&quot;captured_at&quot;] = dt.datetime.now().astimezone().isoformat(
+            timespec=&quot;seconds&quot;
+        )
+        baseline[&quot;immutable&quot;] = True
+        baseline[&quot;aggregate_sha256&quot;] = aggregate_sha256(
+            [
+                (str(component[&quot;reading_id&quot;]), str(component[&quot;sha256&quot;]))
+                for component in components
+            ]
+        )
+        registry[&quot;version&quot;] = max(2, int(registry.get(&quot;version&quot;) or 1))
+        registry[&quot;updated&quot;] = dt.date.today().isoformat()
+        atomic_write_text(
+            REGISTRY,
+            json.dumps(registry, ensure_ascii=False, indent=2) + &quot;\n&quot;,
+        )
+    except BaseException:
+        for artifact in created:
+            artifact.unlink(missing_ok=True)
+        raise
+    print(
+        f&quot;Captured immutable baseline {baseline_id} · {len(components)} readings · &quot;
+        f&quot;{baseline[&#x27;aggregate_sha256&#x27;]}&quot;
+    )
+
+
+def strip_frontmatter(raw: str) -&gt; str:
+    lines = raw.splitlines()
+    if not lines or lines[0].strip() != &quot;---&quot;:
+        return raw
+    for index, line in enumerate(lines[1:], start=1):
+        if line.strip() == &quot;---&quot;:
+            return &quot;\n&quot;.join(lines[index + 1 :]).lstrip(&quot;\n&quot;)
+    fail(&quot;reading has an unclosed YAML frontmatter block&quot;)
+
+
+def strip_comparison_evidence_targets(raw: str) -&gt; str:
+    &quot;&quot;&quot;Keep source audit lists durable while the app renders them structurally.&quot;&quot;&quot;
+    return re.sub(
+        r&quot;\n\*\*Evidence targets\*\*\s*\n(?:\s*-\s+[^\n]+\n?)+&quot;,
+        &quot;\n&quot;,
+        raw,
+        flags=re.I,
+    )
+
+
+def first_heading(text: str) -&gt; str:
+    for line in strip_frontmatter(text).splitlines():
+        match = HEADING.match(line.strip())
+        if match:
+            return match.group(2).strip()
+    return path_title_fallback(text)
+
+
+def path_title_fallback(text: str) -&gt; str:
+    for line in text.splitlines():
+        if line.strip():
+            return line.strip(&quot;# &quot;).strip()
+    return &quot;Untitled reading&quot;
+
+
+def inline_md(text: str) -&gt; str:
+    text = html.escape(text, quote=False)
+    text = re.sub(r&quot;`([^`]+)`&quot;, r&quot;&lt;code&gt;\1&lt;/code&gt;&quot;, text)
+    text = re.sub(r&quot;\*\*([^*]+)\*\*&quot;, r&quot;&lt;strong&gt;\1&lt;/strong&gt;&quot;, text)
+    text = re.sub(r&quot;(?&lt;!\*)\*([^*\n]+)\*(?!\*)&quot;, r&quot;&lt;em&gt;\1&lt;/em&gt;&quot;, text)
+    text = re.sub(r&quot;(?&lt;!_)_([^_\n]+)_(?!_)&quot;, r&quot;&lt;em&gt;\1&lt;/em&gt;&quot;, text)
+    text = re.sub(
+        r&#x27;\[([^\]]+)\]\((https?://[^)]+)\)&#x27;,
+        r&#x27;&lt;a href=&quot;\2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;\1&lt;/a&gt;&#x27;,
+        text,
+    )
+    text = re.sub(
+        r&#x27;\[([^\]]+)\]\(([^)]+)\)&#x27;,
+        r&#x27;&lt;span class=&quot;md-ref&quot;&gt;\1&lt;/span&gt;&#x27;,
+        text,
+    )
+    return text
+
+
+def render_table(rows: list[str]) -&gt; str:
+    body: list[list[str]] = []
+    for row in rows:
+        cells = [c.strip() for c in row.strip().strip(&quot;|&quot;).split(&quot;|&quot;)]
+        if cells and re.match(r&quot;^:?-+:?$&quot;, cells[0].replace(&quot; &quot;, &quot;&quot;)):
+            continue
+        body.append(cells)
+    if not body:
+        return &quot;&quot;
+    head, rest = body[0], body[1:]
+    out = [&quot;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&quot;]
+    out.extend(f&quot;&lt;th&gt;{inline_md(cell)}&lt;/th&gt;&quot; for cell in head)
+    out.append(&quot;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&quot;)
+    for row in rest:
+        out.append(&quot;&lt;tr&gt;&quot;)
+        out.extend(f&quot;&lt;td&gt;{inline_md(cell)}&lt;/td&gt;&quot; for cell in row)
+        out.append(&quot;&lt;/tr&gt;&quot;)
+    out.append(&quot;&lt;/tbody&gt;&lt;/table&gt;&quot;)
+    return &quot;&quot;.join(out)
+
+
+def markdown_to_html(raw: str) -&gt; str:
+    raw = strip_frontmatter(raw)
+    proof: str | None = None
+    proof_match = re.search(r&quot;^##\s+Technical proof\s*$&quot;, raw, flags=re.I | re.M)
+    if proof_match:
+        proof = raw[proof_match.end() :].strip()
+        raw = raw[: proof_match.start()].rstrip()
+    lines = raw.splitlines()
+    out: list[str] = []
+    paragraph: list[str] = []
+    in_code = False
+    list_tag: str | None = None
+    table_rows: list[str] = []
+
+    def close_list() -&gt; None:
+        nonlocal list_tag
+        if list_tag:
+            out.append(f&quot;&lt;/{list_tag}&gt;&quot;)
+            list_tag = None
+
+    def flush_paragraph() -&gt; None:
+        nonlocal paragraph
+        if paragraph:
+            out.append(&quot;&lt;p&gt;&quot; + inline_md(&quot; &quot;.join(x.strip() for x in paragraph)) + &quot;&lt;/p&gt;&quot;)
+            paragraph = []
+
+    def flush_table() -&gt; None:
+        nonlocal table_rows
+        if table_rows:
+            out.append(render_table(table_rows))
+            table_rows = []
+
+    for line in lines:
+        if line.strip().startswith(&quot;```&quot;):
+            flush_paragraph()
+            flush_table()
+            close_list()
+            if in_code:
+                out.append(&quot;&lt;/code&gt;&lt;/pre&gt;&quot;)
+            else:
+                out.append(&quot;&lt;pre&gt;&lt;code&gt;&quot;)
+            in_code = not in_code
+            continue
+        if in_code:
+            out.append(html.escape(line) + &quot;\n&quot;)
+            continue
+        if line.lstrip().startswith(&quot;|&quot;):
+            flush_paragraph()
+            close_list()
+            table_rows.append(line)
+            continue
+        flush_table()
+        heading = HEADING.match(line)
+        numbered = re.match(r&quot;^\s*\d+\.\s+(.+)$&quot;, line)
+        bullet = re.match(r&quot;^\s*[-*]\s+(.+)$&quot;, line)
+        quote = re.match(r&quot;^\s*&gt;\s?(.*)$&quot;, line)
+        if heading:
+            flush_paragraph()
+            close_list()
+            level = min(4, len(heading.group(1)))
+            out.append(f&quot;&lt;h{level}&gt;{inline_md(heading.group(2))}&lt;/h{level}&gt;&quot;)
+        elif numbered:
+            flush_paragraph()
+            if list_tag != &quot;ol&quot;:
+                close_list()
+                out.append(&quot;&lt;ol&gt;&quot;)
+                list_tag = &quot;ol&quot;
+            out.append(&quot;&lt;li&gt;&quot; + inline_md(numbered.group(1)) + &quot;&lt;/li&gt;&quot;)
+        elif bullet:
+            flush_paragraph()
+            if list_tag != &quot;ul&quot;:
+                close_list()
+                out.append(&quot;&lt;ul&gt;&quot;)
+                list_tag = &quot;ul&quot;
+            out.append(&quot;&lt;li&gt;&quot; + inline_md(bullet.group(1)) + &quot;&lt;/li&gt;&quot;)
+        elif quote:
+            flush_paragraph()
+            close_list()
+            out.append(&quot;&lt;blockquote&gt;&quot; + inline_md(quote.group(1)) + &quot;&lt;/blockquote&gt;&quot;)
+        elif re.match(r&quot;^\s*---+\s*$&quot;, line):
+            flush_paragraph()
+            close_list()
+            out.append(&quot;&lt;hr&gt;&quot;)
+        elif not line.strip():
+            flush_paragraph()
+            close_list()
+        else:
+            if list_tag:
+                close_list()
+            paragraph.append(line)
+    flush_paragraph()
+    flush_table()
+    close_list()
+    if in_code:
+        out.append(&quot;&lt;/code&gt;&lt;/pre&gt;&quot;)
+    rendered = &quot;&quot;.join(out)
+    if proof is not None:
+        rendered += (
+            &#x27;&lt;details class=&quot;technical-proof&quot;&gt;&lt;summary&gt;Technical proof&lt;/summary&gt;&#x27;
+            + markdown_to_html(proof)
+            + &quot;&lt;/details&gt;&quot;
+        )
+    return rendered
+
+
+def first_paragraph(text: str) -&gt; str:
+    text = strip_frontmatter(text)
+    chunks: list[str] = []
+    for line in text.splitlines():
+        if HEADING.match(line) or line.startswith(&quot;---&quot;) or line.startswith(&quot;```&quot;):
+            if chunks:
+                break
+            continue
+        if not line.strip():
+            if chunks:
+                break
+            continue
+        chunks.append(line.strip())
+        if len(&quot; &quot;.join(chunks)) &gt; 280:
+            break
+    summary = &quot; &quot;.join(chunks)
+    return re.sub(r&quot;\s+&quot;, &quot; &quot;, summary)[:360]
+
+
+def kind_label_for(kind: str, date: str | None) -&gt; str:
+    del date
+    return KIND_LABEL[kind]
+
+
+def auto_links(item: dict[str, Any]) -&gt; list[dict[str, str]]:
+    links: list[dict[str, str]] = []
+    date = item.get(&quot;date&quot;)
+    ingress_sky = item.get(&quot;ingress_sky&quot;)
+    if item.get(&quot;chart_kind&quot;) == &quot;ingress&quot; and ingress_sky:
+        links.append({&quot;label&quot;: &quot;Open the wheel&quot;, &quot;kind&quot;: &quot;wheel&quot;, &quot;ingress&quot;: ingress_sky})
+    elif item.get(&quot;chart_kind&quot;) == &quot;lunation&quot; and date:
+        if ingress_sky:
+            links.append({
+                &quot;label&quot;: &quot;Overlay on climate&quot;,
+                &quot;kind&quot;: &quot;overlay&quot;,
+                &quot;ingress&quot;: ingress_sky,
+                &quot;date&quot;: date,
+            })
+        links.append({&quot;label&quot;: &quot;Lunar Weather&quot;, &quot;kind&quot;: &quot;lunar&quot;, &quot;date&quot;: date})
+    if date:
+        links.append({&quot;label&quot;: &quot;That day&quot;, &quot;kind&quot;: &quot;day&quot;, &quot;date&quot;: date})
+        links.append({&quot;label&quot;: &quot;Almanac&quot;, &quot;kind&quot;: &quot;almanac&quot;, &quot;date&quot;: date})
+    return links
+
+
+def comparison_badge(mode: str) -&gt; str:
+    return (
+        &quot;Retrospective calibration&quot;
+        if mode == &quot;retrospective_calibration&quot;
+        else &quot;Prospective watch&quot;
+    )
+
+
+def prepare_comparison_items(
+    registry: dict[str, Any], readings: list[dict[str, Any]]
+) -&gt; list[dict[str, Any]]:
+    contract = registry.get(&quot;comparison_contract&quot;)
+    if contract is None:
+        return []
+    if not isinstance(contract, dict) or contract.get(&quot;schema&quot;) != (
+        &quot;f250.chart-readings.comparison/v2&quot;
+    ):
+        fail(&quot;comparison_contract must use f250.chart-readings.comparison/v2&quot;)
+    policy = contract.get(&quot;policy&quot;) or {}
+    if set(policy.get(&quot;modes&quot;) or []) != COMPARISON_MODES:
+        fail(&quot;comparison policy mode vocabulary drifted&quot;)
+    if set(policy.get(&quot;states&quot;) or []) != COMPARISON_STATES:
+        fail(&quot;comparison policy state vocabulary drifted&quot;)
+    if set(policy.get(&quot;dispositions&quot;) or []) != DISPOSITIONS:
+        fail(&quot;comparison policy disposition vocabulary drifted&quot;)
+    if set(policy.get(&quot;evidence_lanes&quot;) or []) != EVIDENCE_LANES:
+        fail(&quot;comparison policy evidence-lane vocabulary drifted&quot;)
+    if policy.get(&quot;scores_allowed&quot;) is not False:
+        fail(&quot;comparison policy must explicitly forbid scores&quot;)
+    if not str(policy.get(&quot;causation_notice&quot;) or &quot;&quot;).strip():
+        fail(&quot;comparison policy must preserve the rhyme-is-not-cause boundary&quot;)
+
+    row_by_id = {row[&quot;id&quot;]: row for row in readings}
+    pass1_ids = {row[&quot;id&quot;] for row in readings if row[&quot;kind&quot;] == &quot;pass1&quot;}
+    coverage: dict[str, int] = {reading_id: 0 for reading_id in pass1_ids}
+    baseline_by_id: dict[str, dict[str, Any]] = {}
+    for baseline in contract.get(&quot;baselines&quot;) or []:
+        baseline_id = str(baseline.get(&quot;baseline_id&quot;) or &quot;&quot;)
+        if not baseline_id or baseline_id in baseline_by_id:
+            fail(f&quot;duplicate or blank comparison baseline id: {baseline_id!r}&quot;)
+        mode = str(baseline.get(&quot;mode&quot;) or &quot;&quot;)
+        if mode not in COMPARISON_MODES:
+            fail(f&quot;baseline {baseline_id!r} has invalid mode {mode!r}&quot;)
+        if baseline.get(&quot;immutable&quot;) is not True or not baseline.get(&quot;captured_at&quot;):
+            fail(f&quot;baseline {baseline_id!r} is not immutably captured&quot;)
+        aggregate = str(baseline.get(&quot;aggregate_sha256&quot;) or &quot;&quot;)
+        if not SHA256.fullmatch(aggregate):
+            fail(f&quot;baseline {baseline_id!r} has invalid aggregate SHA-256&quot;)
+        component_payloads: list[dict[str, Any]] = []
+        aggregate_rows: list[tuple[str, str]] = []
+        seen_here: set[str] = set()
+        for component in baseline.get(&quot;components&quot;) or []:
+            reading_id = str(component.get(&quot;reading_id&quot;) or &quot;&quot;)
+            if reading_id not in pass1_ids:
+                fail(
+                    f&quot;baseline {baseline_id!r} references unknown chart reading &quot;
+                    f&quot;{reading_id!r}&quot;
+                )
+            if reading_id in seen_here:
+                fail(f&quot;baseline {baseline_id!r} repeats {reading_id!r}&quot;)
+            seen_here.add(reading_id)
+            coverage[reading_id] += 1
+            digest = str(component.get(&quot;sha256&quot;) or &quot;&quot;)
+            if not SHA256.fullmatch(digest):
+                fail(
+                    f&quot;baseline {baseline_id!r} component {reading_id!r} has invalid SHA-256&quot;
+                )
+            artifact_rel = str(component.get(&quot;artifact&quot;) or &quot;&quot;)
+            artifact = resolve_registry_artifact(artifact_rel)
+            if not artifact.is_file():
+                fail(f&quot;baseline artifact missing: {artifact_rel}&quot;)
+            artifact_raw = artifact.read_bytes()
+            actual_digest = sha256_bytes(artifact_raw)
+            if actual_digest != digest:
+                fail(
+                    f&quot;baseline artifact hash mismatch for {reading_id!r}: &quot;
+                    f&quot;registry={digest} actual={actual_digest}&quot;
+                )
+            live_row = row_by_id[reading_id]
+            live_source = resolve_vault_source(str(live_row[&quot;source_name&quot;]))
+            live_raw = live_source.read_bytes()
+            current_digest = sha256_bytes(live_raw)
+            try:
+                artifact_text = artifact_raw.decode(&quot;utf-8&quot;)
+                live_text = live_raw.decode(&quot;utf-8&quot;)
+            except UnicodeDecodeError as exc:
+                fail(f&quot;baseline text for {reading_id!r} is not UTF-8: {exc}&quot;)
+            aggregate_rows.append((reading_id, digest))
+            component_payloads.append(
+                {
+                    &quot;reading_id&quot;: reading_id,
+                    &quot;title&quot;: live_row[&quot;title&quot;],
+                    &quot;artifact&quot;: artifact_rel,
+                    &quot;baseline_sha256&quot;: digest,
+                    &quot;current_sha256&quot;: current_digest,
+                    &quot;drift&quot;: &quot;unchanged&quot; if digest == current_digest else &quot;drifted&quot;,
+                    &quot;baseline_html&quot;: markdown_to_html(artifact_text),
+                    &quot;current_html&quot;: markdown_to_html(live_text),
+                }
+            )
+        if aggregate_sha256(aggregate_rows) != aggregate:
+            fail(f&quot;baseline {baseline_id!r} aggregate SHA-256 does not match components&quot;)
+        prepared = dict(baseline)
+        prepared[&quot;components&quot;] = component_payloads
+        prepared[&quot;drift_count&quot;] = sum(
+            component[&quot;drift&quot;] == &quot;drifted&quot; for component in component_payloads
+        )
+        baseline_by_id[baseline_id] = prepared
+        prospective_ids = set(baseline.get(&quot;prospective_reading_ids&quot;) or [])
+        for component in component_payloads:
+            row_by_id[component[&quot;reading_id&quot;]][&quot;baseline_context&quot;] = {
+                &quot;baseline_id&quot;: baseline_id,
+                &quot;mode&quot;: mode,
+                &quot;captured_at&quot;: baseline[&quot;captured_at&quot;],
+                &quot;capture_boundary&quot;: baseline.get(&quot;capture_boundary&quot;) or &quot;&quot;,
+                &quot;clean_prospective&quot;: baseline.get(&quot;clean_prospective&quot;) is True,
+                &quot;prospective_eligible&quot;: component[&quot;reading_id&quot;] in prospective_ids,
+                &quot;baseline_sha256&quot;: component[&quot;baseline_sha256&quot;],
+                &quot;current_sha256&quot;: component[&quot;current_sha256&quot;],
+                &quot;drift&quot;: component[&quot;drift&quot;],
+                &quot;baseline_html&quot;: component[&quot;baseline_html&quot;],
+            }
+
+    missing = sorted(reading_id for reading_id, count in coverage.items() if count == 0)
+    repeated = sorted(reading_id for reading_id, count in coverage.items() if count &gt; 1)
+    if missing or repeated:
+        fail(
+            &quot;comparison baselines must cover every chart-only reading exactly once: &quot;
+            f&quot;missing={missing} repeated={repeated}&quot;
+        )
+
+    virtual_items: list[dict[str, Any]] = []
+    comparison_ids: set[str] = set()
+    shelf_ids: set[str] = set()
+    baseline_use: dict[str, int] = {baseline_id: 0 for baseline_id in baseline_by_id}
+    extra_links = registry.get(&quot;links&quot;) or {}
+    for comparison in contract.get(&quot;comparisons&quot;) or []:
+        if has_score_field(comparison):
+            fail(&quot;comparison records may not contain score fields&quot;)
+        comparison_id = str(comparison.get(&quot;comparison_id&quot;) or &quot;&quot;)
+        shelf_id = str(comparison.get(&quot;shelf_id&quot;) or &quot;&quot;)
+        if not comparison_id or comparison_id in comparison_ids:
+            fail(f&quot;duplicate or blank comparison id: {comparison_id!r}&quot;)
+        if not shelf_id or shelf_id in shelf_ids:
+            fail(f&quot;duplicate or blank comparison shelf id: {shelf_id!r}&quot;)
+        comparison_ids.add(comparison_id)
+        shelf_ids.add(shelf_id)
+        baseline_id = str(comparison.get(&quot;baseline_id&quot;) or &quot;&quot;)
+        baseline = baseline_by_id.get(baseline_id)
+        if not baseline:
+            fail(f&quot;comparison {comparison_id!r} references unknown baseline {baseline_id!r}&quot;)
+        baseline_use[baseline_id] += 1
+        mode = str(comparison.get(&quot;mode&quot;) or &quot;&quot;)
+        state = str(comparison.get(&quot;state&quot;) or &quot;&quot;)
+        if mode != baseline.get(&quot;mode&quot;) or mode not in COMPARISON_MODES:
+            fail(f&quot;comparison {comparison_id!r} mode does not match its baseline&quot;)
+        if state not in COMPARISON_STATES:
+            fail(f&quot;comparison {comparison_id!r} has invalid state {state!r}&quot;)
+        if state == &quot;closed&quot; and not comparison.get(&quot;closed_at&quot;):
+            fail(f&quot;closed comparison {comparison_id!r} needs closed_at&quot;)
+        if state == &quot;open&quot; and comparison.get(&quot;closed_at&quot;):
+            fail(f&quot;open comparison {comparison_id!r} cannot have closed_at&quot;)
+
+        evidence_rel = str(comparison.get(&quot;evidence_map&quot;) or &quot;&quot;)
+        if not evidence_rel:
+            fail(f&quot;comparison {comparison_id!r} needs an evidence_map&quot;)
+        evidence_path = resolve_registry_artifact(evidence_rel)
+        if not evidence_path.is_file():
+            fail(f&quot;comparison evidence map missing: {evidence_rel}&quot;)
+        evidence_map = load_json(evidence_path)
+        if evidence_map.get(&quot;schema&quot;) != &quot;f250.chart-readings.evidence/v1&quot;:
+            fail(f&quot;comparison {comparison_id!r} evidence schema drifted&quot;)
+        if evidence_map.get(&quot;comparison_id&quot;) != comparison_id:
+            fail(f&quot;comparison {comparison_id!r} evidence identity drifted&quot;)
+        if evidence_map.get(&quot;mode&quot;) != mode or evidence_map.get(&quot;state&quot;) != state:
+            fail(f&quot;comparison {comparison_id!r} evidence state/mode drifted&quot;)
+        method = evidence_map.get(&quot;method&quot;) or {}
+        if method.get(&quot;rhyme_is_not_cause&quot;) is not True:
+            fail(f&quot;comparison {comparison_id!r} must preserve rhyme-is-not-cause&quot;)
+        if method.get(&quot;scores_allowed&quot;) is not False:
+            fail(f&quot;comparison {comparison_id!r} evidence map must forbid scores&quot;)
+        if set(method.get(&quot;evidence_lanes&quot;) or []) != EVIDENCE_LANES:
+            fail(f&quot;comparison {comparison_id!r} evidence-lane contract drifted&quot;)
+        if set(method.get(&quot;dispositions&quot;) or []) != DISPOSITIONS:
+            fail(f&quot;comparison {comparison_id!r} disposition contract drifted&quot;)
+        if mode == &quot;prospective_watch&quot;:
+            if method.get(&quot;finding_unit&quot;) != &quot;state_transition&quot;:
+                fail(f&quot;comparison {comparison_id!r} must test state transitions&quot;)
+            if method.get(&quot;state_transition_schema&quot;) != STATE_TRANSITION_SCHEMA:
+                fail(f&quot;comparison {comparison_id!r} transition schema drifted&quot;)
+            transition_watch_ids = list(method.get(&quot;state_transition_watch_ids&quot;) or [])
+            if not transition_watch_ids or len(transition_watch_ids) != len(
+                set(transition_watch_ids)
+            ):
+                fail(f&quot;comparison {comparison_id!r} needs unique transition watch ids&quot;)
+        else:
+            transition_watch_ids = []
+        comparison = dict(comparison)
+        comparison[&quot;state_transition_watch_ids&quot;] = transition_watch_ids
+        comparison[&quot;findings&quot;] = list(evidence_map.get(&quot;findings&quot;) or [])
+        comparison[&quot;boundary&quot;] = evidence_map.get(&quot;boundary&quot;) or {}
+        comparison[&quot;review_gates&quot;] = evidence_map.get(&quot;review_gates&quot;) or []
+        comparison[&quot;evidence_map_sha256&quot;] = sha256_bytes(evidence_path.read_bytes())
+
+        finding_ids: set[str] = set()
+        findings = comparison.get(&quot;findings&quot;) or []
+        if has_score_field(findings):
+            fail(f&quot;comparison {comparison_id!r} findings may not contain score fields&quot;)
+        if state == &quot;closed&quot; and not findings:
+            fail(f&quot;closed comparison {comparison_id!r} needs findings&quot;)
+        if state == &quot;open&quot; and findings:
+            fail(f&quot;open comparison {comparison_id!r} cannot preload findings&quot;)
+        baseline_component_ids = {
+            component[&quot;reading_id&quot;] for component in baseline[&quot;components&quot;]
+        }
+        for finding in findings:
+            finding_id = str(finding.get(&quot;finding_id&quot;) or &quot;&quot;)
+            if not finding_id or finding_id in finding_ids:
+                fail(f&quot;comparison {comparison_id!r} has duplicate finding {finding_id!r}&quot;)
+            finding_ids.add(finding_id)
+            if finding.get(&quot;disposition&quot;) not in DISPOSITIONS:
+                fail(f&quot;finding {finding_id!r} has invalid disposition&quot;)
+            for reference in finding.get(&quot;baseline_refs&quot;) or []:
+                if reference.get(&quot;reading_id&quot;) not in baseline_component_ids:
+                    fail(f&quot;finding {finding_id!r} points outside its frozen baseline&quot;)
+            evidence_ids: set[str] = set()
+            for evidence in finding.get(&quot;evidence&quot;) or []:
+                evidence_id = str(evidence.get(&quot;evidence_id&quot;) or &quot;&quot;)
+                if not evidence_id or evidence_id in evidence_ids:
+                    fail(f&quot;finding {finding_id!r} has duplicate evidence {evidence_id!r}&quot;)
+                evidence_ids.add(evidence_id)
+                if evidence.get(&quot;lane&quot;) not in EVIDENCE_LANES:
+                    fail(f&quot;evidence {evidence_id!r} has invalid lane&quot;)
+                source_rel = str(evidence.get(&quot;source_path&quot;) or &quot;&quot;)
+                source_path = resolve_vault_source(source_rel) if source_rel else None
+                if source_path is None or not source_path.is_file():
+                    fail(f&quot;evidence {evidence_id!r} source note is missing&quot;)
+                recorded_sha = str(evidence.get(&quot;source_sha256&quot;) or &quot;&quot;)
+                if recorded_sha:
+                    if not SHA256.fullmatch(recorded_sha):
+                        fail(f&quot;evidence {evidence_id!r} has invalid source SHA-256&quot;)
+                    evidence[&quot;source_drift&quot;] = (
+                        &quot;unchanged&quot;
+                        if sha256_bytes(source_path.read_bytes()) == recorded_sha
+                        else &quot;drifted&quot;
+                    )
+                validate_exact_route(evidence.get(&quot;route&quot;), evidence_id)
+
+        payload = dict(comparison)
+        payload[&quot;baseline&quot;] = baseline
+        payload[&quot;policy&quot;] = {
+            &quot;causation_notice&quot;: policy[&quot;causation_notice&quot;],
+            &quot;scores_allowed&quot;: False,
+            &quot;dispositions&quot;: list(policy[&quot;dispositions&quot;]),
+            &quot;evidence_lanes&quot;: list(policy[&quot;evidence_lanes&quot;]),
+        }
+        source_reading_id = str(comparison.get(&quot;source_reading_id&quot;) or &quot;&quot;)
+        if source_reading_id:
+            source_row = row_by_id.get(source_reading_id)
+            if not source_row or shelf_id != source_reading_id:
+                fail(
+                    f&quot;comparison {comparison_id!r} source_reading_id must match an &quot;
+                    &quot;existing shelf id&quot;
+                )
+            source_row[&quot;comparison&quot;] = payload
+            continue
+        if shelf_id in row_by_id:
+            fail(f&quot;virtual comparison shelf id collides with a reading: {shelf_id!r}&quot;)
+        season = str(comparison.get(&quot;season&quot;) or &quot;&quot;)
+        season_row = next((row for row in SEASONS if row[&quot;id&quot;] == season), None)
+        if not season_row:
+            fail(f&quot;comparison {comparison_id!r} has invalid season {season!r}&quot;)
+        climate = load_bone(season_row[&quot;ingress&quot;])
+        title = str(comparison.get(&quot;title&quot;) or comparison_id)
+        summary = str(comparison.get(&quot;summary&quot;) or &quot;&quot;)
+        virtual_items.append(
+            {
+                &quot;id&quot;: shelf_id,
+                &quot;kind&quot;: &quot;comparison&quot;,
+                &quot;season&quot;: season,
+                &quot;title&quot;: title,
+                &quot;date&quot;: str(comparison.get(&quot;date&quot;) or &quot;&quot;),
+                &quot;chart_kind&quot;: &quot;season&quot;,
+                &quot;ingress_sky&quot;: season_row[&quot;ingress_sky&quot;],
+                &quot;sign&quot;: &quot;&quot;,
+                &quot;eclipse&quot;: None,
+                &quot;source_name&quot;: &quot;Structured comparison registry; no separate Markdown narrative&quot;,
+                &quot;authority_label&quot;: &quot;Registry comparison state&quot;,
+                &quot;html&quot;: markdown_to_html(f&quot;# {title}\n\n{summary}&quot;),
+                &quot;summary&quot;: summary,
+                &quot;face&quot;: face_line(climate),
+                &quot;wheel&quot;: bone_to_rec(climate, f&quot;{season.title()} climate&quot;),
+                &quot;wheel_note&quot;: &quot;Season climate wheel. The comparison baseline preserves the original reading text separately.&quot;,
+                &quot;badge&quot;: comparison_badge(mode),
+                &quot;links&quot;: list(extra_links.get(shelf_id, [])),
+                &quot;author&quot;: str(registry.get(&quot;author&quot;) or &quot;Aster&quot;),
+                &quot;status&quot;: str(registry.get(&quot;status&quot;) or &quot;live_working&quot;),
+                &quot;comparison&quot;: payload,
+            }
+        )
+
+    unused = sorted(baseline_id for baseline_id, count in baseline_use.items() if count != 1)
+    if unused:
+        fail(f&quot;every comparison baseline must be used exactly once: {unused}&quot;)
+    expected_comparisons = int(contract.get(&quot;expected_comparison_count&quot;) or 0)
+    if expected_comparisons and len(comparison_ids) != expected_comparisons:
+        fail(
+            f&quot;comparison inventory drifted: expected {expected_comparisons}, &quot;
+            f&quot;got {len(comparison_ids)}&quot;
+        )
+    comparison_seasons = {
+        str(row.get(&quot;season&quot;) or &quot;&quot;) for row in contract.get(&quot;comparisons&quot;) or []
+    }
+    expected_seasons = {row[&quot;id&quot;] for row in SEASONS}
+    if comparison_seasons != expected_seasons:
+        fail(
+            &quot;comparison seasons drifted: &quot;
+            f&quot;missing={sorted(expected_seasons - comparison_seasons)} &quot;
+            f&quot;extra={sorted(comparison_seasons - expected_seasons)}&quot;
+        )
+    return virtual_items
+
+
+def prepare_transition_watches(
+    registry: dict[str, Any], readings: list[dict[str, Any]]
+) -&gt; None:
+    &quot;&quot;&quot;Validate and join immutable State Transition Watch addenda.
+
+    The chart reading remains the primary hearing.  These records are a
+    separately frozen, comparison-safe lens attached only to readings that the
+    comparison registry explicitly identifies as prospective.
+    &quot;&quot;&quot;
+
+    contract = registry.get(&quot;state_transition_contract&quot;)
+    if not isinstance(contract, dict):
+        fail(&quot;state_transition_contract is required&quot;)
+    if contract.get(&quot;schema&quot;) != STATE_TRANSITION_SCHEMA:
+        fail(f&quot;state_transition_contract must use {STATE_TRANSITION_SCHEMA}&quot;)
+    if contract.get(&quot;decision_rule&quot;) != &quot;DR-064&quot;:
+        fail(&quot;state_transition_contract must bind DR-064&quot;)
+    if contract.get(&quot;required_for&quot;) != &quot;prospective_reading_ids&quot;:
+        fail(&quot;state-transition watches must be required for prospective_reading_ids&quot;)
+    if contract.get(&quot;immutable_addenda&quot;) is not True:
+        fail(&quot;state-transition watches must be immutable addenda&quot;)
+
+    source_rel = str(contract.get(&quot;source&quot;) or &quot;&quot;)
+    source_digest = str(contract.get(&quot;source_sha256&quot;) or &quot;&quot;)
+    if not source_rel or not SHA256.fullmatch(source_digest):
+        fail(&quot;state-transition source and SHA-256 are required&quot;)
+    source_path = resolve_registry_artifact(source_rel)
+    if not source_path.is_file():
+        fail(f&quot;state-transition source is missing: {source_rel}&quot;)
+    actual_source_digest = sha256_bytes(source_path.read_bytes())
+    if actual_source_digest != source_digest:
+        fail(
+            &quot;state-transition source hash mismatch: &quot;
+            f&quot;registry={source_digest} actual={actual_source_digest}&quot;
+        )
+
+    watch_data = load_json(source_path)
+    if watch_data.get(&quot;schema&quot;) != STATE_TRANSITION_SCHEMA:
+        fail(&quot;state-transition source schema drifted&quot;)
+    if watch_data.get(&quot;decision_rule&quot;) != contract.get(&quot;decision_rule&quot;):
+        fail(&quot;state-transition source decision rule drifted&quot;)
+
+    thesis = watch_data.get(&quot;thesis&quot;) or {}
+    thesis_rel = str(contract.get(&quot;thesis_source&quot;) or &quot;&quot;)
+    thesis_digest = str(contract.get(&quot;thesis_sha256&quot;) or &quot;&quot;)
+    if thesis.get(&quot;source&quot;) != thesis_rel or thesis.get(&quot;sha256&quot;) != thesis_digest:
+        fail(&quot;state-transition thesis identity drifted between registry and source&quot;)
+    if not thesis_rel or not SHA256.fullmatch(thesis_digest):
+        fail(&quot;state-transition thesis source and SHA-256 are required&quot;)
+    thesis_path = resolve_vault_source(thesis_rel)
+    if not thesis_path.is_file():
+        fail(f&quot;state-transition thesis source is missing: {thesis_rel}&quot;)
+    if sha256_bytes(thesis_path.read_bytes()) != thesis_digest:
+        fail(&quot;state-transition thesis source hash drifted&quot;)
+    if not str(thesis.get(&quot;governing_question&quot;) or &quot;&quot;).strip():
+        fail(&quot;state-transition thesis needs its governing authority question&quot;)
+
+    policy = watch_data.get(&quot;policy&quot;) or {}
+    for flag in (&quot;chart_first&quot;, &quot;lens_not_conclusion&quot;, &quot;rhyme_is_not_cause&quot;):
+        if policy.get(flag) is not True:
+            fail(f&quot;state-transition policy must preserve {flag}&quot;)
+    if policy.get(&quot;scores_allowed&quot;) is not False:
+        fail(&quot;state-transition policy must explicitly forbid scores&quot;)
+    if set(policy.get(&quot;evidence_lanes&quot;) or []) != EVIDENCE_LANES:
+        fail(&quot;state-transition evidence-lane vocabulary drifted&quot;)
+    if set(policy.get(&quot;maturity_states&quot;) or []) != STATE_TRANSITION_MATURITY:
+        fail(&quot;state-transition maturity vocabulary drifted&quot;)
+    if set(policy.get(&quot;boundaries&quot;) or []) != STATE_TRANSITION_BOUNDARIES:
+        fail(&quot;state-transition boundary vocabulary drifted&quot;)
+    if set(policy.get(&quot;arcs&quot;) or []) != FREEDOM_250_ARCS:
+        fail(&quot;state-transition synchronization arcs drifted&quot;)
+
+    comparison_contract = registry.get(&quot;comparison_contract&quot;) or {}
+    baselines = comparison_contract.get(&quot;baselines&quot;) or []
+    expected_ids: set[str] = set()
+    baseline_by_reading: dict[str, dict[str, Any]] = {}
+    for baseline in baselines:
+        prospective_ids = list(baseline.get(&quot;prospective_reading_ids&quot;) or [])
+        component_by_id = {
+            str(component.get(&quot;reading_id&quot;) or &quot;&quot;): component
+            for component in baseline.get(&quot;components&quot;) or []
+        }
+        for reading_id in prospective_ids:
+            if reading_id in expected_ids:
+                fail(f&quot;prospective reading is repeated across baselines: {reading_id!r}&quot;)
+            component = component_by_id.get(reading_id)
+            if not component:
+                fail(
+                    f&quot;prospective reading {reading_id!r} is not in baseline &quot;
+                    f&quot;{baseline.get(&#x27;baseline_id&#x27;)!r}&quot;
+                )
+            expected_ids.add(reading_id)
+            baseline_by_reading[reading_id] = {
+                &quot;baseline_id&quot;: str(baseline.get(&quot;baseline_id&quot;) or &quot;&quot;),
+                &quot;baseline_sha256&quot;: str(component.get(&quot;sha256&quot;) or &quot;&quot;),
+            }
+
+    watches = watch_data.get(&quot;watches&quot;) or []
+    expected_count = int(contract.get(&quot;expected_watch_count&quot;) or 0)
+    if expected_count != len(expected_ids) or len(watches) != expected_count:
+        fail(
+            &quot;state-transition inventory drifted: &quot;
+            f&quot;expected={expected_count} prospective={len(expected_ids)} &quot;
+            f&quot;watches={len(watches)}&quot;
+        )
+
+    row_by_id = {row[&quot;id&quot;]: row for row in readings}
+    watch_ids: set[str] = set()
+    watched_reading_ids: set[str] = set()
+    watch_by_reading: dict[str, dict[str, Any]] = {}
+
+    def required_text(watch: dict[str, Any], field: str) -&gt; str:
+        value = str(watch.get(field) or &quot;&quot;).strip()
+        if not value:
+            fail(f&quot;state-transition watch {watch.get(&#x27;watch_id&#x27;)!r} needs {field}&quot;)
+        return value
+
+    for watch in watches:
+        if not isinstance(watch, dict) or has_score_field(watch):
+            fail(&quot;state-transition watches must be score-free objects&quot;)
+        watch_id = required_text(watch, &quot;watch_id&quot;)
+        reading_id = required_text(watch, &quot;reading_id&quot;)
+        if watch_id in watch_ids:
+            fail(f&quot;duplicate state-transition watch id: {watch_id!r}&quot;)
+        if reading_id in watched_reading_ids:
+            fail(f&quot;duplicate state-transition reading id: {reading_id!r}&quot;)
+        watch_ids.add(watch_id)
+        watched_reading_ids.add(reading_id)
+        if reading_id not in expected_ids:
+            fail(f&quot;watch {watch_id!r} points outside prospective_reading_ids&quot;)
+
+        row = row_by_id.get(reading_id)
+        if not row or row.get(&quot;kind&quot;) != &quot;pass1&quot;:
+            fail(f&quot;watch {watch_id!r} requires a chart-only reading&quot;)
+        if watch.get(&quot;season&quot;) != row.get(&quot;season&quot;):
+            fail(f&quot;watch {watch_id!r} season does not match its chart reading&quot;)
+        if not str(watch.get(&quot;chart_role&quot;) or &quot;&quot;).strip():
+            fail(f&quot;watch {watch_id!r} needs a chart_role&quot;)
+        if watch.get(&quot;immutable&quot;) is not True:
+            fail(f&quot;watch {watch_id!r} is not immutable&quot;)
+        if watch.get(&quot;boundary&quot;) not in STATE_TRANSITION_BOUNDARIES:
+            fail(f&quot;watch {watch_id!r} has an invalid capture boundary&quot;)
+
+        baseline_identity = baseline_by_reading[reading_id]
+        context = row.get(&quot;baseline_context&quot;) or {}
+        if context.get(&quot;prospective_eligible&quot;) is not True:
+            fail(f&quot;watch {watch_id!r} is not marked prospective in its live row&quot;)
+        for key in (&quot;baseline_id&quot;, &quot;baseline_sha256&quot;):
+            if watch.get(key) != baseline_identity[key] or context.get(key) != watch.get(key):
+                fail(f&quot;watch {watch_id!r} {key} identity drifted&quot;)
+
+        recorded_watch_digest = str(watch.get(&quot;watch_sha256&quot;) or &quot;&quot;)
+        if not SHA256.fullmatch(recorded_watch_digest):
+            fail(f&quot;watch {watch_id!r} has an invalid SHA-256&quot;)
+        actual_watch_digest = canonical_object_sha256(watch, {&quot;watch_sha256&quot;})
+        if actual_watch_digest != recorded_watch_digest:
+            fail(
+                f&quot;watch {watch_id!r} hash mismatch: &quot;
+                f&quot;recorded={recorded_watch_digest} actual={actual_watch_digest}&quot;
+            )
+
+        frozen_at = required_text(watch, &quot;frozen_at&quot;)
+        try:
+            frozen_date = dt.datetime.fromisoformat(frozen_at).date()
+            reading_date = dt.date.fromisoformat(str(row.get(&quot;date&quot;) or &quot;&quot;))
+        except ValueError as exc:
+            fail(f&quot;watch {watch_id!r} has an invalid date boundary: {exc}&quot;)
+        if frozen_date &gt; reading_date:
+            fail(f&quot;watch {watch_id!r} was frozen after its chart date&quot;)
+
+        for field in (
+            &quot;authority_question&quot;,
+            &quot;decision_right&quot;,
+            &quot;current_holder&quot;,
+            &quot;claimant_or_constraint&quot;,
+        ):
+            required_text(watch, field)
+        transition = watch.get(&quot;transition&quot;) or {}
+        if not str(transition.get(&quot;from&quot;) or &quot;&quot;).strip() or not str(
+            transition.get(&quot;toward&quot;) or &quot;&quot;
+        ).strip():
+            fail(f&quot;watch {watch_id!r} needs a from-to transition&quot;)
+        mechanisms = watch.get(&quot;mechanisms&quot;) or []
+        if not mechanisms or any(not str(value).strip() for value in mechanisms):
+            fail(f&quot;watch {watch_id!r} needs named transition mechanisms&quot;)
+        states = set(watch.get(&quot;states_to_distinguish&quot;) or [])
+        if not states or not states.issubset(STATE_TRANSITION_MATURITY):
+            fail(f&quot;watch {watch_id!r} uses invalid maturity states&quot;)
+        if &quot;unchanged&quot; not in states:
+            fail(f&quot;watch {watch_id!r} must preserve unchanged as a valid outcome&quot;)
+
+        poles = watch.get(&quot;poles&quot;) or {}
+        if set(poles) != {&quot;constructive&quot;, &quot;shadow&quot;, &quot;continuity&quot;} or any(
+            not str(poles.get(key) or &quot;&quot;).strip()
+            for key in (&quot;constructive&quot;, &quot;shadow&quot;, &quot;continuity&quot;)
+        ):
+            fail(f&quot;watch {watch_id!r} must hold both poles and continuity&quot;)
+        synchronization = watch.get(&quot;synchronization&quot;) or {}
+        arcs = set(synchronization.get(&quot;arcs&quot;) or [])
+        if not arcs or not arcs.issubset(FREEDOM_250_ARCS):
+            fail(f&quot;watch {watch_id!r} uses invalid synchronization arcs&quot;)
+        if not str(synchronization.get(&quot;watch_for&quot;) or &quot;&quot;).strip():
+            fail(f&quot;watch {watch_id!r} needs a synchronization test&quot;)
+        evidence_test = watch.get(&quot;evidence_test&quot;) or {}
+        if set(evidence_test.get(&quot;lanes&quot;) or []) != EVIDENCE_LANES:
+            fail(f&quot;watch {watch_id!r} evidence lanes drifted&quot;)
+        for field in (&quot;lines_up_if&quot;, &quot;miss_if&quot;, &quot;unresolved_if&quot;):
+            if not str(evidence_test.get(field) or &quot;&quot;).strip():
+                fail(f&quot;watch {watch_id!r} needs evidence test {field}&quot;)
+
+        prepared = dict(watch)
+        prepared[&quot;thesis_question&quot;] = thesis[&quot;governing_question&quot;]
+        row[&quot;transition_watch&quot;] = prepared
+        watch_by_reading[reading_id] = prepared
+
+    if watched_reading_ids != expected_ids:
+        fail(
+            &quot;state-transition coverage drifted: &quot;
+            f&quot;missing={sorted(expected_ids - watched_reading_ids)} &quot;
+            f&quot;extra={sorted(watched_reading_ids - expected_ids)}&quot;
+        )
+
+    comparisons_by_baseline = {
+        str(row.get(&quot;comparison&quot;, {}).get(&quot;baseline_id&quot;) or &quot;&quot;): row
+        for row in readings
+        if row.get(&quot;comparison&quot;)
+    }
+    for baseline in baselines:
+        baseline_id = str(baseline.get(&quot;baseline_id&quot;) or &quot;&quot;)
+        prospective_ids = set(baseline.get(&quot;prospective_reading_ids&quot;) or [])
+        comparison_row = comparisons_by_baseline.get(baseline_id)
+        if prospective_ids and not comparison_row:
+            fail(f&quot;prospective baseline {baseline_id!r} has no comparison shelf row&quot;)
+        if not comparison_row:
+            continue
+        ordered_ids = [
+            str(component.get(&quot;reading_id&quot;) or &quot;&quot;)
+            for component in baseline.get(&quot;components&quot;) or []
+            if component.get(&quot;reading_id&quot;) in prospective_ids
+        ]
+        comparison_row[&quot;comparison&quot;][&quot;transition_watches&quot;] = [
+            watch_by_reading[reading_id] for reading_id in ordered_ids
+        ]
+        expected_watch_ids = [
+            watch_by_reading[reading_id][&quot;watch_id&quot;] for reading_id in ordered_ids
+        ]
+        recorded_watch_ids = comparison_row[&quot;comparison&quot;].get(
+            &quot;state_transition_watch_ids&quot;
+        ) or []
+        if recorded_watch_ids != expected_watch_ids:
+            fail(
+                f&quot;comparison watch map drifted for {baseline_id!r}: &quot;
+                f&quot;recorded={recorded_watch_ids} expected={expected_watch_ids}&quot;
+            )
+
+
+def collect_readings() -&gt; tuple[list[dict[str, Any]], dict[str, Any], dict[str, Any]]:
+    if not REGISTRY.is_file():
+        fail(f&quot;reading registry missing: {REGISTRY}&quot;)
+    if not BONES.is_dir():
+        fail(f&quot;chart reading bones folder missing: {BONES}&quot;)
+    registry = load_json(REGISTRY)
+    bones_index = load_json(BONES / &quot;index.json&quot;)
+    bones = {row[&quot;id&quot;]: row for row in bones_index.get(&quot;charts&quot;, [])}
+    synodic_stacks = prepare_synodic_stacks(bones_index)
+    extra_links = registry.get(&quot;links&quot;) or {}
+    amendments = load_amendments()
+
+    season_by_ingress = {row[&quot;ingress&quot;]: row[&quot;id&quot;] for row in SEASONS}
+    sky_by_season = {row[&quot;id&quot;]: row[&quot;ingress_sky&quot;] for row in SEASONS}
+    readings: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for config in registry.get(&quot;readings&quot;) or []:
+        stem = str(config.get(&quot;id&quot;) or &quot;&quot;)
+        kind = str(config.get(&quot;kind&quot;) or &quot;&quot;)
+        source_rel = str(config.get(&quot;source&quot;) or &quot;&quot;)
+        if not stem or kind not in KIND_LABEL or not source_rel:
+            fail(f&quot;invalid reading registry row: {config!r}&quot;)
+        if stem in seen:
+            fail(f&quot;duplicate reading registry id: {stem}&quot;)
+        seen.add(stem)
+        source = resolve_vault_source(source_rel)
+        if not source.is_file():
+            fail(f&quot;missing registered reading: {source_rel}&quot;)
+        text = source.read_text(encoding=&quot;utf-8&quot;)
+        render_text = (
+            strip_comparison_evidence_targets(text)
+            if kind == &quot;comparison&quot;
+            else text
+        )
+        if kind == &quot;pass1&quot; and stem in amendments:
+            render_text = with_amendments(render_text, amendments[stem])
+
+        if kind == &quot;pass1&quot;:
+            bone = bones.get(stem)
+            if not bone:
+                fail(f&quot;registered chart reading has no bones index row: {stem}&quot;)
+            if stem.startswith(&quot;ingress-&quot;):
+                season = season_by_ingress.get(stem)
+                chart_kind = &quot;ingress&quot;
+            else:
+                season = GOVERNING_TO_SEASON.get(str(bone.get(&quot;governing&quot;) or &quot;&quot;))
+                chart_kind = &quot;lunation&quot;
+            if not season:
+                fail(f&quot;{stem} could not be placed in a season&quot;)
+            date = bone.get(&quot;date&quot;)
+            sign = bone.get(&quot;sign&quot;) or &quot;&quot;
+            full_bone = load_bone(stem)
+            item = {
+                &quot;id&quot;: stem,
+                &quot;kind&quot;: kind,
+                &quot;season&quot;: season,
+                &quot;title&quot;: first_heading(render_text),
+                &quot;date&quot;: date,
+                &quot;chart_kind&quot;: chart_kind,
+                &quot;ingress_sky&quot;: sky_by_season[season],
+                &quot;sign&quot;: sign,
+                &quot;eclipse&quot;: bone.get(&quot;eclipse&quot;),
+                &quot;source_name&quot;: source_rel,
+                &quot;html&quot;: markdown_to_html(render_text),
+                &quot;summary&quot;: first_paragraph(render_text),
+                &quot;face&quot;: face_line(full_bone),
+                &quot;wheel&quot;: bone_to_rec(full_bone, first_heading(text)),
+                &quot;wheel_note&quot;: &quot;Washington, D.C. · Whole Sign · computed from the registered chart facts.&quot;,
+                &quot;synodic_stack&quot;: synodic_stacks[stem],
+            }
+        else:
+            season = str(config.get(&quot;season&quot;) or &quot;&quot;)
+            date = str(config.get(&quot;date&quot;) or &quot;&quot;)
+            if season not in sky_by_season or not date:
+                fail(f&quot;registered {kind} needs a valid season and date: {stem}&quot;)
+            climate_id = next(row[&quot;ingress&quot;] for row in SEASONS if row[&quot;id&quot;] == season)
+            climate = load_bone(climate_id)
+            item = {
+                &quot;id&quot;: stem,
+                &quot;kind&quot;: kind,
+                &quot;season&quot;: season,
+                &quot;title&quot;: first_heading(render_text),
+                &quot;date&quot;: date,
+                &quot;chart_kind&quot;: &quot;season&quot;,
+                &quot;ingress_sky&quot;: sky_by_season[season],
+                &quot;sign&quot;: &quot;&quot;,
+                &quot;eclipse&quot;: None,
+                &quot;source_name&quot;: source_rel,
+                &quot;html&quot;: markdown_to_html(render_text),
+                &quot;summary&quot;: first_paragraph(render_text),
+                &quot;face&quot;: face_line(climate),
+                &quot;wheel&quot;: bone_to_rec(climate, f&quot;{season.title()} climate&quot;),
+                &quot;wheel_note&quot;: &quot;Season climate wheel. Individual chart readings carry their own weather wheels.&quot;,
+            }
+        item[&quot;badge&quot;] = kind_label_for(kind, date)
+        item[&quot;links&quot;] = auto_links(item) + list(extra_links.get(stem, []))
+        item[&quot;author&quot;] = str(config.get(&quot;author&quot;) or registry.get(&quot;author&quot;) or &quot;Aster&quot;)
+        item[&quot;status&quot;] = str(config.get(&quot;status&quot;) or registry.get(&quot;status&quot;) or &quot;live_working&quot;)
+        readings.append(item)
+
+    expected_pass1 = {row[&quot;id&quot;] for row in bones_index.get(&quot;charts&quot;, [])}
+    got_pass1 = {row[&quot;id&quot;] for row in readings if row[&quot;kind&quot;] == &quot;pass1&quot;}
+    if got_pass1 != expected_pass1:
+        fail(
+            &quot;Pass 1 coverage drifted: &quot;
+            f&quot;missing={sorted(expected_pass1 - got_pass1)} &quot;
+            f&quot;extra={sorted(got_pass1 - expected_pass1)}&quot;
+        )
+    virtual_comparisons = prepare_comparison_items(registry, readings)
+    readings.extend(virtual_comparisons)
+    if SHELF_HAS_WATCHES:
+        prepare_transition_watches(registry, readings)
+    contract = registry.get(&quot;comparison_contract&quot;) or {}
+    expected_shelf = int(contract.get(&quot;expected_shelf_count&quot;) or 34)
+    if len(readings) != expected_shelf:
+        fail(f&quot;reading shelf coverage drifted: expected {expected_shelf}, got {len(readings)}&quot;)
+    return readings, bones_index, registry
+
+
+def collect_all_shelves() -&gt; tuple[list[dict[str, Any]], dict[str, Any], dict[str, Any]]:
+    &quot;&quot;&quot;The 2026 shelf, then the 2025 retrospective shelf (DR-084), each validated alone.&quot;&quot;&quot;
+    global REGISTRY, BONES, SYNODIC_STACKS, SEASONS, GOVERNING_TO_SEASON, SHELF_HAS_WATCHES
+    readings, bones_index, registry = collect_readings()
+    if not REGISTRY_2025.is_file():
+        return readings, bones_index, registry
+    saved = (REGISTRY, BONES, SYNODIC_STACKS, SEASONS, GOVERNING_TO_SEASON, SHELF_HAS_WATCHES)
+    REGISTRY, BONES, SYNODIC_STACKS = REGISTRY_2025, BONES_2025, SYNODIC_STACKS_2025
+    SEASONS, GOVERNING_TO_SEASON, SHELF_HAS_WATCHES = SEASONS_2025, GOVERNING_TO_SEASON_2025, False
+    try:
+        shelf_2025, _bones_2025, _registry_2025 = collect_readings()
+    finally:
+        (REGISTRY, BONES, SYNODIC_STACKS, SEASONS, GOVERNING_TO_SEASON, SHELF_HAS_WATCHES) = saved
+    clash = {row[&quot;id&quot;] for row in readings} &amp; {row[&quot;id&quot;] for row in shelf_2025}
+    if clash:
+        fail(f&quot;2025 shelf ids collide with the 2026 shelf: {sorted(clash)}&quot;)
+    for row in shelf_2025:
+        row[&quot;shelf&quot;] = &quot;2025-retrospective&quot;
+    pass1_ids = {row[&quot;id&quot;] for row in readings + shelf_2025 if row[&quot;kind&quot;] == &quot;pass1&quot;}
+    stray = set(load_amendments()) - pass1_ids
+    if stray:
+        fail(f&quot;amendment ledger names readings that are not on any shelf: {sorted(stray)}&quot;)
+    return readings + shelf_2025, bones_index, registry
+
+
+def js_safe_json(value: Any) -&gt; str:
+    return (
+        json.dumps(value, ensure_ascii=False, indent=2)
+        .replace(&quot;&amp;&quot;, &quot;\\u0026&quot;)
+        .replace(&quot;&lt;&quot;, &quot;\\u003c&quot;)
+        .replace(&quot;&gt;&quot;, &quot;\\u003e&quot;)
+        .replace(&quot;\u2028&quot;, &quot;\\u2028&quot;)
+        .replace(&quot;\u2029&quot;, &quot;\\u2029&quot;)
+    )
+
+
+HTML_TEMPLATE = r&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,viewport-fit=cover&quot;&gt;
+&lt;meta name=&quot;color-scheme&quot; content=&quot;light dark&quot;&gt;
+&lt;title&gt;Chart Readings — Freedom 250 Observatory&lt;/title&gt;
+&lt;style&gt;
+:root{
+  --rd-bg:#f4f0e6;--rd-panel:#fbf8f1;--rd-card:#fffdf8;
+  --rd-ink:#28251f;--rd-muted:#736b5d;--rd-faint:#9b9282;
+  --rd-line:#d8d0c1;--rd-accent:#8a542f;--rd-accent-soft:#efe1d2;
+  --rd-focus:#2f6d8a;--rd-shadow:rgba(43,35,24,.16);
+  --rd-weave:#6b3a6a;--rd-census:#2f6d5a;--rd-transition:#315f68;
+  --rd-good:#356b4d;--rd-warn:#916c22;--rd-bad:#9b433c;--rd-open:#315f7b;
+  color-scheme:light;
+}
+html[data-theme=&quot;dark&quot;]{
+  --rd-bg:#16140f;--rd-panel:#1d1a13;--rd-card:#242017;
+  --rd-ink:#e6dfd0;--rd-muted:#b9b09c;--rd-faint:#857d6c;
+  --rd-line:#3a3426;--rd-accent:#d99570;--rd-accent-soft:#35271d;
+  --rd-focus:#70b7d4;--rd-shadow:rgba(0,0,0,.4);
+  --rd-weave:#d4a3d0;--rd-census:#7dbea8;--rd-transition:#91c5ca;
+  --rd-good:#82c79d;--rd-warn:#e0bd70;--rd-bad:#e28c82;--rd-open:#78b9d4;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--rd-bg);color:var(--rd-ink)}
+body{font-family:Georgia,&quot;Iowan Old Style&quot;,&quot;Times New Roman&quot;,serif}
+button,input{font:inherit}
+button:focus-visible,input:focus-visible{outline:3px solid color-mix(in srgb,var(--rd-focus) 48%,transparent);outline-offset:2px}
+.shell{
+  display:grid;grid-template-columns:280px minmax(0,1fr);grid-template-rows:minmax(0,1fr);
+  height:100%;min-height:0
+}
+.rail{
+  min-width:0;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px 12px 32px;
+  background:var(--rd-panel);border-right:1px solid var(--rd-line)
+}
+.brand{padding:2px 6px 12px}
+.brand h1{font:700 22px/1.12 Georgia,serif;margin:0}
+.brand span{display:block;margin-top:5px;color:var(--rd-muted);font:italic 11px/1.4 Georgia,serif}
+.search{position:relative;margin:0 4px 14px}
+.search label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.search input{
+  width:100%;border:1px solid var(--rd-line);border-radius:9px;background:var(--rd-card);
+  color:var(--rd-ink);padding:8px 10px 8px 30px;font:12px/1.3 Inter,ui-sans-serif,sans-serif
+}
+.search::before{content:&quot;⌕&quot;;position:absolute;left:9px;top:5px;color:var(--rd-faint);font-size:17px}
+.season{margin:0 0 14px}
+.season h2{
+  margin:0 6px 2px;color:var(--rd-accent);font:700 10px/1.2 Inter,ui-sans-serif,sans-serif;
+  letter-spacing:.15em;text-transform:uppercase
+}
+.season .win{margin:0 6px 6px;color:var(--rd-faint);font:italic 11px/1.35 Georgia,serif}
+.item{
+  display:block;width:100%;border:1px solid transparent;border-radius:8px;background:transparent;
+  color:var(--rd-ink);text-align:left;padding:7px 8px;cursor:pointer;margin:0 0 3px
+}
+.item:hover{background:var(--rd-card);border-color:var(--rd-line)}
+.item.active{background:var(--rd-accent-soft);border-color:color-mix(in srgb,var(--rd-accent) 38%,var(--rd-line));box-shadow:inset 3px 0 0 var(--rd-accent)}
+.item[hidden]{display:none}
+.item .name{display:block;font:700 12.5px/1.3 Inter,ui-sans-serif,sans-serif}
+.item .meta{display:block;margin-top:2px;color:var(--rd-muted);font:11px/1.3 Inter,ui-sans-serif,sans-serif}
+.main{min-width:0;min-height:0;display:flex;flex-direction:column;height:100%;overflow:hidden}
+.top{
+  flex:0 0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px 14px;padding:10px 22px 10px;
+  background:var(--rd-panel);border-bottom:1px solid var(--rd-line)
+}
+.titles{min-width:0;flex:1}
+.kicker{color:var(--rd-accent);font:700 10px/1.2 Inter,ui-sans-serif,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.titles h2{margin:3px 0 0;font:700 20px/1.2 Georgia,serif}
+.note{margin:4px 0 0;color:var(--rd-muted);font:italic 12px/1.35 Georgia,serif}
+.actions{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{
+  border:1px solid var(--rd-line);border-radius:999px;background:var(--rd-card);color:var(--rd-ink);
+  padding:5px 10px;font:600 11px/1.2 Inter,ui-sans-serif,sans-serif;cursor:pointer
+}
+.chip:hover{border-color:var(--rd-accent);color:var(--rd-accent)}
+.chip.weave{border-color:color-mix(in srgb,var(--rd-weave) 45%,var(--rd-line));color:var(--rd-weave)}
+.stage{
+  flex:1 1 auto;min-width:0;min-height:0;overflow-y:scroll;overscroll-behavior:contain;
+  padding:8px 0 56px;-webkit-overflow-scrolling:touch
+}
+.wheel-wrap{
+  max-width:46rem;margin:8px auto 0;padding:0 18px 6px
+}
+.wheel-wrap[hidden]{display:none}
+.wheel-card{
+  border:1px solid var(--rd-line);border-radius:12px;background:var(--rd-card);padding:8px 10px 12px
+}
+.wheel-card .wlabel{
+  margin:0 0 4px;text-align:center;color:var(--rd-muted);font:italic 12px/1.35 Georgia,serif
+}
+#wheelbox{max-width:520px;margin:0 auto}
+#wheelbox svg{width:100%;height:auto;display:block}
+.article{
+  max-width:46rem;margin:0 auto;padding:10px 26px 8px;font-size:16.5px;line-height:1.62
+}
+.article h1{font-size:1.55rem;line-height:1.2;margin:0 0 12px}
+.article h2{font-size:1.18rem;margin:1.6em 0 .45em;color:var(--rd-accent)}
+.article h3{font-size:1.02rem;margin:1.35em 0 .35em}
+.article h4{font-size:.95rem;margin:1.2em 0 .3em;letter-spacing:.02em}
+.article p{margin:0 0 .9em}
+.article ul,.article ol{margin:.2em 0 1em;padding-left:1.3em}
+.article li{margin:.18em 0}
+.article blockquote{
+  margin:0 0 1em;padding:.15em 0 .15em 1em;border-left:3px solid var(--rd-accent);
+  color:var(--rd-muted);font-style:italic
+}
+.article hr{border:0;border-top:1px solid var(--rd-line);margin:1.4em 0}
+.article table{width:100%;border-collapse:collapse;margin:0 0 1.1em;font-size:.92em}
+.article th,.article td{border:1px solid var(--rd-line);padding:5px 8px;text-align:left;vertical-align:top}
+.article th{background:var(--rd-accent-soft);font:700 12px/1.3 Inter,ui-sans-serif,sans-serif}
+.article code{font:12.5px/1.4 ui-monospace,Menlo,monospace}
+.article pre{
+  overflow:auto;padding:10px 12px;border:1px solid var(--rd-line);border-radius:8px;
+  background:var(--rd-card);font-size:12.5px
+}
+.article a,.md-ref{color:var(--rd-accent)}
+.technical-proof{
+  margin:1.45em 0 .8em;border:1px solid var(--rd-line);border-radius:10px;background:var(--rd-card)
+}
+.technical-proof summary{
+  cursor:pointer;padding:10px 12px;color:var(--rd-accent);
+  font:700 12px/1.35 Inter,ui-sans-serif,sans-serif;letter-spacing:.02em
+}
+.technical-proof[open] summary{border-bottom:1px solid var(--rd-line)}
+.technical-proof &gt; :not(summary){margin-left:14px;margin-right:14px}
+.technical-proof &gt; :last-child{margin-bottom:14px}
+.pager{display:flex;justify-content:space-between;gap:12px;max-width:46rem;margin:18px auto 0;padding:0 26px}
+.pager button{
+  border:1px solid var(--rd-line);border-radius:8px;background:var(--rd-card);color:var(--rd-ink);
+  padding:8px 12px;cursor:pointer;font:12px/1.3 Inter,ui-sans-serif,sans-serif
+}
+.pager button[disabled]{opacity:.4;cursor:default}
+.empty{margin:40px 26px;color:var(--rd-muted);text-align:center}
+.authority{
+  max-width:46rem;margin:0 auto;padding:0 26px 8px;color:var(--rd-faint);
+  font:italic 12px/1.45 Georgia,serif
+}
+.synodic-stack{
+  max-width:52rem;margin:10px auto 22px;padding:0 18px;font-family:Inter,ui-sans-serif,sans-serif
+}
+.synodic-stack[hidden]{display:none}
+.synodic-card{
+  overflow:hidden;border:1px solid color-mix(in srgb,var(--rd-accent) 34%,var(--rd-line));
+  border-radius:12px;background:var(--rd-card)
+}
+.synodic-card&gt;summary{
+  display:flex;align-items:center;gap:9px;cursor:pointer;padding:11px 13px;
+  color:var(--rd-accent);font:750 12px/1.35 Inter,sans-serif
+}
+.synodic-card[open]&gt;summary{border-bottom:1px solid var(--rd-line)}
+.synodic-summary-meta{margin-left:auto;color:var(--rd-muted);font-weight:600;font-size:10.5px}
+.synodic-body{padding:13px}
+.synodic-notice{
+  margin:0 0 12px;padding:8px 10px;border-left:3px solid var(--rd-accent);
+  background:var(--rd-accent-soft);color:var(--rd-muted);font:italic 12px/1.45 Georgia,serif
+}
+.synodic-lane{margin:0 0 14px}
+.synodic-lane h4{
+  margin:0 0 6px;color:var(--rd-accent);font:800 9.5px/1.2 Inter,sans-serif;
+  letter-spacing:.11em;text-transform:uppercase
+}
+.synodic-lane-note{margin:0 0 7px;color:var(--rd-faint);font:11px/1.4 Georgia,serif}
+.synodic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.synodic-item{
+  min-width:0;padding:9px 10px;border:1px solid var(--rd-line);border-radius:8px;
+  background:var(--rd-panel)
+}
+button.synodic-item{color:var(--rd-ink);text-align:left;cursor:pointer}
+button.synodic-item:hover{border-color:var(--rd-accent)}
+.synodic-item strong{display:block;font:700 11.5px/1.3 Inter,sans-serif}
+.synodic-item span{display:block;margin-top:3px;color:var(--rd-muted);font:11px/1.35 Georgia,serif}
+.synodic-reasons{display:flex!important;flex-wrap:wrap;gap:4px;margin-top:6px!important}
+.synodic-reasons em{
+  border:1px solid var(--rd-line);border-radius:999px;padding:2px 6px;color:var(--rd-accent);
+  font:650 9px/1.2 Inter,sans-serif;font-style:normal
+}
+.synodic-empty{margin:0;color:var(--rd-faint);font:italic 11.5px/1.4 Georgia,serif}
+.synodic-open{
+  border:1px solid var(--rd-line);border-radius:999px;background:var(--rd-card);color:var(--rd-accent);
+  padding:6px 10px;cursor:pointer;font:700 10.5px/1.2 Inter,sans-serif
+}
+.synodic-proof{margin-top:12px;border:1px solid var(--rd-line);border-radius:9px;background:var(--rd-panel)}
+.synodic-proof&gt;summary{cursor:pointer;padding:9px 10px;color:var(--rd-muted);font:700 10.5px/1.3 Inter,sans-serif}
+.synodic-proof[open]&gt;summary{border-bottom:1px solid var(--rd-line)}
+.synodic-table-wrap{overflow-x:auto;padding:9px}
+.synodic-table{width:100%;border-collapse:collapse;font:10.5px/1.35 Inter,sans-serif}
+.synodic-table th,.synodic-table td{padding:5px 6px;border-bottom:1px solid var(--rd-line);text-align:left;white-space:nowrap}
+.synodic-table th{color:var(--rd-faint);font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.synodic-table tr:last-child td{border-bottom:0}
+.transition-watch{
+  max-width:52rem;margin:14px auto 22px;padding:0 18px;font-family:Inter,ui-sans-serif,sans-serif
+}
+.transition-watch[hidden]{display:none}
+.transition-card{
+  overflow:hidden;border:1px solid color-mix(in srgb,var(--rd-transition) 42%,var(--rd-line));
+  border-radius:14px;background:linear-gradient(145deg,color-mix(in srgb,var(--rd-card) 95%,var(--rd-transition)),var(--rd-card));
+  box-shadow:0 9px 26px color-mix(in srgb,var(--rd-shadow) 45%,transparent)
+}
+.transition-head{padding:16px 18px 14px;border-bottom:1px solid var(--rd-line)}
+.transition-eyebrow{
+  margin:0;color:var(--rd-transition);font:800 10px/1.25 Inter,sans-serif;
+  letter-spacing:.14em;text-transform:uppercase
+}
+.transition-boundary{margin:5px 0 0;color:var(--rd-faint);font:italic 11px/1.4 Georgia,serif}
+.transition-question{margin:12px 0 0;color:var(--rd-ink);font:700 20px/1.33 Georgia,serif}
+.transition-body{padding:15px 18px 17px}
+.transition-label{
+  display:block;margin:0 0 4px;color:var(--rd-transition);font:800 9.5px/1.2 Inter,sans-serif;
+  letter-spacing:.11em;text-transform:uppercase
+}
+.transition-body p{margin:0;color:var(--rd-muted);font:13px/1.5 Georgia,serif}
+.transition-authority{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.transition-block{min-width:0;padding:10px 11px;border:1px solid var(--rd-line);border-radius:9px;background:var(--rd-panel)}
+.transition-flow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:stretch;margin:12px 0}
+.transition-state{padding:11px;border:1px solid var(--rd-line);border-radius:10px;background:var(--rd-card)}
+.transition-state p{color:var(--rd-ink)}
+.transition-arrow{align-self:center;color:var(--rd-transition);font:700 22px/1 Inter,sans-serif}
+.transition-chipset{margin:12px 0 0}
+.transition-chip-row{display:flex;flex-wrap:wrap;gap:6px}
+.transition-chip{
+  display:inline-flex;border:1px solid color-mix(in srgb,var(--rd-transition) 28%,var(--rd-line));
+  border-radius:999px;padding:4px 8px;background:var(--rd-card);color:var(--rd-muted);
+  font:650 10.5px/1.25 Inter,sans-serif
+}
+.transition-chip.state{border-style:dashed;color:var(--rd-transition)}
+.transition-poles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.transition-pole{padding:10px 11px;border:1px solid var(--rd-line);border-radius:9px;background:var(--rd-panel)}
+.transition-pole.constructive{border-top:3px solid var(--rd-good)}
+.transition-pole.shadow{border-top:3px solid var(--rd-bad)}
+.transition-pole.continuity{border-top:3px solid var(--rd-faint)}
+.transition-sync{margin-top:13px;padding:11px 12px;border-left:3px solid var(--rd-transition);background:color-mix(in srgb,var(--rd-transition) 7%,transparent)}
+.transition-sync .transition-chip-row{margin:7px 0}
+.transition-evidence{margin-top:13px;border:1px solid var(--rd-line);border-radius:9px;background:var(--rd-card)}
+.transition-evidence&gt;summary{cursor:pointer;padding:10px 12px;color:var(--rd-transition);font:750 11.5px/1.35 Inter,sans-serif}
+.transition-evidence[open]&gt;summary{border-bottom:1px solid var(--rd-line)}
+.transition-test{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:11px}
+.transition-test&gt;div{padding:9px;border:1px solid var(--rd-line);border-radius:8px;background:var(--rd-panel)}
+.transition-meta{margin-top:11px!important;color:var(--rd-faint)!important;font:10px/1.4 ui-monospace,Menlo,monospace!important;overflow-wrap:anywhere}
+.comparison{
+  max-width:58rem;margin:8px auto 16px;padding:0 18px;font-family:Inter,ui-sans-serif,sans-serif
+}
+.comparison[hidden]{display:none}
+.comparison-card{
+  border:1px solid color-mix(in srgb,var(--rd-weave) 35%,var(--rd-line));border-radius:14px;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--rd-card) 94%,var(--rd-weave)),var(--rd-card));
+  box-shadow:0 10px 30px color-mix(in srgb,var(--rd-shadow) 55%,transparent);overflow:hidden
+}
+.comparison-head{padding:16px 18px 13px;border-bottom:1px solid var(--rd-line)}
+.comparison-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+.status-pill{
+  display:inline-flex;align-items:center;border:1px solid var(--rd-line);border-radius:999px;
+  padding:4px 8px;background:var(--rd-panel);color:var(--rd-muted);font:700 10px/1.2 Inter,sans-serif;
+  letter-spacing:.04em;text-transform:uppercase
+}
+.status-pill.open{border-color:color-mix(in srgb,var(--rd-open) 55%,var(--rd-line));color:var(--rd-open)}
+.status-pill.closed{border-color:color-mix(in srgb,var(--rd-good) 55%,var(--rd-line));color:var(--rd-good)}
+.comparison-head h3{margin:0;color:var(--rd-ink);font:700 18px/1.25 Georgia,serif}
+.comparison-summary{margin:6px 0 0;color:var(--rd-muted);font:13px/1.48 Georgia,serif}
+.causation{
+  margin:12px 0 0;padding:8px 10px;border-left:3px solid var(--rd-weave);
+  background:color-mix(in srgb,var(--rd-weave) 7%,transparent);color:var(--rd-ink);font:italic 12px/1.45 Georgia,serif
+}
+.transition-map{margin:13px 0 0;border:1px solid color-mix(in srgb,var(--rd-transition) 36%,var(--rd-line));border-radius:9px;background:var(--rd-card)}
+.transition-map[hidden]{display:none}
+.transition-map&gt;summary{cursor:pointer;padding:9px 10px;color:var(--rd-transition);font:750 11.5px/1.35 Inter,sans-serif}
+.transition-map[open]&gt;summary{border-bottom:1px solid var(--rd-line)}
+.transition-map-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:10px}
+.transition-map-item{min-width:0;padding:9px 10px;border:1px solid var(--rd-line);border-radius:8px;background:var(--rd-panel);color:var(--rd-ink);text-align:left;cursor:pointer}
+.transition-map-item:hover{border-color:var(--rd-transition)}
+.transition-map-item strong{display:block;font:700 11px/1.3 Inter,sans-serif}
+.transition-map-item span{display:block;margin-top:4px;color:var(--rd-muted);font:11px/1.35 Georgia,serif}
+.comparison-proof&gt;summary{
+  cursor:pointer;padding:12px 18px;color:var(--rd-weave);background:var(--rd-panel);
+  font:700 12px/1.35 Inter,ui-sans-serif,sans-serif;letter-spacing:.02em
+}
+.comparison-proof[open]&gt;summary{border-bottom:1px solid var(--rd-line)}
+.baseline-grid{display:grid;grid-template-columns:minmax(190px, .65fr) minmax(0,1.7fr);min-height:330px}
+.baseline-list{padding:14px;border-right:1px solid var(--rd-line);background:color-mix(in srgb,var(--rd-panel) 78%,transparent)}
+.baseline-list h4,.findings h4{margin:0 0 9px;color:var(--rd-muted);font:700 10px/1.2 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.baseline-item{
+  display:block;width:100%;margin:0 0 6px;padding:8px 9px;border:1px solid var(--rd-line);border-radius:8px;
+  background:var(--rd-card);color:var(--rd-ink);text-align:left;cursor:pointer
+}
+.baseline-item.active{border-color:var(--rd-weave);box-shadow:inset 3px 0 0 var(--rd-weave)}
+.baseline-item .btitle{display:block;font:700 11.5px/1.3 Inter,sans-serif}
+.baseline-item .bmeta{display:block;margin-top:3px;color:var(--rd-muted);font:10px/1.25 ui-monospace,Menlo,monospace}
+.drift{color:var(--rd-good)}.drift.drifted{color:var(--rd-warn)}
+.snapshot{min-width:0;padding:14px 16px 16px}
+.snapshot-tools{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.segmented{display:inline-flex;border:1px solid var(--rd-line);border-radius:9px;overflow:hidden}
+.segmented button{border:0;border-right:1px solid var(--rd-line);padding:6px 9px;background:var(--rd-panel);color:var(--rd-muted);cursor:pointer;font:700 10.5px/1.2 Inter,sans-serif}
+.segmented button:last-child{border-right:0}.segmented button.active{background:var(--rd-weave);color:#fff}
+.snapshot-meta{color:var(--rd-faint);font:10px/1.35 ui-monospace,Menlo,monospace;overflow-wrap:anywhere}
+.snapshot-article{max-height:390px;overflow:auto;padding:2px 8px 0 0;font:14px/1.55 Georgia,serif}
+.snapshot-article h1{font-size:1.25rem}.snapshot-article h2{font-size:1.05rem;color:var(--rd-accent)}
+.snapshot-article .technical-proof{font-size:13px}
+.findings{padding:14px 18px 18px;border-top:1px solid var(--rd-line)}
+.finding{padding:11px 12px;margin:0 0 9px;border:1px solid var(--rd-line);border-left:4px solid var(--rd-faint);border-radius:9px;background:var(--rd-panel)}
+.finding[data-disposition=&quot;Lines up&quot;]{border-left-color:var(--rd-good)}
+.finding[data-disposition=&quot;Partial&quot;]{border-left-color:var(--rd-warn)}
+.finding[data-disposition=&quot;Miss&quot;]{border-left-color:var(--rd-bad)}
+.finding[data-disposition=&quot;Unresolved&quot;]{border-left-color:var(--rd-open)}
+.finding-top{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}.finding h5{margin:0;font:700 13px/1.35 Inter,sans-serif}
+.finding p{margin:6px 0 0;color:var(--rd-muted);font:12.5px/1.45 Georgia,serif}
+.evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:10px}
+.evidence-lane{min-width:0;padding:8px;border:1px solid var(--rd-line);border-radius:8px;background:var(--rd-card)}
+.evidence-lane h6{margin:0 0 6px;color:var(--rd-muted);font:700 9.5px/1.2 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.evidence-lane .chip{display:block;width:100%;margin:0 0 5px;text-align:left;white-space:normal;font-size:10px}
+.evidence-lane .chip.drifted{border-color:var(--rd-warn);color:var(--rd-warn)}
+.evidence-empty{margin:0;color:var(--rd-faint);font:italic 10.5px/1.35 Georgia,serif}
+.chip.active{border-color:var(--rd-weave);background:color-mix(in srgb,var(--rd-weave) 10%,var(--rd-card));color:var(--rd-weave)}
+.comparison-empty{margin:0;padding:10px;border:1px dashed var(--rd-line);border-radius:8px;color:var(--rd-muted);font:italic 12px/1.45 Georgia,serif}
+.menu{display:none;border:1px solid var(--rd-line);border-radius:7px;background:var(--rd-card);padding:6px 9px;cursor:pointer}
+@media(max-width:820px){
+  .shell{grid-template-columns:1fr}
+  .top{gap:8px 10px;padding:8px 12px 9px}
+  .titles{flex:1 1 calc(100% - 54px);min-width:0}
+  .actions{
+    flex:1 0 100%;width:100%;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;
+    padding:1px 0 2px;-webkit-overflow-scrolling:touch
+  }
+  .chip{flex:0 0 auto;white-space:nowrap}
+  .rail{display:none}
+  body.rail-open .rail{
+    display:block;position:fixed;inset:0 auto 0 0;width:min(340px,90vw);z-index:20;
+    box-shadow:12px 0 34px var(--rd-shadow)
+  }
+  .menu{display:inline-grid}
+  .comparison{padding:0 10px}.baseline-grid{grid-template-columns:1fr}.baseline-list{border-right:0;border-bottom:1px solid var(--rd-line)}
+  .baseline-list h4{margin-bottom:6px}.baseline-item{display:inline-block;width:auto;max-width:100%;margin-right:4px;vertical-align:top}
+  .evidence{grid-template-columns:1fr}
+  .transition-watch{padding:0 10px}.transition-authority,.transition-poles,.transition-test,.transition-map-list{grid-template-columns:1fr}
+  .synodic-stack{padding:0 10px}.synodic-grid{grid-template-columns:1fr}
+  .transition-flow{grid-template-columns:1fr}.transition-arrow{justify-self:center;transform:rotate(90deg)}
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;shell&quot;&gt;
+  &lt;aside class=&quot;rail&quot; id=&quot;rail&quot; aria-label=&quot;Readings&quot;&gt;
+    &lt;div class=&quot;brand&quot;&gt;
+      &lt;h1&gt;Chart Readings&lt;/h1&gt;
+      &lt;span&gt;Aster-authored readings, record censuses, and storyline comparisons. Live working shelf — edit as we go.&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;search&quot;&gt;
+      &lt;label for=&quot;q&quot;&gt;Filter readings&lt;/label&gt;
+      &lt;input id=&quot;q&quot; type=&quot;search&quot; placeholder=&quot;Find a chart or season…&quot; autocomplete=&quot;off&quot;&gt;
+    &lt;/div&gt;
+    &lt;nav id=&quot;nav&quot;&gt;&lt;/nav&gt;
+  &lt;/aside&gt;
+  &lt;main class=&quot;main&quot;&gt;
+    &lt;header class=&quot;top&quot;&gt;
+      &lt;button class=&quot;menu&quot; id=&quot;menu&quot; type=&quot;button&quot; data-action=&quot;toggle-menu&quot; aria-label=&quot;Open readings&quot; aria-controls=&quot;rail&quot; aria-expanded=&quot;false&quot;&gt;☰&lt;/button&gt;
+      &lt;div class=&quot;titles&quot;&gt;
+        &lt;div class=&quot;kicker&quot; id=&quot;kicker&quot;&gt;Sky &amp;amp; Charts / Chart Library&lt;/div&gt;
+        &lt;h2 id=&quot;title&quot;&gt;Chart Readings&lt;/h2&gt;
+        &lt;p class=&quot;note&quot; id=&quot;note&quot;&gt;Pick a climate, a lunation, a record census, or a storyline comparison.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;actions&quot; id=&quot;actions&quot;&gt;&lt;/div&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;stage&quot; id=&quot;stage&quot;&gt;
+      &lt;div class=&quot;wheel-wrap&quot; id=&quot;wheelwrap&quot; hidden&gt;
+        &lt;div class=&quot;wheel-card&quot;&gt;
+          &lt;p class=&quot;wlabel&quot; id=&quot;wheellabel&quot;&gt;&lt;/p&gt;
+          &lt;div id=&quot;wheelbox&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;authority&quot; id=&quot;authority&quot;&gt;&lt;/p&gt;
+      &lt;article class=&quot;article&quot; id=&quot;article&quot;&gt;&lt;/article&gt;
+      &lt;section class=&quot;synodic-stack&quot; id=&quot;synodicStack&quot; aria-label=&quot;Synodic Stack&quot; hidden&gt;&lt;/section&gt;
+      &lt;section class=&quot;transition-watch&quot; id=&quot;transitionWatch&quot; aria-label=&quot;State Transition Watch&quot; hidden&gt;&lt;/section&gt;
+      &lt;section class=&quot;comparison&quot; id=&quot;comparison&quot; aria-label=&quot;Comparison workspace&quot; hidden&gt;
+        &lt;div class=&quot;comparison-card&quot;&gt;
+          &lt;div class=&quot;comparison-head&quot;&gt;
+            &lt;div class=&quot;comparison-badges&quot; id=&quot;comparisonBadges&quot;&gt;&lt;/div&gt;
+            &lt;h3 id=&quot;comparisonTitle&quot;&gt;&lt;/h3&gt;
+            &lt;p class=&quot;comparison-summary&quot; id=&quot;comparisonSummary&quot;&gt;&lt;/p&gt;
+            &lt;p class=&quot;causation&quot; id=&quot;causation&quot;&gt;&lt;/p&gt;
+            &lt;details class=&quot;transition-map&quot; id=&quot;transitionMap&quot; hidden&gt;
+              &lt;summary id=&quot;transitionMapSummary&quot;&gt;State Transition Watch map&lt;/summary&gt;
+              &lt;div class=&quot;transition-map-list&quot; id=&quot;transitionMapList&quot;&gt;&lt;/div&gt;
+            &lt;/details&gt;
+          &lt;/div&gt;
+          &lt;details class=&quot;comparison-proof&quot;&gt;
+            &lt;summary&gt;Evidence joins &amp;amp; frozen baseline&lt;/summary&gt;
+            &lt;div class=&quot;baseline-grid&quot;&gt;
+              &lt;div class=&quot;baseline-list&quot;&gt;
+                &lt;h4&gt;Frozen season baseline&lt;/h4&gt;
+                &lt;div id=&quot;baselineList&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;snapshot&quot;&gt;
+                &lt;div class=&quot;snapshot-tools&quot;&gt;
+                  &lt;div class=&quot;segmented&quot; aria-label=&quot;Reading version&quot;&gt;
+                    &lt;button type=&quot;button&quot; data-action=&quot;snapshot-mode&quot; data-mode=&quot;baseline&quot;&gt;Frozen baseline&lt;/button&gt;
+                    &lt;button type=&quot;button&quot; data-action=&quot;snapshot-mode&quot; data-mode=&quot;current&quot;&gt;Current live reading&lt;/button&gt;
+                  &lt;/div&gt;
+                  &lt;span class=&quot;snapshot-meta&quot; id=&quot;snapshotMeta&quot;&gt;&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;snapshot-article&quot; id=&quot;snapshotArticle&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;findings&quot;&gt;
+              &lt;h4&gt;Evidence-backed findings&lt;/h4&gt;
+              &lt;div id=&quot;findings&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/details&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;div class=&quot;pager&quot;&gt;
+        &lt;button type=&quot;button&quot; id=&quot;prev&quot; data-action=&quot;step&quot; data-delta=&quot;-1&quot;&gt;← Previous&lt;/button&gt;
+        &lt;button type=&quot;button&quot; id=&quot;next&quot; data-action=&quot;step&quot; data-delta=&quot;1&quot;&gt;Next →&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt;
+&lt;script id=&quot;f250-chart-readings&quot; type=&quot;application/json&quot;&gt;__DATA__&lt;/script&gt;
+&lt;script&gt;
+__WHEEL__
+&lt;/script&gt;
+&lt;script&gt;
+(function(){
+  &quot;use strict&quot;;
+  var DATA=JSON.parse(document.getElementById(&quot;f250-chart-readings&quot;).textContent);
+  var readings=DATA.readings;
+  var seasons=DATA.seasons;
+  var byId=Object.create(null);
+  readings.forEach(function(row){ byId[row.id]=row; });
+  var active=null;
+  var LAST=&quot;f250-readings-last&quot;;
+  var comparisonView={componentId:null,mode:&quot;baseline&quot;};
+  var readingMode=&quot;current&quot;;
+  var routeIndex=Object.create(null);
+  var routeSequence=0;
+
+  function postParent(msg){
+    if(window.parent===window) return;
+    try{window.parent.postMessage(msg,&quot;*&quot;);}catch(_){}
+  }
+  function openRoute(tab, payload){
+    payload=payload||{};
+    if(window.parent &amp;&amp; typeof window.parent.navigateTo===&quot;function&quot;){
+      window.parent.navigateTo(tab, payload);
+      return;
+    }
+    postParent(Object.assign({action:&quot;navigateTo&quot;, tab:tab}, payload));
+  }
+  function routeKey(route){
+    routeSequence+=1;
+    var key=&quot;route-&quot;+routeSequence;
+    routeIndex[key]=route;
+    return key;
+  }
+  function followExact(route){
+    if(!route || !route.view || !route.action) return;
+    var params=route.params||{};
+    if(route.view===&quot;obs-cr&quot; &amp;&amp; params.targetId){ openReading(params.targetId); return; }
+    if(route.view===&quot;obsidian&quot; &amp;&amp; params.notePath){
+      window.location.href=&quot;[vault-route]&quot;+encodeURIComponent(&quot;Freedom 250 Chronicle&quot;)+&quot;&amp;file=&quot;+encodeURIComponent(params.notePath);
+      return;
+    }
+    openRoute(route.view, Object.assign({action:route.action}, params));
+  }
+  function node(tag, className, textValue){
+    var item=document.createElement(tag);
+    if(className) item.className=className;
+    if(textValue!==undefined &amp;&amp; textValue!==null) item.textContent=String(textValue);
+    return item;
+  }
+  function setRail(open){
+    var button=document.getElementById(&quot;menu&quot;);
+    document.body.classList.toggle(&quot;rail-open&quot;, !!open);
+    button.setAttribute(&quot;aria-expanded&quot;, open?&quot;true&quot;:&quot;false&quot;);
+    button.setAttribute(&quot;aria-label&quot;, open?&quot;Close readings&quot;:&quot;Open readings&quot;);
+  }
+  function follow(link){
+    if(!link) return;
+    var kind=link.kind;
+    if(kind===&quot;wheel&quot;) openRoute(&quot;obs-ic&quot;, {action:&quot;selectIngress&quot;, id:link.ingress});
+    else if(kind===&quot;overlay&quot;) openRoute(&quot;obs-ic&quot;, {action:&quot;showOverlay&quot;, ingress:link.ingress, lunationDate:link.date, date:link.date});
+    else if(kind===&quot;lunar&quot;) openRoute(&quot;obs-lw&quot;, {date:link.date});
+    else if(kind===&quot;almanac&quot;) openRoute(&quot;obs-al&quot;, {date:link.date});
+    else if(kind===&quot;day&quot;) openRoute(&quot;obs-df&quot;, {date:link.date});
+    else if(kind===&quot;eo&quot;){
+      postParent({action:&quot;goToEO&quot;, date:link.date});
+      openRoute(&quot;obs-eo&quot;, {eo:link.query||&quot;&quot;, date:link.date, query:link.query||&quot;&quot;});
+    }
+    else if(kind===&quot;hearings&quot;) openRoute(&quot;obs-hr&quot;, {date:link.date});
+    else if(kind===&quot;research&quot;) openRoute(&quot;obs-rd&quot;, {researchQuery:link.query||&quot;&quot;});
+    else if(kind===&quot;machines&quot;) openRoute(&quot;obs-om&quot;, {});
+    else if(kind===&quot;feed&quot;) openRoute(&quot;obs-df&quot;, {date:link.date});
+    else if(kind===&quot;reading&quot; &amp;&amp; link.id) openReading(link.id);
+  }
+  function railTitle(row){
+    if(row.kind===&quot;comparison&quot;) return row.comparison &amp;&amp; row.comparison.state===&quot;open&quot; ? &quot;Open comparison watch&quot; : &quot;Storyline comparison&quot;;
+    if(row.kind===&quot;weave&quot;) return &quot;Storyline comparison&quot;;
+    if(row.kind===&quot;census&quot;) return &quot;Record census&quot;;
+    if(row.chart_kind===&quot;ingress&quot;) return &quot;Climate · &quot;+(row.sign||&quot;ingress&quot;)+&quot; ingress&quot;;
+    var eclipse=row.eclipse ? &quot; · eclipse&quot; : &quot;&quot;;
+    var phase=/(-fu|full)/i.test(row.id) ? &quot;Full Moon&quot; : &quot;New Moon&quot;;
+    return (row.date||&quot;&quot;)+&quot; · &quot;+phase+(row.sign?&quot; · &quot;+row.sign:&quot;&quot;)+eclipse;
+  }
+  function seasonOf(id){
+    for(var i=0;i&lt;seasons.length;i+=1) if(seasons[i].id===id) return seasons[i];
+    return null;
+  }
+  function visibleReadings(){
+    var needle=String(document.getElementById(&quot;q&quot;).value||&quot;&quot;).trim().toLowerCase();
+    return readings.filter(function(row){
+      if(!needle) return true;
+      var watch=row.transition_watch||{};
+      var mapped=((row.comparison||{}).transition_watches||[]).map(function(item){
+        return [item.authority_question,item.decision_right,item.current_holder,item.claimant_or_constraint].join(&quot; &quot;);
+      }).join(&quot; &quot;);
+      return (row.title+&quot; &quot;+row.badge+&quot; &quot;+row.season+&quot; &quot;+(row.date||&quot;&quot;)+&quot; &quot;+(row.summary||&quot;&quot;)+&quot; &quot;+
+        (watch.authority_question||&quot;&quot;)+&quot; &quot;+(watch.decision_right||&quot;&quot;)+&quot; &quot;+(watch.current_holder||&quot;&quot;)+&quot; &quot;+
+        (watch.claimant_or_constraint||&quot;&quot;)+&quot; &quot;+mapped).toLowerCase().indexOf(needle)&gt;=0;
+    });
+  }
+  function buildNav(){
+    var nav=document.getElementById(&quot;nav&quot;);
+    nav.innerHTML=&quot;&quot;;
+    var visible=new Set(visibleReadings().map(function(row){return row.id;}));
+    seasons.forEach(function(season){
+      var rows=readings.filter(function(row){return row.season===season.id &amp;&amp; visible.has(row.id);});
+      if(!rows.length) return;
+      var section=document.createElement(&quot;section&quot;);
+      section.className=&quot;season&quot;;
+      section.innerHTML=&quot;&lt;h2&gt;&quot;+season.label+&quot;&lt;/h2&gt;&lt;p class=\&quot;win\&quot;&gt;&quot;+season.window+&quot; · &quot;+season.blurb+&quot;&lt;/p&gt;&quot;;
+      rows.forEach(function(row){
+        var button=document.createElement(&quot;button&quot;);
+        button.type=&quot;button&quot;;
+        button.className=&quot;item&quot;+(row.id===active?&quot; active&quot;:&quot;&quot;);
+        button.dataset.id=row.id;
+        button.dataset.action=&quot;open-reading&quot;;
+        button.innerHTML=&quot;&lt;span class=\&quot;name\&quot;&gt;&quot;+railTitle(row)+&quot;&lt;/span&gt;&lt;span class=\&quot;meta\&quot;&gt;&quot;+row.badge+(row.date?&quot; · &quot;+row.date:&quot;&quot;)+&quot;&lt;/span&gt;&quot;;
+        section.appendChild(button);
+      });
+      nav.appendChild(section);
+    });
+    if(!nav.children.length){
+      nav.innerHTML=&quot;&lt;p class=\&quot;empty\&quot;&gt;No reading matches that search.&lt;/p&gt;&quot;;
+    }
+  }
+  function paintWheel(row){
+    var wrap=document.getElementById(&quot;wheelwrap&quot;);
+    var box=document.getElementById(&quot;wheelbox&quot;);
+    var label=document.getElementById(&quot;wheellabel&quot;);
+    if(!row.wheel || typeof wheelSVG!==&quot;function&quot;){
+      wrap.hidden=true;
+      box.innerHTML=&quot;&quot;;
+      return;
+    }
+    wrap.hidden=false;
+    label.textContent=row.wheel_note||&quot;Washington, D.C. · Whole Sign&quot;;
+    box.innerHTML=wheelSVG(row.wheel,null,false);
+  }
+  function prettySynodicId(value){
+    return String(value||&quot;&quot;).split(/[-_]/).filter(Boolean).map(function(part){
+      return part.charAt(0).toUpperCase()+part.slice(1);
+    }).join(&quot; &quot;);
+  }
+  function cycleLabel(cycle){
+    var pair=cycle.pair;
+    if(Array.isArray(pair)) return pair.map(prettySynodicId).join(&quot;–&quot;);
+    if(pair &amp;&amp; typeof pair===&quot;object&quot;){
+      if(pair.label) return String(pair.label);
+      var bodies=[pair.slower||pair.first||pair.a,pair.faster||pair.second||pair.b].filter(Boolean);
+      if(bodies.length===2) return bodies.map(prettySynodicId).join(&quot;–&quot;);
+    }
+    if(typeof pair===&quot;string&quot; &amp;&amp; pair) return pair;
+    return prettySynodicId(cycle.cycle_id);
+  }
+  function degree(value){
+    var number=Number(value);
+    return Number.isFinite(number)?number.toFixed(2)+&quot;°&quot;:&quot;—&quot;;
+  }
+  function motionLabel(aspect){
+    if(aspect.applying) return &quot;applying&quot;;
+    if(aspect.separating) return &quot;separating&quot;;
+    return &quot;exact&quot;;
+  }
+  function aspectLine(cycle){
+    var aspect=cycle.active_aspect||cycle;
+    if(!aspect) return &quot;Between standard major-aspect chapters&quot;;
+    return prettySynodicId(aspect.strength)+&quot; &quot;+prettySynodicId(aspect.aspect_id)+
+      &quot; · orb &quot;+degree(aspect.orb_deg)+&quot; · &quot;+motionLabel(aspect);
+  }
+  function phaseLine(cycle){
+    var geometry=cycle.geometry||{};
+    var state=cycle.active_aspect
+      ?prettySynodicId(cycle.active_aspect.strength)+&quot; &quot;+prettySynodicId(cycle.active_aspect.aspect_id)+&quot; chapter&quot;
+      :&quot;between chapters&quot;;
+    return prettySynodicId(geometry.phase_direction)+&quot; · &quot;+state+&quot; · nearest &quot;+
+      prettySynodicId(geometry.nearest_chapter_id)+&quot; chapter · &quot;+
+      degree(geometry.nearest_chapter_orb_deg)+&quot; from exact&quot;;
+  }
+  function reasonLabels(reasons){
+    var labels={root:&quot;root&quot;,chart_ruler:&quot;chart ruler&quot;,era:&quot;era&quot;,exact_us_natal:&quot;exact US natal&quot;};
+    return (reasons||[]).map(function(reason){return labels[reason]||prettySynodicId(reason);});
+  }
+  function synodicCycleButton(cycle,line){
+    var button=node(&quot;button&quot;,&quot;synodic-item&quot;);
+    button.type=&quot;button&quot;;
+    button.dataset.action=&quot;open-synodic-clock&quot;;
+    button.dataset.cycleId=cycle.cycle_id;
+    button.appendChild(node(&quot;strong&quot;,&quot;&quot;,cycleLabel(cycle)));
+    button.appendChild(node(&quot;span&quot;,&quot;&quot;,line));
+    return button;
+  }
+  function synodicLane(title,noteText){
+    var lane=node(&quot;section&quot;,&quot;synodic-lane&quot;);
+    lane.appendChild(node(&quot;h4&quot;,&quot;&quot;,title));
+    if(noteText) lane.appendChild(node(&quot;p&quot;,&quot;synodic-lane-note&quot;,noteText));
+    return lane;
+  }
+  function renderSynodicStack(row){
+    var host=document.getElementById(&quot;synodicStack&quot;);
+    var stack=row.synodic_stack;
+    host.innerHTML=&quot;&quot;;
+    host.hidden=!stack;
+    if(!stack) return;
+
+    var details=node(&quot;details&quot;,&quot;synodic-card&quot;);
+    var summary=node(&quot;summary&quot;,&quot;&quot;);
+    summary.appendChild(node(&quot;strong&quot;,&quot;&quot;,&quot;Synodic Stack&quot;));
+    summary.appendChild(node(
+      &quot;span&quot;,
+      &quot;synodic-summary-meta&quot;,
+      stack.active_geometry.length+&quot; direct · &quot;+stack.nameable_cycles.length+
+        &quot; nameable · &quot;+stack.seed_echoes.length+&quot; seed echoes&quot;
+    ));
+    details.appendChild(summary);
+    var body=node(&quot;div&quot;,&quot;synodic-body&quot;);
+    body.appendChild(node(
+      &quot;p&quot;,
+      &quot;synodic-notice&quot;,
+      &quot;Three independent lanes: current aspect geometry, DR-020 phase nameability, and seed echoes. Timing context only; no score, storyline finding, political join, or causal claim is created here.&quot;
+    ));
+
+    var geometryLane=synodicLane(
+      &quot;Active moment geometry&quot;,
+      &quot;Direct aspects inside Katie&#x27;s standard major-aspect orbs. These facts do not by themselves earn phase narration.&quot;
+    );
+    if(stack.active_geometry.length){
+      var geometryGrid=node(&quot;div&quot;,&quot;synodic-grid&quot;);
+      stack.active_geometry.forEach(function(cycle){
+        geometryGrid.appendChild(synodicCycleButton(cycle,aspectLine(cycle)));
+      });
+      geometryLane.appendChild(geometryGrid);
+    }else{
+      geometryLane.appendChild(node(&quot;p&quot;,&quot;synodic-empty&quot;,&quot;No clock is inside a standard major-aspect orb at this chart moment.&quot;));
+    }
+    body.appendChild(geometryLane);
+
+    var namedLane=synodicLane(
+      &quot;Nameable cycle chapters · DR-020&quot;,
+      &quot;Only root/chart-ruler, era, or exact-US-natal grounds may bring a universal phase into the reading.&quot;
+    );
+    if(stack.nameable_cycles.length){
+      var namedGrid=node(&quot;div&quot;,&quot;synodic-grid&quot;);
+      stack.nameable_cycles.forEach(function(cycle){
+        var button=synodicCycleButton(cycle,phaseLine(cycle));
+        var reasons=node(&quot;span&quot;,&quot;synodic-reasons&quot;);
+        reasonLabels((cycle.nameability||{}).reasons).forEach(function(reason){
+          reasons.appendChild(node(&quot;em&quot;,&quot;&quot;,reason));
+        });
+        button.appendChild(reasons);
+        namedGrid.appendChild(button);
+      });
+      namedLane.appendChild(namedGrid);
+    }else{
+      namedLane.appendChild(node(&quot;p&quot;,&quot;synodic-empty&quot;,&quot;No phase narrative is earned under DR-020 at this chart.&quot;));
+    }
+    body.appendChild(namedLane);
+
+    var echoLane=synodicLane(
+      &quot;Active seed echoes&quot;,
+      &quot;Chart points contacting registered conjunction-family degrees. This is separate from the planets&#x27; current aspect geometry.&quot;
+    );
+    if(stack.seed_echoes.length){
+      var echoGrid=node(&quot;div&quot;,&quot;synodic-grid&quot;);
+      stack.seed_echoes.forEach(function(echo){
+        var cycle=(stack.technical_cycles||[]).find(function(item){return item.cycle_id===echo.cycle_id;})||{cycle_id:echo.cycle_id};
+        var button=synodicCycleButton(
+          cycle,
+          prettySynodicId(echo.point)+&quot; &quot;+prettySynodicId(echo.aspect_id)+&quot; &quot;+
+            prettySynodicId(echo.seed_family_id)+&quot; · orb &quot;+degree(echo.orb_deg)
+        );
+        button.appendChild(node(&quot;span&quot;,&quot;&quot;,String(echo.matched_pass_id)));
+        echoGrid.appendChild(button);
+      });
+      echoLane.appendChild(echoGrid);
+    }else{
+      echoLane.appendChild(node(&quot;p&quot;,&quot;synodic-empty&quot;,&quot;No registered seed-family degree is active at this chart moment.&quot;));
+    }
+    body.appendChild(echoLane);
+
+    var openButton=node(&quot;button&quot;,&quot;synodic-open&quot;,&quot;Open this moment in The Long Clocks&quot;);
+    openButton.type=&quot;button&quot;;
+    openButton.dataset.action=&quot;open-synodic-stack&quot;;
+    body.appendChild(openButton);
+
+    var proof=node(&quot;details&quot;,&quot;synodic-proof&quot;);
+    proof.appendChild(node(&quot;summary&quot;,&quot;&quot;,&quot;Technical Proof · all ten factual clock hands&quot;));
+    var tableWrap=node(&quot;div&quot;,&quot;synodic-table-wrap&quot;);
+    var table=node(&quot;table&quot;,&quot;synodic-table&quot;);
+    var thead=node(&quot;thead&quot;,&quot;&quot;);
+    var header=node(&quot;tr&quot;,&quot;&quot;);
+    [&quot;Cycle&quot;,&quot;Tier&quot;,&quot;Elongation&quot;,&quot;Direction&quot;,&quot;Nearest chapter&quot;,&quot;Active aspect&quot;].forEach(function(label){
+      header.appendChild(node(&quot;th&quot;,&quot;&quot;,label));
+    });
+    thead.appendChild(header);table.appendChild(thead);
+    var tbody=node(&quot;tbody&quot;,&quot;&quot;);
+    stack.technical_cycles.forEach(function(cycle){
+      var geometry=cycle.geometry||{};
+      var tr=node(&quot;tr&quot;,&quot;&quot;);
+      var cycleCell=node(&quot;td&quot;,&quot;&quot;);
+      var clockButton=node(&quot;button&quot;,&quot;synodic-open&quot;,cycleLabel(cycle));
+      clockButton.type=&quot;button&quot;;
+      clockButton.dataset.action=&quot;open-synodic-clock&quot;;
+      clockButton.dataset.cycleId=cycle.cycle_id;
+      cycleCell.appendChild(clockButton);
+      tr.appendChild(cycleCell);
+      tr.appendChild(node(&quot;td&quot;,&quot;&quot;,prettySynodicId(cycle.tier_id)));
+      tr.appendChild(node(&quot;td&quot;,&quot;&quot;,degree(geometry.elongation_deg)));
+      tr.appendChild(node(&quot;td&quot;,&quot;&quot;,prettySynodicId(geometry.phase_direction)));
+      tr.appendChild(node(&quot;td&quot;,&quot;&quot;,prettySynodicId(geometry.nearest_chapter_id)+&quot; · &quot;+degree(geometry.nearest_chapter_orb_deg)));
+      tr.appendChild(node(&quot;td&quot;,&quot;&quot;,cycle.active_aspect?aspectLine(cycle):&quot;between chapters&quot;));
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);tableWrap.appendChild(table);proof.appendChild(tableWrap);body.appendChild(proof);
+    details.appendChild(body);host.appendChild(details);
+  }
+  function openSynodicRoute(action,cycleId){
+    var row=byId[active];
+    var stack=row&amp;&amp;row.synodic_stack;
+    if(!stack) return;
+    var payload={
+      childAction:action,
+      chart_id:stack.chart_id,
+      window_id:stack.window_id,
+      date:stack.date
+    };
+    if(cycleId) payload.cycle_id=cycleId;
+    openRoute(&quot;obs-dc&quot;,payload);
+  }
+  function chip(link){
+    var button=document.createElement(&quot;button&quot;);
+    button.type=&quot;button&quot;;
+    button.className=&quot;chip&quot;+(link.kind===&quot;eo&quot;||link.kind===&quot;research&quot;||link.kind===&quot;machines&quot;?&quot; weave&quot;:&quot;&quot;);
+    button.textContent=link.label;
+    button.dataset.action=&quot;follow-link&quot;;
+    button.dataset.routeKey=routeKey(link);
+    return button;
+  }
+  function labeledBlock(label,value,className){
+    var block=node(&quot;div&quot;,className||&quot;transition-block&quot;);
+    block.appendChild(node(&quot;span&quot;,&quot;transition-label&quot;,label));
+    block.appendChild(node(&quot;p&quot;,&quot;&quot;,value));
+    return block;
+  }
+  function transitionChips(values,className){
+    var row=node(&quot;div&quot;,&quot;transition-chip-row&quot;);
+    (values||[]).forEach(function(value){
+      row.appendChild(node(&quot;span&quot;,&quot;transition-chip&quot;+(className?&quot; &quot;+className:&quot;&quot;),value));
+    });
+    return row;
+  }
+  function renderTransitionWatch(row){
+    var panel=document.getElementById(&quot;transitionWatch&quot;);
+    var watch=row.transition_watch;
+    panel.innerHTML=&quot;&quot;;
+    panel.hidden=!watch;
+    if(!watch) return;
+
+    var card=node(&quot;div&quot;,&quot;transition-card&quot;);
+    var head=node(&quot;div&quot;,&quot;transition-head&quot;);
+    head.appendChild(node(&quot;p&quot;,&quot;transition-eyebrow&quot;,&quot;State Transition Watch · frozen addendum&quot;));
+    head.appendChild(node(
+      &quot;p&quot;,
+      &quot;transition-boundary&quot;,
+      &quot;Separate from the chart hearing. Lens, not conclusion; no score; a rhyme is not a cause. &quot; +
+        &quot;It does not alter the frozen baseline · &quot;+
+        String(watch.boundary||&quot;&quot;).replace(/_/g,&quot; &quot;)
+    ));
+    head.appendChild(node(&quot;p&quot;,&quot;transition-question&quot;,watch.authority_question));
+    card.appendChild(head);
+
+    var body=node(&quot;div&quot;,&quot;transition-body&quot;);
+    var authority=node(&quot;div&quot;,&quot;transition-authority&quot;);
+    authority.appendChild(labeledBlock(&quot;Decision right in motion&quot;,watch.decision_right));
+    authority.appendChild(labeledBlock(&quot;Current holder&quot;,watch.current_holder));
+    authority.appendChild(labeledBlock(&quot;Claimant or constraint&quot;,watch.claimant_or_constraint));
+    authority.appendChild(labeledBlock(&quot;Freedom 250 question&quot;,watch.thesis_question));
+    body.appendChild(authority);
+
+    var flow=node(&quot;div&quot;,&quot;transition-flow&quot;);
+    flow.appendChild(labeledBlock(&quot;From&quot;,watch.transition.from,&quot;transition-state&quot;));
+    flow.appendChild(node(&quot;div&quot;,&quot;transition-arrow&quot;,&quot;→&quot;));
+    flow.appendChild(labeledBlock(&quot;Toward&quot;,watch.transition.toward,&quot;transition-state&quot;));
+    body.appendChild(flow);
+
+    var mechanisms=node(&quot;div&quot;,&quot;transition-chipset&quot;);
+    mechanisms.appendChild(node(&quot;span&quot;,&quot;transition-label&quot;,&quot;Candidate mechanisms&quot;));
+    mechanisms.appendChild(transitionChips(watch.mechanisms));
+    body.appendChild(mechanisms);
+    var states=node(&quot;div&quot;,&quot;transition-chipset&quot;);
+    states.appendChild(node(&quot;span&quot;,&quot;transition-label&quot;,&quot;States to distinguish — no leapfrogging&quot;));
+    states.appendChild(transitionChips(watch.states_to_distinguish,&quot;state&quot;));
+    body.appendChild(states);
+
+    var poles=node(&quot;div&quot;,&quot;transition-poles&quot;);
+    [
+      [&quot;Constructive pole&quot;,&quot;constructive&quot;],
+      [&quot;Shadow pole&quot;,&quot;shadow&quot;],
+      [&quot;Continuity / unchanged&quot;,&quot;continuity&quot;]
+    ].forEach(function(spec){
+      poles.appendChild(labeledBlock(spec[0],watch.poles[spec[1]],&quot;transition-pole &quot;+spec[1]));
+    });
+    body.appendChild(poles);
+
+    var sync=node(&quot;section&quot;,&quot;transition-sync&quot;);
+    sync.appendChild(node(&quot;span&quot;,&quot;transition-label&quot;,&quot;Synchronization test&quot;));
+    sync.appendChild(transitionChips(watch.synchronization.arcs));
+    sync.appendChild(node(&quot;p&quot;,&quot;&quot;,watch.synchronization.watch_for));
+    body.appendChild(sync);
+
+    var evidence=node(&quot;details&quot;,&quot;transition-evidence&quot;);
+    evidence.appendChild(node(&quot;summary&quot;,&quot;&quot;,&quot;Evidence test · Attention / Official / Entity&quot;));
+    var tests=node(&quot;div&quot;,&quot;transition-test&quot;);
+    tests.appendChild(labeledBlock(&quot;Lines up if&quot;,watch.evidence_test.lines_up_if));
+    tests.appendChild(labeledBlock(&quot;Miss if&quot;,watch.evidence_test.miss_if));
+    tests.appendChild(labeledBlock(&quot;Unresolved if&quot;,watch.evidence_test.unresolved_if));
+    evidence.appendChild(tests);
+    body.appendChild(evidence);
+    body.appendChild(node(
+      &quot;p&quot;,
+      &quot;transition-meta&quot;,
+      watch.watch_id+&quot; · frozen &quot;+watch.frozen_at+&quot; · watch &quot;+watch.watch_sha256.slice(0,12)+
+        &quot;… · baseline &quot;+watch.baseline_sha256.slice(0,12)+&quot;…&quot;
+    ));
+    card.appendChild(body);
+    panel.appendChild(card);
+  }
+  function renderSnapshot(comparison){
+    var components=comparison.baseline.components||[];
+    var component=components.find(function(item){return item.reading_id===comparisonView.componentId;})||components[0];
+    if(!component) return;
+    comparisonView.componentId=component.reading_id;
+    document.querySelectorAll(&quot;.baseline-item&quot;).forEach(function(button){
+      button.classList.toggle(&quot;active&quot;,button.dataset.readingId===component.reading_id);
+    });
+    document.querySelectorAll(&quot;[data-action=&#x27;snapshot-mode&#x27;]&quot;).forEach(function(button){
+      button.classList.toggle(&quot;active&quot;,button.dataset.mode===comparisonView.mode);
+      button.setAttribute(&quot;aria-pressed&quot;,button.dataset.mode===comparisonView.mode?&quot;true&quot;:&quot;false&quot;);
+    });
+    var baseline=comparisonView.mode===&quot;baseline&quot;;
+    document.getElementById(&quot;snapshotArticle&quot;).innerHTML=baseline?component.baseline_html:component.current_html;
+    var digest=baseline?component.baseline_sha256:component.current_sha256;
+    document.getElementById(&quot;snapshotMeta&quot;).textContent=
+      (baseline?&quot;frozen &quot;:&quot;live &quot;)+digest.slice(0,12)+&quot;… · &quot;+component.drift;
+  }
+  function renderComparison(row){
+    var panel=document.getElementById(&quot;comparison&quot;);
+    var comparison=row.comparison;
+    panel.hidden=!comparison;
+    if(!comparison) return;
+    var baseline=comparison.baseline;
+    var badges=document.getElementById(&quot;comparisonBadges&quot;);
+    badges.innerHTML=&quot;&quot;;
+    var state=node(&quot;span&quot;,&quot;status-pill &quot;+comparison.state,comparison.state);
+    badges.appendChild(state);
+    badges.appendChild(node(&quot;span&quot;,&quot;status-pill&quot;,comparison.mode===&quot;retrospective_calibration&quot;?&quot;retrospective calibration&quot;:&quot;prospective watch&quot;));
+    if(comparison.boundary &amp;&amp; comparison.boundary.kind){
+      badges.appendChild(node(&quot;span&quot;,&quot;status-pill&quot;,String(comparison.boundary.kind).replace(/_/g,&quot; &quot;)));
+    }
+    badges.appendChild(node(&quot;span&quot;,&quot;status-pill&quot;,baseline.drift_count?baseline.drift_count+&quot; live drift&quot;:&quot;baseline unchanged&quot;));
+    var transitionWatches=comparison.transition_watches||[];
+    if(transitionWatches.length){
+      badges.appendChild(node(&quot;span&quot;,&quot;status-pill&quot;,transitionWatches.length+&quot; transition watches&quot;));
+    }
+    document.getElementById(&quot;comparisonTitle&quot;).textContent=comparison.title||row.title;
+    document.getElementById(&quot;comparisonSummary&quot;).textContent=comparison.summary||&quot;&quot;;
+    document.getElementById(&quot;causation&quot;).textContent=comparison.policy.causation_notice;
+
+    var transitionMap=document.getElementById(&quot;transitionMap&quot;);
+    var transitionMapList=document.getElementById(&quot;transitionMapList&quot;);
+    transitionMap.hidden=!transitionWatches.length;
+    transitionMap.removeAttribute(&quot;open&quot;);
+    transitionMapList.innerHTML=&quot;&quot;;
+    document.getElementById(&quot;transitionMapSummary&quot;).textContent=
+      &quot;State Transition Watch map · &quot;+transitionWatches.length+&quot; frozen addenda&quot;;
+    transitionWatches.forEach(function(watch){
+      var linked=byId[watch.reading_id]||{};
+      var button=node(&quot;button&quot;,&quot;transition-map-item&quot;);
+      button.type=&quot;button&quot;;
+      button.dataset.action=&quot;open-reading&quot;;
+      button.dataset.id=watch.reading_id;
+      button.appendChild(node(&quot;strong&quot;,&quot;&quot;,linked.title||watch.reading_id));
+      button.appendChild(node(&quot;span&quot;,&quot;&quot;,watch.authority_question));
+      button.appendChild(node(&quot;span&quot;,&quot;&quot;,&quot;From &quot;+watch.transition.from+&quot; → &quot;+watch.transition.toward));
+      transitionMapList.appendChild(button);
+    });
+
+    var list=document.getElementById(&quot;baselineList&quot;);
+    list.innerHTML=&quot;&quot;;
+    (baseline.components||[]).forEach(function(component){
+      var button=node(&quot;button&quot;,&quot;baseline-item&quot;);
+      button.type=&quot;button&quot;;
+      button.dataset.action=&quot;select-baseline-component&quot;;
+      button.dataset.readingId=component.reading_id;
+      button.appendChild(node(&quot;span&quot;,&quot;btitle&quot;,component.title));
+      var meta=node(&quot;span&quot;,&quot;bmeta &quot;+(component.drift===&quot;drifted&quot;?&quot;drift drifted&quot;:&quot;drift&quot;),component.drift+&quot; · &quot;+component.baseline_sha256.slice(0,8));
+      button.appendChild(meta);
+      list.appendChild(button);
+    });
+
+    var findings=document.getElementById(&quot;findings&quot;);
+    findings.innerHTML=&quot;&quot;;
+    if(!(comparison.findings||[]).length){
+      findings.appendChild(node(
+        &quot;p&quot;,
+        &quot;comparison-empty&quot;,
+        comparison.state===&quot;open&quot;
+          ?(transitionWatches.length
+            ?&quot;No findings recorded yet. The frozen baseline and State Transition Watches are ready for evidence as the watch unfolds.&quot;
+            :&quot;No findings recorded yet. The frozen baseline is ready for evidence as the watch unfolds.&quot;)
+          :&quot;No findings were recorded before this comparison closed.&quot;
+      ));
+    }else{
+      comparison.findings.forEach(function(finding){
+        var card=node(&quot;section&quot;,&quot;finding&quot;);
+        card.dataset.disposition=finding.disposition;
+        var top=node(&quot;div&quot;,&quot;finding-top&quot;);
+        top.appendChild(node(&quot;h5&quot;,&quot;&quot;,finding.claim));
+        top.appendChild(node(&quot;span&quot;,&quot;status-pill&quot;,finding.disposition));
+        card.appendChild(top);
+        card.appendChild(node(&quot;p&quot;,&quot;&quot;,finding.rationale||&quot;&quot;));
+        var refs=(finding.baseline_refs||[]).map(function(ref){return ref.reading_id+(ref.heading?&quot; · &quot;+ref.heading:&quot;&quot;);});
+        if(refs.length) card.appendChild(node(&quot;p&quot;,&quot;snapshot-meta&quot;,&quot;Baseline: &quot;+refs.join(&quot;; &quot;)));
+        var evidence=node(&quot;div&quot;,&quot;evidence&quot;);
+        [&quot;Attention&quot;,&quot;Official&quot;,&quot;Entity&quot;].forEach(function(lane){
+          var laneBox=node(&quot;section&quot;,&quot;evidence-lane&quot;);
+          laneBox.appendChild(node(&quot;h6&quot;,&quot;&quot;,lane));
+          var laneItems=(finding.evidence||[]).filter(function(item){return item.lane===lane;});
+          if(!laneItems.length){
+            laneBox.appendChild(node(&quot;p&quot;,&quot;evidence-empty&quot;,&quot;No joined evidence in this lane.&quot;));
+          }else{
+            laneItems.forEach(function(item){
+              var label=(item.date?item.date+&quot; · &quot;:&quot;&quot;)+item.label;
+              var button=node(&quot;button&quot;,&quot;chip&quot;+(item.source_drift===&quot;drifted&quot;?&quot; drifted&quot;:&quot;&quot;),label);
+              button.type=&quot;button&quot;;
+              button.dataset.action=&quot;open-evidence&quot;;
+              button.dataset.routeKey=routeKey(item.route);
+              button.title=item.source_path+(item.note?&quot; — &quot;+item.note:&quot;&quot;);
+              laneBox.appendChild(button);
+            });
+          }
+          evidence.appendChild(laneBox);
+        });
+        card.appendChild(evidence);
+        findings.appendChild(card);
+      });
+    }
+    renderSnapshot(comparison);
+  }
+  function paintMainArticle(row){
+    var context=row.baseline_context;
+    var frozen=readingMode===&quot;baseline&quot; &amp;&amp; context;
+    var html=frozen?context.baseline_html:(row.html||&quot;&quot;);
+    html=html.replace(/^&lt;h1&gt;[\s\S]*?&lt;\/h1&gt;/,&quot;&quot;);
+    document.getElementById(&quot;article&quot;).innerHTML=html;
+    document.querySelectorAll(&quot;[data-action=&#x27;reading-mode&#x27;]&quot;).forEach(function(button){
+      button.classList.toggle(&quot;active&quot;,button.dataset.mode===readingMode);
+      button.setAttribute(&quot;aria-pressed&quot;,button.dataset.mode===readingMode?&quot;true&quot;:&quot;false&quot;);
+    });
+    if(frozen){
+      document.getElementById(&quot;authority&quot;).textContent=
+        &quot;Frozen baseline: &quot;+context.baseline_id+&quot; · captured &quot;+context.captured_at+&quot; · &quot;+context.baseline_sha256.slice(0,12)+&quot;…&quot;;
+    }else{
+      var suffix=context?&quot; · baseline &quot;+context.drift:&quot;&quot;;
+      document.getElementById(&quot;authority&quot;).textContent=
+        (row.authority_label||&quot;Vault source&quot;)+&quot;: &quot;+row.source_name+&quot; · &quot;+(row.author||&quot;Aster&quot;)+&quot; · &quot;+(row.status||&quot;live_working&quot;).replace(/_/g,&quot; &quot;)+suffix+&quot; · edit as we go&quot;;
+    }
+  }
+  function readingModeChip(mode,label){
+    var button=node(&quot;button&quot;,&quot;chip&quot;,label);
+    button.type=&quot;button&quot;;
+    button.dataset.action=&quot;reading-mode&quot;;
+    button.dataset.mode=mode;
+    return button;
+  }
+  function openReading(id){
+    var row=byId[id];
+    if(!row) return;
+    if(active!==id){
+      comparisonView={componentId:null,mode:&quot;baseline&quot;};
+      readingMode=&quot;current&quot;;
+    }
+    active=id;
+    var season=seasonOf(row.season)||{};
+    document.getElementById(&quot;kicker&quot;).textContent=(season.label||&quot;Readings&quot;)+&quot; · &quot;+row.badge;
+    document.getElementById(&quot;title&quot;).textContent=row.title;
+    document.getElementById(&quot;note&quot;).textContent=row.face||&quot;&quot;;
+    paintWheel(row);
+    renderComparison(row);
+    var actions=document.getElementById(&quot;actions&quot;);
+    actions.innerHTML=&quot;&quot;;
+    if(row.baseline_context){
+      actions.appendChild(readingModeChip(&quot;current&quot;,&quot;Live working&quot;));
+      actions.appendChild(readingModeChip(&quot;baseline&quot;,&quot;Frozen &quot;+String(row.baseline_context.captured_at).slice(0,10)));
+    }
+    (row.links||[]).forEach(function(link){ actions.appendChild(chip(link)); });
+    paintMainArticle(row);
+    renderSynodicStack(row);
+    renderTransitionWatch(row);
+    var vis=visibleReadings();
+    var index=vis.findIndex(function(item){return item.id===id;});
+    document.getElementById(&quot;prev&quot;).disabled=index&lt;=0;
+    document.getElementById(&quot;next&quot;).disabled=index&lt;0 || index&gt;=vis.length-1;
+    document.querySelectorAll(&quot;.item&quot;).forEach(function(button){
+      button.classList.toggle(&quot;active&quot;, button.dataset.id===id);
+    });
+    document.getElementById(&quot;stage&quot;).scrollTop=0;
+    try{ localStorage.setItem(LAST, id); }catch(_){}
+    if(location.hash!==&quot;#&quot;+id){
+      try{ history.replaceState(null, &quot;&quot;, &quot;#&quot;+id); }catch(_){}
+    }
+    document.title=row.title+&quot; — Chart Readings&quot;;
+    if(window.matchMedia(&quot;(max-width:820px)&quot;).matches){
+      setRail(false);
+    }
+  }
+  function step(delta){
+    var vis=visibleReadings();
+    var index=vis.findIndex(function(item){return item.id===active;});
+    var next=vis[index+delta];
+    if(next) openReading(next.id);
+  }
+  document.addEventListener(&quot;input&quot;, function(event){
+    if(event.target.id!==&quot;q&quot;) return;
+    buildNav();
+    if(active &amp;&amp; !visibleReadings().some(function(row){return row.id===active;})){
+      var first=visibleReadings()[0];
+      var choosingOnMobile=window.matchMedia(&quot;(max-width:820px)&quot;).matches &amp;&amp;
+        document.body.classList.contains(&quot;rail-open&quot;);
+      if(first &amp;&amp; !choosingOnMobile) openReading(first.id);
+    }
+  });
+  document.addEventListener(&quot;click&quot;, function(event){
+    var button=event.target.closest(&quot;button[data-action]&quot;);
+    if(!button) return;
+    var action=button.dataset.action;
+    if(action===&quot;open-reading&quot;) openReading(button.dataset.id);
+    else if(action===&quot;follow-link&quot;) follow(routeIndex[button.dataset.routeKey]);
+    else if(action===&quot;open-evidence&quot;) followExact(routeIndex[button.dataset.routeKey]);
+    else if(action===&quot;step&quot;) step(Number(button.dataset.delta||0));
+    else if(action===&quot;toggle-menu&quot;) setRail(!document.body.classList.contains(&quot;rail-open&quot;));
+    else if(action===&quot;open-synodic-stack&quot;) openSynodicRoute(&quot;openStack&quot;,null);
+    else if(action===&quot;open-synodic-clock&quot;) openSynodicRoute(&quot;openClock&quot;,button.dataset.cycleId);
+    else if(action===&quot;select-baseline-component&quot;){
+      comparisonView.componentId=button.dataset.readingId;
+      var selected=byId[active];
+      if(selected &amp;&amp; selected.comparison) renderSnapshot(selected.comparison);
+    }
+    else if(action===&quot;snapshot-mode&quot;){
+      comparisonView.mode=button.dataset.mode===&quot;current&quot;?&quot;current&quot;:&quot;baseline&quot;;
+      var current=byId[active];
+      if(current &amp;&amp; current.comparison) renderSnapshot(current.comparison);
+    }
+    else if(action===&quot;reading-mode&quot;){
+      readingMode=button.dataset.mode===&quot;baseline&quot;?&quot;baseline&quot;:&quot;current&quot;;
+      var reading=byId[active];
+      if(reading) paintMainArticle(reading);
+    }
+  });
+  document.addEventListener(&quot;keydown&quot;, function(event){
+    if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    if(event.key===&quot;/&quot; ){ event.preventDefault(); document.getElementById(&quot;q&quot;).focus(); }
+    if(event.key===&quot;j&quot;){ event.preventDefault(); step(1); }
+    if(event.key===&quot;k&quot;){ event.preventDefault(); step(-1); }
+    if(event.key===&quot;Escape&quot; &amp;&amp; document.body.classList.contains(&quot;rail-open&quot;)){ setRail(false); }
+  });
+  window.addEventListener(&quot;message&quot;, function(event){
+    var msg=event.data||{};
+    if(msg.action===&quot;setTheme&quot;){
+      document.documentElement.setAttribute(&quot;data-theme&quot;, msg.theme===&quot;dark&quot;?&quot;dark&quot;:&quot;light&quot;);
+      return;
+    }
+    if(msg.action===&quot;openReading&quot; &amp;&amp; msg.id){ openReading(msg.id); return; }
+    if(msg.action===&quot;selectReading&quot; &amp;&amp; msg.chart_id){ openReading(msg.chart_id); return; }
+    if((msg.action===&quot;goToDate&quot; || msg.action===&quot;scrollToDate&quot;) &amp;&amp; msg.date){
+      var hit=readings.find(function(row){ return row.date===msg.date; });
+      if(hit) openReading(hit.id);
+    }
+  });
+  buildNav();
+  var start=null;
+  if(location.hash) start=location.hash.replace(/^#/, &quot;&quot;);
+  if(!start){ try{ start=localStorage.getItem(LAST); }catch(_){ } }
+  if(!byId[start]) start=readings[0] &amp;&amp; readings[0].id;
+  if(start) openReading(start);
+})();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&quot;&quot;&quot;
+
+
+def render(
+    readings: list[dict[str, Any]],
+    bones_index: dict[str, Any],
+    generated_at: str | None = None,
+) -&gt; str:
+    try:
+        authority_source = str(REGISTRY.relative_to(VAULT))
+    except ValueError:
+        authority_source = str(REGISTRY)
+    payload = {
+        &quot;generated_at&quot;: generated_at
+        or dt.datetime.now().astimezone().isoformat(timespec=&quot;seconds&quot;),
+        &quot;authority&quot;: {
+            &quot;source&quot;: authority_source,
+            &quot;additional_sources&quot;: (
+                [str(REGISTRY_2025.relative_to(VAULT))] if REGISTRY_2025.is_file() else []
+            ) + (
+                [str(AMENDMENT_LEDGER.relative_to(VAULT))] if AMENDMENT_LEDGER.is_file() else []
+            ),
+            &quot;author&quot;: &quot;Aster&quot;,
+            &quot;lifecycle&quot;: &quot;vault-owned live working readings; edit as we go&quot;,
+            &quot;not_canon&quot;: False,
+        },
+        &quot;bones_generated&quot;: bones_index.get(&quot;generated&quot;),
+        &quot;seasons&quot;: (list(SEASONS_2025) if REGISTRY_2025.is_file() else []) + list(SEASONS),
+        &quot;readings&quot;: readings,
+        &quot;count&quot;: len(readings),
+    }
+    html_out = HTML_TEMPLATE.replace(&quot;__DATA__&quot;, js_safe_json(payload)).replace(
+        &quot;__WHEEL__&quot;, WHEEL_JS
+    )
+    if &quot;__DATA__&quot; in html_out or &quot;__WHEEL__&quot; in html_out:
+        fail(&quot;unresolved template marker in Chart Readings.html&quot;)
+    return html_out
+
+
+def generated_at_from(content: str) -&gt; str | None:
+    match = re.search(r&#x27;&quot;generated_at&quot;\s*:\s*&quot;([^&quot;]+)&quot;&#x27;, content)
+    return match.group(1) if match else None
+
+
+def normalize_generated(content: str) -&gt; str:
+    &quot;&quot;&quot;Ignore the governed post-build theme block in freshness comparisons.&quot;&quot;&quot;
+    return DARKMODE_BLOCK.sub(&quot;\n&quot;, content).rstrip() + &quot;\n&quot;
+
+
+def parse_args(argv: list[str] | None = None) -&gt; argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(&quot;--vault&quot;, type=Path, default=DEFAULT_VAULT)
+    parser.add_argument(&quot;--registry&quot;, type=Path)
+    parser.add_argument(&quot;--bones&quot;, type=Path)
+    parser.add_argument(&quot;--synodic-stacks&quot;, type=Path)
+    parser.add_argument(&quot;--output&quot;, type=Path)
+    parser.add_argument(
+        &quot;--capture-baseline&quot;,
+        metavar=&quot;BASELINE_ID&quot;,
+        help=&quot;capture and pin one baseline, or `all`; refuses every overwrite&quot;,
+    )
+    parser.add_argument(&quot;--check&quot;, action=&quot;store_true&quot;)
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -&gt; int:
+    args = parse_args(argv)
+    configure_paths(args)
+    if args.capture_baseline:
+        if args.check:
+            fail(&quot;--capture-baseline and --check are mutually exclusive&quot;)
+        registry = load_json(REGISTRY)
+        if args.capture_baseline == &quot;all&quot;:
+            baseline_ids = [
+                str(row.get(&quot;baseline_id&quot;) or &quot;&quot;)
+                for row in (registry.get(&quot;comparison_contract&quot;) or {}).get(&quot;baselines&quot;) or []
+            ]
+            if not baseline_ids:
+                fail(&quot;registry contains no baselines to capture&quot;)
+            for baseline_id in baseline_ids:
+                capture_baseline(registry, baseline_id)
+        else:
+            capture_baseline(registry, args.capture_baseline)
+        return 0
+    readings, bones_index, _registry = collect_all_shelves()
+    output = OUTPUT
+    if args.check:
+        if not output.is_file():
+            print(f&quot;Chart Readings check FAILED: missing {output}&quot;, file=sys.stderr)
+            return 1
+        existing = output.read_text(encoding=&quot;utf-8&quot;)
+        stamp = generated_at_from(existing)
+        if not stamp:
+            print(
+                f&quot;Chart Readings check FAILED: generated timestamp missing in {output}&quot;,
+                file=sys.stderr,
+            )
+            return 1
+        content = render(readings, bones_index, generated_at=stamp)
+        if normalize_generated(existing) != normalize_generated(content):
+            print(f&quot;Chart Readings check FAILED: stale {output}&quot;, file=sys.stderr)
+            return 1
+        print(f&quot;Chart Readings check OK: {len(readings)} readings · {output}&quot;)
+        return 0
+    content = render(readings, bones_index)
+    atomic_write_text(output, content)
+    print(f&quot;Built {output} · {len(readings)} readings · registry {REGISTRY}&quot;)
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

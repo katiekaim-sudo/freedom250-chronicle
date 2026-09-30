@@ -1,0 +1,160 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-judicial-astro-ed6bd702e2e8.html">
+<title>lat, lon, tz — courthouse-city anchors from the Judicial Money Map §8</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>lat, lon, tz — courthouse-city anchors from the Judicial Money Map §8</h1><p class="mut">Portable source: 99 - Templates/build_judicial_astro.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;build_judicial_astro.py — charts for The Judicial Watch (judicial_astro.json).
+
+THE JUDICIAL ANCHOR RULE (DR-047, Katie&#x27;s ruling 2026-08-09):
+  - verified clock time (HH:MM) preserves the exact courthouse instant
+  - &#x27;daytime&#x27; (released/heard during the day, no verified clock) -&gt; NOON D.C.
+  - &#x27;date-only&#x27; (e-filings, signed orders, effective dates)      -&gt; MIDNIGHT D.C.
+  - every national wheel is cast once with Washington, D.C. angles
+  - courthouse place remains factual metadata, never a second wheel
+  - user-facing clocks are Washington local time (EST/EDT)
+
+DST-aware per-place (zoneinfo). Whole Sign. Points: Sun..Pluto + True Node/SNode
++ Chiron (vendored ephe) + 916 America (cached Horizons grid 2024-27; the many
+pre-2024 judicial events get no America — that is the grid bound, not an error).
+
+Keyed by &quot;date|title&quot;. Run after build_judicial_seed.py; then build_judicial_timeline.py.
+&quot;&quot;&quot;
+import os, json, importlib.util
+from zoneinfo import ZoneInfo
+import swisseph as swe
+from chart_conventions import DC, DC_LABEL, clock_label, mundane_event_instant
+
+HERE  = os.path.dirname(os.path.abspath(__file__))
+SEED  = os.path.join(HERE, &quot;judicial_seed.json&quot;)
+OUT   = os.path.join(HERE, &quot;judicial_astro.json&quot;)
+
+def load(n):
+    s = importlib.util.spec_from_file_location(n, os.path.join(HERE, n + &quot;.py&quot;))
+    m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
+wl = load(&quot;wheel_lib&quot;); mp = load(&quot;minor_points&quot;)   # mp import sets the ephe path
+
+SIGNS = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,
+         &quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+PLANETS = [(&quot;Sun&quot;,swe.SUN),(&quot;Moon&quot;,swe.MOON),(&quot;Mercury&quot;,swe.MERCURY),(&quot;Venus&quot;,swe.VENUS),
+           (&quot;Mars&quot;,swe.MARS),(&quot;Jupiter&quot;,swe.JUPITER),(&quot;Saturn&quot;,swe.SATURN),
+           (&quot;Uranus&quot;,swe.URANUS),(&quot;Neptune&quot;,swe.NEPTUNE),(&quot;Pluto&quot;,swe.PLUTO)]
+FLAGS = swe.FLG_MOSEPH | swe.FLG_SPEED
+UTC = ZoneInfo(&quot;UTC&quot;)
+
+# lat, lon, tz — courthouse-city anchors from the Judicial Money Map §8
+PLACES = {
+    &quot;Washington, DC&quot;:    (DC[0],    DC[1],    &quot;America/New_York&quot;),
+    &quot;New York, NY&quot;:      (40.7143,  -74.0060, &quot;America/New_York&quot;),
+    &quot;Trenton, NJ&quot;:       (40.2171,  -74.7429, &quot;America/New_York&quot;),
+    &quot;Philadelphia, PA&quot;:  (39.9526,  -75.1652, &quot;America/New_York&quot;),
+    &quot;Lexington, KY&quot;:     (38.0406,  -84.5037, &quot;America/New_York&quot;),
+    &quot;Chicago, IL&quot;:       (41.8781,  -87.6298, &quot;America/Chicago&quot;),
+    &quot;New Orleans, LA&quot;:   (29.9511,  -90.0715, &quot;America/Chicago&quot;),
+    &quot;Birmingham, AL&quot;:    (33.5207,  -86.8025, &quot;America/Chicago&quot;),
+    &quot;Fort Worth, TX&quot;:    (32.7555,  -97.3308, &quot;America/Chicago&quot;),
+    &quot;Dallas, TX&quot;:        (32.7767,  -96.7970, &quot;America/Chicago&quot;),
+    &quot;Austin, TX&quot;:        (30.2672,  -97.7431, &quot;America/Chicago&quot;),
+    &quot;Sherman, TX&quot;:       (33.6357,  -96.6089, &quot;America/Chicago&quot;),
+    &quot;Denver, CO&quot;:        (39.7392, -104.9903, &quot;America/Denver&quot;),
+    &quot;Casper, WY&quot;:        (42.8666, -106.3131, &quot;America/Denver&quot;),
+    &quot;San Francisco, CA&quot;: (37.7749, -122.4194, &quot;America/Los_Angeles&quot;),
+    # v2 map additions (2026-07-11): transaction/resolution events
+    &quot;Albany, NY&quot;:         (42.6526,  -73.7562, &quot;America/New_York&quot;),
+    &quot;Phoenix, AZ&quot;:        (33.4484, -112.0740, &quot;America/Phoenix&quot;),
+    &quot;Salt Lake City, UT&quot;: (40.7608, -111.8910, &quot;America/Denver&quot;),
+    &quot;San Jose, CA&quot;:       (37.3382, -121.8863, &quot;America/Los_Angeles&quot;),
+}
+DC = PLACES[&quot;Washington, DC&quot;]
+
+AMERICA_PRE_GRID = {}   # flagship pre-2024 longitudes (JPL Horizons 00:00 UT) when Katie wants them
+
+def sgn(l): return SIGNS[int(l//30)%12]
+def dms(l):
+    d=int(l%30); m=int(round((l%30-d)*60))
+    if m==60: d+=1; m=0
+    return f&quot;{d}°{m:02d}&#x27;&quot;
+
+def jd_for(date_iso, timeclass, tzname):
+    parts = [int(x) for x in date_iso.split(&quot;-&quot;)]
+    if len(parts) &lt; 3:
+        return None   # month precision = no honest chart
+    stated = None if timeclass in (&quot;daytime&quot;, &quot;date-only&quot;) else timeclass
+    return mundane_event_instant(
+        date_iso, stated_time=stated, source_tz=tzname,
+        date_only=timeclass == &quot;date-only&quot;,
+    )
+
+def cast(jd, key, latlon):
+    lons={}; pos=[]
+    for nm, c in PLANETS:
+        r = swe.calc_ut(jd, c, FLAGS)[0]; l = r[0]%360; lons[nm]=l
+        pos.append([nm, sgn(l), dms(l), 1 if r[3]&lt;0 else 0, round(l,2)])
+    node = swe.calc_ut(jd, swe.TRUE_NODE, FLAGS)[0][0]%360
+    pos.append([&quot;Node&quot;, sgn(node), dms(node), 0, round(node,2)])
+    sn=(node+180)%360; pos.append([&quot;SNode&quot;, sgn(sn), dms(sn), 0, round(sn,2)])
+    chi = swe.calc_ut(jd, swe.CHIRON)[0][0]%360
+    pos.append([&quot;Chiron&quot;, sgn(chi), dms(chi), 0, round(chi,2)])
+    am = None
+    if key in AMERICA_PRE_GRID:
+        am = AMERICA_PRE_GRID[key]%360
+    else:
+        try: am = mp.america_lon(jd)%360
+        except ValueError: am = None
+    if am is not None:
+        pos.append([&quot;America&quot;, sgn(am), dms(am), 0, round(am,2)])
+    asc = swe.houses(jd, latlon[0], latlon[1], b&#x27;W&#x27;)[1][0]%360
+    asp = wl.aspects_between(lons)
+    asp += wl.point_aspects({&quot;Node&quot;:node}, lons)
+    asp += wl.point_aspects({&quot;Chiron&quot;:chi}, lons)
+    if am is not None: asp += wl.point_aspects({&quot;America&quot;:am}, lons)
+    asp.sort(key=lambda a:a[&quot;o&quot;])
+    return pos, round(asc,2), asp, am
+
+def main():
+    items = json.load(open(SEED, encoding=&quot;utf-8&quot;))[&quot;items&quot;]
+    charts = {}; noam = 0
+    for it in items:
+        key = it[&quot;date&quot;] + &quot;|&quot; + it[&quot;title&quot;]
+        scheduled = it[&quot;status&quot;].startswith(&quot;Scheduled&quot;)
+        place = it[&quot;place&quot;] or &quot;Washington, DC&quot;
+        if scheduled:
+            place, timeclass = &quot;Washington, DC&quot;, &quot;date-only&quot;
+        else:
+            timeclass = it[&quot;timeclass&quot;]
+        lat, lon, tzname = PLACES[place]
+        resolved = jd_for(it[&quot;date&quot;], timeclass, tzname)
+        if resolved is None:
+            continue
+        jd, dc_local, basis = resolved
+        pos, asc, asp, am = cast(jd, key, DC)
+        if am is None: noam += 1
+        if timeclass == &quot;daytime&quot;:
+            conv_time = f&quot;noon {dc_local.tzname() or &#x27;ET&#x27;}&quot;
+        elif timeclass == &quot;date-only&quot;:
+            conv_time = f&quot;midnight {dc_local.tzname() or &#x27;ET&#x27;}&quot;
+        else:
+            conv_time = clock_label(dc_local)
+        event_place = it[&quot;place&quot;] or &quot;unlocated&quot;
+        rec = {
+            &quot;pos&quot;: pos, &quot;asc&quot;: asc, &quot;asp&quot;: asp,
+            &quot;place&quot;: DC_LABEL,
+            &quot;eventPlace&quot;: event_place,
+            &quot;basis&quot;: basis,
+            &quot;convention&quot;: f&quot;{conv_time} · {DC_LABEL}&quot;,
+            &quot;moonSign&quot;: next(p[1] for p in pos if p[0]==&quot;Moon&quot;),
+        }
+        charts[key] = rec
+    json.dump({&quot;_comment&quot;: &quot;Charts for The Judicial Watch. DR-047: exact event instant &gt; noon D.C. (daytime) &gt; midnight D.C. (date-only); every national wheel uses Washington, D.C. angles and Eastern display time. Event place is metadata. Whole Sign. 916 America absent pre-2024 (grid bound).&quot;,
+               &quot;generated&quot;: &quot;2026-08-09&quot;, &quot;charts&quot;: charts},
+              open(OUT, &quot;w&quot;, encoding=&quot;utf-8&quot;), ensure_ascii=False, indent=None)
+    print(f&quot;cast {len(charts)} Washington, D.C. charts ({noam} without America pre-grid) -&gt; {OUT}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

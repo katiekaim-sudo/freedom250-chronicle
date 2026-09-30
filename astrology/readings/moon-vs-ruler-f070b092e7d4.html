@@ -1,0 +1,213 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/moon-vs-ruler-f070b092e7d4.html">
+<title>--- aspect classification (Greer) ---</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>--- aspect classification (Greer) ---</h1><p class="mut">Portable source: 99 - Templates/moon_vs_ruler.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;MOON vs. 1st-HOUSE RULER — Greer&#x27;s &quot;has the political class lost the plot?&quot; gauge.
+
+Greer&#x27;s most distinctive mundane indicator (Astrology of Nations; Master Reference §2b):
+  • The Moon = the POLITICAL CLASS (the ~20% with a political voice), NOT &quot;the people&quot;.
+  • The 1st house and its ruler = the GENERAL POPULATION — the people.
+  • Moon in helpful aspect to the 1st-ruler (or Moon in the 1st)  -&gt; the political class
+    and the people are ALIGNED.
+  • Moon in hostile aspect to the 1st-ruler                       -&gt; the political class
+    has lost track of the realities of governance; turmoil follows.
+  • A PROLONGED SERIES of hostile lunations = &quot;the political class has lost the plot.&quot;
+
+This module computes the gauge for every cardinal ingress (the season) and every
+New/Full Moon (the minute hand) cast for Washington D.C., Whole Sign — reusing the
+shared mundane_engine so the math is identical to the rest of the vault. It emits
+moon_vs_ruler.json (consumed by the Situation Deck tier and the reading note).
+NEVER fabricates a degree — every position is computed; verify against Astro Gold.
+
+Usage:
+  python3 moon_vs_ruler.py                 # print the report + write moon_vs_ruler.json
+  python3 moon_vs_ruler.py 2024-01-01 2027-12-31   # custom lunation span
+&quot;&quot;&quot;
+import os, sys, json
+import swisseph as swe
+HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
+import mundane_engine as ME
+
+# --- aspect classification (Greer) ---
+# helpful = the political class &amp; the people are aligned; hostile = lost track.
+HARMONY  = {&quot;sextile&quot;, &quot;trine&quot;}
+HOSTILE  = {&quot;square&quot;, &quot;opposition&quot;}
+# conjunction is read separately (fusion, judged by condition); none-in-orb = disconnected.
+MOON_RULER_ORB = 6.0   # same chart-level orb the dossier uses; the Moon is fast, 6° is fair.
+
+VERDICT_LABEL = {
+    &quot;aligned&quot;:      &quot;ALIGNED — political class &amp; people in step&quot;,
+    &quot;hostile&quot;:      &quot;HOSTILE — the political class has lost track&quot;,
+    &quot;fused&quot;:        &quot;FUSED — one body (conjunction); read by condition&quot;,
+    &quot;fused_ruler&quot;:  &quot;ONE RULER — the Moon itself rules the people (Cancer rising)&quot;,
+    &quot;disconnected&quot;: &quot;OUT OF CONTACT — no major aspect; talking past each other&quot;,
+}
+
+def _closest_aspect(sep):
+    &quot;&quot;&quot;sep in [0,180]; return (aspect_name, orb) for the nearest Ptolemaic aspect within orb, else (None,None).&quot;&quot;&quot;
+    best = (None, None)
+    for ang, nm in ME.ASPECTS.items():
+        orb = abs(sep - ang)
+        if orb &lt;= MOON_RULER_ORB and (best[1] is None or orb &lt; best[1]):
+            best = (nm, round(orb, 2))
+    return best
+
+def _applying(jd, moon_pid, ruler_pid, aspect_angle):
+    &quot;&quot;&quot;Is the Moon-ruler aspect applying (orb shrinking) at jd? Robust to a retrograde ruler.&quot;&quot;&quot;
+    def orb_at(t):
+        m = ME.lon(t, moon_pid); r = ME.lon(t, ruler_pid)
+        sep = abs((m - r + 180) % 360 - 180)
+        return abs(sep - aspect_angle)
+    return orb_at(jd + 0.04) &lt; orb_at(jd - 0.04)   # ~1 hour step
+
+def classify(moon_lon, ruler_name, ruler_lon, moon_house, jd, ruler_pid, ruler_cond):
+    &quot;&quot;&quot;Return a verdict dict for a single chart&#x27;s Moon-vs-1st-ruler relationship.&quot;&quot;&quot;
+    # Cancer rising: the Moon rules the 1st — the people&#x27;s ruler IS the political class.
+    if ruler_name == &quot;Moon&quot;:
+        return {&quot;verdict&quot;: &quot;fused_ruler&quot;, &quot;aspect&quot;: None, &quot;orb&quot;: None, &quot;applying&quot;: None,
+                &quot;phase_coupled&quot;: True,
+                &quot;note&quot;: &quot;The people are ruled by the Moon — the very body that is the political class. &quot;
+                        &quot;No gap to read: the two are one. Judge the Moon&#x27;s own condition.&quot;}
+    sep = abs((moon_lon - ruler_lon + 180) % 360 - 180)
+    aspect, orb = _closest_aspect(sep)
+    applying = None
+    if aspect:
+        applying = _applying(jd, ME.PLANETS[&quot;Moon&quot;], ruler_pid, [a for a, n in ME.ASPECTS.items() if n == aspect][0])
+    # Moon physically in the 1st house = aligned regardless (Greer: &quot;Moon in the 1st OR helpful aspect&quot;).
+    if moon_house == 1 and aspect not in HOSTILE:
+        verdict = &quot;aligned&quot;
+    elif aspect in HARMONY:
+        verdict = &quot;aligned&quot;
+    elif aspect in HOSTILE:
+        verdict = &quot;hostile&quot;
+    elif aspect == &quot;conjunction&quot;:
+        verdict = &quot;fused&quot;
+    else:
+        verdict = &quot;disconnected&quot;
+    # When the 1st-ruler is a luminary, the Moon-ruler aspect is partly fixed by the lunation
+    # phase itself (a Leo-rising Full Moon is necessarily Sun-opposite-Moon; Cancer rising is
+    # always the Moon). Flag it as weaker evidence than an independent (non-luminary) ruler.
+    phase_coupled = ruler_name in (&quot;Sun&quot;, &quot;Moon&quot;)
+    return {&quot;verdict&quot;: verdict, &quot;aspect&quot;: aspect, &quot;orb&quot;: orb, &quot;applying&quot;: applying,
+            &quot;phase_coupled&quot;: phase_coupled, &quot;ruler_condition&quot;: ruler_cond}
+
+def analyze_ingress(year, sign):
+    ch = ME.cast_ingress(year, sign)
+    ruler = ch[&quot;chart_ruler&quot;]
+    rp = ch[&quot;pos&quot;][ruler]; mp = ch[&quot;pos&quot;][&quot;Moon&quot;]
+    c = classify(mp[&quot;lon&quot;], ruler, rp[&quot;lon&quot;], mp[&quot;house&quot;], ch[&quot;jd&quot;], ME.PLANETS[ruler], rp[&quot;cond&quot;])
+    return {
+        &quot;kind&quot;: &quot;ingress&quot;, &quot;label&quot;: f&quot;{year} {sign} ingress&quot;, &quot;date&quot;: ch[&quot;date&quot;],
+        &quot;asc_sign&quot;: ch[&quot;asc_sign&quot;], &quot;asc_modality&quot;: ch[&quot;asc_modality&quot;],
+        &quot;validity_months&quot;: ME.validity_months(ch[&quot;asc_modality&quot;]),
+        &quot;ruler&quot;: ruler, &quot;ruler_sign&quot;: rp[&quot;sign&quot;], &quot;ruler_deg&quot;: rp[&quot;deg&quot;], &quot;ruler_house&quot;: rp[&quot;house&quot;],
+        &quot;ruler_cond&quot;: rp[&quot;cond&quot;], &quot;ruler_retro&quot;: rp[&quot;retro&quot;],
+        &quot;moon_sign&quot;: mp[&quot;sign&quot;], &quot;moon_deg&quot;: mp[&quot;deg&quot;], &quot;moon_house&quot;: mp[&quot;house&quot;], &quot;moon_cond&quot;: mp[&quot;cond&quot;],
+        **c,
+    }
+
+def analyze_lunation(lun):
+    &quot;&quot;&quot;lun is a row from ME.lunations(): has jd, sun, moon, kind, sign, deg, date.&quot;&quot;&quot;
+    jd = lun[&quot;jd&quot;]
+    cusps, ascmc = swe.houses(jd, ME.DC[&quot;lat&quot;], ME.DC[&quot;lon&quot;], b&#x27;W&#x27;)
+    asc = ascmc[0]; asc_sign = ME.sign_of(asc); asc_idx = int(asc // 30)
+    ruler = ME.RULER[asc_sign]
+    rpid = ME.PLANETS[ruler]
+    ruler_lon = lun[&quot;moon&quot;] if ruler == &quot;Moon&quot; else ME.lon(jd, rpid)
+    ruler_sign = ME.sign_of(ruler_lon)
+    ruler_house = ((int(((ruler_lon % 360) + 1e-6) // 30) - asc_idx) % 12) + 1
+    ruler_retro = (ruler != &quot;Moon&quot; and swe.calc_ut(jd, rpid)[0][3] &lt; 0)
+    ruler_cond = ME.condition(ruler, ruler_sign, False)
+    moon_lon = lun[&quot;moon&quot;]
+    moon_house = ((int(((moon_lon % 360) + 1e-6) // 30) - asc_idx) % 12) + 1
+    c = classify(moon_lon, ruler, ruler_lon, moon_house, jd, rpid, ruler_cond)
+    return {
+        &quot;kind&quot;: &quot;lunation&quot;, &quot;label&quot;: f&quot;{lun[&#x27;date&#x27;]} {lun[&#x27;kind&#x27;]} Moon&quot;, &quot;date&quot;: lun[&quot;date&quot;],
+        &quot;lunation_kind&quot;: lun[&quot;kind&quot;], &quot;asc_sign&quot;: asc_sign,
+        &quot;ruler&quot;: ruler, &quot;ruler_sign&quot;: ruler_sign, &quot;ruler_deg&quot;: round(ruler_lon % 30, 1),
+        &quot;ruler_house&quot;: ruler_house, &quot;ruler_cond&quot;: ruler_cond, &quot;ruler_retro&quot;: ruler_retro,
+        &quot;moon_sign&quot;: ME.sign_of(moon_lon), &quot;moon_deg&quot;: round(moon_lon % 30, 1), &quot;moon_house&quot;: moon_house,
+        **c,
+    }
+
+def streaks(records):
+    &quot;&quot;&quot;Greer&#x27;s &#x27;prolonged series&#x27;: longest runs of consecutive HOSTILE lunations, plus current state.&quot;&quot;&quot;
+    luns = [r for r in records if r[&quot;kind&quot;] == &quot;lunation&quot;]
+    luns.sort(key=lambda r: r[&quot;date&quot;])
+    runs = []; cur = []
+    for r in luns:
+        if r[&quot;verdict&quot;] == &quot;hostile&quot;:
+            cur.append(r[&quot;date&quot;])
+        else:
+            if len(cur) &gt;= 2: runs.append((cur[0], cur[-1], len(cur)))
+            cur = []
+    if len(cur) &gt;= 2: runs.append((cur[0], cur[-1], len(cur)))
+    runs.sort(key=lambda x: -x[2])
+    # tally (all) + independent tally (excluding phase-coupled luminary-ruled charts)
+    tally = {}; indep = {}
+    for r in luns:
+        tally[r[&quot;verdict&quot;]] = tally.get(r[&quot;verdict&quot;], 0) + 1
+        if not r.get(&quot;phase_coupled&quot;):
+            indep[r[&quot;verdict&quot;]] = indep.get(r[&quot;verdict&quot;], 0) + 1
+    # independent hostile runs (the strong-evidence version of Greer&#x27;s &quot;series&quot;)
+    iruns = []; cur = []
+    for r in luns:
+        if r[&quot;verdict&quot;] == &quot;hostile&quot; and not r.get(&quot;phase_coupled&quot;):
+            cur.append(r[&quot;date&quot;])
+        else:
+            if len(cur) &gt;= 2: iruns.append((cur[0], cur[-1], len(cur)))
+            cur = []
+    if len(cur) &gt;= 2: iruns.append((cur[0], cur[-1], len(cur)))
+    return {&quot;hostile_runs&quot;: runs, &quot;independent_hostile_runs&quot;: iruns,
+            &quot;tally&quot;: tally, &quot;independent_tally&quot;: indep,
+            &quot;n_lunations&quot;: len(luns), &quot;n_independent&quot;: sum(indep.values()),
+            &quot;current&quot;: luns[-1] if luns else None}
+
+def build(span_start=&quot;2024-01-01&quot;, span_end=&quot;2027-12-31&quot;):
+    records = []
+    for yr in (2025, 2026):
+        for sgn in (&quot;Aries&quot;, &quot;Cancer&quot;, &quot;Libra&quot;, &quot;Capricorn&quot;):
+            records.append(analyze_ingress(yr, sgn))
+    for lun in ME.lunations(span_start, span_end):
+        records.append(analyze_lunation(lun))
+    return {&quot;records&quot;: records, &quot;summary&quot;: streaks(records),
+            &quot;orb&quot;: MOON_RULER_ORB, &quot;span&quot;: [span_start, span_end]}
+
+def _fmt(r):
+    asp = f&quot;{r[&#x27;aspect&#x27;]} {r[&#x27;orb&#x27;]}°&quot; + (&quot;→&quot; if r.get(&quot;applying&quot;) else (&quot;←&quot; if r.get(&quot;applying&quot;) is False else &quot;&quot;)) if r[&quot;aspect&quot;] else &quot;—&quot;
+    return (f&quot;  {r[&#x27;date&#x27;]}  {r[&#x27;label&#x27;]:26s} | {r[&#x27;asc_sign&#x27;]:11s} rising → ruler {r[&#x27;ruler&#x27;]:7s} &quot;
+            f&quot;{r[&#x27;ruler_deg&#x27;]:4.1f}° {r[&#x27;ruler_sign&#x27;]:11s} {r[&#x27;ruler_house&#x27;]:&gt;2d}H | Moon {r[&#x27;moon_deg&#x27;]:4.1f}° &quot;
+            f&quot;{r[&#x27;moon_sign&#x27;]:11s} {r[&#x27;moon_house&#x27;]:&gt;2d}H | {asp:18s} | {r[&#x27;verdict&#x27;].upper()}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    if len(sys.argv) &gt;= 3:
+        data = build(sys.argv[1], sys.argv[2])
+    else:
+        data = build()
+    print(&quot;=&quot; * 100)
+    print(&quot;  MOON vs. 1st-HOUSE RULER — has the political class lost the plot? (D.C., Whole Sign)&quot;)
+    print(&quot;=&quot; * 100)
+    print(&quot;\n  THE EIGHT INGRESSES (the season&#x27;s standing relationship)&quot;)
+    for r in data[&quot;records&quot;]:
+        if r[&quot;kind&quot;] == &quot;ingress&quot;: print(_fmt(r))
+    print(&quot;\n  THE LUNATIONS (the minute hand) —&quot;, data[&quot;summary&quot;][&quot;n_lunations&quot;], &quot;New/Full Moons&quot;)
+    for r in data[&quot;records&quot;]:
+        if r[&quot;kind&quot;] == &quot;lunation&quot;: print(_fmt(r))
+    s = data[&quot;summary&quot;]
+    print(&quot;\n  TALLY:&quot;, s[&quot;tally&quot;])
+    print(&quot;  LONGEST HOSTILE RUNS (Greer&#x27;s &#x27;lost the plot&#x27; series):&quot;)
+    for a, b, n in s[&quot;hostile_runs&quot;][:8]:
+        print(f&quot;    {n} in a row: {a} → {b}&quot;)
+    if s[&quot;current&quot;]:
+        print(f&quot;  CURRENT (latest lunation {s[&#x27;current&#x27;][&#x27;date&#x27;]}): {VERDICT_LABEL[s[&#x27;current&#x27;][&#x27;verdict&#x27;]]}&quot;)
+    out = os.path.join(HERE, &quot;moon_vs_ruler.json&quot;)
+    json.dump(data, open(out, &quot;w&quot;), indent=1, default=str)
+    print(&quot;\n  wrote&quot;, out)
+</pre></main></body></html>

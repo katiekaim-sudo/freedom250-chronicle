@@ -1,0 +1,987 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-chart-comparison-2b2ea52d3b3d.html">
+<title>build_chart_comparison</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_chart_comparison</h1><p class="mut">Portable source: 99 - Templates/build_chart_comparison.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the selectable Chart Comparison workbench.
+
+The generated view exposes the continuous 2016-January 2029 D.C. mundane-history shelf,
+the current quarter-phase shelf, and the full Main Characters natal catalog
+through four selectable rings.  The original
+Cancer-ingress/August-eclipse/Trump/progression comparison remains the default
+preset.  Exactly one eligible chart owns the shared houses; every other chart is
+an overlay whose angles remain markers.
+
+The view is deliberately calculation-first: Swiss Ephemeris produces every
+longitude and cusp, Python precomputes the cross-chart contact inventory, and
+the browser only filters and draws that trusted bundle.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import argparse
+from datetime import datetime, timedelta, timezone
+import html
+import json
+import math
+from pathlib import Path
+import re
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+from chart_conventions import DC_LABEL, DC_LAT, DC_LON, DC_TZ, clock_label
+from minor_points import all_points, america_natal
+from wheel_lib import WHEEL_JS, placidus_cusps
+
+
+HERE = Path(__file__).resolve().parent
+VAULT = HERE.parent
+OUT = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot; / &quot;Chart Comparison.html&quot;
+CHARACTERS = HERE / &quot;characters_data.json&quot;
+BONES = HERE / &quot;chart_reading_bones&quot;
+BONES_INDEX = BONES / &quot;index.json&quot;
+READING_REGISTRY = VAULT / &quot;03 - Astrology&quot; / &quot;chart_reading_registry.json&quot;
+LUNAR_WEATHER = VAULT / &quot;04 - Synthesis&quot; / &quot;Cross-cuts&quot; / &quot;Lunar Weather.html&quot;
+MUNDANE_HISTORY = HERE / &quot;mundane_history.json&quot;
+EPHE = HERE / &quot;ephe&quot;
+
+SIGNS = [&quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;, &quot;Libra&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;]
+BODY_IDS = [
+    (&quot;Sun&quot;, swe.SUN), (&quot;Moon&quot;, swe.MOON), (&quot;Mercury&quot;, swe.MERCURY),
+    (&quot;Venus&quot;, swe.VENUS), (&quot;Mars&quot;, swe.MARS), (&quot;Jupiter&quot;, swe.JUPITER),
+    (&quot;Saturn&quot;, swe.SATURN), (&quot;Uranus&quot;, swe.URANUS),
+    (&quot;Neptune&quot;, swe.NEPTUNE), (&quot;Pluto&quot;, swe.PLUTO),
+]
+ASPECTS = [(0, &quot;conjunct&quot;), (60, &quot;sextile&quot;), (90, &quot;square&quot;), (120, &quot;trine&quot;), (150, &quot;quincunx&quot;), (180, &quot;opposite&quot;)]
+HARD = {&quot;conjunct&quot;, &quot;square&quot;, &quot;opposite&quot;}
+DEFAULT_ORDER = [
+    &quot;lun-2026-08-12-ne-solar&quot;,
+    &quot;ingress-2026-cancer&quot;,
+    &quot;character-trump&quot;,
+    &quot;special-trump-progressed-2026-08-12&quot;,
+]
+LAYER_COLORS = [&quot;#b07d2b&quot;, &quot;#9b6a3f&quot;, &quot;#3a6ea5&quot;, &quot;#6e3d5e&quot;]
+
+
+def jd_from_datetime(moment: datetime) -&gt; float:
+    utc = moment.astimezone(timezone.utc)
+    hour = utc.hour + utc.minute / 60 + (utc.second + utc.microsecond / 1_000_000) / 3600
+    return swe.julday(utc.year, utc.month, utc.day, hour, swe.GREG_CAL)
+
+
+def datetime_from_jd(jd: float) -&gt; datetime:
+    year, month, day, hour = swe.revjul(jd, swe.GREG_CAL)
+    return datetime(year, month, day, tzinfo=timezone.utc) + timedelta(hours=hour)
+
+
+def refine_phase(seed_jd: float, target: float) -&gt; float:
+    flags = swe.FLG_SWIEPH | swe.FLG_SPEED
+    jd = seed_jd
+    for _ in range(10):
+        sun = swe.calc_ut(jd, swe.SUN, flags)[0]
+        moon = swe.calc_ut(jd, swe.MOON, flags)[0]
+        error = ((moon[0] - sun[0] - target + 180) % 360) - 180
+        jd -= error / (moon[3] - sun[3])
+        if abs(error) &lt; 1e-11:
+            break
+    return jd
+
+
+def dms(lon: float) -&gt; str:
+    degree = lon % 30
+    total_seconds = int(round(degree * 3600))
+    if total_seconds &gt;= 30 * 3600:
+        total_seconds = 0
+    deg, remain = divmod(total_seconds, 3600)
+    minute, second = divmod(remain, 60)
+    return f&quot;{deg}°{minute:02d}′{second:02d}″&quot;
+
+
+def point(name: str, lon: float, speed: float = 0.0, group: str = &quot;planet&quot;) -&gt; dict:
+    lon %= 360
+    return {
+        &quot;name&quot;: name,
+        &quot;lon&quot;: round(lon, 8),
+        &quot;sign&quot;: SIGNS[int(lon // 30) % 12],
+        &quot;dms&quot;: dms(lon),
+        &quot;retro&quot;: speed &lt; 0,
+        &quot;group&quot;: group,
+    }
+
+
+def calculated_points(
+    jd: float, america_mode: str = &quot;event&quot;, america_key: str | None = None
+) -&gt; list[dict]:
+    flags = swe.FLG_SWIEPH | swe.FLG_SPEED
+    out = []
+    for name, body_id in BODY_IDS:
+        result = swe.calc_ut(jd, body_id, flags)[0]
+        out.append(point(name, result[0], result[3]))
+    extras = all_points(jd, with_america=(america_mode == &quot;event&quot;))
+    for name in (&quot;Chiron&quot;, &quot;Node&quot;):
+        lon, speed = extras[name]
+        group = &quot;chiron&quot; if name == &quot;Chiron&quot; else &quot;node&quot;
+        out.append(point(name, lon, speed, group))
+        if name == &quot;Node&quot;:
+            out.append(point(&quot;SNode&quot;, lon + 180, speed, &quot;node&quot;))
+    if america_mode == &quot;event&quot;:
+        lon, speed = extras[&quot;America&quot;]
+        out.append(point(&quot;America&quot;, lon, speed, &quot;america&quot;))
+    elif america_mode == &quot;natal&quot;:
+        if not america_key:
+            raise ValueError(&quot;Natal 916 America requires a governed chart key&quot;)
+        out.append(point(&quot;America&quot;, america_natal(america_key), 0.0, &quot;america&quot;))
+    return out
+
+
+def angles_and_cusps(jd: float, lat: float, lon: float) -&gt; tuple[float, float, list[float]]:
+    _cusps, ascmc = swe.houses(jd, lat, lon, b&quot;P&quot;)
+    cusps, mc = placidus_cusps(jd, lat, lon)
+    return ascmc[0] % 360, mc, cusps
+
+
+def asc_from_mc(mc_lon: float, lat: float) -&gt; float:
+    eps = math.radians(23.4368)
+    mcr = math.radians(mc_lon)
+    ramc = math.atan2(math.sin(mcr) * math.cos(eps), math.cos(mcr))
+    phi = math.radians(lat)
+    asc = math.atan2(
+        math.cos(ramc),
+        -(math.sin(ramc) * math.cos(eps) + math.tan(phi) * math.sin(eps)),
+    )
+    return math.degrees(asc) % 360
+
+
+def character_rows() -&gt; list[dict]:
+    data = json.loads(CHARACTERS.read_text(encoding=&quot;utf-8&quot;))
+    return data[&quot;cast&quot;] if isinstance(data, dict) else data
+
+
+def frame_layer(
+    layer_id: str, label: str, short: str, kind: str, color: str,
+    jd: float, moment: datetime, place: str, lat: float, lon: float,
+    points: list[dict], source: str, frame_eligible: bool = True,
+) -&gt; dict:
+    asc, mc, cusps = angles_and_cusps(jd, lat, lon)
+    return {
+        &quot;id&quot;: layer_id, &quot;label&quot;: label, &quot;short&quot;: short, &quot;kind&quot;: kind,
+        &quot;color&quot;: color, &quot;jd&quot;: round(jd, 9), &quot;utc&quot;: moment.astimezone(timezone.utc).isoformat(timespec=&quot;milliseconds&quot;).replace(&quot;+00:00&quot;, &quot;Z&quot;),
+        &quot;local&quot;: clock_label(moment.astimezone(DC_TZ), seconds=True) if place == DC_LABEL else moment.strftime(&quot;%B %-d, %Y · %-I:%M:%S %p %Z&quot;),
+        &quot;place&quot;: place, &quot;lat&quot;: lat, &quot;lon&quot;: lon, &quot;points&quot;: points,
+        &quot;asc&quot;: round(asc, 8), &quot;mc&quot;: round(mc, 8), &quot;cusps&quot;: cusps,
+        &quot;frameEligible&quot;: frame_eligible, &quot;source&quot;: source,
+    }
+
+
+def label_from_source(source: str) -&gt; str:
+    name = Path(source).name
+    for suffix in (&quot; — A Reading.md&quot;, &quot; — A reading.md&quot;, &quot;.md&quot;):
+        if name.endswith(suffix):
+            name = name[: -len(suffix)]
+            break
+    return name
+
+
+def governed_chart_sources() -&gt; tuple[dict, dict, dict]:
+    index = json.loads(BONES_INDEX.read_text(encoding=&quot;utf-8&quot;))[&quot;charts&quot;]
+    registry = json.loads(READING_REGISTRY.read_text(encoding=&quot;utf-8&quot;))[&quot;readings&quot;]
+    sources = {row[&quot;id&quot;]: row[&quot;source&quot;] for row in registry if row.get(&quot;kind&quot;) == &quot;pass1&quot;}
+    meta_by_id = {row[&quot;id&quot;]: row for row in index}
+    bones_by_date = {}
+    for row in index:
+        if row[&quot;type&quot;] == &quot;lunation&quot;:
+            bones_by_date[row[&quot;date&quot;]] = row[&quot;id&quot;]
+    return sources, meta_by_id, bones_by_date
+
+
+def lunation_records() -&gt; dict:
+    text = LUNAR_WEATHER.read_text(encoding=&quot;utf-8&quot;)
+    head = (r&#x27;\{&quot;type&quot;:&quot;(New Moon|First Quarter|Full Moon|Last Quarter)&quot;,&#x27;
+            r&#x27;&quot;date&quot;:&quot;(\d{4}-\d{2}-\d{2})&quot;,&quot;time_utc&quot;:&quot;(\d{2}):(\d{2})&quot;&#x27;)
+    records = {}
+    for match in re.finditer(head, text):
+        phase, date, hour, minute = match.groups()
+        tail = text[match.end():match.end() + 360]
+        sign = re.search(r&#x27;&quot;(?:moon_)?sign&quot;:&quot;(\w+)&quot;&#x27;, tail)
+        degree = re.search(r&#x27;&quot;degree&quot;:([\d.]+)&#x27;, tail)
+        eclipse = re.search(r&#x27;&quot;eclipse&quot;:(true|false)&#x27;, tail)
+        if not (sign and degree and eclipse):
+            raise ValueError(f&quot;Lunar Weather chart record changed at {date}&quot;)
+        records[date] = {
+            &quot;phase&quot;: phase, &quot;hour&quot;: int(hour), &quot;minute&quot;: int(minute),
+            &quot;sign&quot;: sign.group(1), &quot;degree&quot;: float(degree.group(1)),
+            &quot;eclipse&quot;: eclipse.group(1) == &quot;true&quot;,
+        }
+    return records
+
+
+def lunation_layers() -&gt; list[dict]:
+    sources, meta_by_id, bones_by_date = governed_chart_sources()
+    targets = {&quot;New Moon&quot;: 0.0, &quot;First Quarter&quot;: 90.0, &quot;Full Moon&quot;: 180.0, &quot;Last Quarter&quot;: 270.0}
+    layers = []
+    for number, (date, rec) in enumerate(sorted(lunation_records().items())):
+        year, month, day = map(int, date.split(&quot;-&quot;))
+        seed_jd = swe.julday(year, month, day, rec[&quot;hour&quot;] + rec[&quot;minute&quot;] / 60.0)
+        jd = refine_phase(seed_jd, targets[rec[&quot;phase&quot;]])
+        moment = datetime_from_jd(jd)
+        chart_id = bones_by_date.get(date, f&quot;lunation-{date}&quot;)
+        source = sources.get(chart_id, &quot;04 - Synthesis/Cross-cuts/Lunar Weather.html · exact phase catalog&quot;)
+        if chart_id in sources:
+            label = label_from_source(source)
+        elif rec[&quot;eclipse&quot;]:
+            label = f&quot;{date} {rec[&#x27;sign&#x27;]} {&#x27;Solar&#x27; if rec[&#x27;phase&#x27;] == &#x27;New Moon&#x27; else &#x27;Lunar&#x27;} Eclipse&quot;
+        else:
+            label = f&quot;{date} {rec[&#x27;sign&#x27;]} {rec[&#x27;phase&#x27;]}&quot;
+        category = &quot;Eclipses&quot; if rec[&quot;eclipse&quot;] else &quot;Lunations&quot;
+        short = &quot;E&quot; if rec[&quot;eclipse&quot;] else {&quot;New Moon&quot;: &quot;N&quot;, &quot;Full Moon&quot;: &quot;F&quot;, &quot;First Quarter&quot;: &quot;Q&quot;, &quot;Last Quarter&quot;: &quot;Q&quot;}[rec[&quot;phase&quot;]]
+        layer = frame_layer(
+            chart_id, label, short, &quot;mundane eclipse&quot; if rec[&quot;eclipse&quot;] else rec[&quot;phase&quot;].lower(),
+            LAYER_COLORS[number % len(LAYER_COLORS)], jd, moment,
+            DC_LABEL, DC_LAT, DC_LON, calculated_points(jd), source,
+        )
+        bone = None
+        if chart_id in meta_by_id:
+            bone = json.loads((BONES / f&quot;{chart_id}.json&quot;).read_text(encoding=&quot;utf-8&quot;))
+        layer.update({
+            &quot;category&quot;: category, &quot;date&quot;: date, &quot;phase&quot;: rec[&quot;phase&quot;],
+            &quot;moonSign&quot;: rec[&quot;sign&quot;], &quot;degree&quot;: rec[&quot;degree&quot;],
+            &quot;root&quot;: bone.get(&quot;root_members&quot;, []) if bone else [],
+            &quot;governing&quot;: meta_by_id.get(chart_id, {}).get(&quot;governing&quot;),
+            &quot;greerQuiet&quot;: meta_by_id.get(chart_id, {}).get(&quot;greer_quiet&quot;),
+            &quot;placidusEligible&quot;: True, &quot;timeKnown&quot;: True,
+        })
+        layers.append(layer)
+    if len(layers) != 198:
+        raise ValueError(f&quot;Expected 198 saved lunation charts, found {len(layers)}&quot;)
+    return layers
+
+
+def history_layers() -&gt; list[dict]:
+    &quot;&quot;&quot;Project the calculate-once mundane-history corpus into comparison layers.&quot;&quot;&quot;
+    payload = json.loads(MUNDANE_HISTORY.read_text(encoding=&quot;utf-8&quot;))
+    if payload.get(&quot;schema&quot;) != &quot;freedom250.mundane-history/v1&quot;:
+        raise ValueError(&quot;Unsupported mundane-history catalog schema&quot;)
+    history = payload[&quot;charts&quot;]
+    ingress_labels = {row[&quot;id&quot;]: row[&quot;label&quot;] for row in history if row[&quot;chart_type&quot;] == &quot;ingress&quot;}
+    layers = []
+    for number, row in enumerate(history):
+        eclipse = row.get(&quot;eclipse&quot;)
+        category = &quot;Ingresses&quot; if row[&quot;chart_type&quot;] == &quot;ingress&quot; else &quot;Eclipses&quot; if eclipse else &quot;Lunations&quot;
+        kind = &quot;mundane ingress&quot; if category == &quot;Ingresses&quot; else &quot;mundane eclipse&quot; if eclipse else row[&quot;phase&quot;].lower()
+        short = &quot;I&quot; if category == &quot;Ingresses&quot; else &quot;E&quot; if eclipse else &quot;N&quot; if row[&quot;kind&quot;] == &quot;new&quot; else &quot;F&quot;
+        moment = datetime.fromisoformat(row[&quot;utc&quot;])
+        layer = {
+            &quot;id&quot;: row[&quot;id&quot;], &quot;label&quot;: row[&quot;label&quot;], &quot;short&quot;: short, &quot;kind&quot;: kind,
+            &quot;color&quot;: LAYER_COLORS[number % len(LAYER_COLORS)], &quot;jd&quot;: row[&quot;jd_ut&quot;],
+            &quot;utc&quot;: moment.astimezone(timezone.utc).isoformat(timespec=&quot;milliseconds&quot;).replace(&quot;+00:00&quot;, &quot;Z&quot;),
+            &quot;local&quot;: clock_label(moment.astimezone(DC_TZ), seconds=True),
+            &quot;place&quot;: DC_LABEL, &quot;lat&quot;: DC_LAT, &quot;lon&quot;: DC_LON, &quot;points&quot;: row[&quot;points&quot;],
+            &quot;asc&quot;: row[&quot;asc&quot;], &quot;mc&quot;: row[&quot;mc&quot;], &quot;cusps&quot;: row[&quot;placidus_cusps&quot;],
+            &quot;frameEligible&quot;: True,
+            &quot;source&quot;: row.get(&quot;reading_source&quot;) or row[&quot;calculation_authority&quot;],
+            &quot;category&quot;: category, &quot;date&quot;: row[&quot;date&quot;], &quot;utcDate&quot;: row[&quot;utc&quot;][:10],
+            &quot;year&quot;: int(row[&quot;date&quot;][:4]), &quot;aliases&quot;: row.get(&quot;aliases&quot;, []),
+            &quot;root&quot;: row.get(&quot;root_members&quot;, []), &quot;placidusEligible&quot;: True, &quot;timeKnown&quot;: True,
+            &quot;firstTerm&quot;: row.get(&quot;first_term&quot;, False),
+            &quot;verification&quot;: row.get(&quot;verification&quot;, {}),
+        }
+        if row[&quot;chart_type&quot;] == &quot;ingress&quot;:
+            layer.update({&quot;standing&quot;: row[&quot;standing&quot;], &quot;ascModality&quot;: row[&quot;asc_modality&quot;]})
+        else:
+            layer.update({
+                &quot;phase&quot;: row[&quot;phase&quot;], &quot;moonSign&quot;: row[&quot;sign&quot;], &quot;degree&quot;: row[&quot;degree&quot;],
+                &quot;governing&quot;: ingress_labels.get(row[&quot;governing_ingress_id&quot;], row[&quot;governing_ingress_id&quot;]),
+                &quot;governingId&quot;: row[&quot;governing_ingress_id&quot;], &quot;greerQuiet&quot;: row.get(&quot;greer_quiet&quot;),
+                &quot;eclipseMeta&quot;: eclipse,
+            })
+        layers.append(layer)
+    return layers
+
+
+def retained_quarter_layers() -&gt; list[dict]:
+    &quot;&quot;&quot;Preserve the current 2024-2027 quarter shelf during authority migration.&quot;&quot;&quot;
+    rows = [row for row in lunation_layers() if row.get(&quot;phase&quot;) in {&quot;First Quarter&quot;, &quot;Last Quarter&quot;}]
+    if len(rows) != 99:
+        raise ValueError(f&quot;Expected 99 retained quarter charts, found {len(rows)}&quot;)
+    for row in rows:
+        row[&quot;legacyQuarter&quot;] = True
+        row[&quot;year&quot;] = int(row[&quot;date&quot;][:4])
+        row[&quot;aliases&quot;] = []
+    return rows
+
+
+def character_jd(row: dict) -&gt; tuple[float, datetime, bool]:
+    tz = ZoneInfo(row[&quot;tz&quot;])
+    date_part = datetime.fromisoformat(row[&quot;date&quot;])
+    if row.get(&quot;time_known&quot;):
+        hour, minute = map(int, row[&quot;time&quot;].split(&quot;:&quot;))
+        local = datetime(date_part.year, date_part.month, date_part.day, hour, minute, tzinfo=tz)
+        return jd_from_datetime(local), local, True
+    local_midnight = datetime(date_part.year, date_part.month, date_part.day, 0, 0, tzinfo=tz)
+    seed_jd = jd_from_datetime(local_midnight)
+    result, times = swe.rise_trans(
+        seed_jd, swe.SUN, swe.CALC_RISE, (row[&quot;lon&quot;], row[&quot;lat&quot;], 0.0)
+    )
+    if result != 0:
+        raise RuntimeError(f&quot;No sunrise frame for {row[&#x27;name&#x27;]}&quot;)
+    jd = times[0]
+    return jd, datetime_from_jd(jd).astimezone(tz), False
+
+
+def character_layers() -&gt; list[dict]:
+    layers = []
+    for number, row in enumerate(character_rows()):
+        jd, local, time_known = character_jd(row)
+        layer = frame_layer(
+            f&quot;character-{row[&#x27;slug&#x27;]}&quot;, row[&quot;name&quot;], &quot;N&quot;, &quot;natal chart&quot;,
+            LAYER_COLORS[number % len(LAYER_COLORS)], jd, local,
+            row[&quot;place&quot;], row[&quot;lat&quot;], row[&quot;lon&quot;],
+            calculated_points(jd, &quot;natal&quot;, row[&quot;slug&quot;]),
+            &quot;99 - Templates/characters_data.json&quot;,
+            frame_eligible=time_known,
+        )
+        if row.get(&quot;asc_override&quot;) is not None:
+            layer[&quot;asc&quot;] = float(row[&quot;asc_override&quot;])
+            layer[&quot;placidusEligible&quot;] = False
+        else:
+            layer[&quot;placidusEligible&quot;] = time_known
+        layer.update({
+            &quot;category&quot;: &quot;Main Characters&quot;,
+            &quot;date&quot;: row[&quot;date&quot;],
+            &quot;role&quot;: row.get(&quot;role&quot;, &quot;&quot;),
+            &quot;rodden&quot;: row.get(&quot;rodden&quot;),
+            &quot;timeKnown&quot;: time_known,
+            &quot;frameEligible&quot;: time_known,
+        })
+        if not time_known:
+            layer[&quot;frameCaution&quot;] = &quot;No recorded birth time: sunrise display only; angles and houses cannot own the comparison frame.&quot;
+            layer[&quot;kind&quot;] = &quot;natal planets · sunrise display&quot;
+            layer[&quot;local&quot;] = f&quot;{local.strftime(&#x27;%B %-d, %Y&#x27;)} · sunrise display · {local.tzname()}&quot;
+        elif row.get(&quot;asc_override&quot;) is not None:
+            layer[&quot;frameCaution&quot;] = &quot;Katie&#x27;s rectified Ascendant; Whole Sign frame only.&quot;
+        layers.append(layer)
+    return layers
+
+
+def progressed_trump_layer(catalog: list[dict]) -&gt; dict:
+    eclipse = next(row for row in catalog if row[&quot;id&quot;] == &quot;lun-2026-08-12-ne-solar&quot;)
+    natal = next(row for row in catalog if row[&quot;id&quot;] == &quot;character-trump&quot;)
+    trump = next(row for row in character_rows() if row[&quot;slug&quot;] == &quot;trump&quot;)
+    birth_jd = natal[&quot;jd&quot;]
+    eclipse_jd = eclipse[&quot;jd&quot;]
+    eclipse_moment = datetime.fromisoformat(eclipse[&quot;utc&quot;].replace(&quot;Z&quot;, &quot;+00:00&quot;))
+    birth_local = datetime.fromisoformat(f&quot;{trump[&#x27;date&#x27;]}T{trump[&#x27;time&#x27;]}&quot;).replace(tzinfo=ZoneInfo(trump[&quot;tz&quot;]))
+    progressed_jd = birth_jd + (eclipse_jd - birth_jd) / 365.25
+    progressed_moment = datetime_from_jd(progressed_jd)
+    progressed_points = calculated_points(progressed_jd, &quot;progressed&quot;)
+    natal_sun = next(p[&quot;lon&quot;] for p in natal[&quot;points&quot;] if p[&quot;name&quot;] == &quot;Sun&quot;)
+    progressed_sun = next(p[&quot;lon&quot;] for p in progressed_points if p[&quot;name&quot;] == &quot;Sun&quot;)
+    solar_arc = (progressed_sun - natal_sun) % 360
+    progressed_mc = (natal[&quot;mc&quot;] + solar_arc) % 360
+    progressed_asc = asc_from_mc(progressed_mc, trump[&quot;lat&quot;])
+    progressed = {
+        &quot;id&quot;: &quot;special-trump-progressed-2026-08-12&quot;, &quot;label&quot;: &quot;Trump Secondary Progressed · Aug 12&quot;, &quot;short&quot;: &quot;P&quot;,
+        &quot;kind&quot;: &quot;secondary-progressed planets · Solar-Arc ASC/MC&quot;, &quot;color&quot;: &quot;#6e3d5e&quot;,
+        &quot;jd&quot;: round(progressed_jd, 9), &quot;utc&quot;: eclipse[&quot;utc&quot;], &quot;local&quot;: eclipse[&quot;local&quot;],
+        &quot;symbolicEpochUtc&quot;: progressed_moment.isoformat(timespec=&quot;milliseconds&quot;).replace(&quot;+00:00&quot;, &quot;Z&quot;),
+        &quot;place&quot;: trump[&quot;place&quot;], &quot;lat&quot;: trump[&quot;lat&quot;], &quot;lon&quot;: trump[&quot;lon&quot;],
+        &quot;points&quot;: progressed_points, &quot;asc&quot;: round(progressed_asc, 8), &quot;mc&quot;: round(progressed_mc, 8),
+        &quot;cusps&quot;: [], &quot;frameEligible&quot;: False, &quot;placidusEligible&quot;: False,
+        &quot;category&quot;: &quot;Progressions&quot;, &quot;date&quot;: &quot;2026-08-12&quot;, &quot;timeKnown&quot;: True,
+        &quot;source&quot;: &quot;Project personal-chart method in 99 - Templates/build_katie.py&quot;,
+        &quot;method&quot;: {&quot;rate&quot;: &quot;1 ephemeris day = 1 tropical year&quot;, &quot;yearDenominatorDays&quot;: 365.25,
+                   &quot;solarArc&quot;: round(solar_arc, 8), &quot;angleMethod&quot;: &quot;Solar-Arc MC by longitude; Ascendant reconstructed at natal latitude&quot;},
+        &quot;unavailable&quot;: [&quot;916 America: no approved exact JPL Horizons value at the 1946 symbolic epoch&quot;],
+    }
+
+    return progressed
+
+
+def build_catalog() -&gt; tuple[list[dict], dict]:
+    catalog = history_layers()
+    catalog.extend(retained_quarter_layers())
+    catalog.extend(character_layers())
+    catalog.append(progressed_trump_layer(catalog))
+    ids = [row[&quot;id&quot;] for row in catalog]
+    if len(ids) != len(set(ids)):
+        raise ValueError(&quot;Duplicate chart IDs in comparison catalog&quot;)
+    missing = [chart_id for chart_id in DEFAULT_ORDER if chart_id not in ids]
+    if missing:
+        raise ValueError(&quot;Missing default comparison charts: &quot; + &quot;, &quot;.join(missing))
+    counts = {}
+    for row in catalog:
+        counts[row[&quot;category&quot;]] = counts.get(row[&quot;category&quot;], 0) + 1
+    eclipse = next(row for row in catalog if row[&quot;id&quot;] == &quot;lun-2026-08-12-ne-solar&quot;)
+    aliases = {}
+    for row in catalog:
+        for alias in row.get(&quot;aliases&quot;, []):
+            if alias in aliases and aliases[alias] != row[&quot;id&quot;]:
+                raise ValueError(f&quot;Ambiguous legacy chart alias: {alias}&quot;)
+            aliases[alias] = row[&quot;id&quot;]
+    meta = {
+        &quot;title&quot;: &quot;Saved Chart Comparison&quot;,
+        &quot;targetUtc&quot;: eclipse[&quot;utc&quot;], &quot;targetLocal&quot;: eclipse[&quot;local&quot;],
+        &quot;defaultFrame&quot;: &quot;lun-2026-08-12-ne-solar&quot;, &quot;defaultHouseSystem&quot;: &quot;W&quot;,
+        &quot;defaultSelection&quot;: DEFAULT_ORDER,
+        &quot;aliases&quot;: aliases,
+        &quot;catalogCounts&quot;: counts,
+        &quot;progressionClock&quot;: &quot;Targeted to the exact eclipse instant, not the app-open date&quot;,
+        &quot;chartClock&quot;: &quot;Exact Sun–Moon ecliptic-longitude conjunction; greatest eclipse is a separate astronomical clock&quot;,
+        &quot;locationRule&quot;: &quot;Mundane charts are cast for Washington, D.C.&quot;,
+    }
+    return catalog, meta
+
+
+def angular_distance(a: float, b: float) -&gt; float:
+    return abs((a - b + 180) % 360 - 180)
+
+
+def contact_points(layer: dict) -&gt; list[dict]:
+    untimed_natal = layer.get(&quot;category&quot;) == &quot;Main Characters&quot; and not layer.get(&quot;timeKnown&quot;)
+    out = [p for p in layer[&quot;points&quot;] if not (untimed_natal and p[&quot;name&quot;] == &quot;Moon&quot;)]
+    if layer.get(&quot;frameEligible&quot;):
+        out.append(point(&quot;ASC&quot;, layer[&quot;asc&quot;], group=&quot;angle&quot;))
+        out.append(point(&quot;MC&quot;, layer[&quot;mc&quot;], group=&quot;angle&quot;))
+    return out
+
+
+def build_contacts(layers: list[dict]) -&gt; list[dict]:
+    contacts = []
+    for ai, a in enumerate(layers):
+        for b in layers[ai + 1:]:
+            aid, bid = a[&quot;id&quot;], b[&quot;id&quot;]
+            for p in contact_points(a):
+                for q in contact_points(b):
+                    # South Node duplicates the North Node axis in cross-chart work.
+                    if p[&quot;name&quot;] == &quot;SNode&quot; or q[&quot;name&quot;] == &quot;SNode&quot;:
+                        continue
+                    separation = angular_distance(p[&quot;lon&quot;], q[&quot;lon&quot;])
+                    for angle, aspect in ASPECTS:
+                        orb = abs(separation - angle)
+                        if orb &gt; 3.000001:
+                            continue
+                        minor = p[&quot;group&quot;] in {&quot;node&quot;, &quot;chiron&quot;, &quot;america&quot;} or q[&quot;group&quot;] in {&quot;node&quot;, &quot;chiron&quot;, &quot;america&quot;}
+                        contacts.append({
+                            &quot;id&quot;: f&quot;{aid}-{p[&#x27;name&#x27;]}-{bid}-{q[&#x27;name&#x27;]}-{aspect}&quot;.lower().replace(&quot; &quot;, &quot;-&quot;),
+                            &quot;a&quot;: aid, &quot;b&quot;: bid, &quot;p1&quot;: p[&quot;name&quot;], &quot;p2&quot;: q[&quot;name&quot;],
+                            &quot;lon1&quot;: p[&quot;lon&quot;], &quot;lon2&quot;: q[&quot;lon&quot;], &quot;pos1&quot;: f&quot;{p[&#x27;dms&#x27;]} {p[&#x27;sign&#x27;]}&quot;, &quot;pos2&quot;: f&quot;{q[&#x27;dms&#x27;]} {q[&#x27;sign&#x27;]}&quot;,
+                            &quot;aspect&quot;: aspect, &quot;angle&quot;: angle, &quot;orb&quot;: round(orb, 8),
+                            &quot;minor&quot;: minor, &quot;anglePoint&quot;: p[&quot;group&quot;] == &quot;angle&quot; or q[&quot;group&quot;] == &quot;angle&quot;,
+                            &quot;hard&quot;: aspect in HARD,
+                        })
+    contacts.sort(key=lambda c: (c[&quot;orb&quot;], c[&quot;a&quot;], c[&quot;b&quot;], c[&quot;p1&quot;], c[&quot;p2&quot;]))
+    return contacts
+
+
+def glyph_source() -&gt; str:
+    match = re.search(r&quot;  const GLY=(\{.*?\n  \});&quot;, WHEEL_JS, flags=re.S)
+    if not match:
+        raise RuntimeError(&quot;Could not derive the governed hand-drawn glyph paths from wheel_lib.py&quot;)
+    return &quot;const F250_GLY=&quot; + match.group(1) + &quot;;&quot;
+
+
+HTML_TEMPLATE = r&#x27;&#x27;&#x27;&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;Chart Comparison — Freedom 250 Observatory&lt;/title&gt;
+&lt;style&gt;
+:root{--paper:#faf8f3;--card:#fffdf7;--ink:#29251f;--muted:#7c7468;--hair:#d9cfb8;--soft:#eee6d5;--burg:#7a2e1d;--gold:#b07d2b;--blue:#3a6ea5;--plum:#6e3d5e;--russet:#9b6a3f}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:&quot;Iowan Old Style&quot;,Palatino,Georgia,serif}button,select,input{font:inherit}
+body{padding:16px}.wrap{max-width:1180px;margin:0 auto}.eyebrow{font:700 10px/1.2 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--burg)}
+h1{font-size:clamp(21px,2.7vw,31px);line-height:1.06;font-weight:500;margin:5px 0 6px}.dek{max-width:80ch;color:var(--muted);font-size:13px;line-height:1.45;margin:0 0 10px}.clockbar{display:flex;flex-wrap:wrap;gap:5px 16px;padding:7px 11px;border:1px solid var(--hair);background:rgba(255,253,247,.72);font-size:11.5px;color:var(--muted)}.clockbar b{color:var(--ink)}
+.controls{margin-top:10px;border:1px solid var(--hair);background:var(--card);padding:9px 11px;display:grid;gap:7px}.control-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.control-row label{font:700 10px/1.2 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+select,.plain-btn{border:1px solid #cbbd9d;border-radius:16px;background:#f7f1e5;color:var(--ink);padding:4px 10px;cursor:pointer}.plain-btn:hover,.plain-btn:focus-visible,select:focus-visible{outline:2px solid rgba(122,46,29,.25);outline-offset:1px}.segment{display:inline-flex;border:1px solid #cbbd9d;border-radius:16px;overflow:hidden}.segment button{border:0;border-right:1px solid #cbbd9d;background:#f7f1e5;padding:4px 9px;color:var(--burg);cursor:pointer}.segment button:last-child{border-right:0}.segment button.on{background:var(--burg);color:#fff}
+.picker-row{align-items:flex-end;padding-bottom:7px;border-bottom:1px solid var(--soft)}.picker-slot{display:grid;gap:3px;min-width:180px;flex:1 1 210px}.picker-slot span{font:700 9px/1.2 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.picker-slot select{width:100%;border-radius:4px;background:#fffdf7}.catalog-note{font-size:11px;color:var(--muted)}
+.stack-end{font:700 9px/1 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);opacity:.8}.layer-row{gap:6px}.layers{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.layer-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--layer);border-radius:18px;background:transparent;color:var(--layer);padding:4px 9px;cursor:pointer;font-size:13px}.layer-chip .badge{display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--layer);color:#fff;font:700 10px/1 sans-serif}.layer-chip.off{opacity:.35;text-decoration:line-through}.layer-chip.frame{box-shadow:inset 0 0 0 1px var(--layer);background:color-mix(in srgb,var(--layer) 9%,transparent)}
+.aspect-chip{border:1px solid #cbbd9d;border-radius:14px;background:transparent;padding:3px 8px;color:var(--muted);cursor:pointer;font-size:12px}.aspect-chip.on{background:#5b554a;color:#fff;border-color:#5b554a}.points label{font-size:12px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink);display:inline-flex;align-items:center;gap:4px}.points input{accent-color:var(--burg)}
+details.connections{border-top:1px solid var(--soft);padding-top:7px}details.connections&gt;summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;font:700 10px/1.2 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--burg);border:1px solid #cbbd9d;border-radius:14px;padding:4px 10px;background:#f7f1e5}details.connections&gt;summary::-webkit-details-marker{display:none}details.connections&gt;summary::after{content:&quot;▸&quot;;font-size:11px}details.connections[open]&gt;summary::after{content:&quot;▾&quot;}details.connections&gt;summary:focus-visible{outline:2px solid rgba(122,46,29,.3)}details.connections .control-row{margin-top:7px}
+.frame-note{font-size:12px;color:var(--muted);padding-top:6px;border-top:1px solid var(--soft)}.frame-note strong{color:var(--burg)}
+.workspace{display:block;margin-top:12px}.wheel-card,.ledger-card,.method-card{border:1px solid var(--hair);background:var(--card)}.wheel-card{margin:0 auto;padding:0;position:relative}
+.zoombar{display:flex;align-items:center;gap:7px;padding:6px 9px;border-bottom:1px solid var(--soft);flex-wrap:wrap}.zoombar .zlabel{font:700 10px/1.2 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:1px}
+.zbtn{border:1px solid #cbbd9d;border-radius:14px;background:#f7f1e5;color:var(--ink);padding:3px 10px;cursor:pointer;font-size:12px;line-height:1.35}.zbtn:hover,.zbtn:focus-visible{outline:2px solid rgba(122,46,29,.25);outline-offset:1px}.zbtn.zstep{width:28px;padding:3px 0;text-align:center;font-weight:700}.zbtn.on{background:var(--burg);color:#fff;border-color:var(--burg)}
+#zRange{width:150px;accent-color:var(--burg);cursor:pointer}.zpct{font:600 12px/1 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;color:var(--burg);min-width:42px;text-align:right;font-variant-numeric:tabular-nums}
+.wheel-viewport{height:clamp(500px,82vh,940px);overflow:auto;display:flex;background:#fdfbf5;position:relative}.wheel-viewport.pannable{cursor:grab}.wheel-viewport.panning{cursor:grabbing}.wheel-stage{margin:auto;flex:none;line-height:0}.wheel-stage svg{display:block;width:100%;height:100%}
+.wheel-card [data-body]{cursor:pointer}.wheel-card [data-body]:focus{outline:none}.wheel-card [data-body]:focus-visible .placement-glyph{filter:drop-shadow(0 0 3px rgba(122,46,29,.75))}.wheel-card .dim{opacity:.16}
+.ledger-card{max-height:520px;margin-top:14px;display:flex;flex-direction:column}.ledger-head{padding:12px 14px;border-bottom:1px solid var(--hair)}.ledger-head h2{font-size:17px;font-weight:500;margin:0 0 3px}.ledger-head p{font-size:12px;color:var(--muted);margin:0}.ledger{overflow:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.pair-head{grid-column:1/-1;position:sticky;top:0;background:#f5efe2;padding:6px 12px;border-bottom:1px solid var(--hair);font:700 10px/1.2 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);z-index:1}.contact{width:100%;border:0;border-bottom:1px solid var(--soft);background:transparent;text-align:left;padding:8px 12px;cursor:pointer;color:var(--ink)}.contact:hover,.contact:focus-visible,.contact.active{background:#f8f1e5;outline:none}.contact-main{display:flex;gap:6px;align-items:baseline;font-size:12px;line-height:1.35}.contact-main .sym{font-weight:700;color:var(--burg);min-width:15px;text-align:center}.contact-sub{font:10px/1.35 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;color:var(--muted);padding-top:3px}.contact .orb{margin-left:auto;color:var(--burg);font-weight:700;white-space:nowrap}.empty{grid-column:1/-1;padding:30px 18px;text-align:center;color:var(--muted);font-style:italic}.line-toggle{font-size:12px!important;text-transform:none!important;letter-spacing:0!important;font-weight:400!important;color:var(--ink)!important;display:inline-flex;align-items:center;gap:5px}.line-toggle input{accent-color:var(--burg)}
+.overlap-card{margin-top:14px;border:1px solid var(--hair);background:var(--card)}.overlap-head{padding:12px 14px;border-bottom:1px solid var(--hair);display:flex;gap:8px 24px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;cursor:pointer;list-style:none}.overlap-head::-webkit-details-marker{display:none}.overlap-head h2{font-size:17px;font-weight:500;margin:0}.overlap-head h2::after{content:&quot; ▸&quot;;font-size:12px;color:var(--burg)}.overlap-card[open] .overlap-head h2::after{content:&quot; ▾&quot;}.overlap-head p{font-size:11.5px;color:var(--muted);margin:0;max-width:76ch}.overlap-grid{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(380px,1.4fr)}.overlap-pane{padding:12px 14px}.overlap-pane+ .overlap-pane{border-left:1px solid var(--hair)}.overlap-pane h3{font-size:13px;margin:0 0 3px;color:var(--burg)}.overlap-pane&gt;.pane-note{font-size:10.5px;color:var(--muted);margin:0 0 9px}.pattern-list,.umbrella-list{display:grid;gap:7px}.pattern{border-top:1px solid var(--soft);padding-top:7px}.pattern:first-child{border-top:0;padding-top:0}.pattern b{display:block;font-size:11px;color:var(--ink);margin-bottom:2px}.pattern span{display:block;font-size:10.5px;line-height:1.4;color:var(--muted)}.umbrella{display:grid;grid-template-columns:minmax(145px,.42fr) minmax(0,1fr);gap:8px;border-top:1px solid var(--soft);padding-top:7px}.umbrella:first-child{border-top:0;padding-top:0}.umbrella-name{font-size:11px;line-height:1.3;color:var(--burg);font-weight:700}.umbrella-contacts{display:flex;gap:5px;flex-wrap:wrap}.overlap-contact{border:0;border-bottom:1px dotted #b9aa8b;background:transparent;color:var(--ink);padding:0 0 1px;text-align:left;cursor:pointer;font-size:10.5px;line-height:1.35}.overlap-contact:hover,.overlap-contact:focus-visible{color:var(--burg);outline:none;border-bottom-style:solid}.overlap-empty{font-size:11px;line-height:1.45;color:var(--muted);font-style:italic}.hypothesis-lane{grid-column:1/-1;border-top:1px solid var(--hair);padding:9px 14px;display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap;font-size:10.5px;color:var(--muted)}.hypothesis-lane b{color:var(--burg)}.hypothesis-lane .plain-btn{font-size:10.5px;padding:3px 9px}
+.method-card{margin-top:14px;padding:12px 14px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.method-card h3{font-size:13px;margin:0 0 5px;font-weight:600;color:var(--burg)}.method-card p{font-size:11px;line-height:1.45;color:var(--muted);margin:0}.status{position:absolute;left:12px;bottom:12px;max-width:320px;border:1px solid var(--hair);background:rgba(255,253,247,.94);padding:8px 10px;font-size:11px;color:var(--muted);display:none;pointer-events:none}.status.show{display:block}
+@media(max-width:1040px){.ledger-card{max-height:460px}.method-card{grid-template-columns:1fr 1fr}.overlap-grid{grid-template-columns:1fr}.overlap-pane+ .overlap-pane{border-left:0;border-top:1px solid var(--hair)}}
+@media(max-width:760px){body{padding:11px}.wheel-viewport{height:clamp(440px,74vh,800px)}}
+@media(max-width:620px){body{padding:9px}.controls{padding:9px}.ledger{grid-template-columns:1fr}.method-card{grid-template-columns:1fr}.layer-chip{padding:4px 7px}#zRange{width:104px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+&lt;main class=&quot;wrap&quot;&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;Sky &amp;amp; Charts · Workbench&lt;/div&gt;
+  &lt;h1&gt;Pick the charts. Keep one house frame.&lt;/h1&gt;
+  &lt;p class=&quot;dek&quot;&gt;Build a one- to four-ring comparison from every cardinal ingress, exact New/Full Moon, eclipse, retained quarter phase, and Main Character chart on the saved shelf. Governing and nested ingress standing remain visibly distinct.&lt;/p&gt;
+  &lt;div class=&quot;clockbar&quot;&gt;&lt;span&gt;&lt;b&gt;Catalog:&lt;/b&gt; __CATALOG_SUMMARY__&lt;/span&gt;&lt;span&gt;&lt;b&gt;Mundane clock:&lt;/b&gt; exact D.C. chart moments&lt;/span&gt;&lt;span&gt;&lt;b&gt;Natal caution:&lt;/b&gt; untimed sunrise displays cannot own houses&lt;/span&gt;&lt;/div&gt;
+  &lt;section class=&quot;controls&quot; aria-label=&quot;Chart comparison controls&quot;&gt;
+    &lt;div class=&quot;control-row picker-row&quot; id=&quot;chartPickers&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;control-row&quot;&gt;&lt;label for=&quot;frameSelect&quot;&gt;House frame&lt;/label&gt;&lt;select id=&quot;frameSelect&quot;&gt;&lt;/select&gt;&lt;div class=&quot;segment&quot; aria-label=&quot;House system&quot;&gt;&lt;button type=&quot;button&quot; data-house=&quot;W&quot; class=&quot;on&quot;&gt;Whole Sign&lt;/button&gt;&lt;button type=&quot;button&quot; data-house=&quot;P&quot;&gt;Placidus&lt;/button&gt;&lt;/div&gt;&lt;button class=&quot;plain-btn&quot; id=&quot;resetBtn&quot; type=&quot;button&quot;&gt;Reset&lt;/button&gt;&lt;button class=&quot;plain-btn&quot; id=&quot;fullBtn&quot; type=&quot;button&quot;&gt;Full screen&lt;/button&gt;&lt;button class=&quot;plain-btn&quot; id=&quot;exportBtn&quot; type=&quot;button&quot;&gt;Export SVG&lt;/button&gt;&lt;/div&gt;
+    &lt;div class=&quot;control-row layer-row&quot;&gt;&lt;label&gt;Rings&lt;/label&gt;&lt;span class=&quot;stack-end&quot;&gt;inner&lt;/span&gt;&lt;div class=&quot;layers&quot; id=&quot;layerChips&quot;&gt;&lt;/div&gt;&lt;span class=&quot;stack-end&quot;&gt;outer&lt;/span&gt;&lt;/div&gt;
+    &lt;details class=&quot;connections&quot; id=&quot;connectionsPanel&quot;&gt;
+      &lt;summary&gt;Connections &amp;amp; points&lt;/summary&gt;
+      &lt;div class=&quot;control-row&quot;&gt;&lt;label for=&quot;relationSelect&quot;&gt;Relations&lt;/label&gt;&lt;select id=&quot;relationSelect&quot;&gt;&lt;option value=&quot;primary&quot;&gt;Primary connections&lt;/option&gt;&lt;option value=&quot;frame&quot;&gt;Current frame contacts&lt;/option&gt;&lt;option value=&quot;all&quot;&gt;All cross-chart pairs&lt;/option&gt;&lt;/select&gt;&lt;label for=&quot;orbSelect&quot;&gt;Orb&lt;/label&gt;&lt;select id=&quot;orbSelect&quot;&gt;&lt;option value=&quot;project&quot;&gt;Project policy&lt;/option&gt;&lt;option value=&quot;1&quot;&gt;1° tight&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;2° standard&lt;/option&gt;&lt;option value=&quot;3&quot;&gt;3° explore&lt;/option&gt;&lt;/select&gt;&lt;label&gt;Aspects&lt;/label&gt;&lt;div id=&quot;aspectChips&quot;&gt;&lt;/div&gt;&lt;label class=&quot;line-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;aspectLines&quot;&gt; draw lines&lt;/label&gt;&lt;/div&gt;
+      &lt;div class=&quot;control-row points&quot;&gt;&lt;label&gt;Points&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; data-point-group=&quot;planet&quot; checked disabled&gt; planets&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; data-point-group=&quot;angle&quot; checked&gt; angles&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; data-point-group=&quot;node&quot; checked&gt; nodes&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; data-point-group=&quot;chiron&quot; checked&gt; Chiron&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; data-point-group=&quot;america&quot; checked&gt; 916 America&lt;/label&gt;&lt;/div&gt;
+    &lt;/details&gt;
+    &lt;div class=&quot;frame-note&quot; id=&quot;frameNote&quot;&gt;&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;workspace&quot;&gt;
+    &lt;div class=&quot;wheel-card&quot;&gt;
+      &lt;div class=&quot;zoombar&quot; role=&quot;group&quot; aria-label=&quot;Wheel zoom&quot;&gt;
+        &lt;span class=&quot;zlabel&quot;&gt;Zoom&lt;/span&gt;
+        &lt;button class=&quot;zbtn&quot; id=&quot;zFit&quot; type=&quot;button&quot; title=&quot;Fit the whole wheel in the panel&quot;&gt;Fit&lt;/button&gt;
+        &lt;button class=&quot;zbtn zstep&quot; id=&quot;zOut&quot; type=&quot;button&quot; aria-label=&quot;Zoom out&quot;&gt;−&lt;/button&gt;
+        &lt;input type=&quot;range&quot; id=&quot;zRange&quot; min=&quot;55&quot; max=&quot;150&quot; step=&quot;1&quot; value=&quot;100&quot; aria-label=&quot;Zoom level&quot;&gt;
+        &lt;button class=&quot;zbtn zstep&quot; id=&quot;zIn&quot; type=&quot;button&quot; aria-label=&quot;Zoom in&quot;&gt;+&lt;/button&gt;
+        &lt;span class=&quot;zpct&quot; id=&quot;zPct&quot;&gt;100%&lt;/span&gt;
+        &lt;button class=&quot;zbtn&quot; id=&quot;zReset&quot; type=&quot;button&quot; title=&quot;Return the wheel to Fit&quot;&gt;Reset view&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;wheel-viewport&quot; id=&quot;wheelViewport&quot;&gt;&lt;div class=&quot;wheel-stage&quot; id=&quot;wheelStage&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div id=&quot;status&quot; class=&quot;status&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;aside class=&quot;ledger-card&quot;&gt;&lt;div class=&quot;ledger-head&quot;&gt;&lt;h2&gt;Connection ledger&lt;/h2&gt;&lt;p id=&quot;ledgerCount&quot;&gt;Exact cross-chart contacts under the selected policy.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;ledger&quot; id=&quot;ledger&quot;&gt;&lt;/div&gt;&lt;/aside&gt;
+  &lt;/section&gt;
+  &lt;details class=&quot;overlap-card&quot; open aria-labelledby=&quot;overlapTitle&quot;&gt;
+    &lt;summary class=&quot;overlap-head&quot;&gt;&lt;h2 id=&quot;overlapTitle&quot;&gt;Natural overlaps&lt;/h2&gt;&lt;p&gt;Geometry first: recurring structures and shared archetypal rooms among the selected charts. One contact may belong to several umbrellas; none is assigned to a Chronicle storyline automatically.&lt;/p&gt;&lt;/summary&gt;
+    &lt;div class=&quot;overlap-grid&quot;&gt;
+      &lt;div class=&quot;overlap-pane&quot;&gt;&lt;h3&gt;Recurrence hearing&lt;/h3&gt;&lt;p class=&quot;pane-note&quot;&gt;Hard contacts ≤1°; sextiles and trines ≤0.5° support but never establish recurrence. Eclipse lights are one configuration.&lt;/p&gt;&lt;div class=&quot;pattern-list&quot; id=&quot;recurrenceList&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;overlap-pane&quot;&gt;&lt;h3&gt;Archetypal umbrellas&lt;/h3&gt;&lt;p class=&quot;pane-note&quot;&gt;Shared symbolic rooms, not scores or event predictions. Select a contact to isolate its exact geometry on the wheel.&lt;/p&gt;&lt;div class=&quot;umbrella-list&quot; id=&quot;umbrellaList&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;hypothesis-lane&quot;&gt;&lt;b&gt;Chronicle hypothesis&lt;/b&gt;&lt;span&gt;No storyline is attached automatically. Authored prospective watches remain separate.&lt;/span&gt;&lt;button class=&quot;plain-btn&quot; id=&quot;openSpine&quot; type=&quot;button&quot;&gt;Open Astrology Spine&lt;/button&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+  &lt;section class=&quot;method-card&quot;&gt;&lt;div&gt;&lt;h3&gt;One house owner&lt;/h3&gt;&lt;p&gt;Only the selected frame supplies houses, spokes, Ascendant, and MC. Every other chart remains an overlay; changing the frame recomputes each shown placement’s house.&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;h3&gt;Historical D.C. shelf&lt;/h3&gt;&lt;p&gt;Exact New/Full Moons, eclipses, and every cardinal ingress run from the 2016 governing prologue through January 2029. Ingresses are visibly separated into governing and nested stages; current quarter phases remain available during their calculation-authority migration.&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;h3&gt;Timing honesty&lt;/h3&gt;&lt;p&gt;Washington local dates drive display and filtering while UTC instants remain attached. Unknown-time natal charts cannot own houses; computed charts retain a visible independent-verification status.&lt;/p&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;/main&gt;
+&lt;script&gt;__GLYPHS__
+const DATA=__DATA__;
+const SGN=[&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;];
+const SAB2={Aries:&quot;Ar&quot;,Taurus:&quot;Ta&quot;,Gemini:&quot;Ge&quot;,Cancer:&quot;Cn&quot;,Leo:&quot;Le&quot;,Virgo:&quot;Vi&quot;,Libra:&quot;Li&quot;,Scorpio:&quot;Sc&quot;,Sagittarius:&quot;Sg&quot;,Capricorn:&quot;Cp&quot;,Aquarius:&quot;Aq&quot;,Pisces:&quot;Pi&quot;};
+const SAB={Aries:&quot;Ari&quot;,Taurus:&quot;Tau&quot;,Gemini:&quot;Gem&quot;,Cancer:&quot;Can&quot;,Leo:&quot;Leo&quot;,Virgo:&quot;Vir&quot;,Libra:&quot;Lib&quot;,Scorpio:&quot;Sco&quot;,Sagittarius:&quot;Sag&quot;,Capricorn:&quot;Cap&quot;,Aquarius:&quot;Aqu&quot;,Pisces:&quot;Pis&quot;};
+const ELEM={Aries:&quot;#b3402e&quot;,Leo:&quot;#b3402e&quot;,Sagittarius:&quot;#b3402e&quot;,Taurus:&quot;#4a7d5f&quot;,Virgo:&quot;#4a7d5f&quot;,Capricorn:&quot;#4a7d5f&quot;,Gemini:&quot;#a8821f&quot;,Libra:&quot;#a8821f&quot;,Aquarius:&quot;#a8821f&quot;,Cancer:&quot;#3a6ea5&quot;,Scorpio:&quot;#3a6ea5&quot;,Pisces:&quot;#3a6ea5&quot;};
+const ASPC={conjunct:&quot;#c9a227&quot;,sextile:&quot;#3a6ea5&quot;,square:&quot;#b3402e&quot;,trine:&quot;#3a6ea5&quot;,quincunx:&quot;#5a8a4a&quot;,opposite:&quot;#b3402e&quot;};
+const ASYM={conjunct:&quot;☌&quot;,sextile:&quot;⚹&quot;,square:&quot;□&quot;,trine:&quot;△&quot;,quincunx:&quot;⚻&quot;,opposite:&quot;☍&quot;};
+const BODYC={Sun:&quot;#c56f12&quot;,Moon:&quot;#b98918&quot;,Mercury:&quot;#b12674&quot;,Venus:&quot;#16806f&quot;,Mars:&quot;#df3b30&quot;,Jupiter:&quot;#9a7021&quot;,Saturn:&quot;#963f32&quot;,Uranus:&quot;#356fbd&quot;,Neptune:&quot;#1595a8&quot;,Pluto:&quot;#8a2638&quot;,Node:&quot;#3e3a34&quot;,SNode:&quot;#3e3a34&quot;,Chiron:&quot;#2f6c57&quot;,America:&quot;#76539a&quot;};
+const SLOT_COLORS=[&quot;#b07d2b&quot;,&quot;#9b6a3f&quot;,&quot;#3a6ea5&quot;,&quot;#6e3d5e&quot;];
+const CATALOG_BY_ID=Object.fromEntries(DATA.catalog.map(x=&gt;[x.id,x]));
+const CHART_ALIASES=DATA.meta.aliases||{};
+function resolveChartId(id){return CATALOG_BY_ID[id]?id:CHART_ALIASES[id]||null}
+
+/* ===== Radial architecture ===============================================
+   One square 1000x1000 design space: small clear centre, house-number band,
+   four broad chart annuli, shared outer zodiac band. The annuli are graduated
+   because crowding is measured per unit of ARC, not per degree: the innermost
+   ring has the least circumference and therefore needs the most radial room
+   to open a third lane. House spokes run hub -&gt; zodiac through every ring.  */
+const VB=1000,CX=500,CY=500;
+const HUB=38,HOUSE_OUT=66,ZOD_IN=428,ZOD_OUT=470,ANGLE_LBL=488;
+const BAND_IN=66,BAND_OUT=428,RING_FILL=[&quot;#f4f9ee&quot;,&quot;#f3f1f8&quot;];
+/* Hiding a chart does not leave an empty ring behind: the visible charts
+   re-divide the whole annular band, so four charts is a quadwheel, three a
+   triwheel, two a biwheel and one a single wheel. Inner rings keep a slightly
+   larger share because they have the least circumference to spend.         */
+function ringPlan(n){
+ const w=Array.from({length:Math.max(1,n)},(_,i)=&gt;1-.02*i),sum=w.reduce((a,b)=&gt;a+b,0),span=BAND_OUT-BAND_IN,out=[];
+ let r=BAND_IN;
+ w.forEach(x=&gt;{const h=span*x/sum;out.push({inner:r,outer:r+h});r+=h});
+ return out;
+}
+let RING_SLOTS=ringPlan(4);
+function visibleOrder(){return layerOrder().filter(id=&gt;state.visible.has(id))}
+const WHEEL_WORD={1:&quot;single wheel&quot;,2:&quot;biwheel&quot;,3:&quot;triwheel&quot;,4:&quot;quadwheel&quot;};
+const RING_EDGE=3;
+const BLOCK={normal:{gs:1.12,gh:22.4,fs:12.5,fs2:10.8,gapE:2},mid:{gs:1.0,gh:20,fs:11,fs2:9.6,gapE:1.8},compact:{gs:.92,gh:18.4,fs:10,fs2:8.7,gapE:1.3},tight:{gs:.82,gh:16.4,fs:9.2,fs2:8.1,gapE:1.4}};
+const PAIR_EPS=.35,SHIFT_OK=4.2,TANG_PAD=3.8,RAD_PAD=1.2,LANE_SWITCH=1.2,LEADER_MIN=.8;
+/* Displacement is clamped by ARC LENGTH, not degrees, so an inner ring may
+   swing a label further in degrees than an outer ring for the same ink.    */
+function shiftCap(ring){const rm=(ring.inner+ring.outer)/2;return Math.min(12,Math.max(3.6,44/rm*180/Math.PI))}
+const MEASURED=new Map();
+
+const state={selected:DATA.meta.defaultSelection.slice(),frame:DATA.meta.defaultFrame,house:&quot;W&quot;,visible:new Set(DATA.meta.defaultSelection),relation:&quot;primary&quot;,orb:&quot;project&quot;,aspects:new Set([&quot;conjunct&quot;,&quot;sextile&quot;,&quot;square&quot;,&quot;trine&quot;,&quot;quincunx&quot;,&quot;opposite&quot;]),groups:new Set([&quot;planet&quot;,&quot;angle&quot;,&quot;node&quot;,&quot;chiron&quot;,&quot;america&quot;]),showLines:false,isolate:null,point:null,houseFilter:null};
+let layers=[],byId={},activeContacts=DATA.contacts.slice();
+function esc(s){return String(s).replace(/[&amp;&lt;&gt;\&quot;]/g,c=&gt;({&quot;&amp;&quot;:&quot;&amp;amp;&quot;,&quot;&lt;&quot;:&quot;&amp;lt;&quot;,&quot;&gt;&quot;:&quot;&amp;gt;&quot;,&#x27;&quot;&#x27;:&quot;&amp;quot;&quot;}[c]));}
+function f2(x){return Math.round(x*100)/100} function norm(x){return ((x%360)+360)%360}
+function angDist(a,b){return Math.abs(norm(a-b+180)-180)}
+function pairKey(a,b){return [a,b].sort((x,y)=&gt;state.selected.indexOf(x)-state.selected.indexOf(y)).join(&quot;|&quot;)}
+function naturalPair(a,b){const A=byId[a],B=byId[b],cats=new Set([A.category,B.category]);if(cats.has(&quot;Progressions&quot;))return cats.has(&quot;Main Characters&quot;)||cats.has(&quot;Eclipses&quot;);if(cats.has(&quot;Ingresses&quot;))return cats.has(&quot;Lunations&quot;)||cats.has(&quot;Eclipses&quot;)||cats.has(&quot;Main Characters&quot;);if(cats.has(&quot;Main Characters&quot;))return cats.has(&quot;Lunations&quot;)||cats.has(&quot;Eclipses&quot;);return false}
+function projectCap(c){if(c.minor)return c.hard?2:-1;const A=byId[c.a],B=byId[c.b];if(A.category===&quot;Progressions&quot;||B.category===&quot;Progressions&quot;)return 1;if((A.category===&quot;Ingresses&quot;&amp;&amp;[&quot;Lunations&quot;,&quot;Eclipses&quot;].includes(B.category))||(B.category===&quot;Ingresses&quot;&amp;&amp;[&quot;Lunations&quot;,&quot;Eclipses&quot;].includes(A.category)))return c.hard?3:-1;return 2}
+function pointGroup(layer,name){if(name===&quot;ASC&quot;||name===&quot;MC&quot;)return &quot;angle&quot;;const p=byId[layer].points.find(x=&gt;x.name===name);return p?p.group:&quot;planet&quot;}
+function passesBase(c){if(!state.visible.has(c.a)||!state.visible.has(c.b))return false;if(!state.aspects.has(c.aspect))return false;if(!state.groups.has(pointGroup(c.a,c.p1))||!state.groups.has(pointGroup(c.b,c.p2)))return false;if(state.relation===&quot;primary&quot;&amp;&amp;!naturalPair(c.a,c.b))return false;if(state.relation===&quot;frame&quot;&amp;&amp;c.a!==state.frame&amp;&amp;c.b!==state.frame)return false;const cap=state.orb===&quot;project&quot;?projectCap(c):Number(state.orb);if(cap&lt;0||c.orb&gt;cap+1e-8)return false;if(state.point&amp;&amp;state.point!==c.a+&quot;:&quot;+c.p1&amp;&amp;state.point!==c.b+&quot;:&quot;+c.p2)return false;if(state.houseFilter){const f=byId[state.frame];if(houseOf(c.lon1,f)!==state.houseFilter&amp;&amp;houseOf(c.lon2,f)!==state.houseFilter)return false}return true}
+function houseOf(lon,frame){if(state.house===&quot;W&quot;)return ((Math.floor(norm(lon)/30)-Math.floor(norm(frame.asc)/30)+12)%12)+1;const c=frame.cusps;for(let i=0;i&lt;12;i++){const start=c[i],end=c[(i+1)%12],span=norm(end-start),rel=norm(lon-start);if(rel&lt;span||Math.abs(rel-span)&lt;1e-7)return i+1}return null}
+function orbText(o){let sec=Math.round(o*3600),d=Math.floor(sec/3600);sec-=d*3600;let m=Math.floor(sec/60);sec-=m*60;return (d?d+&quot;°&quot;:&quot;&quot;)+String(m).padStart(2,&quot;0&quot;)+&quot;′&quot;+String(sec).padStart(2,&quot;0&quot;)+&quot;″&quot;}
+function pt(cx,cy,r,L,cusp){const a=(180+(L-cusp))*Math.PI/180;return [cx+r*Math.cos(a),cy-r*Math.sin(a)]}
+function arcPath(cx,cy,r1,r2,a1,a2,cusp){const p1=pt(cx,cy,r2,a1,cusp),p2=pt(cx,cy,r2,a2,cusp),p3=pt(cx,cy,r1,a2,cusp),p4=pt(cx,cy,r1,a1,cusp);return `M${f2(p1[0])} ${f2(p1[1])} A${r2} ${r2} 0 0 0 ${f2(p2[0])} ${f2(p2[1])} L${f2(p3[0])} ${f2(p3[1])} A${r1} ${r1} 0 0 1 ${f2(p4[0])} ${f2(p4[1])} Z`}
+function annulusPath(cx,cy,inner,outer){return `M${cx+outer} ${cy}A${outer} ${outer} 0 1 0 ${cx-outer} ${cy}A${outer} ${outer} 0 1 0 ${cx+outer} ${cy}M${cx+inner} ${cy}A${inner} ${inner} 0 1 1 ${cx-inner} ${cy}A${inner} ${inner} 0 1 1 ${cx+inner} ${cy}`}
+function layerOrder(){return [state.frame].concat(state.selected.filter(id=&gt;id!==state.frame))}
+function glyph(name,x,y,scale,color){if(!F250_GLY[name])return `&lt;text x=&quot;${f2(x)}&quot; y=&quot;${f2(y)}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;${f2(9*scale)}&quot; font-weight=&quot;700&quot; fill=&quot;${color}&quot;&gt;${esc(name)}&lt;/text&gt;`;return `&lt;g transform=&quot;translate(${f2(x-10*scale)} ${f2(y-10*scale)}) scale(${f2(scale)})&quot; color=&quot;${color}&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.05&quot; stroke-linecap=&quot;round&quot; fill=&quot;none&quot;&gt;${F250_GLY[name]}&lt;/g&gt;`}
+function anglePoint(layer,name){return {name,lon:layer[name.toLowerCase()],dms:&quot;&quot;,sign:SGN[Math.floor(layer[name.toLowerCase()]/30)],group:&quot;angle&quot;}}
+function dmsLon(lon){let sec=Math.round(norm(lon)*3600)%1296000,d=Math.floor(sec/3600),m=Math.floor((sec-d*3600)/60);return `${String(d%30).padStart(2,&#x27;0&#x27;)}°${String(m).padStart(2,&#x27;0&#x27;)}′`}
+function selectedLayers(){return state.selected.map((id,i)=&gt;({...CATALOG_BY_ID[id],color:SLOT_COLORS[i]}))}
+function contactPointsJS(layer){const untimedNatal=layer.category===&quot;Main Characters&quot;&amp;&amp;!layer.timeKnown,pts=layer.points.filter(p=&gt;!(untimedNatal&amp;&amp;p.name===&quot;Moon&quot;));return layer.frameEligible?pts.concat([anglePoint(layer,&quot;ASC&quot;),anglePoint(layer,&quot;MC&quot;)]):pts}
+function computeContactsJS(){const out=[],defs=[[0,&quot;conjunct&quot;],[60,&quot;sextile&quot;],[90,&quot;square&quot;],[120,&quot;trine&quot;],[150,&quot;quincunx&quot;],[180,&quot;opposite&quot;]];for(let i=0;i&lt;layers.length;i++)for(let j=i+1;j&lt;layers.length;j++){const A=layers[i],B=layers[j];for(const p of contactPointsJS(A))for(const q of contactPointsJS(B)){if(p.name===&quot;SNode&quot;||q.name===&quot;SNode&quot;)continue;const separation=angDist(p.lon,q.lon);for(const [angle,aspect] of defs){const orb=Math.abs(separation-angle);if(orb&gt;3.000001)continue;const minor=[&quot;node&quot;,&quot;chiron&quot;,&quot;america&quot;].includes(p.group)||[&quot;node&quot;,&quot;chiron&quot;,&quot;america&quot;].includes(q.group);out.push({id:`${A.id}-${p.name}-${B.id}-${q.name}-${aspect}`.toLowerCase().replace(/[^a-z0-9-]+/g,&quot;-&quot;),a:A.id,b:B.id,p1:p.name,p2:q.name,lon1:p.lon,lon2:q.lon,pos1:`${p.dms||dmsLon(p.lon)} ${p.sign}`,pos2:`${q.dms||dmsLon(q.lon)} ${q.sign}`,aspect,angle,orb,minor,anglePoint:p.group===&quot;angle&quot;||q.group===&quot;angle&quot;,hard:[&quot;conjunct&quot;,&quot;square&quot;,&quot;opposite&quot;].includes(aspect)})}}}return out.sort((a,b)=&gt;a.orb-b.orb||a.a.localeCompare(b.a)||a.p1.localeCompare(b.p1))}
+function refreshSelection(useDefaultContacts=false){layers=selectedLayers();byId=Object.fromEntries(layers.map(x=&gt;[x.id,x]));const eligible=layers.filter(x=&gt;x.frameEligible);if(!eligible.length)throw new Error(&quot;Comparison requires at least one chart with a trustworthy house frame&quot;);if(!byId[state.frame]||!byId[state.frame].frameEligible)state.frame=eligible[0].id;if(state.house===&quot;P&quot;&amp;&amp;!byId[state.frame].placidusEligible)state.house=&quot;W&quot;;state.visible=new Set(state.selected);activeContacts=useDefaultContacts?DATA.contacts.slice():computeContactsJS();RING_SLOTS=ringPlan(state.selected.length)}
+
+/* ===== Placement chains ==================================================
+   Astro Gold&#x27;s composure comes from RADIAL placement chains: a placement is
+   a thin column of upright elements - glyph row, degree, house number,
+   minutes - running along the radius at its angle. A chain spends its ink on
+   radius, which every ring has, and almost none on arc, which is the scarce
+   resource. There are no lanes and no stacks: one chain per placement,
+   fanned tangentially, with a leader back to its exact-longitude tick when
+   it has had to move. All spacing runs on MEASURED element bounds.        */
+function posParts(p){const m=p.dms.match(/^(\d+)°(\d+)/)||[];return {deg:`${m[1]||&quot;0&quot;}°`,min:`${m[2]||&quot;00&quot;}′${p.retro?&quot;℞&quot;:&quot;&quot;}`}}
+function posText(p){const q=posParts(p);return q.deg+&quot; &quot;+q.min}
+const EL_EST={g:(b,m)=&gt;({w:b.members.length*m.gh*.95,h:m.gh}),d:(b,m)=&gt;({w:b.parts.deg.length*m.fs*.58,h:m.fs}),h:(b,m)=&gt;({w:String(b.house??&quot;&quot;).length*m.fs2*.55,h:m.fs2*.9}),m2:(b,m)=&gt;({w:b.parts.min.length*m.fs2*.56,h:m.fs2})};
+function elKey(b,kind){return b.metric.fs+&quot;|&quot;+kind+&quot;|&quot;+(kind===&quot;g&quot;?b.members.map(p=&gt;p.name).join(&quot;+&quot;):kind===&quot;d&quot;?b.parts.deg:kind===&quot;h&quot;?String(b.house):b.parts.min)}
+function elBounds(b,kind){return MEASURED.get(elKey(b,kind))||EL_EST[kind](b,b.metric)}
+function chainElems(b){const ks=b.house!=null?[&quot;g&quot;,&quot;d&quot;,&quot;h&quot;,&quot;m2&quot;]:[&quot;g&quot;,&quot;d&quot;,&quot;m2&quot;];return ks.map(k=&gt;({kind:k,...elBounds(b,k)}))}
+/* Radial and tangential footprints of an upright box sitting on a ray.     */
+function supports(w,h,a){const A=(180+a)*Math.PI/180,ca=Math.abs(Math.cos(A)),sa=Math.abs(Math.sin(A));return {rad:w*ca+h*sa,tan:w*sa+h*ca}}
+function chainShape(b,angle){let len=0,wt=0,wtAt=0;chainElems(b).forEach((e,i)=&gt;{const s=supports(e.w,e.h,angle);if(i)len+=b.metric.gapE;const c=len+s.rad/2;len+=s.rad;if(s.tan&gt;wt){wt=s.tan;wtAt=c}});return {len,wt,wtAt}}
+function buildBlocks(layer,metric,frame){
+ const pts=layer.points.filter(p=&gt;state.groups.has(p.group)).slice().sort((a,b)=&gt;a.lon-b.lon),out=[];
+ for(let i=0;i&lt;pts.length;i++){
+  const members=[pts[i]];
+  while(i+1&lt;pts.length&amp;&amp;members.length&lt;3&amp;&amp;angDist(pts[i+1].lon,members[0].lon)&lt;=PAIR_EPS&amp;&amp;posText(pts[i+1])===posText(members[0]))members.push(pts[++i]);
+  const lon=members[0].lon+members.reduce((s,p)=&gt;s+(norm(p.lon-members[0].lon+180)-180),0)/members.length;
+  const hs=frame?houseOf(members[0].lon,frame):null;
+  out.push({members,lon:norm(lon),text:posText(members[0]),parts:posParts(members[0]),house:hs,metric,paired:members.length&gt;1});
+ }
+ return out;
+}
+/* Required tangential gap between two chains, priced at the radius where
+   the pair&#x27;s widest element actually sits - honest in narrow rings (chains
+   reach deep) and in wide ones (chains hug the outer edge).                */
+function needGap(A,B){return ((A.wt+B.wt)/2+TANG_PAD)/Math.min(A.rm,B.rm)*180/Math.PI}
+/* Bounded relaxation: push tangentially, keep zodiacal order, clamp every
+   displacement by arc length. Wrap-aware - the ring is a circle, so the
+   last and first chains are neighbours too. Fixed ASC/MC labels take part
+   but never move.                                                          */
+function sweep(items,maxShift){
+ items.sort((a,b)=&gt;a.target-b.target);
+ for(let pass=0;pass&lt;9;pass++){
+  let moved=false;
+  for(let k=1;k&lt;=2;k++)for(let i=0;i+k&lt;items.length;i++){
+   const A=items[i],B=items[i+k];if(A.fixed&amp;&amp;B.fixed)continue;
+   const g=needGap(A,B),d=B.angle-A.angle;
+   if(d&lt;g-1e-6){const need=g-d;if(A.fixed)B.angle+=need;else if(B.fixed)A.angle-=need;else{A.angle-=need/2;B.angle+=need/2}moved=true}
+  }
+  const n=items.length;
+  (n&gt;=3?[[n-1,0],[n-2,0],[n-1,1]]:n===2?[[1,0]]:[]).forEach(([ia,ib])=&gt;{
+   const A=items[ia],B=items[ib];if(A.fixed&amp;&amp;B.fixed)return;
+   const g=needGap(A,B),d=B.angle+360-A.angle;
+   if(d&lt;g-1e-6){const need=g-d;if(A.fixed)B.angle+=need;else if(B.fixed)A.angle-=need;else{A.angle-=need/2;B.angle+=need/2}moved=true}
+  });
+  items.forEach(it=&gt;{if(!it.fixed)it.angle=it.target+Math.max(-maxShift,Math.min(maxShift,it.angle-it.target))});
+  for(let i=1;i&lt;items.length;i++)if(!items[i].fixed&amp;&amp;items[i].angle&lt;items[i-1].angle)items[i].angle=items[i-1].angle;
+  if(!moved)break;
+ }
+ let worst=0,clean=true;
+ items.forEach(it=&gt;{if(!it.fixed)worst=Math.max(worst,Math.abs(it.angle-it.target))});
+ for(let k=1;k&lt;=2;k++)for(let i=0;i+k&lt;items.length;i++){const g=needGap(items[i],items[i+k]);if(items[i+k].angle-items[i].angle&lt;g-.35)clean=false}
+ const N=items.length;
+ (N&gt;=3?[[N-1,0],[N-2,0],[N-1,1]]:N===2?[[1,0]]:[]).forEach(([ia,ib])=&gt;{
+  const g=needGap(items[ia],items[ib]);
+  if(items[ib].angle+360-items[ia].angle&lt;g-.35)clean=false});
+ return {worst,clean};
+}
+/* Packed runs get EVEN intervals: the sweep resolves collisions but leaves
+   clusters at ragged spacings; Astro Gold&#x27;s clusters read as even fans. Only
+   applied when every resulting gap still clears its pair requirement and
+   every member stays inside its displacement budget - else left alone.     */
+function evenFan(items,maxShift){
+ const n=items.length;if(n&lt;3)return;
+ let i=0;
+ while(i&lt;n-1){
+  let j=i;
+  while(j&lt;n-1&amp;&amp;items[j+1].angle-items[j].angle&lt;=needGap(items[j],items[j+1])+1.4)j++;
+  if(j-i&gt;=2){
+   const span=items[j].angle-items[i].angle,prop=[];
+   let ok=span&gt;0;
+   for(let k=i;k&lt;=j;k++){const a=items[i].angle+span*(k-i)/(j-i);prop.push(a);
+    if(items[k].fixed&amp;&amp;k!==i&amp;&amp;k!==j)ok=false;
+    if(!items[k].fixed&amp;&amp;Math.abs(a-items[k].target)&gt;maxShift)ok=false}
+   if(ok)for(let k=i;k&lt;j;k++)if(prop[k-i+1]-prop[k-i]&lt;needGap(items[k],items[k+1])-.05)ok=false;
+   if(ok)for(let k=i+1;k&lt;j;k++)items[k].angle=prop[k-i];
+  }
+  i=Math.max(j,i+1);
+ }
+}
+function layoutRing(layer,ring,cusp,only){
+ const maxShift=shiftCap(ring);
+ const fixed=(state.groups.has(&quot;angle&quot;)&amp;&amp;layer.id!==state.frame)
+   ?[layer.asc,layer.mc].map(L=&gt;({fixed:true,target:norm(L-cusp),angle:norm(L-cusp),wt:30,rm:ring.inner+16}))
+   :[];
+ const usable=(ring.outer-8)-(ring.inner+2);
+ let best=null;
+ for(const metric of (only?[only]:[BLOCK.normal,BLOCK.mid,BLOCK.compact,BLOCK.tight])){
+  const blocks=buildBlocks(layer,metric,byId[state.frame]);
+  let fits=true;
+  blocks.forEach(b=&gt;{b.unwrapped=norm(b.lon-cusp);const sh=chainShape(b,b.unwrapped);b.len=sh.len;b.wt=sh.wt;b.rm=Math.max(ring.inner+8,ring.outer-8-sh.wtAt);if(sh.len&gt;usable)fits=false});
+  blocks.sort((a,b)=&gt;a.unwrapped-b.unwrapped);
+  const items=blocks.map(b=&gt;({b,target:b.unwrapped,angle:b.unwrapped,wt:b.wt,rm:b.rm})).concat(fixed);
+  const res=sweep(items,maxShift);
+  if(res.clean)evenFan(items,maxShift);
+  let worst=0;items.forEach(it=&gt;{if(!it.fixed)worst=Math.max(worst,Math.abs(it.angle-it.target))});
+  best={items:items.filter(x=&gt;!x.fixed),ring,worst,clean:res.clean&amp;&amp;fits};
+  if(best.clean)break;
+ }
+ return best;
+}
+/* Chart identity has to be readable FROM THE WHEEL, not from a caption below
+   it. The inscribed circle leaves the square&#x27;s corners empty; the legend goes
+   there, and each ring&#x27;s outer rim is stroked in the same colour as its swatch. */
+function ringLegend(order){
+ const s=[&#x27;&lt;g class=&quot;ring-legend&quot; font-family=&quot;-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,sans-serif&quot;&gt;&#x27;];
+ s.push(`&lt;text x=&quot;12&quot; y=&quot;19&quot; font-size=&quot;10&quot; font-weight=&quot;700&quot; letter-spacing=&quot;1.3&quot; fill=&quot;#8a8377&quot;&gt;INNER → OUTER&lt;/text&gt;`);
+ order.forEach((id,i)=&gt;{
+  const L=byId[id],y=39+i*25,isF=id===state.frame;
+  s.push(`&lt;circle cx=&quot;20&quot; cy=&quot;${y}&quot; r=&quot;8.5&quot; fill=&quot;${L.color}&quot;/&gt;&lt;text x=&quot;20&quot; y=&quot;${y}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;10.5&quot; font-weight=&quot;700&quot; fill=&quot;#fffdf7&quot;&gt;${i+1}&lt;/text&gt;`);
+  s.push(`&lt;text x=&quot;34&quot; y=&quot;${y-(isF?4:0)}&quot; dominant-baseline=&quot;central&quot; font-size=&quot;11.5&quot; font-weight=&quot;${isF?700:400}&quot; fill=&quot;#3a352e&quot;&gt;${esc(L.label)}&lt;/text&gt;`);
+  if(isF)s.push(`&lt;text x=&quot;34&quot; y=&quot;${y+7}&quot; dominant-baseline=&quot;central&quot; font-size=&quot;8.5&quot; fill=&quot;${L.color}&quot;&gt;houses · ${state.house===&quot;W&quot;?&quot;Whole Sign&quot;:&quot;Placidus&quot;}&lt;/text&gt;`);
+ });
+ s.push(`&lt;text x=&quot;12&quot; y=&quot;${39+order.length*25+4}&quot; font-size=&quot;8.5&quot; fill=&quot;#9a8f7c&quot;&gt;raised number = house in this frame&lt;/text&gt;`);
+ return s.join(&quot;&quot;)+&quot;&lt;/g&gt;&quot;;
+}
+/* Type size is chosen for the WHEEL, not per ring: a chart whose rings are set
+   at three different sizes reads as improvised. Take the largest size at which
+   every visible ring is collision-free. Collapsing to a biwheel therefore also
+   buys a bigger, more legible face across the whole chart.                    */
+function layoutWheel(order,cusp){
+ let last=null;
+ for(const metric of [BLOCK.normal,BLOCK.mid,BLOCK.compact,BLOCK.tight]){
+  const plans=order.map((id,i)=&gt;layoutRing(byId[id],RING_SLOTS[i],cusp,metric));
+  last=plans;
+  /* Largest size at which every visible ring is collision-free. */
+  if(plans.every(p=&gt;p&amp;&amp;p.clean))return plans;
+ }
+ return last;
+}
+function wheelSVG(){
+ const frame=byId[state.frame],cusp=state.house===&quot;W&quot;?Math.floor(frame.asc/30)*30:frame.asc,order=visibleOrder(),s=[];
+ RING_SLOTS=ringPlan(order.length);
+ s.push(`&lt;svg id=&quot;comparisonSvg&quot; viewBox=&quot;0 0 ${VB} ${VB}&quot; width=&quot;${VB}&quot; height=&quot;${VB}&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; role=&quot;img&quot; aria-label=&quot;Four broad chart rings sharing one house frame&quot; font-family=&quot;Iowan Old Style,Palatino,Georgia,serif&quot;&gt;&lt;title&gt;Chart Comparison · inner to outer: `+order.map(id=&gt;esc(byId[id].label)).join(&quot;, &quot;)+`&lt;/title&gt;`);
+ order.forEach((id,index)=&gt;{const ring=RING_SLOTS[index];s.push(`&lt;path class=&quot;chart-annulus&quot; data-ring-layer=&quot;${id}&quot; d=&quot;${annulusPath(CX,CY,ring.inner,ring.outer)}&quot; fill=&quot;${RING_FILL[index%2]}&quot; fill-rule=&quot;evenodd&quot; stroke=&quot;none&quot;/&gt;`)});
+ for(let i=0;i&lt;12;i++){s.push(`&lt;path class=&quot;zodiac-sector&quot; d=&quot;${arcPath(CX,CY,ZOD_IN,ZOD_OUT,i*30,i*30+30,cusp)}&quot; fill=&quot;${ELEM[SGN[i]]}&quot; fill-opacity=&quot;.075&quot; stroke=&quot;#b8aa77&quot; stroke-width=&quot;.7&quot;/&gt;`);const q=pt(CX,CY,449,i*30+15,cusp);s.push(`&lt;text x=&quot;${f2(q[0])}&quot; y=&quot;${f2(q[1])}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;18&quot; font-style=&quot;italic&quot; fill=&quot;${ELEM[SGN[i]]}&quot;&gt;${SAB[SGN[i]]}&lt;/text&gt;`)}
+ for(let L=0;L&lt;360;L+=5){if(L%30===0)continue;const r2=L%10===0?418:422,a=pt(CX,CY,ZOD_IN,L,cusp),b=pt(CX,CY,r2,L,cusp);s.push(`&lt;line x1=&quot;${f2(a[0])}&quot; y1=&quot;${f2(a[1])}&quot; x2=&quot;${f2(b[0])}&quot; y2=&quot;${f2(b[1])}&quot; stroke=&quot;#cbbf99&quot; stroke-width=&quot;.65&quot;/&gt;`)}
+ s.push(`&lt;circle cx=&quot;${CX}&quot; cy=&quot;${CY}&quot; r=&quot;${ZOD_OUT}&quot; fill=&quot;none&quot; stroke=&quot;#aa9760&quot; stroke-width=&quot;1.1&quot;/&gt;&lt;circle cx=&quot;${CX}&quot; cy=&quot;${CY}&quot; r=&quot;${ZOD_IN}&quot; fill=&quot;none&quot; stroke=&quot;#aa9760&quot; stroke-width=&quot;1&quot;/&gt;&lt;circle cx=&quot;${CX}&quot; cy=&quot;${CY}&quot; r=&quot;${HOUSE_OUT}&quot; fill=&quot;none&quot; stroke=&quot;#cbbf99&quot; stroke-width=&quot;.75&quot;/&gt;&lt;circle cx=&quot;${CX}&quot; cy=&quot;${CY}&quot; r=&quot;${HUB}&quot; fill=&quot;#fffdf7&quot; stroke=&quot;#b8aa77&quot; stroke-width=&quot;.9&quot;/&gt;`);
+ order.forEach((id,i)=&gt;s.push(`&lt;circle class=&quot;ring-rim&quot; data-rim-layer=&quot;${id}&quot; cx=&quot;${CX}&quot; cy=&quot;${CY}&quot; r=&quot;${f2(RING_SLOTS[i].outer)}&quot; fill=&quot;none&quot; stroke=&quot;${byId[id].color}&quot; stroke-opacity=&quot;.5&quot; stroke-width=&quot;1.2&quot;/&gt;`));
+ s.push(`&lt;circle cx=&quot;${CX}&quot; cy=&quot;${CY}&quot; r=&quot;${BAND_IN}&quot; fill=&quot;none&quot; stroke=&quot;${byId[order[0]].color}&quot; stroke-opacity=&quot;.5&quot; stroke-width=&quot;1.2&quot;/&gt;`);
+ const cusps=state.house===&quot;W&quot;?Array.from({length:12},(_,i)=&gt;(Math.floor(frame.asc/30)+i)*30):frame.cusps;
+ cusps.forEach((L,i)=&gt;{const next=cusps[(i+1)%12],mid=norm(L+norm(next-L)/2),a=pt(CX,CY,HUB,L,cusp),b=pt(CX,CY,ZOD_IN,L,cusp),q=pt(CX,CY,52,mid,cusp),angular=[0,3,6,9].includes(i);s.push(`&lt;line class=&quot;house-spoke&quot; x1=&quot;${f2(a[0])}&quot; y1=&quot;${f2(a[1])}&quot; x2=&quot;${f2(b[0])}&quot; y2=&quot;${f2(b[1])}&quot; stroke=&quot;${angular?&quot;#ad914e&quot;:&quot;#d5c9a6&quot;}&quot; stroke-width=&quot;${angular?1.3:.68}&quot;/&gt;&lt;text class=&quot;house-number&quot; x=&quot;${f2(q[0])}&quot; y=&quot;${f2(q[1])}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;11&quot; fill=&quot;#8e7b4b&quot;&gt;${i+1}&lt;/text&gt;`)});
+ let lineContacts=activeContacts.filter(passesBase).sort((a,b)=&gt;a.orb-b.orb);if(state.isolate)lineContacts=lineContacts.filter(c=&gt;c.id===state.isolate);else if(state.showLines)lineContacts=lineContacts.slice(0,12);else lineContacts=[];
+ lineContacts.forEach(c=&gt;{const a=pt(CX,CY,HUB-4,c.lon1,cusp),b=pt(CX,CY,HUB-4,c.lon2,cusp);s.push(`&lt;line class=&quot;contact-line&quot; data-contact=&quot;${c.id}&quot; x1=&quot;${f2(a[0])}&quot; y1=&quot;${f2(a[1])}&quot; x2=&quot;${f2(b[0])}&quot; y2=&quot;${f2(b[1])}&quot; stroke=&quot;${ASPC[c.aspect]}&quot; stroke-width=&quot;${c.orb&lt;=.3?2:1}&quot; stroke-opacity=&quot;.72&quot;/&gt;`)});
+ const PLANS=layoutWheel(order,cusp);
+ order.forEach((id,index)=&gt;{
+  const layer=byId[id],ring=RING_SLOTS[index],isFrame=id===state.frame;
+  PLANS[index].items.forEach(it=&gt;{
+   const b=it.b,m=b.metric,shift=Math.abs(it.angle-it.target);
+   const tickOut=pt(CX,CY,ring.outer-2.5,it.target,0),tickIn=pt(CX,CY,ring.outer-9.5,it.target,0);
+   const key=id+&quot;:&quot;+b.members[0].name,dim=state.point&amp;&amp;!b.members.some(p=&gt;state.point===id+&quot;:&quot;+p.name)?&quot; dim&quot;:&quot;&quot;;
+   const tip=b.members.map(p=&gt;`${esc(p.name)} ${esc(p.dms+&quot; &quot;+p.sign)} · house ${houseOf(p.lon,frame)}`).join(&quot; · &quot;);
+   s.push(`&lt;g class=&quot;placement body${dim}${b.paired?&quot; paired&quot;:&quot;&quot;}&quot; tabindex=&quot;0&quot; data-body=&quot;${key}&quot; data-layer=&quot;${id}&quot; data-name=&quot;${esc(b.members[0].name)}&quot; data-block=&quot;${b.members.map(p=&gt;esc(p.name)).join(&quot;+&quot;)}&quot;&gt;&lt;title&gt;${esc(layer.label)} · ${tip}&lt;/title&gt;`);
+   s.push(`&lt;line class=&quot;exact-tick&quot; x1=&quot;${f2(tickIn[0])}&quot; y1=&quot;${f2(tickIn[1])}&quot; x2=&quot;${f2(tickOut[0])}&quot; y2=&quot;${f2(tickOut[1])}&quot; stroke=&quot;${layer.color}&quot; stroke-width=&quot;1.9&quot;/&gt;`);
+   let rPos=ring.outer-8;
+   if(shift&gt;LEADER_MIN){const top=pt(CX,CY,rPos-1,it.angle,0);s.push(`&lt;line class=&quot;leader&quot; x1=&quot;${f2(tickIn[0])}&quot; y1=&quot;${f2(tickIn[1])}&quot; x2=&quot;${f2(top[0])}&quot; y2=&quot;${f2(top[1])}&quot; stroke=&quot;${layer.color}&quot; stroke-opacity=&quot;.45&quot; stroke-width=&quot;.75&quot; ${layer.category===&quot;Progressions&quot;?&#x27;stroke-dasharray=&quot;3 2&quot;&#x27;:&quot;&quot;}/&gt;`)}
+   chainElems(b).forEach(e=&gt;{
+    const sp=supports(e.w,e.h,it.angle),rc=Math.max(ring.inner+2+sp.rad/2,rPos-sp.rad/2),P=pt(CX,CY,rc,it.angle,0);
+    if(e.kind===&quot;g&quot;){
+     const dTh=(m.gh*.95)/Math.max(rc,30)*180/Math.PI;
+     s.push(`&lt;g class=&quot;placement-glyph&quot; data-measure=&quot;${esc(elKey(b,&quot;g&quot;))}&quot;&gt;`);
+     b.members.forEach((p2,k)=&gt;{const Q=pt(CX,CY,rc,it.angle+(k-(b.members.length-1)/2)*dTh,0);s.push(glyph(p2.name,Q[0],Q[1],m.gs,BODYC[p2.name]||&quot;#4d4942&quot;))});
+     s.push(`&lt;/g&gt;`);
+    }else if(e.kind===&quot;d&quot;){
+     s.push(`&lt;text class=&quot;placement-degree&quot; data-measure=&quot;${esc(elKey(b,&quot;d&quot;))}&quot; x=&quot;${f2(P[0])}&quot; y=&quot;${f2(P[1])}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;${m.fs}&quot; font-weight=&quot;600&quot; fill=&quot;#4a453c&quot;&gt;${esc(b.parts.deg)}&lt;/text&gt;`);
+    }else if(e.kind===&quot;h&quot;){
+     s.push(`&lt;text class=&quot;placement-house&quot; data-measure=&quot;${esc(elKey(b,&quot;h&quot;))}&quot; x=&quot;${f2(P[0])}&quot; y=&quot;${f2(P[1])}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;${f2(m.fs2*.85)}&quot; fill=&quot;#9a8f7c&quot;&gt;${b.house}&lt;/text&gt;`);
+    }else{
+     s.push(`&lt;text class=&quot;placement-minute&quot; data-measure=&quot;${esc(elKey(b,&quot;m2&quot;))}&quot; x=&quot;${f2(P[0])}&quot; y=&quot;${f2(P[1])}&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;${m.fs2}&quot; fill=&quot;#6d675c&quot;&gt;${esc(b.parts.min)}&lt;/text&gt;`);
+    }
+    rPos=rc-sp.rad/2-m.gapE;
+   });
+   s.push(`&lt;/g&gt;`);
+  });
+  if(state.groups.has(&quot;angle&quot;)&amp;&amp;!isFrame)[[&quot;ASC&quot;,layer.asc],[&quot;MC&quot;,layer.mc]].forEach(([name,L])=&gt;{const a=pt(CX,CY,ring.inner+3,L,cusp),b=pt(CX,CY,ring.outer-4,L,cusp),q=pt(CX,CY,ring.inner+17,L,cusp);s.push(`&lt;g class=&quot;overlay-angle&quot; data-body=&quot;${id}:${name}&quot; data-layer=&quot;${id}&quot; data-name=&quot;${name}&quot;&gt;&lt;title&gt;${esc(layer.label)} · ${name} ${dmsLon(L)}&lt;/title&gt;&lt;line x1=&quot;${f2(a[0])}&quot; y1=&quot;${f2(a[1])}&quot; x2=&quot;${f2(b[0])}&quot; y2=&quot;${f2(b[1])}&quot; stroke=&quot;${layer.color}&quot; stroke-width=&quot;1.1&quot; stroke-opacity=&quot;.8&quot; ${name===&quot;MC&quot;?&#x27;stroke-dasharray=&quot;3 2&quot;&#x27;:&quot;&quot;}/&gt;&lt;g transform=&quot;translate(${f2(q[0])} ${f2(q[1])})&quot;&gt;&lt;text class=&quot;angle-label&quot; x=&quot;0&quot; y=&quot;-6&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;12&quot; font-weight=&quot;700&quot; fill=&quot;${layer.color}&quot;&gt;${name===&quot;ASC&quot;?&quot;As&quot;:&quot;Mc&quot;}&lt;/text&gt;&lt;text class=&quot;angle-degree&quot; x=&quot;0&quot; y=&quot;6.5&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;8&quot; fill=&quot;${layer.color}&quot;&gt;${dmsLon(L)}&lt;/text&gt;&lt;/g&gt;&lt;/g&gt;`)});
+ });
+ if(state.groups.has(&quot;angle&quot;))[[&quot;ASC&quot;,frame.asc],[&quot;MC&quot;,frame.mc]].forEach(([name,L])=&gt;{const a=pt(CX,CY,ZOD_IN-6,L,cusp),b=pt(CX,CY,ZOD_OUT+6,L,cusp),q=pt(CX,CY,ANGLE_LBL-6,L,cusp);s.push(`&lt;g class=&quot;main-angle&quot; data-body=&quot;${frame.id}:${name}&quot; data-layer=&quot;${frame.id}&quot; data-name=&quot;${name}&quot;&gt;&lt;title&gt;${esc(frame.label)} · ${name} ${dmsLon(L)}&lt;/title&gt;&lt;line x1=&quot;${f2(a[0])}&quot; y1=&quot;${f2(a[1])}&quot; x2=&quot;${f2(b[0])}&quot; y2=&quot;${f2(b[1])}&quot; stroke=&quot;${frame.color}&quot; stroke-width=&quot;${name===&quot;ASC&quot;?2.3:1.7}&quot; ${name===&quot;MC&quot;?&#x27;stroke-dasharray=&quot;3 2&quot;&#x27;:&quot;&quot;}/&gt;&lt;g transform=&quot;translate(${f2(q[0])} ${f2(q[1])})&quot;&gt;&lt;text x=&quot;0&quot; y=&quot;-7.5&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;14.5&quot; font-weight=&quot;700&quot; fill=&quot;${frame.color}&quot;&gt;${name===&quot;ASC&quot;?&quot;As&quot;:&quot;Mc&quot;}&lt;/text&gt;&lt;text x=&quot;0&quot; y=&quot;7&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;central&quot; font-size=&quot;8.5&quot; fill=&quot;${frame.color}&quot;&gt;${dmsLon(L)}&lt;/text&gt;&lt;/g&gt;&lt;/g&gt;`)});
+ s.push(ringLegend(order));
+ s.push(&quot;&lt;/svg&gt;&quot;);return s.join(&quot;&quot;)
+}
+
+/* ===== Zoom / fit viewport ==============================================
+   Fit is computed from the wheel viewport&#x27;s own content box - both axes - so
+   the complete zodiac circle is inside the card at every window size. 100%
+   IS Fit; the slider spans 55%-150% of it.                                  */
+const ZMIN=.55,ZMAX=1.5;let fitScale=1,zoom=1;
+const vpEl=()=&gt;document.getElementById(&quot;wheelViewport&quot;),stageEl=()=&gt;document.getElementById(&quot;wheelStage&quot;);
+function computeFit(){const el=vpEl();if(!el)return 1;const w=el.clientWidth-20,h=el.clientHeight-20;if(w&lt;40||h&lt;40)return 1;return Math.max(.05,Math.min(w,h)/VB)}
+function applyZoom(){const st=stageEl();if(!st)return;const px=Math.max(60,Math.round(VB*fitScale*zoom));st.style.width=px+&quot;px&quot;;st.style.height=px+&quot;px&quot;;const svg=document.getElementById(&quot;comparisonSvg&quot;);if(svg){svg.setAttribute(&quot;width&quot;,px);svg.setAttribute(&quot;height&quot;,px)}const pct=Math.round(zoom*100),rng=document.getElementById(&quot;zRange&quot;);document.getElementById(&quot;zPct&quot;).textContent=pct+&quot;%&quot;;if(document.activeElement!==rng)rng.value=pct;document.getElementById(&quot;zFit&quot;).classList.toggle(&quot;on&quot;,Math.abs(zoom-1)&lt;.005);vpEl().classList.toggle(&quot;pannable&quot;,zoom&gt;1.005)}
+function setZoom(z){zoom=Math.min(ZMAX,Math.max(ZMIN,z));applyZoom()}
+function zoomAround(z,clientX,clientY){const el=vpEl(),r=el.getBoundingClientRect(),old=zoom,px=clientX-r.left+el.scrollLeft,py=clientY-r.top+el.scrollTop;setZoom(z);const k=zoom/old;el.scrollLeft=px*k-(clientX-r.left);el.scrollTop=py*k-(clientY-r.top)}
+function refit(){const f=computeFit();if(Math.abs(f-fitScale)&gt;.0008){fitScale=f;applyZoom()}}
+function measurePass(){let changed=false;document.querySelectorAll(&quot;#comparisonSvg [data-measure]&quot;).forEach(g=&gt;{const k=g.getAttribute(&quot;data-measure&quot;);let b=null;try{b=g.getBBox()}catch(_){return}if(!b||!b.width||!isFinite(b.width))return;const prev=MEASURED.get(k);if(!prev||Math.abs(prev.w-b.width)&gt;.5||Math.abs(prev.h-b.height)&gt;.5){MEASURED.set(k,{w:b.width,h:b.height});changed=true}});return changed}
+function paintWheel(){const st=stageEl();st.innerHTML=wheelSVG();if(measurePass()){st.innerHTML=wheelSVG();measurePass()}applyZoom()}
+
+function layerName(id){return byId[id].label} function pointName(n){return n===&quot;Node&quot;?&quot;N. Node&quot;:n===&quot;SNode&quot;?&quot;S. Node&quot;:n}
+function renderLedger(){const rows=activeContacts.filter(passesBase),ledger=document.getElementById(&quot;ledger&quot;);document.getElementById(&quot;ledgerCount&quot;).textContent=`${rows.length} exact cross-chart contact${rows.length===1?&quot;&quot;:&quot;s&quot;} shown · click one to draw only that connection`;if(!rows.length){ledger.innerHTML=&#x27;&lt;div class=&quot;empty&quot;&gt;No contacts match this combination of layers, aspects, points, and orb.&lt;/div&gt;&#x27;;return}const groups={};rows.forEach(c=&gt;(groups[pairKey(c.a,c.b)]??=[]).push(c));ledger.innerHTML=Object.entries(groups).map(([key,cs])=&gt;`&lt;div class=&quot;pair-head&quot;&gt;${key.split(&quot;|&quot;).map(layerName).join(&quot; ↔ &quot;)}&lt;/div&gt;`+cs.sort((a,b)=&gt;a.orb-b.orb).map(c=&gt;{const f=byId[state.frame],h1=houseOf(c.lon1,f),h2=houseOf(c.lon2,f);return `&lt;button class=&quot;contact ${state.isolate===c.id?&quot;active&quot;:&quot;&quot;}&quot; data-contact-row=&quot;${c.id}&quot; type=&quot;button&quot;&gt;&lt;div class=&quot;contact-main&quot;&gt;&lt;span style=&quot;color:${byId[c.a].color}&quot;&gt;${esc(pointName(c.p1))}&lt;/span&gt;&lt;span class=&quot;sym&quot;&gt;${ASYM[c.aspect]}&lt;/span&gt;&lt;span style=&quot;color:${byId[c.b].color}&quot;&gt;${esc(pointName(c.p2))}&lt;/span&gt;&lt;span class=&quot;orb&quot;&gt;${orbText(c.orb)}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;contact-sub&quot;&gt;${esc(c.pos1)} · H${h1} ↔ ${esc(c.pos2)} · H${h2}&lt;/div&gt;&lt;/button&gt;`}).join(&quot;&quot;)).join(&quot;&quot;)}
+const UMBRELLAS=[
+ {label:&quot;Authority &amp; public direction&quot;,points:[&quot;Sun&quot;,&quot;Jupiter&quot;,&quot;MC&quot;]},
+ {label:&quot;Public mood &amp; belonging&quot;,points:[&quot;Moon&quot;,&quot;ASC&quot;]},
+ {label:&quot;Record, speech &amp; exchange&quot;,points:[&quot;Mercury&quot;]},
+ {label:&quot;Value, alliance &amp; resources&quot;,points:[&quot;Venus&quot;]},
+ {label:&quot;Force, operation &amp; contest&quot;,points:[&quot;Mars&quot;]},
+ {label:&quot;Structure, law &amp; constraint&quot;,points:[&quot;Saturn&quot;]},
+ {label:&quot;System change &amp; rupture&quot;,points:[&quot;Uranus&quot;]},
+ {label:&quot;Collective image &amp; dissolution&quot;,points:[&quot;Neptune&quot;]},
+ {label:&quot;Power, exposure &amp; regeneration&quot;,points:[&quot;Pluto&quot;]},
+ {label:&quot;Wound, remedy &amp; repair&quot;,points:[&quot;Chiron&quot;]},
+ {label:&quot;Directional threshold&quot;,points:[&quot;Node&quot;]},
+ {label:&quot;National-symbolic field&quot;,points:[&quot;America&quot;]},
+];
+const SLOW_POINTS=new Set([&quot;Saturn&quot;,&quot;Uranus&quot;,&quot;Neptune&quot;,&quot;Pluto&quot;]),PHASE_CATEGORIES=new Set([&quot;Lunations&quot;,&quot;Eclipses&quot;]);
+function strictMajorContacts(){return activeContacts.filter(c=&gt;state.visible.has(c.a)&amp;&amp;state.visible.has(c.b)&amp;&amp;((c.hard&amp;&amp;c.orb&lt;=1.000001)||([&quot;sextile&quot;,&quot;trine&quot;].includes(c.aspect)&amp;&amp;c.orb&lt;=.500001))&amp;&amp;state.groups.has(pointGroup(c.a,c.p1))&amp;&amp;state.groups.has(pointGroup(c.b,c.p2)))}
+function phaseAxis(layer){if(!PHASE_CATEGORIES.has(layer.category))return null;const sun=layer.points.find(p=&gt;p.name===&quot;Sun&quot;),moon=layer.points.find(p=&gt;p.name===&quot;Moon&quot;);if(!sun||!moon)return null;const d=angDist(sun.lon,moon.lon);return d&lt;=.100001?&quot;lights&quot;:Math.abs(d-180)&lt;=.100001?&quot;axis&quot;:null}
+function lightConfiguration(c){const A=byId[c.a],B=byId[c.b];if(PHASE_CATEGORIES.has(A.category)&amp;&amp;!PHASE_CATEGORIES.has(B.category)&amp;&amp;[&quot;Sun&quot;,&quot;Moon&quot;].includes(c.p1)){const kind=phaseAxis(A);if(kind)return {key:`${A.id}|${B.id}|${c.p2}|${kind}`,event:A,target:B,targetPoint:c.p2,kind}}if(PHASE_CATEGORIES.has(B.category)&amp;&amp;!PHASE_CATEGORIES.has(A.category)&amp;&amp;[&quot;Sun&quot;,&quot;Moon&quot;].includes(c.p2)){const kind=phaseAxis(B);if(kind)return {key:`${B.id}|${A.id}|${c.p1}|${kind}`,event:B,target:A,targetPoint:c.p1,kind}}return null}
+function collapseLightConfigurations(rows){const map=new Map;for(const c of rows){const cfg=lightConfiguration(c),key=cfg?cfg.key:c.id;if(!map.has(key)){map.set(key,{...c,_cfg:cfg,_n:1});continue}const old=map.get(key);old._n++;if(c.orb&lt;old.orb){const n=old._n;map.set(key,{...c,_cfg:cfg,_n:n})}}return [...map.values()]}
+function overlapContactLabel(c){const a=state.selected.indexOf(c.a)+1,b=state.selected.indexOf(c.b)+1;if(c._cfg&amp;&amp;c._n&gt;1){const e=state.selected.indexOf(c._cfg.event.id)+1,t=state.selected.indexOf(c._cfg.target.id)+1;return `${e} eclipse ${c._cfg.kind} ↔ ${t} ${pointName(c._cfg.targetPoint)} · ${orbText(c.orb)}`}return `${a} ${pointName(c.p1)} ${ASYM[c.aspect]} ${b} ${pointName(c.p2)} · ${orbText(c.orb)}`}
+function recurrencePatterns(rows){const patterns=[],hard=rows.filter(c=&gt;c.hard&amp;&amp;c.orb&lt;=1.000001);
+ const carries=hard.filter(c=&gt;c.aspect===&quot;conjunct&quot;&amp;&amp;c.p1===c.p2&amp;&amp;SLOW_POINTS.has(c.p1)&amp;&amp;byId[c.a].category!==&quot;Main Characters&quot;&amp;&amp;byId[c.b].category!==&quot;Main Characters&quot;).slice(0,4);
+ if(carries.length)patterns.push({title:&quot;Slow-body carry&quot;,body:carries.map(c=&gt;`${pointName(c.p1)} remains within ${orbText(c.orb)} from ring ${state.selected.indexOf(c.a)+1} to ${state.selected.indexOf(c.b)+1}; this is continuity, not another vote.`).join(&quot; · &quot;)});
+ const natalGroups=new Map;
+ for(const c of hard){const A=byId[c.a],B=byId[c.b],char=A.category===&quot;Main Characters&quot;?A:B.category===&quot;Main Characters&quot;?B:null;if(!char)continue;const event=char===A?B:A;if(event.category===&quot;Main Characters&quot;||event.category===&quot;Progressions&quot;)continue;const natalPoint=char===A?c.p1:c.p2,cfg=lightConfiguration(c),eventPoint=cfg&amp;&amp;cfg.target.id===char.id?&quot;Eclipse axis&quot;:char===A?c.p2:c.p1,key=char.id+&quot;:&quot;+natalPoint;const g=natalGroups.get(key)||{char,natalPoint,events:new Set,eventPoints:new Set,contacts:[]};g.events.add(event.id);g.eventPoints.add(eventPoint);g.contacts.push(c);natalGroups.set(key,g)}
+ [...natalGroups.values()].filter(g=&gt;g.events.size&gt;=2).slice(0,4).forEach(g=&gt;patterns.push({title:g.eventPoints.size===1&amp;&amp;SLOW_POINTS.has([...g.eventPoints][0])?&quot;Sustained natal pressure&quot;:&quot;Reactivated natal point&quot;,body:`${g.char.label} ${pointName(g.natalPoint)} is reached from ${g.events.size} selected chart moments by ${[...g.eventPoints].map(pointName).join(&quot;, &quot;)}.`}))
+ const ing=layers.filter(x=&gt;x.category===&quot;Ingresses&quot;),phases=layers.filter(x=&gt;PHASE_CATEGORIES.has(x.category)),chars=layers.filter(x=&gt;x.category===&quot;Main Characters&quot;);
+ const between=(x,y)=&gt;hard.filter(c=&gt;(c.a===x.id&amp;&amp;c.b===y.id)||(c.a===y.id&amp;&amp;c.b===x.id)),pointAt=(c,id)=&gt;c.a===id?c.p1:c.p2,chainKeys=new Set,chainChars=new Set;
+ outer:for(const i of ing)for(const p of phases)for(const ch of chars){if((p.governing&amp;&amp;!i.label.startsWith(p.governing))||chainChars.has(ch.id))continue;let found=false;for(const ic of between(i,ch)){for(const pc of between(p,ch)){const anchor=pointAt(ic,ch.id);if(pointAt(pc,ch.id)!==anchor)continue;const iFactor=pointAt(ic,i.id),rawPFactor=pointAt(pc,p.id),axis=phaseAxis(p)&amp;&amp;[&quot;Sun&quot;,&quot;Moon&quot;].includes(rawPFactor),pFactor=axis?&quot;Eclipse axis&quot;:rawPFactor,bridge=between(i,p).find(c=&gt;pointAt(c,i.id)===iFactor&amp;&amp;pointAt(c,p.id)===rawPFactor),chainKey=`${i.id}|${p.id}|${ch.id}|${anchor}|${iFactor}|${pFactor}`;if(!bridge||(iFactor===rawPFactor&amp;&amp;SLOW_POINTS.has(iFactor))||chainKeys.has(chainKey))continue;chainKeys.add(chainKey);chainChars.add(ch.id);patterns.push({title:&quot;Governed three-layer bridge&quot;,body:`${i.label} ${pointName(iFactor)} ↔ ${p.label} ${pointName(pFactor)} converge on ${ch.label} ${pointName(anchor)}.`});found=true;break}if(found)break}if(chainChars.size&gt;=2)break outer}
+ return patterns;
+}
+function renderOverlaps(){const strict=strictMajorContacts(),collapsed=collapseLightConfigurations(strict),patterns=recurrencePatterns(strict),r=document.getElementById(&quot;recurrenceList&quot;),u=document.getElementById(&quot;umbrellaList&quot;);r.innerHTML=patterns.length?patterns.map(p=&gt;`&lt;div class=&quot;pattern&quot;&gt;&lt;b&gt;${esc(p.title)}&lt;/b&gt;&lt;span&gt;${esc(p.body)}&lt;/span&gt;&lt;/div&gt;`).join(&quot;&quot;):&#x27;&lt;div class=&quot;overlap-empty&quot;&gt;No repeated structure clears the strict 1° recurrence screen in this selection. That is a valid result, not an absence of astrology.&lt;/div&gt;&#x27;;
+ const groups=UMBRELLAS.map(def=&gt;({def,contacts:collapsed.filter(c=&gt;def.points.includes(c.p1)||def.points.includes(c.p2))})).filter(x=&gt;x.contacts.length);u.innerHTML=groups.length?groups.map(({def,contacts})=&gt;`&lt;div class=&quot;umbrella&quot;&gt;&lt;div class=&quot;umbrella-name&quot;&gt;${esc(def.label)}&lt;/div&gt;&lt;div class=&quot;umbrella-contacts&quot;&gt;${contacts.slice(0,4).map(c=&gt;`&lt;button type=&quot;button&quot; class=&quot;overlap-contact&quot; data-overlap-contact=&quot;${c.id}&quot; title=&quot;${esc(layerName(c.a))} ↔ ${esc(layerName(c.b))}&quot;&gt;${esc(overlapContactLabel(c))}&lt;/button&gt;`).join(&quot;&quot;)}${contacts.length&gt;4?&#x27;&lt;span class=&quot;catalog-note&quot;&gt;more in ledger&lt;/span&gt;&#x27;:&quot;&quot;}&lt;/div&gt;&lt;/div&gt;`).join(&quot;&quot;):&#x27;&lt;div class=&quot;overlap-empty&quot;&gt;No tight major contacts appear under the current selected charts and point groups.&lt;/div&gt;&#x27;}
+const CATEGORY_ORDER=[&quot;Ingresses&quot;,&quot;Lunations&quot;,&quot;Eclipses&quot;,&quot;Main Characters&quot;,&quot;Progressions&quot;];
+function pickerOptions(value,slot){let out=&#x27;&lt;option value=&quot;&quot;&gt;None&lt;/option&gt;&#x27;;for(const category of CATEGORY_ORDER){const rows=DATA.catalog.filter(x=&gt;x.category===category);if(!rows.length)continue;const historical=[&quot;Ingresses&quot;,&quot;Lunations&quot;,&quot;Eclipses&quot;].includes(category);const years=historical?[...new Set(rows.map(x=&gt;x.year||String(x.date||&quot;&quot;).slice(0,4)))]:[null];for(const year of years){const group=year==null?rows:rows.filter(x=&gt;(x.year||String(x.date||&quot;&quot;).slice(0,4))===year);out+=`&lt;optgroup label=&quot;${esc(year==null?category:`${category} · ${year}`)}&quot;&gt;`;for(const row of group){const duplicate=state.selected.includes(row.id)&amp;&amp;state.selected[slot]!==row.id;const standing=row.standing===&quot;nested_cardinal_stage&quot;?&quot; · nested stage&quot;:&quot;&quot;;out+=`&lt;option value=&quot;${row.id}&quot; ${row.id===value?&quot;selected&quot;:&quot;&quot;} ${duplicate?&quot;disabled&quot;:&quot;&quot;}&gt;${esc(row.label+standing)}&lt;/option&gt;`}out+=&#x27;&lt;/optgroup&gt;&#x27;}}return out}
+function renderControls(){document.getElementById(&quot;chartPickers&quot;).innerHTML=Array.from({length:4},(_,i)=&gt;`&lt;label class=&quot;picker-slot&quot;&gt;&lt;span&gt;Ring ${i+1}${i===0?&quot; · inner&quot;:i===3?&quot; · outer&quot;:&quot;&quot;}&lt;/span&gt;&lt;select data-chart-slot=&quot;${i}&quot; aria-label=&quot;Chart for ring ${i+1}&quot;&gt;${pickerOptions(state.selected[i]||&quot;&quot;,i)}&lt;/select&gt;&lt;/label&gt;`).join(&quot;&quot;);const frame=document.getElementById(&quot;frameSelect&quot;);frame.innerHTML=layers.filter(x=&gt;x.frameEligible).map(x=&gt;`&lt;option value=&quot;${x.id}&quot; ${x.id===state.frame?&quot;selected&quot;:&quot;&quot;}&gt;${esc(x.label)}&lt;/option&gt;`).join(&quot;&quot;);const vis=visibleOrder();document.getElementById(&quot;layerChips&quot;).innerHTML=layerOrder().map(id=&gt;{const x=byId[id],rank=vis.indexOf(id);return `&lt;button type=&quot;button&quot; class=&quot;layer-chip ${state.visible.has(x.id)?&quot;&quot;:&quot;off&quot;} ${state.frame===x.id?&quot;frame&quot;:&quot;&quot;}&quot; style=&quot;--layer:${x.color}&quot; data-layer-chip=&quot;${x.id}&quot; ${state.frame===x.id?&#x27;aria-pressed=&quot;true&quot;&#x27;:&quot;&quot;}&gt;&lt;span class=&quot;badge&quot;&gt;${rank&lt;0?&quot;·&quot;:rank+1}&lt;/span&gt;${esc(x.label.replace(&quot;Donald Trump &quot;,&quot;Trump &quot;))}${state.frame===x.id?&quot; · house frame&quot;:&quot;&quot;}&lt;/button&gt;`}).join(&quot;&quot;);document.getElementById(&quot;aspectChips&quot;).innerHTML=[&quot;conjunct&quot;,&quot;opposite&quot;,&quot;square&quot;,&quot;trine&quot;,&quot;sextile&quot;,&quot;quincunx&quot;].map(a=&gt;`&lt;button type=&quot;button&quot; class=&quot;aspect-chip ${state.aspects.has(a)?&quot;on&quot;:&quot;&quot;}&quot; data-aspect=&quot;${a}&quot;&gt;${ASYM[a]} ${a}&lt;/button&gt;`).join(&quot;&quot;);document.querySelectorAll(&quot;[data-house]&quot;).forEach(b=&gt;{b.classList.toggle(&quot;on&quot;,b.dataset.house===state.house);b.disabled=b.dataset.house===&quot;P&quot;&amp;&amp;!byId[state.frame].placidusEligible});document.getElementById(&quot;relationSelect&quot;).value=state.relation;document.getElementById(&quot;orbSelect&quot;).value=state.orb;document.getElementById(&quot;aspectLines&quot;).checked=state.showLines;document.querySelectorAll(&quot;[data-point-group]&quot;).forEach(i=&gt;i.checked=state.groups.has(i.dataset.pointGroup));const f=byId[state.frame],caution=f.frameCaution?`&lt;br&gt;&lt;strong&gt;Frame note:&lt;/strong&gt; ${esc(f.frameCaution)}`:&quot;&quot;;document.getElementById(&quot;frameNote&quot;).innerHTML=`&lt;strong&gt;INNER → OUTER:&lt;/strong&gt; ${vis.map((id,i)=&gt;`${i+1} ${esc(byId[id].label.replace(&quot;Donald Trump &quot;,&quot;Trump &quot;))}`).join(&quot; · &quot;)} &lt;em&gt;(${WHEEL_WORD[vis.length]||&quot;wheel&quot;})&lt;/em&gt;&lt;br&gt;Houses and sign orientation belong only to &lt;strong&gt;${esc(f.label)}&lt;/strong&gt;${f.place===DATA.meta.locationRule.replace(&quot;Mundane charts are cast for &quot;,&quot;&quot;).replace(&quot;.&quot;,&quot;&quot;)?&quot; in Washington, D.C.&quot;:&quot;&quot;}.${caution}`}
+function render(){renderControls();paintWheel();renderLedger();renderOverlaps();const st=document.getElementById(&quot;status&quot;);if(state.point){const [lid,name]=state.point.split(&quot;:&quot;),layer=byId[lid],p=name===&quot;ASC&quot;?anglePoint(layer,&quot;ASC&quot;):name===&quot;MC&quot;?anglePoint(layer,&quot;MC&quot;):layer.points.find(x=&gt;x.name===name);st.innerHTML=`&lt;b style=&quot;color:${layer.color}&quot;&gt;${esc(layer.label)} · ${esc(pointName(name))}&lt;/b&gt;&lt;br&gt;${esc((p.dms?p.dms+&quot; &quot;:&quot;&quot;)+p.sign)} · house ${houseOf(p.lon,byId[state.frame])} in the ${esc(byId[state.frame].label)} frame`;st.classList.add(&quot;show&quot;)}else st.classList.remove(&quot;show&quot;)}
+
+let pan=null,suppressClick=false;
+document.addEventListener(&quot;click&quot;,ev=&gt;{if(suppressClick){suppressClick=false;return}const chip=ev.target.closest(&quot;[data-layer-chip]&quot;);if(chip){const id=chip.dataset.layerChip;if(id!==state.frame){state.visible.has(id)?state.visible.delete(id):state.visible.add(id);state.isolate=null;render()}return}const asp=ev.target.closest(&quot;[data-aspect]&quot;);if(asp){const a=asp.dataset.aspect;state.aspects.has(a)?state.aspects.delete(a):state.aspects.add(a);state.isolate=null;render();return}const hs=ev.target.closest(&quot;[data-house]&quot;);if(hs&amp;&amp;hs.tagName===&quot;BUTTON&quot;){state.house=hs.dataset.house;state.isolate=null;render();return}const body=ev.target.closest(&quot;[data-body]&quot;);if(body){state.point=state.point===body.dataset.body?null:body.dataset.body;state.isolate=null;render();return}const overlap=ev.target.closest(&quot;[data-overlap-contact]&quot;);if(overlap){state.isolate=state.isolate===overlap.dataset.overlapContact?null:overlap.dataset.overlapContact;render();return}const row=ev.target.closest(&quot;[data-contact-row]&quot;);if(row){state.isolate=state.isolate===row.dataset.contactRow?null:row.dataset.contactRow;render();return}});
+document.addEventListener(&quot;change&quot;,e=&gt;{const picker=e.target.closest(&quot;[data-chart-slot]&quot;);if(!picker)return;const slot=Number(picker.dataset.chartSlot),value=picker.value,next=state.selected.slice();if(!value){if(next.length===1){renderControls();return}next.splice(slot,1)}else if(slot&lt;next.length)next[slot]=value;else next.push(value);if(new Set(next).size!==next.length){renderControls();return}if(!next.some(id=&gt;CATALOG_BY_ID[id]&amp;&amp;CATALOG_BY_ID[id].frameEligible)){renderControls();return}state.selected=next.slice(0,4);state.isolate=null;state.point=null;state.houseFilter=null;refreshSelection();render()});
+document.getElementById(&quot;frameSelect&quot;).addEventListener(&quot;change&quot;,e=&gt;{state.frame=e.target.value;if(state.house===&quot;P&quot;&amp;&amp;!CATALOG_BY_ID[state.frame].placidusEligible)state.house=&quot;W&quot;;state.visible.add(state.frame);state.isolate=null;state.houseFilter=null;render()});document.getElementById(&quot;relationSelect&quot;).addEventListener(&quot;change&quot;,e=&gt;{state.relation=e.target.value;state.isolate=null;render()});document.getElementById(&quot;orbSelect&quot;).addEventListener(&quot;change&quot;,e=&gt;{state.orb=e.target.value;state.isolate=null;render()});document.getElementById(&quot;aspectLines&quot;).addEventListener(&quot;change&quot;,e=&gt;{state.showLines=e.target.checked;state.isolate=null;render()});document.querySelectorAll(&quot;[data-point-group]&quot;).forEach(i=&gt;i.addEventListener(&quot;change&quot;,e=&gt;{e.target.checked?state.groups.add(e.target.dataset.pointGroup):state.groups.delete(e.target.dataset.pointGroup);state.isolate=null;render()}));
+document.getElementById(&quot;resetBtn&quot;).addEventListener(&quot;click&quot;,()=&gt;{state.selected=DATA.meta.defaultSelection.slice();state.frame=DATA.meta.defaultFrame;state.house=&quot;W&quot;;state.relation=&quot;primary&quot;;state.orb=&quot;project&quot;;state.aspects=new Set([&quot;conjunct&quot;,&quot;sextile&quot;,&quot;square&quot;,&quot;trine&quot;,&quot;quincunx&quot;,&quot;opposite&quot;]);state.groups=new Set([&quot;planet&quot;,&quot;angle&quot;,&quot;node&quot;,&quot;chiron&quot;,&quot;america&quot;]);state.showLines=false;state.isolate=null;state.point=null;refreshSelection(true);document.getElementById(&quot;connectionsPanel&quot;).open=false;setZoom(1);const el=vpEl();el.scrollLeft=0;el.scrollTop=0;render()});
+document.getElementById(&quot;openSpine&quot;).addEventListener(&quot;click&quot;,()=&gt;window.parent.postMessage({action:&quot;navigateTo&quot;,tab:&quot;astrology-spine&quot;},&quot;*&quot;));
+document.getElementById(&quot;fullBtn&quot;).addEventListener(&quot;click&quot;,()=&gt;{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()});
+/* Export serialises the full 1000x1000 design space, never the clipped or
+   zoomed viewport the reader happens to be looking at.                      */
+document.getElementById(&quot;exportBtn&quot;).addEventListener(&quot;click&quot;,()=&gt;{const live=document.getElementById(&quot;comparisonSvg&quot;);if(!live)return;const svg=live.cloneNode(true);svg.setAttribute(&quot;width&quot;,VB);svg.setAttribute(&quot;height&quot;,VB);svg.setAttribute(&quot;viewBox&quot;,`0 0 ${VB} ${VB}`);svg.setAttribute(&quot;xmlns&quot;,&quot;http://www.w3.org/2000/svg&quot;);const blob=new Blob([&#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n&#x27;+new XMLSerializer().serializeToString(svg)],{type:&quot;image/svg+xml&quot;}),a=document.createElement(&quot;a&quot;);a.href=URL.createObjectURL(blob);a.download=&quot;freedom-250-chart-comparison.svg&quot;;a.click();setTimeout(()=&gt;URL.revokeObjectURL(a.href),1000)});
+document.getElementById(&quot;zFit&quot;).addEventListener(&quot;click&quot;,()=&gt;setZoom(1));
+document.getElementById(&quot;zReset&quot;).addEventListener(&quot;click&quot;,()=&gt;{setZoom(1);const el=vpEl();el.scrollLeft=0;el.scrollTop=0});
+document.getElementById(&quot;zIn&quot;).addEventListener(&quot;click&quot;,()=&gt;{const r=vpEl().getBoundingClientRect();zoomAround(zoom+.1,r.left+r.width/2,r.top+r.height/2)});
+document.getElementById(&quot;zOut&quot;).addEventListener(&quot;click&quot;,()=&gt;{const r=vpEl().getBoundingClientRect();zoomAround(zoom-.1,r.left+r.width/2,r.top+r.height/2)});
+document.getElementById(&quot;zRange&quot;).addEventListener(&quot;input&quot;,e=&gt;setZoom(Number(e.target.value)/100));
+vpEl().addEventListener(&quot;wheel&quot;,e=&gt;{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();zoomAround(zoom*(e.deltaY&lt;0?1.09:1/1.09),e.clientX,e.clientY)},{passive:false});
+vpEl().addEventListener(&quot;pointerdown&quot;,e=&gt;{if(zoom&lt;=1.005||e.button!==0)return;const el=vpEl();pan={x:e.clientX,y:e.clientY,sl:el.scrollLeft,st:el.scrollTop,moved:false}});
+window.addEventListener(&quot;pointermove&quot;,e=&gt;{if(!pan)return;const dx=e.clientX-pan.x,dy=e.clientY-pan.y;if(!pan.moved&amp;&amp;Math.hypot(dx,dy)&lt;4)return;pan.moved=true;const el=vpEl();el.classList.add(&quot;panning&quot;);el.scrollLeft=pan.sl-dx;el.scrollTop=pan.st-dy});
+window.addEventListener(&quot;pointerup&quot;,()=&gt;{if(pan&amp;&amp;pan.moved)suppressClick=true;pan=null;vpEl().classList.remove(&quot;panning&quot;)});
+document.addEventListener(&quot;keydown&quot;,e=&gt;{if(e.key===&quot;Escape&quot;&amp;&amp;(state.isolate||state.point)){state.isolate=null;state.point=null;render()}});
+window.addEventListener(&quot;message&quot;,e=&gt;{const m=e.data||{};if(m.action===&quot;openComparison&quot;&amp;&amp;Array.isArray(m.chartIds)){const ids=m.chartIds.map(resolveChartId).filter(Boolean).slice(0,4);const frameId=resolveChartId(m.frameId);if(ids.length&amp;&amp;ids.some(id=&gt;CATALOG_BY_ID[id].frameEligible)){state.selected=ids;state.frame=ids.includes(frameId)&amp;&amp;CATALOG_BY_ID[frameId].frameEligible?frameId:ids.find(id=&gt;CATALOG_BY_ID[id].frameEligible);refreshSelection();render()}return}if(m.action===&quot;goToDate&quot;&amp;&amp;m.date){const phase=x=&gt;[&quot;Eclipses&quot;,&quot;Lunations&quot;].includes(x.category),found=DATA.catalog.find(x=&gt;x.date===m.date&amp;&amp;phase(x))||DATA.catalog.find(x=&gt;x.utcDate===m.date&amp;&amp;phase(x))||DATA.catalog.find(x=&gt;x.date===m.date&amp;&amp;x.category===&quot;Ingresses&quot;);if(found){state.selected=[found.id].concat(state.selected.filter(id=&gt;id!==found.id)).slice(0,4);if(found.frameEligible)state.frame=found.id;refreshSelection();render()}}});
+new ResizeObserver(refit).observe(vpEl());window.addEventListener(&quot;resize&quot;,refit);
+refreshSelection(true);fitScale=computeFit();render();refit();
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;&#x27;&#x27;&#x27;
+
+
+def render_html() -&gt; str:
+    swe.set_ephe_path(str(EPHE))
+    catalog, meta = build_catalog()
+    catalog_by_id = {row[&quot;id&quot;]: row for row in catalog}
+    default_layers = [catalog_by_id[chart_id] for chart_id in DEFAULT_ORDER]
+    contacts = build_contacts(default_layers)
+    bundle = {&quot;meta&quot;: meta, &quot;catalog&quot;: catalog, &quot;contacts&quot;: contacts}
+    summary = &quot; · &quot;.join(
+        f&quot;{meta[&#x27;catalogCounts&#x27;][category]} {category.lower()}&quot;
+        for category in (&quot;Ingresses&quot;, &quot;Lunations&quot;, &quot;Eclipses&quot;, &quot;Main Characters&quot;)
+    )
+    return (
+        HTML_TEMPLATE
+        .replace(&quot;__GLYPHS__&quot;, glyph_source())
+        .replace(&quot;__DATA__&quot;, json.dumps(bundle, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;)))
+        .replace(&quot;__CATALOG_SUMMARY__&quot;, html.escape(summary))
+    )
+
+
+def validate(text: str) -&gt; None:
+    required = [
+        &quot;Pick the charts. Keep one house frame.&quot;, &quot;const DATA=&quot;, &quot;Trump Secondary Progressed&quot;,
+        &quot;Project policy&quot;, &quot;Connection ledger&quot;, &quot;no approved exact JPL Horizons value&quot;,
+        &quot;defaultSelection&quot;, &#x27;data-chart-slot=&#x27;, &quot;function computeContactsJS(&quot;,
+        &quot;function refreshSelection(&quot;, &quot;Washington, D.C.&quot;, &quot;F250_GLY&quot;,
+        &#x27;class=&quot;chart-annulus&quot;&#x27;, &quot;showLines:false&quot;, &quot;INNER → OUTER&quot;,
+        # responsive zoom viewport
+        &#x27;id=&quot;wheelViewport&quot;&#x27;, &#x27;id=&quot;wheelStage&quot;&#x27;, &#x27;id=&quot;zRange&quot;&#x27;, &#x27;id=&quot;zFit&quot;&#x27;,
+        &quot;function computeFit(&quot;, &quot;ResizeObserver&quot;, &#x27;class=&quot;zoombar&quot;&#x27;,
+        # measured-bounds label engine
+        &quot;data-measure=&quot;, &quot;function measurePass(&quot;, &quot;function supports(&quot;,
+        &quot;function needGap(&quot;, &quot;function layoutRing(&quot;, &quot;function layoutWheel(&quot;, &quot;function chainShape(&quot;, &quot;function evenFan(&quot;,
+        &quot;const MEASURED=new Map()&quot;, &#x27;class=&quot;placement-house&quot;&#x27;,
+        # recurrence and archetypal overlap hearing
+        &quot;Natural overlaps&quot;, &quot;Recurrence hearing&quot;, &quot;Archetypal umbrellas&quot;, &quot;Chronicle hypothesis&quot;,
+        &quot;function strictMajorContacts(&quot;, &quot;function recurrencePatterns(&quot;, &quot;function renderOverlaps(&quot;,
+        &#x27;id=&quot;openSpine&quot;&#x27;, &quot;this is continuity, not another vote&quot;, &quot;return layer.frameEligible?pts.concat&quot;,
+    ]
+    missing = [marker for marker in required if marker not in text]
+    if missing:
+        raise RuntimeError(&quot;Chart Comparison validation failed: &quot; + &quot;, &quot;.join(missing))
+    expected = {&quot;Ingresses&quot;: 50, &quot;Lunations&quot;: 344, &quot;Eclipses&quot;: 55, &quot;Main Characters&quot;: 27, &quot;Progressions&quot;: 1}
+    for category, count in expected.items():
+        if text.count(f&#x27;&quot;category&quot;:&quot;{category}&quot;&#x27;) != count:
+            raise RuntimeError(f&quot;Expected {count} {category} catalog rows&quot;)
+    if text.count(&#x27;&quot;frameEligible&quot;:false&#x27;) != 11:
+        raise RuntimeError(&quot;Expected ten untimed natal overlays and one progression overlay&quot;)
+    if &quot;NaN&quot; in text or &quot;Infinity&quot; in text:
+        raise RuntimeError(&quot;Non-finite chart datum in output&quot;)
+    bundle_match = re.search(r&quot;const DATA=(.*?);\nconst SGN=&quot;, text, flags=re.S)
+    if not bundle_match:
+        raise RuntimeError(&quot;Chart Comparison data bundle is unreadable&quot;)
+    bundle = json.loads(bundle_match.group(1))
+    for contact in bundle[&quot;contacts&quot;]:
+        for layer_key, point_key in ((&quot;a&quot;, &quot;p1&quot;), (&quot;b&quot;, &quot;p2&quot;)):
+            if contact[layer_key] == &quot;special-trump-progressed-2026-08-12&quot; and contact[point_key] in {&quot;ASC&quot;, &quot;MC&quot;}:
+                raise RuntimeError(&quot;Overlay-only progression angles leaked into default contacts&quot;)
+    for marker in (&quot;function ringPlan(&quot;, &quot;function visibleOrder(&quot;, &quot;WHEEL_WORD&quot;, &quot;function ringLegend(&quot;, &#x27;class=&quot;ring-legend&quot;&#x27;, &#x27;class=&quot;ring-rim&quot;&#x27;):
+        if marker not in text:
+            raise RuntimeError(f&quot;Collapsing ring plan missing: {marker}&quot;)
+    if &quot;wheelSVGLegacy&quot; in text:
+        raise RuntimeError(&quot;Dead legacy wheel renderer is still present&quot;)
+
+
+def main() -&gt; None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--output&quot;, type=Path, default=OUT)
+    parser.add_argument(&quot;--check&quot;, action=&quot;store_true&quot;)
+    args = parser.parse_args()
+    text = render_html()
+    validate(text)
+    if args.check:
+        existing = args.output.read_text(encoding=&quot;utf-8&quot;)
+        validate(existing)
+        if existing != text:
+            raise SystemExit(f&quot;STALE: {args.output}; run {Path(__file__).name}&quot;)
+        catalog, meta = build_catalog()
+        defaults = {row[&quot;id&quot;]: row for row in catalog}
+        print(f&quot;Chart Comparison check OK · {len(catalog)} selectable charts · &quot;
+              f&quot;{len(build_contacts([defaults[x] for x in DEFAULT_ORDER]))} default contacts · {args.output}&quot;)
+        return
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(text, encoding=&quot;utf-8&quot;)
+    catalog, _meta = build_catalog()
+    defaults = {row[&quot;id&quot;]: row for row in catalog}
+    print(f&quot;Built {args.output} · {len(catalog)} selectable charts · &quot;
+          f&quot;{len(build_contacts([defaults[x] for x in DEFAULT_ORDER]))} default contacts&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

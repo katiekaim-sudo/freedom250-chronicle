@@ -1,0 +1,340 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/mm-astro-v2-f53975a63e8b.html">
+<title>Governing cardinal ingress per date — mirrors build_almanac.py GOVERNANCE.</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>Governing cardinal ingress per date — mirrors build_almanac.py GOVERNANCE.</h1><p class="mut">Portable source: 99 - Templates/mm_astro_v2.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;mm_astro_v2.py — the DEEPER astrology layer for The Money Machine.
+
+Builds on mm_astro.py (v1: per-filing chart + Greer read + Moon family + seed).
+v2 adds, per filing, the same three deep layers The Hearings tab carries:
+
+  1. INGRESS LAYER — the governing cardinal ingress (the &quot;year-king&quot;) for the
+     filing&#x27;s date (GOVERNANCE windows, matching build_almanac.py), the cross-chart
+     synastry between the filing chart and that ingress, and the Greer
+     &quot;lunation-times-ingress&quot; check: does the filing&#x27;s Sun light up the year-king&#x27;s
+     own Sun / Neptune / Node? (When it does, the year&#x27;s chart fires at the filing.)
+
+  2. PESSIN LINEAGE — the filing&#x27;s seed New Moon traced FORWARD +546d to its
+     Full-Moon harvest (the Eclipse-Storm seeds reap in 2027) and BACK -546d to the
+     parent New Moon (2024) it descends from; the XRP/crypto-rails lineage flag when
+     the chain passes the Oct-2-2024 (10° Lib) or Dec-30-2024 (9° Cap) seeds the
+     Hearings work already identified as the Ripple ecosystem&#x27;s planting.
+
+  3. GREER OVERLAYS — danger aspects (Sun-Neptune / Sun-Saturn the worst, then
+     Mars-Saturn, Moon-Saturn) and combustion, read straight off the filing chart.
+
+  + THE BRIDGE — which of the 9 HFSC hearings shares this filing&#x27;s seed New Moon.
+    A hearing and a filing born of the same lunation are one gestation: the
+    legislative face and the administrative face of a single seed.
+
+Reads the 71-filing corpus + per-filing rec/seed straight out of the built tab
+(The Money Machine.html) so it needs no network and no ingest dir. Reads the 8
+ingress charts (CHARTS) and the 9 hearing seeds (HLIN) out of The Hearings.html so
+the two tabs can never diverge. Swiss Ephemeris (Moshier) only for the +/-546d
+lineation.
+
+Output: 99 - Templates/money_machine_astro_v2.json  (keyed by filing url).
+&quot;&quot;&quot;
+import os, re, json, datetime
+import swisseph as swe
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+XC = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;)
+MM_HTML = os.path.join(XC, &quot;The Money Machine.html&quot;)
+HR_HTML = os.path.join(XC, &quot;The Hearings.html&quot;)
+OUT = os.path.join(HERE, &quot;money_machine_astro_v2.json&quot;)
+
+SIGNS = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,
+         &quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+SH = [&quot;Ari&quot;,&quot;Tau&quot;,&quot;Gem&quot;,&quot;Can&quot;,&quot;Leo&quot;,&quot;Vir&quot;,&quot;Lib&quot;,&quot;Sco&quot;,&quot;Sag&quot;,&quot;Cap&quot;,&quot;Aqu&quot;,&quot;Pis&quot;]
+FLAGS = swe.FLG_MOSEPH | swe.FLG_SPEED
+
+# Governing cardinal ingress per date — mirrors build_almanac.py GOVERNANCE.
+GOVERNANCE = [
+ (&quot;2025-01-01&quot;,&quot;2025-03-19&quot;, None),
+ (&quot;2025-03-20&quot;,&quot;2026-03-19&quot;, &quot;2025 Aries&quot;),
+ (&quot;2026-03-20&quot;,&quot;2026-06-20&quot;, &quot;2026 Aries&quot;),
+ (&quot;2026-06-21&quot;,&quot;2026-09-22&quot;, &quot;2026 Cancer&quot;),
+ (&quot;2026-09-23&quot;,&quot;2026-12-31&quot;, &quot;2026 Libra&quot;),
+]
+def gov_for(d):
+    for a,b,g in GOVERNANCE:
+        if a &lt;= d &lt;= b: return g
+    return None
+
+def sgn(l): return SIGNS[int(l//30)%12]
+def shrt(l): return SH[int(l//30)%12]
+def dms(l):
+    d=int(l%30); m=int(round((l%30-d)*60))
+    if m==60: d+=1; m=0
+    return f&quot;{d}°{m:02d}&#x27;&quot;
+def sep(a,b): return abs((a-b+180)%360-180)
+
+# ---- pull data straight from the built views (single source of truth) ----
+def load_block(html, var):
+    m = re.search(r&#x27;(?:const|var)\s+&#x27;+re.escape(var)+r&#x27;\s*=\s*(\[.*?\]|\{.*?\});&#x27;, html, re.S)
+    return json.loads(m.group(1)) if m else None
+
+def load_all():
+    mm_html = open(MM_HTML, encoding=&quot;utf-8&quot;).read()
+    hr_html = open(HR_HTML, encoding=&quot;utf-8&quot;).read()
+    mm = json.loads(re.search(r&#x27;&lt;script[^&gt;]*id=&quot;mm-data&quot;[^&gt;]*&gt;(.*?)&lt;/script&gt;&#x27;, mm_html, re.S).group(1))
+    CHARTS = load_block(hr_html, &quot;CHARTS&quot;)
+    HLIN = load_block(hr_html, &quot;HLIN&quot;)
+    HCH = load_block(hr_html, &quot;HCHARTS&quot;)
+    hdates = [c[&quot;__date&quot;] for c in HCH]
+    return mm, CHARTS, HLIN, hdates
+
+# ---- synastry: filing chart vs governing ingress -------------------------
+ASPECTS = [(0,&quot;conjunct&quot;,3.0),(180,&quot;opposite&quot;,3.0),(90,&quot;square&quot;,3.0),
+           (120,&quot;trine&quot;,2.5),(60,&quot;sextile&quot;,2.5)]
+KEYISH = [&quot;Sun&quot;,&quot;Moon&quot;,&quot;Mercury&quot;,&quot;Venus&quot;,&quot;Mars&quot;,&quot;Jupiter&quot;,&quot;Saturn&quot;,&quot;Neptune&quot;,&quot;Pluto&quot;,&quot;Node&quot;]
+def filing_lons(rec):
+    return {p[0]: p[4] for p in rec[&quot;pos&quot;]}
+
+def synastry(flons, ing):
+    &quot;&quot;&quot;Top cross-aspects between filing planets (inner) and ingress planets (outer).&quot;&quot;&quot;
+    out=[]
+    ingpl = {k:v for k,v in ing.items() if k in KEYISH+[&quot;Chiron&quot;,&quot;America&quot;,&quot;ASC&quot;]}
+    for fp, fl in flons.items():
+        for ip, il in ingpl.items():
+            s = sep(fl, il)
+            for ang,name,orb in ASPECTS:
+                if abs(s-ang) &lt;= orb:
+                    out.append({&quot;f&quot;:fp,&quot;i&quot;:ip,&quot;a&quot;:name,&quot;o&quot;:round(abs(s-ang),2)})
+                    break
+    out.sort(key=lambda x:x[&quot;o&quot;])
+    return out
+
+def king_fires(flons, ing):
+    &quot;&quot;&quot;Greer&#x27;s lunation-times-ingress: does the filing&#x27;s Sun (or Moon) sit on the
+    year-king&#x27;s Sun, Neptune or Node? Return the tightest hit &lt;=2.5deg.&quot;&quot;&quot;
+    hits=[]
+    for fp in (&quot;Sun&quot;,&quot;Moon&quot;):
+        if fp not in flons: continue
+        for ip in (&quot;Sun&quot;,&quot;Neptune&quot;,&quot;Node&quot;):
+            if ip not in ing: continue
+            s = sep(flons[fp], ing[ip])
+            d = min(s, abs(s-180))   # conj or opp both &quot;fire&quot;
+            asp = &quot;conjunct&quot; if s&lt;=2.5 else (&quot;opposite&quot; if abs(s-180)&lt;=2.5 else None)
+            if asp:
+                hits.append({&quot;f&quot;:fp,&quot;i&quot;:ip,&quot;a&quot;:asp,&quot;o&quot;:round(min(s,abs(s-180)),2)})
+    hits.sort(key=lambda x:x[&quot;o&quot;])
+    return hits[:2]
+
+# ---- Pessin lineage: +/-546d at the same degree --------------------------
+def jd(dateiso, h=12.0):
+    y,mo,d = map(int, dateiso.split(&quot;-&quot;))
+    return swe.julday(y,mo,d,h)
+def _lunation_near(j0, want_full):
+    &quot;&quot;&quot;Nearest New (want_full=False) or Full (True) Moon to jd j0. Coarse scan over
+    +/-18 days (&gt; half a synodic month, so a real lunation is always inside the
+    window) then refine to the minute.&quot;&quot;&quot;
+    def err(j):
+        s=swe.calc_ut(j,swe.SUN,FLAGS)[0][0]; m=swe.calc_ut(j,swe.MOON,FLAGS)[0][0]
+        e=abs((m-s+180)%360-180)            # 0 at New, 180 at Full
+        return abs(e-180) if want_full else e
+    best=None
+    for k in range(-72,73):                 # +/-18 days at 0.25d steps
+        j=j0+k*0.25; e=err(j)
+        if best is None or e&lt;best[0]: best=(e,j)
+    _,jb=best
+    for k in range(-25,26):                 # refine +/-0.5d at 0.02d steps
+        j=jb+k*0.02; e=err(j)
+        if e&lt;best[0]: best=(e,j)
+    j=best[1]
+    body = swe.MOON if want_full else swe.SUN
+    lon=swe.calc_ut(j,body,FLAGS)[0][0]%360
+    y,mo,d,_=swe.revjul(j)
+    return f&quot;{y:04d}-{mo:02d}-{d:02d}&quot;, lon
+def new_moon_near(j0):  return _lunation_near(j0, False)
+def full_moon_near(j0): return _lunation_near(j0, True)
+
+# The crypto-rails origin New Moons the Hearings work pinned to the Ripple
+# ecosystem (HLIN parents): the Oct-2-2024 Libra solar eclipse (10 Lib) and the
+# Dec-30-2024 Capricorn New Moon (9 Cap). A filing whose Great-Harvest bloom
+# descends (same degree, -546d) from one of these is in the same lineage the
+# keystone (#7) and structure (#9) hearings ride.
+XRP_ORIGINS = [(&quot;2024-10-02&quot;,189.5,&quot;the Oct-2-2024 Libra solar eclipse that planted the Ripple/XRP rails&quot;),
+               (&quot;2024-12-30&quot;,279.5,&quot;the Dec-30-2024 Capricorn New Moon that planted the Ripple/XRP rails&quot;)]
+def lineage(seed):
+    &quot;&quot;&quot;Match the Hearings&#x27; Pessin method exactly:
+       seed  (Eclipse-Storm New Moon, 24-32deg)  --+546d--&gt;  HARVEST Full Moon (2027)
+       seed  --~14.75d--&gt;  BLOOM Full Moon (Great Harvest, the current revelation)
+       BLOOM  --(-546d, same degree)--&gt;  ORIGIN New Moon (2024 — the XRP-bearing link).&quot;&quot;&quot;
+    sdate = seed[&quot;date&quot;]
+    js = jd(sdate)
+    hd, hl = full_moon_near(js + 546)            # 2027 reap (same degree as seed)
+    bd, bl = full_moon_near(js + 14.75)          # contemporaneous Great-Harvest bloom
+    od, ol = new_moon_near(jd(bd) - 546)         # the bloom&#x27;s 2024 origin (same degree)
+    xrp=None
+    for xd,xl,lab in XRP_ORIGINS:
+        if sep(ol, xl) &lt;= 8 and abs((datetime.date.fromisoformat(od)-datetime.date.fromisoformat(xd)).days) &lt;= 20:
+            xrp=lab; break
+    return {
+        &quot;harvest&quot;: {&quot;date&quot;:hd, &quot;deg&quot;:f&quot;{shrt(hl)} {hl%30:.0f}°&quot;},   # 2027 reap
+        &quot;bloom&quot;:   {&quot;date&quot;:bd, &quot;deg&quot;:f&quot;{shrt(bl)} {bl%30:.0f}°&quot;},   # now: the revelation
+        &quot;origin&quot;:  {&quot;date&quot;:od, &quot;deg&quot;:f&quot;{shrt(ol)} {ol%30:.0f}°&quot;},   # 2024 planting of the bloom
+        &quot;xrp&quot;: xrp,
+    }
+
+# ---- Greer danger aspects off the filing chart ---------------------------
+DANGER = {
+ (&quot;Sun&quot;,&quot;Neptune&quot;): &quot;Sun-Neptune — the single most dangerous signature: downfall, dissolution, the solvent on the state&#x27;s own eyes&quot;,
+ (&quot;Sun&quot;,&quot;Saturn&quot;): &quot;Sun-Saturn — loss of power, the weight of the old order on the act&quot;,
+ (&quot;Mars&quot;,&quot;Saturn&quot;): &quot;Mars-Saturn — discontent, crimes against authority, the cut that draws blood&quot;,
+ (&quot;Moon&quot;,&quot;Saturn&quot;): &quot;Moon-Saturn — misfortune to the political class&quot;,
+ (&quot;Sun&quot;,&quot;Mars&quot;): &quot;Sun-Mars — conflict, belligerence at the top&quot;,
+}
+def greer(rec):
+    lons = filing_lons(rec)
+    out=[]
+    for (a,b),txt in DANGER.items():
+        if a in lons and b in lons:
+            s=sep(lons[a],lons[b])
+            for ang in (0,90,180):
+                if abs(s-ang)&lt;=6:
+                    out.append({&quot;pair&quot;:f&quot;{a}-{b}&quot;,&quot;aspect&quot;:{0:&quot;conjunct&quot;,90:&quot;square&quot;,180:&quot;opposite&quot;}[ang],&quot;o&quot;:round(abs(s-ang),2),&quot;txt&quot;:txt})
+                    break
+    # combustion
+    comb=[p for p in lons if p not in (&quot;Sun&quot;,&quot;Node&quot;) and sep(lons[p],lons[&quot;Sun&quot;])&lt;=8.5]
+    out.sort(key=lambda x:x[&quot;o&quot;])
+    return {&quot;danger&quot;:out, &quot;combust&quot;:comb}
+
+# ---- the bridge: which hearing shares this filing&#x27;s seed New Moon ---------
+def hearing_for(seed, HLIN, hdates):
+    sd = datetime.date.fromisoformat(seed[&quot;date&quot;])
+    for i,a in enumerate(HLIN):
+        hs = a[&quot;seed&quot;]                 # &quot;2026-02-17 29° Aqu&quot;
+        m = re.match(r&quot;(\d{4}-\d{2}-\d{2})&quot;, hs)
+        if not m: continue
+        hsd = datetime.date.fromisoformat(m.group(1))
+        if abs((sd-hsd).days) &lt;= 3:    # same lunation
+            return {&quot;idx&quot;:i+1, &quot;date&quot;:hdates[i], &quot;seed&quot;:hs}
+    return None
+
+# ---- keystone classifier (the structural filings) ------------------------
+KEYWORDS = [&quot;14247&quot;,&quot;genius&quot;,&quot;fednow&quot;,&quot;reg j&quot;,&quot;regulation j&quot;,&quot;master account&quot;,
+            &quot;payment system risk&quot;,&quot;reputation risk&quot;,&quot;tokeniz&quot;,&quot;fedwire&quot;,&quot;national settlement&quot;,
+            &quot;discount-window&quot;,&quot;discount window&quot;,&quot;reg d&quot;,&quot;regulation d&quot;,&quot;reg a&quot;,&quot;regulation a&quot;,
+            &quot;perpetual&quot;,&quot;stablecoin issuer&quot;,&quot;do not pay&quot;,&quot;disbursement&quot;,&quot;huione&quot;,&quot;clarity&quot;]
+def is_keystone(it):
+    t=(it.get(&quot;title&quot;,&quot;&quot;)+&quot; &quot;+it.get(&quot;summary&quot;,&quot;&quot;)).lower()
+    # SEC SRO listing notices are the flood, not structure
+    if &quot;self-regulatory organizations&quot; in t and &quot;stablecoin&quot; not in t:
+        return False
+    return any(k in t for k in KEYWORDS)
+
+# ---- woven-voice narrative (Greer mundane; NO source labels) -------------
+INGRESS_VALIDITY = {  # rising modality of each governing ingress -&gt; how long it rules
+ &quot;2025 Aries&quot;:&quot;a fixed-sign year-king, valid the whole year&quot;,
+ &quot;2026 Aries&quot;:&quot;a mutable-sign king, ruling the spring quarter&quot;,
+ &quot;2026 Cancer&quot;:&quot;a mutable-sign king, ruling the summer quarter&quot;,
+ &quot;2026 Libra&quot;:&quot;a cardinal-sign king, ruling the half-year&quot;,
+}
+ING_HOUSE_GLOSS = {  # the year-king&#x27;s defining wound, in Katie&#x27;s vocabulary
+ &quot;2025 Aries&quot;:&quot;its own Sun exalted but fused to Neptune on the Aries Point — the executive dissolved into the throne&quot;,
+ &quot;2026 Aries&quot;:&quot;its ruler Mercury wrecked — detriment, fall and retrograde — in the house of the state&quot;,
+ &quot;2026 Cancer&quot;:&quot;Mercury and the Moon in mutual reception, the message and the masses trading places&quot;,
+ &quot;2026 Libra&quot;:&quot;five planets on the angles and the Sun in fall — the hardest king of them all&quot;,
+}
+def _syn_phrase(s):
+    &quot;&quot;&quot;One cross-aspect, filing(inner) to year-king(outer), in mundane voice.&quot;&quot;&quot;
+    fp, ip, asp, o = s[&quot;f&quot;], s[&quot;i&quot;], s[&quot;a&quot;], s[&quot;o&quot;]
+    king = &quot;the year-king&#x27;s &quot;+(&quot;Ascendant&quot; if ip==&quot;ASC&quot; else ip)
+    verb = {&quot;conjunct&quot;:&quot;falls on&quot;,&quot;opposite&quot;:&quot;opposes&quot;,&quot;square&quot;:&quot;squares&quot;,&quot;trine&quot;:&quot;trines&quot;,&quot;sextile&quot;:&quot;sextiles&quot;}[asp]
+    colour = {
+     (&quot;Neptune&quot;,&quot;Sun&quot;):&quot; — the solvent on the throne&quot;,
+     (&quot;Neptune&quot;,&quot;Saturn&quot;):&quot; — the era&#x27;s own Saturn–Neptune wound re-opened&quot;,
+     (&quot;Saturn&quot;,&quot;Sun&quot;):&quot; — the weight of the old order on the king&quot;,
+     (&quot;Node&quot;,&quot;Node&quot;):&quot; — the nodal axis returned to the king&#x27;s own&quot;,
+     (&quot;Sun&quot;,&quot;Node&quot;):&quot; — the act timed to the king&#x27;s fated axis&quot;,
+     (&quot;Pluto&quot;,&quot;Pluto&quot;):&quot; — raw power answering the king&#x27;s power&quot;,
+    }.get((fp,ip),&quot;&quot;)
+    return f&quot;its {fp} {verb} {king} ({o}°){colour}&quot;
+def narrate(it, v):
+    gov=v[&quot;gov&quot;]; lin=v[&quot;lineage&quot;]; gr=v[&quot;greer&quot;]; hr=v[&quot;hearing&quot;]; ks=v[&quot;keystone&quot;]
+    seed=it[&quot;astro&quot;][&quot;seed&quot;]
+    B=[]
+    # --- ingress band ---
+    if gov:
+        ib=[f&#x27;&lt;b&gt;Signed under the {gov} ingress&lt;/b&gt; — {INGRESS_VALIDITY.get(gov,&quot;the governing chart of its season&quot;)}, &#x27;
+            f&#x27;the year-king carrying {ING_HOUSE_GLOSS.get(gov,&quot;its own signature&quot;)}.&#x27;]
+        if v[&quot;king_fires&quot;]:
+            k=v[&quot;king_fires&quot;][0]
+            ib.append(f&#x27;The king\&#x27;s chart fires at it: the filing\&#x27;s {k[&quot;f&quot;]} {k[&quot;a&quot;]} the ingress {k[&quot;i&quot;]} to {k[&quot;o&quot;]}°.&#x27;)
+        if ks and v[&quot;syn&quot;]:
+            picks=[p for p in v[&quot;syn&quot;] if p[&quot;i&quot;] in (&quot;Sun&quot;,&quot;Saturn&quot;,&quot;Neptune&quot;,&quot;Node&quot;,&quot;ASC&quot;,&quot;Pluto&quot;)][:2] or v[&quot;syn&quot;][:1]
+            if picks:
+                ib.append(&quot;Cross-chart, &quot;+&quot;; &quot;.join(_syn_phrase(p) for p in picks)+&quot;.&quot;)
+        B.append((&#x27;&lt;div class=&quot;v2band v2ing&quot;&gt;&lt;div class=&quot;v2h&quot;&gt;Under the year-king&lt;/div&gt;&#x27;+ &quot; &quot;.join(ib) +&#x27;&lt;/div&gt;&#x27;))
+    # --- lineage band ---
+    lb=[f&#x27;Its seed lies at &lt;b&gt;{seed[&quot;deg&quot;]}° {seed[&quot;sign&quot;]}&lt;/b&gt; in &lt;b&gt;The Eclipse Storm&lt;/b&gt; — the late, eclipse-charged band whose harvest comes in 2027. &#x27;
+        f&#x27;This planting reaps at the &lt;b&gt;{lin[&quot;harvest&quot;][&quot;date&quot;]}&lt;/b&gt; Full Moon ({lin[&quot;harvest&quot;][&quot;deg&quot;]}): the markup calendar.&#x27;]
+    if ks:
+        lb.append(f&#x27;Right now it blooms under the {lin[&quot;bloom&quot;][&quot;date&quot;]} {lin[&quot;bloom&quot;][&quot;deg&quot;]} Full Moon, which descends from the {lin[&quot;origin&quot;][&quot;date&quot;]} {lin[&quot;origin&quot;][&quot;deg&quot;]} New Moon.&#x27;)
+    if lin[&quot;xrp&quot;]:
+        lb.append(f&#x27;And that origin is &lt;b&gt;{lin[&quot;xrp&quot;]}&lt;/b&gt; — the old dollar\&#x27;s death and the new rails\&#x27; birth are one lineage.&#x27;)
+    B.append(&#x27;&lt;div class=&quot;v2band v2lin&quot;&gt;&lt;div class=&quot;v2h&quot;&gt;The lineage — planted for a 2027 harvest&lt;/div&gt;&#x27;+ &quot; &quot;.join(lb) +&#x27;&lt;/div&gt;&#x27;)
+    # --- greer band (keystone gets the narrative; others a flag line) ---
+    if ks and (gr[&quot;danger&quot;] or gr[&quot;combust&quot;]):
+        gb=[]
+        if gr[&quot;danger&quot;]:
+            gb.append(&quot;The chart carries &quot;+&quot;; &quot;.join(d[&quot;txt&quot;] for d in gr[&quot;danger&quot;][:2])+&quot;.&quot;)
+        if gr[&quot;combust&quot;]:
+            who=&quot;, &quot;.join(gr[&quot;combust&quot;])
+            gb.append(f&#x27;{who} {&quot;burns&quot; if len(gr[&quot;combust&quot;])==1 else &quot;burn&quot;} combust in the Sun — the work done out of the public eye, swallowed by the executive.&#x27;)
+        B.append(&#x27;&lt;div class=&quot;v2band v2greer&quot;&gt;&lt;div class=&quot;v2h&quot;&gt;The Greer signature&lt;/div&gt;&#x27;+ &quot; &quot;.join(gb) +&#x27;&lt;/div&gt;&#x27;)
+    # --- bridge band ---
+    if hr:
+        B.append(f&#x27;&lt;div class=&quot;v2band v2bridge&quot;&gt;&lt;div class=&quot;v2h&quot;&gt;⇄ The same New Moon as a hearing&lt;/div&gt;&#x27;
+                 f&#x27;Born of the very New Moon that seeded &lt;b&gt;Hearing #{hr[&quot;idx&quot;]}&lt;/b&gt; ({hr[&quot;date&quot;]}) — the law written upstairs and the machine built downstairs, one gestation. &#x27;
+                 f&#x27;&lt;button class=&quot;xl v2hbtn&quot; data-hearing=&quot;{hr[&quot;idx&quot;]}&quot;&gt;open Hearing #{hr[&quot;idx&quot;]} &amp;rarr;&lt;/button&gt;&lt;/div&gt;&#x27;)
+    return &quot;&quot;.join(B)
+
+def main():
+    mm, CHARTS, HLIN, hdates = load_all()
+    out={}
+    ksn=0
+    for it in mm:
+        url=(it.get(&quot;url&quot;) or &quot;&quot;).split(&quot;?&quot;)[0]
+        a=it.get(&quot;astro&quot;) or {}
+        rec=a.get(&quot;rec&quot;); seed=a.get(&quot;seed&quot;)
+        if not url or not rec or not seed: continue
+        flons=filing_lons(rec)
+        gov=gov_for(it[&quot;date&quot;])
+        ing = CHARTS.get(gov) if gov else None
+        syn = synastry(flons, ing) if ing else []
+        kf  = king_fires(flons, ing) if ing else []
+        lin = lineage(seed)
+        gr  = greer(rec)
+        hr  = hearing_for(seed, HLIN, hdates)
+        ks  = is_keystone(it)
+        if ks: ksn+=1
+        v={
+            &quot;gov&quot;:gov, &quot;syn&quot;:syn[:6], &quot;king_fires&quot;:kf,
+            &quot;lineage&quot;:lin, &quot;greer&quot;:gr, &quot;hearing&quot;:hr, &quot;keystone&quot;:ks,
+        }
+        v[&quot;html&quot;]=narrate(it, v)
+        out[url]=v
+    json.dump(out, open(OUT,&quot;w&quot;,encoding=&quot;utf-8&quot;), ensure_ascii=False, separators=(&quot;,&quot;,&quot;:&quot;))
+    # report
+    print(f&quot;computed v2 for {len(out)} filings -&gt; {OUT}&quot;)
+    print(f&quot;keystones: {ksn}&quot;)
+    paired=sum(1 for v in out.values() if v[&quot;hearing&quot;])
+    print(f&quot;share a seed lunation with a hearing: {paired}&quot;)
+    xrp=sum(1 for v in out.values() if v[&quot;lineage&quot;][&quot;xrp&quot;])
+    print(f&quot;descend from the XRP/Ripple parent seeds: {xrp}&quot;)
+    fires=sum(1 for v in out.values() if v[&quot;king_fires&quot;])
+    print(f&quot;the year-king&#x27;s chart fires at them (Sun on king Sun/Nep/Node): {fires}&quot;)
+
+if __name__==&quot;__main__&quot;:
+    main()
+</pre></main></body></html>

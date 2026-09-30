@@ -1,0 +1,1053 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-astro-map-1377e2eb2999.html">
+<title>916 America — JPL Horizons apparent RA/Dec (deg) at the exact ingress epochs.</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>916 America — JPL Horizons apparent RA/Dec (deg) at the exact ingress epochs.</h1><p class="mut">Portable source: 99 - Templates/build_astro_map.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Astro-Cart-Tography for the Observatory — builds `Cross-cuts/Astro Map.html`.
+
+For each of the 8 cardinal ingress charts (2025–2026), computes apparent
+equatorial positions (RA/Dec) for Sun..Pluto + Chiron + True Node + 916 America
+and embeds them with the Greenwich sidereal time of the moment. The page&#x27;s JS
+draws the four ACG angle lines per body on an offline equirectangular world map:
+
+  MC  line — vertical at lon = RA − GST            (planet culminates)
+  IC  line — MC + 180°                             (planet anti-culminates)
+  ASC curve — lon(φ) = RA − arccos(−tanφ·tanδ) − GST   (planet rising)
+  DSC curve — lon(φ) = RA + arccos(−tanφ·tanδ) − GST   (planet setting)
+
+Sources:
+  - Sun..Pluto, Chiron, True Node: Swiss Ephemeris (FLG_EQUATORIAL, apparent),
+    vendored ephe files in `99 - Templates/ephe/` (set via minor_points import).
+  - 916 America: JPL Horizons apparent RA/Dec, geocentric, airless — fetched
+    2026-06-11 for the exact ingress epochs (swisseph lacks the asteroid file).
+    Quantity 2, ANG_FORMAT=DEG. See AMERICA_EQ below.
+  - Globe geography: Natural Earth 1:110m admin-0 country GeoJSON, reduced to
+    the geometry and label fields used by the renderer and embedded so the
+    page is fully offline / local-file: safe.
+  - Renderer: pinned Globe.GL 2.46.2, owned in `astro-map-assets/` and copied
+    beside the generated view for offline / local-file: operation.
+
+Architecture note: ACG_DATA keeps the reusable group contract across ingresses,
+lunations, and timed character charts; the daily sky is stored column-wise to
+keep the generated offline page compact enough for the host.
+
+Re-run any time: rewrites the whole HTML (no patch markers to drift).
+&quot;&quot;&quot;
+import json, math, os, re, shutil, sys
+from zoneinfo import ZoneInfo
+from datetime import datetime, timedelta, timezone
+
+HERE  = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+OUT   = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;, &quot;Astro Map.html&quot;)
+LW    = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;, &quot;Lunar Weather.html&quot;)
+COUNTRIES = os.path.join(HERE, &quot;astro_map_countries.geojson&quot;)
+GLOBE_TEMPLATE = os.path.join(HERE, &quot;astro_map_globe_template.html&quot;)
+ASSET_DIR = os.path.join(HERE, &quot;astro-map-assets&quot;)
+sys.path.insert(0, HERE)
+import minor_points            # sets swe ephe path (Chiron + Swiss files)
+import swisseph as swe
+
+SIGNS = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,
+         &quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+PL    = {0:&quot;Sun&quot;,1:&quot;Moon&quot;,2:&quot;Mercury&quot;,3:&quot;Venus&quot;,4:&quot;Mars&quot;,5:&quot;Jupiter&quot;,
+         6:&quot;Saturn&quot;,7:&quot;Uranus&quot;,8:&quot;Neptune&quot;,9:&quot;Pluto&quot;}
+INGRESSES = [(2025,3,0,&quot;2025 Aries&quot;),(2025,6,90,&quot;2025 Cancer&quot;),
+             (2025,9,180,&quot;2025 Libra&quot;),(2025,12,270,&quot;2025 Capricorn&quot;),
+             (2026,3,0,&quot;2026 Aries&quot;),(2026,6,90,&quot;2026 Cancer&quot;),
+             (2026,9,180,&quot;2026 Libra&quot;),(2026,12,270,&quot;2026 Capricorn&quot;)]
+GOVERNING = {&quot;2025 Aries&quot;,&quot;2026 Aries&quot;,&quot;2026 Cancer&quot;,&quot;2026 Libra&quot;}
+
+# 916 America — JPL Horizons apparent RA/Dec (deg) at the exact ingress epochs.
+# Fetched 2026-06-11; geocentric (500@399), airless apparent, equinox of date.
+AMERICA_EQ = {
+    &quot;2025 Aries&quot;:     ( 24.77805,  18.36970),
+    &quot;2025 Cancer&quot;:    ( 83.62633,  30.25864),
+    &quot;2025 Libra&quot;:     (134.43974,  23.22277),
+    &quot;2025 Capricorn&quot;: (156.85836,  14.28754),
+    &quot;2026 Aries&quot;:     (139.52687,  15.27403),
+    &quot;2026 Cancer&quot;:    (151.56752,   8.25053),
+    &quot;2026 Libra&quot;:     (181.52518,  -5.87123),
+    &quot;2026 Capricorn&quot;: (211.52606, -20.64291),
+}
+
+def find_ingress(year, mg, target):
+    f = lambda j: ((swe.calc_ut(j,0)[0][0]-target+180)%360)-180
+    lo = hi = swe.julday(year, mg, 15, 0.0); hi += 20
+    while f(lo) &gt; 0: lo -= 5
+    while f(hi) &lt; 0: hi += 5
+    for _ in range(50):
+        mid = (lo+hi)/2
+        if f(mid) &lt; 0: lo = mid
+        else: hi = mid
+    return (lo+hi)/2
+
+def fmt_lon(l):
+    return &quot;%d°%02d&#x27; %s&quot; % (int(l%30), int((l%1)*60), SIGNS[int(l//30)])
+
+def local_str(jd):
+    y,m,d,h = swe.revjul(jd)
+    ut = datetime(y,m,d, tzinfo=timezone.utc) + timedelta(hours=h)
+    loc = ut.astimezone(ZoneInfo(&quot;America/New_York&quot;))
+    return loc.strftime(&quot;%m/%d/%Y · %-I:%M %p %Z&quot;) + ut.strftime(&quot; (%H:%M UT)&quot;)
+
+# ---- 916 America RA/Dec cache (JPL Horizons; see america_eq_grid.json) ----
+_EQG = json.load(open(os.path.join(HERE, &quot;america_eq_grid.json&quot;)))
+_un = [_EQG[&quot;ra&quot;][0]]
+for _x in _EQG[&quot;ra&quot;][1:]:
+    _d = (_x - _un[-1] + 180) % 360 - 180
+    _un.append(_un[-1] + _d)
+_g0 = [int(v) for v in _EQG[&quot;grid_start&quot;].split(&quot;-&quot;)]
+_EQG_JD0 = swe.julday(_g0[0], _g0[1], _g0[2], 0.0)
+
+def america_eq_at(jd):
+    &quot;&quot;&quot;Daily-grid linear interpolation (apparent RA/Dec). Grid 2024→2028-01-03.&quot;&quot;&quot;
+    i = (jd - _EQG_JD0) / _EQG[&quot;step_days&quot;]
+    if i &lt; -0.01 or i &gt; len(_un) - 0.99:
+        raise ValueError(f&quot;jd {jd} outside america_eq_grid&quot;)
+    lo = max(0, min(len(_un) - 2, int(i))); f = i - lo
+    ra  = (_un[lo] + (_un[lo+1] - _un[lo]) * f) % 360
+    dec = _EQG[&quot;dec&quot;][lo] + (_EQG[&quot;dec&quot;][lo+1] - _EQG[&quot;dec&quot;][lo]) * f
+    return round(ra, 5), round(dec, 5)
+
+def bodies_at(jd, america):
+    &quot;&quot;&quot;Common body table. `america` = (ra, dec, ecl_lon_for_label, retro).&quot;&quot;&quot;
+    bodies = {}
+    EQ = swe.FLG_SWIEPH | swe.FLG_EQUATORIAL
+    for p in sorted(PL):
+        eq = swe.calc_ut(jd, p, EQ)[0]
+        ec = swe.calc_ut(jd, p)[0]
+        bodies[PL[p]] = {&quot;ra&quot;:round(eq[0],5), &quot;dec&quot;:round(eq[1],5),
+                         &quot;pos&quot;:fmt_lon(ec[0]), &quot;rx&quot;:1 if ec[3]&lt;0 else 0}
+    for pid, nm in ((swe.CHIRON,&quot;Chiron&quot;), (swe.TRUE_NODE,&quot;Node&quot;)):
+        eq = swe.calc_ut(jd, pid, EQ)[0]
+        ec = swe.calc_ut(jd, pid)[0]
+        bodies[nm] = {&quot;ra&quot;:round(eq[0],5), &quot;dec&quot;:round(eq[1],5),
+                      &quot;pos&quot;:fmt_lon(ec[0]), &quot;rx&quot;:1 if ec[3]&lt;0 else 0}
+    ra, dec, lon, rx = america
+    bodies[&quot;America&quot;] = {&quot;ra&quot;:round(ra,5), &quot;dec&quot;:round(dec,5),
+                         &quot;pos&quot;:fmt_lon(lon), &quot;rx&quot;:1 if rx else 0}
+    return bodies
+
+def astrocartography_longitudes(ra, dec, gst, lat):
+    &quot;&quot;&quot;Return MC/IC/ASC/DSC longitudes for one apparent RA/Dec position.
+
+    ASC/DSC are None at circumpolar latitudes where the body does not cross
+    the horizon. Longitudes are normalized to [-180, 180).
+    &quot;&quot;&quot;
+    norm = lambda value: ((value + 180.0) % 360.0) - 180.0
+    mc = norm(ra - gst)
+    ic = norm(mc + 180.0)
+    horizon_term = -math.tan(math.radians(lat)) * math.tan(math.radians(dec))
+    if horizon_term &lt; -1.0 or horizon_term &gt; 1.0:
+        return {&quot;MC&quot;: mc, &quot;IC&quot;: ic, &quot;As&quot;: None, &quot;Ds&quot;: None}
+    hour_angle = math.degrees(math.acos(horizon_term))
+    return {
+        &quot;MC&quot;: mc,
+        &quot;IC&quot;: ic,
+        &quot;As&quot;: norm(ra - hour_angle - gst),
+        &quot;Ds&quot;: norm(ra + hour_angle - gst),
+    }
+
+def geometry_checks(charts):
+    &quot;&quot;&quot;Python-owned check vectors consumed by the browser renderer at boot.&quot;&quot;&quot;
+    samples = []
+    chart = next(c for c in charts if c[&quot;id&quot;] == &quot;2026-cancer&quot;)
+    for body, lat in ((&quot;Sun&quot;, 0.0), (&quot;Moon&quot;, 38.9072), (&quot;Saturn&quot;, -33.8688)):
+        b = chart[&quot;bodies&quot;][body]
+        expected = astrocartography_longitudes(b[&quot;ra&quot;], b[&quot;dec&quot;], chart[&quot;gst&quot;], lat)
+        samples.append({
+            &quot;chart&quot;: chart[&quot;id&quot;], &quot;body&quot;: body, &quot;lat&quot;: lat,
+            &quot;expected&quot;: {key: None if value is None else round(value, 6)
+                         for key, value in expected.items()},
+        })
+    return samples
+
+def chart_for(name):
+    y, mg, t = [(a,b,c) for a,b,c,n in INGRESSES if n == name][0]
+    jd  = find_ingress(y, mg, t)
+    gst = (swe.sidtime(jd) * 15.0) % 360.0
+    ra, dec = AMERICA_EQ[name]            # exact Horizons values for the ingresses
+    bodies = bodies_at(jd, (ra, dec, minor_points.america_lon(jd),
+                            minor_points.america_speed(jd) &lt; 0))
+    return {&quot;id&quot;: name.lower().replace(&quot; &quot;,&quot;-&quot;), &quot;title&quot;: name + &quot; Ingress&quot;,
+            &quot;date&quot;: local_str(jd), &quot;jd&quot;: round(jd,5), &quot;gst&quot;: round(gst,5),
+            &quot;gov&quot;: 1 if name in GOVERNING else 0, &quot;bodies&quot;: bodies}
+
+PHASES = [&quot;New Moon&quot;,&quot;First Quarter&quot;,&quot;Full Moon&quot;,&quot;Last Quarter&quot;]
+
+def lunation_charts():
+    html = open(LW, encoding=&quot;utf-8&quot;).read()
+    luns = {}
+    # New Moons carry &quot;sign&quot;; quarters/fulls carry &quot;moon_sign&quot; — parse the record
+    # head, then sniff the next ~300 chars for the variant fields.
+    head = (r&#x27;\{&quot;type&quot;:&quot;(New Moon|First Quarter|Full Moon|Last Quarter)&quot;,&#x27;
+            r&#x27;&quot;date&quot;:&quot;(\d{4}-\d{2}-\d{2})&quot;,&quot;time_utc&quot;:&quot;(\d{2}):(\d{2})&quot;&#x27;)
+    for m in re.finditer(head, html):
+        typ, date, hh, mm = m.groups()
+        tail = html[m.end():m.end()+320]
+        sg  = re.search(r&#x27;&quot;(?:moon_)?sign&quot;:&quot;(\w+)&quot;&#x27;, tail)
+        dg  = re.search(r&#x27;&quot;degree&quot;:([\d.]+)&#x27;, tail)
+        ec  = re.search(r&#x27;&quot;eclipse&quot;:(true|false)&#x27;, tail)
+        if not (sg and dg and ec):
+            raise SystemExit(f&quot;lunation parse failed at {date} — Lunar Weather format changed?&quot;)
+        luns[date] = (typ, int(hh), int(mm), sg.group(1), float(dg.group(1)), ec.group(1) == &quot;true&quot;)
+    charts = []
+    for date, (typ, hh, mm, msign, deg, ecl) in sorted(luns.items()):
+        y, mo, dd = (int(x) for x in date.split(&quot;-&quot;))
+        jd = swe.julday(y, mo, dd, hh + mm/60.0)
+        gst = (swe.sidtime(jd) * 15.0) % 360.0
+        ra, dec = america_eq_at(jd)
+        bodies = bodies_at(jd, (ra, dec, minor_points.america_lon(jd),
+                                minor_points.america_speed(jd) &lt; 0))
+        charts.append({&quot;id&quot;:&quot;lun-&quot;+date, &quot;title&quot;:typ+&quot; — &quot;+str(int(round(deg)))+&quot;° &quot;+msign,
+                       &quot;date&quot;:local_str(jd), &quot;jd&quot;:round(jd,5), &quot;gst&quot;:round(gst,5),
+                       &quot;gov&quot;:0, &quot;kind&quot;:&quot;lun&quot;, &quot;ph&quot;:PHASES.index(typ), &quot;ecl&quot;:1 if ecl else 0,
+                       &quot;y&quot;:y, &quot;mo&quot;:mo, &quot;dd&quot;:dd, &quot;bodies&quot;:bodies})
+    return charts
+
+BODY_ORDER = [&quot;Sun&quot;,&quot;Moon&quot;,&quot;Mercury&quot;,&quot;Venus&quot;,&quot;Mars&quot;,&quot;Jupiter&quot;,&quot;Saturn&quot;,
+              &quot;Uranus&quot;,&quot;Neptune&quot;,&quot;Pluto&quot;,&quot;Chiron&quot;,&quot;Node&quot;,&quot;America&quot;]
+
+def daily_sky():
+    &quot;&quot;&quot;Per-day equatorial positions, midnight UT (Katie&#x27;s Almanac convention),
+    2025-01-01 → 2027-12-31. Compact parallel arrays; lines drawn client-side.&quot;&quot;&quot;
+    from datetime import date as D, timedelta as TD
+    d0, d1 = D(2025,1,1), D(2027,12,31)
+    n = (d1 - d0).days + 1
+    gst = []
+    B = {name: {&quot;ra&quot;: [], &quot;dec&quot;: []} for name in BODY_ORDER}
+    EQ = swe.FLG_SWIEPH | swe.FLG_EQUATORIAL
+    for i in range(n):
+        d = d0 + TD(days=i)
+        jd = swe.julday(d.year, d.month, d.day, 0.0)
+        gst.append(round((swe.sidtime(jd) * 15.0) % 360.0, 4))
+        for p in sorted(PL):
+            eq = swe.calc_ut(jd, p, EQ)[0]
+            B[PL[p]][&quot;ra&quot;].append(round(eq[0], 4)); B[PL[p]][&quot;dec&quot;].append(round(eq[1], 4))
+        for pid, nm in ((swe.CHIRON, &quot;Chiron&quot;), (swe.TRUE_NODE, &quot;Node&quot;)):
+            eq = swe.calc_ut(jd, pid, EQ)[0]
+            B[nm][&quot;ra&quot;].append(round(eq[0], 4)); B[nm][&quot;dec&quot;].append(round(eq[1], 4))
+        ra, dec = america_eq_at(jd)                 # grid is daily-midnight → exact
+        B[&quot;America&quot;][&quot;ra&quot;].append(round(ra, 4)); B[&quot;America&quot;][&quot;dec&quot;].append(round(dec, 4))
+    return {&quot;start&quot;: &quot;2025-01-01&quot;, &quot;n&quot;: n, &quot;gst&quot;: gst, &quot;bodies&quot;: B}
+
+def eclipse_layers(luns):
+    &quot;&quot;&quot;Real shadow geography for the eclipse lunations.
+
+    Solar (New Moon): central path sampled from swe.sol_eclipse_where between
+    the center-line begin/end times (tret[6]/tret[7]); partials get the
+    greatest-eclipse point only. Lunar (Full Moon): the sub-lunar point at
+    maximum — the Moon stands overhead there; the whole night side sees it.
+    &quot;&quot;&quot;
+    out = {}
+    for c in luns:
+        if not c[&quot;ecl&quot;]:
+            continue
+        jd = c[&quot;jd&quot;]
+        if c[&quot;ph&quot;] == 0:                                    # solar
+            try:
+                retflag, tret = swe.sol_eclipse_when_glob(jd - 2)
+            except Exception:
+                continue
+            tmax = tret[0]
+            if abs(tmax - jd) &gt; 3:
+                continue                                    # found a different eclipse
+            kind = (&quot;total&quot;   if retflag &amp; swe.ECL_TOTAL else
+                    &quot;annular&quot; if retflag &amp; swe.ECL_ANNULAR else
+                    &quot;hybrid&quot;  if retflag &amp; swe.ECL_ANNULAR_TOTAL else &quot;partial&quot;)
+            path = []
+            t0, t1 = tret[6], tret[7]                       # center line begin/end
+            if t0 and t1 and t1 &gt; t0:
+                N = 160
+                for i in range(N + 1):
+                    t = t0 + (t1 - t0) * i / N
+                    try:
+                        rf, geo, attr = swe.sol_eclipse_where(t)
+                    except Exception:
+                        continue
+                    if rf &amp; (swe.ECL_TOTAL | swe.ECL_ANNULAR | swe.ECL_ANNULAR_TOTAL):
+                        path.append([round(geo[1], 2), round(geo[0], 2)])   # [lat, lon]
+            rf, geo, attr = swe.sol_eclipse_where(tmax)
+            out[c[&quot;id&quot;]] = {&quot;kind&quot;: kind, &quot;solar&quot;: 1, &quot;path&quot;: path,
+                            &quot;max&quot;: [round(geo[1], 2), round(geo[0], 2)]}
+        else:                                               # lunar
+            try:
+                retflag, tret = swe.lun_eclipse_when(jd - 2)
+            except Exception:
+                continue
+            tmax = tret[0]
+            if abs(tmax - jd) &gt; 3:
+                continue
+            kind = (&quot;total lunar&quot;   if retflag &amp; swe.ECL_TOTAL else
+                    &quot;partial lunar&quot; if retflag &amp; swe.ECL_PARTIAL else &quot;penumbral lunar&quot;)
+            eq  = swe.calc_ut(tmax, 1, swe.FLG_SWIEPH | swe.FLG_EQUATORIAL)[0]
+            gst = (swe.sidtime(tmax) * 15.0) % 360.0
+            lon = ((eq[0] - gst + 180) % 360) - 180
+            out[c[&quot;id&quot;]] = {&quot;kind&quot;: kind, &quot;solar&quot;: 0, &quot;path&quot;: [],
+                            &quot;max&quot;: [round(eq[1], 2), round(lon, 2)]}
+    return out
+
+def character_charts():
+    cast = json.load(open(os.path.join(HERE, &quot;characters_data.json&quot;)))[&quot;cast&quot;]
+    charts = []
+    for c in cast:
+        if not c.get(&quot;time_known&quot;):          # Katie&#x27;s call: timed charts only —
+            continue                          # untimed MC lines swing 15°/hour
+        hh, mm = (int(x) for x in c[&quot;time&quot;].split(&quot;:&quot;))
+        y, mo, dd = (int(x) for x in c[&quot;date&quot;].split(&quot;-&quot;))
+        loc = datetime(y, mo, dd, hh, mm, tzinfo=ZoneInfo(c[&quot;tz&quot;]))
+        ut  = loc.astimezone(timezone.utc)
+        jd  = swe.julday(ut.year, ut.month, ut.day,
+                         ut.hour + ut.minute/60.0 + ut.second/3600.0)
+        gst = (swe.sidtime(jd) * 15.0) % 360.0
+        ra, dec = _EQG[&quot;natal&quot;][c[&quot;slug&quot;]]
+        bodies = bodies_at(jd, (ra, dec, minor_points.america_natal(c[&quot;slug&quot;]), 0))
+        sub = c[&quot;date&quot;][5:7]+&quot;/&quot;+c[&quot;date&quot;][8:10]+&quot;/&quot;+c[&quot;date&quot;][0:4]+&quot; &quot;+c[&quot;time&quot;]+&quot; · &quot;+c[&quot;place&quot;]+&quot; · Rodden &quot;+c[&quot;rodden&quot;]
+        if c.get(&quot;asc_override&quot;): sub += &quot; · Katie&#x27;s rectification&quot;
+        charts.append({&quot;id&quot;:&quot;char-&quot;+c[&quot;slug&quot;], &quot;title&quot;:c[&quot;name&quot;],
+                       &quot;date&quot;:sub, &quot;jd&quot;:round(jd,5), &quot;gst&quot;:round(gst,5),
+                       &quot;gov&quot;:0, &quot;kind&quot;:&quot;chr&quot;, &quot;grp&quot;:c[&quot;group&quot;], &quot;bodies&quot;:bodies})
+    return charts
+
+CITIES = [
+    # [name, lat, lon, major?]  major=1 always labeled at any zoom
+    [&quot;Washington D.C.&quot;,38.9072,-77.0369,2],[&quot;New York&quot;,40.71,-74.01,1],[&quot;Los Angeles&quot;,34.05,-118.24,1],
+    [&quot;Chicago&quot;,41.88,-87.63,0],[&quot;Houston&quot;,29.76,-95.37,0],[&quot;Miami&quot;,25.76,-80.19,0],[&quot;Seattle&quot;,47.61,-122.33,0],
+    [&quot;Denver&quot;,39.74,-104.99,0],[&quot;San Francisco&quot;,37.77,-122.42,0],[&quot;Anchorage&quot;,61.22,-149.90,0],
+    [&quot;Toronto&quot;,43.65,-79.38,0],[&quot;Ottawa&quot;,45.42,-75.70,0],[&quot;Vancouver&quot;,49.28,-123.12,0],
+    [&quot;Mexico City&quot;,19.43,-99.13,1],[&quot;Havana&quot;,23.11,-82.37,0],[&quot;Panama City&quot;,8.98,-79.52,0],
+    [&quot;Bogotá&quot;,4.71,-74.07,0],[&quot;Caracas&quot;,10.48,-66.90,0],[&quot;Lima&quot;,-12.05,-77.04,0],[&quot;Quito&quot;,-0.18,-78.47,0],
+    [&quot;São Paulo&quot;,-23.55,-46.63,1],[&quot;Rio de Janeiro&quot;,-22.91,-43.17,0],[&quot;Brasília&quot;,-15.79,-47.88,0],
+    [&quot;Buenos Aires&quot;,-34.60,-58.38,1],[&quot;Santiago&quot;,-33.45,-70.67,0],
+    [&quot;Reykjavík&quot;,64.15,-21.94,0],[&quot;Nuuk&quot;,64.18,-51.72,0],[&quot;Dublin&quot;,53.35,-6.26,0],
+    [&quot;London&quot;,51.51,-0.13,1],[&quot;Paris&quot;,48.86,2.35,1],[&quot;Madrid&quot;,40.42,-3.70,0],[&quot;Lisbon&quot;,38.72,-9.14,0],
+    [&quot;Berlin&quot;,52.52,13.40,1],[&quot;Rome&quot;,41.90,12.50,0],[&quot;Vienna&quot;,48.21,16.37,0],[&quot;Geneva&quot;,46.20,6.14,0],
+    [&quot;Brussels&quot;,50.85,4.35,0],[&quot;Amsterdam&quot;,52.37,4.90,0],[&quot;Oslo&quot;,59.91,10.75,0],[&quot;Stockholm&quot;,59.33,18.07,0],
+    [&quot;Copenhagen&quot;,55.68,12.57,0],[&quot;Warsaw&quot;,52.23,21.01,0],[&quot;Kyiv&quot;,50.45,30.52,1],[&quot;Minsk&quot;,53.90,27.57,0],
+    [&quot;Moscow&quot;,55.76,37.62,1],[&quot;Saint Petersburg&quot;,59.93,30.34,0],[&quot;Istanbul&quot;,41.01,28.98,1],
+    [&quot;Ankara&quot;,39.93,32.86,0],[&quot;Athens&quot;,37.98,23.73,0],[&quot;Bucharest&quot;,44.43,26.10,0],[&quot;Belgrade&quot;,44.79,20.45,0],
+    [&quot;Tbilisi&quot;,41.72,44.79,0],[&quot;Yerevan&quot;,40.18,44.51,0],[&quot;Baku&quot;,40.41,49.87,0],
+    [&quot;Jerusalem&quot;,31.77,35.21,1],[&quot;Tel Aviv&quot;,32.07,34.78,0],[&quot;Beirut&quot;,33.89,35.50,0],[&quot;Damascus&quot;,33.51,36.29,0],
+    [&quot;Amman&quot;,31.95,35.93,0],[&quot;Cairo&quot;,30.04,31.24,1],[&quot;Baghdad&quot;,33.31,44.36,1],[&quot;Kuwait City&quot;,29.38,47.99,0],
+    [&quot;Riyadh&quot;,24.71,46.68,1],[&quot;Jeddah&quot;,21.49,39.19,0],[&quot;Doha&quot;,25.29,51.53,0],[&quot;Dubai&quot;,25.20,55.27,0],
+    [&quot;Abu Dhabi&quot;,24.45,54.38,0],[&quot;Muscat&quot;,23.59,58.41,0],[&quot;Sanaa&quot;,15.35,44.21,0],
+    [&quot;Tehran&quot;,35.69,51.39,1],[&quot;Isfahan&quot;,32.65,51.67,0],[&quot;Mashhad&quot;,36.30,59.61,0],[&quot;Shiraz&quot;,29.59,52.58,0],
+    [&quot;Kabul&quot;,34.56,69.21,0],[&quot;Islamabad&quot;,33.68,73.05,0],[&quot;Karachi&quot;,24.86,67.01,0],[&quot;Lahore&quot;,31.55,74.34,0],
+    [&quot;New Delhi&quot;,28.61,77.21,1],[&quot;Mumbai&quot;,19.08,72.88,1],[&quot;Bengaluru&quot;,12.97,77.59,0],[&quot;Kolkata&quot;,22.57,88.36,0],
+    [&quot;Colombo&quot;,6.93,79.86,0],[&quot;Dhaka&quot;,23.81,90.41,0],[&quot;Kathmandu&quot;,27.71,85.32,0],
+    [&quot;Tashkent&quot;,41.30,69.24,0],[&quot;Almaty&quot;,43.24,76.89,0],[&quot;Astana&quot;,51.17,71.43,0],[&quot;Ulaanbaatar&quot;,47.89,106.91,0],
+    [&quot;Beijing&quot;,39.90,116.41,1],[&quot;Shanghai&quot;,31.23,121.47,1],[&quot;Hong Kong&quot;,22.32,114.17,0],[&quot;Taipei&quot;,25.03,121.57,1],
+    [&quot;Chongqing&quot;,29.56,106.55,0],[&quot;Ürümqi&quot;,43.83,87.62,0],[&quot;Lhasa&quot;,29.65,91.10,0],
+    [&quot;Seoul&quot;,37.57,126.98,1],[&quot;Pyongyang&quot;,39.04,125.76,0],[&quot;Tokyo&quot;,35.68,139.69,1],[&quot;Osaka&quot;,34.69,135.50,0],
+    [&quot;Vladivostok&quot;,43.12,131.89,0],[&quot;Novosibirsk&quot;,55.01,82.94,0],[&quot;Yekaterinburg&quot;,56.84,60.61,0],
+    [&quot;Hanoi&quot;,21.03,105.85,0],[&quot;Bangkok&quot;,13.76,100.50,1],[&quot;Yangon&quot;,16.87,96.20,0],[&quot;Phnom Penh&quot;,11.56,104.92,0],
+    [&quot;Kuala Lumpur&quot;,3.14,101.69,0],[&quot;Singapore&quot;,1.35,103.82,1],[&quot;Jakarta&quot;,-6.21,106.85,1],[&quot;Manila&quot;,14.60,120.98,1],
+    [&quot;Rabat&quot;,34.02,-6.84,0],[&quot;Algiers&quot;,36.75,3.06,0],[&quot;Tunis&quot;,36.81,10.18,0],[&quot;Tripoli&quot;,32.89,13.19,0],
+    [&quot;Tamanrasset&quot;,22.79,5.53,0],[&quot;Nouakchott&quot;,18.08,-15.98,0],[&quot;Dakar&quot;,14.72,-17.47,0],[&quot;Bamako&quot;,12.64,-8.00,0],
+    [&quot;Niamey&quot;,13.51,2.13,0],[&quot;Khartoum&quot;,15.50,32.56,0],[&quot;Addis Ababa&quot;,9.03,38.74,0],[&quot;Mogadishu&quot;,2.05,45.32,0],
+    [&quot;Nairobi&quot;,-1.29,36.82,1],[&quot;Kampala&quot;,0.35,32.58,0],[&quot;Kinshasa&quot;,-4.44,15.27,0],[&quot;Lagos&quot;,6.52,3.38,1],
+    [&quot;Abuja&quot;,9.06,7.49,0],[&quot;Accra&quot;,5.60,-0.19,0],[&quot;Luanda&quot;,-8.84,13.23,0],[&quot;Lusaka&quot;,-15.39,28.32,0],
+    [&quot;Harare&quot;,-17.83,31.05,0],[&quot;Johannesburg&quot;,-26.20,28.05,1],[&quot;Cape Town&quot;,-33.92,18.42,0],
+    [&quot;Perth&quot;,-31.95,115.86,0],[&quot;Adelaide&quot;,-34.93,138.60,0],[&quot;Melbourne&quot;,-37.81,144.96,1],
+    [&quot;Sydney&quot;,-33.87,151.21,1],[&quot;Brisbane&quot;,-27.47,153.03,0],[&quot;Townsville&quot;,-19.26,146.82,0],
+    [&quot;Darwin&quot;,-12.46,130.84,0],[&quot;Hobart&quot;,-42.88,147.33,0],[&quot;Auckland&quot;,-36.85,174.76,0],[&quot;Wellington&quot;,-41.29,174.78,0],
+    [&quot;Honolulu&quot;,21.31,-157.86,0],[&quot;Suva&quot;,-18.14,178.44,0],
+]
+
+def main():
+    charts = [chart_for(n) for _,_,_,n in INGRESSES]
+    luns   = lunation_charts()
+    chars  = character_charts()
+    eclp   = eclipse_layers(luns)
+    days   = daily_sky()
+    print(f&quot;charts: {len(charts)} ingresses, {len(luns)} lunations, {len(chars)} characters (timed only), &quot;
+          f&quot;{len(eclp)} eclipse layers, {days[&#x27;n&#x27;]} daily skies&quot;)
+    country_source = json.load(open(COUNTRIES, encoding=&quot;utf-8&quot;))
+    countries = {&quot;type&quot;: &quot;FeatureCollection&quot;, &quot;features&quot;: []}
+    for source_feature in country_source[&quot;features&quot;]:
+        props = source_feature[&quot;properties&quot;]
+        countries[&quot;features&quot;].append({
+            &quot;type&quot;: &quot;Feature&quot;,
+            &quot;properties&quot;: {
+                &quot;name&quot;: props.get(&quot;NAME_EN&quot;) or props.get(&quot;ADMIN&quot;) or props.get(&quot;NAME&quot;),
+                &quot;label_x&quot;: props.get(&quot;LABEL_X&quot;),
+                &quot;label_y&quot;: props.get(&quot;LABEL_Y&quot;),
+                &quot;labelrank&quot;: props.get(&quot;LABELRANK&quot;, 99),
+                &quot;min_zoom&quot;: props.get(&quot;MIN_ZOOM&quot;, 0),
+                &quot;tiny&quot;: props.get(&quot;TINY&quot;, -99),
+            },
+            &quot;geometry&quot;: source_feature[&quot;geometry&quot;],
+        })
+
+    # reuse the wheel engine&#x27;s hand-drawn glyph paths + planet colors
+    wl  = open(os.path.join(HERE, &quot;wheel_lib.py&quot;)).read()
+    i   = wl.find(&quot;const GLY={&quot;);  j = wl.find(&quot;};&quot;, i)
+    GLY = wl[i:j+2]
+    i   = wl.find(&quot;const PCOL={&quot;); j = wl.find(&quot;}&quot;, i)
+    PCOL= wl[i:j+1] + &quot;;&quot;
+
+    acg = {&quot;groups&quot;:[{&quot;id&quot;:&quot;ingresses&quot;,&quot;label&quot;:&quot;Ingresses&quot;,&quot;charts&quot;:charts},
+                     {&quot;id&quot;:&quot;lunations&quot;,&quot;label&quot;:&quot;Lunations&quot;,&quot;charts&quot;:luns},
+                     {&quot;id&quot;:&quot;characters&quot;,&quot;label&quot;:&quot;Characters&quot;,&quot;charts&quot;:chars}],
+           &quot;geometry_checks&quot;: geometry_checks(charts)}
+
+    html = open(GLOBE_TEMPLATE, encoding=&quot;utf-8&quot;).read()
+    html = html.replace(&quot;%%ACG%%&quot;,    json.dumps(acg, separators=(&quot;,&quot;,&quot;:&quot;)))
+    html = html.replace(&quot;%%COUNTRIES%%&quot;, json.dumps(countries, separators=(&quot;,&quot;,&quot;:&quot;)))
+    html = html.replace(&quot;%%ECLP%%&quot;,   json.dumps(eclp, separators=(&quot;,&quot;,&quot;:&quot;)))
+    html = html.replace(&quot;%%DAYS%%&quot;,   json.dumps(days, separators=(&quot;,&quot;,&quot;:&quot;)))
+    html = html.replace(&quot;%%CITIES%%&quot;, json.dumps(CITIES, separators=(&quot;,&quot;,&quot;:&quot;)))
+    html = html.replace(&quot;%%GLY%%&quot;,    GLY)
+    html = html.replace(&quot;%%PCOL%%&quot;,   PCOL)
+    chart_images = os.path.join(os.path.dirname(OUT), &quot;chart-images&quot;)
+    os.makedirs(chart_images, exist_ok=True)
+    for asset in (&quot;globe.gl.min.js&quot;, &quot;globe.gl.LICENSE&quot;, &quot;earth-topology.png&quot;):
+        shutil.copy2(os.path.join(ASSET_DIR, asset), os.path.join(chart_images, asset))
+    open(OUT, &quot;w&quot;, encoding=&quot;utf-8&quot;).write(html)
+    print(&quot;wrote&quot;, OUT, &quot;—&quot;, len(html)//1024, &quot;KB,&quot;,
+          len(charts)+len(luns)+len(chars), &quot;charts total&quot;)
+
+TEMPLATE = r&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Astro Map — Freedom 250&lt;/title&gt;
+&lt;style&gt;
+:root{--paper:#faf8f3;--paper2:#f3efe6;--card:#fffdf8;--ink:#2b2620;--ink2:#5a5246;
+--faint:#8a8174;--line:#e2dccd;--accent:#8c6d1f;--ocean:#e9eef0;--landfill:#f1ecdf;--coast:#b8ad97}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+font-family:Georgia,&#x27;Times New Roman&#x27;,serif}
+.hdr{text-align:center;padding:14px 16px 6px}
+.hdr h1{font-size:21px;margin:0 0 2px;letter-spacing:.3px}
+.hdr .sub{font-size:12px;color:var(--faint);font-style:italic}
+.bar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:8px 12px 4px}
+.chip{padding:5px 12px;font-size:12.5px;cursor:pointer;border:1px solid var(--line);
+border-radius:14px;background:var(--card);color:var(--ink2);font-family:inherit}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fffdf8;font-weight:700}
+.chip .gv{font-size:9px;letter-spacing:.5px;opacity:.75;margin-left:4px;font-style:italic}
+.ctl{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:2px 12px 6px;align-items:center}
+.pchip{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;font-size:11px;cursor:pointer;
+border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink2);user-select:none}
+.pchip.off{opacity:.32}
+.pchip svg{display:block}
+.achip{padding:2px 9px;font-size:11px;cursor:pointer;border:1px solid var(--line);border-radius:11px;
+background:var(--card);color:var(--ink2);user-select:none}
+.achip.off{opacity:.32}
+.sep{width:1px;height:16px;background:var(--line);margin:0 5px}
+.mapwrap{position:relative;margin:4px auto 8px;max-width:1500px;padding:0 10px}
+#stage{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--ocean)}
+#map{display:block;width:100%;height:auto;cursor:grab}
+#map.panning{cursor:grabbing}
+#gutter{position:absolute;left:0;top:0;width:100%;height:24px;pointer-events:none;overflow:visible}
+#tip{position:absolute;display:none;pointer-events:none;background:var(--card);border:1px solid var(--accent);
+border-radius:6px;padding:7px 10px;font-size:12px;max-width:280px;box-shadow:0 2px 10px rgba(60,50,30,.18);z-index:5}
+#tip .t1{font-weight:700}
+#tip .t2{color:var(--ink2);font-size:11.5px;margin-top:2px}
+#tip .t3{color:var(--faint);font-size:11px;font-style:italic;margin-top:3px}
+#panel{position:absolute;right:14px;top:30px;width:265px;max-height:78%;overflow:auto;display:none;
+background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12px;
+box-shadow:0 3px 14px rgba(60,50,30,.16);z-index:6}
+#panel h3{margin:0 0 2px;font-size:13px}
+#panel .ph{color:var(--faint);font-size:11px;font-style:italic;margin-bottom:7px}
+#panel .row{display:flex;align-items:baseline;gap:6px;padding:3px 0;border-top:1px dashed var(--line)}
+#panel .row b{font-size:12.5px}
+#panel .row .o{margin-left:auto;color:var(--faint);font-size:11px;white-space:nowrap}
+#panel .mn{color:var(--ink2);font-size:11px;font-style:italic;margin:-1px 0 2px 0}
+#panel .x{position:absolute;top:6px;right:9px;cursor:pointer;color:var(--faint);font-size:14px}
+.legend{text-align:center;font-size:11px;color:var(--faint);padding:0 14px 12px;font-style:italic}
+.legend .sw{display:inline-block;width:26px;height:0;border-top:2px solid var(--ink2);vertical-align:middle;margin:0 4px 2px 10px}
+.legend .d1{border-top-style:dashed}
+.legend .d2{border-top-style:dotted}
+.zoomui{position:absolute;right:10px;bottom:10px;display:flex;flex-direction:column;gap:4px;z-index:4}
+.zoomui button{width:26px;height:26px;border:1px solid var(--line);background:var(--card);color:var(--ink);
+border-radius:5px;cursor:pointer;font-size:15px;line-height:1}
+.note{font-size:10.5px}
+/* satellite imagery must stay true-color under the Observatory dark-mode invert */
+html[data-theme=&quot;dark&quot;] #map image{filter:invert(1) hue-rotate(180deg)}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;hdr&quot;&gt;
+  &lt;h1&gt;Astro-Cart-Tography&lt;/h1&gt;
+  &lt;div class=&quot;sub&quot; id=&quot;sub&quot;&gt;Where each planet of the moment culminates, roots, rises and sets — the chart laid over the Earth itself&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;bar&quot; id=&quot;chartbar&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ctl&quot; id=&quot;pbar&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ctl&quot; id=&quot;abar&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;mapwrap&quot;&gt;
+  &lt;div id=&quot;stage&quot;&gt;
+    &lt;svg id=&quot;map&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;/svg&gt;
+    &lt;svg id=&quot;gutter&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;/svg&gt;
+    &lt;div id=&quot;tip&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;panel&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;zoomui&quot;&gt;
+      &lt;button id=&quot;zin&quot; title=&quot;Zoom in&quot;&gt;+&lt;/button&gt;
+      &lt;button id=&quot;zout&quot; title=&quot;Zoom out&quot;&gt;−&lt;/button&gt;
+      &lt;button id=&quot;zfit&quot; title=&quot;Reset&quot; style=&quot;font-size:11px&quot;&gt;⤢&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;legend&quot;&gt;
+  &lt;b&gt;MC&lt;/b&gt; culminates&lt;span class=&quot;sw&quot;&gt;&lt;/span&gt; · &lt;b&gt;IC&lt;/b&gt; anti-culminates&lt;span class=&quot;sw d1&quot;&gt;&lt;/span&gt; ·
+  &lt;b&gt;As&lt;/b&gt; rises&lt;span class=&quot;sw&quot;&gt;&lt;/span&gt; · &lt;b&gt;Ds&lt;/b&gt; sets&lt;span class=&quot;sw d2&quot;&gt;&lt;/span&gt;
+  &amp;nbsp;|&amp;nbsp; small dot = planet exactly overhead &amp;nbsp;|&amp;nbsp; ★ = Washington D.C. (where the mundane charts are cast — the lines themselves are global)
+  &lt;div class=&quot;note&quot;&gt;Click anywhere on the map to read the lines over that spot · drag to pan · scroll to zoom ·
+  satellite ↔ parchment style toggle above · Swiss Ephemeris (916 America: JPL Horizons) ·
+  NASA Blue Marble + Natural Earth borders, fully offline · equirectangular&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+const ACG=%%ACG%%;
+const LAND=%%LAND%%;
+const BORDERS=%%BORDERS%%;
+const CITIES=%%CITIES%%;
+const EARTH_IMG=&quot;chart-images/earth-blue-marble.jpg&quot;;   // NASA Blue Marble, bundled — no internet needed
+const ECLP=%%ECLP%%;   // eclipse shadow geography (solar central paths, lunar sub-lunar points)
+const DAYS=%%DAYS%%;   // per-day RA/Dec + GST, midnight UT, 2025-01-01 → 2027-12-31
+%%GLY%%
+%%PCOL%%
+const ORDER=[&quot;Sun&quot;,&quot;Moon&quot;,&quot;Mercury&quot;,&quot;Venus&quot;,&quot;Mars&quot;,&quot;Jupiter&quot;,&quot;Saturn&quot;,&quot;Uranus&quot;,&quot;Neptune&quot;,&quot;Pluto&quot;,&quot;Chiron&quot;,&quot;Node&quot;,&quot;America&quot;];
+const PMEAN={Sun:&quot;sovereignty — the leader, the state itself&quot;,Moon:&quot;the public — crowds, mood, the home front&quot;,
+Mercury:&quot;the word — press, trade, transport&quot;,Venus:&quot;diplomacy — treaties, treasury, culture&quot;,
+Mars:&quot;the military — strikes, conflict, fire&quot;,Jupiter:&quot;expansion — law, courts, faith, plenty&quot;,
+Saturn:&quot;contraction — borders, tests, the establishment&quot;,Uranus:&quot;shock — revolt, sudden breaks, technology&quot;,
+Neptune:&quot;dissolution — ideology, oil and seas, deception&quot;,Pluto:&quot;deep power — purges, the underworld, rebirth&quot;,
+Chiron:&quot;the wound — where it aches and teaches&quot;,Node:&quot;collective destiny — the meeting point&quot;,
+America:&quot;the American thread itself&quot;};
+const AMEAN={MC:&quot;culminates here — out on the world stage&quot;,IC:&quot;runs underground here — roots, land, the base&quot;,
+As:&quot;rises here — arrives in body and name&quot;,Ds:&quot;sets here — met in others, allies and enemies&quot;};
+const D2R=Math.PI/180,R2D=180/Math.PI;
+const W=1440,H=720,PXD=4;            // 4 px per degree
+const xOf=lon=&gt;(lon+180)*PXD, yOf=lat=&gt;(90-lat)*PXD;
+const lonOfX=x=&gt;x/PXD-180, latOfY=y=&gt;90-y/PXD;
+const n180=a=&gt;{a=(a+180)%360; if(a&lt;0)a+=360; return a-180;};
+function f1(v){return Math.round(v*10)/10}
+
+// ---------- line math ----------
+function linesFor(b,gst){
+  const mc=n180(b.ra-gst), ic=n180(mc+180), asc=[], dsc=[];
+  for(let lat=-88;lat&lt;=88;lat+=0.5){
+    const t=-Math.tan(lat*D2R)*Math.tan(b.dec*D2R);
+    if(t&lt;-1||t&gt;1) continue;
+    const h=Math.acos(t)*R2D;
+    asc.push([lat,n180(b.ra-h-gst)]);
+    dsc.push([lat,n180(b.ra+h-gst)]);
+  }
+  return {mc:mc,ic:ic,asc:asc,dsc:dsc};
+}
+function polyPath(pts){ // split on antimeridian wrap
+  let d=&quot;&quot;,prev=null;
+  pts.forEach(p=&gt;{
+    const x=xOf(p[1]),y=yOf(p[0]);
+    if(prev!==null&amp;&amp;Math.abs(p[1]-prev)&gt;180)d+=&quot;M&quot;+f1(x)+&quot; &quot;+f1(y);
+    else d+=(d===&quot;&quot;?&quot;M&quot;:&quot;L&quot;)+f1(x)+&quot; &quot;+f1(y);
+    prev=p[1];
+  });
+  return d;
+}
+function curveLonAt(b,gst,lat,which){ // exact lon of asc/dsc at a latitude, or null
+  const t=-Math.tan(lat*D2R)*Math.tan(b.dec*D2R);
+  if(t&lt;-1||t&gt;1)return null;
+  const h=Math.acos(t)*R2D;
+  return n180(which===&quot;As&quot;?b.ra-h-gst:b.ra+h-gst);
+}
+
+// ---------- state ----------
+const ALLCHARTS=ACG.groups.flatMap(g=&gt;g.charts);
+// ---- Daily Sky: charts built on the fly from the DAYS arrays ----
+const SIGNS=[&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,&quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;];
+const OBLIQ=23.4365*Math.PI/180;       // mean obliquity (label use only; lines use RA/Dec exactly)
+const dayCache={};
+function dayIndex(ds){
+  const p=ds.split(&quot;-&quot;).map(Number);
+  return Math.round((Date.UTC(p[0],p[1]-1,p[2])-Date.UTC(2025,0,1))/86400000);
+}
+function dsOf(i){
+  const t=new Date(Date.UTC(2025,0,1)+i*86400000);
+  return t.getUTCFullYear()+&quot;-&quot;+String(t.getUTCMonth()+1).padStart(2,&quot;0&quot;)+&quot;-&quot;+String(t.getUTCDate()).padStart(2,&quot;0&quot;);
+}
+function dayChart(ds){
+  if(dayCache[ds])return dayCache[ds];
+  const i=dayIndex(ds);
+  if(i&lt;0||i&gt;=DAYS.n)return null;
+  const bodies={};
+  ORDER.forEach(p=&gt;{
+    const A=DAYS.bodies[p], ra=A.ra[i], dec=A.dec[i];
+    const lon=(Math.atan2(Math.sin(ra*Math.PI/180)*Math.cos(OBLIQ)+Math.tan(dec*Math.PI/180)*Math.sin(OBLIQ),Math.cos(ra*Math.PI/180))*180/Math.PI+360)%360;
+    const pos=Math.floor(lon%30)+&quot;°&quot;+String(Math.floor((lon%1)*60)).padStart(2,&quot;0&quot;)+&quot;&#x27; &quot;+SIGNS[Math.floor(lon/30)];
+    const i0=Math.max(0,i-1),i1=Math.min(DAYS.n-1,i+1);
+    const dr=((A.ra[i1]-A.ra[i0]+540)%360)-180;
+    bodies[p]={ra:ra,dec:dec,pos:pos,rx:(dr&lt;0&amp;&amp;p!==&quot;Sun&quot;&amp;&amp;p!==&quot;Moon&quot;&amp;&amp;p!==&quot;Node&quot;)?1:0};
+  });
+  const p=ds.split(&quot;-&quot;);
+  const c={id:&quot;day-&quot;+ds,title:&quot;The Sky — &quot;+p[1]+&quot;/&quot;+p[2]+&quot;/&quot;+p[0],
+    date:&quot;midnight UT positions (Almanac convention) · the Moon shifts ~13°/day&quot;,
+    gst:DAYS.gst[i],gov:0,kind:&quot;day&quot;,ds:ds,bodies:bodies};
+  dayCache[ds]=c;return c;
+}
+function todayDS(){  // LOCAL date, clamped to the DAYS span — never toISOString
+  const d=new Date();
+  const ds=d.getFullYear()+&quot;-&quot;+String(d.getMonth()+1).padStart(2,&quot;0&quot;)+&quot;-&quot;+String(d.getDate()).padStart(2,&quot;0&quot;);
+  const i=Math.max(0,Math.min(DAYS.n-1,dayIndex(ds)));
+  return dsOf(i);
+}
+const byId=id=&gt;id&amp;&amp;id.indexOf(&quot;day-&quot;)===0?dayChart(id.slice(4)):ALLCHARTS.find(c=&gt;c.id===id);
+const GRP={ing:ACG.groups[0],lun:ACG.groups[1],chr:ACG.groups[2]};
+let mode=&quot;ing&quot;;
+let chart=GRP.ing.charts[0];
+let OV=null;                 // overlay chart (synastry on Earth) or null
+const PH_G=[&quot;●&quot;,&quot;◐&quot;,&quot;○&quot;,&quot;◑&quot;];  // New / First Quarter / Full / Last Quarter
+// lunation picker state — nearest to TODAY by LOCAL date (never toISOString)
+const _now=new Date();
+let lunY=_now.getFullYear(), lunM=_now.getMonth()+1;
+function nearestLun(){
+  const t=new Date(_now.getFullYear(),_now.getMonth(),_now.getDate()).getTime();
+  let best=null,bd=1e18;
+  GRP.lun.charts.forEach(c=&gt;{
+    const d=Math.abs(new Date(c.y,c.mo-1,c.dd).getTime()-t);
+    if(d&lt;bd){bd=d;best=c;}
+  });
+  return best;
+}
+const pOn={}, aOn={MC:true,IC:true,As:true,Ds:true};
+ORDER.forEach(p=&gt;pOn[p]=true);
+let k=1,tx=0,ty=0;    // zoom + pan (screen px of the unscaled W×H space)
+const MAXK=9;
+let eclOn=true;       // eclipse shadow layer (only renders on eclipse lunations)
+let STYLE=&quot;sat&quot;;      // &quot;sat&quot; (Blue Marble) | &quot;parchment&quot;
+try{STYLE=localStorage.getItem(&quot;f250-am-style&quot;)||&quot;sat&quot;;}catch(_){}
+
+// ---------- chrome ----------
+function glyphSVG(name,size,color){
+  return &#x27;&lt;svg width=&quot;&#x27;+size+&#x27;&quot; height=&quot;&#x27;+size+&#x27;&quot; viewBox=&quot;0 0 20 20&quot;&gt;&lt;g color=&quot;&#x27;+color+
+  &#x27;&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; fill=&quot;none&quot;&gt;&#x27;+(GLY[name]||&quot;&quot;)+&quot;&lt;/g&gt;&lt;/svg&gt;&quot;;
+}
+function setChart(c){chart=c;buildBars();draw();}
+function buildBars(){
+  const cb=document.getElementById(&quot;chartbar&quot;);
+  cb.innerHTML=&quot;&quot;;
+  // --- mode switcher ---
+  [[&quot;ing&quot;,&quot;Ingresses&quot;],[&quot;lun&quot;,&quot;Lunations&quot;],[&quot;chr&quot;,&quot;Characters&quot;],[&quot;day&quot;,&quot;Daily Sky&quot;]].forEach(mm=&gt;{
+    const b=document.createElement(&quot;button&quot;);
+    b.className=&quot;chip mode&quot;+(mode===mm[0]?&quot; on&quot;:&quot;&quot;);
+    b.textContent=mm[1];
+    b.onclick=()=&gt;{
+      mode=mm[0];
+      if(mode===&quot;ing&quot;&amp;&amp;chart.kind)chart=GRP.ing.charts[0];
+      if(mode===&quot;lun&quot;&amp;&amp;chart.kind!==&quot;lun&quot;){const n=nearestLun();if(n){chart=n;lunY=n.y;lunM=n.mo;}}
+      if(mode===&quot;chr&quot;&amp;&amp;chart.kind!==&quot;chr&quot;)chart=GRP.chr.charts[0];
+      if(mode===&quot;day&quot;&amp;&amp;chart.kind!==&quot;day&quot;)chart=dayChart(todayDS());
+      buildBars();draw();
+    };
+    cb.appendChild(b);
+  });
+  const sep=document.createElement(&quot;span&quot;);sep.className=&quot;sep&quot;;cb.appendChild(sep);
+  if(mode===&quot;ing&quot;){
+    GRP.ing.charts.forEach(c=&gt;{
+      const b=document.createElement(&quot;button&quot;);
+      b.className=&quot;chip&quot;+(c.id===chart.id?&quot; on&quot;:&quot;&quot;);
+      b.innerHTML=c.title.replace(&quot; Ingress&quot;,&quot;&quot;)+(c.gov?&#x27;&lt;span class=&quot;gv&quot;&gt;GOV&lt;/span&gt;&#x27;:&quot;&quot;);
+      b.onclick=()=&gt;setChart(c);
+      cb.appendChild(b);
+    });
+  }else if(mode===&quot;lun&quot;){
+    // year chips
+    [...new Set(GRP.lun.charts.map(c=&gt;c.y))].forEach(y=&gt;{
+      const b=document.createElement(&quot;button&quot;);
+      b.className=&quot;chip&quot;+(y===lunY?&quot; on&quot;:&quot;&quot;);
+      b.textContent=y;
+      b.onclick=()=&gt;{lunY=y;const f=GRP.lun.charts.find(c=&gt;c.y===y&amp;&amp;c.mo===lunM)||GRP.lun.charts.find(c=&gt;c.y===y);if(f){lunM=f.mo;chart=f;}buildBars();draw();};
+      cb.appendChild(b);
+    });
+    const s2=document.createElement(&quot;span&quot;);s2.className=&quot;sep&quot;;cb.appendChild(s2);
+    // month chips for the chosen year
+    const MN=[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;];
+    [...new Set(GRP.lun.charts.filter(c=&gt;c.y===lunY).map(c=&gt;c.mo))].forEach(mo=&gt;{
+      const b=document.createElement(&quot;button&quot;);
+      b.className=&quot;chip&quot;+(mo===lunM?&quot; on&quot;:&quot;&quot;);
+      b.textContent=MN[mo-1];
+      b.onclick=()=&gt;{lunM=mo;const f=GRP.lun.charts.find(c=&gt;c.y===lunY&amp;&amp;c.mo===mo);if(f)chart=f;buildBars();draw();};
+      cb.appendChild(b);
+    });
+    // the month&#x27;s lunations as cards
+    const row=document.createElement(&quot;div&quot;);
+    row.style.cssText=&quot;flex-basis:100%;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:4px&quot;;
+    GRP.lun.charts.filter(c=&gt;c.y===lunY&amp;&amp;c.mo===lunM).forEach(c=&gt;{
+      const b=document.createElement(&quot;button&quot;);
+      b.className=&quot;chip&quot;+(c.id===chart.id?&quot; on&quot;:&quot;&quot;);
+      b.innerHTML=PH_G[c.ph]+&quot; &quot;+String(c.mo).padStart(2,&quot;0&quot;)+&quot;/&quot;+String(c.dd).padStart(2,&quot;0&quot;)+&quot; · &quot;+c.title.split(&quot;— &quot;)[1]+(c.ecl?&#x27; &lt;span class=&quot;gv&quot;&gt;ECLIPSE&lt;/span&gt;&#x27;:&quot;&quot;);
+      b.onclick=()=&gt;setChart(c);
+      row.appendChild(b);
+    });
+    cb.appendChild(row);
+  }else if(mode===&quot;day&quot;){
+    const stepBtn=(lbl,d)=&gt;{
+      const b=document.createElement(&quot;button&quot;);
+      b.className=&quot;chip&quot;;b.textContent=lbl;
+      b.onclick=()=&gt;{const c=dayChart(dsOf(dayIndex(chart.ds)+d));if(c)setChart(c);};
+      return b;
+    };
+    cb.appendChild(stepBtn(&quot;‹ day&quot;,-1));
+    const inp=document.createElement(&quot;input&quot;);
+    inp.type=&quot;date&quot;;inp.className=&quot;chip&quot;;
+    inp.min=DAYS.start;inp.max=dsOf(DAYS.n-1);inp.value=chart.ds;
+    inp.onchange=()=&gt;{const c=dayChart(inp.value);if(c)setChart(c);};
+    cb.appendChild(inp);
+    cb.appendChild(stepBtn(&quot;day ›&quot;,1));
+    const td=document.createElement(&quot;button&quot;);
+    td.className=&quot;chip&quot;;td.textContent=&quot;today&quot;;
+    td.onclick=()=&gt;setChart(dayChart(todayDS()));
+    cb.appendChild(td);
+    const note=document.createElement(&quot;span&quot;);
+    note.style.cssText=&quot;font-size:10px;color:var(--faint);font-style:italic;align-self:center&quot;;
+    note.textContent=&quot;tip: overlay an ingress or lunation below — the day&#x27;s sky against the season&#x27;s promise&quot;;
+    cb.appendChild(note);
+  }else{
+    const sel=document.createElement(&quot;select&quot;);
+    sel.className=&quot;chip&quot;;
+    [...new Set(GRP.chr.charts.map(c=&gt;c.grp))].forEach(g=&gt;{
+      const og=document.createElement(&quot;optgroup&quot;);og.label=g;
+      GRP.chr.charts.filter(c=&gt;c.grp===g).forEach(c=&gt;{
+        const o=document.createElement(&quot;option&quot;);
+        o.value=c.id;o.textContent=c.title;o.selected=c.id===chart.id;
+        og.appendChild(o);
+      });
+      sel.appendChild(og);
+    });
+    sel.onchange=()=&gt;setChart(byId(sel.value));
+    cb.appendChild(sel);
+    const note=document.createElement(&quot;span&quot;);
+    note.className=&quot;gv&quot;;note.style.cssText=&quot;font-size:10px;color:var(--faint);font-style:italic;align-self:center&quot;;
+    note.textContent=&quot;timed births only — untimed (sunrise) charts excluded: MC lines swing 15°/hour&quot;;
+    cb.appendChild(note);
+  }
+  const pb=document.getElementById(&quot;pbar&quot;);
+  pb.innerHTML=&quot;&quot;;
+  ORDER.forEach(p=&gt;{
+    const s=document.createElement(&quot;span&quot;);
+    s.className=&quot;pchip&quot;+(pOn[p]?&quot;&quot;:&quot; off&quot;);
+    s.innerHTML=glyphSVG(p,13,PCOL[p])+p;
+    s.onclick=()=&gt;{pOn[p]=!pOn[p];buildBars();draw();};
+    pb.appendChild(s);
+  });
+  const all=document.createElement(&quot;span&quot;);
+  all.className=&quot;achip&quot;;all.textContent=&quot;all / none&quot;;
+  all.onclick=()=&gt;{const v=!ORDER.every(p=&gt;pOn[p]);ORDER.forEach(p=&gt;pOn[p]=v);buildBars();draw();};
+  pb.appendChild(all);
+  const ab=document.getElementById(&quot;abar&quot;);
+  ab.innerHTML=&quot;&quot;;
+  [&quot;MC&quot;,&quot;IC&quot;,&quot;As&quot;,&quot;Ds&quot;].forEach(a=&gt;{
+    const s=document.createElement(&quot;span&quot;);
+    s.className=&quot;achip&quot;+(aOn[a]?&quot;&quot;:&quot; off&quot;);
+    s.textContent=a+&quot; — &quot;+AMEAN[a].split(&quot; — &quot;)[0].replace(&quot; here&quot;,&quot;&quot;);
+    s.onclick=()=&gt;{aOn[a]=!aOn[a];buildBars();draw();};
+    ab.appendChild(s);
+  });
+  if(chart.kind===&quot;lun&quot;&amp;&amp;chart.ecl&amp;&amp;ECLP[chart.id]){
+    const ec=document.createElement(&quot;span&quot;);
+    ec.className=&quot;achip&quot;+(eclOn?&quot;&quot;:&quot; off&quot;);
+    ec.textContent=&quot;◗ eclipse shadow&quot;;
+    ec.onclick=()=&gt;{eclOn=!eclOn;buildBars();draw();};
+    ab.appendChild(ec);
+  }
+  const sp=document.createElement(&quot;span&quot;);sp.className=&quot;sep&quot;;ab.appendChild(sp);
+  const st=document.createElement(&quot;span&quot;);
+  st.className=&quot;achip&quot;;
+  st.textContent=STYLE===&quot;sat&quot;?&quot;◐ parchment style&quot;:&quot;◐ satellite style&quot;;
+  st.title=&quot;toggle map style&quot;;
+  st.onclick=()=&gt;{STYLE=STYLE===&quot;sat&quot;?&quot;parchment&quot;:&quot;sat&quot;;try{localStorage.setItem(&quot;f250-am-style&quot;,STYLE);}catch(_){}buildBars();draw();};
+  ab.appendChild(st);
+  // --- overlay: synastry on Earth ---
+  const sp2=document.createElement(&quot;span&quot;);sp2.className=&quot;sep&quot;;ab.appendChild(sp2);
+  const lbl=document.createElement(&quot;span&quot;);
+  lbl.className=&quot;achip&quot;;lbl.style.cursor=&quot;default&quot;;
+  lbl.textContent=&quot;+ overlay:&quot;;
+  ab.appendChild(lbl);
+  const ov=document.createElement(&quot;select&quot;);
+  ov.className=&quot;achip&quot;;
+  const none=document.createElement(&quot;option&quot;);none.value=&quot;&quot;;none.textContent=&quot;none&quot;;ov.appendChild(none);
+  const addOG=(label,list,name)=&gt;{
+    const og=document.createElement(&quot;optgroup&quot;);og.label=label;
+    list.forEach(c=&gt;{
+      const o=document.createElement(&quot;option&quot;);
+      o.value=c.id;o.textContent=name(c);o.selected=!!OV&amp;&amp;OV.id===c.id;
+      og.appendChild(o);
+    });
+    ov.appendChild(og);
+  };
+  addOG(&quot;Ingresses&quot;,GRP.ing.charts,c=&gt;c.title);
+  [...new Set(GRP.lun.charts.map(c=&gt;c.y))].forEach(y=&gt;
+    addOG(&quot;Lunations &quot;+y,GRP.lun.charts.filter(c=&gt;c.y===y),
+      c=&gt;PH_G[c.ph]+&quot; &quot;+String(c.mo).padStart(2,&quot;0&quot;)+&quot;/&quot;+String(c.dd).padStart(2,&quot;0&quot;)+&quot; &quot;+c.title+(c.ecl?&quot; · ECLIPSE&quot;:&quot;&quot;)));
+  addOG(&quot;Characters&quot;,GRP.chr.charts,c=&gt;c.title);
+  ov.onchange=()=&gt;{OV=ov.value?byId(ov.value):null;draw();};
+  ab.appendChild(ov);
+  if(OV){
+    const x=document.createElement(&quot;span&quot;);
+    x.className=&quot;achip&quot;;x.textContent=&quot;✕ clear overlay&quot;;
+    x.onclick=()=&gt;{OV=null;buildBars();draw();};
+    ab.appendChild(x);
+  }
+}
+
+// ---------- drawing ----------
+const NS=&quot;http://www.w3.org/2000/svg&quot;;
+function draw(){
+  const svg=document.getElementById(&quot;map&quot;);
+  svg.setAttribute(&quot;viewBox&quot;,&quot;0 0 &quot;+W+&quot; &quot;+H);
+  const SAT=STYLE===&quot;sat&quot;;
+  let s=&#x27;&lt;g id=&quot;world&quot; transform=&quot;translate(&#x27;+tx+&#x27; &#x27;+ty+&#x27;) scale(&#x27;+k+&#x27;)&quot;&gt;&#x27;;
+  if(SAT){
+    s+=&#x27;&lt;image href=&quot;&#x27;+EARTH_IMG+&#x27;&quot; x=&quot;0&quot; y=&quot;0&quot; width=&quot;&#x27;+W+&#x27;&quot; height=&quot;&#x27;+H+&#x27;&quot; preserveAspectRatio=&quot;none&quot;/&gt;&#x27;;
+  }else{
+    s+=&#x27;&lt;rect x=&quot;0&quot; y=&quot;0&quot; width=&quot;&#x27;+W+&#x27;&quot; height=&quot;&#x27;+H+&#x27;&quot; fill=&quot;var(--ocean)&quot;/&gt;&#x27;;
+  }
+  // graticule
+  const grat=SAT?&quot;rgba(255,255,255,0.16)&quot;:&quot;#d3ccba&quot;;
+  for(let lon=-150;lon&lt;=150;lon+=30)s+=&#x27;&lt;line x1=&quot;&#x27;+xOf(lon)+&#x27;&quot; y1=&quot;0&quot; x2=&quot;&#x27;+xOf(lon)+&#x27;&quot; y2=&quot;&#x27;+H+&#x27;&quot; stroke=&quot;&#x27;+grat+&#x27;&quot; stroke-width=&quot;0.5&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;;
+  for(let lat=-60;lat&lt;=60;lat+=30)s+=&#x27;&lt;line x1=&quot;0&quot; y1=&quot;&#x27;+yOf(lat)+&#x27;&quot; x2=&quot;&#x27;+W+&#x27;&quot; y2=&quot;&#x27;+yOf(lat)+&#x27;&quot; stroke=&quot;&#x27;+grat+&#x27;&quot; stroke-width=&quot;&#x27;+(lat===0?0.9:0.5)+&#x27;&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;;
+  if(!SAT){
+    // land (evenodd so lake/sea holes stay water — single-path fill bug fixed)
+    let lp=&quot;&quot;;
+    LAND.forEach(r=&gt;{r.forEach((c,i)=&gt;{lp+=(i?&quot;L&quot;:&quot;M&quot;)+f1(xOf(c[0]))+&quot; &quot;+f1(yOf(c[1]));});lp+=&quot;Z&quot;;});
+    s+=&#x27;&lt;path d=&quot;&#x27;+lp+&#x27;&quot; fill=&quot;var(--landfill)&quot; fill-rule=&quot;evenodd&quot; stroke=&quot;var(--coast)&quot; stroke-width=&quot;0.7&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;;
+  }
+  // country borders (Natural Earth 50m, interior boundaries)
+  let bp=&quot;&quot;;
+  BORDERS.forEach(r=&gt;{let prev=null;r.forEach(c=&gt;{bp+=(prev!==null&amp;&amp;Math.abs(c[0]-prev)&gt;180?&quot;M&quot;:(bp===&quot;&quot;?&quot;M&quot;:(prev===null?&quot;M&quot;:&quot;L&quot;)))+f1(xOf(c[0]))+&quot; &quot;+f1(yOf(c[1]));prev=c[0];});});
+  s+=&#x27;&lt;path d=&quot;&#x27;+bp+&#x27;&quot; fill=&quot;none&quot; stroke=&quot;&#x27;+(SAT?&quot;rgba(255,255,255,0.5)&quot;:&quot;#c4baa3&quot;)+&#x27;&quot; stroke-width=&quot;0.6&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;;
+  // cities — halo drawn as a separate outline copy under the fill (works in every renderer)
+  const cFill=SAT?&quot;#ffffff&quot;:&quot;#8a8174&quot;, cTxt=SAT?&quot;#ffffff&quot;:&quot;#6d655a&quot;;
+  const txt=(x,y,size,fill,extra,str)=&gt;{
+    const base=&#x27;x=&quot;&#x27;+f1(x)+&#x27;&quot; y=&quot;&#x27;+f1(y)+&#x27;&quot; font-size=&quot;&#x27;+size+&#x27;&quot;&#x27;+extra;
+    let o=&quot;&quot;;
+    if(SAT)o+=&#x27;&lt;text &#x27;+base+&#x27; fill=&quot;none&quot; stroke=&quot;rgba(8,18,32,0.8)&quot; stroke-width=&quot;&#x27;+(size*0.32)+&#x27;&quot; stroke-linejoin=&quot;round&quot;&gt;&#x27;+str+&quot;&lt;/text&gt;&quot;;
+    return o+&#x27;&lt;text &#x27;+base+&#x27; fill=&quot;&#x27;+fill+&#x27;&quot;&gt;&#x27;+str+&quot;&lt;/text&gt;&quot;;
+  };
+  CITIES.forEach(c=&gt;{
+    const x=xOf(c[2]),y=yOf(c[1]);
+    if(c[3]===2){
+      const star=SAT?&quot;#ffd76a&quot;:&quot;#7a2e1d&quot;;
+      s+=txt(x,y+1.5,9/Math.sqrt(k),star,&#x27; text-anchor=&quot;middle&quot;&#x27;,&quot;★&quot;);
+      s+=txt(x,y-4/Math.sqrt(k),8/Math.sqrt(k),star,&#x27; text-anchor=&quot;middle&quot; font-style=&quot;italic&quot;&#x27;,c[0]);
+    }else{
+      s+=&#x27;&lt;circle cx=&quot;&#x27;+f1(x)+&#x27;&quot; cy=&quot;&#x27;+f1(y)+&#x27;&quot; r=&quot;&#x27;+1.4/Math.sqrt(k)+&#x27;&quot; fill=&quot;&#x27;+cFill+&#x27;&quot;&#x27;+(SAT?&#x27; opacity=&quot;0.85&quot;&#x27;:&#x27;&#x27;)+&#x27;/&gt;&#x27;;
+      if(c[3]===1||k&gt;2.1)s+=txt(x+2.4/Math.sqrt(k),y-1.5/Math.sqrt(k),(c[3]?8:7)/Math.sqrt(k),cTxt,&#x27;&#x27;,c[0]);
+    }
+  });
+  // ACG lines
+  hitLines.length=0;
+  const haloLn=SAT?&#x27;rgba(255,253,248,0.65)&#x27;:null;   // white underlay so colors pop on imagery (AG look)
+  const drawChart=(ch,dim)=&gt;{
+    let o=&quot;&quot;;
+    const fade=dim?0.42:1, wf=dim?0.75:1;
+    ORDER.forEach(p=&gt;{
+      if(!pOn[p])return;
+      const b=ch.bodies[p]; if(!b)return;
+      const L=linesFor(b,ch.gst), col=PCOL[p];
+      const vline=(lon,wd,dash,op)=&gt;{
+        const seg=&#x27;x1=&quot;&#x27;+f1(xOf(lon))+&#x27;&quot; y1=&quot;0&quot; x2=&quot;&#x27;+f1(xOf(lon))+&#x27;&quot; y2=&quot;&#x27;+H+&#x27;&quot; fill=&quot;none&quot; vector-effect=&quot;non-scaling-stroke&quot;&#x27;;
+        let q=&quot;&quot;;
+        if(haloLn&amp;&amp;!dim)q+=&#x27;&lt;line &#x27;+seg+&#x27; stroke=&quot;&#x27;+haloLn+&#x27;&quot; stroke-width=&quot;&#x27;+(wd+1.6)+&#x27;&quot;/&gt;&#x27;;
+        return q+&#x27;&lt;line &#x27;+seg+&#x27; stroke=&quot;&#x27;+col+&#x27;&quot; stroke-width=&quot;&#x27;+(wd*wf)+&#x27;&quot;&#x27;+(dash?&#x27; stroke-dasharray=&quot;&#x27;+dash+&#x27;&quot;&#x27;:&#x27;&#x27;)+&#x27; opacity=&quot;&#x27;+(op*fade)+&#x27;&quot;/&gt;&#x27;;
+      };
+      const cline=(pts,wd,dash,op)=&gt;{
+        const d=polyPath(pts);
+        let q=&quot;&quot;;
+        if(haloLn&amp;&amp;!dim)q+=&#x27;&lt;path d=&quot;&#x27;+d+&#x27;&quot; fill=&quot;none&quot; stroke=&quot;&#x27;+haloLn+&#x27;&quot; stroke-width=&quot;&#x27;+(wd+1.6)+&#x27;&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;;
+        return q+&#x27;&lt;path d=&quot;&#x27;+d+&#x27;&quot; fill=&quot;none&quot; stroke=&quot;&#x27;+col+&#x27;&quot; stroke-width=&quot;&#x27;+(wd*wf)+&#x27;&quot;&#x27;+(dash?&#x27; stroke-dasharray=&quot;&#x27;+dash+&#x27;&quot;&#x27;:&#x27;&#x27;)+&#x27; opacity=&quot;&#x27;+(op*fade)+&#x27;&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;;
+      };
+      if(aOn.MC)o+=vline(L.mc,1.7,null,0.95);
+      if(aOn.IC)o+=vline(L.ic,1.2,&quot;7 4&quot;,0.9);
+      if(aOn.As)o+=cline(L.asc,1.4,null,0.92);
+      if(aOn.Ds)o+=cline(L.dsc,1.2,&quot;2 3.4&quot;,0.92);
+      // zenith dot — planet exactly overhead
+      o+=&#x27;&lt;circle cx=&quot;&#x27;+f1(xOf(L.mc))+&#x27;&quot; cy=&quot;&#x27;+f1(yOf(b.dec))+&#x27;&quot; r=&quot;&#x27;+(dim?1.8:2.6)/Math.sqrt(k)+&#x27;&quot; fill=&quot;&#x27;+col+&#x27;&quot; stroke=&quot;#fffdf8&quot; stroke-width=&quot;0.8&quot; opacity=&quot;&#x27;+fade+&#x27;&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;;
+    });
+    return o;
+  };
+  if(OV)s+=drawChart(OV,true);   // overlay beneath the main chart
+  s+=drawChart(chart,false);
+  // eclipse shadow geography
+  let eclNote=&quot;&quot;;
+  const E=chart.kind===&quot;lun&quot;&amp;&amp;chart.ecl?ECLP[chart.id]:null;
+  if(E&amp;&amp;eclOn){
+    const mx=xOf(E.max[1]),my=yOf(E.max[0]);
+    if(E.path.length&gt;1){
+      const d=polyPath(E.path);
+      s+=&#x27;&lt;path d=&quot;&#x27;+d+&#x27;&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,253,248,0.8)&quot; stroke-width=&quot;4.6&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;+
+         &#x27;&lt;path d=&quot;&#x27;+d+&#x27;&quot; fill=&quot;none&quot; stroke=&quot;#7a1020&quot; stroke-width=&quot;2.4&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;;
+      eclNote=&quot; · &lt;b&gt;&quot;+E.kind+&quot; solar eclipse&lt;/b&gt; — shadow path drawn&quot;;
+    }else if(E.solar){
+      eclNote=&quot; · &lt;b&gt;partial solar eclipse&lt;/b&gt; — no central path; ◎ marks greatest eclipse&quot;;
+    }else{
+      eclNote=&quot; · &lt;b&gt;&quot;+E.kind+&quot; eclipse&lt;/b&gt; — ◎ Moon overhead at max; the night side watches&quot;;
+    }
+    s+=&#x27;&lt;circle cx=&quot;&#x27;+f1(mx)+&#x27;&quot; cy=&quot;&#x27;+f1(my)+&#x27;&quot; r=&quot;&#x27;+7/Math.sqrt(k)+&#x27;&quot; fill=&quot;none&quot; stroke=&quot;#7a1020&quot; stroke-width=&quot;1.6&quot; vector-effect=&quot;non-scaling-stroke&quot;/&gt;&#x27;+
+       &#x27;&lt;circle cx=&quot;&#x27;+f1(mx)+&#x27;&quot; cy=&quot;&#x27;+f1(my)+&#x27;&quot; r=&quot;&#x27;+2.2/Math.sqrt(k)+&#x27;&quot; fill=&quot;#7a1020&quot;/&gt;&#x27;;
+  }
+  s+=&quot;&lt;/g&gt;&quot;;
+  svg.innerHTML=s;
+  drawGutter();
+  let sub=&quot;&lt;b&gt;&quot;+chart.title+&quot;&lt;/b&gt; — &quot;+chart.date;
+  if(chart.kind===&quot;lun&quot;)sub+=(chart.ecl?&quot; · &lt;b&gt;ECLIPSE&lt;/b&gt;&quot;:&quot;&quot;)+eclNote;
+  else if(!chart.kind)sub+=chart.gov?&quot; · &lt;i&gt;governing chart&lt;/i&gt;&quot;:&quot; · &lt;i&gt;nuance layer&lt;/i&gt;&quot;;
+  if(OV)sub+=&#x27; &amp;nbsp;&lt;span style=&quot;color:var(--faint)&quot;&gt;+ overlay: &#x27;+OV.title+(OV.kind===&quot;lun&quot;?&quot; (&quot;+OV.date.split(&quot; ·&quot;)[0]+&quot;)&quot;:&quot;&quot;)+&quot;&lt;/span&gt;&quot;;
+  document.getElementById(&quot;sub&quot;).innerHTML=sub;
+}
+// glyph labels pinned to the top edge (screen space, track pan/zoom)
+function drawGutter(){
+  const g=document.getElementById(&quot;gutter&quot;),svg=document.getElementById(&quot;map&quot;);
+  const r=svg.getBoundingClientRect(),scale=r.width/W;
+  g.setAttribute(&quot;width&quot;,r.width);g.setAttribute(&quot;height&quot;,Math.max(24,24*scale));
+  let s=&quot;&quot;;
+  const put=(lon,p,a,solid)=&gt;{
+    let sx=(xOf(lon)*k+tx)*scale;
+    if(sx&lt;-10||sx&gt;r.width+10)return;
+    s+=&#x27;&lt;g transform=&quot;translate(&#x27;+f1(sx)+&#x27; 2)&quot;&gt;&#x27;+
+       &#x27;&lt;rect x=&quot;-9&quot; y=&quot;0&quot; width=&quot;18&quot; height=&quot;19&quot; rx=&quot;3&quot; fill=&quot;#fffdf8&quot; stroke=&quot;&#x27;+PCOL[p]+&#x27;&quot; stroke-width=&quot;0.8&quot; opacity=&quot;0.92&quot;/&gt;&#x27;+
+       &#x27;&lt;g transform=&quot;translate(-7 -1) scale(0.7)&quot; color=&quot;&#x27;+PCOL[p]+&#x27;&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; fill=&quot;none&quot;&gt;&#x27;+(GLY[p]||&quot;&quot;)+&quot;&lt;/g&gt;&quot;+
+       &#x27;&lt;text x=&quot;5&quot; y=&quot;16&quot; font-size=&quot;6.5&quot; fill=&quot;&#x27;+PCOL[p]+&#x27;&quot; font-family=&quot;Georgia,serif&quot; font-style=&quot;italic&quot;&gt;&#x27;+a+&quot;&lt;/text&gt;&lt;/g&gt;&quot;;
+  };
+  ORDER.forEach(p=&gt;{
+    if(!pOn[p])return;
+    const b=chart.bodies[p];if(!b)return;
+    const L=linesFor(b,chart.gst);
+    if(aOn.MC)put(L.mc,p,&quot;Mc&quot;);
+    if(aOn.IC)put(L.ic,p,&quot;Ic&quot;);
+    if(aOn.As){const lo=curveLonAt(b,chart.gst,latOfY((12-ty)/k),&quot;As&quot;);const eq=curveLonAt(b,chart.gst,0,&quot;As&quot;);if(eq!==null)put(lo!==null?lo:eq,p,&quot;As&quot;);}
+    if(aOn.Ds){const lo=curveLonAt(b,chart.gst,latOfY((12-ty)/k),&quot;Ds&quot;);const eq=curveLonAt(b,chart.gst,0,&quot;Ds&quot;);if(eq!==null)put(lo!==null?lo:eq,p,&quot;Ds&quot;);}
+  });
+  g.innerHTML=s;
+}
+
+// ---------- interaction ----------
+const hitLines=[];
+const svgEl=document.getElementById(&quot;map&quot;),tip=document.getElementById(&quot;tip&quot;),panel=document.getElementById(&quot;panel&quot;);
+function mapXY(ev){
+  const r=svgEl.getBoundingClientRect(),scale=W/r.width;
+  const px=(ev.clientX-r.left)*scale,py=(ev.clientY-r.top)*scale;
+  return {x:(px-tx)/k,y:(py-ty)/k};
+}
+function activeCharts(){return OV?[chart,OV]:[chart];}
+function nearest(ev){
+  const m=mapXY(ev),lat=latOfY(m.y),lon=lonOfX(m.x);
+  let best=null,bd=9/k;          // ~9 map px tolerance, tighter when zoomed
+  activeCharts().forEach(ch=&gt;{
+    ORDER.forEach(p=&gt;{
+      if(!pOn[p])return;
+      const b=ch.bodies[p];if(!b)return;
+      const L=linesFor(b,ch.gst);
+      const cand=[];
+      if(aOn.MC)cand.push([&quot;MC&quot;,Math.abs(m.x-xOf(L.mc))]);
+      if(aOn.IC)cand.push([&quot;IC&quot;,Math.abs(m.x-xOf(L.ic))]);
+      [&quot;As&quot;,&quot;Ds&quot;].forEach(a=&gt;{
+        if(!aOn[a])return;
+        const lo=curveLonAt(b,ch.gst,lat,a);
+        if(lo!==null)cand.push([a,Math.abs(m.x-xOf(lo))*Math.cos(lat*D2R)+0.0001]);
+      });
+      cand.forEach(c=&gt;{if(c[1]&lt;bd){bd=c[1];best={p:p,a:c[0],ch:ch};}});
+    });
+  });
+  return best;
+}
+svgEl.addEventListener(&quot;mousemove&quot;,ev=&gt;{
+  if(panning)return;
+  const hit=nearest(ev);
+  if(!hit){tip.style.display=&quot;none&quot;;return;}
+  const b=hit.ch.bodies[hit.p];
+  tip.innerHTML=&#x27;&lt;div class=&quot;t1&quot;&gt;&#x27;+hit.p+&quot; &quot;+hit.a+(b.rx?&quot; ℞&quot;:&quot;&quot;)+(OV&amp;&amp;hit.ch===OV?&#x27; &lt;span style=&quot;color:var(--faint);font-weight:400&quot;&gt;(overlay)&lt;/span&gt;&#x27;:&quot;&quot;)+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;t2&quot;&gt;&#x27;+hit.ch.title+&quot; · &quot;+hit.p+&quot; at &quot;+b.pos+&#x27;&lt;/div&gt;&#x27;+
+   &#x27;&lt;div class=&quot;t3&quot;&gt;&#x27;+PMEAN[hit.p]+&quot;&lt;br&gt;&quot;+AMEAN[hit.a]+&quot;&lt;/div&gt;&quot;;
+  const r=document.getElementById(&quot;stage&quot;).getBoundingClientRect();
+  tip.style.left=Math.min(ev.clientX-r.left+14,r.width-290)+&quot;px&quot;;
+  tip.style.top=(ev.clientY-r.top+10)+&quot;px&quot;;
+  tip.style.display=&quot;block&quot;;
+});
+svgEl.addEventListener(&quot;mouseleave&quot;,()=&gt;tip.style.display=&quot;none&quot;);
+svgEl.addEventListener(&quot;click&quot;,ev=&gt;{
+  if(moved)return;
+  const m=mapXY(ev),lat=latOfY(m.y),lon=lonOfX(m.x);
+  const rows=[];
+  activeCharts().forEach(ch=&gt;{
+    ORDER.forEach(p=&gt;{
+      if(!pOn[p])return;
+      const b=ch.bodies[p];if(!b)return;
+      const L=linesFor(b,ch.gst);
+      const push=(a,lo)=&gt;{if(lo===null)return;const d=Math.abs(n180(lon-lo));if(d&lt;=6)rows.push({p:p,a:a,d:d,ch:ch});};
+      push(&quot;MC&quot;,L.mc);push(&quot;IC&quot;,L.ic);
+      push(&quot;As&quot;,curveLonAt(b,ch.gst,lat,&quot;As&quot;));push(&quot;Ds&quot;,curveLonAt(b,ch.gst,lat,&quot;Ds&quot;));
+    });
+  });
+  rows.sort((a,b)=&gt;a.d-b.d);
+  let near=null,nd=1e9;
+  CITIES.forEach(c=&gt;{const d=Math.hypot((c[2]-lon)*Math.cos(lat*D2R),c[1]-lat);if(d&lt;nd){nd=d;near=c[0];}});
+  let s=&#x27;&lt;span class=&quot;x&quot; onclick=&quot;this.parentNode.style.display=\&#x27;none\&#x27;&quot;&gt;✕&lt;/span&gt;&#x27;+
+   &quot;&lt;h3&gt;&quot;+f1(Math.abs(lat))+&quot;°&quot;+(lat&gt;=0?&quot;N&quot;:&quot;S&quot;)+&quot; &quot;+f1(Math.abs(lon))+&quot;°&quot;+(lon&gt;=0?&quot;E&quot;:&quot;W&quot;)+&quot;&lt;/h3&gt;&quot;+
+   &#x27;&lt;div class=&quot;ph&quot;&gt;near &#x27;+near+&quot; · &quot;+chart.title+&quot; · lines within 6°&lt;/div&gt;&quot;;
+  if(!rows.length)s+=&#x27;&lt;div class=&quot;ph&quot;&gt;no lines within 6° of this spot — quiet ground for this chart&lt;/div&gt;&#x27;;
+  rows.forEach(r=&gt;{
+    const b=r.ch.bodies[r.p], isOv=OV&amp;&amp;r.ch===OV;
+    s+=&#x27;&lt;div class=&quot;row&quot;&#x27;+(isOv?&#x27; style=&quot;opacity:0.72&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+glyphSVG(r.p,13,PCOL[r.p])+&quot;&lt;b&gt;&quot;+r.p+&quot; &quot;+r.a+(b.rx?&quot; ℞&quot;:&quot;&quot;)+&quot;&lt;/b&gt;&quot;+
+       (isOv?&#x27;&lt;span style=&quot;font-size:10px;color:var(--faint);font-style:italic&quot;&gt;overlay&lt;/span&gt;&#x27;:&quot;&quot;)+
+       &#x27;&lt;span class=&quot;o&quot;&gt;&#x27;+(r.d&lt;0.05?&quot;EXACT&quot;:&quot;Δ&quot;+f1(r.d)+&quot;°&quot;)+&quot;&lt;/span&gt;&lt;/div&gt;&quot;+
+       &#x27;&lt;div class=&quot;mn&quot;&gt;&#x27;+PMEAN[r.p].split(&quot; — &quot;)[0]+&quot; &quot;+AMEAN[r.a].split(&quot; — &quot;)[0]+&quot;&lt;/div&gt;&quot;;
+  });
+  panel.innerHTML=s;panel.style.display=&quot;block&quot;;
+});
+// pan / zoom
+let panning=false,moved=false,px0=0,py0=0;
+svgEl.addEventListener(&quot;mousedown&quot;,ev=&gt;{panning=true;moved=false;px0=ev.clientX;py0=ev.clientY;svgEl.classList.add(&quot;panning&quot;);});
+window.addEventListener(&quot;mousemove&quot;,ev=&gt;{
+  if(!panning)return;
+  const r=svgEl.getBoundingClientRect(),scale=W/r.width;
+  const dx=(ev.clientX-px0)*scale,dy=(ev.clientY-py0)*scale;
+  if(Math.abs(ev.clientX-px0)+Math.abs(ev.clientY-py0)&gt;3)moved=true;
+  if(!moved)return;
+  tx+=dx;ty+=dy;px0=ev.clientX;py0=ev.clientY;clamp();draw();
+});
+window.addEventListener(&quot;mouseup&quot;,()=&gt;{panning=false;svgEl.classList.remove(&quot;panning&quot;);});
+svgEl.addEventListener(&quot;wheel&quot;,ev=&gt;{
+  ev.preventDefault();
+  const m=mapXY(ev),f=ev.deltaY&lt;0?1.25:0.8,nk=Math.min(MAXK,Math.max(1,k*f));
+  tx-=m.x*(nk-k);ty-=m.y*(nk-k);k=nk;clamp();draw();
+},{passive:false});
+function clamp(){
+  tx=Math.min(0,Math.max(W-W*k,tx));
+  ty=Math.min(0,Math.max(H-H*k,ty));
+  if(k===1){tx=0;ty=0;}
+}
+document.getElementById(&quot;zin&quot;).onclick=()=&gt;{const c={x:(W/2-tx)/k,y:(H/2-ty)/k};const nk=Math.min(MAXK,k*1.4);tx-=c.x*(nk-k);ty-=c.y*(nk-k);k=nk;clamp();draw();};
+document.getElementById(&quot;zout&quot;).onclick=()=&gt;{const c={x:(W/2-tx)/k,y:(H/2-ty)/k};const nk=Math.max(1,k*0.7);tx-=c.x*(nk-k);ty-=c.y*(nk-k);k=nk;clamp();draw();};
+document.getElementById(&quot;zfit&quot;).onclick=()=&gt;{k=1;tx=0;ty=0;draw();};
+window.addEventListener(&quot;resize&quot;,drawGutter);
+// cross-view navigation: goToMap(&#x27;2025-aries&#x27;) from the shell
+window.addEventListener(&quot;message&quot;,ev=&gt;{
+  const d=ev.data||{};
+  if(d.type===&quot;astromap&quot;&amp;&amp;d.chart){
+    const c=byId(d.chart);
+    if(c){
+      chart=c;
+      mode=c.kind===&quot;lun&quot;?&quot;lun&quot;:(c.kind===&quot;chr&quot;?&quot;chr&quot;:(c.kind===&quot;day&quot;?&quot;day&quot;:&quot;ing&quot;));
+      if(c.kind===&quot;lun&quot;){lunY=c.y;lunM=c.mo;}
+      k=1;tx=0;ty=0;buildBars();draw();
+    }
+  }
+});
+buildBars();draw();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&quot;&quot;&quot;
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

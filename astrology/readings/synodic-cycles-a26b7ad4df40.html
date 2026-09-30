@@ -1,0 +1,1428 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/synodic-cycles-a26b7ad4df40.html">
+<title>DR-020&#x27;s ordering: slowest -&gt; fastest.  The hand is always measured from the</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>DR-020&#x27;s ordering: slowest -&gt; fastest.  The hand is always measured from the</h1><p class="mut">Portable source: 99 - Templates/synodic_cycles.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Freedom 250 Long Clocks calculation engine.
+
+The engine keeps three facts independent:
+
+1. ``geometry``: the exact slower-to-faster hand and DR-020 phase grammar;
+2. ``active_aspect``: a direct chart aspect, or null outside Katie&#x27;s orb;
+3. ``nameability``: whether a reading may narrate the phase as a cycle story.
+
+Seed-degree contacts are emitted separately as ``seed_echoes``.  No geometric
+nearest chapter receives a prose verdict outside its applicable major orb.
+
+All chart-moment work is registry-first.  The engine reads exact UTC moments and
+positions from ``chart_reading_bones`` and refuses to guess a nearest lunation.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import datetime as _dt
+import hashlib
+import importlib.util
+import json
+import os
+from functools import lru_cache
+from pathlib import Path
+from typing import Any, Callable, Iterable
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+DEFAULT_VAULT_ROOT = Path(
+    os.environ.get(
+        &quot;F250_LONG_CLOCKS_VAULT_ROOT&quot;,
+        str(HERE.parent),
+    )
+)
+DEFAULT_SEED_REGISTRY = HERE / &quot;synodic_seed_families.json&quot;
+
+import sys as _sys  # noqa: E402
+if str(HERE) not in _sys.path:
+    _sys.path.insert(0, str(HERE))
+from swiss_ephemeris import FLAGS, EPHEMERIS_LABEL  # noqa: E402  2026-09-25: Swiss/JPL files, never silent Moshier
+SIGNS = [
+    &quot;Aries&quot;,
+    &quot;Taurus&quot;,
+    &quot;Gemini&quot;,
+    &quot;Cancer&quot;,
+    &quot;Leo&quot;,
+    &quot;Virgo&quot;,
+    &quot;Libra&quot;,
+    &quot;Scorpio&quot;,
+    &quot;Sagittarius&quot;,
+    &quot;Capricorn&quot;,
+    &quot;Aquarius&quot;,
+    &quot;Pisces&quot;,
+]
+PLANET_CODES = {
+    &quot;Sun&quot;: swe.SUN,
+    &quot;Moon&quot;: swe.MOON,
+    &quot;Mercury&quot;: swe.MERCURY,
+    &quot;Venus&quot;: swe.VENUS,
+    &quot;Mars&quot;: swe.MARS,
+    &quot;Jupiter&quot;: swe.JUPITER,
+    &quot;Saturn&quot;: swe.SATURN,
+    &quot;Uranus&quot;: swe.URANUS,
+    &quot;Neptune&quot;: swe.NEPTUNE,
+    &quot;Pluto&quot;: swe.PLUTO,
+}
+
+# DR-020&#x27;s ordering: slowest -&gt; fastest.  The hand is always measured from the
+# slower body to the faster one, so 0 -&gt; 180 is waxing and 180 -&gt; 360 waning.
+SLOWEST_FIRST = [
+    &quot;Pluto&quot;,
+    &quot;Neptune&quot;,
+    &quot;Uranus&quot;,
+    &quot;Saturn&quot;,
+    &quot;Jupiter&quot;,
+    &quot;Mars&quot;,
+    &quot;Sun&quot;,
+    &quot;Venus&quot;,
+    &quot;Mercury&quot;,
+    &quot;Moon&quot;,
+]
+SLOW_INDEX = {name: index for index, name in enumerate(SLOWEST_FIRST)}
+OUTER = {&quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;}
+TIER_ORDER = {
+    &quot;era_currents&quot;: 1,
+    &quot;state_architecture&quot;: 2,
+    &quot;political_delivery&quot;: 3,
+}
+
+# Exact method drawer orbs supplied by Katie&#x27;s workbook.
+ORB_LIMITS = {
+    &quot;conjunction&quot;: 8.0,
+    &quot;sextile&quot;: 5.0,
+    &quot;square&quot;: 7.0,
+    &quot;trine&quot;: 7.0,
+    &quot;opposition&quot;: 8.0,
+}
+
+# Aspect chapter is geometry, not a replacement for DR-020&#x27;s universal phases.
+CHAPTERS = [
+    {
+        &quot;chapter_id&quot;: &quot;conjunction&quot;,
+        &quot;aspect_id&quot;: &quot;conjunction&quot;,
+        &quot;angle_deg&quot;: 0.0,
+        &quot;flow_kind&quot;: &quot;seed&quot;,
+    },
+    {
+        &quot;chapter_id&quot;: &quot;waxing_sextile&quot;,
+        &quot;aspect_id&quot;: &quot;sextile&quot;,
+        &quot;angle_deg&quot;: 60.0,
+        &quot;flow_kind&quot;: &quot;flowing&quot;,
+    },
+    {
+        &quot;chapter_id&quot;: &quot;waxing_square&quot;,
+        &quot;aspect_id&quot;: &quot;square&quot;,
+        &quot;angle_deg&quot;: 90.0,
+        &quot;flow_kind&quot;: &quot;hard&quot;,
+    },
+    {
+        &quot;chapter_id&quot;: &quot;waxing_trine&quot;,
+        &quot;aspect_id&quot;: &quot;trine&quot;,
+        &quot;angle_deg&quot;: 120.0,
+        &quot;flow_kind&quot;: &quot;flowing&quot;,
+    },
+    {
+        &quot;chapter_id&quot;: &quot;opposition&quot;,
+        &quot;aspect_id&quot;: &quot;opposition&quot;,
+        &quot;angle_deg&quot;: 180.0,
+        &quot;flow_kind&quot;: &quot;hard&quot;,
+    },
+    {
+        &quot;chapter_id&quot;: &quot;waning_trine&quot;,
+        &quot;aspect_id&quot;: &quot;trine&quot;,
+        &quot;angle_deg&quot;: 240.0,
+        &quot;flow_kind&quot;: &quot;flowing&quot;,
+    },
+    {
+        &quot;chapter_id&quot;: &quot;waning_square&quot;,
+        &quot;aspect_id&quot;: &quot;square&quot;,
+        &quot;angle_deg&quot;: 270.0,
+        &quot;flow_kind&quot;: &quot;hard&quot;,
+    },
+    {
+        &quot;chapter_id&quot;: &quot;waning_sextile&quot;,
+        &quot;aspect_id&quot;: &quot;sextile&quot;,
+        &quot;angle_deg&quot;: 300.0,
+        &quot;flow_kind&quot;: &quot;flowing&quot;,
+    },
+]
+
+# Exact mirror of phases.py.  The live function is imported when available;
+# tests assert this fallback stays identical at boundaries and interior samples.
+DR020_PHASES = [
+    (0.0, &quot;New&quot;),
+    (45.0, &quot;Crescent&quot;),
+    (90.0, &quot;First Quarter&quot;),
+    (135.0, &quot;Gibbous&quot;),
+    (180.0, &quot;Full&quot;),
+    (225.0, &quot;Disseminating&quot;),
+    (270.0, &quot;Last Quarter&quot;),
+    (315.0, &quot;Balsamic&quot;),
+]
+
+SEED_ECHO_POLICY = {
+    &quot;policy_id&quot;: &quot;seed-echo-hard-3.5/v1&quot;,
+    &quot;points&quot;: [&quot;Sun&quot;, &quot;Moon&quot;, &quot;ASC&quot;, &quot;MC&quot;],
+    &quot;aspects&quot;: [&quot;conjunction&quot;, &quot;square&quot;, &quot;opposition&quot;],
+    &quot;orb_limit_deg&quot;: 3.5,
+    &quot;note&quot;: &quot;Seed echoes are sensitive-degree contacts, separate from current pair aspects.&quot;,
+}
+
+
+def parse_moment(value: str | _dt.datetime) -&gt; _dt.datetime:
+    &quot;&quot;&quot;Return a timezone-aware UTC datetime.&quot;&quot;&quot;
+    if isinstance(value, _dt.datetime):
+        moment = value
+    else:
+        moment = _dt.datetime.fromisoformat(value.replace(&quot;Z&quot;, &quot;+00:00&quot;))
+    if moment.tzinfo is None:
+        raise ValueError(&quot;Long Clocks moments must carry an explicit timezone&quot;)
+    return moment.astimezone(_dt.timezone.utc)
+
+
+def jd_of(value: str | _dt.datetime) -&gt; float:
+    moment = parse_moment(value)
+    hour = (
+        moment.hour
+        + moment.minute / 60
+        + moment.second / 3600
+        + moment.microsecond / 3_600_000_000
+    )
+    return swe.julday(moment.year, moment.month, moment.day, hour)
+
+
+def datetime_from_jd(jd_ut: float) -&gt; _dt.datetime:
+    year, month, day, hour = swe.revjul(jd_ut, swe.GREG_CAL)
+    base = _dt.datetime(year, month, day, tzinfo=_dt.timezone.utc)
+    return base + _dt.timedelta(hours=hour)
+
+
+def iso_utc(value: str | _dt.datetime | float) -&gt; str:
+    if isinstance(value, float):
+        moment = datetime_from_jd(value)
+    else:
+        moment = parse_moment(value)
+    return moment.isoformat(timespec=&quot;microseconds&quot;)
+
+
+def _position(jd_ut: float, body: str) -&gt; tuple[float, float]:
+    result = swe.calc_ut(jd_ut, PLANET_CODES[body], FLAGS)[0]
+    return result[0] % 360.0, result[3]
+
+
+def _signed_delta(angle: float, target: float) -&gt; float:
+    &quot;&quot;&quot;Shortest signed distance from target to angle, in [-180, 180).&quot;&quot;&quot;
+    return ((angle - target + 180.0) % 360.0) - 180.0
+
+
+def _circular_distance(angle: float, target: float) -&gt; float:
+    return abs(_signed_delta(angle, target))
+
+
+def _phase_of_mirror(angle: float) -&gt; tuple[str, str]:
+    value = angle % 360.0
+    phase_name = DR020_PHASES[0][1]
+    for lower, candidate in DR020_PHASES:
+        if value &gt;= lower:
+            phase_name = candidate
+    return phase_name, (&quot;waxing&quot; if value &lt; 180.0 else &quot;waning&quot;)
+
+
+@lru_cache(maxsize=8)
+def phase_grammar(vault_root_value: str) -&gt; tuple[Callable[[float], tuple[str, str]], str]:
+    &quot;&quot;&quot;Load DR-020&#x27;s canonical ``phase_of``; use its exact mirror if unavailable.&quot;&quot;&quot;
+    path = Path(vault_root_value) / &quot;99 - Templates&quot; / &quot;phases.py&quot;
+    if path.exists():
+        spec = importlib.util.spec_from_file_location(&quot;f250_live_phases&quot;, path)
+        if spec and spec.loader:
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return module.phase_of, str(path)
+    return _phase_of_mirror, &quot;mirrored DR-020 grammar (live phases.py unavailable)&quot;
+
+
+def load_seed_registry(path: Path | str = DEFAULT_SEED_REGISTRY) -&gt; dict[str, Any]:
+    with Path(path).open(encoding=&quot;utf-8&quot;) as handle:
+        registry = json.load(handle)
+    cycles = registry.get(&quot;cycles&quot;, [])
+    ids = [cycle[&quot;cycle_id&quot;] for cycle in cycles]
+    if len(cycles) != 10 or len(set(ids)) != 10:
+        raise ValueError(&quot;Long Clocks seed registry must contain ten unique cycles&quot;)
+    for cycle in cycles:
+        pass_ids = {item[&quot;pass_id&quot;] for item in cycle[&quot;passes&quot;]}
+        if cycle[&quot;display_anchor_pass_id&quot;] not in pass_ids:
+            raise ValueError(f&quot;Missing display anchor for {cycle[&#x27;cycle_id&#x27;]}&quot;)
+    return registry
+
+
+def seed_registry_index(registry: dict[str, Any]) -&gt; dict[str, dict[str, Any]]:
+    return {cycle[&quot;cycle_id&quot;]: cycle for cycle in registry[&quot;cycles&quot;]}
+
+
+def slow_fast(pair: Iterable[str]) -&gt; tuple[str, str]:
+    first, second = tuple(pair)
+    return (
+        (first, second)
+        if SLOW_INDEX[first] &lt; SLOW_INDEX[second]
+        else (second, first)
+    )
+
+
+def angle_at(jd_ut: float, cycle: dict[str, Any]) -&gt; tuple[float, float, dict[str, float], dict[str, float]]:
+    slow, fast = slow_fast(cycle[&quot;pair&quot;])
+    slow_lon, slow_speed = _position(jd_ut, slow)
+    fast_lon, fast_speed = _position(jd_ut, fast)
+    angle = (fast_lon - slow_lon) % 360.0
+    return (
+        angle,
+        fast_speed - slow_speed,
+        {slow: slow_lon, fast: fast_lon},
+        {slow: slow_speed, fast: fast_speed},
+    )
+
+
+def _aspect_strength(orb_deg: float) -&gt; str:
+    if orb_deg &lt;= 0.25:
+        return &quot;exact&quot;
+    if orb_deg &lt;= 1.5:
+        return &quot;tight&quot;
+    return &quot;active&quot;
+
+
+def _motion_state(delta: float, relative_speed: float) -&gt; tuple[str, bool, bool]:
+    if abs(delta) &lt;= 1e-7:
+        return &quot;exact&quot;, False, False
+    if abs(relative_speed) &lt;= 1e-8:
+        return &quot;stationary&quot;, False, False
+    applying = delta * relative_speed &lt; 0.0
+    return (&quot;applying&quot; if applying else &quot;separating&quot;), applying, not applying
+
+
+def nearest_chapter(angle: float) -&gt; tuple[dict[str, Any], float, float]:
+    chapter = min(CHAPTERS, key=lambda item: _circular_distance(angle, item[&quot;angle_deg&quot;]))
+    delta = _signed_delta(angle, chapter[&quot;angle_deg&quot;])
+    return chapter, abs(delta), delta
+
+
+def _event_id(cycle_id: str, chapter_id: str, moment: _dt.datetime) -&gt; str:
+    stamp = moment.strftime(&quot;%Y%m%dT%H%M%SZ&quot;)
+    return f&quot;{cycle_id}::{chapter_id}::{stamp}&quot;
+
+
+def _refine_aspect_root(
+    cycle: dict[str, Any], target_deg: float, lo: float, hi: float
+) -&gt; float:
+    flo = _signed_delta(angle_at(lo, cycle)[0], target_deg)
+    for _ in range(60):
+        mid = (lo + hi) / 2.0
+        fmid = _signed_delta(angle_at(mid, cycle)[0], target_deg)
+        if flo == 0.0:
+            return lo
+        if flo * fmid &lt;= 0.0:
+            hi = mid
+        else:
+            lo = mid
+            flo = fmid
+    return (lo + hi) / 2.0
+
+
+def exact_aspect_events(
+    cycle: dict[str, Any],
+    start: _dt.datetime,
+    stop: _dt.datetime,
+    *,
+    step_days: float = 1.0,
+    phase_func: Callable[[float], tuple[str, str]] = _phase_of_mirror,
+) -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Find every exact oriented major-aspect pass in a bounded window.&quot;&quot;&quot;
+    start_jd, stop_jd = jd_of(start), jd_of(stop)
+    cursor = start_jd
+    prior_angle, _, _, _ = angle_at(cursor, cycle)
+    prior = {
+        chapter[&quot;chapter_id&quot;]: _signed_delta(prior_angle, chapter[&quot;angle_deg&quot;])
+        for chapter in CHAPTERS
+    }
+    events: list[dict[str, Any]] = []
+    while cursor &lt; stop_jd:
+        next_jd = min(cursor + step_days, stop_jd)
+        next_angle, _, _, _ = angle_at(next_jd, cycle)
+        for chapter in CHAPTERS:
+            chapter_id = chapter[&quot;chapter_id&quot;]
+            current = _signed_delta(next_angle, chapter[&quot;angle_deg&quot;])
+            previous = prior[chapter_id]
+            # The second condition rejects the +/-180 discontinuity opposite the target.
+            if previous * current &lt; 0.0 and abs(previous - current) &lt; 30.0:
+                root = _refine_aspect_root(cycle, chapter[&quot;angle_deg&quot;], cursor, next_jd)
+                moment = datetime_from_jd(root)
+                exact_angle, relative_speed, positions, speeds = angle_at(root, cycle)
+                phase_name, direction = phase_func(chapter[&quot;angle_deg&quot;] % 360.0)
+                event = {
+                    &quot;event_id&quot;: _event_id(cycle[&quot;cycle_id&quot;], chapter_id, moment),
+                    &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+                    &quot;chapter_id&quot;: chapter_id,
+                    &quot;aspect_id&quot;: chapter[&quot;aspect_id&quot;],
+                    &quot;angle_deg&quot;: chapter[&quot;angle_deg&quot;],
+                    &quot;utc&quot;: iso_utc(moment),
+                    &quot;jd_ut&quot;: round(root, 9),
+                    &quot;phase_name&quot;: phase_name,
+                    &quot;phase_direction&quot;: direction,
+                    &quot;relative_motion&quot;: &quot;forward&quot; if relative_speed &gt; 0 else &quot;reverse&quot;,
+                    &quot;residual_arcsec&quot;: round(
+                        _circular_distance(exact_angle, chapter[&quot;angle_deg&quot;]) * 3600.0,
+                        8,
+                    ),
+                    &quot;positions_deg&quot;: {key: round(value, 9) for key, value in positions.items()},
+                    &quot;speeds_deg_per_day&quot;: {
+                        key: round(value, 9) for key, value in speeds.items()
+                    },
+                }
+                if not events or abs(root - events[-1][&quot;jd_ut&quot;]) &gt; 1e-5:
+                    events.append(event)
+            prior[chapter_id] = current
+        cursor = next_jd
+    events.sort(key=lambda item: item[&quot;utc&quot;])
+    return events
+
+
+def build_event_catalog(
+    registry: dict[str, Any],
+    coverage_start: _dt.datetime,
+    coverage_stop: _dt.datetime,
+    *,
+    phase_func: Callable[[float], tuple[str, str]] = _phase_of_mirror,
+) -&gt; dict[str, list[dict[str, Any]]]:
+    &quot;&quot;&quot;Build enough exact events to bracket every 2025-26 chart for every clock.&quot;&quot;&quot;
+    catalog: dict[str, list[dict[str, Any]]] = {}
+    for cycle in registry[&quot;cycles&quot;]:
+        padding = _dt.timedelta(days=(cycle[&quot;nominal_cycle_years&quot;] / 2.0 + 2.0) * 365.2425)
+        catalog[cycle[&quot;cycle_id&quot;]] = exact_aspect_events(
+            cycle,
+            coverage_start - padding,
+            coverage_stop + padding,
+            phase_func=phase_func,
+        )
+    return catalog
+
+
+def _compact_event(event: dict[str, Any] | None) -&gt; dict[str, Any] | None:
+    if event is None:
+        return None
+    return {
+        key: event[key]
+        for key in (
+            &quot;event_id&quot;,
+            &quot;chapter_id&quot;,
+            &quot;aspect_id&quot;,
+            &quot;utc&quot;,
+            &quot;phase_name&quot;,
+            &quot;phase_direction&quot;,
+            &quot;relative_motion&quot;,
+        )
+    }
+
+
+def exact_event_neighbors(
+    events: list[dict[str, Any]], moment: _dt.datetime, chapter_id: str
+) -&gt; dict[str, Any]:
+    when = parse_moment(moment)
+    prior_major = None
+    next_major = None
+    prior_chapter = None
+    next_chapter = None
+    for event in events:
+        event_time = parse_moment(event[&quot;utc&quot;])
+        if event_time &lt;= when:
+            prior_major = event
+            if event[&quot;chapter_id&quot;] == chapter_id:
+                prior_chapter = event
+        elif next_major is None:
+            next_major = event
+        if event_time &gt; when and event[&quot;chapter_id&quot;] == chapter_id and next_chapter is None:
+            next_chapter = event
+        if next_major is not None and next_chapter is not None:
+            break
+    return {
+        &quot;previous_major_exact&quot;: _compact_event(prior_major),
+        &quot;next_major_exact&quot;: _compact_event(next_major),
+        &quot;previous_same_chapter_exact&quot;: _compact_event(prior_chapter),
+        &quot;next_same_chapter_exact&quot;: _compact_event(next_chapter),
+    }
+
+
+def cycle_state(
+    cycle: dict[str, Any],
+    *,
+    moment: _dt.datetime,
+    positions: dict[str, float],
+    speeds: dict[str, float],
+    phase_func: Callable[[float], tuple[str, str]],
+    events: list[dict[str, Any]] | None = None,
+) -&gt; dict[str, Any]:
+    slow, fast = slow_fast(cycle[&quot;pair&quot;])
+    angle = (positions[fast] - positions[slow]) % 360.0
+    relative_speed = speeds[fast] - speeds[slow]
+    phase_name, phase_direction = phase_func(angle)
+    chapter, orb_deg, delta = nearest_chapter(angle)
+    orb_limit = ORB_LIMITS[chapter[&quot;aspect_id&quot;]]
+    motion_state, applying, separating = _motion_state(delta, relative_speed)
+    active = orb_deg &lt;= orb_limit
+    active_aspect = None
+    if active:
+        active_aspect = {
+            &quot;aspect_id&quot;: chapter[&quot;aspect_id&quot;],
+            &quot;chapter_id&quot;: chapter[&quot;chapter_id&quot;],
+            &quot;angle_deg&quot;: chapter[&quot;angle_deg&quot;],
+            &quot;orb_deg&quot;: round(orb_deg, 6),
+            &quot;orb_limit_deg&quot;: orb_limit,
+            &quot;applying&quot;: applying,
+            &quot;separating&quot;: separating,
+            &quot;motion_state&quot;: motion_state,
+            &quot;strength&quot;: _aspect_strength(orb_deg),
+            &quot;flow_kind&quot;: chapter[&quot;flow_kind&quot;],
+        }
+    state = {
+        &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+        &quot;tier_id&quot;: cycle[&quot;tier_id&quot;],
+        &quot;tier_order&quot;: TIER_ORDER[cycle[&quot;tier_id&quot;]],
+        &quot;cycle_order&quot;: cycle[&quot;order&quot;],
+        &quot;pair&quot;: list(cycle[&quot;pair&quot;]),
+        &quot;slow_body&quot;: slow,
+        &quot;fast_body&quot;: fast,
+        &quot;nominal_cycle_years&quot;: cycle[&quot;nominal_cycle_years&quot;],
+        &quot;seed_family_id&quot;: cycle[&quot;seed_family_id&quot;],
+        &quot;seed_family_label&quot;: cycle[&quot;seed_family_label&quot;],
+        &quot;display_anchor_pass_id&quot;: cycle[&quot;display_anchor_pass_id&quot;],
+        &quot;geometry&quot;: {
+            &quot;elongation_deg&quot;: round(angle, 6),
+            &quot;phase_name&quot;: phase_name,
+            &quot;phase_direction&quot;: phase_direction,
+            &quot;relative_speed_deg_per_day&quot;: round(relative_speed, 9),
+            &quot;positions_deg&quot;: {
+                slow: round(positions[slow], 6),
+                fast: round(positions[fast], 6),
+            },
+            &quot;nearest_chapter_id&quot;: chapter[&quot;chapter_id&quot;],
+            &quot;nearest_chapter_angle_deg&quot;: chapter[&quot;angle_deg&quot;],
+            &quot;nearest_chapter_orb_deg&quot;: round(orb_deg, 6),
+            &quot;nearest_chapter_within_orb&quot;: active,
+        },
+        &quot;active_aspect&quot;: active_aspect,
+        &quot;interpretive_status&quot;: &quot;active&quot; if active else &quot;between_chapters&quot;,
+    }
+    if events is not None:
+        state[&quot;exact_event_neighbors&quot;] = exact_event_neighbors(
+            events, moment, chapter[&quot;chapter_id&quot;]
+        )
+    return state
+
+
+def _chart_registry(vault_root: Path) -&gt; tuple[dict[str, Any], dict[str, dict[str, Any]]]:
+    path = vault_root / &quot;99 - Templates&quot; / &quot;chart_reading_bones&quot; / &quot;index.json&quot;
+    with path.open(encoding=&quot;utf-8&quot;) as handle:
+        index = json.load(handle)
+    charts = index.get(&quot;charts&quot;, [])
+    return index, {chart[&quot;id&quot;]: chart for chart in charts}
+
+
+def _bone(vault_root: Path, chart_id: str) -&gt; dict[str, Any]:
+    path = vault_root / &quot;99 - Templates&quot; / &quot;chart_reading_bones&quot; / f&quot;{chart_id}.json&quot;
+    if not path.exists():
+        raise KeyError(f&quot;Registered chart has no bones file: {chart_id}&quot;)
+    with path.open(encoding=&quot;utf-8&quot;) as handle:
+        return json.load(handle)
+
+
+def _window_id(chart_meta: dict[str, Any], all_ids: set[str]) -&gt; str:
+    if chart_meta[&quot;type&quot;] == &quot;ingress&quot;:
+        return chart_meta[&quot;id&quot;]
+    label = chart_meta.get(&quot;governing&quot;)
+    if not label:
+        raise ValueError(f&quot;Lunation missing governing ingress: {chart_meta[&#x27;id&#x27;]}&quot;)
+    year, sign = label.split(maxsplit=1)
+    window_id = f&quot;ingress-{year}-{sign.lower()}&quot;
+    if window_id not in all_ids:
+        raise ValueError(
+            f&quot;Lunation {chart_meta[&#x27;id&#x27;]} points to unregistered window {window_id}&quot;
+        )
+    return window_id
+
+
+def phase_nameability(bone: dict[str, Any], cycle: dict[str, Any]) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;DR-020 fence for phase narrative only; direct aspects remain visible.&quot;&quot;&quot;
+    pair = set(cycle[&quot;pair&quot;])
+    roots = set(bone.get(&quot;root_members&quot;) or [])
+    ruler = bone.get(&quot;ruler&quot;)
+    reasons: list[str] = []
+    evidence: list[dict[str, Any]] = []
+    if pair &lt;= OUTER:
+        reasons.append(&quot;era&quot;)
+    root_hits = sorted(pair &amp; roots)
+    if root_hits:
+        reasons.append(&quot;root&quot;)
+        evidence.append({&quot;reason&quot;: &quot;root&quot;, &quot;bodies&quot;: root_hits})
+    if ruler in pair:
+        reasons.append(&quot;chart_ruler&quot;)
+        evidence.append({&quot;reason&quot;: &quot;chart_ruler&quot;, &quot;body&quot;: ruler})
+    natal_hits = [
+        hit
+        for hit in bone.get(&quot;us_hits_sag&quot;, [])
+        if hit.get(&quot;nameable&quot;) is True and hit.get(&quot;eclipse_point&quot;) in pair
+    ]
+    if natal_hits:
+        reasons.append(&quot;exact_us_natal&quot;)
+        evidence.extend(
+            {
+                &quot;reason&quot;: &quot;exact_us_natal&quot;,
+                &quot;transit_point&quot;: hit[&quot;eclipse_point&quot;],
+                &quot;aspect_id&quot;: hit[&quot;aspect&quot;],
+                &quot;natal_point&quot;: hit[&quot;us_point&quot;],
+                &quot;orb_deg&quot;: hit[&quot;orb&quot;],
+                &quot;radix&quot;: hit.get(&quot;radix&quot;, &quot;sag&quot;),
+            }
+            for hit in natal_hits
+        )
+    return {
+        &quot;earned&quot;: bool(reasons),
+        &quot;reasons&quot;: reasons,
+        &quot;evidence&quot;: evidence,
+        &quot;applies_to&quot;: &quot;phase_narrative_only&quot;,
+        &quot;does_not_hide_direct_aspect&quot;: True,
+    }
+
+
+def _point_longitudes(bone: dict[str, Any]) -&gt; dict[str, float]:
+    return {
+        &quot;Sun&quot;: bone[&quot;pos&quot;][&quot;Sun&quot;][&quot;lon&quot;],
+        &quot;Moon&quot;: bone[&quot;pos&quot;][&quot;Moon&quot;][&quot;lon&quot;],
+        &quot;ASC&quot;: bone[&quot;asc&quot;],
+        &quot;MC&quot;: bone[&quot;mc&quot;],
+    }
+
+
+def seed_echoes(
+    chart_id: str, bone: dict[str, Any], registry: dict[str, Any]
+) -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Closest active hard contact from lights/angles to each seed family.&quot;&quot;&quot;
+    points = _point_longitudes(bone)
+    echo_aspects = [(&quot;conjunction&quot;, 0.0), (&quot;square&quot;, 90.0), (&quot;opposition&quot;, 180.0)]
+    limit = SEED_ECHO_POLICY[&quot;orb_limit_deg&quot;]
+    echoes: list[dict[str, Any]] = []
+    for cycle in registry[&quot;cycles&quot;]:
+        for point, point_lon in points.items():
+            best: tuple[float, str, dict[str, Any], float] | None = None
+            for seed_pass in cycle[&quot;passes&quot;]:
+                separation = abs(_signed_delta(point_lon, seed_pass[&quot;longitude_deg&quot;]))
+                for aspect_id, angle_deg in echo_aspects:
+                    orb = abs(separation - angle_deg)
+                    candidate = (orb, aspect_id, seed_pass, angle_deg)
+                    if best is None or candidate[0] &lt; best[0]:
+                        best = candidate
+            assert best is not None
+            orb, aspect_id, matched_pass, angle_deg = best
+            if orb &lt;= limit:
+                echoes.append(
+                    {
+                        &quot;echo_id&quot;: f&quot;{chart_id}::{cycle[&#x27;cycle_id&#x27;]}::{point.lower()}::{aspect_id}&quot;,
+                        &quot;active&quot;: True,
+                        &quot;policy_id&quot;: SEED_ECHO_POLICY[&quot;policy_id&quot;],
+                        &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+                        &quot;tier_id&quot;: cycle[&quot;tier_id&quot;],
+                        &quot;seed_family_id&quot;: cycle[&quot;seed_family_id&quot;],
+                        &quot;matched_pass_id&quot;: matched_pass[&quot;pass_id&quot;],
+                        &quot;family_pass_count&quot;: len(cycle[&quot;passes&quot;]),
+                        &quot;point&quot;: point,
+                        &quot;point_group&quot;: &quot;lights&quot; if point in {&quot;Sun&quot;, &quot;Moon&quot;} else &quot;angles&quot;,
+                        &quot;point_lon_deg&quot;: round(point_lon, 6),
+                        &quot;aspect_id&quot;: aspect_id,
+                        &quot;angle_deg&quot;: angle_deg,
+                        &quot;orb_deg&quot;: round(orb, 6),
+                        &quot;orb_limit_deg&quot;: limit,
+                        &quot;strength&quot;: _aspect_strength(orb),
+                        &quot;seed_lon_deg&quot;: matched_pass[&quot;longitude_deg&quot;],
+                        &quot;long_clocks_route&quot;: {
+                            &quot;view&quot;: &quot;long-clocks&quot;,
+                            &quot;mode&quot;: &quot;moment&quot;,
+                            &quot;chart_id&quot;: chart_id,
+                            &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+                            &quot;focus&quot;: &quot;seed-echoes&quot;,
+                        },
+                    }
+                )
+    echoes.sort(key=lambda item: (item[&quot;orb_deg&quot;], item[&quot;cycle_id&quot;], item[&quot;point&quot;]))
+    return echoes
+
+
+def build_registered_chart_stack(
+    chart_meta: dict[str, Any],
+    *,
+    vault_root: Path,
+    registry: dict[str, Any],
+    event_catalog: dict[str, list[dict[str, Any]]] | None,
+    phase_func: Callable[[float], tuple[str, str]],
+    all_chart_ids: set[str],
+) -&gt; dict[str, Any]:
+    chart_id = chart_meta[&quot;id&quot;]
+    bone = _bone(vault_root, chart_id)
+    moment = parse_moment(bone[&quot;utc&quot;])
+    positions = {body: bone[&quot;pos&quot;][body][&quot;lon&quot;] for body in PLANET_CODES}
+    speeds = {body: bone[&quot;pos&quot;][body][&quot;spd&quot;] for body in PLANET_CODES}
+    cycles: list[dict[str, Any]] = []
+    for cycle in registry[&quot;cycles&quot;]:
+        state = cycle_state(
+            cycle,
+            moment=moment,
+            positions=positions,
+            speeds=speeds,
+            phase_func=phase_func,
+            events=(event_catalog or {}).get(cycle[&quot;cycle_id&quot;]),
+        )
+        state[&quot;nameability&quot;] = phase_nameability(bone, cycle)
+        state[&quot;long_clocks_route&quot;] = {
+            &quot;view&quot;: &quot;long-clocks&quot;,
+            &quot;mode&quot;: &quot;cycle&quot;,
+            &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+            &quot;chart_id&quot;: chart_id,
+        }
+        cycles.append(state)
+    active_cycle_ids = [state[&quot;cycle_id&quot;] for state in cycles if state[&quot;active_aspect&quot;]]
+    nameable_cycle_ids = [
+        state[&quot;cycle_id&quot;] for state in cycles if state[&quot;nameability&quot;][&quot;earned&quot;]
+    ]
+    active_edges = []
+    for state in cycles:
+        aspect = state[&quot;active_aspect&quot;]
+        if aspect is None:
+            continue
+        active_edges.append(
+            {
+                &quot;edge_id&quot;: f&quot;{chart_id}::{state[&#x27;cycle_id&#x27;]}&quot;,
+                &quot;cycle_id&quot;: state[&quot;cycle_id&quot;],
+                &quot;tier_id&quot;: state[&quot;tier_id&quot;],
+                &quot;pair&quot;: state[&quot;pair&quot;],
+                **aspect,
+                &quot;phase_narrative_earned&quot;: state[&quot;nameability&quot;][&quot;earned&quot;],
+                &quot;long_clocks_route&quot;: state[&quot;long_clocks_route&quot;],
+            }
+        )
+    echoes = seed_echoes(chart_id, bone, registry)
+    return {
+        &quot;chart_id&quot;: chart_id,
+        &quot;chart_type&quot;: chart_meta[&quot;type&quot;],
+        &quot;date&quot;: chart_meta[&quot;date&quot;],
+        &quot;utc&quot;: iso_utc(moment),
+        &quot;local&quot;: bone.get(&quot;edt&quot;),
+        &quot;window_id&quot;: _window_id(chart_meta, all_chart_ids),
+        &quot;root_members&quot;: bone.get(&quot;root_members&quot;, []),
+        &quot;chart_ruler&quot;: bone.get(&quot;ruler&quot;),
+        &quot;active_cycle_ids&quot;: active_cycle_ids,
+        &quot;nameable_cycle_ids&quot;: nameable_cycle_ids,
+        &quot;cycles&quot;: cycles,
+        &quot;active_edges&quot;: active_edges,
+        &quot;seed_echoes&quot;: echoes,
+        &quot;long_clocks_route&quot;: {
+            &quot;view&quot;: &quot;long-clocks&quot;,
+            &quot;mode&quot;: &quot;moment&quot;,
+            &quot;chart_id&quot;: chart_id,
+        },
+    }
+
+
+def _sha256(path: Path) -&gt; str:
+    digest = hashlib.sha256()
+    with path.open(&quot;rb&quot;) as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b&quot;&quot;):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def build_chart_stacks_payload(
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+    seed_registry_path: Path = DEFAULT_SEED_REGISTRY,
+    as_of: str | None = None,
+    include_event_catalog: bool = True,
+) -&gt; dict[str, Any]:
+    vault_root = Path(vault_root)
+    registry = load_seed_registry(seed_registry_path)
+    phase_func, phase_source = phase_grammar(str(vault_root))
+    try:
+        phase_source_display = str(Path(phase_source).relative_to(vault_root))
+    except (ValueError, OSError):
+        phase_source_display = phase_source
+    index, chart_index = _chart_registry(vault_root)
+    chart_moments = [parse_moment(_bone(vault_root, chart_id)[&quot;utc&quot;]) for chart_id in chart_index]
+    event_catalog = None
+    if include_event_catalog:
+        event_catalog = build_event_catalog(
+            registry, min(chart_moments), max(chart_moments), phase_func=phase_func
+        )
+    all_ids = set(chart_index)
+    charts = [
+        build_registered_chart_stack(
+            chart_meta,
+            vault_root=vault_root,
+            registry=registry,
+            event_catalog=event_catalog,
+            phase_func=phase_func,
+            all_chart_ids=all_ids,
+        )
+        for chart_meta in index[&quot;charts&quot;]
+    ]
+    if len(charts) != 30:
+        raise ValueError(f&quot;Expected 30 canonical chart moments; got {len(charts)}&quot;)
+    if as_of is None:
+        now_dc = _dt.datetime.now(ZoneInfo(&quot;America/New_York&quot;))
+        snapshot_moment = _dt.datetime(
+            now_dc.year,
+            now_dc.month,
+            now_dc.day,
+            12,
+            0,
+            tzinfo=ZoneInfo(&quot;America/New_York&quot;),
+        ).astimezone(_dt.timezone.utc)
+        as_of_basis = &quot;current America/New_York calendar day at 12:00 local&quot;
+    else:
+        snapshot_moment = parse_moment(as_of)
+        as_of_basis = &quot;explicit --as-of&quot;
+    snapshot = current_snapshot(
+        snapshot_moment,
+        vault_root=vault_root,
+        registry=registry,
+        event_catalog=event_catalog,
+        phase_func=phase_func,
+    )
+    index_path = vault_root / &quot;99 - Templates&quot; / &quot;chart_reading_bones&quot; / &quot;index.json&quot;
+    return {
+        &quot;schema&quot;: &quot;freedom250.long-clocks.chart-stacks/v1&quot;,
+        &quot;status&quot;: &quot;generated&quot;,
+        &quot;generated_at&quot;: _dt.datetime.now(_dt.timezone.utc).isoformat(timespec=&quot;seconds&quot;),
+        &quot;as_of&quot;: iso_utc(snapshot_moment),
+        &quot;as_of_basis&quot;: as_of_basis,
+        &quot;source&quot;: {
+            &quot;chart_registry_path&quot;: &quot;99 - Templates/chart_reading_bones/index.json&quot;,
+            &quot;chart_registry_generated&quot;: index.get(&quot;generated&quot;),
+            &quot;chart_registry_sha256&quot;: _sha256(index_path),
+            &quot;seed_registry_path&quot;: Path(seed_registry_path).name,
+            &quot;seed_registry_sha256&quot;: _sha256(Path(seed_registry_path)),
+            &quot;phase_grammar_source&quot;: phase_source_display,
+            &quot;positions_policy&quot;: &quot;registered chart bones for covered charts; pyswisseph Swiss/JPL files for free moments&quot;,
+        },
+        &quot;method&quot;: {
+            &quot;phase_grammar&quot;: &quot;DR-020 phases.py: New, Crescent, First Quarter, Gibbous, Full, Disseminating, Last Quarter, Balsamic&quot;,
+            &quot;hand_direction&quot;: &quot;slower body to faster body; waxing 0-180, waning 180-360&quot;,
+            &quot;major_orbs_deg&quot;: ORB_LIMITS,
+            &quot;strength_bands_deg&quot;: {
+                &quot;exact&quot;: &quot;&lt;=0.25&quot;,
+                &quot;tight&quot;: &quot;&gt;0.25 and &lt;=1.5&quot;,
+                &quot;active&quot;: &quot;&gt;1.5 and &lt;= aspect orb&quot;,
+                &quot;between_chapters&quot;: &quot;outside aspect orb; geometry only, no verdict&quot;,
+            },
+            &quot;nameability&quot;: &quot;DR-020; phase narrative only. Direct chart aspects remain visible.&quot;,
+            &quot;seed_echo_policy&quot;: SEED_ECHO_POLICY,
+            &quot;canonical_lunation_policy&quot;: &quot;registered chart IDs only; no nearest-lunation scan&quot;,
+        },
+        &quot;tiers&quot;: registry[&quot;tiers&quot;],
+        &quot;cycle_catalog&quot;: registry[&quot;cycles&quot;],
+        &quot;exact_event_catalog&quot;: event_catalog or {},
+        &quot;snapshot&quot;: snapshot,
+        &quot;coverage&quot;: {
+            &quot;registered_chart_count&quot;: len(index[&quot;charts&quot;]),
+            &quot;generated_chart_count&quot;: len(charts),
+            &quot;cycle_count&quot;: len(registry[&quot;cycles&quot;]),
+            &quot;relationship_state_count&quot;: sum(len(chart[&quot;cycles&quot;]) for chart in charts),
+        },
+        &quot;charts&quot;: charts,
+    }
+
+
+def current_snapshot(
+    moment_value: str | _dt.datetime,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+    registry: dict[str, Any] | None = None,
+    event_catalog: dict[str, list[dict[str, Any]]] | None = None,
+    phase_func: Callable[[float], tuple[str, str]] | None = None,
+) -&gt; dict[str, Any]:
+    moment = parse_moment(moment_value)
+    registry = registry or load_seed_registry()
+    if phase_func is None:
+        phase_func, _ = phase_grammar(str(vault_root))
+    jd_ut = jd_of(moment)
+    positions: dict[str, float] = {}
+    speeds: dict[str, float] = {}
+    for body in {body for cycle in registry[&quot;cycles&quot;] for body in cycle[&quot;pair&quot;]}:
+        positions[body], speeds[body] = _position(jd_ut, body)
+    cycles = [
+        cycle_state(
+            cycle,
+            moment=moment,
+            positions=positions,
+            speeds=speeds,
+            phase_func=phase_func,
+            events=(event_catalog or {}).get(cycle[&quot;cycle_id&quot;]),
+        )
+        for cycle in registry[&quot;cycles&quot;]
+    ]
+    for state in cycles:
+        pair = set(state[&quot;pair&quot;])
+        state[&quot;nameability&quot;] = {
+            &quot;earned&quot;: pair &lt;= OUTER,
+            &quot;reasons&quot;: [&quot;era&quot;] if pair &lt;= OUTER else [],
+            &quot;evidence&quot;: [],
+            &quot;applies_to&quot;: &quot;phase_narrative_only&quot;,
+            &quot;does_not_hide_direct_aspect&quot;: True,
+            &quot;context_note&quot;: &quot;No chart root/ruler supplied for free-moment snapshot.&quot;,
+        }
+        state[&quot;long_clocks_route&quot;] = {
+            &quot;view&quot;: &quot;long-clocks&quot;,
+            &quot;mode&quot;: &quot;cycle&quot;,
+            &quot;cycle_id&quot;: state[&quot;cycle_id&quot;],
+        }
+    return {
+        &quot;utc&quot;: iso_utc(moment),
+        &quot;cycles&quot;: cycles,
+        &quot;active_cycle_ids&quot;: [state[&quot;cycle_id&quot;] for state in cycles if state[&quot;active_aspect&quot;]],
+        &quot;long_clocks_route&quot;: {&quot;view&quot;: &quot;long-clocks&quot;, &quot;mode&quot;: &quot;clock-room&quot;},
+    }
+
+
+def registered_stack_for_chart_id(
+    chart_id: str,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+    seed_registry_path: Path = DEFAULT_SEED_REGISTRY,
+) -&gt; dict[str, Any]:
+    registry = load_seed_registry(seed_registry_path)
+    phase_func, _ = phase_grammar(str(vault_root))
+    _, chart_index = _chart_registry(Path(vault_root))
+    if chart_id not in chart_index:
+        raise KeyError(f&quot;Unregistered chart_id: {chart_id}&quot;)
+    return build_registered_chart_stack(
+        chart_index[chart_id],
+        vault_root=Path(vault_root),
+        registry=registry,
+        event_catalog=None,
+        phase_func=phase_func,
+        all_chart_ids=set(chart_index),
+    )
+
+
+def registered_stack_for_date(
+    date_iso: str,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+    seed_registry_path: Path = DEFAULT_SEED_REGISTRY,
+) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Strict date lookup.  It never guesses a preceding or nearest lunation.&quot;&quot;&quot;
+    _, chart_index = _chart_registry(Path(vault_root))
+    matches = [chart_id for chart_id, meta in chart_index.items() if meta[&quot;date&quot;] == date_iso]
+    if len(matches) != 1:
+        raise KeyError(
+            f&quot;{date_iso} resolves to {len(matches)} registered charts; supply canonical chart_id&quot;
+        )
+    return registered_stack_for_chart_id(
+        matches[0], vault_root=vault_root, seed_registry_path=seed_registry_path
+    )
+
+
+def _wheel_record_from_bone(bone: dict[str, Any], vault_root: Path) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Build a wheel-lib record from canonical bone positions without recasting.&quot;&quot;&quot;
+    longitudes = {body: bone[&quot;pos&quot;][body][&quot;lon&quot;] for body in PLANET_CODES}
+    positions = [
+        [
+            body,
+            bone[&quot;pos&quot;][body][&quot;sign&quot;],
+            _degree_label(bone[&quot;pos&quot;][body][&quot;lon&quot;]).split()[0],
+            1 if bone[&quot;pos&quot;][body][&quot;retro&quot;] else 0,
+            round(bone[&quot;pos&quot;][body][&quot;lon&quot;], 2),
+        ]
+        for body in PLANET_CODES
+    ]
+    node_lon = bone[&quot;node&quot;][&quot;lon&quot;]
+    positions.append(
+        [
+            &quot;Node&quot;,
+            SIGNS[int(node_lon // 30) % 12],
+            _degree_label(node_lon).split()[0],
+            1,
+            round(node_lon, 2),
+        ]
+    )
+    wheel_path = vault_root / &quot;99 - Templates&quot; / &quot;wheel_lib.py&quot;
+    spec = importlib.util.spec_from_file_location(&quot;f250_wheel_lib_registered&quot;, wheel_path)
+    if not spec or not spec.loader:
+        raise RuntimeError(f&quot;Cannot load wheel library: {wheel_path}&quot;)
+    wheel = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(wheel)
+    return {
+        &quot;pos&quot;: positions,
+        &quot;asp&quot;: wheel.aspects_between(longitudes),
+        &quot;asc&quot;: round(bone[&quot;asc&quot;], 2),
+    }
+
+
+def _lunation_type(bone: dict[str, Any]) -&gt; str:
+    eclipse = bone.get(&quot;eclipse&quot;)
+    if eclipse:
+        return &quot;Solar Eclipse&quot; if eclipse.lower().startswith(&quot;solar&quot;) else &quot;Lunar Eclipse&quot;
+    return &quot;New Moon&quot; if bone.get(&quot;lunation_kind&quot;) == &quot;new&quot; else &quot;Full Moon&quot;
+
+
+def _registered_context_panel(
+    chart_meta: dict[str, Any],
+    *,
+    vault_root: Path,
+    seed_registry_path: Path,
+    current_rows: dict[str, dict[str, Any]],
+    cycle_catalog: dict[str, dict[str, Any]],
+) -&gt; dict[str, Any]:
+    chart_id = chart_meta[&quot;id&quot;]
+    bone = _bone(vault_root, chart_id)
+    chart_stack = registered_stack_for_chart_id(
+        chart_id,
+        vault_root=vault_root,
+        seed_registry_path=seed_registry_path,
+    )
+    points = {body: bone[&quot;pos&quot;][body][&quot;lon&quot;] for body in PLANET_CODES}
+    points.update({&quot;ASC&quot;: bone[&quot;asc&quot;], &quot;MC&quot;: bone[&quot;mc&quot;]})
+    triggers = []
+    for echo in chart_stack[&quot;seed_echoes&quot;]:
+        current = current_rows[echo[&quot;cycle_id&quot;]]
+        active_aspect = current[&quot;active_aspect&quot;]
+        pair = cycle_catalog[echo[&quot;cycle_id&quot;]][&quot;pair&quot;]
+        triggers.append(
+            {
+                &quot;trigger_id&quot;: echo[&quot;echo_id&quot;],
+                &quot;current&quot;: f&quot;{pair[0]}–{pair[1]}&quot;,
+                &quot;cycle_id&quot;: echo[&quot;cycle_id&quot;],
+                &quot;pair&quot;: list(pair),
+                &quot;via&quot;: echo[&quot;point&quot;],
+                &quot;target&quot;: &quot;seed degree&quot;,
+                &quot;aspect&quot;: echo[&quot;aspect_id&quot;],
+                &quot;orb&quot;: echo[&quot;orb_deg&quot;],
+                &quot;flowing&quot;: bool(
+                    active_aspect and active_aspect[&quot;flow_kind&quot;] == &quot;flowing&quot;
+                ),
+                &quot;phase&quot;: current[&quot;phase&quot;],
+                &quot;strength&quot;: echo[&quot;strength&quot;],
+                &quot;seed_family_id&quot;: echo[&quot;seed_family_id&quot;],
+                &quot;matched_pass_id&quot;: echo[&quot;matched_pass_id&quot;],
+                &quot;current_active&quot;: bool(active_aspect),
+                &quot;current_flow_kind&quot;: (
+                    active_aspect[&quot;flow_kind&quot;] if active_aspect else None
+                ),
+                &quot;long_clocks_route&quot;: echo[&quot;long_clocks_route&quot;],
+            }
+        )
+    wheel_record = _wheel_record_from_bone(bone, vault_root)
+    if chart_meta[&quot;type&quot;] == &quot;ingress&quot;:
+        title = f&quot;{chart_meta[&#x27;year&#x27;]} {chart_meta[&#x27;sign&#x27;]} Solar Ingress&quot;
+        context_type = &quot;Solar Ingress&quot;
+    else:
+        context_type = _lunation_type(bone)
+        title = f&quot;{context_type} · {chart_meta[&#x27;date&#x27;]}&quot;
+    return {
+        &quot;id&quot;: chart_id,
+        &quot;chart_id&quot;: chart_id,
+        &quot;title&quot;: title,
+        &quot;type&quot;: context_type,
+        &quot;date&quot;: chart_meta[&quot;date&quot;],
+        &quot;utc&quot;: iso_utc(bone[&quot;utc&quot;]),
+        &quot;rising&quot;: bone[&quot;asc_sign&quot;],
+        &quot;points&quot;: points,
+        &quot;asc&quot;: bone[&quot;asc&quot;],
+        &quot;sun&quot;: bone[&quot;pos&quot;][&quot;Sun&quot;][&quot;lon&quot;],
+        &quot;moon&quot;: bone[&quot;pos&quot;][&quot;Moon&quot;][&quot;lon&quot;],
+        &quot;rec&quot;: wheel_record,
+        &quot;triggers&quot;: triggers,
+        &quot;seed_echoes&quot;: chart_stack[&quot;seed_echoes&quot;],
+        &quot;long_clocks_route&quot;: chart_stack[&quot;long_clocks_route&quot;],
+    }
+
+
+def registered_context_for_date(
+    date_iso: str,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+    seed_registry_path: Path = DEFAULT_SEED_REGISTRY,
+) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Resolve an arbitrary covered date from the canonical chart registry.
+
+    Selection is purely registry-based: latest registered ingress and latest
+    registered lunation on or before the requested calendar date. This retains
+    the opening-lunation-before-ingress behavior at cardinal boundaries and
+    never searches the ephemeris for a synthetic nearest phase.
+    &quot;&quot;&quot;
+    requested = _dt.date.fromisoformat(date_iso)
+    vault_root = Path(vault_root)
+    seed_registry_path = Path(seed_registry_path)
+    index, chart_index = _chart_registry(vault_root)
+    lunations = sorted(
+        (meta for meta in index[&quot;charts&quot;] if meta[&quot;type&quot;] == &quot;lunation&quot;),
+        key=lambda meta: (meta[&quot;date&quot;], meta[&quot;id&quot;]),
+    )
+    ingresses = sorted(
+        (meta for meta in index[&quot;charts&quot;] if meta[&quot;type&quot;] == &quot;ingress&quot;),
+        key=lambda meta: (meta[&quot;date&quot;], meta[&quot;id&quot;]),
+    )
+    covered_years = {int(meta[&quot;date&quot;][:4]) for meta in lunations}
+    if requested.year not in covered_years:
+        raise KeyError(
+            f&quot;{date_iso} is outside registered lunation years {sorted(covered_years)}&quot;
+        )
+    eligible_lunations = [meta for meta in lunations if meta[&quot;date&quot;] &lt;= date_iso]
+    eligible_ingresses = [meta for meta in ingresses if meta[&quot;date&quot;] &lt;= date_iso]
+    if not eligible_lunations or not eligible_ingresses:
+        raise KeyError(f&quot;{date_iso} precedes the first complete registered context&quot;)
+    lunation_meta = eligible_lunations[-1]
+    ingress_meta = eligible_ingresses[-1]
+    registry = load_seed_registry(seed_registry_path)
+    catalog = seed_registry_index(registry)
+    compatibility_rows = currents(
+        date_iso, vault_root=vault_root, seed_registry_path=seed_registry_path
+    )
+    # ``currents`` keeps a few empty legacy keys for old direct callers.  The
+    # registered-context payload is a new factual contract, so those prose-era
+    # compatibility fields do not cross this boundary.
+    current_list = []
+    for compatibility_row in compatibility_rows:
+        row = dict(compatibility_row)
+        for legacy_key in (&quot;verdict&quot;, &quot;underlies&quot;, &quot;underlies_keys&quot;):
+            row.pop(legacy_key, None)
+        current_list.append(row)
+    current_rows = {row[&quot;cycle_id&quot;]: row for row in current_list}
+    ingress_panel = _registered_context_panel(
+        ingress_meta,
+        vault_root=vault_root,
+        seed_registry_path=seed_registry_path,
+        current_rows=current_rows,
+        cycle_catalog=catalog,
+    )
+    lunation_panel = _registered_context_panel(
+        lunation_meta,
+        vault_root=vault_root,
+        seed_registry_path=seed_registry_path,
+        current_rows=current_rows,
+        cycle_catalog=catalog,
+    )
+    return {
+        &quot;schema&quot;: &quot;freedom250.long-clocks.registered-context/v1&quot;,
+        &quot;requested_date&quot;: date_iso,
+        &quot;resolution&quot;: {
+            &quot;policy&quot;: &quot;latest registered chart on or before requested date&quot;,
+            &quot;ephemeris_phase_scan&quot;: False,
+            &quot;ingress_chart_id&quot;: ingress_meta[&quot;id&quot;],
+            &quot;ingress_date&quot;: ingress_meta[&quot;date&quot;],
+            &quot;lunation_chart_id&quot;: lunation_meta[&quot;id&quot;],
+            &quot;lunation_date&quot;: lunation_meta[&quot;date&quot;],
+            &quot;lunation_registered_window_id&quot;: _window_id(
+                lunation_meta, set(chart_index)
+            ),
+        },
+        &quot;currents&quot;: current_list,
+        &quot;ingress&quot;: ingress_panel,
+        &quot;lunation&quot;: lunation_panel,
+    }
+
+
+def seed_chart(
+    cycle_id: str,
+    pass_id: str | None = None,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+    seed_registry_path: Path = DEFAULT_SEED_REGISTRY,
+) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Exact D.C.-relocated seed chart input for the existing wheel builder.&quot;&quot;&quot;
+    registry = load_seed_registry(seed_registry_path)
+    cycle = seed_registry_index(registry)[cycle_id]
+    chosen_id = pass_id or cycle[&quot;display_anchor_pass_id&quot;]
+    chosen = next((item for item in cycle[&quot;passes&quot;] if item[&quot;pass_id&quot;] == chosen_id), None)
+    if chosen is None:
+        raise KeyError(f&quot;Unknown seed pass {cycle_id}/{chosen_id}&quot;)
+    moment = parse_moment(chosen[&quot;utc&quot;])
+    jd_ut = jd_of(moment)
+    positions = {}
+    for body in PLANET_CODES:
+        longitude, speed = _position(jd_ut, body)
+        positions[body] = {&quot;lon&quot;: longitude, &quot;spd&quot;: speed}
+    conventions_path = Path(vault_root) / &quot;99 - Templates&quot; / &quot;chart_conventions.py&quot;
+    spec = importlib.util.spec_from_file_location(&quot;f250_chart_conventions&quot;, conventions_path)
+    if not spec or not spec.loader:
+        raise RuntimeError(f&quot;Cannot load chart conventions: {conventions_path}&quot;)
+    conventions = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(conventions)
+    ascmc = swe.houses(jd_ut, conventions.DC_LAT, conventions.DC_LON, b&quot;W&quot;)[1]
+    return {
+        &quot;cycle_id&quot;: cycle_id,
+        &quot;seed_family_id&quot;: cycle[&quot;seed_family_id&quot;],
+        &quot;pass_id&quot;: chosen_id,
+        &quot;utc&quot;: iso_utc(moment),
+        &quot;jd_ut&quot;: jd_ut,
+        &quot;positions&quot;: positions,
+        &quot;asc&quot;: ascmc[0] % 360.0,
+        &quot;mc&quot;: ascmc[1] % 360.0,
+        &quot;cast_location&quot;: &quot;Washington, D.C.&quot;,
+    }
+
+
+def _date_at_noon_dc(date_iso: str) -&gt; _dt.datetime:
+    year, month, day = (int(part) for part in date_iso.split(&quot;-&quot;))
+    return _dt.datetime(
+        year, month, day, 12, 0, tzinfo=ZoneInfo(&quot;America/New_York&quot;)
+    ).astimezone(_dt.timezone.utc)
+
+
+def _degree_label(longitude: float) -&gt; str:
+    sign = SIGNS[int(longitude // 30) % 12]
+    degree = longitude % 30
+    whole = int(degree)
+    minutes = int(round((degree - whole) * 60))
+    if minutes == 60:
+        whole += 1
+        minutes = 0
+    return f&quot;{whole}°{minutes:02d}&#x27; {sign}&quot;
+
+
+def currents(
+    date_iso: str,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+    seed_registry_path: Path = DEFAULT_SEED_REGISTRY,
+) -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Compatibility adapter for legacy callers of ``currents(dateiso)``.
+
+    It keeps the old structural keys while carrying the new exact fields.  It
+    never emits ``approaching`` or legacy verdict prose; outside-orb rows are
+    explicitly ``between_chapters``.  New builders should consume the v1 JSON
+    payload directly rather than this adapter.
+    &quot;&quot;&quot;
+    registry = load_seed_registry(seed_registry_path)
+    registry_by_id = seed_registry_index(registry)
+    moment = _date_at_noon_dc(date_iso)
+    snapshot = current_snapshot(
+        moment, vault_root=Path(vault_root), registry=registry, event_catalog=None
+    )
+    rows = []
+    for state in snapshot[&quot;cycles&quot;]:
+        cycle = registry_by_id[state[&quot;cycle_id&quot;]]
+        anchor = next(
+            seed_pass
+            for seed_pass in cycle[&quot;passes&quot;]
+            if seed_pass[&quot;pass_id&quot;] == cycle[&quot;display_anchor_pass_id&quot;]
+        )
+        aspect = state[&quot;active_aspect&quot;]
+        positions = state[&quot;geometry&quot;][&quot;positions_deg&quot;]
+        first, second = cycle[&quot;pair&quot;]
+        rows.append(
+            {
+                &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+                &quot;tier_id&quot;: cycle[&quot;tier_id&quot;],
+                &quot;pair&quot;: list(cycle[&quot;pair&quot;]),
+                &quot;name&quot;: f&quot;{first}–{second}&quot;,
+                &quot;gloss&quot;: &quot;&quot;,
+                &quot;cycle_yrs&quot;: cycle[&quot;nominal_cycle_years&quot;],
+                &quot;seed_date&quot;: anchor[&quot;utc&quot;][:10],
+                &quot;seed_utc&quot;: anchor[&quot;utc&quot;],
+                &quot;seed_display&quot;: anchor[&quot;utc&quot;],
+                &quot;seed_basis&quot;: cycle[&quot;anchor_basis&quot;],
+                &quot;seed_family_utc&quot;: [item[&quot;utc&quot;] for item in cycle[&quot;passes&quot;]],
+                &quot;seed_detail&quot;: (
+                    f&quot;{len(cycle[&#x27;passes&#x27;])}-pass {cycle[&#x27;seed_family_label&#x27;]}&quot;
+                    if len(cycle[&quot;passes&quot;]) &gt; 1
+                    else cycle[&quot;seed_family_label&quot;]
+                ),
+                &quot;seed_deg&quot;: _degree_label(anchor[&quot;longitude_deg&quot;]).split()[0],
+                &quot;seed_sign&quot;: anchor[&quot;sign&quot;],
+                &quot;seed_lon&quot;: anchor[&quot;longitude_deg&quot;],
+                &quot;seed_lons&quot;: {first: anchor[&quot;longitude_deg&quot;], second: anchor[&quot;longitude_deg&quot;]},
+                &quot;now&quot;: {
+                    first: _degree_label(positions[first]),
+                    second: _degree_label(positions[second]),
+                },
+                &quot;now_lons&quot;: {first: positions[first], second: positions[second]},
+                &quot;elongation&quot;: state[&quot;geometry&quot;][&quot;elongation_deg&quot;],
+                &quot;phase&quot;: (
+                    f&quot;{state[&#x27;geometry&#x27;][&#x27;phase_direction&#x27;]} &quot;
+                    f&quot;{state[&#x27;geometry&#x27;][&#x27;phase_name&#x27;]}&quot;
+                ),
+                &quot;aspect&quot;: aspect[&quot;aspect_id&quot;] if aspect else &quot;between chapters&quot;,
+                &quot;orb&quot;: (
+                    aspect[&quot;orb_deg&quot;]
+                    if aspect
+                    else state[&quot;geometry&quot;][&quot;nearest_chapter_orb_deg&quot;]
+                ),
+                &quot;strength&quot;: aspect[&quot;strength&quot;] if aspect else &quot;between_chapters&quot;,
+                &quot;flowing&quot;: bool(aspect and aspect[&quot;flow_kind&quot;] == &quot;flowing&quot;),
+                &quot;verdict&quot;: &quot;&quot;,
+                &quot;underlies&quot;: [],
+                &quot;underlies_keys&quot;: [],
+                &quot;geometry&quot;: state[&quot;geometry&quot;],
+                &quot;active_aspect&quot;: aspect,
+                &quot;nameability&quot;: state[&quot;nameability&quot;],
+                &quot;interpretive_status&quot;: state[&quot;interpretive_status&quot;],
+            }
+        )
+    return rows
+
+
+def chart_rec(
+    seed: str,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+) -&gt; tuple[dict[str, Any], dict[str, float]]:
+    &quot;&quot;&quot;Compatibility seed-chart caster used by existing wheel builders.&quot;&quot;&quot;
+    moment = parse_moment(seed) if &quot;T&quot; in seed else _date_at_noon_dc(seed)
+    jd_ut = jd_of(moment)
+    positions = []
+    longitudes: dict[str, float] = {}
+    for body, code in PLANET_CODES.items():
+        result = swe.calc_ut(jd_ut, code, FLAGS)[0]
+        longitude = result[0] % 360.0
+        longitudes[body] = longitude
+        positions.append(
+            [
+                body,
+                SIGNS[int(longitude // 30) % 12],
+                _degree_label(longitude).split()[0],
+                1 if result[3] &lt; 0 else 0,
+                round(longitude, 2),
+            ]
+        )
+    node_result = swe.calc_ut(jd_ut, swe.TRUE_NODE, FLAGS)[0]
+    node_lon = node_result[0] % 360.0
+    positions.append(
+        [
+            &quot;Node&quot;,
+            SIGNS[int(node_lon // 30) % 12],
+            _degree_label(node_lon).split()[0],
+            1,
+            round(node_lon, 2),
+        ]
+    )
+    conventions_path = Path(vault_root) / &quot;99 - Templates&quot; / &quot;chart_conventions.py&quot;
+    conventions_spec = importlib.util.spec_from_file_location(
+        &quot;f250_chart_conventions_compat&quot;, conventions_path
+    )
+    if not conventions_spec or not conventions_spec.loader:
+        raise RuntimeError(f&quot;Cannot load chart conventions: {conventions_path}&quot;)
+    conventions = importlib.util.module_from_spec(conventions_spec)
+    conventions_spec.loader.exec_module(conventions)
+    asc = swe.houses(jd_ut, conventions.DC_LAT, conventions.DC_LON, b&quot;W&quot;)[1][0] % 360.0
+    wheel_path = Path(vault_root) / &quot;99 - Templates&quot; / &quot;wheel_lib.py&quot;
+    wheel_spec = importlib.util.spec_from_file_location(&quot;f250_wheel_lib_compat&quot;, wheel_path)
+    if not wheel_spec or not wheel_spec.loader:
+        raise RuntimeError(f&quot;Cannot load wheel library: {wheel_path}&quot;)
+    wheel = importlib.util.module_from_spec(wheel_spec)
+    wheel_spec.loader.exec_module(wheel)
+    return {
+        &quot;pos&quot;: positions,
+        &quot;asp&quot;: wheel.aspects_between(longitudes),
+        &quot;asc&quot;: round(asc, 2),
+    }, longitudes
+
+
+def stack(
+    date_iso: str,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+    seed_registry_path: Path = DEFAULT_SEED_REGISTRY,
+) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Compatibility name backed only by the canonical chart registry.&quot;&quot;&quot;
+    return registered_context_for_date(
+        date_iso, vault_root=vault_root, seed_registry_path=seed_registry_path
+    )
+
+
+def governing_ingress_id(
+    date_iso: str,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+) -&gt; str:
+    context = registered_context_for_date(date_iso, vault_root=vault_root)
+    return context[&quot;resolution&quot;][&quot;ingress_chart_id&quot;].removeprefix(&quot;ingress-&quot;)
+
+
+def validate_seed_registry(
+    registry: dict[str, Any] | None = None,
+) -&gt; dict[str, Any]:
+    registry = registry or load_seed_registry()
+    errors = []
+    checked = []
+    for cycle in registry[&quot;cycles&quot;]:
+        slow, fast = slow_fast(cycle[&quot;pair&quot;])
+        for seed_pass in cycle[&quot;passes&quot;]:
+            jd_ut = jd_of(seed_pass[&quot;utc&quot;])
+            slow_lon, _ = _position(jd_ut, slow)
+            fast_lon, _ = _position(jd_ut, fast)
+            residual_arcsec = abs(_signed_delta(fast_lon, slow_lon)) * 3600.0
+            circular_mid = (slow_lon + _signed_delta(fast_lon, slow_lon) / 2.0) % 360.0
+            stored_delta_arcsec = (
+                _circular_distance(circular_mid, seed_pass[&quot;longitude_deg&quot;]) * 3600.0
+            )
+            row = {
+                &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+                &quot;pass_id&quot;: seed_pass[&quot;pass_id&quot;],
+                &quot;residual_arcsec&quot;: residual_arcsec,
+                &quot;stored_longitude_delta_arcsec&quot;: stored_delta_arcsec,
+            }
+            checked.append(row)
+            if residual_arcsec &gt; 0.01:
+                errors.append({**row, &quot;error&quot;: &quot;conjunction residual exceeds 0.01 arcsec&quot;})
+            if stored_delta_arcsec &gt; 0.01:
+                errors.append({**row, &quot;error&quot;: &quot;stored longitude differs by &gt;0.01 arcsec&quot;})
+    return {
+        &quot;ok&quot;: not errors,
+        &quot;cycle_count&quot;: len(registry[&quot;cycles&quot;]),
+        &quot;pass_count&quot;: len(checked),
+        &quot;checked&quot;: checked,
+        &quot;errors&quot;: errors,
+        &quot;unresolved_verification&quot;: [
+            {
+                &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+                &quot;pass_id&quot;: seed_pass[&quot;pass_id&quot;],
+                &quot;status&quot;: seed_pass[&quot;independent_verification_status&quot;],
+            }
+            for cycle in registry[&quot;cycles&quot;]
+            for seed_pass in cycle[&quot;passes&quot;]
+            if seed_pass[&quot;independent_verification_status&quot;]
+            not in {&quot;astro_gold_verified&quot;}
+        ],
+    }
+
+
+__all__ = [
+    &quot;CHAPTERS&quot;,
+    &quot;ORB_LIMITS&quot;,
+    &quot;SEED_ECHO_POLICY&quot;,
+    &quot;build_chart_stacks_payload&quot;,
+    &quot;build_event_catalog&quot;,
+    &quot;chart_rec&quot;,
+    &quot;current_snapshot&quot;,
+    &quot;currents&quot;,
+    &quot;exact_aspect_events&quot;,
+    &quot;governing_ingress_id&quot;,
+    &quot;load_seed_registry&quot;,
+    &quot;registered_stack_for_chart_id&quot;,
+    &quot;registered_stack_for_date&quot;,
+    &quot;registered_context_for_date&quot;,
+    &quot;seed_chart&quot;,
+    &quot;seed_echoes&quot;,
+    &quot;stack&quot;,
+    &quot;validate_seed_registry&quot;,
+]
+</pre></main></body></html>

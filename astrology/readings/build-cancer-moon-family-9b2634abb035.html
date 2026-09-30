@@ -1,0 +1,300 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-cancer-moon-family-9b2634abb035.html">
+<title>build_cancer_moon_family</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_cancer_moon_family</h1><p class="mut">Portable source: 99 - Templates/build_cancer_moon_family.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the July 2024 Cancer Moon-family comparison.
+
+This output supports a retrospective contextual companion through the January
+3, 2026 Full phase and a prospective boundary for the October 3 Last Quarter.
+It preserves the locked Full-Moon reading and grants astrology no factual,
+causal, corroborative, convergence, or Forecast Ledger credit.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import swisseph as swe
+
+from build_aquarius_moon_family import (
+    PLANETS,
+    angular_distance,
+    apply_governed_positions,
+    calculated_chart,
+    cross_chart_contacts,
+    parse_utc,
+)
+from build_scorpio_moon_family import (
+    horizon,
+    horizon_event,
+    node_state,
+    selected_aspects,
+    selected_declinations,
+)
+
+
+HERE = Path(__file__).resolve().parent
+HISTORY = HERE / &quot;mundane_history.json&quot;
+LINEAGES = HERE / &quot;moon_lineages.json&quot;
+FULL_BONE = HERE / &quot;chart_reading_bones&quot; / &quot;lun-2026-01-03-fu.json&quot;
+TRIAGE = HERE / &quot;full_moon_family_triage_2026.json&quot;
+MARS_PLUTO = HERE / &quot;aries_mars_pluto_choreography.json&quot;
+RELATIONSHIPS = HERE / &quot;inside_relationship_seed_families.json&quot;
+OUTPUT = HERE / &quot;cancer_moon_family_2024_2026.json&quot;
+
+
+def governed_family_pass(relationships: dict, family_id: str) -&gt; dict:
+    family = next(row for row in relationships[&quot;families&quot;] if row[1] == family_id)
+    pass_row = family[4][0]
+    return {
+        &quot;pass_id&quot;: pass_row[0],
+        &quot;exact_utc&quot;: pass_row[1],
+        &quot;longitude_deg&quot;: pass_row[2],
+        &quot;sign&quot;: pass_row[3],
+        &quot;degree_in_sign&quot;: pass_row[4],
+        &quot;relative_motion&quot;: pass_row[5],
+    }
+
+
+def main() -&gt; None:
+    history = json.loads(HISTORY.read_text())
+    lineages = json.loads(LINEAGES.read_text())
+    full_bone = json.loads(FULL_BONE.read_text())
+    triage = json.loads(TRIAGE.read_text())
+    mars_pluto = json.loads(MARS_PLUTO.read_text())
+    relationships = json.loads(RELATIONSHIPS.read_text())
+
+    seed_source = next(row for row in history[&quot;charts&quot;] if row[&quot;id&quot;] == &quot;lun-2024-07-05-ne&quot;)
+    lineage = next(
+        row for row in lineages[&quot;lineages&quot;]
+        if row[&quot;lineage_id&quot;] == &quot;pessin:lun-2024-07-05-ne&quot;
+    )
+    phases = {row[&quot;phase_event_id&quot;]: row for row in lineages[&quot;phase_events&quot;]}
+    quarter_source = phases[&quot;lunation-2025-04-05-fq&quot;]
+    full_source = phases[&quot;lun-2026-01-03-fu&quot;]
+    last_quarter_source = phases[&quot;lunation-2026-10-03-lq&quot;]
+    triage_row = next(
+        row for row in triage[&quot;families&quot;] if row[&quot;lineage_id&quot;] == lineage[&quot;lineage_id&quot;]
+    )
+
+    seed = calculated_chart(parse_utc(seed_source[&quot;utc&quot;]))
+    first_quarter = calculated_chart(parse_utc(quarter_source[&quot;exact_utc&quot;]))
+    full = calculated_chart(parse_utc(full_source[&quot;exact_utc&quot;]))
+    last_quarter = calculated_chart(parse_utc(last_quarter_source[&quot;exact_utc&quot;]))
+    seed = apply_governed_positions(
+        seed,
+        {row[&quot;name&quot;]: row[&quot;lon&quot;] for row in seed_source[&quot;points&quot;] if row[&quot;name&quot;] in PLANETS},
+        asc=seed_source[&quot;asc&quot;],
+        mc=seed_source[&quot;mc&quot;],
+    )
+    first_quarter = apply_governed_positions(
+        first_quarter,
+        {&quot;Sun&quot;: quarter_source[&quot;sun_lon_deg&quot;], &quot;Moon&quot;: quarter_source[&quot;moon_lon_deg&quot;]},
+    )
+    full = apply_governed_positions(
+        full,
+        {body: full_bone[&quot;pos&quot;][body][&quot;lon&quot;] for body in PLANETS},
+        asc=full_bone[&quot;asc&quot;],
+        mc=full_bone[&quot;mc&quot;],
+        declinations={body: full_bone[&quot;pos&quot;][body][&quot;dec&quot;] for body in PLANETS},
+    )
+    last_quarter = apply_governed_positions(
+        last_quarter,
+        {&quot;Sun&quot;: last_quarter_source[&quot;sun_lon_deg&quot;], &quot;Moon&quot;: last_quarter_source[&quot;moon_lon_deg&quot;]},
+    )
+
+    seed_node = next(row[&quot;lon&quot;] for row in seed_source[&quot;points&quot;] if row[&quot;name&quot;] == &quot;Node&quot;)
+    seed[&quot;node_geometry&quot;] = node_state(seed, seed_node)
+    first_quarter[&quot;node_geometry&quot;] = node_state(first_quarter)
+    full[&quot;node_geometry&quot;] = node_state(full, full_bone[&quot;node&quot;][&quot;lon&quot;])
+    last_quarter[&quot;node_geometry&quot;] = node_state(last_quarter)
+    for chart in (seed, first_quarter, full, last_quarter):
+        chart[&quot;horizon&quot;] = horizon(chart)
+
+    seed_quarter_contacts = cross_chart_contacts(seed, first_quarter, 1.25)
+    seed_full_contacts = cross_chart_contacts(seed, full, 1.25)
+    quarter_full_contacts = cross_chart_contacts(first_quarter, full, 1.25)
+    full_last_contacts = cross_chart_contacts(full, last_quarter, 1.25)
+
+    conjunction = governed_family_pass(relationships, &quot;mars-pluto-2026&quot;)
+    opposition = next(row for row in mars_pluto[&quot;events&quot;] if row[&quot;event_id&quot;] == &quot;mars-opposite-pluto&quot;)
+    cancer_last_quarter = next(
+        row for row in mars_pluto[&quot;events&quot;] if row[&quot;event_id&quot;] == &quot;cancer-last-quarter&quot;
+    )
+    conjunction_jd = swe.julday(2026, 1, 27, 23 + 1 / 60 + 8.038711 / 3600, swe.GREG_CAL)
+
+    full_jd = full[&quot;julian_day_ut&quot;]
+    result = {
+        &quot;schema&quot;: &quot;freedom250.cancer-moon-family/v1&quot;,
+        &quot;developed_through&quot;: &quot;2026-09-25&quot;,
+        &quot;lineage_id&quot;: lineage[&quot;lineage_id&quot;],
+        &quot;interpretation_status_before_reread&quot;: lineage[&quot;interpretation_status&quot;],
+        &quot;story_verdict_before_reread&quot;: lineage[&quot;story_verdict&quot;],
+        &quot;authority_boundary&quot;: {
+            &quot;calculation&quot;: &quot;registered seed and Full-phase coordinates with Swiss Ephemeris calculation of the missing quarter frames and secondary geometry&quot;,
+            &quot;verification&quot;: &quot;Astro Gold remains pending wherever the source registry says pending&quot;,
+            &quot;interpretation&quot;: &quot;retrospective companion through the January 3 Full phase; the October 3 Last Quarter remains prospective as of the cutoff; locked Pass 1 remains unchanged&quot;,
+            &quot;evidence_credit&quot;: &quot;zero&quot;,
+        },
+        &quot;family_members&quot;: lineage[&quot;members&quot;],
+        &quot;phase_state_as_of_developed_through&quot;: {
+            &quot;seed&quot;: &quot;occurred&quot;,
+            &quot;first_quarter&quot;: &quot;occurred&quot;,
+            &quot;full&quot;: &quot;occurred&quot;,
+            &quot;last_quarter&quot;: &quot;future_not_interpreted_as_occurred&quot;,
+        },
+        &quot;phase_eclipse_states&quot;: {
+            &quot;seed&quot;: bool(phases[&quot;lun-2024-07-05-ne&quot;][&quot;eclipse&quot;]),
+            &quot;first_quarter&quot;: bool(quarter_source[&quot;eclipse&quot;]),
+            &quot;full&quot;: bool(full_source[&quot;eclipse&quot;]),
+            &quot;last_quarter&quot;: bool(last_quarter_source[&quot;eclipse&quot;]),
+        },
+        &quot;charts&quot;: {
+            &quot;seed_2024_07_05&quot;: seed,
+            &quot;first_quarter_2025_04_04&quot;: first_quarter,
+            &quot;full_2026_01_03&quot;: full,
+            &quot;last_quarter_2026_10_03_prospective&quot;: last_quarter,
+        },
+        &quot;four_phase_repetition&quot;: {
+            &quot;ascendant_signs&quot;: [
+                seed[&quot;ascendant_sign&quot;],
+                first_quarter[&quot;ascendant_sign&quot;],
+                full[&quot;ascendant_sign&quot;],
+                last_quarter[&quot;ascendant_sign&quot;],
+            ],
+            &quot;moon_houses&quot;: [
+                seed[&quot;bodies&quot;][&quot;Moon&quot;][&quot;whole_sign_house&quot;],
+                first_quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;whole_sign_house&quot;],
+                full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;whole_sign_house&quot;],
+                last_quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;whole_sign_house&quot;],
+            ],
+            &quot;sun_houses&quot;: [
+                seed[&quot;bodies&quot;][&quot;Sun&quot;][&quot;whole_sign_house&quot;],
+                first_quarter[&quot;bodies&quot;][&quot;Sun&quot;][&quot;whole_sign_house&quot;],
+                full[&quot;bodies&quot;][&quot;Sun&quot;][&quot;whole_sign_house&quot;],
+                last_quarter[&quot;bodies&quot;][&quot;Sun&quot;][&quot;whole_sign_house&quot;],
+            ],
+            &quot;finding&quot;: &quot;seed and Full repeat Sagittarius rising with the Cancer Moon in the eighth and the Moon as sole final authority; both quarter phases repeat Scorpio rising with the Cancer Moon in the ninth and add a second bounded circuit beside the Moon final&quot;,
+        },
+        &quot;degree_relays&quot;: {
+            &quot;seed_moon_degree_deg&quot;: round(seed[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;first_quarter_moon_degree_deg&quot;: round(first_quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;full_moon_degree_deg&quot;: round(full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;last_quarter_moon_degree_deg&quot;: round(last_quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;seed_to_first_quarter_delta_deg&quot;: round(
+                angular_distance(seed[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;], first_quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;]), 9
+            ),
+            &quot;seed_to_full_delta_deg&quot;: triage_row[&quot;relays&quot;][&quot;seed_to_full_moon_degree_gap_deg&quot;],
+            &quot;first_quarter_to_full_delta_deg&quot;: triage_row[&quot;relays&quot;][&quot;first_quarter_to_full_moon_degree_gap_deg&quot;],
+            &quot;seed_to_last_quarter_delta_deg&quot;: round(
+                angular_distance(seed[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;], last_quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;]), 9
+            ),
+            &quot;seed_to_first_quarter_contacts_within_1_25_deg&quot;: seed_quarter_contacts,
+            &quot;seed_to_full_contacts_within_1_25_deg&quot;: seed_full_contacts,
+            &quot;quarter_to_full_contacts_within_1_25_deg&quot;: quarter_full_contacts,
+            &quot;full_to_last_quarter_contacts_within_1_25_deg&quot;: full_last_contacts,
+            &quot;meaning_boundary&quot;: &quot;same-sign Pessin family continuity; exact cross-chart contacts do not add factual or causal evidence&quot;,
+        },
+        &quot;node_approach&quot;: {
+            &quot;seed_nearest_axis_deg&quot;: seed[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+            &quot;first_quarter_nearest_axis_deg&quot;: first_quarter[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+            &quot;full_nearest_axis_deg&quot;: full[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+            &quot;last_quarter_nearest_axis_deg&quot;: last_quarter[&quot;node_geometry&quot;][&quot;moon_distance_to_nearest_node_axis_deg&quot;],
+            &quot;finding&quot;: &quot;the Moon approaches the nodal axis at every phase but the family remains ordinary through its prospective Last Quarter&quot;,
+        },
+        &quot;house_migrations_seed_quarter_full&quot;: triage_row[&quot;relays&quot;][&quot;house_migrations&quot;],
+        &quot;root_repetition&quot;: {
+            &quot;seed&quot;: seed[&quot;dispositors&quot;],
+            &quot;first_quarter&quot;: first_quarter[&quot;dispositors&quot;],
+            &quot;full&quot;: full[&quot;dispositors&quot;],
+            &quot;last_quarter&quot;: last_quarter[&quot;dispositors&quot;],
+            &quot;finding&quot;: &quot;the Moon is final in all four phases; seed and Full reduce to the Moon alone, while First Quarter adds a Jupiter-Mercury circuit and Last Quarter adds a Sun-Venus-Mars circuit&quot;,
+        },
+        &quot;distribution_development&quot;: {
+            &quot;seed&quot;: seed[&quot;distribution&quot;],
+            &quot;first_quarter&quot;: first_quarter[&quot;distribution&quot;],
+            &quot;full&quot;: full[&quot;distribution&quot;],
+            &quot;last_quarter&quot;: last_quarter[&quot;distribution&quot;],
+            &quot;occupied_span_changes_deg&quot;: {
+                &quot;seed_to_first_quarter&quot;: round(first_quarter[&quot;distribution&quot;][&quot;occupied_span_deg&quot;] - seed[&quot;distribution&quot;][&quot;occupied_span_deg&quot;], 6),
+                &quot;first_quarter_to_full&quot;: round(full[&quot;distribution&quot;][&quot;occupied_span_deg&quot;] - first_quarter[&quot;distribution&quot;][&quot;occupied_span_deg&quot;], 6),
+                &quot;full_to_last_quarter&quot;: round(last_quarter[&quot;distribution&quot;][&quot;occupied_span_deg&quot;] - full[&quot;distribution&quot;][&quot;occupied_span_deg&quot;], 6),
+            },
+            &quot;finding&quot;: &quot;the family contracts slightly at First Quarter, opens at Full phase and opens much more widely by Last Quarter; its empty-arc boundary changes at every phase&quot;,
+        },
+        &quot;aspect_development&quot;: {
+            &quot;seed_within_3_deg&quot;: selected_aspects(seed),
+            &quot;seed_declinations_within_quarter_degree&quot;: selected_declinations(seed),
+            &quot;first_quarter_within_3_deg&quot;: selected_aspects(first_quarter),
+            &quot;first_quarter_declinations_within_quarter_degree&quot;: selected_declinations(first_quarter),
+            &quot;full_within_3_deg&quot;: selected_aspects(full),
+            &quot;full_declinations_within_quarter_degree&quot;: selected_declinations(full),
+            &quot;last_quarter_within_3_deg&quot;: selected_aspects(last_quarter),
+            &quot;last_quarter_declinations_within_quarter_degree&quot;: selected_declinations(last_quarter),
+        },
+        &quot;mars_pluto_interleave&quot;: {
+            &quot;full_phase_exact_utc&quot;: full_source[&quot;exact_utc&quot;],
+            &quot;mars_pluto_conjunction&quot;: conjunction,
+            &quot;days_full_to_conjunction&quot;: round(conjunction_jd - full_jd, 6),
+            &quot;mars_pluto_opposition_exact_local&quot;: opposition[&quot;exact_local&quot;],
+            &quot;last_quarter_exact_local&quot;: cancer_last_quarter[&quot;exact_local&quot;],
+            &quot;hours_opposition_to_last_quarter&quot;: round(
+                (cancer_last_quarter[&quot;julian_day_ut&quot;] - opposition[&quot;julian_day_ut&quot;]) * 24.0, 6
+            ),
+            &quot;finding&quot;: &quot;the Cancer Full phase precedes the Mars-Pluto conjunction by roughly twenty-four days, while the same family&#x27;s Last Quarter follows the Mars-Pluto opposition by less than three hours&quot;,
+            &quot;clock_boundary&quot;: &quot;interleaving independent clocks does not merge their identities or create an evidence vote&quot;,
+        },
+        &quot;astronomical_geometry&quot;: {
+            &quot;local_horizon&quot;: {
+                &quot;seed&quot;: seed[&quot;horizon&quot;],
+                &quot;first_quarter&quot;: first_quarter[&quot;horizon&quot;],
+                &quot;full&quot;: full[&quot;horizon&quot;],
+                &quot;last_quarter&quot;: last_quarter[&quot;horizon&quot;],
+            },
+            &quot;full_phase&quot;: {
+                &quot;moon_true_altitude_deg&quot;: full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;true_altitude_deg&quot;],
+                &quot;sun_true_altitude_deg&quot;: full[&quot;bodies&quot;][&quot;Sun&quot;][&quot;true_altitude_deg&quot;],
+                &quot;previous_moonrise&quot;: horizon_event(full_jd, swe.MOON, &quot;rise&quot;, &quot;previous&quot;),
+                &quot;next_moonset&quot;: horizon_event(full_jd, swe.MOON, &quot;set&quot;, &quot;next&quot;),
+                &quot;next_sunrise&quot;: horizon_event(full_jd, swe.SUN, &quot;rise&quot;, &quot;next&quot;),
+                &quot;scale_boundary&quot;: &quot;local altitude supplies physical context only; Whole Sign house and literal visibility remain separate coordinate systems&quot;,
+            },
+        },
+        &quot;factual_comparison&quot;: {
+            &quot;research_id&quot;: &quot;july-2024-protection-financial-control-window&quot;,
+            &quot;read_first&quot;: &quot;Research Packages/July 2024 Protection and Financial Control Window/README.md&quot;,
+            &quot;selection_boundary&quot;: &quot;five federal objects were independently selected from the fixed July 2-8, 2024 Federal Register window for materiality and lifecycle traceability before astrology was allowed to hear them&quot;,
+            &quot;objects&quot;: [
+                {&quot;object&quot;: &quot;CFPB nonbank orders registry&quot;, &quot;seed_state&quot;: &quot;final rule&quot;, &quot;state_by_cutoff&quot;: &quot;effective architecture later rescinded October 29, 2025&quot;},
+                {&quot;object&quot;: &quot;OCC recovery-planning guidelines&quot;, &quot;seed_state&quot;: &quot;proposal&quot;, &quot;state_by_cutoff&quot;: &quot;finalized and effective, then formal guidelines rescinded May 1, 2026 while adjacent funding expectations remained&quot;},
+                {&quot;object&quot;: &quot;Treasury outbound-investment controls&quot;, &quot;seed_state&quot;: &quot;proposal&quot;, &quot;state_by_cutoff&quot;: &quot;31 CFR part 850 operating since January 2, 2025 with statutory successor rulemaking pending&quot;},
+                {&quot;object&quot;: &quot;FinCEN Al-Huda Bank special measure&quot;, &quot;seed_state&quot;: &quot;final rule&quot;, &quot;state_by_cutoff&quot;: &quot;effective correspondent-account prohibition still listed without rescission&quot;},
+                {&quot;object&quot;: &quot;FEMA Public Assistance update&quot;, &quot;seed_state&quot;: &quot;proposal&quot;, &quot;state_by_cutoff&quot;: &quot;comment period reopened; no final rule located by cutoff&quot;},
+            ],
+            &quot;finding&quot;: &quot;the factual maturation is a sorting among contingent-burden containers: two removed, one hardened and handed toward statute, one retained and one unfinished&quot;,
+            &quot;negative_control&quot;: &quot;the five objects are not one program; rescission does not erase adjacent authority, proposal does not equal operation, and a listed rule does not prove every transaction or enforcement outcome&quot;,
+        },
+        &quot;source_paths&quot;: [
+            &quot;99 - Templates/mundane_history.json&quot;,
+            &quot;99 - Templates/moon_lineages.json&quot;,
+            &quot;99 - Templates/chart_reading_bones/lun-2026-01-03-fu.json&quot;,
+            &quot;99 - Templates/full_moon_family_triage_2026.json&quot;,
+            &quot;99 - Templates/aries_mars_pluto_choreography.json&quot;,
+            &quot;99 - Templates/inside_relationship_seed_families.json&quot;,
+        ],
+    }
+    OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + &quot;\n&quot;)
+    print(f&quot;Wrote {OUTPUT}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

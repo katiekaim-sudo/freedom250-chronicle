@@ -1,0 +1,736 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-card-network-stablecoin-astrology-3f5e59f13495.html">
+<title>Locked Freedom 250 U.S. chart.</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · current</div><h1>Locked Freedom 250 U.S. chart.</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Money x Sky/Retail Payment Terminal Transition 2026-07-28/card-network-stablecoin-astrology-workbench/build_card_network_stablecoin_astrology.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Compute the card-network stablecoin Money × Sky research dataset.
+
+Clock policy supplied by Katie on 2026-07-29:
+- use a sourced event time when available;
+- if the event is known to have occurred during the day but no precise time is
+  established, cast 12:00 local as an explicit noon research convention;
+- if no event time is known, cast 00:00 local as an explicit midnight research
+  convention.
+
+No assumed angle or house is represented as an observed event clock.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+import importlib.util
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+OUT = HERE / &quot;CARD_NETWORK_STABLECOIN_ASTROLOGY_DATA_2026-07-29.json&quot;
+VAULT_TEMPLATES = Path(
+    &quot;Chronicle/99 - Templates&quot;
+)
+sys.path.insert(0, str(VAULT_TEMPLATES))
+_mp_spec = importlib.util.spec_from_file_location(
+    &quot;f250_minor_points&quot;, VAULT_TEMPLATES / &quot;minor_points.py&quot;
+)
+minor_points = importlib.util.module_from_spec(_mp_spec)
+assert _mp_spec.loader
+_mp_spec.loader.exec_module(minor_points)
+
+DC_LAT = 38.8951
+DC_LON = -77.0364
+
+SIGNS = [
+    &quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;,
+    &quot;Libra&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;,
+]
+PLANETS = {
+    &quot;Sun&quot;: swe.SUN,
+    &quot;Moon&quot;: swe.MOON,
+    &quot;Mercury&quot;: swe.MERCURY,
+    &quot;Venus&quot;: swe.VENUS,
+    &quot;Mars&quot;: swe.MARS,
+    &quot;Jupiter&quot;: swe.JUPITER,
+    &quot;Saturn&quot;: swe.SATURN,
+    &quot;Uranus&quot;: swe.URANUS,
+    &quot;Neptune&quot;: swe.NEPTUNE,
+    &quot;Pluto&quot;: swe.PLUTO,
+    &quot;True Node&quot;: swe.TRUE_NODE,
+}
+OUTERS = [&quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;]
+ASPECTS = [
+    (&quot;conjunction&quot;, 0.0),
+    (&quot;opposition&quot;, 180.0),
+    (&quot;square&quot;, 90.0),
+    (&quot;trine&quot;, 120.0),
+    (&quot;sextile&quot;, 60.0),
+]
+TRADITIONAL_RULERS = {
+    &quot;Aries&quot;: &quot;Mars&quot;, &quot;Taurus&quot;: &quot;Venus&quot;, &quot;Gemini&quot;: &quot;Mercury&quot;,
+    &quot;Cancer&quot;: &quot;Moon&quot;, &quot;Leo&quot;: &quot;Sun&quot;, &quot;Virgo&quot;: &quot;Mercury&quot;,
+    &quot;Libra&quot;: &quot;Venus&quot;, &quot;Scorpio&quot;: &quot;Mars&quot;, &quot;Sagittarius&quot;: &quot;Jupiter&quot;,
+    &quot;Capricorn&quot;: &quot;Saturn&quot;, &quot;Aquarius&quot;: &quot;Saturn&quot;, &quot;Pisces&quot;: &quot;Jupiter&quot;,
+}
+
+
+EVENTS = [
+    {
+        &quot;id&quot;: &quot;apple_pay_control&quot;,
+        &quot;label&quot;: &quot;Apple Pay reveal frame&quot;,
+        &quot;date&quot;: &quot;2014-09-09&quot;,
+        &quot;local_time&quot;: &quot;10:47&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;reported&quot;,
+        &quot;clock_grade&quot;: &quot;B+ reported reveal minute&quot;,
+        &quot;place&quot;: &quot;Cupertino, California&quot;,
+        &quot;lat&quot;: 37.3230,
+        &quot;lon&quot;: -122.0322,
+        &quot;place_basis&quot;: &quot;Apple event location&quot;,
+        &quot;institutional_layer&quot;: &quot;credential adapter over card rails&quot;,
+        &quot;source&quot;: &quot;https://www.apple.com/newsroom/2014/09/09Apple-Announces-Apple-Pay/&quot;,
+        &quot;source_secondary&quot;: &quot;https://www.macrumors.com/2014/09/09/iphone-6-iwatch-event-live/&quot;,
+        &quot;boundary&quot;: &quot;Apple establishes the day and place; a contemporaneous liveblog places the reveal near 10:47 a.m. PDT. Carry ±2 minutes.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;visa_acquirer_usdc&quot;,
+        &quot;label&quot;: &quot;Visa expands USDC settlement to Worldpay and Nuvei&quot;,
+        &quot;date&quot;: &quot;2023-09-05&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;San Francisco, California&quot;,
+        &quot;lat&quot;: 37.7749,
+        &quot;lon&quot;: -122.4194,
+        &quot;place_basis&quot;: &quot;press-release dateline&quot;,
+        &quot;institutional_layer&quot;: &quot;acquirer-side stablecoin settlement&quot;,
+        &quot;source&quot;: &quot;https://investor.visa.com/news/news-details/2023/Visa-Expands-Stablecoin-Settlement-Capabilities-to-Merchant-Acquirers/&quot;,
+        &quot;boundary&quot;: &quot;Primary source establishes date and San Francisco dateline, not release or operational transaction time. Midnight is an explicit research convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;visa_bridge_launch&quot;,
+        &quot;label&quot;: &quot;Visa–Bridge stablecoin-linked cards announced&quot;,
+        &quot;date&quot;: &quot;2025-04-30&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;San Francisco, California&quot;,
+        &quot;lat&quot;: 37.7749,
+        &quot;lon&quot;: -122.4194,
+        &quot;place_basis&quot;: &quot;Business Wire dateline&quot;,
+        &quot;institutional_layer&quot;: &quot;stablecoin-funded Visa card&quot;,
+        &quot;source&quot;: &quot;https://investor.visa.com/news/news-details/2025/Visa-and-Bridge-Partner-to-Make-Stablecoins-Accessible-for-Everyday-Purchases/&quot;,
+        &quot;source_secondary&quot;: &quot;https://www.businesswire.com/news/home/20250430334927/en/Visa-and-Bridge-Partner-to-Make-Stablecoins-Accessible-for-Everyday-Purchases&quot;,
+        &quot;boundary&quot;: &quot;Primary release establishes date and San Francisco dateline but no publication or launch minute. Midnight is an explicit research convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;fiserv_fiusd&quot;,
+        &quot;label&quot;: &quot;Fiserv announces FIUSD&quot;,
+        &quot;date&quot;: &quot;2025-06-23&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/Chicago&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;Milwaukee, Wisconsin&quot;,
+        &quot;lat&quot;: 43.0389,
+        &quot;lon&quot;: -87.9065,
+        &quot;place_basis&quot;: &quot;Fiserv corporate-location proxy&quot;,
+        &quot;institutional_layer&quot;: &quot;bank/core/merchant stablecoin platform&quot;,
+        &quot;source&quot;: &quot;https://investors.fiserv.com/news-releases/news-release-details/fiserv-launches-new-fiusd-stablecoin-financial-institutions&quot;,
+        &quot;boundary&quot;: &quot;Announcement date is secure; no release time or transaction time is established. Milwaukee is the corporate-location proxy and midnight is the time convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;visa_us_settlement&quot;,
+        &quot;label&quot;: &quot;Visa launches U.S. USDC settlement&quot;,
+        &quot;date&quot;: &quot;2025-12-16&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;San Francisco, California&quot;,
+        &quot;lat&quot;: 37.7749,
+        &quot;lon&quot;: -122.4194,
+        &quot;place_basis&quot;: &quot;Business Wire dateline&quot;,
+        &quot;institutional_layer&quot;: &quot;issuer/acquirer network settlement&quot;,
+        &quot;source&quot;: &quot;https://investor.visa.com/news/news-details/2025/Visa-Launches-Stablecoin-Settlement-in-the-United-States-Marking-a-Breakthrough-for-Stablecoin-Integration/default.aspx&quot;,
+        &quot;source_secondary&quot;: &quot;https://www.businesswire.com/news/home/20251216483172/en/Visa-Launches-Stablecoin-Settlement-in-the-United-States-Marking-a-Breakthrough-for-Stablecoin-Integration&quot;,
+        &quot;boundary&quot;: &quot;Announcement date and San Francisco dateline are secure; no announcement or first-settlement minute is published. Midnight is an explicit research convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;visa_bridge_expansion&quot;,
+        &quot;label&quot;: &quot;Visa–Bridge card expansion announced&quot;,
+        &quot;date&quot;: &quot;2026-03-03&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;San Francisco, California&quot;,
+        &quot;lat&quot;: 37.7749,
+        &quot;lon&quot;: -122.4194,
+        &quot;place_basis&quot;: &quot;Business Wire dateline&quot;,
+        &quot;institutional_layer&quot;: &quot;global card expansion + settlement pilot&quot;,
+        &quot;source&quot;: &quot;https://investor.visa.com/news/news-details/2026/Visa-and-Bridge-Expand-Collaboration-with-Plans-to-Bring-Stablecoin-Linked-Cards-to-Over-100-Countries/default.aspx&quot;,
+        &quot;boundary&quot;: &quot;Primary release establishes date and San Francisco dateline but no publication or activation minute. Midnight is an explicit research convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;square_bitcoin_terms&quot;,
+        &quot;label&quot;: &quot;Square Bitcoin current terms effective&quot;,
+        &quot;date&quot;: &quot;2026-03-16&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;San Francisco, California&quot;,
+        &quot;lat&quot;: 37.7749,
+        &quot;lon&quot;: -122.4194,
+        &quot;place_basis&quot;: &quot;Block corporate-location proxy&quot;,
+        &quot;institutional_layer&quot;: &quot;native non-card point of sale&quot;,
+        &quot;source&quot;: &quot;https://squareup.com/us/en/legal/general/square-bitcoin-alpha-terms&quot;,
+        &quot;source_secondary&quot;: &quot;https://squareup.com/help/us/en/article/8622-accept-and-manage-bitcoin-payments&quot;,
+        &quot;boundary&quot;: &quot;The legal effective date is charted, not the first merchant transaction. No effective-time clause was located; midnight is the stated convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;mastercard_bvnk&quot;,
+        &quot;label&quot;: &quot;Mastercard signs BVNK acquisition agreement&quot;,
+        &quot;date&quot;: &quot;2026-03-17&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/New_York&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;Purchase, New York&quot;,
+        &quot;lat&quot;: 41.0409,
+        &quot;lon&quot;: -73.7146,
+        &quot;place_basis&quot;: &quot;Mastercard press-release dateline&quot;,
+        &quot;institutional_layer&quot;: &quot;proposed stablecoin orchestration acquisition&quot;,
+        &quot;source&quot;: &quot;https://www.mastercard.com/global/en/news-and-trends/press/2026/march/Mastercard-to-acquire-BVNK-to-connect-on-chain-payments-and-fiat-rails.html&quot;,
+        &quot;source_secondary&quot;: &quot;https://www.sec.gov/Archives/edgar/data/1141391/000114139126000031/ma-20260331.htm&quot;,
+        &quot;boundary&quot;: &quot;Release establishes date and Purchase dateline but not signing or publication time. Midnight is the convention; signing is not closing.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;stripe_sessions&quot;,
+        &quot;label&quot;: &quot;Stripe Sessions stablecoin product-line announcements&quot;,
+        &quot;date&quot;: &quot;2026-04-29&quot;,
+        &quot;local_time&quot;: &quot;12:00&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;noon_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;N · known morning, noon convention&quot;,
+        &quot;place&quot;: &quot;Moscone West, San Francisco&quot;,
+        &quot;lat&quot;: 37.7843,
+        &quot;lon&quot;: -122.4016,
+        &quot;place_basis&quot;: &quot;official conference venue&quot;,
+        &quot;institutional_layer&quot;: &quot;stablecoin cards + wallet/payment infrastructure&quot;,
+        &quot;source&quot;: &quot;https://stripe.com/blog/everything-we-announced-at-sessions-2026&quot;,
+        &quot;source_secondary&quot;: &quot;https://stripe.com/sessions/2022/marketplaces&quot;,
+        &quot;boundary&quot;: &quot;Stripe says the announcements occurred &#x27;this morning&#x27; at Sessions in San Francisco. No exact product-announcement minute is used; local noon follows the user&#x27;s daytime convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;paypal_crypto_terms&quot;,
+        &quot;label&quot;: &quot;PayPal Pay with Crypto terms effective&quot;,
+        &quot;date&quot;: &quot;2026-05-19&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;San Jose, California&quot;,
+        &quot;lat&quot;: 37.3382,
+        &quot;lon&quot;: -121.8863,
+        &quot;place_basis&quot;: &quot;PayPal corporate-location proxy&quot;,
+        &quot;institutional_layer&quot;: &quot;crypto-funded checkout through PYUSD to fiat&quot;,
+        &quot;source&quot;: &quot;https://www.paypal.com/us/legalhub/paypal/crypto-payment-method?locale.x=en_US&quot;,
+        &quot;boundary&quot;: &quot;The operative date is charted; no effective-time clause or first transaction is established. Midnight is the explicit convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;mastercard_settlement&quot;,
+        &quot;label&quot;: &quot;Mastercard expands stablecoin settlement&quot;,
+        &quot;date&quot;: &quot;2026-06-03&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/New_York&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;Purchase, New York&quot;,
+        &quot;lat&quot;: 41.0409,
+        &quot;lon&quot;: -73.7146,
+        &quot;place_basis&quot;: &quot;Mastercard press-release dateline&quot;,
+        &quot;institutional_layer&quot;: &quot;multi-asset network settlement rollout&quot;,
+        &quot;source&quot;: &quot;https://www.mastercard.com/global/en/news-and-trends/press/2026/june/mastercard-expands-settlement-capabilities-to-include-stablecoin.html&quot;,
+        &quot;boundary&quot;: &quot;Release establishes date and Purchase dateline but no release or settlement minute. Midnight is the explicit convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;hyperwallet_pyusd&quot;,
+        &quot;label&quot;: &quot;Hyperwallet PYUSD payout terms effective&quot;,
+        &quot;date&quot;: &quot;2026-06-29&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;San Jose, California&quot;,
+        &quot;lat&quot;: 37.3382,
+        &quot;lon&quot;: -121.8863,
+        &quot;place_basis&quot;: &quot;PayPal corporate-location proxy&quot;,
+        &quot;institutional_layer&quot;: &quot;fiat-funded stablecoin payee payout&quot;,
+        &quot;source&quot;: &quot;https://www.paypal.com/us/legalhub/paypal/hyperwallet-pyusd-payouts-tnc?country.x=US&amp;locale.x=en_US&quot;,
+        &quot;boundary&quot;: &quot;The operative date is charted; no effective-time clause or first payout minute is established. Midnight is the explicit convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;jcb_circle_mou&quot;,
+        &quot;label&quot;: &quot;JCB–Circle stablecoin MOU announced&quot;,
+        &quot;date&quot;: &quot;2026-07-14&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;Asia/Tokyo&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;Minato-ku, Tokyo&quot;,
+        &quot;lat&quot;: 35.6581,
+        &quot;lon&quot;: 139.7516,
+        &quot;place_basis&quot;: &quot;JCB head-office location stated in release&quot;,
+        &quot;institutional_layer&quot;: &quot;cross-border treasury + store-payment PoCs&quot;,
+        &quot;source&quot;: &quot;https://www.global.jcb/en/press/2026/202607141000_products.html&quot;,
+        &quot;boundary&quot;: &quot;Release establishes date and JCB head-office location but no signing or publication time. The URL suffix is not treated as authenticated clock evidence; midnight is the convention.&quot;,
+    },
+    {
+        &quot;id&quot;: &quot;visa_vsp&quot;,
+        &quot;label&quot;: &quot;Visa Stablecoin Platform announced&quot;,
+        &quot;date&quot;: &quot;2026-07-16&quot;,
+        &quot;local_time&quot;: &quot;00:00&quot;,
+        &quot;timezone&quot;: &quot;America/Los_Angeles&quot;,
+        &quot;clock_mode&quot;: &quot;midnight_proxy&quot;,
+        &quot;clock_grade&quot;: &quot;M · midnight convention&quot;,
+        &quot;place&quot;: &quot;San Francisco, California&quot;,
+        &quot;lat&quot;: 37.7749,
+        &quot;lon&quot;: -122.4194,
+        &quot;place_basis&quot;: &quot;Business Wire dateline&quot;,
+        &quot;institutional_layer&quot;: &quot;wallet + mint/burn + network control plane&quot;,
+        &quot;source&quot;: &quot;https://investor.visa.com/news/news-details/2026/Visa-Introduces-Platform-for-Stablecoin-Minting-Movement-and-Management/default.aspx&quot;,
+        &quot;boundary&quot;: &quot;Primary release establishes date and San Francisco dateline but no publication or beta-start minute. Midnight is the explicit convention.&quot;,
+    },
+]
+
+
+def julday(dt: datetime) -&gt; float:
+    utc = dt.astimezone(timezone.utc)
+    hour = utc.hour + utc.minute / 60 + utc.second / 3600
+    return swe.julday(utc.year, utc.month, utc.day, hour)
+
+
+def position(jd: float, body: str) -&gt; tuple[float, float]:
+    values, _ = swe.calc_ut(jd, PLANETS[body], swe.FLG_SWIEPH | swe.FLG_SPEED)
+    return values[0] % 360, values[3]
+
+
+def sign(longitude: float) -&gt; str:
+    return SIGNS[int(longitude // 30) % 12]
+
+
+def format_position(longitude: float) -&gt; str:
+    return f&quot;{longitude % 30:.2f}° {sign(longitude)}&quot;
+
+
+def angular_distance(a: float, b: float) -&gt; float:
+    return abs((a - b + 180) % 360 - 180)
+
+
+def aspect_hit(a: float, b: float, max_orb: float):
+    separation = angular_distance(a, b)
+    name, angle, orb = min(
+        ((name, angle, abs(separation - angle)) for name, angle in ASPECTS),
+        key=lambda item: item[2],
+    )
+    return (name, angle, orb) if orb &lt;= max_orb else None
+
+
+def applying_state(jd: float, moving: str, target: float, angle: float) -&gt; str:
+    now = abs(angular_distance(position(jd, moving)[0], target) - angle)
+    later = abs(angular_distance(position(jd + 0.25, moving)[0], target) - angle)
+    return &quot;applying&quot; if later &lt; now else &quot;separating&quot;
+
+
+def mutual_applying_state(jd: float, first: str, second: str, angle: float) -&gt; str:
+    now = abs(angular_distance(position(jd, first)[0], position(jd, second)[0]) - angle)
+    later = abs(
+        angular_distance(position(jd + 0.25, first)[0], position(jd + 0.25, second)[0])
+        - angle
+    )
+    return &quot;applying&quot; if later &lt; now else &quot;separating&quot;
+
+
+def midpoint(a: float, b: float) -&gt; float:
+    return (a + ((b - a) % 360) / 2) % 360
+
+
+def whole_sign_house(longitude: float, ascendant: float) -&gt; int:
+    return ((int(longitude // 30) - int(ascendant // 30)) % 12) + 1
+
+
+def dispositor_path(body: str, positions: dict) -&gt; list[str]:
+    path = [body]
+    seen = {body}
+    current = body
+    for _ in range(12):
+        ruler = TRADITIONAL_RULERS[sign(positions[current][&quot;longitude&quot;])]
+        path.append(ruler)
+        if ruler == current or ruler in seen:
+            break
+        seen.add(ruler)
+        current = ruler
+    return path
+
+
+# Locked Freedom 250 U.S. chart.
+PHL_LON = -75.1652
+US_UT_HOUR = 17 + 10 / 60 - PHL_LON / 15
+US_JD = swe.julday(1776, 7, 2, US_UT_HOUR)
+US_NATAL = {body: position(US_JD, body)[0] for body in PLANETS}
+US_MONEY = {body: US_NATAL[body] for body in [&quot;Venus&quot;, &quot;Jupiter&quot;, &quot;Sun&quot;, &quot;Mercury&quot;, &quot;Moon&quot;, &quot;Pluto&quot;]}
+US_MIDPOINTS = {
+    &quot;Venus/Jupiter&quot;: midpoint(US_NATAL[&quot;Venus&quot;], US_NATAL[&quot;Jupiter&quot;]),
+    &quot;Sun/Jupiter&quot;: midpoint(US_NATAL[&quot;Sun&quot;], US_NATAL[&quot;Jupiter&quot;]),
+    &quot;Moon/Pluto&quot;: midpoint(US_NATAL[&quot;Moon&quot;], US_NATAL[&quot;Pluto&quot;]),
+    &quot;Saturn/Pluto&quot;: midpoint(US_NATAL[&quot;Saturn&quot;], US_NATAL[&quot;Pluto&quot;]),
+}
+
+
+def cast_positions(jd: float, ascendant: float) -&gt; tuple[dict, str]:
+    positions = {}
+    for body in PLANETS:
+        longitude, speed = position(jd, body)
+        positions[body] = {
+            &quot;longitude&quot;: round(longitude, 6),
+            &quot;position&quot;: format_position(longitude),
+            &quot;retrograde&quot;: speed &lt; 0,
+            &quot;whole_sign_house&quot;: whole_sign_house(longitude, ascendant),
+        }
+
+    true_node = positions[&quot;True Node&quot;][&quot;longitude&quot;]
+    south_node = (true_node + 180) % 360
+    positions[&quot;SNode&quot;] = {
+        &quot;longitude&quot;: round(south_node, 6),
+        &quot;position&quot;: format_position(south_node),
+        &quot;retrograde&quot;: positions[&quot;True Node&quot;][&quot;retrograde&quot;],
+        &quot;whole_sign_house&quot;: whole_sign_house(south_node, ascendant),
+    }
+
+    chiron_values, _ = swe.calc_ut(jd, swe.CHIRON, swe.FLG_SWIEPH | swe.FLG_SPEED)
+    chiron = chiron_values[0] % 360
+    positions[&quot;Chiron&quot;] = {
+        &quot;longitude&quot;: round(chiron, 6),
+        &quot;position&quot;: format_position(chiron),
+        &quot;retrograde&quot;: chiron_values[3] &lt; 0,
+        &quot;whole_sign_house&quot;: whole_sign_house(chiron, ascendant),
+    }
+
+    try:
+        america = minor_points.america_lon(jd) % 360
+        america_speed = minor_points.america_speed(jd)
+    except ValueError:
+        america = None
+        america_speed = 0.0
+    if america is not None:
+        positions[&quot;America&quot;] = {
+            &quot;longitude&quot;: round(america, 6),
+            &quot;position&quot;: format_position(america),
+            &quot;retrograde&quot;: america_speed &lt; 0,
+            &quot;whole_sign_house&quot;: whole_sign_house(america, ascendant),
+        }
+        america_status = &quot;available from the canonical daily JPL Horizons cache&quot;
+    else:
+        america_status = (
+            &quot;unavailable outside the canonical 2024-01-01 to 2031-01-01 &quot;
+            &quot;America cache; no extrapolation&quot;
+        )
+    return positions, america_status
+
+
+def chart_aspects(jd: float, positions: dict) -&gt; tuple[list, list]:
+    aspects = []
+    bodies = list(PLANETS)
+    for index, first in enumerate(bodies):
+        for second in bodies[index + 1:]:
+            max_orb = 8.0 if first in {&quot;Sun&quot;, &quot;Moon&quot;} or second in {&quot;Sun&quot;, &quot;Moon&quot;} else 6.0
+            hit = aspect_hit(positions[first][&quot;longitude&quot;], positions[second][&quot;longitude&quot;], max_orb)
+            if hit:
+                name, angle, orb = hit
+                aspects.append({
+                    &quot;pair&quot;: f&quot;{first}–{second}&quot;,
+                    &quot;aspect&quot;: name,
+                    &quot;orb&quot;: round(orb, 3),
+                    &quot;state&quot;: mutual_applying_state(jd, first, second, angle),
+                })
+
+    point_hits = []
+    for point in (&quot;True Node&quot;, &quot;Chiron&quot;, &quot;America&quot;):
+        if point not in positions:
+            continue
+        for planet in [name for name in PLANETS if name != &quot;True Node&quot;]:
+            hit = aspect_hit(
+                positions[point][&quot;longitude&quot;],
+                positions[planet][&quot;longitude&quot;],
+                2.0,
+            )
+            if hit:
+                name, _angle, orb = hit
+                point_hits.append({
+                    &quot;point&quot;: &quot;Node&quot; if point == &quot;True Node&quot; else point,
+                    &quot;aspect&quot;: name,
+                    &quot;planet&quot;: planet,
+                    &quot;orb&quot;: round(orb, 3),
+                })
+    return (
+        sorted(aspects, key=lambda item: item[&quot;orb&quot;]),
+        sorted(point_hits, key=lambda item: item[&quot;orb&quot;]),
+    )
+
+
+def cast_context(
+    event: dict,
+    jd: float,
+    instant_utc: datetime,
+    lat: float,
+    lon: float,
+    place: str,
+    timezone_name: str,
+    dc_companion: bool = False,
+) -&gt; tuple[dict, list, str]:
+    local_frame = instant_utc.astimezone(ZoneInfo(timezone_name))
+    _, ascmc = swe.houses(jd, lat, lon, b&quot;W&quot;)
+    positions, america_status = cast_positions(jd, ascmc[0])
+    aspects, point_hits = chart_aspects(jd, positions)
+
+    angle_contacts = []
+    for body in PLANETS:
+        record = positions[body]
+        for angle_name, angle_longitude in ((&quot;Ascendant&quot;, ascmc[0]), (&quot;MC&quot;, ascmc[1])):
+            separation = angular_distance(record[&quot;longitude&quot;], angle_longitude)
+            for aspect_name, aspect_angle in (
+                (&quot;conjunction&quot;, 0.0), (&quot;opposition&quot;, 180.0), (&quot;square&quot;, 90.0)
+            ):
+                orb = abs(separation - aspect_angle)
+                if orb &lt;= 3.0:
+                    angle_contacts.append({
+                        &quot;planet&quot;: body,
+                        &quot;aspect&quot;: aspect_name,
+                        &quot;angle&quot;: angle_name,
+                        &quot;orb&quot;: round(orb, 3),
+                    })
+                    break
+
+    assumed = event[&quot;clock_mode&quot;] != &quot;reported&quot;
+    if event[&quot;clock_mode&quot;] == &quot;reported&quot;:
+        quality = &quot;reported context chart&quot;
+        base_cap = &quot;reported reveal frame · ±2 minutes&quot;
+        base_caption = (
+            &quot;Reported reveal-frame chart; angles and houses carry the stated &quot;
+            &quot;±2-minute source boundary.&quot;
+        )
+    elif event[&quot;clock_mode&quot;] == &quot;noon_proxy&quot;:
+        quality = &quot;assumed noon chart&quot;
+        base_cap = &quot;synthetic noon chart · daytime convention&quot;
+        base_caption = (
+            &quot;Synthetic chart because the source establishes a daytime event but &quot;
+            &quot;not its precise minute. Angles and houses are convention-derived.&quot;
+        )
+    else:
+        quality = &quot;assumed midnight chart&quot;
+        base_cap = &quot;synthetic midnight chart · unknown-time convention&quot;
+        base_caption = (
+            &quot;Synthetic chart because no event time is established. Angles and &quot;
+            &quot;houses are convention-derived.&quot;
+        )
+
+    if dc_companion:
+        cap1 = f&quot;{event[&#x27;label&#x27;]} · Washington, D.C. companion&quot;
+        cap2 = f&quot;Whole Sign · same instant · {base_cap}&quot;
+        caption = (
+            &quot;Washington, D.C. relocation companion at the same instant. &quot;
+            + (
+                &quot;Its national mundane angles and houses carry the stated ±2-minute boundary.&quot;
+                if not assumed
+                else &quot;Its angles and houses remain convention-derived and are not observed event geometry.&quot;
+            )
+        )
+    else:
+        cap1 = f&quot;{event[&#x27;label&#x27;]} · {place}&quot;
+        cap2 = f&quot;Whole Sign · {base_cap}&quot;
+        caption = base_caption
+
+    context = {
+        &quot;utc&quot;: instant_utc.isoformat().replace(&quot;+00:00&quot;, &quot;Z&quot;),
+        &quot;local&quot;: f&quot;{local_frame.strftime(&#x27;%Y-%m-%d %H:%M&#x27;)} {local_frame.tzname()}&quot;,
+        &quot;display&quot;: (
+            f&quot;{local_frame.strftime(&#x27;%-d %b %Y · %-I:%M %p&#x27;)} &quot;
+            f&quot;{local_frame.tzname()}&quot;
+        ),
+        &quot;place&quot;: place,
+        &quot;ascendant&quot;: {&quot;longitude&quot;: round(ascmc[0], 6), &quot;position&quot;: format_position(ascmc[0])},
+        &quot;mc&quot;: {&quot;longitude&quot;: round(ascmc[1], 6), &quot;position&quot;: format_position(ascmc[1])},
+        &quot;positions&quot;: positions,
+        &quot;aspects&quot;: aspects,
+        &quot;point_aspects&quot;: point_hits,
+        &quot;angle_contacts&quot;: sorted(angle_contacts, key=lambda item: item[&quot;orb&quot;]),
+        &quot;chart_ruler&quot;: TRADITIONAL_RULERS[sign(ascmc[0])],
+        &quot;chart_ruler_path&quot;: dispositor_path(TRADITIONAL_RULERS[sign(ascmc[0])], positions),
+        &quot;cap1&quot;: cap1,
+        &quot;cap2&quot;: cap2,
+        &quot;caption&quot;: caption,
+        &quot;clock_mode&quot;: event[&quot;clock_mode&quot;],
+        &quot;time_assumed&quot;: assumed,
+        &quot;america_status&quot;: america_status,
+        &quot;boundary&quot;: event[&quot;boundary&quot;],
+    }
+    return context, point_hits, quality
+
+
+def build_event(event: dict) -&gt; dict:
+    hour, minute = (int(value) for value in event[&quot;local_time&quot;].split(&quot;:&quot;))
+    local_dt = datetime.fromisoformat(event[&quot;date&quot;]).replace(
+        hour=hour,
+        minute=minute,
+        tzinfo=ZoneInfo(event[&quot;timezone&quot;]),
+    )
+    utc_dt = local_dt.astimezone(timezone.utc)
+    jd = julday(local_dt)
+
+    context, point_hits, quality = cast_context(
+        event,
+        jd,
+        utc_dt,
+        event[&quot;lat&quot;],
+        event[&quot;lon&quot;],
+        event[&quot;place&quot;],
+        event[&quot;timezone&quot;],
+    )
+    dc_context, _dc_point_hits, _dc_quality = cast_context(
+        event,
+        jd,
+        utc_dt,
+        DC_LAT,
+        DC_LON,
+        &quot;Washington, D.C.&quot;,
+        &quot;America/New_York&quot;,
+        dc_companion=True,
+    )
+    positions = context[&quot;positions&quot;]
+
+    outer_cycles = []
+    for index, first in enumerate(OUTERS):
+        for second in OUTERS[index + 1:]:
+            hit = aspect_hit(positions[first][&quot;longitude&quot;], positions[second][&quot;longitude&quot;], 8.0)
+            if hit:
+                name, angle, orb = hit
+                outer_cycles.append({
+                    &quot;pair&quot;: f&quot;{first}–{second}&quot;,
+                    &quot;aspect&quot;: name,
+                    &quot;orb&quot;: round(orb, 3),
+                    &quot;state&quot;: mutual_applying_state(jd, first, second, angle),
+                })
+
+    us_hits = []
+    for moving in OUTERS:
+        for natal, natal_longitude in US_MONEY.items():
+            hit = aspect_hit(positions[moving][&quot;longitude&quot;], natal_longitude, 3.0)
+            if hit:
+                name, angle, orb = hit
+                us_hits.append({
+                    &quot;transit&quot;: moving,
+                    &quot;aspect&quot;: name,
+                    &quot;natal&quot;: natal,
+                    &quot;orb&quot;: round(orb, 3),
+                    &quot;state&quot;: applying_state(jd, moving, natal_longitude, angle),
+                })
+
+    midpoint_hits = []
+    for moving in OUTERS:
+        for midpoint_name, midpoint_longitude in US_MIDPOINTS.items():
+            separation = angular_distance(positions[moving][&quot;longitude&quot;], midpoint_longitude)
+            nearest = min([0, 45, 90, 135, 180], key=lambda angle: abs(separation - angle))
+            orb = abs(separation - nearest)
+            if orb &lt;= 1.5:
+                midpoint_hits.append({
+                    &quot;transit&quot;: moving,
+                    &quot;midpoint&quot;: midpoint_name,
+                    &quot;harmonic_angle&quot;: nearest,
+                    &quot;orb&quot;: round(orb, 3),
+                })
+
+    assumed = event[&quot;clock_mode&quot;] != &quot;reported&quot;
+    return {
+        **event,
+        &quot;proxy_utc&quot;: utc_dt.isoformat().replace(&quot;+00:00&quot;, &quot;Z&quot;),
+        &quot;chart_quality&quot;: quality,
+        &quot;positions&quot;: positions,
+        &quot;outer_cycles&quot;: sorted(outer_cycles, key=lambda item: item[&quot;orb&quot;]),
+        &quot;us_money_axis_hits&quot;: sorted(us_hits, key=lambda item: item[&quot;orb&quot;]),
+        &quot;us_money_midpoint_hits&quot;: sorted(midpoint_hits, key=lambda item: item[&quot;orb&quot;]),
+        &quot;minor_point_aspects&quot;: point_hits,
+        &quot;america_status&quot;: context[&quot;america_status&quot;],
+        &quot;angles_assumed&quot;: assumed,
+        &quot;houses_assumed&quot;: assumed,
+        &quot;contextual_container_clock&quot;: context,
+        &quot;dc_companion_clock&quot;: dc_context,
+    }
+
+
+def main() -&gt; None:
+    records = [build_event(event) for event in EVENTS]
+    payload = {
+        &quot;title&quot;: &quot;Card-Network Stablecoin Product Lines — Astrology Data&quot;,
+        &quot;generated_utc&quot;: datetime.now(timezone.utc).isoformat(),
+        &quot;cutoff&quot;: &quot;2026-07-29&quot;,
+        &quot;method&quot;: {
+            &quot;ephemeris&quot;: &quot;Swiss Ephemeris; geocentric tropical&quot;,
+            &quot;houses&quot;: &quot;Whole Sign&quot;,
+            &quot;minor_points&quot;: (
+                &quot;True Node/South Node and Chiron on every chart; 916 America &quot;
+                &quot;from the canonical vault JPL Horizons cache where available&quot;
+            ),
+            &quot;america_cache_boundary&quot;: (
+                &quot;2024-01-01 through 2031-01-01; 2014 and 2023 anchors are &quot;
+                &quot;marked unavailable and are not extrapolated&quot;
+            ),
+            &quot;dc_companion&quot;: (
+                &quot;Every stated-place event carries a Washington, D.C. relocation &quot;
+                &quot;companion at the same instant; national mundane angle reading &quot;
+                &quot;belongs to the D.C. frame&quot;
+            ),
+            &quot;clock_policy&quot;: {
+                &quot;reported&quot;: &quot;Use source-supported event time with its stated uncertainty.&quot;,
+                &quot;noon_proxy&quot;: &quot;Known daytime event without precise time: 12:00 local synthetic chart.&quot;,
+                &quot;midnight_proxy&quot;: &quot;Unknown event time: 00:00 local synthetic chart.&quot;,
+            },
+            &quot;us_chart&quot;: &quot;1776-07-02 17:10 LMT Philadelphia; locked Sagittarius-rising Freedom 250 chart&quot;,
+            &quot;outer_mutual_orb&quot;: 8.0,
+            &quot;outer_to_us_money_axis_orb&quot;: 3.0,
+            &quot;mod45_money_midpoint_orb&quot;: 1.5,
+            &quot;score&quot;: None,
+            &quot;causal_claim&quot;: False,
+        },
+        &quot;clock_counts&quot;: {
+            mode: sum(event[&quot;clock_mode&quot;] == mode for event in records)
+            for mode in [&quot;reported&quot;, &quot;noon_proxy&quot;, &quot;midnight_proxy&quot;]
+        },
+        &quot;america_counts&quot;: {
+            &quot;available&quot;: sum(&quot;America&quot; in event[&quot;positions&quot;] for event in records),
+            &quot;unavailable&quot;: sum(&quot;America&quot; not in event[&quot;positions&quot;] for event in records),
+        },
+        &quot;dc_companion_count&quot;: sum(bool(event.get(&quot;dc_companion_clock&quot;)) for event in records),
+        &quot;events&quot;: records,
+    }
+    OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+    print(
+        f&quot;wrote {OUT} · {len(records)} charts · &quot;
+        f&quot;{payload[&#x27;clock_counts&#x27;]}&quot;
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

@@ -1,0 +1,98 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-eclipse-local-circumstances-6a9f45b59a36.html">
+<title>test_eclipse_local_circumstances</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_eclipse_local_circumstances</h1><p class="mut">Portable source: 99 - Templates/test_eclipse_local_circumstances.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Invariant tests for the Washington-local 2024-2026 eclipse layer.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+import unittest
+from datetime import datetime
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+DATA = HERE / &quot;eclipse_local_circumstances.json&quot;
+
+
+def parse(value: str) -&gt; datetime:
+    return datetime.fromisoformat(value.replace(&quot;Z&quot;, &quot;+00:00&quot;))
+
+
+class EclipseLocalCircumstancesTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -&gt; None:
+        cls.payload = json.loads(DATA.read_text(encoding=&quot;utf-8&quot;))
+        cls.events = {event[&quot;date&quot;]: event for event in cls.payload[&quot;events&quot;]}
+
+    def test_complete_ordered_nine_event_sequence(self) -&gt; None:
+        self.assertEqual(
+            [event[&quot;date&quot;] for event in self.payload[&quot;events&quot;]],
+            [
+                &quot;2024-10-02&quot;,
+                &quot;2025-03-14&quot;,
+                &quot;2025-03-29&quot;,
+                &quot;2025-09-07&quot;,
+                &quot;2025-09-21&quot;,
+                &quot;2026-02-17&quot;,
+                &quot;2026-03-03&quot;,
+                &quot;2026-08-12&quot;,
+                &quot;2026-08-28&quot;,
+            ],
+        )
+
+    def test_libra_seed_path_and_washington_visibility_stay_separate(self) -&gt; None:
+        seed = self.events[&quot;2024-10-02&quot;]
+        self.assertEqual(seed[&quot;global&quot;][&quot;type&quot;], &quot;annular&quot;)
+        self.assertFalse(seed[&quot;washington&quot;][&quot;visible&quot;])
+        self.assertEqual(seed[&quot;washington&quot;][&quot;local_type&quot;], &quot;none&quot;)
+        self.assertGreater(seed[&quot;washington&quot;][&quot;sun_true_altitude_at_syzygy_deg&quot;], 30)
+
+    def test_horizon_threshold_events_remain_distinct(self) -&gt; None:
+        aries_seed = self.events[&quot;2025-03-29&quot;][&quot;washington&quot;]
+        self.assertEqual(aries_seed[&quot;status&quot;], &quot;visible_at_sunrise&quot;)
+        self.assertLess(aries_seed[&quot;sun_true_altitude_at_syzygy_deg&quot;], 0)
+        self.assertLess(aries_seed[&quot;observable_minutes&quot;], 3)
+        self.assertLess(aries_seed[&quot;obscuration_at_observable_maximum&quot;], 0.02)
+
+        virgo_reveal = self.events[&quot;2026-03-03&quot;]
+        self.assertEqual(virgo_reveal[&quot;washington&quot;][&quot;status&quot;], &quot;sets_during_eclipse&quot;)
+        self.assertLess(virgo_reveal[&quot;washington&quot;][&quot;moon_true_altitude_at_syzygy_deg&quot;], 0)
+        moonset = parse(virgo_reveal[&quot;washington&quot;][&quot;moonset_during_eclipse&quot;][&quot;utc&quot;])
+        syzygy = parse(virgo_reveal[&quot;global&quot;][&quot;syzygy&quot;][&quot;utc&quot;])
+        self.assertLess(moonset, syzygy)
+        self.assertGreater(virgo_reveal[&quot;washington&quot;][&quot;total_phase&quot;][&quot;minutes_above_horizon&quot;], 30)
+
+    def test_path_and_horizon_are_not_collapsed(self) -&gt; None:
+        september = self.events[&quot;2025-09-21&quot;][&quot;washington&quot;]
+        self.assertFalse(september[&quot;visible&quot;])
+        self.assertGreater(september[&quot;sun_true_altitude_at_global_max_deg&quot;], 30)
+
+        february = self.events[&quot;2026-02-17&quot;][&quot;washington&quot;]
+        self.assertFalse(february[&quot;visible&quot;])
+        self.assertLess(abs(february[&quot;sun_true_altitude_at_syzygy_deg&quot;]), 0.1)
+
+    def test_global_type_does_not_overwrite_local_type(self) -&gt; None:
+        august_solar = self.events[&quot;2026-08-12&quot;]
+        self.assertEqual(august_solar[&quot;global&quot;][&quot;type&quot;], &quot;total&quot;)
+        self.assertEqual(august_solar[&quot;washington&quot;][&quot;local_type&quot;], &quot;partial&quot;)
+        self.assertLess(august_solar[&quot;washington&quot;][&quot;obscuration_at_observable_maximum&quot;], 0.05)
+        self.assertGreater(august_solar[&quot;washington&quot;][&quot;observable_minutes&quot;], 60)
+
+        august_lunar = self.events[&quot;2026-08-28&quot;]
+        self.assertEqual(august_lunar[&quot;global&quot;][&quot;type&quot;], &quot;partial&quot;)
+        self.assertGreater(august_lunar[&quot;washington&quot;][&quot;umbral_magnitude&quot;], 0.9)
+        self.assertGreater(august_lunar[&quot;washington&quot;][&quot;partial_phase&quot;][&quot;minutes_above_horizon&quot;], 190)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

@@ -1,0 +1,1355 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-long-clock-personas-af0dbf4ae2b9.html">
+<title>build_long_clock_personas</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · current</div><h1>build_long_clock_personas</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Persona &amp; Relationship Work/Long Clock Persona Hearings 2026-08-23/build_long_clock_personas.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build factual persona subsidiaries for all ten governed Long Clock anchors.
+
+This builder is intentionally confined to its package.  It creates one shared
+persona chart for each governed conjunction pair, keyed to the registry&#x27;s
+display anchor pass, and assigns the two conjunct bodies focal lenses inside
+that one zero-vote subsidiary chart.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+import html
+import importlib.util
+import json
+import math
+import subprocess
+import sys
+import tempfile
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any
+
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+DATA_DIR = HERE / &quot;data&quot;
+CHARTS_DIR = HERE / &quot;charts&quot;
+INDEX_PATH = DATA_DIR / &quot;index.json&quot;
+HUB_PATH = CHARTS_DIR / &quot;index.html&quot;
+MANIFEST_PATH = HERE / &quot;manifest.json&quot;
+
+VAULT = Path(&quot;Chronicle/&quot;)
+TEMPLATES = VAULT / &quot;99 - Templates&quot;
+REGISTRY_PATH = TEMPLATES / &quot;synodic_seed_families.json&quot;
+SYNODIC_PATH = TEMPLATES / &quot;synodic_cycles.py&quot;
+CONVENTIONS_PATH = TEMPLATES / &quot;chart_conventions.py&quot;
+WHEEL_PATH = TEMPLATES / &quot;wheel_lib.py&quot;
+AMERICA_PATH = TEMPLATES / &quot;america.py&quot;
+SENTIENT_SUN = Path(&quot;[local-path-removed] Sun&quot;)
+TRADITIONAL_TABLES_PATH = SENTIENT_SUN / &quot;canonical_traditional_tables.py&quot;
+BASE_BUILDER_PATH = HERE.parent / &quot;Persona Pilots&quot; / (
+    &quot;Deep Current Persona Charts Saturn-Neptune 2026-08-22/&quot;
+    &quot;build_saturn_neptune_conjunction_persona.py&quot;
+)
+PERSONA_METHOD_PATH = Path(
+    &quot;[local-path-removed] General/outputs/&quot;
+    &quot;persona_charts_research_2026-07-22/&quot;
+    &quot;PERSONA_CHARTS_CLEAN_METHOD_REFERENCE.md&quot;
+)
+
+
+def load_module(path: Path, name: str) -&gt; Any:
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f&quot;Could not load {path}&quot;)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+BASE = load_module(BASE_BUILDER_PATH, &quot;f250_long_clock_persona_base&quot;)
+SYNODIC = load_module(SYNODIC_PATH, &quot;f250_long_clock_persona_synodic&quot;)
+CONVENTIONS = load_module(CONVENTIONS_PATH, &quot;f250_long_clock_persona_conventions&quot;)
+TABLES = load_module(TRADITIONAL_TABLES_PATH, &quot;f250_long_clock_persona_traditional_tables&quot;)
+
+calculator = BASE.calculator
+structure = BASE.structure
+america = BASE.america
+WHEEL = BASE.WHEEL
+calculator.dignity_label = TABLES.dignity_classification
+calculator.dignity_labels = TABLES.dignity_labels
+
+PLACE = str(CONVENTIONS.DC_LABEL)
+LATITUDE = float(CONVENTIONS.DC_LAT)
+LONGITUDE = float(CONVENTIONS.DC_LON)
+ZONE = CONVENTIONS.DC_TZ
+SIGNS = tuple(calculator.SIGNS)
+PLANET_CODES = dict(BASE.PLANET_CODES)
+PLANET_ORDER = tuple(PLANET_CODES)
+TRADITIONAL_BODIES = tuple(BASE.TRADITIONAL_BODIES)
+TRACKED_CHANGE_BODIES = (&quot;Mercury&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;)
+SLOW_BODIES = (&quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;)
+OUTER_BODIES = (&quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;)
+WHEEL_BODY_ORDER = (
+    &quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;,
+    &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;, &quot;Chiron&quot;, &quot;Node&quot;, &quot;SNode&quot;, &quot;America&quot;,
+)
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def flag_names(bits: int) -&gt; list[str]:
+    names = []
+    for name, value in (
+        (&quot;FLG_JPLEPH&quot;, swe.FLG_JPLEPH),
+        (&quot;FLG_SWIEPH&quot;, swe.FLG_SWIEPH),
+        (&quot;FLG_MOSEPH&quot;, swe.FLG_MOSEPH),
+        (&quot;FLG_SPEED&quot;, swe.FLG_SPEED),
+    ):
+        if bits &amp; value:
+            names.append(name)
+    return names
+
+
+def calc_flag_receipt(jd_ut: float) -&gt; dict[str, Any]:
+    requested = swe.FLG_SWIEPH | swe.FLG_SPEED
+    returned: dict[str, Any] = {}
+    for body, code in PLANET_CODES.items():
+        _position, actual = swe.calc_ut(jd_ut, code, requested)
+        returned[body] = {
+            &quot;bits&quot;: int(actual),
+            &quot;names&quot;: flag_names(int(actual)),
+            &quot;fallback_from_requested_swieph&quot;: bool(
+                (requested &amp; swe.FLG_SWIEPH)
+                and not (actual &amp; swe.FLG_SWIEPH)
+                and (actual &amp; swe.FLG_MOSEPH)
+            ),
+        }
+    ephe_path = Path(calculator.EPHE_PATH) if calculator.EPHE_PATH else None
+    return {
+        &quot;requested&quot;: {&quot;bits&quot;: requested, &quot;names&quot;: flag_names(requested)},
+        &quot;returned_by_body&quot;: returned,
+        &quot;all_planets_returned_same_bits&quot;: len(
+            {row[&quot;bits&quot;] for row in returned.values()}
+        )
+        == 1,
+        &quot;fallback_observed&quot;: any(
+            row[&quot;fallback_from_requested_swieph&quot;] for row in returned.values()
+        ),
+        &quot;ephemeris_path&quot;: None if ephe_path is None else str(ephe_path),
+        &quot;ephemeris_files&quot;: {
+            &quot;sepl_18.se1_planets&quot;: bool(ephe_path and (ephe_path / &quot;sepl_18.se1&quot;).exists()),
+            &quot;seas_18.se1_asteroids&quot;: bool(ephe_path and (ephe_path / &quot;seas_18.se1&quot;).exists()),
+        },
+        &quot;receipt_boundary&quot;: (
+            &quot;Returned flags, not requested flags, name the planetary ephemeris. &quot;
+            &quot;A Moshier fallback is reported explicitly and is not called an &quot;
+            &quot;independent Swiss-file verification.&quot;
+        ),
+    }
+
+
+def load_registry() -&gt; tuple[dict[str, Any], dict[str, Any]]:
+    registry = SYNODIC.load_seed_registry(REGISTRY_PATH)
+    if registry.get(&quot;schema&quot;) != &quot;freedom250.long-clocks.seed-families/v1&quot;:
+        raise RuntimeError(&quot;Unsupported Long Clocks registry schema&quot;)
+    if registry.get(&quot;status&quot;) != &quot;active&quot;:
+        raise RuntimeError(&quot;Long Clocks registry is not active&quot;)
+    validation = SYNODIC.validate_seed_registry(registry)
+    if not validation[&quot;ok&quot;]:
+        raise RuntimeError(f&quot;Long Clocks registry invalid: {validation[&#x27;errors&#x27;]}&quot;)
+    if len(registry[&quot;cycles&quot;]) != 10 or validation[&quot;pass_count&quot;] != 20:
+        raise RuntimeError(&quot;Long Clocks registry must govern 10 cycles / 20 passes&quot;)
+    return registry, validation
+
+
+def anchor_for(cycle: dict[str, Any]) -&gt; dict[str, Any]:
+    matches = [
+        row
+        for row in cycle[&quot;passes&quot;]
+        if row[&quot;pass_id&quot;] == cycle[&quot;display_anchor_pass_id&quot;]
+    ]
+    if len(matches) != 1:
+        raise RuntimeError(f&quot;Anchor identity is not unique for {cycle[&#x27;cycle_id&#x27;]}&quot;)
+    return matches[0]
+
+
+def verify_seed_root(cycle: dict[str, Any], anchor: dict[str, Any]) -&gt; dict[str, Any]:
+    seed_utc = datetime.fromisoformat(anchor[&quot;utc&quot;]).astimezone(timezone.utc)
+    seed_jd = BASE.jd_of(seed_utc)
+    body_a, body_b = cycle[&quot;pair&quot;]
+
+    def delta(jd_ut: float) -&gt; float:
+        a = BASE.body_state(jd_ut, PLANET_CODES[body_a])[0]
+        b = BASE.body_state(jd_ut, PLANET_CODES[body_b])[0]
+        return BASE.signed_delta(a, b)
+
+    independent_jd = BASE.bisection(delta, seed_jd - 1.0, seed_jd + 1.0)
+    a_lon, a_speed = BASE.body_state(seed_jd, PLANET_CODES[body_a])
+    b_lon, b_speed = BASE.body_state(seed_jd, PLANET_CODES[body_b])
+    target = float(anchor[&quot;longitude_deg&quot;])
+    return {
+        &quot;seed_utc&quot;: seed_utc,
+        &quot;seed_jd&quot;: seed_jd,
+        &quot;target_longitude&quot;: target,
+        &quot;verification&quot;: {
+            &quot;independent_root_solver&quot;: &quot;Moshier pair-difference bisection&quot;,
+            &quot;independent_root_utc&quot;: BASE.jd_to_utc(independent_jd).isoformat(
+                timespec=&quot;microseconds&quot;
+            ),
+            &quot;registry_vs_independent_root_seconds&quot;: round(
+                abs(independent_jd - seed_jd) * 86400.0, 9
+            ),
+            &quot;pair_residual_arcseconds&quot;: round(
+                BASE.angular_distance(a_lon, b_lon) * 3600.0, 12
+            ),
+            &quot;target_minus_body_arcseconds&quot;: {
+                body_a: round(BASE.signed_delta(target, a_lon) * 3600.0, 12),
+                body_b: round(BASE.signed_delta(target, b_lon) * 3600.0, 12),
+            },
+            &quot;body_speed_deg_day&quot;: {
+                body_a: round(a_speed, 12),
+                body_b: round(b_speed, 12),
+            },
+        },
+    }
+
+
+def find_persona_event(seed_jd: float, target: float) -&gt; dict[str, Any]:
+    requested = swe.FLG_SWIEPH
+    primary_jd = float(swe.solcross_ut(target, seed_jd + 1e-7, requested))
+    prior_jd = seed_jd + 1e-7
+    prior_delta = BASE.signed_delta(
+        BASE.sun_longitude(prior_jd, swe.FLG_MOSEPH), target
+    )
+    bracket: tuple[float, float] | None = None
+    while prior_jd &lt; seed_jd + 370.0:
+        current_jd = prior_jd + 0.25
+        current_delta = BASE.signed_delta(
+            BASE.sun_longitude(current_jd, swe.FLG_MOSEPH), target
+        )
+        if prior_delta &lt;= 0 &lt;= current_delta and current_delta - prior_delta &lt; 10:
+            bracket = (prior_jd, current_jd)
+            break
+        prior_jd, prior_delta = current_jd, current_delta
+    if bracket is None:
+        raise RuntimeError(&quot;Could not bracket first later solar contact&quot;)
+    independent_jd = BASE.bisection(
+        lambda value: BASE.signed_delta(
+            BASE.sun_longitude(value, swe.FLG_MOSEPH), target
+        ),
+        *bracket,
+    )
+    event_utc = BASE.jd_to_utc(primary_jd)
+    _sun, returned = swe.calc_ut(
+        primary_jd, swe.SUN, swe.FLG_SWIEPH | swe.FLG_SPEED
+    )
+    return {
+        &quot;jd_ut&quot;: primary_jd,
+        &quot;utc&quot;: event_utc,
+        &quot;local&quot;: event_utc.astimezone(ZONE),
+        &quot;verification&quot;: {
+            &quot;definition&quot;: &quot;first later geocentric tropical Sun crossing of fixed anchor longitude&quot;,
+            &quot;primary_solver&quot;: &quot;solcross_ut with FLG_SWIEPH requested&quot;,
+            &quot;primary_requested_flag_bits&quot;: int(swe.FLG_SWIEPH),
+            &quot;primary_requested_flag_names&quot;: [&quot;FLG_SWIEPH&quot;],
+            &quot;primary_observed_sun_flag_bits&quot;: int(returned),
+            &quot;primary_observed_sun_flag_names&quot;: flag_names(int(returned)),
+            &quot;primary_fallback_observed&quot;: bool(
+                not (returned &amp; swe.FLG_SWIEPH) and (returned &amp; swe.FLG_MOSEPH)
+            ),
+            &quot;independent_solver&quot;: &quot;quarter-day bracket plus Moshier bisection&quot;,
+            &quot;independent_bisection_utc&quot;: BASE.jd_to_utc(independent_jd).isoformat(
+                timespec=&quot;microseconds&quot;
+            ),
+            &quot;root_algorithm_delta_seconds&quot;: round(
+                abs(primary_jd - independent_jd) * 86400.0, 9
+            ),
+            &quot;sun_minus_target_arcseconds&quot;: round(
+                BASE.signed_delta(
+                    BASE.sun_longitude(primary_jd, swe.FLG_MOSEPH), target
+                )
+                * 3600.0,
+                12,
+            ),
+            &quot;independence_boundary&quot;: (
+                &quot;The two root algorithms are independent. When returned flags &quot;
+                &quot;show Moshier fallback, they are not independent ephemerides.&quot;
+            ),
+        },
+    }
+
+
+def america_pair_coverage(seed_utc: datetime, persona_utc: datetime) -&gt; dict[str, Any]:
+    global_ok, receipt = america.available()
+    checks: dict[str, Any] = {}
+    for label, moment in (
+        (&quot;seed&quot;, seed_utc),
+        (&quot;seed_plus_one_hour&quot;, seed_utc + timedelta(hours=1)),
+        (&quot;persona&quot;, persona_utc),
+        (&quot;persona_plus_one_hour&quot;, persona_utc + timedelta(hours=1)),
+    ):
+        checks[label] = {
+            &quot;utc&quot;: moment.isoformat(timespec=&quot;microseconds&quot;),
+            &quot;longitude_available&quot;: america.america_lon(moment) is not None,
+            &quot;speed_available&quot;: america.america_speed(moment) is not None,
+        }
+    include = global_ok and all(
+        row[&quot;longitude_available&quot;] and row[&quot;speed_available&quot;]
+        for row in checks.values()
+    )
+    return {
+        &quot;include_in_both_charts&quot;: include,
+        &quot;status&quot;: &quot;included_both_endpoints&quot; if include else &quot;unavailable_no_extrapolation&quot;,
+        &quot;global_cache_receipt&quot;: receipt,
+        &quot;checks&quot;: checks,
+        &quot;policy&quot;: (
+            &quot;916 America is included only when the canonical cache covers both &quot;
+            &quot;seed and persona plus the one-hour aspect-motion probes; otherwise &quot;
+            &quot;it is unavailable in both charts and is never extrapolated.&quot;
+        ),
+    }
+
+
+def minor_point_aspects(
+    moment_utc: datetime, raw: dict[str, Any], include_america: bool
+) -&gt; list[dict[str, Any]]:
+    future_utc = moment_utc + timedelta(hours=1)
+    jd_ut = BASE.jd_of(moment_utc)
+    future_jd = BASE.jd_of(future_utc)
+    current_planets = {
+        body: BASE.body_state(jd_ut, code)[0] for body, code in PLANET_CODES.items()
+    }
+    future_planets = {
+        body: BASE.body_state(future_jd, code)[0]
+        for body, code in PLANET_CODES.items()
+    }
+    local = future_utc.astimezone(ZONE)
+    future_raw = calculator.compute(
+        local.year,
+        local.month,
+        local.day,
+        local.hour,
+        local.minute,
+        LATITUDE,
+        LONGITUDE,
+        local.utcoffset().total_seconds() / 3600.0,
+        seconds=local.second + local.microsecond / 1_000_000.0,
+    )
+    current_points: dict[str, float] = {
+        &quot;Chiron&quot;: float(raw[&quot;pos&quot;][&quot;Chiron&quot;][&quot;lon&quot;]),
+        &quot;Node&quot;: float(raw[&quot;pos&quot;][&quot;Node&quot;][&quot;lon&quot;]),
+    }
+    future_points: dict[str, float] = {
+        &quot;Chiron&quot;: float(future_raw[&quot;pos&quot;][&quot;Chiron&quot;][&quot;lon&quot;]),
+        &quot;Node&quot;: float(future_raw[&quot;pos&quot;][&quot;Node&quot;][&quot;lon&quot;]),
+    }
+    if include_america:
+        current_america = america.america_lon(moment_utc)
+        future_america = america.america_lon(future_utc)
+        if current_america is None or future_america is None:
+            raise RuntimeError(&quot;Pair-level America coverage promise failed&quot;)
+        current_points[&quot;America&quot;] = current_america
+        future_points[&quot;America&quot;] = future_america
+    rows: list[dict[str, Any]] = []
+    for point, point_lon in current_points.items():
+        for planet, planet_lon in current_planets.items():
+            separation = BASE.angular_distance(point_lon, planet_lon)
+            aspect, angle, limit = min(
+                BASE.MINOR_POINT_HARD_ASPECTS,
+                key=lambda row: abs(separation - row[1]),
+            )
+            orb = abs(separation - angle)
+            if orb &gt; limit:
+                continue
+            future_orb = abs(
+                BASE.angular_distance(future_points[point], future_planets[planet])
+                - angle
+            )
+            rows.append(
+                {
+                    &quot;a&quot;: point,
+                    &quot;b&quot;: planet,
+                    &quot;aspect&quot;: aspect,
+                    &quot;angle_deg&quot;: angle,
+                    &quot;orb_deg&quot;: round(orb, 6),
+                    &quot;orb_limit_deg&quot;: limit,
+                    &quot;applying&quot;: future_orb &lt; orb,
+                    &quot;separating&quot;: future_orb &gt;= orb,
+                    &quot;separation_deg&quot;: round(separation, 6),
+                    &quot;nonacting_point&quot;: point,
+                    &quot;authority&quot;: &quot;nonacting point-to-planet hard-aspect lane at 2 degrees or less&quot;,
+                }
+            )
+    return sorted(rows, key=lambda row: row[&quot;orb_deg&quot;])
+
+
+def calculate_chart(
+    moment_utc: datetime, include_america: bool, america_coverage: dict[str, Any]
+) -&gt; tuple[dict[str, Any], dict[str, Any]]:
+    local = moment_utc.astimezone(ZONE)
+    raw = calculator.compute(
+        local.year,
+        local.month,
+        local.day,
+        local.hour,
+        local.minute,
+        LATITUDE,
+        LONGITUDE,
+        local.utcoffset().total_seconds() / 3600.0,
+        seconds=local.second + local.microsecond / 1_000_000.0,
+    )
+    positions = raw[&quot;pos&quot;]
+    huber = structure.huber_aspects(positions)
+    configurations = structure.configurations(positions, huber)
+    asc_index = int(raw[&quot;asc&quot;] // 30)
+    chart_ruler = structure.RULER[raw[&quot;asc_sign&quot;]]
+    tenth_sign = SIGNS[(asc_index + 9) % 12]
+    tenth_ruler = structure.RULER[tenth_sign]
+    mc_ruler = structure.RULER[raw[&quot;mc_sign&quot;]]
+    houses_ruled: dict[str, list[int]] = {body: [] for body in TRADITIONAL_BODIES}
+    for house in range(1, 13):
+        sign = SIGNS[(asc_index + house - 1) % 12]
+        houses_ruled[structure.RULER[sign]].append(house)
+    if include_america:
+        america_lon = america.america_lon(moment_utc)
+        america_speed = america.america_speed(moment_utc)
+        if america_lon is None or america_speed is None:
+            raise RuntimeError(&quot;America coverage disappeared during chart calculation&quot;)
+        america_record: dict[str, Any] = {
+            &quot;status&quot;: &quot;available_canonical_cache&quot;,
+            &quot;longitude&quot;: round(america_lon, 9),
+            &quot;sign&quot;: SIGNS[int(america_lon // 30) % 12],
+            &quot;degree_in_sign&quot;: round(america_lon % 30.0, 9),
+            &quot;whole_sign_house&quot;: BASE.sign_house(raw[&quot;asc&quot;], america_lon),
+            &quot;retrograde&quot;: america_speed &lt; 0,
+            &quot;speed_deg_day&quot;: round(america_speed, 9),
+            &quot;acting_status&quot;: &quot;nonacting_minor_point&quot;,
+            &quot;source&quot;: &quot;canonical JPL Horizons daily cache with shortest-arc interpolation&quot;,
+        }
+    else:
+        america_record = {
+            &quot;status&quot;: &quot;unavailable_no_extrapolation&quot;,
+            &quot;longitude&quot;: None,
+            &quot;sign&quot;: None,
+            &quot;degree_in_sign&quot;: None,
+            &quot;whole_sign_house&quot;: None,
+            &quot;retrograde&quot;: None,
+            &quot;speed_deg_day&quot;: None,
+            &quot;acting_status&quot;: &quot;not_present&quot;,
+            &quot;source&quot;: &quot;canonical cache cannot answer this historical epoch&quot;,
+        }
+    frame = {
+        &quot;asc&quot;: round(raw[&quot;asc&quot;], 9),
+        &quot;asc_sign&quot;: raw[&quot;asc_sign&quot;],
+        &quot;mc&quot;: round(raw[&quot;mc&quot;], 9),
+        &quot;mc_sign&quot;: raw[&quot;mc_sign&quot;],
+        &quot;mc_whole_sign_house&quot;: BASE.sign_house(raw[&quot;asc&quot;], raw[&quot;mc&quot;]),
+        &quot;chart_ruler&quot;: chart_ruler,
+        &quot;chart_ruler_house&quot;: int(positions[chart_ruler][&quot;house&quot;]),
+        &quot;chart_ruler_route&quot;: BASE.route_for(positions, chart_ruler),
+        &quot;whole_sign_tenth_sign&quot;: tenth_sign,
+        &quot;whole_sign_tenth_ruler&quot;: tenth_ruler,
+        &quot;whole_sign_tenth_ruler_house&quot;: int(positions[tenth_ruler][&quot;house&quot;]),
+        &quot;whole_sign_tenth_ruler_route&quot;: BASE.route_for(positions, tenth_ruler),
+        &quot;actual_mc_ruler&quot;: mc_ruler,
+        &quot;actual_mc_ruler_house&quot;: int(positions[mc_ruler][&quot;house&quot;]),
+        &quot;actual_mc_ruler_route&quot;: BASE.route_for(positions, mc_ruler),
+        &quot;houses_ruled_by&quot;: houses_ruled,
+    }
+    record = {
+        &quot;event&quot;: {
+            &quot;utc&quot;: moment_utc.isoformat(timespec=&quot;microseconds&quot;),
+            &quot;local&quot;: local.isoformat(timespec=&quot;microseconds&quot;),
+            &quot;zone_abbreviation&quot;: local.tzname(),
+            &quot;place&quot;: PLACE,
+            &quot;latitude&quot;: LATITUDE,
+            &quot;longitude&quot;: LONGITUDE,
+        },
+        &quot;frame&quot;: frame,
+        &quot;positions&quot;: {
+            body: BASE.compact_position(position)
+            for body, position in positions.items()
+        },
+        &quot;traditional_dignities&quot;: {
+            body: {
+                &quot;classification&quot;: calculator.dignity_label(body, positions[body][&quot;sign&quot;]),
+                &quot;labels&quot;: calculator.dignity_labels(body, positions[body][&quot;sign&quot;]),
+            }
+            for body in TRADITIONAL_BODIES
+        },
+        &quot;condition_scope&quot;: &quot;base traditional dignity classification only; not full phase-aware Condition&quot;,
+        &quot;soli_lunar_phase&quot;: raw[&quot;soli_lunar_phase&quot;],
+        &quot;governance_routes&quot;: {
+            body: BASE.route_for(positions, body) for body in PLANET_ORDER
+        },
+        &quot;mundane_major_aspects&quot;: BASE.mundane_major_aspects(moment_utc),
+        &quot;huber_aspects&quot;: huber,
+        &quot;minor_point_aspects&quot;: minor_point_aspects(
+            moment_utc, raw, include_america
+        ),
+        &quot;angle_aspects&quot;: BASE.angle_aspects(raw),
+        &quot;configurations&quot;: configurations,
+        &quot;huber_whole_pattern&quot;: structure.huber_whole_pattern(
+            positions, huber, configurations
+        ),
+        &quot;minor_points&quot;: {&quot;america_916&quot;: america_record},
+        &quot;minor_point_policy&quot;: {
+            &quot;active_points&quot;: [&quot;Chiron&quot;, &quot;Node&quot;]
+            + ([&quot;America&quot;] if include_america else []),
+            &quot;aspects&quot;: [&quot;conjunction&quot;, &quot;square&quot;, &quot;opposition&quot;],
+            &quot;orb_limit_deg&quot;: 2.0,
+            &quot;point_to_point&quot;: False,
+            &quot;america_pair_coverage&quot;: america_coverage,
+        },
+        &quot;ephemeris_flags&quot;: calc_flag_receipt(BASE.jd_of(moment_utc)),
+    }
+    return record, raw
+
+
+def endpoint_ledger(
+    seed_rows: list[dict[str, Any]],
+    persona_rows: list[dict[str, Any]],
+    lane: str,
+    *,
+    derived_angle: bool = False,
+) -&gt; list[dict[str, Any]]:
+    def key(row: dict[str, Any]) -&gt; tuple[str, str]:
+        if derived_angle:
+            return row[&quot;point&quot;], row[&quot;planet&quot;]
+        return tuple(sorted((row[&quot;a&quot;], row[&quot;b&quot;])))
+
+    def endpoint(row: dict[str, Any]) -&gt; dict[str, Any]:
+        result = {
+            &quot;aspect&quot;: row.get(&quot;aspect&quot;, row.get(&quot;type&quot;)),
+            &quot;orb_deg&quot;: row.get(&quot;orb_deg&quot;, row.get(&quot;orb&quot;)),
+        }
+        for field in (
+            &quot;applying&quot;,
+            &quot;separating&quot;,
+            &quot;near_exact&quot;,
+            &quot;source_status&quot;,
+            &quot;mutual&quot;,
+            &quot;oneway&quot;,
+            &quot;nonacting_point&quot;,
+        ):
+            if field in row:
+                result[field] = row[field]
+        return result
+
+    seed = {key(row): endpoint(row) for row in seed_rows}
+    persona = {key(row): endpoint(row) for row in persona_rows}
+    output: list[dict[str, Any]] = []
+    for relationship in sorted(set(seed) | set(persona)):
+        before = seed.get(relationship)
+        after = persona.get(relationship)
+        if before is None:
+            change = &quot;gained&quot;
+            classification = &quot;materially_new_relationship_zero_vote&quot;
+        elif after is None:
+            change = &quot;lost&quot;
+            classification = &quot;materially_vanished_relationship_zero_vote&quot;
+        elif before[&quot;aspect&quot;] != after[&quot;aspect&quot;]:
+            change = &quot;operator_changed&quot;
+            classification = &quot;material_operator_change_zero_vote&quot;
+        else:
+            change = &quot;persisted_with_condition_change&quot;
+            classification = &quot;persistent_relationship_not_independent_news&quot;
+        output.append(
+            {
+                &quot;relationship&quot;: list(relationship),
+                &quot;change&quot;: change,
+                &quot;classification&quot;: classification,
+                &quot;seed&quot;: before,
+                &quot;persona&quot;: after,
+                &quot;lane&quot;: lane,
+                &quot;derived_angle_relationship&quot;: derived_angle,
+            }
+        )
+    return output
+
+
+def change_gate(
+    seed_jd: float,
+    persona_jd: float,
+    radix: dict[str, Any],
+    persona: dict[str, Any],
+) -&gt; dict[str, Any]:
+    interval_days = persona_jd - seed_jd
+    within_31_day_dependency_window = interval_days &lt;= 31.0
+    stations = BASE.station_events_between(
+        seed_jd, persona_jd, TRACKED_CHANGE_BODIES
+    )
+    station_bodies = {row[&quot;body&quot;] for row in stations}
+    sign_changes = []
+    direction_changes = []
+    for body in TRACKED_CHANGE_BODIES:
+        before = radix[&quot;positions&quot;][body]
+        after = persona[&quot;positions&quot;][body]
+        if before[&quot;sign&quot;] != after[&quot;sign&quot;]:
+            sign_changes.append(
+                {
+                    &quot;body&quot;: body,
+                    &quot;seed_sign&quot;: before[&quot;sign&quot;],
+                    &quot;persona_sign&quot;: after[&quot;sign&quot;],
+                    &quot;classification&quot;: &quot;material_sign_change_zero_vote&quot;,
+                }
+            )
+        if before[&quot;retrograde&quot;] != after[&quot;retrograde&quot;]:
+            direction_changes.append(
+                {
+                    &quot;body&quot;: body,
+                    &quot;seed_direction&quot;: &quot;retrograde&quot; if before[&quot;retrograde&quot;] else &quot;direct&quot;,
+                    &quot;persona_direction&quot;: &quot;retrograde&quot; if after[&quot;retrograde&quot;] else &quot;direct&quot;,
+                    &quot;classification&quot;: &quot;material_direction_change_zero_vote&quot;,
+                }
+            )
+    ledgers = {
+        &quot;mundane_major_ten_planet&quot;: endpoint_ledger(
+            radix[&quot;mundane_major_aspects&quot;],
+            persona[&quot;mundane_major_aspects&quot;],
+            &quot;Freedom 250 ten-planet mundane major-aspect lane&quot;,
+        ),
+        &quot;huber_source_plus_chiron_overlay&quot;: endpoint_ledger(
+            radix[&quot;huber_aspects&quot;],
+            persona[&quot;huber_aspects&quot;],
+            &quot;source-Huber web plus visibly labeled Chiron overlay&quot;,
+        ),
+        &quot;nonacting_minor_point&quot;: endpoint_ledger(
+            radix[&quot;minor_point_aspects&quot;],
+            persona[&quot;minor_point_aspects&quot;],
+            &quot;hard point-to-planet minor-point lane at 2 degrees or less&quot;,
+        ),
+        &quot;derived_angle&quot;: endpoint_ledger(
+            radix[&quot;angle_aspects&quot;],
+            persona[&quot;angle_aspects&quot;],
+            &quot;ASC/MC derived-angle overlay using partner-planet Huber allowance&quot;,
+            derived_angle=True,
+        ),
+    }
+    material_relationship_changes = [
+        {&quot;lane&quot;: lane, **row}
+        for lane, rows in ledgers.items()
+        for row in rows
+        if row[&quot;change&quot;] in {&quot;gained&quot;, &quot;lost&quot;, &quot;operator_changed&quot;}
+    ]
+    slow_relationship_changes = [
+        row
+        for row in material_relationship_changes
+        if any(body in SLOW_BODIES for body in row[&quot;relationship&quot;])
+    ]
+    slow_body_carryover: dict[str, Any] = {}
+    for body in SLOW_BODIES:
+        before = radix[&quot;positions&quot;][body]
+        after = persona[&quot;positions&quot;][body]
+        delta = BASE.angular_distance(before[&quot;longitude&quot;], after[&quot;longitude&quot;])
+        changed_sign = before[&quot;sign&quot;] != after[&quot;sign&quot;]
+        changed_direction = before[&quot;retrograde&quot;] != after[&quot;retrograde&quot;]
+        qualifying_relationships = [
+            row for row in slow_relationship_changes if body in row[&quot;relationship&quot;]
+        ]
+        slow_body_carryover[body] = {
+            &quot;seed_longitude&quot;: before[&quot;longitude&quot;],
+            &quot;persona_longitude&quot;: after[&quot;longitude&quot;],
+            &quot;absolute_longitude_delta_deg&quot;: round(delta, 9),
+            &quot;near_return_within_5_deg&quot;: delta &lt;= 5.0,
+            &quot;near_return_threshold_note&quot;: (
+                &quot;Five degrees is a descriptive persistence flag, not evidence credit or an aspect orb.&quot;
+            ),
+            &quot;stationed_between&quot;: body in station_bodies,
+            &quot;within_31_day_dependency_window&quot;: within_31_day_dependency_window,
+            &quot;changed_direction_at_endpoints&quot;: changed_direction,
+            &quot;changed_sign&quot;: changed_sign,
+            &quot;material_relationship_change_count&quot;: len(qualifying_relationships),
+            &quot;longitude_ruling&quot;: &quot;positional_persistence_or_near_return_has_zero_independent_vote&quot;,
+            &quot;proximity_ruling&quot;: (
+                &quot;automatically_dependent_within_31_days&quot;
+                if within_31_day_dependency_window
+                else &quot;after_31_days_proximity_alone_still_never_additive&quot;
+            ),
+            &quot;condition_ruling&quot;: (
+                &quot;named_station_sign_or_relationship_change_may_be_considered_zero_vote&quot;
+                if body in station_bodies
+                or changed_sign
+                or changed_direction
+                or qualifying_relationships
+                else &quot;carryover_only_not_news&quot;
+            ),
+        }
+    return {
+        &quot;rule&quot;: (
+            &quot;For Jupiter through Pluto, positional persistence or near-return &quot;
+            &quot;within 31 days is automatically dependent carryover. After 31 days, &quot;
+            &quot;proximity alone is still never additive. Only an exact station or &quot;
+            &quot;direction change, sign change, or materially gained, lost, or changed &quot;
+            &quot;relationship is admitted, and every admitted change remains &quot;
+            &quot;conditional and zero-vote. Mercury is tracked separately for station &quot;
+            &quot;and sign context but is not classified as a slow or outer body.&quot;
+        ),
+        &quot;interval_days&quot;: round(interval_days, 9),
+        &quot;within_31_day_dependency_window&quot;: within_31_day_dependency_window,
+        &quot;tracked_bodies&quot;: list(TRACKED_CHANGE_BODIES),
+        &quot;slow_body_scope&quot;: list(SLOW_BODIES),
+        &quot;mercury_scope&quot;: &quot;tracked_station_sign_relationship_context_not_slow_or_outer&quot;,
+        &quot;station_events_between&quot;: stations,
+        &quot;tracked_body_sign_changes&quot;: sign_changes,
+        &quot;tracked_body_direction_changes&quot;: direction_changes,
+        &quot;relationship_deltas&quot;: ledgers,
+        &quot;material_relationship_changes&quot;: material_relationship_changes,
+        &quot;slow_or_outer_material_relationship_changes&quot;: slow_relationship_changes,
+        &quot;persona_derived_angle_relationships&quot;: [
+            {
+                **row,
+                &quot;classification&quot;: &quot;derived_angle_relationship_conditional_zero_vote&quot;,
+                &quot;novelty_owner&quot;: &quot;persona_derived_angle&quot;,
+            }
+            for row in persona[&quot;angle_aspects&quot;]
+        ],
+        &quot;slow_body_carryover&quot;: slow_body_carryover,
+    }
+
+
+def cross_contacts(
+    radix: dict[str, Any],
+    persona: dict[str, Any],
+    focal_bodies: tuple[str, str],
+    include_america: bool,
+    orb_limit: float = 2.0,
+) -&gt; list[dict[str, Any]]:
+    seed_targets = {
+        body: row[&quot;longitude&quot;]
+        for body, row in radix[&quot;positions&quot;].items()
+        if body != &quot;SNode&quot;
+    }
+    seed_targets.update({&quot;ASC&quot;: radix[&quot;frame&quot;][&quot;asc&quot;], &quot;MC&quot;: radix[&quot;frame&quot;][&quot;mc&quot;]})
+    persona_sources = {
+        body: row[&quot;longitude&quot;]
+        for body, row in persona[&quot;positions&quot;].items()
+        if body != &quot;SNode&quot;
+    }
+    persona_sources.update(
+        {&quot;ASC&quot;: persona[&quot;frame&quot;][&quot;asc&quot;], &quot;MC&quot;: persona[&quot;frame&quot;][&quot;mc&quot;]}
+    )
+    if include_america:
+        seed_targets[&quot;America&quot;] = radix[&quot;minor_points&quot;][&quot;america_916&quot;][&quot;longitude&quot;]
+        persona_sources[&quot;America&quot;] = persona[&quot;minor_points&quot;][&quot;america_916&quot;][&quot;longitude&quot;]
+    minor = {&quot;Chiron&quot;, &quot;Node&quot;, &quot;America&quot;}
+    dependent = set(SLOW_BODIES) | minor
+    rows: list[dict[str, Any]] = []
+    for source, source_lon in persona_sources.items():
+        for target, target_lon in seed_targets.items():
+            if source in minor and target not in PLANET_CODES:
+                continue
+            if target in minor and source not in PLANET_CODES:
+                continue
+            separation = BASE.angular_distance(source_lon, target_lon)
+            for aspect, angle in BASE.ASPECT_ANGLES:
+                orb = abs(separation - angle)
+                if orb &gt; orb_limit:
+                    continue
+                if (source in minor or target in minor) and aspect not in {
+                    &quot;conjunction&quot;,
+                    &quot;square&quot;,
+                    &quot;opposition&quot;,
+                }:
+                    continue
+                if source == &quot;Sun&quot;:
+                    dependency_class = &quot;guaranteed_persona_sun_target_restatement&quot;
+                elif source == target and source in dependent:
+                    dependency_class = &quot;positional_near_return_carryover_zero_vote&quot;
+                elif (
+                    source in focal_bodies
+                    and target in focal_bodies
+                    and aspect == &quot;conjunction&quot;
+                ):
+                    dependency_class = &quot;fused_seed_slow_body_dependency_zero_vote&quot;
+                elif source == &quot;America&quot; or target == &quot;America&quot;:
+                    dependency_class = &quot;nonacting_america_zero_vote&quot;
+                elif source in dependent and target in dependent:
+                    dependency_class = &quot;slow_or_minor_background_zero_vote&quot;
+                else:
+                    dependency_class = &quot;potentially_additive_conditional_zero_vote&quot;
+                rows.append(
+                    {
+                        &quot;persona_factor&quot;: source,
+                        &quot;aspect&quot;: aspect,
+                        &quot;radix_factor&quot;: target,
+                        &quot;orb_deg&quot;: round(orb, 6),
+                        &quot;dependency_class&quot;: dependency_class,
+                    }
+                )
+                break
+    return sorted(rows, key=lambda row: row[&quot;orb_deg&quot;])
+
+
+def canonical_seed_comparison(
+    cycle: dict[str, Any], anchor: dict[str, Any], radix: dict[str, Any]
+) -&gt; dict[str, Any]:
+    canonical = SYNODIC.seed_chart(
+        cycle[&quot;cycle_id&quot;],
+        anchor[&quot;pass_id&quot;],
+        vault_root=VAULT,
+        seed_registry_path=REGISTRY_PATH,
+    )
+    comparison = {
+        &quot;utc_matches&quot;: canonical[&quot;utc&quot;] == radix[&quot;event&quot;][&quot;utc&quot;],
+        &quot;pass_id_matches&quot;: canonical[&quot;pass_id&quot;] == anchor[&quot;pass_id&quot;],
+        &quot;asc_delta_arcseconds&quot;: round(
+            BASE.angular_distance(canonical[&quot;asc&quot;], radix[&quot;frame&quot;][&quot;asc&quot;])
+            * 3600.0,
+            12,
+        ),
+        &quot;mc_delta_arcseconds&quot;: round(
+            BASE.angular_distance(canonical[&quot;mc&quot;], radix[&quot;frame&quot;][&quot;mc&quot;])
+            * 3600.0,
+            12,
+        ),
+        &quot;planet_delta_arcseconds&quot;: {
+            body: round(
+                BASE.angular_distance(
+                    canonical[&quot;positions&quot;][body][&quot;lon&quot;],
+                    radix[&quot;positions&quot;][body][&quot;longitude&quot;],
+                )
+                * 3600.0,
+                12,
+            )
+            for body in PLANET_ORDER
+        },
+    }
+    deltas = [
+        comparison[&quot;asc_delta_arcseconds&quot;],
+        comparison[&quot;mc_delta_arcseconds&quot;],
+        *comparison[&quot;planet_delta_arcseconds&quot;].values(),
+    ]
+    if not comparison[&quot;utc_matches&quot;] or not comparison[&quot;pass_id_matches&quot;]:
+        raise RuntimeError(f&quot;Canonical seed identity mismatch for {cycle[&#x27;cycle_id&#x27;]}&quot;)
+    if max(deltas) &gt; 0.01:
+        raise RuntimeError(
+            f&quot;Current calculator differs from canonical seed for {cycle[&#x27;cycle_id&#x27;]}&quot;
+        )
+    return comparison
+
+
+def calculate_cycle(
+    cycle: dict[str, Any], registry_validation: dict[str, Any]
+) -&gt; tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    anchor = anchor_for(cycle)
+    governed = verify_seed_root(cycle, anchor)
+    persona_event = find_persona_event(
+        governed[&quot;seed_jd&quot;], governed[&quot;target_longitude&quot;]
+    )
+    coverage = america_pair_coverage(governed[&quot;seed_utc&quot;], persona_event[&quot;utc&quot;])
+    include_america = bool(coverage[&quot;include_in_both_charts&quot;])
+    radix, radix_raw = calculate_chart(
+        governed[&quot;seed_utc&quot;], include_america, coverage
+    )
+    persona, persona_raw = calculate_chart(
+        persona_event[&quot;utc&quot;], include_america, coverage
+    )
+    comparison = canonical_seed_comparison(cycle, anchor, radix)
+    gate = change_gate(
+        governed[&quot;seed_jd&quot;], persona_event[&quot;jd_ut&quot;], radix, persona
+    )
+    focal: dict[str, Any] = {}
+    focal_bodies = tuple(cycle[&quot;pair&quot;])
+    for body in focal_bodies:
+        focal[body] = {
+            &quot;position&quot;: persona[&quot;positions&quot;][body],
+            &quot;distance_from_persona_sun_deg&quot;: round(
+                BASE.angular_distance(
+                    persona[&quot;positions&quot;][body][&quot;longitude&quot;],
+                    persona[&quot;positions&quot;][&quot;Sun&quot;][&quot;longitude&quot;],
+                ),
+                9,
+            ),
+            &quot;governance_route&quot;: persona[&quot;governance_routes&quot;][body],
+            &quot;huber_contacts&quot;: BASE.contacts_for(body, persona[&quot;huber_aspects&quot;]),
+            &quot;mundane_major_contacts&quot;: BASE.contacts_for(
+                body, persona[&quot;mundane_major_aspects&quot;]
+            ),
+        }
+    target = governed[&quot;target_longitude&quot;]
+    pass_roster = [dict(row) for row in cycle[&quot;passes&quot;]]
+    data = {
+        &quot;schema&quot;: &quot;freedom250.long-clock-persona-subsidiary/v1&quot;,
+        &quot;status&quot;: &quot;kept_conditional_subsidiary&quot;,
+        &quot;review_status&quot;: &quot;reviewed&quot;,
+        &quot;review_disposition&quot;: &quot;keep&quot;,
+        &quot;identity&quot;: {
+            &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+            &quot;tier_id&quot;: cycle[&quot;tier_id&quot;],
+            &quot;pair&quot;: list(cycle[&quot;pair&quot;]),
+            &quot;seed_family_id&quot;: cycle[&quot;seed_family_id&quot;],
+            &quot;display_anchor_pass_id&quot;: anchor[&quot;pass_id&quot;],
+            &quot;artifact_key&quot;: f&quot;{cycle[&#x27;cycle_id&#x27;]}::{anchor[&#x27;pass_id&#x27;]}&quot;,
+        },
+        &quot;evidence_boundary&quot;: {
+            &quot;family&quot;: &quot;long_clock_persona_subsidiaries&quot;,
+            &quot;admission&quot;: &quot;conditional_subordinate_zero_vote&quot;,
+            &quot;timing_authority&quot;: False,
+            &quot;event_proof&quot;: False,
+            &quot;independent_vote&quot;: False,
+            &quot;one_shared_chart&quot;: True,
+            &quot;focal_lenses&quot;: list(cycle[&quot;pair&quot;]),
+            &quot;hearing_posture&quot;: &quot;conditional_research_hearing_only&quot;,
+        },
+        &quot;seed_family&quot;: {
+            &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+            &quot;seed_family_id&quot;: cycle[&quot;seed_family_id&quot;],
+            &quot;seed_family_label&quot;: cycle[&quot;seed_family_label&quot;],
+            &quot;nominal_cycle_years&quot;: cycle[&quot;nominal_cycle_years&quot;],
+            &quot;anchor_basis&quot;: cycle[&quot;anchor_basis&quot;],
+            &quot;display_anchor_pass_id&quot;: cycle[&quot;display_anchor_pass_id&quot;],
+            &quot;pass_count&quot;: len(pass_roster),
+            &quot;complete_pass_roster&quot;: pass_roster,
+            &quot;multi_pass_handling&quot;: (
+                &quot;The display anchor owns the primary subsidiary. Other exact &quot;
+                &quot;passes remain governed family members and may receive labeled &quot;
+                &quot;pass variants, never additional votes.&quot;
+                if len(pass_roster) &gt; 1
+                else &quot;Single governed pass; display anchor and family pass are identical.&quot;
+            ),
+            &quot;anchor_external_verification_status&quot;: anchor[
+                &quot;independent_verification_status&quot;
+            ],
+            &quot;registry_validation&quot;: {
+                &quot;ok&quot;: registry_validation[&quot;ok&quot;],
+                &quot;cycle_count&quot;: registry_validation[&quot;cycle_count&quot;],
+                &quot;pass_count&quot;: registry_validation[&quot;pass_count&quot;],
+                &quot;error_count&quot;: len(registry_validation[&quot;errors&quot;]),
+                &quot;unresolved_external_verification_count&quot;: len(
+                    registry_validation[&quot;unresolved_verification&quot;]
+                ),
+            },
+        },
+        &quot;radix&quot;: {
+            &quot;pass_id&quot;: anchor[&quot;pass_id&quot;],
+            &quot;target_longitude&quot;: target,
+            &quot;target_sign&quot;: anchor[&quot;sign&quot;],
+            &quot;target_degree_in_sign&quot;: anchor[&quot;degree_in_sign&quot;],
+            &quot;relative_motion&quot;: anchor[&quot;relative_motion&quot;],
+            &quot;calculation_status&quot;: anchor[&quot;calculation_status&quot;],
+            &quot;verification&quot;: {
+                **governed[&quot;verification&quot;],
+                &quot;canonical_seed_chart_comparison&quot;: comparison,
+            },
+            **radix,
+        },
+        &quot;persona&quot;: {
+            &quot;definition&quot;: &quot;first later geocentric tropical Sun crossing of the fixed display-anchor conjunction longitude&quot;,
+            &quot;target_longitude&quot;: target,
+            &quot;days_after_radix&quot;: round(
+                persona_event[&quot;jd_ut&quot;] - governed[&quot;seed_jd&quot;], 12
+            ),
+            &quot;verification&quot;: persona_event[&quot;verification&quot;],
+            **persona,
+            &quot;persona_sun&quot;: {
+                &quot;whole_sign_house&quot;: persona[&quot;positions&quot;][&quot;Sun&quot;][
+                    &quot;whole_sign_house&quot;
+                ],
+                &quot;huber_contacts&quot;: BASE.contacts_for(
+                    &quot;Sun&quot;, persona[&quot;huber_aspects&quot;]
+                ),
+                &quot;mundane_major_contacts&quot;: BASE.contacts_for(
+                    &quot;Sun&quot;, persona[&quot;mundane_major_aspects&quot;]
+                ),
+            },
+            &quot;focal_lenses&quot;: focal,
+        },
+        &quot;radix_persona_overlay&quot;: {
+            &quot;orb_policy&quot;: &quot;major cross contacts at 2 degrees; minor points hard-only and planet-facing; all zero-vote&quot;,
+            &quot;contacts&quot;: cross_contacts(
+                radix, persona, focal_bodies, include_america
+            ),
+        },
+        &quot;seed_to_persona_change_gate&quot;: gate,
+        &quot;dependency_ledger&quot;: {
+            &quot;guaranteed&quot;: [
+                f&quot;Persona Sun repeats the fixed {target:.9f} degree anchor target.&quot;,
+                &quot;Persona-Sun radix contacts restate relationships already belonging to the seed target.&quot;,
+            ],
+            &quot;dependent&quot;: [
+                &quot;The conjunction bodies share one target and one persona chart, not two charts or votes.&quot;,
+                &quot;For Jupiter through Pluto, proximity or near-return within 31 days is automatically dependent.&quot;,
+                &quot;After 31 days, slow or outer proximity alone is still never additive.&quot;,
+                &quot;Persistent slow-body geometry receives no independent vote.&quot;,
+            ],
+            &quot;potentially_additive_but_zero_vote&quot;: [
+                &quot;derived Ascendant, houses, chart ruler, and dispositor routes&quot;,
+                &quot;actual MC and Whole Sign tenth-house governance&quot;,
+                &quot;internal aspect and configuration structure&quot;,
+                &quot;exact station/direction change, sign change, or materially gained/lost/changed relationship&quot;,
+                &quot;non-mechanical tight radix-persona contacts&quot;,
+            ],
+        },
+        &quot;america_916_coverage&quot;: coverage,
+        &quot;settings&quot;: {
+            &quot;zodiac&quot;: &quot;tropical&quot;,
+            &quot;center&quot;: &quot;geocentric&quot;,
+            &quot;houses&quot;: &quot;Whole Sign&quot;,
+            &quot;angles&quot;: &quot;houses_ex W frame at current governed Washington DC coordinates&quot;,
+            &quot;place&quot;: PLACE,
+            &quot;latitude&quot;: LATITUDE,
+            &quot;longitude&quot;: LONGITUDE,
+            &quot;timezone&quot;: str(CONVENTIONS.DC_TZ_NAME),
+            &quot;rulers&quot;: &quot;traditional&quot;,
+            &quot;node&quot;: &quot;true&quot;,
+            &quot;america_916&quot;: (
+                &quot;included as canonical nonacting minor point&quot;
+                if include_america
+                else &quot;unavailable_no_extrapolation&quot;
+            ),
+        },
+        &quot;ephemeris_runtime_receipt&quot;: {
+            &quot;seed&quot;: radix[&quot;ephemeris_flags&quot;],
+            &quot;persona&quot;: persona[&quot;ephemeris_flags&quot;],
+            &quot;pyswisseph_version&quot;: swe.version,
+            &quot;chart_calculator_ephe_ok&quot;: bool(calculator.EPHE_OK),
+            &quot;interpretation&quot;: (
+                &quot;Requested SWIEPH flags fall back to Moshier for planets in the &quot;
+                &quot;current runtime because a planetary Swiss file is absent. &quot;
+                &quot;No independent-Swiss verification is claimed.&quot;
+                if radix[&quot;ephemeris_flags&quot;][&quot;fallback_observed&quot;]
+                else &quot;Returned flags report the actual available planetary ephemeris.&quot;
+            ),
+        },
+        &quot;provenance&quot;: {
+            &quot;seed_registry&quot;: str(REGISTRY_PATH),
+            &quot;synodic_engine&quot;: str(SYNODIC_PATH),
+            &quot;chart_conventions&quot;: str(CONVENTIONS_PATH),
+            &quot;chart_math&quot;: str(SENTIENT_SUN / &quot;chart_calculator.py&quot;),
+            &quot;structure_engine&quot;: str(SENTIENT_SUN / &quot;reading_engine.py&quot;),
+            &quot;wheel_engine&quot;: str(WHEEL_PATH),
+            &quot;america_reader&quot;: str(AMERICA_PATH),
+            &quot;america_cache&quot;: str(america.CACHE),
+            &quot;persona_method&quot;: str(PERSONA_METHOD_PATH),
+            &quot;generic_helper_source&quot;: str(BASE_BUILDER_PATH),
+            &quot;builder&quot;: str(Path(__file__).resolve()),
+        },
+        &quot;_raw_chart_objects_excluded&quot;: {
+            &quot;radix_jd&quot;: round(float(radix_raw[&quot;jd&quot;]), 12),
+            &quot;persona_jd&quot;: round(float(persona_raw[&quot;jd&quot;]), 12),
+        },
+    }
+    return data, radix_raw, persona_raw
+
+
+def wheel_positions(chart: dict[str, Any]) -&gt; list[list[Any]]:
+    positions: list[list[Any]] = []
+    for body in WHEEL_BODY_ORDER:
+        if body == &quot;America&quot;:
+            position = chart[&quot;minor_points&quot;][&quot;america_916&quot;]
+            if position[&quot;status&quot;] != &quot;available_canonical_cache&quot;:
+                continue
+        else:
+            position = chart[&quot;positions&quot;][body]
+        positions.append(
+            [
+                body,
+                position[&quot;sign&quot;],
+                f&quot;{math.floor(position[&#x27;degree_in_sign&#x27;])}°&quot;,
+                bool(position[&quot;retrograde&quot;]),
+                round(position[&quot;longitude&quot;], 8),
+            ]
+        )
+    return positions
+
+
+def wheel_record(
+    chart: dict[str, Any], title: str, caption_one: str, caption_two: str
+) -&gt; dict[str, Any]:
+    operator = {
+        &quot;conjunction&quot;: &quot;conjunct&quot;,
+        &quot;sextile&quot;: &quot;sextile&quot;,
+        &quot;square&quot;: &quot;square&quot;,
+        &quot;trine&quot;: &quot;trine&quot;,
+        &quot;opposition&quot;: &quot;opposite&quot;,
+    }
+    aspects = [
+        {
+            &quot;t&quot;: f&quot;{row[&#x27;a&#x27;]} {operator[row[&#x27;aspect&#x27;]]} {row[&#x27;b&#x27;]}&quot;,
+            &quot;o&quot;: round(row[&quot;orb_deg&quot;], 2),
+            &quot;x&quot;: 1 if row[&quot;orb_deg&quot;] &lt;= 0.3 else 0,
+            &quot;ap&quot;: 1 if row[&quot;applying&quot;] else 0,
+            &quot;pt&quot;: 0,
+        }
+        for row in chart[&quot;mundane_major_aspects&quot;]
+    ]
+    aspects.extend(
+        {
+            &quot;t&quot;: f&quot;{row[&#x27;a&#x27;]} {operator[row[&#x27;aspect&#x27;]]} {row[&#x27;b&#x27;]}&quot;,
+            &quot;o&quot;: round(row[&quot;orb_deg&quot;], 2),
+            &quot;x&quot;: 1 if row[&quot;orb_deg&quot;] &lt;= 0.3 else 0,
+            &quot;ap&quot;: 1 if row[&quot;applying&quot;] else 0,
+            &quot;pt&quot;: 1,
+        }
+        for row in chart[&quot;minor_point_aspects&quot;]
+    )
+    return {
+        &quot;asc&quot;: round(chart[&quot;frame&quot;][&quot;asc&quot;], 8),
+        &quot;mc&quot;: round(chart[&quot;frame&quot;][&quot;mc&quot;], 8),
+        &quot;pos&quot;: wheel_positions(chart),
+        &quot;asp&quot;: aspects,
+        &quot;__date&quot;: title,
+        &quot;cap1&quot;: caption_one,
+        &quot;cap2&quot;: caption_two,
+    }
+
+
+def render_cycle_charts(data: dict[str, Any]) -&gt; tuple[Path, Path, str, str]:
+    cycle_id = data[&quot;identity&quot;][&quot;cycle_id&quot;]
+    pair_label = &quot;–&quot;.join(data[&quot;identity&quot;][&quot;pair&quot;])
+    persona_local = datetime.fromisoformat(data[&quot;persona&quot;][&quot;event&quot;][&quot;local&quot;])
+    event_label = persona_local.strftime(&quot;%d %b %Y · %H:%M:%S %Z&quot;)
+    standalone_record = wheel_record(
+        data[&quot;persona&quot;],
+        f&quot;{pair_label.upper()} CONJUNCTION PERSONA&quot;,
+        f&quot;{event_label} · {PLACE}&quot;,
+        &quot;kept conditional subsidiary · zero independent vote&quot;,
+    )
+    radix_record = wheel_record(
+        data[&quot;radix&quot;],
+        f&quot;{pair_label.upper()} SEED + PERSONA&quot;,
+        f&quot;anchor {data[&#x27;identity&#x27;][&#x27;display_anchor_pass_id&#x27;]} inside&quot;,
+        f&quot;persona outside · {event_label}&quot;,
+    )
+    outer_map = {row[0]: float(row[4]) for row in wheel_positions(data[&quot;persona&quot;])}
+    standalone_svg = BASE.render_svg(standalone_record)
+    biwheel_svg = BASE.render_svg(
+        radix_record,
+        outer_name=f&quot;{pair_label} Conjunction Persona&quot;,
+        outer_map=outer_map,
+    )
+    standalone_path = CHARTS_DIR / f&quot;{cycle_id}__persona-standalone.svg&quot;
+    biwheel_path = CHARTS_DIR / f&quot;{cycle_id}__seed-persona-biwheel.svg&quot;
+    standalone_path.write_text(standalone_svg, encoding=&quot;utf-8&quot;)
+    biwheel_path.write_text(biwheel_svg, encoding=&quot;utf-8&quot;)
+    return standalone_path, biwheel_path, standalone_svg, biwheel_svg
+
+
+def svg_data_uri(svg: str) -&gt; str:
+    import base64
+
+    return &quot;data:image/svg+xml;base64,&quot; + base64.b64encode(
+        svg.encode(&quot;utf-8&quot;)
+    ).decode(&quot;ascii&quot;)
+
+
+def self_contained_hub(
+    cycle_rows: list[dict[str, Any]], full_data: list[dict[str, Any]]
+) -&gt; str:
+    cards = []
+    for row in cycle_rows:
+        data = row[&quot;data&quot;]
+        pair = &quot;–&quot;.join(data[&quot;identity&quot;][&quot;pair&quot;])
+        seed = datetime.fromisoformat(data[&quot;radix&quot;][&quot;event&quot;][&quot;local&quot;])
+        persona = datetime.fromisoformat(data[&quot;persona&quot;][&quot;event&quot;][&quot;local&quot;])
+        target = BASE.degree_label(data[&quot;radix&quot;][&quot;target_longitude&quot;])
+        seed_zone = data[&quot;radix&quot;][&quot;event&quot;][&quot;zone_abbreviation&quot;]
+        persona_zone = data[&quot;persona&quot;][&quot;event&quot;][&quot;zone_abbreviation&quot;]
+        america_status = data[&quot;america_916_coverage&quot;][&quot;status&quot;].replace(&quot;_&quot;, &quot; &quot;)
+        cards.append(
+            f&quot;&quot;&quot;&lt;article id=&quot;{html.escape(data[&#x27;identity&#x27;][&#x27;cycle_id&#x27;])}&quot;&gt;
+&lt;header&gt;&lt;p class=&quot;eyebrow&quot;&gt;{html.escape(data[&#x27;identity&#x27;][&#x27;tier_id&#x27;].replace(&#x27;_&#x27;, &#x27; &#x27;).upper())}&lt;/p&gt;
+&lt;h2&gt;{html.escape(pair)}&lt;/h2&gt;&lt;p&gt;&lt;code&gt;{html.escape(data[&#x27;identity&#x27;][&#x27;artifact_key&#x27;])}&lt;/code&gt;&lt;/p&gt;&lt;/header&gt;
+&lt;div class=&quot;facts&quot;&gt;&lt;span&gt;&lt;b&gt;Seed&lt;/b&gt; {html.escape(seed.strftime(&#x27;%d %b %Y · %H:%M:%S&#x27;))} {html.escape(seed_zone)}&lt;/span&gt;
+&lt;span&gt;&lt;b&gt;Target&lt;/b&gt; {html.escape(target)}&lt;/span&gt;&lt;span&gt;&lt;b&gt;Persona&lt;/b&gt; {html.escape(persona.strftime(&#x27;%d %b %Y · %H:%M:%S&#x27;))} {html.escape(persona_zone)}&lt;/span&gt;
+&lt;span&gt;&lt;b&gt;America&lt;/b&gt; {html.escape(america_status)}&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;wheels&quot;&gt;&lt;section&gt;&lt;h3&gt;Persona&lt;/h3&gt;{row[&#x27;standalone_svg&#x27;]}&lt;/section&gt;&lt;section&gt;&lt;h3&gt;Seed + persona&lt;/h3&gt;{row[&#x27;biwheel_svg&#x27;]}&lt;/section&gt;&lt;/div&gt;
+&lt;div class=&quot;downloads&quot;&gt;&lt;a download=&quot;{html.escape(row[&#x27;standalone_path&#x27;].name)}&quot; href=&quot;{svg_data_uri(row[&#x27;standalone_svg&#x27;])}&quot;&gt;Download standalone SVG&lt;/a&gt; · &lt;a download=&quot;{html.escape(row[&#x27;biwheel_path&#x27;].name)}&quot; href=&quot;{svg_data_uri(row[&#x27;biwheel_svg&#x27;])}&quot;&gt;Download biwheel SVG&lt;/a&gt;&lt;/div&gt;
+&lt;details&gt;&lt;summary&gt;Embedded factual receipt&lt;/summary&gt;&lt;pre&gt;{html.escape(json.dumps(data, indent=2, ensure_ascii=False))}&lt;/pre&gt;&lt;/details&gt;
+&lt;/article&gt;&quot;&quot;&quot;
+        )
+    embedded = json.dumps(
+        {
+            &quot;schema&quot;: &quot;freedom250.long-clock-persona-self-contained-hub/v1&quot;,
+            &quot;cycles&quot;: full_data,
+        },
+        ensure_ascii=False,
+        separators=(&quot;,&quot;, &quot;:&quot;),
+    ).replace(&quot;&lt;/&quot;, &quot;&lt;\\/&quot;)
+    return f&quot;&quot;&quot;&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;Freedom 250 · Long Clock Persona Subsidiaries&lt;/title&gt;&lt;style&gt;
+:root{{--paper:#f7f3e9;--card:#fffdf7;--ink:#2d2923;--muted:#746b5e;--line:#d9cdb8;--accent:#594b78}}*{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:var(--ink);font-family:&quot;Iowan Old Style&quot;,Palatino,Georgia,serif}}main{{width:min(1500px,96vw);margin:auto;padding:40px 0 80px}}h1{{font-weight:400;font-size:clamp(2rem,5vw,4rem);margin:.1em 0}}.lead,.boundary{{color:var(--muted);line-height:1.55}}nav{{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}}nav a,.downloads a{{color:var(--accent)}}article{{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:22px 0}}h2{{font-size:2rem;font-weight:400;margin:.1em 0}}h3{{font-weight:400}}.eyebrow{{font-size:.7rem;letter-spacing:.13em;color:var(--accent);font-weight:700}}.facts{{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}}.facts span{{background:#eee7da;padding:6px 9px;border-radius:8px;color:var(--muted)}}.wheels{{display:grid;grid-template-columns:1fr 1fr;gap:18px}}.wheels svg{{width:100%;height:auto;display:block}}details{{margin-top:14px}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;font:11px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;background:#f2ede3;padding:12px;border-radius:10px;max-height:34rem;overflow:auto}}code{{color:var(--accent)}}@media(max-width:900px){{.wheels{{grid-template-columns:1fr}}}}
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;main&gt;&lt;header&gt;&lt;p class=&quot;eyebrow&quot;&gt;FREEDOM 250 · LONG CLOCKS&lt;/p&gt;&lt;h1&gt;Persona subsidiaries&lt;/h1&gt;&lt;p class=&quot;lead&quot;&gt;One governed display-anchor persona per conjunction family. Each chart is conditional, subordinate, and zero-vote; it cannot time an event or prove a present-day claim.&lt;/p&gt;&lt;p class=&quot;boundary&quot;&gt;&lt;b&gt;Dependency gate:&lt;/b&gt; for Jupiter through Pluto, proximity within 31 days is automatically dependent. After 31 days, proximity alone is still never additive. This copied HTML contains every wheel and factual JSON receipt inline; it has no sidecar dependency.&lt;/p&gt;&lt;/header&gt;
+&lt;nav&gt;{&#x27;&#x27;.join(f&#x27;&lt;a href=&quot;#{html.escape(row[&quot;data&quot;][&quot;identity&quot;][&quot;cycle_id&quot;])}&quot;&gt;{html.escape(&quot;–&quot;.join(row[&quot;data&quot;][&quot;identity&quot;][&quot;pair&quot;]))}&lt;/a&gt;&#x27; for row in cycle_rows)}&lt;/nav&gt;
+{&#x27;&#x27;.join(cards)}
+&lt;script type=&quot;application/json&quot; id=&quot;long-clock-persona-data&quot;&gt;{embedded}&lt;/script&gt;&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;
+
+
+def source_hashes() -&gt; dict[str, str]:
+    sources = [
+        REGISTRY_PATH,
+        SYNODIC_PATH,
+        CONVENTIONS_PATH,
+        WHEEL_PATH,
+        AMERICA_PATH,
+        Path(america.CACHE),
+        SENTIENT_SUN / &quot;chart_calculator.py&quot;,
+        SENTIENT_SUN / &quot;reading_engine.py&quot;,
+        BASE_BUILDER_PATH,
+        PERSONA_METHOD_PATH,
+    ]
+    missing = [str(path) for path in sources if not path.exists()]
+    if missing:
+        raise RuntimeError(f&quot;Missing source dependencies: {missing}&quot;)
+    return {str(path): sha256(path) for path in sources}
+
+
+def main() -&gt; None:
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    CHARTS_DIR.mkdir(parents=True, exist_ok=True)
+    registry, validation = load_registry()
+    cycle_rows: list[dict[str, Any]] = []
+    full_data: list[dict[str, Any]] = []
+    for cycle in registry[&quot;cycles&quot;]:
+        data, _radix_raw, _persona_raw = calculate_cycle(cycle, validation)
+        cycle_id = cycle[&quot;cycle_id&quot;]
+        data_path = DATA_DIR / f&quot;{cycle_id}.json&quot;
+        data_path.write_text(
+            json.dumps(data, indent=2, ensure_ascii=False) + &quot;\n&quot;,
+            encoding=&quot;utf-8&quot;,
+        )
+        standalone_path, biwheel_path, standalone_svg, biwheel_svg = (
+            render_cycle_charts(data)
+        )
+        full_data.append(data)
+        cycle_rows.append(
+            {
+                &quot;data&quot;: data,
+                &quot;data_path&quot;: data_path,
+                &quot;standalone_path&quot;: standalone_path,
+                &quot;biwheel_path&quot;: biwheel_path,
+                &quot;standalone_svg&quot;: standalone_svg,
+                &quot;biwheel_svg&quot;: biwheel_svg,
+            }
+        )
+        print(
+            f&quot;BUILT {cycle_id} {data[&#x27;identity&#x27;][&#x27;display_anchor_pass_id&#x27;]} &quot;
+            f&quot;-&gt; {data[&#x27;persona&#x27;][&#x27;event&#x27;][&#x27;utc&#x27;]}&quot;
+        )
+    index = {
+        &quot;schema&quot;: &quot;freedom250.long-clock-persona-index/v1&quot;,
+        &quot;status&quot;: &quot;kept_conditional_subsidiary&quot;,
+        &quot;review_disposition&quot;: &quot;keep&quot;,
+        &quot;admission&quot;: &quot;conditional_subordinate_zero_vote&quot;,
+        &quot;cycle_count&quot;: len(cycle_rows),
+        &quot;pass_count_in_complete_rosters&quot;: sum(
+            row[&quot;data&quot;][&quot;seed_family&quot;][&quot;pass_count&quot;] for row in cycle_rows
+        ),
+        &quot;cycles&quot;: [
+            {
+                &quot;cycle_id&quot;: row[&quot;data&quot;][&quot;identity&quot;][&quot;cycle_id&quot;],
+                &quot;pair&quot;: row[&quot;data&quot;][&quot;identity&quot;][&quot;pair&quot;],
+                &quot;seed_family_id&quot;: row[&quot;data&quot;][&quot;identity&quot;][&quot;seed_family_id&quot;],
+                &quot;display_anchor_pass_id&quot;: row[&quot;data&quot;][&quot;identity&quot;][
+                    &quot;display_anchor_pass_id&quot;
+                ],
+                &quot;artifact_key&quot;: row[&quot;data&quot;][&quot;identity&quot;][&quot;artifact_key&quot;],
+                &quot;seed_utc&quot;: row[&quot;data&quot;][&quot;radix&quot;][&quot;event&quot;][&quot;utc&quot;],
+                &quot;target_longitude&quot;: row[&quot;data&quot;][&quot;radix&quot;][&quot;target_longitude&quot;],
+                &quot;persona_utc&quot;: row[&quot;data&quot;][&quot;persona&quot;][&quot;event&quot;][&quot;utc&quot;],
+                &quot;persona_local&quot;: row[&quot;data&quot;][&quot;persona&quot;][&quot;event&quot;][&quot;local&quot;],
+                &quot;america_916_status&quot;: row[&quot;data&quot;][&quot;america_916_coverage&quot;][
+                    &quot;status&quot;
+                ],
+                &quot;artifacts&quot;: {
+                    &quot;data&quot;: str(row[&quot;data_path&quot;].relative_to(HERE)),
+                    &quot;standalone_svg&quot;: str(
+                        row[&quot;standalone_path&quot;].relative_to(HERE)
+                    ),
+                    &quot;seed_persona_biwheel_svg&quot;: str(
+                        row[&quot;biwheel_path&quot;].relative_to(HERE)
+                    ),
+                },
+                &quot;sha256&quot;: {
+                    &quot;data&quot;: sha256(row[&quot;data_path&quot;]),
+                    &quot;standalone_svg&quot;: sha256(row[&quot;standalone_path&quot;]),
+                    &quot;seed_persona_biwheel_svg&quot;: sha256(row[&quot;biwheel_path&quot;]),
+                },
+            }
+            for row in cycle_rows
+        ],
+        &quot;policy&quot;: {
+            &quot;primary_persona_per_family&quot;: 1,
+            &quot;multi_pass_variants&quot;: &quot;retained_in_roster_not_additional_votes&quot;,
+            &quot;one_shared_chart_two_focal_lenses&quot;: True,
+            &quot;independent_vote&quot;: False,
+        },
+    }
+    INDEX_PATH.write_text(
+        json.dumps(index, indent=2, ensure_ascii=False) + &quot;\n&quot;,
+        encoding=&quot;utf-8&quot;,
+    )
+    HUB_PATH.write_text(
+        self_contained_hub(cycle_rows, full_data), encoding=&quot;utf-8&quot;
+    )
+    generated = sorted(
+        [INDEX_PATH, HUB_PATH]
+        + [row[&quot;data_path&quot;] for row in cycle_rows]
+        + [row[&quot;standalone_path&quot;] for row in cycle_rows]
+        + [row[&quot;biwheel_path&quot;] for row in cycle_rows],
+        key=lambda path: str(path.relative_to(HERE)),
+    )
+    validator_path = HERE / &quot;validate_long_clock_personas.py&quot;
+    code_hashes = {str(Path(__file__).resolve()): sha256(Path(__file__).resolve())}
+    if validator_path.exists():
+        code_hashes[str(validator_path)] = sha256(validator_path)
+    manifest = {
+        &quot;schema&quot;: &quot;freedom250.long-clock-persona-manifest/v1&quot;,
+        &quot;status&quot;: &quot;kept_conditional_subsidiary&quot;,
+        &quot;review_disposition&quot;: &quot;keep&quot;,
+        &quot;admission&quot;: &quot;conditional_subordinate_zero_vote&quot;,
+        &quot;cycle_count&quot;: 10,
+        &quot;governed_anchor_count&quot;: 10,
+        &quot;governed_family_pass_count&quot;: 20,
+        &quot;self_contained_hub&quot;: str(HUB_PATH.relative_to(HERE)),
+        &quot;outputs_sha256&quot;: {
+            str(path.relative_to(HERE)): sha256(path) for path in generated
+        },
+        &quot;package_code_sha256&quot;: code_hashes,
+        &quot;source_sha256&quot;: source_hashes(),
+        &quot;runtime&quot;: {
+            &quot;python&quot;: sys.version.split()[0],
+            &quot;pyswisseph&quot;: swe.version,
+            &quot;requested_planetary_flags&quot;: [&quot;FLG_SWIEPH&quot;, &quot;FLG_SPEED&quot;],
+            &quot;actual_planetary_fallback_observed&quot;: any(
+                row[&quot;data&quot;][&quot;ephemeris_runtime_receipt&quot;][&quot;seed&quot;][
+                    &quot;fallback_observed&quot;
+                ]
+                for row in cycle_rows
+            ),
+            &quot;actual_planetary_returned_flag_names&quot;: sorted(
+                {
+                    name
+                    for row in cycle_rows
+                    for receipt in row[&quot;data&quot;][&quot;ephemeris_runtime_receipt&quot;][
+                        &quot;seed&quot;
+                    ][&quot;returned_by_body&quot;].values()
+                    for name in receipt[&quot;names&quot;]
+                }
+            ),
+            &quot;ephemeris_boundary&quot;: &quot;actual returned flags govern; no independent-Swiss claim&quot;,
+            &quot;persona_primary_solver&quot;: &quot;solcross_ut with SWIEPH requested and actual fallback recorded&quot;,
+            &quot;persona_independent_solver&quot;: &quot;quarter-day bracket plus Moshier bisection&quot;,
+        },
+    }
+    MANIFEST_PATH.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + &quot;\n&quot;,
+        encoding=&quot;utf-8&quot;,
+    )
+    print(
+        f&quot;WROTE {len(cycle_rows)} cycles, {len(generated)} hashed outputs, &quot;
+        f&quot;manifest={MANIFEST_PATH.name}&quot;
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

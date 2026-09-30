@@ -1,0 +1,388 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-aquarius-moon-family-51e063302527.html">
+<title>build_aquarius_moon_family</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_aquarius_moon_family</h1><p class="mut">Portable source: 99 - Templates/build_aquarius_moon_family.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the January 2025 Aquarius Moon-family comparison.
+
+The output is calculation evidence for a contextual reread. It does not edit
+the locked July 29, 2026 Full-Moon reading and grants astrology no factual,
+causal, convergence, or Forecast Ledger credit.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import datetime as dt
+import json
+import math
+from pathlib import Path
+
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+HISTORY = HERE / &quot;mundane_history.json&quot;
+LINEAGES = HERE / &quot;moon_lineages.json&quot;
+FULL_BONE = HERE / &quot;chart_reading_bones&quot; / &quot;lun-2026-07-29-fu.json&quot;
+OUTPUT = HERE / &quot;aquarius_moon_family_2025_2026.json&quot;
+
+PLANETS = (
+    &quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;,
+    &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;,
+)
+SWE_PLANETS = {
+    &quot;Sun&quot;: swe.SUN,
+    &quot;Moon&quot;: swe.MOON,
+    &quot;Mercury&quot;: swe.MERCURY,
+    &quot;Venus&quot;: swe.VENUS,
+    &quot;Mars&quot;: swe.MARS,
+    &quot;Jupiter&quot;: swe.JUPITER,
+    &quot;Saturn&quot;: swe.SATURN,
+    &quot;Uranus&quot;: swe.URANUS,
+    &quot;Neptune&quot;: swe.NEPTUNE,
+    &quot;Pluto&quot;: swe.PLUTO,
+}
+SIGNS = (
+    &quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;,
+    &quot;Libra&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;,
+)
+RULERS = {
+    &quot;Aries&quot;: &quot;Mars&quot;, &quot;Taurus&quot;: &quot;Venus&quot;, &quot;Gemini&quot;: &quot;Mercury&quot;,
+    &quot;Cancer&quot;: &quot;Moon&quot;, &quot;Leo&quot;: &quot;Sun&quot;, &quot;Virgo&quot;: &quot;Mercury&quot;,
+    &quot;Libra&quot;: &quot;Venus&quot;, &quot;Scorpio&quot;: &quot;Mars&quot;, &quot;Sagittarius&quot;: &quot;Jupiter&quot;,
+    &quot;Capricorn&quot;: &quot;Saturn&quot;, &quot;Aquarius&quot;: &quot;Saturn&quot;, &quot;Pisces&quot;: &quot;Jupiter&quot;,
+}
+ASPECTS = (
+    (&quot;conjunction&quot;, 0.0), (&quot;sextile&quot;, 60.0), (&quot;square&quot;, 90.0),
+    (&quot;trine&quot;, 120.0), (&quot;opposition&quot;, 180.0),
+)
+WASHINGTON = {&quot;latitude&quot;: 38.9072, &quot;longitude&quot;: -77.0369}
+
+
+def parse_utc(value: str) -&gt; dt.datetime:
+    return dt.datetime.fromisoformat(value.replace(&quot;Z&quot;, &quot;+00:00&quot;))
+
+
+def jd_for(moment: dt.datetime) -&gt; float:
+    moment = moment.astimezone(dt.timezone.utc)
+    hour = moment.hour + moment.minute / 60 + (moment.second + moment.microsecond / 1e6) / 3600
+    return swe.julday(moment.year, moment.month, moment.day, hour)
+
+
+def sign(lon: float) -&gt; str:
+    return SIGNS[int((lon % 360) // 30)]
+
+
+def whole_sign_house(lon: float, asc: float) -&gt; int:
+    return ((int((lon % 360) // 30) - int((asc % 360) // 30)) % 12) + 1
+
+
+def angular_distance(a: float, b: float) -&gt; float:
+    return abs((a - b + 180.0) % 360.0 - 180.0)
+
+
+def sky_separation(a: dict, b: dict) -&gt; float:
+    ra1, dec1 = math.radians(a[&quot;right_ascension_deg&quot;]), math.radians(a[&quot;declination_deg&quot;])
+    ra2, dec2 = math.radians(b[&quot;right_ascension_deg&quot;]), math.radians(b[&quot;declination_deg&quot;])
+    cosine = math.sin(dec1) * math.sin(dec2) + math.cos(dec1) * math.cos(dec2) * math.cos(ra1 - ra2)
+    return math.degrees(math.acos(max(-1.0, min(1.0, cosine))))
+
+
+def aspects(positions: dict[str, float], max_orb: float = 3.0) -&gt; list[dict]:
+    rows: list[dict] = []
+    for index, a in enumerate(PLANETS):
+        for b in PLANETS[index + 1:]:
+            separation = angular_distance(positions[a], positions[b])
+            kind, angle = min(ASPECTS, key=lambda item: abs(separation - item[1]))
+            orb = abs(separation - angle)
+            if orb &lt;= max_orb:
+                rows.append({
+                    &quot;a&quot;: a,
+                    &quot;b&quot;: b,
+                    &quot;kind&quot;: kind,
+                    &quot;orb_deg&quot;: round(orb, 6),
+                    &quot;separation_deg&quot;: round(separation, 6),
+                })
+    return sorted(rows, key=lambda row: (row[&quot;orb_deg&quot;], row[&quot;a&quot;], row[&quot;b&quot;]))
+
+
+def declination_pairs(declinations: dict[str, float], max_orb: float = 1.0) -&gt; list[dict]:
+    rows: list[dict] = []
+    for index, a in enumerate(PLANETS):
+        for b in PLANETS[index + 1:]:
+            orb = abs(abs(declinations[a]) - abs(declinations[b]))
+            if orb &lt;= max_orb:
+                rows.append({
+                    &quot;a&quot;: a,
+                    &quot;b&quot;: b,
+                    &quot;kind&quot;: &quot;parallel&quot; if declinations[a] * declinations[b] &gt;= 0 else &quot;contra_parallel&quot;,
+                    &quot;orb_deg&quot;: round(orb, 6),
+                    &quot;declination_a_deg&quot;: round(declinations[a], 6),
+                    &quot;declination_b_deg&quot;: round(declinations[b], 6),
+                })
+    return sorted(rows, key=lambda row: (row[&quot;orb_deg&quot;], row[&quot;a&quot;], row[&quot;b&quot;]))
+
+
+def distribution(positions: dict[str, float]) -&gt; dict:
+    ordered = sorted((lon % 360, name) for name, lon in positions.items())
+    gaps = []
+    for index, (lon, name) in enumerate(ordered):
+        next_lon, next_name = ordered[(index + 1) % len(ordered)]
+        gap = (next_lon - lon) % 360
+        gaps.append((gap, name, next_name))
+    gap, from_body, to_body = max(gaps)
+    return {
+        &quot;largest_empty_arc_deg&quot;: round(gap, 6),
+        &quot;occupied_span_deg&quot;: round(360.0 - gap, 6),
+        &quot;empty_arc_from_body&quot;: from_body,
+        &quot;empty_arc_to_body&quot;: to_body,
+        &quot;named_shape_policy&quot;: &quot;withheld; raw ten-body distribution only&quot;,
+    }
+
+
+def dispositor_map(positions: dict[str, float]) -&gt; dict:
+    routes = {body: RULERS[sign(lon)] for body, lon in positions.items()}
+    finals = sorted(body for body, ruler in routes.items() if body == ruler)
+    cycles: set[tuple[str, ...]] = set()
+    for start in PLANETS:
+        path: list[str] = []
+        current = start
+        while current not in path:
+            path.append(current)
+            current = routes[current]
+        cycle = path[path.index(current):]
+        rotations = [tuple(cycle[i:] + cycle[:i]) for i in range(len(cycle))]
+        cycles.add(min(rotations))
+    return {
+        &quot;routes&quot;: routes,
+        &quot;final_dispositors&quot;: finals,
+        &quot;bounded_cycles&quot;: [list(cycle) for cycle in sorted(cycles)],
+    }
+
+
+def calculated_chart(moment: dt.datetime) -&gt; dict:
+    jd = jd_for(moment)
+    flags = swe.FLG_SWIEPH | swe.FLG_SPEED
+    _, ascmc = swe.houses_ex(jd, WASHINGTON[&quot;latitude&quot;], WASHINGTON[&quot;longitude&quot;], b&quot;P&quot;)
+    asc, mc = ascmc[0], ascmc[1]
+    positions: dict[str, float] = {}
+    bodies: dict[str, dict] = {}
+    declinations: dict[str, float] = {}
+    for body in PLANETS:
+        vector, _ = swe.calc_ut(jd, SWE_PLANETS[body], flags)
+        equatorial, _ = swe.calc_ut(jd, SWE_PLANETS[body], flags | swe.FLG_EQUATORIAL)
+        _, true_altitude, apparent_altitude = swe.azalt(
+            jd,
+            swe.EQU2HOR,
+            (WASHINGTON[&quot;longitude&quot;], WASHINGTON[&quot;latitude&quot;], 0.0),
+            0.0,
+            10.0,
+            (equatorial[0], equatorial[1], equatorial[2]),
+        )
+        lon = vector[0] % 360
+        positions[body] = lon
+        declinations[body] = equatorial[1]
+        bodies[body] = {
+            &quot;longitude_deg&quot;: round(lon, 9),
+            &quot;sign&quot;: sign(lon),
+            &quot;degree_in_sign&quot;: round(lon % 30, 9),
+            &quot;speed_deg_per_day&quot;: round(vector[3], 9),
+            &quot;retrograde&quot;: vector[3] &lt; 0,
+            &quot;ecliptic_latitude_deg&quot;: round(vector[1], 9),
+            &quot;distance_au&quot;: round(vector[2], 9),
+            &quot;right_ascension_deg&quot;: round(equatorial[0], 9),
+            &quot;declination_deg&quot;: round(equatorial[1], 9),
+            &quot;true_altitude_deg&quot;: round(true_altitude, 9),
+            &quot;apparent_altitude_deg&quot;: round(apparent_altitude, 9),
+            &quot;whole_sign_house&quot;: whole_sign_house(lon, asc),
+        }
+    return {
+        &quot;exact_utc&quot;: moment.astimezone(dt.timezone.utc).isoformat().replace(&quot;+00:00&quot;, &quot;Z&quot;),
+        &quot;julian_day_ut&quot;: round(jd, 9),
+        &quot;ascendant_deg&quot;: round(asc, 9),
+        &quot;ascendant_sign&quot;: sign(asc),
+        &quot;mc_deg&quot;: round(mc, 9),
+        &quot;mc_sign&quot;: sign(mc),
+        &quot;bodies&quot;: bodies,
+        &quot;aspects_within_3_deg&quot;: aspects(positions),
+        &quot;declination_relationships_within_1_deg&quot;: declination_pairs(declinations),
+        &quot;distribution&quot;: distribution(positions),
+        &quot;dispositors&quot;: dispositor_map(positions),
+    }
+
+
+def apply_governed_positions(
+    chart: dict,
+    positions: dict[str, float],
+    *,
+    asc: float | None = None,
+    mc: float | None = None,
+    declinations: dict[str, float] | None = None,
+) -&gt; dict:
+    &quot;&quot;&quot;Replace fresh-call longitudes with the corpus-owned exact coordinates.&quot;&quot;&quot;
+    if asc is not None:
+        chart[&quot;ascendant_deg&quot;] = round(asc % 360, 9)
+        chart[&quot;ascendant_sign&quot;] = sign(asc)
+    if mc is not None:
+        chart[&quot;mc_deg&quot;] = round(mc % 360, 9)
+        chart[&quot;mc_sign&quot;] = sign(mc)
+    ascendant = chart[&quot;ascendant_deg&quot;]
+    for body, lon in positions.items():
+        lon %= 360
+        chart[&quot;bodies&quot;][body][&quot;longitude_deg&quot;] = round(lon, 9)
+        chart[&quot;bodies&quot;][body][&quot;sign&quot;] = sign(lon)
+        chart[&quot;bodies&quot;][body][&quot;degree_in_sign&quot;] = round(lon % 30, 9)
+        chart[&quot;bodies&quot;][body][&quot;whole_sign_house&quot;] = whole_sign_house(lon, ascendant)
+        if declinations and body in declinations:
+            chart[&quot;bodies&quot;][body][&quot;declination_deg&quot;] = round(declinations[body], 9)
+    governed_positions = {body: chart[&quot;bodies&quot;][body][&quot;longitude_deg&quot;] for body in PLANETS}
+    governed_declinations = {body: chart[&quot;bodies&quot;][body][&quot;declination_deg&quot;] for body in PLANETS}
+    chart[&quot;aspects_within_3_deg&quot;] = aspects(governed_positions)
+    chart[&quot;declination_relationships_within_1_deg&quot;] = declination_pairs(governed_declinations)
+    chart[&quot;distribution&quot;] = distribution(governed_positions)
+    chart[&quot;dispositors&quot;] = dispositor_map(governed_positions)
+    return chart
+
+
+def cross_chart_contacts(a: dict, b: dict, max_orb: float = 1.0) -&gt; list[dict]:
+    rows: list[dict] = []
+    for body_a in PLANETS:
+        lon_a = a[&quot;bodies&quot;][body_a][&quot;longitude_deg&quot;]
+        for body_b in PLANETS:
+            lon_b = b[&quot;bodies&quot;][body_b][&quot;longitude_deg&quot;]
+            separation = angular_distance(lon_a, lon_b)
+            kind, angle = min(ASPECTS, key=lambda item: abs(separation - item[1]))
+            orb = abs(separation - angle)
+            if orb &lt;= max_orb:
+                rows.append({
+                    &quot;from_body&quot;: body_a,
+                    &quot;to_body&quot;: body_b,
+                    &quot;kind&quot;: kind,
+                    &quot;orb_deg&quot;: round(orb, 6),
+                })
+    return sorted(rows, key=lambda row: (row[&quot;orb_deg&quot;], row[&quot;from_body&quot;], row[&quot;to_body&quot;]))
+
+
+def main() -&gt; None:
+    history = json.loads(HISTORY.read_text())
+    lineages = json.loads(LINEAGES.read_text())
+    seed_source = next(row for row in history[&quot;charts&quot;] if row[&quot;id&quot;] == &quot;lun-2025-01-29-ne&quot;)
+    lineage = next(row for row in lineages[&quot;lineages&quot;] if row[&quot;lineage_id&quot;] == &quot;pessin:lun-2025-01-29-ne&quot;)
+    phase_index = {row[&quot;phase_event_id&quot;]: row for row in lineages[&quot;phase_events&quot;]}
+    quarter_source = phase_index[&quot;lunation-2025-10-29-fq&quot;]
+    full_source = phase_index[&quot;lun-2026-07-29-fu&quot;]
+    full_bone = json.loads(FULL_BONE.read_text())
+
+    seed = calculated_chart(parse_utc(seed_source[&quot;utc&quot;]))
+    quarter = calculated_chart(parse_utc(quarter_source[&quot;exact_utc&quot;]))
+    full = calculated_chart(parse_utc(full_source[&quot;exact_utc&quot;]))
+    seed = apply_governed_positions(
+        seed,
+        {row[&quot;name&quot;]: row[&quot;lon&quot;] for row in seed_source[&quot;points&quot;] if row[&quot;name&quot;] in PLANETS},
+        asc=seed_source[&quot;asc&quot;],
+        mc=seed_source[&quot;mc&quot;],
+    )
+    quarter = apply_governed_positions(
+        quarter,
+        {&quot;Sun&quot;: quarter_source[&quot;sun_lon_deg&quot;], &quot;Moon&quot;: quarter_source[&quot;moon_lon_deg&quot;]},
+    )
+    full = apply_governed_positions(
+        full,
+        {body: full_bone[&quot;pos&quot;][body][&quot;lon&quot;] for body in PLANETS},
+        asc=full_bone[&quot;asc&quot;],
+        mc=full_bone[&quot;mc&quot;],
+        declinations={body: full_bone[&quot;pos&quot;][body][&quot;dec&quot;] for body in PLANETS},
+    )
+
+    quarter_full_delta = angular_distance(
+        quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;],
+        full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;longitude_deg&quot;],
+    )
+    horizon_summary = {}
+    for name, chart in ((&quot;seed&quot;, seed), (&quot;first_quarter&quot;, quarter), (&quot;full&quot;, full)):
+        above = [body for body in PLANETS if chart[&quot;bodies&quot;][body][&quot;true_altitude_deg&quot;] &gt; 0]
+        horizon_summary[name] = {
+            &quot;above_true_horizon&quot;: above,
+            &quot;below_or_on_true_horizon&quot;: [body for body in PLANETS if body not in above],
+            &quot;above_count&quot;: len(above),
+            &quot;below_or_on_count&quot;: len(PLANETS) - len(above),
+        }
+    full_geometry = {
+        &quot;sun_jupiter_true_sky_separation_deg&quot;: round(sky_separation(full[&quot;bodies&quot;][&quot;Sun&quot;], full[&quot;bodies&quot;][&quot;Jupiter&quot;]), 6),
+        &quot;moon_pluto_true_sky_separation_deg&quot;: round(sky_separation(full[&quot;bodies&quot;][&quot;Moon&quot;], full[&quot;bodies&quot;][&quot;Pluto&quot;]), 6),
+        &quot;sun_pluto_true_sky_separation_deg&quot;: round(sky_separation(full[&quot;bodies&quot;][&quot;Sun&quot;], full[&quot;bodies&quot;][&quot;Pluto&quot;]), 6),
+        &quot;moon_jupiter_true_sky_separation_deg&quot;: round(sky_separation(full[&quot;bodies&quot;][&quot;Moon&quot;], full[&quot;bodies&quot;][&quot;Jupiter&quot;]), 6),
+        &quot;jupiter_solar_elongation_deg&quot;: round(sky_separation(full[&quot;bodies&quot;][&quot;Sun&quot;], full[&quot;bodies&quot;][&quot;Jupiter&quot;]), 6),
+        &quot;pluto_solar_elongation_deg&quot;: round(sky_separation(full[&quot;bodies&quot;][&quot;Sun&quot;], full[&quot;bodies&quot;][&quot;Pluto&quot;]), 6),
+        &quot;scale_boundary&quot;: &quot;geocentric angular geometry and local altitude supply physical context only; they do not prove astrological causation or assign interpretive weight&quot;,
+    }
+    result = {
+        &quot;schema&quot;: &quot;freedom250.aquarius-moon-family/v1&quot;,
+        &quot;developed_through&quot;: &quot;2026-09-25&quot;,
+        &quot;lineage_id&quot;: lineage[&quot;lineage_id&quot;],
+        &quot;interpretation_status_before_reread&quot;: lineage[&quot;interpretation_status&quot;],
+        &quot;story_verdict_before_reread&quot;: lineage[&quot;story_verdict&quot;],
+        &quot;authority_boundary&quot;: {
+            &quot;calculation&quot;: &quot;Registered longitudes and angles inherit governed mundane_history, moon_lineages and chart-bone coordinates; Swiss Ephemeris supplies the missing First-Quarter frame and secondary quantities&quot;,
+            &quot;verification&quot;: &quot;Astro Gold remains pending where the source registry says pending&quot;,
+            &quot;interpretation&quot;: &quot;contextual companion only; locked Pass 1 remains unchanged&quot;,
+            &quot;evidence_credit&quot;: &quot;zero&quot;,
+        },
+        &quot;family_members&quot;: lineage[&quot;members&quot;],
+        &quot;charts&quot;: {
+            &quot;seed_2025_01_29&quot;: seed,
+            &quot;first_quarter_2025_10_29&quot;: quarter,
+            &quot;full_2026_07_29&quot;: full,
+        },
+        &quot;degree_relays&quot;: {
+            &quot;seed_moon_degree_deg&quot;: round(seed[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;first_quarter_moon_degree_deg&quot;: round(quarter[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;full_moon_degree_deg&quot;: round(full[&quot;bodies&quot;][&quot;Moon&quot;][&quot;degree_in_sign&quot;], 9),
+            &quot;first_quarter_to_full_moon_delta_deg&quot;: round(quarter_full_delta, 9),
+            &quot;first_quarter_to_full_moon_delta_arcsec&quot;: round(quarter_full_delta * 3600, 3),
+            &quot;meaning_boundary&quot;: &quot;exact coordinate relay inside one Moon family; not an additional factual or causal vote&quot;,
+        },
+        &quot;cross_chart_contacts_within_1_deg&quot;: {
+            &quot;seed_to_first_quarter&quot;: cross_chart_contacts(seed, quarter),
+            &quot;seed_to_full&quot;: cross_chart_contacts(seed, full),
+            &quot;first_quarter_to_full&quot;: cross_chart_contacts(quarter, full),
+        },
+        &quot;house_migrations&quot;: {
+            body: [
+                seed[&quot;bodies&quot;][body][&quot;whole_sign_house&quot;],
+                quarter[&quot;bodies&quot;][body][&quot;whole_sign_house&quot;],
+                full[&quot;bodies&quot;][body][&quot;whole_sign_house&quot;],
+            ]
+            for body in PLANETS
+        },
+        &quot;astronomical_geometry&quot;: {
+            &quot;local_horizon&quot;: horizon_summary,
+            &quot;full_phase&quot;: full_geometry,
+        },
+        &quot;factual_comparison&quot;: {
+            &quot;research_id&quot;: &quot;january-2025-authority-operations-window&quot;,
+            &quot;path&quot;: &quot;Research Packages/January 2025 Authority to Operations Window/README.md&quot;,
+            &quot;selection_method&quot;: &quot;fixed action-date window; objects independently selected for materiality, traceability, and primary-source receipts&quot;,
+            &quot;shared_factual_grammar&quot;: &quot;executive direction -&gt; named administrative carrier -&gt; operating rule or procedure -&gt; review, litigation, or formalization&quot;,
+            &quot;non_finding&quot;: &quot;the four objects are not one coordinated policy program and do not prove policy success&quot;,
+        },
+        &quot;source_paths&quot;: [
+            &quot;99 - Templates/mundane_history.json&quot;,
+            &quot;99 - Templates/moon_lineages.json&quot;,
+            &quot;99 - Templates/chart_reading_bones/lun-2026-07-29-fu.json&quot;,
+        ],
+    }
+    OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + &quot;\n&quot;)
+    print(f&quot;Wrote {OUTPUT}&quot;)
+    print(f&quot;First-Quarter -&gt; Full Moon coordinate delta: {quarter_full_delta * 3600:.3f} arcseconds&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

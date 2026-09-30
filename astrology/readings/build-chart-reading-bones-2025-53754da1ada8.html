@@ -1,0 +1,304 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-chart-reading-bones-2025-53754da1ada8.html">
+<title>mundane_engine.DETRI keeps only one detriment sign per planet (dict-comprehension collision);</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>mundane_engine.DETRI keeps only one detriment sign per planet (dict-comprehension collision);</h1><p class="mut">Portable source: 99 - Templates/build_chart_reading_bones_2025.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Cast the 2025 retrospective shelf&#x27;s chart-reading bones (DR-084).
+
+    python3 build_chart_reading_bones_2025.py
+
+Writes 99 - Templates/chart_reading_bones_2025/ (index.json + one bone per chart) for the
+2024 Capricorn ingress through the December 19, 2025 New Moon.  Kept apart from
+chart_reading_bones/ so the 2026 builders keep their own chart registry.
+
+Cast ingresses and lunations for the chart-reading shelf.
+
+Vault-native, Swiss/JPL (DE441) via swiss_ephemeris.FLAGS. D.C. Whole Sign.
+Conventions copied from the 2026 chart_reading_bones (calibrated by diff):
+workbook orbs, combust 8.5, cazimi 17&#x27;, US natal hard hits &lt;=1.2 (nameable &lt;=1.0),
+parallels &lt;=1.0, Greer-to-ingress &lt;=3.0 hard.
+&quot;&quot;&quot;
+import sys, json, math, datetime as dt
+from pathlib import Path
+from zoneinfo import ZoneInfo
+T = Path(__file__).resolve().parent
+sys.path.insert(0, str(T))
+import swisseph as swe
+from swiss_ephemeris import FLAGS, EPHEMERIS_LABEL, EPHE_DIR
+swe.set_ephe_path(str(EPHE_DIR))
+import mundane_engine as ME
+from america import america_lon
+
+DC_LAT, DC_LON = 38.9072, -77.0369
+NY = ZoneInfo(&quot;America/New_York&quot;); UTC = dt.timezone.utc
+SIGNS = ME.SIGNS; RULER = ME.RULER; EXALT = ME.EXALT; FALL = ME.FALL
+# mundane_engine.DETRI keeps only one detriment sign per planet (dict-comprehension collision);
+# use the full traditional table (same as build_us_charts.py / build_world_charts.py).
+DETRI_ALL = {&quot;Sun&quot;:[&quot;Aquarius&quot;],&quot;Moon&quot;:[&quot;Capricorn&quot;],&quot;Mercury&quot;:[&quot;Sagittarius&quot;,&quot;Pisces&quot;],&quot;Venus&quot;:[&quot;Aries&quot;,&quot;Scorpio&quot;],&quot;Mars&quot;:[&quot;Taurus&quot;,&quot;Libra&quot;],&quot;Jupiter&quot;:[&quot;Gemini&quot;,&quot;Virgo&quot;],&quot;Saturn&quot;:[&quot;Cancer&quot;,&quot;Leo&quot;]}
+PL = [&quot;Sun&quot;,&quot;Moon&quot;,&quot;Mercury&quot;,&quot;Venus&quot;,&quot;Mars&quot;,&quot;Jupiter&quot;,&quot;Saturn&quot;,&quot;Uranus&quot;,&quot;Neptune&quot;,&quot;Pluto&quot;]
+PID = dict(zip(PL, range(10)))
+ORB = {0:8.0, 60:5.0, 90:7.0, 120:7.0, 180:8.0}
+ANAME = {0:&quot;conjunction&quot;,60:&quot;sextile&quot;,90:&quot;square&quot;,120:&quot;trine&quot;,180:&quot;opposition&quot;}
+EXALT_DEG = {&quot;Sun&quot;:19,&quot;Moon&quot;:3,&quot;Mercury&quot;:15,&quot;Venus&quot;:27,&quot;Mars&quot;:28,&quot;Jupiter&quot;:15,&quot;Saturn&quot;:21}
+HOUSE = {1:&quot;the nation / the body&quot;,2:&quot;the treasury&quot;,3:&quot;the press / communications / transport&quot;,4:&quot;the land / opposition / foundations&quot;,
+ 5:&quot;speculation / children / pleasure&quot;,6:&quot;workers / health / armed services&quot;,7:&quot;foreign powers / open enemies / treaties&quot;,
+ 8:&quot;debt / death / other people&#x27;s money&quot;,9:&quot;courts / law / religion / long trade&quot;,10:&quot;the government / executive / standing&quot;,
+ 11:&quot;the legislature / allies&quot;,12:&quot;the hidden / prisons / secret enemies&quot;}
+GREER_PAIRS = [(&quot;Sun&quot;,&quot;Moon&quot;),(&quot;Venus&quot;,&quot;Mars&quot;),(&quot;Jupiter&quot;,&quot;Saturn&quot;),(&quot;Uranus&quot;,&quot;Neptune&quot;)]
+
+def sd(a,b): return (a-b+180)%360-180
+def sign(l): return SIGNS[int(((l%360)+1e-9)//30)%12]
+def dms(l):
+    l%=360; d=l%30; D=int(d); m=(d-D)*60; M=int(m); s=round((m-M)*60,1)
+    if s&gt;=60: s-=60; M+=1
+    if M&gt;=60: M-=60; D+=1
+    return f&quot;{D}°{M:02d}′{s:04.1f}″ {sign(l)}&quot;
+def whole_house(l, asc): return ((int((l%360)//30)-int((asc%360)//30))%12)+1
+def moment(jd):
+    y,m,d,h = swe.revjul(jd); return dt.datetime(y,m,d,tzinfo=UTC)+dt.timedelta(hours=h)
+def calc(jd, pid):
+    x = swe.calc_ut(jd, pid, FLAGS)[0]; e = swe.calc_ut(jd, pid, FLAGS|swe.FLG_EQUATORIAL)[0]
+    return x[0]%360, x[1], x[3], e[1]
+
+def cond(p, sg, combust, cazimi):
+    t=[]
+    if RULER.get(sg)==p: t.append(&quot;domicile&quot;)
+    if EXALT.get(p)==sg: t.append(&quot;exalted&quot;)
+    if sg in DETRI_ALL.get(p,[]): t.append(&quot;detriment&quot;)
+    if FALL.get(p)==sg: t.append(&quot;fall&quot;)
+    if combust: t.append(&quot;combust&quot;)
+    if cazimi: t.append(&quot;cazimi&quot;)
+    return t or [&quot;peregrine&quot;]
+
+def us_radix():
+    r=json.load(open(T/&quot;us_rec.json&quot;)); out={}
+    for key in (&quot;sag&quot;,&quot;gem&quot;):
+        pts={row[0]:row[4] for row in r[key][&quot;pos&quot;]}
+        for ang in (&quot;asc&quot;,&quot;mc&quot;):
+            v=r[key].get(ang)
+            if v is not None: pts[ang.upper()]=v
+        out[key]=pts
+    return out
+US = us_radix()
+
+def aspect_of(sep_abs):
+    for ang in (0,60,90,120,180):
+        if abs(sep_abs-ang)&lt;=ORB[ang]: return ang
+    return None
+
+def dispositors(pos):
+    chains={}; loops=[]; finals=[]
+    for p in PL:
+        path=[p]; cur=p
+        while True:
+            nxt=RULER[pos[cur][&quot;sign&quot;]]
+            if nxt==cur:
+                chains[p]={&quot;path&quot;:path,&quot;loop&quot;:False}
+                if cur not in finals: finals.append(cur)
+                break
+            if nxt in path:
+                path.append(nxt); chains[p]={&quot;path&quot;:path,&quot;loop&quot;:True}
+                i=path.index(nxt); loop=path[i:]
+                key=sorted(set(loop))
+                if key not in [sorted(set(l)) for l in loops]: loops.append(loop)
+                break
+            path.append(nxt); cur=nxt
+    root=sorted(set(finals)|{m for l in loops for m in l}, key=PL.index)
+    return chains, finals, loops, root
+
+def cast(jd, meta, sun_override=None):
+    cusps, ascmc = swe.houses(jd, DC_LAT, DC_LON, b&quot;W&quot;)
+    asc, mc = ascmc[0]%360, ascmc[1]%360
+    raw = {p:calc(jd,PID[p]) for p in PL}
+    if sun_override is not None:
+        l,la,sp,de = raw[&#x27;Sun&#x27;]; raw[&#x27;Sun&#x27;]=(sun_override,la,sp,de)
+    fut = {p:calc(jd+1/24,PID[p])[0] for p in PL}
+    sun = raw[&quot;Sun&quot;][0]
+    night = (sun-asc)%360 &lt; 180
+    pos={}
+    for p in PL:
+        l,la,sp,de = raw[p]; sg=sign(l)
+        el = abs(sd(l,sun))
+        combust = p!=&quot;Sun&quot; and el&lt;=8.5; cazimi = p!=&quot;Sun&quot; and el&lt;=17/60
+        ex = EXALT.get(p)==sg
+        pos[p]={&quot;lon&quot;:l,&quot;lon_dms&quot;:dms(l),&quot;lat&quot;:la,&quot;spd&quot;:sp,&quot;dec&quot;:de,&quot;sign&quot;:sg,&quot;deg_in_sign&quot;:l%30,
+                &quot;house&quot;:whole_house(l,asc),&quot;house_meaning&quot;:HOUSE[whole_house(l,asc)],&quot;retro&quot;:sp&lt;0,
+                &quot;cond&quot;:cond(p,sg,combust,cazimi),&quot;combust&quot;:combust,&quot;cazimi&quot;:cazimi,
+                &quot;exalt_degree&quot;:EXALT_DEG[p] if ex else None,&quot;exalt_orb&quot;:round(abs(l%30-EXALT_DEG[p]),3) if ex else None}
+    node = swe.calc_ut(jd, swe.TRUE_NODE, FLAGS)[0][0]%360
+    m = moment(jd)
+    try:
+        am = america_lon(m)
+        if am is None: raise ValueError(&quot;outside america_ephemeris.json&quot;)
+        america={&quot;lon&quot;:am,&quot;lon_dms&quot;:dms(am),&quot;sign&quot;:sign(am),&quot;deg_in_sign&quot;:am%30,&quot;house&quot;:whole_house(am,asc)}
+    except Exception as e:
+        america={&quot;unavailable&quot;:str(e)}
+    moon=raw[&quot;Moon&quot;][0]
+    fort = (asc+moon-sun)%360 if not night else (asc+sun-moon)%360
+    spir = (asc+sun-moon)%360 if not night else (asc+moon-sun)%360
+    asps=[]
+    for i,a in enumerate(PL):
+        for b in PL[i+1:]:
+            s=abs(sd(pos[b][&quot;lon&quot;],pos[a][&quot;lon&quot;])); ang=aspect_of(s)
+            if ang is None: continue
+            orb=abs(s-ang); s2=abs(sd(fut[b],fut[a])); orb2=abs(s2-ang)
+            fa,fs = (a,b) if abs(pos[a][&quot;spd&quot;])&gt;abs(pos[b][&quot;spd&quot;]) else (b,a)
+            waxing = sd(pos[fa][&quot;lon&quot;],pos[fs][&quot;lon&quot;])&gt;0
+            asps.append({&quot;a&quot;:a,&quot;b&quot;:b,&quot;kind&quot;:ANAME[ang],&quot;ang&quot;:ang,&quot;orb&quot;:round(orb,3),&quot;applying&quot;:orb2&lt;orb,&quot;waxing&quot;:waxing,&quot;sep&quot;:round(s,3)})
+    asps.sort(key=lambda r:r[&quot;orb&quot;])
+    greer={}
+    for a,b in GREER_PAIRS:
+        hit=next((r for r in asps if {r[&quot;a&quot;],r[&quot;b&quot;]}=={a,b}),None)
+        greer[f&quot;{a}/{b}&quot;]=hit if hit else {&quot;silent&quot;:True}
+    par=[]
+    for i,a in enumerate(PL):
+        for b in PL[i+1:]:
+            da,db=pos[a][&quot;dec&quot;],pos[b][&quot;dec&quot;]
+            po,co=abs(da-db),abs(da+db)
+            for kind,orb in ((&quot;parallel&quot;,po),(&quot;contra-parallel&quot;,co)):
+                if orb&lt;=1.0: par.append({&quot;a&quot;:a,&quot;b&quot;:b,&quot;kind&quot;:kind,&quot;orb&quot;:round(orb,3),&quot;dec_a&quot;:round(da,3),&quot;dec_b&quot;:round(db,3)})
+    par.sort(key=lambda r:r[&quot;orb&quot;])
+    chains,finals,loops,root = dispositors(pos)
+    pts={p:pos[p][&quot;lon&quot;] for p in PL}; pts.update({&quot;Node&quot;:node,&quot;SN&quot;:(node+180)%360,&quot;ASC&quot;:asc,&quot;MC&quot;:mc})
+    if &quot;lon&quot; in america: pts[&quot;America&quot;]=america[&quot;lon&quot;]
+    hits={}
+    for key,radix in US.items():
+        rows=[]
+        for pn,pl in pts.items():
+            for un,ul in radix.items():
+                s=abs(sd(pl,ul))
+                for ang,nm in ((0,&quot;conjunction&quot;),(90,&quot;square&quot;),(180,&quot;opposition&quot;)):
+                    if abs(s-ang)&lt;=1.2:
+                        rows.append({&quot;eclipse_point&quot;:pn,&quot;aspect&quot;:nm,&quot;us_point&quot;:un,&quot;orb&quot;:round(abs(s-ang),3),&quot;nameable&quot;:abs(s-ang)&lt;=1.0,&quot;radix&quot;:key})
+        hits[key]=sorted(rows,key=lambda r:r[&quot;orb&quot;])
+    local=m.astimezone(NY)
+    bone={&quot;schema&quot;:&quot;f250.chart-bones-lite/v1&quot;,&quot;ephemeris&quot;:EPHEMERIS_LABEL,&quot;jd&quot;:jd,&quot;utc&quot;:m.isoformat(),&quot;edt&quot;:local.isoformat(),
+          &quot;asc&quot;:asc,&quot;asc_dms&quot;:dms(asc),&quot;asc_sign&quot;:sign(asc),&quot;asc_modality&quot;:ME.MODALITY[SIGNS.index(sign(asc))%3],
+          &quot;mc&quot;:mc,&quot;mc_dms&quot;:dms(mc),&quot;mc_house&quot;:whole_house(mc,asc),&quot;night&quot;:night,&quot;sect&quot;:&quot;night&quot; if night else &quot;day&quot;,
+          &quot;ruler&quot;:RULER[sign(asc)],&quot;pos&quot;:pos,
+          &quot;node&quot;:{&quot;lon&quot;:node,&quot;lon_dms&quot;:dms(node),&quot;house&quot;:whole_house(node,asc),&quot;sn_lon&quot;:(node+180)%360,&quot;sn_dms&quot;:dms(node+180),&quot;sn_house&quot;:whole_house(node+180,asc)},
+          &quot;america&quot;:america,&quot;fortune&quot;:{&quot;lon&quot;:fort,&quot;lon_dms&quot;:dms(fort),&quot;house&quot;:whole_house(fort,asc)},
+          &quot;spirit&quot;:{&quot;lon&quot;:spir,&quot;lon_dms&quot;:dms(spir),&quot;house&quot;:whole_house(spir,asc)},
+          &quot;chains&quot;:chains,&quot;finals&quot;:finals,&quot;loops&quot;:loops,&quot;root_members&quot;:root,&quot;aspects&quot;:asps,&quot;greer&quot;:greer,&quot;parallels&quot;:par,
+          &quot;us_hits_sag&quot;:hits[&quot;sag&quot;],&quot;us_hits_gem&quot;:hits[&quot;gem&quot;]}
+    bone.update(meta)
+    return bone
+
+def ingress_jd(year, sg):
+    target=SIGNS.index(sg)*30
+    lo=ME.ingress_jd(year,sg)-0.05; hi=lo+0.1
+    f=lambda x: sd(swe.calc_ut(x,0,FLAGS)[0][0],target)
+    for _ in range(80):
+        mid=(lo+hi)/2
+        if f(lo)*f(mid)&lt;=0: hi=mid
+        else: lo=mid
+    return (lo+hi)/2
+
+def syzygies(start, end):
+    out=[]; jd=swe.julday(*start,0.0); jend=swe.julday(*end,0.0)
+    el=lambda x: (swe.calc_ut(x,1,FLAGS)[0][0]-swe.calc_ut(x,0,FLAGS)[0][0])%360
+    prev=el(jd); step=0.25
+    while jd&lt;jend:
+        nxt=jd+step; e=el(nxt)
+        for ang,kind in ((0,&quot;new&quot;),(180,&quot;full&quot;)):
+            a=sd(prev,ang); b=sd(e,ang)
+            if a&lt;0&lt;=b:
+                lo,hi=jd,nxt
+                for _ in range(60):
+                    mid=(lo+hi)/2
+                    if sd(el(mid),ang)&lt;0: lo=mid
+                    else: hi=mid
+                out.append(((lo+hi)/2,kind))
+        jd,prev=nxt,e
+    return out
+
+def eclipse_info(jd, kind):
+    if kind==&quot;new&quot;:
+        rf,t=swe.sol_eclipse_when_glob(jd-2,FLAGS,0)
+        if abs(t[0]-jd)&gt;1: return None
+        typ=&quot;Total&quot; if rf&amp;swe.ECL_TOTAL else &quot;Annular&quot; if rf&amp;swe.ECL_ANNULAR else &quot;Hybrid&quot; if rf&amp;swe.ECL_HYBRID else &quot;Partial&quot;
+        geo=swe.sol_eclipse_where(t[0],FLAGS)
+        attr=geo[2] if len(geo)&gt;2 else geo[1]
+        how=swe.sol_eclipse_how(t[0],(DC_LON,DC_LAT,0),FLAGS)
+        return {&quot;type&quot;:f&quot;solar {typ}&quot;,&quot;greatest_utc&quot;:moment(t[0]).isoformat(),&quot;magnitude_global&quot;:round(attr[0],4),
+                &quot;saros&quot;:int(round(attr[9])),&quot;saros_member&quot;:int(round(attr[10])),
+                &quot;dc_visible&quot;:bool(how[0]), &quot;dc_magnitude&quot;:round(how[1][0],4) if how[0] else 0.0}
+    rf,t=swe.lun_eclipse_when(jd-2,FLAGS,0)
+    if abs(t[0]-jd)&gt;1: return None
+    typ=&quot;Total&quot; if rf&amp;swe.ECL_TOTAL else &quot;Partial&quot; if rf&amp;swe.ECL_PARTIAL else &quot;Penumbral&quot;
+    how=swe.lun_eclipse_how(t[0],(DC_LON,DC_LAT,0),FLAGS)
+    attr=how[1]
+    dur_total = (t[5]-t[4])*24*60 if t[4] and t[5] else 0
+    dur_partial = (t[3]-t[2])*24*60 if t[2] and t[3] else 0
+    alt=swe.azalt(t[0],swe.ECL2HOR,(DC_LON,DC_LAT,0),0,0,swe.calc_ut(t[0],1,FLAGS)[0][:3])[1]
+    return {&quot;type&quot;:f&quot;lunar {typ}&quot;,&quot;greatest_utc&quot;:moment(t[0]).isoformat(),&quot;umbral_magnitude&quot;:round(attr[0],4),&quot;dc_moon_altitude_deg&quot;:round(alt,1),
+            &quot;saros&quot;:int(round(attr[9])),&quot;saros_member&quot;:int(round(attr[10])),&quot;totality_min&quot;:round(dur_total,1),&quot;partial_min&quot;:round(dur_partial,1)}
+
+SEASON_OF={&quot;ingress-2024-capricorn&quot;:&quot;2025-winter&quot;,&quot;ingress-2025-aries&quot;:&quot;2025-aries&quot;,&quot;ingress-2025-cancer&quot;:&quot;2025-cancer&quot;,&quot;ingress-2025-libra&quot;:&quot;2025-libra&quot;}
+LABEL={&quot;ingress-2024-capricorn&quot;:&quot;2024 Capricorn&quot;,&quot;ingress-2025-aries&quot;:&quot;2025 Aries&quot;,&quot;ingress-2025-cancer&quot;:&quot;2025 Cancer&quot;,&quot;ingress-2025-libra&quot;:&quot;2025 Libra&quot;}
+GENERATED=&quot;2026-09-25&quot;  # cast date; fixed so re-runs are byte-stable
+
+def dump(obj, path):
+    Path(path).write_text(json.dumps(obj, indent=1, default=str) + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+
+if __name__==&quot;__main__&quot;:
+    out=T/&quot;chart_reading_bones_2025&quot;
+    out.mkdir(parents=True,exist_ok=True)
+    ingresses=[(2024,&quot;Capricorn&quot;),(2025,&quot;Aries&quot;),(2025,&quot;Cancer&quot;),(2025,&quot;Libra&quot;)]
+    ing={}; idx=[]
+    for y,sg in ingresses:
+        jd=ingress_jd(y,sg); cid=f&quot;ingress-{y}-{sg.lower()}&quot;
+        b=cast(jd,{&quot;kind&quot;:&quot;ingress&quot;,&quot;type&quot;:&quot;ingress&quot;,&quot;ingress&quot;:sg,&quot;year&quot;:y,&quot;sign&quot;:sg},sun_override=SIGNS.index(sg)*30.0)
+        b[&quot;validity_months&quot;]={&quot;fixed&quot;:12,&quot;cardinal&quot;:6,&quot;mutable&quot;:3}[b[&quot;asc_modality&quot;]]
+        b[&quot;date&quot;]=moment(jd).astimezone(NY).date().isoformat(); b[&quot;season&quot;]=SEASON_OF[cid]
+        ing[cid]=b; dump(b,out/f&quot;{cid}.json&quot;)
+        idx.append({&quot;id&quot;:cid,&quot;type&quot;:&quot;ingress&quot;,&quot;year&quot;:y,&quot;sign&quot;:sg,&quot;date&quot;:b[&quot;date&quot;],&quot;asc&quot;:b[&quot;asc_sign&quot;],
+                    &quot;validity_months&quot;:b[&quot;validity_months&quot;],&quot;season&quot;:SEASON_OF[cid],&quot;root&quot;:b[&quot;root_members&quot;]})
+    def frames(jd):
+        if jd &lt; ing[&quot;ingress-2025-aries&quot;][&quot;jd&quot;]: return &quot;ingress-2024-capricorn&quot;,&quot;ingress-2024-capricorn&quot;
+        if jd &lt; ing[&quot;ingress-2025-cancer&quot;][&quot;jd&quot;]: return &quot;ingress-2025-aries&quot;,&quot;ingress-2025-aries&quot;
+        if jd &lt; ing[&quot;ingress-2025-libra&quot;][&quot;jd&quot;]: return &quot;ingress-2025-aries&quot;,&quot;ingress-2025-cancer&quot;
+        return &quot;ingress-2025-aries&quot;,&quot;ingress-2025-libra&quot;
+    def trig(g,sun,moon):
+        rows=[]
+        for ln,ll in ((&quot;lunSun&quot;,sun),(&quot;lunMoon&quot;,moon)):
+            for pn,pv in g[&quot;pos&quot;].items():
+                s_=abs(sd(ll,pv[&quot;lon&quot;]))
+                for ang,nm in ((0,&quot;conjunction&quot;),(90,&quot;square&quot;),(180,&quot;opposition&quot;)):
+                    if abs(s_-ang)&lt;=3.0: rows.append({&quot;lun_point&quot;:ln,&quot;aspect&quot;:nm,&quot;ingress_planet&quot;:pn,&quot;ingress_house&quot;:pv[&quot;house&quot;],&quot;orb&quot;:round(abs(s_-ang),3),&quot;ingress_dms&quot;:pv[&quot;lon_dms&quot;]})
+            for an,av in ((&quot;ASC&quot;,g[&quot;asc&quot;]),(&quot;MC&quot;,g[&quot;mc&quot;])):
+                s_=abs(sd(ll,av))
+                for ang,nm in ((0,&quot;conjunction&quot;),(90,&quot;square&quot;),(180,&quot;opposition&quot;)):
+                    if abs(s_-ang)&lt;=3.0: rows.append({&quot;lun_point&quot;:ln,&quot;aspect&quot;:nm,&quot;ingress_planet&quot;:an,&quot;ingress_house&quot;:None,&quot;orb&quot;:round(abs(s_-ang),3),&quot;ingress_dms&quot;:dms(av)})
+        return sorted(rows,key=lambda r:r[&quot;orb&quot;])
+    for jd,kind in syzygies((2024,12,21),(2025,12,21)):
+        m=moment(jd); loc=m.astimezone(NY)
+        sun=swe.calc_ut(jd,0,FLAGS)[0][0]; moon=swe.calc_ut(jd,1,FLAGS)[0][0]
+        lp = sun if kind==&quot;new&quot; else moon
+        ecl=eclipse_info(jd,kind); gov,frame=frames(jd)
+        suffix={&quot;new&quot;:&quot;ne&quot;,&quot;full&quot;:&quot;fu&quot;}[kind]+((&quot;-solar&quot; if kind==&quot;new&quot; else &quot;-lunar&quot;) if ecl else &quot;&quot;)
+        cid=f&quot;lun-{loc.date().isoformat()}-{suffix}&quot;
+        meta={&quot;kind&quot;:&quot;lunation&quot;,&quot;type&quot;:&quot;lunation&quot;,&quot;lunation_kind&quot;:kind,&quot;sign&quot;:sign(lp),&quot;deg&quot;:round(lp%30,2),
+              &quot;date&quot;:loc.date().isoformat(),
+              &quot;eclipse&quot;:(ecl[&quot;type&quot;].split()[0]+&quot; &quot;+ecl[&quot;type&quot;].split()[1]) if ecl else None,&quot;eclipse_detail&quot;:ecl,
+              &quot;governing&quot;:LABEL[frame],&quot;governing_ingress_id&quot;:frame,&quot;year_governor&quot;:LABEL[gov],&quot;year_governor_id&quot;:gov,
+              &quot;season&quot;:SEASON_OF[frame]}
+        b=cast(jd,meta)
+        b[&quot;greer_to_ingress&quot;]=trig(ing[gov],sun,moon)
+        b[&quot;greer_quiet&quot;]=not any(r[&quot;ingress_planet&quot;] in PL for r in b[&quot;greer_to_ingress&quot;])
+        b[&quot;greer_to_frame&quot;]=trig(ing[frame],sun,moon) if frame!=gov else []
+        dump(b,out/f&quot;{cid}.json&quot;)
+        idx.append({&quot;id&quot;:cid,&quot;type&quot;:&quot;lunation&quot;,&quot;date&quot;:b[&quot;date&quot;],&quot;kind&quot;:kind,&quot;sign&quot;:b[&quot;sign&quot;],&quot;deg&quot;:b[&quot;deg&quot;],
+                    &quot;eclipse&quot;:b[&quot;eclipse&quot;],&quot;governing&quot;:b[&quot;governing&quot;],&quot;year_governor&quot;:b[&quot;year_governor&quot;],
+                    &quot;season&quot;:b[&quot;season&quot;],&quot;greer_quiet&quot;:b[&quot;greer_quiet&quot;],&quot;root&quot;:b[&quot;root_members&quot;]})
+    dump({&quot;generated&quot;:GENERATED,&quot;schema&quot;:&quot;f250.chart-bones-lite/v1&quot;,&quot;decision_rule&quot;:&quot;DR-084&quot;,&quot;ephemeris&quot;:EPHEMERIS_LABEL,
+          &quot;note&quot;:&quot;2025 retrospective shelf. For lunations, `governing` names the seasonal frame used to place the chart (the nested Cancer/Libra ingress); `year_governor` names the fixed-rising 2025 Aries chart that governs the year.&quot;,
+          &quot;charts&quot;:idx}, out/&quot;index.json&quot;)
+    print(f&quot;CHART BONES 2025: {len(idx)} charts -&gt; {out}&quot;)
+</pre></main></body></html>

@@ -1,0 +1,107 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-cancer-moon-family-31849c1b5a06.html">
+<title>test_cancer_moon_family</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_cancer_moon_family</h1><p class="mut">Portable source: 99 - Templates/test_cancer_moon_family.py</p><pre>from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+DATA = json.loads((HERE / &quot;cancer_moon_family_2024_2026.json&quot;).read_text())
+
+
+class CancerMoonFamilyTests(unittest.TestCase):
+    def test_family_identity_and_future_boundary(self):
+        self.assertEqual(DATA[&quot;lineage_id&quot;], &quot;pessin:lun-2024-07-05-ne&quot;)
+        self.assertEqual(len(DATA[&quot;family_members&quot;]), 4)
+        self.assertEqual(
+            DATA[&quot;phase_state_as_of_developed_through&quot;][&quot;last_quarter&quot;],
+            &quot;future_not_interpreted_as_occurred&quot;,
+        )
+
+    def test_family_remains_ordinary_while_approaching_node(self):
+        self.assertEqual(set(DATA[&quot;phase_eclipse_states&quot;].values()), {False})
+        node = DATA[&quot;node_approach&quot;]
+        values = [
+            node[&quot;seed_nearest_axis_deg&quot;],
+            node[&quot;first_quarter_nearest_axis_deg&quot;],
+            node[&quot;full_nearest_axis_deg&quot;],
+            node[&quot;last_quarter_nearest_axis_deg&quot;],
+        ]
+        self.assertTrue(all(a &gt; b for a, b in zip(values, values[1:])))
+
+    def test_four_phase_stage_alternation(self):
+        repetition = DATA[&quot;four_phase_repetition&quot;]
+        self.assertEqual(repetition[&quot;ascendant_signs&quot;], [&quot;Sagittarius&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Scorpio&quot;])
+        self.assertEqual(repetition[&quot;moon_houses&quot;], [8, 9, 8, 9])
+        self.assertEqual(repetition[&quot;sun_houses&quot;], [8, 6, 2, 12])
+
+    def test_moon_remains_final_across_all_phases(self):
+        roots = DATA[&quot;root_repetition&quot;]
+        for phase in (&quot;seed&quot;, &quot;first_quarter&quot;, &quot;full&quot;, &quot;last_quarter&quot;):
+            self.assertIn(&quot;Moon&quot;, roots[phase][&quot;final_dispositors&quot;])
+        self.assertEqual(roots[&quot;seed&quot;][&quot;final_dispositors&quot;], [&quot;Moon&quot;])
+        self.assertEqual(roots[&quot;full&quot;][&quot;final_dispositors&quot;], [&quot;Moon&quot;])
+        self.assertIn([&quot;Jupiter&quot;, &quot;Mercury&quot;], roots[&quot;first_quarter&quot;][&quot;bounded_cycles&quot;])
+        self.assertTrue(
+            any(set(cycle) == {&quot;Sun&quot;, &quot;Venus&quot;, &quot;Mars&quot;} for cycle in roots[&quot;last_quarter&quot;][&quot;bounded_cycles&quot;])
+        )
+
+    def test_seed_returns_more_tightly_at_full_than_quarter_does(self):
+        relay = DATA[&quot;degree_relays&quot;]
+        self.assertLess(relay[&quot;seed_to_full_delta_deg&quot;], relay[&quot;first_quarter_to_full_delta_deg&quot;])
+        self.assertLess(relay[&quot;seed_to_full_delta_deg&quot;], 1.356)
+        self.assertGreater(relay[&quot;seed_to_last_quarter_delta_deg&quot;], 4.03)
+
+    def test_distribution_opens_into_last_quarter(self):
+        distribution = DATA[&quot;distribution_development&quot;]
+        changes = distribution[&quot;occupied_span_changes_deg&quot;]
+        self.assertLess(changes[&quot;seed_to_first_quarter&quot;], 0.0)
+        self.assertGreater(changes[&quot;first_quarter_to_full&quot;], 27.3)
+        self.assertGreater(changes[&quot;full_to_last_quarter&quot;], 75.0)
+        boundaries = [
+            (distribution[p][&quot;empty_arc_from_body&quot;], distribution[p][&quot;empty_arc_to_body&quot;])
+            for p in (&quot;seed&quot;, &quot;first_quarter&quot;, &quot;full&quot;, &quot;last_quarter&quot;)
+        ]
+        self.assertEqual(len(set(boundaries)), 4)
+
+    def test_full_declination_joins_value_and_force(self):
+        rows = DATA[&quot;aspect_development&quot;][&quot;full_declinations_within_quarter_degree&quot;]
+        pair = next(row for row in rows if {row[&quot;a&quot;], row[&quot;b&quot;]} == {&quot;Venus&quot;, &quot;Mars&quot;})
+        self.assertEqual(pair[&quot;kind&quot;], &quot;parallel&quot;)
+        self.assertLess(pair[&quot;orb_deg&quot;], 0.081)
+
+    def test_mars_pluto_interleave_is_exactly_bounded(self):
+        interleave = DATA[&quot;mars_pluto_interleave&quot;]
+        self.assertGreater(interleave[&quot;days_full_to_conjunction&quot;], 24.5)
+        self.assertLess(interleave[&quot;days_full_to_conjunction&quot;], 24.6)
+        self.assertGreater(interleave[&quot;hours_opposition_to_last_quarter&quot;], 2.76)
+        self.assertLess(interleave[&quot;hours_opposition_to_last_quarter&quot;], 2.78)
+
+    def test_full_moon_is_visible_before_dawn(self):
+        full = DATA[&quot;astronomical_geometry&quot;][&quot;full_phase&quot;]
+        self.assertGreater(full[&quot;moon_true_altitude_deg&quot;], 0.0)
+        self.assertLess(full[&quot;sun_true_altitude_deg&quot;], 0.0)
+
+    def test_factual_comparison_preserves_lifecycle_differences(self):
+        factual = DATA[&quot;factual_comparison&quot;]
+        self.assertEqual(factual[&quot;research_id&quot;], &quot;july-2024-protection-financial-control-window&quot;)
+        self.assertEqual(len(factual[&quot;objects&quot;]), 5)
+        self.assertIn(&quot;not one program&quot;, factual[&quot;negative_control&quot;])
+
+    def test_zero_evidence_credit(self):
+        self.assertEqual(DATA[&quot;authority_boundary&quot;][&quot;evidence_credit&quot;], &quot;zero&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

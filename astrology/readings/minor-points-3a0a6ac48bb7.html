@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/minor-points-3a0a6ac48bb7.html">
+<title>minor_points</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>minor_points</h1><p class="mut">Portable source: 99 - Templates/minor_points.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Shared access to the chart&#x27;s minor points (added 2026-06-10):
+
+  - Chiron     — swisseph + the vendored ephemeris files in `99 - Templates/ephe/`
+                 (seas_18.se1 et al., shipped so this works on any machine)
+  - True Node  — swisseph (analytic, no files needed)
+  - 916 America— daily JPL Horizons longitudes from the canonical
+                 `america_ephemeris.json` cache, via `america.py`; exact natal
+                 epochs remain in `minor_points.json`
+
+Importing this module sets the swisseph ephemeris path, which also upgrades
+Sun..Pluto from Moshier to the Swiss files (sub-arcsecond; visually identical).
+
+Usage:
+    from minor_points import all_points, america_natal, GLY_ORDER
+    pts = all_points(jd)   # {&quot;Chiron&quot;: (lon, speed), &quot;Node&quot;: ..., &quot;America&quot;: ...}
+&quot;&quot;&quot;
+import json, os
+from datetime import datetime, timedelta, timezone
+import swisseph as swe
+from america import america_lon as _cached_america_lon, available as _america_available
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+swe.set_ephe_path(os.path.join(HERE, &quot;ephe&quot;))
+
+_MP = json.load(open(os.path.join(HERE, &quot;minor_points.json&quot;)))
+_AM = _MP[&quot;America&quot;]
+
+GLY_ORDER = [&quot;Chiron&quot;, &quot;Node&quot;, &quot;America&quot;]   # canonical extra-point order
+
+def america_lon(jd):
+    &quot;&quot;&quot;Apparent geocentric longitude from the one daily Horizons cache.&quot;&quot;&quot;
+    y, m, d, hour = swe.revjul(jd, swe.GREG_CAL)
+    dt = datetime(y, m, d, tzinfo=timezone.utc) + timedelta(hours=hour)
+    lon = _cached_america_lon(dt)
+    if lon is None:
+        _, message = _america_available()
+        raise ValueError(f&quot;jd {jd} outside the cached America span: {message}&quot;)
+    return lon
+
+def america_speed(jd):
+    h = 2.0
+    center = america_lon(jd)
+    try:
+        before = america_lon(jd - h)
+    except ValueError:
+        before = None
+    try:
+        after = america_lon(jd + h)
+    except ValueError:
+        after = None
+
+    def delta(newer, older):
+        return (newer - older + 180) % 360 - 180
+
+    if before is not None and after is not None:
+        return delta(after, before) / (2 * h)
+    if after is not None:
+        return delta(after, center) / h
+    if before is not None:
+        return delta(center, before) / h
+    raise ValueError(f&quot;America cache has no neighboring rows around jd {jd}&quot;)
+
+def america_natal(slug):
+    &quot;&quot;&quot;Exact-epoch natal longitude for a cast slug (from Horizons TLIST).&quot;&quot;&quot;
+    return _AM[&quot;natal&quot;][slug]
+
+def chiron(jd):
+    r = swe.calc_ut(jd, swe.CHIRON)[0]
+    return r[0], r[3]
+
+def true_node(jd):
+    r = swe.calc_ut(jd, swe.TRUE_NODE)[0]
+    return r[0], r[3]
+
+def all_points(jd, with_america=True):
+    &quot;&quot;&quot;{&quot;Chiron&quot;: (lon, speed), &quot;Node&quot;: (lon, speed), &quot;America&quot;: (lon, speed)}.
+    Set with_america=False outside the cached grid (e.g. deep past).&quot;&quot;&quot;
+    c, n = chiron(jd), true_node(jd)
+    out = {&quot;Chiron&quot;: c, &quot;Node&quot;: n}
+    if with_america:
+        out[&quot;America&quot;] = (america_lon(jd), america_speed(jd))
+    return out
+</pre></main></body></html>

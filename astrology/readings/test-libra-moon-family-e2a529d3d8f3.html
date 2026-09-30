@@ -1,0 +1,108 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-libra-moon-family-e2a529d3d8f3.html">
+<title>test_libra_moon_family</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_libra_moon_family</h1><p class="mut">Portable source: 99 - Templates/test_libra_moon_family.py</p><pre>from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+DATA = json.loads((HERE / &quot;libra_moon_family_2024_2026.json&quot;).read_text())
+
+
+class LibraMoonFamilyTests(unittest.TestCase):
+    def test_family_identity_and_future_boundary(self):
+        self.assertEqual(DATA[&quot;lineage_id&quot;], &quot;pessin:lun-2024-10-02-ne-solar&quot;)
+        self.assertEqual(len(DATA[&quot;family_members&quot;]), 4)
+        self.assertEqual(
+            DATA[&quot;future_member_boundary&quot;][&quot;status_as_of_developed_through&quot;],
+            &quot;future_not_interpreted_as_occurred&quot;,
+        )
+
+    def test_shadow_releases_before_harvest(self):
+        self.assertEqual(
+            DATA[&quot;phase_eclipse_states&quot;],
+            {&quot;seed&quot;: True, &quot;first_quarter&quot;: False, &quot;full&quot;: False},
+        )
+        shadow = DATA[&quot;shadow_release&quot;]
+        self.assertLess(shadow[&quot;seed_nearest_axis_deg&quot;], 3.5)
+        self.assertGreater(shadow[&quot;first_quarter_nearest_axis_deg&quot;], 20.0)
+        self.assertGreater(shadow[&quot;full_nearest_axis_deg&quot;], 33.0)
+
+    def test_global_eclipse_did_not_cross_washington(self):
+        eclipse = DATA[&quot;astronomical_geometry&quot;][&quot;seed_eclipse&quot;]
+        self.assertEqual(eclipse[&quot;global&quot;][&quot;type&quot;], &quot;annular&quot;)
+        self.assertFalse(eclipse[&quot;washington&quot;][&quot;visible&quot;])
+        self.assertGreater(eclipse[&quot;washington&quot;][&quot;sun_true_altitude_at_syzygy_deg&quot;], 39.0)
+
+    def test_degree_relay(self):
+        relay = DATA[&quot;degree_relays&quot;]
+        self.assertLess(relay[&quot;seed_to_full_moon_delta_deg&quot;], 2.3)
+        self.assertLess(relay[&quot;first_quarter_to_full_moon_delta_deg&quot;], 1.2)
+        self.assertGreater(relay[&quot;first_quarter_to_full_moon_delta_arcminutes&quot;], 71.0)
+
+    def test_house_migrations(self):
+        houses = DATA[&quot;house_migrations&quot;]
+        self.assertEqual(houses[&quot;Sun&quot;], [10, 9, 6])
+        self.assertEqual(houses[&quot;Moon&quot;], [10, 12, 12])
+        self.assertEqual(houses[&quot;Venus&quot;], [11, 7, 7])
+        self.assertEqual(houses[&quot;Pluto&quot;], [1, 4, 4])
+
+    def test_venus_final_installed_at_first_quarter(self):
+        roots = DATA[&quot;root_handoff&quot;]
+        self.assertEqual(roots[&quot;seed&quot;][&quot;final_dispositors&quot;], [])
+        self.assertIn([&quot;Mars&quot;, &quot;Moon&quot;, &quot;Venus&quot;], roots[&quot;seed&quot;][&quot;bounded_cycles&quot;])
+        self.assertEqual(roots[&quot;first_quarter&quot;][&quot;final_dispositors&quot;], [&quot;Venus&quot;])
+        self.assertEqual(roots[&quot;full&quot;][&quot;final_dispositors&quot;], [&quot;Venus&quot;])
+
+    def test_quarter_installs_full_container(self):
+        distribution = DATA[&quot;distribution_development&quot;]
+        self.assertTrue(distribution[&quot;same_quarter_full_empty_arc_boundary&quot;])
+        self.assertEqual(distribution[&quot;first_quarter&quot;][&quot;empty_arc_from_body&quot;], &quot;Moon&quot;)
+        self.assertEqual(distribution[&quot;first_quarter&quot;][&quot;empty_arc_to_body&quot;], &quot;Pluto&quot;)
+        self.assertLess(distribution[&quot;first_quarter_to_full_largest_gap_change_deg&quot;], 0.95)
+
+    def test_quarter_power_pressures_full_settlement(self):
+        rows = DATA[&quot;aspect_development&quot;][&quot;quarter_to_full_contacts_within_1_25_deg&quot;]
+        pluto_venus = next(
+            row for row in rows
+            if row[&quot;from_body&quot;] == &quot;Pluto&quot; and row[&quot;to_body&quot;] == &quot;Venus&quot;
+        )
+        self.assertEqual(pluto_venus[&quot;kind&quot;], &quot;square&quot;)
+        self.assertLess(pluto_venus[&quot;orb_deg&quot;], 0.118)
+
+    def test_full_declination_pressure(self):
+        rows = DATA[&quot;aspect_development&quot;][&quot;full_declinations_within_quarter_degree&quot;]
+        saturn_neptune = next(row for row in rows if {row[&quot;a&quot;], row[&quot;b&quot;]} == {&quot;Saturn&quot;, &quot;Neptune&quot;})
+        self.assertEqual(saturn_neptune[&quot;kind&quot;], &quot;contra_parallel&quot;)
+        self.assertLess(saturn_neptune[&quot;orb_deg&quot;], 0.0052)
+        self.assertLess(saturn_neptune[&quot;orb_deg&quot;] * 3600.0, 18.6)
+        geometry = DATA[&quot;astronomical_geometry&quot;][&quot;full_phase&quot;]
+        self.assertGreater(geometry[&quot;saturn_neptune_longitude_separation_deg&quot;], 3.4)
+
+    def test_full_moon_is_physically_visible_at_exact_phase(self):
+        geometry = DATA[&quot;astronomical_geometry&quot;][&quot;full_phase&quot;]
+        self.assertGreater(geometry[&quot;moon_true_altitude_deg&quot;], 28.0)
+        self.assertLess(geometry[&quot;sun_true_altitude_deg&quot;], -29.0)
+        self.assertGreater(geometry[&quot;minutes_since_moonrise&quot;], 165.0)
+        self.assertGreater(geometry[&quot;minutes_until_moonset&quot;], 516.0)
+
+    def test_factual_comparison_keeps_gate_timing_honest(self):
+        factual = DATA[&quot;factual_comparison&quot;]
+        self.assertEqual(factual[&quot;research_id&quot;], &quot;contested-logistics&quot;)
+        self.assertIn(&quot;already ratified and signed&quot;, factual[&quot;negative_control&quot;])
+        self.assertEqual(DATA[&quot;authority_boundary&quot;][&quot;evidence_credit&quot;], &quot;zero&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()
+</pre></main></body></html>

@@ -1,0 +1,215 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-entity-charts-3fd0680d1c0a.html">
+<title>minor_points sets the ephe path (enables Chiron + cached America)</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>minor_points sets the ephe path (enables Chiron + cached America)</h1><p class="mut">Portable source: 99 - Templates/build_entity_charts.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;build_entity_charts.py — cast a natal chart for every dated federal entity.
+
+Reads entity_founding_dates.json and casts a Whole Sign chart per entity via
+Swiss Ephemeris (Moshier for Sun..Pluto+Node so it works 1775→now with no files):
+
+  - TIME: documented official time where it exists (OVERRIDES — the US locked
+    July-2-1776 Sag chart; the Fed&#x27;s ~6:02 PM EST signing). Else a SUNRISE chart
+    (Sun on the Ascendant) at the founding city — the vault&#x27;s standard fallback.
+  - PLACE: founding / HQ city (Reserve Banks in their cities, BIS in Basel, …);
+    federal default Washington D.C.
+  - POINTS: Sun–Pluto, the True Node + South Node, Chiron (swisseph ephe files,
+    1800+), and asteroid 916 America — from the vault&#x27;s cached grid for 2024–27
+    dates, and from JPL-Horizons flagship values (AMERICA_OVERRIDE) for the key
+    historical charts. America is the Chronicle&#x27;s signature point.
+
+Output: 04 - Synthesis/Entity Theory/entity_charts.json (keyed by name).
+First-pass dates — verify exact day/time before load-bearing readings.
+&quot;&quot;&quot;
+import os, re, json, importlib.util, datetime
+import swisseph as swe
+from chart_conventions import DC
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+SEED = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Entity Theory&quot;, &quot;entity_founding_dates.json&quot;)
+OUT  = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Entity Theory&quot;, &quot;entity_charts.json&quot;)
+FG   = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;, &quot;The Federal Group.html&quot;)
+
+spec = importlib.util.spec_from_file_location(&quot;wheel_lib&quot;, os.path.join(HERE, &quot;wheel_lib.py&quot;))
+wl = importlib.util.module_from_spec(spec); spec.loader.exec_module(wl)
+# minor_points sets the ephe path (enables Chiron + cached America)
+mpspec = importlib.util.spec_from_file_location(&quot;minor_points&quot;, os.path.join(HERE, &quot;minor_points.py&quot;))
+mp = importlib.util.module_from_spec(mpspec); mpspec.loader.exec_module(mp)
+
+SIGNS = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,
+         &quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+PLANETS = [(&quot;Sun&quot;,swe.SUN),(&quot;Moon&quot;,swe.MOON),(&quot;Mercury&quot;,swe.MERCURY),(&quot;Venus&quot;,swe.VENUS),
+           (&quot;Mars&quot;,swe.MARS),(&quot;Jupiter&quot;,swe.JUPITER),(&quot;Saturn&quot;,swe.SATURN),
+           (&quot;Uranus&quot;,swe.URANUS),(&quot;Neptune&quot;,swe.NEPTUNE),(&quot;Pluto&quot;,swe.PLUTO)]
+FLAGS = swe.FLG_MOSEPH | swe.FLG_SPEED
+
+CITY = {
+    &quot;Washington&quot;: DC, &quot;Philadelphia&quot;: (39.9526,-75.1652),
+    &quot;Boston&quot;: (42.3601,-71.0589), &quot;New York&quot;: (40.7128,-74.0060),
+    &quot;Cleveland&quot;: (41.4993,-81.6944), &quot;Richmond&quot;: (37.5407,-77.4360),
+    &quot;Atlanta&quot;: (33.7490,-84.3880), &quot;Chicago&quot;: (41.8781,-87.6298),
+    &quot;St. Louis&quot;: (38.6270,-90.1994), &quot;Minneapolis&quot;: (44.9778,-93.2650),
+    &quot;Kansas City&quot;: (39.0997,-94.5786), &quot;Dallas&quot;: (32.7767,-96.7970),
+    &quot;San Francisco&quot;: (37.7749,-122.4194), &quot;Basel&quot;: (47.5596,7.5886),
+    &quot;Geneva&quot;: (46.2044,6.1432), &quot;Paris&quot;: (48.8566,2.3522), &quot;Madrid&quot;: (40.4168,-3.7038),
+    &quot;Manila&quot;: (14.5995,120.9842), &quot;Abidjan&quot;: (5.3600,-4.0083), &quot;London&quot;: (51.5074,-0.1278),
+    &quot;Bretton Woods&quot;: (44.2581,-71.4406),
+}
+NAME_CITY = {
+    &quot;Bank for International Settlements&quot;:&quot;Basel&quot;, &quot;Basel Committee on Banking Supervision&quot;:&quot;Basel&quot;,
+    &quot;Financial Stability Board&quot;:&quot;Basel&quot;, &quot;World Health Organization&quot;:&quot;Geneva&quot;,
+    &quot;World Trade Organization&quot;:&quot;Geneva&quot;, &quot;ILO · FAO&quot;:&quot;Geneva&quot;, &quot;UNESCO&quot;:&quot;Paris&quot;,
+    &quot;OECD&quot;:&quot;Paris&quot;, &quot;FATF&quot;:&quot;Paris&quot;, &quot;IOSCO&quot;:&quot;Madrid&quot;, &quot;Asian Development Bank&quot;:&quot;Manila&quot;,
+    &quot;African Development Bank&quot;:&quot;Abidjan&quot;, &quot;EBRD&quot;:&quot;London&quot;, &quot;United Nations&quot;:&quot;New York&quot;,
+    &quot;Bretton Woods institutions&quot;:&quot;Bretton Woods&quot;,
+}
+def jd_ut(y,mo,d,h): return swe.julday(y,mo,d,h)
+def jd_lmt(y,mo,d,h,lon): return swe.julday(y,mo,d, h - lon/15.0)
+OVERRIDES = {
+    &quot;United States&quot;: {&quot;jd&quot;: jd_lmt(1776,7,2,17+10/60,-75.1652), &quot;loc&quot;: CITY[&quot;Philadelphia&quot;],
+                      &quot;place&quot;:&quot;Philadelphia&quot;, &quot;src&quot;:&quot;Katie&#x27;s locked US chart (5:10 PM LMT)&quot;},
+    &quot;The Federal Reserve System&quot;: {&quot;jd&quot;: jd_ut(1913,12,23,23+2/60), &quot;loc&quot;: DC,
+                      &quot;place&quot;:&quot;Washington&quot;, &quot;src&quot;:&quot;documented signing (~6:02 PM EST)&quot;},
+}
+# 916 America geocentric ecliptic longitude at 00:00 UT of the founding day,
+# from JPL Horizons (flagship historical charts; the cached grid covers 2024–27).
+AMERICA_OVERRIDE = {
+    &quot;United States&quot;:207.19, &quot;Dept of the Treasury&quot;:143.03,
+    &quot;The Federal Reserve System&quot;:201.11, &quot;Board of Governors&quot;:201.11,
+    &quot;≈2,000 member banks (statutory stock subscribers)&quot;:201.11, &quot;The 12 Federal Reserve Banks&quot;:241.00,
+    &quot;Bank for International Settlements&quot;:17.64, &quot;SEC&quot;:67.73,
+    &quot;Social Security Administration&quot;:163.53, &quot;Fannie Mae&quot;:40.89,
+    &quot;IMF&quot;:152.83, &quot;World Bank Group&quot;:152.83, &quot;IBRD&quot;:152.83, &quot;Freddie Mac&quot;:57.84,
+}
+
+def sgn(l): return SIGNS[int(l//30)%12]
+def dms(l):
+    d=int(l%30); m=int(round((l%30-d)*60))
+    if m==60: d+=1; m=0
+    return f&quot;{d}°{m:02d}&#x27;&quot;
+def sunrise_jd(y,mo,d,lat,lon):
+    jd0 = swe.julday(y,mo,d,0.0)
+    return swe.rise_trans(jd0, swe.SUN, swe.CALC_RISE|swe.BIT_DISC_CENTER, (lon,lat,0),0,0,FLAGS)[1][0]
+
+def cast(jd, lat, lon, name):
+    lons={}; pos=[]
+    for nm,const in PLANETS:
+        r = swe.calc_ut(jd, const, FLAGS)[0]
+        l=r[0]%360; lons[nm]=l
+        pos.append([nm, sgn(l), dms(l), 1 if r[3]&lt;0 else 0, round(l,2)])
+    node = swe.calc_ut(jd, swe.TRUE_NODE, FLAGS)[0][0]%360
+    lons[&quot;Node&quot;]=node; pos.append([&quot;Node&quot;, sgn(node), dms(node), 0, round(node,2)])
+    snode=(node+180)%360; pos.append([&quot;SNode&quot;, sgn(snode), dms(snode), 0, round(snode,2)])
+    # Chiron (swiss ephe; 1800+ only)
+    chi=None
+    try:
+        chi = swe.calc_ut(jd, swe.CHIRON)[0][0]%360
+        pos.append([&quot;Chiron&quot;, sgn(chi), dms(chi), 0, round(chi,2)])
+    except Exception:
+        pass
+    # 916 America — override (flagship) or cached grid (2024–27)
+    am=None
+    if name in AMERICA_OVERRIDE:
+        am=AMERICA_OVERRIDE[name]%360
+    else:
+        try: am=mp.america_lon(jd)%360
+        except Exception: am=None
+    if am is not None:
+        pos.append([&quot;America&quot;, sgn(am), dms(am), 0, round(am,2)])
+    asc = swe.houses(jd, lat, lon, b&#x27;W&#x27;)[1][0] % 360
+    planetdict={k:lons[k] for k in lons if k!=&quot;Node&quot;}
+    asp = wl.aspects_between(planetdict)
+    asp += wl.point_aspects({&quot;Node&quot;:lons[&quot;Node&quot;]}, planetdict)
+    if chi is not None: asp += wl.point_aspects({&quot;Chiron&quot;:chi}, planetdict)
+    if am  is not None: asp += wl.point_aspects({&quot;America&quot;:am}, planetdict)
+    asp.sort(key=lambda a:a[&quot;o&quot;])
+    return pos, round(asc,2), asp, am
+
+def city_for(name):
+    if name in NAME_CITY: return NAME_CITY[name]
+    m = re.match(r&#x27;^\d+ · (.+)$&#x27;, name)
+    if m and m.group(1) in CITY: return m.group(1)
+    return &quot;Washington&quot;
+
+def america_hit(am, asc, pos):
+    &quot;&quot;&quot;Nearest tight (≤3°) contact of America to the ASC or a planet, for the drawer.&quot;&quot;&quot;
+    if am is None: return None
+    def sep(a,b): return abs((a-b+180)%360-180)
+    best=None
+    for nm,_s,_d,_r,l in pos:
+        if nm in (&quot;America&quot;,&quot;SNode&quot;): continue
+        o=sep(am,l)
+        if o&lt;=3 and (best is None or o&lt;best[1]): best=(nm,o)
+    a_asc=sep(am,asc)
+    if a_asc&lt;=3 and (best is None or a_asc&lt;best[1]): best=(&quot;Ascendant&quot;,a_asc)
+    if best: return f&quot;America conjunct {best[0]} ({best[1]:.1f}°)&quot;
+    return None
+
+def inject_into_view(payload):
+    &quot;&quot;&quot;Replace the generated entity-chart payload in the canonical Federal Group view.&quot;&quot;&quot;
+    if not os.path.exists(FG):
+        print(&quot;  WARN: The Federal Group.html not found — skipping chart injection&quot;)
+        return
+    with open(FG, encoding=&quot;utf-8&quot;) as f:
+        html = f.read()
+    compact = json.dumps(payload, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;))
+    block = &quot;&lt;script&gt;\nwindow.ENTITY_CHARTS=(&quot; + compact + &quot;).charts;\n&lt;/script&gt;&quot;
+    html, count = re.subn(
+        r&#x27;&lt;script&gt;\s*window\.ENTITY_CHARTS=\(.*?\)\.charts;\s*&lt;/script&gt;&#x27;,
+        lambda _m: block,
+        html,
+        count=1,
+        flags=re.S,
+    )
+    if count != 1:
+        raise RuntimeError(&quot;expected exactly one ENTITY_CHARTS block in The Federal Group.html&quot;)
+    with open(FG, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+        f.write(html)
+    print(&quot;  injected entity charts into The Federal Group.html&quot;)
+
+def main():
+    seed=json.load(open(SEED))[&quot;entities&quot;]
+    charts={}; done=0; skip=0; amcount=0
+    for e in seed:
+        name=e[&quot;name&quot;]; f=e.get(&quot;founded&quot;) or &quot;&quot;
+        full=re.match(r&#x27;^(\d{4})-(\d{2})-(\d{2})$&#x27;, f)
+        if name in OVERRIDES:
+            ov=OVERRIDES[name]; lat,lon=ov[&quot;loc&quot;]
+            pos,asc,asp,am=cast(ov[&quot;jd&quot;],lat,lon,name); src=ov[&quot;src&quot;]; place=ov[&quot;place&quot;]
+        elif full:
+            y,mo,d=map(int,full.groups()); place=city_for(name); lat,lon=CITY[place]
+            pos,asc,asp,am=cast(sunrise_jd(y,mo,d,lat,lon),lat,lon,name); src=&quot;sunrise (no official time)&quot;
+        else:
+            if re.match(r&#x27;^\d{4}-\d{2}$&#x27;, f): precision=&quot;month&quot;
+            elif re.match(r&#x27;^\d{4}$&#x27;, f): precision=&quot;year&quot;
+            else: precision=&quot;approx&quot;
+            charts[name]={&quot;charted&quot;:False,&quot;date&quot;:f,&quot;precision&quot;:precision}; skip+=1; continue
+        sun=next(p for p in pos if p[0]==&quot;Sun&quot;); moon=next(p for p in pos if p[0]==&quot;Moon&quot;)
+        rec={&quot;charted&quot;:True,&quot;date&quot;:f,&quot;place&quot;:place,&quot;timeSource&quot;:src,&quot;cat&quot;:e.get(&quot;cat&quot;),&quot;status&quot;:e.get(&quot;status&quot;),
+             &quot;sunSign&quot;:sun[1],&quot;moonSign&quot;:moon[1],&quot;ascSign&quot;:sgn(asc),
+             &quot;rec&quot;:{&quot;pos&quot;:pos,&quot;asc&quot;:asc,&quot;asp&quot;:asp}}
+        if am is not None:
+            rec[&quot;americaSign&quot;]=sgn(am); rec[&quot;americaDeg&quot;]=dms(am); rec[&quot;americaHit&quot;]=america_hit(am,asc,pos); amcount+=1
+        charts[name]=rec; done+=1
+    payload={&quot;generated&quot;:datetime.date.today().isoformat(),&quot;note&quot;:&quot;Institutional natal charts (Entity Theory). Whole Sign; sunrise where no official time; founding-city place. Sun-Pluto+Nodes+Chiron; 916 America from JPL Horizons (flagships) + cached grid (2024-27). Month/year-only clocks are deliberately deferred; verify exact day before load-bearing readings.&quot;,&quot;charts&quot;:charts}
+    with open(OUT,&quot;w&quot;,encoding=&quot;utf-8&quot;) as f:
+        json.dump(payload, f, ensure_ascii=False, separators=(&quot;,&quot;,&quot;:&quot;))
+    inject_into_view(payload)
+    print(f&quot;charted {done}, deferred {skip}, America on {amcount}. -&gt; {OUT}&quot;)
+    for p in [&quot;United States&quot;,&quot;The Federal Reserve System&quot;,&quot;The 12 Federal Reserve Banks&quot;,&quot;IMF&quot;,&quot;Bank for International Settlements&quot;,&quot;Strategic Bitcoin Reserve&quot;,&quot;US Sovereign Wealth Fund&quot;]:
+        c=charts.get(p)
+        if c and c.get(&quot;charted&quot;):
+            a=(&quot; · America &quot;+c.get(&quot;americaDeg&quot;,&quot;&quot;)+&quot; &quot;+c.get(&quot;americaSign&quot;,&quot;&quot;)) if c.get(&quot;americaSign&quot;) else &quot;&quot;
+            hit=(&quot; [&quot;+c[&quot;americaHit&quot;]+&quot;]&quot;) if c.get(&quot;americaHit&quot;) else &quot;&quot;
+            print(f&quot;  {p:32s} {c[&#x27;ascSign&#x27;]:11s} rising{a}{hit}&quot;)
+
+if __name__==&quot;__main__&quot;:
+    main()
+</pre></main></body></html>

@@ -1,0 +1,129 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-charter-astro-5dda5d9c2e8d.html">
+<title>build_charter_astro</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_charter_astro</h1><p class="mut">Portable source: 99 - Templates/build_charter_astro.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;build_charter_astro.py — charts for The Charter Queue (charter_astro.json).
+
+Copied from build_castration_astro.py per _Claude-Context/PATTERN — Timeline Machine Build.md.
+
+Time convention (Katie&#x27;s ruling, feedback_event_chart_time_convention, refined 2026-07-11):
+  1. an ACTUAL STATED TIME wins            -&gt; that hour, D.C. local   (seed &quot;time&quot; field)
+  2. releases/actions (occurred/position/proposed/research) -&gt; NOON D.C.
+  3. day-of facts (scheduled deadlines, effective dates)    -&gt; MIDNIGHT D.C. (&quot;day of&quot;)
+DST-aware (zoneinfo America/New_York). Whole Sign, D.C. coordinates.
+
+Month-precision dates get NO chart — a month is not a moment and we do not fake one.
+
+Points: Sun..Pluto + True Node/SNode + Chiron (vendored ephe) + 916 America
+(cached Horizons grid 2024–27; pre-2024 entries get no America).
+
+Keyed by &quot;date|title&quot;. Run after build_charter_seed.py, then build_charter_timeline.py.
+&quot;&quot;&quot;
+import os, json, importlib.util
+from datetime import datetime
+from zoneinfo import ZoneInfo
+import swisseph as swe
+from chart_conventions import DC, DC_TZ
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+SEED = os.path.join(HERE, &quot;charter_seed.json&quot;)
+OUT  = os.path.join(HERE, &quot;charter_astro.json&quot;)
+
+def load(n):
+    s = importlib.util.spec_from_file_location(n, os.path.join(HERE, n + &quot;.py&quot;))
+    m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
+wl = load(&quot;wheel_lib&quot;); mp = load(&quot;minor_points&quot;)   # mp import sets the ephe path
+
+SIGNS = [&quot;Aries&quot;,&quot;Taurus&quot;,&quot;Gemini&quot;,&quot;Cancer&quot;,&quot;Leo&quot;,&quot;Virgo&quot;,&quot;Libra&quot;,&quot;Scorpio&quot;,
+         &quot;Sagittarius&quot;,&quot;Capricorn&quot;,&quot;Aquarius&quot;,&quot;Pisces&quot;]
+PLANETS = [(&quot;Sun&quot;,swe.SUN),(&quot;Moon&quot;,swe.MOON),(&quot;Mercury&quot;,swe.MERCURY),(&quot;Venus&quot;,swe.VENUS),
+           (&quot;Mars&quot;,swe.MARS),(&quot;Jupiter&quot;,swe.JUPITER),(&quot;Saturn&quot;,swe.SATURN),
+           (&quot;Uranus&quot;,swe.URANUS),(&quot;Neptune&quot;,swe.NEPTUNE),(&quot;Pluto&quot;,swe.PLUTO)]
+FLAGS = swe.FLG_MOSEPH | swe.FLG_SPEED
+TZ = DC_TZ; UTC = ZoneInfo(&quot;UTC&quot;)
+AMERICA_PRE_GRID = {}   # none load-bearing yet (grid starts 2024-01-01)
+
+def sgn(l): return SIGNS[int(l//30)%12]
+def dms(l):
+    d=int(l%30); m=int(round((l%30-d)*60))
+    if m==60: d+=1; m=0
+    return f&quot;{d}°{m:02d}&#x27;&quot;
+
+def status_key(s):
+    for prefix, key in [(&quot;Occurred&quot;,&quot;occurred&quot;),(&quot;Public&quot;,&quot;position&quot;),(&quot;Proposed&quot;,&quot;proposed&quot;),
+                        (&quot;Research&quot;,&quot;research&quot;),(&quot;Scheduled&quot;,&quot;scheduled&quot;)]:
+        if s.startswith(prefix): return key
+    return &quot;occurred&quot;
+
+def jd_for(date_iso, midnight, stated=None):
+    parts = [int(x) for x in date_iso.split(&quot;-&quot;)]
+    if len(parts) &lt; 3:
+        return None, None          # month precision — chartless by design
+    y, mo, d = parts
+    if stated:
+        hh, mm = (int(x) for x in stated.split(&quot;:&quot;))
+        conv = f&quot;{stated} D.C. (stated)&quot;
+    elif midnight:
+        hh, mm, conv = 0, 0, &quot;midnight D.C. (day of)&quot;
+    else:
+        hh, mm, conv = 12, 0, &quot;noon D.C.&quot;
+    local = datetime(y, mo, d, hh, mm, tzinfo=TZ)
+    ut = local.astimezone(UTC)
+    return swe.julday(ut.year, ut.month, ut.day, ut.hour + ut.minute/60.0), conv
+
+def cast(jd, key):
+    lons={}; pos=[]
+    for nm, c in PLANETS:
+        r = swe.calc_ut(jd, c, FLAGS)[0]; l = r[0]%360; lons[nm]=l
+        pos.append([nm, sgn(l), dms(l), 1 if r[3]&lt;0 else 0, round(l,2)])
+    node = swe.calc_ut(jd, swe.TRUE_NODE, FLAGS)[0][0]%360
+    pos.append([&quot;Node&quot;, sgn(node), dms(node), 0, round(node,2)])
+    sn=(node+180)%360; pos.append([&quot;SNode&quot;, sgn(sn), dms(sn), 0, round(sn,2)])
+    chi = swe.calc_ut(jd, swe.CHIRON)[0][0]%360
+    pos.append([&quot;Chiron&quot;, sgn(chi), dms(chi), 0, round(chi,2)])
+    am = None
+    if key in AMERICA_PRE_GRID:
+        am = AMERICA_PRE_GRID[key]%360
+    else:
+        try: am = mp.america_lon(jd)%360
+        except ValueError: am = None
+    if am is not None:
+        pos.append([&quot;America&quot;, sgn(am), dms(am), 0, round(am,2)])
+    asc = swe.houses(jd, *DC, b&#x27;W&#x27;)[1][0]%360
+    asp = wl.aspects_between(lons)
+    asp += wl.point_aspects({&quot;Node&quot;:node}, lons)
+    asp += wl.point_aspects({&quot;Chiron&quot;:chi}, lons)
+    if am is not None: asp += wl.point_aspects({&quot;America&quot;:am}, lons)
+    asp.sort(key=lambda a:a[&quot;o&quot;])
+    return pos, round(asc,2), asp, am
+
+def main():
+    items = json.load(open(SEED, encoding=&quot;utf-8&quot;))[&quot;items&quot;]
+    charts = {}; noam = 0; skipped = 0
+    for it in items:
+        midnight = status_key(it[&quot;status&quot;]) == &quot;scheduled&quot;
+        key = it[&quot;date&quot;] + &quot;|&quot; + it[&quot;title&quot;]
+        jd, conv = jd_for(it[&quot;date&quot;], midnight, it.get(&quot;time&quot;))
+        if jd is None:
+            skipped += 1
+            continue
+        pos, asc, asp, am = cast(jd, key)
+        if am is None: noam += 1
+        charts[key] = {&quot;pos&quot;: pos, &quot;asc&quot;: asc, &quot;asp&quot;: asp, &quot;convention&quot;: conv,
+                       &quot;moonSign&quot;: next(p[1] for p in pos if p[0]==&quot;Moon&quot;)}
+    json.dump({&quot;_comment&quot;: &quot;Charts for The Charter Queue. Stated time &gt; noon D.C. (releases) &gt; midnight D.C. (scheduled). &quot;
+                           &quot;Whole Sign. Month-precision dates chartless by design. 916 America absent pre-2024 (grid bound).&quot;,
+               &quot;generated&quot;: &quot;2026-07-12&quot;, &quot;charts&quot;: charts},
+              open(OUT, &quot;w&quot;, encoding=&quot;utf-8&quot;), ensure_ascii=False, indent=None)
+    print(f&quot;cast {len(charts)} charts ({skipped} chartless month-precision, {noam} without America) -&gt; {OUT}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

@@ -1,0 +1,1253 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/daybreak-engine-6fc6469416f8.html">
+<title>Exact-routing / canonical-America support.</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>Exact-routing / canonical-America support.</h1><p class="mut">Portable source: 99 - Templates/daybreak_engine.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Deterministic Sun–ASC daily frames for the Freedom 250 Daybreak Almanac.
+
+This engine is deliberately factual.  It casts one Washington, D.C. chart at
+the instant the geocentric solar centre crosses the Ascendant, then nests that
+chart beneath registered ingress and lunation charts and the ten Long Clocks.
+The daybreak frame never acquires governing standing and never ranks stories.
+
+The geometric-rise seed uses Swiss Ephemeris with disc centre and refraction
+disabled.  A short root solve then makes the actual chart definition exact:
+Sun longitude == Ascendant longitude.  A frame runs from that crossing to the
+next crossing.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import datetime as dt
+import hashlib
+import importlib.util
+import json
+import os
+from functools import lru_cache
+from pathlib import Path
+from typing import Any
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+DEFAULT_VAULT_ROOT = Path(os.environ.get(&quot;F250_DAYBREAK_VAULT_ROOT&quot;, str(HERE.parent)))
+SCHEMA = &quot;f250.daybreak-frames/v1&quot;
+FRAME_METHOD_ID = &quot;dc-sun-asc-geometric-centre/v1&quot;
+
+DC_LAT = 38.9072
+DC_LON = -77.0369
+DC_ALT_METRES = 0.0
+DC_TZ_NAME = &quot;America/New_York&quot;
+DC_TZ = ZoneInfo(DC_TZ_NAME)
+UTC = dt.timezone.utc
+
+SIGNS = [
+    &quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;,
+    &quot;Libra&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;,
+]
+PLANET_CODES = {
+    &quot;Sun&quot;: swe.SUN,
+    &quot;Moon&quot;: swe.MOON,
+    &quot;Mercury&quot;: swe.MERCURY,
+    &quot;Venus&quot;: swe.VENUS,
+    &quot;Mars&quot;: swe.MARS,
+    &quot;Jupiter&quot;: swe.JUPITER,
+    &quot;Saturn&quot;: swe.SATURN,
+    &quot;Uranus&quot;: swe.URANUS,
+    &quot;Neptune&quot;: swe.NEPTUNE,
+    &quot;Pluto&quot;: swe.PLUTO,
+}
+PLANET_ORDER = list(PLANET_CODES)
+ASPECT_POINT_ORDER = PLANET_ORDER + [&quot;America&quot;]
+RULER = {
+    &quot;Aries&quot;: &quot;Mars&quot;, &quot;Taurus&quot;: &quot;Venus&quot;, &quot;Gemini&quot;: &quot;Mercury&quot;,
+    &quot;Cancer&quot;: &quot;Moon&quot;, &quot;Leo&quot;: &quot;Sun&quot;, &quot;Virgo&quot;: &quot;Mercury&quot;,
+    &quot;Libra&quot;: &quot;Venus&quot;, &quot;Scorpio&quot;: &quot;Mars&quot;, &quot;Sagittarius&quot;: &quot;Jupiter&quot;,
+    &quot;Capricorn&quot;: &quot;Saturn&quot;, &quot;Aquarius&quot;: &quot;Saturn&quot;, &quot;Pisces&quot;: &quot;Jupiter&quot;,
+}
+HOUSE_MEANINGS = {
+    1: &quot;the people / national body&quot;,
+    2: &quot;treasury / revenue / material resources&quot;,
+    3: &quot;press / communications / transport&quot;,
+    4: &quot;land / opposition / foundations&quot;,
+    5: &quot;markets / children / national pleasure&quot;,
+    6: &quot;workers / health / armed services&quot;,
+    7: &quot;foreign powers / open opponents&quot;,
+    8: &quot;debt / mortality / shared finance&quot;,
+    9: &quot;courts / law / religion / long trade&quot;,
+    10: &quot;government / executive / national standing&quot;,
+    11: &quot;legislature / allies / public hopes&quot;,
+    12: &quot;hidden actors / confinement / undoing&quot;,
+}
+MAJOR_ASPECTS = [
+    (&quot;conjunction&quot;, 0.0, 8.0),
+    (&quot;sextile&quot;, 60.0, 5.0),
+    (&quot;square&quot;, 90.0, 7.0),
+    (&quot;trine&quot;, 120.0, 7.0),
+    (&quot;opposition&quot;, 180.0, 8.0),
+]
+CROSS_CONTACT_LIMIT_DEG = 3.0
+import sys as _sys  # noqa: E402
+if str(HERE) not in _sys.path:
+    _sys.path.insert(0, str(HERE))
+from swiss_ephemeris import FLAGS, EPHEMERIS_LABEL  # noqa: E402  2026-09-25: Swiss/JPL files, never silent Moshier
+RISE_FLAGS = swe.CALC_RISE | swe.BIT_DISC_CENTER | swe.BIT_NO_REFRACTION
+
+
+def _iso(moment: dt.datetime) -&gt; str:
+    return moment.isoformat(timespec=&quot;microseconds&quot;)
+
+
+def _jd(moment: dt.datetime) -&gt; float:
+    if moment.tzinfo is None:
+        raise ValueError(&quot;Daybreak moments must be timezone-aware&quot;)
+    value = moment.astimezone(UTC)
+    hour = value.hour + value.minute / 60 + value.second / 3600 + value.microsecond / 3_600_000_000
+    return swe.julday(value.year, value.month, value.day, hour)
+
+
+def _moment(jd_ut: float) -&gt; dt.datetime:
+    year, month, day, hour = swe.revjul(jd_ut, swe.GREG_CAL)
+    return dt.datetime(year, month, day, tzinfo=UTC) + dt.timedelta(hours=hour)
+
+
+def _signed_delta(angle: float, target: float) -&gt; float:
+    return ((angle - target + 180.0) % 360.0) - 180.0
+
+
+def sign_of(longitude: float) -&gt; str:
+    return SIGNS[int((longitude % 360.0) // 30.0) % 12]
+
+
+def degree_label(longitude: float) -&gt; str:
+    value = longitude % 360.0
+    degree = value % 30.0
+    whole = int(degree)
+    minute = int(round((degree - whole) * 60))
+    if minute == 60:
+        whole = (whole + 1) % 30
+        minute = 0
+    return f&quot;{whole}°{minute:02d}&#x27; {sign_of(value)}&quot;
+
+
+def strength(orb: float) -&gt; str:
+    if orb &lt;= 0.25:
+        return &quot;exact&quot;
+    if orb &lt;= 1.5:
+        return &quot;tight&quot;
+    return &quot;active&quot;
+
+
+def _solar_asc_delta(jd_ut: float) -&gt; float:
+    sun = swe.calc_ut(jd_ut, swe.SUN, FLAGS)[0][0] % 360.0
+    asc = swe.houses(jd_ut, DC_LAT, DC_LON, b&quot;W&quot;)[1][0] % 360.0
+    return _signed_delta(sun, asc)
+
+
+@lru_cache(maxsize=1600)
+def sun_asc_crossing(date_iso: str) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Return the exact D.C. Sun–ASC crossing for one local calendar date.&quot;&quot;&quot;
+    day = dt.date.fromisoformat(date_iso)
+    local_midnight = dt.datetime.combine(day, dt.time(0, 0), tzinfo=DC_TZ)
+    jd_start = _jd(local_midnight)
+    result, times = swe.rise_trans(
+        jd_start,
+        swe.SUN,
+        RISE_FLAGS,
+        (DC_LON, DC_LAT, DC_ALT_METRES),
+    )
+    if result &lt; 0:
+        raise RuntimeError(f&quot;Swiss Ephemeris found no geometric sunrise for {date_iso}&quot;)
+    guess = times[0]
+
+    # The geometric-centre sunrise is already within seconds of Sun == ASC.
+    # Bracket generously so a future Swiss Ephemeris revision still fails loud.
+    lo, hi = guess - 0.025, guess + 0.025
+    flo, fhi = _solar_asc_delta(lo), _solar_asc_delta(hi)
+    for _ in range(5):
+        if flo == 0 or fhi == 0 or flo * fhi &lt; 0:
+            break
+        lo -= 0.025
+        hi += 0.025
+        flo, fhi = _solar_asc_delta(lo), _solar_asc_delta(hi)
+    if flo * fhi &gt; 0:
+        raise RuntimeError(
+            f&quot;Could not bracket Sun–ASC crossing for {date_iso}: {flo:.6f}, {fhi:.6f}&quot;
+        )
+    for _ in range(64):
+        mid = (lo + hi) / 2.0
+        fmid = _solar_asc_delta(mid)
+        if flo * fmid &lt;= 0:
+            hi, fhi = mid, fmid
+        else:
+            lo, flo = mid, fmid
+    jd_ut = (lo + hi) / 2.0
+    moment_utc = _moment(jd_ut)
+    local = moment_utc.astimezone(DC_TZ)
+    if local.date() != day:
+        raise RuntimeError(f&quot;Sun–ASC crossing escaped requested D.C. date: {date_iso} -&gt; {local}&quot;)
+    sun = swe.calc_ut(jd_ut, swe.SUN, FLAGS)[0][0] % 360.0
+    ascmc = swe.houses(jd_ut, DC_LAT, DC_LON, b&quot;W&quot;)[1]
+    asc, mc = ascmc[0] % 360.0, ascmc[1] % 360.0
+    residual = _signed_delta(sun, asc) * 3600.0
+    return {
+        &quot;date&quot;: date_iso,
+        &quot;jd_ut&quot;: jd_ut,
+        &quot;utc&quot;: _iso(moment_utc),
+        &quot;local&quot;: _iso(local),
+        &quot;clock&quot;: local.strftime(&quot;%-I:%M:%S %p %Z&quot;),
+        &quot;asc&quot;: asc,
+        &quot;mc&quot;: mc,
+        &quot;sun&quot;: sun,
+        &quot;sun_asc_residual_arcsec&quot;: residual,
+    }
+
+
+def _planet_position(jd_ut: float, body: str) -&gt; dict[str, Any]:
+    ecl = swe.calc_ut(jd_ut, PLANET_CODES[body], FLAGS)[0]
+    equ = swe.calc_ut(jd_ut, PLANET_CODES[body], FLAGS | swe.FLG_EQUATORIAL)[0]
+    lon = ecl[0] % 360.0
+    return {
+        &quot;lon&quot;: round(lon, 9),
+        &quot;lat&quot;: round(ecl[1], 9),
+        &quot;spd&quot;: round(ecl[3], 9),
+        &quot;dec&quot;: round(equ[1], 9),
+        &quot;retro&quot;: bool(ecl[3] &lt; 0),
+        &quot;sign&quot;: sign_of(lon),
+        &quot;deg_in_sign&quot;: round(lon % 30.0, 6),
+        &quot;label&quot;: degree_label(lon),
+    }
+
+
+def _america_position(jd_ut: float, vault_root: Path) -&gt; dict[str, Any]:
+    moment = _moment(jd_ut)
+    longitude, speed, key0, key1 = _canonical_america(moment, Path(vault_root))
+    return {
+        &quot;lon&quot;: round(longitude, 9),
+        &quot;lat&quot;: None,
+        &quot;spd&quot;: round(speed, 9),
+        &quot;dec&quot;: None,
+        &quot;retro&quot;: bool(speed &lt; 0),
+        &quot;sign&quot;: sign_of(longitude),
+        &quot;deg_in_sign&quot;: round(longitude % 30.0, 6),
+        &quot;label&quot;: degree_label(longitude),
+        &quot;authority&quot;: &quot;america_ephemeris.json&quot;,
+        &quot;interpolation&quot;: &quot;shortest_signed_arc_between_00_utc_daily_rows&quot;,
+        &quot;bracket_dates&quot;: [key0, key1],
+    }
+
+
+
+def _whole_sign_house(longitude: float, asc: float) -&gt; int:
+    return ((int(longitude // 30) - int(asc // 30)) % 12) + 1
+
+
+def _dispositor_structure(positions: dict[str, dict[str, Any]], chart_ruler: str) -&gt; dict[str, Any]:
+    path: list[str] = []
+    seen: dict[str, int] = {}
+    current = chart_ruler
+    while True:
+        if current in seen:
+            loop_members = path[seen[current]:]
+            return {
+                &quot;path&quot;: path + [current],
+                &quot;loop&quot;: True,
+                &quot;root_members&quot;: sorted(set(loop_members), key=PLANET_ORDER.index),
+            }
+        seen[current] = len(path)
+        path.append(current)
+        current = RULER[positions[current][&quot;sign&quot;]]
+
+
+def _aspect_candidate(longitude_a: float, longitude_b: float) -&gt; tuple[str, float, float, float]:
+    separation = abs(_signed_delta(longitude_b, longitude_a))
+    aspect_id, angle, limit = min(MAJOR_ASPECTS, key=lambda row: abs(separation - row[1]))
+    return aspect_id, angle, abs(separation - angle), limit
+
+
+def _internal_aspects(jd_ut: float, positions: dict[str, dict[str, Any]], vault_root: Path) -&gt; list[dict[str, Any]]:
+    future = {body: swe.calc_ut(jd_ut + 1 / 24.0, code, FLAGS)[0][0] % 360.0 for body, code in PLANET_CODES.items()}
+    future[&quot;America&quot;] = _america_position(jd_ut + 1 / 24.0, vault_root)[&quot;lon&quot;]
+    rows: list[dict[str, Any]] = []
+    for index, body_a in enumerate(ASPECT_POINT_ORDER):
+        for body_b in ASPECT_POINT_ORDER[index + 1:]:
+            aspect_id, angle, orb, limit = _aspect_candidate(positions[body_a][&quot;lon&quot;], positions[body_b][&quot;lon&quot;])
+            if orb &gt; limit:
+                continue
+            _, _, future_orb, _ = _aspect_candidate(future[body_a], future[body_b])
+            separation = abs(_signed_delta(positions[body_b][&quot;lon&quot;], positions[body_a][&quot;lon&quot;]))
+            rows.append({
+                &quot;a&quot;: body_a,
+                &quot;b&quot;: body_b,
+                &quot;aspect_id&quot;: aspect_id,
+                &quot;angle_deg&quot;: angle,
+                &quot;orb_deg&quot;: round(orb, 6),
+                &quot;orb_limit_deg&quot;: limit,
+                &quot;strength&quot;: strength(orb),
+                &quot;applying&quot;: future_orb &lt; orb,
+                &quot;separating&quot;: future_orb &gt;= orb,
+                &quot;separation_deg&quot;: round(separation, 6),
+            })
+    rows.sort(key=lambda row: (row[&quot;orb_deg&quot;], ASPECT_POINT_ORDER.index(row[&quot;a&quot;]), ASPECT_POINT_ORDER.index(row[&quot;b&quot;])))
+    return rows
+
+
+def cast_daybreak(date_iso: str, *, vault_root: Path = DEFAULT_VAULT_ROOT) -&gt; dict[str, Any]:
+    vault_root = Path(vault_root)
+    crossing = sun_asc_crossing(date_iso)
+    next_day = (dt.date.fromisoformat(date_iso) + dt.timedelta(days=1)).isoformat()
+    next_crossing = sun_asc_crossing(next_day)
+    jd_ut = crossing[&quot;jd_ut&quot;]
+    asc, mc = crossing[&quot;asc&quot;], crossing[&quot;mc&quot;]
+    positions = {body: _planet_position(jd_ut, body) for body in PLANET_ORDER}
+    positions[&quot;America&quot;] = _america_position(jd_ut, vault_root)
+    for body in ASPECT_POINT_ORDER:
+        house = _whole_sign_house(positions[body][&quot;lon&quot;], asc)
+        positions[body][&quot;house&quot;] = house
+        positions[body][&quot;house_meaning&quot;] = HOUSE_MEANINGS[house]
+    asc_sign = sign_of(asc)
+    chart_ruler = RULER[asc_sign]
+    dispositors = _dispositor_structure(positions, chart_ruler)
+    angular = [
+        {&quot;body&quot;: body, &quot;house&quot;: positions[body][&quot;house&quot;], &quot;label&quot;: positions[body][&quot;label&quot;]}
+        for body in ASPECT_POINT_ORDER if positions[body][&quot;house&quot;] in {1, 4, 7, 10}
+    ]
+    focal = []
+    for point in [&quot;Sun&quot;, &quot;Moon&quot;, &quot;ASC&quot;, &quot;MC&quot;, &quot;America&quot;, chart_ruler, *dispositors[&quot;root_members&quot;], *(item[&quot;body&quot;] for item in angular)]:
+        if point not in focal:
+            focal.append(point)
+    point_longitudes = {body: positions[body][&quot;lon&quot;] for body in ASPECT_POINT_ORDER}
+    point_longitudes.update({&quot;ASC&quot;: asc, &quot;MC&quot;: mc})
+    wheel_positions = [
+        [body, positions[body][&quot;sign&quot;], degree_label(positions[body][&quot;lon&quot;]).split()[0], 1 if positions[body][&quot;retro&quot;] else 0, round(positions[body][&quot;lon&quot;], 6)]
+        for body in ASPECT_POINT_ORDER
+    ]
+    chart = {
+        &quot;asc&quot;: round(asc, 9),
+        &quot;mc&quot;: round(mc, 9),
+        &quot;asc_sign&quot;: asc_sign,
+        &quot;mc_sign&quot;: sign_of(mc),
+        &quot;ruler&quot;: chart_ruler,
+        &quot;dispositors&quot;: dispositors,
+        &quot;root_members&quot;: dispositors[&quot;root_members&quot;],
+        &quot;positions&quot;: positions,
+        &quot;point_longitudes&quot;: {key: round(value, 9) for key, value in point_longitudes.items()},
+        &quot;focal_points&quot;: focal,
+        &quot;angular_planets&quot;: angular,
+        &quot;aspects&quot;: _internal_aspects(jd_ut, positions, vault_root),
+        &quot;wheel&quot;: {
+            &quot;pos&quot;: wheel_positions,
+            &quot;asp&quot;: [],
+            &quot;asc&quot;: round(asc, 6),
+            &quot;cap1&quot;: f&quot;Sun crossed the D.C. Ascendant · {crossing[&#x27;clock&#x27;]}&quot;,
+            &quot;cap2&quot;: &quot;one exact instant · Whole Sign · subordinate daily frame&quot;,
+        },
+        &quot;sunrise&quot;: {
+            &quot;method_id&quot;: FRAME_METHOD_ID,
+            &quot;utc&quot;: crossing[&quot;utc&quot;],
+            &quot;local&quot;: crossing[&quot;local&quot;],
+            &quot;clock&quot;: crossing[&quot;clock&quot;],
+            &quot;jd_ut&quot;: round(jd_ut, 9),
+            &quot;sun_asc_residual_arcsec&quot;: round(crossing[&quot;sun_asc_residual_arcsec&quot;], 9),
+            &quot;next_utc&quot;: next_crossing[&quot;utc&quot;],
+            &quot;next_local&quot;: next_crossing[&quot;local&quot;],
+            &quot;interval_basis&quot;: &quot;this exact Sun–ASC crossing up to, but not including, the next&quot;,
+        },
+    }
+    frame_id = f&quot;daybreak-{date_iso}&quot;
+    for row in chart[&quot;aspects&quot;]:
+        row[&quot;geometry_id&quot;] = (
+            f&quot;{frame_id}:internal:{row[&#x27;a&#x27;]}:{row[&#x27;aspect_id&#x27;]}:{row[&#x27;b&#x27;]}&quot;
+        )
+    return chart
+
+
+
+def _load_json(path: Path) -&gt; dict[str, Any]:
+    with path.open(encoding=&quot;utf-8&quot;) as handle:
+        return json.load(handle)
+
+
+def _chart_registry(vault_root: Path) -&gt; tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
+    index = _load_json(vault_root / &quot;99 - Templates&quot; / &quot;chart_reading_bones&quot; / &quot;index.json&quot;)
+    charts = index.get(&quot;charts&quot;, [])
+    return charts, {row[&quot;id&quot;]: row for row in charts}
+
+
+def _bone(vault_root: Path, chart_id: str) -&gt; dict[str, Any]:
+    return _load_json(vault_root / &quot;99 - Templates&quot; / &quot;chart_reading_bones&quot; / f&quot;{chart_id}.json&quot;)
+
+
+def _chart_label(meta: dict[str, Any], bone: dict[str, Any]) -&gt; str:
+    if meta[&quot;type&quot;] == &quot;ingress&quot;:
+        return f&quot;{meta[&#x27;year&#x27;]} {meta[&#x27;sign&#x27;]} Ingress&quot;
+    eclipse = bone.get(&quot;eclipse&quot;)
+    kind = &quot;New Moon&quot; if meta.get(&quot;kind&quot;) == &quot;new&quot; else &quot;Full Moon&quot;
+    if eclipse:
+        kind = &quot;Solar Eclipse&quot; if str(eclipse).lower().startswith(&quot;solar&quot;) else &quot;Lunar Eclipse&quot;
+    return f&quot;{kind} · {meta.get(&#x27;sign&#x27;, &#x27;&#x27;)} {meta.get(&#x27;deg&#x27;, &#x27;&#x27;)}°&quot;
+
+
+def _chart_summary(vault_root: Path, meta: dict[str, Any]) -&gt; dict[str, Any]:
+    return _chart_summary_cached(str(Path(vault_root)), meta[&quot;id&quot;], json.dumps(meta, sort_keys=True))
+
+
+
+def resolve_context(
+    date_iso: str,
+    charts: list[dict[str, Any]],
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+) -&gt; dict[str, str | None]:
+    &quot;&quot;&quot;Compatibility wrapper: resolve the context at that date&#x27;s Daybreak start.&quot;&quot;&quot;
+    crossing = sun_asc_crossing(date_iso)
+    return resolve_context_at(
+        _aware(crossing[&quot;utc&quot;], field=&quot;Daybreak UTC&quot;), charts, vault_root=Path(vault_root)
+    )
+
+
+
+def _cross_contacts(
+    daily: dict[str, Any],
+    parent: dict[str, Any] | None,
+) -&gt; list[dict[str, Any]]:
+    if parent is None:
+        return []
+    rows: list[dict[str, Any]] = []
+    source_points = daily[&quot;point_longitudes&quot;]
+    for source in daily[&quot;focal_points&quot;]:
+        source_lon = source_points[source]
+        for target, target_lon in parent[&quot;targets&quot;].items():
+            aspect_id, angle, orb, _ = _aspect_candidate(source_lon, target_lon)
+            if orb &gt; CROSS_CONTACT_LIMIT_DEG:
+                continue
+            rows.append({
+                &quot;source&quot;: source,
+                &quot;source_lon_deg&quot;: round(source_lon, 6),
+                &quot;aspect_id&quot;: aspect_id,
+                &quot;angle_deg&quot;: angle,
+                &quot;target&quot;: target,
+                &quot;target_lon_deg&quot;: round(target_lon, 6),
+                &quot;orb_deg&quot;: round(orb, 6),
+                &quot;strength&quot;: strength(orb),
+                &quot;continuity&quot;: bool(source == target and source in {&quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;} and aspect_id == &quot;conjunction&quot;),
+                &quot;parent_chart_id&quot;: parent[&quot;chart_id&quot;],
+            })
+    rows.sort(key=lambda row: (row[&quot;orb_deg&quot;], daily[&quot;focal_points&quot;].index(row[&quot;source&quot;]), row[&quot;target&quot;]))
+    return rows
+
+
+@lru_cache(maxsize=4)
+def _load_synodic(vault_root_value: str):
+    path = Path(vault_root_value) / &quot;99 - Templates&quot; / &quot;synodic_cycles.py&quot;
+    spec = importlib.util.spec_from_file_location(&quot;f250_daybreak_synodic&quot;, path)
+    if not spec or not spec.loader:
+        raise RuntimeError(f&quot;Cannot load Long Clocks engine: {path}&quot;)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _long_clock_delivery(date_iso: str, daily: dict[str, Any], vault_root: Path) -&gt; dict[str, Any]:
+    syn = _load_synodic(str(vault_root))
+    registry = syn.load_seed_registry(vault_root / &quot;99 - Templates&quot; / &quot;synodic_seed_families.json&quot;)
+    by_id = syn.seed_registry_index(registry)
+    moment = dt.datetime.fromisoformat(daily[&quot;sunrise&quot;][&quot;utc&quot;])
+    snapshot = syn.current_snapshot(moment, vault_root=vault_root, registry=registry)
+    pseudo_bone = {
+        &quot;pos&quot;: {
+            &quot;Sun&quot;: {&quot;lon&quot;: daily[&quot;positions&quot;][&quot;Sun&quot;][&quot;lon&quot;]},
+            &quot;Moon&quot;: {&quot;lon&quot;: daily[&quot;positions&quot;][&quot;Moon&quot;][&quot;lon&quot;]},
+        },
+        &quot;asc&quot;: daily[&quot;asc&quot;],
+        &quot;mc&quot;: daily[&quot;mc&quot;],
+        &quot;root_members&quot;: daily[&quot;root_members&quot;],
+        &quot;ruler&quot;: daily[&quot;ruler&quot;],
+        &quot;us_hits_sag&quot;: [],
+    }
+    cycles = []
+    for state in snapshot[&quot;cycles&quot;]:
+        nameability = syn.phase_nameability(pseudo_bone, by_id[state[&quot;cycle_id&quot;]])
+        cycles.append({
+            &quot;cycle_id&quot;: state[&quot;cycle_id&quot;],
+            &quot;tier_id&quot;: state[&quot;tier_id&quot;],
+            &quot;pair&quot;: state[&quot;pair&quot;],
+            &quot;geometry&quot;: {
+                &quot;elongation_deg&quot;: state[&quot;geometry&quot;][&quot;elongation_deg&quot;],
+                &quot;phase_name&quot;: state[&quot;geometry&quot;][&quot;phase_name&quot;],
+                &quot;phase_direction&quot;: state[&quot;geometry&quot;][&quot;phase_direction&quot;],
+                &quot;nearest_chapter_id&quot;: state[&quot;geometry&quot;][&quot;nearest_chapter_id&quot;],
+                &quot;nearest_chapter_orb_deg&quot;: state[&quot;geometry&quot;][&quot;nearest_chapter_orb_deg&quot;],
+            },
+            &quot;active_aspect&quot;: state[&quot;active_aspect&quot;],
+            &quot;nameability&quot;: nameability,
+        })
+    frame_id = f&quot;daybreak-{date_iso}&quot;
+    echoes = [
+        {
+            &quot;cycle_id&quot;: row[&quot;cycle_id&quot;],
+            &quot;seed_family_id&quot;: row[&quot;seed_family_id&quot;],
+            &quot;matched_pass_id&quot;: row[&quot;matched_pass_id&quot;],
+            &quot;point&quot;: row[&quot;point&quot;],
+            &quot;point_group&quot;: row[&quot;point_group&quot;],
+            &quot;point_lon_deg&quot;: row[&quot;point_lon_deg&quot;],
+            &quot;aspect_id&quot;: row[&quot;aspect_id&quot;],
+            &quot;orb_deg&quot;: row[&quot;orb_deg&quot;],
+            &quot;strength&quot;: row[&quot;strength&quot;],
+            &quot;seed_lon_deg&quot;: row[&quot;seed_lon_deg&quot;],
+        }
+        for row in syn.seed_echoes(frame_id, pseudo_bone, registry)
+    ]
+    edges = []
+    for state in cycles:
+        if not state[&quot;active_aspect&quot;]:
+            continue
+        edges.append({
+            &quot;cycle_id&quot;: state[&quot;cycle_id&quot;],
+            &quot;pair&quot;: state[&quot;pair&quot;],
+            &quot;tier_id&quot;: state[&quot;tier_id&quot;],
+            &quot;phase_name&quot;: state[&quot;geometry&quot;][&quot;phase_name&quot;],
+            &quot;phase_direction&quot;: state[&quot;geometry&quot;][&quot;phase_direction&quot;],
+            &quot;nameability&quot;: state[&quot;nameability&quot;],
+            **state[&quot;active_aspect&quot;],
+        })
+    edges.sort(key=lambda row: (row[&quot;orb_deg&quot;], row[&quot;cycle_id&quot;]))
+    delivery = {
+        &quot;utc&quot;: snapshot[&quot;utc&quot;],
+        &quot;cycles&quot;: cycles,
+        &quot;active_edges&quot;: edges,
+        &quot;seed_echoes&quot;: echoes,
+        &quot;active_cycle_ids&quot;: [row[&quot;cycle_id&quot;] for row in edges],
+    }
+    frame_id = f&quot;daybreak-{date_iso}&quot;
+    for row in delivery[&quot;cycles&quot;]:
+        row[&quot;geometry_id&quot;] = f&quot;{frame_id}:clock-cycle:{row[&#x27;cycle_id&#x27;]}&quot;
+    for row in delivery[&quot;active_edges&quot;]:
+        row[&quot;geometry_id&quot;] = (
+            f&quot;{frame_id}:clock-edge:{row[&#x27;cycle_id&#x27;]}:{row[&#x27;chapter_id&#x27;]}&quot;
+        )
+    for row in delivery[&quot;seed_echoes&quot;]:
+        row[&quot;geometry_id&quot;] = (
+            f&quot;{frame_id}:seed-echo:{row[&#x27;cycle_id&#x27;]}:{row[&#x27;matched_pass_id&#x27;]}:&quot;
+            f&quot;{row[&#x27;point&#x27;]}:{row[&#x27;aspect_id&#x27;]}&quot;
+        )
+        row[&quot;reference_id&quot;] = row[&quot;geometry_id&quot;]
+        row[&quot;structural_mirror&quot;] = False
+        row[&quot;mirror_family_id&quot;] = None
+        row[&quot;mirror_roles&quot;] = []
+        row[&quot;independent_occurrence&quot;] = True
+    echo_groups: dict[tuple[str, str, str, str], list[dict[str, Any]]] = {}
+    for row in delivery[&quot;seed_echoes&quot;]:
+        if row[&quot;point&quot;] in {&quot;Sun&quot;, &quot;ASC&quot;}:
+            key = (
+                row[&quot;cycle_id&quot;], row[&quot;matched_pass_id&quot;], row[&quot;aspect_id&quot;],
+                f&quot;{row[&#x27;seed_lon_deg&#x27;]:.9f}&quot;,
+            )
+            echo_groups.setdefault(key, []).append(row)
+    for (cycle_id, pass_id, aspect_id, _seed_lon), candidates in echo_groups.items():
+        roles = {row[&quot;point&quot;] for row in candidates}
+        if roles != {&quot;Sun&quot;, &quot;ASC&quot;}:
+            continue
+        family_id = f&quot;{frame_id}:seed-echo:{cycle_id}:{pass_id}:SunASC:{aspect_id}&quot;
+        for row in candidates:
+            row[&quot;reference_id&quot;] = family_id
+            row[&quot;structural_mirror&quot;] = True
+            row[&quot;mirror_family_id&quot;] = family_id
+            row[&quot;mirror_roles&quot;] = [&quot;Sun&quot;, &quot;ASC&quot;]
+            row[&quot;independent_occurrence&quot;] = row[&quot;point&quot;] == &quot;Sun&quot;
+    return delivery
+
+
+
+def _seed_charts(vault_root: Path) -&gt; dict[str, dict[str, Any]]:
+    syn = _load_synodic(str(vault_root))
+    registry_path = vault_root / &quot;99 - Templates&quot; / &quot;synodic_seed_families.json&quot;
+    registry = syn.load_seed_registry(registry_path)
+    out: dict[str, dict[str, Any]] = {}
+    for cycle in registry[&quot;cycles&quot;]:
+        chart = syn.seed_chart(cycle[&quot;cycle_id&quot;], vault_root=vault_root, seed_registry_path=registry_path)
+        wheel = {body: round(value[&quot;lon&quot;], 9) for body, value in chart[&quot;positions&quot;].items()}
+        try:
+            wheel[&quot;America&quot;] = round(_america_position(chart[&quot;jd_ut&quot;], vault_root)[&quot;lon&quot;], 9)
+            america_status = &quot;computed_from_canonical_cache&quot;
+        except ValueError:
+            # Historical seed epochs precede the 2024–2031 Horizons grid.  The
+            # canonical America helper explicitly forbids extrapolation.
+            america_status = &quot;unresolved_outside_canonical_cache&quot;
+        wheel[&quot;ASC&quot;] = round(chart[&quot;asc&quot;], 9)
+        out[cycle[&quot;cycle_id&quot;]] = {
+            &quot;cycle_id&quot;: cycle[&quot;cycle_id&quot;],
+            &quot;pair&quot;: cycle[&quot;pair&quot;],
+            &quot;label&quot;: f&quot;{cycle[&#x27;pair&#x27;][0]}–{cycle[&#x27;pair&#x27;][1]} seed&quot;,
+            &quot;seed_family_label&quot;: cycle[&quot;seed_family_label&quot;],
+            &quot;pass_id&quot;: chart[&quot;pass_id&quot;],
+            &quot;utc&quot;: chart[&quot;utc&quot;],
+            &quot;asc&quot;: round(chart[&quot;asc&quot;], 9),
+            &quot;mc&quot;: round(chart[&quot;mc&quot;], 9),
+            &quot;america_status&quot;: america_status,
+            &quot;wheel&quot;: wheel,
+        }
+    return out
+
+
+def _cohort(date_iso: str, experiment: dict[str, Any]) -&gt; dict[str, Any]:
+    for cohort in experiment.get(&quot;cohorts&quot;, []):
+        if cohort[&quot;start&quot;] &lt;= date_iso &lt;= cohort[&quot;end&quot;]:
+            return {
+                &quot;cohort_id&quot;: cohort[&quot;cohort_id&quot;],
+                &quot;label&quot;: cohort[&quot;label&quot;],
+                &quot;basis&quot;: cohort[&quot;basis&quot;],
+                &quot;frozen_at&quot;: cohort.get(&quot;frozen_at&quot;),
+            }
+    return {
+        &quot;cohort_id&quot;: &quot;reference&quot;,
+        &quot;label&quot;: &quot;Reference frame&quot;,
+        &quot;basis&quot;: &quot;computed factual frame outside the scored experiment windows&quot;,
+        &quot;frozen_at&quot;: None,
+    }
+
+
+def baseline_core(frame: dict[str, Any]) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Stable factual subset frozen for the prospective experiment.&quot;&quot;&quot;
+    core = {
+        &quot;frame_id&quot;: frame[&quot;frame_id&quot;],
+        &quot;date&quot;: frame[&quot;date&quot;],
+        &quot;sunrise_utc&quot;: frame[&quot;chart&quot;][&quot;sunrise&quot;][&quot;utc&quot;],
+        &quot;asc&quot;: frame[&quot;chart&quot;][&quot;asc&quot;],
+        &quot;mc&quot;: frame[&quot;chart&quot;][&quot;mc&quot;],
+        &quot;ruler&quot;: frame[&quot;chart&quot;][&quot;ruler&quot;],
+        &quot;root_members&quot;: frame[&quot;chart&quot;][&quot;root_members&quot;],
+        &quot;hierarchy&quot;: frame[&quot;hierarchy&quot;],
+        &quot;contacts&quot;: frame[&quot;contacts&quot;],
+        &quot;active_edges&quot;: frame[&quot;long_clocks&quot;][&quot;active_edges&quot;],
+        &quot;seed_echoes&quot;: frame[&quot;long_clocks&quot;][&quot;seed_echoes&quot;],
+    }
+    core = json.loads(json.dumps(core))
+
+    def strip_geometry_id(value: Any) -&gt; None:
+        if isinstance(value, dict):
+            for key in (
+                &quot;geometry_id&quot;, &quot;reference_id&quot;, &quot;structural_mirror&quot;,
+                &quot;mirror_family_id&quot;, &quot;mirror_roles&quot;, &quot;independent_occurrence&quot;,
+            ):
+                value.pop(key, None)
+            for item in value.values():
+                strip_geometry_id(item)
+        elif isinstance(value, list):
+            for item in value:
+                strip_geometry_id(item)
+
+    strip_geometry_id(core)
+    # The frozen v1 baseline predates the explicit America self-continuity
+    # classification.  Keep that historical hash surface while the live
+    # payload exposes the corrected non-trigger flag.
+    for rows in core[&quot;contacts&quot;].values():
+        for row in rows:
+            if (
+                row[&quot;source&quot;] == &quot;America&quot;
+                and row[&quot;target&quot;] == &quot;America&quot;
+                and row[&quot;aspect_id&quot;] == &quot;conjunction&quot;
+            ):
+                row[&quot;continuity&quot;] = False
+    return core
+
+
+
+def canonical_sha256(value: Any) -&gt; str:
+    raw = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(&quot;,&quot;, &quot;:&quot;)).encode(&quot;utf-8&quot;)
+    return hashlib.sha256(raw).hexdigest()
+
+
+def build_payload(
+    start: dt.date,
+    end: dt.date,
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+    experiment_path: Path | None = None,
+    generated_at: dt.datetime | None = None,
+) -&gt; dict[str, Any]:
+    vault_root = Path(vault_root)
+    experiment_path = experiment_path or vault_root / &quot;03 - Astrology&quot; / &quot;daybreak_experiment_registry.json&quot;
+    experiment = _load_json(experiment_path)
+    charts, chart_index = _chart_registry(vault_root)
+    if not charts:
+        raise ValueError(&quot;Chart registry is empty; Daybreak cannot resolve governing parents&quot;)
+    # Validate every registered exact time up front; never partially build.
+    for meta in charts:
+        _chart_timestamp(vault_root, meta)
+    used_chart_ids: set[str] = set()
+    frames: dict[str, Any] = {}
+    previous_date = (start - dt.timedelta(days=1)).isoformat()
+    previous_daily = cast_daybreak(previous_date, vault_root=vault_root)
+    total = (end - start).days + 1
+    for offset in range(total):
+        day = start + dt.timedelta(days=offset)
+        date_iso = day.isoformat()
+        daily = cast_daybreak(date_iso, vault_root=vault_root)
+        segments, transitions = _segments(
+            daily, charts, chart_index, vault_root=vault_root, used=used_chart_ids
+        )
+        if not segments:
+            raise RuntimeError(f&quot;No exact hierarchy segment generated for {date_iso}&quot;)
+        first = segments[0]
+        frame = {
+            &quot;frame_id&quot;: f&quot;daybreak-{date_iso}&quot;,
+            &quot;date&quot;: date_iso,
+            &quot;standing&quot;: &quot;subordinate_experimental_daily_frame&quot;,
+            &quot;cohort&quot;: _cohort(date_iso, experiment),
+            &quot;hierarchy&quot;: first[&quot;hierarchy&quot;],
+            &quot;chart&quot;: daily,
+            &quot;contacts&quot;: first[&quot;contacts&quot;],
+            &quot;contact_classification&quot;: first[&quot;contact_classification&quot;],
+            &quot;hierarchy_segments&quot;: segments,
+            &quot;parent_transitions&quot;: transitions,
+            &quot;daily_delta&quot;: _daily_delta(date_iso, previous_daily, daily, transitions),
+            &quot;long_clocks&quot;: _long_clock_delivery(date_iso, daily, vault_root),
+        }
+        frame[&quot;baseline_sha256&quot;] = canonical_sha256(baseline_core(frame))
+        frames[date_iso] = frame
+        previous_daily = daily
+    chart_catalog = {
+        chart_id: _chart_summary(vault_root, chart_index[chart_id])
+        for chart_id in sorted(used_chart_ids)
+    }
+    geometry_index = _geometry_index(frames)
+    generated_at = generated_at or dt.datetime.now(UTC)
+    return {
+        &quot;schema&quot;: SCHEMA,
+        &quot;generated_at&quot;: _iso(generated_at.astimezone(UTC)),
+        &quot;coverage&quot;: {&quot;start&quot;: start.isoformat(), &quot;end&quot;: end.isoformat(), &quot;frame_count&quot;: len(frames)},
+        &quot;method&quot;: {
+            &quot;method_id&quot;: FRAME_METHOD_ID,
+            &quot;definition&quot;: &quot;exact geocentric Sun-Ascendant conjunction in Washington, D.C.&quot;,
+            &quot;rise_seed&quot;: &quot;solar disc centre; refraction disabled; refined to exact Sun-ASC longitude equality&quot;,
+            &quot;location&quot;: {
+                &quot;label&quot;: &quot;Washington, D.C.&quot;, &quot;latitude&quot;: DC_LAT,
+                &quot;longitude&quot;: DC_LON, &quot;timezone&quot;: DC_TZ_NAME,
+            },
+            &quot;houses&quot;: &quot;Whole Sign&quot;,
+            &quot;mandatory_points&quot;: [&quot;916 America&quot;],
+            &quot;america_authority&quot;: &quot;america_ephemeris.json; shortest signed-arc interpolation between 00:00 UTC daily rows&quot;,
+            &quot;america_max_daily_motion_deg&quot;: AMERICA_MAX_DAILY_MOTION_DEG,
+            &quot;parent_routing&quot;: &quot;exact registered UTC timestamp inside each Sun-ASC interval&quot;,
+            &quot;seed_chart_america_policy&quot;: &quot;include from canonical cache when covered; otherwise unresolved; never extrapolate&quot;,
+            &quot;cross_contact_limit_deg&quot;: CROSS_CONTACT_LIMIT_DEG,
+            &quot;cross_contact_strength&quot;: {&quot;exact_max&quot;: 0.25, &quot;tight_max&quot;: 1.5, &quot;active_max&quot;: 3.0},
+            &quot;internal_major_orbs_deg&quot;: {name: limit for name, _angle, limit in MAJOR_ASPECTS},
+            &quot;standing&quot;: &quot;The daybreak frame delivers registered governing charts; it never replaces or governs them.&quot;,
+        },
+        &quot;experiment&quot;: experiment,
+        &quot;chart_catalog&quot;: chart_catalog,
+        &quot;seed_charts&quot;: _seed_charts(vault_root),
+        &quot;geometry_ref_contract&quot;: {
+            &quot;calculate_once&quot;: True,
+            &quot;reference_field&quot;: &quot;geometry_refs&quot;,
+            &quot;canonical_row_reference_field&quot;: &quot;reference_id&quot;,
+            &quot;identifier_fields&quot;: [
+                &quot;reference_id&quot;, &quot;mirror_family_id&quot;, &quot;geometry_id&quot;,
+                &quot;segment_id&quot;, &quot;transition_id&quot;, &quot;delta_id&quot;
+            ],
+            &quot;resolution&quot;: &quot;geometry_index[ref] yields an RFC 6901 JSON Pointer into this payload&quot;,
+            &quot;missing_ref_policy&quot;: &quot;fail_closed&quot;,
+            &quot;structural_mirror_policy&quot;: (
+                &quot;Daybreak Sun and ASC are definitionally co-located; paired hits use one &quot;
+                &quot;SunASC mirror_family_id/reference_id and count as one occurrence&quot;
+            ),
+        },
+        &quot;geometry_index&quot;: geometry_index,
+        &quot;frames&quot;: frames,
+    }
+
+
+
+def prospective_baseline(payload: dict[str, Any]) -&gt; dict[str, Any]:
+    cohort = next(row for row in payload[&quot;experiment&quot;][&quot;cohorts&quot;] if row[&quot;cohort_id&quot;] == &quot;prospective-30d&quot;)
+    frames = {
+        date_iso: {
+            &quot;sha256&quot;: payload[&quot;frames&quot;][date_iso][&quot;baseline_sha256&quot;],
+            &quot;core&quot;: baseline_core(payload[&quot;frames&quot;][date_iso]),
+        }
+        for date_iso in sorted(payload[&quot;frames&quot;])
+        if cohort[&quot;start&quot;] &lt;= date_iso &lt;= cohort[&quot;end&quot;]
+    }
+    return {
+        &quot;schema&quot;: &quot;f250.daybreak-prospective-baseline/v1&quot;,
+        &quot;status&quot;: &quot;frozen&quot;,
+        &quot;frozen_at&quot;: cohort[&quot;frozen_at&quot;],
+        &quot;cohort_id&quot;: cohort[&quot;cohort_id&quot;],
+        &quot;start&quot;: cohort[&quot;start&quot;],
+        &quot;end&quot;: cohort[&quot;end&quot;],
+        &quot;frame_count&quot;: len(frames),
+        &quot;method_id&quot;: payload[&quot;method&quot;][&quot;method_id&quot;],
+        &quot;frames&quot;: frames,
+    }
+
+
+def validate_prospective_baseline(payload: dict[str, Any], baseline: dict[str, Any]) -&gt; list[str]:
+    errors: list[str] = []
+    for date_iso, frozen in baseline.get(&quot;frames&quot;, {}).items():
+        current = payload.get(&quot;frames&quot;, {}).get(date_iso)
+        if current is None:
+            errors.append(f&quot;frozen date missing from payload: {date_iso}&quot;)
+            continue
+        if current[&quot;baseline_sha256&quot;] != frozen[&quot;sha256&quot;]:
+            errors.append(f&quot;prospective baseline drift: {date_iso}&quot;)
+    return errors
+
+# Exact-routing / canonical-America support.
+SLOW_BODIES = {&quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;}
+DELTA_HOUSE_BODIES = {&quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;America&quot;}
+AMERICA_MAX_DAILY_MOTION_DEG = 1.0
+
+def _aware(value: str | dt.datetime, *, field: str) -&gt; dt.datetime:
+    moment = dt.datetime.fromisoformat(value) if isinstance(value, str) else value
+    if moment.tzinfo is None:
+        raise ValueError(f&quot;{field} must be timezone-aware: {value!r}&quot;)
+    return moment.astimezone(UTC)
+
+@lru_cache(maxsize=8)
+def _america_rows(cache_path: str) -&gt; dict[str, float]:
+    path = Path(cache_path)
+    try:
+        raw = json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+        body = raw[&quot;916 America&quot;]
+        if not isinstance(body, dict) or not body:
+            raise ValueError(&quot;916 America mapping is empty&quot;)
+        rows = {str(key): float(value) % 360.0 for key, value in body.items()}
+    except Exception as exc:
+        raise RuntimeError(f&quot;Canonical 916 America cache unavailable: {path}: {exc}&quot;) from exc
+    return rows
+
+def _canonical_america(moment: dt.datetime, vault_root: Path) -&gt; tuple[float, float, str, str]:
+    moment = _aware(moment, field=&quot;916 America moment&quot;)
+    cache = Path(vault_root) / &quot;99 - Templates&quot; / &quot;america_ephemeris.json&quot;
+    rows = _america_rows(str(cache))
+    day0 = moment.date()
+    key0 = day0.isoformat()
+    key1 = (day0 + dt.timedelta(days=1)).isoformat()
+    if key0 not in rows or key1 not in rows:
+        missing = key0 if key0 not in rows else key1
+        raise ValueError(
+            f&quot;916 America canonical interpolation requires bracketing 00:00 UTC rows; &quot;
+            f&quot;missing {missing} in {cache}&quot;
+        )
+    start = rows[key0]
+    motion = _signed_delta(rows[key1], start)
+    if abs(motion) &gt; AMERICA_MAX_DAILY_MOTION_DEG:
+        raise ValueError(
+            f&quot;916 America implausible motion {motion:.9f} deg/day at {key0}; refusing chart&quot;
+        )
+    # Preserve the live whole-second interpolation precision so unaffected
+    # frozen baseline bytes do not drift; only the signed-arc bug is repaired.
+    seconds = moment.hour * 3600 + moment.minute * 60 + moment.second
+    fraction = seconds / 86400.0
+    return (start + motion * fraction) % 360.0, motion, key0, key1
+
+def _chart_timestamp(vault_root: Path, meta: dict[str, Any]) -&gt; dt.datetime:
+    if not meta.get(&quot;id&quot;):
+        raise ValueError(f&quot;Registered chart has no id: {meta!r}&quot;)
+    bone = _bone(vault_root, meta[&quot;id&quot;])
+    if not bone.get(&quot;utc&quot;):
+        raise ValueError(f&quot;Registered chart {meta[&#x27;id&#x27;]} has no exact UTC timestamp&quot;)
+    return _aware(bone[&quot;utc&quot;], field=f&quot;{meta[&#x27;id&#x27;]}.utc&quot;)
+
+@lru_cache(maxsize=256)
+def _chart_summary_cached(vault_root_value: str, chart_id: str, meta_json: str) -&gt; dict[str, Any]:
+    vault_root = Path(vault_root_value)
+    meta = json.loads(meta_json)
+    bone = _bone(vault_root, chart_id)
+    moment = _aware(bone.get(&quot;utc&quot;), field=f&quot;{chart_id}.utc&quot;)
+    canonical_lon, speed, key0, key1 = _canonical_america(moment, vault_root)
+    stored = bone.get(&quot;america&quot;, {}).get(&quot;lon&quot;)
+    stored_delta = None if stored is None else abs(_signed_delta(float(stored), canonical_lon))
+    positions = {body: round(bone[&quot;pos&quot;][body][&quot;lon&quot;], 9) for body in PLANET_ORDER}
+    positions[&quot;America&quot;] = round(canonical_lon, 9)
+    targets = dict(positions)
+    targets.update({&quot;ASC&quot;: round(bone[&quot;asc&quot;], 9), &quot;MC&quot;: round(bone[&quot;mc&quot;], 9)})
+    wheel = dict(positions)
+    wheel[&quot;ASC&quot;] = round(bone[&quot;asc&quot;], 9)
+    return {
+        &quot;chart_id&quot;: chart_id,
+        &quot;chart_type&quot;: meta[&quot;type&quot;],
+        &quot;date&quot;: meta[&quot;date&quot;],
+        &quot;utc&quot;: bone[&quot;utc&quot;],
+        &quot;local&quot;: bone.get(&quot;edt&quot;),
+        &quot;label&quot;: _chart_label(meta, bone),
+        &quot;sign&quot;: meta.get(&quot;sign&quot;),
+        &quot;kind&quot;: meta.get(&quot;kind&quot;),
+        &quot;eclipse&quot;: bone.get(&quot;eclipse&quot;),
+        &quot;greer_quiet&quot;: bone.get(&quot;greer_quiet&quot;),
+        &quot;asc&quot;: round(bone[&quot;asc&quot;], 9),
+        &quot;mc&quot;: round(bone[&quot;mc&quot;], 9),
+        &quot;ruler&quot;: bone.get(&quot;ruler&quot;),
+        &quot;root_members&quot;: bone.get(&quot;root_members&quot;, []),
+        &quot;targets&quot;: targets,
+        &quot;wheel&quot;: wheel,
+        &quot;america&quot;: {
+            &quot;status&quot;: &quot;computed_from_canonical_cache&quot;,
+            &quot;lon&quot;: round(canonical_lon, 9),
+            &quot;speed_deg_per_day&quot;: round(speed, 9),
+            &quot;authority&quot;: &quot;america_ephemeris.json&quot;,
+            &quot;bracket_dates&quot;: [key0, key1],
+            &quot;stored_bone_lon_deg&quot;: None if stored is None else round(float(stored) % 360.0, 9),
+            &quot;stored_bone_delta_deg&quot;: None if stored_delta is None else round(stored_delta, 9),
+            &quot;stored_bone_matches_canonical&quot;: bool(stored_delta is not None and stored_delta &lt;= 0.001),
+        },
+    }
+
+def resolve_context_at(
+    moment: dt.datetime,
+    charts: list[dict[str, Any]],
+    *,
+    vault_root: Path = DEFAULT_VAULT_ROOT,
+) -&gt; dict[str, str | None]:
+    moment_utc = _aware(moment, field=&quot;context moment&quot;)
+    dated = [(row, _chart_timestamp(Path(vault_root), row)) for row in charts]
+    available = [(row, stamp) for row, stamp in dated if stamp &lt;= moment_utc]
+    ingresses = [item for item in available if item[0][&quot;type&quot;] == &quot;ingress&quot;]
+    new_moons = [
+        item for item in available
+        if item[0][&quot;type&quot;] == &quot;lunation&quot; and item[0].get(&quot;kind&quot;) == &quot;new&quot;
+    ]
+    lunations = [item for item in available if item[0][&quot;type&quot;] == &quot;lunation&quot;]
+    ingress = max(ingresses, key=lambda item: item[1], default=None)
+    chapter = max(new_moons, key=lambda item: item[1], default=None)
+    phase = max(lunations, key=lambda item: item[1], default=None)
+    if phase and chapter and phase[0][&quot;id&quot;] == chapter[0][&quot;id&quot;]:
+        phase = None
+    return {
+        &quot;ingress_id&quot;: ingress[0][&quot;id&quot;] if ingress else None,
+        &quot;chapter_id&quot;: chapter[0][&quot;id&quot;] if chapter else None,
+        &quot;phase_event_id&quot;: phase[0][&quot;id&quot;] if phase else None,
+    }
+
+def _contact_rows(
+    daily: dict[str, Any],
+    parent: dict[str, Any] | None,
+    *,
+    role: str,
+    segment_key: str,
+) -&gt; list[dict[str, Any]]:
+    rows = _cross_contacts(daily, parent)
+    frame_id = f&quot;daybreak-{daily[&#x27;sunrise&#x27;][&#x27;local&#x27;][:10]}&quot;
+    for row in rows:
+        if (
+            row[&quot;source&quot;] == &quot;America&quot;
+            and row[&quot;target&quot;] == &quot;America&quot;
+            and row[&quot;aspect_id&quot;] == &quot;conjunction&quot;
+        ):
+            row[&quot;continuity&quot;] = True
+        row[&quot;geometry_id&quot;] = (
+            f&quot;{frame_id}:{segment_key}:parent:{role}:{row[&#x27;parent_chart_id&#x27;]}:&quot;
+            f&quot;{row[&#x27;source&#x27;]}:{row[&#x27;aspect_id&#x27;]}:{row[&#x27;target&#x27;]}&quot;
+        )
+        row[&quot;reference_id&quot;] = row[&quot;geometry_id&quot;]
+        row[&quot;structural_mirror&quot;] = False
+        row[&quot;mirror_family_id&quot;] = None
+        row[&quot;mirror_roles&quot;] = []
+        row[&quot;independent_occurrence&quot;] = True
+    by_mirror_key: dict[tuple[str, str, str], list[dict[str, Any]]] = {}
+    for row in rows:
+        if row[&quot;source&quot;] in {&quot;Sun&quot;, &quot;ASC&quot;}:
+            key = (row[&quot;parent_chart_id&quot;], row[&quot;aspect_id&quot;], row[&quot;target&quot;])
+            by_mirror_key.setdefault(key, []).append(row)
+    for (parent_id, aspect_id, target), candidates in by_mirror_key.items():
+        roles = {row[&quot;source&quot;] for row in candidates}
+        if roles != {&quot;Sun&quot;, &quot;ASC&quot;}:
+            continue
+        family_id = (
+            f&quot;{frame_id}:{segment_key}:parent:{role}:{parent_id}:&quot;
+            f&quot;SunASC:{aspect_id}:{target}&quot;
+        )
+        for row in candidates:
+            row[&quot;reference_id&quot;] = family_id
+            row[&quot;structural_mirror&quot;] = True
+            row[&quot;mirror_family_id&quot;] = family_id
+            row[&quot;mirror_roles&quot;] = [&quot;Sun&quot;, &quot;ASC&quot;]
+            row[&quot;independent_occurrence&quot;] = row[&quot;source&quot;] == &quot;Sun&quot;
+    return rows
+
+def _classify_contacts(contacts: dict[str, list[dict[str, Any]]]) -&gt; dict[str, Any]:
+    roles: dict[str, Any] = {}
+    total_trigger = 0
+    total_background = 0
+    for role, rows in contacts.items():
+        trigger_ids = []
+        background_ids = []
+        families: dict[str, list[dict[str, Any]]] = {}
+        for row in rows:
+            families.setdefault(row[&quot;reference_id&quot;], []).append(row)
+        for contact_id, family in families.items():
+            eligible = any(
+                not row[&quot;continuity&quot;]
+                and not (row[&quot;source&quot;] in SLOW_BODIES and row[&quot;target&quot;] in SLOW_BODIES)
+                and row[&quot;independent_occurrence&quot;]
+                for row in family
+            )
+            target = trigger_ids if eligible else background_ids
+            target.append(contact_id)
+        total_trigger += len(trigger_ids)
+        total_background += len(background_ids)
+        roles[role] = {
+            &quot;trigger_contact_ids&quot;: trigger_ids,
+            &quot;background_contact_ids&quot;: background_ids,
+            &quot;no_trigger&quot;: not trigger_ids,
+        }
+    return {
+        &quot;roles&quot;: roles,
+        &quot;trigger_contact_count&quot;: total_trigger,
+        &quot;background_contact_count&quot;: total_background,
+        &quot;no_trigger&quot;: total_trigger == 0,
+        &quot;slow_filter_rule&quot;: (
+            &quot;same-body Jupiter-through-Pluto conjunction continuity and all slow-to-slow &quot;
+            &quot;cross-chart contacts remain factual background, never daily triggers&quot;
+        ),
+    }
+
+def _parents_for(
+    hierarchy: dict[str, str | None],
+    *,
+    vault_root: Path,
+    chart_index: dict[str, dict[str, Any]],
+    used: set[str],
+) -&gt; dict[str, dict[str, Any] | None]:
+    parents: dict[str, dict[str, Any] | None] = {}
+    for role, chart_id in hierarchy.items():
+        if chart_id is None:
+            parents[role] = None
+            continue
+        if chart_id not in chart_index:
+            raise ValueError(f&quot;Resolved parent {chart_id!r} is absent from chart registry&quot;)
+        used.add(chart_id)
+        parents[role] = _chart_summary(vault_root, chart_index[chart_id])
+    return parents
+
+def _contacts_for(
+    daily: dict[str, Any],
+    parents: dict[str, dict[str, Any] | None],
+    *,
+    segment_key: str,
+) -&gt; dict[str, Any]:
+    return {
+        &quot;ingress&quot;: _contact_rows(daily, parents[&quot;ingress_id&quot;], role=&quot;ingress&quot;, segment_key=segment_key),
+        &quot;chapter&quot;: _contact_rows(daily, parents[&quot;chapter_id&quot;], role=&quot;chapter&quot;, segment_key=segment_key),
+        &quot;phase_event&quot;: _contact_rows(daily, parents[&quot;phase_event_id&quot;], role=&quot;phase_event&quot;, segment_key=segment_key),
+    }
+
+def _geometry_index(frames: dict[str, Any]) -&gt; dict[str, str]:
+    &quot;&quot;&quot;Stable calculate-once ref -&gt; RFC 6901 pointer table.&quot;&quot;&quot;
+    out: dict[str, str] = {}
+
+    def add(identifier: str, pointer: str) -&gt; None:
+        if identifier in out:
+            raise ValueError(f&quot;Duplicate geometry reference id: {identifier}&quot;)
+        out[identifier] = pointer
+
+    for date_iso, frame in frames.items():
+        root = f&quot;/frames/{date_iso}&quot;
+        for index, row in enumerate(frame[&quot;chart&quot;][&quot;aspects&quot;]):
+            add(row[&quot;geometry_id&quot;], f&quot;{root}/chart/aspects/{index}&quot;)
+        for index, segment in enumerate(frame[&quot;hierarchy_segments&quot;]):
+            segment_root = f&quot;{root}/hierarchy_segments/{index}&quot;
+            add(segment[&quot;segment_id&quot;], segment_root)
+            for role, rows in segment[&quot;contacts&quot;].items():
+                for row_index, row in enumerate(rows):
+                    add(row[&quot;geometry_id&quot;], f&quot;{segment_root}/contacts/{role}/{row_index}&quot;)
+                    if row[&quot;structural_mirror&quot;] and row[&quot;independent_occurrence&quot;]:
+                        add(row[&quot;mirror_family_id&quot;], f&quot;{segment_root}/contacts/{role}/{row_index}&quot;)
+        for index, row in enumerate(frame[&quot;parent_transitions&quot;]):
+            add(row[&quot;transition_id&quot;], f&quot;{root}/parent_transitions/{index}&quot;)
+        for index, row in enumerate(frame[&quot;daily_delta&quot;][&quot;rows&quot;]):
+            add(row[&quot;delta_id&quot;], f&quot;{root}/daily_delta/rows/{index}&quot;)
+        for lane in (&quot;cycles&quot;, &quot;active_edges&quot;, &quot;seed_echoes&quot;):
+            for index, row in enumerate(frame[&quot;long_clocks&quot;][lane]):
+                add(row[&quot;geometry_id&quot;], f&quot;{root}/long_clocks/{lane}/{index}&quot;)
+                if lane == &quot;seed_echoes&quot; and row[&quot;structural_mirror&quot;] and row[&quot;independent_occurrence&quot;]:
+                    add(row[&quot;mirror_family_id&quot;], f&quot;{root}/long_clocks/{lane}/{index}&quot;)
+    return dict(sorted(out.items()))
+
+def _segments(
+    daily: dict[str, Any],
+    charts: list[dict[str, Any]],
+    chart_index: dict[str, dict[str, Any]],
+    *,
+    vault_root: Path,
+    used: set[str],
+) -&gt; tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    start = _aware(daily[&quot;sunrise&quot;][&quot;utc&quot;], field=&quot;frame start&quot;)
+    end = _aware(daily[&quot;sunrise&quot;][&quot;next_utc&quot;], field=&quot;frame end&quot;)
+    events = sorted(
+        [
+            (stamp, row)
+            for row in charts
+            for stamp in [_chart_timestamp(vault_root, row)]
+            if start &lt; stamp &lt; end and row[&quot;type&quot;] in {&quot;ingress&quot;, &quot;lunation&quot;}
+        ],
+        key=lambda item: (item[0], item[1][&quot;id&quot;]),
+    )
+    boundaries = [start] + sorted({stamp for stamp, _row in events}) + [end]
+    segments: list[dict[str, Any]] = []
+    transitions: list[dict[str, Any]] = []
+    for index, (seg_start, seg_end) in enumerate(zip(boundaries, boundaries[1:]), start=1):
+        hierarchy = resolve_context_at(seg_start, charts, vault_root=vault_root)
+        parents = _parents_for(
+            hierarchy, vault_root=vault_root, chart_index=chart_index, used=used
+        )
+        contacts = _contacts_for(daily, parents, segment_key=f&quot;s{index:02d}&quot;)
+        entering = [row for stamp, row in events if stamp == seg_start]
+        segments.append({
+            &quot;segment_id&quot;: f&quot;daybreak-{daily[&#x27;sunrise&#x27;][&#x27;local&#x27;][:10]}/s{index:02d}&quot;,
+            &quot;start_utc&quot;: _iso(seg_start),
+            &quot;start_local&quot;: _iso(seg_start.astimezone(DC_TZ)),
+            &quot;end_utc&quot;: _iso(seg_end),
+            &quot;end_local&quot;: _iso(seg_end.astimezone(DC_TZ)),
+            &quot;hierarchy&quot;: hierarchy,
+            &quot;contacts&quot;: contacts,
+            &quot;contact_classification&quot;: _classify_contacts(contacts),
+            &quot;transition_in&quot;: None if not entering else {
+                &quot;chart_ids&quot;: [row[&quot;id&quot;] for row in entering],
+                &quot;at_utc&quot;: _iso(seg_start),
+                &quot;at_local&quot;: _iso(seg_start.astimezone(DC_TZ)),
+            },
+        })
+    for stamp, row in events:
+        before = resolve_context_at(stamp - dt.timedelta(microseconds=1), charts, vault_root=vault_root)
+        after = resolve_context_at(stamp, charts, vault_root=vault_root)
+        transitions.append({
+            &quot;transition_id&quot;: f&quot;daybreak-{daily[&#x27;sunrise&#x27;][&#x27;local&#x27;][:10]}:{row[&#x27;id&#x27;]}&quot;,
+            &quot;chart_id&quot;: row[&quot;id&quot;],
+            &quot;chart_type&quot;: row[&quot;type&quot;],
+            &quot;kind&quot;: row.get(&quot;kind&quot;),
+            &quot;at_utc&quot;: _iso(stamp),
+            &quot;at_local&quot;: _iso(stamp.astimezone(DC_TZ)),
+            &quot;hierarchy_before&quot;: before,
+            &quot;hierarchy_after&quot;: after,
+        })
+    return segments, transitions
+
+def _aspect_key(row: dict[str, Any]) -&gt; tuple[str, str, str]:
+    return row[&quot;a&quot;], row[&quot;b&quot;], row[&quot;aspect_id&quot;]
+
+def _delta_row(delta_id: str, kind: str, summary: str, **extra: Any) -&gt; dict[str, Any]:
+    return {
+        &quot;delta_id&quot;: delta_id,
+        &quot;kind&quot;: kind,
+        &quot;precision&quot;: extra.pop(&quot;precision&quot;, &quot;daybreak_snapshot_boundary&quot;),
+        &quot;summary&quot;: summary,
+        &quot;continuity&quot;: bool(extra.pop(&quot;continuity&quot;, False)),
+        **extra,
+    }
+
+def _daily_delta(
+    date_iso: str,
+    previous: dict[str, Any],
+    current: dict[str, Any],
+    transitions: list[dict[str, Any]],
+) -&gt; dict[str, Any]:
+    prefix = f&quot;daybreak-{date_iso}&quot;
+    rows: list[dict[str, Any]] = []
+    if previous[&quot;ruler&quot;] != current[&quot;ruler&quot;]:
+        rows.append(_delta_row(
+            f&quot;{prefix}:ruler&quot;, &quot;ruler_change&quot;,
+            f&quot;Daybreak ruler changed {previous[&#x27;ruler&#x27;]} -&gt; {current[&#x27;ruler&#x27;]}&quot;,
+            **{&quot;from&quot;: previous[&quot;ruler&quot;], &quot;to&quot;: current[&quot;ruler&quot;]},
+            daily_trigger_eligible=True,
+        ))
+    if previous[&quot;root_members&quot;] != current[&quot;root_members&quot;]:
+        rows.append(_delta_row(
+            f&quot;{prefix}:root&quot;, &quot;root_members_change&quot;,
+            f&quot;Dispositor root changed {previous[&#x27;root_members&#x27;]} -&gt; {current[&#x27;root_members&#x27;]}&quot;,
+            **{&quot;from&quot;: previous[&quot;root_members&quot;], &quot;to&quot;: current[&quot;root_members&quot;]},
+            daily_trigger_eligible=True,
+        ))
+    for angle in (&quot;ASC&quot;, &quot;MC&quot;):
+        old_sign = previous[&quot;asc_sign&quot; if angle == &quot;ASC&quot; else &quot;mc_sign&quot;]
+        new_sign = current[&quot;asc_sign&quot; if angle == &quot;ASC&quot; else &quot;mc_sign&quot;]
+        if old_sign != new_sign:
+            rows.append(_delta_row(
+                f&quot;{prefix}:angle-sign:{angle}&quot;, &quot;angle_sign_change&quot;,
+                f&quot;{angle} changed sign {old_sign} -&gt; {new_sign}&quot;,
+                body=angle, **{&quot;from&quot;: old_sign, &quot;to&quot;: new_sign},
+                daily_trigger_eligible=True,
+            ))
+    for body in ASPECT_POINT_ORDER:
+        old = previous[&quot;positions&quot;][body]
+        new = current[&quot;positions&quot;][body]
+        if old[&quot;sign&quot;] != new[&quot;sign&quot;]:
+            rows.append(_delta_row(
+                f&quot;{prefix}:body-sign:{body}&quot;, &quot;body_sign_change&quot;,
+                f&quot;{body} changed sign {old[&#x27;sign&#x27;]} -&gt; {new[&#x27;sign&#x27;]}&quot;,
+                body=body, **{&quot;from&quot;: old[&quot;sign&quot;], &quot;to&quot;: new[&quot;sign&quot;]},
+                daily_trigger_eligible=True,
+            ))
+        if body in DELTA_HOUSE_BODIES and old[&quot;house&quot;] != new[&quot;house&quot;]:
+            rows.append(_delta_row(
+                f&quot;{prefix}:house:{body}&quot;, &quot;whole_sign_house_change&quot;,
+                f&quot;{body} changed Whole Sign house {old[&#x27;house&#x27;]} -&gt; {new[&#x27;house&#x27;]}&quot;,
+                body=body, **{&quot;from&quot;: old[&quot;house&quot;], &quot;to&quot;: new[&quot;house&quot;]},
+                daily_trigger_eligible=True,
+            ))
+    old_tight = {
+        _aspect_key(row): row for row in previous[&quot;aspects&quot;] if row[&quot;strength&quot;] in {&quot;exact&quot;, &quot;tight&quot;}
+    }
+    new_tight = {
+        _aspect_key(row): row for row in current[&quot;aspects&quot;] if row[&quot;strength&quot;] in {&quot;exact&quot;, &quot;tight&quot;}
+    }
+    for state, keys, source in (
+        (&quot;entered&quot;, sorted(set(new_tight) - set(old_tight)), new_tight),
+        (&quot;exited&quot;, sorted(set(old_tight) - set(new_tight)), old_tight),
+    ):
+        for key in keys:
+            row = source[key]
+            slow_slow = row[&quot;a&quot;] in SLOW_BODIES and row[&quot;b&quot;] in SLOW_BODIES
+            rows.append(_delta_row(
+                f&quot;{prefix}:tight-aspect-{state}:{row[&#x27;a&#x27;]}:{row[&#x27;aspect_id&#x27;]}:{row[&#x27;b&#x27;]}&quot;,
+                f&quot;tight_internal_aspect_{state}&quot;,
+                f&quot;{row[&#x27;a&#x27;]} {row[&#x27;aspect_id&#x27;]} {row[&#x27;b&#x27;]} {state} the &lt;=1.5 deg band&quot;,
+                body=[row[&quot;a&quot;], row[&quot;b&quot;]],
+                **{&quot;from&quot;: None if state == &quot;entered&quot; else row[&quot;strength&quot;],
+                   &quot;to&quot;: row[&quot;strength&quot;] if state == &quot;entered&quot; else None},
+                continuity=slow_slow,
+                daily_trigger_eligible=not slow_slow,
+                orb_deg=row[&quot;orb_deg&quot;],
+            ))
+    for transition in transitions:
+        rows.append(_delta_row(
+            f&quot;{prefix}:parent:{transition[&#x27;chart_id&#x27;]}&quot;, &quot;parent_chart_transition&quot;,
+            f&quot;Registered {transition[&#x27;chart_type&#x27;]} parent changed at exact timestamp&quot;,
+            at_utc=transition[&quot;at_utc&quot;], at_local=transition[&quot;at_local&quot;],
+            **{&quot;from&quot;: transition[&quot;hierarchy_before&quot;], &quot;to&quot;: transition[&quot;hierarchy_after&quot;]},
+            precision=&quot;exact_timestamp&quot;,
+            daily_trigger_eligible=True,
+            chart_id=transition[&quot;chart_id&quot;],
+        ))
+    rows.sort(key=lambda row: (row[&quot;at_utc&quot;] if row.get(&quot;at_utc&quot;) else current[&quot;sunrise&quot;][&quot;utc&quot;], row[&quot;delta_id&quot;]))
+    eligible = [row for row in rows if row[&quot;daily_trigger_eligible&quot;]]
+    return {
+        &quot;none&quot;: not rows,
+        &quot;no_trigger&quot;: not eligible,
+        &quot;slow_only&quot;: bool(rows) and not eligible,
+        &quot;rows&quot;: rows,
+        &quot;comparison&quot;: {
+            &quot;from_utc&quot;: previous[&quot;sunrise&quot;][&quot;utc&quot;],
+            &quot;to_utc&quot;: current[&quot;sunrise&quot;][&quot;utc&quot;],
+            &quot;categorical_only&quot;: True,
+            &quot;tight_band_max_orb_deg&quot;: 1.5,
+        },
+    }
+
+__all__ = [
+    &quot;SCHEMA&quot;, &quot;FRAME_METHOD_ID&quot;, &quot;sun_asc_crossing&quot;, &quot;cast_daybreak&quot;,
+    &quot;resolve_context&quot;, &quot;resolve_context_at&quot;, &quot;build_payload&quot;, &quot;baseline_core&quot;,
+    &quot;prospective_baseline&quot;, &quot;validate_prospective_baseline&quot;, &quot;canonical_sha256&quot;,
+    &quot;strength&quot;, &quot;_chart_registry&quot;, &quot;_canonical_america&quot;,
+]
+</pre></main></body></html>

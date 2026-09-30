@@ -1,0 +1,380 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-studio-desk-astrology-a148ef69e92d.html">
+<title>build_studio_desk_astrology</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_studio_desk_astrology</h1><p class="mut">Portable source: 99 - Templates/build_studio_desk_astrology.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the compact, plot-free astrology layer for Studio Desk.
+
+This projection reads governed astrology owners. It does not calculate a second
+sky, assign stories, create evidence, or write interpretation.
+&quot;&quot;&quot;
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import re
+from datetime import datetime
+from pathlib import Path
+
+from atomic_io import atomic_write_text
+
+HERE = Path(__file__).resolve().parent
+VAULT = HERE.parent
+OUTPUT = HERE / &quot;studio_desk_astrology.json&quot;
+MUNDANE = HERE / &quot;mundane_history.json&quot;
+STACKS = HERE / &quot;chart_synodic_stacks.json&quot;
+RELATIONSHIPS = HERE / &quot;planetary_relationship_history.json&quot;
+READINGS = VAULT / &quot;03 - Astrology&quot; / &quot;chart_reading_registry.json&quot;
+WATCHES = VAULT / &quot;03 - Astrology&quot; / &quot;chart_transition_watches.json&quot;
+BRAIDS = VAULT / &quot;03 - Astrology&quot; / &quot;astrology_spine_plot_rooms.json&quot;
+ASTRO_MAP_BUILDER = HERE / &quot;build_astro_map.py&quot;
+MOON_MOTION = HERE / &quot;moon_lineages.json&quot;
+
+
+def load(path: Path):
+    return json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def instant(value: str) -&gt; datetime:
+    return datetime.fromisoformat(value.replace(&quot;Z&quot;, &quot;+00:00&quot;))
+
+
+def map_chart_id(chart_id: str) -&gt; str:
+    &quot;&quot;&quot;Return the explicit existing Astro Map compatibility ID.
+
+    Studio emits this ID so the UI never guesses across the two historical ID
+    contracts. Wave 2.5 will replace compatibility mapping with a shared
+    machine-readable geometry catalog.
+    &quot;&quot;&quot;
+    if chart_id.startswith(&quot;ingress-&quot;):
+        return chart_id.removeprefix(&quot;ingress-&quot;)
+    match = re.fullmatch(r&quot;(lun-\d{4}-\d{2}-\d{2})-(?:ne|fu)(?:-.+)?&quot;, chart_id)
+    if match:
+        return match.group(1)
+    raise ValueError(f&quot;no explicit Astro Map compatibility ID for {chart_id}&quot;)
+
+
+def compact_chart(chart: dict) -&gt; dict:
+    wanted = {&quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;,
+              &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;}
+    return {
+        &quot;chart_id&quot;: chart[&quot;id&quot;],
+        &quot;map_chart_id&quot;: map_chart_id(chart[&quot;id&quot;]),
+        &quot;label&quot;: chart[&quot;label&quot;],
+        &quot;chart_type&quot;: chart[&quot;chart_type&quot;],
+        &quot;exact_utc&quot;: chart[&quot;utc&quot;],
+        &quot;exact_local&quot;: chart[&quot;local&quot;],
+        &quot;asc_sign&quot;: chart.get(&quot;asc_sign&quot;),
+        &quot;reading_source&quot;: chart.get(&quot;reading_source&quot;),
+        &quot;verification&quot;: chart.get(&quot;verification&quot;, {}),
+        &quot;actors&quot;: [
+            {
+                &quot;body&quot;: point[&quot;name&quot;],
+                &quot;sign&quot;: point[&quot;sign&quot;],
+                &quot;dms&quot;: point[&quot;dms&quot;],
+                &quot;speed_deg_per_day&quot;: point[&quot;speed&quot;],
+                &quot;retrograde&quot;: point[&quot;retro&quot;],
+            }
+            for point in chart.get(&quot;points&quot;, [])
+            if point.get(&quot;name&quot;) in wanted
+        ],
+    }
+
+
+def build_payload() -&gt; dict:
+    mundane = load(MUNDANE)
+    stacks = load(STACKS)
+    relationships = load(RELATIONSHIPS)
+    readings = load(READINGS)
+    watches = load(WATCHES)
+    braids = load(BRAIDS)
+    moon_motion = load(MOON_MOTION)
+    if moon_motion.get(&quot;schema&quot;) != &quot;f250.moon-motion/v1&quot;:
+        raise ValueError(&quot;Studio astrology requires the governed Moon-motion projection&quot;)
+
+    as_of = instant(stacks[&quot;as_of&quot;])
+    by_id = {row[&quot;id&quot;]: row for row in mundane[&quot;charts&quot;]}
+    checkpoints = [
+        row for row in relationships[&quot;charts&quot;]
+        if instant(row[&quot;utc&quot;]) &lt;= as_of
+        and (by_id.get(row.get(&quot;chart_id&quot;), {}).get(&quot;chart_type&quot;) == &quot;lunation&quot;)
+        and &quot;-ne&quot; in (row.get(&quot;chart_id&quot;) or &quot;&quot;)
+    ]
+    if not checkpoints:
+        raise ValueError(&quot;relationship history has no New Moon chapter at or before Long Clocks as_of&quot;)
+    checkpoint = max(checkpoints, key=lambda row: instant(row[&quot;utc&quot;]))
+    if len(checkpoint.get(&quot;cycles&quot;, [])) != 28:
+        raise ValueError(f&quot;expected 28 relationship states, found {len(checkpoint.get(&#x27;cycles&#x27;, []))}&quot;)
+
+    chapter = by_id.get(checkpoint[&quot;chart_id&quot;])
+    if not chapter or chapter.get(&quot;chart_type&quot;) != &quot;lunation&quot; or &quot;-ne&quot; not in chapter[&quot;id&quot;]:
+        raise ValueError(f&quot;checkpoint is not a New Moon chapter: {checkpoint[&#x27;chart_id&#x27;]}&quot;)
+    chapter_start = instant(chapter[&quot;utc&quot;])
+    next_new = min(
+        (
+            row for row in mundane[&quot;charts&quot;]
+            if row.get(&quot;chart_type&quot;) == &quot;lunation&quot;
+            and &quot;-ne&quot; in row.get(&quot;id&quot;, &quot;&quot;)
+            and instant(row[&quot;utc&quot;]) &gt; chapter_start
+        ),
+        key=lambda row: instant(row[&quot;utc&quot;]),
+    )
+    chapter_end = instant(next_new[&quot;utc&quot;])
+
+    governing = by_id.get(checkpoint[&quot;window_id&quot;])
+    if not governing or governing.get(&quot;chart_type&quot;) != &quot;ingress&quot;:
+        raise ValueError(f&quot;missing governing ingress {checkpoint[&#x27;window_id&#x27;]}&quot;)
+    later_ingresses = sorted(
+        (
+            row for row in mundane[&quot;charts&quot;]
+            if row.get(&quot;chart_type&quot;) == &quot;ingress&quot;
+            and chapter_start &lt; instant(row[&quot;utc&quot;]) &lt; chapter_end
+        ),
+        key=lambda row: instant(row[&quot;utc&quot;]),
+    )
+    ingress_chain = [governing] + later_ingresses
+    segments = []
+    for index, ingress in enumerate(ingress_chain):
+        start = chapter[&quot;utc&quot;] if index == 0 else ingress[&quot;utc&quot;]
+        end = ingress_chain[index + 1][&quot;utc&quot;] if index + 1 &lt; len(ingress_chain) else next_new[&quot;utc&quot;]
+        segments.append({
+            &quot;ingress_id&quot;: ingress[&quot;id&quot;],
+            &quot;label&quot;: ingress[&quot;label&quot;],
+            &quot;from_utc&quot;: start,
+            &quot;until_utc&quot;: end,
+            &quot;handoff_local&quot;: ingress[&quot;local&quot;] if index else None,
+        })
+
+    phase_strikes = [
+        compact_chart(row)
+        for row in sorted(mundane[&quot;charts&quot;], key=lambda item: instant(item[&quot;utc&quot;]))
+        if row.get(&quot;chart_type&quot;) == &quot;lunation&quot;
+        and &quot;-fu&quot; in row.get(&quot;id&quot;, &quot;&quot;)
+        and chapter_start &lt; instant(row[&quot;utc&quot;]) &lt; chapter_end
+    ]
+
+    reading_row = next(row for row in readings[&quot;readings&quot;] if row[&quot;id&quot;] == chapter[&quot;id&quot;])
+    reading_path = VAULT / reading_row[&quot;source&quot;]
+    live_hash = sha256(reading_path)
+    baseline = component = None
+    for candidate in readings[&quot;comparison_contract&quot;][&quot;baselines&quot;]:
+        match = next((item for item in candidate[&quot;components&quot;] if item[&quot;reading_id&quot;] == chapter[&quot;id&quot;]), None)
+        if match:
+            baseline, component = candidate, match
+            break
+    if not baseline or not component:
+        raise ValueError(f&quot;no frozen baseline for {chapter[&#x27;id&#x27;]}&quot;)
+    transition_watch = next(
+        (row for row in watches[&quot;watches&quot;] if row[&quot;reading_id&quot;] == chapter[&quot;id&quot;]),
+        None,
+    )
+    if not transition_watch:
+        raise ValueError(f&quot;no State Transition Watch for {chapter[&#x27;id&#x27;]}&quot;)
+
+    states = []
+    for row in checkpoint[&quot;cycles&quot;]:
+        direct = row.get(&quot;direct_aspect&quot;)
+        geometry = row[&quot;geometry&quot;]
+        states.append({
+            &quot;state_id&quot;: row[&quot;state_id&quot;],
+            &quot;relationship_id&quot;: row[&quot;relationship_id&quot;],
+            &quot;tier_id&quot;: row[&quot;tier_id&quot;],
+            &quot;pair&quot;: row[&quot;pair&quot;],
+            &quot;authority_status&quot;: row[&quot;authority_status&quot;],
+            &quot;phase_name&quot;: geometry.get(&quot;phase_name&quot;),
+            &quot;phase_direction&quot;: geometry.get(&quot;phase_direction&quot;),
+            &quot;phase_contract_available&quot;: geometry.get(&quot;phase_contract_available&quot;),
+            &quot;direct_aspect&quot;: None if not direct else {
+                &quot;aspect_id&quot;: direct[&quot;aspect_id&quot;],
+                &quot;orb_deg&quot;: direct[&quot;orb_deg&quot;],
+                &quot;motion_state&quot;: direct[&quot;motion_state&quot;],
+                &quot;strength&quot;: direct[&quot;strength&quot;],
+            },
+            &quot;seed_family_id&quot;: row.get(&quot;seed_context&quot;, {}).get(&quot;active_seed_family_id&quot;),
+        })
+
+    storyline_braids = []
+    for row in braids.get(&quot;storylines&quot;, []):
+        storyline_braids.append({
+            &quot;storyline_id&quot;: row.get(&quot;storyline_id&quot;) or row.get(&quot;id&quot;),
+            &quot;title&quot;: row.get(&quot;title&quot;),
+            &quot;lifecycle&quot;: row.get(&quot;lifecycle&quot;),
+            &quot;factual_cutoff&quot;: row.get(&quot;factual_frame&quot;, {}).get(&quot;cutoff&quot;),
+            &quot;review&quot;: row.get(&quot;review&quot;),
+            &quot;checkpoint_refs&quot;: row.get(&quot;checkpoint_refs&quot;, []),
+            &quot;strand_count&quot;: len(row.get(&quot;strands&quot;, [])),
+        })
+
+    motion_events = {row[&quot;phase_event_id&quot;]: row for row in moon_motion[&quot;phase_events&quot;]}
+    current_lineage = next(
+        (row for row in moon_motion[&quot;lineages&quot;] if row[&quot;seed_chart_id&quot;] == chapter[&quot;id&quot;]),
+        None,
+    )
+    if not current_lineage:
+        raise ValueError(f&quot;no governed Pessin lineage for current lunar chapter {chapter[&#x27;id&#x27;]}&quot;)
+
+    def expand_lineage(lineage: dict) -&gt; dict:
+        return {
+            &quot;lineage_id&quot;: lineage[&quot;lineage_id&quot;],
+            &quot;seed_chart_id&quot;: lineage[&quot;seed_chart_id&quot;],
+            &quot;degree_band&quot;: lineage[&quot;degree_band&quot;],
+            &quot;interpretation_status&quot;: lineage[&quot;interpretation_status&quot;],
+            &quot;story_verdict&quot;: lineage[&quot;story_verdict&quot;],
+            &quot;members&quot;: [{**member, &quot;phase_event&quot;: motion_events[member[&quot;phase_event_id&quot;]]}
+                        for member in lineage[&quot;members&quot;]],
+        }
+
+    chapter_phase_events = sorted(
+        (
+            row for row in moon_motion[&quot;phase_events&quot;]
+            if chapter_start &lt; instant(row[&quot;exact_utc&quot;]) &lt; chapter_end
+        ),
+        key=lambda row: instant(row[&quot;exact_utc&quot;]),
+    )
+    strike_motion = []
+    for strike in chapter_phase_events:
+        pessin = [expand_lineage(row) for row in moon_motion[&quot;lineages&quot;]
+                  if any(member[&quot;phase_event_id&quot;] == strike[&quot;phase_event_id&quot;] for member in row[&quot;members&quot;])]
+        echoes = [row for row in moon_motion[&quot;echo_candidates&quot;]
+                  if row[&quot;seed_phase_event_id&quot;] == strike[&quot;phase_event_id&quot;]
+                  or row[&quot;return_phase_event_id&quot;] == strike[&quot;phase_event_id&quot;]]
+        strike_motion.append({
+            &quot;phase_event_id&quot;: strike[&quot;phase_event_id&quot;],
+            &quot;chart_id&quot;: strike[&quot;chart_id&quot;],
+            &quot;phase&quot;: strike[&quot;phase&quot;],
+            &quot;exact_utc&quot;: strike[&quot;exact_utc&quot;],
+            &quot;governing_ingress_id&quot;: strike[&quot;governing_ingress_id&quot;],
+            &quot;pessin_lineages&quot;: pessin,
+            &quot;half_year_echo_candidates&quot;: echoes,
+            &quot;relation_count&quot;: len(pessin) + len(echoes),
+            &quot;story_assignment&quot;: None,
+            &quot;continuity_verdict&quot;: None,
+        })
+    current_echoes = [row for row in moon_motion[&quot;echo_candidates&quot;] if row[&quot;seed_chart_id&quot;] == chapter[&quot;id&quot;]]
+
+    payload = {
+        &quot;schema&quot;: &quot;f250.studio-desk.astrology/v1&quot;,
+        &quot;status&quot;: &quot;generated_projection&quot;,
+        &quot;projection_generated_from&quot;: stacks[&quot;generated_at&quot;],
+        &quot;cutoff&quot;: {
+            &quot;as_of_utc&quot;: stacks[&quot;as_of&quot;],
+            &quot;basis&quot;: stacks[&quot;as_of_basis&quot;],
+            &quot;display_timezone&quot;: &quot;America/New_York&quot;,
+            &quot;relationship_checkpoint_utc&quot;: checkpoint[&quot;utc&quot;],
+            &quot;relationship_checkpoint_rule&quot;: &quot;latest registered New Moon chapter at or before Long Clocks as_of; not continuous sky now&quot;,
+        },
+        &quot;governing_ingress&quot;: compact_chart(governing),
+        &quot;lunar_chapter&quot;: {
+            **compact_chart(chapter),
+            &quot;ends_utc&quot;: next_new[&quot;utc&quot;],
+            &quot;ends_local&quot;: next_new[&quot;local&quot;],
+            &quot;ingress_segments&quot;: segments,
+        },
+        &quot;phase_strikes&quot;: phase_strikes,
+        &quot;whole_chart_reading&quot;: {
+            &quot;reading_id&quot;: chapter[&quot;id&quot;],
+            &quot;source&quot;: reading_row[&quot;source&quot;],
+            &quot;live_sha256&quot;: live_hash,
+            &quot;baseline_id&quot;: baseline[&quot;baseline_id&quot;],
+            &quot;baseline_sha256&quot;: component[&quot;sha256&quot;],
+            &quot;drift&quot;: &quot;unchanged&quot; if live_hash == component[&quot;sha256&quot;] else &quot;changed&quot;,
+            &quot;transition_watch_id&quot;: transition_watch[&quot;watch_id&quot;],
+            &quot;authority_question&quot;: transition_watch[&quot;authority_question&quot;],
+            &quot;candidate_transition&quot;: transition_watch[&quot;transition&quot;],
+            &quot;evidence_lanes&quot;: transition_watch[&quot;evidence_test&quot;][&quot;lanes&quot;],
+        },
+        &quot;relationship_field&quot;: {
+            &quot;checkpoint_chart_id&quot;: checkpoint[&quot;chart_id&quot;],
+            &quot;checkpoint_utc&quot;: checkpoint[&quot;utc&quot;],
+            &quot;window_id&quot;: checkpoint[&quot;window_id&quot;],
+            &quot;relationship_count&quot;: len(states),
+            &quot;active_direct_count&quot;: len(checkpoint[&quot;active_direct_relationship_ids&quot;]),
+            &quot;active_direct_relationship_ids&quot;: checkpoint[&quot;active_direct_relationship_ids&quot;],
+            &quot;states&quot;: states,
+        },
+        &quot;lunar_motion&quot;: {
+            &quot;method&quot;: {
+                &quot;pessin_lineage_rule&quot;: moon_motion[&quot;method&quot;][&quot;lineage_rule&quot;],
+                &quot;pessin_target_days&quot;: moon_motion[&quot;method&quot;][&quot;target_days&quot;],
+                &quot;half_year_echo&quot;: moon_motion[&quot;method&quot;][&quot;half_year_echo&quot;],
+                &quot;source_tension&quot;: moon_motion[&quot;method&quot;][&quot;source_tension&quot;],
+            },
+            &quot;current_chapter_lineage&quot;: expand_lineage(current_lineage),
+            &quot;current_chapter_half_year_echo_candidates&quot;: current_echoes,
+            &quot;current_chapter_half_year_result&quot;: &quot;candidate_geometry_present&quot; if current_echoes else &quot;no_candidate_under_current_rule&quot;,
+            &quot;phase_strike_relations&quot;: strike_motion,
+            &quot;multiplicity_rule&quot;: &quot;One phase event may carry a chapter role, its own Pessin-lineage role, an approximate half-year candidate, a governing ingress, and several authored manifestation candidates at once. None elects the one real story.&quot;,
+            &quot;boundaries&quot;: moon_motion[&quot;boundaries&quot;],
+            &quot;route&quot;: {&quot;tab&quot;: &quot;obs-mf&quot;, &quot;date&quot;: chapter[&quot;date&quot;]},
+        },
+        &quot;storyline_braids&quot;: storyline_braids,
+        &quot;deferred&quot;: {
+            &quot;storyline_currentness&quot;: &quot;five authored pilots retain their own factual cutoffs and open review states&quot;,
+            &quot;locality_context&quot;: &quot;Wave 2.5 will harden machine-readable Astro Map geometry and sourced place identity; current bridge is route-only&quot;,
+        },
+        &quot;routes&quot;: {
+            &quot;reading&quot;: {&quot;tab&quot;: &quot;obs-cr&quot;, &quot;chart_id&quot;: chapter[&quot;id&quot;]},
+            &quot;long_clocks&quot;: {&quot;tab&quot;: &quot;obs-dc&quot;, &quot;chart_id&quot;: chapter[&quot;id&quot;]},
+            &quot;sky_watchlist&quot;: {&quot;tab&quot;: &quot;obs-as&quot;},
+            &quot;moon_families&quot;: {&quot;tab&quot;: &quot;obs-mf&quot;, &quot;date&quot;: chapter[&quot;date&quot;]},
+            &quot;astro_map&quot;: {&quot;tab&quot;: &quot;obs-am&quot;, &quot;type&quot;: &quot;astromap&quot;, &quot;status&quot;: &quot;route_only_until_wave_2_5&quot;},
+        },
+        &quot;source_receipts&quot;: {
+            str(path.relative_to(VAULT)): sha256(path)
+            for path in (MUNDANE, STACKS, RELATIONSHIPS, READINGS, WATCHES, BRAIDS, ASTRO_MAP_BUILDER, MOON_MOTION)
+        },
+        &quot;authority_notice&quot;: &quot;Geometry, chronology, and geographic proximity do not own stories. Astrology and locality add no factual evidence, ranking credit, causal claim, location prediction, or automatic review.&quot;,
+    }
+    forbidden = {&quot;evidence_score&quot;, &quot;confidence_score&quot;, &quot;causation&quot;, &quot;story_rank&quot;}
+    found = set()
+
+    def walk(value):
+        if isinstance(value, dict):
+            found.update(forbidden.intersection(value))
+            for child in value.values():
+                walk(child)
+        elif isinstance(value, list):
+            for child in value:
+                walk(child)
+
+    walk(payload)
+    if found:
+        raise ValueError(f&quot;forbidden Studio astrology fields: {sorted(found)}&quot;)
+    return payload
+
+
+def render(payload: dict) -&gt; str:
+    return json.dumps(payload, indent=2, ensure_ascii=False, sort_keys=True) + &quot;\n&quot;
+
+
+def main(argv=None) -&gt; int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--check&quot;, action=&quot;store_true&quot;)
+    parser.add_argument(&quot;--output&quot;, type=Path, default=OUTPUT)
+    args = parser.parse_args(argv)
+    content = render(build_payload())
+    if args.check:
+        if not args.output.exists() or args.output.read_text(encoding=&quot;utf-8&quot;) != content:
+            print(&quot;STUDIO ASTROLOGY CHECK: STALE&quot;)
+            return 1
+        print(&quot;STUDIO ASTROLOGY CHECK: CLEAN&quot;)
+        return 0
+    atomic_write_text(args.output, content)
+    print(f&quot;STUDIO ASTROLOGY BUILT: {args.output.name}&quot;)
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

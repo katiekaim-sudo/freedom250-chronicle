@@ -1,0 +1,137 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/timeline-machine-astro-77f02605fd68.html">
+<title>timeline_machine_astro</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>timeline_machine_astro</h1><p class="mut">Portable source: 99 - Templates/timeline_machine_astro.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Shared chart-casting owner for Timeline Machine seed -&gt; astro stages.&quot;&quot;&quot;
+import json
+from datetime import datetime
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import minor_points as mp
+import swisseph as swe
+import wheel_lib as wl
+from atomic_io import atomic_write_text
+from chart_conventions import DC, DC_TZ
+
+SIGNS = [&quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;, &quot;Libra&quot;, &quot;Scorpio&quot;,
+         &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;]
+UTC = ZoneInfo(&quot;UTC&quot;)
+
+
+def sgn(longitude):
+    return SIGNS[int(longitude // 30) % 12]
+
+
+def dms(longitude):
+    degree = int(longitude % 30)
+    minute = int(round((longitude % 30 - degree) * 60))
+    if minute == 60:
+        degree += 1
+        minute = 0
+    return f&quot;{degree}°{minute:02d}&#x27;&quot;
+
+
+def status_key(status):
+    for prefix, key in ((&quot;Occurred&quot;, &quot;occurred&quot;), (&quot;Public&quot;, &quot;position&quot;),
+                        (&quot;Proposed&quot;, &quot;proposed&quot;), (&quot;Research&quot;, &quot;research&quot;),
+                        (&quot;Scheduled&quot;, &quot;scheduled&quot;)):
+        if status.startswith(prefix):
+            return key
+    return &quot;occurred&quot;
+
+
+def jd_for(date_iso, midnight, swe_module=swe, timezone=DC_TZ):
+    parts = [int(part) for part in date_iso.split(&quot;-&quot;)]
+    if len(parts) &lt; 3:
+        return None
+    year, month, day = parts
+    local = datetime(year, month, day, 0 if midnight else 12, 0, tzinfo=timezone)
+    utc = local.astimezone(UTC)
+    return swe_module.julday(utc.year, utc.month, utc.day, utc.hour + utc.minute / 60.0)
+
+
+def cast(jd, key, america_pre_grid=None, swe_module=swe, wheel_module=wl,
+         minor_points_module=mp, dc=DC):
+    planets = ((&quot;Sun&quot;, swe_module.SUN), (&quot;Moon&quot;, swe_module.MOON),
+               (&quot;Mercury&quot;, swe_module.MERCURY), (&quot;Venus&quot;, swe_module.VENUS),
+               (&quot;Mars&quot;, swe_module.MARS), (&quot;Jupiter&quot;, swe_module.JUPITER),
+               (&quot;Saturn&quot;, swe_module.SATURN), (&quot;Uranus&quot;, swe_module.URANUS),
+               (&quot;Neptune&quot;, swe_module.NEPTUNE), (&quot;Pluto&quot;, swe_module.PLUTO))
+    flags = swe_module.FLG_MOSEPH | swe_module.FLG_SPEED
+    longitudes, positions = {}, []
+    for name, code in planets:
+        result = swe_module.calc_ut(jd, code, flags)[0]
+        longitude = result[0] % 360
+        longitudes[name] = longitude
+        positions.append([name, sgn(longitude), dms(longitude),
+                          1 if result[3] &lt; 0 else 0, round(longitude, 2)])
+
+    node = swe_module.calc_ut(jd, swe_module.TRUE_NODE, flags)[0][0] % 360
+    positions.append([&quot;Node&quot;, sgn(node), dms(node), 0, round(node, 2)])
+    south_node = (node + 180) % 360
+    positions.append([&quot;SNode&quot;, sgn(south_node), dms(south_node), 0, round(south_node, 2)])
+    chiron = swe_module.calc_ut(jd, swe_module.CHIRON)[0][0] % 360
+    positions.append([&quot;Chiron&quot;, sgn(chiron), dms(chiron), 0, round(chiron, 2)])
+
+    america_pre_grid = america_pre_grid or {}
+    america = None
+    if key in america_pre_grid:
+        america = america_pre_grid[key] % 360
+    else:
+        try:
+            america = minor_points_module.america_lon(jd) % 360
+        except ValueError:
+            pass
+    if america is not None:
+        positions.append([&quot;America&quot;, sgn(america), dms(america), 0, round(america, 2)])
+
+    ascendant = swe_module.houses(jd, *dc, b&quot;W&quot;)[1][0] % 360
+    aspects = wheel_module.aspects_between(longitudes)
+    aspects += wheel_module.point_aspects({&quot;Node&quot;: node}, longitudes)
+    aspects += wheel_module.point_aspects({&quot;Chiron&quot;: chiron}, longitudes)
+    if america is not None:
+        aspects += wheel_module.point_aspects({&quot;America&quot;: america}, longitudes)
+    aspects.sort(key=lambda aspect: aspect[&quot;o&quot;])
+    return positions, round(ascendant, 2), aspects, america
+
+
+def build_payload(items, comment, generated, america_pre_grid=None, swe_module=swe,
+                  wheel_module=wl, minor_points_module=mp, dc=DC, timezone=DC_TZ):
+    charts, without_america = {}, 0
+    for item in items:
+        midnight = status_key(item[&quot;status&quot;]) == &quot;scheduled&quot;
+        key = item[&quot;date&quot;] + &quot;|&quot; + item[&quot;title&quot;]
+        jd = jd_for(item[&quot;date&quot;], midnight, swe_module, timezone)
+        if jd is None:
+            continue
+        positions, ascendant, aspects, america = cast(
+            jd, key, america_pre_grid, swe_module, wheel_module, minor_points_module, dc)
+        if america is None:
+            without_america += 1
+        charts[key] = {
+            &quot;pos&quot;: positions,
+            &quot;asc&quot;: ascendant,
+            &quot;asp&quot;: aspects,
+            &quot;convention&quot;: &quot;midnight D.C. (day of)&quot; if midnight else &quot;noon D.C.&quot;,
+            &quot;moonSign&quot;: next(position[1] for position in positions if position[0] == &quot;Moon&quot;),
+        }
+    return {&quot;_comment&quot;: comment, &quot;generated&quot;: generated, &quot;charts&quot;: charts}, without_america
+
+
+def build_file(seed_path, output_path, comment, generated, america_pre_grid=None):
+    with Path(seed_path).open(encoding=&quot;utf-8&quot;) as handle:
+        items = json.load(handle)[&quot;items&quot;]
+    payload, without_america = build_payload(items, comment, generated, america_pre_grid)
+    atomic_write_text(
+        Path(output_path), json.dumps(payload, ensure_ascii=False, indent=None)
+    )
+    return len(payload[&quot;charts&quot;]), without_america
+</pre></main></body></html>

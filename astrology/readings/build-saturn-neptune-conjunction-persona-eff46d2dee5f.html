@@ -1,0 +1,1569 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-saturn-neptune-conjunction-persona-eff46d2dee5f.html">
+<title>build_saturn_neptune_conjunction_persona</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · archive</div><h1>build_saturn_neptune_conjunction_persona</h1><p class="mut">Portable source: 03 - Astrology/Astrology Files/Persona &amp; Relationship Work/Persona Pilots/Deep Current Persona Charts Saturn-Neptune 2026-08-22/build_saturn_neptune_conjunction_persona.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the research-only Saturn-Neptune 2026 conjunction persona package.
+
+The governed seed is the single exact 2026 Saturn-Neptune conjunction in the
+Freedom 250 seed-family registry.  Its exact shared longitude becomes one
+fused persona target.  The first later solar conjunction to that fixed degree
+produces one shared derived chart, with Saturn and Neptune retained as two
+focal lenses inside it.
+
+This builder writes only to its own workbench package.  It does not amend the
+live Chronicle vault or adopt the persona technique into Katie&#x27;s method.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+import html
+import importlib.util
+import json
+import math
+import subprocess
+import sys
+import tempfile
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+CHARTS = HERE / &quot;charts&quot;
+DATA_PATH = HERE / &quot;SATURN_NEPTUNE_2026_CONJUNCTION_PERSONA.json&quot;
+MANIFEST_PATH = CHARTS / &quot;conjunction_persona_manifest.json&quot;
+GALLERY_PATH = CHARTS / &quot;Saturn–Neptune 2026 — Conjunction Persona Gallery.html&quot;
+
+VAULT = Path(&quot;Chronicle/&quot;)
+SEED_REGISTRY = VAULT / &quot;99 - Templates&quot; / &quot;synodic_seed_families.json&quot;
+SYNODIC_ENGINE = VAULT / &quot;99 - Templates&quot; / &quot;synodic_cycles.py&quot;
+WHEEL_LIB_PATH = VAULT / &quot;99 - Templates&quot; / &quot;wheel_lib.py&quot;
+AMERICA_PATH = VAULT / &quot;99 - Templates&quot; / &quot;america.py&quot;
+CHART_CONVENTIONS_PATH = VAULT / &quot;99 - Templates&quot; / &quot;chart_conventions.py&quot;
+SENTIENT_SUN = Path(&quot;[local-path-removed] Sun&quot;)
+TRADITIONAL_TABLES_PATH = SENTIENT_SUN / &quot;canonical_traditional_tables.py&quot;
+PERSONA_METHOD = Path(
+    &quot;[local-path-removed] General/outputs/&quot;
+    &quot;persona_charts_research_2026-07-22/&quot;
+    &quot;PERSONA_CHARTS_CLEAN_METHOD_REFERENCE.md&quot;
+)
+MUNDANE_REFERENCE = (
+    VAULT / &quot;00 - Index&quot; / &quot;Mundane Astrology — Master Reference.md&quot;
+)
+
+sys.path.insert(0, str(SENTIENT_SUN))
+sys.path.insert(0, str(VAULT / &quot;99 - Templates&quot;))
+import america  # noqa: E402
+import chart_calculator as calculator  # noqa: E402
+import reading_engine as structure  # noqa: E402
+
+AMERICA_CACHE = Path(america.CACHE)
+
+
+def _load_module(path: Path, name: str) -&gt; Any:
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f&quot;Could not load {path}&quot;)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+WHEEL = _load_module(WHEEL_LIB_PATH, &quot;f250_persona_wheel&quot;)
+CONVENTIONS = _load_module(CHART_CONVENTIONS_PATH, &quot;f250_persona_conventions&quot;)
+SYNODIC = _load_module(SYNODIC_ENGINE, &quot;f250_persona_synodic&quot;)
+TABLES = _load_module(TRADITIONAL_TABLES_PATH, &quot;f250_persona_traditional_tables&quot;)
+calculator.dignity_label = TABLES.dignity_classification
+calculator.dignity_labels = TABLES.dignity_labels
+
+LATITUDE = float(CONVENTIONS.DC_LAT)
+LONGITUDE = float(CONVENTIONS.DC_LON)
+PLACE = str(CONVENTIONS.DC_LABEL)
+ZONE_NAME = str(CONVENTIONS.DC_TZ_NAME)
+ZONE = CONVENTIONS.DC_TZ
+FLAGS = swe.FLG_MOSEPH | swe.FLG_SPEED
+SIGNS = tuple(calculator.SIGNS)
+BODY_ORDER = (
+    &quot;Sun&quot;,
+    &quot;Moon&quot;,
+    &quot;Mercury&quot;,
+    &quot;Venus&quot;,
+    &quot;Mars&quot;,
+    &quot;Jupiter&quot;,
+    &quot;Saturn&quot;,
+    &quot;Uranus&quot;,
+    &quot;Neptune&quot;,
+    &quot;Pluto&quot;,
+    &quot;Chiron&quot;,
+    &quot;Node&quot;,
+    &quot;SNode&quot;,
+    &quot;America&quot;,
+)
+TRADITIONAL_BODIES = (
+    &quot;Sun&quot;,
+    &quot;Moon&quot;,
+    &quot;Mercury&quot;,
+    &quot;Venus&quot;,
+    &quot;Mars&quot;,
+    &quot;Jupiter&quot;,
+    &quot;Saturn&quot;,
+)
+ASPECT_ANGLES = (
+    (&quot;conjunction&quot;, 0.0),
+    (&quot;sextile&quot;, 60.0),
+    (&quot;square&quot;, 90.0),
+    (&quot;trine&quot;, 120.0),
+    (&quot;opposition&quot;, 180.0),
+)
+MUNDANE_MAJOR_ASPECTS = (
+    (&quot;conjunction&quot;, 0.0, 8.0),
+    (&quot;sextile&quot;, 60.0, 5.0),
+    (&quot;square&quot;, 90.0, 7.0),
+    (&quot;trine&quot;, 120.0, 7.0),
+    (&quot;opposition&quot;, 180.0, 8.0),
+)
+PLANET_CODES = {
+    &quot;Sun&quot;: swe.SUN,
+    &quot;Moon&quot;: swe.MOON,
+    &quot;Mercury&quot;: swe.MERCURY,
+    &quot;Venus&quot;: swe.VENUS,
+    &quot;Mars&quot;: swe.MARS,
+    &quot;Jupiter&quot;: swe.JUPITER,
+    &quot;Saturn&quot;: swe.SATURN,
+    &quot;Uranus&quot;: swe.URANUS,
+    &quot;Neptune&quot;: swe.NEPTUNE,
+    &quot;Pluto&quot;: swe.PLUTO,
+}
+MUNDANE_ASPECT_POINT_ORDER = tuple(PLANET_CODES)
+MINOR_POINT_HARD_ASPECTS = (
+    (&quot;conjunction&quot;, 0.0, 2.0),
+    (&quot;square&quot;, 90.0, 2.0),
+    (&quot;opposition&quot;, 180.0, 2.0),
+)
+SLOW_CHANGE_BODIES = (&quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;)
+OUTER_PLANETS = (&quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;)
+STATION_CONTEXT_BODIES = (&quot;Mercury&quot;,) + SLOW_CHANGE_BODIES
+
+
+def jd_of(moment: datetime) -&gt; float:
+    utc = moment.astimezone(timezone.utc)
+    hour = (
+        utc.hour
+        + utc.minute / 60.0
+        + utc.second / 3600.0
+        + utc.microsecond / 3_600_000_000.0
+    )
+    return swe.julday(utc.year, utc.month, utc.day, hour)
+
+
+def jd_to_utc(jd_ut: float) -&gt; datetime:
+    return datetime(2000, 1, 1, 12, tzinfo=timezone.utc) + timedelta(
+        days=jd_ut - 2451545.0
+    )
+
+
+def signed_delta(a: float, b: float) -&gt; float:
+    return ((a - b + 540.0) % 360.0) - 180.0
+
+
+def angular_distance(a: float, b: float) -&gt; float:
+    return abs(signed_delta(a, b))
+
+
+def body_state(jd_ut: float, body_code: int, flags: int = FLAGS) -&gt; tuple[float, float]:
+    result = swe.calc_ut(jd_ut, body_code, flags)[0]
+    return result[0] % 360.0, result[3]
+
+
+def bisection(function, lo: float, hi: float, iterations: int = 100) -&gt; float:
+    flo = function(lo)
+    fhi = function(hi)
+    if flo == 0:
+        return lo
+    if fhi == 0:
+        return hi
+    if flo * fhi &gt; 0:
+        raise RuntimeError(f&quot;Root not bracketed: {flo=} {fhi=}&quot;)
+    for _ in range(iterations):
+        mid = (lo + hi) / 2.0
+        fm = function(mid)
+        if flo * fm &lt;= 0:
+            hi = mid
+            fhi = fm
+        else:
+            lo = mid
+            flo = fm
+    return (lo + hi) / 2.0
+
+
+def station_events_between(
+    start_jd: float,
+    end_jd: float,
+    bodies: tuple[str, ...] = STATION_CONTEXT_BODIES,
+) -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Find geocentric longitude-speed reversals between two chart moments.&quot;&quot;&quot;
+    rows: list[dict[str, Any]] = []
+    step_days = 0.125
+    for body in bodies:
+        code = PLANET_CODES[body]
+        previous_jd = start_jd
+        previous_speed = body_state(previous_jd, code)[1]
+        last_root: float | None = None
+        while previous_jd &lt; end_jd:
+            current_jd = min(previous_jd + step_days, end_jd)
+            current_speed = body_state(current_jd, code)[1]
+            if previous_speed == 0.0 or previous_speed * current_speed &lt; 0.0:
+                root_jd = bisection(
+                    lambda value: body_state(value, code)[1],
+                    previous_jd,
+                    current_jd,
+                )
+                if last_root is None or abs(root_jd - last_root) &gt; 1e-5:
+                    before_speed = body_state(root_jd - 1.0 / 1440.0, code)[1]
+                    after_speed = body_state(root_jd + 1.0 / 1440.0, code)[1]
+                    longitude = body_state(root_jd, code)[0]
+                    moment_utc = jd_to_utc(root_jd)
+                    rows.append(
+                        {
+                            &quot;body&quot;: body,
+                            &quot;utc&quot;: moment_utc.isoformat(timespec=&quot;microseconds&quot;),
+                            &quot;local&quot;: moment_utc.astimezone(ZONE).isoformat(
+                                timespec=&quot;microseconds&quot;
+                            ),
+                            &quot;longitude&quot;: round(longitude, 9),
+                            &quot;sign&quot;: SIGNS[int(longitude // 30) % 12],
+                            &quot;direction_before&quot;: (
+                                &quot;direct&quot; if before_speed &gt; 0 else &quot;retrograde&quot;
+                            ),
+                            &quot;direction_after&quot;: (
+                                &quot;direct&quot; if after_speed &gt; 0 else &quot;retrograde&quot;
+                            ),
+                            &quot;hours_before_persona&quot;: round(
+                                (end_jd - root_jd) * 24.0, 6
+                            ),
+                            &quot;solver&quot;: &quot;three-hour scan plus Moshier speed-root bisection&quot;,
+                        }
+                    )
+                    last_root = root_jd
+            previous_jd = current_jd
+            previous_speed = current_speed
+    return sorted(rows, key=lambda row: row[&quot;utc&quot;])
+
+
+def load_governed_seed() -&gt; dict[str, Any]:
+    registry = SYNODIC.load_seed_registry(SEED_REGISTRY)
+    if registry.get(&quot;schema&quot;) != &quot;freedom250.long-clocks.seed-families/v1&quot;:
+        raise RuntimeError(&quot;Unsupported Long Clocks seed registry schema&quot;)
+    if registry.get(&quot;status&quot;) != &quot;active&quot;:
+        raise RuntimeError(&quot;Long Clocks seed registry is not active&quot;)
+    validation = SYNODIC.validate_seed_registry(registry)
+    if not validation[&quot;ok&quot;]:
+        raise RuntimeError(
+            &quot;Long Clocks seed registry failed validation: &quot;
+            + json.dumps(validation[&quot;errors&quot;], ensure_ascii=False)
+        )
+    cycle = next(
+        item for item in registry[&quot;cycles&quot;] if item[&quot;cycle_id&quot;] == &quot;saturn-neptune&quot;
+    )
+    if cycle[&quot;pair&quot;] != [&quot;Saturn&quot;, &quot;Neptune&quot;]:
+        raise RuntimeError(&quot;Saturn-Neptune governed pair identity mismatch&quot;)
+    if cycle[&quot;seed_family_id&quot;] != &quot;saturn-neptune-2026&quot;:
+        raise RuntimeError(&quot;Saturn-Neptune governed seed-family identity mismatch&quot;)
+    if cycle[&quot;display_anchor_pass_id&quot;] != &quot;saturn-neptune-20260220-p1&quot;:
+        raise RuntimeError(&quot;Saturn-Neptune governed display-anchor identity mismatch&quot;)
+    if len(cycle[&quot;passes&quot;]) != 1:
+        raise RuntimeError(&quot;Saturn-Neptune 2026 pilot requires one governed pass&quot;)
+    anchor = next(
+        item
+        for item in cycle[&quot;passes&quot;]
+        if item[&quot;pass_id&quot;] == cycle[&quot;display_anchor_pass_id&quot;]
+    )
+    if anchor[&quot;pass_id&quot;] != &quot;saturn-neptune-20260220-p1&quot;:
+        raise RuntimeError(&quot;Saturn-Neptune governed pass identity mismatch&quot;)
+    moment = datetime.fromisoformat(anchor[&quot;utc&quot;]).astimezone(timezone.utc)
+    registry_jd = jd_of(moment)
+
+    def conjunction_delta(jd_ut: float) -&gt; float:
+        saturn, _ = body_state(jd_ut, swe.SATURN)
+        neptune, _ = body_state(jd_ut, swe.NEPTUNE)
+        return signed_delta(saturn, neptune)
+
+    independent_jd = bisection(
+        conjunction_delta, registry_jd - 1.0, registry_jd + 1.0
+    )
+    independent_utc = jd_to_utc(independent_jd)
+    saturn, saturn_speed = body_state(registry_jd, swe.SATURN)
+    neptune, neptune_speed = body_state(registry_jd, swe.NEPTUNE)
+    canonical_seed_chart = SYNODIC.seed_chart(
+        cycle[&quot;cycle_id&quot;],
+        anchor[&quot;pass_id&quot;],
+        vault_root=VAULT,
+        seed_registry_path=SEED_REGISTRY,
+    )
+    return {
+        &quot;cycle&quot;: cycle,
+        &quot;anchor&quot;: anchor,
+        &quot;utc&quot;: moment,
+        &quot;jd_ut&quot;: registry_jd,
+        &quot;target_longitude&quot;: float(anchor[&quot;longitude_deg&quot;]),
+        &quot;registry_validation&quot;: {
+            &quot;ok&quot;: validation[&quot;ok&quot;],
+            &quot;cycle_count&quot;: validation[&quot;cycle_count&quot;],
+            &quot;pass_count&quot;: validation[&quot;pass_count&quot;],
+            &quot;error_count&quot;: len(validation[&quot;errors&quot;]),
+            &quot;unresolved_external_verification_count&quot;: len(
+                validation[&quot;unresolved_verification&quot;]
+            ),
+        },
+        &quot;canonical_seed_chart&quot;: canonical_seed_chart,
+        &quot;verification&quot;: {
+            &quot;registry_vs_independent_root_seconds&quot;: round(
+                abs(independent_jd - registry_jd) * 86400.0, 6
+            ),
+            &quot;independent_root_utc&quot;: independent_utc.isoformat(timespec=&quot;microseconds&quot;),
+            &quot;saturn_neptune_residual_arcseconds&quot;: round(
+                angular_distance(saturn, neptune) * 3600.0, 9
+            ),
+            &quot;registry_target_minus_saturn_arcseconds&quot;: round(
+                signed_delta(float(anchor[&quot;longitude_deg&quot;]), saturn) * 3600.0,
+                9,
+            ),
+            &quot;registry_target_minus_neptune_arcseconds&quot;: round(
+                signed_delta(float(anchor[&quot;longitude_deg&quot;]), neptune) * 3600.0,
+                9,
+            ),
+            &quot;saturn_speed_deg_day&quot;: round(saturn_speed, 9),
+            &quot;neptune_speed_deg_day&quot;: round(neptune_speed, 9),
+        },
+    }
+
+
+def sun_longitude(jd_ut: float, flags: int) -&gt; float:
+    return swe.calc_ut(jd_ut, swe.SUN, flags | swe.FLG_SPEED)[0][0] % 360.0
+
+
+def find_persona_event(seed_jd: float, target: float) -&gt; dict[str, Any]:
+    primary_jd = float(
+        swe.solcross_ut(target, seed_jd + 1e-7, swe.FLG_SWIEPH)
+    )
+    step = 0.25
+    previous_jd = seed_jd + 1e-7
+    previous_delta = signed_delta(
+        sun_longitude(previous_jd, swe.FLG_MOSEPH), target
+    )
+    bracket: tuple[float, float] | None = None
+    while previous_jd &lt; seed_jd + 370.0:
+        current_jd = previous_jd + step
+        current_delta = signed_delta(
+            sun_longitude(current_jd, swe.FLG_MOSEPH), target
+        )
+        if previous_delta &lt;= 0 &lt;= current_delta:
+            bracket = (previous_jd, current_jd)
+            break
+        previous_jd = current_jd
+        previous_delta = current_delta
+    if bracket is None:
+        raise RuntimeError(&quot;Could not bracket first later solar contact&quot;)
+    independent_jd = bisection(
+        lambda value: signed_delta(
+            sun_longitude(value, swe.FLG_MOSEPH), target
+        ),
+        *bracket,
+    )
+    event_utc = jd_to_utc(primary_jd)
+    return {
+        &quot;jd_ut&quot;: primary_jd,
+        &quot;utc&quot;: event_utc,
+        &quot;local&quot;: event_utc.astimezone(ZONE),
+        &quot;verification&quot;: {
+            &quot;swiss_solcross_vs_moshier_bisection_seconds&quot;: round(
+                abs(primary_jd - independent_jd) * 86400.0, 6
+            ),
+            &quot;independent_bisection_utc&quot;: jd_to_utc(independent_jd).isoformat(
+                timespec=&quot;microseconds&quot;
+            ),
+            &quot;sun_minus_target_arcseconds&quot;: round(
+                signed_delta(
+                    sun_longitude(primary_jd, swe.FLG_SWIEPH), target
+                )
+                * 3600.0,
+                9,
+            ),
+        },
+    }
+
+
+def route_for(positions: dict[str, dict[str, Any]], body: str) -&gt; dict[str, Any]:
+    chain, terminal, kind = structure.dispositor_chain(positions, body)
+    return {&quot;chain&quot;: chain, &quot;terminal&quot;: terminal, &quot;kind&quot;: kind}
+
+
+def sign_house(asc: float, longitude: float) -&gt; int:
+    return ((int(longitude // 30) - int(asc // 30)) % 12) + 1
+
+
+def compact_position(position: dict[str, Any]) -&gt; dict[str, Any]:
+    speed = position.get(&quot;speed&quot;)
+    declination = position.get(&quot;decl&quot;)
+    return {
+        &quot;longitude&quot;: round(position[&quot;lon&quot;], 9),
+        &quot;sign&quot;: position[&quot;sign&quot;],
+        &quot;degree_in_sign&quot;: round(position[&quot;lon&quot;] % 30.0, 9),
+        &quot;whole_sign_house&quot;: int(position[&quot;house&quot;]),
+        &quot;retrograde&quot;: bool(position[&quot;retro&quot;]),
+        &quot;speed_deg_day&quot;: None if speed is None else round(float(speed), 8),
+        &quot;declination&quot;: None
+        if declination is None
+        else round(float(declination), 6),
+    }
+
+
+def mundane_major_aspects(
+    moment_utc: datetime,
+) -&gt; list[dict[str, Any]]:
+    jd_ut = jd_of(moment_utc)
+    future_jd = jd_ut + 1.0 / 24.0
+    current = {
+        body: body_state(jd_ut, code)[0]
+        for body, code in PLANET_CODES.items()
+    }
+    future = {
+        body: body_state(future_jd, code)[0]
+        for body, code in PLANET_CODES.items()
+    }
+    rows: list[dict[str, Any]] = []
+    for index, body_a in enumerate(MUNDANE_ASPECT_POINT_ORDER):
+        for body_b in MUNDANE_ASPECT_POINT_ORDER[index + 1 :]:
+            separation = angular_distance(current[body_a], current[body_b])
+            aspect, angle, limit = min(
+                MUNDANE_MAJOR_ASPECTS,
+                key=lambda row: abs(separation - row[1]),
+            )
+            orb = abs(separation - angle)
+            if orb &gt; limit:
+                continue
+            future_separation = angular_distance(future[body_a], future[body_b])
+            future_orb = abs(future_separation - angle)
+            rows.append(
+                {
+                    &quot;a&quot;: body_a,
+                    &quot;b&quot;: body_b,
+                    &quot;aspect&quot;: aspect,
+                    &quot;angle_deg&quot;: angle,
+                    &quot;orb_deg&quot;: round(orb, 6),
+                    &quot;orb_limit_deg&quot;: limit,
+                    &quot;applying&quot;: future_orb &lt; orb,
+                    &quot;separating&quot;: future_orb &gt;= orb,
+                    &quot;separation_deg&quot;: round(separation, 6),
+                    &quot;authority&quot;: &quot;Freedom 250 ten-planet mundane major-aspect lane&quot;,
+                }
+            )
+    return sorted(rows, key=lambda row: row[&quot;orb_deg&quot;])
+
+
+def minor_point_aspects(
+    moment_utc: datetime, raw: dict[str, Any]
+) -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Hard aspects from a minor point to an actual planet, never point-to-point.&quot;&quot;&quot;
+    future_utc = moment_utc + timedelta(hours=1)
+    jd_ut = jd_of(moment_utc)
+    future_jd = jd_of(future_utc)
+    current_planets = {
+        body: body_state(jd_ut, code)[0]
+        for body, code in PLANET_CODES.items()
+    }
+    future_planets = {
+        body: body_state(future_jd, code)[0]
+        for body, code in PLANET_CODES.items()
+    }
+    current_points = {
+        &quot;Chiron&quot;: float(raw[&quot;pos&quot;][&quot;Chiron&quot;][&quot;lon&quot;]),
+        &quot;Node&quot;: float(raw[&quot;pos&quot;][&quot;Node&quot;][&quot;lon&quot;]),
+        &quot;America&quot;: america.america_lon(moment_utc),
+    }
+    future_local = future_utc.astimezone(ZONE)
+    future_seconds = future_local.second + future_local.microsecond / 1_000_000.0
+    future_offset = future_local.utcoffset().total_seconds() / 3600.0
+    future_raw = calculator.compute(
+        future_local.year,
+        future_local.month,
+        future_local.day,
+        future_local.hour,
+        future_local.minute,
+        LATITUDE,
+        LONGITUDE,
+        future_offset,
+        seconds=future_seconds,
+    )
+    future_points = {
+        &quot;Chiron&quot;: float(future_raw[&quot;pos&quot;][&quot;Chiron&quot;][&quot;lon&quot;]),
+        &quot;Node&quot;: float(future_raw[&quot;pos&quot;][&quot;Node&quot;][&quot;lon&quot;]),
+        &quot;America&quot;: america.america_lon(future_utc),
+    }
+    if current_points[&quot;America&quot;] is None or future_points[&quot;America&quot;] is None:
+        raise RuntimeError(&quot;916 America cache does not cover minor-point aspect window&quot;)
+
+    rows: list[dict[str, Any]] = []
+    for point, point_lon in current_points.items():
+        for planet, planet_lon in current_planets.items():
+            separation = angular_distance(float(point_lon), planet_lon)
+            aspect, angle, limit = min(
+                MINOR_POINT_HARD_ASPECTS,
+                key=lambda row: abs(separation - row[1]),
+            )
+            orb = abs(separation - angle)
+            if orb &gt; limit:
+                continue
+            future_separation = angular_distance(
+                float(future_points[point]), future_planets[planet]
+            )
+            future_orb = abs(future_separation - angle)
+            rows.append(
+                {
+                    &quot;a&quot;: point,
+                    &quot;b&quot;: planet,
+                    &quot;aspect&quot;: aspect,
+                    &quot;angle_deg&quot;: angle,
+                    &quot;orb_deg&quot;: round(orb, 6),
+                    &quot;orb_limit_deg&quot;: limit,
+                    &quot;applying&quot;: future_orb &lt; orb,
+                    &quot;separating&quot;: future_orb &gt;= orb,
+                    &quot;separation_deg&quot;: round(separation, 6),
+                    &quot;nonacting_point&quot;: point,
+                    &quot;authority&quot;: (
+                        &quot;Freedom 250 minor-point lane: point-to-planet hard &quot;
+                        &quot;aspect at 2 degrees or less; no point-to-point aspects&quot;
+                    ),
+                }
+            )
+    return sorted(rows, key=lambda row: row[&quot;orb_deg&quot;])
+
+
+def angle_aspects(raw: dict[str, Any]) -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Katie angle overlay: the partner planet supplies its Huber allowance.&quot;&quot;&quot;
+    rows: list[dict[str, Any]] = []
+    for point, point_lon in ((&quot;ASC&quot;, raw[&quot;asc&quot;]), (&quot;MC&quot;, raw[&quot;mc&quot;])):
+        for body in (
+            &quot;Sun&quot;,
+            &quot;Moon&quot;,
+            &quot;Mercury&quot;,
+            &quot;Venus&quot;,
+            &quot;Mars&quot;,
+            &quot;Jupiter&quot;,
+            &quot;Saturn&quot;,
+            &quot;Uranus&quot;,
+            &quot;Neptune&quot;,
+            &quot;Pluto&quot;,
+            &quot;Chiron&quot;,
+        ):
+            position = raw[&quot;pos&quot;][body]
+            if position.get(&quot;missing&quot;):
+                continue
+            separation = angular_distance(point_lon, position[&quot;lon&quot;])
+            for aspect, angle in structure.HUBER_ANGLE.items():
+                orb = abs(separation - angle)
+                allowed = structure._huber_allowance(aspect, body)
+                if allowed is not None and orb &lt;= allowed:
+                    rows.append(
+                        {
+                            &quot;point&quot;: point,
+                            &quot;planet&quot;: body,
+                            &quot;aspect&quot;: aspect,
+                            &quot;orb_deg&quot;: round(orb, 6),
+                            &quot;orb_limit_deg&quot;: allowed,
+                            &quot;near_exact&quot;: orb &lt;= 1.0,
+                            &quot;authority&quot;: &quot;Katie angle overlay; partner planet Huber allowance&quot;,
+                        }
+                    )
+                    break
+    return sorted(rows, key=lambda row: row[&quot;orb_deg&quot;])
+
+
+def calculate_chart(moment_utc: datetime) -&gt; tuple[dict[str, Any], dict[str, Any]]:
+    america_ok, america_message = america.available()
+    if not america_ok:
+        raise RuntimeError(f&quot;916 America cache unavailable: {america_message}&quot;)
+    local = moment_utc.astimezone(ZONE)
+    seconds = local.second + local.microsecond / 1_000_000.0
+    offset = local.utcoffset().total_seconds() / 3600.0
+    raw = calculator.compute(
+        local.year,
+        local.month,
+        local.day,
+        local.hour,
+        local.minute,
+        LATITUDE,
+        LONGITUDE,
+        offset,
+        seconds=seconds,
+    )
+    positions = raw[&quot;pos&quot;]
+    aspects = structure.huber_aspects(positions)
+    configurations = structure.configurations(positions, aspects)
+    asc_index = int(raw[&quot;asc&quot;] // 30)
+    chart_ruler = structure.RULER[raw[&quot;asc_sign&quot;]]
+    mc_house = sign_house(raw[&quot;asc&quot;], raw[&quot;mc&quot;])
+    whole_sign_tenth_sign = SIGNS[(asc_index + 9) % 12]
+    whole_sign_tenth_ruler = structure.RULER[whole_sign_tenth_sign]
+    actual_mc_ruler = structure.RULER[raw[&quot;mc_sign&quot;]]
+    houses_ruled: dict[str, list[int]] = {body: [] for body in TRADITIONAL_BODIES}
+    for house in range(1, 13):
+        sign = SIGNS[(asc_index + house - 1) % 12]
+        houses_ruled[structure.RULER[sign]].append(house)
+
+    america_lon = america.america_lon(moment_utc)
+    america_speed = america.america_speed(moment_utc)
+    if america_lon is None or america_speed is None:
+        raise RuntimeError(&quot;916 America cache does not cover chart moment&quot;)
+    america_position = {
+        &quot;longitude&quot;: round(america_lon, 9),
+        &quot;sign&quot;: SIGNS[int(america_lon // 30) % 12],
+        &quot;degree_in_sign&quot;: round(america_lon % 30.0, 9),
+        &quot;whole_sign_house&quot;: sign_house(raw[&quot;asc&quot;], america_lon),
+        &quot;retrograde&quot;: america_speed &lt; 0,
+        &quot;speed_deg_day&quot;: round(america_speed, 9),
+        &quot;source&quot;: &quot;canonical JPL Horizons daily cache with shortest-arc interpolation&quot;,
+        &quot;acting_status&quot;: &quot;nonacting_minor_point&quot;,
+    }
+    traditional_dignities = {
+        body: {
+            &quot;classification&quot;: calculator.dignity_label(
+                body, positions[body][&quot;sign&quot;]
+            ),
+            &quot;labels&quot;: calculator.dignity_labels(
+                body, positions[body][&quot;sign&quot;]
+            ),
+        }
+        for body in TRADITIONAL_BODIES
+    }
+    frame = {
+        &quot;asc&quot;: round(raw[&quot;asc&quot;], 9),
+        &quot;asc_sign&quot;: raw[&quot;asc_sign&quot;],
+        &quot;mc&quot;: round(raw[&quot;mc&quot;], 9),
+        &quot;mc_sign&quot;: raw[&quot;mc_sign&quot;],
+        &quot;mc_whole_sign_house&quot;: mc_house,
+        &quot;chart_ruler&quot;: chart_ruler,
+        &quot;chart_ruler_house&quot;: positions[chart_ruler][&quot;house&quot;],
+        &quot;chart_ruler_route&quot;: route_for(positions, chart_ruler),
+        &quot;whole_sign_tenth_sign&quot;: whole_sign_tenth_sign,
+        &quot;whole_sign_tenth_ruler&quot;: whole_sign_tenth_ruler,
+        &quot;whole_sign_tenth_ruler_house&quot;: positions[whole_sign_tenth_ruler][&quot;house&quot;],
+        &quot;whole_sign_tenth_ruler_route&quot;: route_for(
+            positions, whole_sign_tenth_ruler
+        ),
+        &quot;actual_mc_ruler&quot;: actual_mc_ruler,
+        &quot;actual_mc_ruler_house&quot;: positions[actual_mc_ruler][&quot;house&quot;],
+        &quot;actual_mc_ruler_route&quot;: route_for(positions, actual_mc_ruler),
+        &quot;houses_ruled_by&quot;: houses_ruled,
+    }
+    record = {
+        &quot;event&quot;: {
+            &quot;utc&quot;: moment_utc.isoformat(timespec=&quot;microseconds&quot;),
+            &quot;local&quot;: local.isoformat(timespec=&quot;microseconds&quot;),
+            &quot;zone_abbreviation&quot;: local.tzname(),
+            &quot;place&quot;: PLACE,
+            &quot;latitude&quot;: LATITUDE,
+            &quot;longitude&quot;: LONGITUDE,
+        },
+        &quot;frame&quot;: frame,
+        &quot;positions&quot;: {
+            body: compact_position(position)
+            for body, position in positions.items()
+        },
+        &quot;traditional_dignities&quot;: traditional_dignities,
+        &quot;condition_scope&quot;: (
+            &quot;base traditional dignity classification only; not the complete &quot;
+            &quot;phase-aware Condition owner; classification describes tools, &quot;
+            &quot;never role size or weakness&quot;
+        ),
+        &quot;soli_lunar_phase&quot;: raw[&quot;soli_lunar_phase&quot;],
+        &quot;governance_routes&quot;: {
+            body: route_for(positions, body)
+            for body in (&quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Neptune&quot;)
+        },
+        &quot;huber_aspects&quot;: aspects,
+        &quot;mundane_major_aspects&quot;: mundane_major_aspects(moment_utc),
+        &quot;minor_point_aspects&quot;: minor_point_aspects(moment_utc, raw),
+        &quot;angle_aspects&quot;: angle_aspects(raw),
+        &quot;configurations&quot;: configurations,
+        &quot;huber_whole_pattern&quot;: structure.huber_whole_pattern(
+            positions, aspects, configurations
+        ),
+        &quot;minor_points&quot;: {
+            &quot;america_916&quot;: america_position,
+        },
+        &quot;minor_point_policy&quot;: {
+            &quot;rule&quot;: &quot;point-to-planet hard aspects only at 2 degrees or less&quot;,
+            &quot;points&quot;: [&quot;Chiron&quot;, &quot;Node&quot;, &quot;America&quot;],
+            &quot;planets&quot;: list(PLANET_CODES),
+            &quot;aspects&quot;: [&quot;conjunction&quot;, &quot;square&quot;, &quot;opposition&quot;],
+            &quot;point_to_point&quot;: False,
+            &quot;america_cache_receipt&quot;: america_message,
+        },
+    }
+    return record, raw
+
+
+def contacts_for(body: str, aspects: list[dict[str, Any]]) -&gt; list[dict[str, Any]]:
+    return [
+        aspect
+        for aspect in aspects
+        if aspect[&quot;a&quot;] == body or aspect[&quot;b&quot;] == body
+    ]
+
+
+def find_aspect(
+    aspects: list[dict[str, Any]],
+    body_a: str,
+    body_b: str,
+    aspect: str,
+) -&gt; dict[str, Any]:
+    for row in aspects:
+        pair = {row[&quot;a&quot;], row[&quot;b&quot;]}
+        operator = row.get(&quot;aspect&quot;, row.get(&quot;type&quot;))
+        if pair == {body_a, body_b} and operator == aspect:
+            return row
+    raise RuntimeError(f&quot;Required aspect missing: {body_a} {aspect} {body_b}&quot;)
+
+
+def relationship_delta_rows(
+    seed_aspects: list[dict[str, Any]],
+    persona_aspects: list[dict[str, Any]],
+    lane: str,
+) -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Complete endpoint ledger for every relationship admitted in either chart.&quot;&quot;&quot;
+
+    def endpoint(row: dict[str, Any]) -&gt; dict[str, Any]:
+        result = {
+            &quot;aspect&quot;: row.get(&quot;aspect&quot;, row.get(&quot;type&quot;)),
+            &quot;orb_deg&quot;: row.get(&quot;orb_deg&quot;, row.get(&quot;orb&quot;)),
+        }
+        for key in (
+            &quot;applying&quot;,
+            &quot;separating&quot;,
+            &quot;source_status&quot;,
+            &quot;mutual&quot;,
+            &quot;oneway&quot;,
+        ):
+            if key in row:
+                result[key] = row[key]
+        return result
+
+    def index(rows: list[dict[str, Any]]) -&gt; dict[tuple[str, str], dict[str, Any]]:
+        return {
+            tuple(sorted((row[&quot;a&quot;], row[&quot;b&quot;]))): endpoint(row)
+            for row in rows
+        }
+
+    seed = index(seed_aspects)
+    persona = index(persona_aspects)
+    output: list[dict[str, Any]] = []
+    for pair in sorted(set(seed) | set(persona)):
+        seed_row = seed.get(pair)
+        persona_row = persona.get(pair)
+        if seed_row is None:
+            change = &quot;gained&quot;
+        elif persona_row is None:
+            change = &quot;lost&quot;
+        elif seed_row[&quot;aspect&quot;] != persona_row[&quot;aspect&quot;]:
+            change = &quot;operator_changed&quot;
+        else:
+            change = &quot;persisted_with_condition_change&quot;
+        output.append(
+            {
+                &quot;pair&quot;: list(pair),
+                &quot;change&quot;: change,
+                &quot;seed&quot;: seed_row,
+                &quot;persona&quot;: persona_row,
+                &quot;lane&quot;: lane,
+            }
+        )
+    return output
+
+
+def seed_to_persona_change_gate(
+    governed: dict[str, Any],
+    persona_event: dict[str, Any],
+    radix: dict[str, Any],
+    persona: dict[str, Any],
+) -&gt; dict[str, Any]:
+    stations = station_events_between(
+        governed[&quot;jd_ut&quot;], persona_event[&quot;jd_ut&quot;]
+    )
+    station_bodies = {row[&quot;body&quot;] for row in stations}
+    sign_changes = [
+        {
+            &quot;body&quot;: body,
+            &quot;radix_sign&quot;: radix[&quot;positions&quot;][body][&quot;sign&quot;],
+            &quot;persona_sign&quot;: persona[&quot;positions&quot;][body][&quot;sign&quot;],
+        }
+        for body in SLOW_CHANGE_BODIES
+        if radix[&quot;positions&quot;][body][&quot;sign&quot;]
+        != persona[&quot;positions&quot;][body][&quot;sign&quot;]
+    ]
+    jupiter_station = next(
+        row
+        for row in stations
+        if row[&quot;body&quot;] == &quot;Jupiter&quot; and row[&quot;direction_after&quot;] == &quot;direct&quot;
+    )
+    mercury_direct_station = next(
+        row
+        for row in stations
+        if row[&quot;body&quot;] == &quot;Mercury&quot; and row[&quot;direction_after&quot;] == &quot;direct&quot;
+    )
+    mc_uranus = next(
+        row
+        for row in persona[&quot;angle_aspects&quot;]
+        if row[&quot;point&quot;] == &quot;MC&quot;
+        and row[&quot;planet&quot;] == &quot;Uranus&quot;
+        and row[&quot;aspect&quot;] == &quot;opposition&quot;
+    )
+    seed_saturn_pluto = find_aspect(
+        radix[&quot;mundane_major_aspects&quot;], &quot;Saturn&quot;, &quot;Pluto&quot;, &quot;sextile&quot;
+    )
+    seed_saturn_uranus = find_aspect(
+        radix[&quot;mundane_major_aspects&quot;], &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;sextile&quot;
+    )
+    persona_saturn_uranus_orb = abs(
+        angular_distance(
+            persona[&quot;positions&quot;][&quot;Saturn&quot;][&quot;longitude&quot;],
+            persona[&quot;positions&quot;][&quot;Uranus&quot;][&quot;longitude&quot;],
+        )
+        - 60.0
+    )
+    persona_saturn_pluto = find_aspect(
+        persona[&quot;huber_aspects&quot;], &quot;Saturn&quot;, &quot;Pluto&quot;, &quot;sextile&quot;
+    )
+    mars_jupiter = find_aspect(
+        persona[&quot;mundane_major_aspects&quot;], &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;trine&quot;
+    )
+    seed_venus_jupiter = find_aspect(
+        radix[&quot;mundane_major_aspects&quot;], &quot;Venus&quot;, &quot;Jupiter&quot;, &quot;trine&quot;
+    )
+    persona_venus_jupiter = find_aspect(
+        persona[&quot;mundane_major_aspects&quot;], &quot;Venus&quot;, &quot;Jupiter&quot;, &quot;square&quot;
+    )
+    mercury_node = find_aspect(
+        persona[&quot;minor_point_aspects&quot;], &quot;Mercury&quot;, &quot;Node&quot;, &quot;conjunction&quot;
+    )
+    relationship_deltas = {
+        &quot;scope&quot;: (
+            &quot;complete union of every relationship admitted at either endpoint &quot;
+            &quot;inside each named lane; derived angle relationships remain separate&quot;
+        ),
+        &quot;mundane_major_ten_planet&quot;: relationship_delta_rows(
+            radix[&quot;mundane_major_aspects&quot;],
+            persona[&quot;mundane_major_aspects&quot;],
+            &quot;Freedom 250 ten-planet mundane major-aspect lane&quot;,
+        ),
+        &quot;huber_source_plus_katie_chiron_overlay&quot;: relationship_delta_rows(
+            radix[&quot;huber_aspects&quot;],
+            persona[&quot;huber_aspects&quot;],
+            &quot;source-Huber web plus visibly labeled Katie Chiron overlay&quot;,
+        ),
+        &quot;nonacting_minor_point&quot;: relationship_delta_rows(
+            radix[&quot;minor_point_aspects&quot;],
+            persona[&quot;minor_point_aspects&quot;],
+            &quot;hard point-to-planet minor-point lane at 2 degrees or less&quot;,
+        ),
+        &quot;persona_derived_angle_relationships&quot;: persona[&quot;angle_aspects&quot;],
+    }
+    return {
+        &quot;rule&quot;: (
+            &quot;A slow-body near-return within the short seed-to-persona interval &quot;
+            &quot;is carryover, not a finding. Promote only a station or direction &quot;
+            &quot;change, sign change, or genuinely new aspect/derived-angle relation; &quot;
+            &quot;the novelty belongs to the changed condition or relationship, not &quot;
+            &quot;to the near-return itself.&quot;
+        ),
+        &quot;tracked_slow_bodies&quot;: list(SLOW_CHANGE_BODIES),
+        &quot;outer_planets&quot;: list(OUTER_PLANETS),
+        &quot;station_events_between&quot;: stations,
+        &quot;slow_body_sign_changes&quot;: sign_changes,
+        &quot;slow_body_carryover&quot;: {
+            body: {
+                &quot;stationed_between&quot;: body in station_bodies,
+                &quot;changed_sign&quot;: any(row[&quot;body&quot;] == body for row in sign_changes),
+                &quot;longitude_ruling&quot;: &quot;near_return_carryover_not_news&quot;,
+                &quot;separate_change_gate&quot;: (
+                    &quot;station_or_relationship_change_may_qualify&quot;
+                    if body in station_bodies
+                    else &quot;relationship_change_may_qualify&quot;
+                ),
+            }
+            for body in SLOW_CHANGE_BODIES
+        },
+        &quot;relationship_deltas&quot;: relationship_deltas,
+        &quot;promotion_rule&quot;: (
+            &quot;The promoted list is selective, not exhaustive: retain only changes &quot;
+            &quot;that materially answer how this conjunction seed organizes itself. &quot;
+            &quot;The complete admitted-relationship delta ledger remains above.&quot;
+        ),
+        &quot;promoted_question_relevant_changes&quot;: [
+            {
+                &quot;factor&quot;: &quot;Jupiter&quot;,
+                &quot;change&quot;: &quot;retrograde_at_seed_to_direct_at_persona&quot;,
+                &quot;station&quot;: jupiter_station,
+                &quot;related_persona_contact&quot;: {
+                    &quot;aspect&quot;: &quot;Mars trine Jupiter&quot;,
+                    &quot;orb_deg&quot;: mars_jupiter[&quot;orb_deg&quot;],
+                    &quot;applying&quot;: mars_jupiter[&quot;applying&quot;],
+                },
+                &quot;classification&quot;: &quot;potentially_additive_condition_change_zero_vote&quot;,
+            },
+            {
+                &quot;factor&quot;: &quot;Mercury&quot;,
+                &quot;change&quot;: &quot;stationed_direct_shortly_before_persona&quot;,
+                &quot;station&quot;: mercury_direct_station,
+                &quot;persona_speed_deg_day&quot;: persona[&quot;positions&quot;][&quot;Mercury&quot;][
+                    &quot;speed_deg_day&quot;
+                ],
+                &quot;related_persona_contact&quot;: {
+                    &quot;aspect&quot;: &quot;Mercury conjunct true Node&quot;,
+                    &quot;orb_deg&quot;: mercury_node[&quot;orb_deg&quot;],
+                    &quot;point_status&quot;: &quot;nonacting_minor_point&quot;,
+                },
+                &quot;classification&quot;: &quot;potentially_additive_condition_change_zero_vote&quot;,
+            },
+            {
+                &quot;factor&quot;: &quot;persona MC and Uranus&quot;,
+                &quot;change&quot;: &quot;new_derived_angle_relationship&quot;,
+                &quot;aspect&quot;: &quot;opposition&quot;,
+                &quot;orb_deg&quot;: mc_uranus[&quot;orb_deg&quot;],
+                &quot;novelty_owner&quot;: &quot;derived_persona_MC_not_uranus_near_return&quot;,
+                &quot;classification&quot;: &quot;potentially_additive_derived_relation_zero_vote&quot;,
+            },
+            {
+                &quot;factor&quot;: &quot;Saturn and Pluto&quot;,
+                &quot;change&quot;: &quot;broader_seed_sextile_enters_tight_huber_web&quot;,
+                &quot;seed_mundane_orb_deg&quot;: seed_saturn_pluto[&quot;orb_deg&quot;],
+                &quot;persona_huber_orb_deg&quot;: persona_saturn_pluto[&quot;orb&quot;],
+                &quot;classification&quot;: (
+                    &quot;tightness_change_not_a_new_outer_return_vote&quot;
+                ),
+            },
+            {
+                &quot;factor&quot;: &quot;Saturn and Uranus&quot;,
+                &quot;change&quot;: &quot;seed_sextile_leaves_five_degree_mundane_lane&quot;,
+                &quot;seed_mundane_orb_deg&quot;: seed_saturn_uranus[&quot;orb_deg&quot;],
+                &quot;persona_sextile_orb_deg&quot;: round(
+                    persona_saturn_uranus_orb, 6
+                ),
+                &quot;classification&quot;: &quot;relationship_admission_change_zero_vote&quot;,
+            },
+            {
+                &quot;factor&quot;: &quot;Venus and Jupiter&quot;,
+                &quot;change&quot;: &quot;seed_trine_to_persona_square&quot;,
+                &quot;seed_trine_orb_deg&quot;: seed_venus_jupiter[&quot;orb_deg&quot;],
+                &quot;persona_square_orb_deg&quot;: persona_venus_jupiter[&quot;orb_deg&quot;],
+                &quot;persona_separating&quot;: persona_venus_jupiter[&quot;separating&quot;],
+                &quot;classification&quot;: (
+                    &quot;question_relevant_counterweight_fast_partner_driven_zero_vote&quot;
+                ),
+            },
+        ],
+        &quot;excluded_as_news&quot;: [
+            &quot;persona Uranus conjunct radix Uranus&quot;,
+            &quot;persona Pluto conjunct radix Pluto&quot;,
+            &quot;persona Saturn and Neptune remaining near the fixed target&quot;,
+            &quot;slow-body geometry that merely persists from the seed&quot;,
+        ],
+    }
+
+
+def cross_contacts(
+    radix: dict[str, Any], persona: dict[str, Any], orb_limit: float = 2.0
+) -&gt; list[dict[str, Any]]:
+    radix_targets = {
+        **{
+            body: position[&quot;longitude&quot;]
+            for body, position in radix[&quot;positions&quot;].items()
+            if body != &quot;SNode&quot;
+        },
+        &quot;ASC&quot;: radix[&quot;frame&quot;][&quot;asc&quot;],
+        &quot;MC&quot;: radix[&quot;frame&quot;][&quot;mc&quot;],
+        &quot;America&quot;: radix[&quot;minor_points&quot;][&quot;america_916&quot;][&quot;longitude&quot;],
+    }
+    persona_sources = {
+        **{
+            body: position[&quot;longitude&quot;]
+            for body, position in persona[&quot;positions&quot;].items()
+            if body != &quot;SNode&quot;
+        },
+        &quot;ASC&quot;: persona[&quot;frame&quot;][&quot;asc&quot;],
+        &quot;MC&quot;: persona[&quot;frame&quot;][&quot;mc&quot;],
+        &quot;America&quot;: persona[&quot;minor_points&quot;][&quot;america_916&quot;][&quot;longitude&quot;],
+    }
+    result: list[dict[str, Any]] = []
+    minor_points = {&quot;Chiron&quot;, &quot;Node&quot;, &quot;America&quot;}
+    slow_or_dependent = {
+        &quot;Jupiter&quot;,
+        &quot;Saturn&quot;,
+        &quot;Uranus&quot;,
+        &quot;Neptune&quot;,
+        &quot;Pluto&quot;,
+        &quot;Chiron&quot;,
+        &quot;Node&quot;,
+        &quot;America&quot;,
+    }
+    for source, source_lon in persona_sources.items():
+        for target, target_lon in radix_targets.items():
+            if source in minor_points and target not in PLANET_CODES:
+                continue
+            if target in minor_points and source not in PLANET_CODES:
+                continue
+            separation = angular_distance(source_lon, target_lon)
+            for aspect, angle in ASPECT_ANGLES:
+                orb = abs(separation - angle)
+                if orb &lt;= orb_limit:
+                    if (
+                        source in minor_points or target in minor_points
+                    ) and aspect not in {&quot;conjunction&quot;, &quot;square&quot;, &quot;opposition&quot;}:
+                        continue
+                    if source == &quot;Sun&quot;:
+                        dependency = &quot;guaranteed_radix_target_restatement&quot;
+                    elif (
+                        source in {&quot;Saturn&quot;, &quot;Neptune&quot;}
+                        and target in {&quot;Saturn&quot;, &quot;Neptune&quot;}
+                        and aspect == &quot;conjunction&quot;
+                    ):
+                        dependency = &quot;fused_seed_slow_body_dependent&quot;
+                    elif source == target and source in slow_or_dependent:
+                        dependency = &quot;slow_body_dependent&quot;
+                    elif source == &quot;America&quot; or target == &quot;America&quot;:
+                        dependency = &quot;nonacting_minor_point_zero_vote&quot;
+                    elif (
+                        source in {&quot;ASC&quot;, &quot;MC&quot;}
+                        and target in slow_or_dependent
+                        and target in persona[&quot;positions&quot;]
+                        and angular_distance(
+                            persona[&quot;positions&quot;][target][&quot;longitude&quot;],
+                            target_lon,
+                        )
+                        &lt;= orb_limit
+                    ):
+                        dependency = &quot;dependent_correlated_overlay_zero_vote&quot;
+                    elif source in slow_or_dependent and target in slow_or_dependent:
+                        dependency = &quot;slow_to_slow_background_zero_vote&quot;
+                    else:
+                        dependency = &quot;potentially_additive_zero_vote&quot;
+                    result.append(
+                        {
+                            &quot;persona_factor&quot;: source,
+                            &quot;aspect&quot;: aspect,
+                            &quot;radix_factor&quot;: target,
+                            &quot;orb_deg&quot;: round(orb, 6),
+                            &quot;dependency_class&quot;: dependency,
+                        }
+                    )
+                    break
+    return sorted(result, key=lambda item: item[&quot;orb_deg&quot;])
+
+
+def calculate() -&gt; dict[str, Any]:
+    governed = load_governed_seed()
+    target = governed[&quot;target_longitude&quot;]
+    persona_event = find_persona_event(governed[&quot;jd_ut&quot;], target)
+    radix, radix_raw = calculate_chart(governed[&quot;utc&quot;])
+    persona, persona_raw = calculate_chart(persona_event[&quot;utc&quot;])
+    persona_aspects = persona[&quot;huber_aspects&quot;]
+    change_gate = seed_to_persona_change_gate(
+        governed, persona_event, radix, persona
+    )
+    canonical_seed = governed[&quot;canonical_seed_chart&quot;]
+    seed_chart_comparison = {
+        &quot;utc_matches&quot;: canonical_seed[&quot;utc&quot;] == radix[&quot;event&quot;][&quot;utc&quot;],
+        &quot;pass_id_matches&quot;: canonical_seed[&quot;pass_id&quot;]
+        == governed[&quot;anchor&quot;][&quot;pass_id&quot;],
+        &quot;asc_delta_arcseconds&quot;: round(
+            angular_distance(canonical_seed[&quot;asc&quot;], radix[&quot;frame&quot;][&quot;asc&quot;])
+            * 3600.0,
+            9,
+        ),
+        &quot;mc_delta_arcseconds&quot;: round(
+            angular_distance(canonical_seed[&quot;mc&quot;], radix[&quot;frame&quot;][&quot;mc&quot;])
+            * 3600.0,
+            9,
+        ),
+        &quot;planet_delta_arcseconds&quot;: {
+            body: round(
+                angular_distance(
+                    canonical_seed[&quot;positions&quot;][body][&quot;lon&quot;],
+                    radix[&quot;positions&quot;][body][&quot;longitude&quot;],
+                )
+                * 3600.0,
+                9,
+            )
+            for body in PLANET_CODES
+        },
+    }
+    if not seed_chart_comparison[&quot;utc_matches&quot;] or not seed_chart_comparison[
+        &quot;pass_id_matches&quot;
+    ]:
+        raise RuntimeError(&quot;Canonical seed-chart identity mismatch&quot;)
+    if max(
+        seed_chart_comparison[&quot;asc_delta_arcseconds&quot;],
+        seed_chart_comparison[&quot;mc_delta_arcseconds&quot;],
+        *seed_chart_comparison[&quot;planet_delta_arcseconds&quot;].values(),
+    ) &gt; 0.01:
+        raise RuntimeError(&quot;Current calculator disagrees with canonical seed chart&quot;)
+
+    focal: dict[str, Any] = {}
+    for body in (&quot;Saturn&quot;, &quot;Neptune&quot;):
+        focal[body] = {
+            &quot;position&quot;: persona[&quot;positions&quot;][body],
+            &quot;distance_from_persona_sun_deg&quot;: round(
+                angular_distance(
+                    persona[&quot;positions&quot;][body][&quot;longitude&quot;],
+                    persona[&quot;positions&quot;][&quot;Sun&quot;][&quot;longitude&quot;],
+                ),
+                9,
+            ),
+            &quot;governance_route&quot;: persona[&quot;governance_routes&quot;][body],
+            &quot;aspect_contacts&quot;: contacts_for(body, persona_aspects),
+        }
+
+    return {
+        &quot;schema&quot;: &quot;freedom250.deep-current-conjunction-persona/v1&quot;,
+        &quot;status&quot;: &quot;research_only_not_adopted&quot;,
+        &quot;review_status&quot;: &quot;awaiting_katie_review&quot;,
+        &quot;review_disposition&quot;: None,
+        &quot;subject&quot;: &quot;2026 Saturn-Neptune conjunction persona&quot;,
+        &quot;question&quot;: &quot;How does the 2026 law-meets-the-ideal seed organize itself?&quot;,
+        &quot;evidence_boundary&quot;: {
+            &quot;family&quot;: &quot;deep_current_persona_charts&quot;,
+            &quot;admission&quot;: &quot;conditional_subordinate_zero_vote&quot;,
+            &quot;timing_authority&quot;: False,
+            &quot;event_proof&quot;: False,
+            &quot;one_shared_chart&quot;: True,
+            &quot;focal_lenses&quot;: [&quot;Saturn&quot;, &quot;Neptune&quot;],
+        },
+        &quot;seed_family&quot;: {
+            &quot;cycle_id&quot;: governed[&quot;cycle&quot;][&quot;cycle_id&quot;],
+            &quot;seed_family_id&quot;: governed[&quot;cycle&quot;][&quot;seed_family_id&quot;],
+            &quot;seed_family_label&quot;: governed[&quot;cycle&quot;][&quot;seed_family_label&quot;],
+            &quot;anchor_basis&quot;: governed[&quot;cycle&quot;][&quot;anchor_basis&quot;],
+            &quot;display_anchor_pass_id&quot;: governed[&quot;cycle&quot;][&quot;display_anchor_pass_id&quot;],
+            &quot;pass_count&quot;: len(governed[&quot;cycle&quot;][&quot;passes&quot;]),
+            &quot;independent_verification_status&quot;: governed[&quot;anchor&quot;][
+                &quot;independent_verification_status&quot;
+            ],
+            &quot;registry_validation&quot;: governed[&quot;registry_validation&quot;],
+        },
+        &quot;radix&quot;: {
+            &quot;pass&quot;: &quot;single exact geocentric conjunction&quot;,
+            &quot;target_longitude&quot;: target,
+            &quot;target_sign&quot;: governed[&quot;anchor&quot;][&quot;sign&quot;],
+            &quot;target_degree_in_sign&quot;: governed[&quot;anchor&quot;][&quot;degree_in_sign&quot;],
+            &quot;calculation_status&quot;: governed[&quot;anchor&quot;][&quot;calculation_status&quot;],
+            &quot;verification&quot;: {
+                **governed[&quot;verification&quot;],
+                &quot;canonical_seed_chart_comparison&quot;: seed_chart_comparison,
+            },
+            **radix,
+        },
+        &quot;persona&quot;: {
+            &quot;definition&quot;: &quot;first later solar conjunction to the fixed shared Saturn-Neptune seed longitude&quot;,
+            &quot;target_longitude&quot;: target,
+            &quot;days_after_radix&quot;: round(
+                persona_event[&quot;jd_ut&quot;] - governed[&quot;jd_ut&quot;], 9
+            ),
+            &quot;verification&quot;: persona_event[&quot;verification&quot;],
+            **persona,
+            &quot;persona_sun&quot;: {
+                &quot;whole_sign_house&quot;: persona[&quot;positions&quot;][&quot;Sun&quot;][
+                    &quot;whole_sign_house&quot;
+                ],
+                &quot;contacts&quot;: contacts_for(&quot;Sun&quot;, persona_aspects),
+            },
+            &quot;focal_targets_inside_persona&quot;: focal,
+        },
+        &quot;radix_persona_overlay&quot;: {
+            &quot;orb_policy&quot;: (
+                &quot;major cross aspects within 2 degrees; Chiron and Node use the &quot;
+                &quot;hard-aspect minor-point lane; 916 America only aspects an actual &quot;
+                &quot;planet; no independent evidence vote&quot;
+            ),
+            &quot;contacts&quot;: cross_contacts(radix, persona),
+        },
+        &quot;seed_to_persona_change_gate&quot;: change_gate,
+        &quot;dependency_ledger&quot;: {
+            &quot;guaranteed&quot;: [
+                &quot;Persona Sun repeats the exact 0.752728085 Aries seed longitude.&quot;,
+                &quot;Persona-Sun contacts to the radix restate contacts already belonging to the seed target.&quot;,
+            ],
+            &quot;dependent&quot;: [
+                &quot;Saturn and Neptune remain near the Persona Sun because the derived event occurs 28.67 days after the seed.&quot;,
+                &quot;Slow-planet persistence and near-returns receive no independent interpretive vote.&quot;,
+                &quot;A derived angle contact to a slow planet&#x27;s radix near-return is a dependency-labeled echo of the internal persona contact, not corroboration.&quot;,
+            ],
+            &quot;potentially_additive&quot;: [
+                &quot;derived Ascendant, chart ruler and ruler route&quot;,
+                &quot;derived houses and Persona-Sun house&quot;,
+                &quot;actual MC and Whole Sign 10th governance&quot;,
+                &quot;internal aspect and dispositor architecture&quot;,
+                &quot;station or direction change, sign change, or a genuinely new aspect/derived-angle relationship inside the short interval&quot;,
+                &quot;non-mechanical tight radix-persona contacts&quot;,
+            ],
+        },
+        &quot;settings&quot;: {
+            &quot;zodiac&quot;: &quot;tropical&quot;,
+            &quot;center&quot;: &quot;geocentric&quot;,
+            &quot;houses&quot;: &quot;Whole Sign&quot;,
+            &quot;angles&quot;: &quot;Swiss Ephemeris houses_ex W frame for Washington DC&quot;,
+            &quot;rulers&quot;: &quot;traditional&quot;,
+            &quot;node&quot;: &quot;true&quot;,
+            &quot;america_916&quot;: &quot;canonical JPL Horizons daily cache; nonacting minor point&quot;,
+            &quot;minor_point_aspects&quot;: (
+                &quot;Chiron, true Node, and 916 America to actual planets only; &quot;
+                &quot;conjunction, square, or opposition at 2 degrees or less; &quot;
+                &quot;no point-to-point aspects&quot;
+            ),
+            &quot;reference_place_policy&quot;: &quot;radix place retained for the persona event&quot;,
+        },
+        &quot;provenance&quot;: {
+            &quot;seed_registry&quot;: str(SEED_REGISTRY),
+            &quot;synodic_engine&quot;: str(SYNODIC_ENGINE),
+            &quot;persona_method&quot;: str(PERSONA_METHOD),
+            &quot;mundane_house_meanings&quot;: str(MUNDANE_REFERENCE),
+            &quot;chart_math&quot;: str(SENTIENT_SUN / &quot;chart_calculator.py&quot;),
+            &quot;structure_engine&quot;: str(SENTIENT_SUN / &quot;reading_engine.py&quot;),
+            &quot;wheel_engine&quot;: str(WHEEL_LIB_PATH),
+            &quot;america_916&quot;: str(AMERICA_PATH),
+            &quot;america_916_cache&quot;: str(AMERICA_CACHE),
+            &quot;chart_conventions&quot;: str(CHART_CONVENTIONS_PATH),
+            &quot;builder&quot;: str(Path(__file__).resolve()),
+            &quot;runtime&quot;: {
+                &quot;python&quot;: sys.version.split()[0],
+                &quot;pyswisseph&quot;: swe.version,
+                &quot;chart_calculator_requested_flags&quot;: [&quot;FLG_SWIEPH&quot;, &quot;FLG_SPEED&quot;],
+                &quot;seed_independent_check_flags&quot;: [&quot;FLG_MOSEPH&quot;, &quot;FLG_SPEED&quot;],
+                &quot;persona_primary_solver&quot;: &quot;solcross_ut with FLG_SWIEPH&quot;,
+                &quot;persona_independent_solver&quot;: &quot;bisection with FLG_MOSEPH&quot;,
+            },
+        },
+        &quot;_raw_chart_objects_excluded&quot;: {
+            &quot;radix_jd&quot;: round(float(radix_raw[&quot;jd&quot;]), 12),
+            &quot;persona_jd&quot;: round(float(persona_raw[&quot;jd&quot;]), 12),
+        },
+    }
+
+
+def degree_label(longitude: float, seconds: bool = True) -&gt; str:
+    sign = SIGNS[int(longitude // 30) % 12]
+    value = longitude % 30.0
+    degree = int(value)
+    minute_value = (value - degree) * 60.0
+    minute = int(minute_value)
+    second = (minute_value - minute) * 60.0
+    if seconds:
+        return f&quot;{degree}°{minute:02d}′{second:05.2f}″ {sign}&quot;
+    return f&quot;{degree}°{minute:02d}′ {sign}&quot;
+
+
+def wheel_positions(chart: dict[str, Any]) -&gt; list[list[Any]]:
+    positions: list[list[Any]] = []
+    for body in BODY_ORDER:
+        if body == &quot;America&quot;:
+            position = chart[&quot;minor_points&quot;][&quot;america_916&quot;]
+        else:
+            position = chart[&quot;positions&quot;][body]
+        positions.append(
+            [
+                body,
+                position[&quot;sign&quot;],
+                f&quot;{math.floor(position[&#x27;degree_in_sign&#x27;])}°&quot;,
+                bool(position[&quot;retrograde&quot;]),
+                round(position[&quot;longitude&quot;], 8),
+            ]
+        )
+    return positions
+
+
+def wheel_record(chart: dict[str, Any], title: str, cap1: str, cap2: str) -&gt; dict[str, Any]:
+    positions = wheel_positions(chart)
+    operator = {
+        &quot;conjunction&quot;: &quot;conjunct&quot;,
+        &quot;sextile&quot;: &quot;sextile&quot;,
+        &quot;square&quot;: &quot;square&quot;,
+        &quot;trine&quot;: &quot;trine&quot;,
+        &quot;opposition&quot;: &quot;opposite&quot;,
+    }
+    major_aspects = [
+        {
+            &quot;t&quot;: f&quot;{row[&#x27;a&#x27;]} {operator[row[&#x27;aspect&#x27;]]} {row[&#x27;b&#x27;]}&quot;,
+            &quot;o&quot;: round(row[&quot;orb_deg&quot;], 2),
+            &quot;x&quot;: 1 if row[&quot;orb_deg&quot;] &lt;= 0.3 else 0,
+            &quot;ap&quot;: 1 if row[&quot;applying&quot;] else 0,
+            &quot;pt&quot;: 0,
+        }
+        for row in chart[&quot;mundane_major_aspects&quot;]
+    ]
+    point_aspects = [
+        {
+            &quot;t&quot;: f&quot;{row[&#x27;a&#x27;]} {operator[row[&#x27;aspect&#x27;]]} {row[&#x27;b&#x27;]}&quot;,
+            &quot;o&quot;: round(row[&quot;orb_deg&quot;], 2),
+            &quot;x&quot;: 1 if row[&quot;orb_deg&quot;] &lt;= 0.3 else 0,
+            &quot;ap&quot;: 1 if row[&quot;applying&quot;] else 0,
+            &quot;pt&quot;: 1,
+        }
+        for row in chart[&quot;minor_point_aspects&quot;]
+    ]
+    aspects = major_aspects + point_aspects
+    return {
+        &quot;asc&quot;: round(chart[&quot;frame&quot;][&quot;asc&quot;], 8),
+        &quot;mc&quot;: round(chart[&quot;frame&quot;][&quot;mc&quot;], 8),
+        &quot;pos&quot;: positions,
+        &quot;asp&quot;: aspects,
+        &quot;__date&quot;: title,
+        &quot;cap1&quot;: cap1,
+        &quot;cap2&quot;: cap2,
+    }
+
+
+def render_svg(
+    record: dict[str, Any], outer_name: str | None = None, outer_map: dict[str, float] | None = None
+) -&gt; str:
+    runner = [WHEEL.WHEEL_JS]
+    if outer_name and outer_map:
+        runner.append(f&quot;\nconst CHARTS={json.dumps({outer_name: outer_map})};&quot;)
+        runner.append(f&quot;\nconst REC={json.dumps(record, ensure_ascii=False)};&quot;)
+        runner.append(
+            f&quot;\nprocess.stdout.write(wheelSVG(REC,{json.dumps(outer_name)},true));&quot;
+        )
+    else:
+        runner.append(&quot;\nconst CHARTS={};&quot;)
+        runner.append(f&quot;\nconst REC={json.dumps(record, ensure_ascii=False)};&quot;)
+        runner.append(&quot;\nprocess.stdout.write(wheelSVG(REC,null,false));&quot;)
+    with tempfile.NamedTemporaryFile(
+        &quot;w&quot;, suffix=&quot;.mjs&quot;, delete=False, encoding=&quot;utf-8&quot;
+    ) as handle:
+        handle.write(&quot;&quot;.join(runner))
+        script = Path(handle.name)
+    try:
+        result = subprocess.run(
+            [&quot;node&quot;, str(script)],
+            capture_output=True,
+            text=True,
+            timeout=30,
+            check=False,
+        )
+    finally:
+        script.unlink(missing_ok=True)
+    if result.returncode != 0 or not result.stdout.startswith(&quot;&lt;svg&quot;):
+        raise RuntimeError(
+            f&quot;Wheel engine failed ({result.returncode}): {result.stderr[:1000]}&quot;
+        )
+    svg = result.stdout
+    if outer_name and outer_map:
+        svg = svg.replace(
+            &#x27;viewBox=&quot;0 0 660 660&quot;&#x27;,
+            &#x27;viewBox=&quot;-60 -60 780 780&quot;&#x27;,
+            1,
+        )
+    return svg
+
+
+def gallery_html(data: dict[str, Any], standalone: str, biwheel: str) -&gt; str:
+    radix = data[&quot;radix&quot;]
+    persona = data[&quot;persona&quot;]
+    frame = persona[&quot;frame&quot;]
+    route = &quot; → &quot;.join(frame[&quot;chart_ruler_route&quot;][&quot;chain&quot;])
+    seed_local = datetime.fromisoformat(radix[&quot;event&quot;][&quot;local&quot;]).astimezone(ZONE)
+    persona_local = datetime.fromisoformat(persona[&quot;event&quot;][&quot;local&quot;]).astimezone(ZONE)
+    seed_label = seed_local.strftime(&quot;%d %b %Y · %H:%M:%S %Z&quot;)
+    persona_label = persona_local.strftime(&quot;%d %b %Y · %H:%M:%S %Z&quot;)
+    return f&quot;&quot;&quot;&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;2026 Saturn–Neptune · Conjunction Persona&lt;/title&gt;
+&lt;style&gt;
+  :root {{ --paper:#f8f5ed; --card:#fffdf8; --ink:#302b23; --muted:#786f61; --line:#d8ccb5; --accent:#574878; --wash:#eee8dc; }}
+  * {{ box-sizing:border-box; }}
+  body {{ margin:0; background:var(--paper); color:var(--ink); font-family:&quot;Iowan Old Style&quot;,Palatino,Georgia,serif; }}
+  main {{ width:min(1460px,96vw); margin:0 auto; padding:42px 0 72px; }}
+  h1,h2,p {{ margin-top:0; }}
+  h1 {{ font-size:clamp(2rem,4vw,3.7rem); font-weight:400; margin-bottom:10px; }}
+  h2 {{ font-size:1.65rem; font-weight:400; }}
+  p {{ color:var(--muted); line-height:1.55; }}
+  .eyebrow {{ color:var(--accent); font-size:.72rem; font-weight:700; letter-spacing:.13em; }}
+  .notice {{ margin:20px 0; padding:15px 18px; border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:12px; background:var(--card); color:var(--ink); }}
+  .facts {{ display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 26px; }}
+  .facts span {{ padding:6px 10px; border-radius:8px; background:var(--wash); color:var(--muted); }}
+  .pair {{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }}
+  article {{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:0 8px 30px rgba(50,42,28,.05); }}
+  .wheel img {{ width:100%; height:auto; display:block; }}
+  .boundary {{ margin-top:28px; }}
+  code {{ color:var(--accent); }}
+  a {{ color:var(--accent); text-underline-offset:3px; }}
+  footer {{ margin-top:34px; color:var(--muted); line-height:1.5; }}
+  @media(max-width:900px) {{ .pair {{ grid-template-columns:1fr; }} }}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+  &lt;header&gt;
+    &lt;p class=&quot;eyebrow&quot;&gt;FREEDOM 250 · LONG CLOCKS · RESEARCH-ONLY PERSONA PILOT&lt;/p&gt;
+    &lt;h1&gt;2026 Saturn–Neptune Conjunction Persona&lt;/h1&gt;
+    &lt;p&gt;One shared derived chart for the cycle seed called “law meets the ideal.” Saturn and Neptune remain two focal functions inside one chart, not two personas or two votes.&lt;/p&gt;
+    &lt;div class=&quot;notice&quot;&gt;&lt;b&gt;Research boundary.&lt;/b&gt; Conditional, subordinate, and zero-vote. This chart asks how the seed organizes itself; it does not time events, validate present-day claims, or amend the live mundane method.&lt;/div&gt;
+    &lt;div class=&quot;facts&quot;&gt;
+      &lt;span&gt;&lt;b&gt;Seed&lt;/b&gt; {html.escape(seed_label)}&lt;/span&gt;
+      &lt;span&gt;&lt;b&gt;Shared degree&lt;/b&gt; {degree_label(radix[&#x27;target_longitude&#x27;])}&lt;/span&gt;
+      &lt;span&gt;&lt;b&gt;Persona event&lt;/b&gt; {html.escape(persona_label)}&lt;/span&gt;
+      &lt;span&gt;&lt;b&gt;Persona ASC&lt;/b&gt; {degree_label(frame[&#x27;asc&#x27;])}&lt;/span&gt;
+      &lt;span&gt;&lt;b&gt;Persona MC&lt;/b&gt; {degree_label(frame[&#x27;mc&#x27;])}&lt;/span&gt;
+      &lt;span&gt;&lt;b&gt;Persona Sun&lt;/b&gt; H{persona[&#x27;persona_sun&#x27;][&#x27;whole_sign_house&#x27;]}&lt;/span&gt;
+      &lt;span&gt;&lt;b&gt;Chart-ruler route&lt;/b&gt; {html.escape(route)}&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;section class=&quot;pair&quot;&gt;
+    &lt;article&gt;
+      &lt;h2&gt;Conjunction persona alone&lt;/h2&gt;
+      &lt;p&gt;The derived event’s own Aquarius Ascendant, Whole Sign houses, planetary web, and nonacting 916 America point.&lt;/p&gt;
+      &lt;div class=&quot;wheel&quot;&gt;&lt;img src=&quot;{html.escape(standalone, quote=True)}&quot; alt=&quot;Saturn Neptune conjunction persona chart&quot;&gt;&lt;/div&gt;
+      &lt;a href=&quot;{html.escape(standalone, quote=True)}&quot;&gt;Open standalone SVG&lt;/a&gt;
+    &lt;/article&gt;
+    &lt;article&gt;
+      &lt;h2&gt;Persona around the exact seed radix&lt;/h2&gt;
+      &lt;p&gt;The single exact February conjunction inside; the first later solar contact on the outer ring.&lt;/p&gt;
+      &lt;div class=&quot;wheel&quot;&gt;&lt;img src=&quot;{html.escape(biwheel, quote=True)}&quot; alt=&quot;Saturn Neptune seed and persona biwheel&quot;&gt;&lt;/div&gt;
+      &lt;a href=&quot;{html.escape(biwheel, quote=True)}&quot;&gt;Open biwheel SVG&lt;/a&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+  &lt;article class=&quot;boundary&quot;&gt;
+    &lt;h2&gt;What can and cannot add information&lt;/h2&gt;
+    &lt;p&gt;&lt;b&gt;Guaranteed:&lt;/b&gt; the Persona Sun repeats 0°45′ Aries. &lt;b&gt;Dependent:&lt;/b&gt; Saturn and Neptune remain nearby only 28.67 days after the seed. A slow-body near-return is carryover, not news, unless a station/direction change, sign change, or genuinely new relationship qualifies. &lt;b&gt;Potentially additive:&lt;/b&gt; Aquarius rising, the third-house derived arena, ruler and dispositor circuitry, MC governance, internal aspect structure, and non-mechanical tight overlays.&lt;/p&gt;
+    &lt;p&gt;Read the complete comparative hearing in &lt;a href=&quot;../SATURN_NEPTUNE_2026_PERSONA_HEARING.md&quot;&gt;SATURN_NEPTUNE_2026_PERSONA_HEARING.md&lt;/a&gt;.&lt;/p&gt;
+  &lt;/article&gt;
+  &lt;footer&gt;Tropical · geocentric · Washington, D.C. · Whole Sign · traditional rulers · true node. Seed identity comes from the canonical Long Clocks registry. Chart facts use the current Sentient Sun calculator and structure engine. 916 America comes from the canonical JPL Horizons daily cache and remains a nonacting minor point. External Astro Gold verification of the seed is pending.&lt;/footer&gt;
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&quot;&quot;&quot;
+
+
+def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main() -&gt; None:
+    CHARTS.mkdir(parents=True, exist_ok=True)
+    data = calculate()
+    DATA_PATH.write_text(
+        json.dumps(data, indent=2, ensure_ascii=False) + &quot;\n&quot;,
+        encoding=&quot;utf-8&quot;,
+    )
+    radix = data[&quot;radix&quot;]
+    persona = data[&quot;persona&quot;]
+    persona_event = datetime.fromisoformat(persona[&quot;event&quot;][&quot;local&quot;]).astimezone(ZONE)
+    event_label = persona_event.strftime(&quot;%d %b %Y · %H:%M:%S %Z&quot;)
+    standalone_record = wheel_record(
+        persona,
+        &quot;SATURN–NEPTUNE CONJUNCTION PERSONA&quot;,
+        f&quot;{event_label} · {PLACE}&quot;,
+        &quot;research-only derived chart · Whole Sign&quot;,
+    )
+    radix_record = wheel_record(
+        radix,
+        &quot;SEED RADIX + CONJUNCTION PERSONA&quot;,
+        &quot;20 Feb 2026 exact conjunction inside · persona outside&quot;,
+        f&quot;outer ring: shared conjunction persona · {event_label}&quot;,
+    )
+    outer_map = {
+        row[0]: float(row[4]) for row in wheel_positions(persona)
+    }
+    standalone_svg = render_svg(standalone_record)
+    biwheel_svg = render_svg(
+        radix_record,
+        outer_name=&quot;Saturn-Neptune Conjunction Persona&quot;,
+        outer_map=outer_map,
+    )
+    standalone_name = &quot;Saturn–Neptune 2026 — Conjunction Persona — Standalone.svg&quot;
+    biwheel_name = &quot;Saturn–Neptune 2026 — Conjunction Persona + Radix — Biwheel.svg&quot;
+    standalone_path = CHARTS / standalone_name
+    biwheel_path = CHARTS / biwheel_name
+    standalone_path.write_text(standalone_svg, encoding=&quot;utf-8&quot;)
+    biwheel_path.write_text(biwheel_svg, encoding=&quot;utf-8&quot;)
+    GALLERY_PATH.write_text(
+        gallery_html(data, standalone_name, biwheel_name),
+        encoding=&quot;utf-8&quot;,
+    )
+    manifest = {
+        &quot;schema&quot;: &quot;freedom250.deep-current-conjunction-persona-manifest/v1&quot;,
+        &quot;status&quot;: data[&quot;status&quot;],
+        &quot;review_status&quot;: data[&quot;review_status&quot;],
+        &quot;review_disposition&quot;: data[&quot;review_disposition&quot;],
+        &quot;seed&quot;: {
+            &quot;cycle_id&quot;: data[&quot;seed_family&quot;][&quot;cycle_id&quot;],
+            &quot;pass_id&quot;: data[&quot;seed_family&quot;][&quot;display_anchor_pass_id&quot;],
+            &quot;utc&quot;: radix[&quot;event&quot;][&quot;utc&quot;],
+            &quot;target_longitude&quot;: radix[&quot;target_longitude&quot;],
+            &quot;external_verification&quot;: data[&quot;seed_family&quot;][
+                &quot;independent_verification_status&quot;
+            ],
+        },
+        &quot;persona&quot;: {
+            &quot;utc&quot;: persona[&quot;event&quot;][&quot;utc&quot;],
+            &quot;local&quot;: persona[&quot;event&quot;][&quot;local&quot;],
+            &quot;sun_residual_arcseconds&quot;: persona[&quot;verification&quot;][
+                &quot;sun_minus_target_arcseconds&quot;
+            ],
+        },
+        &quot;outputs&quot;: {
+            &quot;data&quot;: DATA_PATH.name,
+            &quot;gallery&quot;: GALLERY_PATH.name,
+            &quot;standalone_svg&quot;: standalone_name,
+            &quot;biwheel_svg&quot;: biwheel_name,
+        },
+        &quot;sha256&quot;: {
+            DATA_PATH.name: sha256(DATA_PATH),
+            GALLERY_PATH.name: sha256(GALLERY_PATH),
+            standalone_name: sha256(standalone_path),
+            biwheel_name: sha256(biwheel_path),
+            Path(__file__).name: sha256(Path(__file__)),
+        },
+        &quot;source_sha256&quot;: {
+            str(path): sha256(path)
+            for path in (
+                SEED_REGISTRY,
+                SYNODIC_ENGINE,
+                CHART_CONVENTIONS_PATH,
+                PERSONA_METHOD,
+                MUNDANE_REFERENCE,
+                SENTIENT_SUN / &quot;chart_calculator.py&quot;,
+                SENTIENT_SUN / &quot;reading_engine.py&quot;,
+                WHEEL_LIB_PATH,
+                AMERICA_PATH,
+                AMERICA_CACHE,
+            )
+        },
+        &quot;provenance&quot;: data[&quot;provenance&quot;],
+        &quot;runtime&quot;: data[&quot;provenance&quot;][&quot;runtime&quot;],
+    }
+    MANIFEST_PATH.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + &quot;\n&quot;,
+        encoding=&quot;utf-8&quot;,
+    )
+    print(GALLERY_PATH)
+    print(DATA_PATH)
+    print(MANIFEST_PATH)
+    print(&quot;Rendered one shared persona wheel and one exact-seed biwheel&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></main></body></html>

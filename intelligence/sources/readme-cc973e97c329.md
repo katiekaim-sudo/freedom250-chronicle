@@ -5,3 +5,6 @@ Evidence cutoff: **2026-07-15** — current-state claims require a source refres
 
 Start with [SOVEREIGN_COMMUNICATIONS_RESEARCH_PACKAGE.md](../sources/sovereign-communications-research-package-38cc4655e787.html). Assets, rights,
 operators, ordinary access and emergency activation remain separate objects.
+
+The dated NCSWIC governance and operating map refreshes only the
+state-federal emergency-communications coordination seam through 2026-09-29. It does not advance the wider package cutoff.

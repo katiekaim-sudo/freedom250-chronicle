@@ -1,0 +1,454 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/test-daybreak-engine-c7222de7ae10.html">
+<title>test_daybreak_engine</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>test_daybreak_engine</h1><p class="mut">Portable source: 99 - Templates/test_daybreak_engine.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Regression proof for the Daybreak factual repair and promoted bone recast.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import datetime as dt
+import contextlib
+import io
+import json
+import os
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+from unittest import mock
+
+import america
+import build_daybreak_frames as frame_builder
+import daybreak_engine as engine
+
+
+VAULT = Path(
+    os.environ.get(
+        &quot;F250_DAYBREAK_VAULT_ROOT&quot;,
+        &quot;Chronicle/&quot;,
+    )
+)
+
+
+class AmericaInterpolationTests(unittest.TestCase):
+    def setUp(self):
+        self.old_cache = america.CACHE
+
+    def tearDown(self):
+        america.CACHE = self.old_cache
+        america.reset_cache_for_tests()
+
+    def _fixture(self, rows: dict[str, float]) -&gt; tempfile.TemporaryDirectory:
+        folder = tempfile.TemporaryDirectory()
+        path = Path(folder.name) / &quot;america_ephemeris.json&quot;
+        path.write_text(json.dumps({&quot;916 America&quot;: rows}), encoding=&quot;utf-8&quot;)
+        america.CACHE = path
+        america.reset_cache_for_tests()
+        return folder
+
+    def test_retrograde_uses_shortest_signed_arc(self):
+        with self._fixture({&quot;2026-03-20&quot;: 137.2, &quot;2026-03-21&quot;: 137.0}):
+            noon = dt.datetime(2026, 3, 20, 12, tzinfo=dt.timezone.utc)
+            self.assertAlmostEqual(america.america_lon(noon), 137.1, places=9)
+            self.assertAlmostEqual(america.america_speed(noon), -0.2, places=9)
+
+    def test_true_wrap_uses_shortest_signed_arc(self):
+        with self._fixture({&quot;2026-01-01&quot;: 359.8, &quot;2026-01-02&quot;: 0.2}):
+            noon = dt.datetime(2026, 1, 1, 12, tzinfo=dt.timezone.utc)
+            self.assertAlmostEqual(america.america_lon(noon), 0.0, places=9)
+            self.assertAlmostEqual(america.america_speed(noon), 0.4, places=9)
+
+    def test_human_position_rounds_across_sign_boundary(self):
+        with self._fixture({&quot;2026-01-01&quot;: 29.9999, &quot;2026-01-02&quot;: 30.0}):
+            start = dt.datetime(2026, 1, 1, tzinfo=dt.timezone.utc)
+            self.assertEqual(america.america_pos(start), &quot;0°00&#x27; Taurus&quot;)
+
+    def test_missing_bracket_fails_closed(self):
+        with self._fixture({&quot;2026-01-01&quot;: 10.0}):
+            # Compatibility contract: the shared reader returns None; the
+            # chart engine converts an unresolved mandatory point into a hard
+            # build failure.
+            self.assertIsNone(
+                america.america_lon(dt.datetime(2026, 1, 2, 12, tzinfo=dt.timezone.utc))
+            )
+
+    def test_implausible_motion_fails_closed(self):
+        with self._fixture({&quot;2026-01-01&quot;: 10.0, &quot;2026-01-02&quot;: 20.0}):
+            self.assertIsNone(
+                america.america_lon(dt.datetime(2026, 1, 1, 12, tzinfo=dt.timezone.utc))
+            )
+
+    def test_unaffected_direct_motion_keeps_live_whole_second_precision(self):
+        with self._fixture({&quot;2026-01-01&quot;: 10.0, &quot;2026-01-02&quot;: 10.4}):
+            a = dt.datetime(2026, 1, 1, 12, 0, 0, 1, tzinfo=dt.timezone.utc)
+            b = dt.datetime(2026, 1, 1, 12, 0, 0, 999999, tzinfo=dt.timezone.utc)
+            self.assertEqual(america.america_lon(a), america.america_lon(b))
+
+    def test_mandatory_engine_path_fails_closed_on_missing_bracket(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            cache = root / &quot;99 - Templates&quot; / &quot;america_ephemeris.json&quot;
+            cache.parent.mkdir(parents=True)
+            cache.write_text(
+                json.dumps({&quot;916 America&quot;: {&quot;2026-01-01&quot;: 10.0}}), encoding=&quot;utf-8&quot;
+            )
+            engine._america_rows.cache_clear()
+            with self.assertRaisesRegex(ValueError, &quot;bracketing&quot;):
+                engine._canonical_america(
+                    dt.datetime(2026, 1, 1, 12, tzinfo=dt.timezone.utc), root
+                )
+            engine._america_rows.cache_clear()
+
+
+class CanonicalAriesTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.charts, cls.chart_index = engine._chart_registry(VAULT)
+
+    def test_every_aries_day_has_plausible_canonical_america_motion(self):
+        day = dt.date(2026, 3, 20)
+        end = dt.date(2026, 6, 20)
+        prior_lon = None
+        while day &lt;= end:
+            chart = engine.cast_daybreak(day.isoformat(), vault_root=VAULT)
+            america_row = chart[&quot;positions&quot;][&quot;America&quot;]
+            self.assertLessEqual(abs(america_row[&quot;spd&quot;]), 1.0, day.isoformat())
+            self.assertEqual(america_row[&quot;authority&quot;], &quot;america_ephemeris.json&quot;)
+            if prior_lon is not None:
+                motion = abs(((america_row[&quot;lon&quot;] - prior_lon + 180) % 360) - 180)
+                self.assertLessEqual(motion, 1.0, day.isoformat())
+            prior_lon = america_row[&quot;lon&quot;]
+            day += dt.timedelta(days=1)
+
+    def test_recast_parent_targets_match_canonical_america(self):
+        expected = {
+            &quot;ingress-2026-aries&quot;: 137.2117822998993,
+            &quot;lun-2026-01-03-fu&quot;: 152.9232962791875,
+            &quot;lun-2026-01-18-ne&quot;: 150.80201948467246,
+            &quot;lun-2026-02-01-fu&quot;: 147.57621945307292,
+            &quot;lun-2026-02-17-ne-solar&quot;: 143.38725616922224,
+            &quot;lun-2026-03-03-fu-lunar&quot;: 139.97328652452083,
+            &quot;lun-2026-03-19-ne&quot;: 137.38179414624884,
+            &quot;lun-2026-04-02-fu&quot;: 136.45706075388657,
+        }
+        for chart_id, expected_lon in expected.items():
+            summary = engine._chart_summary(VAULT, self.chart_index[chart_id])
+            self.assertTrue(summary[&quot;america&quot;][&quot;stored_bone_matches_canonical&quot;], chart_id)
+            self.assertEqual(summary[&quot;targets&quot;][&quot;America&quot;], summary[&quot;america&quot;][&quot;lon&quot;])
+            self.assertAlmostEqual(summary[&quot;america&quot;][&quot;lon&quot;], expected_lon, places=9)
+            self.assertLess(summary[&quot;america&quot;][&quot;stored_bone_delta_deg&quot;], 0.001)
+
+    def test_later_parent_target_remains_canonical(self):
+        summary = engine._chart_summary(VAULT, self.chart_index[&quot;lun-2026-04-17-ne&quot;])
+        self.assertTrue(summary[&quot;america&quot;][&quot;stored_bone_matches_canonical&quot;])
+        self.assertLess(summary[&quot;america&quot;][&quot;stored_bone_delta_deg&quot;], 0.001)
+
+
+class ExactHierarchyTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.charts, _ = engine._chart_registry(VAULT)
+
+    def _context(self, value: str):
+        return engine.resolve_context_at(dt.datetime.fromisoformat(value), self.charts, vault_root=VAULT)
+
+    def test_aries_ingress_changes_only_at_exact_time(self):
+        before = self._context(&quot;2026-03-20T14:45:57.733395+00:00&quot;)
+        at = self._context(&quot;2026-03-20T14:45:57.733396+00:00&quot;)
+        self.assertEqual(before[&quot;ingress_id&quot;], &quot;ingress-2025-capricorn&quot;)
+        self.assertEqual(at[&quot;ingress_id&quot;], &quot;ingress-2026-aries&quot;)
+
+    def test_june_new_moon_is_june_14_local_split(self):
+        payload = engine.build_payload(
+            dt.date(2026, 6, 14), dt.date(2026, 6, 14),
+            vault_root=VAULT,
+            generated_at=dt.datetime(2026, 8, 15, tzinfo=dt.timezone.utc),
+        )
+        frame = payload[&quot;frames&quot;][&quot;2026-06-14&quot;]
+        self.assertEqual(len(frame[&quot;hierarchy_segments&quot;]), 2)
+        transition = frame[&quot;parent_transitions&quot;][0]
+        self.assertEqual(transition[&quot;chart_id&quot;], &quot;lun-2026-06-15-ne&quot;)
+        self.assertTrue(transition[&quot;at_local&quot;].startswith(&quot;2026-06-14T22:54:10.466913-04:00&quot;))
+        self.assertEqual(
+            frame[&quot;hierarchy_segments&quot;][1][&quot;hierarchy&quot;][&quot;chapter_id&quot;],
+            &quot;lun-2026-06-15-ne&quot;,
+        )
+
+    def test_all_known_aries_split_frames(self):
+        expected = {
+            &quot;2026-03-20&quot;: &quot;ingress-2026-aries&quot;,
+            &quot;2026-04-17&quot;: &quot;lun-2026-04-17-ne&quot;,
+            &quot;2026-05-01&quot;: &quot;lun-2026-05-01-fu&quot;,
+            &quot;2026-05-16&quot;: &quot;lun-2026-05-16-ne&quot;,
+            &quot;2026-06-14&quot;: &quot;lun-2026-06-15-ne&quot;,
+            &quot;2026-06-20&quot;: &quot;ingress-2026-cancer&quot;,
+        }
+        for date_iso, chart_id in expected.items():
+            payload = engine.build_payload(
+                dt.date.fromisoformat(date_iso), dt.date.fromisoformat(date_iso),
+                vault_root=VAULT,
+                generated_at=dt.datetime(2026, 8, 15, tzinfo=dt.timezone.utc),
+            )
+            frame = payload[&quot;frames&quot;][date_iso]
+            self.assertIn(chart_id, [row[&quot;chart_id&quot;] for row in frame[&quot;parent_transitions&quot;]])
+            self.assertEqual(len(frame[&quot;hierarchy_segments&quot;]), 2)
+
+    def test_every_registered_event_in_coverage_is_routed_to_its_exact_frame(self):
+        start = dt.date(2026, 3, 20)
+        end = dt.date(2026, 6, 20)
+        payload = engine.build_payload(
+            start, end, vault_root=VAULT,
+            generated_at=dt.datetime(2026, 8, 15, tzinfo=dt.timezone.utc),
+        )
+        actual = {
+            row[&quot;chart_id&quot;]: (date_iso, row[&quot;at_utc&quot;], row[&quot;at_local&quot;])
+            for date_iso, frame in payload[&quot;frames&quot;].items()
+            for row in frame[&quot;parent_transitions&quot;]
+        }
+        coverage_start = dt.datetime.fromisoformat(
+            payload[&quot;frames&quot;][start.isoformat()][&quot;chart&quot;][&quot;sunrise&quot;][&quot;utc&quot;]
+        )
+        coverage_end = dt.datetime.fromisoformat(
+            payload[&quot;frames&quot;][end.isoformat()][&quot;chart&quot;][&quot;sunrise&quot;][&quot;next_utc&quot;]
+        )
+        expected = {}
+        for meta in self.charts:
+            if meta[&quot;type&quot;] not in {&quot;ingress&quot;, &quot;lunation&quot;}:
+                continue
+            stamp = engine._chart_timestamp(VAULT, meta)
+            if coverage_start &lt; stamp &lt; coverage_end:
+                expected[meta[&quot;id&quot;]] = stamp.isoformat(timespec=&quot;microseconds&quot;)
+        self.assertEqual(set(actual), set(expected))
+        for chart_id, stamp in expected.items():
+            self.assertEqual(actual[chart_id][1], stamp)
+        self.assertEqual(actual[&quot;lun-2026-04-02-fu&quot;][0], &quot;2026-04-01&quot;)
+        self.assertEqual(actual[&quot;lun-2026-05-31-fu&quot;][0], &quot;2026-05-30&quot;)
+        self.assertEqual(actual[&quot;lun-2026-06-15-ne&quot;][0], &quot;2026-06-14&quot;)
+
+
+class PayloadContractTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.payload = engine.build_payload(
+            dt.date(2026, 3, 20), dt.date(2026, 6, 20),
+            vault_root=VAULT,
+            generated_at=dt.datetime(2026, 8, 15, tzinfo=dt.timezone.utc),
+        )
+
+    def test_stable_geometry_ids_and_delta_lane(self):
+        for frame in self.payload[&quot;frames&quot;].values():
+            self.assertIn(&quot;daily_delta&quot;, frame)
+            self.assertIn(&quot;none&quot;, frame[&quot;daily_delta&quot;])
+            self.assertIn(&quot;no_trigger&quot;, frame[&quot;daily_delta&quot;])
+            self.assertTrue(all(&quot;geometry_id&quot; in row for row in frame[&quot;chart&quot;][&quot;aspects&quot;]))
+            self.assertTrue(all(&quot;segment_id&quot; in row for row in frame[&quot;hierarchy_segments&quot;]))
+            self.assertTrue(all(&quot;geometry_id&quot; in row for row in frame[&quot;long_clocks&quot;][&quot;active_edges&quot;]))
+            self.assertTrue(all(&quot;geometry_id&quot; in row for row in frame[&quot;long_clocks&quot;][&quot;seed_echoes&quot;]))
+            for segment in frame[&quot;hierarchy_segments&quot;]:
+                for rows in segment[&quot;contacts&quot;].values():
+                    self.assertTrue(all(&quot;geometry_id&quot; in row for row in rows))
+
+    def test_slow_continuity_never_becomes_daily_trigger(self):
+        for frame in self.payload[&quot;frames&quot;].values():
+            ids = set()
+            for segment in frame[&quot;hierarchy_segments&quot;]:
+                classification = segment[&quot;contact_classification&quot;]
+                for role in classification[&quot;roles&quot;].values():
+                    ids.update(role[&quot;background_contact_ids&quot;])
+                for role, rows in segment[&quot;contacts&quot;].items():
+                    for row in rows:
+                        if row[&quot;continuity&quot;]:
+                            self.assertIn(row[&quot;geometry_id&quot;], ids, role)
+
+    def test_same_body_slow_or_america_conjunction_never_enters_trigger_lane(self):
+        protected = {&quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;, &quot;America&quot;}
+        for frame in self.payload[&quot;frames&quot;].values():
+            for segment in frame[&quot;hierarchy_segments&quot;]:
+                trigger_ids = {
+                    identifier
+                    for role in segment[&quot;contact_classification&quot;][&quot;roles&quot;].values()
+                    for identifier in role[&quot;trigger_contact_ids&quot;]
+                }
+                for rows in segment[&quot;contacts&quot;].values():
+                    for row in rows:
+                        if (
+                            row[&quot;source&quot;] == row[&quot;target&quot;]
+                            and row[&quot;source&quot;] in protected
+                            and row[&quot;aspect_id&quot;] == &quot;conjunction&quot;
+                        ):
+                            self.assertTrue(row[&quot;continuity&quot;])
+                            self.assertNotIn(row[&quot;reference_id&quot;], trigger_ids)
+
+    def test_sun_asc_parent_mirrors_are_one_reference_family(self):
+        found = 0
+        for frame in self.payload[&quot;frames&quot;].values():
+            for segment in frame[&quot;hierarchy_segments&quot;]:
+                trigger_ids = [
+                    identifier
+                    for role in segment[&quot;contact_classification&quot;][&quot;roles&quot;].values()
+                    for identifier in role[&quot;trigger_contact_ids&quot;]
+                ]
+                mirrors = {}
+                for rows in segment[&quot;contacts&quot;].values():
+                    for row in rows:
+                        if row[&quot;structural_mirror&quot;]:
+                            mirrors.setdefault(row[&quot;mirror_family_id&quot;], []).append(row)
+                for family_id, rows in mirrors.items():
+                    found += 1
+                    self.assertEqual({row[&quot;source&quot;] for row in rows}, {&quot;Sun&quot;, &quot;ASC&quot;})
+                    self.assertEqual(sum(row[&quot;independent_occurrence&quot;] for row in rows), 1)
+                    self.assertTrue(all(row[&quot;reference_id&quot;] == family_id for row in rows))
+                    self.assertLessEqual(trigger_ids.count(family_id), 1)
+                    self.assertIn(family_id, self.payload[&quot;geometry_index&quot;])
+        self.assertGreater(found, 0)
+
+    def test_contact_reference_families_are_classified_once(self):
+        mirror_count = 0
+        for frame in self.payload[&quot;frames&quot;].values():
+            for segment in frame[&quot;hierarchy_segments&quot;]:
+                for role, rows in segment[&quot;contacts&quot;].items():
+                    lanes = segment[&quot;contact_classification&quot;][&quot;roles&quot;][role]
+                    trigger = set(lanes[&quot;trigger_contact_ids&quot;])
+                    background = set(lanes[&quot;background_contact_ids&quot;])
+                    self.assertTrue(trigger.isdisjoint(background), (frame[&quot;date&quot;], role))
+                    expected = {row[&quot;reference_id&quot;] for row in rows}
+                    self.assertEqual(trigger | background, expected, (frame[&quot;date&quot;], role))
+                    for family_id in {
+                        row[&quot;mirror_family_id&quot;] for row in rows if row[&quot;structural_mirror&quot;]
+                    }:
+                        mirror_count += 1
+                        self.assertEqual(int(family_id in trigger) + int(family_id in background), 1)
+        self.assertGreater(mirror_count, 0)
+
+    def test_sun_asc_seed_echo_mirrors_are_one_reference_family(self):
+        found = 0
+        for frame in self.payload[&quot;frames&quot;].values():
+            mirrors = {}
+            for row in frame[&quot;long_clocks&quot;][&quot;seed_echoes&quot;]:
+                if row[&quot;structural_mirror&quot;]:
+                    mirrors.setdefault(row[&quot;mirror_family_id&quot;], []).append(row)
+            for family_id, rows in mirrors.items():
+                found += 1
+                self.assertEqual({row[&quot;point&quot;] for row in rows}, {&quot;Sun&quot;, &quot;ASC&quot;})
+                self.assertEqual(sum(row[&quot;independent_occurrence&quot;] for row in rows), 1)
+                self.assertTrue(all(row[&quot;reference_id&quot;] == family_id for row in rows))
+                self.assertIn(family_id, self.payload[&quot;geometry_index&quot;])
+        self.assertGreater(found, 0)
+
+    def test_start_context_is_backward_compatible_segment_zero(self):
+        for frame in self.payload[&quot;frames&quot;].values():
+            first = frame[&quot;hierarchy_segments&quot;][0]
+            self.assertEqual(frame[&quot;hierarchy&quot;], first[&quot;hierarchy&quot;])
+            self.assertEqual(frame[&quot;contacts&quot;], first[&quot;contacts&quot;])
+
+    def test_frozen_prospective_baseline_is_preserved_as_history(self):
+        &quot;&quot;&quot;The Aug 15 prospective freeze is an immutable historical record.
+
+        2026-09-25 ephemeris correction (DR-080): the live engine moved from the
+        Moshier fallback to the vendored JPL DE441 Swiss files and the Long Clock
+        registry was reseated, so a fresh recomputation no longer reproduces the
+        frozen per-frame hashes byte-for-byte. The freeze is therefore checked for
+        its own integrity (file hash, cohort, dates) and for date coverage by the
+        corrected engine; it is never rewritten. The pre-correction engine that
+        reproduces it exactly is preserved in
+        _Holding/ephemeris-fix-2026-09-25/pre-fix-snapshot.tar.gz.
+        &quot;&quot;&quot;
+        import hashlib
+        frozen_path = VAULT / &quot;03 - Astrology&quot; / &quot;daybreak_prospective_baseline.json&quot;
+        self.assertEqual(
+            hashlib.sha256(frozen_path.read_bytes()).hexdigest(),
+            &quot;2893a4b3dd0a5dcbfdc46e156842ef517d152c229475d2bd244029291a4301d9&quot;,
+        )
+        frozen = json.loads(frozen_path.read_text(encoding=&quot;utf-8&quot;))
+        self.assertEqual(frozen[&quot;status&quot;], &quot;frozen&quot;)
+        self.assertEqual(len(frozen[&quot;frames&quot;]), 30)
+        current = engine.build_payload(
+            dt.date(2026, 8, 16), dt.date(2026, 9, 14),
+            vault_root=VAULT,
+            generated_at=dt.datetime(2026, 8, 15, 16, tzinfo=dt.timezone.utc),
+        )
+        self.assertEqual(sorted(current[&quot;frames&quot;]), sorted(frozen[&quot;frames&quot;]))
+
+
+class MaterializerReceiptTests(unittest.TestCase):
+    def _run(self, output: Path, *, explicit: str | None = None) -&gt; dt.datetime | None:
+        captured: dict[str, dt.datetime | None] = {}
+
+        def fake_build(start, end, **kwargs):
+            captured[&quot;generated_at&quot;] = kwargs.get(&quot;generated_at&quot;)
+            stamp = kwargs.get(&quot;generated_at&quot;) or dt.datetime(2026, 8, 15, 23, tzinfo=dt.timezone.utc)
+            return {
+                &quot;schema&quot;: frame_builder.SCHEMA,
+                &quot;generated_at&quot;: stamp.isoformat(),
+                &quot;coverage&quot;: {&quot;start&quot;: start.isoformat(), &quot;end&quot;: end.isoformat(), &quot;frame_count&quot;: 1},
+                &quot;frames&quot;: {},
+            }
+
+        argv = [&quot;build_daybreak_frames.py&quot;, &quot;--start&quot;, &quot;2026-01-01&quot;, &quot;--end&quot;, &quot;2026-01-01&quot;,
+                &quot;--output&quot;, str(output)]
+        if explicit:
+            argv.extend([&quot;--generated-at&quot;, explicit])
+        with mock.patch.object(sys, &quot;argv&quot;, argv), \
+                mock.patch.object(frame_builder.engine, &quot;build_payload&quot;, side_effect=fake_build), \
+                contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(frame_builder.main(), 0)
+        return captured[&quot;generated_at&quot;]
+
+    def test_default_rebuild_preserves_existing_reviewed_receipt(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / &quot;daybreak_frames.json&quot;
+            preserved = &quot;2026-08-16T00:00:00+00:00&quot;
+            frame_builder._write_atomic(output, {
+                &quot;schema&quot;: frame_builder.SCHEMA,
+                &quot;generated_at&quot;: preserved,
+                &quot;coverage&quot;: {&quot;start&quot;: &quot;2026-01-01&quot;, &quot;end&quot;: &quot;2026-01-01&quot;, &quot;frame_count&quot;: 1},
+                &quot;frames&quot;: {},
+            })
+            before = output.read_bytes()
+            self.assertIsNone(self._run(output))
+            self.assertEqual(output.read_bytes(), before)
+
+    def test_changed_fact_uses_new_candidate_receipt(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / &quot;daybreak_frames.json&quot;
+            frame_builder._write_atomic(output, {
+                &quot;schema&quot;: frame_builder.SCHEMA,
+                &quot;generated_at&quot;: &quot;2026-08-16T00:00:00+00:00&quot;,
+                &quot;coverage&quot;: {&quot;start&quot;: &quot;2026-01-01&quot;, &quot;end&quot;: &quot;2026-01-01&quot;, &quot;frame_count&quot;: 1},
+                &quot;frames&quot;: {&quot;changed&quot;: True},
+            })
+            self.assertIsNone(self._run(output))
+            rebuilt = json.loads(output.read_text(encoding=&quot;utf-8&quot;))
+            self.assertEqual(rebuilt[&quot;generated_at&quot;], &quot;2026-08-15T23:00:00+00:00&quot;)
+            self.assertEqual(rebuilt[&quot;frames&quot;], {})
+
+    def test_explicit_generated_at_overrides_existing_receipt(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / &quot;daybreak_frames.json&quot;
+            frame_builder._write_atomic(output, {
+                &quot;schema&quot;: frame_builder.SCHEMA,
+                &quot;generated_at&quot;: &quot;2026-08-16T00:00:00+00:00&quot;,
+                &quot;coverage&quot;: {&quot;start&quot;: &quot;2026-01-01&quot;, &quot;end&quot;: &quot;2026-01-01&quot;, &quot;frame_count&quot;: 1},
+                &quot;frames&quot;: {},
+            })
+            override = &quot;2026-08-17T12:30:00+00:00&quot;
+            self.assertEqual(self._run(output, explicit=override), dt.datetime.fromisoformat(override))
+            rebuilt = json.loads(output.read_text(encoding=&quot;utf-8&quot;))
+            self.assertEqual(rebuilt[&quot;generated_at&quot;], override)
+
+    def test_first_build_without_output_delegates_now_to_engine(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / &quot;daybreak_frames.json&quot;
+            self.assertIsNone(self._run(output))
+
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main(verbosity=2)
+</pre></main></body></html>

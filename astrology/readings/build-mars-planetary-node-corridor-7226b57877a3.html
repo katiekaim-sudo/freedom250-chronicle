@@ -1,0 +1,292 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-mars-planetary-node-corridor-7226b57877a3.html">
+<title>build_mars_planetary_node_corridor</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>build_mars_planetary_node_corridor</h1><p class="mut">Portable source: 99 - Templates/build_mars_planetary_node_corridor.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the controlled Mars-to-planetary-node corridor around the 2026 Aries Full Moon.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import json
+from collections import Counter
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import swisseph as swe
+
+
+HERE = Path(__file__).resolve().parent
+DEFAULT_OUT = HERE / &quot;mars_planetary_node_corridor.json&quot;
+import sys as _sys  # noqa: E402
+if str(HERE) not in _sys.path:
+    _sys.path.insert(0, str(HERE))
+from swiss_ephemeris import FLAGS, EPHEMERIS_LABEL  # noqa: E402  2026-09-25: Swiss/JPL files, never silent Moshier
+ET = ZoneInfo(&quot;America/New_York&quot;)
+UTC = dt.timezone.utc
+SIGNS = [
+    &quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;,
+    &quot;Libra&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;,
+]
+NODE_BODIES = {
+    &quot;Jupiter&quot;: swe.JUPITER,
+    &quot;Pluto&quot;: swe.PLUTO,
+    &quot;Saturn&quot;: swe.SATURN,
+    &quot;Neptune&quot;: swe.NEPTUNE,
+}
+
+
+def parse(value: str) -&gt; dt.datetime:
+    moment = dt.datetime.fromisoformat(value.replace(&quot;Z&quot;, &quot;+00:00&quot;))
+    if moment.tzinfo is None:
+        raise ValueError(&quot;moment must be timezone-aware&quot;)
+    return moment.astimezone(UTC)
+
+
+def jd(moment: dt.datetime) -&gt; float:
+    moment = moment.astimezone(UTC)
+    hour = (
+        moment.hour
+        + moment.minute / 60
+        + moment.second / 3600
+        + moment.microsecond / 3_600_000_000
+    )
+    return swe.julday(moment.year, moment.month, moment.day, hour)
+
+
+def moment_from_jd(value: float) -&gt; dt.datetime:
+    year, month, day, hour = swe.revjul(value, swe.GREG_CAL)
+    return dt.datetime(year, month, day, tzinfo=UTC) + dt.timedelta(hours=hour)
+
+
+def signed_delta(a: float, b: float) -&gt; float:
+    return ((a - b + 180.0) % 360.0) - 180.0
+
+
+def position(moment: dt.datetime, body: int) -&gt; float:
+    return swe.calc_ut(jd(moment), body, FLAGS)[0][0] % 360.0
+
+
+def ascending_node(moment: dt.datetime, body: int) -&gt; float:
+    return swe.nod_aps_ut(jd(moment), body, swe.NODBIT_OSCU)[0][0] % 360.0
+
+
+def mars_node_delta(moment: dt.datetime, body: int) -&gt; tuple[float, float, float]:
+    mars = position(moment, swe.MARS)
+    node = ascending_node(moment, body)
+    return signed_delta(mars, node), mars, node
+
+
+def degree_record(longitude: float) -&gt; dict[str, object]:
+    longitude %= 360.0
+    sign_index = int(longitude // 30)
+    degree = longitude % 30.0
+    total_seconds = round(degree * 3600.0)
+    d, rem = divmod(total_seconds, 3600)
+    minute, second = divmod(rem, 60)
+    return {
+        &quot;longitude_deg&quot;: round(longitude, 9),
+        &quot;sign&quot;: SIGNS[sign_index],
+        &quot;degree_in_sign&quot;: round(degree, 9),
+        &quot;dms&quot;: f&quot;{d}°{minute:02d}′{second:02d}″ {SIGNS[sign_index]}&quot;,
+    }
+
+
+def exact_crossings(
+    start: dt.datetime, end: dt.datetime, *, step: dt.timedelta = dt.timedelta(hours=1)
+) -&gt; list[dict[str, object]]:
+    crossings: list[dict[str, object]] = []
+    for node_body, planet_code in NODE_BODIES.items():
+        roots: list[dt.datetime] = []
+        previous_time = start
+        previous_delta = mars_node_delta(start, planet_code)[0]
+        cursor = start + step
+        while cursor &lt;= end:
+            delta = mars_node_delta(cursor, planet_code)[0]
+            if previous_delta * delta &lt; 0.0 and abs(previous_delta - delta) &lt; 10.0:
+                low, high = previous_time, cursor
+                low_delta = previous_delta
+                for _ in range(64):
+                    middle = low + (high - low) / 2
+                    middle_delta = mars_node_delta(middle, planet_code)[0]
+                    if low_delta * middle_delta &lt;= 0.0:
+                        high = middle
+                    else:
+                        low = middle
+                        low_delta = middle_delta
+                roots.append(low + (high - low) / 2)
+            previous_time = cursor
+            previous_delta = delta
+            cursor += step
+        if len(roots) != 1:
+            raise RuntimeError(f&quot;expected one Mars/{node_body} NN crossing, got {len(roots)}&quot;)
+        moment = roots[0]
+        residual, mars, node = mars_node_delta(moment, planet_code)
+        crossings.append(
+            {
+                &quot;node_body&quot;: node_body,
+                &quot;node_kind&quot;: &quot;ascending&quot;,
+                &quot;exact_utc&quot;: moment.isoformat(timespec=&quot;microseconds&quot;).replace(&quot;+00:00&quot;, &quot;Z&quot;),
+                &quot;exact_local&quot;: moment.astimezone(ET).isoformat(timespec=&quot;microseconds&quot;),
+                &quot;mars&quot;: degree_record(mars),
+                &quot;node&quot;: degree_record(node),
+                &quot;residual_arcsec&quot;: round(abs(residual) * 3600.0, 6),
+            }
+        )
+    crossings.sort(key=lambda row: row[&quot;exact_utc&quot;])
+    return crossings
+
+
+def chart_hit_control() -&gt; dict[str, object]:
+    index = json.loads((HERE / &quot;chart_reading_bones&quot; / &quot;index.json&quot;).read_text())
+    hits: list[dict[str, object]] = []
+    for chart in index[&quot;charts&quot;]:
+        path = HERE / &quot;chart_reading_bones&quot; / f&quot;{chart[&#x27;id&#x27;]}.json&quot;
+        bone = json.loads(path.read_text())
+        for hit in bone.get(&quot;node_hits&quot;, []):
+            hits.append({&quot;chart_id&quot;: chart[&quot;id&quot;], **hit})
+    flags = Counter(&quot;unflagged&quot; if hit.get(&quot;flag&quot;) is None else hit[&quot;flag&quot;] for hit in hits)
+    mars_hits = [hit for hit in hits if hit[&quot;planet&quot;] == &quot;Mars&quot;]
+    return {
+        &quot;registered_chart_count&quot;: len(index[&quot;charts&quot;]),
+        &quot;all_node_hit_count&quot;: len(hits),
+        &quot;flag_counts&quot;: dict(sorted(flags.items())),
+        &quot;mars_node_hit_count&quot;: len(mars_hits),
+        &quot;mars_node_hits&quot;: mars_hits,
+        &quot;control_boundary&quot;: (
+            &quot;The Full-Moon Mars/Saturn-node hit is one of five Mars-node snapshots &quot;
+            &quot;and one of thirty planetary-node hits in the registered thirty-chart corpus.&quot;
+        ),
+    }
+
+
+def interval_hours(a: dt.datetime, b: dt.datetime) -&gt; float:
+    return round((b - a).total_seconds() / 3600.0, 6)
+
+
+def build_payload() -&gt; dict[str, object]:
+    choreography = json.loads((HERE / &quot;aries_mars_pluto_choreography.json&quot;).read_text())
+    event_by_id = {event[&quot;event_id&quot;]: event for event in choreography[&quot;events&quot;]}
+    full_moon = parse(event_by_id[&quot;aries-full-moon&quot;][&quot;exact_utc&quot;])
+    mars_enters_leo = parse(event_by_id[&quot;mars-enters-leo&quot;][&quot;exact_utc&quot;])
+    opposition = parse(event_by_id[&quot;mars-opposite-pluto&quot;][&quot;exact_utc&quot;])
+    virgo_new = parse(json.loads((HERE / &quot;chart_reading_bones&quot; / &quot;lun-2026-09-11-ne.json&quot;).read_text())[&quot;utc&quot;])
+    taurus_full = parse(json.loads((HERE / &quot;chart_reading_bones&quot; / &quot;lun-2026-10-26-fu.json&quot;).read_text())[&quot;utc&quot;])
+
+    crossings = exact_crossings(
+        dt.datetime(2026, 9, 1, tzinfo=UTC),
+        dt.datetime(2026, 11, 15, tzinfo=UTC),
+    )
+    by_body = {row[&quot;node_body&quot;]: row for row in crossings}
+    crossing_times = {body: parse(row[&quot;exact_utc&quot;]) for body, row in by_body.items()}
+
+    full_delta, full_mars, full_saturn_node = mars_node_delta(full_moon, swe.SATURN)
+    opp_delta, opp_mars, opp_saturn_node = mars_node_delta(opposition, swe.SATURN)
+    cancer_nodes = [by_body[name][&quot;node&quot;][&quot;longitude_deg&quot;] for name in [&quot;Jupiter&quot;, &quot;Pluto&quot;, &quot;Saturn&quot;]]
+
+    return {
+        &quot;schema&quot;: &quot;freedom250.mars-planetary-node-corridor/v1&quot;,
+        &quot;status&quot;: &quot;generated_context_zero_evidence_or_forecast_credit&quot;,
+        &quot;title&quot;: &quot;Mars crosses the collective-node corridor — September to October 2026&quot;,
+        &quot;method&quot;: {
+            &quot;frame&quot;: &quot;geocentric tropical ecliptic longitude&quot;,
+            &quot;ephemeris&quot;: EPHEMERIS_LABEL,
+            &quot;planet_flags&quot;: &quot;FLG_SWIEPH | FLG_SPEED&quot;,
+            &quot;node_method&quot;: &quot;swe.nod_aps_ut with NODBIT_OSCU&quot;,
+            &quot;root_condition&quot;: &quot;Mars longitude equals the epoch-specific osculating ascending-node longitude&quot;,
+            &quot;scan_step_hours&quot;: 1,
+            &quot;root_refinement&quot;: &quot;64-step bisection&quot;,
+            &quot;chart_bone_orb_policy_deg&quot;: 2.5,
+        },
+        &quot;exact_crossings&quot;: crossings,
+        &quot;anchor_sequence&quot;: [
+            {&quot;event&quot;: &quot;Virgo New Moon&quot;, &quot;utc&quot;: virgo_new.isoformat(), &quot;role&quot;: &quot;governing lunar chapter opens&quot;},
+            {&quot;event&quot;: &quot;Mars conjunct Jupiter NN&quot;, &quot;utc&quot;: by_body[&quot;Jupiter&quot;][&quot;exact_utc&quot;]},
+            {&quot;event&quot;: &quot;Mars conjunct Pluto NN&quot;, &quot;utc&quot;: by_body[&quot;Pluto&quot;][&quot;exact_utc&quot;]},
+            {&quot;event&quot;: &quot;Aries Full Moon&quot;, &quot;utc&quot;: full_moon.isoformat(), &quot;role&quot;: &quot;eclipse-family Full phase&quot;},
+            {&quot;event&quot;: &quot;Mars conjunct Saturn NN&quot;, &quot;utc&quot;: by_body[&quot;Saturn&quot;][&quot;exact_utc&quot;]},
+            {&quot;event&quot;: &quot;Mars enters Leo&quot;, &quot;utc&quot;: mars_enters_leo.isoformat()},
+            {&quot;event&quot;: &quot;Mars opposite Pluto&quot;, &quot;utc&quot;: opposition.isoformat()},
+            {&quot;event&quot;: &quot;Mars conjunct Neptune NN&quot;, &quot;utc&quot;: by_body[&quot;Neptune&quot;][&quot;exact_utc&quot;]},
+            {&quot;event&quot;: &quot;Taurus Full Moon&quot;, &quot;utc&quot;: taurus_full.isoformat(), &quot;role&quot;: &quot;next registered Full Moon&quot;},
+        ],
+        &quot;intervals_hours&quot;: {
+            &quot;virgo_new_to_jupiter_node&quot;: interval_hours(virgo_new, crossing_times[&quot;Jupiter&quot;]),
+            &quot;jupiter_node_to_pluto_node&quot;: interval_hours(crossing_times[&quot;Jupiter&quot;], crossing_times[&quot;Pluto&quot;]),
+            &quot;pluto_node_to_full_moon&quot;: interval_hours(crossing_times[&quot;Pluto&quot;], full_moon),
+            &quot;full_moon_to_saturn_node&quot;: interval_hours(full_moon, crossing_times[&quot;Saturn&quot;]),
+            &quot;saturn_node_to_mars_enters_leo&quot;: interval_hours(crossing_times[&quot;Saturn&quot;], mars_enters_leo),
+            &quot;saturn_node_to_opposition&quot;: interval_hours(crossing_times[&quot;Saturn&quot;], opposition),
+            &quot;opposition_to_neptune_node&quot;: interval_hours(opposition, crossing_times[&quot;Neptune&quot;]),
+            &quot;neptune_node_to_taurus_full_moon&quot;: interval_hours(crossing_times[&quot;Neptune&quot;], taurus_full),
+            &quot;entire_jupiter_to_neptune_corridor&quot;: interval_hours(crossing_times[&quot;Jupiter&quot;], crossing_times[&quot;Neptune&quot;]),
+        },
+        &quot;full_moon_saturn_node_snapshot&quot;: {
+            &quot;mars&quot;: degree_record(full_mars),
+            &quot;saturn_ascending_node&quot;: degree_record(full_saturn_node),
+            &quot;orb_deg&quot;: round(abs(full_delta), 6),
+            &quot;inside_chart_bone_orb&quot;: abs(full_delta) &lt;= 2.5,
+        },
+        &quot;opposition_saturn_node_snapshot&quot;: {
+            &quot;mars&quot;: degree_record(opp_mars),
+            &quot;saturn_ascending_node&quot;: degree_record(opp_saturn_node),
+            &quot;orb_deg&quot;: round(abs(opp_delta), 6),
+            &quot;inside_chart_bone_orb&quot;: abs(opp_delta) &lt;= 2.5,
+        },
+        &quot;clustering_control&quot;: {
+            &quot;jupiter_pluto_saturn_nodes_all_in_cancer&quot;: True,
+            &quot;cancer_node_span_deg&quot;: round(max(cancer_nodes) - min(cancer_nodes), 6),
+            &quot;neptune_node_sign&quot;: by_body[&quot;Neptune&quot;][&quot;node&quot;][&quot;sign&quot;],
+            &quot;deduplication_rule&quot;: (
+                &quot;Jupiter, Pluto and Saturn ascending nodes share one Cancer corridor. &quot;
+                &quot;Mars traversing Cancer therefore creates one ordered corridor, not three independent votes.&quot;
+            ),
+        },
+        &quot;registered_chart_control&quot;: chart_hit_control(),
+        &quot;interpretive_boundaries&quot;: [
+            &quot;A planetary node is an epoch-specific orbital intersection coordinate, not a material body.&quot;,
+            &quot;Longitude equality does not mean Mars physically meets the node body or crosses that body&#x27;s orbital plane.&quot;,
+            &quot;The inherited escalation/resolution flag is a Jones hypothesis, not an admitted event prediction.&quot;,
+            &quot;The Chronicle backtest found the Saturn/Pluto-node escalation rule null; the Neptune-node de-escalation result was suggestive but small-n and unratified.&quot;,
+            &quot;The corridor supplies one contextual continuity lane and no evidence, convergence, causation or Forecast Ledger credit.&quot;,
+        ],
+        &quot;source_files&quot;: [
+            &quot;99 - Templates/aries_mars_pluto_choreography.json&quot;,
+            &quot;99 - Templates/chart_reading_bones/index.json&quot;,
+            &quot;99 - Templates/chart_reading_bones/*.json&quot;,
+            &quot;99 - Templates/backtest-2026-06-18/node_test.py&quot;,
+            &quot;00 - Index/Astrology Backtest — 2026-06-18.md&quot;,
+            &quot;_Claude-Context/memory/planetary_nodes_knowledge.md&quot;,
+        ],
+    }
+
+
+def main() -&gt; int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--out&quot;, type=Path, default=DEFAULT_OUT)
+    parser.add_argument(&quot;--check&quot;, action=&quot;store_true&quot;)
+    args = parser.parse_args()
+    payload = build_payload()
+    if args.check:
+        if not args.out.exists():
+            raise SystemExit(f&quot;missing generated artifact: {args.out}&quot;)
+        stored = json.loads(args.out.read_text())
+        if stored != payload:
+            raise SystemExit(&quot;MARS PLANETARY NODE CORRIDOR CHECK: STALE&quot;)
+        print(&quot;MARS PLANETARY NODE CORRIDOR CHECK: CLEAN&quot;)
+        return 0
+    args.out.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + &quot;\n&quot;)
+    print(f&quot;Wrote {args.out}&quot;)
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    raise SystemExit(main())
+</pre></main></body></html>

@@ -17,12 +17,19 @@ a{color:inherit;text-decoration:none}
 .feat h2{font-size:26px;line-height:1.15;margin:8px 0 6px;font-weight:800;letter-spacing:-.02em}
 .feat p{margin:0;color:var(--mut);font-size:15px}
 .feat .d{margin-top:12px;font-size:12px;color:var(--mut);font-weight:600}
-.intel{display:block;position:relative;overflow:hidden;background:linear-gradient(135deg,#0c1728,#152542);
-color:#eef6ff;border:1px solid #294464;border-radius:16px;padding:22px 24px;margin:0 0 28px}
+.doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0 0 22px}
+.intel,.astro{display:block;position:relative;overflow:hidden;border-radius:16px;padding:22px 24px;min-height:188px}
+.intel{background:linear-gradient(135deg,#0c1728,#152542);color:#eef6ff;border:1px solid #294464}
 .intel:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-76px;bottom:-112px;
 background:#56d4d8;opacity:.18}.intel .k{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#56d4d8}
 .intel h2{font-size:25px;line-height:1.15;margin:8px 0 6px;letter-spacing:-.02em}.intel p{margin:0;color:#b9c9dc;font-size:14px;max-width:620px}
 .intel .d{margin-top:12px;color:#dffcff;font-size:12px;font-weight:800}
+.astro{background:linear-gradient(135deg,#21132e,#3a1c51);color:#fff6ff;border:1px solid #70468a}
+.astro:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-76px;bottom:-112px;background:#e2a8ff;opacity:.16}
+.astro .k{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e2a8ff}
+.astro h2{font-size:25px;line-height:1.15;margin:8px 0 6px;letter-spacing:-.02em}.astro p{margin:0;color:#ddc9e8;font-size:14px;max-width:620px}
+.astro .d{margin-top:12px;color:#fae8ff;font-size:12px;font-weight:800}
+@media(max-width:650px){.doors{grid-template-columns:1fr}.intel,.astro{min-height:0}}
 .bot{display:block;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ac);border-radius:14px;padding:18px 22px;margin:0 0 28px}.bot .k{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ac)}.bot h2{font-size:21px;line-height:1.2;margin:6px 0}.bot p{margin:0;color:var(--mut);font-size:14px}
 .sec{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);border-bottom:2px solid var(--line);padding-bottom:8px;margin:34px 0 6px}
 .row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--line);padding:14px 2px}
@@ -42,10 +49,16 @@ footer{margin-top:44px;font-size:12px;color:var(--mut);text-align:center}
 <div class="bar"></div>
 <h1>The Freedom&nbsp;250 Chronicle</h1>
 <div class="tag">A nightly paper of what caught my eye · 53 editions</div>
+<div class="doors">
 <a class="intel" href="intelligence/">
-<div class="k">The other wing</div><h2>Enter the Intelligence Rooms</h2>
-<p>Explore the overarching thesis, crypto infrastructure, money and records, institutional change, and selected research projects—without the astrology wing.</p>
+<div class="k">Research · separate wing</div><h2>Enter the Intelligence Center</h2>
+<p>Explore the overarching thesis, government, institutions, money and records, and the governed Research Library.</p>
 <div class="d">Open the research Observatory →</div></a>
+<a class="astro" href="astrology/for-katies-bot.html">
+<div class="k">Sky &amp; Charts · separate wing</div><h2>Enter the Astrology Room</h2>
+<p>Open the machine-first mundane astrology method, chart readings, workbook atoms, and complete astrology stack.</p>
+<div class="d">Open For Katie's Bot — Astrology →</div></a>
+</div>
 <a class="bot" href="intelligence/for-katies-bot.html"><div class="k">A note for the robots</div><h2>For Katie's Bot</h2><p>Start here to search every research package and one-off material without loading the whole library at once.</p></a>
 <a class="feat" href="editions/2026-09-29.html">
 <div class="k">Latest · 2026-09-29</div>

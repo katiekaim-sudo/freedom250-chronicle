@@ -14,9 +14,10 @@ table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{bord
 <ol>
 <li>Open <code>https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/method.json</code>.</li>
 <li>Read the method documents in its <code>required_reading_order</code> before interpreting.</li>
-<li>Use <code>https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/agent-index.json</code> to select relevant materials.</li>
-<li>Open each selected material&#x27;s <code>reading_url</code>; use <code>text_url</code> when exact source wording or data is needed.</li>
-<li>Use the complete extracted method workbook at <code>https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/workbook.json</code> for atomic lookups.</li>
+<li>Open <code>https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/indexes/index.json</code>, choose the relevant classification and authority state, then load only that scoped index. Use the exhaustive <code>agent-index.json</code> only when a scoped segment cannot answer the routing question.</li>
+<li>If titles repeat, prefer <code>current</code> or <code>active</code> for live interpretation. Use <code>baseline</code>, <code>archive</code>, <code>draft</code>, or <code>generated_snapshot</code> only when the task calls for that state; confirm both <code>status</code> and <code>source_ref</code>.</li>
+<li>Open each selected material&#x27;s <code>reading_url</code>; use its <code>text_url</code> when exact source wording or data is needed.</li>
+<li>Use the complete extracted method workbook at <code>https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/workbook.json</code> for atomic lookups. It is large, so retrieve only the relevant sheet or cells when the client supports partial reading.</li>
 </ol>
 <h2>Working contract</h2>
 <ul>
@@ -31,4 +32,4 @@ table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{bord
 </ul>
 <h2>Scope boundary</h2>
 <p>Included: Freedom 250 mundane methods, workbook atoms, chart materials, readings, Astrology Files packages and technical runtime/data. Excluded: Sentient Sun/private natal or client work, Katie&#x27;s personal sky page, Q, government Research, and raw architecture archives.</p>
-<p>Material count: 850. Catalog packages: 33. Workbook sheets: 25.</p><h2>Fast routes</h2><div class="grid"><a class="card" href="api/v1/method.json">Method contract</a><a class="card" href="api/v1/workbook.json">Complete workbook JSON</a><a class="card" href="api/v1/agent-index.json">Compact agent index</a><a class="card" href="api/v1/materials.json">All materials JSON</a><a class="card" href="bot-index.html">Static material index</a></div></main></body></html>
+<p>Material count: 850. Catalog packages: 33. Workbook sheets: 25.</p><h2>Fast routes</h2><div class="grid"><a class="card" href="api/v1/method.json">Method contract</a><a class="card" href="api/v1/indexes/index.json">Scoped index directory</a><a class="card" href="api/v1/workbook.json">Complete workbook JSON</a><a class="card" href="api/v1/agent-index.json">Exhaustive agent index</a><a class="card" href="api/v1/materials.json">All materials JSON</a><a class="card" href="bot-index.html">Static material index</a></div></main></body></html>

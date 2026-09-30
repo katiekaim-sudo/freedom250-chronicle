@@ -6,9 +6,10 @@ This is Katie's direct-link, read-only mobile copy of the **Freedom 250 mundane 
 
 1. Open `https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/method.json`.
 2. Read the method documents in its `required_reading_order` before interpreting.
-3. Use `https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/agent-index.json` to select relevant materials.
-4. Open each selected material's `reading_url`; use `text_url` when exact source wording or data is needed.
-5. Use the complete extracted method workbook at `https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/workbook.json` for atomic lookups.
+3. Open `https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/indexes/index.json`, choose the relevant classification and authority state, then load only that scoped index. Use the exhaustive `agent-index.json` only when a scoped segment cannot answer the routing question.
+4. If titles repeat, prefer `current` or `active` for live interpretation. Use `baseline`, `archive`, `draft`, or `generated_snapshot` only when the task calls for that state; confirm both `status` and `source_ref`.
+5. Open each selected material's `reading_url`; use its `text_url` when exact source wording or data is needed.
+6. Use the complete extracted method workbook at `https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/api/v1/workbook.json` for atomic lookups. It is large, so retrieve only the relevant sheet or cells when the client supports partial reading.
 
 ## Working contract
 

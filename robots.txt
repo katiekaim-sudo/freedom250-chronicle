@@ -1,60 +1,16 @@
 # Selective AI retrieval policy for the Freedom 250 project site.
-# The bot layer and named public acceptance routes are readable by user-triggered
-# and generic retrieval clients. The Chronicle archive remains unlisted.
+# User-facing and generic retrieval bots may read the complete public site.
+# noindex metadata and the sitemap, rather than robots denial, control listing.
 User-agent: ChatGPT-User
 Allow: /
 
 User-agent: OAI-SearchBot
-Allow: /freedom250-chronicle/FOR-KATIES-BOT.html
-Allow: /freedom250-chronicle/FOR-KATIES-BOT.md
-Allow: /freedom250-chronicle/llms.txt
-Allow: /freedom250-chronicle/intelligence/$
-Allow: /freedom250-chronicle/intelligence/ai-guide.html
-Allow: /freedom250-chronicle/intelligence/library/economic-institution-legitimacy-crisis.html
-Allow: /freedom250-chronicle/intelligence/for-katies-bot.html
-Allow: /freedom250-chronicle/intelligence/bot-instructions.html
-Allow: /freedom250-chronicle/intelligence/bot-index.html
-Allow: /freedom250-chronicle/intelligence/package-inventory.html
-Allow: /freedom250-chronicle/intelligence/FOR-KATIES-BOT.md
-Allow: /freedom250-chronicle/intelligence/llms.txt
-Allow: /freedom250-chronicle/intelligence/agent-index.json
-Allow: /freedom250-chronicle/intelligence/materials-index.jsonl
-Allow: /freedom250-chronicle/intelligence/RESEARCH-GRAMMAR.md
-Allow: /freedom250-chronicle/intelligence/CONNECTED-RESEARCH.md
-Allow: /freedom250-chronicle/intelligence/connected-index.json
-Allow: /freedom250-chronicle/intelligence/packages/
-Allow: /freedom250-chronicle/intelligence/api/
-Allow: /freedom250-chronicle/intelligence/readings/
-Allow: /freedom250-chronicle/intelligence/reports/
-Allow: /freedom250-chronicle/intelligence/sources/
-Disallow: /
+Allow: /
 
 User-agent: GPTBot
 Disallow: /
 
 User-agent: *
-Allow: /freedom250-chronicle/FOR-KATIES-BOT.html
-Allow: /freedom250-chronicle/FOR-KATIES-BOT.md
-Allow: /freedom250-chronicle/llms.txt
-Allow: /freedom250-chronicle/intelligence/$
-Allow: /freedom250-chronicle/intelligence/ai-guide.html
-Allow: /freedom250-chronicle/intelligence/library/economic-institution-legitimacy-crisis.html
-Allow: /freedom250-chronicle/intelligence/for-katies-bot.html
-Allow: /freedom250-chronicle/intelligence/bot-instructions.html
-Allow: /freedom250-chronicle/intelligence/bot-index.html
-Allow: /freedom250-chronicle/intelligence/package-inventory.html
-Allow: /freedom250-chronicle/intelligence/FOR-KATIES-BOT.md
-Allow: /freedom250-chronicle/intelligence/llms.txt
-Allow: /freedom250-chronicle/intelligence/agent-index.json
-Allow: /freedom250-chronicle/intelligence/materials-index.jsonl
-Allow: /freedom250-chronicle/intelligence/RESEARCH-GRAMMAR.md
-Allow: /freedom250-chronicle/intelligence/CONNECTED-RESEARCH.md
-Allow: /freedom250-chronicle/intelligence/connected-index.json
-Allow: /freedom250-chronicle/intelligence/packages/
-Allow: /freedom250-chronicle/intelligence/api/
-Allow: /freedom250-chronicle/intelligence/readings/
-Allow: /freedom250-chronicle/intelligence/reports/
-Allow: /freedom250-chronicle/intelligence/sources/
-Disallow: /
+Allow: /
 
 Sitemap: https://katiekaim-sudo.github.io/freedom250-chronicle/sitemap.xml

@@ -253,7 +253,7 @@ def build_payload() -> dict[str, object]:
             "99 - Templates/chart_reading_bones/*.json",
             "99 - Templates/backtest-2026-06-18/node_test.py",
             "00 - Index/Astrology Backtest — 2026-06-18.md",
-            "_Claude-Context/memory/planetary_nodes_knowledge.md",
+            "_Holding/Claude memory mirror — retired 2026-10-02/memory/planetary_nodes_knowledge.md",
         ],
     }
 

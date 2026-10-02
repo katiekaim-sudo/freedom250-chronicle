@@ -10,28 +10,28 @@
       "id": "governed_packages",
       "label": "Research packages",
       "owner": "Research Catalog",
-      "count": 147,
+      "count": 142,
       "meaning": "Stable research identities with question, finding, evidence cutoff and relationships."
     },
     {
       "id": "package_material_memberships",
       "label": "Package material memberships",
       "owner": "Research Registry plus Catalog routes",
-      "count": 4025,
+      "count": 4020,
       "meaning": "Material-to-package memberships; one material may belong to several packages."
     },
     {
       "id": "distinct_materials",
       "label": "Distinct computer-side materials",
       "owner": "Research Workbench or Chronicle",
-      "count": 3268,
+      "count": 3263,
       "meaning": "Deduplicated safe inventory records with file state, role, custody layer and modification time."
     },
     {
       "id": "public_readings",
       "label": "Public readings",
       "owner": "Generated share projection",
-      "count": 319,
+      "count": 314,
       "meaning": "Materials with an original public view and a guaranteed crawler-friendly static HTML reading_url."
     },
     {
@@ -49,12 +49,12 @@
       "meaning": "Known materials whose names, roles and states may route research, while contents remain private."
     },
     {
-      "id": "connected_context",
-      "label": "Connected research context",
-      "owner": "Research Catalog research_hub",
-      "count": 14,
-      "unit": "stories",
-      "meaning": "Cross-package story and family structure for questions that span packages."
+      "id": "research_rooms",
+      "label": "Research Rooms",
+      "owner": "Workbench RESEARCH ROOMS.json",
+      "count": 10,
+      "unit": "rooms",
+      "meaning": "The one organization of the Research Library: each study has one home room and may also appear in one or two others."
     },
     {
       "id": "shared_brain_api",
@@ -93,13 +93,11 @@
         "private_library_metadata": 7
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Public money, benefits and eligibility"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar"
         ]
       },
       "routes": {
@@ -126,12 +124,12 @@
         "private_library_metadata": 176
       },
       "classification": {
-        "section": "money",
-        "subsection": "Public money & the Fed",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "routes": {
         "summary": "library/fed-clearing-treasury.html",
@@ -157,12 +155,12 @@
         "private_library_metadata": 37
       },
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "routes": {
         "summary": "library/congressional-monetary-infrastructure.html",
@@ -188,14 +186,10 @@
         "private_library_metadata": 244
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": [
-          "Accounting & public records"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/private-monetary-stack.html",
@@ -221,14 +215,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Public money & the Fed"
-        ]
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/bank-credit-union-legal-architecture.html",
@@ -254,10 +244,12 @@
         "private_library_metadata": 20
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
       },
       "routes": {
         "summary": "library/payment-transparency-hidden-constitution.html",
@@ -283,12 +275,13 @@
         "private_library_metadata": 21
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Foreign Relations & World Money"
+        ]
       },
       "routes": {
         "summary": "library/swift-shared-ledger.html",
@@ -314,13 +307,10 @@
         "private_library_metadata": 12
       },
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/sec-transfer-agent-modernization.html",
@@ -346,15 +336,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/cftc-passive-software-no-action-2026-09-17.html",
@@ -380,14 +365,11 @@
         "private_library_metadata": 0
       },
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
         ]
       },
       "routes": {
@@ -414,15 +396,10 @@
         "private_library_metadata": 21
       },
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/sec-tokenized-nms-stock-innovation-exemption.html",
@@ -448,14 +425,10 @@
         "private_library_metadata": 34
       },
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/sec-investor-advisory-committee.html",
@@ -481,13 +454,10 @@
         "private_library_metadata": 29
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/crypto-infrastructure-comparatives.html",
@@ -513,13 +483,10 @@
         "private_library_metadata": 57
       },
       "classification": {
-        "section": "money",
-        "subsection": "Gold & reserves",
-        "secondary_sections": [
-          "states",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/wholesale-metals.html",
@@ -545,12 +512,10 @@
         "private_library_metadata": 33
       },
       "classification": {
-        "section": "world",
-        "subsection": "Monetary systems & currencies",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/gold-bop-currency-adjustment.html",
@@ -576,13 +541,13 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "money",
-        "subsection": "Public money & the Fed",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Crypto & Digital Money",
+          "Foreign Relations & World Money"
+        ]
       },
       "routes": {
         "summary": "library/overall-monetary-play.html",
@@ -608,13 +573,12 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
       },
       "routes": {
         "summary": "library/authority-through-the-adapter.html",
@@ -640,13 +604,10 @@
         "private_library_metadata": 46
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/overall-dlt-transition.html",
@@ -672,13 +633,10 @@
         "private_library_metadata": 33
       },
       "classification": {
-        "section": "money",
-        "subsection": "Accounting & public records",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/transaction-native-accounting.html",
@@ -704,12 +662,12 @@
         "private_library_metadata": 6
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
       },
       "routes": {
         "summary": "library/treasury-irs.html",
@@ -735,13 +693,10 @@
         "private_library_metadata": 3
       },
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/peoples-money.html",
@@ -767,10 +722,10 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/retail-debt.html",
@@ -796,13 +751,12 @@
         "private_library_metadata": 44
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "money",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ]
       },
       "routes": {
         "summary": "library/fraud-payment-integrity.html",
@@ -828,14 +782,12 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ]
       },
       "routes": {
         "summary": "library/treasury-do-not-pay-governmentwide-map.html",
@@ -861,13 +813,10 @@
         "private_library_metadata": 4
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "technology",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/emerging-fraud-identity-payment-gate.html",
@@ -893,13 +842,12 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "states",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ]
       },
       "routes": {
         "summary": "library/obbb-fraud-error-rate-legal-map.html",
@@ -925,13 +873,10 @@
         "private_library_metadata": 8
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "states",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/pa-ccdbg-state-edge-pilot.html",
@@ -957,12 +902,10 @@
         "private_library_metadata": 4
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/hawaii-public-corruption-source-ledger.html",
@@ -988,12 +931,10 @@
         "private_library_metadata": 2
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/southeast-fraud-enforcement-partnerships.html",
@@ -1019,12 +960,10 @@
         "private_library_metadata": 19
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/government-wide-audit-july-2026.html",
@@ -1050,14 +989,10 @@
         "private_library_metadata": 91
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/government-wide-recertification-august-2026.html",
@@ -1083,10 +1018,12 @@
         "private_library_metadata": 23
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "routes": {
         "summary": "library/house-oversight-corpus.html",
@@ -1112,12 +1049,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/congressional-hearing-source-library.html",
@@ -1143,10 +1078,10 @@
         "private_library_metadata": 2
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/epstein-interview-statement-accountability.html",
@@ -1172,13 +1107,10 @@
         "private_library_metadata": 6
       },
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/judicial-money.html",
@@ -1204,14 +1136,10 @@
         "private_library_metadata": 53
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/covid-authority-disclosures.html",
@@ -1237,14 +1165,10 @@
         "private_library_metadata": 14
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/covid-2020-authority-spine.html",
@@ -1270,14 +1194,10 @@
         "private_library_metadata": 8
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Public services and legal limits"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/odni-covid-biolab-disclosures-2026-06.html",
@@ -1303,12 +1223,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/hhs-high-risk-life-sciences-policy-2026-07-28.html",
@@ -1334,14 +1252,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Public services and legal limits"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/white-house-covid-gov-reactivation-2026-07-29.html",
@@ -1367,14 +1281,10 @@
         "private_library_metadata": 29
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Public services and legal limits"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/rand-paul-covid-origins-reading-room-2026-07-29.html",
@@ -1400,12 +1310,12 @@
         "private_library_metadata": 0
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [
+          "Foreign Relations & World Money"
+        ]
       },
       "routes": {
         "summary": "library/us-who-membership-exit-legal-map.html",
@@ -1431,12 +1341,10 @@
         "private_library_metadata": 64
       },
       "classification": {
-        "section": "world",
-        "subsection": "Monetary systems & currencies",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/currency-watch.html",
@@ -1462,13 +1370,12 @@
         "private_library_metadata": 227
       },
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Monetary systems & currencies"
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Crypto & Digital Money",
+          "Banking & the Dollar"
         ]
       },
       "routes": {
@@ -1495,12 +1402,10 @@
         "private_library_metadata": 10
       },
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/cuba-pressure-counter-influence.html",
@@ -1526,12 +1431,10 @@
         "private_library_metadata": 2
       },
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/iraq-oil-logistics.html",
@@ -1557,13 +1460,13 @@
         "private_library_metadata": 35
       },
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Foreign Relations & World Money",
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "routes": {
         "summary": "library/global-oil-gas-movements.html",
@@ -1589,13 +1492,12 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
+        ]
       },
       "routes": {
         "summary": "library/emergency-monetary-policy.html",
@@ -1621,15 +1523,10 @@
         "private_library_metadata": 6
       },
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "money",
-          "government"
-        ],
-        "additional_subsections": [
-          "Monetary systems & currencies"
-        ]
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/international-emergency-monetary-policy.html",
@@ -1655,14 +1552,10 @@
         "private_library_metadata": 38
       },
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [
-          "technology",
-          "states",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/insurance-reinsurance.html",
@@ -1688,13 +1581,13 @@
         "private_library_metadata": 10
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects",
+          "Foreign Relations & World Money"
+        ]
       },
       "routes": {
         "summary": "library/permanent-magnets.html",
@@ -1720,12 +1613,12 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "routes": {
         "summary": "library/carbon-nanotubes-battery-sovereignty.html",
@@ -1751,13 +1644,10 @@
         "private_library_metadata": 15
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-science-operating-system.html",
@@ -1783,15 +1673,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Power and industrial operations",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": [
-          "Science strategy and emerging capabilities"
-        ]
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-fusion-commercialization.html",
@@ -1817,14 +1702,12 @@
         "private_library_metadata": 51
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
+        ]
       },
       "routes": {
         "summary": "library/nssts-technology-company-map.html",
@@ -1850,14 +1733,10 @@
         "private_library_metadata": 21
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/nssts-program-acceptance-economy.html",
@@ -1883,13 +1762,11 @@
         "private_library_metadata": 3
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Compute, communications and sites"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
         ]
       },
       "routes": {
@@ -1916,13 +1793,10 @@
         "private_library_metadata": 14
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/scientific-trust-stack.html",
@@ -1948,14 +1822,11 @@
         "private_library_metadata": 4
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Compute, communications and sites",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": [
-          "Science strategy and emerging capabilities"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Government Changes"
         ]
       },
       "routes": {
@@ -1982,15 +1853,10 @@
         "private_library_metadata": 6
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "government"
-        ],
-        "additional_subsections": [
-          "Rules, ownership & access"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/genius-stablecoin-trust-crosswalk.html",
@@ -2016,12 +1882,10 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "government",
-        "subsection": "AI in government and the public record",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/nara-ai-records-compute-transition.html",
@@ -2047,12 +1911,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "AI in government and the public record",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/sec-credit-rating-recordkeeping-orders-2024-2026.html",
@@ -2078,13 +1940,12 @@
         "private_library_metadata": 15
       },
       "classification": {
-        "section": "government",
-        "subsection": "AI in government and the public record",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "routes": {
         "summary": "library/federal-agency-ai-plans-infrastructure.html",
@@ -2110,13 +1971,12 @@
         "private_library_metadata": 9
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Compute, communications and sites",
-        "secondary_sections": [
-          "government",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "routes": {
         "summary": "library/sovereign-compute.html",
@@ -2142,13 +2002,10 @@
         "private_library_metadata": 7
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Compute, communications and sites",
-        "secondary_sections": [
-          "government",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/sovereign-communications.html",
@@ -2174,13 +2031,12 @@
         "private_library_metadata": 13
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Defense and logistics",
-        "secondary_sections": [
-          "government",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "routes": {
         "summary": "library/military-modernization.html",
@@ -2206,12 +2062,12 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "routes": {
         "summary": "library/office-of-religious-affairs.html",
@@ -2237,14 +2093,10 @@
         "private_library_metadata": 9
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Defense and logistics",
-        "secondary_sections": [
-          "government",
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/contested-logistics.html",
@@ -2270,13 +2122,12 @@
         "private_library_metadata": 11
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Defense and logistics",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "routes": {
         "summary": "library/fortress-america-installation-energy-independence.html",
@@ -2302,13 +2153,10 @@
         "private_library_metadata": 12
       },
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/iran-financial-pressure.html",
@@ -2334,15 +2182,10 @@
         "private_library_metadata": 23
       },
       "classification": {
-        "section": "government",
-        "subsection": "Citizenship, elections and representation",
-        "secondary_sections": [
-          "technology",
-          "states"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/election-integrity-release.html",
@@ -2368,12 +2211,10 @@
         "private_library_metadata": 2
       },
       "classification": {
-        "section": "government",
-        "subsection": "Citizenship, elections and representation",
-        "secondary_sections": [
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/trump-2028-constitutional-election-ledger.html",
@@ -2399,10 +2240,12 @@
         "private_library_metadata": 3
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Released Records & Investigations"
+        ]
       },
       "routes": {
         "summary": "library/white-house-ballroom-lawfare-2025-2026.html",
@@ -2428,12 +2271,10 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Power and industrial operations",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/ai-turbine-asset-management-power-buildout.html",
@@ -2459,13 +2300,12 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "government",
-        "subsection": "Citizenship, elections and representation",
-        "secondary_sections": [
-          "technology",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "routes": {
         "summary": "library/census-usps-citizenship-apportionment.html",
@@ -2491,12 +2331,10 @@
         "private_library_metadata": 300
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/congressional-committee-control-plane.html",
@@ -2522,13 +2360,12 @@
         "private_library_metadata": 7
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Compute, communications and sites",
-        "secondary_sections": [
-          "government",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "routes": {
         "summary": "library/data-center-federal-legal-spine.html",
@@ -2554,13 +2391,13 @@
         "private_library_metadata": 7
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Power and industrial operations",
-        "secondary_sections": [
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Sanctions, Oil & the Military",
+          "Crypto & Digital Money"
+        ]
       },
       "routes": {
         "summary": "library/energy-atomic-settlement-iran.html",
@@ -2586,12 +2423,12 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ]
       },
       "routes": {
         "summary": "library/institutional-regime-waves.html",
@@ -2617,12 +2454,12 @@
         "private_library_metadata": 13
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Foreign Relations & World Money"
+        ]
       },
       "routes": {
         "summary": "library/us-inbound-investment-industrial-capex.html",
@@ -2648,12 +2485,12 @@
         "private_library_metadata": 6
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "routes": {
         "summary": "library/ai-infrastructure-capital-stack-risk-transfer.html",
@@ -2679,12 +2516,12 @@
         "private_library_metadata": 4
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Crypto & Digital Money"
+        ]
       },
       "routes": {
         "summary": "library/industrial-project-finance-digital-rails.html",
@@ -2710,10 +2547,10 @@
         "private_library_metadata": 62
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-strategic-plans.html",
@@ -2739,14 +2576,10 @@
         "private_library_metadata": 36
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/white-house-research-hub.html",
@@ -2772,10 +2605,10 @@
         "private_library_metadata": 50
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-entity-library-harvest-2026-08-22.html",
@@ -2801,10 +2634,10 @@
         "private_library_metadata": 48
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-full-freshness-sweep-2026-08-22.html",
@@ -2830,10 +2663,10 @@
         "private_library_metadata": 10
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-sweep-control-audit-2026-08-29.html",
@@ -2859,14 +2692,10 @@
         "private_library_metadata": 23
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-website-sweep-2026-07-25.html",
@@ -2892,13 +2721,10 @@
         "private_library_metadata": 11
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-08-08.html",
@@ -2924,13 +2750,10 @@
         "private_library_metadata": 11
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-08-13.html",
@@ -2956,13 +2779,10 @@
         "private_library_metadata": 13
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-08-20.html",
@@ -2988,13 +2808,10 @@
         "private_library_metadata": 9
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-08-21.html",
@@ -3020,10 +2837,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/disclosure-architecture.html",
@@ -3049,13 +2866,12 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "routes": {
         "summary": "library/trump-davos-address-2026-01-21.html",
@@ -3081,13 +2897,10 @@
         "private_library_metadata": 2
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/white-house-cabinet-meeting-2026-07-31.html",
@@ -3113,13 +2926,10 @@
         "private_library_metadata": 11
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/education-university-funding.html",
@@ -3145,13 +2955,12 @@
         "private_library_metadata": 4
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": [
+          "Crypto & Digital Money"
+        ]
       },
       "routes": {
         "summary": "library/university-funding-programmable-compliance.html",
@@ -3177,12 +2986,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/education-full-surface-sweep-2026-08-04.html",
@@ -3208,13 +3015,13 @@
         "private_library_metadata": 8
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "technology",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": [
+          "Innovation",
+          "Sanctions, Oil & the Military"
+        ]
       },
       "routes": {
         "summary": "library/dow-research-security-audits-2026-08-17.html",
@@ -3240,10 +3047,10 @@
         "private_library_metadata": 9
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/trump-whca-dinner-remarks-2026-07-24.html",
@@ -3269,13 +3076,10 @@
         "private_library_metadata": 3
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/opm-structural-change-audit-2025-2026.html",
@@ -3301,13 +3105,12 @@
         "private_library_metadata": 3
       },
       "classification": {
-        "section": "world",
-        "subsection": "Monetary systems & currencies",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
       },
       "routes": {
         "summary": "library/japan-august-2026-delta.html",
@@ -3333,14 +3136,10 @@
         "private_library_metadata": 15
       },
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/g7-g20-coordination-architecture.html",
@@ -3366,13 +3165,13 @@
         "private_library_metadata": 32
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Foreign Relations & World Money"
+        ]
       },
       "routes": {
         "summary": "library/route-anchor-inventory.html",
@@ -3398,12 +3197,10 @@
         "private_library_metadata": 89
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/tokenization-entity-control-map.html",
@@ -3429,12 +3226,10 @@
         "private_library_metadata": 14
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/ripple-xrp-invisible-conversion-layer.html",
@@ -3460,13 +3255,10 @@
         "private_library_metadata": 2
       },
       "classification": {
-        "section": "states",
-        "subsection": "Federal–State rules & benefits",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/prwora-state-reporting-eligibility-architecture.html",
@@ -3492,14 +3284,10 @@
         "private_library_metadata": 15
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-09-03.html",
@@ -3525,14 +3313,10 @@
         "private_library_metadata": 22
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-09-11.html",
@@ -3558,14 +3342,10 @@
         "private_library_metadata": 28
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-09-16.html",
@@ -3591,15 +3371,10 @@
         "private_library_metadata": 10
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "AI in government and the public record"
-        ]
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html",
@@ -3625,13 +3400,10 @@
         "private_library_metadata": 328
       },
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "technology",
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/un-general-assembly-high-level-week-2026.html",
@@ -3657,15 +3429,10 @@
         "private_library_metadata": 84
       },
       "classification": {
-        "section": "thesis",
-        "subsection": "Living thesis and orientation",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/economic-institution-legitimacy-crisis.html",
@@ -3691,13 +3458,10 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "states",
-        "subsection": "Industry & places",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/new-york-manufacturing-innovation-map-2026.html",
@@ -3723,10 +3487,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/mortgage-credit-score-reform.html",
@@ -3752,10 +3516,10 @@
         "private_library_metadata": 2
       },
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/mortgage-balance-sheet-trail.html",
@@ -3781,10 +3545,10 @@
         "private_library_metadata": 4
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-workforce-and-agency-control.html",
@@ -3810,12 +3574,12 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "routes": {
         "summary": "library/federal-force-surveillance-and-emergency-authority.html",
@@ -3841,13 +3605,12 @@
         "private_library_metadata": 14
       },
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "routes": {
         "summary": "library/genesis-mission.html",
@@ -3873,13 +3636,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/education-learning-agenda-playbook.html",
@@ -3905,12 +3665,10 @@
         "private_library_metadata": 157
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-budget-fy2026-fy2027.html",
@@ -3936,13 +3694,10 @@
         "private_library_metadata": 14
       },
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/uk-constitutional-order-self-determination.html",
@@ -3968,12 +3723,12 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Released Records & Investigations"
+        ]
       },
       "routes": {
         "summary": "library/stop-secret-spending-act-ota-transparency.html",
@@ -3999,17 +3754,10 @@
         "private_library_metadata": 22
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world",
-          "states"
-        ],
-        "additional_subsections": [
-          "AI in government and the public record"
-        ]
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-deep-website-review-2026-09-22.html",
@@ -4035,17 +3783,10 @@
         "private_library_metadata": 19
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world",
-          "states"
-        ],
-        "additional_subsections": [
-          "AI in government and the public record"
-        ]
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-weekly-delta-2026-09-25.html",
@@ -4071,13 +3812,10 @@
         "private_library_metadata": 0
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Official claims and source collections"
-        ]
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/dvd-third-country-removal-authority-2025-2026.html",
@@ -4085,141 +3823,6 @@
         "report": "reports/dvd-third-country-removal-authority-2025-2026.html",
         "full_text": "readings/packages/dvd-third-country-removal-authority-2025-2026.html",
         "source_text": "reports/dvd-third-country-removal-authority-2025-2026.md"
-      }
-    },
-    {
-      "research_id": "financial-infrastructure-permission-operating-receipt-windows-2026",
-      "title": "2026 Financial Infrastructure Permission and Operating-Receipt Windows",
-      "library_state": "current",
-      "evidence_cutoff": "2026-09-25",
-      "evidence_cutoff_note": "The externally supplied sampling frame contains four fixed civil-date windows: April 14–18, May 4–8, May 24–28 and July 3–7. The dates have no evidentiary or causal role. The DTC July schedule is treated as a bounded non-finding through July 11; DTCC's July 15 limited-production report falls outside the July window.",
-      "latest_computer_edit_at": "2026-09-25T05:28:52Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/financial-infrastructure-permission-operating-receipt-windows-2026.html",
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
-        ]
-      },
-      "routes": {
-        "summary": "library/financial-infrastructure-permission-operating-receipt-windows-2026.html",
-        "manifest": "packages/financial-infrastructure-permission-operating-receipt-windows-2026.json",
-        "report": "reports/financial-infrastructure-permission-operating-receipt-windows-2026.html",
-        "full_text": "readings/packages/financial-infrastructure-permission-operating-receipt-windows-2026.html",
-        "source_text": "reports/financial-infrastructure-permission-operating-receipt-windows-2026.md"
-      }
-    },
-    {
-      "research_id": "march-2025-aries-eclipse-authority-window",
-      "title": "March 26–31, 2025 Aries Eclipse Authority Window",
-      "library_state": "current",
-      "evidence_cutoff": "2026-09-25",
-      "evidence_cutoff_note": "The action-date window is March 26–31, 2025. The related March 26–April 1 Federal Register publication census contains 506 documents, but several executive orders signed inside the action window were published later. Six objects were selected independently for materiality and same-object lifecycle traceability; the census is not a claim of full substantive review.",
-      "latest_computer_edit_at": "2026-09-25T04:47:09Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/march-2025-aries-eclipse-authority-window.html",
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public services and legal limits"
-        ]
-      },
-      "routes": {
-        "summary": "library/march-2025-aries-eclipse-authority-window.html",
-        "manifest": "packages/march-2025-aries-eclipse-authority-window.json",
-        "report": "reports/march-2025-aries-eclipse-authority-window.html",
-        "full_text": "readings/packages/march-2025-aries-eclipse-authority-window.html",
-        "source_text": "reports/march-2025-aries-eclipse-authority-window.md"
-      }
-    },
-    {
-      "research_id": "january-2025-authority-operations-window",
-      "title": "January 26–February 1, 2025 Authority-to-Operations Window",
-      "library_state": "current",
-      "evidence_cutoff": "2026-09-25",
-      "evidence_cutoff_note": "The action-date window is January 26–February 1, 2025. Four objects were selected independently for materiality, lifecycle traceability and primary-source receipts. Signature, publication, guidance, implementation, operation, litigation, deviation, proposed rulemaking and observed outcome remain separate clocks; the set is not exhaustive.",
-      "latest_computer_edit_at": "2026-09-25T09:11:43Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/january-2025-authority-operations-window.html",
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public services and legal limits"
-        ]
-      },
-      "routes": {
-        "summary": "library/january-2025-authority-operations-window.html",
-        "manifest": "packages/january-2025-authority-operations-window.json",
-        "report": "reports/january-2025-authority-operations-window.html",
-        "full_text": "readings/packages/january-2025-authority-operations-window.html",
-        "source_text": "reports/january-2025-authority-operations-window.md"
-      }
-    },
-    {
-      "research_id": "july-2024-protection-financial-control-window",
-      "title": "July 2–8, 2024 Protection and Financial Control Window",
-      "library_state": "current",
-      "evidence_cutoff": "2026-09-25",
-      "evidence_cutoff_note": "The fixed window used the 448-document Federal Register publication denominator for July 2–8, 2024, then traced five independently material objects through official agency and Federal Register sources. No final rule for FEMA docket FEMA-2023-0005 and no FinCEN rescission of the Al-Huda Bank measure were located by the cutoff.",
-      "latest_computer_edit_at": "2026-09-25T04:19:01Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/july-2024-protection-financial-control-window.html",
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public money, benefits and eligibility"
-        ]
-      },
-      "routes": {
-        "summary": "library/july-2024-protection-financial-control-window.html",
-        "manifest": "packages/july-2024-protection-financial-control-window.json",
-        "report": "reports/july-2024-protection-financial-control-window.html",
-        "full_text": "readings/packages/july-2024-protection-financial-control-window.html",
-        "source_text": "reports/july-2024-protection-financial-control-window.md"
       }
     },
     {
@@ -4238,14 +3841,11 @@
         "private_library_metadata": 0
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public services and legal limits"
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Government Changes"
         ]
       },
       "routes": {
@@ -4254,40 +3854,6 @@
         "report": "reports/december-2024-beneficial-ownership-reporting-perimeter.html",
         "full_text": "readings/packages/december-2024-beneficial-ownership-reporting-perimeter.html",
         "source_text": "reports/december-2024-beneficial-ownership-reporting-perimeter.md"
-      }
-    },
-    {
-      "research_id": "march-2006-march-2007-institutional-action-windows",
-      "title": "March 2006 and March 2007 Institutional Action Windows",
-      "library_state": "current",
-      "evidence_cutoff": "2026-09-24",
-      "evidence_cutoff_note": "The review used fixed three-day windows around March 29, 2006 and March 19, 2007 and official congressional, archived White House and UN sources. Later enactment, implementation, sanctions, subpoena issuance and privilege events are retained only as lifecycle maturations of the named objects, not backdated into the seed windows.",
-      "latest_computer_edit_at": "2026-09-25T02:07:55Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/march-2006-march-2007-institutional-action-windows.html",
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public services and legal limits"
-        ]
-      },
-      "routes": {
-        "summary": "library/march-2006-march-2007-institutional-action-windows.html",
-        "manifest": "packages/march-2006-march-2007-institutional-action-windows.json",
-        "report": "reports/march-2006-march-2007-institutional-action-windows.html",
-        "full_text": "readings/packages/march-2006-march-2007-institutional-action-windows.html",
-        "source_text": "reports/march-2006-march-2007-institutional-action-windows.md"
       }
     },
     {
@@ -4306,14 +3872,10 @@
         "private_library_metadata": 21
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-movement-atlas.html",
@@ -4339,16 +3901,10 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Trade, sanctions & pressure"
-        ]
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/us-china-strategic-stability-state-visit-2026.html",
@@ -4374,17 +3930,10 @@
         "private_library_metadata": 18
       },
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Monetary systems & currencies",
-          "Trade, sanctions & pressure"
-        ]
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/china-country-orientation-2026.html",
@@ -4410,15 +3959,10 @@
         "private_library_metadata": 5
       },
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": [
-          "Trade, sanctions & pressure"
-        ]
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/russia-country-orientation-2026.html",
@@ -4444,14 +3988,10 @@
         "private_library_metadata": 2
       },
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/ustda-project-development-pipeline-2026.html",
@@ -4477,14 +4017,12 @@
         "private_library_metadata": 73
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Innovation"
         ]
       },
       "routes": {
@@ -4511,14 +4049,12 @@
         "private_library_metadata": 87
       },
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Innovation"
         ]
       },
       "routes": {
@@ -4545,14 +4081,11 @@
         "private_library_metadata": 10
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": [
-          "Banks, borrowing & risk"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
         ]
       },
       "routes": {
@@ -4579,13 +4112,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "money",
-        "subsection": "Accounting & public records",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/official-record-authority-blockchain.html",
@@ -4611,13 +4141,10 @@
         "private_library_metadata": 1
       },
       "classification": {
-        "section": "money",
-        "subsection": "Accounting & public records",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/atomic-settlement-continuous-assurance.html",
@@ -4643,13 +4170,10 @@
         "private_library_metadata": 0
       },
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "routes": {
         "summary": "library/qnt-september-2026-price-rise.html",
@@ -4675,17 +4199,10 @@
         "private_library_metadata": 20
       },
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": [
-          "Public money, benefits and eligibility",
-          "AI in government and the public record"
-        ]
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "routes": {
         "summary": "library/federal-government-fiscal-year-close-delta-2026-09-30.html",
@@ -4711,11 +4228,11 @@
         "private_library_metadata": 3
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [],
-        "additional_subsections": [
-          "Official claims and source collections"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Released Records & Investigations"
         ]
       },
       "routes": {
@@ -4742,13 +4259,11 @@
         "private_library_metadata": 20
       },
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Accounting & public records"
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Government Changes"
         ]
       },
       "routes": {
@@ -4775,13 +4290,12 @@
         "private_library_metadata": 21
       },
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "states"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration",
+          "Released Records & Investigations"
         ]
       },
       "routes": {

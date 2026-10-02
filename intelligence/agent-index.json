@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "purpose": "Compact first-hop map for Katie and invited research agents. Open package manifests only after selecting relevant packages.",
   "catalog_sha256": "109e80865e45446c6ebe89601712804fc3bc15c4ae97e5649bdd21685f5a88f3",
-  "organization_sha256": "4770277ed9d4524293fe2a9c0f40435563234d750ef92e721da5ecc8cf48c5ec",
+  "organization_sha256": "0597bee5eefc7d8151ac894500640c377a2548f086c2db07147881964e61df66",
   "retrieval_order": [
     "bot-instructions.html",
     "bot-index.html",
@@ -24,7 +24,7 @@
     "human_front_door": "for-katies-bot.html",
     "research_grammar": "RESEARCH-GRAMMAR.md",
     "all_materials": "materials-index.jsonl",
-    "connected_story_map": "CONNECTED-RESEARCH.md",
+    "research_room_map": "CONNECTED-RESEARCH.md",
     "full_graph": "connected-index.json",
     "report_map": "reports/index.json"
   },
@@ -48,21 +48,19 @@
         "construction manager as owner representative"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Public money, benefits and eligibility"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar"
         ],
         "machine_views": []
       },
@@ -146,20 +144,19 @@
         "Joint Member Agencies"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Public money & the Fed",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion",
-          "money-rights-and-records"
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Government Changes"
         ],
         "machine_views": [
           "money",
@@ -235,19 +232,19 @@
         "China"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Government Changes"
         ],
         "machine_views": [
           "money",
@@ -351,23 +348,16 @@
         "Department of State"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": [
-          "Accounting & public records"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion",
-          "money-rights-and-records"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": [
           "money",
           "charter",
@@ -436,22 +426,16 @@
         "Texas Credit Union Department"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Public money & the Fed"
-        ]
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -508,17 +492,19 @@
         "Bank of Japan"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
         ],
         "machine_views": [
           "money",
@@ -602,19 +588,21 @@
         "Taurus"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Foreign Relations & World Money"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Foreign Relations & World Money"
         ],
         "machine_views": []
       },
@@ -675,21 +663,16 @@
         "Licuido"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -752,23 +735,16 @@
         "National Futures Association"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -828,22 +804,19 @@
         "self-clearing members"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
         ],
         "machine_views": []
       },
@@ -903,23 +876,16 @@
         "Securitize"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -978,22 +944,16 @@
         "Financial Industry Regulatory Authority"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -1061,21 +1021,16 @@
         "BTG Pactual"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -1132,21 +1087,16 @@
         "SGE"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Gold & reserves",
-        "secondary_sections": [
-          "states",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "claims-collateral-and-loss"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": [
           "state",
           "side"
@@ -1220,21 +1170,16 @@
         "India"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Monetary systems & currencies",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections",
-          "claims-collateral-and-loss"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": [
           "world",
           "state"
@@ -1289,20 +1234,21 @@
         "stablecoin issuers"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Public money & the Fed",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Crypto & Digital Money",
+          "Foreign Relations & World Money"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "reading-the-transition"
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Crypto & Digital Money",
+          "Foreign Relations & World Money"
         ],
         "machine_views": [
           "spine",
@@ -1373,20 +1319,19 @@
         "courts"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "reading-the-transition"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
         ],
         "machine_views": [
           "money",
@@ -1462,22 +1407,16 @@
         "Canton Network"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion",
-          "reading-the-transition"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": [
           "money"
         ]
@@ -1544,23 +1483,16 @@
         "DTCC"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Accounting & public records",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion",
-          "money-rights-and-records",
-          "reading-the-transition"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -1616,21 +1548,19 @@
         "CBP"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition",
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice",
-          "authority-and-institutions"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar"
         ],
         "machine_views": [
           "money"
@@ -1685,23 +1615,16 @@
         "FDIC"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion",
-          "money-rights-and-records",
-          "claims-collateral-and-loss"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": [
           "fineprint"
         ]
@@ -1757,18 +1680,16 @@
         "CFPB"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "claims-collateral-and-loss"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": [
           "fineprint"
         ]
@@ -1847,21 +1768,19 @@
         "NGOs"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "money",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition",
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
         ],
         "machine_views": [
           "money",
@@ -1926,21 +1845,19 @@
         "State agencies"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
         ],
         "machine_views": [
           "money",
@@ -2003,21 +1920,16 @@
         "ACLU"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "technology",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2071,20 +1983,19 @@
         "State Medicaid agencies"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "states",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
         ],
         "machine_views": []
       },
@@ -2140,21 +2051,16 @@
         "child-care providers"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "states",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": [
           "state"
         ]
@@ -2209,20 +2115,16 @@
         "Hawaii Medicaid Fraud Control Unit"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2275,20 +2177,16 @@
         "State Attorneys General"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2343,20 +2241,16 @@
         "OIGs"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2439,23 +2333,16 @@
         "Library of Congress"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "science-to-capability",
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2509,17 +2396,19 @@
         "Treasury"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [
+          "Government Changes"
         ],
         "machine_views": []
       },
@@ -2574,21 +2463,16 @@
         "Government Publishing Office"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition",
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2641,18 +2525,16 @@
         "Department of Justice"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2704,22 +2586,16 @@
         "Treasury"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records",
-          "claims-collateral-and-loss"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2778,22 +2654,16 @@
         "Wuhan Institute of Virology"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2853,22 +2723,16 @@
         "ODNI"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2921,22 +2785,16 @@
         "Lawrence Livermore National Laboratory"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Public services and legal limits"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -2989,20 +2847,16 @@
         "White House"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -3053,22 +2907,16 @@
         "Anthony Fauci"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Public services and legal limits"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -3121,22 +2969,16 @@
         "EcoHealth Alliance"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Public services and legal limits"
-        ]
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -3190,19 +3032,19 @@
         "United Nations Secretary-General"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [
+          "Foreign Relations & World Money"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [
+          "Foreign Relations & World Money"
         ],
         "machine_views": []
       },
@@ -3270,20 +3112,16 @@
         "WTO"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Monetary systems & currencies",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
         "machine_views": [
           "world"
         ]
@@ -3382,21 +3220,21 @@
         "U.S. Treasury TIC"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Monetary systems & currencies"
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Crypto & Digital Money",
+          "Banking & the Dollar"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Crypto & Digital Money",
+          "Banking & the Dollar"
         ],
         "machine_views": [
           "world",
@@ -3456,21 +3294,16 @@
         "foreign influence networks"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition",
-          "public-authority"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -3525,20 +3358,16 @@
         "banks"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -3613,20 +3442,21 @@
         "POSCO International"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Foreign Relations & World Money",
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Foreign Relations & World Money",
+          "Energy, Data Centers & Big Projects"
         ],
         "machine_views": []
       },
@@ -3683,21 +3513,19 @@
         "private rail operators"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "government-in-practice",
-          "authority-and-institutions"
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
         ],
         "machine_views": []
       },
@@ -3758,23 +3586,16 @@
         "New Development Bank"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "money",
-          "government"
-        ],
-        "additional_subsections": [
-          "Monetary systems & currencies"
-        ]
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "keeping-systems-working"
-        ],
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -3889,22 +3710,16 @@
         "Office of Foreign Assets Control"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [
-          "technology",
-          "states",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "claims-collateral-and-loss"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -3966,20 +3781,21 @@
         "Project Vault"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects",
+          "Foreign Relations & World Money"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "companies-in-context"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects",
+          "Foreign Relations & World Money"
         ],
         "machine_views": [
           "tech"
@@ -4046,20 +3862,19 @@
         "Zeon"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability",
-          "companies-in-context"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
         ],
         "machine_views": []
       },
@@ -4152,21 +3967,16 @@
         "RTOs and ISOs"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
-        ],
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [],
         "machine_views": [
           "tech",
           "spine"
@@ -4233,23 +4043,16 @@
         "Tennessee Valley Authority"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Power and industrial operations",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": [
-          "Science strategy and emerging capabilities"
-        ]
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
-        ],
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -4333,22 +4136,19 @@
         "Capra Biosciences"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability",
-          "companies-in-context"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
         ],
         "machine_views": [
           "tech"
@@ -4410,22 +4210,16 @@
         "independent referees"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
-        ],
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -4479,21 +4273,19 @@
         "PQC product vendors"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Compute, communications and sites"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
         ],
         "machine_views": []
       },
@@ -4588,22 +4380,16 @@
         "universities"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability",
-          "keeping-systems-working"
-        ],
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [],
         "machine_views": [
           "tech"
         ]
@@ -4667,22 +4453,19 @@
         "Defense Industrial Base"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Compute, communications and sites",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": [
-          "Science strategy and emerging capabilities"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Government Changes"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Government Changes"
         ],
         "machine_views": []
       },
@@ -4739,23 +4522,16 @@
         "token administrators"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "government"
-        ],
-        "additional_subsections": [
-          "Rules, ownership & access"
-        ]
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -4831,21 +4607,16 @@
         "Sunbird"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "AI in government and the public record",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout",
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": [
           "tech"
         ]
@@ -4903,20 +4674,16 @@
         "S&P Global Ratings"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "AI in government and the public record",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -4993,21 +4760,19 @@
         "Leidos"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "AI in government and the public record",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout",
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Innovation"
         ],
         "machine_views": [
           "tech"
@@ -5069,20 +4834,19 @@
         "utilities"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Compute, communications and sites",
-        "secondary_sections": [
-          "government",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "national-change-local-life"
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Innovation"
         ],
         "machine_views": [
           "tech"
@@ -5148,21 +4912,16 @@
         "satellite operators"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Compute, communications and sites",
-        "secondary_sections": [
-          "government",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "keeping-systems-working"
-        ],
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [],
         "machine_views": [
           "tech"
         ]
@@ -5240,22 +4999,19 @@
         "Sandvik"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Defense and logistics",
-        "secondary_sections": [
-          "government",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability",
-          "companies-in-context",
-          "keeping-systems-working"
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Innovation"
         ],
         "machine_views": [
           "tech"
@@ -5320,19 +5076,19 @@
         "civilian religious endorsing organizations"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Government Changes"
         ],
         "machine_views": []
       },
@@ -5389,22 +5145,16 @@
         "Army Strategic Capital Initiative"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Defense and logistics",
-        "secondary_sections": [
-          "government",
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "keeping-systems-working"
-        ],
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [],
         "machine_views": [
           "tech"
         ]
@@ -5464,20 +5214,19 @@
         "Nuclear Regulatory Commission"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Defense and logistics",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "keeping-systems-working"
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
         ],
         "machine_views": []
       },
@@ -5553,22 +5302,16 @@
         "La Nivernaise de Raffinage SAS"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections",
-          "authority-and-institutions"
-        ],
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -5625,23 +5368,16 @@
         "intelligence community"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Citizenship, elections and representation",
-        "secondary_sections": [
-          "technology",
-          "states"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "representation-and-membership"
-        ],
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -5696,20 +5432,16 @@
         "courts"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Citizenship, elections and representation",
-        "secondary_sections": [
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "representation-and-membership"
-        ],
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -5773,17 +5505,19 @@
         "Congress"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Released Records & Investigations"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Released Records & Investigations"
         ],
         "machine_views": []
       },
@@ -5836,20 +5570,16 @@
         "PJM"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Power and industrial operations",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
-        ],
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -5906,20 +5636,19 @@
         "Supreme Court"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Citizenship, elections and representation",
-        "secondary_sections": [
-          "technology",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "representation-and-membership"
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": [
+          "Government Changes"
         ],
         "machine_views": []
       },
@@ -5971,22 +5700,16 @@
         "congressional subcommittees"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition",
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice",
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -6042,21 +5765,19 @@
         "Congress"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Compute, communications and sites",
-        "secondary_sections": [
-          "government",
-          "states"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "national-change-local-life",
-          "science-to-capability"
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Innovation"
         ],
         "machine_views": [
           "tech"
@@ -6113,20 +5834,21 @@
         "IBM Maximo"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Power and industrial operations",
-        "secondary_sections": [
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Sanctions, Oil & the Military",
+          "Crypto & Digital Money"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "keeping-systems-working"
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Sanctions, Oil & the Military",
+          "Crypto & Digital Money"
         ],
         "machine_views": [
           "spine"
@@ -6185,19 +5907,19 @@
         "Office of the U.S. Trade Representative"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
         ],
         "machine_views": []
       },
@@ -6253,20 +5975,19 @@
         "utilities"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Foreign Relations & World Money"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition",
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Foreign Relations & World Money"
         ],
         "machine_views": [
           "spine"
@@ -6329,20 +6050,19 @@
         "customers"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Innovation"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition",
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Innovation"
         ],
         "machine_views": []
       },
@@ -6399,20 +6119,19 @@
         "stablecoin issuers"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Materials, manufacturing and funding",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Crypto & Digital Money"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition",
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [
+          "Crypto & Digital Money"
         ],
         "machine_views": []
       },
@@ -6474,19 +6193,16 @@
         "Consumer Financial Protection Bureau"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout",
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -6541,22 +6257,16 @@
         "Executive Office of the President"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -6610,18 +6320,16 @@
         "CME"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -6673,18 +6381,16 @@
         "federal-adjacent publishers"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -6742,18 +6448,16 @@
         "federal inspectors general"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -6806,22 +6510,16 @@
         "federal-adjacent institutions"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -6877,21 +6575,16 @@
         "market utilities"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -6945,21 +6638,16 @@
         "market utilities"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -7014,21 +6702,16 @@
         "courts"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -7083,21 +6766,16 @@
         "OIGs"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -7150,18 +6828,16 @@
         "White House"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Released Records & Investigations",
+        "home_room_id": "disclosure",
+        "home_room_url": "research-rooms/released-records-investigations.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -7218,20 +6894,19 @@
         "Government of Denmark"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Trade, sanctions & pressure",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "countries-and-connections"
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
         ],
         "machine_views": []
       },
@@ -7287,21 +6962,16 @@
         "HHS"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -7357,22 +7027,16 @@
         "research institutions"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice",
-          "authority-and-institutions"
-        ],
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -7425,20 +7089,19 @@
         "research foundations"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": [
+          "Crypto & Digital Money"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": [
+          "Crypto & Digital Money"
         ],
         "machine_views": []
       },
@@ -7495,20 +7158,16 @@
         "COD"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -7560,20 +7219,21 @@
         "research institutions"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "technology",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": [
+          "Innovation",
+          "Sanctions, Oil & the Military"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": [
+          "Innovation",
+          "Sanctions, Oil & the Military"
         ],
         "machine_views": []
       },
@@ -7628,19 +7288,16 @@
         "C-SPAN"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "representation-and-membership",
-          "claims-records-and-accountability"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -7695,22 +7352,16 @@
         "federal judiciary"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice",
-          "authority-and-institutions"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -7770,20 +7421,19 @@
         "United States Department of the Treasury"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Monetary systems & currencies",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Banking & the Dollar"
         ],
         "machine_views": []
       },
@@ -7845,22 +7495,16 @@
         "U.S. Department of the Treasury"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
         "machine_views": [
           "world"
         ]
@@ -7927,20 +7571,21 @@
         "NIST"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Foreign Relations & World Money"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "reading-the-transition"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Foreign Relations & World Money"
         ],
         "machine_views": [
           "money",
@@ -8077,21 +7722,16 @@
         "BTG Pactual"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion",
-          "money-rights-and-records"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -8173,21 +7813,16 @@
         "BTG Pactual"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "companies-in-context",
-          "reading-the-transition"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -8258,21 +7893,16 @@
         "public housing agencies"
       ],
       "classification": {
-        "section": "states",
-        "subsection": "Federal–State rules & benefits",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "national-change-local-life"
-        ],
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": [],
         "machine_views": [
           "state"
         ]
@@ -8348,22 +7978,16 @@
         "Department of Health and Human Services"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -8434,22 +8058,16 @@
         "National Nuclear Security Administration"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -8512,22 +8130,16 @@
         "Securities and Exchange Commission"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -8589,23 +8201,16 @@
         "General Services Administration"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "AI in government and the public record"
-        ]
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -8685,21 +8290,16 @@
         "AI Capacity Development Network"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "technology",
-          "government"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -8771,24 +8371,16 @@
         "United Nations Commission on International Trade Law"
       ],
       "classification": {
-        "section": "thesis",
-        "subsection": "Living thesis and orientation",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition",
-          "public-authority"
-        ],
-        "story_ids": [
-          "reading-the-transition"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -8866,22 +8458,16 @@
         "Moog"
       ],
       "classification": {
-        "section": "states",
-        "subsection": "Industry & places",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "national-change-local-life",
-          "science-to-capability"
-        ],
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -8952,18 +8538,16 @@
         "OneMain"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "claims-collateral-and-loss"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -9022,18 +8606,16 @@
         "AGNC"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "claims-collateral-and-loss"
-        ],
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -9088,19 +8670,16 @@
         "federal independent agencies"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability",
-          "authority-and-institutions"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -9156,19 +8735,19 @@
         "federal courts"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Government Changes"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "authority-and-institutions"
+        "home_room": "Sanctions, Oil & the Military",
+        "home_room_id": "force",
+        "home_room_url": "research-rooms/sanctions-oil-the-military.html",
+        "also_in": [
+          "Government Changes"
         ],
         "machine_views": []
       },
@@ -9254,20 +8833,19 @@
         "Exabyte"
       ],
       "classification": {
-        "section": "technology",
-        "subsection": "Science strategy and emerging capabilities",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "industry-buildout"
-        ],
-        "story_ids": [
-          "science-to-capability"
+        "home_room": "Innovation",
+        "home_room_id": "innovation",
+        "home_room_url": "research-rooms/innovation.html",
+        "also_in": [
+          "Energy, Data Centers & Big Projects"
         ],
         "machine_views": []
       },
@@ -9324,21 +8902,16 @@
         "state education agencies"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "authority-and-institutions"
-        ],
+        "home_room": "Education",
+        "home_room_id": "education",
+        "home_room_url": "research-rooms/education.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -9391,20 +8964,16 @@
         "ICE"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -9483,21 +9052,16 @@
         "British Overseas Territories"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -9552,19 +9116,19 @@
         "Department of Defense"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public money, benefits and eligibility",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": []
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Released Records & Investigations"
+        ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Released Records & Investigations"
         ],
         "machine_views": []
       },
@@ -9628,25 +9192,16 @@
         "Federal agency inspectors general"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world",
-          "states"
-        ],
-        "additional_subsections": [
-          "AI in government and the public record"
-        ]
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -9710,25 +9265,16 @@
         "Congress"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world",
-          "states"
-        ],
-        "additional_subsections": [
-          "AI in government and the public record"
-        ]
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -9784,21 +9330,16 @@
         "Supreme Court of the United States"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Official claims and source collections"
-        ]
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "authority-and-institutions"
-        ],
+        "home_room": "Citizenship, Voting & Immigration",
+        "home_room_id": "belonging",
+        "home_room_url": "research-rooms/citizenship-voting-immigration.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -9834,287 +9375,6 @@
       }
     },
     {
-      "research_id": "financial-infrastructure-permission-operating-receipt-windows-2026",
-      "title": "2026 Financial Infrastructure Permission and Operating-Receipt Windows",
-      "question": "What independently material institutional events fall inside the fixed civil windows April 14–18, May 4–8, May 24–28 and July 3–7, 2026, and do any constitute a verifiable maturation of the January financial-infrastructure baseline?",
-      "bluf": "The four fixed windows do not show one January object maturing neatly at every later date. They show a narrower institutional sequence: the April window opens permissions, the early-May window discloses operating boundaries and a completed pilot, the late-May window formalizes proposals and legal containers, and the July window carries a conditional charter plus a bounded DTC production non-receipt. The repeated factual problem is who may enter, clear, custody, settle, reverse or receive credit; same actor and same domain do not establish same object or causation.",
-      "evidence_cutoff": "2026-09-25",
-      "evidence_cutoff_note": "The externally supplied sampling frame contains four fixed civil-date windows: April 14–18, May 4–8, May 24–28 and July 3–7. The dates have no evidentiary or causal role. The DTC July schedule is treated as a bounded non-finding through July 11; DTCC's July 15 limited-production report falls outside the July window.",
-      "use_note": "Use as the factual comparison lane for the four fixed 2026 civil-date windows. The externally supplied dates have no evidentiary or causal role. Do not collapse publication into decision, infer operation from approval, or turn same-domain concentration into same-object maturation.",
-      "library_state": "current",
-      "entities": [
-        "Securities and Exchange Commission",
-        "Federal Reserve Board",
-        "Federal Reserve Bank of Kansas City",
-        "Depository Trust Company",
-        "Fixed Income Clearing Corporation",
-        "CME Clearing",
-        "Paxos Securities Settlement Company",
-        "Ripple",
-        "Kraken Financial",
-        "Connectia Trust"
-      ],
-      "classification": {
-        "section": "money",
-        "subsection": "Rules, ownership & access",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Payments & digital assets"
-        ]
-      },
-      "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
-        ],
-        "machine_views": []
-      },
-      "relationships": {
-        "parent_id": null,
-        "rolled_into_id": null,
-        "supersedes_ids": [],
-        "related_ids": []
-      },
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "research_layer_counts": {
-        "orientation": 0,
-        "findings": 1,
-        "evidence": 0,
-        "monitoring": 0,
-        "methods": 0,
-        "presentation": 0,
-        "supporting": 0
-      },
-      "latest_computer_edit_at": "2026-09-25T05:28:52Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/financial-infrastructure-permission-operating-receipt-windows-2026.html",
-      "routes": {
-        "summary": "library/financial-infrastructure-permission-operating-receipt-windows-2026.html",
-        "manifest": "packages/financial-infrastructure-permission-operating-receipt-windows-2026.json",
-        "report": "reports/financial-infrastructure-permission-operating-receipt-windows-2026.html",
-        "full_text": "readings/packages/financial-infrastructure-permission-operating-receipt-windows-2026.html",
-        "source_text": "reports/financial-infrastructure-permission-operating-receipt-windows-2026.md"
-      }
-    },
-    {
-      "research_id": "march-2025-aries-eclipse-authority-window",
-      "title": "March 26–31, 2025 Aries Eclipse Authority Window",
-      "question": "Which material federal authority objects signed or initiated in the March 26–31, 2025 window acquired a verifiable operating, legal, budget or successor state by September 25, 2026?",
-      "bluf": "D.V.D. is the cleanest same-case judicial return from the March 2025 window, but it is not the only same-object maturation. The same action-date window also produced an operating and amended automobile-tariff system, a federal-labor exclusion regime that was implemented, expanded and legislatively contested, a D.C. task force later described as an operating multi-agency structure, a Smithsonian review that became a report and successor order, and a Commerce investment office that acquired leadership, operating examples and a $100 million FY2027 budget request. The shared factual pattern is command to authority container to operating machinery to counterparty, record, budget or court test—not one coordinated program or proof of policy success.",
-      "evidence_cutoff": "2026-09-25",
-      "evidence_cutoff_note": "The action-date window is March 26–31, 2025. The related March 26–April 1 Federal Register publication census contains 506 documents, but several executive orders signed inside the action window were published later. Six objects were selected independently for materiality and same-object lifecycle traceability; the census is not a claim of full substantive review.",
-      "use_note": "Use as the factual lifecycle lane for the March 26–31, 2025 action-date window. Treat D.V.D. as the cleanest judicial same-case return, not the only maturation. Do not collapse signature into publication, an office into a fund, a budget request into enacted authority, an agency claim into independently measured effect, or the six objects into a coordinated program.",
-      "library_state": "current",
-      "entities": [
-        "Supreme Court of the United States",
-        "United States Department of Homeland Security",
-        "United States Department of Commerce",
-        "United States Customs and Border Protection",
-        "United States Department of Defense",
-        "United States Department of Veterans Affairs",
-        "D.C. Safe and Beautiful Task Force",
-        "Smithsonian Institution",
-        "United States Investment Accelerator"
-      ],
-      "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public services and legal limits"
-        ]
-      },
-      "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "authority-and-institutions"
-        ],
-        "machine_views": []
-      },
-      "relationships": {
-        "parent_id": null,
-        "rolled_into_id": null,
-        "supersedes_ids": [],
-        "related_ids": []
-      },
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "research_layer_counts": {
-        "orientation": 0,
-        "findings": 1,
-        "evidence": 0,
-        "monitoring": 0,
-        "methods": 0,
-        "presentation": 0,
-        "supporting": 0
-      },
-      "latest_computer_edit_at": "2026-09-25T04:47:09Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/march-2025-aries-eclipse-authority-window.html",
-      "routes": {
-        "summary": "library/march-2025-aries-eclipse-authority-window.html",
-        "manifest": "packages/march-2025-aries-eclipse-authority-window.json",
-        "report": "reports/march-2025-aries-eclipse-authority-window.html",
-        "full_text": "readings/packages/march-2025-aries-eclipse-authority-window.html",
-        "source_text": "reports/march-2025-aries-eclipse-authority-window.md"
-      }
-    },
-    {
-      "research_id": "january-2025-authority-operations-window",
-      "title": "January 26–February 1, 2025 Authority-to-Operations Window",
-      "question": "Which material federal authority objects signed or initiated from January 26 through February 1, 2025 had acquired a verifiable administrative or operating form by July 29, 2026, and what state had each reached by September 25, 2026?",
-      "bluf": "Four January 2025 commands acquired inspectable administrative carriers by July 29, 2026: military-readiness direction became a governed personnel process; the Guantánamo migrant-operations memorandum became a named interagency operation; educational-freedom direction became several bounded guidance lanes; and deregulation policy became OMB counting rules plus an operating FAR-rewrite system. Their common factual grammar is command to carrier to workflow to review or formalization—not one coordinated program or proof of policy success.",
-      "evidence_cutoff": "2026-09-25",
-      "evidence_cutoff_note": "The action-date window is January 26–February 1, 2025. Four objects were selected independently for materiality, lifecycle traceability and primary-source receipts. Signature, publication, guidance, implementation, operation, litigation, deviation, proposed rulemaking and observed outcome remain separate clocks; the set is not exhaustive.",
-      "use_note": "Use as the factual lifecycle lane for the January 26–February 1, 2025 action-date window. Do not collapse command into operation, guidance into delivery, transfer into final disposition, a class deviation into a final government-wide FAR rule, or the four objects into one coordinated program.",
-      "library_state": "current",
-      "entities": [
-        "United States Department of Defense",
-        "United States Department of Homeland Security",
-        "United States Department of Education",
-        "Office of Management and Budget",
-        "Federal Acquisition Regulatory Council",
-        "Joint Task Force Southern Guard"
-      ],
-      "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "technology"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public services and legal limits"
-        ]
-      },
-      "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "authority-and-institutions"
-        ],
-        "machine_views": []
-      },
-      "relationships": {
-        "parent_id": null,
-        "rolled_into_id": null,
-        "supersedes_ids": [],
-        "related_ids": []
-      },
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "research_layer_counts": {
-        "orientation": 0,
-        "findings": 1,
-        "evidence": 0,
-        "monitoring": 0,
-        "methods": 0,
-        "presentation": 0,
-        "supporting": 0
-      },
-      "latest_computer_edit_at": "2026-09-25T09:11:43Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/january-2025-authority-operations-window.html",
-      "routes": {
-        "summary": "library/january-2025-authority-operations-window.html",
-        "manifest": "packages/january-2025-authority-operations-window.json",
-        "report": "reports/january-2025-authority-operations-window.html",
-        "full_text": "readings/packages/january-2025-authority-operations-window.html",
-        "source_text": "reports/january-2025-authority-operations-window.md"
-      }
-    },
-    {
-      "research_id": "july-2024-protection-financial-control-window",
-      "title": "July 2–8, 2024 Protection and Financial Control Window",
-      "question": "Which material federal authority objects in the fixed July 2–8, 2024 window created or proposed systems of protection, financial control, resilience or relief, and what state had each reached by September 25, 2026?",
-      "bluf": "The July 2–8, 2024 Federal Register window contained five material objects defining who must report, prepare for institutional failure, refrain from investment, block correspondent access or qualify disaster costs for assistance. By September 25, 2026 their states had diverged: the CFPB nonbank-order registry and OCC recovery-planning expansion had been rescinded; Treasury's outbound-investment system was operational with a statutory successor rulemaking pending; FinCEN's Al-Huda Bank special measure remained listed without rescission; and FEMA's Public Assistance update remained unfinalized in the located record.",
-      "evidence_cutoff": "2026-09-25",
-      "evidence_cutoff_note": "The fixed window used the 448-document Federal Register publication denominator for July 2–8, 2024, then traced five independently material objects through official agency and Federal Register sources. No final rule for FEMA docket FEMA-2023-0005 and no FinCEN rescission of the Al-Huda Bank measure were located by the cutoff.",
-      "use_note": "Use as the factual historical lane for the fixed July 2–8, 2024 window. Do not treat the five objects as a coordinated program, backdate later finalization or rescission into the seed window, or turn a thematic comparison into evidence of causation.",
-      "library_state": "current",
-      "entities": [
-        "Consumer Financial Protection Bureau",
-        "Office of the Comptroller of the Currency",
-        "United States Department of the Treasury",
-        "Financial Crimes Enforcement Network",
-        "Federal Emergency Management Agency"
-      ],
-      "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public money, benefits and eligibility"
-        ]
-      },
-      "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "authority-and-institutions"
-        ],
-        "machine_views": []
-      },
-      "relationships": {
-        "parent_id": null,
-        "rolled_into_id": null,
-        "supersedes_ids": [],
-        "related_ids": []
-      },
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "research_layer_counts": {
-        "orientation": 0,
-        "findings": 1,
-        "evidence": 0,
-        "monitoring": 0,
-        "methods": 0,
-        "presentation": 0,
-        "supporting": 0
-      },
-      "latest_computer_edit_at": "2026-09-25T04:19:01Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/july-2024-protection-financial-control-window.html",
-      "routes": {
-        "summary": "library/july-2024-protection-financial-control-window.html",
-        "manifest": "packages/july-2024-protection-financial-control-window.json",
-        "report": "reports/july-2024-protection-financial-control-window.html",
-        "full_text": "readings/packages/july-2024-protection-financial-control-window.html",
-        "source_text": "reports/july-2024-protection-financial-control-window.md"
-      }
-    },
-    {
       "research_id": "december-2024-beneficial-ownership-reporting-perimeter",
       "title": "December 2024 Beneficial Ownership Reporting Perimeter",
       "question": "What happened to the federal beneficial-ownership reporting obligation after the December 3, 2024 Texas Top Cop Shop injunction, and what operative perimeter existed by September 25, 2026?",
@@ -10131,22 +9391,19 @@
         "United States District Court for the Eastern District of Texas"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public services and legal limits"
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Government Changes"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "authority-and-institutions"
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Government Changes"
         ],
         "machine_views": []
       },
@@ -10183,80 +9440,6 @@
       }
     },
     {
-      "research_id": "march-2006-march-2007-institutional-action-windows",
-      "title": "March 2006 and March 2007 Institutional Action Windows",
-      "question": "What materially changed in the fixed March 26–April 1, 2006 and March 16–22, 2007 institutional windows, and which comparison survives without treating them as one event?",
-      "bluf": "The 2006 window concentrated attempts to convert policy into machinery through immigration markup, Senate transparency legislation, North American border and infrastructure workstreams, and a timed UN nuclear-compliance demand. The 2007 window concentrated the contest over who could remove prosecutors, appoint interim replacements, condition testimony and compel records. The comparison that survives is procedural rather than event-identical: political force repeatedly meets a record, time limit, vote, reporting duty or subpoena mechanism that tries to make the decision right inspectable.",
-      "evidence_cutoff": "2026-09-24",
-      "evidence_cutoff_note": "The review used fixed three-day windows around March 29, 2006 and March 19, 2007 and official congressional, archived White House and UN sources. Later enactment, implementation, sanctions, subpoena issuance and privilege events are retained only as lifecycle maturations of the named objects, not backdated into the seed windows.",
-      "use_note": "Use as the factual historical lane for the two fixed windows. Do not treat the windows as one continuous object, backdate later outcomes, or infer continuity to a later event without an exact statute, case, agency guidance, international file, program or decision right.",
-      "library_state": "current",
-      "entities": [
-        "United States Senate",
-        "Senate Committee on the Judiciary",
-        "White House",
-        "United States Department of Justice",
-        "House Committee on the Judiciary",
-        "United Nations Security Council",
-        "International Atomic Energy Agency",
-        "United States",
-        "Mexico",
-        "Canada",
-        "Iran"
-      ],
-      "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "world"
-        ],
-        "additional_subsections": [
-          "Agencies, workforce and authority",
-          "Public services and legal limits"
-        ]
-      },
-      "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "authority-and-institutions"
-        ],
-        "machine_views": []
-      },
-      "relationships": {
-        "parent_id": null,
-        "rolled_into_id": null,
-        "supersedes_ids": [],
-        "related_ids": []
-      },
-      "material_counts": {
-        "total": 1,
-        "public_reading": 1,
-        "public_machine_data": 0,
-        "private_library_metadata": 0
-      },
-      "research_layer_counts": {
-        "orientation": 0,
-        "findings": 1,
-        "evidence": 0,
-        "monitoring": 0,
-        "methods": 0,
-        "presentation": 0,
-        "supporting": 0
-      },
-      "latest_computer_edit_at": "2026-09-25T02:07:55Z",
-      "public_full_text": true,
-      "full_text_url": "readings/packages/march-2006-march-2007-institutional-action-windows.html",
-      "routes": {
-        "summary": "library/march-2006-march-2007-institutional-action-windows.html",
-        "manifest": "packages/march-2006-march-2007-institutional-action-windows.json",
-        "report": "reports/march-2006-march-2007-institutional-action-windows.html",
-        "full_text": "readings/packages/march-2006-march-2007-institutional-action-windows.html",
-        "source_text": "reports/march-2006-march-2007-institutional-action-windows.md"
-      }
-    },
-    {
       "research_id": "federal-government-movement-atlas",
       "title": "Government-Wide Research Hub",
       "question": "How can all saved government research, entity relationships, committee records, adjudicated movements and exact evidence gaps be explored in one governed hub without flattening institutions or replacing each package's evidence ownership?",
@@ -10287,22 +9470,16 @@
         "supranational memberships"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
-        ]
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
-        ],
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -10364,24 +9541,16 @@
         "Chinese Ministry of Commerce"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Trade, sanctions & pressure"
-        ]
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -10449,25 +9618,16 @@
         "Taiwan"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Monetary systems & currencies",
-          "Trade, sanctions & pressure"
-        ]
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -10536,23 +9696,16 @@
         "NASA"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money"
-        ],
-        "additional_subsections": [
-          "Trade, sanctions & pressure"
-        ]
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -10611,22 +9764,16 @@
         "Buenassa"
       ],
       "classification": {
-        "section": "world",
-        "subsection": "Institutions & coordination",
-        "secondary_sections": [
-          "government",
-          "money",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "countries-and-connections"
-        ],
+        "home_room": "Energy, Data Centers & Big Projects",
+        "home_room_id": "buildout",
+        "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -10699,22 +9846,21 @@
         "Interagency Council on Statistical Policy"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Innovation"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Innovation"
         ],
         "machine_views": []
       },
@@ -10783,22 +9929,21 @@
         "Federal Accounting Standards Advisory Board"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Agencies, workforce and authority",
-        "secondary_sections": [
-          "money",
-          "technology"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Innovation"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Banking & the Dollar",
+          "Innovation"
         ],
         "machine_views": []
       },
@@ -10863,22 +10008,19 @@
         "DTCC"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": [
-          "Banks, borrowing & risk"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion"
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Banking & the Dollar"
         ],
         "machine_views": []
       },
@@ -10933,21 +10075,16 @@
         "accountable recordkeepers"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Accounting & public records",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -11001,21 +10138,16 @@
         "ERP vendors"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Accounting & public records",
-        "secondary_sections": [
-          "government",
-          "technology"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -11074,21 +10206,16 @@
         "Santander"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Payments & digital assets",
-        "secondary_sections": [
-          "technology",
-          "world"
-        ],
-        "additional_subsections": []
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-in-motion"
-        ],
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -11155,25 +10282,16 @@
         "Depository Trust and Clearing Corporation"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Official claims and source collections",
-        "secondary_sections": [
-          "money",
-          "technology",
-          "world"
-        ],
-        "additional_subsections": [
-          "Public money, benefits and eligibility",
-          "AI in government and the public record"
-        ]
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-through-time"
-        ],
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
         "machine_views": []
       },
       "relationships": {
@@ -11228,19 +10346,19 @@
         "Judicial Council of the Eighth Circuit"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [],
-        "additional_subsections": [
-          "Official claims and source collections"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Released Records & Investigations"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "government-in-practice"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Released Records & Investigations"
         ],
         "machine_views": []
       },
@@ -11303,21 +10421,19 @@
         "transfer agents"
       ],
       "classification": {
-        "section": "money",
-        "subsection": "Banks, borrowing & risk",
-        "secondary_sections": [
-          "government"
-        ],
-        "additional_subsections": [
-          "Accounting & public records"
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Government Changes"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "monetary-transition"
-        ],
-        "story_ids": [
-          "money-rights-and-records"
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [
+          "Government Changes"
         ],
         "machine_views": []
       },
@@ -11377,21 +10493,21 @@
         "New York Appellate Division First Department"
       ],
       "classification": {
-        "section": "government",
-        "subsection": "Public services and legal limits",
-        "secondary_sections": [
-          "states"
-        ],
-        "additional_subsections": [
-          "Official claims and source collections"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration",
+          "Released Records & Investigations"
         ]
       },
       "connected_context": {
-        "family_ids": [
-          "public-authority"
-        ],
-        "story_ids": [
-          "claims-records-and-accountability"
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration",
+          "Released Records & Investigations"
         ],
         "machine_views": []
       },

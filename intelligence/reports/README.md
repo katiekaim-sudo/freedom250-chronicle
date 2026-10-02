@@ -41,10 +41,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Hawaii Public Corruption — Primary-Source Ledger](hawaii-public-corruption-source-ledger.md) — cutoff 2026-07-27
 - [House Oversight Corpus](house-oversight-corpus.md) — cutoff 2026-07-22
 - [Institutional Signals and Thesis Test — 2025–2026](institutional-signals-thesis-test-2025-2026.md) — cutoff 2026-09-28T23:59:59-04:00
-- [January 26–February 1, 2025 Authority-to-Operations Window](january-2025-authority-operations-window.md) — cutoff 2026-09-25
 - [Judicial Money](judicial-money.md) — cutoff 2026-09-03
-- [March 2006 and March 2007 Institutional Action Windows](march-2006-march-2007-institutional-action-windows.md) — cutoff 2026-09-24
-- [March 26–31, 2025 Aries Eclipse Authority Window](march-2025-aries-eclipse-authority-window.md) — cutoff 2026-09-25
 - [OBBB — Fraud, Improper-Payment and Error-Rate Legal Map](obbb-fraud-error-rate-legal-map.md) — cutoff 2026-07-16
 - [Office of Personnel Management Structural Change Audit — 2025–2026](opm-structural-change-audit-2025-2026.md) — cutoff 2026-08-29T20:10:53-04:00
 - [PRWORA State Reporting and Eligibility Architecture — 1996–2026](prwora-state-reporting-eligibility-architecture.md) — cutoff 2026-09-02
@@ -62,7 +59,6 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [FORTRESS America and Military Installation Energy Independence](fortress-america-installation-energy-independence.md) — cutoff 2026-09-30T23:59:59-04:00
 - [Military Modernization](military-modernization.md) — cutoff 2026-07-15
 - [Office of Religious Affairs — 2026](office-of-religious-affairs.md) — cutoff 2026-09-30T22:00:00-04:00
-- [2026 Financial Infrastructure Permission and Operating-Receipt Windows](financial-infrastructure-permission-operating-receipt-windows-2026.md) — cutoff 2026-09-25
 - [Authority Through the Adapter — Where Control Actually Moves](authority-through-the-adapter.md) — cutoff 2026-08-31T10:42:24-04:00
 - [Banks and Credit Unions — Federal and Four-State Legal Architecture](bank-credit-union-legal-architecture.md) — cutoff 2026-09-15
 - [CFTC Passive Software No-Action Position — 2026](cftc-passive-software-no-action-2026-09-17.md) — cutoff 2026-09-17T11:32:00-04:00
@@ -75,7 +71,6 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Federal Technology and Monetary Infrastructure Delta — September 17–20, 2026](federal-technology-and-monetary-infrastructure-delta-2026-09-20.md) — cutoff 2026-09-20T16:20:12-04:00
 - [From Atomic Settlement to Continuous Assurance — 2026](atomic-settlement-continuous-assurance.md) — cutoff 2026-09-26
 - [GENIUS Stablecoin Trust Crosswalk](genius-stablecoin-trust-crosswalk.md) — cutoff 2026-08-17
-- [July 2–8, 2024 Protection and Financial Control Window](july-2024-protection-financial-control-window.md) — cutoff 2026-09-25
 - [Major Bank Digital Transition Map](major-bank-digital-transition.md) — cutoff 2026-09-26T16:37:25-04:00
 - [Official Record Authority and Blockchain Crosswalk — 2026](official-record-authority-blockchain.md) — cutoff 2026-09-26
 - [Overall DLT Transition — 2025–2026](overall-dlt-transition.md) — cutoff 2026-09-22T23:59:59-04:00

@@ -1,6 +1,6 @@
-# Start with the connected research
+# Start with the Research Rooms
 
-Use [CONNECTED-RESEARCH.md](intelligence/CONNECTED-RESEARCH.md) for the connected families and explanatory chapters, and [connected-index.json](intelligence/connected-index.json) for their exact research references, source URLs and relationships. Studies may belong to several branches while retaining one source identity and evidence cutoff. The same Catalog drives the private app. Older room, report and library links remain valid.
+The Research Library is organized into ten rooms. Use [CONNECTED-RESEARCH.md](intelligence/CONNECTED-RESEARCH.md) for the room map and [connected-index.json](intelligence/connected-index.json) for exact research IDs, home rooms, source URLs and relationships. Each study keeps one source identity and evidence cutoff.
 
 # Freedom 250 AI Research Guide
 

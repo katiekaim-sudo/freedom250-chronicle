@@ -1,383 +1,409 @@
-# Freedom 250 connected research map
+# Freedom 250 Research Library — the ten rooms
 
-This is the same authored organization used by the Observatory. Each linked source retains its own evidence cutoff. Start with a connected family, then follow exact readings and story connections.
+We're living through a revolution. America's institutional systems are being reconstructed from the root — not by tearing the old order down, but procedurally, from inside it, through its own laws, agencies, money and machinery.
 
-## Monetary & crypto transition
+_And we get front-row seats to watch it being built, live._
 
-How does the inherited money system change when its records, routes and instruments change?
+Each study has one home room and may also appear in one or two others. Everything here is official research. Each study keeps its own evidence cutoff.
 
-We studied the legacy system to understand what a crypto transition would actually have to change. Banking, international institutions, participation laws, payments and accounting are parts of this same investigation. Follow the questions below, then open the underlying studies.
+## Crypto & Digital Money
 
-[Open this family](index.html#family-monetary-transition)
+Money is moving onto new digital networks. Stablecoins, tokenization, crypto networks and companies, what regulators have approved, and blockchain records and accounting.
 
-> Money shows the thesis in operation: new instruments and private routes can change practical control while legal claims, central-bank obligations, public records and remedies remain with inherited institutions. Cross-border and state cases show where the same functions meet different authorities.
+[Open the room](research-rooms/crypto-digital-money.html)
 
-### 1 · The system we started with
+### Stablecoins & the law
 
-Who issues money, who can hold central-bank accounts, how claims clear, and who supplies liquidity when payments fail? This is the foundation for comparing every proposed new route.
+- [GENIUS Stablecoin Trust Crosswalk](library/genius-stablecoin-trust-crosswalk.html): What makes a GENIUS stablecoin trustworthy: the law, the issuer, the chain, the keys, the reserves, the distributor and the remedy.
+- [Private Monetary Stack](library/private-monetary-stack.html): The firms wiring stablecoins, tokens, card networks and custody together, plus the Fed's 452-page stablecoin-issuer proposal read cover to cover.
+- [Congressional Monetary Infrastructure](library/congressional-monetary-infrastructure.html): The committee-to-bill assembly line moving digital-asset law, Treasury-market reform and tokenized settlement toward real operation.
+- [Payment Transparency and the Hidden Constitution](library/payment-transparency-hidden-constitution.html): As payments go from cash to cards to public-chain stablecoins, transfers get visible, while reserves, identity and remedy stay behind the curtain.
 
-[Read the combined findings](topics/monetary-transition--inherited-system.md)
+### What regulators approved
 
-- [Federal Reserve, Clearing and Treasury](library/fed-clearing-treasury.html)
-- [Private Monetary Stack](library/private-monetary-stack.html)
-- [Banks and Credit Unions — Federal and Four-State Legal Architecture](library/bank-credit-union-legal-architecture.html)
-- [The People's Money](library/peoples-money.html)
-- [Retail Debt](library/retail-debt.html)
-- [Credit Approval Standards: Mortgage, Retail and Business](library/mortgage-credit-score-reform.html)
-- [Mortgage Balance Sheet Trail to the Fed](library/mortgage-balance-sheet-trail.html)
-- Timeline research: [Money Machine](machines/money.html)
-- Timeline research: [The Whole Money Story](machines/wholemoney.html)
-- Source collection: Public money — founding laws and charters
-  - [Reading the Charter — CFPB](sources/reading-the-charter-cfpb-2864305cba4e.html)
-  - [Reading the Charter — CFTC](sources/reading-the-charter-cftc-90d1a2d65d57.html)
-  - [Reading the Charter — DTCC / DTC / NSCC / FICC](sources/reading-the-charter-dtcc-0d5cfe8258a9.html)
-  - [Reading the Charter — Department of the Treasury](sources/reading-the-charter-department-of-the-treasury-01d7e7f4d09c.html)
-  - [Reading the Charter — Exchange Stabilization Fund (ESF)](sources/reading-the-charter-exchange-stabilization-fund-db6548231537.html)
-  - [Reading the Charter — FDIC](sources/reading-the-charter-fdic-7e3d2307bf33.html)
-  - [Reading the Charter — FHFA](sources/reading-the-charter-fhfa-f291502be9f8.html)
-  - [Reading the Charter — FHLBank System](sources/reading-the-charter-fhlbank-system-80be4ec0a3e8.html)
-  - [Reading the Charter — FSOC](sources/reading-the-charter-fsoc-faf741a66f9d.html)
-  - [Reading the Charter — Fannie Mae](sources/reading-the-charter-fannie-mae-0cc968cbe86a.html)
-  - [Reading the Charter — Federal Financing Bank](sources/reading-the-charter-federal-financing-bank-92e5bdc85747.html)
-  - [Reading the Charter — Federal Open Market Committee](sources/reading-the-charter-federal-open-market-committee-16b32d2f2a2a.html)
-  - [Reading the Charter — Federal Reserve Bank of New York](sources/reading-the-charter-federal-reserve-bank-of-new-york-68e4e116c541.html)
-  - [Reading the Charter — Federal Reserve System](sources/reading-the-charter-federal-reserve-system-5d337df21abf.html)
-  - [Reading the Charter — Freddie Mac](sources/reading-the-charter-freddie-mac-bb12d643ea71.html)
-  - [Reading the Charter — GENIUS Act — SCRC](sources/reading-the-charter-genius-act-scrc-acc7c69a8bb3.html)
-  - [Reading the Charter — Ginnie Mae (Government National Mortgage Association)](sources/reading-the-charter-ginnie-mae-6deedc13b428.html)
-  - [Reading the Charter — OCC](sources/reading-the-charter-occ-ed96716e1937.html)
-  - [Reading the Charter — OFR](sources/reading-the-charter-ofr-1f032ee24676.html)
-  - [Reading the Charter — SEC](sources/reading-the-charter-sec-d37ac1868d60.html)
-  - [Reading the Charter — US Mint](sources/reading-the-charter-us-mint-4d310eef6f42.html)
-- Source collection: Fed powers: legislature, operating system and accounts
-  - [Federal Reserve restructuring — factual timeline](sources/federal-reserve-restructuring-factual-timeline-4d78a4e48145.html)
-  - [Treasury–Fed institutional money state — factual transition timeline](sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html)
-  - [Federal Reserve Financial Constitution — Source Document](sources/federal-reserve-financial-constitution-source-document-203118d0ec33.html)
-  - [The Castration of the Fed](sources/the-castration-of-the-fed-ed63e25e35fb.html)
-  - [Keep the Fed. Bind Its Hands.](sources/keep-the-fed-bind-its-hands-00bfd07676a4.html)
-- Source collection: Clearing and collateral constitution
-  - [Clearing-house transition — factual timeline](sources/clearing-house-transition-factual-timeline-6595f41e3831.html)
-  - [DTCC Operative Constitution and Public-Bank Model — Source Document](sources/dtcc-operative-constitution-and-public-bank-model-source-document-afab7d8d77b1.html)
-- Source collection: Charter Queue
-  - [The Charter Queue — Factual Timeline](sources/the-charter-queue-factual-timeline-a0d660b11c2d.html)
-  - [The Waiting Room](sources/the-waiting-room-ec8cb6742eea.html)
-- Source collection: Money Machine official filing stream
-  - [The Week the Money Never Sleeps — Gov-Site Deep Dive (2026-07-08)](sources/2026-07-08-the-week-the-money-never-sleeps-gov-site-deep-dive-473b5218be11.html)
-- Guide: [How money moves, and what is changing](stories/money-in-motion.html)
-### 2 · Money across borders: institutions, charters & participation
+- [SEC Tokenized NMS Stock Innovation Exemption — 2026 Order](library/sec-tokenized-nms-stock-innovation-exemption.html): The SEC's crypto taxonomy, nine new staff FAQs (Sep 25), and a live order through 2031 that lets Tokenized Securities Venues exist.
+- [SEC Transfer Agent Modernization — 2026 Proposal](library/sec-transfer-agent-modernization.html): The SEC proposes letting a blockchain be part of the official shareholder record (Sep 1).
+- [SEC Investor Advisory Committee — 2026 meeting record](library/sec-investor-advisory-committee.html): The SEC's advisory committee floated tokenization guardrails in March that showed up in the September order, plus hints of a machine-readable EDGAR.
+- [CFTC Passive Software No-Action Position — 2026](library/cftc-passive-software-no-action-2026-09-17.html): CFTC staff opened a lane for software front-ends, crypto or not, to market derivatives without registering as brokers.
+- [Coinbase Clearing DCO Registration — 2026](library/coinbase-clearing-dco-registration-2026-09-28.html): The CFTC registered Coinbase's affiliated clearinghouse for fully collateralized derivatives; products, collateral and first operation remain separate gates.
 
-Reserve currencies, FX, IMF participation and coordination rules explain the international system that new settlement routes enter. The transition studies and the institutional charters belong together here.
+### Tokenization & the big map
 
-[Read the combined findings](topics/monetary-transition--international-rules.md)
+- [Crypto Infrastructure Hub](library/tokenization-entity-control-map.html): Start here for crypto: follow systems, transactions and legal proof—including the SEC's proposed self-custody, State trust, Article 8, audit and onchain-record chain—without treating proposal as permission or operation.
+- [Overall DLT Transition — 2025–2026](library/overall-dlt-transition.html): What has truly moved on-chain: regulated issuance, bank-deposit ledgers and real-money settlement are live; shared title and central-bank settlement are next.
+- [Major Bank Digital Transition Map](library/major-bank-digital-transition.html): Sixteen big banks, five different transition models, including retirement fund records that could move on-chain beneath the same 401(k) screen.
+- [SWIFT Shared Ledger](library/swift-shared-ledger.html): SWIFT's ledger is moving bank-reported live payments; Oracle now offers a bank-side connection stack, but no named Oracle bank or production transaction is public yet.
 
-- [International Monetary Transition](library/international-monetary-transition.html)
-- [G20 Currency Watch](library/currency-watch.html)
-- [G7 and G20 Coordination Architecture — 2025–2026](library/g7-g20-coordination-architecture.html)
-- [United Nations General Assembly High-Level Week — 2026](library/un-general-assembly-high-level-week-2026.html)
-- [Gold Balance of Payments & Currency Adjustment](library/gold-bop-currency-adjustment.html)
-- [Wholesale Metals Infrastructure](library/wholesale-metals.html)
-- [Cuba Pressure and Counter-Influence](library/cuba-pressure-counter-influence.html)
-- [Iraq Oil Provenance and Logistics](library/iraq-oil-logistics.html)
-- [Iran Financial Pressure and Banking-System Isolation](library/iran-financial-pressure.html)
-- [Global Oil and Gas Movements 2026](library/global-oil-gas-movements.html)
-- [Canada, transshipment and customs origin records](library/institutional-regime-waves.html)
-- [Japan August 2026 — State, Monetary, Industrial and Digital Delta](library/japan-august-2026-delta.html)
-- [U.S.–China Strategic Stability State Visit — September 2026](library/us-china-strategic-stability-state-visit-2026.html)
-- [China Country Orientation — 2026](library/china-country-orientation-2026.html)
-- [Russia Country Orientation — 2026](library/russia-country-orientation-2026.html)
-- [USTDA Project Development Pipeline — 2026](library/ustda-project-development-pipeline-2026.html)
-- Timeline research: [World Machine](machines/world.html)
-- Timeline research: [Side by Side](machines/side.html)
-- Source collection: International monetary institutions — charters and participation laws
-  - [Reading the Charter — Bank for International Settlements](sources/reading-the-charter-bis-dc20bc90a8ab.html)
-  - [Reading the Charter — Bretton Woods Agreements Act](sources/reading-the-charter-bretton-woods-agreements-act-a1deb404380f.html)
-  - [Reading the Charter — IBRD](sources/reading-the-charter-ibrd-6b6ad5c14796.html)
-  - [Reading the Charter — IMF](sources/reading-the-charter-imf-aaae2c88db93.html)
-  - [Reading the Charter — International Organizations Immunities Act](sources/reading-the-charter-international-organizations-immunities-act-68871be3600f.html)
-  - [Reading the charter — SWIFT](sources/reading-the-charter-swift-40d398f6fc61.html)
-- Source collection: World Machine international event stream
-  - [The World's Money — the International Sweep](sources/2026-07-08-the-world-s-money-the-international-sweep-b550501f225c.html)
-- Source collection: State money and reserves — earlier & related research
-  - [Gold Monetary-Use Mechanism Map](sources/gold-monetary-use-mechanism-map-2026-08-16-740aee22a4fc.html)
-- Source collection: Side by Side
-- Source collection: Earlier international story essays
-  - [Great-Power Realignment](sources/2026-06-meta-narrative-5-great-power-realignment-fdbdd3249199.html)
-  - [War Footing — Iran & the Mideast](sources/2026-06-meta-narrative-2-war-footing-iran-and-the-mideast-c8536b574f4b.html)
-- Guide: [How countries pay their way, and who controls access](stories/countries-and-connections.html)
-### 3 · What moves onto new records and payment routes?
+### Networks & tokens
 
-Follow the shift in asset representation, ownership records, messaging and settlement. Then compare private dollar instruments, crypto networks and adapters against the institutional functions they still depend on.
+- [Ripple, XRP and the Invisible Conversion Layer](library/ripple-xrp-invisible-conversion-layer.html): Ripple is assembling payments, custody, a stablecoin, prime brokerage and treasury, and XRP can serve as an invisible bridge between assets.
+- [Crypto Infrastructure Comparatives](library/crypto-infrastructure-comparatives.html): Who is building the most complete machine (JPMorgan/Kinexys, Circle, Coinbase, Stripe), and why Securitize is Ripple's complement, not its rival.
+- [QNT September 2026 Price Rise — Causal Audit](library/qnt-september-2026-price-rise.html): Why QNT ran Sep 24–26: The Clearing House picked Quant for a U.S. tokenized-deposit network and UK banks went live on its platform.
 
-[Read the combined findings](topics/monetary-transition--records-and-routes.md)
+### New records & accounting
 
-- [Overall DLT Transition — 2025–2026](library/overall-dlt-transition.html)
-- [Payment Transparency and the Hidden Constitution](library/payment-transparency-hidden-constitution.html)
-- [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](library/route-anchor-inventory.html)
-- [Crypto Infrastructure Hub](library/tokenization-entity-control-map.html)
-- [Major Bank Digital Transition Map](library/major-bank-digital-transition.html)
-- [QNT September 2026 Price Rise — Causal Audit](library/qnt-september-2026-price-rise.html)
-- [SWIFT Shared Ledger](library/swift-shared-ledger.html)
-- [Crypto Infrastructure Comparatives](library/crypto-infrastructure-comparatives.html)
-- [Ripple, XRP and the Invisible Conversion Layer](library/ripple-xrp-invisible-conversion-layer.html)
-- [GENIUS Stablecoin Trust Crosswalk](library/genius-stablecoin-trust-crosswalk.html)
-- [Authority Through the Adapter — Where Control Actually Moves](library/authority-through-the-adapter.html)
-- Timeline research: [Money Machine](machines/money.html)
-- Source collection: Private monetary suite and Treasury control
-  - [Private Monetary Stack — Source Documents](sources/private-monetary-stack-source-documents-0ecbb7f450f9.html)
-  - [Treasury Executive-Order Architecture — Source Document](sources/treasury-executive-order-architecture-source-document-ab217095aed1.html)
-  - [The Private Monetary Stack](sources/fintech-crypto-infrastructure-deep-dive-08df4391c59f.html)
-- Guide: [How our picture of the transition keeps changing](stories/reading-the-transition.html)
-- Guide: [Who gets in, which record counts, and when payment is complete](stories/money-rights-and-records.html)
-### 4 · Who permits the change?
+- [Official Record Authority and Blockchain Crosswalk — 2026](library/official-record-authority-blockchain.html): What makes a record official, and the CFTC's new FAQ letting required records live natively on-chain (Sep 24).
+- [From Atomic Settlement to Continuous Assurance — 2026](library/atomic-settlement-continuous-assurance.html): Real-time books and continuous audit: what atomic settlement, smart contracts and AI do to accounting, and what the auditor becomes.
 
-Charters, legislation, regulators and courts determine which routes may operate. Hearings preserve the arguments and proposals; the legal research follows their actual status and effects.
+### The big picture
 
-[Read the combined findings](topics/monetary-transition--permission.md)
+- [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](library/route-anchor-inventory.html): The dollar stays the anchor while stablecoins and private rails take over the routes, and XRP matters if it keeps winning those routes.
+- [Authority Through the Adapter — Where Control Actually Moves](library/authority-through-the-adapter.html): Execution spreads out to new software adapters while claims, records, collateral and emergency power get written into the new machinery.
 
-- [Congressional Monetary Infrastructure](library/congressional-monetary-infrastructure.html)
-- [Congressional Committee Control Plane](library/congressional-committee-control-plane.html)
-- [2026 Financial Infrastructure Permission and Operating-Receipt Windows](library/financial-infrastructure-permission-operating-receipt-windows-2026.html)
-- [SEC Transfer Agent Modernization — 2026 Proposal](library/sec-transfer-agent-modernization.html)
-- [SEC Tokenized NMS Stock Innovation Exemption — 2026 Order](library/sec-tokenized-nms-stock-innovation-exemption.html)
-- [SEC Investor Advisory Committee — 2026 meeting record](library/sec-investor-advisory-committee.html)
-- [SEC Accredited Investor Credential Notices — CPA Gate, 2026](library/sec-accredited-investor-credential-notices-2026-09-30.html)
-- [CFTC Passive Software No-Action Position — 2026](library/cftc-passive-software-no-action-2026-09-17.html)
-- [Coinbase Clearing DCO Registration — 2026](library/coinbase-clearing-dco-registration-2026-09-28.html)
-- [Judicial Money](library/judicial-money.html)
-- [Emergency Monetary Policy](library/emergency-monetary-policy.html)
-- [International Emergency Monetary Policy](library/international-emergency-monetary-policy.html)
-- [Congressional Hearing Source Library](library/congressional-hearing-source-library.html)
-- Timeline research: [The Charter Queue](machines/charter.html)
-- Source collection: GENIUS law and its historical reading
-  - [The GENIUS Act, Cover to Cover](sources/2026-07-08-the-genius-act-cover-to-cover-a84ed796d9b6.html)
-- Source collection: Judicial money
-  - [Judicial Money Map — Freedom 250](sources/judicial-money-map-source-document-d2f844afe3d8.html)
-  - [The Judicial Watch — factual timeline](sources/the-judicial-watch-factual-timeline-55de9addbe1e.html)
-  - [The Bench and the Money](sources/the-bench-and-the-money-4ae20ac158de.html)
-  - [Judicial Watch — factual case gates from the July 11, 2026 note](sources/the-judicial-watch-standing-expectations-registered-calls-fc5aff8a6175.html)
-- Guide: [Who gets in, which record counts, and when payment is complete](stories/money-rights-and-records.html)
-### 5 · What is owned, recorded, owed and correctable?
+### Also in this room
 
-A visible transfer still needs an account of the obligation, tax treatment, ownership, redemption and remedy. These studies connect payment technology to accounting and the public record.
-
-[Read the combined findings](topics/monetary-transition--accounting.md)
-
-- [Private Monetary Stack](library/private-monetary-stack.html)
-- [Treasury and IRS](library/treasury-irs.html)
-- [Fraud and Payment Integrity](library/fraud-payment-integrity.html)
-- [Transaction-Native Accounting](library/transaction-native-accounting.html)
-- [Official Record Authority and Blockchain Crosswalk — 2026](library/official-record-authority-blockchain.html)
-- [From Atomic Settlement to Continuous Assurance — 2026](library/atomic-settlement-continuous-assurance.html)
-- [Insurance and Reinsurance](library/insurance-reinsurance.html)
-- [Retail Debt](library/retail-debt.html)
-- Timeline research: [The Fine Print](machines/fineprint.html)
-- Source collection: Accounting, assurance and the public transaction record
-  - [The Accounting Transition](sources/the-accounting-transition-story-2026-09-30-d7bd5f4fb7f8.html)
-  - [Accounting Transition and Open Public Ledger — 2026-07-30](sources/readme-50750ec8c0f3.html)
-  - [Federal Transaction Record — Open Accounting, Audit Limits, and the State-NGO Gap](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html)
-  - [The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer](sources/2026-07-30-the-accounting-transition-shared-events-executable-rul-2fdf820971e8.html)
-- Source collection: Fine Print and people’s banking
-  - [The fine print — factual timeline](sources/the-fine-print-factual-timeline-69fa51fe257d.html)
-  - [Bank user agreements — legal-entity and contract-change map](sources/bank-user-agreements-source-document-b69017548c46.html)
-  - [U.S. banking websites — full entity sweep](sources/banking-website-sweep-source-document-4cadeee6e9f4.html)
-  - [The crowd cannot assemble](sources/the-crowd-cannot-assemble-34b267309649.html)
-- Source collection: Fraud control and the federal transaction record
-  - [The Fraud Machine — Identity, Eligibility, and the Payment Gate (2026-07-16)](sources/the-fraud-machine-identity-eligibility-and-the-payment-gate-61d967f2138f.html)
-  - [OBBB — Fraud, Improper-Payment and Error-Rate Legal Map](sources/obbb-fraud-improper-payment-and-error-rate-legal-map-0938f4722658.html)
-  - [Federal Transaction Record — Open Accounting, Audit Limits, and the State-NGO Gap](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html)
-- Guide: [What we own, what we owe, and who absorbs the loss](stories/claims-collateral-and-loss.html)
-### 6 · Where finance meets physical buildout and public authority
-
-Investment, energy and industrial projects provide concrete places to examine financing and settlement claims. The thesis connects these questions about control and responsibility; its interpretations and alternatives remain visible within the study.
-
-[Read the combined findings](topics/monetary-transition--real-economy.md)
-
-- [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](library/us-inbound-investment-industrial-capex.html)
 - [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html)
-- [Economic Institution Legitimacy Crisis — 2025–2026](library/economic-institution-legitimacy-crisis.html)
+- [Industrial Project Finance and Digital Rails](library/industrial-project-finance-digital-rails.html)
+- [International Monetary Transition](library/international-monetary-transition.html)
 - [The Overall Monetary Play — July 2026 Interpretation](library/overall-monetary-play.html)
-- [AI Infrastructure Capital Stack and Risk Transfer](library/ai-infrastructure-capital-stack-risk-transfer.html)
-- [Industrial Project Finance and Digital Rails](library/industrial-project-finance-digital-rails.html)
-- Timeline research: [The Spine](machines/spine.html)
-- Timeline research: [Tech Machine](machines/tech.html)
-- Timeline research: [State Machine](machines/state.html)
-- Source collection: Monetary big-picture readings and Spine
-  - [The Whole Money Story — A Full-Corpus Reading (2026-07-08)](sources/2026-07-08-the-whole-money-story-a-full-corpus-reading-0b5b82bb67f1.html)
-  - [The Whole World's Money — the World Ring Folded In (2026-07-08)](sources/2026-07-08-the-whole-world-s-money-the-world-ring-folded-in-72614fd1fcac.html)
-  - [The Money Crosswalk — Four Machines, Five Poles](sources/2026-07-10-the-money-crosswalk-four-machines-five-poles-681e6f6b51ee.html)
-  - [MONEY — READ FIRST](sources/money-read-first-cb185a6531c5.html)
-- Guide: [How our picture of the transition keeps changing](stories/reading-the-transition.html)
-- Connect: [Science, industry & infrastructure](index.html#family-industry-buildout): Finance funds facilities, equipment and power. Follow the projects and operating evidence behind investment and settlement claims.
-- Connect: [Public authority, records & delivery](index.html#family-public-authority): The same questions about permission, records, correction and accountability recur in agencies, benefits and public payments.
+- [University Funding and Programmable Compliance](library/university-funding-programmable-compliance.html)
 
-## Science, industry & infrastructure
+## Banking & the Dollar
 
-How do national ambitions become funded, built and operating capabilities?
+The old money system is being audited and rewired. The Fed, Treasury and clearing, banks and charters, your money and debt, gold and metals, and the court cases over who gets inside the system.
 
-Strategy, company maps, manufacturing, compute and energy describe different stages of the same buildout. Read across them to distinguish a plan, an investment, a physical site and an operating capability.
+[Open the room](research-rooms/banking-the-dollar.html)
 
-[Open this family](index.html#family-industry-buildout)
+### The Fed & Treasury
 
-> Technology gives the transition its physical capability: compute, energy, materials, factories and logistics. These studies ask who funds and operates that capability, who grants access, and whether the responsible institution can understand, supervise and correct the result.
+- [Federal Reserve Non-Core Initiative Governance — 2026](library/federal-reserve-noncore-initiative-governance-2026.html): The Fed OIG says the Board must know when it is a nonexpert owner; this watch follows that lesson from the renovation audit into permanent controls and the next major initiative.
+- [Federal Reserve, Clearing and Treasury](library/fed-clearing-treasury.html): The Fed isn't one thing: the Board, the FOMC and twelve separately chartered Reserve Banks each have their own legal status, records and bosses.
+- [Emergency Monetary Policy](library/emergency-monetary-policy.html): The legal switches (DPA, Stafford, IEEPA, Fed facilities) that could pull private payment and crypto rails into a crisis response.
+- [Judicial Money](library/judicial-money.html): The court cases deciding who gets a Fed master account, which agencies survive and who can stand inside the payment system.
+- [The Overall Monetary Play — July 2026 Interpretation](library/overall-monetary-play.html): The July read of the whole picture: not one new currency, but a programmable system built around conversion points.
 
-### 1 · Strategy, science and the organizations doing the work
+### Banks, charters & watchdogs
 
-Start with the national science strategy, agency plans and company maps to see the capabilities being pursued and the organizations assigned to pursue them.
+- [Banks and Credit Unions — Federal and Four-State Legal Architecture](library/bank-credit-union-legal-architecture.html): Banks and credit unions run on dual federal/state charters, and Florida, Texas, New York and Wyoming each use their leftover state power differently.
+- [SEC Credit-Rating Recordkeeping Orders, 2024–2026](library/sec-credit-rating-recordkeeping-orders-2024-2026.html): Six credit-rating agencies paid $49M+ over recordkeeping in 2024; the clean-up reports themselves are still private.
+- [December 2024 Beneficial Ownership Reporting Perimeter](library/december-2024-beneficial-ownership-reporting-perimeter.html): The Corporate Transparency Act's rise and shrink: now aimed at foreign entities only (final Aug 14).
 
-[Read the combined findings](topics/industry-buildout--strategy.md)
+### Private markets & investor access
 
-- [Federal Science Operating System](library/federal-science-operating-system.html)
-- [NSSTS Technology-to-Company Map](library/nssts-technology-company-map.html)
-- [Federal Strategic Plans](library/federal-strategic-plans.html)
-- [Federal Fusion Commercialization](library/federal-fusion-commercialization.html)
-- [NSSTS Program and Acceptance Economy](library/nssts-program-acceptance-economy.html)
-- [NSSTS Quantum and Cryptographic Acceptance](library/nssts-quantum-cryptographic-acceptance.html)
-- [Genesis Mission](library/genesis-mission.html)
-- Timeline research: [Tech Machine](machines/tech.html)
-- Timeline research: [The Spine](machines/spine.html)
-- Source collection: The Arsenal — 10 legacy filings
-- Guide: [From scientific ambition to things that work](stories/science-to-capability.html)
-### 2 · Investment, places, materials and power
+- [SEC Accredited Investor Credential Notices — CPA Gate, 2026](library/sec-accredited-investor-credential-notices-2026-09-30.html): The SEC may turn an active CPA license into an accredited-investor passport; the notices are live, but the final designation orders are not.
 
-Connect investment announcements to locations, suppliers, materials and power requirements. The NY map is one way into this broader industrial picture.
+### Your money & your debt
 
-[Read the combined findings](topics/industry-buildout--sites.md)
+- [The People's Money](library/peoples-money.html): What banks are building around your account, and who is really the creditor, the brand, the servicer and the next owner of your debt.
+- [Retail Debt](library/retail-debt.html): Buy-now-pay-later and credit cards: who lends, who services, who buys the debt and who eats the loss.
+- [Credit Approval Standards: Mortgage, Retail and Business](library/mortgage-credit-score-reform.html): Credit approval is being automated lender by lender, SBA dropped its old screening score, and mortgages move on their own track.
+- [Mortgage Balance Sheet Trail to the Fed](library/mortgage-balance-sheet-trail.html): One mortgage followed debit by credit through Fannie's trust, MBS, repo and Fed reserves: the plumbing, CPA-style.
+- [Insurance and Reinsurance](library/insurance-reinsurance.html): Start at the top: who writes the insurance constitution, how trillion-dollar insurer balance sheets transmit monetary and capital policy, where risk moves across groups and borders, and which private or public layer ultimately takes the loss.
 
-- [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](library/us-inbound-investment-industrial-capex.html)
-- [New York Manufacturing and Innovation Map — 2026](library/new-york-manufacturing-innovation-map-2026.html)
-- [Permanent Magnets](library/permanent-magnets.html)
-- [Carbon Nanotubes and Battery Sovereignty](library/carbon-nanotubes-battery-sovereignty.html)
-- [AI-Enabled Turbine Asset Management and U.S. Power Buildout](library/ai-turbine-asset-management-power-buildout.html)
-- [AI Infrastructure Capital Stack and Risk Transfer](library/ai-infrastructure-capital-stack-risk-transfer.html)
-- [Industrial Project Finance and Digital Rails](library/industrial-project-finance-digital-rails.html)
-- Timeline research: [Tech Machine](machines/tech.html)
-- Source collection: Joined energy-infrastructure library
-  - [Energy Infrastructure — Read First](sources/energy-infrastructure-read-first-2eb3c3598d3b.html)
-  - [Energy Infrastructure Continuous Finance — Source Document](sources/energy-infrastructure-continuous-finance-source-document-8061c9c27fad.html)
-- Source collection: The Reactor — 13 legacy filings
-- Guide: [What does this company actually do?](stories/companies-in-context.html)
-- Guide: [How systems keep working under pressure](stories/keeping-systems-working.html)
-### 3 · Infrastructure, access and accepted operation
+### Gold & metals
 
-Compute and communications depend on sites, legal access, standards and trusted records. These are the practical connections between industrial capability and government authority.
+- [Wholesale Metals Infrastructure](library/wholesale-metals.html): How a gold bar actually moves through COMEX, vaults, title and delivery, plus the UK's still-unbuilt bridge from bar to token collateral.
+- [Gold Balance of Payments & Currency Adjustment](library/gold-bop-currency-adjustment.html): Gold can reshape a country's accounts and reserves, but whether it moves the currency depends on who owns it and who converts it.
 
-[Read the combined findings](topics/industry-buildout--operation.md)
+### Also in this room
 
-- [Sovereign Compute](library/sovereign-compute.html)
-- [Sovereign Communications](library/sovereign-communications.html)
-- [Data Center Federal Legal Spine 2025–2026](library/data-center-federal-legal-spine.html)
-- [Scientific Trust Stack](library/scientific-trust-stack.html)
-- [Federal Agency AI Plans and Infrastructure](library/federal-agency-ai-plans-infrastructure.html)
-- [Military Modernization](library/military-modernization.html)
-- [Contested Logistics](library/contested-logistics.html)
-- [FORTRESS America and Military Installation Energy Independence](library/fortress-america-installation-energy-independence.html)
-- [Federal Cryptographic Trust Stack](library/federal-cryptographic-trust-stack.html)
-- [NARA AI Records and Compute Transition](library/nara-ai-records-compute-transition.html)
-- [Genesis Mission](library/genesis-mission.html)
-- Timeline research: [Tech Machine](machines/tech.html)
-- Source collection: The Compute — 24 legacy filings
-- Source collection: University research-security funding control
-  - [Thirty Unnamed Universities — Research Security Moves to Institution-Level Review](sources/2026-08-17-thirty-unnamed-universities-research-security-moves-to-e1bb71cbbe48.html)
-- Source collection: The Driverless — 6 legacy filings
-- Source collection: The Airspace — 10 legacy filings
-- Source collection: The High Ground — 3 legacy filings
-- Source collection: The Lab — 3 legacy filings
-- Guide: [From scientific ambition to things that work](stories/science-to-capability.html)
-- Connect: [Monetary & crypto transition](index.html#family-monetary-transition): Capital, collateral and payment arrangements connect industrial buildout back to money. Shared context helps locate a claim; the project records establish what actually happened.
-- Connect: [Public authority, records & delivery](index.html#family-public-authority): Agencies set funding, procurement, security, access and record requirements that shape what can be built and accepted.
-
-## Public authority, records & delivery
-
-Who can act, which record counts, and how does an authorized decision reach people?
-
-Executive orders, agency changes, public payments, eligibility and oversight connect through authority and implementation. These studies help explain how a legal decision becomes an operating process and how that process can be checked.
-
-[Open this family](index.html#family-public-authority)
-
-> Public authority is where control must become answerable: laws, agencies, courts, public services and official records. The studies and dated source collections let us compare promised authority with actual delivery, identify conflicts, and test whether institutions adapt successfully.
-
-### 1 · Legal authority and the institutions carrying it out
-
-Connect executive orders, agency structure, courts and congressional oversight to the offices and permissions that carry a decision into practice.
-
-[Read the combined findings](topics/public-authority--authority.md)
-
-- [Federal Reserve Non-Core Initiative Governance — 2026](library/federal-reserve-noncore-initiative-governance-2026.html)
-- [Office of Personnel Management Structural Change Audit — 2025–2026](library/opm-structural-change-audit-2025-2026.html)
-- [Federal Strategic Plans](library/federal-strategic-plans.html)
-- [Congressional Committee Control Plane](library/congressional-committee-control-plane.html)
-- [White House Research Hub](library/white-house-research-hub.html)
-- [House Oversight Corpus](library/house-oversight-corpus.html)
-- [Trump 2028 Constitutional and Election-Ledger Hypothesis](library/trump-2028-constitutional-election-ledger.html)
-- [White House Ballroom Lawfare 2025-2026](library/white-house-ballroom-lawfare-2025-2026.html)
-- [Cuba Pressure and Counter-Influence](library/cuba-pressure-counter-influence.html)
-- [Federal Workforce and Agency Control Maps](library/federal-workforce-and-agency-control.html)
-- [Federal Force, Surveillance and Emergency Authority Maps](library/federal-force-surveillance-and-emergency-authority.html)
-- [U.S. WHO Membership Exit Legal Map](library/us-who-membership-exit-legal-map.html)
-- [Federal Budget — FY2026 to FY2027](library/federal-budget-fy2026-fy2027.html)
-- [UK Constitutional Order and Self-Determination](library/uk-constitutional-order-self-determination.html)
-- [D.V.D. Third-Country Removal Authority — 2025–2026](library/dvd-third-country-removal-authority-2025-2026.html)
-- [March 26–31, 2025 Aries Eclipse Authority Window](library/march-2025-aries-eclipse-authority-window.html)
-- [January 26–February 1, 2025 Authority-to-Operations Window](library/january-2025-authority-operations-window.html)
-- [July 2–8, 2024 Protection and Financial Control Window](library/july-2024-protection-financial-control-window.html)
-- [December 2024 Beneficial Ownership Reporting Perimeter](library/december-2024-beneficial-ownership-reporting-perimeter.html)
-- [March 2006 and March 2007 Institutional Action Windows](library/march-2006-march-2007-institutional-action-windows.html)
-- [Government-Wide Research Hub](library/federal-government-movement-atlas.html)
+- [Authority Through the Adapter — Where Control Actually Moves](library/authority-through-the-adapter.html)
+- [Coinbase Clearing DCO Registration — 2026](library/coinbase-clearing-dco-registration-2026-09-28.html)
 - [Government Hidden Control Surfaces — 2026](library/government-hidden-control-surfaces-2026.html)
 - [Institutional Signals and Thesis Test — 2025–2026](library/institutional-signals-thesis-test-2025-2026.html)
-- [Office of Religious Affairs — 2026](library/office-of-religious-affairs.html)
-- [DOJ Judicial Misconduct Complaint Against Minnesota Judges — September 30, 2026](library/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html)
-- [Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026](library/trump-criminal-indictments-primary-source-map-2023-2026.html)
-- Timeline research: [The Spine](machines/spine.html)
-- Timeline research: [The Charter Queue](machines/charter.html)
-- Guide: [Who can make the government act?](stories/authority-and-institutions.html)
-- Guide: [How public power becomes public outcomes](stories/government-in-practice.html)
-### 2 · Public money, identity and service delivery
-
-Payment integrity and eligibility bring monetary records into contact with people, state administration and public services. Follow both the legal rules and the actual operating records.
-
-[Read the combined findings](topics/public-authority--delivery.md)
-
-- [Treasury Do Not Pay — Governmentwide Structural Map](library/treasury-do-not-pay-governmentwide-map.html)
-- [Fraud and Payment Integrity](library/fraud-payment-integrity.html)
-- [PRWORA State Reporting and Eligibility Architecture — 1996–2026](library/prwora-state-reporting-eligibility-architecture.html)
-- [Census, USPS, Citizenship and Apportionment — 2026](library/census-usps-citizenship-apportionment.html)
-- [Education and University Funding](library/education-university-funding.html)
-- [Election Integrity Release](library/election-integrity-release.html)
+- [International Monetary Transition](library/international-monetary-transition.html)
+- [Japan August 2026 — State, Monetary, Industrial and Digital Delta](library/japan-august-2026-delta.html)
+- [Major Bank Digital Transition Map](library/major-bank-digital-transition.html)
+- [Payment Transparency and the Hidden Constitution](library/payment-transparency-hidden-constitution.html)
+- [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](library/route-anchor-inventory.html)
+- [SWIFT Shared Ledger](library/swift-shared-ledger.html)
 - [Treasury and IRS](library/treasury-irs.html)
-- [Emerging Fraud — Identity, Eligibility and the Payment Gate](library/emerging-fraud-identity-payment-gate.html)
-- [OBBB — Fraud, Improper-Payment and Error-Rate Legal Map](library/obbb-fraud-error-rate-legal-map.html)
-- [Pennsylvania CCDBG — State-Edge Transaction Pilot](library/pa-ccdbg-state-edge-pilot.html)
-- [Hawaii Public Corruption — Primary-Source Ledger](library/hawaii-public-corruption-source-ledger.html)
-- [Southeast Fraud Enforcement Partnerships](library/southeast-fraud-enforcement-partnerships.html)
-- [University Funding and Programmable Compliance](library/university-funding-programmable-compliance.html)
-- [Department of Education Full-Surface Sweep — August 4, 2026](library/education-full-surface-sweep-2026-08-04.html)
+
+## Innovation
+
+New technology and science, and who's building it. AI and national science missions, national-security technology, communications, advanced materials, and the places building them.
+
+[Open the room](research-rooms/innovation.html)
+
+### AI & big science
+
+- [Genesis Mission](library/genesis-mission.html): Genesis: 33 national science challenges, 278 selected projects and the labs and companies building AI-driven science.
+- [Federal Science Operating System](library/federal-science-operating-system.html): How national science doctrine becomes funded capability, through a security layer of identity, export controls and trusted supply.
+- [Scientific Trust Stack](library/scientific-trust-stack.html): The identity, disclosure and security gates that now route federally funded science.
+
+### National-security tech
+
+- [NSSTS Technology-to-Company Map](library/nssts-technology-company-map.html): Which exact companies could shape the national-security tech buildout across twelve sectors: performers, contenders and bottlenecks.
+- [NSSTS Program and Acceptance Economy](library/nssts-program-acceptance-economy.html): How federal demand becomes accepted, working capability: programs, facilities, suppliers and the referees who sign off.
+- [NSSTS Quantum and Cryptographic Acceptance](library/nssts-quantum-cryptographic-acceptance.html): What it takes for quantum and post-quantum crypto to be accepted and switched on by a federal authority.
+
+### Communications & trust
+
+- [Sovereign Communications](library/sovereign-communications.html): Public safety, satellite, fiber, spectrum and continuity: the emergency communications rail.
+- [Federal Cryptographic Trust Stack](library/federal-cryptographic-trust-stack.html): Federal digital trust is already operating, while NSA's new public hub exposes the separate policy, product, solution and system gates in the post-quantum migration.
+
+### Materials & places
+
+- [New York Manufacturing and Innovation Map — 2026](library/new-york-manufacturing-innovation-map-2026.html): New York's industrial map: the I-90/CSX spine, Great Lakes water, hydropower and ports, with Micron as the anchor still under construction.
+- [Permanent Magnets](library/permanent-magnets.html): From ore to finished magnet: China's grip, real U.S. production, and the public money building a domestic market.
+- [Carbon Nanotubes and Battery Sovereignty](library/carbon-nanotubes-battery-sovereignty.html): Nanotubes supercharge battery electrodes; the race is on to build a U.S. chain from synthesis to finished cells.
+
+### Also in this room
+
+- [AI Infrastructure Capital Stack and Risk Transfer](library/ai-infrastructure-capital-stack-risk-transfer.html)
+- [Data Center Federal Legal Spine 2025–2026](library/data-center-federal-legal-spine.html)
 - [Department of War Research Security Audits — August 17, 2026](library/dow-research-security-audits-2026-08-17.html)
 - [Federal Agency AI Plans and Infrastructure](library/federal-agency-ai-plans-infrastructure.html)
-- [Education Learning Agenda Playbook](library/education-learning-agenda-playbook.html)
-- Timeline research: [State Machine](machines/state.html)
-- Timeline research: [The Fine Print](machines/fineprint.html)
-- Source collection: Identity, citizenship and federal-State eligibility
-  - [Identity Rails — Travel, Benefit, Vote, Count](sources/identity-rails-travel-benefit-vote-count-306194cc785a.html)
-  - [Citizenship Operating Clock — Barbara and EO 14418](sources/citizenship-operating-clock-barbara-and-eo-14418-635122ac1943.html)
-  - [OBBB — Eligibility and Fiscal-Federalism Companion](sources/obbb-eligibility-and-fiscal-federalism-companion-35a40a201a22.html)
-- Source collection: Federal Group Control: public money and procurement
-  - [Federal Group Control — Read First](sources/federal-group-control-read-first-18582ff6f6a7.html)
-  - [Impoundment and Rescission — Legal and Entity Map](sources/impoundment-and-rescission-legal-and-entity-map-1b276d1b2443.html)
-  - [Revolutionary FAR Overhaul — Procurement Control Map](sources/revolutionary-far-overhaul-procurement-control-map-df1a8c3272f5.html)
-- Guide: [Where national change becomes local](stories/national-change-local-life.html)
-- Guide: [Who is counted, who qualifies, who can govern?](stories/representation-and-membership.html)
-### 3 · Records, disclosure and accountability
+- [Government Hidden Control Surfaces — 2026](library/government-hidden-control-surfaces-2026.html)
+- [Institutional Signals and Thesis Test — 2025–2026](library/institutional-signals-thesis-test-2025-2026.html)
+- [Military Modernization](library/military-modernization.html)
+- [Sovereign Compute](library/sovereign-compute.html)
 
-AI records, disclosures, hearings and source collections show how claims can be checked. This also connects to the thesis question about where control, responsibility and visible evidence reside.
+## Government Changes
 
-[Read the combined findings](topics/public-authority--accountability.md)
+The federal government is rebuilding how it runs. Federal workers and agencies, budgets and plans, government AI and records, fraud and payment controls, and the White House and Congress.
 
-- [NARA AI Records and Compute Transition](library/nara-ai-records-compute-transition.html)
-- [SEC Credit-Rating Recordkeeping Orders, 2024–2026](library/sec-credit-rating-recordkeeping-orders-2024-2026.html)
-- [Disclosure Architecture](library/disclosure-architecture.html)
-- [COVID Authority and Disclosure Record](library/covid-authority-disclosures.html)
-- [Economic Institution Legitimacy Crisis — 2025–2026](library/economic-institution-legitimacy-crisis.html)
+[Open the room](research-rooms/government-changes.html)
+
+### Federal workers & agencies
+
+- [Office of Personnel Management Structural Change Audit — 2025–2026](library/opm-structural-change-audit-2025-2026.html): OPM's quiet rebuild: digital retirement, HR 2.0, AI hiring and ranking, and the court line on probationary firings.
+- [Federal Workforce and Agency Control Maps](library/federal-workforce-and-agency-control.html): Five maps: reclassifying jobs, removing officials, whether an agency legally exists, shutting it down, and its successor.
+- [Government-Wide Research Hub](library/federal-government-movement-atlas.html): The whole federal government as one navigable map: 642 entities, Congress, and what has moved.
+
+### Hidden decision rooms
+
+- [Government Hidden Control Surfaces — 2026](library/government-hidden-control-surfaces-2026.html): A terminal 114-surface map of the public rooms upstream of government decisions: 82 complete sweeps, 32 bounded holds, plus typed advisory, support, approval and lifecycle relationships.
+
+### Courts & judicial administration
+
+- [DOJ Judicial Misconduct Complaint Against Minnesota Judges — September 30, 2026](library/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html): The filing, the public-comment question and the separate recusal, appeal, discipline and Article III removal clocks.
+- [Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026](library/trump-criminal-indictments-primary-source-map-2023-2026.html): The four charging instruments, their count structures, later rulings and the difference between allegation, conviction, dismissal, nolle and appeal.
+
+### Budgets, plans & spending
+
+- [Federal Reserve Non-Core Initiative Governance — 2026](library/federal-reserve-noncore-initiative-governance-2026.html): The Fed OIG says the Board must know when it is a nonexpert owner; this watch follows that lesson from the renovation audit into permanent controls and the next major initiative.
+- [Federal Budget — FY2026 to FY2027](library/federal-budget-fy2026-fy2027.html): FY2027: outlays up about 7.3% with sharp shifts in priorities, and a CR running to Dec 11.
+- [Federal Strategic Plans](library/federal-strategic-plans.html): How agencies' stated goals connect to plans, budgets and results, plus the new national science and tech strategy.
+- [Stop Secret Spending Act — OTA Transparency and Implementation](library/stop-secret-spending-act-ota-transparency.html): New law (Sep 11) pulls 'other transaction' agreements into USAspending; $77.5B of DoD OTAs had been missing from it.
+- [Treasury and IRS](library/treasury-irs.html): The tax itself stays sovereign, but filing, reporting, scanning and payment are moving out to intermediaries and electronic borders.
+
+### Government AI & records
+
+- [Federal Agency AI Plans and Infrastructure](library/federal-agency-ai-plans-infrastructure.html): Agency AI is becoming a federated layer of decision systems across eleven agencies, not one federal platform.
+- [NARA AI Records and Compute Transition](library/nara-ai-records-compute-transition.html): The National Archives: keeper of the government's AI records and a customer building its own AWS/Azure/Google stack.
+
+### Fraud & payment controls
+
+- [Fraud and Payment Integrity](library/fraud-payment-integrity.html): Two Treasury payment-scam meetings now prove a recurring cross-sector forum, but no second-meeting deliverable or merger with the proposed TRAPS task force is public.
+- [Treasury Do Not Pay — Governmentwide Structural Map](library/treasury-do-not-pay-governmentwide-map.html): Do Not Pay is a shared screening checkpoint across government; each program still makes the final call.
+- [Emerging Fraud — Identity, Eligibility and the Payment Gate](library/emerging-fraud-identity-payment-gate.html): The July 15 hearing's vision of continuous identity and account-risk checks before money goes out.
+- [OBBB — Fraud, Improper-Payment and Error-Rate Legal Map](library/obbb-fraud-error-rate-legal-map.html): What the One Big Beautiful Bill actually did on SNAP and Medicaid errors, verification and state cost-shifting.
+- [Pennsylvania CCDBG — State-Edge Transaction Pilot](library/pa-ccdbg-state-edge-pilot.html): Following one child-care grant into Pennsylvania's books, and where the public trail stops.
+- [Hawaii Public Corruption — Primary-Source Ledger](library/hawaii-public-corruption-source-ledger.html): What primary records show across Hawaii's separate COVID, campaign, procurement and Medicaid cases.
+- [Southeast Fraud Enforcement Partnerships](library/southeast-fraud-enforcement-partnerships.html): DOJ's 17-case Southeast roll-up, state data-sharing deals and three new task forces.
+
+### The White House & Congress
+
+- [White House Cabinet Meeting — July 31, 2026](library/white-house-cabinet-meeting-2026-07-31.html): The July 31 Cabinet meeting: what was said and which instruments actually changed.
+- [White House Research Hub](library/white-house-research-hub.html): Every White House and CEA research paper, preserved in one place.
+- [White House Ballroom Lawfare 2025-2026](library/white-house-ballroom-lawfare-2025-2026.html): The ballroom lawfare: Chief Justice Roberts stayed the injunction on Aug 21, so construction continues.
+- [Trump WHCA Dinner Remarks — July 24, 2026](library/trump-whca-dinner-remarks-2026-07-24.html): The WHCA dinner remarks with a timestamped transcript for close reading.
+- [Congressional Committee Control Plane](library/congressional-committee-control-plane.html): Every committee and subcommittee of the 119th Congress, mapped as its own node.
+
+### Also in this room
+
+- [Census, USPS, Citizenship and Apportionment — 2026](library/census-usps-citizenship-apportionment.html)
+- [Congressional Monetary Infrastructure](library/congressional-monetary-infrastructure.html)
+- [December 2024 Beneficial Ownership Reporting Perimeter](library/december-2024-beneficial-ownership-reporting-perimeter.html)
+- [Federal Reserve, Clearing and Treasury](library/fed-clearing-treasury.html)
+- [Federal Cryptographic Trust Stack](library/federal-cryptographic-trust-stack.html)
+- [Federal Force, Surveillance and Emergency Authority Maps](library/federal-force-surveillance-and-emergency-authority.html)
+- [House Oversight Corpus](library/house-oversight-corpus.html)
+- [Office of Religious Affairs — 2026](library/office-of-religious-affairs.html)
+- [SEC Accredited Investor Credential Notices — CPA Gate, 2026](library/sec-accredited-investor-credential-notices-2026-09-30.html)
+
+## Energy, Data Centers & Big Projects
+
+Who pays to build the power plants, data centers and factories. Power and energy, data centers and computing, and the money and investment behind big physical projects.
+
+[Open the room](research-rooms/energy-data-centers-big-projects.html)
+
+### Power & energy
+
+- [Federal Fusion Commercialization](library/federal-fusion-commercialization.html): Fusion's path from strategy and capital to a named machine, a license, a grid hookup and delivered power.
+- [AI-Enabled Turbine Asset Management and U.S. Power Buildout](library/ai-turbine-asset-management-power-buildout.html): How turbines are really run with AI today, and why most new big gas turbines won't spin until 2027 or later.
+- [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html): Could programmable settlement run energy assets? Iran shows the gap between instant technical settlement and legal finality.
+
+### Data centers & compute
+
+- [Data Center Federal Legal Spine 2025–2026](library/data-center-federal-legal-spine.html): No federal data-center moratorium or power-queue law exists; EO 14318 is producing real but scattered leases, selections and permits.
+- [Sovereign Compute](library/sovereign-compute.html): Tribal, state, federal and private data-center projects where land, power, tax status and defense demand collide.
+- [AI Infrastructure Capital Stack and Risk Transfer](library/ai-infrastructure-capital-stack-risk-transfer.html): Who owns the GPUs, who owes the debt, and who holds the bag if AI demand stumbles.
+
+### Capital & investment
+
+- [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](library/us-inbound-investment-industrial-capex.html): What the 'trillions coming in' headline contains: spending plans, foreign frameworks, trade figures and some real named projects.
+- [Industrial Project Finance and Digital Rails](library/industrial-project-finance-digital-rails.html): Six real project-finance stacks checked for tokenized funding; the new rails sit next to the projects, not inside them yet.
+- [USTDA Project Development Pipeline — 2026](library/ustda-project-development-pipeline-2026.html): Seven USTDA projects in one week, Ecuador to the Lobito corridor: the U.S. laying groundwork abroad before the deals.
+
+### Also in this room
+
+- [Carbon Nanotubes and Battery Sovereignty](library/carbon-nanotubes-battery-sovereignty.html)
+- [FORTRESS America and Military Installation Energy Independence](library/fortress-america-installation-energy-independence.html)
+- [Genesis Mission](library/genesis-mission.html)
+- [Global Oil and Gas Movements 2026](library/global-oil-gas-movements.html)
+- [Permanent Magnets](library/permanent-magnets.html)
+- [Trump Davos Address — January 21, 2026](library/trump-davos-address-2026-01-21.html)
+
+## Education
+
+How schools and universities are funded and controlled. University funding and controls, research security reviews, and state education policy.
+
+[Open the room](research-rooms/education.html)
+
+### Universities & research money
+
+- [Education and University Funding](library/education-university-funding.html): University money is moving to recipient- and payment-level checks, plus research-security reviews.
+- [University Funding and Programmable Compliance](library/university-funding-programmable-compliance.html): Treasury prototyped a permissioned research-grant ledger; universities are moving toward payment-level controls.
+- [Department of War Research Security Audits — August 17, 2026](library/dow-research-security-audits-2026-08-17.html): The Pentagon ordered research-security reviews at 30 unnamed universities.
+
+### Schools & the states
+
+- [Department of Education Full-Surface Sweep — August 4, 2026](library/education-full-surface-sweep-2026-08-04.html): A call-to-action letter to universities, a Perkins servicer change and a delayed enforcement rule.
+- [Education Learning Agenda Playbook](library/education-learning-agenda-playbook.html): A voluntary playbook for states to tie education priorities to evidence.
+
+## Citizenship, Voting & Immigration
+
+Who counts as a citizen, who can vote, and who can stay. The census and citizenship, eligibility for benefits, elections and the 2028 question, and deportation cases.
+
+[Open the room](research-rooms/citizenship-voting-immigration.html)
+
+### Census & benefit eligibility
+
+- [Census, USPS, Citizenship and Apportionment — 2026](library/census-usps-citizenship-apportionment.html): The Census–USPS test used postal workers as enumerators, with citizenship on the online form; results still to come.
+- [PRWORA State Reporting and Eligibility Architecture — 1996–2026](library/prwora-state-reporting-eligibility-architecture.html): A Sep 1 OLC opinion reopens 1996 welfare-law duties: states now report what their agencies know.
+
+### Elections & succession
+
+- [Election Integrity Release](library/election-integrity-release.html): The White House's July election-integrity release, sorted into voter data, intelligence, election tech and eligibility.
+- [Trump 2028 Constitutional and Election-Ledger Hypothesis](library/trump-2028-constitutional-election-ledger.html): What the law says about a third term, and the procedural pressure points a 2028 push would test.
+
+### Deportation cases
+
+- [D.V.D. Third-Country Removal Authority — 2025–2026](library/dvd-third-country-removal-authority-2025-2026.html): The third-country deportation fight reaches the Supreme Court: DHS asked for a stay on Sep 24.
+
+### Also in this room
+
+- [Fraud and Payment Integrity](library/fraud-payment-integrity.html)
+- [Canada, transshipment and customs origin records](library/institutional-regime-waves.html)
+- [OBBB — Fraud, Improper-Payment and Error-Rate Legal Map](library/obbb-fraud-error-rate-legal-map.html)
+- [Treasury Do Not Pay — Governmentwide Structural Map](library/treasury-do-not-pay-governmentwide-map.html)
+- [Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026](library/trump-criminal-indictments-primary-source-map-2023-2026.html)
+
+## Sanctions, Oil & the Military
+
+How the U.S. uses economic and military pressure. Sanctions on Iran and Cuba, oil and gas shipping routes, the military and its supply lines, and emergency and surveillance powers.
+
+[Open the room](research-rooms/sanctions-oil-the-military.html)
+
+### Sanctions & pressure
+
+- [Iran Financial Pressure and Banking-System Isolation](library/iran-financial-pressure.html): Operation Economic Outcast: FinCEN moved to cut a UAE bank off from U.S. correspondent accounts; OFAC named new targets.
+- [Cuba Pressure and Counter-Influence](library/cuba-pressure-counter-influence.html): The 2026 Cuba state report and enforcement pressure: public evidence, intelligence claims and announced action, sorted.
+
+### Oil & shipping routes
+
+- [Global Oil and Gas Movements 2026](library/global-oil-gas-movements.html): A working globe of where oil, diesel and LNG actually move, now including the authorized Alaska LNG corridor and the still-announced Korea investment/export lane.
+- [Iraq Oil Provenance and Logistics](library/iraq-oil-logistics.html): Who physically and legally moves Iraqi oil: export routes, payment, custody and sanctions seams.
+
+### The military & its supply lines
+
+- [Military Modernization](library/military-modernization.html): Command, sensors, software, procurement and the industrial base, from contract to fielded capability.
+- [Office of Religious Affairs — 2026](library/office-of-religious-affairs.html): A new Secretary-level office with direct policy and resource authority, tracked from establishment through budget, staffing, programs and real-world religious-liberty effects.
+- [Contested Logistics](library/contested-logistics.html): Ports, rail, sealift, airlift and fuel: how industrial capacity turns into wartime movement.
+- [FORTRESS America and Military Installation Energy Independence](library/fortress-america-installation-energy-independence.html): A new military-wide program seeks independent power for every major installation, but the sites, loads, duration, funding and readiness tests are not fixed yet.
+
+### Emergency & surveillance powers
+
+- [Federal Force, Surveillance and Emergency Authority Maps](library/federal-force-surveillance-and-emergency-authority.html): FISA clocks, domestic-force laws, war powers, emergency property controls and how far the courts can reach.
+
+### Also in this room
+
+- [Department of War Research Security Audits — August 17, 2026](library/dow-research-security-audits-2026-08-17.html)
+- [Emergency Monetary Policy](library/emergency-monetary-policy.html)
+- [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html)
+- [NSSTS Quantum and Cryptographic Acceptance](library/nssts-quantum-cryptographic-acceptance.html)
+- [NSSTS Technology-to-Company Map](library/nssts-technology-company-map.html)
+
+## Foreign Relations & World Money
+
+How other countries, currencies and global groups are shifting. The dollar's role abroad, currencies and the IMF, the G7, G20 and UN, and U.S. relationships with China, Russia, the UK, Japan and neighbors.
+
+[Open the room](research-rooms/foreign-relations-world-money.html)
+
+### World money
+
+- [International Monetary Transition](library/international-monetary-transition.html): Reserve diversification, local-currency trade and stablecoins are different moves; outright replacement of the dollar is rarer than it looks.
+- [G20 Currency Watch](library/currency-watch.html): The system behind each G20 currency, read across six separate lanes (no league table).
+- [International Emergency Monetary Policy](library/international-emergency-monetary-policy.html): How other countries and the IMF actually respond to bank runs, cyberattacks, war and sanctions, tool by tool.
+
+### G7, G20 & the UN
+
+- [G7 and G20 Coordination Architecture — 2025–2026](library/g7-g20-coordination-architecture.html): The G7/G20 machinery: payments goals, a rare-earth diversification plan and debt machinery, and how far each actually reaches.
+- [United Nations General Assembly High-Level Week — 2026](library/un-general-assembly-high-level-week-2026.html): UN week captured whole: the national addresses, speaker statements, and what the U.S. said and signed.
+
+### The big relationships
+
+- [China Country Orientation — 2026](library/china-country-orientation-2026.html): The whole U.S.–China relationship as a stack (trade, chips, money, Taiwan, military), and where each side's leverage sits.
+- [U.S.–China Strategic Stability State Visit — September 2026](library/us-china-strategic-stability-state-visit-2026.html): The September visit built on the May framework and produced a real Board of Trade constitution and product lists; tariff implementation is still pending.
+- [Russia Country Orientation — 2026](library/russia-country-orientation-2026.html): U.S.–Russia today: New START expired, Ukraine talks active but ad hoc, sanctions as permission systems, commodities rerouted to Asia.
+
+### Allies & neighbors
+
+- [UK Constitutional Order and Self-Determination](library/uk-constitutional-order-self-determination.html): How the UK, London and the City of London fit together, and why Scottish/Welsh/Irish coordination isn't independence.
+- [Japan August 2026 — State, Monetary, Industrial and Digital Delta](library/japan-august-2026-delta.html): Japan's August: defending the yen with U.S.-coordinated buying, earthquake recovery, household relief and bank-based digital settlement tests.
+- [Trump Davos Address — January 21, 2026](library/trump-davos-address-2026-01-21.html): The Davos speech and what followed: the Greenland idea became a signed trilateral security agreement on Sep 22.
+- [Canada, transshipment and customs origin records](library/institutional-regime-waves.html): The White House transshipment report and proposed customs-origin records: who gets flagged and what gets proven.
+
+### Also in this room
+
+- [Global Oil and Gas Movements 2026](library/global-oil-gas-movements.html)
+- [The Overall Monetary Play — July 2026 Interpretation](library/overall-monetary-play.html)
+- [Permanent Magnets](library/permanent-magnets.html)
+- [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](library/route-anchor-inventory.html)
+- [SWIFT Shared Ledger](library/swift-shared-ledger.html)
+- [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](library/us-inbound-investment-industrial-capex.html)
+- [U.S. WHO Membership Exit Legal Map](library/us-who-membership-exit-legal-map.html)
+
+## Released Records & Investigations
+
+What official records and investigations have brought to light. COVID origins and records, the Epstein interviews, House Oversight hearings, and how official releases are put together.
+
+[Open the room](research-rooms/released-records-investigations.html)
+
+### COVID: records & origins
+
+- [COVID Authority and Disclosure Record](library/covid-authority-disclosures.html): Five families of COVID records: 2020 authority, ODNI releases, HHS policy, COVID.gov and the Rand Paul reading room.
+- [2020 COVID Authority Spine](library/covid-2020-authority-spine.html): Twenty official 2020 objects: the legal and public-health baseline for everything argued since.
+- [ODNI COVID and Biolab Disclosures — June 2026](library/odni-covid-biolab-disclosures-2026-06.html): ODNI's June releases: a biolab slide deck and a 391-page COVID-origins packet.
+- [Rand Paul COVID Origins Reading Room — July 2026](library/rand-paul-covid-origins-reading-room-2026-07-29.html): Rand Paul's 14-PDF Senate reading room on COVID origins, read page by page.
+- [White House COVID.gov Reactivation — July 2026](library/white-house-covid-gov-reactivation-2026-07-29.html): The White House revived COVID.gov during the Fauci hearing.
+- [HHS High-Risk Life Sciences Research Policy — July 2026](library/hhs-high-risk-life-sciences-policy-2026-07-28.html): New federal-funding bans and review rules for high-risk life-sciences research.
+- [U.S. WHO Membership Exit Legal Map](library/us-who-membership-exit-legal-map.html): The U.S. left the WHO on Jan 22, 2026, with loose ends on dues, health regulations and the Pandemic Agreement.
+
+### Interviews & hearings
+
+- [Epstein Interview Statement Accountability](library/epstein-interview-statement-accountability.html): The Leon Black and Doug Band interviews turned statements and refusals into checkable records.
+- [House Oversight Corpus](library/house-oversight-corpus.html): The House Oversight hearings and transcripts behind the fraud and watchdog story.
+- [Congressional Hearing Source Library](library/congressional-hearing-source-library.html): Every preserved hearing: committee memos, testimony and bills.
+
+### How official releases are built
+
+- [Disclosure Architecture](library/disclosure-architecture.html): How official releases turn piles of records into a public story, across Epstein, COVID and UAP.
+
+### Also in this room
+
+- [DOJ Judicial Misconduct Complaint Against Minnesota Judges — September 30, 2026](library/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html)
+- [Stop Secret Spending Act — OTA Transparency and Implementation](library/stop-secret-spending-act-ota-transparency.html)
+- [Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026](library/trump-criminal-indictments-primary-source-map-2023-2026.html)
+- [White House Ballroom Lawfare 2025-2026](library/white-house-ballroom-lawfare-2025-2026.html)
+
+## Not shelved in a room
+
+Dated federal sweeps and similar records that feed the rooms.
+
+- [Transaction-Native Accounting](library/transaction-native-accounting.html)
 - [Government-Wide Audit — July 2026](library/government-wide-audit-july-2026.html)
 - [Federal Whole-Site Recertification — August 2026](library/government-wide-recertification-august-2026.html)
 - [Federal Government Entity Library Harvest — 2026-08-22](library/federal-government-entity-library-harvest-2026-08-22.html)
@@ -395,855 +421,4 @@ AI records, disclosures, hearings and source collections show how claims can be 
 - [Federal Government Deep Website Review — September 16–22, 2026](library/federal-government-deep-website-review-2026-09-22.html)
 - [Federal Government Weekly Delta — September 21–25, 2026](library/federal-government-weekly-delta-2026-09-25.html)
 - [Federal Government Fiscal-Year-Close Delta — September 26–30, 2026](library/federal-government-fiscal-year-close-delta-2026-09-30.html)
-- [Stop Secret Spending Act — OTA Transparency and Implementation](library/stop-secret-spending-act-ota-transparency.html)
-- [Trump Davos Address — January 21, 2026](library/trump-davos-address-2026-01-21.html)
-- [White House Cabinet Meeting — July 31, 2026](library/white-house-cabinet-meeting-2026-07-31.html)
-- [Trump WHCA Dinner Remarks — July 24, 2026](library/trump-whca-dinner-remarks-2026-07-24.html)
-- [Epstein Interview Statement Accountability](library/epstein-interview-statement-accountability.html)
-- [Congressional Hearing Source Library](library/congressional-hearing-source-library.html)
-- [2020 COVID Authority Spine](library/covid-2020-authority-spine.html)
-- [ODNI COVID and Biolab Disclosures — June 2026](library/odni-covid-biolab-disclosures-2026-06.html)
-- [HHS High-Risk Life Sciences Research Policy — July 2026](library/hhs-high-risk-life-sciences-policy-2026-07-28.html)
-- [White House COVID.gov Reactivation — July 2026](library/white-house-covid-gov-reactivation-2026-07-29.html)
-- [Rand Paul COVID Origins Reading Room — July 2026](library/rand-paul-covid-origins-reading-room-2026-07-29.html)
-- Timeline research: [The Spine](machines/spine.html)
-- Source collection: Accounting, assurance and the public transaction record
-  - [The Accounting Transition](sources/the-accounting-transition-story-2026-09-30-d7bd5f4fb7f8.html)
-  - [Accounting Transition and Open Public Ledger — 2026-07-30](sources/readme-50750ec8c0f3.html)
-  - [Federal Transaction Record — Open Accounting, Audit Limits, and the State-NGO Gap](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html)
-  - [The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer](sources/2026-07-30-the-accounting-transition-shared-events-executable-rul-2fdf820971e8.html)
-- Guide: [How a public claim becomes something we can examine](stories/claims-records-and-accountability.html)
-- Guide: [What changed as the plans met the machinery?](stories/government-through-time.html)
-- Connect: [Monetary & crypto transition](index.html#family-monetary-transition): Public payments, financial permissions and accounting link government operations to the monetary transition.
-- Connect: [Science, industry & infrastructure](index.html#family-industry-buildout): Strategy becomes tangible through funding, procurement, permits, standards, infrastructure and delivery records.
 
-## How money moves, and what is changing
-
-A balance in an app, a bank deposit and a token can all look like money on a screen. Understanding who owes it, who moves it and how we get it back turns the Crypto Hub into a map of a working system.
-
-### Start with the money underneath
-
-[Open chapter](stories/money-in-motion.html#the-system-underneath)
-
-The dollar is the unit in which these claims are expressed, but the balances belong on different books. A customer’s bank deposit is the bank’s debt to the customer. A bank’s reserve balance is its claim at a Federal Reserve Bank, used in the public settlement layer. The customer does not directly own a slice of that reserve account. Cash, a bank deposit and a stablecoin can each be described in dollars while giving the holder different rights.
-Consider a simplified payment between customers of two different banks using a Reserve Bank settlement service. The payer’s bank reduces its customer’s deposit balance; the receiving bank increases its customer’s balance. The participating banks also settle between their reserve accounts under the service’s rules. If a bank uses a correspondent, or payments are netted before settlement, the path has additional steps. The customer’s instruction, bank-book entries and final interbank settlement are therefore connected events rather than one universal ledger update.
-This conceptual example explains why the Fed, banks and private networks can all remain important at once. Banks owe customer deposits and supply credit; payment operators move instructions and determine obligations; eligible institutions obtain settlement liquidity through their own resources and applicable borrowing arrangements. Treasury has a separate public-spending and fiscal-agent relationship. A faster network can change how the instruction travels while leaving the deposit claim, reserve settlement and emergency backstop in place.
-
-- [Who is actually on the other side of your account?](sources/bank-user-agreements-source-document-b69017548c46.html): The bank, brand, servicer and customer agreement are not always the same entity.
-- [Why a bank account and a credit-union account are not the same legal object](sources/banks-and-credit-unions-federal-and-four-state-legal-architecture-16f681f90d91.html): Compare charter, owner, member eligibility, regulator, insurer, tax, public-deposit authority and failure path before comparing products.
-- [From cash to cards to stablecoins](sources/2026-07-31-the-visible-ledger-and-the-hidden-constitution-from-ca-3eb1a2bcb2e6.html): A plain account of the familiar interface and the institutions behind it.
-- [Where the Fed and Treasury fit](sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html): Public payment services, accounts, authority and liquidity backstops.
-- [See the settlement layer beneath the bank balances](sources/fed-payment-stack-control-finality-and-cost-audit-2026-07-25-42694c28bdc5.html): The saved payment-stack audit distinguishes reserve-account cash settlement, correspondent access, liquidity and customer entitlement.
-- Connect: [What stands behind a public payment?](stories/government-in-practice.html#follow-the-public-dollar): Public spending begins with authority and a funding decision before it reaches the payment system.
-- Connect: [Follow the claim when it changes hands](stories/claims-collateral-and-loss.html#the-obligation-survives): Debt sales, custody and insurance reveal who owns or owes the promise beneath the account.
-### Several ambitions, several kinds of money
-
-[Open chapter](stories/money-in-motion.html#different-ambitions)
-
-Some projects want transfers outside ordinary bank hours. Others want fewer mismatched records, coordinated exchanges of money and securities, or collateral that can reach a lender more easily. These are different problems. A stablecoin, a bank’s tokenized deposit and a tokenized security carry different claims even when they use the same network.
-The connection is the obligation behind the token: what it represents, which record counts, and what must happen before it can pay a debt or support a loan. Following those questions lets us compare technologies that otherwise look deceptively similar.
-
-- [The seven jobs in the private monetary stack](sources/fintech-crypto-infrastructure-deep-dive-08df4391c59f.html): See why a transaction can cross several companies without becoming one system.
-- [What kind of claim is this token?](sources/dlt-money-securities-collateral-and-accounting-map-2025-2026-d46eddf0092a.html): Compare deposit, stablecoin, security and central-bank-money objects.
-- [Test a GENIUS stablecoin through typed receipts](sources/genius-scientific-trust-stack-crosswalk-2026-08-17-99187771b813.html): Separate law, issuer, token, chain, key, reserve, distribution, monitoring and remedy instead of assigning one trust state.
-- Connect: [Put the new rails in a national context](stories/countries-and-connections.html#different-kinds-of-change): Reserve holdings, invoice currencies and settlement connections describe different kinds of monetary change.
-### Follow the change one job at a time
-
-[Open chapter](stories/money-in-motion.html#where-change-happens)
-
-A familiar card payment can use a stablecoin behind the scenes while the customer still pays by card and the merchant still receives ordinary currency. Elsewhere, a regulated securities system really does move an ownership or entitlement record onto DLT. The useful question is which job changed—not whether the whole transaction is “on-chain.”
-The card flow map shows changes hidden inside a familiar checkout. The DLT census shows stronger cases where issuance, records or collateral use change too. Together they prevent us from mistaking a new interface for a new monetary system—or overlooking a real change because an old institution remains involved.
-
-- [See exactly where stablecoins enter a card payment](sources/card-networks-entity-and-flow-map-d2b978d0ade2.html): Follow customer tender, participant settlement and merchant receipt separately.
-- [What has moved beyond a pilot?](sources/overall-dlt-transition-2025-2026-416775e3eefd.html): The saved DLT synthesis compares representation, execution, records, money and collateral.
-- [Who keeps the record when something fails?](sources/dlt-record-sovereignty-settlement-and-failure-map-2025-2026-eec53db05e81.html): Legal finality, correction, recovery and exit across the mapped systems.
-- Connect: [Follow the legal and recordkeeping changes](stories/money-rights-and-records.html#permission-to-participate): Congress, admission decisions and transfer-agent rules shape what networks can actually do.
-### Now the Hub becomes a working map
-
-[Open chapter](stories/money-in-motion.html#use-the-hub)
-
-Start with one payment claim and follow its journey. In the Stablecoins process map, compare the network that moves the token with the issuer responsible for reserves and redemption. Then follow USDC from minting through transport to redemption. Compare that with a bank deposit token: the same-looking transfer can carry a different promise.
-The Hub makes the earlier explanations inspectable. Its relationship lines show who controls, operates, connects or depends on each part. Its dates and operating states show whether a connection is planned, tested or actually in use.
-
-- [Explore the Crypto Infrastructure Hub](rooms/crypto-infrastructure.html): Use Process → Stablecoins, then Trace → USDC; compare a bank deposit token.
-- [How to read the Hub’s relationships and operating clocks](sources/readme-b8009650679a.html): The existing guide explains each mode and the evidence behind its connections.
-- [Compare how major incumbents are rebuilding the machinery](sources/readme-ea3b30cc9310.html): Use the seven-surface receipt matrix to compare doctrine, construction, bounded operation, recurring production, scale, recovery and retirement-record migration.
-- [Test one institutional-adoption catalyst without assuming token demand](sources/qnt-september-2026-price-rise-causal-audit-2026-09-27-a7b3b4088b4c.html): Join the UK live-customer receipt and U.S. supplier selection while keeping Quant software adoption separate from direct QNT value capture.
-- Connect: [What does a company connection give it control over?](stories/companies-in-context.html#rights-and-obligations): Use the Ripple investigation to distinguish a commercial connection, a legal right and use of a particular token.
-### Test whether the new machinery makes money work better
-
-[Open chapter](stories/money-in-motion.html#what-it-means)
-
-The combined research suggests a system being rebuilt through connected institutions and ledgers. Some records and workflows move; banks, issuers, public settlement services and legal remedies still matter. Faster token movement is useful, but the larger test is whether it reduces cost, trapped money, failed settlement or the difficulty of getting help when something breaks.
-The Hub tells us who and where. DLT research tests which changes are real. The People’s Money brings the question back to the person using the account: what can they do, what can be withheld, and who answers when the system fails?
-Competing reading: A strong competing explanation is that established institutions are absorbing useful technology while keeping most of their authority. Conversely, regulated DLT securities records and bounded central-bank-money pilots show that “nothing really changes” is too simple as well.
-
-- [Counterexamples and the tests that could change our reading](sources/dlt-claim-firewalls-and-falsifiers-2025-2026-ae7d7fdc7736.html): Test real improvement and avoid assuming either total replacement or no change.
-- [Return to the customer’s rights and obligations](sources/bank-user-agreements-source-document-b69017548c46.html): Inspect who can act and where remedies sit under the account contract.
-- Connect: [Look beyond the payment to the national result](stories/countries-and-connections.html#national-adaptations): Currency resilience, household conditions and productive capacity ask more of a system than a faster transfer.
-- Connect: [See how our interpretation has evolved](stories/reading-the-transition.html#how-the-question-evolved): The July synthesis, routing thesis and living institutional thesis remain distinct stages that later evidence can revise.
-## Where national change becomes local
-
-A national ambition takes a different shape in each place. Follow New York’s industrial geography, the governments with authority over a site, and the agencies that turn federal benefit rules into individual decisions. These cases show what we need to understand before calling a change local progress.
-
-### Start with what a place already has
-
-[Open chapter](stories/national-change-local-life.html#what-is-already-here)
-
-New York’s industrial story grows from an existing landscape. The I-90 and CSX corridor connects production centers; Lake Ontario provides process water; Niagara and St. Lawrence power programs support particular industrial users. Albany, Malta, Marcy and Rochester contribute different research, fabrication and specialist capabilities. Micron enters that landscape as a major project under construction, alongside plants already operating.
-The map becomes more useful when we ask what each location contributes—and what it still needs. A nearby supplier is a possibility to investigate; a documented contract establishes the actual commercial connection.
-
-- [Explore the New York system](rooms/new-york-manufacturing-innovation-map.html): Use the map’s industry and project-state filters to distinguish operating capability from construction, pilots and proposals.
-- [Read how the corridor works](sources/new-york-manufacturing-and-innovation-map-2026-52fb3dbc6cef.html): The controlling answer separates ordinary freight, process water, hydropower and specialized port cargo.
-- Connect: [Place the regional map in the larger buildout](stories/science-to-capability.html#physical-system): The same industrial capability may depend on equipment, power and scientific work beyond its local site.
-### A place also has owners and governments
-
-[Open chapter](stories/national-change-local-life.html#who-has-authority)
-
-A project’s location tells us which land, power and public decisions it depends on. Our sovereign-compute research found several different relationships in New York: Oneida’s enterprise reported operating its own data centers, while Project Double Reed at STAMP was a developer proposal beside Tonawanda Seneca territory with a consultation and opposition record. Those are very different ways for a Nation to enter the compute story.
-The data-center landscape broadens that local question. Federal land and permitting policy meet State utility regulation, local zoning and Tribal authority. Texas large-load legislation, Oregon cost-allocation law and a Virginia commission rate order are different kinds of instruments with different implementation clocks. They help us ask who bears grid costs and who can condition service, while the New York cases retain their own parcel and consultation histories.
-
-- [Follow the New York land and compute cases](sources/new-york-sovereign-compute-deep-dive-974543dab906.html): Read the Oneida operating platform and the separate Tonawanda Seneca and Akwesasne adjacent-project cases, with their July evidence boundary.
-- [See the site and utility constraints](sources/new-york-manufacturing-and-innovation-map-2026-52fb3dbc6cef.html): The New York answer shows how water, wastewater, transmission and permitting can determine whether later industrial capacity becomes usable.
-- [Compare the governments deciding land, power and cost](sources/data-center-war-landscape-fresh-orientation-2026-08-20-b479f2e4e3de.html): A representative cross-jurisdiction study explains federal acceleration, State utility terms, local land use and the community bargain.
-- Connect: [Compare another question of building authority](stories/government-in-practice.html#from-purpose-to-authority): The ballroom case has a different legal setting, but also shows why funding and permission require separate records.
-### Federal rules arrive through particular agencies
-
-[Open chapter](stories/national-change-local-life.html#how-rules-arrive)
-
-The benefits research reveals another kind of local infrastructure: the offices and records through which national law reaches a person. PRWORA attaches reporting duties to specified programs and participating States. The September 1, 2026 OLC opinion broadened the Executive Branch’s interpretation to knowledge held across a participating State’s component agencies. The saved study does not establish a replacement reporting procedure or a new State transmission.
-Student aid shows why those steps matter. SSA and DHS/SAVE supply identity or status match results; a school resolves conflicts and makes the aid-eligibility decision. Matching a record, deciding eligibility and reporting to immigration authorities are separate acts with separate requirements.
-
-- [Understand the federal–State reporting change](sources/prwora-reinterpretation-campaign-and-state-reporting-map-1996-202-15e7c59482bd.html): Compare the enacted provisions, the 1998 and 2000 approach, and the prospective September 2026 Executive interpretation.
-- [Follow a student-aid record](sources/prwora-education-grants-and-payment-interlock-2026-09-02-9f97b2caeb40.html): The Education study traces FAFSA, SSA, DHS/SAVE and the school’s decision, then identifies the unproved connection to State reporting.
-- Connect: [Follow the checks before the payment](stories/government-in-practice.html#before-the-payment): Compare the State and student-aid cases with Do Not Pay’s program-specific decision process.
-### Look for the result people and places can use
-
-[Open chapter](stories/national-change-local-life.html#what-changes-locally)
-
-For an industrial project, the next meaningful change might be a working water connection, an energized plant or a qualified shipment. For a benefit program, it might be an implemented procedure and a documented agency decision. The evidence needed follows the promised result. A national announcement alone cannot tell us which community receives a capability, carries a cost or experiences a change.
-Our current cases are strongest on New York’s physical buildout and the federal–State benefits architecture. They give us a way to ask better local questions; they do not yet establish a fifty-state comparison or a full account of household and community outcomes.
-
-- [Inspect the gaps in statewide coverage](sources/new-york-statewide-coverage-pass-2026-09-04-6d63cd8ded35.html): The county-first pass explains which kinds of sites were included and how research interest stays separate from operating status.
-- [See what would establish implementation](sources/prwora-reinterpretation-campaign-and-state-reporting-map-1996-202-15e7c59482bd.html): The reporting study identifies the procedures, State actions and individual-outcome evidence still needed after the opinion.
-- Connect: [For an industrial site, what would count as success?](stories/science-to-capability.html#accepted-operation): Follow the industrial branch into accepted work and usable capacity; benefit decisions have their own standards.
-- Connect: [For a public program, can we reconstruct the outcome?](stories/government-in-practice.html#make-the-outcome-reconstructable): Keep the payment, the decision and the record of what was delivered connected.
-- Connect: [What must the region be able to move and maintain?](stories/keeping-systems-working.html#movement-and-sustainment): Ports, rail, energy, workers and repair capacity turn a production site into an ongoing supply capability.
-- Connect: [Trace what makes a gold instrument usable](stories/claims-collateral-and-loss.html#make-an-asset-usable): State monetary permission leads into custody, title, payment and actual-use questions.
-## How countries pay their way, and who controls access
-
-Goods, money and obligations cross borders through different systems. Following the links between them makes currency shifts, sanctions, industrial plans and international meetings parts of a story we can actually test.
-
-### Start with the exchange across a border
-
-[Open chapter](stories/countries-and-connections.html#crossing-borders)
-
-An export can move goods out of a country and give a resident a claim on a foreign buyer or bank. The country’s external accounts record the transaction and its financial counterpart. That does not mean the central bank received the proceeds: the exporter might retain foreign currency, repay a debt or sell it to a bank.
-The price on an invoice, the currency used for payment and the currency held as a reserve can differ. So can a currency’s market quote and the IMF’s assessment of its external position. Before asking whether the monetary order is changing, we need to know which of these jobs is changing.
-
-- [Follow an export into the financial accounts](sources/gold-bop-currency-adjustment-research-package-3f116c610a37.html): Gold makes the distinction visible: a shipment, an ownership transfer, an export receipt and a central-bank reserve gain can be different events.
-- [Who actually makes a currency price?](sources/2026-07-30-imf-and-currency-pricing-the-referee-the-model-and-the-b2461a67fd9a.html): Dealers and domestic authorities make the rate; IMF surveillance, models and lending conditions act on different parts of the surrounding system.
-- Connect: [Follow the payment beneath the border crossing](stories/money-in-motion.html#the-system-underneath): A foreign receipt still depends on account claims, processing institutions and settlement arrangements.
-### A new route can keep familiar money underneath
-
-[Open chapter](stories/countries-and-connections.html#different-kinds-of-change)
-
-Reserve diversification, different invoice currencies and a new settlement connection change different relationships. The saved regional comparison finds banks and trusts issuing claims, sovereign assets supplying collateral, and central-bank money providing final settlement in several developing arrangements. A faster connection can extend that architecture.
-This gives us a more useful test than asking which country “starts the new system.” Does the change alter the claim, access, liquidity, settlement or control? Currency Watch adds the wider context: a currency can serve international payments well while households or the external balance remain under strain.
-
-- [Compare the different starting points](sources/international-monetary-initiation-map-e03be4ad2554.html): Japan, Korea, Indonesia, Europe and BRICS enter through different combinations of bank claims, sovereign collateral, public settlement and cross-border connections.
-- [Compare the jobs currencies perform](sources/currency-watch-six-system-pilot-results-2026-07-20-a1324cb4b45e.html): The frozen July 20 assessments separate domestic anchoring, financial order, exchange arrangements, external adjustment, payment usability and international service.
-- Connect: [Compare the claims behind the new rails](stories/money-in-motion.html#different-ambitions): Tokenized deposits, stablecoins and securities can use the same network while carrying different rights.
-### Trade depends on permission as well as transport
-
-[Open chapter](stories/countries-and-connections.html#access-and-pressure)
-
-Getting a barrel onto a ship does not settle who owns it, whether the voyage is permitted or where its proceeds arrive. The Iraq ledger separates those records because authorized trade and alleged diversion can share a location. Documents and payment records must connect the same cargo before we can follow the whole journey.
-Financial pressure works on other links in that journey. Restrictions on foreign accounts, intermediaries or conversion routes can squeeze usable export earnings while domestic payment systems continue. Customs scrutiny asks a related question at the goods border: can the declared origin survive a closer look at inputs, factories, owners and routes?
-Cuba adds the official account of why pressure is being applied. Its July State Department report assembled a threat rationale around Cuban institutions and influence relationships, while the audit distinguished documented state links from unsupported leaps about direction or control. Read beside Iran’s account-access measures and Iraq’s cargo records, it shows that a declared threat, a legal restriction and an observed interruption belong to different parts of the same pressure campaign.
-
-- [See the current world oil and gas movement system](sources/live-baseline-2026-09-15-1729e053941e.html): The dated baseline separates structural routes, observed or estimated flows, maritime risk, legal permission, payment and future deal targets across the Middle East, Russia and Venezuela.
-- [Follow the Iraqi barrel](sources/iraq-oil-provenance-logistics-ledger-58794d71f6b6.html): Cargo movement, ownership, origin documents, permission and payment must be joined to the same transaction before the whole route is established.
-- [Where pressure reaches Iran’s foreign earnings](sources/readme-04fa87961ba2.html): Correspondent access, exchange houses and crypto adapters connect external earnings to usable funding; domestic banking has a separate operating record.
-- [What makes a shipment’s origin credible?](sources/canada-transshipment-and-customs-origin-ledger-2026-08-13-to-2026-db6e728890ed.html): The Canada/transshipment audit follows supplier and ownership records into customs scrutiny, with proposed disclosure systems separate from proven violations.
-- [See how a threat narrative becomes an enforcement target](sources/cuba-state-report-evidence-audit-9cd15b882580.html): The saved audit joins Cuba’s official attribution report to the pressure chronology while preserving the distinction between contact, ideological alignment, proven control and legal action.
-- Connect: [Follow the insurance conditions around trade](stories/claims-collateral-and-loss.html#permission-through-risk): A permitted cargo can still face a separate constraint through cover, financing or loss protection.
-### Countries adapt with the resources they actually have
-
-[Open chapter](stories/countries-and-connections.html#national-adaptations)
-
-Japan’s August investigation shows several responses running together: currency intervention, disaster recovery, household support, bank holdings of government bonds, industrial financing and digital-settlement pilots. They affect one another, but a pilot result cannot stand in for a repaired currency, completed power plant or stronger household demand.
-Ghana offers a different route. Gold supported exports and supplied foreign exchange to central-bank intermediation. Yet export receipts, private foreign claims, reserve availability and currency movements still required separate accounting. The shared question is how resources become usable capacity—and where that conversion remains incomplete.
-The Davos address supplies a different kind of material: the U.S. administration’s stated ambition to join energy, industrial capacity, tariffs, territorial security and capital formation. The speech dissection treats that as a political account to test. Set beside Japan’s actual instruments, Ghana’s financing chain and the Observatory’s site research, it gives us a useful sequence: what leaders say they are trying to build, which tools they authorize, and what capacity or household result is ultimately delivered.
-
-- [Japan: several systems under repair at once](sources/japan-august-2026-state-and-monetary-delta-33dc4fcdc6fb.html): The August record joins yen defense, household demand, disaster recovery, industrial financing and controlled digital-money tests without treating them as one completed transition.
-- [Ghana and the route from gold to usable foreign currency](sources/producer-reserve-currency-case-matrix-2025-2026-72b369eb50f7.html): Export earnings, private foreign claims, central-bank purchases and sales, and pledged reserves explain why the gold price alone cannot tell the currency story.
-- [Read the stated U.S. ambition in its full context](sources/2026-01-21-trump-davos-dcpd-202600046-official-full-transcript-58327874df9c.html): The preserved official January 21 transcript supplies the speaker’s words and Q&A; its numerical and causal assertions remain actor claims.
-- [Connect the speech’s ambitions to observable tests](sources/davos-2026-dissection-d3e772b5258c.html): The dissection maps energy, investment, tariffs and security rhetoric to the distinct instruments and outcomes needed to establish delivery.
-- Connect: [Follow national ambition into operating capacity](stories/science-to-capability.html#physical-system): Apply the buildout’s questions about sites, dependencies and completion to the industrial side of national adjustment.
-### Who can turn an international agenda into a result?
-
-[Open chapter](stories/countries-and-connections.html#coordination-and-consequences)
-
-G7 and G20 meetings set priorities and ask institutions to carry work forward. Payments then depend on standards, national rules and operator adoption; minerals depend on finance, construction and qualified output. The saved payments review is a useful reality check: completed policy work had not yet produced tangible global improvement for end users.
-The IMF adds a different connection between advice and action. Non-borrowers face surveillance; borrowers can also face dated conditions, reviews and financing decisions. Our interpretive question is who bears the adjustment. Answering it means following domestic acts, access to money and effects on people—not treating an international statement as the result itself.
-
-- [Follow an international commitment into action](sources/g7-g20-deep-dive-2025-2026-1e4893c378ac.html): Payments, minerals, debt and energy each pass through their own institutions and national authorities before an operating result can be measured.
-- [Who must turn advice into a dated condition?](sources/2026-07-30-who-gets-adjusted-imf-symmetry-and-the-price-of-access-f8de40a7bcd6.html): The saved IMF comparison distinguishes surveillance of non-borrowers from the review-and-financing chain faced by borrowers, then examines its distributional consequences.
-- [Connect international ambition to a real project account](sources/project-finance-rail-feed-through-2025-2026-1b45d646b8c5.html): Named projects reveal how loans, guarantees, controlled accounts, collateral and draw conditions turn a funding promise into spendable construction money.
-- [Separate a global agenda from an operating result](sources/unga81-high-level-week-premeeting-map-2026-09-20-c6691741b62e.html): The UNGA81 pre-meeting map distinguishes formal meetings, implementation forums, research, draft declarations, adoption, finance and operation while following AI, DPI, tokenization and UN80 reform.
-- [Test a bilateral leaders' framework against the public instruments](sources/us-china-strategic-stability-claim-audit-2026-09-24-66cfbcbe55d5.html): The state-visit package separates the May political framework and September speeches from the later bilaterally published Board procedures and product lists, then preserves domestic tariff implementation and observed trade as later clocks.
-- [Orient the country before interpreting the bilateral event](sources/china-country-orientation-2026-09-24-0d6b5aeba75d.html): Maps the PRC party-state, formal state, military, economy and global strategy, then separates the U.S.–China relationship into actor-, instrument- and clock-specific lanes.
-- [Separate contact, coercion and residual cooperation](sources/russia-country-orientation-2026-09-24-74d78d9e584b.html): Maps Russia's presidential-security system, war economy, nuclear-risk instruments, treaty-weighted alignments, rerouted dependencies and constrained U.S. relationship without treating contact as agreement or sanctions as a blanket wall.
-- [Follow project preparation into the next decision gate](sources/ustda-project-development-studies-deep-dive-2026-09-26-f57c26135439.html): The USTDA pipeline shows how studies can shape regulatory roadmaps, financial models, environmental review and tender documents while leaving adoption, financing, award, construction and operation unproved.
-- [Separate political coordination from constitutional change](sources/current-orientation-2026-09-13-6bcc79a58737.html): The pre-Cardiff orientation keeps party agreement, office capacity, statutory referendum power, electorate consent and operative sovereignty on separate clocks.
-- Connect: [Follow a commitment into the project’s finances](stories/science-to-capability.html#financing): Identify owners, borrowers, cash flows and risks before treating a financing announcement as usable capacity.
-## From scientific ambition to things that work
-
-The factories are pieces of a larger story: turning scientific discovery into capabilities people can actually use. Our research connects the ambitions, the scientific work, the physical infrastructure, the financing and the tests that stand between a proposal and operation.
-
-### What are the ambitions?
-
-[Open chapter](stories/science-to-capability.html#ambitions)
-
-Several documents approach that ambition from different directions. Science: A New Golden Age proposes changes to how researchers, laboratories, compute and funding work together. Genesis directs DOE to assemble a platform for AI-assisted science. The national-security strategy identifies missions and capabilities to prioritize and protect. These are connected ambitions with different authorities and different routes to implementation.
-The Tech timeline shows how the questions developed: a policy reset and public consultation led toward the AI Action Plan, followed by distinct infrastructure, export, science-platform and security assignments. Procurement guidance, regulatory input and NIST collaboration then address different conditions for use. The shared AI reading follows those original questions into identified documents; the wider studies follow actual site decisions, scientific workflows and cybersecurity coordination.
-The defense-innovation studies ask what makes those ambitions usable. Software needs an acquisition route and a security decision; quantum concepts need independent evaluation; cyber systems need measured tests; counter-drone equipment needs procurement and delivery; research programs need identifiable proposal opportunities. The joined reading follows those questions through their official records, so an invitation, selection or test keeps its own meaning in the larger story.
-The remaining Compute questions explain conditions around that ambition: access to advanced chips, usable spectrum, a quantum-computing effort and protection of existing cryptographic systems. The same research studies distinguish policy intent, legal permission, technical acceptance and implementation. They let the story follow the original questions without creating a second set of answers.
-
-- [Read the science architecture](sources/readme-afb8768af3df.html): Compare the advisory report, mission strategy, budget guidance and Genesis direction.
-- [Understand the national-security missions](sources/national-security-science-and-technology-strategy-2026-e86541703238.html): Read the missions and capabilities that the national-security strategy prioritizes.
-- [Follow one mission into a real program](rooms/science-program-to-acceptance.html): Follow federal demand through companies and facilities to the point of acceptance.
-- [AI governance and export access](sources/trump-ai-executive-order-official-inventory-2026-08-01-6f8e2def351e.html): Read the seven governance questions alongside three complementary BIS export-access mechanisms, with original source dates and the targeted September 7 reconciliation clearly separated.
-- [Genesis identity and production workflow (August 11)](sources/genesis-identity-provenance-pqc-bridge-2026-08-11-0051de7f91ee.html): See a demonstrated scientific workflow and distinguish it from the platform’s remaining integration work.
-- [Defense innovation from entry route to demonstrated result](sources/military-modernization-transition-timeline-77eeedb20ebd.html): Follow six original software, quantum, cyber, autonomy and research-entry questions into exact official evidence and dated results.
-- [Explore Genesis Mission](sources/genesis-mission-f73232130c02.html): Follow challenges through projects, company contributions and evidence.
-- Connect: [How does an ambition become an agency’s job?](stories/government-in-practice.html#from-purpose-to-authority): Public strategy needs responsible officials, an implementation instrument and resources.
-### What has to work together?
-
-[Open chapter](stories/science-to-capability.html#scientific-work)
-
-Compute, laboratories and instruments perform different parts of scientific work. Carbon nanotubes show why a small enabling material can matter as much as a large factory: a tiny conductive network can help an electrode use more active material or keep silicon particles connected. The saved battery study follows synthesis, purification, dispersion and cell qualification. Making powder establishes only one step toward a repeatable product.
-The Scientific Trust research follows the people, institutions, software and permissions around that work. Identity says who acted; permission says what they may do; provenance records what produced an artifact; scientific validation tests whether the result is fit for use. An authenticated output still needs scientific scrutiny. The saved architecture joins these questions while retaining the separate authorities that decide them.
-
-- [See the scientific workflow and its requirements](sources/federal-science-operating-system-control-surface-map-3937d109efe4.html): See how compute, data, experiments, access and provenance have to work together.
-- [Explore the company capability map](rooms/science-company-field.html): Locate a company’s capability and inspect the evidence for its role.
-- [Trace shared dependencies across sectors](rooms/science-dependency-map.html): Follow the power, compute and material dependencies shared across sectors.
-- [Why a tiny battery ingredient can become a bottleneck](sources/carbon-nanotube-battery-sovereignty-research-package-2026-08-23-ce70b2f50d1e.html): Follow the enabling mechanism from conductive network to dispersion, cell testing and accepted production.
-- [Who may use the science platform, and how is the result checked?](sources/scientific-trust-stack-architecture-and-evidence-map-2026-08-17-b9b86dfc5e76.html): Separate identity, permission, provenance and scientific validation, including the missing evidence for a fully joined workflow.
-- [Biomedical mission, evidence and manufacturing acceptance](sources/nssts-wave-3-biotech-quantum-space-map-2026-08-18-79c84751a42e.html): Connect the Lab questions to the maintained Wave 3 biomedical acceptance section.
-- [Read the federal cryptographic trust foundation](sources/federal-cryptographic-trust-stack-2026-08-11-1c0e21c343cb.html): Follow source record, identity, signed claim, authorization, audit, correction and PQC durability as separate layers.
-- Connect: [Which job does each company perform?](stories/companies-in-context.html#the-job): The magnet studies show how several firms contribute different stages of a useful product.
-### Where does the ambition meet the physical world?
-
-[Open chapter](stories/science-to-capability.html#physical-system)
-
-The New York map shows how research and industrial capabilities sit within a particular geography. Its waterways, power systems and production corridors help explain the locations. The turbine research adds another part of the picture: ordering generation equipment and maintaining an operating plant are different problems. A factory, laboratory or data center can be ready in one respect and still be waiting on another dependency.
-The data-center legal study adds the permissions beneath those physical dependencies. Federal acceleration has produced particular solicitations, selections, leases and review changes. State utility terms, local land use and project environmental decisions remain separate. A cleared federal step can therefore coexist with an unresolved power connection or local approval. Geography shows possible relationships; named contracts, permits and operating records establish the actual project.
-
-- [Explore New York as an industrial system](rooms/new-york-manufacturing-innovation-map.html): Explore named sites, their geography and the saved evidence of operating capability.
-- [Understand the power and operating layer](sources/turbine-asset-management-and-u-s-buildout-source-document-e5c282df8343.html): Separate equipment orders, plant maintenance and the systems that support operating capacity.
-- [Connect programs, companies and facilities](rooms/science-acquisition-explorer.html): Join a program to company and facility records, with candidate and selected roles kept visible.
-- [What does federal acceleration actually change?](sources/federal-data-center-legal-spine-2025-2026-8dad9c271eb5.html): Read the issued instruments and project-level decisions behind a data-center announcement; each retains its August 20 state.
-- [Space policy, authorization and mission acceptance](sources/nssts-wave-3-biotech-quantum-space-map-2026-08-18-79c84751a42e.html): Read the distinct policy, licensing and Aeolus mission paths beside the saved company map.
-- Connect: [Why does place change the buildout?](stories/national-change-local-life.html#what-is-already-here): New York’s existing water, power, transport and research capacity shape where new projects can work.
-- Connect: [How will the site stay connected?](stories/keeping-systems-working.html#signals-and-rights): Compute depends on communications assets, service rights and operating arrangements beyond the building itself.
-### Who pays for the buildout—and carries the risk?
-
-[Open chapter](stories/science-to-capability.html#financing)
-
-Our AI-infrastructure research separates the GPUs, the cloud business, the data-center building and the power project. They can have different owners, borrowers and creditors. The fusion research follows a parallel question: how public research funding, company milestones, machines, sites and commercial agreements converge toward a working plant. Money connects these studies through the contracts and obligations that make construction and operation possible.
-A financing commitment, money drawn and equipment in service describe different points in the story.
-
-- [Follow AI infrastructure ownership, cash flow and losses](sources/ai-infrastructure-capital-stack-and-risk-transfer-2026-08-10-e36ae01e743a.html): Separate the GPU fleet, cloud business, building and power project—and follow who owes what.
-- [Follow fusion companies, machines and capital](sources/federal-fusion-project-capital-regulatory-registry-2022-2035-47346c8a435e.html): Compare named fusion machines and sites with their funding and commercial agreements.
-- [Inspect the company dossiers and bottlenecks](rooms/science-company-dossiers.html): Inspect the specific company roles and the bottlenecks each could help address.
-- [Start with the inbound-investment claim and project clocks](sources/readme-ccc6c4df2300.html): Separate the headline aggregate, named project, financing commitment, draw, construction spend and operating state before following the capital stack.
-- [Test whether a digital rail appears inside a named financing stack](sources/wholesale-rail-hypothesis-and-return-gates-d02014baf8b0.html): Keep the six-stack negative finding beside the exact legal, cash, settlement and loss records that could change it.
-- Connect: [Follow the public funding into the buildout](stories/government-in-practice.html#follow-the-public-dollar): Research grants and other public payments carry conditions and responsibilities beyond the initial award.
-- Connect: [Where international priorities enter the funding chain](stories/countries-and-connections.html#coordination-and-consequences): A forum’s agenda reaches a project through implementing institutions, lenders and specific financial instruments.
-### What would count as success?
-
-[Open chapter](stories/science-to-capability.html#accepted-operation)
-
-The test depends on the mission: useful scientific workloads, qualified components, an accepted service or electricity delivered to the grid. Suppliers build, specialists test, and an owner or authorized decision-maker accepts the result. Our acceptance studies reveal those less visible roles. Fusion makes the distinction especially clear: laboratory ignition is a scientific achievement; a plant delivering net electricity is a further engineering and operating achievement.
-The Reactor filings now connect to concrete later evidence: a reported Groves test-reactor criticality, construction permissions and demonstration fuel production. Each result advances a different question. Read the shared factual spine for the legal sequence, then the company map for the suppliers and acceptance work behind it.
-The whole Reactor sequence also asks who may own the project, what licensing path it may use, which earlier tests can inform review, how a decision is contested and what the review costs. Keeping those mechanisms beside the physical results lets us follow the original thesis through actual changes without losing the question that prompted each study.
-Read the maps backward from the result: what must be accepted, who can accept it, and which missing record would show the next step?
-
-- [Explore the science strategy and acceptance map](rooms/science-strategy-map.html): Follow the strategy through the institutions and decisions needed to accept a result.
-- [Read the acceptance studies together](sources/readme-814cc85d1bbe.html): Open the full program-and-acceptance reading guide behind the interactive views.
-- [Follow fusion from scientific gain toward electricity](sources/federal-fusion-commercialization-bridge-2020-2035-187110145b91.html): Trace the separate scientific, engineering, licensing and electricity milestones.
-- [Reactor legal sequence and dated implementation evidence](sources/federal-science-operating-system-factual-spine-2025-2026-c98d15f74567.html): Follow all thirteen original Reactor filings through their legal clocks and the shared dated implementation evidence.
-- [Follow fusion to measured commercial electricity](sources/federal-fusion-commercialization-bridge-2020-2035-187110145b91.html): Keep strategy, capital, machine, licensing, interconnection, generation and grid delivery on their separate clocks.
-- [Follow the program-to-acceptance economy](sources/nssts-phase-5-program-facility-contender-map-2026-08-18-14375dbe2dbb.html): Trace program, facility, supplier, referee, transaction and owner or authority disposition without treating adjacency as acceptance.
-- [Inspect quantum and cryptographic acceptance](sources/nssts-quantum-cryptographic-acceptance-map-2026-08-19-141341f745ad.html): Separate calibration, validation, module, product and system-authorization evidence.
-- Connect: [What record lets us check the result?](stories/government-in-practice.html#make-the-outcome-reconstructable): Delivery, performance and retained evidence answer different parts of the question about what worked.
-- Connect: [Can the capability keep working through a disruption?](stories/keeping-systems-working.html#surviving-the-interruption): Acceptance begins the operating story; maintenance, fallback and tested continuity determine whether the service lasts.
-## How public power becomes public outcomes
-
-A government promise becomes real through people, legal powers, funding and daily decisions. Follow those handoffs to understand what is changing—and whether the public can see, question and correct the result.
-
-### Start with the job government is trying to do
-
-[Open chapter](stories/government-in-practice.html#from-purpose-to-authority)
-
-An agency plan tells us what an institution wants to achieve. The operating question comes next: which officials have the power, resources and responsibility to make it happen? Strategic plans, annual performance goals, budget decisions and results reports supply different pieces of that answer.
-The ballroom investigation makes the distinction tangible. Funding and design reviews can move ahead while the legal power to build is still contested. At the saved August 23 cutoff, an emergency stay changed what construction could proceed; it did not settle the merits. The same habit helps us read much larger claims about reorganizing government.
-Congress enters this story through distinct committees, bills, nominations and oversight requests. A hearing can reveal the problem or frame a solution before a binding instrument exists. Even emergency powers have named triggers and limits: procurement, industrial priority, liquidity support and transaction restrictions use different legal routes, each with its own responsible officials.
-
-- [Watch what happens when the Fed is not the expert owner](sources/readme-3f64c26d8b5f.html): Follow the OIG diagnosis through imported project expertise, independent assurance, fixed baselines, an agency-wide policy and first reuse on IT modernization or another major initiative.
-- [Follow a new Secretary-level office from authority to result](sources/readme-4bb8516a5fb2.html): Separate ORA's establishment, Director, transferred power, budget, charter, staffing, requirements, programs and religious-liberty effects.
-- [How a public goal becomes an operating plan](sources/federal-strategic-planning-legal-framework-a69a081cd437.html): Follow strategic aims into performance targets, budget decisions and reviews of results.
-- [The ballroom: who has power to build?](sources/white-house-ballroom-lawfare-map-2025-2026-a5de44eefa89.html): A concrete dispute where donations, planning approval and construction authority answer different questions.
-- [How Congress turns a question into an institutional object](sources/committee-activity-synthesis-2026-07-26-05a5acfd2b85.html): Follow hearings into bills, nominations and requests, then check the later action and response rather than treating committee activity as a completed result.
-- [Find the public rooms between the entity boxes](sources/hidden-government-control-surfaces-discovery-2026-09-28-8bd97ca9d01f.html): Follow advisory records, stakeholder contacts, board decisions and response clocks without treating advice or access as agency action.
-- [Follow a judicial-conduct complaint without collapsing its clocks](sources/readme-7fa634fbfe8c.html): Separate DOJ's allegation from chief-judge screening, investigation, discipline, case-specific recusal, appellate merits and any constitutional removal route.
-- [Test what those rooms actually said against the thesis](sources/readme-b113ac7bfd03.html): Follow committee and board records into recommendations, instruments and effects without treating advice as agency policy.
-- [Test what the hidden rooms actually said](sources/wave-0-existing-corpus-reconciliation-2026-09-28-29d67a55a78b.html): Compare recommendations, standards, taskings and research outputs with later agency instruments, operation and effects while keeping rival explanations and null evidence visible.
-- [What an emergency can actually activate](sources/federal-emergency-technology-crypto-activation-map-e20f78d5f14f.html): See the distinct contracting, priority, continuity and financial-control routes—and the permissions and operating connections they still require.
-- Connect: [See the science ambition take institutional shape](stories/science-to-capability.html#ambitions): Different science instruments assign different jobs; the strategy alone does not perform them.
-- Connect: [Look inside the institution that must carry it out](stories/authority-and-institutions.html#the-body-and-the-work): Legal existence, staffing, funding and the performance of a function can change on different clocks.
-### Follow the money through the handoffs
-
-[Open chapter](stories/government-in-practice.html#follow-the-public-dollar)
-
-An appropriation permits spending under defined conditions. An obligation records a legal commitment; an award sets the funded arrangement’s terms. A payment transfers cash. The recipient still has to perform the funded work. Following those stages reveals why a spending announcement, an entry on USAspending and a service delivered to a person can describe different moments.
-A university makes those overlapping systems visible. Its student aid, research grants, hospital receipts and State support may pass through different legal entities and records. In covered Education programs, one department can retain legal duties while another administers the work. A useful story follows the handoff instead of making one agency name stand for the whole transaction.
-The receipts side completes the circuit. The Treasury–IRS study separates the law that creates a tax, IRS assessment and taxpayer records, CBP customs collection, Treasury payment execution and the private software or bank interface. Moving an interface outward can change practical control while the public tax authority remains in place.
-
-- [Follow a dollar beyond the federal payment](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html): See where award, payment, recipient spending and performance records part company.
-- [See which federal awards were missing from the central view](sources/stop-secret-spending-act-deep-dive-2026-09-15-f403e5eca9db.html): Public Law 119-106 adds OTAs to FFATA and stages the USAspending, agency-list and audit controls without turning an award record into proof of payment or performance.
-- [A university sits at several funding junctions](sources/university-funding-and-programmable-compliance-map-2026-07-28-aa67ac3d2add.html): Student aid, research, clinical revenue and public support come with different owners and conditions.
-- [Follow the public dollar back to its collection](sources/treasury-and-irs-entity-and-authority-map-6ed2d06c2948.html): Connect assessment, receipts and refunds to the existing spending chain, with public authority and private processing kept visible.
-- [Test one CCDBG payment at the Pennsylvania State edge](sources/pa-ccdbg-state-edge-case-ledger-2026-07-27-b730dba390c8.html): The case ledger distinguishes federal payment, State receipt, accounting, provider expenditure, correction and reporting.
-- [Keep the Hawaii case objects separate](sources/hawaii-primary-source-object-ledger-2026-07-27-5bdbda3ee4ea.html): The primary-source ledger distinguishes State COVID, campaign, federal procurement and MFCU records; the mixed-source map remains draft.
-- [Audit the Southeast enforcement announcements](sources/southeast-primary-source-object-ledger-2026-07-31-5ac733b49faa.html): Case posture, intended loss, paid loss, restitution, recovery, agreements and task-force operation retain separate clocks.
-- [Follow university funding controls without assuming one ledger](sources/university-funding-and-programmable-compliance-map-2026-07-28-aa67ac3d2add.html): Award, reporting and payment controls are mapped separately; no production ledger technology was selected at the cutoff.
-- [Read the August 4 Education objects on their own clocks](sources/department-of-education-full-surface-sweep-2026-08-04-238e190a5b3b.html): A policy request, servicing transition and delayed system enforcement are separate legal and operating objects.
-- [Read the 30-institution research-security notice](sources/2026-08-17-thirty-unnamed-universities-research-security-moves-to-e1bb71cbbe48.html): The notice and mitigation authority do not by themselves establish misconduct, award loss or a payment stop.
-- [FY2026 to FY2027 — who receives the funding?](sources/readme-bc27bfabcf8f.html): Entity-based budget comparison separates proposed priorities, enacted CR rates and multiyear funding.
-- Connect: [What happens when the payment moves?](stories/money-in-motion.html#the-system-underneath): The monetary story explains the account relationships and payment jobs within the longer public-spending chain.
-### The decision begins before money moves
-
-[Open chapter](stories/government-in-practice.html#before-the-payment)
-
-Payment integrity moves part of the work upstream: identify the recipient, check the relevant records and resolve eligibility before releasing funds. Treasury’s Do Not Pay service connects data and screening tools across authorized users. A match gives the paying program something to investigate; the program applies its own eligibility rules and any required notice and contest process.
-The OPM retirement case shows how a shared service reaches a specific program. The August 26, 2026 notice covered retirement eligibility, prepayment review and recovery. Its stated legal start was September 25, after the research cutoff. That notice is a concrete step toward implementation; actual matching and the effects on individual payments need their own evidence.
-
-- [What a Do Not Pay match actually does](sources/treasury-do-not-pay-governmentwide-structural-map-2025-2026-be425f3353bc.html): Trace the data response, the program’s independent decision and the Treasury payment checkpoint.
-- [Follow a dollar beyond the federal payment](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html): See where award, payment, recipient spending and performance records part company.
-- [Separate identity-risk testimony from an operating payment gate](sources/the-fraud-machine-identity-eligibility-and-the-payment-gate-61d967f2138f.html): The July 15 hearing establishes claims, proposals and legal boundaries; it does not prove a national identity system or vendor efficacy.
-- [Read OBBB accuracy and verification law on its own terms](sources/obbb-fraud-improper-payment-and-error-rate-legal-map-0938f4722658.html): SNAP and Medicaid error measures, State cost shifts and targeted controls are distinct from a fraud finding.
-- Connect: [How do federal rules reach a State or school?](stories/national-change-local-life.html#how-rules-arrive): The PRWORA and student-aid cases follow separate reporting, matching and eligibility decisions.
-### Software changes what officials see and do
-
-[Open chapter](stories/government-in-practice.html#software-inside-the-decision)
-
-AI is entering the work between the application and the decision: finding records, sorting queues, flagging risk and drafting recommendations. Even when a person signs the final decision, a system can shape which case gets attention and which evidence reaches the reviewer. The saved agency study also finds narrow automated actions, so the human role has to be checked for each use.
-The SSA, VA and DOJ studies let us inspect those different roles in benefits, services and legal processes. A published inventory tells us what an agency reports using. To understand the effect on a person, we also need to know how the output was used, whether someone could override it, and how an error could be challenged.
-The OPM study shows how the same transition changes government as an employer. Hiring, appraisal, personnel files, retirement and shared HR services increasingly rely on common digital records. The saved audit distinguishes reported electronic retirement processing and personnel-file migration from a planned governmentwide HR platform, and connects personnel decisions to their separate appeal and payment-control routes.
-
-- [Where AI changes the work of government](sources/federal-agency-ai-transition-cross-agency-synthesis-2026-08-23-db50c850ec3d.html): Compare search, triage, recommendations and bounded automation across the saved agency studies.
-- [Benefits and services: SSA, VA and DOJ](sources/wave-3-ssa-va-doj-ai-rights-and-service-map-2026-08-23-4ebedec4001f.html): Open the detailed cases behind scoring, pension processing and the person’s route to a decision or remedy.
-- [The workforce is an operating system too](sources/opm-structural-change-coverage-and-gap-audit-2025-01-01-to-2026-0-5df0512c7d38.html): Trace OPM from hiring and personnel records to shared HR services, digital retirement, eligibility checks and appeals.
-### Can we see what happened—and put it right?
-
-[Open chapter](stories/government-in-practice.html#make-the-outcome-reconstructable)
-
-The last connection is between the result and the evidence behind it. A payment record shows money moved. A performance record addresses what was delivered. An audit provides assurance within its stated scope. Keeping those objects connected lets us ask whether public money was lawful, accurately paid and useful without assuming that one answer settles the others.
-NARA’s AI guidance brings the same question inside the decision itself: which prompts, outputs, data and audit trails became records because of their official use? Retention can make later reconstruction possible, but it does not automatically make the material public or prove that a decision was sound. This leaves a productive question for the whole story: are new systems improving both the work and our ability to understand and correct it?
-
-- [Can we reconstruct an AI-assisted decision?](sources/nara-ai-records-and-buildout-deep-dive-2026-08-23-50c982a57657.html): NARA’s records guidance connects prompts, outputs and audit trails to the official work that relied on them.
-- [When the remedy record is deliberately nonpublic](sources/sec-credit-rating-recordkeeping-orders-maturation-2024-2026-52966d633405.html): The SEC orders make the violation and remediation mandate public while keeping the consultant's central report outside the ordinary public record.
-- [Follow a dollar beyond the federal payment](sources/federal-transaction-record-open-accounting-audit-limits-and-the-s-167ed581784c.html): See where award, payment, recipient spending and performance records part company.
-- [How a public goal becomes an operating plan](sources/federal-strategic-planning-legal-framework-a69a081cd437.html): Follow strategic aims into performance targets, budget decisions and reviews of results.
-- [See adjudicated movement through the entity tree](rooms/federal-government-movement-atlas.html): Browse typed actors, reached stages, unresolved stages and exact next receipts while keeping every fact attached to its dated research owner.
-- Connect: [What counts as a delivered capability?](stories/science-to-capability.html#accepted-operation): The science and industrial studies show why acceptance, operating use and the evidence of performance matter.
-- Connect: [What happens after someone raises the problem?](stories/claims-records-and-accountability.html#the-oversight-chain): Follow testimony and document requests through response, verification and possible correction.
-- Connect: [Return to the later record](stories/government-through-time.html#return-to-the-result): The dated sweeps show which announcements gained operating evidence and which required correction.
-## What does this company actually do?
-
-A company becomes interesting through the work it performs and the relationships that make that work possible. Connect our sector studies and company investigations to follow products, partners, obligations and the evidence that a business is doing the job we think it is.
-
-### Find its job in the system
-
-[Open chapter](stories/companies-in-context.html#the-job)
-
-Permanent magnets make the question concrete. A miner, an oxide separator, an alloy maker and a company machining a finished magnet occupy different places in the same supply chain. Energy Fuels supplies separated NdPr oxide; Noveon makes sintered magnets; Arnold’s Rochester facility fabricates magnets and assemblies. Their importance comes from the step each can perform and the customers that can use its output.
-Battery nanotubes reveal another supply chain with easily confused company roles. A powder maker, dispersion formulator and cell producer solve different problems. The saved company registry distinguishes operating formulation, pilots, proposed scale and customer validation; a domestic address alone does not establish domestic powder origin or control of the recipe. Across magnets and batteries, the useful company question is which conversion or qualification step it can reliably perform.
-
-- [Follow the material into a usable part](sources/permanent-magnet-research-package-0c39b5622ca2.html): The integrated study explains separation, metal, alloy, magnet making, finishing and customer qualification.
-- [Compare the companies by actual function](sources/permanent-magnet-company-registry-4483502b43d0.html): Read site-level functions, shipment and commissioning states, customer relationships and financing boundaries.
-- [Compare battery suppliers by the stage they actually control](sources/cnt-battery-company-and-supply-chain-registry-2026-08-23-3209dee42e94.html): Follow synthesis, dispersion, customer qualification, ownership and unresolved powder-origin dependencies.
-- Connect: [Why does the system need that capability?](stories/science-to-capability.html#scientific-work): Connect the company’s productive stage to the scientific work and dependencies behind a useful result.
-### Find the work behind the headline company
-
-[Open chapter](stories/companies-in-context.html#the-supporting-cast)
-
-The turbine manufacturer does not perform every job required to keep a plant running. Our NAES research follows commissioning, operational integration, compliance and long-term maintenance. Within that family, Olsson performs electrical construction and controls work; Gridforce provides balancing-authority and transmission-operator services; Greenberry contributes fabrication and critical-facility work.
-Those relationships explain why a less visible firm may matter to a large buildout. Each subsidiary’s evidence stays attached to its own work. Capability or an award on one project helps us understand a possible role elsewhere, while a named engagement establishes that next connection.
-
-- [Read the NAES and hidden-supplier investigation](sources/nssts-hidden-supply-chain-and-naes-expansion-2026-08-19-6f6795fc2f60.html): The study places NAES, Olsson, Gridforce and Greenberry in distinct delivery and operating roles and identifies where target-project evidence is missing.
-- [Explore the company dossiers](rooms/science-company-dossiers.html): Open the existing dossiers and bottleneck monitor to examine companies in the context of the capabilities and dependencies we are following.
-- Connect: [Who can accept the work a company delivers?](stories/science-to-capability.html#accepted-operation): Supporting firms can build or test while an owner or authorized decision-maker accepts the result.
-### Ask who holds the right—and the responsibility
-
-[Open chapter](stories/companies-in-context.html#rights-and-obligations)
-
-A commercial relationship can give a company a route into a system without giving it control of the whole system. Ripple’s acquired businesses bring custody, brokerage, treasury and connectivity functions, but their memberships and licenses belong to particular legal entities and products. The company investigation shows why a connection to an established financial network does not by itself establish that network’s use of XRP.
-The same question opens the industrial studies. A testing company may produce evidence, an independent engineer may inform a lender’s drawdown decision, and an owner or utility may retain final acceptance authority. Understanding the company means understanding the particular right, obligation or decision attached to its role.
-Military software makes the distinction concrete in another sector. The saved NGC2 study names Anduril, Palantir and Raft around a common data baseline. Providing a platform or interface gives each firm a delivery role; government data rights, mission command and operational authorization remain separate questions. Those distinctions let us compare defense and finance companies without treating their rights as interchangeable.
-
-- [Trace Ripple’s actual institutional relationships](sources/ripple-xrp-invisible-conversion-layer-2026-08-31-870c58ff7e32.html): Read the assembled businesses, exact-entity membership boundaries, and separate Securitize and Wormhole relationships.
-- [Distinguish influence from decision authority](sources/nssts-pivotal-third-party-control-map-2026-08-19-f2425034901d.html): The control map separates formal gates, delegated work, acceptance evidence, advice and critical-path supply; its named examples retain their project boundaries.
-- [Where commercial vendors sit in the military system](sources/military-modernization-research-package-2f25d472ab0c.html): Read the named data-layer functions and the distinction between a supplier role and government mission authority.
-- Connect: [Inspect the monetary relationships directly](stories/money-in-motion.html#use-the-hub): Use the Hub’s processes and traces to follow the institution, the claim and its operating arrangements.
-- Connect: [Follow the mission those companies support](stories/keeping-systems-working.html#decisions-and-command): The data layer matters through the observations, decisions and operational tests it must support.
-### Choose the evidence that would show success
-
-[Open chapter](stories/companies-in-context.html#what-success-means)
-
-Ripple, XRPL, RLUSD and XRP can progress in different ways. Company revenue, network use, stablecoin issuance and recurring demand for a bridge asset answer different questions. The saved Ripple investigation therefore asks for route share and inventory evidence before treating company expansion as proof of a larger XRP role.
-Manufacturing has its own distinctions: a first shipment, customer-qualified output and sustained production reveal different achievements. Reading companies this way keeps our evolving questions precise: which business or product is advancing, what changed, and what evidence would make us revise the explanation?
-
-- [Read the four separate success measures](sources/ripple-xrp-invisible-conversion-layer-2026-08-31-870c58ff7e32.html): The Ripple study distinguishes company activity, XRPL use, RLUSD performance and XRP’s monetary role.
-- [Compare shipment, ramp and planned capacity](sources/permanent-magnet-company-registry-4483502b43d0.html): The registry distinguishes verified shipments from company-reported operation, commissioning and proposed scale.
-- Connect: [Which monetary job changes when a business grows?](stories/money-in-motion.html#where-change-happens): Company expansion and movement of a financial record can be related without measuring the same achievement.
-## Who gets in, which record counts, and when payment is complete
-
-The money story becomes clearer when we follow a transaction through permission, ownership, bank promises and the books. Congress, courts, transfer agents, networks and accountants govern different parts of that journey.
-
-### A working network still needs a right to participate
-
-[Open chapter](stories/money-rights-and-records.html#permission-to-participate)
-
-A payment connection is useful only if someone is legally allowed to use it. The congressional research supplies the missing assembly line between a proposed product and an operating institution: committees shape categories, Congress may enact them, regulators implement them, and account providers still make separate admission decisions. Its PACE example has two proposed gates—OCC registration and a Federal Reserve payments account—rather than automatic access created by a software connection.
-This puts the Fed and private-rail research in the same frame. A firm can own a fast interface while another institution controls the account needed underneath it. The judicial research then shows where that perimeter is contested. A hearing, introduced bill, court filing, approved charter and open account each answer a different question about who can actually transact.
-Investor access has its own version of the same problem. The September 30 SEC notices ask whether professional credentials—including an active U.S. CPA license—should satisfy the accredited-investor gate for private offerings. The state license could become the verification object, but notice, final Commission designation, an issuer's decision to accept the investor and an actual purchase remain different events.
-
-- [Follow the congressional assembly line](sources/congressional-monetary-infrastructure-research-package-fbcfe344359b.html): The July package joins hearings, proposed payment-provider access, digital-asset law and the DTC operating record while keeping bills separate from enacted authority.
-- [Locate the public account underneath](sources/treasury-fed-money-state-factual-timeline-7730604ea92f.html): The Treasury–Fed timeline explains why private transaction routes can still depend on public money and access gates.
-- [See where access is disputed](sources/judicial-money-map-source-document-d2f844afe3d8.html): Custodia and other cases put legal access, agency power and actual operating effects on separate clocks.
-- [Compare permission with an operating receipt](sources/readme-373b9567b61c.html): Four fixed 2026 windows show approvals, account limits, pilots, registrations, charters and a bounded production non-receipt without treating them as the same legal or operating state.
-- [See how a state CPA license could unlock private offerings](sources/sec-accredited-investor-credential-notices-and-cpa-gate-2026-09-3-9ecfa13f5041.html): The five Commission notices and CPA deep dive separate professional qualification, public license verification, final federal designation and actual private-market participation.
-- Connect: [Return to the underlying money system](stories/money-in-motion.html#the-system-underneath): Begin with bank claims and public settlement before following permission into a particular service.
-- Connect: [Compare how public authority is assembled](stories/government-in-practice.html#from-purpose-to-authority): Financial access is one case of the broader passage from purpose through lawful authority into implementation.
-### Many networks can serve one recognized ownership record
-
-[Open chapter](stories/money-rights-and-records.html#one-recognized-record)
-
-The crypto comparison becomes easier to read once we ask what the network is being asked to carry. Execution, distribution, privacy and interoperability can be divided among several chains while an issuer, depository or transfer agent determines the legally recognized position. Securitize’s disclosed control-book model and the SEC’s September 1 proposal illustrate that division: linked systems can support one issue without making every representation an independent claim.
-The proposal would keep one registered recordkeeping transfer agent responsible for and in exclusive control of the master securityholder file. It was still a proposal at the saved cutoff. This is a concrete way to read the Hub’s relationships: a bridge can move a representation, a custodian can control keys, and a network can confirm execution while the authoritative record and correction power remain elsewhere. Their cooperation does not erase their separate jobs.
-
-- [Read the proposed ownership-record architecture](sources/sec-transfer-agent-modernization-source-document-3be126c5861c.html): The September 1 proposal joins linked electronic files, accountable transfer agents, outsourcing and correction; it is not approval of a particular chain or token.
-- [Read the operative tokenized-stock trading lane](sources/sec-tokenized-nms-stock-innovation-exemption-2026-09-17-55d7bb31e484.html): The September 17 order opens a conditional public-chain AMM venue and liquidity-provider exemption while leaving the official record, issuance, custody, settlement and token-selection gates separate.
-- [Read the Investor Advisory Committee advice clock](sources/sec-iac-2026-analysis-9cea97e770e4.html): The March 12, 2026 IAC tokenization recommendation is Committee advice against a blanket exemption. Keep it separate from Release 34-106402, which is the later permission object.
-- [Read the derivatives distribution adapter](sources/cftc-passive-software-no-action-position-2026-09-17-d180cea1d70c.html): The September 17 staff position opens a conditional software distribution lane into registered derivatives markets while leaving custody, execution discretion, clearing, product legality and operating use separate.
-- [Separate clearing permission from clearing operation](sources/coinbase-clearing-dco-registration-order-2026-09-28-8307e1006304.html): The September 28 Commission order registers Coinbase Clearing for fully collateralized derivatives, while named products, collateral, members, settlement institutions and first transactions remain later operating receipts.
-- [Compare networks by the job they perform](sources/other-crypto-infrastructure-buildout-comparison-b8ec2a2a4281.html): The comparison separates corporate control, network function, native-token use and the local legal institutions above shared execution.
-- [Inspect those roles in the Crypto Infrastructure Hub](rooms/crypto-infrastructure.html): Use the process maps to locate operators, integrations and dependencies at each lifecycle stage.
-- Connect: [Use the Hub with the ownership question in mind](stories/money-in-motion.html#use-the-hub): The same network can appear in several processes without owning every legal or monetary function.
-- Connect: [Read the company behind the capability](stories/companies-in-context.html#rights-and-obligations): Investments, partnerships, regulated roles and token exposure give different rights.
-### Available money and final interbank settlement can arrive at different times
-
-[Open chapter](stories/money-rights-and-records.html#the-time-between-payments)
-
-SWIFT makes a usually hidden interval visible. Its saved architecture describes bank-issued tokenized deposits and funded interbank commitments coordinated by a SWIFT-operated ledger. A receiving bank may make customer funds available before the banks finish external cash settlement through an RTGS system, correspondent account or another agreed mechanism.
-The question is what supports the promise during that interval. The public dossier did not establish the precise funding object or who carries the gap if customer credit precedes final settlement. Seventeen banks preparing live pilots and readiness for initial controlled use therefore do not establish a completed transaction or a production corridor. Read beside the People’s Money agreements, this becomes a practical question: when can the customer use funds, who may reverse them, and which institution remains owed money?
-
-- [Follow SWIFT’s four payment clocks](sources/swift-ledger-activation-dossier-2026-07-21-43b4c82f3551.html): The activation dossier distinguishes bank funding, shared commitment, customer credit and off-ledger cash finality, including the missing public rulebook and gap bearer.
-- [Compare what a customer is actually promised](sources/banking-website-sweep-source-document-4cadeee6e9f4.html): Account agreements expose availability, holds, intermediaries and reversal rights that a faster network description can hide.
-- Connect: [Carry the payment across a border](stories/countries-and-connections.html#different-kinds-of-change): A new international connection can keep the same bank liability and national settlement authority underneath it.
-- Connect: [Ask who supports the promise if something fails](stories/claims-collateral-and-loss.html#permission-through-risk): Risk-bearing contracts determine whether a faster promise can be safely offered.
-### A transaction record must explain more than movement
-
-[Open chapter](stories/money-rights-and-records.html#records-that-can-explain)
-
-Our July 25 transaction-native accounting hypothesis asked whether business events could generate their own books. The July 30 accounting research refined that idea: signed events can feed reproducible cash, GAAP, tax, regulatory and management views through versioned rules. Recognition, valuation, entity boundaries and estimates still require governing decisions. The earlier hypothesis remains useful as the question that led to the more precise answer.
-This completes the chain from network execution to institutional responsibility. A token transfer can be recorded correctly while the goods were never delivered, the beneficiary was ineligible or the wrong entity recognized revenue. Public payment transparency has the same problem: a visible transfer needs joins to authority, purpose, performance and correction. The accounting package belongs beside both the Crypto Hub and the government payment story because each asks whether another person can reconstruct what the record actually means.
-
-- [Read the corrected accounting answer](sources/readme-50750ec8c0f3.html): This archived catalog entry now opens the July 30 successor router: signed events and multiple governed accounting views, with accrual and audit judgments retained.
-- [Keep the July 25 question in view](sources/open-source-real-time-accounting-transition-map-2026-07-25-3dda30264d99.html): The superseded hypothesis shows how the question evolved; it is historical interpretation rather than the current accounting authority.
-- [Ask which record is official for which purpose](sources/official-record-authority-and-blockchain-crosswalk-2026-09-26-c7f5f0267695.html): Federal, regulatory, ownership, corporate-accounting, audit, disclosure and finality records receive authority from different institutions; blockchain is a permitted medium only where the governing regime makes it one.
-- [Follow the clocks from settlement to assurance](sources/atomic-settlement-to-continuous-assurance-2026-09-26-d75aaac96925.html): Atomic exchange and continuously available evidence can improve the accounting system without collapsing record acceptance, recognition, measurement, publication and independent assurance into one event.
-- [Return to the maintained private-money collection](sources/fintech-crypto-infrastructure-deep-dive-08df4391c59f.html): The parent collection carries the accounting and transparency extensions alongside the legal claims, interfaces and institutional controls.
-- Connect: [Follow the same problem into public records](stories/government-in-practice.html#make-the-outcome-reconstructable): A payment receipt and a complete explanation of a public decision require different evidence.
-- Connect: [See how the wider interpretation evolved](stories/reading-the-transition.html#how-the-question-evolved): The older synthesis remains useful when later evidence can revise its component claims.
-## What we own, what we owe, and who absorbs the loss
-
-A deposit, a loan, a gold claim and an insurance policy are promises with different owners and conditions. Following their transfer and failure connects household finance to commodity markets, international trade and industrial projects.
-
-### Evidence, judgment and verification shape the lending decision
-
-[Open chapter](stories/claims-collateral-and-loss.html#mortgage-credit-access)
-
-Credit approval is governed by legal requirements, program eligibility, approved evidence, risk assessment, verification and the lender’s decision. Score competition can change who can be assessed and how a loan is priced; rent and cash-flow data can reveal repayment behavior beyond traditional credit history. The September 7 standards investigation compares Fannie, Freddie and other credit channels, distinguishing implemented requirements from the broader mortgage-credit reform agenda.
-The judgment extension follows who interprets income, resolves exceptions, designs quality-control sampling and bears contractual exposure for errors. Administrative simplification can remove repeated tasks while preserving substantive assessment and creating more precise conditions for reliance on validated data.
-The same question extends into retail and business credit: automated lender deployments, SBA repayment evidence, commercial risk management and changes to regulatory reporting each move different parts of the decision process. The comparison identifies actual changes separately from longstanding practice.
-
-- [Read the credit approval standards investigation](sources/credit-approval-standards-and-model-changes-2026-09-07-cdd7b9ebb984.html): Credit standards plus the distribution of underwriting judgment, documentation, QC and contractual responsibility.
-- [Compare retail and business approvals](sources/retail-and-business-credit-approval-judgment-2026-09-07-5b567382f452.html): Named retail implementations, SBA score-screen replacement, commercial-bank judgment, model oversight and 2026 CFPB rules.
-### Follow the mortgage into funding, securities and the Fed
-
-[Open chapter](stories/claims-collateral-and-loss.html#mortgage-through-the-balance-sheets)
-
-Following one mortgage through debits and credits separates transfer, funding, income and consolidation. Cash can return to Fannie after MBS issuance while its consolidated mortgage asset remains and external trust debt appears. Further layers include investor repo borrowing, Fed MBS ownership, commercial-bank reserves and customer deposits. The principal repayment then reduces connected claims, sometimes on different dates. The companion process map retains the verified SOMA security endpoint.
-
-- [Read the mortgage journals and consolidation layers](sources/mortgage-accounting-layers-2026-09-07-98c678f9e4df.html): Balanced examples from an existing mortgage through trust debt, repo, Fed reserves, repayment and income; legal and reporting views separated.
-### A loan can change hands while the borrower still owes it
-
-[Open chapter](stories/claims-collateral-and-loss.html#the-obligation-survives)
-
-The retail-debt research starts where the People’s Money study leaves off: the account relationship is also an obligation that institutions can sell, service, modify or write down. Discover’s private student-loan sale moved a portfolio to a buyer and servicing to Firstmark. Capital One’s acquisition of Discover was another event, affecting corporate ownership and the payments network. Neither event by itself cancelled a borrower’s debt.
-Following those separate events lets the company and household stories inform each other. A portfolio sale changes the asset owner; a servicing transfer changes the administrator; a charge-off changes the lender’s accounting; a hardship agreement changes particular borrower terms. We understand the consequence only after identifying which of those relationships actually changed.
-
-- [Follow actual debt-book changes](sources/retail-debt-entity-factual-spine-da3cd45008b6.html): The factual spine separates lender, merchant, owner, servicer and regulator events instead of treating sales or charge-offs as forgiveness.
-- [Start with the account relationship](sources/banking-website-sweep-source-document-4cadeee6e9f4.html): The banking agreement research explains the customer rights and institutional discretion beneath the debt or deposit product.
-- Connect: [Use the company lens on a loan portfolio](stories/companies-in-context.html#rights-and-obligations): A corporate transaction matters through the rights and obligations transferred.
-- Connect: [Connect a write-down to its accounting meaning](stories/money-rights-and-records.html#records-that-can-explain): An accounting treatment and a change in someone’s legal debt are separate events.
-### An asset must pass through rights before it becomes usable collateral
-
-[Open chapter](stories/claims-collateral-and-loss.html#make-an-asset-usable)
-
-Gold provides a physical version of the tokenization problem. A futures position, an unallocated bank balance, an allocated bar, a warehouse warrant and an ETF share give different rights even when their prices move together. In the COMEX chain, payment against an electronic warrant transfers title before a later physical load-out. Pledging that warrant as collateral changes what the holder can do with it again.
-The holdings research adds a second safeguard: where gold is stored does not establish beneficial ownership or freedom from liens, and overlapping vault, ETF and official totals cannot be added as independent piles. This joins the World story at the next step. A gold export, a private foreign-currency receipt, a reserve acquisition and usable central-bank liquidity need their own evidence; the existence or price of the metal cannot complete those transitions for us.
-
-- [Follow metal through title, clearing and custody](sources/wholesale-metals-market-infrastructure-deep-dive-622e4608aaff.html): The market-infrastructure study connects COMEX, London, Shanghai and Hong Kong through their distinct legal claims and conversion rules.
-- [See what holdings totals can and cannot tell us](sources/gold-use-holdings-and-custody-map-2026-08-16-c6534962dbcf.html): The uses-and-custody map separates material form, beneficial claim, overlapping totals and actual monetary use.
-- [Follow the gold into external financing](sources/gold-bop-currency-adjustment-research-package-3f116c610a37.html): The BOP study explains who receives the financial counterpart and what must happen before exports support available reserves.
-- Connect: [Follow the owner and financial counterpart across the border](stories/countries-and-connections.html#crossing-borders): A shipment becomes a monetary event through specific ownership, conversion and reserve transactions.
-- Connect: [Compare electronic warrants with tokenized securities](stories/money-rights-and-records.html#one-recognized-record): Both require a recognized claim and controlling record beyond the visible representation.
-### Insurance can determine whether the underlying activity happens
-
-[Open chapter](stories/claims-collateral-and-loss.html#permission-through-risk)
-
-A ship, home or industrial project may be physically possible but unable to proceed on acceptable financial terms without insurance or a guarantee. The insurance research therefore connects the trade and buildout stories before a loss occurs: cover affects whether lenders, ports, charterers or investors will accept the exposure. It also creates investable premiums and reserves, linking the promised protection back into capital markets.
-The promise passes through separate entities: writing carrier, broker, reinsurer, collateral vehicle and any public backstop. The Hormuz audit shows why that distinction matters. Changes in primary war cover and voyage pricing did not mean every mutual P&I promise disappeared; the later DFC-supported maritime facility was a different risk-transfer intervention. Announced capacity, bound exposure and a paid claim describe successive tests of whether protection is actually there.
-
-- [See the cross-machine insurance layer](sources/insurance-research-package-3ca8f13f2da5.html): The package joins household cover, life reserves, private assets, marine risk, catastrophe and digital systems through precise risk-bearing entities.
-- [Read the corrections before using a dramatic insurance claim](sources/insurance-reinsurance-claim-audit-6c96e2125d61.html): The claim audit tests market size, insurer retreat, war cover, public backstops and tokenization assertions.
-- Connect: [Return to the financeability of a real project](stories/science-to-capability.html#financing): Insurance and guarantees affect a project’s financing conditions; neither is itself construction cash.
-- Connect: [Follow trade permission through a voyage](stories/countries-and-connections.html#access-and-pressure): Transport, sanctions, cover and payment access can each constrain the same shipment.
-### Failure reveals which promise the system will enforce
-
-[Open chapter](stories/claims-collateral-and-loss.html#correction-and-loss)
-
-Ordinary transactions can make distinct claims look interchangeable. Stress exposes the differences: a bank owes an unallocated balance, a custodian holds property, a collateral taker has a security interest, and an insurer responds only within the policy. The judicial map connects these arrangements to the forum and rule that can determine account access, mistaken payments, insolvency priority or control over sovereign assets.
-That is the final join between household debt, metals and insurance. A loss must land somewhere, and a legal right is useful only if a responsible institution can implement it. A court filing or injunction does not by itself establish completed operational correction. Following the judgment, effective order, implementation and actual recovery lets us ask whether the system resolves a problem or merely moves it to another claimant.
-
-- [Follow the cases that define the money perimeter](sources/judicial-money-map-source-document-d2f844afe3d8.html): The factual map distinguishes allegations, holdings, procedural effects and real operating changes across payment, property, access and resolution disputes.
-- [Keep the risk-transfer sequence beside the case](sources/insurance-risk-transfer-field-registry-be5de4c8a988.html): The field registry identifies the contract, exposure, trigger and loss-bearing entities that a claim or backstop must actually reach.
-- Connect: [Test whether correction actually works](stories/reading-the-transition.html#what-would-change-our-minds): Successful and timely resolution is evidence that institutions can absorb change; unresolved harm may support a different reading.
-- Connect: [Return to the user’s experience of the money system](stories/money-in-motion.html#what-it-means): Availability, cost, rights and remedy decide what the architecture means in practice.
-## How our picture of the transition keeps changing
-
-The older synthesis, newer routing thesis and living institutional thesis are stages in a developing interpretation. Read them against the component research, with room for the system to become more capable and accountable as well as more fragmented.
-
-### The early synthesis found a federation, then the details sharpened it
-
-[Open chapter](stories/reading-the-transition.html#how-the-question-evolved)
-
-The retained July 13 Overall Monetary Play gathered banking, clearing, metals, insurance, emergency powers and international connections into a single interpretation. It proposed that the important change might occur at conversion points among regulated claims, collateral, liquidity and settlement, rather than through one replacement currency. That older essay is valuable because it records the question the later investigations were trying to make more precise.
-The component work now gives the idea better tests. SWIFT separates a funded commitment from final cash; transfer-agent research separates distributed representation from the authoritative file; the accounting successor retains judgment while exploring reproducible event-based views. These studies refine the broad picture and can correct it. Reading them together should make us more specific about the mechanism rather than treating the July essay as a current master account.
-
-- [Read the retained July 13 interpretation](sources/the-overall-monetary-play-2628c5f98349.html): Historical synthesis: federated claims and conversion points, not proof of one coordinated plan or a present-tense factual master.
-- [Compare the later state-by-state transition](sources/overall-dlt-transition-2025-2026-416775e3eefd.html): The maintained DLT synthesis replaces a single live/pilot judgment with separate representation, legal-record, settlement, liquidity and accounting states.
-- [See a question refined by its successor research](sources/readme-50750ec8c0f3.html): The July 30 accounting answer preserves the ambition of signed events while retaining recognition, estimates and assurance requirements.
-- [Compare where authority moves through the adapter](sources/authority-through-the-adapter-comparative-deep-dive-2025-2026-b5cd43517159.html): The August 31 selected-case comparison separates operational and record movement from claim constitution, collateral, final liquidity, correction, emergency authority and loss allocation.
-- Connect: [Walk through the accounting correction](stories/money-rights-and-records.html#records-that-can-explain): The earlier hypothesis and successor answer show how the Library can preserve context while our understanding improves.
-- Connect: [Return to what the systems are trying to change](stories/money-in-motion.html#different-ambitions): The baseline money story keeps the different legal claims and institutional ambitions visible.
-### Separate the route people use from the money and liquidity underneath
-
-[Open chapter](stories/reading-the-transition.html#route-anchor-inventory)
-
-The August 31 Route, Anchor, Inventory thesis asks a narrower question: could private adapters increasingly select transaction paths while the dollar, regulated issuers and public settlement retain other jobs? CHIPS supplies a familiar comparison—a private clearing route can already sit above Federal Reserve funding and settlement. The new research therefore has to show what programmable networks add, and which decision rights or dependencies actually move.
-The Ripple research makes the hypothesis economically testable. Software can hide a bridge asset from the customer, but company revenue, XRPL usage, RLUSD issuance and persistent XRP exposure remain separate outcomes. Route share, available depth, financed inventory, holding time and hedges would show whether a token becomes economically necessary. AI-generated demand and post-quantum migration are possible buildout drivers in the saved thesis; neither alone establishes recurring monetary migration.
-
-- [Read the working route–anchor–inventory thesis](sources/route-anchor-inventory-working-thesis-2026-08-31-f672ae7d7c8b.html): This interpretation separates private routing from sovereign denomination, regulated claims, working liquidity and emergency support.
-- [Test the invisible-bridge idea against actual roles](sources/ripple-xrp-invisible-conversion-layer-2026-08-31-870c58ff7e32.html): The saved analysis keeps Ripple, XRPL, RLUSD and XRP in separate success ledgers and names the liquidity evidence still required.
-- Connect: [Ask which kind of company or token success occurred](stories/companies-in-context.html#what-success-means): A useful network, profitable company and valuable mandatory liquidity asset are distinct results.
-- Connect: [Inspect one real candidate architecture](stories/money-rights-and-records.html#the-time-between-payments): SWIFT’s commitment and external-cash separation makes the route-versus-settlement question concrete.
-### The living thesis asks whether authority can keep up with capability
-
-[Open chapter](stories/reading-the-transition.html#when-control-and-responsibility-separate)
-
-Across the money and government research, a recurring possibility is that the actor shaping an outcome differs from the institution legally answerable for it. A platform may route a transaction, a vendor may classify a case, or a shared service may operate a function while an issuer, agency or court retains responsibility. Our living institutional thesis asks when those arrangements remain workable and when the responsible institution loses the ability to inspect, explain or correct the result.
-This is a developing interpretation of saved cases, not a verdict that every institution is in crisis. The interactive instrument keeps fifteen contrastive cases and their dated events available for inspection, with technology and Federal Reserve views that explain the underlying capability. The stories lead into that detail so the interpretation can be tested against the actual function being performed.
-
-- [Explore the living thesis and its cases](rooms/the-thesis.html): The private interactive instrument connects function cases, clocks, rivals, technology and the Federal Reserve’s operating structure.
-- [Read the developing argument in full](sources/wave-5-economic-institution-legitimacy-crisis-working-thesis-firs-62a86fce6499.html): The September 2 draft develops the control–responsibility gap from the saved corpus; the argument remains interpretation rather than a settled system-wide finding.
-- Connect: [Examine one decision rather than an abstract theory](stories/government-in-practice.html#software-inside-the-decision): Agency AI research locates the actual role of software, retained authority and records.
-- Connect: [Inspect an attempt to preserve accountable control](stories/money-rights-and-records.html#one-recognized-record): The transfer-agent proposal is a concrete example of fitting new technical capability inside a named legal responsibility.
-### A useful story must let successful adaptation count
-
-[Open chapter](stories/reading-the-transition.html#what-would-change-our-minds)
-
-The strongest rival is that established institutions can absorb new capability while preserving supervision, authoritative records and effective remedy. Better service, clear delegation, inspectable logs, timely correction and losses borne under known rules would support that explanation. A lawsuit, new technology, shared timing or a private vendor is not enough to establish a legitimacy crisis.
-The thesis becomes more persuasive only if comparable functions repeatedly show consequential misalignment and ordinary correction fails. It weakens when the gap closes. Keeping those alternatives beside the same cases helps the research evolve: a successful payment, functioning appeal or completed industrial capability can change the story as much as a failure can.
-
-- [Read the strongest rivals and falsifiers](sources/wave-4-mechanisms-rivals-falsifiers-and-visual-logic-2026-09-02-a37133a4a06c.html): The red-team chapter explains incumbent absorption, selection bias, constitutional tension and the outcomes that would strengthen or weaken each mechanism.
-- [Compare the function cases](sources/wave-2-function-and-authority-case-map-2026-09-02-b70122a4a904.html): The fifteen-case map preserves counter-records and decisive next evidence rather than assigning one crisis state to the whole system.
-- Connect: [Follow a concrete test of remedy](stories/claims-collateral-and-loss.html#correction-and-loss): Legal disputes and loss allocation show whether the responsible institution can actually correct the result.
-- Connect: [Let delivered capability count](stories/science-to-capability.html#accepted-operation): Accepted performance and operating outcomes help distinguish useful institutional adaptation from plans alone.
-## How systems keep working under pressure
-
-A capability has to communicate, act, move supplies, maintain equipment and pay its way after it is built. Connect our communications, military, logistics and energy research to follow the operating system around the hardware—and the points where a disruption can change what is actually possible.
-
-### Start with the connection and the right to use it
-
-[Open chapter](stories/keeping-systems-working.html#signals-and-rights)
-
-A working network joins assets to rights: land and fiber, spectrum permissions, equipment, operators and service agreements. Our communications study follows how public institutions use a largely public-private field. FirstNet gives a concrete example: federal oversight and a dedicated public-safety service coexist with AT&T construction and operation.
-A disruption makes the distinctions visible. A public warning, a 911 call and responder coordination travel through different arrangements. Priority calling, restoration and backup channels help specified users; exceptional emergency powers require their own legal trigger. Designating critical infrastructure establishes a protection mission, while ownership and operating control must still be traced.
-
-- [Follow the public-private communications system](sources/sovereign-communications-research-package-38cc4655e787.html): The July 15 study explains infrastructure, rights, public-safety service and emergency activation.
-- [See how warning, response and restoration differ](sources/sovereign-communications-emergency-rails-map-af789563ee96.html): Open the emergency-rails map for the distinct traffic flows, responsible entities and activation limits.
-- Connect: [Return to the place beneath the network](stories/national-change-local-life.html#who-has-authority): Land, utilities and sovereign authority also determine which communications and compute projects can be built.
-### Turn observations into an authorized decision
-
-[Open chapter](stories/keeping-systems-working.html#decisions-and-command)
-
-Military modernization connects sensors, transport, data, decision support, command and sustainment. The saved Army NGC2 research gives this an identifiable shape: a common data baseline joins named edge-to-cloud platform and registry functions. The Navy integrator and space sensing studies address other parts of the same integration problem.
-The useful question is what the connection lets a responsible user do. A contract, validated prototype, fielding decision and successful operation establish different achievements. Commercial platforms can support the mission while government data rights and command remain distinct. The scientific trust work supplies a related question: which actor may access this information, and what evidence supports the result?
-
-- [Read the connected military modernization study](sources/military-modernization-research-package-2f25d472ab0c.html): Follow the named programs, vendors, integration roles and separate delivery clocks.
-- [Which identity, permission and evidence travel with the result?](sources/scientific-trust-stack-architecture-and-evidence-map-2026-08-17-b9b86dfc5e76.html): The science architecture clarifies four distinct questions that also help us inspect a data-driven mission.
-- Connect: [What right does the supplier actually hold?](stories/companies-in-context.html#rights-and-obligations): A delivery contract, administrative privilege, data right and mission decision are different relationships.
-- Connect: [Return to the evidence underneath the model](stories/science-to-capability.html#scientific-work): Attributable data and permission to use it accompany validation of the result itself.
-- Connect: [Distinguish technical capability from permission to use force](stories/authority-and-institutions.html#the-use-of-coercion): Command support and an operating platform do not themselves supply the legal authority for a particular action.
-### A capability needs a route, fuel and a repair path
-
-[Open chapter](stories/keeping-systems-working.html#movement-and-sustainment)
-
-The Arsenal policy sequence supplies the earlier questions: what defense capability is wanted, how it is bought or transferred, which suppliers can participate, and how material dependence is addressed. Its ten original filings now lead into the same military and logistics research. Following each legal change into a dated implementation result makes the story traceable from policy through capacity to continued use.
-The logistics research extends the story from making equipment to keeping it useful. Ports, railways, ships, aircraft, fuel facilities and repair plants move and sustain the force. Commercial carriers participate through contracts and prepared access arrangements, alongside government assets and public authorities. Each link needs people, available capacity and permission to perform the job.
-This gives the factory map a destination: accepted output must reach a user and remain serviceable. A production target, qualified component, complete item and replenished inventory mark different steps. The saved logistics study also follows Army land offered for private energy and industrial investment. A solicitation or priority clause describes an arrangement to build and test; demonstrated supply and continuity establish what it can deliver.
-
-- [Arsenal policy and the path to delivery](sources/military-modernization-transition-timeline-77eeedb20ebd.html): Read all ten original Arsenal filings with their questions, legal clocks and connections to the saved implementation record.
-- [Follow production into movement and sustainment](sources/contested-logistics-research-package-e4cceffe38a0.html): The integrated study joins public-private access, port and rail interfaces, fuel, repair, financing and payment.
-- [Compare the dated readiness and delivery steps](sources/contested-logistics-transition-timeline-d96264bbabc1.html): The saved timeline keeps awards, commissioning, qualification, activation and planned milestones distinct.
-- [Trace installation power from policy to demonstrated operation](sources/fortress-america-and-installation-energy-independence-research-pa-def383c764ca.html): Separate FORTRESS America program formation from statutory critical-load requirements, financed projects, commissioning, black-start exercises and sustained islanded operation.
-- Connect: [See the regional infrastructure behind a supply chain](stories/national-change-local-life.html#what-is-already-here): Production corridors, water, power and specialist firms explain what a location can contribute.
-- Connect: [Follow the capital behind physical capacity](stories/science-to-capability.html#financing): Public assets, private investment, operating cash and obligations can support the same project through different entities.
-### When does an operating event become money owed?
-
-[Open chapter](stories/keeping-systems-working.html#events-and-payments)
-
-The energy research connects plant operations to finance through a specific event. Approved turbine usage can determine service fees; a governed test can determine a performance payment; a validated outage can create a credit or dispute. The owner, engineer, operator, contract administrator and treasury team perform different decisions along that route.
-Programmable bank money can act on approved instructions, but the saved study did not find a named production turbine event joined all the way to final cash settlement. It places existing maintenance and payment capabilities beside the missing integration evidence. Logistics raises the same practical issue through tenders, invoices and carrier payment: recording movement and discharging an obligation are related stages that require their own records.
-
-- [Follow the asset, obligation and authority together](sources/asset-obligation-authority-control-map-32825a3e08f4.html): The controlling vault map connects deployed contracts and asset-management functions to programmable payments without assuming the missing production join.
-- [Where transportation records meet carrier payment](sources/contested-logistics-research-package-e4cceffe38a0.html): The logistics system study describes the integration program and retains its contracted and future-capability states.
-- Connect: [What money actually settles the obligation?](stories/money-in-motion.html#the-system-underneath): Return to accounts, institutions, instructions and settlement assets beneath the screen.
-- Connect: [When the customer is government](stories/government-in-practice.html#follow-the-public-dollar): Public awards, obligations, payments and downstream accountability add their own decision chain.
-### What remains usable when one link stops working?
-
-[Open chapter](stories/keeping-systems-working.html#surviving-the-interruption)
-
-The Iran energy study provides a stress test: an asset can work and a payment can be recorded while a part export, technical service or access to funds remains restricted. Its saved June–July license sequence shows why the commercial and legal conditions can change faster than the equipment cycle. Those dated cases explain a dependency; they are not a present-day authorization.
-Our other studies show different responses to interruption: communications restoration and alternate channels, logistics repair and prepared access, or a military program reverting to a tested fallback. The GPS OCX case is especially useful: contractual acceptance was followed by operational-risk findings and cancellation. The question across the story is what evidence shows that a promised capability can continue, recover or be replaced.
-
-- [Read the Iran energy and payment stress test](sources/iran-energy-settlement-stress-test-9fd9cc82ce6a.html): The August 9 study distinguishes physical availability, export and service permission, account access and legal discharge.
-- [See why acceptance can still lead to cancellation](sources/military-modernization-research-package-2f25d472ab0c.html): The saved modernization study explains the GPS OCX fallback and the distinct continuity programs.
-- [Return to warning, priority and backup arrangements](sources/sovereign-communications-emergency-rails-map-af789563ee96.html): The emergency map makes the responsible operator and activation conditions visible.
-- [Compare the international emergency-money sequence](sources/emergency-event-monetary-policy-research-package-73d7338a292c.html): Follow continuity, liquidity, collateral, guarantees, controls, external finance and loss allocation without treating them as one emergency switch.
-- Connect: [How do countries lose or regain access?](stories/countries-and-connections.html#access-and-pressure): Sanctions, licenses, counterparties and financial channels explain the international conditions around an operating asset.
-- Connect: [Revisit what counts as a useful result](stories/science-to-capability.html#accepted-operation): A project earns stronger confidence when its acceptance and operating evidence answer the actual mission.
-## Who is counted, who qualifies, who can govern?
-
-Population counts, citizenship, voter records and officeholding help constitute public power. Follow their separate jobs to see where data connects to rights—and where an apparent connection still needs a legal and operating bridge.
-
-### Begin with the people and the geography
-
-[Open chapter](stories/representation-and-membership.html#people-and-places)
-
-A population count, an address file and a citizenship record answer different public questions. The Census–USPS study makes the distinction concrete: Census uses postal knowledge and workers inside a defined test, with Census appointments or Special Sworn Status and Title 13 controls. The two cities even use different employment arrangements.
-The saved map now records the Huntsville and Spartanburg field test ending August 31. That gives us a completed collection exercise, while its cost, quality, response and future production decisions remain separate questions. The online questionnaire includes citizenship; the unpublished shorter field instrument means we cannot infer that postal enumerators asked that question. Nor does this test establish a new apportionment rule or a joined enforcement database.
-
-- [Inside the Census–USPS field test](sources/census-usps-operating-and-data-flow-map-97c0f62a7aaa.html): Compare the two employment models, questionnaire boundaries, data custody and the missing evaluation and 2030 decision.
-- Connect: [A place has several governments](stories/national-change-local-life.html#who-has-authority): The local story explains why location, legal identity and public authority need separate owners.
-### A matching record becomes a question to decide
-
-[Open chapter](stories/representation-and-membership.html#records-and-eligibility)
-
-Election administration connects registration, identity, eligibility, ballot handling, tabulation and certification. The saved election release contains evidence about different parts of that chain: voter datasets, analytic disputes, technical vulnerabilities and registration investigations. Their importance comes into focus when we identify which part each document actually reaches.
-A database match may call for investigation, and a vulnerability may justify stronger controls. The next question is what happened to a particular registration or ballot and who lawfully decided it. The same distinction appears in benefits screening, but the eligibility law and remedy belong to the specific program; a shared data technique does not create one universal eligibility decision.
-
-- [Follow the four election-evidence lanes](sources/white-house-election-integrity-research-package-d3cc0f611955.html): Read the voter-data, intelligence, system-security and registration records without turning one kind of evidence into another.
-- Connect: [Compare the benefits screening process](stories/government-in-practice.html#before-the-payment): Both stories require a decision after a data match; each keeps its own legal rights and correction route.
-- Connect: [How the released documents were packaged](stories/claims-records-and-accountability.html#read-the-disclosure): The disclosure study separates the underlying record from its later public framing.
-### Public support still passes through an officeholding rule
-
-[Open chapter](stories/representation-and-membership.html#office-and-constitutional-authority)
-
-A speech, campaign filing, party nomination, state ballot, electoral vote and congressional count are different gates. The Trump 2028 study asks whether procedural pressure could move a dispute toward a later gate. It keeps that constructed political strategy separate from the constitutional rule and does not attribute it to an administration lawyer.
-At the saved July 25 legal cutoff, the Twenty-Second Amendment bars a direct third presidential election after Trump’s 2016 and 2024 elections. A different claim about 2020 does not remove those two elections. Reading the dinner remarks beside the constitutional map lets us explore the political signal while retaining the institutional record that determines what is legally possible.
-
-- [Follow the constitutional and procedural gates](sources/trump-2028-constitutional-entity-and-argument-map-2026-07-25-6efd6520a6c3.html): Compare the official election ledger, the proposed amendment route and the separately labeled delay-and-pressure hypothesis.
-- [Read the speech in its original sequence](sources/first-pass-reading-map-20ff532a8d03.html): The working transcript and reading map preserve how election ambiguity appears within the wider speech; exact quotations require replay verification.
-- Connect: [What story is the speech asking us to accept?](stories/claims-records-and-accountability.html#the-public-argument): Return to the broader relationship between public framing, policy arguments and the instruments that can act on them.
-## How a public claim becomes something we can examine
-
-Speeches, papers, hearings and disclosures can change what people notice. Bring them together with the records underneath to understand the argument, test it, and follow any change in policy or practice.
-
-### Start with the argument being made
-
-[Open chapter](stories/claims-records-and-accountability.html#the-public-argument)
-
-The White House research papers supply the administration’s own explanations for changes in finance, trade, technology and health. They let us ask what is being attempted and how the proposed mechanism is meant to work: stablecoin yields and bank lending, retirement assets and investment, or AI growth through tax treatment, power, procurement and exports. Their estimates are model-dependent arguments to examine beside implementation and later results.
-The WHCA dinner and Cabinet meeting show another layer: how disparate actions are presented as a larger account of security, prosperity and governing competence. The saved dinner reading is explicitly interpretive; the Cabinet audit turns claims about payment integrity, defense investment and drug prices into requests for precise instruments and outcome evidence. These are useful starting questions for the other stories.
-
-- [Read the administration’s economic case](sources/white-house-research-hub-audit-2026-07-21-258f33990a67.html): The CEA paper map connects modeled claims about finance, AI, trade and health to their exact policy objects.
-- [See how the speech ties the themes together](sources/first-pass-reading-map-20ff532a8d03.html): Use the exploratory reading map to separate the speech’s narrative from evidence about each institution or transaction.
-- [Turn the Cabinet claims into concrete questions](sources/readme-e6dd636c41f8.html): The meeting audit follows claimed savings, assets, investment and prices toward the records needed to assess them.
-- Connect: [What is the technological ambition?](stories/science-to-capability.html#ambitions): Read the science strategy with the institutional and industrial steps needed to realize it.
-- Connect: [What would a spending or savings claim require?](stories/government-in-practice.html#follow-the-public-dollar): The public-dollar story supplies the award, payment and downstream records to check.
-### Follow the challenge and the response
-
-[Open chapter](stories/claims-records-and-accountability.html#the-oversight-chain)
-
-Oversight develops across meetings. The House corpus follows a shift from diagnosing waste and improper payments toward prevention through identity, eligibility and prepayment controls. Alongside that thread sit workforce, health, procurement, immigration and energy questions. Reading the meetings together reveals the developing institutional questions while preserving who said what.
-Congressional committees can seek documents, hear testimony, amend legislation or report a finding. The committee study follows those objects into later gates, and also shows where the saved record stops at a request or publication. The most useful next page is often the recipient’s answer, implementation record or subsequent review: those establish whether a challenge changed the work.
-
-- [Read the meetings as connected lines of inquiry](sources/house-oversight-storyline-and-reading-map-9c17f3f07a1f.html): The cross-event map joins fraud, identity, AI, workforce, health and industrial hearings while keeping testimony and legal effects separate.
-- [Track the object after the committee acts](sources/committee-activity-synthesis-2026-07-26-05a5acfd2b85.html): Bills, nominations and oversight requests pass through different actors and later outcome gates.
-- [Compare conduct questions with statement accountability](sources/2026-07-21-the-epstein-statement-trap-18181c6edae9.html): The Chronicle reading follows denials, memory locks, refusals and production duties without claiming concealment motive, false statements or perjury.
-- [Open the broader hearing source library](sources/source-archive-index-527253ed6730.html): Committee memoranda, prepared testimony, bills and saved hearing records retain their own source and quotation limits.
-- [Read the four Trump indictments as separate legal records](sources/readme-6b7cb62412b8.html): Compare charges, count units, superseding instruments, judicial rulings, verdict, dismissals and nolle without turning allegations into findings or procedural endings into acquittals.
-- Connect: [What evidence would let us put it right?](stories/government-in-practice.html#make-the-outcome-reconstructable): Connect oversight to records custody, performance evidence and the person or institution able to correct an error.
-### Rebuild the response before judging its history
-
-[Open chapter](stories/claims-records-and-accountability.html#reconstruct-the-health-response)
-
-The 2020 COVID authority spine supplies the background needed to read later disputes. Public-health emergency authority, national emergency powers, FEMA assistance, liability protection, guidance, product authorizations and fiscal support were distinct instruments with different owners and clocks. Together they describe an evolving response rather than one act called “the emergency.”
-This baseline gives later testimony a specific object to answer for. A claim about guidance can be compared with the guidance then in force; a product claim with its own authorization; a funding claim with the relevant award and oversight chain. It also keeps retrospective origin arguments from silently becoming evidence about the authority or performance of every response measure.
-
-- [Start with the five-family COVID comparison route](sources/readme-ad77ee852c94.html): Use the parent only to compare source type, claim, clock and authority before entering the maintained answer for one question.
-- [Reconstruct the 2020 authority and response timeline](sources/covid-2020-authority-spine-11eaf2724ce1.html): The bounded primary-source spine distinguishes emergency powers, guidance, product authorizations, funding and origin inquiry.
-- [Keep HHS reorganization in its existing legal map](sources/hhs-and-aha-proposed-person-and-statutory-remainder-6720d5018d4d.html): The HHS/AHA question remains owned by the W09 federal workforce and agency-control collection rather than becoming a second W14 health identity.
-- [Separate WHO membership exit from the response history](sources/who-and-ihr-membership-exit-map-66037e156b95.html): Notice, membership end, depositary acknowledgement, assessment obligations, IHR and the Pandemic Agreement remain separate legal states.
-- Connect: [Compare the broader authority chain](stories/government-in-practice.html#from-purpose-to-authority): The government story explains why a direction, permission and operating action require different evidence.
-- Connect: [Identify the institution behind the health policy](stories/authority-and-institutions.html#the-body-and-the-work): Changing an organizational box, membership or funding obligation requires its own legal and operating record.
-### Read the documents and the release around them
-
-[Open chapter](stories/claims-records-and-accountability.html#read-the-disclosure)
-
-The COVID and election releases make older records newly visible. The disclosure crosswalk finds a recurring presentation pattern: documents are selected, reviewed for release, bundled and interpreted for a public audience. That shared method helps us inspect both collections; it does not establish one underlying operation or causal chain.
-Inside the COVID material, the ODNI audit and Senate Reading Room map distinguish funding records, intelligence consultation, allegations, testimony, diaries and later findings. They also expose gaps and duplicate excerpts. A curated extract and its full source are one evidence lineage, and publication in 2026 does not move the original event into 2026. Reading contrary and limiting records alongside the headline is how the library stays useful as our interpretation changes.
-
-- [Compare how official disclosures are assembled](sources/dni-release-architecture-crosswalk-2026-07-27-1d0fe1556783.html): The six-layer crosswalk links source, release and public framing while keeping COVID and election causes separate.
-- [Examine the ODNI COVID and biolab documents](sources/odni-covid-biolab-deep-audit-2026-07-27-69b5e580ea7f.html): The deep audit follows the source objects beneath origin, funding and intelligence-process claims.
-- [Find your way through the Senate Reading Room](sources/reading-room-corpus-route-map-2026-07-29-2af8aaafbd7e.html): Use the page and date map to distinguish full sources, curated excerpts, missing sections and later publication.
-- Connect: [Apply the same reading discipline to elections](stories/representation-and-membership.html#records-and-eligibility): The election story identifies what the data, vulnerability and registration evidence can establish.
-### Ask what the record changes going forward
-
-[Open chapter](stories/claims-records-and-accountability.html#change-the-next-decision)
-
-Retrospective research becomes practically useful when it helps us understand the next decision. The July 2026 high-risk life-sciences policy changes federal funding and review conditions for defined research and international relationships. Its categories, institutional reviews and implementation duties are concrete policy objects to follow independently of unresolved origin disputes.
-That connects the health investigation back to how science is funded and governed. A funding condition changes the route a project must travel; implementation and effects still need their own records. The same questions can then follow an agency’s response to oversight or a new AI-assisted process: what changed, who acts on it, what gets preserved, and what would show that the change helped?
-
-- [Follow the new life-sciences funding and review policy](sources/hhs-high-risk-life-sciences-research-policy-delta-2026-07-28-9e85209d94d2.html): The July policy map explains covered research, federal funding reach, independent review and the separate implementation clocks.
-- [Place the July 29 COVID.gov return in sequence](sources/covid-plot-orientation-and-july-29-delta-9cf4fe6cec40.html): The orientation distinguishes a renewed public presentation, the hearing, and unresolved procedural or substantive findings.
-- Connect: [Follow the condition into the funded institution](stories/government-in-practice.html#follow-the-public-dollar): University and public-payment research shows how a policy becomes an award condition and administrative decision.
-- Connect: [Return to the work science is trying to do](stories/science-to-capability.html#scientific-work): Connect the rules and evidence back to the actual research and the capabilities it aims to produce.
-## What changed as the plans met the machinery?
-
-Read the dated federal sweeps as a history of implementation. Each window adds a piece of the changing system; later evidence can advance a stage, reveal a limit or correct an earlier picture. The saved snapshots retain their original cutoffs.
-
-### First, see who does which part of the work
-
-[Open chapter](stories/government-through-time.html#establish-the-baseline)
-
-The early July research began with monetary hearings, regulators and watchdogs. Widening to the whole government brought the same question into defense, benefits, energy, trade and domestic administration: which legal actor controls this part of the work, and what would show that the next step occurred?
-The July 25 merge and August source expansion establish that shared background. A department’s press page can reveal a plan while a component, court, payment service or program page carries the operative record. Read these windows together to understand why the later story has several owners and several clocks, then open the individual systems when you want depth.
-
-- [July 18 · Hearings, agencies and watchdogs together](sources/government-wide-audit-2026-07-18-9026c44a463a.html): The early monetary and oversight delta connects congressional discussion to the agency and market-utility states that did or did not change.
-- [July 25 · Widen the view to the whole government](sources/2026-07-25-federal-government-website-sweep-full-federal-merge-00593a8c3e93.html): The first broad merge adds defense, health, domestic systems and foreign affairs, with exact corrections to entity roles and operating clocks.
-- [August 1–4 · Look below the headquarters headline](sources/readme-9c6160ccb4ef.html): The source and entity expansion reaches program, component, data and oversight surfaces needed to see implementation.
-- Connect: [Meet the governing machinery](stories/government-in-practice.html#from-purpose-to-authority): The main government story introduces purpose, authority, resources and results.
-### Then watch the rules reach services and markets
-
-[Open chapter](stories/government-through-time.html#rules-reach-daily-life)
-
-The early August windows bring authority closer to daily life. Citizenship orders create policy and guidance tasks; a limited FAFSA beta processes real forms; health guidance and future funding conditions enter different stages. Alongside them, physical work reaches narrower milestones such as test-reactor criticality or completed waste retrieval.
-The next window brings private operators further into public programs: an approved-operation architecture for private cyber work, shipbuilding planning, drone import and export controls, and geographically targeted payment reporting. These are related questions about who is permitted, funded or directed to act. They are not proof that every contemplated operation, factory, service or restriction has occurred.
-
-- [August 2–8 · Citizenship, benefits and physical milestones](sources/2026-08-08-federal-government-weekly-delta-full-merge-09e42eef764e.html): Compare executive guidance clocks with limited real FAFSA forms, reactor criticality and other specifically bounded operating changes.
-- [August 8–13 · Private operators inside public rules](sources/2026-08-13-federal-government-weekly-delta-full-merge-e789cc2685fb.html): Cyber contracts, shipbuilding plans, drone trade controls, health funding and targeted financial reporting show different public/private control routes.
-- Connect: [Follow the population and citizenship questions](stories/representation-and-membership.html#people-and-places): Separate collection, public membership and the specific legal uses of records.
-- Connect: [Follow the rule into a State or school](stories/national-change-local-life.html#how-rules-arrive): The local story explains how implementation reaches particular institutions.
-### The financial and physical systems move at different speeds
-
-[Open chapter](stories/government-through-time.html#implementation-has-many-clocks)
-
-By mid-August, the saved record has proposals about compute derivatives and digital assets beside emergency power orders, payment-screening changes and new infrastructure processes. Their coexistence is useful context: the rules for financing and trading are evolving while the physical and administrative systems have their own constraints.
-The following day moves several financial objects from public inspection to publication and introduces a replacement space-transportation policy and a semiconductor-finance application window. Those are concrete advances in their respective sequences. To know what they eventually enabled, follow the exact object into a final rule, funded arrangement, delivery or operating record rather than treating the date as one systemwide switch.
-
-- [August 13–20 · Finance and the delivery machinery](sources/whole-government-weekly-merge-2026-08-20-3c4246f4c3aa.html): The window joins CFTC proposals with emergency power authority, payment screening, agency organization and infrastructure process changes.
-- [August 20–21 · Policy becomes the next set of tasks](sources/whole-government-weekly-merge-2026-08-21-1ef0cdad66a6.html): Space policy, published financial proposals, final rules and funding opportunities move specific stages without establishing delivered capacity.
-- Connect: [What counts as a working capability?](stories/science-to-capability.html#accepted-operation): The science story follows testing and delivery into accepted operation.
-- Connect: [Understand the monetary jobs underneath](stories/money-in-motion.html#the-system-underneath): The monetary system gives context for the market and payment-rule changes.
-### Return for the outcome—and let the record correct the story
-
-[Open chapter](stories/government-through-time.html#return-to-the-result)
-
-Later checks are most useful when they change our understanding. The August 22–23 closeout separates a first program payment and other material candidates from repeated announcements, supporting updates and older corrections. Its discovery harvest and freshness sweep converge on the same reviewed record; their two catalog entries are different provenance routes, not two independent sources for the same finding.
-The August 29 reconciliation records where a separate follow-up’s candidates landed. The September 3 corrective merge then demonstrates why this return matters: component pages establish a changed OPM appeal route, product self-certification and production orders, while watchdogs document delivery and governance problems. Some evidence advances implementation; some narrows the claim; some asks us to revise the earlier picture. That ongoing comparison is how these snapshots help the larger stories evolve.
-
-- [August 22–23 · Distinguish new results from repeated signals](sources/materiality-closeout-2026-08-23-d4f524b6df10.html): The controlling closeout separates actual payment, launch and operating-authority candidates from folds, historical corrections and unresolved source gaps.
-- [August 22 harvest · The source-expansion trail](sources/readme-e2646c0b79a0.html): This superseded discovery pass feeds the same August 23 closeout; use it for how the evidence was found, never as a second independent finding.
-- [August 29 · Reconcile what the follow-up actually changed](sources/catchup-reconciliation-2026-08-29-b27222f83af3.html): The closed receipt routes the original control-sweep candidates to their later accepted, folded, repaired, rejected or watched owners.
-- [August 31–September 3 · Find the operating transition](sources/direct-website-corrective-merge-2026-09-03-f169f140ef3b.html): The corrective merge adds OPM’s appeal-route change, product certification, production orders and independent delivery findings missed by a publication-led first pass.
-- [September 4-11 · Complete the publisher walk](sources/wave-3-merge-17e07edc0ee8.html): The Wave 3 merge corrects the targeted weekly with material objects and bounded empty hunts from the remaining separately sweepable federal publishers.
-- [September 12-16 · Read the direct-site correction](sources/wave-4-merge-847f7e7bf00b.html): The Wave 4 merge resolves newsroom and index-level claims against library, manual, FOIA, PDF-body, annex, contract-dump, operating-ledger, and vote-record evidence.
-- [September 17-20 · Follow the technology and control stack](sources/wave-10-merge-2eeacf3400a2.html): The fixed-window merge joins EDGAR, market data, 23x5 resilience, SEC/CFTC routes, Federal Reserve governance, DTCC and the proposed government-wide procurement rewrite.
-- [September 16-22 · Reconcile direct sites through the entity tree](sources/wave-10-merge-d2935e2afe9e.html): The deep review joins legal text to component sites, manuals, records, data, oversight and operating receipts while preserving small delegations, gates, exact clocks and named access limits.
-- [September 21-25 · Reconcile the post-baseline weekly](sources/wave-10-merge-ff1b0d353ac8.html): The Friday-close merge separates effective procedural changes from frameworks, pledges, planned implementation, court and oversight objects, owner folds and access holds.
-- [September 26-30 · Test the fiscal-year-close surge across federal and adjacent systems](sources/wave-10-merge-49986ee5e016.html): The provisional same-day merge distinguishes effective rules, interfaces, committee actions, adjacent market operations, acquisition vehicles and audit findings from obligations, payments, settlement, delivered capability and final-day completion.
-- Connect: [Inspect the personnel and service machinery](stories/government-in-practice.html#software-inside-the-decision): The OPM and agency-AI studies supply the process beneath the later operating receipts.
-- Connect: [Follow the independent check](stories/claims-records-and-accountability.html#the-oversight-chain): Use oversight and response evidence to test whether implementation delivered what was claimed.
-## Who can make the government act?
-
-Follow the institution behind the announcement: what still exists, who can direct its work, and which powers require a separate legal step. These saved legal maps also show how our earlier institutional theories became more precise.
-
-### An institution and its work can change differently
-
-[Open chapter](stories/authority-and-institutions.html#the-body-and-the-work)
-
-An agency can retain its legal existence while staff, services and funding move. The saved Education map makes this concrete: its organic statute still establishes the Department, while an interagency agreement buys Treasury collection work without transferring ownership of the student-loan debt. The USAID study follows a different combination of statutory existence, discontinued programs and transferred functions. One announcement cannot describe all of those changes.
-This sharpens the earlier Entity Theory question about who controls the government. A reporting boundary helps us understand accounts and responsibility; a legal map identifies the particular power to appoint, remove, spend or transfer a function. The earlier essays remain available as the history of our thinking, including their speculative and astrological layers. The later legal findings carry the narrower conclusions.
-
-- [Follow an Education handoff](sources/readme-9f2f86b44924.html): Compare the legal owner, servicing agency, payment operator and recipient in the saved funding research.
-- [Education Learning Agenda Playbook](sources/learning-agenda-playbook-institutional-analysis-2026-09-09-f31570765e64.html): Voluntary state decision method connects priorities and evidence to program and resource choices; pilot process improvements are documented, student impact and legal transfers are not established by the release.
-- Connect: [Follow the obligations across an agency handoff](stories/government-in-practice.html#follow-the-public-dollar): The university and Education funding studies show why the operator and legal owner need separate records.
-- Connect: [Test the larger control-and-responsibility question](stories/reading-the-transition.html#when-control-and-responsibility-separate): The institutional thesis asks whether practical control remains answerable through inspection, supervision and remedy.
-### Control moves through people and money
-
-[Open chapter](stories/authority-and-institutions.html#the-people-and-the-purse)
-
-Personnel rules and funding decisions reach different parts of an agency. The Schedule Policy/Career map follows career positions; the officer-removal map follows principal officials and the courts. A changed position classification does not itself remove every employee, settle an officer case or amend an organic statute. The OPM research connects these legal distinctions to the systems that hire, manage and pay people.
-The spending maps add another distinction: appropriated money, apportioned money, a proposed rescission and an enacted cancellation are different objects. Procurement has its own implementation path through agency buying rules, contracts and payment. Together these studies explain why an institution can have a statutory mission yet face changing capacity to carry it out.
-
-- [Read the personnel and service systems](sources/opm-structural-change-coverage-and-gap-audit-2025-01-01-to-2026-0-5df0512c7d38.html): Place the saved OPM changes alongside the older career-position and officer-removal maps.
-- [Follow the fiscal authority](sources/treasury-irs-research-package-179a72e07992.html): Connect resource decisions to the Treasury functions that collect, hold and disburse public money.
-- [Compare the distinct workforce and agency-control clocks](sources/federal-group-control-read-first-18582ff6f6a7.html): The career, officer, Education, USAID and HHS maps compare staffing, functions, money and statutory existence. Their cases show why a single label such as closure cannot describe every institutional change.
-- Connect: [See the personnel system become an operating workflow](stories/government-in-practice.html#software-inside-the-decision): The OPM and agency-AI studies connect legal roles to the records and systems through which decisions reach people.
-### Force, surveillance and financial restrictions have different permissions
-
-[Open chapter](stories/authority-and-institutions.html#the-use-of-coercion)
-
-The earlier control maps ask what authorizes a specific action. The saved Guard map records federalization under Title 10, no located Insurrection Act invocation, and a denied request for interim relief in the Illinois case. Those are distinct authority and procedural findings at the map’s cutoff. The Iran war-powers study distinguishes a presidential report, a proposed authorization and congressional resolutions. Those instruments help explain the conflict around power without treating every public statement as an operative grant.
-The same discipline matters for information and money. The FISA map separates a statute’s sunset from the duration of already-issued authorizations; its missing public certification record limits what can be dated. The IEEPA study distinguishes the tariff question from blocking property. Read alongside the financial-pressure and citizenship stories, these maps show which authority, official, record and remedy must be identified before we can say what control changed.
-
-- [Compare emergency operating permissions](sources/federal-emergency-technology-crypto-activation-map-e20f78d5f14f.html): Contracting, continuity and financial-control powers remain distinct from a general technology activation.
-- [Follow the financial-pressure branch](sources/readme-04fa87961ba2.html): Use the banking and sanctions study for the financial mechanisms; the force-authority map answers a separate question.
-- [Read the legal branches behind exceptional power](sources/federal-group-control-read-first-18582ff6f6a7.html): These saved maps separate surveillance authorizations, domestic force, Iran war powers, property blocking and court relief. They provide the particular instruments and limits behind the chapter’s comparison.
-- [Follow removal power through procedure and remedy](sources/readme-76d8358c6281.html): The D.V.D. legal spine separates statutory third-country-removal authority from the challenged notice-and-hearing procedure, the final judgment, the appellate disposition and the still-open emergency-relief return.
-- [Compare the March 2025 command-to-machinery lifecycles](sources/readme-c96f3c0d76a9.html): The fixed action-date hearing shows that D.V.D. is the cleanest judicial return but not the only durable maturation: tariff, labor, D.C. enforcement, Smithsonian and investment-office commands acquired different operating containers.
-- [Follow the January 2025 command-to-carrier lifecycles](sources/readme-e820252466f2.html): The fixed action-date hearing traces four independent commands into military personnel process, interagency migrant operations, education guidance and procurement rulebook machinery without treating operation as outcome or the branches as one program.
-- [Follow the July 2024 protection-and-control rules](sources/readme-c070967c5500.html): The fixed-window hearing separates five systems governing disclosure, bank recovery, outbound capital, correspondent access and disaster costs, then traces their divergent later states.
-- [Follow the beneficial-ownership reporting perimeter](sources/readme-be7ed3a719cc.html): The December 2024 interruption and later rulemaking show why judicial posture, enforcement discretion, regulatory text and the resulting reporting population must remain separate clocks.
-- [Compare the historical record-and-restraint windows](sources/readme-dfae4f615f09.html): The fixed 2006 and 2007 hearings show how border, international, personnel and investigative power moved through amendments, votes, reporting clocks, records, time limits and subpoena authority without treating the two weeks as one event.
-- Connect: [Follow the separate economic-pressure mechanisms](stories/countries-and-connections.html#access-and-pressure): Account access, cargo records and financial restrictions answer different parts of the international question.
-- Connect: [Compare these powers with a person’s eligibility decision](stories/representation-and-membership.html#records-and-eligibility): Identity, eligibility and citizenship have specific legal consequences; a connection between datasets does not merge those powers.

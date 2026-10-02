@@ -67,17 +67,18 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Crypto Infrastructure Comparatives](crypto-infrastructure-comparatives.md) — cutoff 2026-09-30
 - [Crypto Infrastructure Hub](tokenization-entity-control-map.md) — cutoff 2026-10-01
 - [Energy Asset Management, Atomic Settlement and Iran](energy-atomic-settlement-iran.md) — cutoff 2026-08-09
+- [Federal Monetary and Economic Institutions Delta — September 30 to October 2, 2026](federal-monetary-economic-institutions-delta-2026-10-02.md) — cutoff 2026-10-02T15:39:30-04:00
 - [Federal Reserve, Clearing and Treasury](fed-clearing-treasury.md) — cutoff 2026-09-30
 - [Federal Technology and Monetary Infrastructure Delta — September 17–20, 2026](federal-technology-and-monetary-infrastructure-delta-2026-09-20.md) — cutoff 2026-09-20T16:20:12-04:00
 - [From Atomic Settlement to Continuous Assurance — 2026](atomic-settlement-continuous-assurance.md) — cutoff 2026-09-26
 - [GENIUS Stablecoin Trust Crosswalk](genius-stablecoin-trust-crosswalk.md) — cutoff 2026-08-17
-- [Major Bank Digital Transition Map](major-bank-digital-transition.md) — cutoff 2026-09-26T16:37:25-04:00
+- [Major Bank Digital Transition Map](major-bank-digital-transition.md) — cutoff 2026-10-03T10:20:00-04:00
 - [Official Record Authority and Blockchain Crosswalk — 2026](official-record-authority-blockchain.md) — cutoff 2026-09-26
 - [Overall DLT Transition — 2025–2026](overall-dlt-transition.md) — cutoff 2026-09-22T23:59:59-04:00
 - [Payment Transparency and the Hidden Constitution](payment-transparency-hidden-constitution.md) — cutoff 2026-07-31
 - [Private Monetary Stack](private-monetary-stack.md) — cutoff 2026-08-26
 - [QNT September 2026 Price Rise — Causal Audit](qnt-september-2026-price-rise.md) — cutoff 2026-09-27T09:44:00-04:00
-- [Ripple, XRP and the Invisible Conversion Layer](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-09-30
+- [Ripple, XRP and the Invisible Conversion Layer](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-10-03T09:30:00-04:00
 - [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](route-anchor-inventory.md) — cutoff 2026-08-31T14:43:21-04:00
 - [SEC Accredited Investor Credential Notices — CPA Gate, 2026](sec-accredited-investor-credential-notices-2026-09-30.md) — cutoff 2026-09-30T20:55:02-04:00
 - [SEC Investor Advisory Committee — 2026 meeting record](sec-investor-advisory-committee.md) — cutoff 2026-09-20T16:20:12-04:00

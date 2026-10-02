@@ -145,7 +145,7 @@ The current Aries comparison supplies the comparison grammar only. No Aries fact
 **Evidence targets**
 
 - `03 - Astrology/2026-03-03 Virgo Lunar Eclipse — A Reading.md`
-- `01 - Events/2026-03-02-0846 - MM implementing-the-guiding-and-establishing-national-innovatio.md` — official-record event object
+- `02 - Research/Official Records/Money Machine/2026-03-02-0846 - MM implementing-the-guiding-and-establishing-national-innovatio.md` — official-record event object
 - `04 - Synthesis/Cross-cuts/Treasury–Fed Money State — Factual Timeline.md` — March 2, March 4, March 5
 - `04 - Synthesis/Cross-cuts/The Charter Queue — Factual Timeline.md` — March 3 and March 4
 - `04 - Synthesis/Cross-cuts/Clearing-House Transition — Factual Timeline.md` — March 6

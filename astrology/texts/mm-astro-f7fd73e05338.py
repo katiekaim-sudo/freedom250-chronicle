@@ -198,6 +198,10 @@ def glance(item, fam, nm, convention=None):
 def backfill_notes(astro):
     """Insert a '## Astrological signature' section into the Money Machine event
     notes (idempotent), keyed by source_url."""
+    # DR-089 (Katie, 2026-10-02): official records belong in the research library, not the
+    # X-feed Chronicle, and factual notes carry no astrology. Retired; kept for history.
+    print("backfill_notes: retired 2026-10-02 (DR-089) — official records live in 02 - Research/Official Records; nothing written")
+    return
     import glob, re
     EVENTS = os.path.join(os.path.dirname(HERE), "01 - Events")
     n=0

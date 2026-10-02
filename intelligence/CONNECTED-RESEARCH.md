@@ -18,6 +18,7 @@ Money is moving onto new digital networks. Stablecoins, tokenization, crypto net
 - [Private Monetary Stack](library/private-monetary-stack.html): The firms wiring stablecoins, tokens, card networks and custody together, plus the Fed's 452-page stablecoin-issuer proposal read cover to cover.
 - [Congressional Monetary Infrastructure](library/congressional-monetary-infrastructure.html): The committee-to-bill assembly line moving digital-asset law, Treasury-market reform and tokenized settlement toward real operation.
 - [Payment Transparency and the Hidden Constitution](library/payment-transparency-hidden-constitution.html): As payments go from cash to cards to public-chain stablecoins, transfers get visible, while reserves, identity and remedy stay behind the curtain.
+- Dated record: [Stablecoin filings: GENIUS rules, charters and reports](records/stablecoin-filings.html) — 66 entries ([plain text](records/stablecoin-filings.md))
 
 ### What regulators approved
 
@@ -31,12 +32,13 @@ Money is moving onto new digital networks. Stablecoins, tokenization, crypto net
 
 - [Crypto Infrastructure Hub](library/tokenization-entity-control-map.html): Start here for crypto: follow systems, transactions and legal proof—including the SEC's proposed self-custody, State trust, Article 8, audit and onchain-record chain—without treating proposal as permission or operation.
 - [Overall DLT Transition — 2025–2026](library/overall-dlt-transition.html): What has truly moved on-chain: regulated issuance, bank-deposit ledgers and real-money settlement are live; shared title and central-bank settlement are next.
-- [Major Bank Digital Transition Map](library/major-bank-digital-transition.html): Sixteen big banks, five different transition models, including retirement fund records that could move on-chain beneath the same 401(k) screen.
+- [Major Bank Digital Transition Map](library/major-bank-digital-transition.html): Sixteen financial giants are moving faster at the adapter layer, but legal claim, official record, reserves, settlement and recovery still remain split.
 - [SWIFT Shared Ledger](library/swift-shared-ledger.html): SWIFT's ledger is moving bank-reported live payments; Oracle now offers a bank-side connection stack, but no named Oracle bank or production transaction is public yet.
+- Dated record: [Tokenization and clearing: dated filings](records/tokenization-clearing.html) — 61 entries ([plain text](records/tokenization-clearing.md))
 
 ### Networks & tokens
 
-- [Ripple, XRP and the Invisible Conversion Layer](library/ripple-xrp-invisible-conversion-layer.html): Ripple is assembling payments, custody, a stablecoin, prime brokerage and treasury, and XRP can serve as an invisible bridge between assets.
+- [Ripple, XRP and the Invisible Conversion Layer](library/ripple-xrp-invisible-conversion-layer.html): Ripple is assembling payments, custody, a stablecoin, prime brokerage and treasury; XRP Asia now adds a regional builder hub, but XRP still needs proof of recurring route use and financed inventory.
 - [Crypto Infrastructure Comparatives](library/crypto-infrastructure-comparatives.html): Who is building the most complete machine (JPMorgan/Kinexys, Circle, Coinbase, Stripe), and why Securitize is Ripple's complement, not its rival.
 - [QNT September 2026 Price Rise — Causal Audit](library/qnt-september-2026-price-rise.html): Why QNT ran Sep 24–26: The Clearing House picked Quant for a U.S. tokenized-deposit network and UK banks went live on its platform.
 
@@ -71,12 +73,15 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 - [Emergency Monetary Policy](library/emergency-monetary-policy.html): The legal switches (DPA, Stafford, IEEPA, Fed facilities) that could pull private payment and crypto rails into a crisis response.
 - [Judicial Money](library/judicial-money.html): The court cases deciding who gets a Fed master account, which agencies survive and who can stand inside the payment system.
 - [The Overall Monetary Play — July 2026 Interpretation](library/overall-monetary-play.html): The July read of the whole picture: not one new currency, but a programmable system built around conversion points.
+- Dated record: [Federal payments: the end of the paper check, Fedwire and FedNow](records/federal-payments.html) — 30 entries ([plain text](records/federal-payments.md))
 
 ### Banks, charters & watchdogs
 
 - [Banks and Credit Unions — Federal and Four-State Legal Architecture](library/bank-credit-union-legal-architecture.html): Banks and credit unions run on dual federal/state charters, and Florida, Texas, New York and Wyoming each use their leftover state power differently.
 - [SEC Credit-Rating Recordkeeping Orders, 2024–2026](library/sec-credit-rating-recordkeeping-orders-2024-2026.html): Six credit-rating agencies paid $49M+ over recordkeeping in 2024; the clean-up reports themselves are still private.
 - [December 2024 Beneficial Ownership Reporting Perimeter](library/december-2024-beneficial-ownership-reporting-perimeter.html): The Corporate Transparency Act's rise and shrink: now aimed at foreign entities only (final Aug 14).
+- Dated record: [Fed accounts and bank access: dated filings](records/fed-account-access.html) — 21 entries ([plain text](records/fed-account-access.md))
+- Dated record: [Who's in line for a bank charter or Fed account](records/charter-queue.html) — 59 entries ([plain text](records/charter-queue.md))
 
 ### Private markets & investor access
 
@@ -89,11 +94,13 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 - [Credit Approval Standards: Mortgage, Retail and Business](library/mortgage-credit-score-reform.html): Credit approval is being automated lender by lender, SBA dropped its old screening score, and mortgages move on their own track.
 - [Mortgage Balance Sheet Trail to the Fed](library/mortgage-balance-sheet-trail.html): One mortgage followed debit by credit through Fannie's trust, MBS, repo and Fed reserves: the plumbing, CPA-style.
 - [Insurance and Reinsurance](library/insurance-reinsurance.html): Start at the top: who writes the insurance constitution, how trillion-dollar insurer balance sheets transmit monetary and capital policy, where risk moves across groups and borders, and which private or public layer ultimately takes the loss.
+- Dated record: [The fine print in big banks' customer contracts](records/bank-fine-print.html) — 35 entries ([plain text](records/bank-fine-print.md))
 
 ### Gold & metals
 
 - [Wholesale Metals Infrastructure](library/wholesale-metals.html): How a gold bar actually moves through COMEX, vaults, title and delivery, plus the UK's still-unbuilt bridge from bar to token collateral.
 - [Gold Balance of Payments & Currency Adjustment](library/gold-bop-currency-adjustment.html): Gold can reshape a country's accounts and reserves, but whether it moves the currency depends on who owns it and who converts it.
+- Dated record: [What the states are doing with money](records/state-money.html) — 34 entries ([plain text](records/state-money.md))
 
 ### Also in this room
 
@@ -120,12 +127,14 @@ New technology and science, and who's building it. AI and national science missi
 - [Genesis Mission](library/genesis-mission.html): Genesis: 33 national science challenges, 278 selected projects and the labs and companies building AI-driven science.
 - [Federal Science Operating System](library/federal-science-operating-system.html): How national science doctrine becomes funded capability, through a security layer of identity, export controls and trusted supply.
 - [Scientific Trust Stack](library/scientific-trust-stack.html): The identity, disclosure and security gates that now route federally funded science.
+- Dated record: [AI, science and new-tech filings](records/tech-ai-science.html) — 36 entries ([plain text](records/tech-ai-science.md))
 
 ### National-security tech
 
 - [NSSTS Technology-to-Company Map](library/nssts-technology-company-map.html): Which exact companies could shape the national-security tech buildout across twelve sectors: performers, contenders and bottlenecks.
 - [NSSTS Program and Acceptance Economy](library/nssts-program-acceptance-economy.html): How federal demand becomes accepted, working capability: programs, facilities, suppliers and the referees who sign off.
 - [NSSTS Quantum and Cryptographic Acceptance](library/nssts-quantum-cryptographic-acceptance.html): What it takes for quantum and post-quantum crypto to be accepted and switched on by a federal authority.
+- Dated record: [Defense R&D, drones and airspace filings](records/tech-defense-drones.html) — 20 entries ([plain text](records/tech-defense-drones.md))
 
 ### Communications & trust
 
@@ -224,6 +233,7 @@ Who pays to build the power plants, data centers and factories. Power and energy
 - [Federal Fusion Commercialization](library/federal-fusion-commercialization.html): Fusion's path from strategy and capital to a named machine, a license, a grid hookup and delivered power.
 - [AI-Enabled Turbine Asset Management and U.S. Power Buildout](library/ai-turbine-asset-management-power-buildout.html): How turbines are really run with AI today, and why most new big gas turbines won't spin until 2027 or later.
 - [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html): Could programmable settlement run energy assets? Iran shows the gap between instant technical settlement and legal finality.
+- Dated record: [Nuclear and energy filings](records/nuclear-energy-filings.html) — 13 entries ([plain text](records/nuclear-energy-filings.md))
 
 ### Data centers & compute
 
@@ -337,6 +347,7 @@ How other countries, currencies and global groups are shifting. The dollar's rol
 - [International Monetary Transition](library/international-monetary-transition.html): Reserve diversification, local-currency trade and stablecoins are different moves; outright replacement of the dollar is rarer than it looks.
 - [G20 Currency Watch](library/currency-watch.html): The system behind each G20 currency, read across six separate lanes (no league table).
 - [International Emergency Monetary Policy](library/international-emergency-monetary-policy.html): How other countries and the IMF actually respond to bank runs, cyberattacks, war and sanctions, tool by tool.
+- Dated record: [Other countries' money moves, region by region](records/world-money-moves.html) — 170 entries ([plain text](records/world-money-moves.md))
 
 ### G7, G20 & the UN
 
@@ -421,4 +432,5 @@ Dated federal sweeps and similar records that feed the rooms.
 - [Federal Government Deep Website Review — September 16–22, 2026](library/federal-government-deep-website-review-2026-09-22.html)
 - [Federal Government Weekly Delta — September 21–25, 2026](library/federal-government-weekly-delta-2026-09-25.html)
 - [Federal Government Fiscal-Year-Close Delta — September 26–30, 2026](library/federal-government-fiscal-year-close-delta-2026-09-30.html)
+- [Federal Monetary and Economic Institutions Delta — September 30 to October 2, 2026](library/federal-monetary-economic-institutions-delta-2026-10-02.html)
 

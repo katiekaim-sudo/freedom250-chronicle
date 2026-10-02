@@ -2,7 +2,7 @@
 
 # MONEY — READ FIRST
 
-**Start in the Research hub.** Its topic readings, story braids and Machines lead into the same official-source library. The Machines provide perspectives and timelines; the linked studies explain the evidence and retain their original questions and source dates. This router holds no mutable counts or queue state; `_Claude-Context/VAULT_PRIMER.md` names those owners.
+**Start in the Research hub.** Its topic readings, story braids and Machines lead into the same official-source library. The Machines provide perspectives and timelines; the linked studies explain the evidence and retain their original questions and source dates. This router holds no mutable counts or queue state; `_AI-Context/VAULT_PRIMER.md` names those owners.
 
 Check Claim Corrections — Register when a saved claim is disputed. A historical statement and the evidence correcting it can both be preserved without treating both as current findings. Social captures remain outside this Research library.
 
@@ -91,4 +91,4 @@ The complete original monetary story readings, including chart interpretation, a
 
 ---
 
-*Shape borrowed from the BOOT cards in `_Claude-Context/` (e.g. `_Claude-Context/BOOT — Sweep & Ingest.md`) — the vault's established cold-start-router convention. This one is scoped to the money layer and lives beside the sources it points at.*
+*Shape borrowed from the BOOT cards in `_AI-Context/` (e.g. `_AI-Context/BOOT — Sweep & Ingest.md`) — the vault's established cold-start-router convention. This one is scoped to the money layer and lives beside the sources it points at.*

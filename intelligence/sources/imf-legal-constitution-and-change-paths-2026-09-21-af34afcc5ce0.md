@@ -315,9 +315,9 @@ adviser”:
 
 1. Existing-corpus and gap audit
 2. Primary-source ledger
-3. IMF symmetry package
-4. IMF currency-pricing package
-5. Legal Department at 80 package
+3. [IMF symmetry package](../sources/readme-053112f23ba4.html)
+4. [IMF currency-pricing package](../sources/readme-fa30839c8220.html)
+5. [Legal Department at 80 package](../sources/readme-393e6f91eb3b.html)
 
 No Chronicle file, watch, Return Ledger entry or app state was changed by this
 Workbench build.

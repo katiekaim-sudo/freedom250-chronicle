@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "purpose": "Compact first-hop map for Katie and invited research agents. Open package manifests only after selecting relevant packages.",
-  "catalog_sha256": "109e80865e45446c6ebe89601712804fc3bc15c4ae97e5649bdd21685f5a88f3",
-  "organization_sha256": "0597bee5eefc7d8151ac894500640c377a2548f086c2db07147881964e61df66",
+  "catalog_sha256": "72f96c95210752cc91619c717e683964923a25c84090bce4902de7a73e5ee820",
+  "organization_sha256": "f028e1679c71168c5cc93a04c7aaeded7bbe26243d8fb46ba07214354abe2248",
   "retrieval_order": [
     "bot-instructions.html",
     "bot-index.html",
@@ -62,7 +62,7 @@
         "also_in": [
           "Banking & the Dollar"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "fed-clearing-treasury",
@@ -148,7 +148,8 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [
-          "Government Changes"
+          "Government Changes",
+          "Crypto & Digital Money"
         ]
       },
       "connected_context": {
@@ -156,13 +157,15 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [
-          "Government Changes"
+          "Government Changes",
+          "Crypto & Digital Money"
         ],
-        "machine_views": [
-          "money",
-          "charter",
-          "side",
-          "wholemoney"
+        "dated_records": [
+          "federal-payments",
+          "fed-account-access",
+          "stablecoin-filings",
+          "tokenization-clearing",
+          "charter-queue"
         ]
       },
       "relationships": {
@@ -182,25 +185,27 @@
           "gold-bop-currency-adjustment",
           "sec-transfer-agent-modernization",
           "tokenization-entity-control-map",
-          "federal-government-movement-atlas"
+          "federal-government-movement-atlas",
+          "federal-monetary-economic-institutions-delta-2026-10-02",
+          "genius-act-implementation-2026"
         ]
       },
       "material_counts": {
-        "total": 192,
-        "public_reading": 16,
+        "total": 200,
+        "public_reading": 19,
         "public_machine_data": 0,
-        "private_library_metadata": 176
+        "private_library_metadata": 181
       },
       "research_layer_counts": {
-        "orientation": 14,
-        "findings": 35,
-        "evidence": 36,
+        "orientation": 15,
+        "findings": 37,
+        "evidence": 38,
         "monitoring": 1,
         "methods": 15,
         "presentation": 8,
-        "supporting": 83
+        "supporting": 86
       },
-      "latest_computer_edit_at": "2026-10-01T22:24:28Z",
+      "latest_computer_edit_at": "2026-10-03T23:57:12Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/fed-clearing-treasury.html",
       "routes": {
@@ -209,6 +214,146 @@
         "report": "reports/fed-clearing-treasury.html",
         "full_text": "readings/packages/fed-clearing-treasury.html",
         "source_text": "reports/fed-clearing-treasury.md"
+      }
+    },
+    {
+      "research_id": "blockchain-settlement-cost-2026",
+      "title": "Blockchain Settlement Cost — 2026",
+      "question": "Is blockchain settlement actually cheaper than today's payment and securities systems, and which middlemen does it really threaten?",
+      "bluf": "Blockchains mostly threaten the middlemen whose job is copying messages, keeping duplicate records and reconciling breaks; they don't replace the institutions that supply money, credit, liquidity, legally enforceable netting, finality, custody or loss rules. Core public rails are already very cheap (FedACH works out to under a cent per item). The biggest hidden cost of instant settlement is losing netting: the clearinghouse NSCC turns about $2.2 trillion of daily trades into about $33.5 billion of actual payments, and one-for-one instant settlement would give that up.",
+      "evidence_cutoff": "2026-08-02",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Federal Reserve",
+        "FedACH",
+        "CHIPS",
+        "RTP",
+        "NSCC",
+        "DTC",
+        "Visa",
+        "Mastercard"
+      ],
+      "classification": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
+        "dated_records": [
+          "world-money-moves"
+        ]
+      },
+      "relationships": {
+        "parent_id": "fed-clearing-treasury",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "dtcc-tokenization-2026",
+          "overall-dlt-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 5,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 4
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 0,
+        "evidence": 1,
+        "monitoring": 0,
+        "methods": 1,
+        "presentation": 0,
+        "supporting": 2
+      },
+      "latest_computer_edit_at": "2026-08-02T15:01:46Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/blockchain-settlement-cost-2026.html",
+      "routes": {
+        "summary": "library/blockchain-settlement-cost-2026.html",
+        "manifest": "packages/blockchain-settlement-cost-2026.json",
+        "report": "reports/blockchain-settlement-cost-2026.html",
+        "full_text": "readings/packages/blockchain-settlement-cost-2026.html",
+        "source_text": "reports/blockchain-settlement-cost-2026.md"
+      }
+    },
+    {
+      "research_id": "dtcc-tokenization-2026",
+      "title": "DTCC Tokenization and Settlement — 2026",
+      "question": "What has DTCC actually built with tokens, what did the July 15 production event prove, and what would faster settlement do to cash and collateral?",
+      "bluf": "DTCC's tokenization is a controlled layer beside the old system, not a new market. DTC's first tokens move no cash and count for zero in DTC's collateral and settlement checks; Cede & Co. stays the registered owner, DTC's LedgerScan is the official record, and DTC can mint, burn, move or correct tokens. Limited production workflows ran on July 15, 2026. Collateral AppChain is an expected launch, not a live system, and DTCC has not published an auditable model for the capital and liquidity savings it claims. Moving from netted to instant one-for-one settlement would require prefunding cash that netting now saves.",
+      "evidence_cutoff": "2026-08-21",
+      "evidence_cutoff_note": "Core studies as of August 2; the notice and testing calendar as of August 21.",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "DTCC",
+        "DTC",
+        "NSCC",
+        "FICC",
+        "Cede & Co.",
+        "LedgerScan",
+        "ComposerX",
+        "Collateral AppChain",
+        "Chainlink"
+      ],
+      "classification": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
+        "dated_records": [
+          "tokenization-clearing",
+          "charter-queue"
+        ]
+      },
+      "relationships": {
+        "parent_id": "fed-clearing-treasury",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "sec-tokenized-nms-stock-innovation-exemption",
+          "blockchain-settlement-cost-2026",
+          "overall-dlt-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 16,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 15
+      },
+      "research_layer_counts": {
+        "orientation": 4,
+        "findings": 1,
+        "evidence": 2,
+        "monitoring": 0,
+        "methods": 3,
+        "presentation": 0,
+        "supporting": 6
+      },
+      "latest_computer_edit_at": "2026-08-21T18:06:40Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/dtcc-tokenization-2026.html",
+      "routes": {
+        "summary": "library/dtcc-tokenization-2026.html",
+        "manifest": "packages/dtcc-tokenization-2026.json",
+        "report": "reports/dtcc-tokenization-2026.html",
+        "full_text": "readings/packages/dtcc-tokenization-2026.html",
+        "source_text": "reports/dtcc-tokenization-2026.md"
       }
     },
     {
@@ -246,9 +391,11 @@
         "also_in": [
           "Government Changes"
         ],
-        "machine_views": [
-          "money",
-          "charter"
+        "dated_records": [
+          "federal-payments",
+          "fed-account-access",
+          "stablecoin-filings",
+          "tokenization-clearing"
         ]
       },
       "relationships": {
@@ -260,14 +407,16 @@
           "government-wide-audit-july-2026",
           "fed-clearing-treasury",
           "private-monetary-stack",
-          "sec-accredited-investor-credential-notices-2026-09-30"
+          "sec-accredited-investor-credential-notices-2026-09-30",
+          "genius-act-implementation-2026",
+          "clarity-act-senate-draft-2026"
         ]
       },
       "material_counts": {
         "total": 45,
-        "public_reading": 8,
+        "public_reading": 9,
         "public_machine_data": 0,
-        "private_library_metadata": 37
+        "private_library_metadata": 36
       },
       "research_layer_counts": {
         "orientation": 1,
@@ -358,11 +507,12 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": [
-          "money",
-          "charter",
-          "fineprint",
-          "wholemoney"
+        "dated_records": [
+          "federal-payments",
+          "fed-account-access",
+          "stablecoin-filings",
+          "tokenization-clearing",
+          "charter-queue"
         ]
       },
       "relationships": {
@@ -375,25 +525,26 @@
           "overall-monetary-play",
           "congressional-monetary-infrastructure",
           "route-anchor-inventory",
-          "genius-stablecoin-trust-crosswalk"
+          "genius-stablecoin-trust-crosswalk",
+          "sec-crypto-custody-proposal-2026-10-01"
         ]
       },
       "material_counts": {
         "total": 289,
-        "public_reading": 45,
+        "public_reading": 51,
         "public_machine_data": 0,
-        "private_library_metadata": 244
+        "private_library_metadata": 238
       },
       "research_layer_counts": {
         "orientation": 26,
-        "findings": 87,
+        "findings": 90,
         "evidence": 47,
         "monitoring": 11,
         "methods": 33,
         "presentation": 27,
-        "supporting": 58
+        "supporting": 55
       },
-      "latest_computer_edit_at": "2026-10-01T22:24:28Z",
+      "latest_computer_edit_at": "2026-10-03T21:21:18Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/private-monetary-stack.html",
       "routes": {
@@ -402,6 +553,340 @@
         "report": "reports/private-monetary-stack.html",
         "full_text": "readings/packages/private-monetary-stack.html",
         "source_text": "reports/private-monetary-stack.md"
+      }
+    },
+    {
+      "research_id": "programmable-and-agentic-payments-2026-09-22",
+      "title": "Programmable Money and AI-Agent Payments — 2026",
+      "question": "When a stablecoin, smart contract or AI agent moves money, what actually happened in law, on the ledger, in bank money, in the books and when something fails?",
+      "bluf": "A smart contract makes authorization and evidence machine-readable, but it does not collapse a payment into one event: ownership, the token, the redemption claim, bank cash, the accounting entry, correction and bankruptcy can each have a different authority. Four accounting treatments of USDC are in use today (Coinbase books it as a cash equivalent, Galaxy and Figma at fair value, others as a receivable or prepaid), and once GENIUS is in force coins from unapproved issuers can't count as cash. Circle earned $667.7 million of reserve income in Q2 and paid Coinbase $324.6 million of it. For AI-agent payments, “authorization” is really five separate things: who is legally bound, what the agent can reach, what it may buy, what the bank accepts, and whether the deal was done.",
+      "evidence_cutoff": "2026-09-22",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Circle",
+        "USDC",
+        "Coinbase",
+        "Galaxy",
+        "Figma",
+        "UCC Article 12",
+        "Regulation E",
+        "UCC Article 4A"
+      ],
+      "classification": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "private-monetary-stack",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "tokenization-entity-control-map",
+          "transaction-native-accounting",
+          "route-anchor-inventory",
+          "overall-dlt-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 34,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 33
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 9,
+        "evidence": 7,
+        "monitoring": 3,
+        "methods": 10,
+        "presentation": 0,
+        "supporting": 4
+      },
+      "latest_computer_edit_at": "2026-09-28T16:26:47Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/programmable-and-agentic-payments-2026-09-22.html",
+      "routes": {
+        "summary": "library/programmable-and-agentic-payments-2026-09-22.html",
+        "manifest": "packages/programmable-and-agentic-payments-2026-09-22.json",
+        "report": "reports/programmable-and-agentic-payments-2026-09-22.html",
+        "full_text": "readings/packages/programmable-and-agentic-payments-2026-09-22.html",
+        "source_text": "reports/programmable-and-agentic-payments-2026-09-22.md"
+      }
+    },
+    {
+      "research_id": "occ-fdic-supervisory-intervention-2026-08-27",
+      "title": "OCC–FDIC Supervisory Intervention Framework — 2026",
+      "question": "What did the OCC and FDIC change on August 27, 2026 about when examiners can demand fixes or take enforcement action against a bank?",
+      "bluf": "On August 27 the OCC and FDIC rewrote when examiners can issue a nonbinding observation, a mandatory “matter requiring attention,” or support enforcement for an unsafe practice. Enforcement now needs a stated link from the bank's conduct to material financial harm or risk to the deposit insurance fund, while matters requiring attention keep a lower, forward-looking bar. That should cut process-only findings but makes examiners' judgments about materiality more contestable. The Fed did not join, so there is no single standard across bank regulators.",
+      "evidence_cutoff": "2026-08-27T17:55:00-04:00",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "OCC",
+        "FDIC",
+        "Federal Reserve",
+        "Deposit Insurance Fund"
+      ],
+      "classification": {
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Banking & the Dollar",
+        "home_room_id": "banking",
+        "home_room_url": "research-rooms/banking-the-dollar.html",
+        "also_in": [],
+        "dated_records": [
+          "fed-account-access"
+        ]
+      },
+      "relationships": {
+        "parent_id": "private-monetary-stack",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": []
+      },
+      "material_counts": {
+        "total": 3,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 2
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 1,
+        "evidence": 1,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 0
+      },
+      "latest_computer_edit_at": "2026-10-02T17:49:31Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/occ-fdic-supervisory-intervention-2026-08-27.html",
+      "routes": {
+        "summary": "library/occ-fdic-supervisory-intervention-2026-08-27.html",
+        "manifest": "packages/occ-fdic-supervisory-intervention-2026-08-27.json",
+        "report": "reports/occ-fdic-supervisory-intervention-2026-08-27.html",
+        "full_text": "readings/packages/occ-fdic-supervisory-intervention-2026-08-27.html",
+        "source_text": "reports/occ-fdic-supervisory-intervention-2026-08-27.md"
+      }
+    },
+    {
+      "research_id": "sec-24-hour-trading-roundtable-2026-09-17",
+      "title": "SEC 24-Hour Trading Roundtable — 2026",
+      "question": "What did the SEC's September 17, 2026 roundtable show about round-the-clock stock trading, and what will still run on the old clock?",
+      "bluf": "“24-hour trading” is really a 23-hours-a-day, five-days-a-week trading and market-data week, not a seamless 24/7 market. December 6 is a coordinated launch target, not an accomplished fact. The consolidated price feed would skip 8–9 p.m., which staff said holds about 21% of today's overnight volume. The 9:30 a.m. open and 4 p.m. close stay central, and clearing, money, company filings and corporate actions don't automatically go continuous.",
+      "evidence_cutoff": "2026-09-23",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "SEC",
+        "FINRA",
+        "DTCC",
+        "NSCC",
+        "SIP"
+      ],
+      "classification": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
+        "dated_records": [
+          "tokenization-clearing"
+        ]
+      },
+      "relationships": {
+        "parent_id": "private-monetary-stack",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "sec-tokenized-nms-stock-innovation-exemption",
+          "sec-investor-advisory-committee"
+        ]
+      },
+      "material_counts": {
+        "total": 9,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 8
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 1,
+        "evidence": 6,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 1
+      },
+      "latest_computer_edit_at": "2026-09-23T17:30:59Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/sec-24-hour-trading-roundtable-2026-09-17.html",
+      "routes": {
+        "summary": "library/sec-24-hour-trading-roundtable-2026-09-17.html",
+        "manifest": "packages/sec-24-hour-trading-roundtable-2026-09-17.json",
+        "report": "reports/sec-24-hour-trading-roundtable-2026-09-17.html",
+        "full_text": "readings/packages/sec-24-hour-trading-roundtable-2026-09-17.html",
+        "source_text": "reports/sec-24-hour-trading-roundtable-2026-09-17.md"
+      }
+    },
+    {
+      "research_id": "card-network-stablecoins-2026",
+      "title": "Card Networks and Stablecoins — 2026",
+      "question": "What have Visa, Mastercard and the new Open USD coin actually launched with stablecoins, and how much money really moves that way?",
+      "bluf": "Stablecoin cards are real but still tiny: Visa's stablecoin-linked cards carried about $5.2 billion of 2025 spending, 0.04% of Visa's $14.2 trillion total. Mastercard settles live only in USDC (other coins are announced), and its BVNK purchase closed August 3, so the July files are outdated on that point. Open USD (OUSD) launched September 30, issued by Bridge Building Inc. (a Stripe company) and founded with Coinbase, Mastercard, Shopify, Stripe and Visa; about 91% of its supply sat on Stripe's Tempo chain, and it had no independent reserve attestation yet.",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "Card-network product lines read as of July 29; the Open USD launch map is current through September 30.",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Visa",
+        "Mastercard",
+        "Open USD",
+        "OUSD",
+        "Stripe",
+        "Bridge",
+        "Tempo",
+        "Coinbase",
+        "Shopify",
+        "BVNK",
+        "USDC"
+      ],
+      "classification": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
+        "dated_records": [
+          "charter-queue"
+        ]
+      },
+      "relationships": {
+        "parent_id": "private-monetary-stack",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "tokenization-entity-control-map"
+        ]
+      },
+      "material_counts": {
+        "total": 10,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 8
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 1,
+        "evidence": 0,
+        "monitoring": 1,
+        "methods": 2,
+        "presentation": 2,
+        "supporting": 3
+      },
+      "latest_computer_edit_at": "2026-09-30T23:17:13Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/card-network-stablecoins-2026.html",
+      "routes": {
+        "summary": "library/card-network-stablecoins-2026.html",
+        "manifest": "packages/card-network-stablecoins-2026.json",
+        "report": "reports/card-network-stablecoins-2026.html",
+        "full_text": "readings/packages/card-network-stablecoins-2026.html",
+        "source_text": "reports/card-network-stablecoins-2026.md"
+      }
+    },
+    {
+      "research_id": "genius-act-implementation-2026",
+      "title": "GENIUS Act Implementation — 2026",
+      "question": "The GENIUS Act is law: which rules, reports, approvals and dates actually stand between the statute and a working U.S. stablecoin regime?",
+      "bluf": "The GENIUS Act is law but not yet in force. It takes effect on the earlier of January 18, 2027 or 120 days after final rules; no final rule existed by September 30, so January 18, 2027 is the practical date. The July 18, 2026 rulemaking deadline passed with proposals only, and three required reports (the crypto-native coin study, the freeze-order report and the first annual report) have not appeared. The Fed's September 24 proposals set issuer capital (2% of coins outstanding up to $20 billion, stepping down above that), redemption for any holder within two business days, 1:1 reserves shown daily, and a 93-day limit on Treasuries that count. Treasury's September 30 procedure requires a unanimous federal committee vote to approve a state regime, and the state deadline is likely January 18, 2028. The OCC is targeting a final rule by November; Florida's own state issuer license took effect October 1.",
+      "evidence_cutoff": "2026-09-30",
+      "evidence_cutoff_note": "Implementation state through Treasury's September 30 state-review procedure; the Fed proposals are read as of September 24 and the OCC target as of its August 19 statement.",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "GENIUS Act",
+        "Federal Reserve",
+        "Treasury",
+        "OCC",
+        "FDIC",
+        "Stablecoin Certification Review Committee",
+        "Florida Office of Financial Regulation"
+      ],
+      "classification": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
+        "dated_records": [
+          "stablecoin-filings"
+        ]
+      },
+      "relationships": {
+        "parent_id": "private-monetary-stack",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "genius-stablecoin-trust-crosswalk",
+          "congressional-monetary-infrastructure",
+          "fed-clearing-treasury"
+        ]
+      },
+      "material_counts": {
+        "total": 10,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 9
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 2,
+        "evidence": 1,
+        "monitoring": 1,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 5
+      },
+      "latest_computer_edit_at": "2026-09-30T14:39:53Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/genius-act-implementation-2026.html",
+      "routes": {
+        "summary": "library/genius-act-implementation-2026.html",
+        "manifest": "packages/genius-act-implementation-2026.json",
+        "report": "reports/genius-act-implementation-2026.html",
+        "full_text": "readings/packages/genius-act-implementation-2026.html",
+        "source_text": "reports/genius-act-implementation-2026.md"
       }
     },
     {
@@ -436,7 +921,7 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -506,10 +991,7 @@
         "also_in": [
           "Banking & the Dollar"
         ],
-        "machine_views": [
-          "money",
-          "fineprint"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -521,9 +1003,9 @@
       },
       "material_counts": {
         "total": 22,
-        "public_reading": 2,
+        "public_reading": 3,
         "public_machine_data": 0,
-        "private_library_metadata": 20
+        "private_library_metadata": 19
       },
       "research_layer_counts": {
         "orientation": 4,
@@ -604,7 +1086,10 @@
           "Banking & the Dollar",
           "Foreign Relations & World Money"
         ],
-        "machine_views": []
+        "dated_records": [
+          "charter-queue",
+          "world-money-moves"
+        ]
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -673,7 +1158,9 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "charter-queue"
+        ]
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -703,7 +1190,7 @@
         "presentation": 0,
         "supporting": 4
       },
-      "latest_computer_edit_at": "2026-10-01T01:19:09Z",
+      "latest_computer_edit_at": "2026-10-03T13:34:25Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/sec-transfer-agent-modernization.html",
       "routes": {
@@ -745,7 +1232,10 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "tokenization-clearing",
+          "charter-queue"
+        ]
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -753,7 +1243,8 @@
         "supersedes_ids": [],
         "related_ids": [
           "sec-tokenized-nms-stock-innovation-exemption",
-          "federal-strategic-plans"
+          "federal-strategic-plans",
+          "clarity-act-senate-draft-2026"
         ]
       },
       "material_counts": {
@@ -818,7 +1309,10 @@
         "also_in": [
           "Banking & the Dollar"
         ],
-        "machine_views": []
+        "dated_records": [
+          "tokenization-clearing",
+          "charter-queue"
+        ]
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -886,7 +1380,11 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "fed-account-access",
+          "stablecoin-filings",
+          "charter-queue"
+        ]
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -894,14 +1392,16 @@
         "supersedes_ids": [],
         "related_ids": [
           "cftc-passive-software-no-action-2026-09-17",
-          "sec-investor-advisory-committee"
+          "sec-investor-advisory-committee",
+          "dtcc-tokenization-2026",
+          "sec-24-hour-trading-roundtable-2026-09-17"
         ]
       },
       "material_counts": {
         "total": 28,
-        "public_reading": 7,
+        "public_reading": 8,
         "public_machine_data": 0,
-        "private_library_metadata": 21
+        "private_library_metadata": 20
       },
       "research_layer_counts": {
         "orientation": 2,
@@ -912,7 +1412,7 @@
         "presentation": 2,
         "supporting": 5
       },
-      "latest_computer_edit_at": "2026-10-01T22:24:28Z",
+      "latest_computer_edit_at": "2026-10-03T21:21:18Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/sec-tokenized-nms-stock-innovation-exemption.html",
       "routes": {
@@ -954,7 +1454,9 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "fed-account-access"
+        ]
       },
       "relationships": {
         "parent_id": null,
@@ -963,14 +1465,15 @@
         "related_ids": [
           "sec-tokenized-nms-stock-innovation-exemption",
           "federal-strategic-plans",
-          "sec-accredited-investor-credential-notices-2026-09-30"
+          "sec-accredited-investor-credential-notices-2026-09-30",
+          "sec-24-hour-trading-roundtable-2026-09-17"
         ]
       },
       "material_counts": {
         "total": 36,
-        "public_reading": 2,
+        "public_reading": 3,
         "public_machine_data": 0,
-        "private_library_metadata": 34
+        "private_library_metadata": 33
       },
       "research_layer_counts": {
         "orientation": 1,
@@ -1031,7 +1534,7 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -1041,25 +1544,26 @@
           "ripple-xrp-invisible-conversion-layer",
           "overall-dlt-transition",
           "sec-transfer-agent-modernization",
-          "tokenization-entity-control-map"
+          "tokenization-entity-control-map",
+          "sec-crypto-custody-proposal-2026-10-01"
         ]
       },
       "material_counts": {
-        "total": 33,
-        "public_reading": 4,
+        "total": 34,
+        "public_reading": 5,
         "public_machine_data": 0,
         "private_library_metadata": 29
       },
       "research_layer_counts": {
         "orientation": 0,
-        "findings": 9,
+        "findings": 10,
         "evidence": 15,
         "monitoring": 1,
         "methods": 2,
         "presentation": 0,
         "supporting": 6
       },
-      "latest_computer_edit_at": "2026-10-01T22:24:28Z",
+      "latest_computer_edit_at": "2026-10-03T13:37:09Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/crypto-infrastructure-comparatives.html",
       "routes": {
@@ -1097,10 +1601,7 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": [
-          "state",
-          "side"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -1127,7 +1628,7 @@
         "presentation": 5,
         "supporting": 25
       },
-      "latest_computer_edit_at": "2026-09-22T01:12:22Z",
+      "latest_computer_edit_at": "2026-10-03T19:57:55Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/wholesale-metals.html",
       "routes": {
@@ -1180,10 +1681,7 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": [
-          "world",
-          "state"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "wholesale-metals",
@@ -1250,10 +1748,7 @@
           "Crypto & Digital Money",
           "Foreign Relations & World Money"
         ],
-        "machine_views": [
-          "spine",
-          "wholemoney"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -1286,7 +1781,7 @@
         "presentation": 0,
         "supporting": 4
       },
-      "latest_computer_edit_at": "2026-09-25T10:42:50Z",
+      "latest_computer_edit_at": "2026-10-03T20:02:42Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/overall-monetary-play.html",
       "routes": {
@@ -1333,10 +1828,9 @@
         "also_in": [
           "Banking & the Dollar"
         ],
-        "machine_views": [
-          "money",
-          "spine",
-          "wholemoney"
+        "dated_records": [
+          "tokenization-clearing",
+          "charter-queue"
         ]
       },
       "relationships": {
@@ -1417,8 +1911,9 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": [
-          "money"
+        "dated_records": [
+          "federal-payments",
+          "stablecoin-filings"
         ]
       },
       "relationships": {
@@ -1433,25 +1928,28 @@
           "tokenization-entity-control-map",
           "payment-transparency-hidden-constitution",
           "genius-stablecoin-trust-crosswalk",
-          "authority-through-the-adapter"
+          "authority-through-the-adapter",
+          "dtcc-tokenization-2026",
+          "blockchain-settlement-cost-2026",
+          "programmable-and-agentic-payments-2026-09-22"
         ]
       },
       "material_counts": {
-        "total": 57,
-        "public_reading": 11,
+        "total": 58,
+        "public_reading": 12,
         "public_machine_data": 0,
         "private_library_metadata": 46
       },
       "research_layer_counts": {
         "orientation": 4,
-        "findings": 22,
+        "findings": 23,
         "evidence": 12,
         "monitoring": 2,
         "methods": 8,
         "presentation": 2,
         "supporting": 7
       },
-      "latest_computer_edit_at": "2026-10-01T22:23:39Z",
+      "latest_computer_edit_at": "2026-10-03T23:57:12Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/overall-dlt-transition.html",
       "routes": {
@@ -1493,7 +1991,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -1502,14 +2000,15 @@
         "related_ids": [
           "sec-accredited-investor-credential-notices-2026-09-30",
           "sec-transfer-agent-modernization",
-          "tokenization-entity-control-map"
+          "tokenization-entity-control-map",
+          "programmable-and-agentic-payments-2026-09-22"
         ]
       },
       "material_counts": {
         "total": 44,
-        "public_reading": 11,
+        "public_reading": 12,
         "public_machine_data": 0,
-        "private_library_metadata": 33
+        "private_library_metadata": 32
       },
       "research_layer_counts": {
         "orientation": 5,
@@ -1562,9 +2061,7 @@
         "also_in": [
           "Banking & the Dollar"
         ],
-        "machine_views": [
-          "money"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -1625,8 +2122,8 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": [
-          "fineprint"
+        "dated_records": [
+          "bank-fine-print"
         ]
       },
       "relationships": {
@@ -1690,8 +2187,8 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": [
-          "fineprint"
+        "dated_records": [
+          "bank-fine-print"
         ]
       },
       "relationships": {
@@ -1782,10 +2279,8 @@
         "also_in": [
           "Citizenship, Voting & Immigration"
         ],
-        "machine_views": [
-          "money",
-          "state",
-          "fineprint"
+        "dated_records": [
+          "federal-payments"
         ]
       },
       "relationships": {
@@ -1859,11 +2354,7 @@
         "also_in": [
           "Citizenship, Voting & Immigration"
         ],
-        "machine_views": [
-          "money",
-          "state",
-          "fineprint"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "fraud-payment-integrity",
@@ -1930,7 +2421,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "fraud-payment-integrity",
@@ -1997,7 +2488,7 @@
         "also_in": [
           "Citizenship, Voting & Immigration"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "fraud-payment-integrity",
@@ -2061,9 +2552,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": [
-          "state"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "fraud-payment-integrity",
@@ -2125,7 +2614,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "fraud-payment-integrity",
@@ -2187,7 +2676,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "fraud-payment-integrity",
@@ -2251,7 +2740,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -2343,7 +2832,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -2369,7 +2858,7 @@
         "presentation": 12,
         "supporting": 37
       },
-      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "latest_computer_edit_at": "2026-10-03T20:53:55Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/government-wide-recertification-august-2026.html",
       "routes": {
@@ -2410,7 +2899,7 @@
         "also_in": [
           "Government Changes"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -2473,7 +2962,7 @@
         "home_room_id": "disclosure",
         "home_room_url": "research-rooms/released-records-investigations.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -2535,7 +3024,7 @@
         "home_room_id": "disclosure",
         "home_room_url": "research-rooms/released-records-investigations.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "house-oversight-corpus",
@@ -2596,7 +3085,9 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "tokenization-clearing"
+        ]
       },
       "relationships": {
         "parent_id": null,
@@ -2664,7 +3155,7 @@
         "home_room_id": "disclosure",
         "home_room_url": "research-rooms/released-records-investigations.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -2733,7 +3224,7 @@
         "home_room_id": "disclosure",
         "home_room_url": "research-rooms/released-records-investigations.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "covid-authority-disclosures",
@@ -2795,7 +3286,7 @@
         "home_room_id": "disclosure",
         "home_room_url": "research-rooms/released-records-investigations.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "covid-authority-disclosures",
@@ -2857,7 +3348,7 @@
         "home_room_id": "disclosure",
         "home_room_url": "research-rooms/released-records-investigations.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "covid-authority-disclosures",
@@ -2917,7 +3408,7 @@
         "home_room_id": "disclosure",
         "home_room_url": "research-rooms/released-records-investigations.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "covid-authority-disclosures",
@@ -2979,7 +3470,7 @@
         "home_room_id": "disclosure",
         "home_room_url": "research-rooms/released-records-investigations.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "covid-authority-disclosures",
@@ -3046,7 +3537,7 @@
         "also_in": [
           "Foreign Relations & World Money"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -3122,9 +3613,7 @@
         "home_room_id": "world",
         "home_room_url": "research-rooms/foreign-relations-world-money.html",
         "also_in": [],
-        "machine_views": [
-          "world"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -3136,9 +3625,9 @@
       },
       "material_counts": {
         "total": 79,
-        "public_reading": 15,
+        "public_reading": 18,
         "public_machine_data": 0,
-        "private_library_metadata": 64
+        "private_library_metadata": 61
       },
       "research_layer_counts": {
         "orientation": 4,
@@ -3167,7 +3656,7 @@
       "bluf": "Reserve diversification, regional settlement and trade invoicing remain separate from actual monetary substitution. Bessent's April 2026 IIF scorecard adds the incumbent strategy and a three-way legitimacy contest. The IMF symmetry audit finds candid surveillance of systemic members but operationalized, finance-linked adjustment for borrowers. The July 31 Japan–Korea cases and saved August Japanese confirmation distinguish national intervention and dealer prices from a separate stablecoin quote; the disclosed aggregate does not resolve every trade date, allocation or U.S. funding leg. Korea's observed token price transmission is not net capital flow; Japan's limited production rails are not shown to have supported intervention. The September 1 Asheville G20 Chair's Statement adds agreed work on digital assets and payment modernization, but China expressly objected to four paragraphs and the statement itself is not implementation or monetary substitution. Masu's September 10 BOJ speech supplied an individual hawkish-normalization signal. The September 28 July-meeting minutes and the September 18 decision close the first rate-decision clock: the Board raised the overnight target and complementary deposit rate to 1.25 percent effective September 24. The minutes show bank lending remained strong, major/regional and shinkin outcomes diverged, and no new prudential rule was made; JGB-stock-runoff, bank-level transmission, market-stability and digital-rail clocks remain separate. The Japan Monetary Constitution build uses balance-sheet movement as its empirical spine. Layer 0 finds that the 2021–2026 JGB–HKD link synchronized BOJ-recorded JGB title with HKMA central-bank money without creating a new claim or merging finality; the September 11 retirement is established, while utilization, rationale and successor remain unknown. Layer 1 finds embedded BOJ independence inside a braided Diet–Cabinet–MOF–BOJ–FSA authority structure: the BOJ can operate a JGB auction without buying the debt, execute MOF intervention without deciding it, and settle government funds without authorizing expenditure. Layer 2 finds a multi-book transition: the BOJ's audited fiscal-2025 balance sheet contracted by ¥66.742 trillion; reserve remuneration more than doubled and the Treasury payment fell; sovereign debt and interest expense rose on separate government clocks; and current MOF/FEFSA intervention is material while the latest monthly operation's direction remains undisclosed. Layer 3 finds asymmetric private transmission: bank core margins improved, but shinkin net income fell and regional banks realized ¥1.136 trillion of bond losses; floating borrowers repriced on staged clocks; GPIF absorbed ¥14.753 trillion of domestic bonds while its bond sleeve lost 5.11 percent; and capital, stress tests and delinquency data still show an orderly system. Layer 4 finds private JGB risk-bearing inside public finality: MOF shortened issuance toward investor capacity, recent benchmark auctions remained covered, and repo and JSCC intermediate funding and default risk, while BOJ-NET retains title and yen settlement and the BOJ retains collateral, scarcity-lending and contingent-purchase authority. Layer 5 finds singleness without sameness: cash, BOJ reserves, bank deposits, safeguarded provider balances, trust stablecoins and tokenized deposits share a denomination but not a debtor, ledger, asset or failure path. JPYSC is live but closed-loop and tiny; DCJPY remains an issuing-bank deposit; both BOJ CBDC tracks remain pre-production. The concrete digital-money balance-sheet change is the 2026 capacity to move up to half of a trust-stablecoin reserve from demand deposits into qualifying short sovereign securities or term deposits, adding valuation, liquidity and contribution clocks without giving tokenholders title to the reserve asset. Layer 6 finds many interfaces but few finality rooms: BOJ-NET supplies wholesale yen finality and JGB title; Zengin's large-value RTGS, small-value DNS and More Time clocks can put customer credit ahead of interbank finality; and its collateral and private mutualized loss rules keep liquidity distinct from loss. Zengin-Net's own 2026 diagnosis supports constitutional refactoring under infrastructure strain, but the conditional fiscal-2030 replacement and unresolved settlement asset do not establish crisis or a completed successor. Layer 7 finds mobility without monetary succession: Agorá's real-value tests, Swift's shared commitments, DCJPY, stablecoins, tokenized JGBs and the live Indonesia–Japan QR corridor move coordination and programmable control faster than they move debtor identity, final yen settlement or statutory title. Retail CBDC would create a direct public BOJ claim but remains unauthorized and simulated. The evidence supports constitutional refactoring through adapters, not current monetary replacement or an established legitimacy crisis. Layer 8 finds public continuity and layered loss: BOJ finality and Articles 33/37/38 liquidity sit at the public center, but BOJ credit is not intended to compensate solvency loss; DICJ insurance and resolution, TLAC, JSCC/Zengin waterfalls, fraud restitution and industry contributions allocate cost before legally gated fiscal support. The evidence supports concentrated classification power and bounded legitimacy pressure, while April 2026 capital, funding and stress results argue against a current systemic or legitimacy crisis. The final Japan proof follows six transaction and failure paths and rules for constitutional refactoring without monetary succession: plural risk-bearing inside public finality. It strongly supports concentrated finality and distributed balance-sheet burden, but not current monetary replacement, systemic crisis or an established legitimacy crisis; unequal protection and burden support only a bounded, falsifiable legitimacy-pressure inference. The governed six-lens visual makes the whole constitution, balance-sheet migration, JGB life cycle, payment-finality chain, digital adapters and failure/loss ladder inspectable while preserving the source owners and bounded states. The September 14 UK delta identifies collateral mobility as the near-term centre of the joint FCA–Bank wholesale-tokenisation program and opens a bounded FCA inquiry into eligible physical-gold ownership tokens, while preserving separate title, custody, collateral, settlement, finality, prudential, perimeter and failure clocks. The records support burden migration and constitutional refactoring, but not a present solvency or legitimacy-crisis claim.",
       "evidence_cutoff": "2026-09-28T10:16:00+09:00",
       "evidence_cutoff_note": "Broad package remains frozen through August 4. Initiation and Next Phase carry targeted saved Japan legal, bank, pilot and insurance-instrument observations from the August 31 review; currency defense carries the saved August 3 Japanese confirmation and August 28 aggregate disclosure with the reported event-date mismatch unresolved; the Asheville G20 ministerial outcome was refreshed through September 3; targeted BOJ normalization, official-site readings and the completed Japan Monetary Constitution Layers 0–8 and system-wide ruling were refreshed through September 15 01:11 JST. The JGB marginal-buyer and Japan–U.S. insurance returns are separately refreshed through September 15 02:55 JST; they distinguish cash ownership from leveraged price-setting and structural insurance convergence from identical scale or control. The UK Monetary Constitution retains its September 13 layer cutoffs and adds a September 14 primary-source delta for FS26/1 and the FCA tokenised-gold Call for Input. The petrodollar history, transaction, claim and source package is refreshed through September 15 and does not refresh unrelated regional states. A bounded Japan minutes/rate return extends through September 28 at 08:50 JST. A second official-site documentation sweep extends facility terms, BOJ-NET implementation, current-account access, legacy DICJ-route retirement, supervisory requests, bank-risk reviews and statistical/source-version controls through September 28 at 10:16 JST; it does not refresh every Japan layer, bank balance sheet or outcome. Other regional states retain their stated cutoffs.",
-      "use_note": "Selected jurisdictions and source states through July 31, with targeted saved Japan corrections from the August 31 review, an Asheville G20 outcome refresh through September 3, a BOJ rate/JGB signal refresh through September 14, and a bounded July-minutes/September-rate return through September 28 at 08:50 JST. These exceptions do not refresh every jurisdiction, rail, Japanese bank or prudential rule. Supports diversification, legal-object, policy-transmission and rail comparisons; does not turn a chair's statement, one Policy Board member's speech or an MPM discussion into universal consensus, domestic implementation, a prudential-rule amendment, reserve-currency replacement, net capital flow or production use of every announced digital-money rail.",
+      "use_note": "Selected jurisdictions and source states through July 31, with targeted saved Japan corrections from the August 31 review, an Asheville G20 outcome refresh through September 3, a BOJ rate/JGB signal refresh through September 14, and a bounded July-minutes/September-rate return through September 28 at 08:50 JST. These exceptions do not refresh every jurisdiction, rail, Japanese bank or prudential rule. Supports diversification, legal-object, policy-transmission and rail comparisons; does not turn a chair's statement, one Policy Board member's speech or an MPM discussion into universal consensus, domestic implementation, a prudential-rule amendment, reserve-currency replacement, net capital flow or production use of every announced digital-money rail. Split 2026-10-03 (Katie): its sixteen sub-studies now have their own entries; this parent stays as the umbrella and holds the shared timelines. Its old Sky & Charts shortcut was removed; research and astrology meet only on dates, in the Mundane Astrology section.",
       "library_state": "current",
       "entities": [
         "IMF",
@@ -3236,9 +3725,10 @@
           "Crypto & Digital Money",
           "Banking & the Dollar"
         ],
-        "machine_views": [
-          "world",
-          "side"
+        "dated_records": [
+          "fed-account-access",
+          "charter-queue",
+          "world-money-moves"
         ]
       },
       "relationships": {
@@ -3249,25 +3739,39 @@
           "currency-watch",
           "overall-monetary-play",
           "international-emergency-monetary-policy",
-          "global-oil-gas-movements"
+          "global-oil-gas-movements",
+          "international-monetary-initiation-2026",
+          "international-monetary-next-phase-2026",
+          "korea-market-stress-2026",
+          "bessent-iif-spring-meetings-2026",
+          "imf-symmetry-audit-2026",
+          "imf-currency-pricing-2026",
+          "japan-korea-currency-defense-2026",
+          "japan-korea-stablecoin-fx-overlap-2026",
+          "us-uk-transatlantic-markets-taskforce-2026",
+          "uk-monetary-constitution-2026",
+          "japan-monetary-constitution-2026",
+          "petrodollar-system-1945-2026",
+          "imf-legal-department-at-80-2026",
+          "imf-legal-constitution-2026"
         ]
       },
       "material_counts": {
-        "total": 244,
-        "public_reading": 17,
+        "total": 248,
+        "public_reading": 28,
         "public_machine_data": 0,
-        "private_library_metadata": 227
+        "private_library_metadata": 220
       },
       "research_layer_counts": {
-        "orientation": 11,
-        "findings": 39,
-        "evidence": 53,
+        "orientation": 14,
+        "findings": 45,
+        "evidence": 54,
         "monitoring": 5,
         "methods": 6,
         "presentation": 7,
-        "supporting": 123
+        "supporting": 117
       },
-      "latest_computer_edit_at": "2026-10-01T20:09:05Z",
+      "latest_computer_edit_at": "2026-10-03T13:58:18Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/international-monetary-transition.html",
       "routes": {
@@ -3276,6 +3780,972 @@
         "report": "reports/international-monetary-transition.html",
         "full_text": "readings/packages/international-monetary-transition.html",
         "source_text": "reports/international-monetary-transition.md"
+      }
+    },
+    {
+      "research_id": "international-crypto-map",
+      "title": "International Crypto Map — 2026",
+      "question": "In each country, who has authority over crypto, what is legally allowed, which rails actually operate, and who bears the loss when it fails?",
+      "bluf": "Across 22 jurisdictions and the cross-border reviews, zero crypto payment routes have been verified as operating corridors: the common pattern is a token interface on top of an ordinary legal claim and ordinary bank settlement. Singapore's Paxos USDG is the strongest live stablecoin found (directly redeemable, monthly attestations). China's e-CNY recorded 3.48 billion transactions and 230 million personal wallets, and under e-CNY 2.0 balances became interest-bearing bank deposits. In Brazil, 71.7% of declared crypto trades were stablecoins, mostly USDT. The UAE has three licensed dirham stablecoin issuers, and the UK's authorization window opened September 30 for rules starting October 25, 2027.",
+      "evidence_cutoff": "2026-10-03T09:30:00-04:00",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Singapore",
+        "Paxos",
+        "USDG",
+        "China",
+        "e-CNY",
+        "Brazil",
+        "USDT",
+        "United Arab Emirates",
+        "United Kingdom",
+        "Japan",
+        "South Korea",
+        "Switzerland",
+        "Hong Kong"
+      ],
+      "classification": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Foreign Relations & World Money"
+        ]
+      },
+      "connected_context": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [
+          "Foreign Relations & World Money"
+        ],
+        "dated_records": [
+          "fed-account-access",
+          "charter-queue",
+          "world-money-moves"
+        ]
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "ripple-xrp-invisible-conversion-layer",
+          "tokenization-entity-control-map"
+        ]
+      },
+      "material_counts": {
+        "total": 53,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 51
+      },
+      "research_layer_counts": {
+        "orientation": 0,
+        "findings": 5,
+        "evidence": 40,
+        "monitoring": 0,
+        "methods": 3,
+        "presentation": 2,
+        "supporting": 3
+      },
+      "latest_computer_edit_at": "2026-10-03T13:58:18Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/international-crypto-map.html",
+      "routes": {
+        "summary": "library/international-crypto-map.html",
+        "manifest": "packages/international-crypto-map.json",
+        "report": "reports/international-crypto-map.html",
+        "full_text": "readings/packages/international-crypto-map.html",
+        "source_text": "reports/international-crypto-map.md"
+      }
+    },
+    {
+      "research_id": "international-monetary-initiation-2026",
+      "title": "International Monetary Initiation — 2026",
+      "question": "If a monetary change begins outside the United States, what would it mean for a region to start it, and which parts has any region actually started?",
+      "bluf": "No source shows one coordinated conversion or a single country completing every part of a new monetary architecture. 'Starting' is six different clocks (market stress, law, bank balance sheets, pilots, live transactions, and control over who gets in and who absorbs loss), and they move in different places at different times. Japan's crypto-market law became Act No. 64 on July 23 with only a narrow enforcement piece in force from August 12. The Bank of Japan's Masu (September 10) said rates should keep rising toward a 1.1–2.5% neutral range from 1.0%, while bond purchases stop shrinking at about ¥2 trillion a month from April 2027.",
+      "evidence_cutoff": "2026-09-14",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Bank of Japan",
+        "Japan",
+        "Indonesia",
+        "European Union",
+        "Gulf states"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
+        "dated_records": [
+          "world-money-moves"
+        ]
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 12,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 10
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 4,
+        "evidence": 1,
+        "monitoring": 1,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 5
+      },
+      "latest_computer_edit_at": "2026-09-28T00:52:07Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/international-monetary-initiation-2026.html",
+      "routes": {
+        "summary": "library/international-monetary-initiation-2026.html",
+        "manifest": "packages/international-monetary-initiation-2026.json",
+        "report": "reports/international-monetary-initiation-2026.html",
+        "full_text": "readings/packages/international-monetary-initiation-2026.html",
+        "source_text": "reports/international-monetary-initiation-2026.md"
+      }
+    },
+    {
+      "research_id": "international-monetary-next-phase-2026",
+      "title": "International Monetary Next Phase — 2026",
+      "question": "How could changes in funding, public payments, settlement and insurance connect, and what evidence would show they did?",
+      "bluf": "Four parts have to connect, and none is proven end to end: who legally holds deposits, export proceeds and token reserves and what they may become (captured liquidity); how a public budget becomes a restricted programmable payment; which rule wins in redemption, insolvency, outage or sanctions (failure and finality); and which insurer or guarantee makes the trade financeable (risk transfer). Indonesia supplies detailed placement and credit permissions, Europe an observed digital public-paper mobilization, Japan a bank-asset strategy; none establishes an automatic digital-money-to-government-debt rule.",
+      "evidence_cutoff": "2026-09-07",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Indonesia",
+        "European Union",
+        "Japan",
+        "export-credit agencies"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 9,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 8
+      },
+      "research_layer_counts": {
+        "orientation": 0,
+        "findings": 3,
+        "evidence": 2,
+        "monitoring": 1,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 3
+      },
+      "latest_computer_edit_at": "2026-09-07T16:12:37Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/international-monetary-next-phase-2026.html",
+      "routes": {
+        "summary": "library/international-monetary-next-phase-2026.html",
+        "manifest": "packages/international-monetary-next-phase-2026.json",
+        "report": "reports/international-monetary-next-phase-2026.html",
+        "full_text": "readings/packages/international-monetary-next-phase-2026.html",
+        "source_text": "reports/international-monetary-next-phase-2026.md"
+      }
+    },
+    {
+      "research_id": "korea-market-stress-2026",
+      "title": "Korea Market Stress and Transmission — July 2026",
+      "question": "Did Korea's July 28–29, 2026 equity crash spread through leverage, funding, collateral, settlement or digital rails?",
+      "bluf": "The evidence shows a severe Korean equity selloff and exchange controls switching on, but not a completed chain into systemic funding failure, failed settlement or a move into DeFi. Broker credit balances rose on July 28 while forced sales fell, which argues against a same-day margin-liquidation wave; the Bank of Korea's repo rollover looked ordinary; and settlement completion for July 28–29 trades was never recovered, so it stays unadjudicated. The working chain runs from regional AI and memory-chip repricing through a concentrated index and heavy foreign selling to the price drop.",
+      "evidence_cutoff": "2026-07-29",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "South Korea",
+        "Bank of Korea",
+        "KOFIA",
+        "Korea Exchange",
+        "Upbit"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 17,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 16
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 11,
+        "evidence": 0,
+        "monitoring": 2,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 3
+      },
+      "latest_computer_edit_at": "2026-09-07T15:24:08Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/korea-market-stress-2026.html",
+      "routes": {
+        "summary": "library/korea-market-stress-2026.html",
+        "manifest": "packages/korea-market-stress-2026.json",
+        "report": "reports/korea-market-stress-2026.html",
+        "full_text": "readings/packages/korea-market-stress-2026.html",
+        "source_text": "reports/korea-market-stress-2026.md"
+      }
+    },
+    {
+      "research_id": "bessent-iif-spring-meetings-2026",
+      "title": "Bessent at the IIF — April 2026",
+      "question": "What did Treasury Secretary Bessent's April 14, 2026 IIF remarks say about the IMF, the World Bank and who gets to define stability?",
+      "bluf": "The U.S. strategy is not to leave or abolish Bretton Woods but to steer it from inside: appointments, votes, quota authorization, budgets, surveillance priorities, lending conditions and project criteria. The IMF's legitimacy is part of the machinery, because it decides whether data are adequate, which conditions attach to financing, whether a missed target is waived and when a government can exercise rights again. Bessent frames growth as global financial stability; an attributed proposal is not an implemented rule.",
+      "evidence_cutoff": "2026-07-30",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Scott Bessent",
+        "Treasury",
+        "IIF",
+        "IMF",
+        "World Bank"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 13,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 11
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 2,
+        "evidence": 0,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 4,
+        "supporting": 6
+      },
+      "latest_computer_edit_at": "2026-09-07T16:31:31Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/bessent-iif-spring-meetings-2026.html",
+      "routes": {
+        "summary": "library/bessent-iif-spring-meetings-2026.html",
+        "manifest": "packages/bessent-iif-spring-meetings-2026.json",
+        "report": "reports/bessent-iif-spring-meetings-2026.html",
+        "full_text": "readings/packages/bessent-iif-spring-meetings-2026.html",
+        "source_text": "reports/bessent-iif-spring-meetings-2026.md"
+      }
+    },
+    {
+      "research_id": "imf-symmetry-audit-2026",
+      "title": "Who Gets Adjusted — IMF Symmetry Audit 2026",
+      "question": "Does the IMF treat powerful non-borrowing countries and borrowing countries differently?",
+      "bluf": "The asymmetry is narrower than 'powerful countries are never criticized.' Systemic non-borrowers receive candid policy prescriptions; borrowers receive an extra layer of dates, conditions, reviews, exceptions and access to money. The audit covers selected 2025–26 records across eight countries and five waiver cases, with 18 bounded rulings.",
+      "evidence_cutoff": "2026-07-30",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "IMF"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 7,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 5
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 1,
+        "evidence": 0,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 5
+      },
+      "latest_computer_edit_at": "2026-09-07T16:49:55Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/imf-symmetry-audit-2026.html",
+      "routes": {
+        "summary": "library/imf-symmetry-audit-2026.html",
+        "manifest": "packages/imf-symmetry-audit-2026.json",
+        "report": "reports/imf-symmetry-audit-2026.html",
+        "full_text": "readings/packages/imf-symmetry-audit-2026.html",
+        "source_text": "reports/imf-symmetry-audit-2026.md"
+      }
+    },
+    {
+      "research_id": "imf-currency-pricing-2026",
+      "title": "IMF and Currency Pricing — 2026",
+      "question": "What does the IMF actually do to, with and around the price of a national currency?",
+      "bluf": "The IMF does not ordinarily set the dealer quote for a currency. Its power sits around the quote: it recognizes the member's regime, classifies the actual system, models the external position, polices specified official restrictions and multiple exchange rates, and, when Fund money is involved, can make a new price-formation set-up a condition of access. Program cases cover Ethiopia, Egypt, Pakistan and Argentina; 22 bounded rulings.",
+      "evidence_cutoff": "2026-07-30",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "IMF",
+        "Ethiopia",
+        "Egypt",
+        "Pakistan",
+        "Argentina"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 6,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 4
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 2,
+        "evidence": 0,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 3
+      },
+      "latest_computer_edit_at": "2026-09-07T17:09:25Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/imf-currency-pricing-2026.html",
+      "routes": {
+        "summary": "library/imf-currency-pricing-2026.html",
+        "manifest": "packages/imf-currency-pricing-2026.json",
+        "report": "reports/imf-currency-pricing-2026.html",
+        "full_text": "readings/packages/imf-currency-pricing-2026.html",
+        "source_text": "reports/imf-currency-pricing-2026.md"
+      }
+    },
+    {
+      "research_id": "japan-korea-currency-defense-2026",
+      "title": "Japan–Korea Currency Defense — July–August 2026",
+      "question": "What did Japan, Korea, the U.S. and the IMF actually do during the July 30, 2026 currency defense?",
+      "bluf": "Japan officially confirmed a coordinated July 31 (U.S. Eastern) yen purchase, and its Ministry of Finance disclosed ¥15.399 trillion of intervention from July 30 to August 26 (direction not yet disclosed, after ¥11.735 trillion of confirmed yen buying in April–June); the exact daily reconciliation stays open. Korea's intervention rests on market-source reports, with no official amount. A formal joint Japan–Korea operation is not officially confirmed, a U.S. rate check is reported but not confirmed, and no record shows the IMF authorizing or executing any trade.",
+      "evidence_cutoff": "2026-08-01",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Japan",
+        "Ministry of Finance",
+        "South Korea",
+        "U.S. Treasury",
+        "IMF"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 6,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 5
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 0,
+        "evidence": 1,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 4
+      },
+      "latest_computer_edit_at": "2026-09-07T17:24:35Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/japan-korea-currency-defense-2026.html",
+      "routes": {
+        "summary": "library/japan-korea-currency-defense-2026.html",
+        "manifest": "packages/japan-korea-currency-defense-2026.json",
+        "report": "reports/japan-korea-currency-defense-2026.html",
+        "full_text": "readings/packages/japan-korea-currency-defense-2026.html",
+        "source_text": "reports/japan-korea-currency-defense-2026.md"
+      }
+    },
+    {
+      "research_id": "japan-korea-stablecoin-fx-overlap-2026",
+      "title": "Japan–Korea FX Shock and Stablecoins — July 2026",
+      "question": "Did stablecoins show capital flight from Korea or Japan during the July 2026 currency defense?",
+      "bluf": "No. The Upbit KRW-USDT price fell during the defense window, consistent with the won strengthening, but that is a parallel price, not a measured exit: it does not show a response to an intervention order, resident capital flight or stablecoin net flow. Japan's limited production stablecoin rails are not shown to have supported intervention, and Japan's JPYSC is a trust claim, not a deposit.",
+      "evidence_cutoff": "2026-07-31",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Upbit",
+        "USDT",
+        "JPYSC",
+        "Japan",
+        "South Korea"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Crypto & Digital Money"
+        ]
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Crypto & Digital Money"
+        ],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 10,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 8
+      },
+      "research_layer_counts": {
+        "orientation": 2,
+        "findings": 1,
+        "evidence": 2,
+        "monitoring": 1,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 4
+      },
+      "latest_computer_edit_at": "2026-09-07T17:40:50Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/japan-korea-stablecoin-fx-overlap-2026.html",
+      "routes": {
+        "summary": "library/japan-korea-stablecoin-fx-overlap-2026.html",
+        "manifest": "packages/japan-korea-stablecoin-fx-overlap-2026.json",
+        "report": "reports/japan-korea-stablecoin-fx-overlap-2026.html",
+        "full_text": "readings/packages/japan-korea-stablecoin-fx-overlap-2026.html",
+        "source_text": "reports/japan-korea-stablecoin-fx-overlap-2026.md"
+      }
+    },
+    {
+      "research_id": "us-uk-transatlantic-markets-taskforce-2026",
+      "title": "U.S.–UK Transatlantic Markets Taskforce — 2026",
+      "question": "What did the U.S.–UK Transatlantic Markets Taskforce actually recommend on July 14, 2026, and what did it not create?",
+      "bluf": "The July 14 recommendations set a bilateral agenda for digital assets and capital markets, with a companion stablecoin statement. Publishing them does not create a common rule, a market-access passport, permission for central counterparties to take stablecoin collateral, or a cross-border insolvency right. Digital-money items include industry experiments, tokenized-asset treatment, securities finality, possible stablecoin or tokenized money-fund margin, and Basel advocacy.",
+      "evidence_cutoff": "2026-08-04",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "U.S. Treasury",
+        "HM Treasury",
+        "SEC",
+        "CFTC",
+        "FCA",
+        "Bank of England"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Crypto & Digital Money"
+        ]
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Crypto & Digital Money"
+        ],
+        "dated_records": [
+          "world-money-moves"
+        ]
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 6,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 5
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 2,
+        "evidence": 3,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 0
+      },
+      "latest_computer_edit_at": "2026-09-07T18:00:17Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/us-uk-transatlantic-markets-taskforce-2026.html",
+      "routes": {
+        "summary": "library/us-uk-transatlantic-markets-taskforce-2026.html",
+        "manifest": "packages/us-uk-transatlantic-markets-taskforce-2026.json",
+        "report": "reports/us-uk-transatlantic-markets-taskforce-2026.html",
+        "full_text": "readings/packages/us-uk-transatlantic-markets-taskforce-2026.html",
+        "source_text": "reports/us-uk-transatlantic-markets-taskforce-2026.md"
+      }
+    },
+    {
+      "research_id": "uk-monetary-constitution-2026",
+      "title": "UK Monetary Constitution — 2026",
+      "question": "At each layer of the sterling system, whose liability is the claim, which ledger records it, what makes it final, and who absorbs loss?",
+      "bluf": "The sterling system was mapped layer by layer from official sources through September 13, 2026, with transaction walks and a stress map of how far the Bank of England's independence is conditional. The September 14 wholesale-tokenization update records the Bank and FCA's joint feedback and the FCA gold inquiry as priorities and future checkpoints, not a new sterling claim, collateral eligibility, finality rule or permanent digital-securities permission.",
+      "evidence_cutoff": "2026-09-14",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Bank of England",
+        "HM Treasury",
+        "FCA",
+        "PRA",
+        "sterling"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ],
+        "dated_records": [
+          "world-money-moves"
+        ]
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 37,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 36
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 7,
+        "evidence": 26,
+        "monitoring": 0,
+        "methods": 1,
+        "presentation": 0,
+        "supporting": 2
+      },
+      "latest_computer_edit_at": "2026-09-14T16:26:04Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/uk-monetary-constitution-2026.html",
+      "routes": {
+        "summary": "library/uk-monetary-constitution-2026.html",
+        "manifest": "packages/uk-monetary-constitution-2026.json",
+        "report": "reports/uk-monetary-constitution-2026.html",
+        "full_text": "readings/packages/uk-monetary-constitution-2026.html",
+        "source_text": "reports/uk-monetary-constitution-2026.md"
+      }
+    },
+    {
+      "research_id": "japan-monetary-constitution-2026",
+      "title": "Japan Monetary Constitution — 2026",
+      "question": "How does authority in Japan become a yen claim, a balance-sheet position, collateral, final settlement and, when something breaks, a loss?",
+      "bluf": "Japan is undergoing constitutional refactoring without monetary succession: the state and regulated institutions are changing who prices duration, who earns interest, whose balance sheet holds collateral and where programmable controls sit, but the anchors hold (the Diet, the Ministry of Finance, the BOJ Policy Board, BOJ-NET finality, bank deposit money). The BOJ's fiscal-2025 assets shrank by ¥66.742 trillion while interest on excess reserves more than doubled to ¥2.710 trillion. The September 28 sweep found four live operating changes, including a new bank entering the BOJ current-account perimeter on October 1.",
+      "evidence_cutoff": "2026-09-28",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Bank of Japan",
+        "Ministry of Finance",
+        "BOJ-NET",
+        "DICJ",
+        "FSA",
+        "Japanese government bonds"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ]
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Banking & the Dollar"
+        ],
+        "dated_records": [
+          "charter-queue"
+        ]
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 33,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 31
+      },
+      "research_layer_counts": {
+        "orientation": 0,
+        "findings": 1,
+        "evidence": 24,
+        "monitoring": 0,
+        "methods": 4,
+        "presentation": 1,
+        "supporting": 3
+      },
+      "latest_computer_edit_at": "2026-09-28T01:20:19Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/japan-monetary-constitution-2026.html",
+      "routes": {
+        "summary": "library/japan-monetary-constitution-2026.html",
+        "manifest": "packages/japan-monetary-constitution-2026.json",
+        "report": "reports/japan-monetary-constitution-2026.html",
+        "full_text": "readings/packages/japan-monetary-constitution-2026.html",
+        "source_text": "reports/japan-monetary-constitution-2026.md"
+      }
+    },
+    {
+      "research_id": "petrodollar-system-1945-2026",
+      "title": "The Petrodollar System — 1945–2026",
+      "question": "What is the 'petrodollar' actually, and does any agreement require oil to be sold only in dollars?",
+      "bluf": "The petrodollar is not a special currency, and the public record does not show a 50-year Saudi promise to sell oil only in dollars. It is shorthand for layers that reinforce each other: dollar oil benchmarks and contracts, dollar funding and bank settlement, exporters' dollar receipts and how they are recycled, dollar pegs and reserves, and the wider U.S.–Gulf relationship. The 1974 Joint Commission and the 1975 technical-cooperation agreement are not exclusive oil-pricing covenants, and dollar oil pricing predates them. One yuan-priced cargo or swap line does not switch the system off.",
+      "evidence_cutoff": "2026-09-15",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "Saudi Arabia",
+        "U.S. Treasury",
+        "OPEC",
+        "SAMA"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
+        ]
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [
+          "Sanctions, Oil & the Military"
+        ],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 5,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 4
+      },
+      "research_layer_counts": {
+        "orientation": 0,
+        "findings": 1,
+        "evidence": 1,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 3
+      },
+      "latest_computer_edit_at": "2026-09-15T19:43:32Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/petrodollar-system-1945-2026.html",
+      "routes": {
+        "summary": "library/petrodollar-system-1945-2026.html",
+        "manifest": "packages/petrodollar-system-1945-2026.json",
+        "report": "reports/petrodollar-system-1945-2026.html",
+        "full_text": "readings/packages/petrodollar-system-1945-2026.html",
+        "source_text": "reports/petrodollar-system-1945-2026.md"
+      }
+    },
+    {
+      "research_id": "imf-legal-department-at-80-2026",
+      "title": "IMF Legal Department at 80 — Conference 2026",
+      "question": "What did the IMF's Legal Department publish and say at its 80th-anniversary conference, and what does it not decide?",
+      "bluf": "The IMF released a two-day agenda and three anniversary publications, and five full Day 1 replays (about 5.5 hours) are public. Day 1 covers legal departments of international lenders, digital money and technology, the IMF mandate, governance and financial integrity, and sovereign debt. It is evidence of how the Legal Department describes its own role, not an Executive Board decision, a treaty amendment or a new digital-money regime.",
+      "evidence_cutoff": "2026-09-26",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "IMF",
+        "IMF Legal Department"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 10,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 8
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 1,
+        "evidence": 7,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 1
+      },
+      "latest_computer_edit_at": "2026-09-28T23:56:45Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/imf-legal-department-at-80-2026.html",
+      "routes": {
+        "summary": "library/imf-legal-department-at-80-2026.html",
+        "manifest": "packages/imf-legal-department-at-80-2026.json",
+        "report": "reports/imf-legal-department-at-80-2026.html",
+        "full_text": "readings/packages/imf-legal-department-at-80-2026.html",
+        "source_text": "reports/imf-legal-department-at-80-2026.md"
+      }
+    },
+    {
+      "research_id": "imf-legal-constitution-2026",
+      "title": "IMF Legal Constitution — 2026",
+      "question": "What can the IMF legally do, what can't it do, and how could its powers change?",
+      "bluf": "The IMF is a treaty organization whose powers are split among members, the Board of Governors, the Executive Board, the Managing Director and staff. It can interpret its charter, lend with conditions, conduct surveillance, approve certain exchange restrictions and run the SDR system. It cannot enact a member's budget, rewrite domestic law, force creditors to swap bonds, set most daily exchange rates, issue a currency or quietly enlarge its own mandate. Its strongest lever is the financing gate; the deepest change needs an amendment accepted by three-fifths of members holding 85% of votes.",
+      "evidence_cutoff": "2026-09-21",
+      "use_note": "Catalog entry added 2026-10-03 when International Monetary Transition was split into its sub-studies (Katie); files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "IMF",
+        "Executive Board",
+        "SDR"
+      ],
+      "classification": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Foreign Relations & World Money",
+        "home_room_id": "world",
+        "home_room_url": "research-rooms/foreign-relations-world-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "international-monetary-transition",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "international-monetary-transition"
+        ]
+      },
+      "material_counts": {
+        "total": 4,
+        "public_reading": 2,
+        "public_machine_data": 0,
+        "private_library_metadata": 2
+      },
+      "research_layer_counts": {
+        "orientation": 1,
+        "findings": 2,
+        "evidence": 1,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 0
+      },
+      "latest_computer_edit_at": "2026-09-21T16:19:42Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/imf-legal-constitution-2026.html",
+      "routes": {
+        "summary": "library/imf-legal-constitution-2026.html",
+        "manifest": "packages/imf-legal-constitution-2026.json",
+        "report": "reports/imf-legal-constitution-2026.html",
+        "full_text": "readings/packages/imf-legal-constitution-2026.html",
+        "source_text": "reports/imf-legal-constitution-2026.md"
       }
     },
     {
@@ -3304,7 +4774,7 @@
         "home_room_id": "force",
         "home_room_url": "research-rooms/sanctions-oil-the-military.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -3368,7 +4838,7 @@
         "home_room_id": "force",
         "home_room_url": "research-rooms/sanctions-oil-the-military.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -3458,7 +4928,7 @@
           "Foreign Relations & World Money",
           "Energy, Data Centers & Big Projects"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -3473,9 +4943,9 @@
       },
       "material_counts": {
         "total": 37,
-        "public_reading": 2,
+        "public_reading": 3,
         "public_machine_data": 0,
-        "private_library_metadata": 35
+        "private_library_metadata": 34
       },
       "research_layer_counts": {
         "orientation": 1,
@@ -3517,7 +4987,8 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [
-          "Sanctions, Oil & the Military"
+          "Sanctions, Oil & the Military",
+          "Crypto & Digital Money"
         ]
       },
       "connected_context": {
@@ -3525,9 +4996,10 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [
-          "Sanctions, Oil & the Military"
+          "Sanctions, Oil & the Military",
+          "Crypto & Digital Money"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -3596,7 +5068,7 @@
         "home_room_id": "world",
         "home_room_url": "research-rooms/foreign-relations-world-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -3720,7 +5192,9 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "fed-account-access"
+        ]
       },
       "relationships": {
         "parent_id": null,
@@ -3797,8 +5271,8 @@
           "Energy, Data Centers & Big Projects",
           "Foreign Relations & World Money"
         ],
-        "machine_views": [
-          "tech"
+        "dated_records": [
+          "world-money-moves"
         ]
       },
       "relationships": {
@@ -3876,7 +5350,7 @@
         "also_in": [
           "Energy, Data Centers & Big Projects"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -3914,9 +5388,9 @@
       "research_id": "federal-science-operating-system",
       "title": "Federal Science Operating System",
       "question": "How does federal science doctrine move through mission selection, capital, security gates, industrial capability and operation without collapsing strategy into delivery?",
-      "bluf": "The doctrine-to-operation map for an AI-native scientific-industrial economy. The August National Security Science & Technology Strategy adds the focused, resilient, agile and secure mission-selection layer: capital follows mission-relevant capability through a security membrane of identity, provenance, research security, investment screening, export controls and trusted supply. It creates no funding or operating system. The fusion vertical continues to preserve each company, machine, capital, license, electricity and grid-delivery gate.",
-      "evidence_cutoff": "2026-08-17",
-      "evidence_cutoff_note": "The package retains its August 17 evidence cutoff. September 7 targeted factual-spine additions reconcile all thirteen original Reactor filings, with separately dated selected implementation, correction and confirmation evidence. Four current explanations also correct the 2027 deadline’s NEIMA origin. This is not a whole-package refresh. September 9 Genesis update is a separately dated targeted extension; the broader package retains its August 17 cutoff.",
+      "bluf": "The doctrine-to-operation map for an AI-native scientific-industrial economy now includes an international endorsement layer. On October 4, the United States and sixteen other countries endorsed the Kyoto Vision's portfolio of long-duration and rapid grants, prizes, new research institutions, government metascience capability, Super Intelligence for closed-loop discovery, access to data/compute/facilities and technical-talent pathways. This confirms international uptake of the July U.S. design doctrine, but the one-page declaration sends implementation back into national systems and creates no common institution, fund, programme, access right, deadline or reporting mechanism. The August NSSTS security membrane and the fusion implementation gates remain separate U.S. layers.",
+      "evidence_cutoff": "2026-10-04",
+      "evidence_cutoff_note": "The original system map retains its August 17 evidence boundary. September 7 targeted factual-spine additions reconcile the Reactor filings, September 9 adds the bounded Genesis update, and October 4 adds the Kyoto Vision international-endorsement audit. The STS Forum was still underway at the cutoff; no independent national endorsement pages, signature sheet, implementation annex, common budget, governance charter or operating programme were located.",
       "use_note": "PDFs control over extractions. The archive-capture and GovInfo CET PDFs are distinct official representations. August 17 is verified NSSTS public availability, not a proven publication or Congressional-transmission timestamp. Exclude doctrine synthesis, implementation state, funding, authorization, awards, facilities, deployment and inferred operating consequences. The document assertion that it satisfies 42 U.S.C. 19221 is citable as document content; actual submission timing and compliance remain unresolved.",
       "library_state": "current",
       "entities": [
@@ -3964,7 +5438,8 @@
         "universities",
         "fusion companies",
         "Tribal Nations",
-        "RTOs and ISOs"
+        "RTOs and ISOs",
+        "Science and Technology in Society Forum"
       ],
       "classification": {
         "home_room": "Innovation",
@@ -3977,9 +5452,9 @@
         "home_room_id": "innovation",
         "home_room_url": "research-rooms/innovation.html",
         "also_in": [],
-        "machine_views": [
-          "tech",
-          "spine"
+        "dated_records": [
+          "tech-ai-science",
+          "nuclear-energy-filings"
         ]
       },
       "relationships": {
@@ -3993,10 +5468,10 @@
         ]
       },
       "material_counts": {
-        "total": 21,
+        "total": 23,
         "public_reading": 6,
         "public_machine_data": 0,
-        "private_library_metadata": 15
+        "private_library_metadata": 17
       },
       "research_layer_counts": {
         "orientation": 1,
@@ -4005,9 +5480,9 @@
         "monitoring": 0,
         "methods": 0,
         "presentation": 0,
-        "supporting": 15
+        "supporting": 17
       },
-      "latest_computer_edit_at": "2026-09-25T03:16:23Z",
+      "latest_computer_edit_at": "2026-10-05T01:06:26Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-science-operating-system.html",
       "routes": {
@@ -4053,7 +5528,9 @@
         "home_room_id": "buildout",
         "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "tech-ai-science"
+        ]
       },
       "relationships": {
         "parent_id": "federal-science-operating-system",
@@ -4150,8 +5627,8 @@
         "also_in": [
           "Sanctions, Oil & the Military"
         ],
-        "machine_views": [
-          "tech"
+        "dated_records": [
+          "tech-ai-science"
         ]
       },
       "relationships": {
@@ -4220,7 +5697,7 @@
         "home_room_id": "innovation",
         "home_room_url": "research-rooms/innovation.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "nssts-technology-company-map",
@@ -4287,7 +5764,9 @@
         "also_in": [
           "Sanctions, Oil & the Military"
         ],
-        "machine_views": []
+        "dated_records": [
+          "tech-ai-science"
+        ]
       },
       "relationships": {
         "parent_id": "nssts-technology-company-map",
@@ -4390,8 +5869,8 @@
         "home_room_id": "innovation",
         "home_room_url": "research-rooms/innovation.html",
         "also_in": [],
-        "machine_views": [
-          "tech"
+        "dated_records": [
+          "bank-fine-print"
         ]
       },
       "relationships": {
@@ -4467,7 +5946,9 @@
         "also_in": [
           "Government Changes"
         ],
-        "machine_views": []
+        "dated_records": [
+          "tech-ai-science"
+        ]
       },
       "relationships": {
         "parent_id": "scientific-trust-stack",
@@ -4532,7 +6013,7 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "scientific-trust-stack",
@@ -4540,7 +6021,8 @@
         "supersedes_ids": [],
         "related_ids": [
           "private-monetary-stack",
-          "overall-dlt-transition"
+          "overall-dlt-transition",
+          "genius-act-implementation-2026"
         ]
       },
       "material_counts": {
@@ -4617,9 +6099,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": [
-          "tech"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -4684,7 +6164,7 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -4721,11 +6201,11 @@
     {
       "research_id": "federal-agency-ai-plans-infrastructure",
       "title": "Federal Agency AI Plans and Infrastructure",
-      "question": "How do the September 29 Super Intelligence and America.gov executive orders change federal AI terminology and service-delivery architecture, and which authority, implementation, operation and effect gates remain open?",
-      "bluf": "The September 29 actions form a two-order stack. The first directs the executive branch to use Super Intelligence or SI in non-statutory documents, but imports the existing statutory AI definition and establishes no superhuman-capability threshold. The second establishes America.gov as a GSA-led front door integrating Login.gov and existing agency interfaces while preserving originating-agency records, authority and adjudication. White House texts are confirmed; Federal Register numbers, the 60-day legislative proposal, the 90-day OMB memorandum, covered-service integrations, transactions and effects remain distinct open receipts. The underlying eleven-entity census remains frozen at August 23.",
-      "evidence_cutoff": "2026-09-29",
-      "evidence_cutoff_note": "September 29 executive-order texts, fact sheets and current America.gov control surfaces are included. Federal Register numbers and publication objects were unavailable at cutoff. The overall proposal-to-operation layer remains current through September 28; the eleven-entity inventory and supplier census remain frozen through August 23.",
-      "use_note": "Internal recall only. Use the September 28 proposal map for the national transition and the August 23 ledgers for entity use cases and suppliers. Preserve blueprint, recommendation, public review, signed direction, operative policy, funding, implementation, operation, effect and remedy as separate states. The evidence supports a distributed translation-and-gate layer, not one central AI platform, comprehensive preemption, completed physical buildout or a general notice, explanation, appeal and correction regime.",
+      "question": "How is federal agency AI and service-delivery infrastructure moving from fragmented systems into shared access, network and triage layers, and which authority, implementation, operation and effect gates remain open?",
+      "bluf": "The federal transition is centralized orchestration over federated legal authority, not one government AI platform. The October 4 Super Intelligence Force adds a named presidential coordination layer led by the DNI with FTC, Defense R&E and OPM leadership and a reported 120-day recommendation clock, but no public charter, budget, staff, transferred agency authority or operating program was located. The September 29 actions rename AI as SI in non-statutory executive documents and direct America.gov to become a GSA-led front door while originating agencies keep their records and decisions. The October 3 FBI extension remains a separate operating specimen: NERI consolidated more than 600 networks and TIPS performs AI-assisted tip triage with human review, while whole-enterprise completion and Patel's use-count, growth and response-time claims remain unproved. The underlying eleven-entity census remains frozen at August 23.",
+      "evidence_cutoff": "2026-10-04",
+      "evidence_cutoff_note": "The October 4 SIF extension includes the President's announcement, four named leaders, their existing statutory lanes, the voluntary White House Accord, EO 14434's resolved Federal Register identity and the reported but not publicly located 120-day charter. The October 3 targeted FBI extension includes the October 2 Patel interview report, the September FBI issuer video, the March FY2027 budget, the January 2026 DOJ public AI inventory, current OIG recommendation states through August 31 and the September FBI Cyber Strategy. The September 29 executive-order and America.gov layer remains included; the overall proposal-to-operation map remains current through September 28; the eleven-entity inventory and supplier census remain frozen through August 23.",
+      "use_note": "Internal recall only. Use the October 4 SIF answer for the presidential coordination overlay, named leaders, voluntary Accord and reported 120-day charter; do not call it a new agency, regulator or military branch without a later legal instrument. Use the October 3 FBI answer for NERI, TIPS and Patel's count/performance claims; the September 29 answer for SI and America.gov; the September 28 proposal map for the national transition; and the August 23 ledgers for the frozen entity use cases and suppliers. Preserve strategy, request, appropriation, obligation, delivery, ATO, deployment, human action, effect and remedy as separate states. The evidence supports centralized orchestration over federated legal authority, not one central AI platform or a completed whole-enterprise rebuild.",
       "library_state": "current",
       "entities": [
         "Department of Health and Human Services",
@@ -4738,11 +6218,23 @@
         "Social Security Administration",
         "Department of Veterans Affairs",
         "Department of Justice",
+        "Federal Bureau of Investigation",
+        "National Threat Operations Center",
         "National Fraud Detection Center",
         "Pandemic Response Accountability Committee",
         "Pandemic Analytics Center of Excellence",
         "Department of War",
         "Department of Defense",
+        "White House",
+        "Office of the Director of National Intelligence",
+        "Jay Clayton",
+        "Andrew Ferguson",
+        "Emil Michael",
+        "Scott Kupor",
+        "Office of Personnel Management",
+        "Office of Science and Technology Policy",
+        "National Institute of Standards and Technology",
+        "Chief AI Officer Council",
         "OMB",
         "NARA",
         "AWS",
@@ -4774,8 +6266,8 @@
         "also_in": [
           "Innovation"
         ],
-        "machine_views": [
-          "tech"
+        "dated_records": [
+          "tech-ai-science"
         ]
       },
       "relationships": {
@@ -4791,10 +6283,10 @@
         ]
       },
       "material_counts": {
-        "total": 18,
+        "total": 20,
         "public_reading": 3,
         "public_machine_data": 0,
-        "private_library_metadata": 15
+        "private_library_metadata": 17
       },
       "research_layer_counts": {
         "orientation": 0,
@@ -4803,9 +6295,9 @@
         "monitoring": 0,
         "methods": 0,
         "presentation": 0,
-        "supporting": 12
+        "supporting": 14
       },
-      "latest_computer_edit_at": "2026-09-30T00:42:32Z",
+      "latest_computer_edit_at": "2026-10-04T18:59:27Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-agency-ai-plans-infrastructure.html",
       "routes": {
@@ -4848,9 +6340,7 @@
         "also_in": [
           "Innovation"
         ],
-        "machine_views": [
-          "tech"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -4922,8 +6412,8 @@
         "home_room_id": "innovation",
         "home_room_url": "research-rooms/innovation.html",
         "also_in": [],
-        "machine_views": [
-          "tech"
+        "dated_records": [
+          "tech-ai-science"
         ]
       },
       "relationships": {
@@ -5013,8 +6503,9 @@
         "also_in": [
           "Innovation"
         ],
-        "machine_views": [
-          "tech"
+        "dated_records": [
+          "tech-ai-science",
+          "tech-defense-drones"
         ]
       },
       "relationships": {
@@ -5090,7 +6581,7 @@
         "also_in": [
           "Government Changes"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "military-modernization",
@@ -5155,9 +6646,7 @@
         "home_room_id": "force",
         "home_room_url": "research-rooms/sanctions-oil-the-military.html",
         "also_in": [],
-        "machine_views": [
-          "tech"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -5228,7 +6717,7 @@
         "also_in": [
           "Energy, Data Centers & Big Projects"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "contested-logistics",
@@ -5312,7 +6801,9 @@
         "home_room_id": "force",
         "home_room_url": "research-rooms/sanctions-oil-the-military.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "stablecoin-filings"
+        ]
       },
       "relationships": {
         "parent_id": null,
@@ -5378,7 +6869,7 @@
         "home_room_id": "belonging",
         "home_room_url": "research-rooms/citizenship-voting-immigration.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -5442,7 +6933,7 @@
         "home_room_id": "belonging",
         "home_room_url": "research-rooms/citizenship-voting-immigration.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -5519,7 +7010,7 @@
         "also_in": [
           "Released Records & Investigations"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -5580,7 +7071,7 @@
         "home_room_id": "buildout",
         "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -5650,7 +7141,7 @@
         "also_in": [
           "Government Changes"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -5710,7 +7201,11 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "federal-payments",
+          "charter-queue",
+          "world-money-moves"
+        ]
       },
       "relationships": {
         "parent_id": null,
@@ -5736,7 +7231,7 @@
         "presentation": 151,
         "supporting": 27
       },
-      "latest_computer_edit_at": "2026-09-28T21:08:46Z",
+      "latest_computer_edit_at": "2026-10-02T17:49:31Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/congressional-committee-control-plane.html",
       "routes": {
@@ -5779,8 +7274,8 @@
         "also_in": [
           "Innovation"
         ],
-        "machine_views": [
-          "tech"
+        "dated_records": [
+          "tech-ai-science"
         ]
       },
       "relationships": {
@@ -5850,8 +7345,9 @@
           "Sanctions, Oil & the Military",
           "Crypto & Digital Money"
         ],
-        "machine_views": [
-          "spine"
+        "dated_records": [
+          "charter-queue",
+          "tech-ai-science"
         ]
       },
       "relationships": {
@@ -5921,7 +7417,7 @@
         "also_in": [
           "Citizenship, Voting & Immigration"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -5989,9 +7485,7 @@
         "also_in": [
           "Foreign Relations & World Money"
         ],
-        "machine_views": [
-          "spine"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6064,7 +7558,7 @@
         "also_in": [
           "Innovation"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "us-inbound-investment-industrial-capex",
@@ -6133,7 +7627,9 @@
         "also_in": [
           "Crypto & Digital Money"
         ],
-        "machine_views": []
+        "dated_records": [
+          "charter-queue"
+        ]
       },
       "relationships": {
         "parent_id": "us-inbound-investment-industrial-capex",
@@ -6203,7 +7699,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6267,7 +7763,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6290,7 +7786,7 @@
         "presentation": 1,
         "supporting": 5
       },
-      "latest_computer_edit_at": "2026-07-22T03:55:33Z",
+      "latest_computer_edit_at": "2026-10-03T19:57:52Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/white-house-research-hub.html",
       "routes": {
@@ -6330,7 +7826,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6391,7 +7887,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6458,7 +7954,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6520,7 +8016,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6585,7 +8081,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6611,7 +8107,7 @@
         "presentation": 0,
         "supporting": 10
       },
-      "latest_computer_edit_at": "2026-08-08T16:37:33Z",
+      "latest_computer_edit_at": "2026-10-02T17:49:32Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-08.html",
       "routes": {
@@ -6648,7 +8144,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6674,7 +8170,7 @@
         "presentation": 0,
         "supporting": 10
       },
-      "latest_computer_edit_at": "2026-08-14T02:09:24Z",
+      "latest_computer_edit_at": "2026-10-02T17:49:33Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-weekly-delta-2026-08-13.html",
       "routes": {
@@ -6712,7 +8208,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6776,7 +8272,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6838,7 +8334,7 @@
         "home_room_id": "disclosure",
         "home_room_url": "research-rooms/released-records-investigations.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6908,7 +8404,7 @@
         "also_in": [
           "Energy, Data Centers & Big Projects"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -6972,7 +8468,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -7037,7 +8533,7 @@
         "home_room_id": "education",
         "home_room_url": "research-rooms/education.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -7103,7 +8599,7 @@
         "also_in": [
           "Crypto & Digital Money"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "education-university-funding",
@@ -7168,7 +8664,7 @@
         "home_room_id": "education",
         "home_room_url": "research-rooms/education.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "education-university-funding",
@@ -7235,7 +8731,7 @@
           "Innovation",
           "Sanctions, Oil & the Military"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "education-university-funding",
@@ -7298,7 +8794,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -7362,7 +8858,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -7435,7 +8931,7 @@
         "also_in": [
           "Banking & the Dollar"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -7505,8 +9001,8 @@
         "home_room_id": "world",
         "home_room_url": "research-rooms/foreign-relations-world-money.html",
         "also_in": [],
-        "machine_views": [
-          "world"
+        "dated_records": [
+          "world-money-moves"
         ]
       },
       "relationships": {
@@ -7587,11 +9083,7 @@
           "Banking & the Dollar",
           "Foreign Relations & World Money"
         ],
-        "machine_views": [
-          "money",
-          "spine",
-          "wholemoney"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -7603,25 +9095,26 @@
           "fed-clearing-treasury",
           "private-monetary-stack",
           "ripple-xrp-invisible-conversion-layer",
-          "authority-through-the-adapter"
+          "authority-through-the-adapter",
+          "programmable-and-agentic-payments-2026-09-22"
         ]
       },
       "material_counts": {
-        "total": 34,
-        "public_reading": 2,
+        "total": 35,
+        "public_reading": 3,
         "public_machine_data": 0,
         "private_library_metadata": 32
       },
       "research_layer_counts": {
         "orientation": 3,
-        "findings": 14,
+        "findings": 15,
         "evidence": 5,
         "monitoring": 2,
         "methods": 7,
         "presentation": 0,
         "supporting": 3
       },
-      "latest_computer_edit_at": "2026-09-30T12:37:38Z",
+      "latest_computer_edit_at": "2026-10-03T23:57:12Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/route-anchor-inventory.html",
       "routes": {
@@ -7635,9 +9128,9 @@
     {
       "research_id": "tokenization-entity-control-map",
       "title": "Crypto Infrastructure Hub",
-      "bluf": "The Hub now opens as a searchable visual atlas: every primary infographic has a direct front-page entrance, an embedded-view directory lands on the exact Fed, map, X-ray, legal, transition, liquidity, company or stack subview, and full-content search finds remembered terms inside entity records, explanations, relationships, process steps, legal questions, evidence boundaries, source labels and governed structured data rather than matching titles alone. The October 1 SEC crypto-custody proposal adds a seventh Legal process case and a full 760-page reading: self-custody would be an asset-specific residual route only while no qualified custodian will maintain the asset; private-key possession, per-client address segregation, joint authorization, cybersecurity, independent control reporting, Article 8 treatment, client statements, examiner-readable onchain records, State trust due diligence, board oversight and remedy stay separate layers. A proposal-to-final map now freezes 36 material provisions across eight constitutional layers and seven Observatory joins, with every future final-rule slot deliberately pending. The proposal is not final, supplies no exchange or DeFi custody exception, and changes no current Hub permission or operating state.",
+      "bluf": "Who actually controls crypto infrastructure: of the 20 networks and companies ranked on a seven-step ladder, only Securitize reaches “used at scale” and none is proven under stress. Many brands rest on a handful of legal providers (Paxos, Bridge, M0, Cross River, Lead Bank, Fireblocks, zerohash and Circle), and the brand is rarely the issuer. A holder-to-holder USDC transfer changes only who holds Circle's IOU; it leaves no entry on Circle's, the Fed's or any bank's books, while a Fedwire payment always moves three sets of books. J.P. Morgan's Kinexys is the most complete in-house money machine; Ripple runs five of the seven parts itself but its national trust bank is not open. The data explorer behind this study holds 320 entities, 404 relationships and 427 sources; the SEC custody proposal, the CLARITY draft and the QNT price audit now have their own entries.",
       "evidence_cutoff": "2026-10-01",
-      "evidence_cutoff_note": "October 1 adds the Commission's 760-page Adviser and Regulated Fund Custody Rules; Crypto Custody Rules proposal, File S7-2026-35, with 342 numbered comment questions. The new custody case preserves proposal, Federal Register, final, effective, compliance and first-use clocks and does not refresh unrelated Hub systems. September 30 CSD BR/Ripple and September 24 Fed GENIUS findings retain their own cited dates.",
+      "evidence_cutoff_note": "October 1 adds the Commission's 760-page Adviser and Regulated Fund Custody Rules; Crypto Custody Rules proposal, File S7-2026-35, with 342 numbered comment questions. The new custody case preserves proposal, Federal Register, final, effective, compliance and first-use clocks and does not refresh unrelated Hub systems. September 30 CSD BR/Ripple and September 24 Fed GENIUS findings retain their own cited dates. Bottom line rewritten as findings on 2026-10-03 (crypto hub clean-up).",
       "use_note": "The hub separates company, network, native token, issued asset, operator, regulator, authoritative record, market rail, cash claim and operational clock. Its process maps separately identify stage-specific controllers, operators, integrators and external dependencies, with distinct scale and stress ceilings. Technical finality, legal title and cash or redemption remedy are distinct endpoints; adjacency does not prove control, approval, production scale or token value capture.",
       "library_state": "current",
       "entities": [
@@ -7732,7 +9225,10 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "stablecoin-filings",
+          "tokenization-clearing"
+        ]
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -7745,25 +9241,28 @@
           "overall-dlt-transition",
           "wholesale-metals",
           "fed-clearing-treasury",
-          "transaction-native-accounting"
+          "transaction-native-accounting",
+          "card-network-stablecoins-2026",
+          "programmable-and-agentic-payments-2026-09-22",
+          "international-crypto-map"
         ]
       },
       "material_counts": {
         "total": 93,
-        "public_reading": 4,
+        "public_reading": 6,
         "public_machine_data": 0,
-        "private_library_metadata": 89
+        "private_library_metadata": 87
       },
       "research_layer_counts": {
         "orientation": 4,
-        "findings": 20,
+        "findings": 22,
         "evidence": 17,
         "monitoring": 1,
         "methods": 9,
         "presentation": 1,
-        "supporting": 41
+        "supporting": 39
       },
-      "latest_computer_edit_at": "2026-10-01T22:24:51Z",
+      "latest_computer_edit_at": "2026-10-03T21:21:18Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/tokenization-entity-control-map.html",
       "routes": {
@@ -7775,13 +9274,142 @@
       }
     },
     {
+      "research_id": "clarity-act-senate-draft-2026",
+      "title": "CLARITY Act — September 2026 Senate Draft",
+      "question": "What did the September 14, 2026 Senate draft of the CLARITY Act change, and what happened when it reached the floor?",
+      "bluf": "The Senate failed to end debate on the CLARITY Act on September 15, 49–50, so the September 14 sponsors' draft was never formally offered. That draft had made a crypto ethics rule for officials permanent (divest, or move to a blind trust, crypto-company stakes of $15,000 or more, enforceable by state attorneys general), added a circuit breaker requiring Treasury to ban comparable yield if stablecoin rewards drain small banks, and generally barred registered crypto exchanges from trading for themselves. Two days after the vote the CFTC sent its own crypto-market rule to White House review; the agencies already hold most of the tools, and the main gap is plain spot trading of crypto that isn't a security.",
+      "evidence_cutoff": "2026-09-14",
+      "evidence_cutoff_note": "Draft text as released September 14; the September 15 cloture result is recorded in the CFTC passive-software study.",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "CLARITY Act",
+        "H.R. 3633",
+        "U.S. Senate",
+        "CFTC",
+        "SEC"
+      ],
+      "classification": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "tokenization-entity-control-map",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "congressional-monetary-infrastructure",
+          "cftc-passive-software-no-action-2026-09-17"
+        ]
+      },
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 0
+      },
+      "research_layer_counts": {
+        "orientation": 0,
+        "findings": 1,
+        "evidence": 0,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 0
+      },
+      "latest_computer_edit_at": "2026-09-14T18:55:25Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/clarity-act-senate-draft-2026.html",
+      "routes": {
+        "summary": "library/clarity-act-senate-draft-2026.html",
+        "manifest": "packages/clarity-act-senate-draft-2026.json",
+        "report": "reports/clarity-act-senate-draft-2026.html",
+        "full_text": "readings/packages/clarity-act-senate-draft-2026.html",
+        "source_text": "reports/clarity-act-senate-draft-2026.md"
+      }
+    },
+    {
+      "research_id": "sec-crypto-custody-proposal-2026-10-01",
+      "title": "SEC Crypto Custody Proposal — 2026",
+      "question": "What would the SEC's October 1, 2026 crypto-custody proposal for advisers and funds actually require, cost and leave unresolved?",
+      "bluf": "On October 1 the SEC proposed (not adopted) crypto-custody rules for investment advisers and regulated funds: a 760-page release, File S7-2026-35, with 342 numbered comment questions and a 60-day comment period after Federal Register publication. Holding any piece of a private key would count as custody. Self-custody would be a fallback only while no qualified custodian will hold the asset, and it needs two-person sign-off, which a one-person advisory firm can't meet. The SEC estimates $301.9 million of setup costs and $433.7 million a year, against $176,472 of benefits it could put a number on. The proposal also drops the requirement that certain auditors be PCAOB-registered and inspected.",
+      "evidence_cutoff": "2026-10-01T17:35:03-04:00",
+      "evidence_cutoff_note": "Proposal stage only: no Federal Register publication, final rule, effective date or first use existed at the cutoff.",
+      "use_note": "Catalog entry added 2026-10-03 (crypto hub clean-up) so this work can be found on its own; its files stay where they are and remain members of the parent study.",
+      "library_state": "current",
+      "entities": [
+        "SEC",
+        "investment advisers",
+        "regulated funds",
+        "qualified custodian",
+        "PCAOB",
+        "state trust companies"
+      ],
+      "classification": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": "Crypto & Digital Money",
+        "home_room_id": "crypto",
+        "home_room_url": "research-rooms/crypto-digital-money.html",
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": "tokenization-entity-control-map",
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "private-monetary-stack",
+          "crypto-infrastructure-comparatives"
+        ]
+      },
+      "material_counts": {
+        "total": 14,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 13
+      },
+      "research_layer_counts": {
+        "orientation": 0,
+        "findings": 2,
+        "evidence": 8,
+        "monitoring": 1,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 3
+      },
+      "latest_computer_edit_at": "2026-10-01T22:23:39Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/sec-crypto-custody-proposal-2026-10-01.html",
+      "routes": {
+        "summary": "library/sec-crypto-custody-proposal-2026-10-01.html",
+        "manifest": "packages/sec-crypto-custody-proposal-2026-10-01.json",
+        "report": "reports/sec-crypto-custody-proposal-2026-10-01.html",
+        "full_text": "readings/packages/sec-crypto-custody-proposal-2026-10-01.html",
+        "source_text": "reports/sec-crypto-custody-proposal-2026-10-01.md"
+      }
+    },
+    {
       "research_id": "ripple-xrp-invisible-conversion-layer",
       "title": "Ripple, XRP and the Invisible Conversion Layer",
       "question": "Can Ripple's institutional stack make XRP an invisible, continuously available conversion reserve, and what evidence distinguishes Ripple-company, XRPL, RLUSD and XRP-token success?",
-      "bluf": "Payment middleware can already hide the selected settlement rail from the requesting agent or end user, and XRPL can use XRP as a bridge between issued assets. Ripple has assembled a vertical payments, custody, stablecoin, prime-brokerage and treasury stack, while GOLD EAGLE is a horizontal federal vulnerability-prioritization and distribution layer. They can intersect at software, operator and critical-infrastructure surfaces, but no public source through September 17 names Ripple or XRPL as a GOLD EAGLE participant. The February XRPL Batch incident is a strong functional discovery-to-patch analogue, not evidence of a federal join. XRP's distinct inflection still requires route share, depth, financed inventory, holding-duration, haircut and hedge evidence; Ripple, XRPL, RLUSD and XRP remain four separate success ledgers.",
-      "evidence_cutoff": "2026-09-30",
-      "evidence_cutoff_note": "September 30 adds the CSD BR / Ripple record mirror announced September 29. It establishes company-reported live named XRPL use while preserving CSD BR's official record and leaving the public project receipt, cash leg, RLUSD role and XRP value-capture case unproved. The older invisible-conversion, SDR and GOLD EAGLE studies retain their own bounded source dates.",
-      "use_note": "Primary links support the bounded architecture and status claims. No public route-level evidence located through the cutoff proves recurring XRP intermediation or persistent net institutional XRP inventory. No primary source through September 17 names Ripple, XRPL, RLUSD or a Ripple affiliate as a GOLD EAGLE participant; the XRPL Batch incident is a functional analogue only.",
+      "bluf": "Payment middleware can hide the selected settlement rail from the requester, and XRPL can use XRP as a bridge between issued assets, but public evidence still does not establish recurring XRP route share or persistent net institutional inventory. Ripple has assembled a vertical payments, custody, stablecoin, prime-brokerage and treasury stack. The October 3 launch of XRP Asia adds a real Singapore-based regional builder and community hub with visible Singapore, Tokyo and Seoul nodes and public intake. It advances XRPL ecosystem capacity, not a financial licence, bank consortium, payment corridor or XRP demand receipt. Ripple, XRPL, RLUSD and XRP remain four separate success ledgers.",
+      "evidence_cutoff": "2026-10-03T09:30:00-04:00",
+      "evidence_cutoff_note": "October 3 adds the XRP Asia launch and APAC control map. XRP Asia Ltd is treated as a separable regional builder organization, distinct from SBI Ripple Asia, Ripple Markets APAC, RippleX, XRP Ledger Foundation and XRPL Commons. The launch changes an organizational clock but not the International Crypto Map's country permissions or zero-route result. The older invisible-conversion, SDR, GOLD EAGLE and CSD BR studies retain their own bounded source dates.",
+      "use_note": "Primary links support the bounded architecture and status claims. No public route-level evidence located through the cutoff proves recurring XRP intermediation or persistent net institutional XRP inventory. XRP Asia is an ecosystem-support and distribution layer, not a financial licence or settlement system; its launch does not promote any International Crypto Map route. No primary source through September 17 names Ripple, XRPL, RLUSD or a Ripple affiliate as a GOLD EAGLE participant; the XRPL Batch incident is a functional analogue only.",
       "library_state": "current",
       "entities": [
         "Ripple",
@@ -7810,7 +9438,17 @@
         "CISA",
         "Cantina AI",
         "CSD BR",
-        "BTG Pactual"
+        "BTG Pactual",
+        "XRP Asia Ltd",
+        "SBI Ripple Asia",
+        "Ripple Markets APAC",
+        "XRP Ledger Foundation",
+        "XRPL Commons",
+        "Jeonbuk Bank",
+        "Kbank",
+        "Kyobo Life",
+        "DBS",
+        "StraitsX"
       ],
       "classification": {
         "home_room": "Crypto & Digital Money",
@@ -7823,7 +9461,9 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "charter-queue"
+        ]
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -7835,14 +9475,15 @@
           "route-anchor-inventory",
           "fed-clearing-treasury",
           "sec-transfer-agent-modernization",
-          "tokenization-entity-control-map"
+          "tokenization-entity-control-map",
+          "international-crypto-map"
         ]
       },
       "material_counts": {
-        "total": 18,
+        "total": 20,
         "public_reading": 4,
         "public_machine_data": 0,
-        "private_library_metadata": 14
+        "private_library_metadata": 16
       },
       "research_layer_counts": {
         "orientation": 0,
@@ -7851,9 +9492,9 @@
         "monitoring": 0,
         "methods": 0,
         "presentation": 1,
-        "supporting": 6
+        "supporting": 8
       },
-      "latest_computer_edit_at": "2026-09-30T23:33:05Z",
+      "latest_computer_edit_at": "2026-10-03T13:45:37Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/ripple-xrp-invisible-conversion-layer.html",
       "routes": {
@@ -7903,9 +9544,7 @@
         "home_room_id": "belonging",
         "home_room_url": "research-rooms/citizenship-voting-immigration.html",
         "also_in": [],
-        "machine_views": [
-          "state"
-        ]
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -7988,7 +9627,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8068,7 +9707,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8140,7 +9779,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8211,7 +9850,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8225,9 +9864,9 @@
       },
       "material_counts": {
         "total": 11,
-        "public_reading": 1,
+        "public_reading": 2,
         "public_machine_data": 0,
-        "private_library_metadata": 10
+        "private_library_metadata": 9
       },
       "research_layer_counts": {
         "orientation": 2,
@@ -8300,7 +9939,7 @@
         "home_room_id": "world",
         "home_room_url": "research-rooms/foreign-relations-world-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8381,7 +10020,9 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "federal-payments"
+        ]
       },
       "relationships": {
         "parent_id": null,
@@ -8389,7 +10030,8 @@
         "supersedes_ids": [],
         "related_ids": [
           "authority-through-the-adapter",
-          "un-general-assembly-high-level-week-2026"
+          "un-general-assembly-high-level-week-2026",
+          "federal-monetary-economic-institutions-delta-2026-10-02"
         ]
       },
       "material_counts": {
@@ -8468,7 +10110,7 @@
         "home_room_id": "innovation",
         "home_room_url": "research-rooms/innovation.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8548,7 +10190,7 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8616,7 +10258,7 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8680,7 +10322,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8749,7 +10391,7 @@
         "also_in": [
           "Government Changes"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -8847,7 +10489,7 @@
         "also_in": [
           "Energy, Data Centers & Big Projects"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "federal-science-operating-system",
@@ -8912,7 +10554,7 @@
         "home_room_id": "education",
         "home_room_url": "research-rooms/education.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "education-university-funding",
@@ -8974,7 +10616,7 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9062,7 +10704,7 @@
         "home_room_id": "world",
         "home_room_url": "research-rooms/foreign-relations-world-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9130,7 +10772,7 @@
         "also_in": [
           "Released Records & Investigations"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "fraud-payment-integrity",
@@ -9202,7 +10844,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9275,7 +10917,7 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9340,7 +10982,7 @@
         "home_room_id": "belonging",
         "home_room_url": "research-rooms/citizenship-voting-immigration.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9405,7 +11047,7 @@
         "also_in": [
           "Government Changes"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9443,9 +11085,9 @@
       "research_id": "federal-government-movement-atlas",
       "title": "Government-Wide Research Hub",
       "question": "How can all saved government research, entity relationships, committee records, adjudicated movements and exact evidence gaps be explored in one governed hub without flattening institutions or replacing each package's evidence ownership?",
-      "bluf": "The Government-Wide Research Hub brings every exact Catalog package card and the complete Registry shelf into the same navigable destination as the 642-node Federal Group chart, 401 governed attachment associations, 29 congressional bodies with exact committee-corpus artifacts, eight adjudicated movements and a typed gap board. Each package now opens as a wide reading room with curated routes, complete files and a package-scoped entity map that visibly separates exact joins from review-only Catalog mentions. Package browsing, attachment, coverage, movement and incompleteness remain separate evidence layers.",
+      "bluf": "The Government-Wide Research Hub brings every exact Catalog package card and the complete Registry shelf into the same navigable destination as the 650-node Federal Group chart, 409 governed attachment associations, 29 congressional bodies with exact committee-corpus artifacts, 19 adjudicated movements, a complete 509-order/1,725-route Executive Order spine and a typed gap board. Each package opens as a wide reading room with curated routes, complete files and a package-scoped entity map that visibly separates exact joins from review-only Catalog mentions. Package browsing, attachment, relationship, executive direction, movement and incompleteness remain separate evidence layers.",
       "evidence_cutoff": "2026-09-22T11:51:46-04:00",
-      "evidence_cutoff_note": "The authored movement registry contains eight adjudicated records through the stated research cutoff. Exact research attachments, complete Registry membership and typed gap projections are regenerated from their current named owners, with source hashes recorded at build time. Catalog entity labels remain review-only candidates. This is neither a live government-state feed, a second return queue nor the Government-Wide Source Monitor inbox.",
+      "evidence_cutoff_note": "The authored movement registry contains 19 adjudicated records through the stated research cutoff. Three movement records are linked to two explicit Chronicle executive-order operative routes; the remaining orders and routes retain their mapped assignments without being promoted into implementation. Exact research attachments, complete Registry membership and typed gap projections are regenerated from their current named owners, with source hashes recorded at build time. Catalog entity labels remain review-only candidates. This is neither a live government-state feed, a second return queue nor the Government-Wide Source Monitor inbox.",
       "use_note": "Use as the one browsing hub for saved government research, every registered file, the entity chart, committees, adjudicated movement and typed next checks. Reconcile already-completed research and exact custody before launching new searches. Follow every package, movement or gap to its controlling owner before citing facts. Catalog entity mentions are searchable but do not create chart attachments. Do not infer legal ownership from tree containment, admit raw monitor candidates, or treat Catalog registration as authorization for Chronicle promotion, a watch, Federal Group mutation, app/site shipment, commit or push.",
       "library_state": "current",
       "entities": [
@@ -9480,7 +11122,12 @@
         "home_room_id": "institutions",
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "federal-payments",
+          "tech-ai-science",
+          "tech-defense-drones",
+          "nuclear-energy-filings"
+        ]
       },
       "relationships": {
         "parent_id": null,
@@ -9495,21 +11142,21 @@
         ]
       },
       "material_counts": {
-        "total": 23,
+        "total": 27,
         "public_reading": 2,
         "public_machine_data": 0,
-        "private_library_metadata": 21
+        "private_library_metadata": 25
       },
       "research_layer_counts": {
         "orientation": 1,
         "findings": 0,
         "evidence": 0,
         "monitoring": 0,
-        "methods": 5,
+        "methods": 9,
         "presentation": 1,
         "supporting": 16
       },
-      "latest_computer_edit_at": "2026-09-30T12:41:10Z",
+      "latest_computer_edit_at": "2026-10-04T03:49:47Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-movement-atlas.html",
       "routes": {
@@ -9551,7 +11198,7 @@
         "home_room_id": "world",
         "home_room_url": "research-rooms/foreign-relations-world-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9628,7 +11275,9 @@
         "home_room_id": "world",
         "home_room_url": "research-rooms/foreign-relations-world-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": [
+          "tech-ai-science"
+        ]
       },
       "relationships": {
         "parent_id": null,
@@ -9706,7 +11355,7 @@
         "home_room_id": "world",
         "home_room_url": "research-rooms/foreign-relations-world-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9774,7 +11423,7 @@
         "home_room_id": "buildout",
         "home_room_url": "research-rooms/energy-data-centers-big-projects.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9851,7 +11500,8 @@
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [
           "Banking & the Dollar",
-          "Innovation"
+          "Innovation",
+          "Crypto & Digital Money"
         ]
       },
       "connected_context": {
@@ -9860,9 +11510,12 @@
         "home_room_url": "research-rooms/government-changes.html",
         "also_in": [
           "Banking & the Dollar",
-          "Innovation"
+          "Innovation",
+          "Crypto & Digital Money"
         ],
-        "machine_views": []
+        "dated_records": [
+          "stablecoin-filings"
+        ]
       },
       "relationships": {
         "parent_id": "government-hidden-control-surfaces-2026",
@@ -9945,7 +11598,7 @@
           "Banking & the Dollar",
           "Innovation"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -9968,7 +11621,7 @@
         "presentation": 0,
         "supporting": 70
       },
-      "latest_computer_edit_at": "2026-09-29T02:48:24Z",
+      "latest_computer_edit_at": "2026-10-03T19:57:54Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/government-hidden-control-surfaces-2026.html",
       "routes": {
@@ -9983,9 +11636,9 @@
       "research_id": "major-bank-digital-transition",
       "title": "Major Bank Digital Transition Map",
       "question": "Where is each major incumbent in the transition from research and roadmap to live money, assets, custody, settlement, collateral and publicly demonstrated recovery, including the quiet migration of retirement fund records and operating rails beneath conventional participant interfaces?",
-      "bluf": "Sixteen major incumbents are not converging on one bank-on-blockchain model. Fidelity adds a national-trust-bank digital custodian, the live FIDD stablecoin, a bounded FYOXX OnChain fund-share record, collateral accounts and a plan-sponsor-gated workplace retirement route. Its retirement reach is distribution leverage, not universal authority over plan menus or assets. The quiet retirement transition can occur beneath an unchanged participant interface: fund-share DLT, the plan trust's holding, the participant-benefit record and contribution or settlement cash are separate layers. Live Fidelity and Franklin fund-record models do not yet establish a tokenized U.S. workplace target-date fund or CIT, plan-level DLT record, or digital-cash benefit rail. No institution proves recurring scale plus public stress, correction, recovery and legacy retirement across all seven surfaces.",
-      "evidence_cutoff": "2026-09-26T16:37:25-04:00",
-      "evidence_cutoff_note": "Fidelity cohort, retirement-control and retirement DLT-rail expansion completed through 2026-09-26T16:37:25-04:00 after the second direct-source pass. Institution research establishes doctrine; announcements establish only the stated launch or transaction. Fund exposure, fund-share record, depository entitlement, plan-trust holding, participant-benefit record and cash rail retain separate authority and operating receipts.",
+      "bluf": "Sixteen major incumbents still are not converging on one bank-on-blockchain model. The October 3 recertification found real movement at the adapters: Citi expanded live tokenized deposits to seven markets and connected separate stablecoin and conventional instant-payment routes; Bank of America exposed active stablecoin, tokenized-deposit and post-trade construction; Deutsche Bank reported its first euro Partior transaction; and HSBC named a licensed but still-unissued HKD stablecoin. Issuer, deposit, reserve custody, official record and final settlement remain split, and no institution proves recurring scale plus public stress, correction, recovery and legacy retirement across all seven surfaces.",
+      "evidence_cutoff": "2026-10-03T10:20:00-04:00",
+      "evidence_cutoff_note": "All sixteen institution surfaces were recertified through 2026-10-03T10:20:00-04:00. Institution research establishes doctrine; official recruiting evidence establishes construction only; licences and product names do not establish issuance; and announcements establish only the stated launch or transaction. Legal claim, authoritative record, reserve custody, cash/finality and recovery retain separate clocks.",
       "use_note": "Use the institution-by-institution receipt matrix and keep parent, regulated subsidiary, account claim, authoritative record, network, CSD, custodian, settlement-money issuer and recovery authority separate. A paper, pilot, partnership or tokenized fund record does not establish workplace-plan adoption, recurring scale or direct token value capture.",
       "library_state": "current",
       "entities": [
@@ -10022,7 +11675,7 @@
         "also_in": [
           "Banking & the Dollar"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "tokenization-entity-control-map",
@@ -10031,10 +11684,10 @@
         "related_ids": []
       },
       "material_counts": {
-        "total": 11,
+        "total": 12,
         "public_reading": 1,
         "public_machine_data": 0,
-        "private_library_metadata": 10
+        "private_library_metadata": 11
       },
       "research_layer_counts": {
         "orientation": 1,
@@ -10043,9 +11696,9 @@
         "monitoring": 0,
         "methods": 0,
         "presentation": 0,
-        "supporting": 10
+        "supporting": 11
       },
-      "latest_computer_edit_at": "2026-09-27T16:34:44Z",
+      "latest_computer_edit_at": "2026-10-03T14:28:29Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/major-bank-digital-transition.html",
       "routes": {
@@ -10085,7 +11738,7 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -10148,7 +11801,7 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "private-monetary-stack",
@@ -10216,7 +11869,7 @@
         "home_room_id": "crypto",
         "home_room_url": "research-rooms/crypto-digital-money.html",
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": "tokenization-entity-control-map",
@@ -10254,9 +11907,9 @@
       "research_id": "federal-government-fiscal-year-close-delta-2026-09-30",
       "title": "Federal Government Fiscal-Year-Close Delta — September 26–30, 2026",
       "question": "What materially changed across official U.S. federal, committee and adjacent-institution sources after the September 25 close through the September 30 post-noon replay, and what did fiscal-year close actually prove?",
-      "bluf": "The September 30 surge is real but still procedure-, control- and implementation-heavy. Deeper site review added a sanctions-list action, a live student-loan default portal and Amtrak's Airo passenger-service launch; committee review found an FSOC budget vote, prediction-market information requests and a charter/meeting-notice batch; adjacent review found Farm Credit issuance and settlement, New York Fed operations and clearing-governance changes. The post-noon replay added SEC proposals, FSA's lagged official cohort-default-rate release, a resolved CFTC judgment and a noon New York Fed operation. None proves a government-wide final-day payment sweep, and later-day high-velocity surfaces remain provisional.",
+      "bluf": "The September 30 surge is real but still procedure-, control- and implementation-heavy. Deeper site review added a sanctions-list action, a live student-loan default portal and Amtrak's Airo passenger-service launch; committee review found an FSOC budget vote, prediction-market information requests and a charter/meeting-notice batch; adjacent review found Farm Credit issuance and settlement, New York Fed operations and clearing-governance changes. The post-noon replay added SEC proposals, FSA's lagged official cohort-default-rate release, a resolved CFTC judgment and a noon New York Fed operation. An October 2 boundary correction later recovered FHFA's OIG budget allocation, OCC's credit-concentration handbook replacement and FDIC's monitorship closure without moving the original cutoff. None proves a government-wide final-day payment sweep.",
       "evidence_cutoff": "2026-09-30T12:21:42-04:00",
-      "evidence_cutoff_note": "New search begins strictly after September 25 at 23:59:59 EDT. The morning monitor froze at 09:57:04 EDT and direct adjudication at 10:18 EDT; the site, committee and adjacent layers advanced the cutoff to 11:52:51 EDT. A healthy 89-route post-noon replay then closed the bounded research window at 12:21:42 EDT. Later-day high-velocity sources remain provisional.",
+      "evidence_cutoff_note": "New search begins strictly after September 25 at 23:59:59 EDT. The morning monitor froze at 09:57:04 EDT and direct adjudication at 10:18 EDT; the site, committee and adjacent layers advanced the cutoff to 11:52:51 EDT. A healthy 89-route post-noon replay then closed the bounded research window at 12:21:42 EDT. An October 2 correction preserves three September 30 native/date-only objects and their later recovery clocks; it does not move the frozen cutoff.",
       "use_note": "Use for the fixed fiscal-year-close delta, its three-stage direct-site, committee and adjacent-institution deepening, and the post-noon replay. Keep actor, publisher, signature, publication, effectiveness, recommendation, implementation, operation, ceiling, obligation, outlay, payment, settlement, delivery and acceptance separate. Later-day absence remains provisional after the bounded 12:21:42 EDT cursor.",
       "library_state": "current",
       "entities": [
@@ -10292,19 +11945,21 @@
         "home_room_id": null,
         "home_room_url": null,
         "also_in": [],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
         "rolled_into_id": null,
         "supersedes_ids": [],
-        "related_ids": []
+        "related_ids": [
+          "federal-monetary-economic-institutions-delta-2026-10-02"
+        ]
       },
       "material_counts": {
-        "total": 21,
+        "total": 22,
         "public_reading": 1,
         "public_machine_data": 0,
-        "private_library_metadata": 20
+        "private_library_metadata": 21
       },
       "research_layer_counts": {
         "orientation": 1,
@@ -10313,9 +11968,9 @@
         "monitoring": 0,
         "methods": 1,
         "presentation": 0,
-        "supporting": 8
+        "supporting": 9
       },
-      "latest_computer_edit_at": "2026-09-30T16:30:08Z",
+      "latest_computer_edit_at": "2026-10-02T20:04:13Z",
       "public_full_text": true,
       "full_text_url": "readings/packages/federal-government-fiscal-year-close-delta-2026-09-30.html",
       "routes": {
@@ -10360,7 +12015,7 @@
         "also_in": [
           "Released Records & Investigations"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -10425,7 +12080,8 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [
-          "Government Changes"
+          "Government Changes",
+          "Crypto & Digital Money"
         ]
       },
       "connected_context": {
@@ -10433,9 +12089,10 @@
         "home_room_id": "banking",
         "home_room_url": "research-rooms/banking-the-dollar.html",
         "also_in": [
-          "Government Changes"
+          "Government Changes",
+          "Crypto & Digital Money"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -10474,6 +12131,80 @@
       }
     },
     {
+      "research_id": "federal-monetary-economic-institutions-delta-2026-10-02",
+      "title": "Federal Monetary and Economic Institutions Delta — September 30 to October 2, 2026",
+      "question": "What materially changed across the federal monetary, prudential, securities, derivatives, systemic-risk and public-credit institutions after the September 30 post-noon close?",
+      "bluf": "The strongest new changes were narrow but real: the SEC made a one-commissioner quorum possible for a matter when every other sitting commissioner is disqualified; DTC proposed an API/message-queue and audit-trail modernization of the Direct Registration System; FRED introduced an MCP connector while the Board prepared selected data routing; CFTC staff extended Brexit continuity relief through the earlier of formal UK action or December 31, 2027; and NCUA liquidated an insolvent credit union through a partial purchase-and-assumption transaction. Aggregate eSLR measurements add early outcome evidence but remain speaker-attributed and nonreproducible from public firm-level data. Treasury's financial-literacy strategy is a roadmap, while URIF's named investment selections are board approvals without public amounts or draw receipts. The replay also corrected the September 30 package for FHFA, OCC and FDIC boundary objects without moving its frozen cutoff.",
+      "evidence_cutoff": "2026-10-02T15:39:30-04:00",
+      "evidence_cutoff_note": "The window starts strictly after September 30 at 12:21:42 p.m. ET with inclusive replay of date-only September 30 sources. The focused monitor selected 56 routes across 55 URLs, reached 53 and was blocked on three SEC routes; Federal Register/Public Inspection and exact issuer records supplied alternate custody. General tax, sanctions and statistical work was excluded unless it changed a covered institution's authority, finance, market or operating state.",
+      "use_note": "Use as the bounded September 30 boundary-to-October 2 receipt. Follow detailed DTC and Fed claims to the fed-clearing-treasury owner, and preserve adoption, publication, effectiveness, implementation, operation, payment and observed effect as separate clocks.",
+      "library_state": "current",
+      "entities": [
+        "U.S. Department of the Treasury",
+        "Board of Governors of the Federal Reserve System",
+        "Federal Reserve Bank of St. Louis",
+        "Office of the Comptroller of the Currency",
+        "Federal Deposit Insurance Corporation",
+        "National Credit Union Administration",
+        "Consumer Financial Protection Bureau",
+        "Federal Housing Finance Agency",
+        "Securities and Exchange Commission",
+        "Commodity Futures Trading Commission",
+        "Depository Trust Company",
+        "Financial Stability Oversight Council",
+        "Office of Financial Research",
+        "Export-Import Bank of the United States"
+      ],
+      "classification": {
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": []
+      },
+      "connected_context": {
+        "home_room": null,
+        "home_room_id": null,
+        "home_room_url": null,
+        "also_in": [],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": null,
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": [
+          "federal-government-fiscal-year-close-delta-2026-09-30",
+          "fed-clearing-treasury",
+          "economic-institution-legitimacy-crisis"
+        ]
+      },
+      "material_counts": {
+        "total": 11,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 10
+      },
+      "research_layer_counts": {
+        "orientation": 0,
+        "findings": 1,
+        "evidence": 1,
+        "monitoring": 0,
+        "methods": 1,
+        "presentation": 0,
+        "supporting": 8
+      },
+      "latest_computer_edit_at": "2026-10-02T20:13:21Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/federal-monetary-economic-institutions-delta-2026-10-02.html",
+      "routes": {
+        "summary": "library/federal-monetary-economic-institutions-delta-2026-10-02.html",
+        "manifest": "packages/federal-monetary-economic-institutions-delta-2026-10-02.json",
+        "report": "reports/federal-monetary-economic-institutions-delta-2026-10-02.html",
+        "full_text": "readings/packages/federal-monetary-economic-institutions-delta-2026-10-02.html",
+        "source_text": "reports/federal-monetary-economic-institutions-delta-2026-10-02.md"
+      }
+    },
+    {
       "research_id": "trump-criminal-indictments-primary-source-map-2023-2026",
       "title": "Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026",
       "question": "What did the four criminal indictments against Donald J. Trump actually charge, how did the count structures differ, what later rulings changed them, and what was the procedural state of each case by October 1, 2026?",
@@ -10509,7 +12240,7 @@
           "Citizenship, Voting & Immigration",
           "Released Records & Investigations"
         ],
-        "machine_views": []
+        "dated_records": []
       },
       "relationships": {
         "parent_id": null,
@@ -10541,6 +12272,71 @@
         "report": "reports/trump-criminal-indictments-primary-source-map-2023-2026.html",
         "full_text": "readings/packages/trump-criminal-indictments-primary-source-map-2023-2026.html",
         "source_text": "reports/trump-criminal-indictments-primary-source-map-2023-2026.md"
+      }
+    },
+    {
+      "research_id": "united-states-name-passport-typography-2026-10-04",
+      "title": "United States Name and Passport Typography — Legal-Entity Audit",
+      "question": "Does United States of America name a different legal entity from UNITED STATES OF AMERICA or UNITED STATES of AMERICA, particularly on a United States passport?",
+      "bluf": "United States of America and its all-capital or mixed-capital renderings do not identify separate legal entities. The passport's legal force comes from issuance by the Secretary of State under 22 U.S.C. § 211a; State's own commemorative-passport page describes in title case the wording shown in display capitals on the cover. Federal law can give United States different context-specific meanings, but scope language, definitions, actor and capacity do that work. The Tenth Circuit has expressly rejected the claimed legal split produced by all-capital naming. The 1871 Act incorporated the District of Columbia for municipal purposes, and 28 U.S.C. § 3002 defines United States only for the federal debt-collection chapter; neither creates an all-caps national corporation.",
+      "evidence_cutoff": "2026-10-04T12:00:00-04:00",
+      "evidence_cutoff_note": "Focused official-source review of the 2026 commemorative passport page, passport-issuance statute, National Archives Articles transcript, GPO production role, ICAO machine-readable-document standard, October 1 Tenth Circuit opinion, 28 U.S.C. § 3002 and the 1871 District of Columbia Organic Act. This is not a complete census of passport designs or all capitalization cases.",
+      "use_note": "Use to resolve capitalization and passport-cover claims. Preserve genuine actor, capacity and statutory-definition distinctions, but do not infer a second legal person from typography, abbreviations or machine-readable formatting.",
+      "library_state": "current",
+      "entities": [
+        "United States of America",
+        "U.S. Department of State",
+        "U.S. Government Publishing Office",
+        "District of Columbia",
+        "International Civil Aviation Organization"
+      ],
+      "classification": {
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ]
+      },
+      "connected_context": {
+        "home_room": "Government Changes",
+        "home_room_id": "institutions",
+        "home_room_url": "research-rooms/government-changes.html",
+        "also_in": [
+          "Citizenship, Voting & Immigration"
+        ],
+        "dated_records": []
+      },
+      "relationships": {
+        "parent_id": null,
+        "rolled_into_id": null,
+        "supersedes_ids": [],
+        "related_ids": []
+      },
+      "material_counts": {
+        "total": 1,
+        "public_reading": 1,
+        "public_machine_data": 0,
+        "private_library_metadata": 0
+      },
+      "research_layer_counts": {
+        "orientation": 0,
+        "findings": 1,
+        "evidence": 0,
+        "monitoring": 0,
+        "methods": 0,
+        "presentation": 0,
+        "supporting": 0
+      },
+      "latest_computer_edit_at": "2026-10-04T23:28:40Z",
+      "public_full_text": true,
+      "full_text_url": "readings/packages/united-states-name-passport-typography-2026-10-04.html",
+      "routes": {
+        "summary": "library/united-states-name-passport-typography-2026-10-04.html",
+        "manifest": "packages/united-states-name-passport-typography-2026-10-04.json",
+        "report": "reports/united-states-name-passport-typography-2026-10-04.html",
+        "full_text": "readings/packages/united-states-name-passport-typography-2026-10-04.html",
+        "source_text": "reports/united-states-name-passport-typography-2026-10-04.md"
       }
     }
   ]

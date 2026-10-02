@@ -8,7 +8,7 @@ updated: 2026-09-24
 canonical_for: chart-reading-output-shape
 reads_with:
   - 00 - Index/Reading the Charts — START HERE.md
-  - _Claude-Context/BOOT — Chart Reading.md
+  - _AI-Context/BOOT — Chart Reading.md
   - _Grok/How Katie reads — the full shelf.md
 ---
 

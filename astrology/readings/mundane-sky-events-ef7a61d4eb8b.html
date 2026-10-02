@@ -1,0 +1,212 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/mundane-sky-events-ef7a61d4eb8b.html">
+<title>mundane_sky_events</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>mundane_sky_events</h1><p class="mut">Portable source: 99 - Templates/mundane_sky_events.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Sky events for the Mundane Astrology section (Katie, 2026-10-03).
+
+Computes, with the vendored Swiss Ephemeris (swiss_ephemeris.py), every sky event the
+crossover matcher lines up against research dates:
+
+  lunation        New and Full Moons (with the eclipse flag when one falls on it)
+  eclipse         solar and lunar eclipses
+  ingress         Sun into Aries/Cancer/Libra/Capricorn (the season charts) and
+                  Jupiter-Pluto changing sign (including retrograde re-entries)
+  station         Mercury-Pluto turning retrograde or direct
+  aspect          exact conjunction, sextile, square, trine, opposition between
+                  Mars, Jupiter, Saturn, Uranus, Neptune and Pluto
+  conjunction     exact conjunctions of any two of Sun-Pluto (the conjunction charts),
+                  linked to the long-cycle radix when the pair has one
+  transit         Jupiter-Pluto exact conjunction/square/opposition to the key charts
+                  (the U.S. chart and the entity charts in Entity Theory)
+
+Read-only. Returns plain dicts; build_mundane_astrology.py caches them.
+&quot;&quot;&quot;
+from __future__ import annotations
+
+import json
+import math
+import os
+from datetime import datetime, timedelta, timezone
+
+import swiss_ephemeris  # sets the ephemeris path and refuses a silent Moshier fallback
+import swisseph as swe
+
+FLAGS = swiss_ephemeris.FLAGS
+HERE = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+SIGNS = [&quot;Aries&quot;, &quot;Taurus&quot;, &quot;Gemini&quot;, &quot;Cancer&quot;, &quot;Leo&quot;, &quot;Virgo&quot;, &quot;Libra&quot;, &quot;Scorpio&quot;, &quot;Sagittarius&quot;, &quot;Capricorn&quot;, &quot;Aquarius&quot;, &quot;Pisces&quot;]
+P = {&quot;Sun&quot;: swe.SUN, &quot;Moon&quot;: swe.MOON, &quot;Mercury&quot;: swe.MERCURY, &quot;Venus&quot;: swe.VENUS, &quot;Mars&quot;: swe.MARS, &quot;Jupiter&quot;: swe.JUPITER,
+     &quot;Saturn&quot;: swe.SATURN, &quot;Uranus&quot;: swe.URANUS, &quot;Neptune&quot;: swe.NEPTUNE, &quot;Pluto&quot;: swe.PLUTO}
+SLOW = [&quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;]
+ASPECTS = {0: &quot;conjunct&quot;, 60: &quot;sextile&quot;, 90: &quot;square&quot;, 120: &quot;trine&quot;, 180: &quot;opposite&quot;}
+KEY_CHARTS = {  # Entity Theory chart name -&gt; how the research side names it (for resonance)
+    &quot;United States&quot;: r&quot;\b(U\.S\.|United States|America|American)\b&quot;,
+    &quot;Congress&quot;: r&quot;\b(Congress|Senate|Speaker)\b|(?&lt;!White )\bHouse\b&quot;,
+    &quot;Supreme Court&quot;: r&quot;\b(Supreme Court|SCOTUS)\b&quot;,
+    &quot;Executive Office of the President&quot;: r&quot;\b(White House|President Trump|the President)\b&quot;,
+    &quot;Dept of the Treasury&quot;: r&quot;\b(Treasury|Bessent|IRS)\b&quot;,
+    &quot;The Federal Reserve System&quot;: r&quot;\b(Fed|Federal Reserve|FOMC|Powell|Warsh)\b&quot;,
+    &quot;SEC&quot;: r&quot;\b(SEC|Securities and Exchange)\b&quot;,
+    &quot;CFTC&quot;: r&quot;\b(CFTC|Commodity Futures)\b&quot;,
+    &quot;OCC&quot;: r&quot;\b(OCC|Comptroller)\b&quot;,
+    &quot;FDIC&quot;: r&quot;\bFDIC\b&quot;,
+    &quot;Dept of Justice&quot;: r&quot;\b(Justice Department|Department of Justice|DOJ|Attorney General)\b&quot;,
+    &quot;FBI&quot;: r&quot;\bFBI\b&quot;,
+    &quot;Dept of Homeland Security&quot;: r&quot;\b(Homeland Security|DHS|ICE)\b&quot;,
+    &quot;Dept of Defense&quot;: r&quot;\b(Pentagon|Defense|Department of War|Hegseth)\b&quot;,
+}
+POINTS = [&quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;]
+
+
+def jd_of(d: datetime) -&gt; float:
+    return swe.julday(d.year, d.month, d.day, d.hour + d.minute / 60 + d.second / 3600)
+
+
+def dt_of(jd: float) -&gt; datetime:
+    y, m, d, h = swe.revjul(jd)
+    return datetime(y, m, d, tzinfo=timezone.utc) + timedelta(hours=h)
+
+
+def lon(jd, body):
+    return swe.calc_ut(jd, P[body], FLAGS)[0][0]
+
+
+def spd(jd, body):
+    return swe.calc_ut(jd, P[body], FLAGS)[0][3]
+
+
+def wrap(x):
+    return (x + 180.0) % 360.0 - 180.0
+
+
+def roots(f, start, end, step, near=12.0):
+    &quot;&quot;&quot;Times where f crosses zero going either way, ignoring wrap-around jumps.&quot;&quot;&quot;
+    out, t, a = [], start, f(start)
+    while t &lt; end:
+        t2 = min(t + step, end)
+        b = f(t2)
+        if a == 0 or (a &lt; 0 &lt;= b or b &lt; 0 &lt;= a) and abs(a) &lt; near and abs(b) &lt; near:
+            lo, hi, fa = t, t2, a
+            for _ in range(40):
+                mid = (lo + hi) / 2
+                fm = f(mid)
+                if (fa &lt; 0) == (fm &lt; 0):
+                    lo, fa = mid, fm
+                else:
+                    hi = mid
+            out.append((lo + hi) / 2)
+        t, a = t2, b
+    return out
+
+
+def ev(kind, jd, label, weight, **extra):
+    d = dt_of(jd)
+    return {&quot;kind&quot;: kind, &quot;date&quot;: d.date().isoformat(), &quot;utc&quot;: d.strftime(&quot;%Y-%m-%dT%H:%MZ&quot;), &quot;label&quot;: label, &quot;weight&quot;: weight, **extra}
+
+
+def sign_of(x):
+    return SIGNS[int(x // 30) % 12]
+
+
+def deg(x):
+    return f&quot;{int(x % 30)}°{int(round((x % 1) * 60)):02d}&#x27; {sign_of(x)}&quot;
+
+
+def compute(start: str, end: str) -&gt; list[dict]:
+    a = jd_of(datetime.fromisoformat(start))
+    b = jd_of(datetime.fromisoformat(end))
+    events = []
+    # eclipses
+    eclipse_dates = {}
+    t = a
+    while True:
+        r, tret = swe.sol_eclipse_when_glob(t, FLAGS, 0)
+        if tret[0] &gt; b:
+            break
+        kind = &quot;total&quot; if r &amp; swe.ECL_TOTAL else &quot;annular&quot; if r &amp; swe.ECL_ANNULAR else &quot;hybrid&quot; if r &amp; getattr(swe, &quot;ECL_ANNULAR_TOTAL&quot;, 32) else &quot;partial&quot;
+        s = lon(tret[0], &quot;Sun&quot;)
+        e = ev(&quot;eclipse&quot;, tret[0], f&quot;{kind.title()} solar eclipse in {sign_of(s)}&quot;, 5, sign=sign_of(s), position=deg(s))
+        events.append(e); eclipse_dates[e[&quot;date&quot;]] = e[&quot;label&quot;]
+        t = tret[0] + 20
+    t = a
+    while True:
+        r, tret = swe.lun_eclipse_when(t, FLAGS, 0)
+        if tret[0] &gt; b:
+            break
+        kind = &quot;total&quot; if r &amp; swe.ECL_TOTAL else &quot;partial&quot; if r &amp; swe.ECL_PARTIAL else &quot;penumbral&quot;
+        m = lon(tret[0], &quot;Moon&quot;)
+        e = ev(&quot;eclipse&quot;, tret[0], f&quot;{kind.title()} lunar eclipse in {sign_of(m)}&quot;, 5 if kind != &quot;penumbral&quot; else 4, sign=sign_of(m), position=deg(m))
+        events.append(e); eclipse_dates[e[&quot;date&quot;]] = e[&quot;label&quot;]
+        t = tret[0] + 20
+    # lunations
+    elong = lambda jd: wrap(lon(jd, &quot;Moon&quot;) - lon(jd, &quot;Sun&quot;))
+    for jd in roots(elong, a, b, 0.5, near=40):
+        m = lon(jd, &quot;Moon&quot;)
+        e = ev(&quot;lunation&quot;, jd, f&quot;{sign_of(m)} New Moon&quot;, 3, phase=&quot;new&quot;, sign=sign_of(m), position=deg(m))
+        if e[&quot;date&quot;] in eclipse_dates: e[&quot;eclipse&quot;] = eclipse_dates[e[&quot;date&quot;]]; e[&quot;weight&quot;] = 5
+        events.append(e)
+    for jd in roots(lambda j: wrap(elong(j) - 180), a, b, 0.5, near=40):
+        m = lon(jd, &quot;Moon&quot;)
+        e = ev(&quot;lunation&quot;, jd, f&quot;{sign_of(m)} Full Moon&quot;, 3, phase=&quot;full&quot;, sign=sign_of(m), position=deg(m))
+        if e[&quot;date&quot;] in eclipse_dates: e[&quot;eclipse&quot;] = eclipse_dates[e[&quot;date&quot;]]; e[&quot;weight&quot;] = 5
+        events.append(e)
+    # ingresses
+    for body in [&quot;Sun&quot;] + SLOW:
+        for k in range(12):
+            if body == &quot;Sun&quot; and k not in (0, 3, 6, 9):
+                continue
+            for jd in roots(lambda j, k=k: wrap(lon(j, body) - 30 * k), a, b, 1.0, near=8):
+                into = SIGNS[k]; retro = spd(jd, body) &lt; 0
+                if body == &quot;Sun&quot;:
+                    events.append(ev(&quot;ingress&quot;, jd, f&quot;Sun enters {into} (the {into} ingress, a season chart)&quot;, 4, body=body, sign=into, season=True))
+                else:
+                    events.append(ev(&quot;ingress&quot;, jd, f&quot;{body} {&#x27;retrogrades back into&#x27; if retro else &#x27;enters&#x27;} {into}&quot;, 4, body=body, sign=into))
+    # stations
+    for body in [&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;] + SLOW:
+        for jd in roots(lambda j: spd(j, body), a, b, 1.0, near=99):
+            turning = &quot;retrograde&quot; if spd(jd + 1, body) &lt; 0 else &quot;direct&quot;
+            w = 3 if body in [&quot;Mars&quot;] + SLOW else 2
+            events.append(ev(&quot;station&quot;, jd, f&quot;{body} stations {turning} at {deg(lon(jd, body))}&quot;, w, body=body, turning=turning))
+    # exact aspects among Mars and the slow planets
+    heavy = [&quot;Mars&quot;] + SLOW
+    for i, p1 in enumerate(heavy):
+        for p2 in heavy[i + 1:]:
+            for angle, name in ASPECTS.items():
+                targets = [angle] if angle in (0, 180) else [angle, -angle]
+                for tg in targets:
+                    for jd in roots(lambda j: wrap(lon(j, p1) - lon(j, p2) - tg), a, b, 1.0, near=6):
+                        w = 4 if p1 != &quot;Mars&quot; else 3
+                        kind = &quot;conjunction&quot; if angle == 0 else &quot;aspect&quot;
+                        events.append(ev(kind, jd, f&quot;{p1} {name} {p2}&quot;, w, pair=[p1, p2], aspect=name, position=deg(lon(jd, p1))))
+    # conjunction charts: every exact conjunction of Sun-Pluto bodies not already covered
+    fast = [&quot;Sun&quot;, &quot;Mercury&quot;, &quot;Venus&quot;]
+    for i, p1 in enumerate(fast):
+        for p2 in [x for x in POINTS if x not in (&quot;Moon&quot;,) and POINTS.index(x) &gt; POINTS.index(p1)]:
+            for jd in roots(lambda j: wrap(lon(j, p1) - lon(j, p2)), a, b, 0.5, near=8):
+                w = 2 if p2 in SLOW else 1
+                events.append(ev(&quot;conjunction&quot;, jd, f&quot;{p1} conjunct {p2}&quot;, w, pair=[p1, p2], aspect=&quot;conjunct&quot;, position=deg(lon(jd, p1))))
+    # transits to the key charts
+    charts = json.load(open(os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Entity Theory&quot;, &quot;entity_charts.json&quot;), encoding=&quot;utf-8&quot;))[&quot;charts&quot;]
+    for name in KEY_CHARTS:
+        c = charts.get(name) or {}
+        pos = {row[0]: row[4] for row in (c.get(&quot;rec&quot;) or {}).get(&quot;pos&quot;, []) if isinstance(row, list) and len(row) &gt; 4 and row[0] in POINTS}
+        if (c.get(&quot;rec&quot;) or {}).get(&quot;asc&quot;) is not None:
+            pos[&quot;Ascendant&quot;] = c[&quot;rec&quot;][&quot;asc&quot;]
+        for natal_body, natal in pos.items():
+            for tbody in SLOW:
+                for angle, aname in ((0, &quot;conjunct&quot;), (90, &quot;square&quot;), (180, &quot;opposite&quot;)):
+                    for tg in ([angle] if angle in (0, 180) else [angle, -angle]):
+                        for jd in roots(lambda j: wrap(lon(j, tbody) - natal - tg), a, b, 1.0, near=6):
+                            w = 4 if name == &quot;United States&quot; and tbody != &quot;Jupiter&quot; else 3 if tbody != &quot;Jupiter&quot; else 2
+                            events.append(ev(&quot;transit&quot;, jd, f&quot;{tbody} {aname} the {name.removeprefix(&#x27;The &#x27;)} chart&#x27;s {natal_body}&quot;, w,
+                                             chart=name, natal=natal_body, body=tbody, aspect=aname, resonance=KEY_CHARTS[name]))
+    events.sort(key=lambda e: e[&quot;utc&quot;])
+    return events
+</pre></main></body></html>

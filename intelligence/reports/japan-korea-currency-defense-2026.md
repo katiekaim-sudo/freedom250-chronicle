@@ -1,0 +1,18 @@
+# Japan–Korea Currency Defense — July and August 2026 evidence
+
+Read the maintained Chronicle currency-defense answer first. It combines the institutional explanation with the separately dated July reports and saved August official outcomes.
+
+## Supporting investigations
+
+- Classification claim audit — Ten claims separating de facto arrangement labels, intervention authority, manipulation and price.
+- Event clock and research questions — Original observation clocks, later outcomes and unresolved settlement/disclosure evidence.
+- Source ledger — Primary authority documents, provisional reporting and dated correction sources.
+- U.S. EUR/JPY operation evidence — The reported euro leg, Treasury/ESF and FOMC/SOMA distinctions, reserve values and outstanding transaction records.
+
+## Research history and neighboring studies
+
+The original July 31 overlap study remains intact as history, with a controlling successor. July 30 New York reporting and the official July 31 U.S. Eastern date remain unreconciled; the aggregate is not a daily amount.
+
+Continue to the separate stablecoin and crypto study for the KRW-USDT/KRW-BTC probe and digital-money authority map. Price transmission does not establish capital flight or an intervention rail.
+
+The frozen JPY and KRW Currency Watch grades remain unchanged. No new watch or external refresh is implied by this consolidation.

@@ -5,7 +5,7 @@ research. The compatibility identity `federal-government-movement-atlas`, the
 package directory and the generated HTML filename remain stable. The hub keeps
 the Research Desk Catalog as the package-library authority, the live Federal
 Group as the topology authority, and each research system as the owner of its
-own records. It presents seven coordinated views without merging their meaning:
+own records. It presents eight coordinated views without merging their meaning:
 
 1. every exact Catalog package card plus the complete Registry shelf for that
    research identity;
@@ -16,7 +16,9 @@ own records. It presents seven coordinated views without merging their meaning:
    stable `body_id`, shown only for a selected node or directory entry;
 6. already adjudicated before/after movements from the authored movement
    registry; and
-7. typed gaps and exact next-check conditions projected from their existing
+7. the Chronicle's complete executive-order map as a directive spine, with
+   adjudicated movement receipts attached to the exact operative path; and
+8. typed gaps and exact next-check conditions projected from their existing
    owners without turning them into one generic watch list.
 
 The entity chart covers all 650 Federal Group nodes. Thirty-one exact tree
@@ -47,7 +49,9 @@ council product into state adoption, procurement, deployment or operation.
 4. `COVERAGE_GAP_POLICY.json` — owners, selection rules, review order and
    not-a-gap boundaries for the gap board.
 5. `MOVEMENT_REGISTRY.json` — the small authored registry of adjudicated
-   movements and exact future evidence gates.
+   movements and exact future evidence gates. Optional `executive_order_refs`
+   attach a movement to one Chronicle-owned EO operative route without turning
+   the order itself into proof of implementation.
 6. `generated/ENTITY_TOPOLOGY.json` — generated projection of the live Federal
    Group hierarchy plus exact stable-body-ID bindings from the governed
    relationship projection. Do not hand-edit.
@@ -125,6 +129,13 @@ A structural blank, archive shelf state, unmatched private or foreign actor,
 or committee that has not been selected for a plotline-led scan is not silently
 promoted into a research assignment.
 
+**EO spine** reads every curated Chronicle executive-order entity map and
+requires every operative route to carry an explicit durable directive ID. The
+default view shows orders with
+adjudicated downstream movement; search reaches the complete order set. A
+signed directive, a published report, agency implementation, operation and
+observed effect remain separate clocks.
+
 ## Authority boundary
 
 - The Chronicle's live Federal Group view owns institutional topology.
@@ -141,7 +152,8 @@ promoted into a research assignment.
 - `ATTACHMENT_POLICY.json` owns the declared research sources and exact join
   rules. Generated attachments remain projections of their named owners.
 - `MOVEMENT_REGISTRY.json` owns only the cross-package entity/role join and the
-  concise before/after transition representation.
+  concise before/after transition representation, including exact references
+  from adjudicated movements to Chronicle-owned EO operative routes.
 - `COVERAGE_GAP_POLICY.json` owns only gap-projection rules. The records it
   projects keep their original owners and do not become a second queue.
 - Generated JSON and HTML are projections. Rebuild them; never hand-edit them.

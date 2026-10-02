@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """build_charter_astro.py — charts for The Charter Queue (charter_astro.json).
 
-Copied from build_castration_astro.py per _Claude-Context/PATTERN — Timeline Machine Build.md.
+Copied from build_castration_astro.py per _AI-Context/PATTERN — Timeline Machine Build.md.
 
 Time convention (Katie's ruling, feedback_event_chart_time_convention, refined 2026-07-11):
   1. an ACTUAL STATED TIME wins            -> that hour, D.C. local   (seed "time" field)

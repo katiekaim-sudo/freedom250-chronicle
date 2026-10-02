@@ -1,0 +1,773 @@
+# Japan Monetary Constitution — System-Wide Transaction Walks and Thesis Ruling, September 14, 2026
+
+## Bottom line
+
+The Japan project supports the Observatory's monetary thesis, but in a narrower
+and more interesting form than a simple story of centralized control or money
+replacement.
+
+Japan is undergoing **constitutional refactoring without monetary succession**.
+The state and regulated private institutions are changing who prices duration,
+who receives interest, which balance sheet holds collateral, how payments are
+coordinated and where programmable controls sit. Yet the decisive domestic
+anchors remain remarkably stable:
+
+- the Diet authorizes public finance;
+- MOF issues JGBs and decides foreign-exchange intervention;
+- the BOJ Policy Board decides monetary policy;
+- BOJ-NET records wholesale yen finality and JGB title;
+- commercial banks remain the dominant issuers of public deposit money;
+- DICJ/FSA/public-law processes govern protected failure states; and
+- the BOJ supplies emergency liquidity without ordinarily becoming the
+  absorber of private solvency loss.
+
+The balance sheets are not static. The BOJ's fiscal-2025 assets contracted by
+¥66.742 trillion; interest on excess reserves more than doubled to ¥2.710
+trillion; the BOJ's payment to the government fell by ¥0.321 trillion; public
+debt and interest expense continued on their own upward clocks; private banks,
+pensions, insurers, firms and households began absorbing different parts of
+the rate and duration transition; and the Foreign Exchange Fund continued
+material intervention activity. Those are observable reallocations of income,
+risk and state capacity. They are not evidence that the yen has a new issuer or
+that Japan's system is insolvent.[^1][^2]
+
+The digital transition is equally real and equally bounded. Project Agorá
+completed real-value transactions; the Indonesia–Japan QR corridor is in
+production; DCJPY completed a one-bank DVP field test; Swift is preparing bank
+pilots; and the BOJ is testing central-bank balances on DLT. But external RTGS,
+bank core ledgers, BOJ-NET and statutory securities registers still control the
+underlying claim, funding or finality in the cases examined. Retail CBDC is the
+one proposal that would change a holder's debtor to the BOJ, and Japan has not
+decided to issue it.[^3][^4]
+
+The overall ruling is therefore:
+
+| Proposition | Ruling | Confidence |
+|---|---|---|
+| Interfaces can federate while claim definition and finality remain concentrated | **Strongly supported** | High |
+| Normalization is redistributing income, duration, collateral and contingent burden | **Supported** | High |
+| Private institutions are taking more marginal pricing and first-loss risk | **Supported** | High |
+| Public institutions retain the decisive authority to classify and bridge systemic failure | **Strongly supported** | High |
+| A new digital money is replacing bank deposits or the yen's existing public anchor | **Not supported** | High |
+| Japan is presently in a financial or sovereign funding crisis | **Not supported** | High |
+| Japan is in an established legitimacy crisis | **Not established** | Moderate-high |
+| Japan is experiencing legitimacy pressure around unequal protection, burden and institutional role | **Plausible, bounded inference** | Moderate |
+
+The strongest phrase for the whole is:
+
+> **Plural risk-bearing inside public finality.**
+
+The private and international perimeter is expanding, but the capacity to make
+a yen payment final, define a protected claim, mobilize top-grade collateral,
+correct the system after failure and decide when private loss becomes public
+continuity remains public or tightly regulated.
+
+**Cutoff:** synthesis over official-source Layers 0–8 through **2026-09-15
+01:11 JST / 2026-09-14 12:11 EDT**. This is a factual Research Desk synthesis,
+not a forecast, a canonical watch addition or an astrology interpretation.
+
+## 1. What the transaction proof must preserve
+
+Every walk uses the invariant established in the research design:
+
+`AUTHORITY -> ISSUER -> CLAIM -> BALANCE SHEET -> LEDGER -> OPERATOR -> LIQUIDITY -> FINALITY -> CORRECTION -> LOSS ABSORBER`
+
+For each balance-sheet event:
+
+`OPENING POSITION -> FLOW -> CLOSING POSITION -> VALUATION -> FUNDING -> COLLATERAL -> CONTINGENT BACKSTOP`
+
+The project fails if it uses one word—“payment,” “money,” “state,” “market,”
+“token” or “backstop”—to erase those distinctions.
+
+## 2. Walk 1 — an ordinary small-value yen payment after hours
+
+### Starting state
+
+- Payer holds a deposit at Bank A.
+- Payee holds a deposit at Bank B.
+- Both banks connect to the Zengin System, directly or through the permitted
+  participant structure.
+- The payment is below the large-value RTGS threshold and is sent through More
+  Time outside ordinary business hours.
+- The customer-visible service operates continuously, but interbank net
+  settlement remains a separate business-day event.[^5]
+
+### End-to-end chain
+
+1. **Customer authority.** Payer authenticates and instructs Bank A. This is
+   private contractual authority, not central-bank authority.
+2. **Bank acceptance.** Bank A checks funds, sanctions/fraud controls and
+   operational limits.
+3. **Payer booking.** Bank A debits or earmarks the payer's deposit. The payer's
+   asset and Bank A's liability fall.
+4. **Zengin message.** Zengin routes the credit-transfer instruction to Bank B.
+   The network message is not a transfer of BOJ reserves.
+5. **Payee availability.** Bank B credits the payee or makes funds usable under
+   its rules. Bank B's deposit liability rises.
+6. **Interbank position.** Bank A owes and Bank B is owed through the Zengin
+   clearing structure. The customer state can now look complete while the
+   wholesale position remains pending.
+7. **Risk controls.** Net-debit caps, collateral and participant rules contain
+   the unsettled exposure. The exact collateral/mutualization pathway depends
+   on the transfer class and participant state.
+8. **BOJ settlement.** On the applicable business-day schedule, Zengin sends
+   the net settlement position. BOJ-NET debits and credits BOJ current accounts.
+9. **Finality.** The interbank yen obligation becomes final when the BOJ
+   confirms and enters the current-account transfer.[^6]
+10. **Reconciliation.** Bank A, Bank B and Zengin reconcile customer, scheme and
+    BOJ records.
+
+### Balance-sheet movement
+
+For a single ¥100 payment, before considering other offsetting payments:
+
+| Balance sheet | Opening | Customer-facing booking | Interbank settlement | Closing |
+|---|---|---|---|---|
+| Payer | Bank A deposit ¥100 | Deposit -¥100 | No BOJ account | Deposit lower by ¥100 |
+| Bank A | Deposit liability ¥100; BOJ balance | Liability -¥100; Zengin payable +¥100 | BOJ balance -net amount; payable discharged | Lower customer liability and reserve position |
+| Bank B | BOJ balance; no payee liability | Zengin receivable +¥100; deposit liability +¥100 | BOJ balance +net amount; receivable discharged | Higher customer liability and reserve position |
+| Payee | No new asset | Bank B deposit +¥100 | No BOJ account | Deposit asset +¥100 |
+
+Net settlement means BOJ balances may move by less than the gross ¥100 after
+other transfers are offset. The customer deposit never becomes a BOJ liability
+to the customer.
+
+### Failure forks
+
+- **Before Bank A acceptance:** no completed payment; customer retains claim
+  subject to bank-book accuracy.
+- **After payee credit but before BOJ settlement:** Zengin collateral,
+  liquidity-bank and mutualized rules decide interbank continuity.
+- **After BOJ finality:** the original interbank transfer cannot simply be
+  canceled. Fraud or mistake becomes compensation, restitution or a new
+  correcting payment.
+- **Bank B later fails:** payee owns a Bank B deposit; payment-deposit status and
+  deposit-insurance rules control protection.
+
+### What this proves
+
+The interface is 24/7; final wholesale settlement is not. User availability is
+distributed across banks, messaging is private, risk is mutualized, and final
+yen settlement remains concentrated at BOJ-NET. This is the production version
+of “many doors, few finality rooms.”
+
+## 3. Walk 2 — a new JGB is issued, traded, financed and later matures
+
+### Phase A — public authorization and issue
+
+1. **Diet authority.** Budget and statutory authority permit borrowing; this is
+   the constitutional source of the public obligation.
+2. **MOF financing decision.** MOF selects issue, maturity, amount and auction
+   terms within the financing program.
+3. **BOJ agency operation.** The BOJ accepts bids and performs fiscal-agent
+   operations. It does not thereby become issuer or initial buyer.
+4. **Auction allocation.** Primary dealers and other eligible bidders acquire
+   obligations to pay.
+5. **Cash settlement.** Dealer BOJ current-account balances fall and the
+   government's account position rises through the fiscal-agent structure.
+6. **Title.** BOJ JGB Services records the new holder position in the statutory
+   book-entry system.
+7. **Closing public position.** Government debt rises; government cash/funding
+   rises; investors hold a sovereign claim.[^7]
+
+### Phase B — secondary trade and repo
+
+8. **Market execution.** Holder sells or repos the JGB. Trade agreement does not
+   itself move statutory title.
+9. **Clearing.** If JSCC clears the OTC transaction, novation and margin/default
+   rules introduce a CCP between counterparties.
+10. **Liquidity and collateral.** A repo converts JGB title or control into a
+    temporary yen funding position. Haircut, margin and maturity determine the
+    balance-sheet effect.
+11. **DVP.** BOJ-NET conditions JGB transfer on yen transfer. BOJ's title and
+    current-account records supply the two final legs.
+12. **After settlement.** Buyer or cash lender holds the JGB position; seller or
+    cash borrower holds yen and a delivery/repayment duty according to the
+    transaction.
+
+### Phase C — BOJ purchase or private absorption
+
+13. **BOJ secondary purchase, if scheduled.** The BOJ buys an existing JGB from
+    a market counterparty under a Policy Board framework. BOJ assets rise by the
+    JGB and its current-account liabilities rise by the settlement amount. The
+    government's outstanding debt does not change at that moment.
+14. **Runoff/normalization.** As BOJ purchase flow declines and holdings mature,
+    private investors must set more of the marginal price and absorb more
+    duration or the government must adapt issuance.
+15. **MOF response.** The fiscal-2026 plan reduced very-long issuance relative
+    to the prior initial plan as traditional long-duration demand weakened.
+    Recent benchmark auctions nevertheless remained covered.[^8]
+
+### Phase D — maturity
+
+16. **Government obligation.** MOF must fund principal and interest through
+    revenue, cash balance or new borrowing. A maturity is not canceled because
+    the BOJ holds it.
+17. **Payment and extinguishment.** Government funds flow through BOJ agency;
+    the holder receives yen; the JGB title is extinguished.
+18. **If BOJ is holder.** BOJ JGB assets fall and the corresponding government/
+    reserve-account mechanics reduce or recompose BOJ liabilities according to
+    the settlement funding path.
+
+### Failure forks
+
+- **Weak auction:** price/yield changes or MOF adapts supply; it is not default.
+- **Dealer funding stress:** repo, collateral and BOJ facilities can bridge
+  liquidity; dealer equity/creditors still bear solvency loss.
+- **JSCC member default:** defaulter resources, JSCC capital and survivor funds
+  absorb loss while liquidity facilities preserve scheduled settlement.
+- **BOJ market-stability purchase:** the BOJ takes market exposure but does not
+  erase the sovereign obligation or every private loss.
+
+### What this proves
+
+JGBs join fiscal authority, private price discovery, public title, central-bank
+settlement and emergency collateral. BOJ runoff is not “the state leaving the
+market.” It moves marginal duration and price risk outward while the public
+record and backstop remain. The result is private risk-bearing inside public
+finality.
+
+## 4. Walk 3 — yen-buying foreign-exchange intervention
+
+### Starting distinctions
+
+- MOF decides intervention under Japan's foreign-exchange authority.
+- The BOJ acts as MOF's agent.
+- FEFSA is the government's foreign-asset and intervention account.
+- Dealer transaction, BOJ settlement, monthly aggregate disclosure and later
+  public accounting have different timestamps.[^9]
+
+### End-to-end chain
+
+1. **Policy judgment.** MOF determines that intervention should occur. A BOJ
+   monetary-policy decision is not required merely because the BOJ executes it.
+2. **Instruction.** MOF instructs the BOJ as fiscal/FX agent.
+3. **Market trade.** BOJ dealing operation buys yen and sells a foreign currency
+   with market counterparties. Dealer confirmation establishes the trade, not
+   final settlement.
+4. **Foreign leg.** FEFSA foreign-currency cash or other reserve assets fall, or
+   a preparatory funding transaction changes the FEFSA asset/liability mix.
+5. **Yen leg.** Counterparty yen balances are delivered into the government/
+   FEFSA settlement path. BOJ current-account balances of settlement banks
+   change.
+6. **Finality.** Yen settlement becomes final in BOJ money; foreign-leg finality
+   follows its own correspondent, central-bank or PvP path.
+7. **Accounting.** FEFSA records the disposal of foreign assets, acquisition of
+   yen/cash effect and any valuation or realized result under its rules.
+8. **Disclosure.** MOF publishes aggregate intervention amounts; direction,
+   currencies and exact trade-date allocation may be disclosed on different
+   schedules.
+
+### Simplified balance sheets
+
+```text
+FEFSA / government
+  foreign reserve asset -FX value
+  yen cash / extinguished yen funding +¥value
+
+market counterparty
+  yen asset -¥value
+  foreign-currency asset +FX value
+
+BOJ
+  executes and settles as agent
+  does not become policy principal merely by operating the trade
+```
+
+The April–June 2026 record confirms ¥11.735 trillion of yen buying. Later
+aggregate intervention is material, but the latest monthly total reviewed did
+not yet establish direction at the project cutoff. The unanswered allocation
+must remain unanswered.[^2][^9]
+
+### Failure and stress forks
+
+- **Trade executed, foreign leg delayed:** principal and settlement risk depend
+  on the actual settlement route.
+- **Intervention fails to move the exchange rate durably:** operational success
+  is not policy success.
+- **Repeated intervention reduces liquid reserve composition:** FEFSA funding,
+  valuation and collateral choices change; that is a government balance-sheet
+  issue, not automatically a BOJ monetary-policy loss.
+- **Global dollar shortage:** BOJ swap-backed dollar facilities can support
+  banks separately; that does not transform MOF into the lender.
+
+### What this proves
+
+“Japan intervened” compresses four actors and multiple books. Authority is with
+MOF, execution and yen finality pass through the BOJ, foreign assets sit in
+FEFSA, and private counterparties make the market. This is embedded agency, not
+unitary state action.
+
+## 5. Walk 4 — a programmable yen payment
+
+There is no single “digital yen” transaction. The claim must be identified
+before the interface can be walked.
+
+### Gate zero — classify the instrument
+
+| Instrument | Holder's claim | Debtor | Decisive record | Failure regime | State at cutoff |
+|---|---|---|---|---|---|
+| DCJPY | Payment deposit | Issuing bank | Bank ledger plus DCP representation | Bank/deposit resolution plus platform reconciliation | One-bank field test; cross-bank design open |
+| JPYSC | Trust beneficiary claim | Trust structure | Trust books, chain and redemption record | Segregated trust assets/contract; no deposit insurance | Live but closed-loop and small |
+| Retail CBDC | Proposed direct BOJ liability | BOJ | Proposed BOJ ledger | Not enacted | Pilot; no issuance decision |
+| Agorá tokenized deposit | Issuing-bank deposit | Participating bank | Bank core record plus platform state | Bank/jurisdiction/platform rules | Real-value controlled test |
+| Agorá tokenized reserve | Central-bank account liability | Participating central bank | Central-bank/RTGS record plus platform state | Jurisdiction/platform rules | Real-value controlled test |
+| Swift ledger deposit | Issuing-bank funded commitment/deposit | Issuing bank | Bank books plus shared ledger | Bank/platform/existing settlement | Initial controlled use preparing |
+
+### Walk 4A — DCJPY securities DVP within one issuing bank
+
+1. User holds an ordinary deposit at the issuing bank.
+2. Bank debits or earmarks ordinary deposit and issues equivalent DCJPY.
+3. DCP platform records the token position; debtor remains the bank.
+4. Securities and cash instructions are matched and locked.
+5. Smart-contract workflow makes token delivery conditional on the securities
+   leg under the test arrangement.
+6. Recipient can hold DCJPY or redeem; redemption burns/reduces token and
+   credits an ordinary bank deposit.
+7. Issuing bank's total deposit liability may change form within its books
+   without creating a BOJ liability to the user.[^4]
+
+Failure before completion returns to bank-deposit classification, platform
+reconciliation and securities-title law. The one-bank test does not prove how a
+cross-bank issuer change settles.
+
+### Walk 4B — JPYSC issuance and redemption
+
+1. Customer pays yen into the permitted service route.
+2. Trust structure receives reserve assets; tokenholder obtains a trust
+   beneficiary claim represented on-chain.
+3. Up to the legally permitted share of reserve can be held in qualifying short
+   sovereign paper or term deposits rather than only demand deposits.
+4. A transfer changes the on-chain holder/control state, not the identity of the
+   BOJ or a bank as issuer of the reserve asset.
+5. On redemption, trustee/operator realizes liquid reserve and pays yen through
+   banking rails; token is canceled.
+6. If reserve market value is short, contribution and trust rules apply; the
+   tokenholder has no deposit-insurance claim merely because the unit is ¥1.[^10]
+
+### Walk 4C — Project Agorá cross-border tokenized deposit
+
+1. Originating bank earmarks or books customer deposit funds in its core system.
+2. Central-bank reserve token is funded through an external RTGS transfer.
+3. Platform creates tokenized commercial-bank and central-bank representations
+   without changing the legal debtor.
+4. Conditional workflow executes the cross-border sequence and can coordinate
+   FX/payment legs.
+5. In the July 2026 controlled run, actual value moved, including yen, but
+   external RTGS and bank-core systems remained outside the prototype.
+6. Redemption/closing returns the platform representation to the incumbent
+   account record.[^3]
+
+If platform and external ledger diverge, legal finality and loss depend on the
+bank/central-bank record, operator rulebook and jurisdiction. The real-value
+test proved movement, not a universal insolvency constitution.
+
+### What this proves
+
+Programmability is becoming a control layer over regulated liabilities. It can
+change when funds are reserved, which conditions release them, who sees shared
+state and how quickly a cross-border instruction completes. It does not by
+itself change debtor, reserve asset, statutory title or public backstop.
+
+## 6. Walk 5 — a bank/FMI failure crosses the public boundary
+
+### Scenario
+
+A large Japanese banking group suffers a severe asset loss and operational
+stress. It is a Zengin participant and JSCC clearing member. Customer deposits,
+payment obligations and JGB positions must continue while the group cannot
+remain viable unaided.
+
+### Stage A — private and operational response
+
+1. Bank uses own liquid assets, market funding and eligible BOJ collateralized
+   facilities.
+2. Operational continuity procedures preserve critical systems.
+3. Zengin and JSCC contain participant exposure through limits, collateral,
+   margin and default procedures.
+4. Shareholder equity and internal loss-absorbing capacity take the first
+   economic hit.
+
+### Stage B — liquidity bridge
+
+5. A temporary accidental payment shortage can qualify for Article 37 lending.
+6. If systemic risk is likely and no alternative to central-bank money exists,
+   government can request Article 38 support and the BOJ Policy Board can decide
+   under its published principles.[^11]
+7. BOJ books a loan asset; bank books a repayment liability. Liquidity preserves
+   time and settlement but is not intended to compensate the bank's losses.[^12]
+
+### Stage C — resolution and continuity
+
+8. FSA determines private/group alternatives are insufficient and triggers
+   internal TLAC where the framework applies.
+9. Subsidiary loss moves to the domestic resolution holding company; internal
+   TLAC is written down or converted.
+10. Prime Minister, after Financial Crisis Response Council deliberation, can
+    make the applicable Article 102 or Article 126-2 systemic confirmation.
+11. Capital instruments absorb loss. Critical business and selected liabilities
+    can move to a DICJ bridge or assuming institution.
+12. Protected deposits continue or are paid under their tiered rules.
+13. External TLAC remains at the non-viable holding company and absorbs loss in
+    bankruptcy distributions.[^13]
+
+### Stage D — FMI continuity
+
+14. JSCC uses the defaulter's margin/resources, then JSCC capital, then survivor
+    resources under the relevant clearing-business waterfall. Separate bank and
+    JPX liquidity facilities maintain settlement schedule.[^14]
+15. Zengin uses participant collateral and private liquidity/mutualization
+    rules; BOJ-NET settles the valid final position.
+16. The BOJ is not made counterparty to every failed customer or cleared trade
+    merely by entering final settlement.
+
+### Stage E — terminal incidence
+
+17. DICJ assistance creates cost and recovery claims.
+18. Failed-firm assets and estate distributions reduce the net cost.
+19. Industry contributions or specified contributions cover crisis-account
+    loss according to statutory procedure.
+20. DICJ borrowing or bonds can carry a government guarantee within a Diet-
+    authorized limit, but the guarantee is contingent until called.
+21. Article 125 budget subsidy is available only if industry-only funding would
+    itself threaten severe systemic harm.[^15]
+
+### The complete ladder
+
+```text
+bank liquidity and capital
+  -> shareholder / internal TLAC loss
+  -> external TLAC and estate loss
+  -> FMI defaulter and mutualized resources
+  -> DICJ protection, bridge and recoveries
+  -> ex-post industry contributions
+  -> conditional government guarantee or budget subsidy
+```
+
+### What this proves
+
+Public authority is strongest at the point of classification and continuity,
+not necessarily at first loss. Officials decide whether the case is temporary
+liquidity, ordinary insolvency, deposit-system crisis or broader market-system
+disruption. That decision changes which balance sheet is protected and which
+cost-sharing rule becomes available.
+
+## 7. Walk 6 — the retired JGB–HKD adapter as a counterexample
+
+The JGB–HKD DvP link is the best control case because it was complete enough to
+operate and still did not become permanent.
+
+1. Japanese bank held JGB title in the BOJ statutory book-entry system.
+2. Hong Kong counterparty delivered HKD central-bank money in CHATS.
+3. BOJ and HKMA infrastructures synchronized the two sovereign finality events
+   through DvP.
+4. Neither central bank became repo counterparty; neither ledger merged; no new
+   currency or cross-border deposit was created.
+5. The link allowed JGB collateral to support safer access to HKD liquidity.
+6. It operated from April 1, 2021 through September 11, 2026.
+7. The public record supplies no transaction-specific usage, retirement reason
+   or successor.[^16]
+
+This weakens any deterministic transition story. A technically and legally
+complete adapter can be retired. Infrastructure availability is not adoption,
+and cross-border coordination is not monetary union. The thesis must explain
+pruning as well as construction.
+
+## 8. Cross-walk invariant matrix
+
+| Function | Ordinary payment | JGB | FX intervention | Digital adapter | Systemic failure |
+|---|---|---|---|---|---|
+| Public authority | BOJ Act/PSA framework | Diet/MOF borrowing authority | MOF decision | MOF/BOJ/FSA law and pilots | BOJ Act; Deposit Insurance Act; FSA |
+| Private instruction | Customer/bank | Investor/dealer | Market counterparty | User/participant/smart contract | Firm/FMI recovery actions |
+| Claim issuer | Commercial bank | Japan government | Existing currencies/accounts | Bank, trust or proposed BOJ | Failed firm plus protected successor claims |
+| Main operating ledger | Bank/Zengin | Dealer/JSCC/BOJ JGB records | Dealer/FEFSA/BOJ records | Platform plus bank/trust/central bank | Firm, DICJ, bridge and FMI records |
+| Liquidity | Bank funds/collateral | Repo/BOJ credit/JGB collateral | FEFSA reserves; market liquidity | Reserve/prefund/redemption asset | BOJ lending, DICJ and FMI facilities |
+| Finality | BOJ current-account entry | BOJ cash and statutory JGB title | Separate yen and foreign legs | Usually incumbent ledger; CBDC undecided | BOJ settlement and resolution/court acts |
+| Correction | Bank/Zengin before finality; new payment after | Matching/cancel before DVP; later transfer after | Countertrade/accounting adjustment | Reconcile platform to controlling record | Receiver, DICJ, court, FMI/default process |
+| First loss | Bank/customer under contract | Investor/dealer/member | FEFSA/market counterparty by exposure | Claimholder/issuer/trust by form | Equity, creditor, defaulter collateral |
+| Conditional public loss | Rare in ordinary flow | BOJ asset/remittance or fiscal funding depending transaction | FEFSA valuation/fiscal result | Not automatic; unresolved by project | Guarantees/subsidy only through legal gates |
+
+The table shows why “public versus private” is not a sufficient model. Public
+and private functions alternate within each transaction.
+
+## 9. Balance-sheet synthesis
+
+### 9.1 The public books are diverging
+
+The BOJ, central government and FEFSA cannot be treated as one account:
+
+- BOJ assets contracted while reserve-remuneration expense rose;
+- the BOJ's Treasury payment fell, creating a fiscal revenue effect without a
+  transfer of BOJ independence;
+- government debt and interest expense continued on their own stock and budget
+  clocks;
+- FEFSA held and sold foreign assets under MOF intervention authority; and
+- government-to-BOJ repo can move cash and collateral without becoming an
+  ordinary monetary-policy JGB purchase.[^1][^2]
+
+Consolidation can answer some macro questions but destroys the authority and
+risk information needed for a constitutional analysis.
+
+### 9.2 Normalization changes income before it changes institutions
+
+Higher reserve remuneration benefits reserve-holding banks while deposit betas,
+floating loans and securities portfolios reprice on different clocks. Major and
+regional banks gained core interest income, yet regional banks realized large
+bond losses and shinkin net income fell. GPIF absorbed ¥14.753 trillion of
+domestic bonds while its domestic-bond sleeve lost 5.11 percent. Floating-rate
+households faced staged payment increases rather than one immediate reset.[^17]
+
+That is constitutional because it changes who funds the public debt, who
+receives public monetary income and who carries duration. It is not yet a crisis
+because capital, funding, credit performance and stress tests remained
+resilient.[^18]
+
+### 9.3 Collateral is the hinge
+
+JGBs move among three roles:
+
+1. sovereign financing instrument;
+2. private duration and market-risk position; and
+3. high-quality collateral that can be transformed into BOJ or market liquidity.
+
+The BOJ's reduction in outright purchase flow can increase private duration
+risk while its collateral framework and conditional market-stability powers
+remain. Decentralized ownership can therefore coexist with centralized
+liquidity eligibility.
+
+### 9.4 Digital reserves can migrate without money migrating
+
+The 2026 trust-stablecoin rule permits part of qualifying reserve portfolios to
+move from demand deposits into short sovereign securities or term deposits.
+That is a real balance-sheet shift: banks can lose demand funding, trusts gain
+duration/liquidity exposure, and JGB demand can change. The tokenholder still
+does not own a direct BOJ claim or title to the reserve asset.[^10]
+
+## 10. Authority synthesis
+
+The project finds **embedded independence**, not a single command hierarchy:
+
+- Diet supplies public-finance authority and receives statutory reporting;
+- Cabinet appoints and participates in the public-law accountability structure;
+- MOF controls debt management, the currency-system policy perimeter and FX
+  intervention decisions;
+- BOJ Policy Board independently decides monetary policy and key BOJ business;
+- BOJ operational departments run settlement, fiscal agency, market operations
+  and financial-stability functions;
+- FSA supervises and prepares resolution;
+- DICJ administers protection, assistance and bridge mechanisms;
+- private banks issue most spendable deposit money; and
+- FMIs control clearing, margin, messaging and participant default within public
+  legal and settlement endpoints.[^7][^15]
+
+No actor is merely ceremonial. The constitutional question is located at the
+joints: MOF instruction/BOJ agency, Policy Board independence/fiscal remittance,
+private clearing/public finality, and digital control/incumbent claim law.
+
+## 11. The legitimacy question, allowed to breathe
+
+### 11.1 What the evidence can support
+
+Institutions need not use the word “legitimacy” for the following to matter:
+
+- bank and household burdens change on unequal clocks;
+- similar-looking yen claims receive different insurance and redemption rights;
+- public finality remains essential even as private interfaces become more
+  immediate and programmable;
+- the BOJ's normalization changes both bank income and Treasury remittance;
+- officials must decide when an ordinary private loss is systemically important;
+- digital design moves permissions, data and exception handling into new
+  consortia before law has fully settled every failure state; and
+- the public is being asked to trust a two-tier CBDC model that is technically
+  advanced but not politically authorized.
+
+Together, those are evidence of **legitimacy pressure**: the inherited
+allocation of authority and protection must be explained, defended and adapted
+as its economic incidence changes.
+
+### 11.2 What the evidence cannot support
+
+The project did not find:
+
+- public rejection of BOJ money or mass migration from bank deposits;
+- failed JGB auctions or inability to fund the government;
+- systemic bank insolvency or deposit run;
+- repeated use of Article 38 or systemic resolution in the current transition;
+- a new digital instrument displacing the yen's incumbent issuers;
+- a live conflict between an adapter record and Japanese legal finality; or
+- official evidence that the JGB–HKD link was retired because of legitimacy,
+  sanctions, failure or low use.
+
+Calling the present state a legitimacy crisis would therefore outrun the
+record.
+
+### 11.3 The proportionate inference
+
+Japan appears to be in a **negotiated transition of monetary burdens and
+control**, not a rupture. The state is opening interfaces and dispersing some
+market risk while retaining finality, high-quality collateral rules and the
+emergency classification switch. That design can preserve legitimacy by making
+change orderly. It can also create future pressure if protection, access or
+loss repeatedly differs from what users thought their common yen unit promised.
+
+## 12. Counterevidence that must remain in the thesis
+
+1. The April 2026 BOJ assessment finds the system stable overall and banks able
+   to withstand severe compound stress.[^18]
+2. Recent JGB auctions remained covered; MOF adjusted duration rather than
+   losing market access.
+3. Private banks and pensions are absorbing more JGB risk without current
+   evidence of failed transmission.
+4. BOJ liquidity is expressly separated from resolution loss.
+5. TLAC, JSCC and Zengin preserve private first-loss and mutualization
+   mechanisms.
+6. Article 125 makes budget subsidy conditional on industry recoupment becoming
+   destabilizing.
+7. Retail CBDC requires public/legal decision and remains unissued.
+8. The live cross-border QR corridor increases utility without monetary
+   succession.
+9. The JGB–HKD link retirement shows institutions can prune an adapter rather
+   than preserve every expansion.
+10. International standards and ordinary technological modernization explain
+    part of the architecture without requiring a legitimacy thesis.
+
+These facts do not refute constitutional refactoring. They refute a version in
+which refactoring must mean crisis, replacement or inevitable public absorption
+of private loss.
+
+## 13. Alternative models and adjudication
+
+| Model | What it explains well | What it misses | Ruling |
+|---|---|---|---|
+| Monetary replacement | Token projects and cross-border experimentation | Claims remain bank/trust/BOJ; no CBDC issue; finality remains incumbent | Rejected at cutoff |
+| Central-bank withdrawal | BOJ asset runoff and lower purchase flow | BOJ still owns finality, collateral and contingent stability tools | Rejected as incomplete |
+| Fiscal dominance already achieved | Debt, interest burden and lower remittance | Policy Board independence and separate MOF/BOJ powers remain operational | Not established |
+| Pure market normalization | Private repricing and auction adaptation | Public finality, collateral, remittance and systemic switches remain decisive | Incomplete |
+| Technical modernization only | Zengin, CBDC, DLT, QR and Swift work | Balance-sheet burden and legal protection are also changing | Incomplete |
+| Constitutional refactoring | Simultaneous change in risk, interfaces and institutional joints with stable core anchors | Can become unfalsifiable if activation/use evidence is ignored | Best current model, bounded by falsifiers |
+
+## 14. What would change the ruling
+
+### Stronger support for the Observatory thesis
+
+- material deposit migration into direct BOJ CBDC or fully reserved trust claims;
+- recurring Article 38 use or a BOJ credit loss during normalization;
+- systemic resolution that moves private loss into DICJ, industry or fiscal
+  accounts beyond ordinary expectations;
+- persistent auction weakness requiring extraordinary BOJ purchases rather than
+  ordinary price/supply adjustment;
+- live platform/external-ledger divergence that makes public finality decisive;
+- a private adapter becoming operationally unavoidable while its governance is
+  less accountable than the public settlement layer;
+- sustained reduction in BOJ remittance changing fiscal or monetary authority;
+  or
+- political conflict over who bears rate, deposit, pension or currency-defense
+  burdens.
+
+### Weaker support or falsification of the strong version
+
+- normalization proceeds for years without extraordinary liquidity or fiscal
+  conversion;
+- private capital, collateral, TLAC and FMI funds absorb failures as designed;
+- programmable bank money gains reach without material migration of debtor,
+  title or emergency authority;
+- clear law and operator rules resolve digital failures without contested public
+  intervention;
+- JGB pricing deepens as BOJ holdings fall and no buyer-of-last-resort dependence
+  emerges;
+- BOJ remittance and financial soundness stabilize without policy constraint;
+- protection differences among yen claims remain transparent and socially
+  accepted; or
+- new adapters remain interoperable and replaceable instead of becoming private
+  constitutional gatekeepers.
+
+## 15. Research returns, not watches
+
+The completed project leaves bounded empirical returns:
+
+1. Publish actual utilization and retirement rationale for the JGB–HKD link.
+2. Trace BOJ JGB stock runoff, reserve remuneration and Treasury remittance
+   together after the next audited year.
+3. Compare MOF long-duration issuance changes with auction tails, dealer
+   inventories and final holder absorption.
+4. Resolve the direction, currencies and FEFSA funding path of the latest
+   intervention aggregate when official transaction detail becomes available.
+5. Observe whether DCJPY selects a cross-bank settlement model and whether it
+   preserves payment-deposit protection through a DVP lock.
+6. Obtain live reserve, redemption and concentration data as trust stablecoins
+   scale beyond closed-loop use.
+7. Inspect the permanent Agorá and Swift operator/finality/default rulebooks if
+   they enter production.
+8. Track whether Zengin's fiscal-2030 replacement uses BOJ money, commercial-
+   bank money or a layered settlement asset.
+9. Examine any Article 37/38, DICJ, TLAC or FMI-default activation as an actual
+   balance-sheet event rather than a legal possibility.
+10. Keep political and public responses separate from the operating evidence
+    when testing legitimacy.
+
+These are candidate research returns. The project creates no new canonical
+watch beyond the already authorized September 17–18 BOJ Monetary Policy
+Meeting.
+
+## 16. Final ruling
+
+The Japan evidence supports the Observatory's overall thesis **as an
+architecture of concentrated finality and distributed burden**, not as a claim
+that all monetary power or all loss has already centralized.
+
+The deepest transition is on the balance sheet:
+
+- the BOJ is shrinking its asset stock while paying more on reserves and
+  remitting less to government;
+- the government is adapting debt issuance while carrying a larger interest
+  burden;
+- banks and nonbanks are repricing deposits, loans and securities unequally;
+- private investors are absorbing more marginal JGB duration;
+- FEFSA is using sovereign foreign assets for currency defense;
+- token/trust structures can recompose reserve holdings; and
+- crisis law can convert a firm-specific loss into industry or conditional
+  fiscal cost.
+
+The deepest continuity is institutional:
+
+- BOJ money remains the final domestic wholesale settlement asset;
+- the BOJ's JGB register remains decisive title infrastructure;
+- MOF and the Diet retain sovereign financing and currency-system authority;
+- bank deposits remain the dominant spendable public claim;
+- digital projects preserve incumbent debtors more often than they replace them;
+  and
+- emergency public power preserves continuity while leaving first loss largely
+  private.
+
+The legitimacy inference should therefore remain modest but alive. There is no
+official confession and no current crisis finding. There is, however, a visible
+need to rejustify the relationship between a common yen denomination and very
+different debtors, protections, clocks and burdens. If the system continues to
+deliver stability while making those differences legible, the transition may
+renew legitimacy. If interfaces promise immediacy and sameness while failure
+reveals delay, hierarchy and selective protection, the same architecture can
+become the evidence of a legitimacy break.
+
+For now, Japan is best described as **refactoring the monetary constitution
+under normalization—not replacing it, and not yet breaking it.**
+
+## Primary sources
+
+[^1]: Bank of Japan, [*Financial Statements for the 141st Fiscal Year Ended March 31, 2026*](https://www.boj.or.jp/en/about/account/zai2605a.pdf), May 27, 2026; and [Bank of Japan Accounts](https://www.boj.or.jp/en/statistics/boj/other/acmai/release/index.htm).
+[^2]: Ministry of Finance, [Central Government Debt](https://www.mof.go.jp/english/policy/jgbs/reference/gbb/e202606.html), June 30, 2026; [Foreign Exchange Intervention Operations](https://www.mof.go.jp/english/policy/international_policy/reference/feio/index.html); and [Foreign Exchange Fund Special Account](https://www.mof.go.jp/english/policy/international_policy/reference/fefta/index.html).
+[^3]: Bank for International Settlements, [*Project Agorá: Shared Programmable Platform for Wholesale Cross-Border Payments*](https://www.bis.org/publications/project-agora-shared-programmable-platform-wholesale-cross-border-payments.pdf), 2026; and [project page](https://www.bis.org/project/agora).
+[^4]: DeCurret DCP, [DCJPY legal and accounting treatment](https://www.dcjpy.com/service/legalandaccounting/), [April 2026 field test](https://www.dcjpy.com/en/pressrelease/pr-20260424.html) and [August 2026 interbank study](https://www.dcjpy.com/pressrelease/pr-20260826.html).
+[^5]: Japanese Banks' Payment Clearing Network, [Zengin System](https://www.zengin-net.jp/en/zengin_net/zengin_system/), [PFMI disclosure](https://www.zengin-net.jp/en/zengin_net/pdf/pfmi_disclosure_e_2025.pdf) and [future-system report](https://www.zengin-net.jp/en/announcement/pdf/announcement_20260319-2.pdf).
+[^6]: Bank of Japan, [*Information Disclosure Based on the Principles for Financial Market Infrastructures: The BOJ-NET Funds Transfer System*](https://www.boj.or.jp/en/paym/outline/pay_boj/pboj250731a.pdf), July 2025.
+[^7]: Ministry of Finance, [JGB issuance and debt-management policy](https://www.mof.go.jp/english/policy/jgbs/); Bank of Japan, [Functions and Operations](https://www.boj.or.jp/en/about/outline/data/fobojall.pdf) and [BOJ-NET overview](https://www.boj.or.jp/en/paym/outline/pay_boj/).
+[^8]: Ministry of Finance, [*Debt Management Report 2026 — JGB Issuance Plan*](https://www.mof.go.jp/english/policy/jgbs/publication/debt_management_report/2026/esaimu2026-2-2.pdf) and [*FY2026 JGB Issuance Plan — Supplementary Budget*](https://www.mof.go.jp/english/policy/jgbs/debt_management/plan/issuanceplan260603.pdf); Bank of Japan, [*Reduction of the Purchase Amount of Japanese Government Bonds*](https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260616b.pdf), June 16, 2026, and [Japanese Government Bonds Held by the Bank of Japan](https://www.boj.or.jp/en/statistics/boj/other/mei/release/index.htm).
+[^9]: Ministry of Finance, [Foreign Exchange Intervention Operations](https://www.mof.go.jp/english/policy/international_policy/reference/feio/index.html); Bank of Japan, [*Functions and Operations of the Bank of Japan*](https://www.boj.or.jp/en/about/outline/data/fobojall.pdf).
+[^10]: Shinsei Trust & Banking, [JPYSC disclosure](https://www.shinseitrust.com/stablecoin/jpysc.html); Financial Services Agency, [2026 trust-stablecoin implementation materials](https://www.fsa.go.jp/news/r7/sonota/20260522/09.pdf).
+[^11]: Bank of Japan, [Tokuyu explanation](https://www.boj.or.jp/en/about/education/oshiete/pfsys/e17.htm) and [financial-stability policy measures](https://www.boj.or.jp/en/finsys/msfs/index.htm).
+[^12]: Bank of Japan, [*Progress toward resolvability to address the TBTF problem*](https://www.boj.or.jp/en/research/wps_rev/rev_2022/data/rev22e03.pdf), 2022.
+[^13]: Financial Services Agency, [*Comprehensive Guidelines for Supervision of Major Banks, etc.*](https://www.fsa.go.jp/common/law/guide/kantokushishin.pdf), section III-11-6-2.
+[^14]: Japan Securities Clearing Corporation, [Loss Compensation](https://www.jpx.co.jp/jscc/en/risk/default-waterfall.html), [Default Management](https://www.jpx.co.jp/jscc/en/risk/default.html) and [Liquidity Risk Management](https://www.jpx.co.jp/jscc/en/risk/default/liquidity.html).
+[^15]: Japanese Law Translation Database System, [Deposit Insurance Act reference translation](https://www.japaneselawtranslation.go.jp/ja/laws/download/4539/09/s46Aa000340704en16.0_r4A61.pdf), especially Articles 42–42-2, 102, 121–126, 126-2 and 126-39; Japanese text controls.
+[^16]: Bank of Japan, [*Launch of Cross-border DVP Link*](https://www.boj.or.jp/en/paym/bojnet/crossborder/rel210401a.pdf), April 1, 2021, and [abolition notice](https://www5.boj.or.jp/bojnet/kaisei-tuuchi/furi260904.pdf), September 4, 2026 (Japanese); Hong Kong Monetary Authority, [*Annual Report 2025 — International Financial Centre*](https://www.hkma.gov.hk/media/eng/publication-and-research/annual-report/2025/16_International_Financial_Centre.pdf).
+[^17]: Bank of Japan, [*Financial Results of Japan's Banks for Fiscal 2025*](https://www.boj.or.jp/en/research/brp/fsr/fsrb260904.htm), September 4, 2026; Government Pension Investment Fund, [Fiscal 2025 investment results](https://www.gpif.go.jp/en/performance/last-years-results.html), July 3, 2026.
+[^18]: Bank of Japan, [*Financial System Report (April 2026)*](https://www.boj.or.jp/en/research/brp/fsr/fsr260421.htm), data principally through end-March 2026.

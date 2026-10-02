@@ -8,55 +8,83 @@ Each study has one home room and may also appear in one or two others. Everythin
 
 ## Crypto & Digital Money
 
-Money is moving onto new digital networks. Stablecoins, tokenization, crypto networks and companies, what regulators have approved, and blockchain records and accounting.
+Money is moving onto new digital networks. Stablecoins, tokenized money and crypto networks: what is law, what is live, how it really works, and who controls it.
 
 [Open the room](research-rooms/crypto-digital-money.html)
 
-### Stablecoins & the law
+**Research hub. In one sentence:** Money is moving onto new digital networks piece by piece, not all at once: the dollar stays in charge, private companies are taking over the pipes, and almost nothing has yet been proven in a crisis.
 
+- **Where is this all heading?** Not onto one blockchain. Finance is moving onto a patchwork of regulated, connected ledgers, and the hardest parts (legal ownership across networks, central-bank money on the ledger, shared accounting) have not moved yet.
+- **What is law, what is proposed, and what stalled?** One crypto law is on the books (the GENIUS Act, for stablecoins) and it is not in force yet. The market-structure bill (CLARITY) stalled in the Senate, so the agencies are moving with proposals, staff letters and time-limited exemptions instead.
+- **Who is actually live?** Very few at scale. Of 20 networks and companies we track, one (Securitize) reaches “used at scale” and none is “proven under stress.”
+- **How does it actually work? (the accountant's view)** A stablecoin transfer changes who holds the IOU, not whose books it sits on, and that one fact drives the accounting, the audit and the risk.
+- **What does the rest of the world look like?** Lots of licensed activity and zero verified cross-border crypto payment routes: across 22 jurisdictions, the pattern is a token on top of an ordinary legal claim and ordinary bank settlement.
+- **Which popular claims did the research rule out?** Several: there is no such thing as an “ISO 20022 coin,” XRP can't become an SDR, and no public Strategic Bitcoin Reserve inventory exists.
+
+Dates on the clock: past due: Did DTC's participant tokenization service open on schedule?; past due: Did the Eurosystem's Pontes enter operation?; 2026-10-13: Government response due in Custodia's Supreme Court case (Fed master accounts); 2026-10-19: Comment deadlines: Fed GENIUS proposals and Regulation Crypto Assets; 2026-10-23: ARK's tokenized fund share class; 2026-11: OCC final stablecoin rule target; 2026-12-06: Overnight (23×5) stock trading launch target; 2026-12-31: DTCC Collateral AppChain launch window; Treasury cash-clearing deadline; 2027-01-18: GENIUS Act in force; 2027 H1: Bank consortium stablecoin; The Clearing House's tokenized-deposit network; 2028-07-18: Only approved stablecoins may be offered by U.S. exchanges and wallets
+
+### The law: stablecoins & market rules
+
+- [GENIUS Act Implementation — 2026](library/genius-act-implementation-2026.html): GENIUS is law but not in force until January 18, 2027; the agencies have proposals, not final rules, and three required reports are missing.
+- [CLARITY Act — September 2026 Senate Draft](library/clarity-act-senate-draft-2026.html): The Senate failed to end debate 49–50 on September 15; the CFTC sent its own crypto rule to the White House two days later.
 - [GENIUS Stablecoin Trust Crosswalk](library/genius-stablecoin-trust-crosswalk.html): What makes a GENIUS stablecoin trustworthy: the law, the issuer, the chain, the keys, the reserves, the distributor and the remedy.
-- [Private Monetary Stack](library/private-monetary-stack.html): The firms wiring stablecoins, tokens, card networks and custody together, plus the Fed's 452-page stablecoin-issuer proposal read cover to cover.
 - [Congressional Monetary Infrastructure](library/congressional-monetary-infrastructure.html): The committee-to-bill assembly line moving digital-asset law, Treasury-market reform and tokenized settlement toward real operation.
 - [Payment Transparency and the Hidden Constitution](library/payment-transparency-hidden-constitution.html): As payments go from cash to cards to public-chain stablecoins, transfers get visible, while reserves, identity and remedy stay behind the curtain.
+- Dated record: [Stablecoin filings: GENIUS rules, charters and reports](records/stablecoin-filings.html) — 66 entries ([plain text](records/stablecoin-filings.md))
 
-### What regulators approved
+### What regulators approved or proposed
 
+- [SEC Crypto Custody Proposal — 2026](library/sec-crypto-custody-proposal-2026-10-01.html): Holding any piece of a private key would count as custody; the SEC puts the cost at $433.7 million a year and the measurable benefit at $176,472.
 - [SEC Tokenized NMS Stock Innovation Exemption — 2026 Order](library/sec-tokenized-nms-stock-innovation-exemption.html): The SEC's crypto taxonomy, nine new staff FAQs (Sep 25), and a live order through 2031 that lets Tokenized Securities Venues exist.
 - [SEC Transfer Agent Modernization — 2026 Proposal](library/sec-transfer-agent-modernization.html): The SEC proposes letting a blockchain be part of the official shareholder record (Sep 1).
+- [SEC 24-Hour Trading Roundtable — 2026](library/sec-24-hour-trading-roundtable-2026-09-17.html): December 6 is a launch target, and the live price feed would skip the busiest overnight hour.
 - [SEC Investor Advisory Committee — 2026 meeting record](library/sec-investor-advisory-committee.html): The SEC's advisory committee floated tokenization guardrails in March that showed up in the September order, plus hints of a machine-readable EDGAR.
 - [CFTC Passive Software No-Action Position — 2026](library/cftc-passive-software-no-action-2026-09-17.html): CFTC staff opened a lane for software front-ends, crypto or not, to market derivatives without registering as brokers.
 - [Coinbase Clearing DCO Registration — 2026](library/coinbase-clearing-dco-registration-2026-09-28.html): The CFTC registered Coinbase's affiliated clearinghouse for fully collateralized derivatives; products, collateral and first operation remain separate gates.
 
-### Tokenization & the big map
+### Who's live: companies, banks & networks
 
-- [Crypto Infrastructure Hub](library/tokenization-entity-control-map.html): Start here for crypto: follow systems, transactions and legal proof—including the SEC's proposed self-custody, State trust, Article 8, audit and onchain-record chain—without treating proposal as permission or operation.
-- [Overall DLT Transition — 2025–2026](library/overall-dlt-transition.html): What has truly moved on-chain: regulated issuance, bank-deposit ledgers and real-money settlement are live; shared title and central-bank settlement are next.
-- [Major Bank Digital Transition Map](library/major-bank-digital-transition.html): Sixteen big banks, five different transition models, including retirement fund records that could move on-chain beneath the same 401(k) screen.
+- [Card Networks and Stablecoins — 2026](library/card-network-stablecoins-2026.html): Visa's stablecoin cards were 0.04% of its volume in 2025; Open USD launched September 30 without an independent reserve attestation.
+- [Private Monetary Stack](library/private-monetary-stack.html): The firms wiring stablecoins, tokens, card networks and custody together, plus the Fed's 452-page stablecoin-issuer proposal read cover to cover.
+- [Major Bank Digital Transition Map](library/major-bank-digital-transition.html): Sixteen financial giants are moving faster at the adapter layer, but legal claim, official record, reserves, settlement and recovery still remain split.
 - [SWIFT Shared Ledger](library/swift-shared-ledger.html): SWIFT's ledger is moving bank-reported live payments; Oracle now offers a bank-side connection stack, but no named Oracle bank or production transaction is public yet.
-
-### Networks & tokens
-
-- [Ripple, XRP and the Invisible Conversion Layer](library/ripple-xrp-invisible-conversion-layer.html): Ripple is assembling payments, custody, a stablecoin, prime brokerage and treasury, and XRP can serve as an invisible bridge between assets.
 - [Crypto Infrastructure Comparatives](library/crypto-infrastructure-comparatives.html): Who is building the most complete machine (JPMorgan/Kinexys, Circle, Coinbase, Stripe), and why Securitize is Ripple's complement, not its rival.
+- [Ripple, XRP and the Invisible Conversion Layer](library/ripple-xrp-invisible-conversion-layer.html): Ripple is assembling payments, custody, a stablecoin, prime brokerage and treasury; XRP Asia now adds a regional builder hub, but XRP still needs proof of recurring route use and financed inventory.
 - [QNT September 2026 Price Rise — Causal Audit](library/qnt-september-2026-price-rise.html): Why QNT ran Sep 24–26: The Clearing House picked Quant for a U.S. tokenized-deposit network and UK banks went live on its platform.
 
-### New records & accounting
+### How it works: settlement, records & accounting
 
+- [DTCC Tokenization and Settlement — 2026](library/dtcc-tokenization-2026.html): DTC's first tokens move no cash and count for zero in its settlement checks; the old owner of record stays in place.
+- [Blockchain Settlement Cost — 2026](library/blockchain-settlement-cost-2026.html): Ledgers threaten the record-copying middlemen, not the ones who supply money and liquidity; instant settlement gives up netting.
+- [Programmable Money and AI-Agent Payments — 2026](library/programmable-and-agentic-payments-2026-09-22.html): A smart-contract payment is still several separate legal and accounting events; four accounting treatments of USDC are in use today.
 - [Official Record Authority and Blockchain Crosswalk — 2026](library/official-record-authority-blockchain.html): What makes a record official, and the CFTC's new FAQ letting required records live natively on-chain (Sep 24).
 - [From Atomic Settlement to Continuous Assurance — 2026](library/atomic-settlement-continuous-assurance.html): Real-time books and continuous audit: what atomic settlement, smart contracts and AI do to accounting, and what the auditor becomes.
+- Dated record: [Tokenization and clearing: dated filings](records/tokenization-clearing.html) — 61 entries ([plain text](records/tokenization-clearing.md))
+
+### Around the world
+
+- [International Crypto Map — 2026](library/international-crypto-map.html): Across 22 jurisdictions, no crypto payment corridor is verified; the token sits on top of ordinary bank settlement.
 
 ### The big picture
 
+- [Overall DLT Transition — 2025–2026](library/overall-dlt-transition.html): What has truly moved on-chain: regulated issuance, bank-deposit ledgers and real-money settlement are live; shared title and central-bank settlement are next.
 - [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](library/route-anchor-inventory.html): The dollar stays the anchor while stablecoins and private rails take over the routes, and XRP matters if it keeps winning those routes.
 - [Authority Through the Adapter — Where Control Actually Moves](library/authority-through-the-adapter.html): Execution spreads out to new software adapters while claims, records, collateral and emergency power get written into the new machinery.
+- [Crypto Infrastructure Hub](library/tokenization-entity-control-map.html): Start here for crypto: follow systems, transactions and legal proof—including the SEC's proposed self-custody, State trust, Article 8, audit and onchain-record chain—without treating proposal as permission or operation.
 
 ### Also in this room
 
+- [Emergency Monetary Policy](library/emergency-monetary-policy.html)
 - [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html)
+- [Federal Reserve, Clearing and Treasury](library/fed-clearing-treasury.html)
 - [Industrial Project Finance and Digital Rails](library/industrial-project-finance-digital-rails.html)
+- [Institutional Signals and Thesis Test — 2025–2026](library/institutional-signals-thesis-test-2025-2026.html)
 - [International Monetary Transition](library/international-monetary-transition.html)
+- [Japan–Korea FX Shock and Stablecoins — July 2026](library/japan-korea-stablecoin-fx-overlap-2026.html)
 - [The Overall Monetary Play — July 2026 Interpretation](library/overall-monetary-play.html)
+- [SEC Accredited Investor Credential Notices — CPA Gate, 2026](library/sec-accredited-investor-credential-notices-2026-09-30.html)
 - [University Funding and Programmable Compliance](library/university-funding-programmable-compliance.html)
+- [U.S.–UK Transatlantic Markets Taskforce — 2026](library/us-uk-transatlantic-markets-taskforce-2026.html)
 
 ## Banking & the Dollar
 
@@ -71,12 +99,16 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 - [Emergency Monetary Policy](library/emergency-monetary-policy.html): The legal switches (DPA, Stafford, IEEPA, Fed facilities) that could pull private payment and crypto rails into a crisis response.
 - [Judicial Money](library/judicial-money.html): The court cases deciding who gets a Fed master account, which agencies survive and who can stand inside the payment system.
 - [The Overall Monetary Play — July 2026 Interpretation](library/overall-monetary-play.html): The July read of the whole picture: not one new currency, but a programmable system built around conversion points.
+- Dated record: [Federal payments: the end of the paper check, Fedwire and FedNow](records/federal-payments.html) — 30 entries ([plain text](records/federal-payments.md))
 
 ### Banks, charters & watchdogs
 
 - [Banks and Credit Unions — Federal and Four-State Legal Architecture](library/bank-credit-union-legal-architecture.html): Banks and credit unions run on dual federal/state charters, and Florida, Texas, New York and Wyoming each use their leftover state power differently.
 - [SEC Credit-Rating Recordkeeping Orders, 2024–2026](library/sec-credit-rating-recordkeeping-orders-2024-2026.html): Six credit-rating agencies paid $49M+ over recordkeeping in 2024; the clean-up reports themselves are still private.
 - [December 2024 Beneficial Ownership Reporting Perimeter](library/december-2024-beneficial-ownership-reporting-perimeter.html): The Corporate Transparency Act's rise and shrink: now aimed at foreign entities only (final Aug 14).
+- [OCC–FDIC Supervisory Intervention Framework — 2026](library/occ-fdic-supervisory-intervention-2026-08-27.html): The OCC and FDIC tied enforcement to material financial harm; the Fed did not join.
+- Dated record: [Fed accounts and bank access: dated filings](records/fed-account-access.html) — 21 entries ([plain text](records/fed-account-access.md))
+- Dated record: [Who's in line for a bank charter or Fed account](records/charter-queue.html) — 59 entries ([plain text](records/charter-queue.md))
 
 ### Private markets & investor access
 
@@ -89,11 +121,13 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 - [Credit Approval Standards: Mortgage, Retail and Business](library/mortgage-credit-score-reform.html): Credit approval is being automated lender by lender, SBA dropped its old screening score, and mortgages move on their own track.
 - [Mortgage Balance Sheet Trail to the Fed](library/mortgage-balance-sheet-trail.html): One mortgage followed debit by credit through Fannie's trust, MBS, repo and Fed reserves: the plumbing, CPA-style.
 - [Insurance and Reinsurance](library/insurance-reinsurance.html): Start at the top: who writes the insurance constitution, how trillion-dollar insurer balance sheets transmit monetary and capital policy, where risk moves across groups and borders, and which private or public layer ultimately takes the loss.
+- Dated record: [The fine print in big banks' customer contracts](records/bank-fine-print.html) — 35 entries ([plain text](records/bank-fine-print.md))
 
 ### Gold & metals
 
 - [Wholesale Metals Infrastructure](library/wholesale-metals.html): How a gold bar actually moves through COMEX, vaults, title and delivery, plus the UK's still-unbuilt bridge from bar to token collateral.
 - [Gold Balance of Payments & Currency Adjustment](library/gold-bop-currency-adjustment.html): Gold can reshape a country's accounts and reserves, but whether it moves the currency depends on who owns it and who converts it.
+- Dated record: [What the states are doing with money](records/state-money.html) — 34 entries ([plain text](records/state-money.md))
 
 ### Also in this room
 
@@ -103,11 +137,13 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 - [Institutional Signals and Thesis Test — 2025–2026](library/institutional-signals-thesis-test-2025-2026.html)
 - [International Monetary Transition](library/international-monetary-transition.html)
 - [Japan August 2026 — State, Monetary, Industrial and Digital Delta](library/japan-august-2026-delta.html)
+- [Japan Monetary Constitution — 2026](library/japan-monetary-constitution-2026.html)
 - [Major Bank Digital Transition Map](library/major-bank-digital-transition.html)
 - [Payment Transparency and the Hidden Constitution](library/payment-transparency-hidden-constitution.html)
 - [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](library/route-anchor-inventory.html)
 - [SWIFT Shared Ledger](library/swift-shared-ledger.html)
 - [Treasury and IRS](library/treasury-irs.html)
+- [UK Monetary Constitution — 2026](library/uk-monetary-constitution-2026.html)
 
 ## Innovation
 
@@ -118,14 +154,16 @@ New technology and science, and who's building it. AI and national science missi
 ### AI & big science
 
 - [Genesis Mission](library/genesis-mission.html): Genesis: 33 national science challenges, 278 selected projects and the labs and companies building AI-driven science.
-- [Federal Science Operating System](library/federal-science-operating-system.html): How national science doctrine becomes funded capability, through a security layer of identity, export controls and trusted supply.
+- [Federal Science Operating System](library/federal-science-operating-system.html): Seventeen countries endorsed the U.S. science-reform blueprint in Kyoto, but funding, institutions, AI access and operation still belong to each national system.
 - [Scientific Trust Stack](library/scientific-trust-stack.html): The identity, disclosure and security gates that now route federally funded science.
+- Dated record: [AI, science and new-tech filings](records/tech-ai-science.html) — 36 entries ([plain text](records/tech-ai-science.md))
 
 ### National-security tech
 
 - [NSSTS Technology-to-Company Map](library/nssts-technology-company-map.html): Which exact companies could shape the national-security tech buildout across twelve sectors: performers, contenders and bottlenecks.
 - [NSSTS Program and Acceptance Economy](library/nssts-program-acceptance-economy.html): How federal demand becomes accepted, working capability: programs, facilities, suppliers and the referees who sign off.
 - [NSSTS Quantum and Cryptographic Acceptance](library/nssts-quantum-cryptographic-acceptance.html): What it takes for quantum and post-quantum crypto to be accepted and switched on by a federal authority.
+- Dated record: [Defense R&D, drones and airspace filings](records/tech-defense-drones.html) — 20 entries ([plain text](records/tech-defense-drones.md))
 
 ### Communications & trust
 
@@ -169,6 +207,7 @@ The federal government is rebuilding how it runs. Federal workers and agencies, 
 
 - [DOJ Judicial Misconduct Complaint Against Minnesota Judges — September 30, 2026](library/doj-minnesota-judicial-misconduct-complaint-2026-09-30.html): The filing, the public-comment question and the separate recusal, appeal, discipline and Article III removal clocks.
 - [Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026](library/trump-criminal-indictments-primary-source-map-2023-2026.html): The four charging instruments, their count structures, later rulings and the difference between allegation, conviction, dismissal, nolle and appeal.
+- [United States Name and Passport Typography — Legal-Entity Audit](library/united-states-name-passport-typography-2026-10-04.html): Capital letters on a passport do not create a second United States; statute, issuer and legal capacity identify the actor.
 
 ### Budgets, plans & spending
 
@@ -180,7 +219,7 @@ The federal government is rebuilding how it runs. Federal workers and agencies, 
 
 ### Government AI & records
 
-- [Federal Agency AI Plans and Infrastructure](library/federal-agency-ai-plans-infrastructure.html): Agency AI is becoming a federated layer of decision systems across eleven agencies, not one federal platform.
+- [Federal Agency AI Plans and Infrastructure](library/federal-agency-ai-plans-infrastructure.html): A new White House SI task force now coordinates the top layer, while agency records, decisions, enforcement powers and legal authority remain distributed.
 - [NARA AI Records and Compute Transition](library/nara-ai-records-compute-transition.html): The National Archives: keeper of the government's AI records and a customer building its own AWS/Azure/Google stack.
 
 ### Fraud & payment controls
@@ -224,6 +263,7 @@ Who pays to build the power plants, data centers and factories. Power and energy
 - [Federal Fusion Commercialization](library/federal-fusion-commercialization.html): Fusion's path from strategy and capital to a named machine, a license, a grid hookup and delivered power.
 - [AI-Enabled Turbine Asset Management and U.S. Power Buildout](library/ai-turbine-asset-management-power-buildout.html): How turbines are really run with AI today, and why most new big gas turbines won't spin until 2027 or later.
 - [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html): Could programmable settlement run energy assets? Iran shows the gap between instant technical settlement and legal finality.
+- Dated record: [Nuclear and energy filings](records/nuclear-energy-filings.html) — 13 entries ([plain text](records/nuclear-energy-filings.md))
 
 ### Data centers & compute
 
@@ -290,6 +330,7 @@ Who counts as a citizen, who can vote, and who can stay. The census and citizens
 - [OBBB — Fraud, Improper-Payment and Error-Rate Legal Map](library/obbb-fraud-error-rate-legal-map.html)
 - [Treasury Do Not Pay — Governmentwide Structural Map](library/treasury-do-not-pay-governmentwide-map.html)
 - [Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026](library/trump-criminal-indictments-primary-source-map-2023-2026.html)
+- [United States Name and Passport Typography — Legal-Entity Audit](library/united-states-name-passport-typography-2026-10-04.html)
 
 ## Sanctions, Oil & the Military
 
@@ -325,6 +366,7 @@ How the U.S. uses economic and military pressure. Sanctions on Iran and Cuba, oi
 - [Energy Asset Management, Atomic Settlement and Iran](library/energy-atomic-settlement-iran.html)
 - [NSSTS Quantum and Cryptographic Acceptance](library/nssts-quantum-cryptographic-acceptance.html)
 - [NSSTS Technology-to-Company Map](library/nssts-technology-company-map.html)
+- [The Petrodollar System — 1945–2026](library/petrodollar-system-1945-2026.html)
 
 ## Foreign Relations & World Money
 
@@ -334,20 +376,32 @@ How other countries, currencies and global groups are shifting. The dollar's rol
 
 ### World money
 
-- [International Monetary Transition](library/international-monetary-transition.html): Reserve diversification, local-currency trade and stablecoins are different moves; outright replacement of the dollar is rarer than it looks.
+- [International Monetary Transition](library/international-monetary-transition.html): The umbrella for 16 sub-studies on how other countries' money is changing: reserve diversification, local-currency trade and stablecoins are different moves, and outright replacement of the dollar is rarer than it looks.
 - [G20 Currency Watch](library/currency-watch.html): The system behind each G20 currency, read across six separate lanes (no league table).
 - [International Emergency Monetary Policy](library/international-emergency-monetary-policy.html): How other countries and the IMF actually respond to bank runs, cyberattacks, war and sanctions, tool by tool.
+- [International Monetary Initiation — 2026](library/international-monetary-initiation-2026.html): Different countries are changing different pieces (law, banks, pilots, live payments) on different clocks; no one has done all of it.
+- [International Monetary Next Phase — 2026](library/international-monetary-next-phase-2026.html): Funding, public payments, finality and insurance would all have to connect; no country shows the whole chain.
+- [IMF and Currency Pricing — 2026](library/imf-currency-pricing-2026.html): It classifies regimes, models balances and, for borrowers, can make a new exchange-rate set-up a condition of the loan.
+- [Japan–Korea Currency Defense — July–August 2026](library/japan-korea-currency-defense-2026.html): Japan disclosed ¥15.399 trillion of intervention from July 30 to August 26; Korea's amount and the U.S. role remain unconfirmed.
+- [Japan–Korea FX Shock and Stablecoins — July 2026](library/japan-korea-stablecoin-fx-overlap-2026.html): Korea's won-USDT price moved with the won; nothing shows money fleeing through stablecoins.
+- [The Petrodollar System — 1945–2026](library/petrodollar-system-1945-2026.html): Dollar oil pricing is a set of habits, contracts and banking layers, not a 50-year Saudi promise.
+- Dated record: [Other countries' money moves, region by region](records/world-money-moves.html) — 170 entries ([plain text](records/world-money-moves.md))
 
 ### G7, G20 & the UN
 
 - [G7 and G20 Coordination Architecture — 2025–2026](library/g7-g20-coordination-architecture.html): The G7/G20 machinery: payments goals, a rare-earth diversification plan and debt machinery, and how far each actually reaches.
 - [United Nations General Assembly High-Level Week — 2026](library/un-general-assembly-high-level-week-2026.html): UN week captured whole: the national addresses, speaker statements, and what the U.S. said and signed.
+- [Bessent at the IIF — April 2026](library/bessent-iif-spring-meetings-2026.html): Bessent's April 2026 remarks use votes, budgets and conditions to reshape the IMF and World Bank rather than exit them.
+- [Who Gets Adjusted — IMF Symmetry Audit 2026](library/imf-symmetry-audit-2026.html): Big economies get candid advice; borrowers get deadlines, conditions and reviews tied to the money.
+- [IMF Legal Department at 80 — Conference 2026](library/imf-legal-department-at-80-2026.html): A conference on digital money, debt and the IMF mandate; useful evidence, not a decision.
+- [IMF Legal Constitution — 2026](library/imf-legal-constitution-2026.html): Its real lever is the loan gate; changing its powers needs 85% of the votes.
 
 ### The big relationships
 
 - [China Country Orientation — 2026](library/china-country-orientation-2026.html): The whole U.S.–China relationship as a stack (trade, chips, money, Taiwan, military), and where each side's leverage sits.
 - [U.S.–China Strategic Stability State Visit — September 2026](library/us-china-strategic-stability-state-visit-2026.html): The September visit built on the May framework and produced a real Board of Trade constitution and product lists; tariff implementation is still pending.
 - [Russia Country Orientation — 2026](library/russia-country-orientation-2026.html): U.S.–Russia today: New START expired, Ukraine talks active but ad hoc, sanctions as permission systems, commodities rerouted to Asia.
+- [U.S.–UK Transatlantic Markets Taskforce — 2026](library/us-uk-transatlantic-markets-taskforce-2026.html): Ten recommendations and a stablecoin statement; no common rule, passport or collateral permission yet.
 
 ### Allies & neighbors
 
@@ -355,10 +409,14 @@ How other countries, currencies and global groups are shifting. The dollar's rol
 - [Japan August 2026 — State, Monetary, Industrial and Digital Delta](library/japan-august-2026-delta.html): Japan's August: defending the yen with U.S.-coordinated buying, earthquake recovery, household relief and bank-based digital settlement tests.
 - [Trump Davos Address — January 21, 2026](library/trump-davos-address-2026-01-21.html): The Davos speech and what followed: the Greenland idea became a signed trilateral security agreement on Sep 22.
 - [Canada, transshipment and customs origin records](library/institutional-regime-waves.html): The White House transshipment report and proposed customs-origin records: who gets flagged and what gets proven.
+- [Korea Market Stress and Transmission — July 2026](library/korea-market-stress-2026.html): A severe selloff and exchange controls, but no proven funding failure, failed settlement or flight into crypto.
+- [UK Monetary Constitution — 2026](library/uk-monetary-constitution-2026.html): Who owes sterling, which ledger records it, what makes it final and who absorbs loss, from official sources.
+- [Japan Monetary Constitution — 2026](library/japan-monetary-constitution-2026.html): Who earns interest and holds the bonds is shifting, but the core institutions and final settlement stay put.
 
 ### Also in this room
 
 - [Global Oil and Gas Movements 2026](library/global-oil-gas-movements.html)
+- [International Crypto Map — 2026](library/international-crypto-map.html)
 - [The Overall Monetary Play — July 2026 Interpretation](library/overall-monetary-play.html)
 - [Permanent Magnets](library/permanent-magnets.html)
 - [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](library/route-anchor-inventory.html)
@@ -421,4 +479,5 @@ Dated federal sweeps and similar records that feed the rooms.
 - [Federal Government Deep Website Review — September 16–22, 2026](library/federal-government-deep-website-review-2026-09-22.html)
 - [Federal Government Weekly Delta — September 21–25, 2026](library/federal-government-weekly-delta-2026-09-25.html)
 - [Federal Government Fiscal-Year-Close Delta — September 26–30, 2026](library/federal-government-fiscal-year-close-delta-2026-09-30.html)
+- [Federal Monetary and Economic Institutions Delta — September 30 to October 2, 2026](library/federal-monetary-economic-institutions-delta-2026-10-02.html)
 

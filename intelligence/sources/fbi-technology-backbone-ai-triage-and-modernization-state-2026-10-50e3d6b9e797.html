@@ -1,0 +1,357 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>FBI technology backbone, AI triage and modernization state · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+<meta name="f250:page-type" content="public_source">
+<meta name="f250:research-ids" content="">
+<script type="application/json" id="f250-machine-header">{"header_version":"1.0","page_type":"public_source","title":"FBI technology backbone, AI triage and modernization state · Freedom 250","canonical_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/sources/fbi-technology-backbone-ai-triage-and-modernization-state-2026-10-50e3d6b9e797.html","bot_index_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/bot-index.html","api_bootstrap_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/index.json","research_ids":[]}</script>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <nav class="subject-nav" aria-label="Research rooms"><a href="../research-rooms/government-changes.html" class="chip" >Home room: Government Changes</a><a href="../research-rooms/innovation.html" class="chip" >Also in: Innovation</a></nav></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>FBI technology backbone, AI triage and modernization state</h1><p class="deck">Source cutoff: 2026-10-03 15:07 EDT · Collection evidence cutoff: 2026-10-03</p><p><a href="fbi-technology-backbone-ai-triage-and-modernization-state-2026-10-50e3d6b9e797.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="fbi-technology-backbone-ai-triage-and-modernization-state">FBI technology backbone, AI triage and modernization state</h1>
+<p><strong>Evidence cutoff:</strong> October 3, 2026 at 3:07 p.m. EDT<br />
+<strong>Mode:</strong> question-led cross-government deep dive, bounded to the FBI, DOJ and
+the closest federal technology-transition comparators<br />
+<strong>Excluded:</strong> classified architecture, an exhaustive contract census, source
+code, nonpublic use cases and any claim that a public inventory is complete</p>
+<h2 id="answer-first">Answer first</h2>
+<p>The FBI has made a real technology transition, but the public record does not
+support reading Kash Patel's phrase <strong>“completely overhaul[ed] its outdated
+technological backbone”</strong> as a completed replacement of the whole enterprise.</p>
+<p>The best-supported meaning of the “backbone” is the FBI's <strong>Network Enterprise
+Redesign Initiative (NERI)</strong>, launched in FY2020. NERI consolidated more than
+600 fragmented networks and created a more unified foundation for cloud
+connectivity, advanced data flows and AI/ML workloads. That is a material
+architectural change.</p>
+<p>The same March 2026 FBI budget request, however, says that through FY2024 the
+Bureau had invested more than $200 million to modernize only about one-third of
+its enterprise network, primarily on the unclassified side. It also says a
+significant portion of the infrastructure—especially classified-network
+equipment—was beyond end of life, could not be patched or maintained, and
+needed a dedicated life-cycle program. The FBI requested $42.75 million for
+NERI and life-cycle management inside a $111.12 million FY2027 cybersecurity
+increase. Completion, continuing modernization and future funding therefore
+remain different clocks.</p>
+<p>The operational core of Patel's tip-processing account is also real. DOJ's
+public 2025 AI inventory identifies <strong>TIPS</strong> as an FBI AI use case deployed in
+September 2025 with an Authorization to Operate. It prioritizes tips and routes
+some for a second human review. The FY2027 budget says the National Threat
+Operations Center received more than two million calls and electronic tips in
+FY2025, including more than 6,800 urgent threat-to-life tips referred to field
+offices and fusion centers. This establishes an operating intake-and-routing
+workflow. It does not establish Patel's claimed before/after latency, the
+number of threats prevented by the AI layer, false-positive or false-negative
+rates, or an independently measured causal effect.</p>
+<p>The <strong>140-use-case</strong> and <strong>605%</strong> claims are not yet publicly reconcilable. The
+January 2026 DOJ public inventory contains 50 FBI rows: 24 deployed, 7 pilot,
+17 pre-deployment and 2 retired. That inventory is a dated public disclosure,
+not a present all-use denominator; DOJ says some information is withheld and
+consolidates similar uses. Patel supplied no current row-level list, stage
+breakout or definition for 140. The separate 605% statement also has no public
+denominator. Moving from two or three use cases to more than 140 would be an
+increase of roughly 6,900% or 4,567%, not 605%, so the two figures necessarily
+measure different things or use different baselines.</p>
+<h2 id="announcement-clock">Announcement clock</h2>
+<p>The “backbone” story was published by Fox News Digital on <strong>October 2, 2026 at
+5:08 p.m. EDT</strong>, not first as an October 3 FBI institutional release. It reports
+Patel's interview statements that the Bureau had completely overhauled its
+backbone, immediately ingested and analyzed tips, and surpassed 140 AI use
+cases.</p>
+<p>The closest FBI-owned object is an official September 21 video page preserving
+a September 19 media interview. There Patel said FBI AI use had increased 605%
+over 18 months, described AI as a lawful human supplement for triage and
+claimed prevention of school shootings in several states. That page proves the
+director made the claim. It is not an architecture, inventory, authorization,
+test or performance record.</p>
+<h2 id="what-the-backbone-contains">What the “backbone” contains</h2>
+<p>The public objects support this layered reading:</p>
+<p><code>NERI network consolidation</code></p>
+<p><code>→ Consolidated Transport Network + Internet Consolidated Network + classified enclaves</code></p>
+<p><code>→ cloud connectivity + distributed data access + high-throughput transport</code></p>
+<p><code>→ mission systems and AI use cases</code></p>
+<p><code>→ security assessment + Authorization to Operate + monitoring</code></p>
+<p><code>→ human review + field-office or partner action</code></p>
+<p>The FBI budget describes an enterprise serving more than 35,000 government
+personnel at more than 1,000 locations. It also distinguishes the unclassified
+network, classified enclaves and SCINet, the Bureau's top-secret network. A
+single “backbone” label must not erase those security and implementation
+boundaries.</p>
+<p>The budget also names still-moving infrastructure:</p>
+<ul>
+<li>a proposed Enterprise Cybersecurity Data Pipeline for more than 30 terabytes
+  of daily logs from unclassified and secret systems;</li>
+<li>modernization of centralized logging, threat-intelligence and automated
+  response tooling;</li>
+<li>an AI-assisted security-assessment tool for the Bureau's more than 450 IT
+  systems; and</li>
+<li>continued modernization of the Data Warehouse System and Insight for FISA
+  and Section 702 data.</li>
+</ul>
+<p>These are requested or developing capabilities in the FY2027 object. They are
+not evidence that every layer was already funded, accepted and operating when
+Patel spoke.</p>
+<h2 id="the-tip-to-action-chain">The tip-to-action chain</h2>
+<p>Patel's account should be tested through the actual control chain:</p>
+<p><code>public or partner tip</code></p>
+<p><code>→ National Threat Operations Center intake</code></p>
+<p><code>→ TIPS AI prioritization or second-review routing</code></p>
+<p><code>→ Threat Intake Examiner research and urgency decision</code></p>
+<p><code>→ field office, fusion center or other law-enforcement referral</code></p>
+<p><code>→ investigation and legal process</code></p>
+<p><code>→ disruption, arrest, prevention claim or other observed outcome</code></p>
+<p>The public inventory says TIPS prioritizes tips and routes some to a second
+human review. The budget says human Threat Intake Examiners conduct preliminary
+research, determine urgency and refer the information. The evidence therefore
+supports <strong>AI-assisted triage with human decision and dispatch</strong>, not an
+autonomous investigative or enforcement system.</p>
+<h2 id="public-2025-fbi-ai-inventory-snapshot">Public 2025 FBI AI inventory snapshot</h2>
+<p>The DOJ spreadsheet published January 30, 2026 contains the following FBI
+stage counts:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th style="text-align: right;">Public FBI rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployed</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Pilot</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td>Pre-deployment</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr>
+<td>Retired</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>50</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Nine rows are labeled high-impact. The spreadsheet reports an ATO for 14 rows,
+no ATO for 17 rows and leaves the field blank for 19 rows. Those fields require
+row-level interpretation: a blank field, a reported <code>No</code>, a pilot and a
+deployed use are not interchangeable states. Nor does the inventory disclose
+all national-security uses or prove the effectiveness of any listed system.</p>
+<p>Material examples include:</p>
+<table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Inventory state</th>
+<th>What it establishes</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TIPS</td>
+<td>Deployed September 2025; ATO yes</td>
+<td>AI prioritizes tips and routes some to second human review</td>
+<td>No public latency, error-rate or outcome evaluation</td>
+</tr>
+<tr>
+<td>N-DEx entity extraction</td>
+<td>Deployed June 2025; ATO yes</td>
+<td>Extracts person entities from narrative records for lead generation</td>
+<td>Lead generation is not an adjudication or identification finding</td>
+</tr>
+<tr>
+<td>Data synthesis, sentiment, filtering and location linking</td>
+<td>Deployed March 2022; high-impact; ATO no reported</td>
+<td>Tags data for further confirmation, research and analysis</td>
+<td>Impact assessment, independent review, monitoring, training and appeal fields remained in progress in the snapshot</td>
+</tr>
+<tr>
+<td>Search tool</td>
+<td>Deployed August 2025; ATO no reported</td>
+<td>Returns search results intended to save time</td>
+<td>No public response-time or accuracy evidence</td>
+</tr>
+<tr>
+<td>Data triage and processing</td>
+<td>Pilot January 2025; ATO no reported</td>
+<td>Transcription, translation, summarization and object detection in audio/video</td>
+<td>Pilot is not enterprise deployment</td>
+</tr>
+</tbody>
+</table>
+<h2 id="claim-audit">Claim audit</h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Ruling at cutoff</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The FBI materially rebuilt its network foundation</td>
+<td><strong>Supported</strong></td>
+<td>NERI began in FY2020, consolidated more than 600 fragmented networks and supports AI-ready enterprise infrastructure</td>
+</tr>
+<tr>
+<td>Patel completed the entire FBI technology backbone</td>
+<td><strong>Not established</strong></td>
+<td>The March 2026 budget says only about one-third was modernized through FY2024, identifies end-of-life classified infrastructure and requests continuing modernization funding</td>
+</tr>
+<tr>
+<td>AI-assisted public-tip triage is operating</td>
+<td><strong>Supported</strong></td>
+<td>TIPS is reported deployed with an ATO; the budget describes the human NTOC/TIPS workflow and FY2025 volume</td>
+</tr>
+<tr>
+<td>Tips are now analyzed immediately instead of taking three days</td>
+<td><strong>Director claim; performance proof missing</strong></td>
+<td>No published before/after latency distribution, service-level metric, test or independent evaluation was located</td>
+</tr>
+<tr>
+<td>The FBI has surpassed 140 AI use cases</td>
+<td><strong>Director claim; inventory reconciliation missing</strong></td>
+<td>The latest public sheet has 50 FBI rows across four stages; no current 140-row list or counting rule was located</td>
+</tr>
+<tr>
+<td>FBI AI use rose 605%</td>
+<td><strong>Director claim; denominator missing</strong></td>
+<td>No public baseline, numerator or unit is supplied; it cannot be the same simple count as two or three to more than 140</td>
+</tr>
+<tr>
+<td>AI replaces investigators or makes enforcement decisions</td>
+<td><strong>Not supported</strong></td>
+<td>The located TIPS and strategy objects preserve human review and legal controls</td>
+</tr>
+<tr>
+<td>This is one government-wide technology platform</td>
+<td><strong>False</strong></td>
+<td>NERI is FBI enterprise infrastructure; DOJ and America.gov have separate consolidation and service-orchestration programs, and originating actors retain their own records and authority</td>
+</tr>
+</tbody>
+</table>
+<h2 id="oversight-and-incompleteness-receipts">Oversight and incompleteness receipts</h2>
+<p>The strongest independent controls cut against a completion reading without
+negating the progress:</p>
+<ul>
+<li>DOJ OIG's December 2024 AI audit described the FBI as being in the early
+  stages of AI integration, with governance structures and an inventory under
+  construction but with funding, workforce, data-architecture, IT-
+  infrastructure, vendor-transparency and testing barriers.</li>
+<li>The OIG recommendation to complete the Analytical Framework for Emerging and
+  Disruptive Technology remained open as of August 31, 2026.</li>
+<li>The March 2026 FY2025 FISMA audit found weaknesses in 4 of 10 security-domain
+  areas and continuing vulnerabilities related to three prior recommendations.
+  It issued 12 recommendations; the public Oversight.gov record showed six
+  still open as of August 31, with details withheld for security reasons.</li>
+<li>The September 9 FBI Cyber Strategy is a roadmap. Its AI section repeatedly
+  uses future-tense commitments to deploy AI tools for triage, relationship
+  discovery, malware analysis, victim notification, infrastructure mapping,
+  attribution and agentic-AI-enabled defense. Strategy direction is not the
+  same as completed enterprise deployment.</li>
+</ul>
+<h2 id="join-to-the-wider-federal-transition">Join to the wider federal transition</h2>
+<p>This FBI case fits the existing federal pattern precisely:</p>
+<ol>
+<li><strong>Consolidate fragmented infrastructure.</strong> NERI consolidates hundreds of
+   FBI networks; DOJ's FY2026–2030 strategy seeks department-wide IT
+   consolidation, shared enterprise platforms and fewer duplicative systems.</li>
+<li><strong>Build a common intake or access layer.</strong> TIPS centralizes threat intake
+   inside the FBI; America.gov is directed to become a common federal-service
+   front door. These are different systems with different users and legal
+   objects.</li>
+<li><strong>Apply AI at the routing layer.</strong> TIPS prioritizes or sends a tip to second
+   review; America.gov currently answers and routes users; neither layer
+   inherits the originating actor's adjudicatory authority.</li>
+<li><strong>Keep the authoritative record distributed.</strong> The FBI remains responsible
+   for its investigative records and actions. State, local, tribal, fusion-
+   center, private-sector and Intelligence Community partners remain distinct
+   actors even when data moves faster.</li>
+<li><strong>Leave lifecycle and control clocks open.</strong> Network refresh, cloud/data
+   movement, ATO, impact assessment, human review, operating use and measured
+   effect mature separately.</li>
+</ol>
+<p>The transition is therefore <strong>centralized orchestration over federated legal
+authority</strong>, not one merged government machine.</p>
+<h2 id="exact-receipts-needed-next">Exact receipts needed next</h2>
+<ol>
+<li>A current FBI or DOJ row-level inventory reconciling the claimed 140 uses,
+   including stage, system boundary, high-impact status, ATO and withheld or
+   classified count.</li>
+<li>The numerator, denominator, baseline date and unit behind 605%.</li>
+<li>A NERI closeout or current percentage-by-enclave record showing equipment
+   replacement, acceptance, outages, patchability and operational coverage.</li>
+<li>TIPS performance evidence: intake-to-referral latency, queue depth, second-
+   review rate, false-positive/false-negative or reversal measures and human-
+   override records.</li>
+<li>Case-linked evidence separating AI contribution from the whole investigative
+   chain in the cited school-shooting or terrorism preventions.</li>
+<li>Appropriation, obligation, award, delivery, ATO and production receipts for
+   the FY2027 cybersecurity, data-pipeline and automated-assessment requests.</li>
+<li>Closure or current disposition of the OIG AFEDT and FISMA recommendations.</li>
+</ol>
+<h2 id="primary-and-issuer-sources">Primary and issuer sources</h2>
+<ul>
+<li>FBI, <a href="https://www.fbi.gov/video-repository/patel-x-ai-092126.mp4/view">Patel: FBI's Use of AI Up 605% to Triage Threats</a>, September 21, 2026 (interview dated September 19).</li>
+<li>U.S. Department of Justice/FBI, <a href="https://www.justice.gov/jmd/media/1434246/dl?inline=">FY 2027 FBI Budget Request to Congress</a>, March 2026, especially pp. 32 and 60–65.</li>
+<li>Department of Justice, <a href="https://www.justice.gov/ai/ai-inventory">2025 AI Use Case Inventory landing page</a> and <a href="https://www.justice.gov/media/1426076/dl?inline=">inventory spreadsheet</a>, updated January 30, 2026.</li>
+<li>DOJ OIG, <a href="https://oig.justice.gov/sites/default/files/reports/25-014.pdf">Audit of the DEA's and FBI's Efforts to Integrate Artificial Intelligence and Other Emerging Technology Within the U.S. Intelligence Community</a>, December 19, 2024; <a href="https://www.oversight.gov/reports/audit/audit-deas-and-fbis-efforts-integrate-artificial-intelligence-and-other-emerging">current recommendation record</a>, checked through August 31, 2026.</li>
+<li>DOJ OIG, <a href="https://www.oversight.gov/sites/default/files/documents/reports/2026-04/26-039.pdf">FY2025 FBI FISMA audit commentary and summary</a>, March 2026; <a href="https://www.oversight.gov/reports/audit/audit-federal-bureau-investigations-information-security-management-program-1">recommendation status</a>, checked through August 31, 2026.</li>
+<li>FBI, <a href="https://www.fbi.gov/investigate/cyber/cyber-strategy">Cyber Strategy</a>, September 9, 2026.</li>
+<li>DOJ, <a href="https://www.justice.gov/doj/strategic-plan-fys-2026-2030/objective-3-2">Strategic Plan FYs 2026–2030, Objective 3.2: Enhance and Streamline DOJ's Technology and Operations</a>, September 2026.</li>
+</ul>
+<h2 id="announcementdiscovery-source">Announcement/discovery source</h2>
+<ul>
+<li>Fox News Digital, <a href="https://www.foxnews.com/us/fbi-overhauls-tech-backbone-counter-ai-threats-foreign-adversaries-reduce-response-times-patel-says">FBI overhauls tech backbone to counter AI threats from foreign adversaries, reduce response times, Patel says</a>, October 2, 2026 at 5:08 p.m. EDT. This is the interview publication carrying the October 2 backbone and 140-use-case claims; it is not the governing architecture or performance record.</li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

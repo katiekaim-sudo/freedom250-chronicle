@@ -1,5 +1,7 @@
 # Crypto Infrastructure Hub — 2026-09-01
 
+> **2026-10-03 clean-up:** paths marked *(removed 2026-10-03)* were finished working folders deleted with Katie's approval; the list is in the vault file _Holding / DELETED — 2026-10-03.
+
 ## Start here: the Crypto Hub is now six focused graphics (2026-10-01)
 
 Katie found the all-in-one Hub hard to use, so `generate_crypto_hub_graphics.py` projects the same data files into a start page plus six single-question graphics in `outputs/`: **Crypto Hub.html** (start page), **Crypto Networks — Where Each One Stands**, **Big Banks Going Digital**, **How a Tokenized Trade Moves** (with debits and credits), **The GENIUS Stablecoin Rulebook**, **Who Has a Full Crypto Money Machine?** and **SEC Crypto Custody — Proposal to Final**. The last graphic freezes 36 custody provisions across eight constitutional layers so a future final rule can be classified clause by clause without overwriting the proposal baseline. The original `outputs/Tokenization Entity and Control Map.html` stays as the full data explorer.
@@ -32,7 +34,7 @@ settlement clocks, cross-border structure and October 2027 regime without
 creating new Hub entity relationships or treating brand-level survey responses
 as legal-entity market shares.
 
-The generated Hub currently carries **311 nodes, 393 typed relationships, 416 source
+The generated Hub currently carries **320 nodes, 404 typed relationships, 427 source
 objects, 34 tracked system families, three governed process maps, seventeen
 governed asset traces with process-role references, eight analytical lenses and eight operational clocks**.
 The technology directory joins **20 deep ecosystem profiles** to **14 specialist
@@ -146,6 +148,35 @@ Open Standard governance, partner distribution, Tempo control, bank payout or
 legal discharge into the Stripe group. Read the source-first launch record at
 Open USD launch and control map.
 
+## XRP Asia regional builder layer — October 3
+
+XRP Asia Ltd is now represented as a separate Singapore-based regional
+ecosystem hub rather than being folded into Ripple, XRPL or the older SBI
+Ripple Asia joint venture. Its public site and intake are live, with visible
+Singapore, Tokyo and Seoul community nodes and support paths for developers,
+systems integrators, startups, partners and ambassadors. The Hub separately
+maps the XRP Ledger Foundation and XRPL Commons as coordinated ecosystem bodies
+without inferring common ownership or protocol control.
+
+The entity firewall is explicit. **Ripple Markets APAC** is Ripple's separately
+licensed Singapore payment entity. **SBI Ripple Asia** is the Japan-based
+SBI–Ripple joint venture. **XRP Asia** is the regional builder and community
+organization. Their licences, ownership, products and operating receipts do not
+transfer among them.
+
+The APAC relationship layer now also distinguishes Jeonbuk Bank's bounded
+Ripple Payments deployment, Kbank's reported Ripple Custody wallet
+infrastructure, Kyobo Life's tokenized-government-bond proof of concept and
+Tranglo's historical XRP ODL mechanics. Currenc Group's SEC-filed annual report
+says Tranglo ceased Ripple ODL services to customers on 10 November 2025, so
+the old regional corridor cannot be carried forward as current.
+
+This refresh advances the XRPL ecosystem-distribution clock. It does not
+advance financial permission, bank adoption, cross-border settlement or XRP
+inventory without the later product- and route-level receipts. Read
+XRP Asia launch and APAC control map
+for the full country and value-capture analysis.
+
 ## CSD BR public-ledger record mirror — September 29
 
 CSD BR and Ripple announced a first phase that mirrors selected BTG Pactual
@@ -171,7 +202,7 @@ future phases after validation. Read
 for the record-authority map, regulatory perimeter, XRP boundary and return
 gates.
 
-## Major bank digital transition — September 26
+## Major bank digital transition — recertified October 3
 
 The **Major bank transition** room compares sixteen incumbent institutions
 across seven separately evidenced surfaces: client access, digital money,
@@ -190,6 +221,14 @@ BlackRock, Franklin Templeton and Fidelity as incumbent asset-management,
 custody, record, distribution and collateral comparators. No reviewed
 institution reaches M6 across all seven
 surfaces, and maturity on one surface does not advance the others.
+
+The October 3 bank-wide recertification adds Citi's seven-market Token
+Services expansion and separate Coinbase/Swift adapter routes, corrects Bank
+of America's public construction evidence, records Deutsche Bank's first
+reported euro Partior transaction, and keeps HSBC RedCoin, Anchorpoint/HKDAP
+and CoinVertible reserve custody on their exact issuer and operating clocks.
+The underlying evidence and sixteen-row negative pass are in
+`Wave 6 — Bank-Wide DLT, Crypto and Tokenization Delta`.
 
 The schema-v4 process layer supplies the shared evidence for Process, Trace
 and Compare: for each lifecycle stage, which exact ecosystem

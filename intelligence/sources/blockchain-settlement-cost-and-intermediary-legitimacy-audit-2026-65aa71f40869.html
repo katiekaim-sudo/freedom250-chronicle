@@ -1,0 +1,872 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Blockchain settlement cost and intermediary legitimacy audit · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<meta name="f250:page-type" content="public_source">
+<meta name="f250:research-ids" content="blockchain-settlement-cost-2026,fed-clearing-treasury">
+<script type="application/json" id="f250-machine-header">{"header_version":"1.0","page_type":"public_source","title":"Blockchain settlement cost and intermediary legitimacy audit · Freedom 250","canonical_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/sources/blockchain-settlement-cost-and-intermediary-legitimacy-audit-2026-65aa71f40869.html","bot_index_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/bot-index.html","api_bootstrap_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/index.json","research_ids":["blockchain-settlement-cost-2026","fed-clearing-treasury"],"package_manifest_urls":["https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/packages/blockchain-settlement-cost-2026.json","https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/packages/fed-clearing-treasury.json"],"material":{"material_id":"65aa71f40869549b","title":"Blockchain settlement cost and intermediary legitimacy audit","artifact_role":"method","file_state":"current","availability":"public_reading","access_state":"public_full_text","public_full_text":true,"reading_url":"readings/65aa71f40869549b.html","reading_basis":"public_html_full_text","modified_at":"2026-08-02T15:01:46Z","package_ids":["fed-clearing-treasury","blockchain-settlement-cost-2026"]}}</script>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <nav class="subject-nav" aria-label="Research rooms"><a href="../research-rooms/crypto-digital-money.html" class="chip" >Home room: Crypto &amp; Digital Money</a></nav><nav class="subject-nav" aria-label="Research rooms"><a href="../research-rooms/banking-the-dollar.html" class="chip" >Home room: Banking &amp; the Dollar</a><a href="../research-rooms/government-changes.html" class="chip" >Also in: Government Changes</a><a href="../research-rooms/crypto-digital-money.html" class="chip" >Also in: Crypto &amp; Digital Money</a></nav></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>Blockchain settlement cost and intermediary legitimacy audit</h1><p class="deck">Collection evidence cutoff: 2026-08-02</p><p><a href="blockchain-settlement-cost-and-intermediary-legitimacy-audit-2026-65aa71f40869.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="blockchain-settlement-cost-and-intermediary-legitimacy-audit">Blockchain settlement cost and intermediary legitimacy audit</h1>
+<p><strong>Cutoff:</strong> 2026-08-02 ET<br />
+<strong>Status:</strong> complete cross-package claim audit; bounded synthesis incorporated in the live vault<br />
+<strong>Scope:</strong> Federal Reserve payment services, CHIPS, RTP, ACH, cards,
+correspondent banking, DTC/NSCC, public blockchains, stablecoins, tokenized
+deposits and permissioned shared ledgers<br />
+<strong>Accounting rule:</strong> price, revenue, operating expense, capital expenditure,
+liquidity opportunity cost, collateral, credit loss, fraud loss and legal-remedy
+cost are different objects.<br />
+<strong>Finality rule:</strong> technical state, verified event, legal right, funded
+settlement, accounting recognition and final discharge are different clocks.</p>
+<h2 id="i-ruling">I. Ruling</h2>
+<p>Katie's proposition is directionally right, but the comparison becomes more
+interesting after the objects are separated.</p>
+<blockquote>
+<p>Blockchain and shared-ledger architectures place the greatest legitimacy
+pressure on intermediaries whose economic function is copying messages,
+maintaining duplicative state, reconciling breaks and controlling access to
+information. They do not by themselves replace the institutions that supply
+money, credit, liquidity, legally enforceable netting, finality, custody,
+correction, fraud allocation or a default waterfall.</p>
+</blockquote>
+<p>The strongest evidence does <strong>not</strong> show that a public blockchain is simply
+cheaper than the Federal Reserve's core rails. The core rail can already be
+extremely cheap. The Federal Reserve's 2024 FedACH operating and imputed cost,
+for example, works out to approximately <strong>$0.00828 per commercial item</strong> on a
+simple service-cost-to-volume division. The expensive object is often the
+institutional path surrounding the core entry: customer acquisition, account
+access, fraud, compliance, FX, liquidity, credit, exception processing,
+reconciliation, dispute rights and profit.</p>
+<p>The serious threat is therefore architectural:</p>
+<pre><code class="language-text">cheap shared state
+  -&gt; fewer duplicated records and hand-offs
+  -&gt; fewer reconciliation and exception events
+  -&gt; faster collateral and cash visibility
+  -&gt; pressure on opaque access, processing and information rents
+  -&gt; surviving intermediaries must justify fees by an observable risk,
+     liquidity, legal, balance-sheet or remedy function
+</code></pre>
+<p>That is a genuine legitimacy test. It is not yet evidence of wholesale
+disintermediation.</p>
+<h2 id="ii-claim-audit">II. Claim audit</h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Ruling</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“Blockchain transactions are cheaper than bank payments.”</td>
+<td><strong>NOT COMPARABLE AS STATED</strong></td>
+<td>A gas fee is one price on one technical clock. A bank-payment price may include deposit funding, compliance, fraud allocation, credit, FX, payout and remedy. Fix the path, money object, corridor, amount, timing and finality standard first.</td>
+</tr>
+<tr>
+<td>“A same-token, same-chain transfer can be cheaper and simpler than a multi-intermediary transfer.”</td>
+<td><strong>SUPPORTED — BOUNDED</strong></td>
+<td>One signed instruction can update a shared record and be verified by both parties without separate bilateral message reconciliation. Entry, exit, FX, custody and legal-remedy costs can remain.</td>
+</tr>
+<tr>
+<td>“Shared state can remove reconciliation cost.”</td>
+<td><strong>SUPPORTED AS A DESIGN CAPABILITY; REALIZED SAVINGS NOT GENERALLY QUANTIFIED</strong></td>
+<td>BIS, MIT and industry experiments support the mechanism. The reviewed public record rarely supplies an audited before-and-after cost ledger or proves retirement of the duplicate process.</td>
+</tr>
+<tr>
+<td>“Atomic settlement lowers every cost.”</td>
+<td><strong>FALSE</strong></td>
+<td>It may reduce settlement lag, replacement-cost exposure and failures, but gross or instant settlement can increase prefunding and liquidity demand and can sacrifice multilateral netting.</td>
+</tr>
+<tr>
+<td>“Blockchains eliminate clearinghouses.”</td>
+<td><strong>FALSE IN THE REVIEWED PRODUCTION STACK</strong></td>
+<td>A ledger can match and transfer state; it does not automatically novate obligations, mutualize default risk, collect margin, run a loss waterfall or guarantee completion.</td>
+</tr>
+<tr>
+<td>“Stablecoins eliminate banks.”</td>
+<td><strong>FALSE IN THE REVIEWED PATHS</strong></td>
+<td>Banks remain inside reserve custody, fiat entry/exit, issuer treasury, settlement and often distribution. Secondary holders may lack direct issuer redemption.</td>
+</tr>
+<tr>
+<td>“The Federal Reserve's rail price equals its cost.”</td>
+<td><strong>FALSE</strong></td>
+<td>Mature services are priced for long-run recovery, while FedNow is still outside mature-service recovery. The 2024 FedNow average system cost per processed transaction was radically different from its posted per-item price.</td>
+</tr>
+<tr>
+<td>“Blockchain threatens intermediary legitimacy.”</td>
+<td><strong>SUPPORTED — FUNCTION SPECIFIC</strong></td>
+<td>The threat is strongest where an intermediary supplies little beyond message relay, private state, reconciliation or access scarcity. It is weaker where the intermediary supplies balance sheet, legal finality, netting, liquidity, custody, fraud remedy or loss absorption.</td>
+</tr>
+<tr>
+<td>“The incumbent will disappear if its old process is compressed.”</td>
+<td><strong>NOT THE LEADING DOCUMENTED PATH</strong></td>
+<td>SWIFT, DTCC, card networks and banks are adding shared-ledger and stablecoin functions inside existing constitutions. The likely first transition is cost compression plus institutional absorption.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="iii-the-cost-constitution">III. The cost constitution</h2>
+<h3 id="31-eight-cost-layers">3.1 Eight cost layers</h3>
+<p>Every comparison in this package uses the following stack.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Object</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C0</td>
+<td>visible transaction price</td>
+<td>gas, wire fee, interchange, processor charge, issuer mint/redemption fee</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>network processing and validation</td>
+<td>hardware, software, validators, sequencer, node operations, message processing</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>access and integration</td>
+<td>participant fees, FedLine/API connection, wallet, custody integration, implementation and certification</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>duplicate-state and exception work</td>
+<td>matching, reconciliation, investigations, returns, failed trades, manual repair, corporate actions</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>liquidity and timing</td>
+<td>prefunding, daylight liquidity, nostro balances, collateral opportunity cost, settlement delay</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>credit and loss absorption</td>
+<td>issuer balance sheet, chargebacks, CCP guarantee, margin, default fund, committed facilities, capital</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>compliance, fraud and remedy</td>
+<td>KYC, sanctions, transaction monitoring, identity attribution, disputes, reversals, consumer protection</td>
+</tr>
+<tr>
+<td>C7</td>
+<td>legal, accounting and governance</td>
+<td>title, finality, custody, rulebook, insolvency, correction authority, books and records, audit, supervision</td>
+</tr>
+</tbody>
+</table>
+<p>A claim that one system is cheaper is admissible only if it states which layers
+are included and which institution still bears the excluded layers.</p>
+<h3 id="32-six-clocks">3.2 Six clocks</h3>
+<pre><code class="language-text">instruction
+  -&gt; network acceptance / technical state
+  -&gt; guarantee, reservation or commitment
+  -&gt; money or title settlement
+  -&gt; legal finality / discharge
+  -&gt; accounting recognition
+  -&gt; correction, remedy or loss allocation
+</code></pre>
+<p>The same ledger event can be cheap at clock two while leaving clocks three
+through six to a bank, issuer, custodian, CCP, court or insurer.</p>
+<h3 id="33-required-denominators">3.3 Required denominators</h3>
+<p>Never compare these as though they were interchangeable:</p>
+<ul>
+<li>cost per message;</li>
+<li>cost per originated item;</li>
+<li>price charged to each side;</li>
+<li>cost per gross obligation;</li>
+<li>cost per net settlement entry;</li>
+<li>cost per dollar of value;</li>
+<li>cost per legally final payment;</li>
+<li>cost per successfully redeemed token;</li>
+<li>cost per exception, fraud event or failed settlement; and</li>
+<li>annual participant or platform cost.</li>
+</ul>
+<h2 id="iv-quantitative-public-surface">IV. Quantitative public surface</h2>
+<p>These figures are useful precisely because they expose unlike accounting
+objects. They are <strong>not</strong> a league table.</p>
+<table>
+<thead>
+<tr>
+<th>System/object</th>
+<th style="text-align: right;">Public figure</th>
+<th>Derived or reported meaning</th>
+<th>Critical exclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FedACH, 2024</td>
+<td style="text-align: right;">$166,500,000 operating and imputed cost; 20.109 billion commercial items</td>
+<td><strong>~$0.00828 per item</strong>, derived</td>
+<td>participant systems, fraud, returns, customer pricing and bank-account economics</td>
+</tr>
+<tr>
+<td>FedACH, 2024</td>
+<td style="text-align: right;">$190,000,000 service revenue</td>
+<td><strong>~$0.00945 revenue per item</strong>, derived</td>
+<td>revenue/item is not marginal cost or customer all-in price</td>
+</tr>
+<tr>
+<td>Fedwire Funds + NSS, 2024</td>
+<td style="text-align: right;">$151,700,000 operating and imputed cost; approximately 210 million Fedwire originations</td>
+<td><strong>~$0.72 per Fedwire origination</strong>, derived allocation proxy</td>
+<td>numerator includes NSS and service-wide costs; denominator excludes NSS and receipt-side billable events</td>
+</tr>
+<tr>
+<td>Fedwire Funds + NSS, 2024</td>
+<td style="text-align: right;">$170,300,000 revenue</td>
+<td><strong>~$0.81 per Fedwire origination</strong>, derived allocation proxy</td>
+<td>fixed, receipt-side and surcharge structure makes this unlike a quoted wire fee</td>
+</tr>
+<tr>
+<td>Fedwire Funds, 2026</td>
+<td style="text-align: right;">$0.97 / $0.30 / $0.195 pre-incentive per origin or receipt by volume tier; lower incentive prices</td>
+<td>posted network price</td>
+<td>participation, access, bank markup, compliance and liquidity</td>
+</tr>
+<tr>
+<td>FedNow, 2024</td>
+<td style="text-align: right;">$231,100,000 operating and imputed cost; 1.5 million transactions</td>
+<td><strong>~$154.07 per transaction</strong>, derived launch-stage average cost</td>
+<td>not marginal cost; fixed network cost at deliberately low early volume</td>
+</tr>
+<tr>
+<td>FedNow, 2026</td>
+<td style="text-align: right;">$0.045 customer-credit origination; first 2,500 monthly originations discounted to zero</td>
+<td>posted participant price</td>
+<td>long-run cost recovery remains outside mature-service reporting</td>
+</tr>
+<tr>
+<td>Debit cards, 2023</td>
+<td style="text-align: right;">$34.12 billion interchange; $0.34 average per transaction; $0.129 average network fee</td>
+<td>issuer compensation and network charges</td>
+<td>merchant acquirer/processor fees, fraud, rewards, credit and other retail costs</td>
+</tr>
+<tr>
+<td>Debit cards, 2024</td>
+<td style="text-align: right;">$0.23 covered / $0.51 exempt average interchange per transaction</td>
+<td>current Board network survey</td>
+<td>not the merchant discount or network operating cost</td>
+</tr>
+<tr>
+<td>Retail remittances, 2025-Q3</td>
+<td style="text-align: right;">6.36% global average customer price</td>
+<td>fee plus FX-margin methodology</td>
+<td>not infrastructure operating cost; corridor and payout method vary</td>
+</tr>
+<tr>
+<td>CHIPS, 2025</td>
+<td style="text-align: right;">26:1 liquidity efficiency; operator-estimated $5.5 billion annualized economic savings</td>
+<td>liquidity-saving algorithm and continuous net settlement</td>
+<td>operator estimate, not audited network operating expense or customer fee schedule</td>
+</tr>
+<tr>
+<td>NSCC</td>
+<td style="text-align: right;">2024: $2.2 trillion average daily gross trade activity to $33.5 billion net settlement obligations; May 2026 netting rate 98.76%</td>
+<td>multilateral netting and funding-compression benefit</td>
+<td>does not state participant all-in cost; periods and denominators must remain separate</td>
+</tr>
+<tr>
+<td>Circle, 2026-Q1</td>
+<td style="text-align: right;">$652,508,000 reserve income; $41,625,000 other revenue; $405,402,000 distribution and transaction costs</td>
+<td>issuer economics are funded principally by reserve yield and shared with distribution partners</td>
+<td>company-wide quarter, not per-transfer cost; distribution and chain transaction costs are combined</td>
+</tr>
+<tr>
+<td>Public-chain stablecoin transfer</td>
+<td style="text-align: right;">visible chain fee</td>
+<td>C0 network price for the on-chain state transition</td>
+<td>issuer, reserve, bank, FX, custody, bridge, compliance, off-ramp, remedy and security-subsidy layers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="41-what-the-federal-reserve-numbers-actually-say">4.1 What the Federal Reserve numbers actually say</h3>
+<p>The incumbent core is not one bloated price surface.</p>
+<ul>
+<li><strong>FedACH is already a sub-cent core processor.</strong> A blockchain cannot establish
+  an economy-wide saving merely by posting a low fee against this object.</li>
+<li><strong>Fedwire is inexpensive relative to its value and legal function.</strong> It
+  provides immediate final central-bank-money settlement, but its participant
+  access, liquidity and bank-customer layers are separate.</li>
+<li><strong>FedNow shows why price is not cost.</strong> Its 2026 $0.045 posted origination fee
+  and 2024 launch-stage average cost of approximately $154 per processed
+  transaction are not contradictory; they are different accounting clocks in
+  a network whose fixed cost is being spread across early volume and whose
+  long-run recovery period extends beyond the ordinary mature-service horizon.</li>
+</ul>
+<p>This same warning applies to crypto. Gas can be below full economic cost when
+security is also financed through token issuance, reserve income, sequencer
+economics, venture subsidy or another product line.</p>
+<h3 id="42-where-the-visible-rents-appear">4.2 Where the visible rents appear</h3>
+<p>The larger customer prices sit above or around core settlement:</p>
+<ul>
+<li>debit interchange and network charges;</li>
+<li>issuer/acquirer/processor economics;</li>
+<li>correspondent and nostro access;</li>
+<li>FX spread;</li>
+<li>compliance and fraud control;</li>
+<li>custody and wallet conversion;</li>
+<li>exception and dispute handling; and</li>
+<li>the value of credit, delayed repayment or guaranteed merchant receipt.</li>
+</ul>
+<p>The World Bank's remittance measure is useful here. A 6.36% customer price on a
+$200 remittance is $12.72, but that does not mean the payment rail costs $12.72
+to operate. It means the complete customer/corridor/FX/payout stack is priced
+that way. A stablecoin can attack several components, but only an end-to-end
+quote from bank money in to usable money out can establish the saving.</p>
+<h2 id="v-the-netting-trap">V. The netting trap</h2>
+<p>This is the largest correction to a simple “blockchain is cheaper” thesis.</p>
+<h3 id="51-what-currently-settles-is-the-residual-not-the-gross-market">5.1 What currently settles is the residual, not the gross market</h3>
+<p>Much of modern settlement is not a separate movement of cash for every trade.
+Execution creates obligations; the clearing constitution then determines which
+obligations can offset, which are guaranteed or novated, what collateral must
+be posted, and which residual debit or credit must finally settle.</p>
+<pre><code class="language-text">millions of executed obligations
+  -&gt; validation and CCP guarantee / novation
+  -&gt; bilateral and multilateral netting
+  -&gt; margin, clearing-fund and liquidity controls
+  -&gt; one net debit or credit per participant / settlement set
+  -&gt; cash and securities settlement of the residual
+</code></pre>
+<p>NSCC's current reporting makes the transformation concrete. Its 2024 average
+day compressed approximately $2.2 trillion of gross trade activity into $33.5
+billion of net settlement obligations; its separately reported May 2026
+netting rate was 98.76%. The periods and denominators cannot be blended, and
+the figures are operator reports, but the economic function is clear. The CCP
+turns a huge field of debits and credits into a much smaller funded residual
+while placing a guarantee, margin system and default waterfall around the
+interval.</p>
+<p>That is why “the ledger only shifts debits and credits” is incomplete but
+directionally important. The shifts are enforceable obligations inside a
+credit, collateral and default constitution. The comparatively small residual
+cash movement is possible because the system recognizes offset and manages the
+risk that a participant fails before or at settlement.</p>
+<h3 id="52-what-real-funds-means-under-atomic-settlement">5.2 What “real funds” means under atomic settlement</h3>
+<p>Atomic delivery-versus-payment requires the platform to be able to complete
+both legs together or neither leg at all. Unless the design includes credit,
+netting or a liquidity-saving mechanism, the buyer must control sufficient
+eligible settlement money and the seller must control the deliverable asset at
+the execution point. Those balances normally must be reserved, locked or
+otherwise unavailable for conflicting use during execution.</p>
+<p>“Real” does not mean physical cash. It means <strong>funded and legally effective for
+that settlement rule</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Atomic cash-leg object</th>
+<th>What is actually available</th>
+<th>What atomicity does not prove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>central-bank reserves or tokenized reserve claim</td>
+<td>liability of the central bank, available to eligible holders</td>
+<td>universal access, unlimited intraday liquidity or customer-level title</td>
+</tr>
+<tr>
+<td>commercial-bank deposit token</td>
+<td>liability of the issuing bank on the governed platform</td>
+<td>central-bank-money settlement, deposit insurance in every case or freedom from issuer credit risk</td>
+</tr>
+<tr>
+<td>stablecoin</td>
+<td>claim governed by the issuer's reserve and redemption constitution</td>
+<td>direct holder redemption, bankruptcy remoteness, par in secondary markets or central-bank finality</td>
+</tr>
+<tr>
+<td>prefunded participant balance</td>
+<td>value already placed under the system's control</td>
+<td>that the participant did not borrow, repo or encumber assets to fund it</td>
+</tr>
+<tr>
+<td>intraday credit or overdraft</td>
+<td>lender's balance sheet makes the payment possible</td>
+<td>that the payment was pre-existing unlevered cash; credit and collateral costs remain</td>
+</tr>
+<tr>
+<td>CCP guarantee / settlement promise</td>
+<td>risk is mutualized and completion is supported under rules</td>
+<td>present cash; the guarantee still needs liquidity and a loss waterfall</td>
+</tr>
+<tr>
+<td>blockchain state transition alone</td>
+<td>protocol state changed according to code</td>
+<td>that the state is money, title, par-redeemable, legally final or recoverable</td>
+</tr>
+</tbody>
+</table>
+<p>The change from net deferred obligations to atomic gross settlement can
+therefore make funding more “real” in the specific sense that the asset must be
+present and controlled at the moment of exchange. It can also convert a system
+that economizes on money through offset and credit into one that consumes much
+more money or collateral intraday.</p>
+<h3 id="53-the-balance-sheet-consequence">5.3 The balance-sheet consequence</h3>
+<p>The trade is not merely speed versus safety. It is a change in how the financial
+system uses promises.</p>
+<table>
+<thead>
+<tr>
+<th>Net/credit constitution</th>
+<th>Atomic gross constitution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>permits obligations to offset before cash moves</td>
+<td>requires each included leg to be funded at execution</td>
+</tr>
+<tr>
+<td>economizes on reserves and settlement balances</td>
+<td>increases prefunding or intraday-liquidity demand</td>
+</tr>
+<tr>
+<td>carries replacement, principal and participant-default exposure during the interval</td>
+<td>compresses or removes the included settlement interval</td>
+</tr>
+<tr>
+<td>uses CCP guarantee, margin and default resources to support the interval</td>
+<td>uses locks, escrow, smart-contract conditions and immediate failure if funding is absent</td>
+</tr>
+<tr>
+<td>lets participants source cash/securities before final settlement</td>
+<td>demands earlier inventory and treasury readiness</td>
+</tr>
+<tr>
+<td>can support higher balance-sheet velocity through netting and credit</td>
+<td>can reduce leverage while increasing collateral immobility unless liquidity-saving features are rebuilt</td>
+</tr>
+</tbody>
+</table>
+<p>This is the deepest economic question in the tokenization transition:</p>
+<blockquote>
+<p>Does shared state merely make the same promises easier to see, or does it
+require the financial system to replace netted and credit-supported promises
+with funded assets at the point of execution?</p>
+</blockquote>
+<p>The first path mainly attacks reconciliation. The second changes liquidity,
+leverage, collateral velocity and the role of every institution that supplies
+credit or guarantees completion.</p>
+<h3 id="54-faster-is-not-automatically-cheaper">5.4 Faster is not automatically cheaper</h3>
+<p>Atomic or real-time gross settlement can:</p>
+<ul>
+<li>remove settlement lag;</li>
+<li>reduce replacement-cost exposure;</li>
+<li>reduce some fails and reconciliation;</li>
+<li>make cash and assets reusable sooner; and</li>
+<li>automate conditional delivery-versus-payment.</li>
+</ul>
+<p>It can also:</p>
+<ul>
+<li>require both legs to be prefunded;</li>
+<li>eliminate the time participants use to source cash or securities;</li>
+<li>sacrifice bilateral or multilateral netting;</li>
+<li>increase the quantity and velocity of intraday liquidity needed; and</li>
+<li>move credit risk into liquidity, custody, bridge or smart-contract risk.</li>
+</ul>
+<p>The relevant optimization is not minimum transaction fee. It is:</p>
+<pre><code class="language-text">processing + reconciliation + exceptions
++ liquidity + collateral + capital
++ credit and default protection
++ failure, correction and legal-remedy cost
+</code></pre>
+<h3 id="55-incumbent-algorithms-already-matter">5.5 Incumbent algorithms already matter</h3>
+<p>Blockchain is not the only computational alternative to gross sequential
+processing.</p>
+<ul>
+<li>CHIPS uses queuing, bilateral and multilateral offsetting, and continuous
+  net settlement. The Clearing House reports that $1 of funding supported $26
+  of 2025 settled value and estimates $5.5 billion of annualized liquidity
+  savings. Its 2025 illustration compares approximately $96 billion of CHIPS
+  funding for approximately $2 trillion of daily value with an estimated
+  $442 billion of funding under a traditional RTGS path. This is an operator
+  estimate, but it identifies the right cost object: liquidity, not message
+  processing.</li>
+<li>NSCC states that multilateral netting reduces the value of payments requiring
+  exchange by an average of 98–99%.</li>
+<li>MIT 14.129's strongest contribution to this question is therefore not
+  “blockchain wins.” It is the design rule that common state, liquidity-saving
+  mechanisms and algorithmic set-off must be compared by function.</li>
+</ul>
+<p>A tokenized system that reproduces legally enforceable netting and liquidity
+saving may be superior. A tokenized system that replaces a netted obligation
+with millions of prefunded gross transfers may be computationally elegant and
+economically worse.</p>
+<h2 id="vi-what-shared-ledgers-can-remove-compress-retain-or-create">VI. What shared ledgers can remove, compress, retain or create</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Likely effect</th>
+<th>Legitimacy ruling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message relay between known institutions</td>
+<td><strong>compress / commoditize</strong></td>
+<td>An intermediary charging mainly for transport faces strong pressure.</td>
+</tr>
+<tr>
+<td>bilateral books and post-event reconciliation</td>
+<td><strong>compress materially</strong></td>
+<td>Strongest displacement lane if one accepted state actually retires duplicate records.</td>
+</tr>
+<tr>
+<td>matching and workflow sequencing</td>
+<td><strong>automate / relocate</strong></td>
+<td>Value remains in the rule and exception design, not manual handling.</td>
+</tr>
+<tr>
+<td>operating-hours mismatch</td>
+<td><strong>compress technically</strong></td>
+<td>Liquidity, asset availability and legal operating hours may remain.</td>
+</tr>
+<tr>
+<td>settlement asset</td>
+<td><strong>retain</strong></td>
+<td>A token representation needs an issuer or authoritative monetary liability.</td>
+</tr>
+<tr>
+<td>FX and market making</td>
+<td><strong>retain / automate partly</strong></td>
+<td>Pricing, inventory and risk-bearing do not disappear because execution is coded.</td>
+</tr>
+<tr>
+<td>netting and liquidity saving</td>
+<td><strong>retain / redesign</strong></td>
+<td>Removing it can destroy more value than reconciliation savings create.</td>
+</tr>
+<tr>
+<td>credit and balance sheet</td>
+<td><strong>retain</strong></td>
+<td>Code cannot fund a queue, redemption, margin call or default.</td>
+</tr>
+<tr>
+<td>CCP novation and default waterfall</td>
+<td><strong>retain unless legally rebuilt</strong></td>
+<td>Matching or atomic DvP is not a guarantee of completion.</td>
+</tr>
+<tr>
+<td>custody</td>
+<td><strong>change form</strong></td>
+<td>Omnibus books may shrink, but key custody, recovery and entitlement law remain.</td>
+</tr>
+<tr>
+<td>sanctions, KYC and fraud control</td>
+<td><strong>retain / redistribute</strong></td>
+<td>Public visibility can aid analytics; identity attribution and lawful intervention remain institutional.</td>
+</tr>
+<tr>
+<td>chargeback, reversal and error correction</td>
+<td><strong>reduce or relocate</strong></td>
+<td>Irreversibility lowers one class of operational cost by shifting loss and remedy risk to users/providers.</td>
+</tr>
+<tr>
+<td>accounting and audit</td>
+<td><strong>compress evidence collection; retain judgment</strong></td>
+<td>A common event record can reduce compilation, but authority, classification, estimates and assurance survive.</td>
+</tr>
+<tr>
+<td>network governance and cyber resilience</td>
+<td><strong>new or retained cost</strong></td>
+<td>Validators, sequencers, upgrades, bridges, keys, incident response and forks form a new constitution.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vii-public-chain-stablecoin-and-permissioned-ledger-economics">VII. Public chain, stablecoin and permissioned-ledger economics</h2>
+<h3 id="71-public-blockchain">7.1 Public blockchain</h3>
+<p>A public blockchain buys something an ordinary database does not: open access
+to a shared state whose update rules are enforced across independently operated
+nodes. Replicated validation is a security and governance choice, not a free
+efficiency gain.</p>
+<p>Its visible fee can be low while total economic support also includes:</p>
+<ul>
+<li>protocol issuance or token dilution;</li>
+<li>validator or staking rewards;</li>
+<li>priority fees and MEV;</li>
+<li>L2 sequencer margin and L1 data-availability cost;</li>
+<li>node, RPC, indexer and wallet infrastructure;</li>
+<li>bridge security and losses; and</li>
+<li>volatile native-token funding of fees.</li>
+</ul>
+<p>The correct public-chain comparison is not “server bill versus gas.” It is the
+cost of maintaining the agreed security, availability and governance standard
+per completed, economically distinct transaction.</p>
+<h3 id="72-stablecoin">7.2 Stablecoin</h3>
+<p>A stablecoin adds a private monetary liability and conversion constitution to
+the chain.</p>
+<pre><code class="language-text">bank money in
+  -&gt; issuer eligibility and compliance
+  -&gt; reserve bank/custodian
+  -&gt; mint
+  -&gt; chain transfer
+  -&gt; custody or merchant acceptance
+  -&gt; redemption or exchange
+  -&gt; bank money / local money out
+</code></pre>
+<p>Low or zero issuer charges can be supported by reserve income. That is an
+economic subsidy from the holder's forgone yield, not proof that issuance,
+redemption, compliance and banking are costless. Circle's public terms also
+make the legal perimeter visible: network and bank fees remain; direct
+redemption depends on account eligibility; third-party prices may depart from
+par; and on-chain transfers are generally irreversible.</p>
+<p>Circle's first-quarter 2026 filing makes the economic engine measurable. It
+reported $652,508,000 of reserve income, compared with $41,625,000 of other
+revenue, and $405,402,000 of distribution and transaction costs. Circle says
+transaction costs include blockchain network fees, but the combined caption is
+dominated by distribution economics, including $330,600,000 paid under its
+Coinbase arrangements in the quarter. The cheap visible token transfer sits on
+top of a large reserve-yield and distribution machine.</p>
+<h3 id="73-permissioned-shared-ledger">7.3 Permissioned shared ledger</h3>
+<p>This is the most credible institutional cost-compression lane in the existing
+corpus.</p>
+<ul>
+<li>SWIFT's shared-ledger design coordinates funded interbank commitments while
+  bank-issued tokenized deposits and existing settlement systems remain
+  authoritative at the relevant edges.</li>
+<li>DTC tokenization represents controlled securities entitlements while DTC
+  retains record, freeze, reversal, reconciliation and correction powers.</li>
+<li>Project Agorá demonstrates atomic cross-border settlement in a prototype
+  using tokenized commercial-bank deposits and jurisdiction-specific
+  central-bank-reserve ledgers; real-value testing and production governance
+  remain later clocks.</li>
+</ul>
+<p>The likely first-order result is not no intermediary. It is <strong>fewer duplicated
+institutional records inside a permissioned federation</strong>.</p>
+<h2 id="viii-the-intermediary-legitimacy-test">VIII. The intermediary legitimacy test</h2>
+<p>An intermediary's fee remains economically legible when it can answer all six
+questions.</p>
+<ol>
+<li><strong>What scarce function is supplied?</strong> Liquidity, balance sheet, risk
+   transformation, legal finality, custody, correction, identity, insurance or
+   default management?</li>
+<li><strong>What exposure does the intermediary actually bear?</strong> Principal, credit,
+   fraud, operational, legal, liquidity or market risk?</li>
+<li><strong>What record or decision is authoritative?</strong> Is it creating legal effect or
+   merely copying another institution's state?</li>
+<li><strong>What happens on failure?</strong> Who advances funds, returns value, corrects the
+   record and absorbs the loss?</li>
+<li><strong>Can the cost be tied to the function?</strong> Is the charge a price, pass-through,
+   risk premium, cross-subsidy or rent?</li>
+<li><strong>Would the function still be required on a common ledger?</strong> If yes, the
+   institution may survive in altered form. If no, its legitimacy is exposed.</li>
+</ol>
+<h3 id="81-pressure-ranking">8.1 Pressure ranking</h3>
+<table>
+<thead>
+<tr>
+<th>Pressure</th>
+<th>Intermediary function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>highest</strong></td>
+<td>pure message relay; manual reconciliation; proprietary status lookup; redundant bilateral recordkeeping; avoidable operating-hours delay</td>
+</tr>
+<tr>
+<td><strong>high</strong></td>
+<td>closed integration gateways; opaque correspondent hops; noncompetitive conversion and data access; manual collateral movement</td>
+</tr>
+<tr>
+<td><strong>mixed</strong></td>
+<td>custody, payment orchestration, card networks, transfer agents and depositories—many old tasks compress, but control and remedy functions survive</td>
+</tr>
+<tr>
+<td><strong>lower</strong></td>
+<td>central-bank settlement asset, deposit issuer, liquidity provider, legally enforceable netting, CCP default management, fraud remedy, court and resolution authority</td>
+</tr>
+</tbody>
+</table>
+<p>The result is not a defense of every incumbent fee. It is a demand for a
+function-level invoice.</p>
+<h2 id="ix-corpus-map-and-what-this-pass-adds">IX. Corpus map and what this pass adds</h2>
+<h3 id="91-what-was-already-established">9.1 What was already established</h3>
+<p>The corpus already had most of the architecture:</p>
+<ul>
+<li>the Federal Reserve payment-stack audit separated access, operating control,
+  liquidity, finality and cost allocation;</li>
+<li>the Federal Reserve financial constitution separated legal Bank, reporting
+  entity, CASPR cost object, internal allocation, reimbursement and combined
+  elimination;</li>
+<li>the MIT 14.129 package framed shared state as an information, coordination
+  and liquidity design problem rather than a blockchain-adoption claim;</li>
+<li>the crypto/banking overlap map preserved issuer, settlement-asset,
+  authoritative-record, liquidity and correction boundaries;</li>
+<li>the payment-transparency package established that gas is not all-in cost and
+  that stablecoins can simplify transfer without simplifying the money
+  lifecycle;</li>
+<li>the private-stack package mapped the incumbent-led absorption path through
+  SWIFT, DTCC, banks, card networks, issuers, custodians and adapters; and</li>
+<li>the accounting-transition package supplied the transaction-native chain from
+  authority and contract through performance, finality, correction, accounting
+  and assurance.</li>
+</ul>
+<h3 id="92-what-was-genuinely-missing">9.2 What was genuinely missing</h3>
+<p>This pass adds the controlling comparative cost constitution:</p>
+<ol>
+<li>one eight-layer cost stack for incumbents and tokenized rails;</li>
+<li>one denominator discipline for price, average cost, liquidity and legal
+   discharge;</li>
+<li>direct 2024 Federal Reserve cost-to-volume calculations;</li>
+<li>card, remittance, CHIPS and NSCC comparison surfaces;</li>
+<li>the netting-versus-atomic-settlement trade-off as the central economic
+   falsifier;</li>
+<li>a pressure ranking for which intermediary functions are actually exposed;
+   and</li>
+<li>a documentary standard for proving realized savings rather than repeating
+   pilot or marketing language.</li>
+</ol>
+<h2 id="x-evidence-required-for-a-demonstrated-saving">X. Evidence required for a demonstrated saving</h2>
+<p>A production claim should not be promoted without a before-and-after pack
+containing:</p>
+<ol>
+<li>named legal operators and participants;</li>
+<li>identical transaction family, value range, corridor and service level;</li>
+<li>old and new entity paths;</li>
+<li>old and new C0–C7 costs;</li>
+<li>volume and capacity assumptions;</li>
+<li>liquidity, collateral and capital treatment;</li>
+<li>fraud, exception and failed-settlement rates;</li>
+<li>title, cash-finality and correction rules;</li>
+<li>accounting treatment for capitalized development and recurring expense;</li>
+<li>whether any cost is subsidized by issuance, reserve income, another product
+    or loss shifting;</li>
+<li>proof that a material legacy process was retired; and</li>
+<li>independent assurance or regulator acceptance where the claim depends on
+    books, records or legal finality.</li>
+</ol>
+<h2 id="xi-open-gaps-and-falsifiers">XI. Open gaps and falsifiers</h2>
+<h3 id="111-highest-value-documentary-gaps">11.1 Highest-value documentary gaps</h3>
+<ul>
+<li>audited 2025 service-line Federal Reserve actuals and FedNow cumulative
+  development-to-recovery bridge;</li>
+<li>CHIPS public participant fee schedule and independently reproducible
+  liquidity-savings methodology;</li>
+<li>DTC/NSCC tokenization service fees and an event-level cash/title/finality
+  record;</li>
+<li>SWIFT shared-ledger participant fees, cost allocation, default rules and one
+  bank-confirmed live transaction with external settlement evidence;</li>
+<li>stablecoin end-to-end corridor quotes including bank-in, mint, transfer,
+  bridge, FX, off-ramp and bank-out;</li>
+<li>audited public-chain or L2 full economic cost including issuance, sequencer,
+  validator, infrastructure and bridge layers;</li>
+<li>before-and-after staffing, exception, reconciliation and failure data from a
+  production institutional deployment; and</li>
+<li>an accounting/audit case in which a common event record actually retired a
+  duplicate ledger or reconciliation control.</li>
+</ul>
+<h3 id="112-falsifiers">11.2 Falsifiers</h3>
+<p>The strong legitimacy-pressure thesis weakens if:</p>
+<ul>
+<li>shared-ledger deployments retain the same duplicate books and exception
+  staffing;</li>
+<li>integration, cyber, bridge, custody and compliance costs exceed eliminated
+  reconciliation cost;</li>
+<li>gross prefunding and lost netting consume the savings;</li>
+<li>incumbents can provide shared state at equal or lower cost without DLT;</li>
+<li>stablecoin entry/exit and FX keep end-user cost near incumbent levels;</li>
+<li>production failure rates or remedy losses rise materially; or</li>
+<li>legal and accounting authorities continue to require a separate controlling
+  record.</li>
+</ul>
+<p>The thesis strengthens if a named production family publishes audited evidence
+that it retired a material reconciliation process, reduced total C0–C7 cost,
+preserved or improved liquidity efficiency, and retained accepted finality,
+correction and loss allocation.</p>
+<h2 id="xii-primary-source-spine">XII. Primary source spine</h2>
+<h3 id="federal-reserve">Federal Reserve</h3>
+<ul>
+<li><a href="https://www.federalreserve.gov/publications/2024-ar-payment-system-and-reserve-bank-oversight.htm">2024 Payment System and Reserve Bank Oversight</a></li>
+<li><a href="https://www.federalreserve.gov/newsevents/pressreleases/files/other20251204a1.pdf">2026 Federal Reserve service-pricing notice</a></li>
+<li><a href="https://www.frbservices.org/resources/fees/">2026 FRFS fee schedules</a></li>
+<li><a href="https://www.federalreserve.gov/paymentsystems/fedach_yearlycomm.htm">FedACH annual volume and value</a></li>
+<li><a href="https://www.frbservices.org/resources/fees/fednow-2026">FedNow 2026 fee schedule</a></li>
+<li><a href="https://www.frbservices.org/resources/fees/wires-2026">Fedwire Funds 2026 fee schedule</a></li>
+<li><a href="https://www.federalreserve.gov/paymentsystems/2023-interchange-fee.htm">2023 debit interchange, network fees, issuer costs and fraud losses</a></li>
+<li><a href="https://www.federalreserve.gov/paymentsystems/data-previous-years-accessible.htm">2024 debit interchange by network</a></li>
+</ul>
+<h3 id="liquidity-clearing-and-settlement">Liquidity, clearing and settlement</h3>
+<ul>
+<li><a href="https://www.theclearinghouse.org/payment-systems/Articles/2026/04/CHIPS-Delivers-Record-Value-and-Resilience-for-Participants-in-2025">CHIPS 2025 value and liquidity report</a></li>
+<li><a href="https://www.theclearinghouse.org/payment-systems/CHIPS/chips-annual-statistics">CHIPS annual statistics</a></li>
+<li><a href="https://www.dtcc.com/ust1/faqs">DTCC T+1 / NSCC netting FAQ</a></li>
+<li><a href="https://annuals.dtcc.com/">DTCC 2025 annual report</a></li>
+</ul>
+<h3 id="tokenization-stablecoins-and-comparative-economics">Tokenization, stablecoins and comparative economics</h3>
+<ul>
+<li><a href="https://www.bis.org/publ/arpdf/ar2026e3.htm">BIS Annual Economic Report 2026 — Anchoring trust in money</a></li>
+<li><a href="https://www.bis.org/publ/arpdf/ar2025e3.htm">BIS Annual Economic Report 2025 — The next-generation monetary and financial system</a></li>
+<li><a href="https://www.bis.org/cpmi/publ/d225.pdf">CPMI — Tokenisation in the context of money</a></li>
+<li><a href="https://www.bis.org/publ/qtrpdf/r_qt2003i.htm">BIS — On the future of securities settlement</a></li>
+<li><a href="https://www.bis.org/press/p260527.htm">Project Agorá 2026 prototype results</a></li>
+<li><a href="https://remittanceprices.worldbank.org/">World Bank Remittance Prices Worldwide</a></li>
+<li><a href="https://remittanceprices.worldbank.org/methodology">World Bank remittance-price methodology</a></li>
+<li><a href="https://www.circle.com/legal/usdc-terms">Circle USDC terms</a></li>
+<li><a href="https://www.circle.com/legal/user-agreement">Circle Mint user agreement</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1876042/000187604226000150/crcl-20260331.htm">Circle 2026-Q1 Form 10-Q</a></li>
+<li><a href="https://ethereum.org/developers/docs/gas/">Ethereum gas and fees</a></li>
+<li><a href="https://solana.com/docs/core/fees">Solana fee structure</a></li>
+</ul>
+<h2 id="xiii-internal-corpus-spine">XIII. Internal corpus spine</h2>
+<ul>
+<li><code>Research Packages/Fed, Clearing and Treasury/FED_PAYMENT_STACK_CONTROL_FINALITY_AND_COST_AUDIT_2026-07-25.md</code></li>
+<li><code>Research Packages/Monetary Cross-Cuts/CRYPTO_BANKING_SETTLEMENT_OVERLAP_DEEP_DIVE_2026-07-28.md</code></li>
+<li><code>Research Packages/Monetary Cross-Cuts/MIT_14129_SPRING_2025_COURSE_SYNTHESIS_2026-07-28.md</code></li>
+<li><code>Research Packages/Monetary Cross-Cuts/OPEN_SOURCE_REAL_TIME_ACCOUNTING_TRANSITION_MAP_2026-07-25.md</code></li>
+<li><code>Research Packages/Fintech and Private Rails/Payment Transparency and Hidden Constitution 2026-07-31/</code></li>
+<li><code>Research Packages/Fintech and Private Rails/Accounting Transition and Open Public Ledger 2026-07-30/</code></li>
+<li><code>Research Packages/Fintech and Private Rails/Retail Payment Terminal Transition 2026-07-28/</code></li>
+<li><code>Research Packages/Federal Government Whole-Site Recertification 2026-08-01/</code></li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

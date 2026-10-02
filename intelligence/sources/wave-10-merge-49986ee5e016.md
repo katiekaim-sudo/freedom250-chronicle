@@ -115,3 +115,13 @@ Return for current congressional meeting results, New York Fed afternoon
 operations, the late Federal Register/public-inspection batch and the high-
 velocity department, award, transaction, operator and committee publishers.
 `POST_NOON_REPLAY_RECEIPT_2026-09-30.md` controls the next fixed cursor.
+
+## Post-close boundary correction
+
+The October 2 monetary/economic-institutions replay later recovered three
+September 30 publisher objects not visible in this campaign's original direct-
+site pass: FHFA's 8:00 a.m. OIG budget allocation, OCC's date-only version 3.0
+credit-concentration booklet and FDIC's date-only independent-monitorship
+closure. They do not change the fiscal-close ruling or move the frozen cutoff.
+They do correct the earlier OCC/FDIC/FHFA publisher-surface negative. See
+`POST_CLOSE_BOUNDARY_CORRECTION_2026-10-02.md` and appended ledger rows.

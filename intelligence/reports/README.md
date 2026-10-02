@@ -4,6 +4,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 
 - [Credit Approval Standards: Mortgage, Retail and Business](mortgage-credit-score-reform.md) — cutoff 2026-09-07
 - [Mortgage Balance Sheet Trail to the Fed](mortgage-balance-sheet-trail.md) — cutoff 2026-09-07
+- [OCC–FDIC Supervisory Intervention Framework — 2026](occ-fdic-supervisory-intervention-2026-08-27.md) — cutoff 2026-08-27T17:55:00-04:00
 - [Retail Debt](retail-debt.md) — cutoff 2026-07-15
 - [The People's Money](peoples-money.md) — cutoff 2026-07-15
 - [Treasury and IRS](treasury-irs.md) — cutoff 2026-07-16
@@ -26,7 +27,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Education and University Funding](education-university-funding.md) — cutoff 2026-08-17
 - [Emerging Fraud — Identity, Eligibility and the Payment Gate](emerging-fraud-identity-payment-gate.md) — cutoff 2026-07-15
 - [Epstein Interview Statement Accountability](epstein-interview-statement-accountability.md) — cutoff 2026-07-21
-- [Federal Agency AI Plans and Infrastructure](federal-agency-ai-plans-infrastructure.md) — cutoff 2026-09-29
+- [Federal Agency AI Plans and Infrastructure](federal-agency-ai-plans-infrastructure.md) — cutoff 2026-10-04
 - [Federal Budget — FY2026 to FY2027](federal-budget-fy2026-fy2027.md) — cutoff 2026-09-11T19:55:13-04:00
 - [Federal Force, Surveillance and Emergency Authority Maps](federal-force-surveillance-and-emergency-authority.md) — cutoff 2026-08-15
 - [Federal Government Deep Website Review — September 16–22, 2026](federal-government-deep-website-review-2026-09-22.md) — cutoff 2026-09-22T11:51:46-04:00
@@ -51,6 +52,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Stop Secret Spending Act — OTA Transparency and Implementation](stop-secret-spending-act-ota-transparency.md) — cutoff 2026-09-15T18:26:27-04:00
 - [Treasury Do Not Pay — Governmentwide Structural Map](treasury-do-not-pay-governmentwide-map.md) — cutoff 2026-08-29
 - [Trump WHCA Dinner Remarks — July 24, 2026](trump-whca-dinner-remarks-2026-07-24.md) — cutoff 2026-07-24
+- [United States Name and Passport Typography — Legal-Entity Audit](united-states-name-passport-typography-2026-10-04.md) — cutoff 2026-10-04T12:00:00-04:00
 - [University Funding and Programmable Compliance](university-funding-programmable-compliance.md) — cutoff 2026-07-28
 - [White House Ballroom Lawfare 2025-2026](white-house-ballroom-lawfare-2025-2026.md) — cutoff 2026-08-23
 - [White House Cabinet Meeting — July 31, 2026](white-house-cabinet-meeting-2026-07-31.md) — cutoff 2026-07-31T19:50:38-04:00
@@ -61,25 +63,34 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Office of Religious Affairs — 2026](office-of-religious-affairs.md) — cutoff 2026-09-30T22:00:00-04:00
 - [Authority Through the Adapter — Where Control Actually Moves](authority-through-the-adapter.md) — cutoff 2026-08-31T10:42:24-04:00
 - [Banks and Credit Unions — Federal and Four-State Legal Architecture](bank-credit-union-legal-architecture.md) — cutoff 2026-09-15
+- [Blockchain Settlement Cost — 2026](blockchain-settlement-cost-2026.md) — cutoff 2026-08-02
 - [CFTC Passive Software No-Action Position — 2026](cftc-passive-software-no-action-2026-09-17.md) — cutoff 2026-09-17T11:32:00-04:00
+- [CLARITY Act — September 2026 Senate Draft](clarity-act-senate-draft-2026.md) — cutoff 2026-09-14
+- [Card Networks and Stablecoins — 2026](card-network-stablecoins-2026.md) — cutoff 2026-09-30
 - [Coinbase Clearing DCO Registration — 2026](coinbase-clearing-dco-registration-2026-09-28.md) — cutoff 2026-09-28T22:09:00-04:00
 - [Congressional Monetary Infrastructure](congressional-monetary-infrastructure.md) — cutoff 2026-09-16
 - [Crypto Infrastructure Comparatives](crypto-infrastructure-comparatives.md) — cutoff 2026-09-30
 - [Crypto Infrastructure Hub](tokenization-entity-control-map.md) — cutoff 2026-10-01
+- [DTCC Tokenization and Settlement — 2026](dtcc-tokenization-2026.md) — cutoff 2026-08-21
 - [Energy Asset Management, Atomic Settlement and Iran](energy-atomic-settlement-iran.md) — cutoff 2026-08-09
+- [Federal Monetary and Economic Institutions Delta — September 30 to October 2, 2026](federal-monetary-economic-institutions-delta-2026-10-02.md) — cutoff 2026-10-02T15:39:30-04:00
 - [Federal Reserve, Clearing and Treasury](fed-clearing-treasury.md) — cutoff 2026-09-30
 - [Federal Technology and Monetary Infrastructure Delta — September 17–20, 2026](federal-technology-and-monetary-infrastructure-delta-2026-09-20.md) — cutoff 2026-09-20T16:20:12-04:00
 - [From Atomic Settlement to Continuous Assurance — 2026](atomic-settlement-continuous-assurance.md) — cutoff 2026-09-26
+- [GENIUS Act Implementation — 2026](genius-act-implementation-2026.md) — cutoff 2026-09-30
 - [GENIUS Stablecoin Trust Crosswalk](genius-stablecoin-trust-crosswalk.md) — cutoff 2026-08-17
-- [Major Bank Digital Transition Map](major-bank-digital-transition.md) — cutoff 2026-09-26T16:37:25-04:00
+- [Major Bank Digital Transition Map](major-bank-digital-transition.md) — cutoff 2026-10-03T10:20:00-04:00
 - [Official Record Authority and Blockchain Crosswalk — 2026](official-record-authority-blockchain.md) — cutoff 2026-09-26
 - [Overall DLT Transition — 2025–2026](overall-dlt-transition.md) — cutoff 2026-09-22T23:59:59-04:00
 - [Payment Transparency and the Hidden Constitution](payment-transparency-hidden-constitution.md) — cutoff 2026-07-31
 - [Private Monetary Stack](private-monetary-stack.md) — cutoff 2026-08-26
+- [Programmable Money and AI-Agent Payments — 2026](programmable-and-agentic-payments-2026-09-22.md) — cutoff 2026-09-22
 - [QNT September 2026 Price Rise — Causal Audit](qnt-september-2026-price-rise.md) — cutoff 2026-09-27T09:44:00-04:00
-- [Ripple, XRP and the Invisible Conversion Layer](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-09-30
+- [Ripple, XRP and the Invisible Conversion Layer](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-10-03T09:30:00-04:00
 - [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](route-anchor-inventory.md) — cutoff 2026-08-31T14:43:21-04:00
+- [SEC 24-Hour Trading Roundtable — 2026](sec-24-hour-trading-roundtable-2026-09-17.md) — cutoff 2026-09-23
 - [SEC Accredited Investor Credential Notices — CPA Gate, 2026](sec-accredited-investor-credential-notices-2026-09-30.md) — cutoff 2026-09-30T20:55:02-04:00
+- [SEC Crypto Custody Proposal — 2026](sec-crypto-custody-proposal-2026-10-01.md) — cutoff 2026-10-01T17:35:03-04:00
 - [SEC Investor Advisory Committee — 2026 meeting record](sec-investor-advisory-committee.md) — cutoff 2026-09-20T16:20:12-04:00
 - [SEC Tokenized NMS Stock Innovation Exemption — 2026 Order](sec-tokenized-nms-stock-innovation-exemption.md) — cutoff 2026-09-17T09:46:00-04:00
 - [SEC Transfer Agent Modernization — 2026 Proposal](sec-transfer-agent-modernization.md) — cutoff 2026-09-01
@@ -102,7 +113,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Data Center Federal Legal Spine 2025–2026](data-center-federal-legal-spine.md) — cutoff 2026-08-20
 - [Federal Cryptographic Trust Stack](federal-cryptographic-trust-stack.md) — cutoff 2026-10-01
 - [Federal Fusion Commercialization](federal-fusion-commercialization.md) — cutoff 2026-08-15
-- [Federal Science Operating System](federal-science-operating-system.md) — cutoff 2026-08-17
+- [Federal Science Operating System](federal-science-operating-system.md) — cutoff 2026-10-04
 - [Genesis Mission](genesis-mission.md) — cutoff 2026-09-09
 - [Industrial Project Finance and Digital Rails](industrial-project-finance-digital-rails.md) — cutoff 2026-07-31
 - [NSSTS Program and Acceptance Economy](nssts-program-acceptance-economy.md) — cutoff 2026-08-19
@@ -112,6 +123,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Permanent Magnets](permanent-magnets.md) — cutoff 2026-07-22
 - [Scientific Trust Stack](scientific-trust-stack.md) — cutoff 2026-08-17
 - [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](us-inbound-investment-industrial-capex.md) — cutoff 2026-07-31
+- [Bessent at the IIF — April 2026](bessent-iif-spring-meetings-2026.md) — cutoff 2026-07-30
 - [Canada, transshipment and customs origin records](institutional-regime-waves.md) — cutoff 2026-09-02
 - [China Country Orientation — 2026](china-country-orientation-2026.md) — cutoff 2026-09-24T23:05:00-04:00
 - [Cuba Pressure and Counter-Influence](cuba-pressure-counter-influence.md) — cutoff 2026-07-20
@@ -120,16 +132,30 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [G7 and G20 Coordination Architecture — 2025–2026](g7-g20-coordination-architecture.md) — cutoff 2026-09-03T19:41:23-04:00
 - [Global Oil and Gas Movements 2026](global-oil-gas-movements.md) — cutoff 2026-09-30
 - [Gold Balance of Payments & Currency Adjustment](gold-bop-currency-adjustment.md) — cutoff 2026-08-23
+- [IMF Legal Constitution — 2026](imf-legal-constitution-2026.md) — cutoff 2026-09-21
+- [IMF Legal Department at 80 — Conference 2026](imf-legal-department-at-80-2026.md) — cutoff 2026-09-26
+- [IMF and Currency Pricing — 2026](imf-currency-pricing-2026.md) — cutoff 2026-07-30
+- [International Crypto Map — 2026](international-crypto-map.md) — cutoff 2026-10-03T09:30:00-04:00
+- [International Monetary Initiation — 2026](international-monetary-initiation-2026.md) — cutoff 2026-09-14
+- [International Monetary Next Phase — 2026](international-monetary-next-phase-2026.md) — cutoff 2026-09-07
 - [International Monetary Transition](international-monetary-transition.md) — cutoff 2026-09-28T10:16:00+09:00
 - [Iran Financial Pressure and Banking-System Isolation](iran-financial-pressure.md) — cutoff 2026-09-03T19:41:23-04:00
 - [Iraq Oil Provenance and Logistics](iraq-oil-logistics.md) — cutoff 2026-07-15
 - [Japan August 2026 — State, Monetary, Industrial and Digital Delta](japan-august-2026-delta.md) — cutoff 2026-08-31T23:10:00+09:00
+- [Japan Monetary Constitution — 2026](japan-monetary-constitution-2026.md) — cutoff 2026-09-28
+- [Japan–Korea Currency Defense — July–August 2026](japan-korea-currency-defense-2026.md) — cutoff 2026-08-01
+- [Japan–Korea FX Shock and Stablecoins — July 2026](japan-korea-stablecoin-fx-overlap-2026.md) — cutoff 2026-07-31
+- [Korea Market Stress and Transmission — July 2026](korea-market-stress-2026.md) — cutoff 2026-07-29
 - [Russia Country Orientation — 2026](russia-country-orientation-2026.md) — cutoff 2026-09-24T23:59:00-04:00
+- [The Petrodollar System — 1945–2026](petrodollar-system-1945-2026.md) — cutoff 2026-09-15
 - [Trump Davos Address — January 21, 2026](trump-davos-address-2026-01-21.md) — cutoff 2026-09-25
 - [U.S.–China Strategic Stability State Visit — September 2026](us-china-strategic-stability-state-visit-2026.md) — cutoff 2026-09-28T10:07:16-04:00
+- [U.S.–UK Transatlantic Markets Taskforce — 2026](us-uk-transatlantic-markets-taskforce-2026.md) — cutoff 2026-08-04
 - [UK Constitutional Order and Self-Determination](uk-constitutional-order-self-determination.md) — cutoff 2026-09-13T17:59:00-04:00
+- [UK Monetary Constitution — 2026](uk-monetary-constitution-2026.md) — cutoff 2026-09-14
 - [USTDA Project Development Pipeline — 2026](ustda-project-development-pipeline-2026.md) — cutoff 2026-09-26T12:45:00-04:00
 - [United Nations General Assembly High-Level Week — 2026](un-general-assembly-high-level-week-2026.md) — cutoff 2026-09-30T04:30:00-04:00
+- [Who Gets Adjusted — IMF Symmetry Audit 2026](imf-symmetry-audit-2026.md) — cutoff 2026-07-30
 - [Federal Government Entity Library Harvest — 2026-08-22](federal-government-entity-library-harvest-2026-08-22.md) — cutoff 2026-08-23
 - [Federal Government Full Freshness Sweep — August 22, 2026](federal-government-full-freshness-sweep-2026-08-22.md) — cutoff 2026-08-23
 - [Federal Government Sweep Control Audit — August 21–29, 2026](federal-government-sweep-control-audit-2026-08-29.md) — cutoff 2026-08-29T21:06:00-04:00

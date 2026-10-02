@@ -1,0 +1,172 @@
+# UK Monetary Constitution 2026
+
+This is the domestic sterling-system branch of the International Monetary
+Transition investigation. It asks a deliberately concrete question:
+
+> At each layer, what is the claim, whose liability is it, which ledger records
+> it, who operates the transfer, what makes it final, and who absorbs loss?
+
+The work is being built layer by layer. A completed layer is saved when its
+legal, accounting and operating boundaries are supportable from official
+sources; later layers may refine it, but do not silently rewrite its evidence
+cutoff.
+
+## Current milestone
+
+- `FCA_DOMESTIC_FINANCIAL_GEOGRAPHY_AND_ACCESS_TO_CAPITAL_WAVE_5_2026-09-14.md` —
+  fifth completed FCA-research wave: an audit of the FCA's two independent
+  regional-finance papers that separates financial-firm location, access,
+  decision control, delivered capital and local outcomes. It preserves the
+  papers' proximity and SME-lending associations, but does not convert
+  cross-sectional levels, branch density or commercial-property yield proxies
+  into causal regional-growth or economy-wide cost-of-capital claims.
+- `FCA_GILT_REPO_CCP_STRESS_TRANSMISSION_WAVE_4_2026-09-14.md` —
+  fourth completed FCA-research wave: a behavioural extension to Layer 5
+  tracing rate shocks through margin, repo, urgent sales, dealer capacity,
+  fragmented gilt prices, CCP calls and settlement liquidity. It compares the
+  March 2020 and September 2022 failures with the orderly early-2026 episode,
+  treats ELP evidence as incomplete and keeps the Bank's clearing/haircut work
+  on its pre-rule policy clock.
+- `FCA_UK_CRYPTOASSET_MARKET_ACTOR_AND_FLOW_BASELINE_WAVE_3_2026-09-14.md` —
+  third completed FCA-research wave: the July market description and its survey
+  denominator mapped into role, customer journey, custody, settlement,
+  concentration, cross-border structure and October 2027 rule clocks. It
+  distinguishes reported consumer-platform reach from market share, brand from
+  legal entity, app completion from final settlement and current MLR registration
+  from future FSMA authorization.
+- `FCA_SELF_REGULATION_LBMA_LPMCL_CASE_STUDY_WAVE_2_2026-09-14.md` —
+  second completed FCA-research wave: a layered LBMA/LPMCL case study testing
+  where private technical standards, membership, contracts and repeat-player
+  discipline can produce integrity outcomes, and where property, finality,
+  insolvency, retail protection and systemic externalities require a public
+  legal spine. It does not call private standards law, infer third-party rights
+  from member contracts or treat a wholesale network as a retail safeguard.
+- `FCA_AIF_VEHICLE_LIQUIDITY_AND_TOKENISED_GOLD_WAVE_1_2026-09-14.md` —
+  first completed FCA-research wave: regulatory-reporting limits and market
+  baseline, current FUND 3 stack, proposed CP26/28 replacement, final PS26/17
+  liquidity clock, final PS26/7 DLT-register controls, and a product-by-product
+  tokenised-gold vehicle, liquidity and failure map. It does not classify or
+  approve a product, import consultation text into current law, or turn a fund
+  unit into title to its gold.
+- `FCA_RESEARCH_SECTION_INTEREST_TRIAGE_2026-09-14.md` —
+  ranked FCA research-section intake after the gold work: AIF vehicle and
+  liquidity risk, private standards versus formal regulation, the UK
+  cryptoasset-market baseline, gilt/repo/CCP stress transmission and domestic
+  financial geography. Published findings, commissioned external research,
+  policy companions and FCA research questions remain separately labelled; no
+  watch or follow-on project is opened.
+- `FCA_BOE_WHOLESALE_TOKENISATION_FEEDBACK_AND_GOLD_DELTA_2026-09-14.md` —
+  same-day maintenance delta on FS26/1 and the FCA tokenised-gold Call for
+  Input: collateral-first policy direction, DSS/permanent-regime boundary,
+  settlement-finality seam, interim CASS 6 posture, regulated-person lock,
+  gold CIS/AIF perimeter and possible-policy ladder. The deeper gold-product,
+  property and collateral analysis is owned by Wholesale Metals in
+  `Research Packages/Wholesale Metals/FCA_TOKENISED_GOLD_LEGAL_COLLATERAL_AND_PERIMETER_DEEP_DIVE_2026-09-14.md`.
+- `RESEARCH_DESIGN_AND_LAYER_INDEX.md` —
+  controlling question, method, clocks, layer sequence and completion state.
+- `LAYER_1_SOVEREIGN_FISCAL_AUTHORITY_AND_ACCOUNTS_2026-09-13.md` —
+  Parliament, HM Treasury, the Consolidated Fund, National Loans Fund, Debt
+  Management Account, Contingencies Fund, Exchange Equalisation Account,
+  DMO, NS&I, Government Banking and the devolved consolidated funds.
+- `LAYER_2_BANK_OF_ENGLAND_BALANCE_SHEET_FUNCTIONS_2026-09-13.md` —
+  Bank ownership and policy governance; Issue and Banking Departments; notes,
+  reserves and Sterling Monetary Framework facilities; BEAPFF/APF; Bank
+  capital, Treasury indemnities and the EEA agency boundary.
+- `LAYER_3_STERLING_CLAIM_TAXONOMY_2026-09-13.md` —
+  public cash, commercial banknotes, reserves and settlement balances, bank
+  deposits, e-money, tokenized deposits, stablecoins, omnibus representations
+  and the unissued digital-pound proposal, separated by claim and failure path.
+- `LAYER_4_PAYMENT_AND_SETTLEMENT_RAILS_2026-09-13.md` —
+  RTGS/RT2, CHAPS, Pay.UK retail systems, cards, LINK, PEXA, SWIFT,
+  correspondent banking and CLS, with instruction, clearing, prefunding,
+  settlement and finality clocks kept distinct.
+- `LAYER_5_CAPITAL_MARKETS_CUSTODY_AND_COLLATERAL_2026-09-13.md` —
+  the gilt obligation, DMO/GEMM issuance, registered and beneficial title,
+  CREST DvP, settlement-bank liquidity, repo, custody, LCH clearing and the
+  margin/default waterfall, with current T+1, DSS and DIGIT clocks separated.
+- `LAYER_6_REGULATION_SUPERVISION_AND_FAILURE_RESOLUTION_2026-09-13.md` —
+  HMT, FPC, PRA, FCA, Bank FMI supervision and PSR functions; bank resolution,
+  FSCS/FOS, special administrations and firm-specific creditor, compensation
+  and loss-allocation paths, with announced reforms kept on future clocks.
+- `LAYER_7_CITY_AND_CROWN_CONNECTED_FINANCIAL_CENTRES_2026-09-13.md` —
+  Greater London, the Square Mile, City Corporation capacities, the commercial
+  City, Crown Dependencies and the six-territory financial-centre cohort,
+  separated by jurisdiction, currency, regulator, protection and backstop.
+- `TRANSACTION_WALKS_2026-09-13.md` —
+  four end-to-end proof tests following a Faster Payment, a gilt, Loco London
+  gold and a digital-sterling object through claim, ledger, liquidity, title,
+  finality, reconciliation and failure forks.
+- `CONDITIONAL_INDEPENDENCE_STRESS_MAP_2026-09-13.md` —
+  conditional Scotland, Wales, united-Ireland and continuing-UK lanes across
+  constitutional authority, currency, debt, reserves, deposits, cash, payment
+  access, emergency liquidity, regulation, resolution, protection, markets and
+  Crown-connected jurisdictions, with twelve failure nodes and an observable
+  evidence ladder.
+
+## Relationship to existing research
+
+- The constitutional status of the UK, its nations, London, the City of London
+  and the Crown-connected territorial ring remains controlled by
+  `Research Packages/UK Constitutional Order and Self-Determination 2026-09-13/`.
+- The bilateral regulatory program remains controlled by
+  `../10 - US UK Transatlantic Markets Taskforce 2026/`.
+- The allocated/unallocated gold, custody and private London clearing analysis
+  remains controlled by `Research Packages/Wholesale Metals/`.
+
+This package joins those strands. It does not treat a political proposal,
+accounting consolidation, an available legal power, a payment instruction or a
+settled transaction as the same event.
+
+## Current state
+
+Layers 1–7, the transaction walks and the conditional independence stress map
+are complete as the package's current official-source orientation through
+**2026-09-13 15:28 EDT**. This completes the designed layer build; it does not
+make an independence forecast, select a transition path, resolve account-level
+facts, or move any constitutional clock. New official objects should update the
+affected branch rather than silently rewriting this dated baseline.
+
+The September 14 wholesale-tokenisation maintenance delta adds the new joint
+feedback statement and FCA gold inquiry without rewriting those layer cutoffs.
+It records policy priorities and future gates, not a new sterling claim,
+general collateral eligibility, finality rule, custody regime or permanent
+digital-securities authorisation.
+
+The September 14 FCA research-section triage is a ranked intake against that
+baseline. It identifies candidate follow-on questions but does not import
+unread report findings, turn research interests into policy, create a watch or
+change any layer's completion state.
+
+Wave 1 of that intake is complete in the AIF vehicle, liquidity and
+tokenised-gold bridge. It adds a dated research layer and preserved primary
+objects; it does not reopen the completed Layers 1-7, change a product's legal
+classification, make the proposed 2028 AIFM regime current, or create a watch.
+
+Wave 2 is complete in the LBMA/LPMCL case study. It finds that private
+standards are strongest for technical, observable, repeat-player functions
+inside an enforceable supervised network, but do not themselves settle
+third-party property, statutory finality, insolvency priority, retail redress
+or public failure powers. It adds no formal-regulation recommendation beyond
+that bounded evidence test and creates no watch.
+
+Wave 3 is complete in the UK cryptoasset actor-and-flow baseline. It treats the
+FCA's July paper as a synthetic role and retail-journey description rather than
+a legal-entity census, identifies access and custody co-location without
+inventing volume or asset concentration, and maps the future UK-entity/global-
+liquidity adapter. It does not assign a named firm's current registration or
+future permission, establish wholesale adoption or open a watch.
+
+Wave 4 is complete in the gilt, repo and CCP stress-transmission extension. It
+finds that shock speed and concentration, cash availability, repo rollover,
+market-maker capacity and natural buyers jointly determine whether volatility
+becomes dysfunction. It does not treat an FCA research question as a finding,
+generalise adjacent PTF evidence into a measured 2026 cash-gilt ELP share, or
+turn the Bank's ongoing central-clearing and haircut work into a final rule.
+
+Wave 5 is complete in the domestic-financial-geography and access-to-capital
+audit. It finds that financial-sector presence, borrower access, decision
+control, delivered finance and local outcomes are different objects, and that
+proximity and the type of finance merit further causal testing. It does not
+treat an FCA-commissioned association as FCA policy, make commercial-property
+yields an economy-wide cost of capital, or infer that relocating offices or
+jobs would itself cause regional growth.

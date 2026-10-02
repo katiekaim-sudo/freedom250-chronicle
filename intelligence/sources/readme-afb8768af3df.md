@@ -1,6 +1,6 @@
 # Federal Science Operating System
 
-**Evidence cutoff:** 2026-08-17; the factual spine has a targeted September 7 Reactor reconciliation with separately dated implementation evidence
+**Evidence cutoff:** 2026-08-17 for the original system map; targeted extensions through 2026-10-04 include the September 7 Reactor reconciliation, September 9 Genesis update and October 4 Kyoto Vision international-endorsement audit
 **Status:** current research package; the workbench controls these owners except where the Registry identifies a controlling vault landing, including the selectively incorporated NSSTS full reading
 **Scope:** the federal funding, infrastructure, workforce, data, experimental and transaction architecture proposed for an AI-native scientific-industrial economy
 
@@ -9,6 +9,15 @@ The factual spine now joins all thirteen original Reactor filings to their exact
 ## Short answer
 
 The July 21, 2026 White House report does not itself create a new legal system. It supplies the design doctrine for reorganizing American science around individuals, mission portfolios, shared compute and laboratories, AI agents, industrial translation and new reward mechanisms.
+
+The October 4 **Kyoto Vision for a Golden Age of Science** now proves that this
+design language crossed an international political-endorsement gate. Sixteen
+other governments joined the United States in endorsing new funding portfolios,
+government metascience capability, Super Intelligence for closed-loop science,
+access to data/compute/facilities and technical-talent pathways. The declaration
+does not create shared authority or machinery: its implementation clause sends
+the work back into each country's national system, with no common fund,
+secretariat, programme, access right, deadline or reporting mechanism.
 
 The architecture becomes more concrete when four distinct objects are read together:
 
@@ -45,17 +54,19 @@ only in a separate chart-readiness overlay.
 
 ## Read in this order
 
-1. [`FEDERAL_SCIENCE_OPERATING_SYSTEM_FACTUAL_SPINE_2025-2026.md`](../sources/federal-science-operating-system-factual-spine-2025-2026-c98d15f74567.html) — dated legal and policy objects.
-2. [`NATIONAL_SECURITY_SCIENCE_AND_TECHNOLOGY_STRATEGY_2026.md`](../sources/national-security-science-and-technology-strategy-2026-e86541703238.html) — full-document factual outline, authority boundary, national-security layer and implementation delta.
-3. `NSSTS_MEMBRANE_MAP_2026-08-17.md` — same-day join of Pillar 4, the 30-university action, 1260H/1286/CHIPS list split, COINS vs part 850, and OSC versus “passive investment.” Strategy names the perimeter; this file says which gates are already machines.
-4. [`Scientific Trust Stack 2026-08-17/README.md`](../sources/readme-243d6cdfb65e.html) — identity, research-security, agent, provenance, cryptographic, capital and remedy gates; read as a federated permission system, never one trust score.
-5. [`FEDERAL_FUSION_COMMERCIALIZATION_BRIDGE_2020-2035.md`](../sources/federal-fusion-commercialization-bridge-2020-2035-187110145b91.html) — DOE fusion as a domain-specific implementation vertical, with gain, licensing and electricity clocks kept separate.
-6. [`FEDERAL_FUSION_PROJECT_CAPITAL_REGULATORY_REGISTRY_2022-2035.md`](../sources/federal-fusion-project-capital-regulatory-registry-2022-2035-47346c8a435e.html) — eight-company machine/site registry, Milestone award accounting, public-capital ladder, Genesis/DCP implementation objects and regulatory/grid states.
-7. `FEDERAL_FUSION_DATE_TIME_PLACE_LEDGER_2020-2035.md` — factual clocks, source loci, precision defects and D.C. chart-readiness metadata for later astrology; no chart calculation or interpretation.
-8. [`FEDERAL_SCIENCE_OPERATING_SYSTEM_CONTROL_SURFACE_MAP.md`](../sources/federal-science-operating-system-control-surface-map-3937d109efe4.html) — the joined education, physical-infrastructure and scientific-rail architecture.
-9. `FEDERAL_SCIENCE_OPERATING_SYSTEM_CLAIM_AUDIT.md` — what the record does and does not establish.
-10. `FEDERAL_SCIENCE_OPERATING_SYSTEM_IMPLEMENTATION_WATCHBOARD.md` — exact evidence that moves proposals into operation.
-11. [`NSSTS Technology-to-Company Map 2026-08-18/README.md`](../sources/readme-814cc85d1bbe.html) — standalone, evidence-graded company map spanning twelve sector lanes, exact-entity dependencies, 12 priority-company dossiers, a 33-record monitoring queue and a Phase 5 program-centered layer covering ten acquisition objects, 13 facilities and four calibration cases; explicitly outside the Federal Group and not an active automation.
+1. `KYOTO_VISION_INTERNATIONAL_GOLDEN_AGE_OF_SCIENCE_2026-10-04.md` — international-endorsement, U.S.-doctrine comparison and operating-gate audit.
+2. `KYOTO_VISION_INCUMBENT_INSTITUTION_POWER_AUDIT_2026-10-04.md` — treaty, institution, programme-funding and functional-bypass audit.
+3. [`FEDERAL_SCIENCE_OPERATING_SYSTEM_FACTUAL_SPINE_2025-2026.md`](../sources/federal-science-operating-system-factual-spine-2025-2026-c98d15f74567.html) — dated legal and policy objects.
+4. [`NATIONAL_SECURITY_SCIENCE_AND_TECHNOLOGY_STRATEGY_2026.md`](../sources/national-security-science-and-technology-strategy-2026-e86541703238.html) — full-document factual outline, authority boundary, national-security layer and implementation delta.
+5. `NSSTS_MEMBRANE_MAP_2026-08-17.md` — same-day join of Pillar 4, the 30-university action, 1260H/1286/CHIPS list split, COINS vs part 850, and OSC versus “passive investment.” Strategy names the perimeter; this file says which gates are already machines.
+6. [`Scientific Trust Stack 2026-08-17/README.md`](../sources/readme-243d6cdfb65e.html) — identity, research-security, agent, provenance, cryptographic, capital and remedy gates; read as a federated permission system, never one trust score.
+7. [`FEDERAL_FUSION_COMMERCIALIZATION_BRIDGE_2020-2035.md`](../sources/federal-fusion-commercialization-bridge-2020-2035-187110145b91.html) — DOE fusion as a domain-specific implementation vertical, with gain, licensing and electricity clocks kept separate.
+8. [`FEDERAL_FUSION_PROJECT_CAPITAL_REGULATORY_REGISTRY_2022-2035.md`](../sources/federal-fusion-project-capital-regulatory-registry-2022-2035-47346c8a435e.html) — eight-company machine/site registry, Milestone award accounting, public-capital ladder, Genesis/DCP implementation objects and regulatory/grid states.
+9. `FEDERAL_FUSION_DATE_TIME_PLACE_LEDGER_2020-2035.md` — factual clocks, source loci, precision defects and D.C. chart-readiness metadata for later astrology; no chart calculation or interpretation.
+10. [`FEDERAL_SCIENCE_OPERATING_SYSTEM_CONTROL_SURFACE_MAP.md`](../sources/federal-science-operating-system-control-surface-map-3937d109efe4.html) — the joined education, physical-infrastructure and scientific-rail architecture.
+11. `FEDERAL_SCIENCE_OPERATING_SYSTEM_CLAIM_AUDIT.md` — what the record does and does not establish.
+12. `FEDERAL_SCIENCE_OPERATING_SYSTEM_IMPLEMENTATION_WATCHBOARD.md` — exact evidence that moves proposals into operation.
+13. [`NSSTS Technology-to-Company Map 2026-08-18/README.md`](../sources/readme-814cc85d1bbe.html) — standalone, evidence-graded company map spanning twelve sector lanes, exact-entity dependencies, 12 priority-company dossiers, a 33-record monitoring queue and a Phase 5 program-centered layer covering ten acquisition objects, 13 facilities and four calibration cases; explicitly outside the Federal Group and not an active automation.
 
 ## The three control surfaces
 

@@ -1,0 +1,839 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>DTCC atomic-settlement liquidity stress test · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<meta name="f250:page-type" content="public_source">
+<meta name="f250:research-ids" content="dtcc-tokenization-2026,fed-clearing-treasury">
+<script type="application/json" id="f250-machine-header">{"header_version":"1.0","page_type":"public_source","title":"DTCC atomic-settlement liquidity stress test · Freedom 250","canonical_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/sources/dtcc-atomic-settlement-liquidity-stress-test-2026-08-02-920f6e0791db.html","bot_index_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/bot-index.html","api_bootstrap_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/index.json","research_ids":["dtcc-tokenization-2026","fed-clearing-treasury"],"package_manifest_urls":["https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/packages/dtcc-tokenization-2026.json","https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/packages/fed-clearing-treasury.json"],"material":{"material_id":"920f6e0791db6832","title":"DTCC atomic-settlement liquidity stress test","artifact_role":"other","file_state":"current","availability":"public_reading","access_state":"public_full_text","public_full_text":true,"reading_url":"readings/920f6e0791db6832.html","reading_basis":"public_html_full_text","modified_at":"2026-08-02T15:27:13Z","package_ids":["fed-clearing-treasury","dtcc-tokenization-2026"]}}</script>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <nav class="subject-nav" aria-label="Research rooms"><a href="../research-rooms/crypto-digital-money.html" class="chip" >Home room: Crypto &amp; Digital Money</a></nav><nav class="subject-nav" aria-label="Research rooms"><a href="../research-rooms/banking-the-dollar.html" class="chip" >Home room: Banking &amp; the Dollar</a><a href="../research-rooms/government-changes.html" class="chip" >Also in: Government Changes</a><a href="../research-rooms/crypto-digital-money.html" class="chip" >Also in: Crypto &amp; Digital Money</a></nav></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>DTCC atomic-settlement liquidity stress test</h1><p class="deck">Collection evidence cutoff: 2026-08-21</p><p><a href="dtcc-atomic-settlement-liquidity-stress-test-2026-08-02-920f6e0791db.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="dtcc-atomic-settlement-liquidity-stress-test">DTCC atomic-settlement liquidity stress test</h1>
+<p><strong>Cutoff:</strong> 2026-08-02 ET<br />
+<strong>Status:</strong> completed factual/analytical research; incorporated in the vault<br />
+<strong>Question:</strong> what has DTCC actually built with blockchain and tokenization, what did the July 15 production event prove, and what would happen to cash and securities liquidity if DTC, NSCC or FICC moved from netted/deferred settlement toward atomic gross settlement?<br />
+<strong>Scope:</strong> DTC Tokenization Service, ComposerX Factory and LedgerScan, supported blockchain networks, Collateral AppChain, Chainlink orchestration, Digital Launchpad, Project Ion, DTC, NSCC and FICC liquidity architecture.<br />
+<strong>Method:</strong> DTCC and SEC governing records, DTCC financial and PFMI disclosures, official operating statistics, and BIS settlement-liquidity research. Operator claims are labeled; calculated scenarios are not presented as forecasts.</p>
+<h2 id="evidence-grammar">Evidence grammar</h2>
+<ul>
+<li><strong>F:</strong> directly stated in a cited primary or first-party source.</li>
+<li><strong>D:</strong> arithmetic derived from cited public values, with assumptions stated.</li>
+<li><strong>I:</strong> analytical inference from facts; not a reported transaction result.</li>
+<li><strong>NR:</strong> not resolved in the public record by the cutoff.</li>
+<li><strong>Promotion test:</strong> the later public artifact required before stronger wording is safe.</li>
+</ul>
+<hr />
+<h2 id="i-executive-ruling">I. Executive ruling</h2>
+<h3 id="1-dtcc-has-built-a-substantial-digital-asset-control-plane">1. DTCC has built a substantial digital-asset control plane</h3>
+<p>The build is not one “crypto rail.” It is a set of separate but increasingly connected objects:</p>
+<ol>
+<li><strong>ComposerX Factory</strong> creates and manages compliant token contracts.</li>
+<li><strong>ComposerX LedgerScan</strong> observes supported chains and becomes DTC's official books-and-records system for tokenized entitlements.</li>
+<li><strong>DTC Tokenization Service</strong> converts existing DTC participant security entitlements into DTC-issued tokens held in registered wallets.</li>
+<li><strong>Supported networks</strong> provide transport and execution environments. July production conversions used LFDT Besu and Canton; Stellar connectivity is planned for the first half of 2027.</li>
+<li><strong>Collateral AppChain</strong> is a separate shared collateral infrastructure intended to combine eligibility, valuation, margining, optimization, movement and settlement across chains and traditional systems; DTCC expects it to go live in Q4 2026.</li>
+<li><strong>Chainlink Runtime Environment and data standards</strong> are intended to supply orchestration, pricing and valuation data to the Collateral AppChain.</li>
+<li><strong>Digital Launchpad</strong> supplies a multi-network development and collaboration environment.</li>
+<li><strong>Project Ion</strong> was the earlier Corda-based DLT settlement experiment. Its pilot was a parallel record; DTC classic remained authoritative and moved cash and securities. DTCC explicitly designed Ion for netted T+0, not atomic settlement or RTGS.</li>
+</ol>
+<p>The economically important direction is therefore not “DTCC adopted a blockchain.” It is:</p>
+<blockquote>
+<p><strong>DTC-controlled securities entitlements become portable across approved programmable environments while DTCC retains entitlement identity, official-record, compliance, reversal and lifecycle authority.</strong></p>
+</blockquote>
+<p>Sources: <a href="https://www.dtcc.com/digital-assets/composerx">DTCC ComposerX</a>; <a href="https://www.dtcc.com/-/media/Files/Downloads/digital-assets/dtc-tokenization-service-faq.pdf">DTC Tokenization Service FAQ</a>; <a href="https://www.sec.gov/files/tm/no-action/dtc-nal-121125.pdf">SEC no-action response and DTC request</a>; <a href="https://www.dtcc.com/digital-assets/collateral-appchain">Collateral AppChain</a>; <a href="https://www.dtcc.com/news/2026/may/12/dtcc-collaborates-with-chainlink-to-advance-24-7-collateral-management">Chainlink collaboration</a>; <a href="https://www.dtcc.com/news/2026/may/27/tokenization-service-to-connect-with-stellar-public-blockchain-as-dtc-advances-multi-chain-strategy">Stellar connectivity</a>; <a href="https://www.dtcc.com/dtcc-connection/articles/2022/october/13/innovation-insight-dtccs-project-ion">Project Ion primer</a>.</p>
+<h3 id="2-the-july-15-event-proved-production-tokenized-securities-movement-not-a-dtcc-atomic-cash-rail">2. The July 15 event proved production tokenized securities movement, not a DTCC atomic cash rail</h3>
+<p>DTCC states that it converted DTC-held securities into tokens and used them in real production transactions on July 15, 2026. About 40 firms participated between 8:30 a.m. and 1:15 p.m. ET. Named workflow classes included collateral pledge, securities lending, Treasury/repo DVP, equity DVP, equity DVD, equity transfer and CCP margin. Conversions occurred on Besu and Canton. <strong>F</strong></p>
+<p>But DTC's governing materials establish all of the following:</p>
+<ul>
+<li>first-phase token movements are free-of-value, 24/7;</li>
+<li>DTC does not process an associated value transaction;</li>
+<li>tokenized entitlements receive no DTC Collateral Monitor value, Net Debit Cap value or end-of-day settlement value;</li>
+<li>traditional DTC settlement requires detokenization back into the participant's book-entry account;</li>
+<li>transactions will not be settled in digitized form at first-phase launch; and</li>
+<li>any DVP involving the tokenized entitlement occurs away from and without involvement by DTC, rather than through a DTC DVP instruction. <strong>F</strong></li>
+</ul>
+<p>Accordingly, the July event does <strong>not</strong> publicly identify or prove:</p>
+<ul>
+<li>the cash asset;</li>
+<li>the issuer or deposit institution for that cash asset;</li>
+<li>the funding account or prefunding state;</li>
+<li>the cash payment rail;</li>
+<li>the atomicity or conditional-release mechanism;</li>
+<li>the legal discharge rule;</li>
+<li>the quantity or value of each transaction;</li>
+<li>chain, wallet or transaction identifiers; or</li>
+<li>matched securities and cash finality timestamps. <strong>NR</strong></li>
+</ul>
+<p>The presence of Circle, J.P. Morgan, banks, wallets and chains on the participant roster cannot be used to infer that USDC, JPMD, a tokenized deposit, reserves or any other named cash asset funded the DVP workflows. <strong>F/I</strong></p>
+<p>Sources: <a href="https://www.dtcc.com/news/2026/july/15/dtcc-turns-tokenization-into-reality">July 15 DTCC release</a>; <a href="https://www.dtcc.com/digital-assets/tokenization/live-production-trades">live production event page</a>; <a href="https://www.dtcc.com/-/media/Files/Downloads/digital-assets/dtc-tokenization-service-faq.pdf">DTC FAQ</a>; <a href="https://www.sec.gov/files/tm/no-action/dtc-nal-121125.pdf">SEC/DTC no-action packet</a>.</p>
+<h3 id="3-the-near-term-design-preserves-netting-and-externalizes-the-cash-leg">3. The near-term design preserves netting and externalizes the cash leg</h3>
+<p>The first production architecture is not a migration of DTC, NSCC and FICC to atomic gross settlement. It is a controlled entitlement layer beside the existing clearing and settlement constitution. The initial containment wall is unusually explicit:</p>
+<ul>
+<li>DTC's centralized Digital Omnibus Account immobilizes the underlying participant entitlements represented by tokens;</li>
+<li>LedgerScan, not chain state alone, is DTC's official record;</li>
+<li>Cede &amp; Co. remains registered owner of the underlying securities;</li>
+<li>DTC retains root-wallet powers to mint, burn, transfer or correct tokens;</li>
+<li>supported protocols must permit distribution control and reversibility;</li>
+<li>only registered participant wallets are recognized;</li>
+<li>tokenized assets receive zero DTC collateral or settlement value; and</li>
+<li>DTC's new systems have only two write paths into core centralized systems: movement into/out of the Digital Omnibus Account and corporate-action cash payments. Other touchpoints are read-only. <strong>F</strong></li>
+</ul>
+<p>This design enables asset mobility while preventing the tokenized pool from supporting DTC's default management or daily money settlement. <strong>I</strong></p>
+<h3 id="4-the-liquidity-risk-is-real-but-annual-notional-is-the-wrong-denominator">4. The liquidity risk is real, but annual notional is the wrong denominator</h3>
+<p>DTCC's $4.7 quadrillion 2025 statistic is combined annual value processed across subsidiaries. Dividing by 252 business days gives approximately $18.65 trillion per day, but even that is only a scale illustration: subsidiary values overlap within transaction lifecycles and are not one independent cash obligation. <strong>D</strong></p>
+<p>The relevant public operating anchors are:</p>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th style="text-align: right;">Public activity anchor</th>
+<th>Current liquidity transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NSCC</td>
+<td style="text-align: right;">$3.01T average daily transaction value in 2025</td>
+<td>multilateral netting, novation, margin, end-of-day net cash; 2024 $2.2T gross was reduced to $33.5B settlement obligations</td>
+</tr>
+<tr>
+<td>DTC</td>
+<td style="text-align: right;">$1.0334T average daily valued activity for 2025: $408.0B MMI + $625.4B non-MMI</td>
+<td>Model 2 DVP; intraday securities movement and deferred net cash; Collateral Monitor and Net Debit Cap</td>
+</tr>
+<tr>
+<td>FICC</td>
+<td style="text-align: right;">more than $12T average daily cash and repo activity in July 2026</td>
+<td>novation, position netting, funds-only settlement, Clearing Fund, CCLF and other liquidity resources</td>
+</tr>
+</tbody>
+</table>
+<p>These figures should not be added. NSCC obligations settle through DTC; FICC and DTC may perform linked settlement functions; gross activity, settled principal, securities par, repo value and cash movement are not identical denominators. <strong>F</strong></p>
+<h3 id="5-the-first-truly-transformative-milestone-is-not-another-chain-connection">5. The first truly transformative milestone is not another chain connection</h3>
+<p>The largest change would occur when one or more of the following becomes legally and operationally effective:</p>
+<ol>
+<li>DTC gives tokenized entitlements positive Collateral Monitor or Net Debit Cap value.</li>
+<li>DTC accepts tokenized entitlements for end-of-day settlement without detokenization.</li>
+<li>DTC, NSCC or FICC accepts and governs a named tokenized cash asset as settlement money.</li>
+<li>A CCP links novated obligations, margin and default management directly to tokenized securities.</li>
+<li>Collateral AppChain movements become legally operative substitutions or settlements inside CCP and custody rulebooks.</li>
+</ol>
+<p>Until then, the chain changes asset representation and mobility but not the core funding constitution. <strong>I</strong></p>
+<hr />
+<h2 id="ii-exact-architecture-what-each-digital-component-does">II. Exact architecture — what each digital component does</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Current public role</th>
+<th>Authoritative record / controller</th>
+<th>Cash or settlement role</th>
+<th>Public state at cutoff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DTC Tokenization Service</td>
+<td>converts eligible DTC participant entitlements to tokens and back</td>
+<td>DTC; LedgerScan official tokenized-entitlement record; DTC root-wallet powers</td>
+<td>no first-phase digitized settlement; DVP cash leg away from DTC</td>
+<td>July 15 limited production; participant launch expected October 2026</td>
+</tr>
+<tr>
+<td>Digital Omnibus Account</td>
+<td>holds centralized entitlements corresponding to all outstanding DTC tokens</td>
+<td>DTC centralized ledger</td>
+<td>prevents double representation; no settlement value for tokens</td>
+<td>authorized preliminary base design</td>
+</tr>
+<tr>
+<td>ComposerX Factory</td>
+<td>token mint, burn and lifecycle management; compliant-token framework</td>
+<td>DTC/DTCC systems and governing token contracts</td>
+<td>can support workflow automation, not itself settlement money</td>
+<td>production component of tokenization design</td>
+</tr>
+<tr>
+<td>LedgerScan</td>
+<td>observes chain movements and normalizes on/off-chain records</td>
+<td>DTC official books and records for tokenized entitlements</td>
+<td>observes and reconciles; not a cash issuer</td>
+<td>production component of tokenization design</td>
+</tr>
+<tr>
+<td>LFDT Besu</td>
+<td>DTCC private-network environment</td>
+<td>protocol plus DTC entitlement controls</td>
+<td>no native DTC cash leg established</td>
+<td>used in July 15 conversions</td>
+</tr>
+<tr>
+<td>Canton</td>
+<td>public network under DTCC's description</td>
+<td>network plus DTC entitlement controls</td>
+<td>no named cash leg publicly mapped for July event</td>
+<td>used in July 15 conversions</td>
+</tr>
+<tr>
+<td>Stellar</td>
+<td>planned public-network connection</td>
+<td>network plus DTC entitlement controls</td>
+<td>network has payment functionality, but DTC cash integration not established</td>
+<td>DTC-tokenized assets expected 1H 2027</td>
+</tr>
+<tr>
+<td>Collateral AppChain</td>
+<td>shared infrastructure for eligibility, valuation, margining, optimization and collateral movement across networks</td>
+<td>DTCC platform; detailed production rulebook not yet public</td>
+<td>advertises settlement capability, but accepted cash asset/finality rule remains NR</td>
+<td>expected Q4 2026</td>
+</tr>
+<tr>
+<td>Chainlink CRE/data standard</td>
+<td>orchestration plus price, valuation and agreement data</td>
+<td>Chainlink/DTCC integration and source-data governance</td>
+<td>data and workflow layer, not itself cash or legal discharge</td>
+<td>planned Collateral AppChain integration</td>
+</tr>
+<tr>
+<td>Digital Launchpad</td>
+<td>multi-network build/test environment and industry collaboration surface</td>
+<td>DTCC plus participant/partner environment</td>
+<td>experimental/development capability</td>
+<td>live collaboration layer</td>
+</tr>
+<tr>
+<td>Project Ion</td>
+<td>DLT parallel record for DTC classic bilateral activity</td>
+<td>DTC classic remained authoritative and moved cash/securities</td>
+<td>explicitly not atomic or RTGS; designed for netted T+0</td>
+<td>historical pilot/MVP; do not conflate with 2026 tokenization service</td>
+</tr>
+</tbody>
+</table>
+<h3 id="legal-title-and-record-chain">Legal title and record chain</h3>
+<p>The first-phase tokenization chain is:</p>
+<pre><code class="language-text">issuer security
+  -&gt; registered to Cede &amp; Co.
+  -&gt; DTC participant security entitlement
+  -&gt; moved from participant account to DTC Digital Omnibus Account
+  -&gt; DTC mints corresponding token to a registered participant wallet
+  -&gt; token moves on an approved chain
+  -&gt; LedgerScan observes movement and records DTC entitlement holder
+  -&gt; DTC can correct/reverse under prescribed conditions
+  -&gt; detokenization burns token and restores book-entry entitlement
+</code></pre>
+<p>The token is therefore not a new issuer security and does not move registered ownership away from Cede &amp; Co. It is a programmable representation of the DTC participant's Article 8 security entitlement. <strong>F</strong></p>
+<hr />
+<h2 id="iii-liquidity-model">III. Liquidity model</h2>
+<h3 id="a-two-inventories-not-one">A. Two inventories, not one</h3>
+<p>Atomic DVP requires simultaneous availability of:</p>
+<ol>
+<li><strong>cash inventory:</strong> a settlement asset accepted as final discharge by the governing rule; and</li>
+<li><strong>securities inventory:</strong> the exact deliverable security, in the correct legally transferable form, free of conflicting encumbrance.</li>
+</ol>
+<p>Fast reuse helps only after an incoming transfer is final, operationally visible, legally reusable, not frozen, not reserved for another obligation, and accepted by the next venue. A five-second chain block does not guarantee five-second balance-sheet reuse. <strong>I</strong></p>
+<h3 id="b-participant-peak-funding-equation">B. Participant peak-funding equation</h3>
+<p>For participant <code>p</code>, a defensible cash-liquidity requirement is:</p>
+<blockquote>
+<p><code>L_cash,p = max_t [cumulative eligible cash debits_p(t) - reusable final cash credits_p(t) - committed intraday credit_p(t)]_+ + stress buffer</code></p>
+</blockquote>
+<p>The securities analogue is calculated per CUSIP or deliverable asset:</p>
+<blockquote>
+<p><code>L_sec,p,j = max_t [cumulative deliveries_p,j(t) - reusable receipts_p,j(t) - available borrow_p,j(t)]_+ + fail/recall buffer</code></p>
+</blockquote>
+<p>System liquidity is not the sum of daily transaction values. It is the joint distribution of these participant-level peaks after applying the system's queue, offset, credit, collateral and default rules. <strong>I</strong></p>
+<h3 id="c-counterfactual-working-stock-sensitivity">C. Counterfactual working-stock sensitivity</h3>
+<p>The table below asks a narrow question: if daily value had to settle gross and one frictionless stock of eligible cash could be perfectly reused <code>N</code> times, what average stock would support the value? It does <strong>not</strong> model actual participant concentration, timing, fails, haircuts, credit, repo unwind structure, overlapping DTCC services or stress buffers.</p>
+<table>
+<thead>
+<tr>
+<th>Daily activity anchor</th>
+<th style="text-align: right;">1 turn</th>
+<th style="text-align: right;">5 turns</th>
+<th style="text-align: right;">10 turns</th>
+<th style="text-align: right;">20 turns</th>
+<th style="text-align: right;">50 turns</th>
+<th style="text-align: right;">100 turns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NSCC $3.01T</td>
+<td style="text-align: right;">$3.010T</td>
+<td style="text-align: right;">$602.0B</td>
+<td style="text-align: right;">$301.0B</td>
+<td style="text-align: right;">$150.5B</td>
+<td style="text-align: right;">$60.2B</td>
+<td style="text-align: right;">$30.1B</td>
+</tr>
+<tr>
+<td>DTC $1.0334T</td>
+<td style="text-align: right;">$1.033T</td>
+<td style="text-align: right;">$206.7B</td>
+<td style="text-align: right;">$103.3B</td>
+<td style="text-align: right;">$51.7B</td>
+<td style="text-align: right;">$20.7B</td>
+<td style="text-align: right;">$10.3B</td>
+</tr>
+<tr>
+<td>FICC &gt;$12T</td>
+<td style="text-align: right;">$12.000T</td>
+<td style="text-align: right;">$2.400T</td>
+<td style="text-align: right;">$1.200T</td>
+<td style="text-align: right;">$600.0B</td>
+<td style="text-align: right;">$240.0B</td>
+<td style="text-align: right;">$120.0B</td>
+</tr>
+</tbody>
+</table>
+<p><strong>D. Formula:</strong> <code>theoretical working stock = daily activity / turns</code>.<br />
+<strong>Boundary:</strong> these rows are separate counterfactuals and cannot be summed.</p>
+<h3 id="d-why-average-velocity-is-not-enough">D. Why average velocity is not enough</h3>
+<p>The <code>V/N</code> table assumes perfectly distributed timing and counterparties. Actual peak requirements can be much larger because:</p>
+<ul>
+<li>a participant can be a net payer early and receiver late;</li>
+<li>the firms with incoming liquidity may not be the firms with outgoing obligations;</li>
+<li>one security can be scarce even when aggregate securities value is abundant;</li>
+<li>margin calls can drain cash before trade settlement credits arrive;</li>
+<li>credits on one chain, bank or legal entity may not fund debits on another;</li>
+<li>settlement-asset redemption or bridging can be slower than ledger transfer;</li>
+<li>wallets or tokens may be frozen or corrected;</li>
+<li>incoming payments from a defaulting participant cannot be assumed; and</li>
+<li>multiple CCPs may call liquidity at the same time.</li>
+</ul>
+<p>The control variable is therefore <strong>maximum cumulative net debit by participant and asset over time</strong>, not average daily turns. <strong>I</strong></p>
+<hr />
+<h2 id="iv-nscc-equity-stress-test">IV. NSCC equity stress test</h2>
+<h3 id="a-current-transformation">A. Current transformation</h3>
+<p>NSCC's CNS service is a Model 2 DVP structure. The CCP novates eligible trades; securities move gross intraday while cash accumulates for deferred net settlement. Member NSCC and DTC balances are combined, then settling-bank balances are further netted and settled through the Federal Reserve's National Settlement Service. Margin and liquidity resources support the interval between guarantee and final cash settlement. <strong>F</strong></p>
+<p>DTCC reported that an average 2024 day compressed $2.2T of gross trade activity to $33.5B of settlement obligations, a reported 98% reduction. The implied gross/residual ratio is 65.7x. If gross-atomic settlement relied only on perfect reuse of a working cash stock equal to the residual, that stock would need to turn approximately every 5.9 minutes during a 6.5-hour market session, or every 21.9 minutes over 24 hours. <strong>D</strong></p>
+<p>That does not prove that $33.5B is sufficient for atomic settlement. It demonstrates how demanding the timing assumption becomes when multilateral netting is replaced with velocity. <strong>I</strong></p>
+<p>Using 2025 average NSCC activity of $3.01T:</p>
+<table>
+<thead>
+<tr>
+<th>Illustrative netting or reuse assumption</th>
+<th style="text-align: right;">Derived amount</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>98% netting</td>
+<td style="text-align: right;">$60.2B residual</td>
+<td>simple sensitivity, not an actual 2025 settlement value</td>
+</tr>
+<tr>
+<td>98.76% netting</td>
+<td style="text-align: right;">$37.3B residual</td>
+<td>mixes May 2026 reported rate with 2025 average value; illustration only</td>
+</tr>
+<tr>
+<td>20 perfect gross turns</td>
+<td style="text-align: right;">$150.5B stock</td>
+<td>before concentration and stress buffers</td>
+</tr>
+<tr>
+<td>50 perfect gross turns</td>
+<td style="text-align: right;">$60.2B stock</td>
+<td>one reuse about every 7.8 minutes in 6.5 hours</td>
+</tr>
+<tr>
+<td>100 perfect gross turns</td>
+<td style="text-align: right;">$30.1B stock</td>
+<td>one reuse about every 3.9 minutes in 6.5 hours</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-current-default-liquidity-benchmark">B. Current default-liquidity benchmark</h3>
+<p>At 2026-03-31, NSCC reported:</p>
+<ul>
+<li>calculated qualifying liquid resources of approximately $38.405B: $27.430B central-bank cash, $1.375B bank deposits and a $9.600B committed secured line;</li>
+<li>an estimated Cover 1 payment obligation of $38.260B; and</li>
+<li>a largest actual single-member payment obligation over the preceding twelve months of $44.811B. <strong>F</strong></li>
+</ul>
+<p>These are default-liquidity measures under the current netted constitution, not gross settlement principal. They show that the liquidity stack is calibrated to replace the defaulting member's missing incoming payments after netting and offsets—not to fund every trade. <strong>F/I</strong></p>
+<h3 id="c-atomic-design-consequences">C. Atomic-design consequences</h3>
+<table>
+<thead>
+<tr>
+<th>Design</th>
+<th>Principal-risk result</th>
+<th>Liquidity result</th>
+<th>What survives/reappears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pure gross atomic, no credit/queue</td>
+<td>bilateral principal risk at settlement sharply reduced</td>
+<td>largest prefunding and securities-inventory demand; higher fail/reject risk</td>
+<td>custody, settlement-asset issuer, wallet, identity, legal finality</td>
+</tr>
+<tr>
+<td>gross atomic with intraday credit</td>
+<td>principal risk reduced if both legs commit</td>
+<td>funding gap moves to lenders</td>
+<td>collateral, haircuts, capital, credit limits and default rules</td>
+</tr>
+<tr>
+<td>atomic queue/LSM</td>
+<td>principal risk reduced for completed pairs</td>
+<td>lower cash demand than immediate RTGS</td>
+<td>delay, prioritization, gridlock resolution and partial netting</td>
+</tr>
+<tr>
+<td>frequent atomic batches</td>
+<td>exposure window shorter than end-of-day</td>
+<td>multilateral offsets preserved within batches</td>
+<td>CCP guarantee, margin and liquidity for each batch window</td>
+</tr>
+<tr>
+<td>CCP-novated tokenized settlement</td>
+<td>atomic delivery can coexist with guarantee</td>
+<td>CCP still funds a defaulter and manages scarce securities</td>
+<td>margin, default waterfall and liquidity facilities remain</td>
+</tr>
+</tbody>
+</table>
+<p>DTCC's own Project Ion design choice is probative: it targeted netted T+0 and explicitly did not target atomic settlement or RTGS. <strong>F</strong></p>
+<hr />
+<h2 id="v-dtc-stress-test">V. DTC stress test</h2>
+<h3 id="a-current-dtc-scale-and-controls">A. Current DTC scale and controls</h3>
+<p>DTC's 2026 Q1 disclosure reports 2025 average daily valued activity of:</p>
+<ul>
+<li>$408.0B MMI; and</li>
+<li>$625.4B non-MMI;</li>
+</ul>
+<p>for approximately $1.0334T combined. It reports $2.25B of Participants Fund cash deposits at 2025 year-end, a $1.9B committed line of credit, senior unsecured note proceeds, a maximum $2.15B participant Net Debit Cap and a $2.85B affiliated-family cap. <strong>F</strong></p>
+<p>The Collateral Monitor requires DTC net debits to remain collateralized. The Net Debit Cap prevents an individual or family obligation from exceeding DTC's liquidity capacity; transactions pend until credits or progress payments create room. DTC's funds settlement is deferred and net, not one cash transfer per securities movement. <strong>F</strong></p>
+<h3 id="b-tokenization-initially-removes-dtc-liquidity-utility">B. Tokenization initially removes DTC liquidity utility</h3>
+<p>In the first-phase tokenization design, an entitlement moved to the Digital Omnibus Account and represented by a token receives:</p>
+<ul>
+<li>zero DTC collateral value;</li>
+<li>zero Net Debit Cap value;</li>
+<li>zero end-of-day settlement value; and</li>
+<li>no role in DTC default management. <strong>F</strong></li>
+</ul>
+<p>This means tokenization initially increases mobility outside traditional DTC processing but does not increase the asset's ability to support valued DTC settlement. If tokenized positions become large, participants must preserve sufficient collateral and settlement capacity elsewhere or detokenize assets when they need DTC settlement utility. <strong>I</strong></p>
+<p>That is the containment wall to watch. Positive DTC risk value would be a much more consequential event than minting volume alone. <strong>I</strong></p>
+<h3 id="c-dtc-gross-atomic-counterfactual">C. DTC gross-atomic counterfactual</h3>
+<p>At $1.0334T daily valued activity, even 100 perfect turns implies a $10.3B frictionless working stock. That is not directly comparable with DTC's approximately $4.15B of Participants Fund cash plus committed line, because current resources cover capped <strong>net participant/family obligations</strong>, not gross daily principal, and senior-note proceeds add another resource. The mismatch nevertheless shows why DTC's closed collateralized net-debit architecture cannot be translated into gross atomic settlement by changing only the ledger. <strong>D/I</strong></p>
+<hr />
+<h2 id="vi-ficc-treasuryrepo-stress-test">VI. FICC Treasury/repo stress test</h2>
+<h3 id="a-current-scale-and-resources">A. Current scale and resources</h3>
+<p>DTCC reported in July 2026 that FICC clears more than $12T of average daily cash and repo activity. At 2026-03-31, FICC's Clearing Fund totaled $93.740B:</p>
+<ul>
+<li>$17.898B cash;</li>
+<li>$66.077B U.S. Treasuries;</li>
+<li>$8.515B agency RMBS; and</li>
+<li>$1.250B agency debt. <strong>F</strong></li>
+</ul>
+<p>The same quarter's CCP disclosure reported estimated Cover 1 payment obligations of $98.044B for GSD and $21.255B for MBSD; the largest actual preceding-twelve-month figures were $98.044B and $39.698B. <strong>F</strong></p>
+<p>The $200M FICC corporate line of credit is not the principal GSD default-liquidity resource. GSD qualifying liquidity includes Clearing Fund cash and the Capped Contingency Liquidity Facility, under which members are obligated to provide financing against securities available to FICC in a default scenario. <strong>F</strong></p>
+<h3 id="b-gross-atomic-scale-illustration">B. Gross-atomic scale illustration</h3>
+<p>If the $12T activity anchor were treated as gross cash principal—a deliberately conservative counterfactual—then:</p>
+<ul>
+<li>20 turns require $600B;</li>
+<li>50 turns require $240B;</li>
+<li>100 turns require $120B. <strong>D</strong></li>
+</ul>
+<p>The 100-turn figure remains above the $98.044B GSD Cover 1 payment-obligation benchmark. To cycle $98.044B through $12T in a day requires approximately 122.4 perfect turns: one turn every 3.2 minutes in 6.5 hours or 11.8 minutes over 24 hours. <strong>D</strong></p>
+<p>This is <strong>not</strong> an estimate of FICC's actual atomic cash need. The $12T includes cash and repo transaction activity, while Cover 1 is a stressed default obligation after netting and excludes multiple normal-flow assumptions. The calculation exposes the order-of-magnitude dependency on netting, timing and secured intraday finance. <strong>D/I</strong></p>
+<h3 id="c-the-repo-specific-problem">C. The repo-specific problem</h3>
+<p>Repo is already a collateralized funding transaction. Atomicity can synchronize securities and cash, but it does not eliminate:</p>
+<ul>
+<li>the lender's cash balance sheet;</li>
+<li>collateral eligibility and haircut;</li>
+<li>substitution and recall rights;</li>
+<li>maturity/unwind funding;</li>
+<li>dealer and sponsor credit limits;</li>
+<li>balance-sheet netting conditions;</li>
+<li>a CCP's obligation when a member defaults; or</li>
+<li>the need to monetize incoming securities to fund payments.</li>
+</ul>
+<p>A tokenized Treasury that moves instantly can improve collateral mobility. But if a participant must prefund each repo cash leg without preserving novation and balance-sheet netting, the technology may accelerate transfers while reducing the economic capacity to transact. <strong>I</strong></p>
+<hr />
+<h2 id="vii-what-can-serve-as-the-atomic-cash-leg">VII. What can serve as the atomic cash leg?</h2>
+<table>
+<thead>
+<tr>
+<th>Candidate</th>
+<th>Legal/economic object</th>
+<th>Strength</th>
+<th>Binding constraint for DTCC-scale settlement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Federal Reserve balances</td>
+<td>central-bank liability in eligible master accounts</td>
+<td>highest-quality U.S. dollar finality</td>
+<td>access limited to eligible institutions; operating-hour and API/orchestration integration; no public DTC token interface</td>
+</tr>
+<tr>
+<td>tokenized reserves / wholesale CBDC</td>
+<td>central-bank liability represented on a programmable platform</td>
+<td>can align cash and security on one execution environment</td>
+<td>issuance authority, access, remuneration, convertibility, liquidity facilities and legal equivalence must be explicit</td>
+</tr>
+<tr>
+<td>commercial-bank deposit token</td>
+<td>deposit liability of issuing bank</td>
+<td>familiar bank-money claim; may preserve deposit relationship</td>
+<td>issuer concentration; cross-bank convertibility; settlement-bank credit; bankruptcy and discharge rules</td>
+</tr>
+<tr>
+<td>regulated stablecoin</td>
+<td>issuer liability or governed redemption claim backed by specified reserves</td>
+<td>24/7 transfer and composability</td>
+<td>reserve, segregation, redemption, depeg/run, concentration, off-ramp and legal-discharge risk</td>
+</tr>
+<tr>
+<td>tokenized MMF share</td>
+<td>security interest in a fund portfolio</td>
+<td>yield-bearing collateral and liquidity store</td>
+<td>not cash; redemption, price, cutoffs, settlement, haircut and gate risk</td>
+</tr>
+<tr>
+<td>native cryptoasset</td>
+<td>protocol-native property/asset</td>
+<td>uninterrupted native transfer</td>
+<td>price volatility, accounting/capital treatment and absence of U.S.-dollar discharge unless converted or expressly accepted</td>
+</tr>
+<tr>
+<td>prefunded participant balance</td>
+<td>cash/deposit placed under platform control</td>
+<td>operational certainty at commit</td>
+<td>trapped liquidity, fragmentation and opportunity cost</td>
+</tr>
+<tr>
+<td>intraday-credit token or overdraft</td>
+<td>lender's conditional claim funding settlement</td>
+<td>elastic liquidity</td>
+<td>preserves bank/central-bank credit, collateral, capital, pricing and default exposure</td>
+</tr>
+</tbody>
+</table>
+<p>BIS Project Helvetia found that instant gross DLT settlement requires prefunding and can fragment central-bank money across systems; it identified T+0 end-of-day netting and new liquidity facilities as alternatives. BIS's unified-ledger work likewise says atomic settlement needs liquidity-saving mechanisms. <strong>F</strong></p>
+<p>The cash-leg question is therefore not “which coin is fastest?” It is:</p>
+<blockquote>
+<p><strong>Whose liability is transferred, who may hold it, what event legally discharges the obligation, when can the receiver reuse it, how does it convert at par, and who supplies liquidity in stress?</strong></p>
+</blockquote>
+<hr />
+<h2 id="viii-stress-suite">VIII. Stress suite</h2>
+<table>
+<thead>
+<tr>
+<th>Stress</th>
+<th>Current netted/CCP response</th>
+<th>Pure atomic response</th>
+<th>Decisive evidence needed for a DTCC digital design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>large member defaults before paying</td>
+<td>CCP uses margin, liquid resources, collateral monetization and waterfall while completing non-defaulting settlement</td>
+<td>its outgoing pairs fail unless a guarantor or lender substitutes cash</td>
+<td>rulebook for guarantee point, substitute liquidity and loss allocation</td>
+</tr>
+<tr>
+<td>settlement bank refuses a debit</td>
+<td>participant remains liable; Fedwire progress payment can be required</td>
+<td>wallet may lack accepted cash; on-chain credits elsewhere may not cure legal-entity shortfall</td>
+<td>exact cash account, cross-entity funding and emergency-credit rules</td>
+</tr>
+<tr>
+<td>security is unavailable</td>
+<td>CNS can pend, partially deliver, borrow or close out under rules</td>
+<td>atomic pair fails or queues</td>
+<td>buy-in, borrow, partial-fill, queue and penalty mechanics</td>
+</tr>
+<tr>
+<td>stablecoin depegs or redemption pauses</td>
+<td>not current DTC settlement money</td>
+<td>completed transfers may deliver an impaired claim unless valuation and halt rules intervene</td>
+<td>issuer, redemption, oracle, haircut, pause and substitution rules</td>
+</tr>
+<tr>
+<td>chain, bridge or wallet outage</td>
+<td>traditional DTC/NSCC/FICC systems continue within existing recovery framework</td>
+<td>transfers cannot complete; fragmented balances may be stranded</td>
+<td>failover chain, authoritative state, recovery point, rollback and duplicate-spend controls</td>
+</tr>
+<tr>
+<td>LedgerScan and chain disagree</td>
+<td>DTC official record and root-wallet correction powers govern token entitlement</td>
+<td>protocol finality may conflict with intermediary correction</td>
+<td>precedence, notification, accounting correction and claims process</td>
+</tr>
+<tr>
+<td>oracle/valuation error</td>
+<td>centralized price and margin processes can call/adjust under rules</td>
+<td>automated collateral release or margin call may be wrong and immediate</td>
+<td>source hierarchy, stale-price control, kill switch, reversal and loss allocation</td>
+</tr>
+<tr>
+<td>simultaneous multi-CCP calls</td>
+<td>firms mobilize cash/collateral across facilities and banks; procyclicality remains</td>
+<td>instantaneous calls can compete for the same inventory</td>
+<td>priority, reservation, interoperability and central-liquidity backstop</td>
+</tr>
+<tr>
+<td>24/7 token market while NSS/Fedwire wholesale process is closed or constrained</td>
+<td>trading/guarantee and cash-finality clocks remain distinct</td>
+<td>cash token must circulate independently or trades queue</td>
+<td>weekend/overnight settlement asset, redemption window and Monday conversion rule</td>
+</tr>
+</tbody>
+</table>
+<p>The highest-risk failure is not necessarily blockchain failure. It is <strong>cross-clock failure</strong>: the tokenized security is final or reserved while the accepted cash, credit, valuation, settlement bank or CCP guarantee is not available on the same clock. <strong>I</strong></p>
+<hr />
+<h2 id="ix-accounting-and-balance-sheet-map">IX. Accounting and balance-sheet map</h2>
+<table>
+<thead>
+<tr>
+<th>Event/object</th>
+<th>Participant accounting/economic treatment</th>
+<th>FMI/issuer treatment</th>
+<th>Do not misstate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DTC entitlement tokenization</td>
+<td>ordinarily a change in record form/location of the same economic security interest; evaluate custody and restriction disclosures</td>
+<td>DTC moves book-entry entitlement to Digital Omnibus and records corresponding token entitlement</td>
+<td>not new issuer issuance, sale proceeds or cash funding</td>
+</tr>
+<tr>
+<td>token transfer</td>
+<td>derecognition/recognition follows enforceable transfer and applicable accounting control criteria</td>
+<td>LedgerScan records DTC entitlement holder; underlying remains Cede-registered</td>
+<td>chain timestamp alone is not automatically GAAP derecognition or cash finality</td>
+</tr>
+<tr>
+<td>prefunded cash</td>
+<td>remains an asset/claim if recoverable, but may be restricted or encumbered; funding/opportunity cost accrues</td>
+<td>platform records liability or custodial balance depending legal structure</td>
+<td>principal is not transaction expense merely because it is locked</td>
+</tr>
+<tr>
+<td>deposit token</td>
+<td>claim on issuing depository institution</td>
+<td>bank deposit liability in tokenized form</td>
+<td>not central-bank money or stablecoin</td>
+</tr>
+<tr>
+<td>stablecoin</td>
+<td>financial asset/property classification depends contractual/legal rights; impairment/redemption risk remains</td>
+<td>issuer liability/equity/reserve structure depends governing law and accounting</td>
+<td>reserve assets are not holder-owned cash without legal support</td>
+</tr>
+<tr>
+<td>Clearing Fund contribution</td>
+<td>member asset subject to restriction and loss use; funding cost separate</td>
+<td>CCP records corresponding participant resource/liability subject to rules</td>
+<td>deposit principal is not current expense absent loss/application</td>
+</tr>
+<tr>
+<td>committed line / CCLF</td>
+<td>undrawn commitment is liquidity capacity; commitment fees are expense; draw creates cash and debt/secured financing</td>
+<td>FMI gains contingent funding, not prefunded cash</td>
+<td>stated facility capacity is not cash on the balance sheet before draw</td>
+</tr>
+<tr>
+<td>default loss</td>
+<td>recognize only when applicable loss/obligation criteria are met</td>
+<td>default waterfall determines resource use and assessment</td>
+<td>liquidity draw, collateral use and ultimate credit loss are separate clocks</td>
+</tr>
+</tbody>
+</table>
+<p>The accounting hinge is the same as the legal hinge: <strong>representation, title/control, funding, finality, discharge and loss recognition are separate events.</strong></p>
+<hr />
+<h2 id="x-answers-to-the-core-questions">X. Answers to the core questions</h2>
+<h3 id="how-much-cash-would-dtcc-need-for-atomic-settlement">How much cash would DTCC need for atomic settlement?</h3>
+<p>No public aggregate answer is defensible. Required cash is the sum of participant peak cumulative shortfalls after reusable final credits, committed credit, queues and buffers—not annual or daily gross value. The sensitivity table shows the scale: at 20 perfect turns, the separate counterfactual stocks are $150.5B for NSCC, $51.7B for DTC and $600B for FICC. Actual requirements could be lower with netting/credit or higher with concentration, timing and stress. <strong>I</strong></p>
+<h3 id="can-one-stablecoin-or-cryptoasset-simply-circulate-fast-enough">Can one stablecoin or cryptoasset simply circulate fast enough?</h3>
+<p>Only under very strong assumptions. It must be accepted for legal discharge, final and reusable before the next obligation, available to the right legal entity on the right network, and resilient to issuer, redemption, wallet and chain stress. Systemwide average velocity does not cure participant-level gridlock. <strong>I</strong></p>
+<h3 id="does-atomic-settlement-eliminate-the-ccp">Does atomic settlement eliminate the CCP?</h3>
+<p>It can reduce bilateral principal risk at the moment of successful exchange. It does not automatically eliminate novation, multilateral netting, default completion, margin, securities borrowing, position management, client segregation, recovery or loss allocation. A market can use atomic transfer beneath a CCP constitution. <strong>I</strong></p>
+<h3 id="what-is-dtcc-most-likely-building-first">What is DTCC most likely building first?</h3>
+<p>A multi-chain, reversible, institutionally controlled securities-entitlement and collateral-mobility layer that interoperates with existing custody, clearing and settlement systems. The current evidence does not show a replacement of NSCC/FICC netting or Federal Reserve final settlement. <strong>F/I</strong></p>
+<h3 id="what-part-is-most-economically-consequential">What part is most economically consequential?</h3>
+<p>Collateral AppChain and the future assignment of positive risk/settlement value are more consequential than the choice of Besu, Canton or Stellar. The key change is whether tokenized assets can satisfy margin, collateral and settlement obligations without detokenization—and under whose valuation, liquidity and default rules. <strong>I</strong></p>
+<hr />
+<h2 id="xi-promotion-tests-and-watchlist">XI. Promotion tests and watchlist</h2>
+<h3 id="p0-launch-constitution">P0 — launch constitution</h3>
+<ol>
+<li>DTC's written launch notice to SEC and October 2026 production activation.</li>
+<li>Published technology standards, approved chains, fee schedule and participant procedures.</li>
+<li>Reconciliation, correction, outage and root-wallet reporting.</li>
+</ol>
+<h3 id="p0-cash-leg">P0 — cash leg</h3>
+<ol start="4">
+<li>A named settlement asset, issuer, account structure and redemption route.</li>
+<li>A rule stating when its transfer finally discharges a DVP obligation.</li>
+<li>A public transaction packet matching security, cash, parties, amounts and finality timestamps.</li>
+</ol>
+<h3 id="p0-risk-value-hinge">P0 — risk-value hinge</h3>
+<ol start="7">
+<li>SEC/DTC approval giving tokenized entitlements positive Collateral Monitor, Net Debit Cap or settlement value.</li>
+<li>Eligibility of tokenized entitlements at NSCC, FICC, CME or another CCP with published haircuts and default treatment.</li>
+<li>A rule linking tokenized collateral movement to release/substitution in the CCP's official account.</li>
+</ol>
+<h3 id="p1-liquidity-constitution">P1 — liquidity constitution</h3>
+<ol start="10">
+<li>Peak debit, queue, fail and reuse metrics for tokenized transactions.</li>
+<li>Intraday-credit provider, limits, collateral and pricing.</li>
+<li>24/7/weekend cash and redemption operating rules.</li>
+<li>Cross-chain balance portability and failure treatment.</li>
+<li>Stress-test results for member default, settlement-asset impairment and chain/oracle outage.</li>
+</ol>
+<h3 id="p1-public-supervisory-evidence">P1 — public supervisory evidence</h3>
+<ol start="15">
+<li>Public release, if any, of the quarterly SEC metrics: firms, tokenized shares/value, daily transfers, detokenizations, wallets, chains, corrections and outages.</li>
+</ol>
+<hr />
+<h2 id="xii-claim-audit">XII. Claim audit</h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Ruling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“DTCC tested blockchain rails in production.”</td>
+<td><strong>Supported with precision:</strong> DTC-custodied entitlements were tokenized and used in limited real production workflows on Besu and Canton.</td>
+</tr>
+<tr>
+<td>“DTCC settled the July trades atomically on-chain.”</td>
+<td><strong>Not established.</strong> DVP cash legs were outside DTC; the public packet does not identify synchronized finality.</td>
+</tr>
+<tr>
+<td>“The July event used USDC/JPMD/tokenized deposits.”</td>
+<td><strong>NR.</strong> Firm participation is not asset-use evidence.</td>
+</tr>
+<tr>
+<td>“DTC tokens are native issuer securities.”</td>
+<td><strong>False for the preliminary base design.</strong> They represent DTC participant entitlements; Cede &amp; Co. remains registered owner.</td>
+</tr>
+<tr>
+<td>“Blockchain removes DTCC.”</td>
+<td><strong>False for this design.</strong> DTC controls entitlement identity, wallets, standards, official records, reversal and lifecycle.</td>
+</tr>
+<tr>
+<td>“Atomic settlement requires $4.7 quadrillion of cash.”</td>
+<td><strong>False denominator.</strong> $4.7Q is annual combined processed value, not simultaneous cash.</td>
+</tr>
+<tr>
+<td>“Fast settlement eliminates liquidity needs.”</td>
+<td><strong>False.</strong> It can reduce exposure duration while increasing prefunding and inventory timing demands.</td>
+</tr>
+<tr>
+<td>“Token reuse solves the problem.”</td>
+<td><strong>Incomplete.</strong> Reuse helps only after final, legally reusable receipt by the participant that needs it; concentration and gridlock remain.</td>
+</tr>
+<tr>
+<td>“DTCC is abandoning netting.”</td>
+<td><strong>Unsupported.</strong> Project Ion explicitly preserved netted T+0; current DTC tokenization externalizes cash settlement and has zero DTC settlement value.</td>
+</tr>
+<tr>
+<td>“Collateral mobility is the real bridge.”</td>
+<td><strong>Supported as an architectural inference.</strong> DTCC's build converges around tokenized entitlements, valuations, cross-chain collateral and CCP margin workflows.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="xiii-primary-sources">XIII. Primary sources</h2>
+<h3 id="dtcc-digital-architecture-and-july-event">DTCC digital architecture and July event</h3>
+<ul>
+<li><a href="https://www.dtcc.com/news/2026/july/15/dtcc-turns-tokenization-into-reality">DTCC July 15 production release</a></li>
+<li><a href="https://www.dtcc.com/digital-assets/tokenization/live-production-trades">DTCC live production event page</a></li>
+<li><a href="https://www.dtcc.com/-/media/Files/Downloads/digital-assets/dtc-tokenization-service-faq.pdf">DTC Tokenization Service FAQ</a></li>
+<li><a href="https://www.sec.gov/files/tm/no-action/dtc-nal-121125.pdf">SEC no-action response and DTC request</a></li>
+<li><a href="https://www.dtcc.com/digital-assets/composerx">DTCC ComposerX</a></li>
+<li><a href="https://www.dtcc.com/-/media/Files/Downloads/digital-assets/DTCC-Digital-Launchpad.pdf">DTCC Digital Launchpad</a></li>
+<li><a href="https://www.dtcc.com/digital-assets/collateral-appchain">DTCC Collateral AppChain</a></li>
+<li><a href="https://www.dtcc.com/news/2026/may/12/dtcc-collaborates-with-chainlink-to-advance-24-7-collateral-management">DTCC/Chainlink May 12, 2026</a></li>
+<li><a href="https://www.dtcc.com/news/2026/may/27/tokenization-service-to-connect-with-stellar-public-blockchain-as-dtc-advances-multi-chain-strategy">DTC/Stellar May 27, 2026</a></li>
+<li><a href="https://www.dtcc.com/dtcc-connection/articles/2022/october/13/innovation-insight-dtccs-project-ion">DTCC Project Ion primer</a></li>
+<li><a href="https://www.dtcc.com/dtcc-connection/articles/2021/november/04/building-the-settlement-system-of-the-future">DTCC settlement-system design discussion</a></li>
+</ul>
+<h3 id="scale-financial-resources-and-liquidity">Scale, financial resources and liquidity</h3>
+<ul>
+<li><a href="https://annuals.dtcc.com/">DTCC 2025 annual report</a></li>
+<li><a href="https://www.dtcc.com/annuals/2024/value/national-securities-clearing-corporation/">DTCC 2024 NSCC netting result</a></li>
+<li><a href="https://www.dtcc.com/equity-trade-volume-insights">DTCC current equities statistics</a></li>
+<li><a href="https://www.dtcc.com/-/media/Files/Downloads/legal/policy-and-compliance/DTC-DISCLOSURE-FRAMEWORK-2026-Q1-Marked">DTC Q1 2026 disclosure framework</a></li>
+<li><a href="https://www.dtcc.com/-/media/Files/Downloads/legal/financials/2026/FICC-Q1-2026-Financial-Statements.pdf">FICC Q1 2026 financial statements</a></li>
+<li><a href="https://www.dtcc.com/-/media/Files/Downloads/legal/policy-and-compliance/CPMI-IOSCO-Public-Quantitative-Disclosures-Q1-2026.pdf">FICC/NSCC Q1 2026 quantitative disclosures</a></li>
+<li><a href="https://www.dtcc.com/news/2026/july/27/dtcc-survey-firms-progress-toward-us-treasury-clearing-deadline">DTCC July 27, 2026 FICC scale update</a></li>
+<li><a href="https://www.dtcc.com/clearing-and-settlement-services/settlement/end-of-day-settlement">DTC/NSCC end-of-day settlement</a></li>
+</ul>
+<h3 id="external-settlement-liquidity-research">External settlement-liquidity research</h3>
+<ul>
+<li><a href="https://www.bis.org/publ/othp45.pdf">BIS Project Helvetia Phase II</a></li>
+<li><a href="https://www.bis.org/publ/arpdf/ar2023e3.htm">BIS 2023 unified-ledger and atomic-settlement discussion</a></li>
+<li><a href="https://www.bis.org/publ/work1318.htm">BIS 2026 auction-based liquidity-saving mechanisms</a></li>
+</ul>
+<hr />
+<h2 id="xiv-validator-block">XIV. Validator block</h2>
+<ul>
+<li><strong>denominators:</strong> annual DTCC value, daily gross activity, net settlement obligation, default liquidity, margin and cash resources remain separate.</li>
+<li><strong>subsidiaries:</strong> DTC, NSCC and FICC are analyzed separately; their values are not summed.</li>
+<li><strong>cash/security clocks:</strong> execution, tokenization, chain movement, LedgerScan record, cash payment, legal discharge, CCP guarantee and final settlement remain separate.</li>
+<li><strong>production limit:</strong> July 15 is operator-confirmed limited production, not a public transaction-level audit and not full October service launch.</li>
+<li><strong>model limit:</strong> the working-stock table is a deterministic sensitivity, not a simulation or forecast. It excludes member distributions and intraday timestamps because public data are insufficient.</li>
+<li><strong>accounting limit:</strong> accounting treatments are object classifications and control questions, not entity-specific GAAP conclusions without contracts and books.</li>
+<li><strong>interpretive gate:</strong> conclusions marked <strong>I</strong> are architecture readings and must not be promoted into a factual timeline as events.</li>
+</ul></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

@@ -1,0 +1,430 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>GENIUS Act Implementation Delta — September 8, 2026 · Freedom 250</title><style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#121e31;--ink:#edf4ff;--muted:#a9b8cc;
+--line:rgba(124,151,192,.25);--cyan:#56d4d8;--gold:#f0b95b;--violet:#a98cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 15% 8%,rgba(86,212,216,.09),transparent 32rem),
+radial-gradient(circle at 88% 22%,rgba(169,140,255,.08),transparent 34rem)}
+.reader{position:relative;max-width:900px;margin:0 auto;padding:62px 24px 100px}
+.reader-head{padding:26px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}
+h1{font:700 clamp(2.1rem,5vw,4rem)/1.02 Georgia,serif;letter-spacing:-.035em;margin:.45rem 0 1rem}
+.deck{max-width:720px;color:var(--muted);font-size:1.08rem}.content{background:rgba(16,24,39,.76);
+border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,54px);box-shadow:0 24px 80px rgba(0,0,0,.22)}
+.content h1{font-size:2rem}.content h2{font:700 1.8rem/1.2 Georgia,serif;margin:2.3em 0 .7em;color:#fff}
+.content h3{font-size:1.18rem;margin:2em 0 .6em;color:#d8e7fb}.content p,.content li{color:#d1dceb}
+.content a{color:var(--cyan);text-underline-offset:3px}.content blockquote{margin:1.6rem 0;padding:1rem 1.2rem;
+border-left:3px solid var(--gold);background:rgba(240,185,91,.07);color:#eef4ff}
+.content pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#060a12;color:#cfe8ff}
+.content code{font-size:.9em}.content table{width:100%;border-collapse:collapse;display:block;overflow:auto;margin:1.4rem 0}
+.content th,.content td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;min-width:130px}
+.content th{background:rgba(86,212,216,.08);text-align:left}.reader-foot{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.report-action{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:999px;color:#dffcff;text-decoration:none;font-weight:800;font-size:.84rem}.report-action.primary{background:var(--cyan);border-color:var(--cyan);color:#061016}.report-action:hover{border-color:var(--cyan)}
+@media(max-width:640px){.reader{padding:38px 14px 72px}.content{border-radius:14px;padding:21px 17px}.content h2{font-size:1.55rem}}
+</style>
+<style id="f250-share-nav-style">
+body{padding-top:52px!important}
+.f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;
+background:rgba(8,13,24,.94);border-bottom:1px solid rgba(124,151,192,.28);
+backdrop-filter:blur(16px);font:700 14px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#eef4ff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.f250-share-nav a{color:#eef4ff!important;text-decoration:none!important;letter-spacing:0!important}
+.f250-share-nav .f250-room-home{display:flex;align-items:center;gap:9px}
+.f250-share-nav .f250-room-home:before{content:"";width:9px;height:9px;border-radius:50%;background:#56d4d8;
+box-shadow:0 0 18px rgba(86,212,216,.9)}
+.f250-share-nav .f250-nav-links{display:flex;align-items:center;gap:15px;font-weight:650}
+.f250-share-nav .f250-nav-links a{color:#aebbd0!important}
+.f250-share-nav a:hover,.f250-share-nav a:focus-visible{color:#fff!important}
+@media(max-width:620px){.f250-share-nav{padding:0 12px}.f250-share-nav .f250-nav-links a:first-child{display:none}}
+</style>
+<meta name="f250:page-type" content="public_source">
+<meta name="f250:research-ids" content="genius-act-implementation-2026,private-monetary-stack">
+<script type="application/json" id="f250-machine-header">{"header_version":"1.0","page_type":"public_source","title":"GENIUS Act Implementation Delta — September 8, 2026 · Freedom 250","canonical_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/sources/genius-act-implementation-delta-2026-09-08-ca2b6c3e5515.html","bot_index_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/bot-index.html","api_bootstrap_url":"https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/index.json","research_ids":["genius-act-implementation-2026","private-monetary-stack"],"package_manifest_urls":["https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/packages/genius-act-implementation-2026.json","https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/api/v1/packages/private-monetary-stack.json"],"material":{"material_id":"ca2b6c3e55155e02","title":"GENIUS Act Implementation Delta — September 8, 2026","artifact_role":"answer","file_state":"current","availability":"public_reading","access_state":"public_full_text","public_full_text":true,"reading_url":"readings/ca2b6c3e55155e02.html","reading_basis":"public_html_full_text","modified_at":"2026-09-09T00:17:13Z","package_ids":["private-monetary-stack","genius-act-implementation-2026"]}}</script>
+<style id="f250-universal-back-style">
+.f250-universal-back{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:2147483647;display:inline-flex;align-items:center;gap:.4rem;padding:.62rem .85rem;border:1px solid rgba(148,163,184,.42);border-radius:999px;background:rgba(10,15,24,.92);color:#f8fafc!important;font:600 14px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.f250-universal-back:hover{transform:translateY(-1px);background:rgba(24,32,46,.97)}
+.f250-universal-back:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media print{.f250-universal-back{display:none!important}}
+</style>
+</head><body>
+<a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><div class="connected-return" style="position:relative;margin:70px 20px 16px;padding:14px;border:1px solid #526478;background:#101b2b;color:#edf4fa;font:14px/1.6 system-ui;z-index:2"><a href="../index.html" class="" >← Research Library</a> · <nav class="subject-nav" aria-label="Research rooms"><a href="../research-rooms/crypto-digital-money.html" class="chip" >Home room: Crypto &amp; Digital Money</a></nav><nav class="subject-nav" aria-label="Research rooms"><a href="../research-rooms/crypto-digital-money.html" class="chip" >Home room: Crypto &amp; Digital Money</a></nav></div><nav class="f250-share-nav" aria-label="Shared site">
+<a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
+<span class="f250-nav-links"><a href="../rooms/government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
+</nav><main class="reader"><header class="reader-head"><div class="kicker">Saved research · source edition</div><h1>GENIUS Act Implementation Delta — September 8, 2026</h1><p class="deck">Source cutoff: 2026-09-08 · Collection evidence cutoff: 2026-09-30</p><p><a href="genius-act-implementation-delta-2026-09-08-ca2b6c3e5515.md">Portable Markdown</a> · <a href="../index.html">Connected Library</a></p></header><article class="content"><h1 id="genius-act-implementation-delta-september-8-2026">GENIUS Act Implementation Delta — September 8, 2026</h1>
+<p><strong>Prior baseline:</strong> August 17, 2026 implementation-gap package<br />
+<strong>Evidence cutoff:</strong> September 8, 2026, 23:20 EDT<br />
+<strong>Scope:</strong> Question-led official-government sweep of the federal implementation
+stack and material state plans. This is not a census of every government page.<br />
+<strong>Authority boundary:</strong> Enactment, proposed rules, comment clocks, final rules,
+guidance, reports, approvals and operating capability are recorded separately.<br />
+<strong>Promotion state:</strong> Workbench-only. No Chronicle, watch-calendar or Observatory
+app state was changed.</p>
+<h2 id="bottom-line">Bottom line</h2>
+<p>There <strong>has</strong> been additional government movement since the August 17 baseline,
+but the core GENIUS system is still not operational.</p>
+<p>The strongest new federal events are:</p>
+<ol>
+<li>Treasury's Section 3 proposal was formally published on August 18 with an
+   October 19 comment deadline.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
+<li>Comptroller Jonathan Gould said on August 19 that the OCC intended to have a
+   final rule out “by November.” That is an agency schedule statement, not a
+   final rule.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
+<li>The joint PPSI customer-identification proposal completed its comment period
+   on August 21; no final CIP rule was located.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></li>
+<li>Federal Reserve staff published a September 4 measurement paper explaining
+   how stablecoins and tokenized deposits could enter M1/M2 and what reporting
+   and double-counting problems must be solved. The paper expressly does not
+   represent Board policy.<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></li>
+</ol>
+<p>No located action at the cutoff supplies the missing core final rules, opens the
+Stablecoin Certification Review Committee (SCRC) pathway, publishes the three
+still-unlocated statutory reports, approves a named permitted issuer, or changes
+the January 18, 2027 outside effective-date backstop.</p>
+<h2 id="what-is-genuinely-new-after-august-17">What is genuinely new after August 17</h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Entity</th>
+<th>Action</th>
+<th>State</th>
+<th>What changed</th>
+<th>What did not change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-18</td>
+<td>Treasury</td>
+<td>Section 3 NPRM, 91 FR 53368, FR Doc. 2026-16796</td>
+<td><strong>Proposed rule</strong>; comments due 2026-10-19</td>
+<td>Replaced the public-inspection uncertainty with a controlling publication and deadline; asks 87 questions about issuance, U.S. offer/sale, DASP restrictions, foreign issuers, lawful orders, safe harbors and territorial reach.</td>
+<td>Treasury says it is not a primary federal payment-stablecoin regulator; this is not a core prudential final rule and does not start the 120-day final-rule hinge.</td>
+</tr>
+<tr>
+<td>2026-08-19</td>
+<td>OCC</td>
+<td>Comptroller speech/announcement</td>
+<td><strong>Announced plan</strong></td>
+<td>Gould publicly targeted a final GENIUS rule “by November” and said 23 of 40 de novo charter applications received in the prior 18 months involved some digital-asset activity.</td>
+<td>A target is not publication, finality, an effective date or approval of an applicant.</td>
+</tr>
+<tr>
+<td>2026-08-21</td>
+<td>FinCEN, OCC, Board, FDIC, NCUA</td>
+<td>Joint PPSI CIP comment period closed</td>
+<td><strong>Proposal after comment close</strong></td>
+<td>The public-comment intake stage ended; the Board's docket displayed 19 comments at cutoff.</td>
+<td>No final rule, compliance date or operative issuer CIP has followed.</td>
+</tr>
+<tr>
+<td>2026-08-21</td>
+<td>SEC</td>
+<td>Regulation Crypto Assets proposal published</td>
+<td><strong>Adjacent proposal</strong></td>
+<td>Helps define the securities-offering side of the token market and its exclusions/interactions.</td>
+<td>It is not a GENIUS implementing rule and does not license payment-stablecoin issuers.</td>
+</tr>
+<tr>
+<td>2026-09-01</td>
+<td>OCC and FDIC</td>
+<td>Unsafe or Unsound Practices / Matters Requiring Attention final rule</td>
+<td><strong>Final general bank-supervision rule</strong>; effective 2026-11-02</td>
+<td>Changes a general supervisory framework that will matter to regulated banks.</td>
+<td>Its GENIUS references are contextual; it is not a GENIUS core rule and should not be counted as opening the issuer regime.</td>
+</tr>
+<tr>
+<td>2026-09-04</td>
+<td>Federal Reserve staff</td>
+<td>“New Forms of Money and U.S. Monetary Aggregates”</td>
+<td><strong>Staff research; non-policy</strong></td>
+<td>Makes the stablecoin/tokenized-deposit measurement problem concrete: classification in M1 or broader M2, regulator-to-Fed data flows, domestic versus global circulation and possible double counting of reserve assets.</td>
+<td>It is not Board guidance, a rule, an approval or a monetary-aggregate revision.</td>
+</tr>
+<tr>
+<td>2026-09-04</td>
+<td>SEC</td>
+<td>Transfer Agent Rules proposal published</td>
+<td><strong>Adjacent proposal</strong></td>
+<td>Addresses tokenized securities and transfer-agent architecture near the stablecoin perimeter.</td>
+<td>It is not a GENIUS implementation rule.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="negative-federal-register-result">Negative federal-register result</h3>
+<p>A title/full-text Federal Register query from <strong>August 18 through September 8</strong>
+located one new item expressly labeled as GENIUS Act implementation: Treasury's
+August 18 Section 3 NPRM. A broader “payment stablecoin” query also returned the
+SEC proposals and the OCC/FDIC general supervisory rule above. Those broader
+hits were reviewed but not promoted into the GENIUS-final-rule column.</p>
+<p>This is a bounded negative finding, not a claim that no unpublished agency work
+exists.</p>
+<h2 id="material-state-government-movement-and-backfill">Material state-government movement and backfill</h2>
+<p>The state layer contains more substance than our August package showed. The
+Florida and Texas items below are <strong>new to this research record</strong>, but their
+underlying governmental action was not necessarily issued after August 17.</p>
+<h3 id="florida-enacted-state-qualified-issuer-machinery">Florida: enacted state-qualified issuer machinery</h3>
+<p>Florida approved HB 175 on June 26, 2026 as Chapter 2026-176. The substantial
+stablecoin-issuer provisions become effective October 1, 2026.<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> Section
+658.997 creates a state-qualified issuer pathway and directs the Office of
+Financial Regulation (OFR) to:</p>
+<ul>
+<li>license or certify eligible issuers and establish capital, liquidity,
+  operational and risk-management requirements;</li>
+<li>supervise ongoing compliance;</li>
+<li>submit Florida's framework to the SCRC when the federal certification process
+  exists;</li>
+<li>decide a substantially complete application within 120 days, with a deemed-
+  approval consequence for nondecision;</li>
+<li>avoid treating use of an open, public or decentralized network as a standalone
+  reason for denial; and</li>
+<li>recognize tokenized forms of otherwise eligible reserve assets.</li>
+</ul>
+<p>This is real enacted implementation architecture, but it does not prove an SCRC
+certification, an OFR-approved issuer or live federal permission. The federal
+gate that Florida plans to use was still unopened at the cutoff.</p>
+<p>Florida also enacted a Department of Financial Services stablecoin pilot in
+section 17.72.<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> It authorizes receipt of fees and certain disbursement/refund
+uses, subject to operational prerequisites; receipts are converted to dollars
+and deposited with a qualified public depository. The program cannot operate
+until at least one qualifying federal- or state-permitted issuer is approved.
+The law therefore creates an acceptance plan with an explicit dependency, not a
+live state stablecoin payment rail.</p>
+<h3 id="texas-continuing-supervision-and-interpretive-guidance-plan">Texas: continuing-supervision and interpretive-guidance plan</h3>
+<p>The Texas Department of Banking says it currently regulates fiat-backed
+stablecoin issuers as money transmitters and intends to continue doing so in a
+manner consistent with GENIUS. Its official nondepository page says it plans to
+issue interpretive guidance under Texas Finance Code section 152.059.<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> A
+parallel page explains the application route for insured depository institution
+subsidiaries and Texas's continuing state-supervision role.<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup></p>
+<p>The pages are a current agency position and plan. No page-level publication date
+was located, so this audit does not classify them as a proved post-August 17
+release. No Texas SCRC certification or permitted-issuer approval was located.</p>
+<h3 id="new-york-and-north-carolina">New York and North Carolina</h3>
+<ul>
+<li><strong>New York:</strong> NYDFS Part 202 remains proposed; comments are due September 21.
+  No final Part 202 rule or SCRC certification was located.<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup></li>
+<li><strong>North Carolina:</strong> HB 1029 contains a detailed state stablecoin-regime
+  proposal. It passed the House and was referred to Senate Rules on June 11,
+  where the official bill history remained at cutoff. It is a legislative plan,
+  not enacted law or operational approval.<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup></li>
+</ul>
+<h2 id="agency-by-agency-state-at-the-cutoff">Agency-by-agency state at the cutoff</h2>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Current implementation object</th>
+<th>Latest state</th>
+<th>Still needed for operational promotion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Treasury</td>
+<td>Section 3 issuance/offer/sale NPRM</td>
+<td>Published; comments due 2026-10-19</td>
+<td>Final rule or other final action; this is not the primary-regulator prudential rule</td>
+</tr>
+<tr>
+<td>Treasury</td>
+<td>State-regime similarity criteria</td>
+<td>Proposed</td>
+<td>Final similarity rule</td>
+</tr>
+<tr>
+<td>OCC</td>
+<td>Core PPSI standards proposal; licensing/registration information collection</td>
+<td>Proposed; PRA comments due 2026-09-25; final-rule target announced for November</td>
+<td>Published qualifying final rule, operative forms/processes and individual approvals</td>
+</tr>
+<tr>
+<td>FDIC</td>
+<td>PPSI prudential proposal and application/telemetry forms</td>
+<td>Proposed; forms comments due 2026-09-18</td>
+<td>Final standards, final forms/process and applicant approvals</td>
+</tr>
+<tr>
+<td>Board</td>
+<td>Joint PPSI CIP proposal; bank-supervision role</td>
+<td>Comments closed</td>
+<td>CIP final rule and any applicable core/federal-regulator final rules</td>
+</tr>
+<tr>
+<td>FinCEN</td>
+<td>Joint PPSI CIP proposal; future DASP guidance obligations</td>
+<td>Comments closed</td>
+<td>Final CIP rule and operative guidance as required</td>
+</tr>
+<tr>
+<td>NCUA</td>
+<td>Issuer application and prudential proposals; joint CIP proposal</td>
+<td>Comments closed; 2026 performance plan targets final permissible-activity regulations by 2026-12-31</td>
+<td>Published final rules and approvals</td>
+</tr>
+<tr>
+<td>SCRC</td>
+<td>State-certification and section 4(a)(12) restriction functions</td>
+<td>No public form, procedure, certification or approval list located</td>
+<td>Constituted process, regulations/guidance, submissions and decisions</td>
+</tr>
+<tr>
+<td>Attorney General / Treasury</td>
+<td>Section 4(a)(6)(C) lawful-order coordination report</td>
+<td>Public text not located; submission status unverified</td>
+<td>Public text or authoritative receipt evidence</td>
+</tr>
+<tr>
+<td>Treasury</td>
+<td>Section 14 non-payment/endogenous stablecoin study</td>
+<td>Public text not located; submission status unverified</td>
+<td>Public text or authoritative receipt evidence</td>
+</tr>
+<tr>
+<td>Primary federal payment-stablecoin regulators</td>
+<td>Section 15 annual industry report</td>
+<td>Public text not located; submission status unverified</td>
+<td>Public text or authoritative receipt evidence</td>
+</tr>
+<tr>
+<td>SEC</td>
+<td>Crypto-asset offering and transfer-agent proposals</td>
+<td>Adjacent proposals</td>
+<td>Final securities rules would clarify a neighboring perimeter, not complete GENIUS</td>
+</tr>
+<tr>
+<td>CFTC</td>
+<td>Public remarks and market/collateral/custody work</td>
+<td>Adjacent activity; no new GENIUS implementing rule located</td>
+<td>Any action must be classified by its own authority and legal object</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-live-clocks">The live clocks</h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Clock</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-09-18</td>
+<td>FDIC proposed information-collection comments</td>
+<td>Form/telemetry input closes; not rule finality</td>
+</tr>
+<tr>
+<td>2026-09-21</td>
+<td>NYDFS Part 202 comments</td>
+<td>State proposal input closes; not certification</td>
+</tr>
+<tr>
+<td>2026-09-25</td>
+<td>OCC licensing/registration PRA comments</td>
+<td>Information-collection input closes; not issuer approval</td>
+</tr>
+<tr>
+<td>2026-10-19</td>
+<td>Treasury Section 3 NPRM comments</td>
+<td>Treasury proposal input closes</td>
+</tr>
+<tr>
+<td>By 2026-11-30, if the OCC meets its public wording</td>
+<td>OCC “by November” target</td>
+<td>Watch for actual Federal Register final rule; do not promote from the speech</td>
+</tr>
+<tr>
+<td>2026-12-31</td>
+<td>NCUA performance-plan target</td>
+<td>Internal/public planning target for final permissible-stablecoin-activity regulations</td>
+</tr>
+<tr>
+<td>2027-01-18</td>
+<td>Statutory outside effective-date backstop</td>
+<td>Remains controlling absent an earlier qualifying final-rule trigger</td>
+</tr>
+</tbody>
+</table>
+<p>If the OCC publishes its qualifying final rule in November, 120 days after that
+event would fall in March 2027. On that fact pattern, the January 18, 2027
+outside backstop would still arrive first. This is a conditional clock inference,
+not a forecast that the OCC will meet its target or that its rule alone completes
+the statutory trigger set.</p>
+<h2 id="what-we-are-still-waiting-for">What we are still waiting for</h2>
+<ol>
+<li>Qualifying core final rules from the primary federal payment-stablecoin
+   regulators.</li>
+<li>A final PPSI customer-identification rule.</li>
+<li>A final Treasury state-regime similarity rule.</li>
+<li>SCRC rules or guidance, a submission process, certification decisions and a
+   public decision record.</li>
+<li>Foreign-regime comparability decisions and an operative OCC foreign-issuer
+   registration process.</li>
+<li>Public text or authoritative receipt evidence for the Section 14 study,
+   Section 4(a)(6)(C) Treasury–Attorney General report and Section 15 annual
+   industry report.</li>
+<li>A named PPSI approval that has crossed every applicable legal and operational
+   gate.</li>
+<li>Evidence that a state pilot or agency acceptance program has actually begun
+   transacting, rather than merely being authorized.</li>
+</ol>
+<h2 id="research-ruling">Research ruling</h2>
+<p>The implementation picture has changed from <strong>“a proposal is arriving”</strong> to
+<strong>“multiple proposal clocks are closing and agencies are publicly scheduling
+finalization.”</strong> It has not changed to <strong>“the GENIUS regime is live.”</strong> Florida
+now supplies a concrete state-law pathway and pilot dependency chain, but the
+federal certification and approval machinery on which that pathway relies is
+still missing.</p>
+<p>For the broader monetary-stack thesis, the pattern is important: the public and
+private system is building separate modules—issuer charter, identity, reserve,
+distribution, state supervision, securities perimeter and monetary reporting—
+before a single operational issuer pathway is complete. That is evidence of
+institutional unbundling and staged acceptance, not yet evidence of completed
+stablecoin substitution for bank money or central-bank settlement.</p>
+<h2 id="official-sources">Official sources</h2>
+<h3 id="adjacent-sources-reviewed-but-not-counted-as-genius-implementation">Adjacent sources reviewed but not counted as GENIUS implementation</h3>
+<ul>
+<li>SEC, <a href="https://www.federalregister.gov/documents/2026/08/21/2026-17183/regulation-crypto-assets">Regulation Crypto Assets</a>, proposed rule.</li>
+<li>OCC and FDIC, <a href="https://www.federalregister.gov/documents/2026/09/01/2026-17823/unsafe-or-unsound-practices-matters-requiring-attention">Unsafe or Unsound Practices; Matters Requiring Attention</a>, final rule effective November 2, 2026.</li>
+<li>SEC, <a href="https://www.federalregister.gov/documents/2026/09/04/2026-18190/transfer-agent-rules">Transfer Agent Rules</a>, proposed rule.</li>
+<li>NCUA, <a href="https://ncua.gov/regulation-supervision/rulemakings-proposals-comment">Current rulemakings and proposals</a>; <a href="https://ncua.gov/files/agenda-items/2026-annual-performance-plan-20260409.pdf">2026 Annual Performance Plan</a>.</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Treasury, <a href="https://www.federalregister.gov/documents/2026/08/18/2026-16796/genius-act-regulations-on-payment-stablecoin-issuance-offer-and-sale">GENIUS Act Regulations on Payment Stablecoin Issuance, Offer, and Sale</a>, 91 FR 53368, August 18, 2026; <a href="https://home.treasury.gov/news/press-releases/sb0605">Treasury announcement</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>OCC, <a href="https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-69.html">Comptroller Gould Discusses GENIUS Act Implementation and Digital-Asset Charter Activity</a>, August 19, 2026.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Federal Register, <a href="https://www.federalregister.gov/documents/2026/06/22/2026-12460/permitted-payment-stablecoin-issuer-customer-identification-program">Permitted Payment Stablecoin Issuer Customer Identification Program</a>; Federal Reserve, <a href="https://www.federalreserve.gov/apps/proposals/FR-2026-0005-01/details">proposal docket FR-2026-0005-01</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Federal Reserve staff, <a href="https://www.federalreserve.gov/econres/notes/feds-notes/new-forms-of-money-and-the-u-s-monetary-aggregates-20260904.html">New Forms of Money and U.S. Monetary Aggregates</a>, September 4, 2026.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Florida Senate, <a href="https://www.flsenate.gov/Session/Bill/2026/175/ByCategory">HB 175 bill and chapter-law history</a>; Florida Statutes, <a href="https://www.flsenate.gov/Laws/Statutes/2026/658.997">section 658.997</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Florida Statutes, <a href="https://www.flsenate.gov/Laws/Statutes/2026/17.72">section 17.72, stablecoin pilot program</a>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Texas Department of Banking, <a href="https://www2.dob.texas.gov/money-services-business/genius-act-non-depository">GENIUS Act — Non-Depository Institutions</a>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Texas Department of Banking, <a href="https://dob.texas.gov/banks-and-trust-companies/genius-act-insured-depository-institutions">GENIUS Act — Insured Depository Institutions</a>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>NYDFS, <a href="https://www.dfs.ny.gov/industry-guidance/regulatory-and-legislative-activities/proposed-regulations">Proposed Part 202 — Permitted Payment Stablecoin Issuers</a>.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>North Carolina General Assembly, <a href="https://ncleg.gov/BillLookup/2025/H1029">HB 1029 bill history</a>.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></article><footer class="reader-foot">Original research retained with its own evidence boundaries. Website generation does not refresh the source.</footer></main></body></html>

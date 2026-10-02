@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """build_charter_seed.py — parse The Charter Queue corpus into charter_seed.json.
 
-Copied from build_castration_seed.py per _Claude-Context/PATTERN — Timeline Machine Build.md.
+Copied from build_castration_seed.py per _AI-Context/PATTERN — Timeline Machine Build.md.
 
 Reads '04 - Synthesis/Cross-cuts/The Charter Queue — Factual Timeline.md'
 (entry format: '### DATE — title' / **Status:** / [**Time:**] / **Entities:** / **Track:** / body / **Source:**)

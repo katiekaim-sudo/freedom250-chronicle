@@ -1,4 +1,4 @@
-> Source evidence cutoff: 2026-09-30 · Source updated: 2026-09-30
+> Source evidence cutoff: 2026-10-03T09:30:00-04:00 · Source updated: 2026-10-03
 
 # Ripple, XRP and the Invisible Conversion Layer
 
@@ -26,6 +26,33 @@ providers maintain large, persistent net XRP inventory for those routes.
 XRP's distinct inflection requires route-share, depth, financed inventory,
 holding-duration and hedge evidence. Gross payment notional, Ripple revenue,
 RLUSD supply and XRPL transaction count cannot substitute for those receipts.
+
+## October 3 addendum: XRP Asia is a regional builder layer, not a payment rail
+
+XRP Asia's public launch advances the **XRPL ecosystem** ledger first. Its site
+identifies `XRP Asia Ltd`, names Singapore as its home, shows community nodes in
+Singapore, Tokyo and Seoul, and opens intake paths for developers, systems
+integrators, startups, partners and community ambassadors. Ripple first
+described the body in February as an in-progress regional hub inside a more
+distributed ecosystem-support model. The launch moves that organizational
+clock to a live public hub and intake.
+
+It does not disclose ownership, budget, grant awards or deployed projects, and
+it creates no financial licence, bank consortium, token issuer, validator
+authority, bilateral corridor or settlement record. The Korean banks on the
+XRP Seoul program appeared in a separate panel; their attendance is not an XRP
+Asia partnership or XRPL deployment. The International Crypto Map's route gate
+therefore remains unchanged.
+
+Ripple-company may benefit from a larger regional partner pipeline, and XRPL
+may gain builders and integrators. RLUSD and XRP remain optional assets that a
+later country-lawful product may select. The launch itself supplies no XRP
+transaction, route-share, depth or persistent-inventory evidence. It must also
+be kept separate from the older Japan-based **SBI Ripple Asia** joint venture
+and from Ripple's separately licensed Singapore legal person.
+
+Read the full entity, country and route analysis in
+XRP Asia Launch and APAC Control Map.
 
 ## September 29 addendum: CSD BR makes XRPL a mirror, not the legal record
 

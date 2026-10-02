@@ -7,7 +7,7 @@ purpose: Grok boot for chart work. The Aries 2026 test showed the engine and old
 reads_with:
   - 00 - Index/Reading the Charts — START HERE.md
   - 00 - Index/Mundane Astrology Reference — Katie's Method.xlsx
-  - _Claude-Context/BOOT — Chart Reading.md
+  - _AI-Context/BOOT — Chart Reading.md
   - 99 - Templates/Chart reading authoring template.md
 ---
 

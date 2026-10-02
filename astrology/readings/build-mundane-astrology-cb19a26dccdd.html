@@ -1,0 +1,1229 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/build-mundane-astrology-cb19a26dccdd.html">
+<title>── sky ───────────────────────────────────────────────────────────────────────────</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>── sky ───────────────────────────────────────────────────────────────────────────</h1><p class="mut">Portable source: 99 - Templates/build_mundane_astrology.py</p><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Build the Mundane Astrology section (Katie, 2026-10-03; DR-095 through DR-100).
+
+Where astrology crosses into political analysis. Astrology here is archetypal: the sky
+offers images and themes for reading the story, not proof and not a grade (Katie: &quot;astrology
+is inherently archetypal and that&#x27;s what we&#x27;re focused on&quot;).
+
+Every night (Grok&#x27;s nightly runs this inside refresh_synthesis) it:
+  1. computes the sky with mundane_sky_events.py (cached in mundane_sky_events.json);
+  2. gathers research-side dates, facts only: official actions (Official Records, Executive
+     Orders, dated records), deadlines on the clock (hub clocks, follow-up return dates),
+     study timelines (dated rows in Workbench *TIMELINE* files) and X-save spikes;
+  3. lines them up within a day of each other as crossover candidates, scored by how strong
+     the sky event is and how weighty the research item is;
+  4. reads filed crossovers, independent braid owners, the append-only overlap ledger,
+     Living Story Room guides and fail-closed lunar review packets;
+  5. projects the Grand Tour; three historical Story Room replays; factual,
+     Research-knowledge, institutional, EO, entity-role, courts-braid provenance,
+     express contest/remedy, attention, computed-sky, authored-overlap,
+     unresolved-gate and later-review lanes; independent braid and comparison
+     pages; crossover overview/timeline/filed/day pages; and scheduled hearings;
+  6. writes 99 - Templates/mundane_crossovers.json and
+     04 - Synthesis/Cross-cuts/Mundane Astrology.html.
+
+The research lane stays astrology-free: nothing here is written into a research file.
+The builder may sort governed objects and flag a hearing due; it never infers a
+movement, authors an interpretation, chooses a review disposition or rewrites a
+historical snapshot.
+
+  python3 build_mundane_astrology.py                 build everything
+  python3 build_mundane_astrology.py --candidates 5  print the strongest unfiled crossover days
+                                                     near today, with the note template (Grok)
+  python3 build_mundane_astrology.py --check         exit 1 if the outputs would change
+&quot;&quot;&quot;
+from __future__ import annotations
+
+import glob
+import html
+import json
+import os
+import re
+import sys
+import tempfile
+from collections import Counter, defaultdict
+from datetime import date, datetime, timedelta
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+VAULT = os.path.dirname(HERE)
+sys.path.insert(0, HERE)
+CC = os.path.join(VAULT, &quot;04 - Synthesis&quot;, &quot;Cross-cuts&quot;)
+OUT_HTML = os.path.join(CC, &quot;Mundane Astrology.html&quot;)
+OUT_JSON = os.path.join(HERE, &quot;mundane_crossovers.json&quot;)
+SKY_CACHE = os.path.join(HERE, &quot;mundane_sky_events.json&quot;)
+TEMPLATE = os.path.join(HERE, &quot;mundane_astrology_template.html&quot;)
+MA = os.path.join(VAULT, &quot;03 - Astrology&quot;, &quot;Mundane Astrology&quot;)
+FILED_DIR = os.path.join(MA, &quot;Crossovers&quot;)
+WINDOW = (&quot;2024-01-01&quot;, &quot;2028-12-31&quot;)
+NEAR = 1  # days either side that still count as &quot;on the date&quot;
+
+
+def classify_eo_movement(record_kind):
+    &quot;&quot;&quot;Keep institutional receipts distinct from research return machinery.&quot;&quot;&quot;
+    return classify_institutional_movement(record_kind, True)
+
+
+def classify_institutional_movement(record_kind, has_eo_reference=False):
+    prefix = &quot;eo&quot; if has_eo_reference else &quot;institutional&quot;
+    if record_kind == &quot;movement&quot;:
+        return f&quot;{prefix}_movement&quot;, 3, True
+    if record_kind == &quot;return_gate&quot;:
+        return f&quot;{prefix}_return_gate&quot;, 0, False
+    return f&quot;{prefix}_source_custody&quot;, 0, False
+
+
+def workbench():
+    for c in [os.path.expanduser(&quot;~/Documents/Freedom 250 Observatory&quot;)] + glob.glob(&quot;/sessions/*/mnt/Freedom 250 Observatory&quot;):
+        if os.path.isfile(os.path.join(c, &quot;RESEARCH DESK CATALOG.json&quot;)):
+            return c
+    return None
+
+
+def fm(text):
+    m = re.match(r&quot;---\n(.*?)\n---&quot;, text, re.S)
+    out = {}
+    if not m:
+        return out
+    key = None
+    for line in m.group(1).splitlines():
+        if re.match(r&quot;^\s+-\s&quot;, line) and key:
+            out.setdefault(key, [])
+            if isinstance(out[key], list):
+                out[key].append(line.split(&quot;-&quot;, 1)[1].strip().strip(&#x27;&quot;&#x27;))
+            continue
+        k, sep, v = line.partition(&quot;:&quot;)
+        if sep and not line.startswith(&quot; &quot;):
+            key = k.strip()
+            v = v.strip()
+            if v.startswith(&quot;[&quot;) and v.endswith(&quot;]&quot;):
+                try:
+                    out[key] = json.loads(v)
+                except ValueError:
+                    out[key] = [x.strip().strip(&#x27;&quot;&#x27;).strip(&quot;&#x27;&quot;) for x in v[1:-1].split(&quot;,&quot;) if x.strip()]
+            else:
+                out[key] = v.strip(&#x27;&quot;&#x27;).strip(&quot;&#x27;&quot;)
+    return out
+
+
+def h1(text):
+    m = re.search(r&quot;^# (.+)$&quot;, text, re.M)
+    return m.group(1).strip() if m else &quot;&quot;
+
+
+def rel(p):
+    return os.path.relpath(p, VAULT)
+
+
+# ── sky ───────────────────────────────────────────────────────────────────────────
+def sky_events(refresh=False):
+    if not refresh and os.path.isfile(SKY_CACHE):
+        d = json.load(open(SKY_CACHE, encoding=&quot;utf-8&quot;))
+        if d.get(&quot;window&quot;) == list(WINDOW) and d.get(&quot;version&quot;) == 1:
+            return d[&quot;events&quot;]
+    import mundane_sky_events as mse
+    events = mse.compute(*WINDOW)
+    with open(SKY_CACHE, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+        json.dump({&quot;schema&quot;: &quot;f250.mundane-sky-events/v1&quot;, &quot;version&quot;: 1, &quot;window&quot;: list(WINDOW),
+                   &quot;about&quot;: &quot;Computed sky events (Swiss Ephemeris). Regenerate with build_mundane_astrology.py --sky.&quot;, &quot;events&quot;: events},
+                  f, ensure_ascii=False, indent=0)
+    return events
+
+
+def readings_index():
+    &quot;&quot;&quot;Authored readings by date / ingress, so a sky event can point to the reading already written.&quot;&quot;&quot;
+    by_date, by_ingress = {}, {}
+    for p in glob.glob(os.path.join(VAULT, &quot;03 - Astrology&quot;, &quot;**&quot;, &quot;*.md&quot;), recursive=True):
+        n = os.path.basename(p)
+        m = re.match(r&quot;(\d{4}-\d\d-\d\d) .*(New Moon|Full Moon|Eclipse).*A Reading&quot;, n)
+        if m:
+            by_date.setdefault(m.group(1), rel(p))
+        m = re.match(r&quot;(\d{4}) (Aries|Cancer|Libra|Capricorn) Ingress — A Reading&quot;, n)
+        if m:
+            by_ingress[(m.group(1), m.group(2))] = rel(p)
+    return by_date, by_ingress
+
+
+# ── research side (facts only) ───────────────────────────────────────────────────
+def research_items(wb, today):
+    items = []
+    lo, hi = WINDOW
+    def add(d, kind, label, weight, detail=&quot;&quot;, **link):
+        if d and lo &lt;= d[:10] &lt;= hi:
+            items.append({&quot;date&quot;: d[:10], &quot;kind&quot;: kind, &quot;label&quot;: label.strip(), &quot;weight&quot;: weight, &quot;detail&quot;: detail.strip()[:300], **link})
+    # official actions
+    for p in glob.glob(os.path.join(VAULT, &quot;02 - Research&quot;, &quot;Official Records&quot;, &quot;**&quot;, &quot;*.md&quot;), recursive=True):
+        if os.path.basename(p) == &quot;README.md&quot;:
+            continue
+        t = open(p, encoding=&quot;utf-8&quot;, errors=&quot;ignore&quot;).read(4000)
+        f = fm(t)
+        folder = os.path.relpath(p, os.path.join(VAULT, &quot;02 - Research&quot;, &quot;Official Records&quot;)).split(os.sep)[0]
+        add(str(f.get(&quot;date&quot;, &quot;&quot;)), &quot;official&quot;, h1(t) or os.path.basename(p)[:-3], 3 if folder == &quot;Hearings&quot; else 2,
+            f&quot;{folder} · {f.get(&#x27;author&#x27;, &#x27;&#x27;)}&quot;, path=rel(p), plotline=f.get(&quot;primary_plotline&quot;, &quot;&quot;))
+    for p in glob.glob(os.path.join(VAULT, &quot;03 - Executive Orders&quot;, &quot;*.md&quot;)):
+        t = open(p, encoding=&quot;utf-8&quot;, errors=&quot;ignore&quot;).read(2500)
+        f = fm(t)
+        if f.get(&quot;type&quot;) != &quot;executive_order&quot;:
+            continue
+        add(str(f.get(&quot;signing_date&quot;, &quot;&quot;)), &quot;official&quot;, f&quot;EO {f.get(&#x27;eo_number&#x27;, &#x27;&#x27;)}: {f.get(&#x27;title&#x27;, &#x27;&#x27;)}&quot;, 3,
+            f&quot;Executive Order · {f.get(&#x27;citation&#x27;, &#x27;&#x27;)}&quot;, path=rel(p), plotline=f.get(&quot;plotline&quot;, &quot;&quot;))
+    # studies of one dated official action (the date sits in the research id, e.g. ...-2026-09-28)
+    if wb:
+        for pk in json.load(open(os.path.join(wb, &quot;RESEARCH DESK CATALOG.json&quot;), encoding=&quot;utf-8&quot;)).get(&quot;packages&quot;, []):
+            m = re.search(r&quot;(20\d\d-\d\d-\d\d)$&quot;, pk[&quot;research_id&quot;])
+            if m and pk.get(&quot;object_type&quot;) != &quot;campaign&quot; and (pk.get(&quot;object_type&quot;) == &quot;source_event&quot; or re.search(
+                    r&quot;\b(Order|Proposal|Registration|Roundtable|No-Action|Notices?|Statement|Hearing|Meeting|Address|Remarks|Release|Rule|Exemption|Decision)\b&quot;, pk[&quot;title&quot;])):
+                add(m.group(1), &quot;official&quot;, pk[&quot;title&quot;], 2, &quot;Studied official action · &quot; + (pk.get(&quot;bluf&quot;) or &quot;&quot;)[:200], rids=[pk[&quot;research_id&quot;]])
+    rec_path = os.path.join(HERE, &quot;library_records.json&quot;)
+    if os.path.isfile(rec_path):
+        for r in json.load(open(rec_path, encoding=&quot;utf-8&quot;)).get(&quot;records&quot;, []):
+            for e in r.get(&quot;entries&quot;, []):
+                add(str(e.get(&quot;date&quot;, &quot;&quot;)), &quot;official&quot;, e.get(&quot;title&quot;, &quot;&quot;), 2, f&quot;Dated record: {r.get(&#x27;title&#x27;, &#x27;&#x27;)}&quot;,
+                    record=r.get(&quot;key&quot;), rids=e.get(&quot;research_ids&quot;, [])[:3])
+    # deadlines on the clock
+    hubs = os.path.join(HERE, &quot;library_hubs.json&quot;)
+    if os.path.isfile(hubs):
+        for hid, h in json.load(open(hubs, encoding=&quot;utf-8&quot;)).get(&quot;hubs&quot;, {}).items():
+            for c in h.get(&quot;clock&quot;, []):
+                if re.match(r&quot;\d{4}-\d\d-\d\d$&quot;, c.get(&quot;when&quot;, &quot;&quot;)):
+                    add(c[&quot;when&quot;], &quot;deadline&quot;, c[&quot;what&quot;], 3, f&quot;On the clock · {hid} hub&quot;, rids=[c.get(&quot;proof&quot;)] if c.get(&quot;proof&quot;) else [])
+    if wb:
+        led = os.path.join(wb, &quot;RESEARCH RETURN LEDGER.json&quot;)
+        if os.path.isfile(led):
+            for x in json.load(open(led, encoding=&quot;utf-8&quot;)).get(&quot;followups&quot;, []):
+                if x.get(&quot;status&quot;) in (&quot;open&quot;, &quot;scheduled&quot;) and x.get(&quot;revisit_on&quot;):
+                    add(x[&quot;revisit_on&quot;], &quot;return_gate&quot;, x.get(&quot;question&quot;, &quot;&quot;), 0, &quot;Follow-up return date&quot;,
+                        rids=x.get(&quot;research_ids&quot;, [])[:3], crossover_eligible=False)
+        movement_registry = os.path.join(
+            wb,
+            &quot;Research Packages&quot;,
+            &quot;Federal Government Movement Atlas&quot;,
+            &quot;MOVEMENT_REGISTRY.json&quot;,
+        )
+        if os.path.isfile(movement_registry):
+            movement_data = json.load(open(movement_registry, encoding=&quot;utf-8&quot;))
+            for movement in movement_data.get(&quot;movements&quot;, []):
+                eo_refs = movement.get(&quot;executive_order_refs&quot;) or []
+                kind, weight, crossover_eligible = classify_institutional_movement(
+                    movement.get(&quot;record_kind&quot;, &quot;&quot;), bool(eo_refs)
+                )
+                before = movement.get(&quot;state_before&quot;, &quot;&quot;)
+                after = movement.get(&quot;state_after&quot;, &quot;&quot;)
+                add(
+                    str(movement.get(&quot;event_date&quot;, &quot;&quot;)),
+                    kind,
+                    movement.get(&quot;title&quot;, &quot;&quot;),
+                    weight,
+                    f&quot;{movement.get(&#x27;stage_reached&#x27;, &#x27;&#x27;).replace(&#x27;_&#x27;, &#x27; &#x27;)} · {before} → {after}&quot;,
+                    rids=[movement.get(&quot;research_id&quot;)] if movement.get(&quot;research_id&quot;) else [],
+                    movement_id=movement.get(&quot;movement_id&quot;, &quot;&quot;),
+                    eo_refs=eo_refs,
+                    record_kind=movement.get(&quot;record_kind&quot;, &quot;&quot;),
+                    entity_roles=movement.get(&quot;entity_roles&quot;) or [],
+                    stage_reached=movement.get(&quot;stage_reached&quot;, &quot;&quot;),
+                    unresolved_stages=movement.get(&quot;unresolved_stages&quot;) or [],
+                    claim_limit=movement.get(&quot;claim_limit&quot;, &quot;&quot;),
+                    next_receipt=movement.get(&quot;next_receipt&quot;, &quot;&quot;),
+                    clocks=movement.get(&quot;clocks&quot;) or {},
+                    crossover_eligible=crossover_eligible,
+                )
+        # study timelines
+        reg_rids = {}
+        regp = os.path.join(wb, &quot;RESEARCH REGISTRY.md&quot;)
+        if os.path.isfile(regp):
+            for line in open(regp, encoding=&quot;utf-8&quot;):
+                m = re.match(r&quot;\| `([^`]+)` \| `[^`]+` \| `[^`]+` \| `?([^`|]+)`? \|&quot;, line)
+                if m:
+                    reg_rids[m.group(1)] = [x.strip() for x in m.group(2).split(&quot;;&quot;)]
+        for p in glob.glob(os.path.join(wb, &quot;Research Packages&quot;, &quot;**&quot;, &quot;*TIMELINE*.md&quot;), recursive=True):
+            rp = os.path.relpath(p, wb)
+            rids = reg_rids.get(rp, [])[:1]
+            seen = set()
+            for line in open(p, encoding=&quot;utf-8&quot;, errors=&quot;ignore&quot;):
+                if not line.startswith(&quot;|&quot;):
+                    continue
+                cells = [c.strip().strip(&quot;*`&quot;) for c in line.strip().strip(&quot;|&quot;).split(&quot;|&quot;)]
+                if len(cells) &lt; 2:
+                    continue
+                m = re.match(r&quot;(\d{4}-\d\d-\d\d)&quot;, cells[0])
+                if not m:
+                    continue
+                clean = [re.sub(r&quot;\[([^\]]+)\]\([^)]*\)&quot;, r&quot;\1&quot;, c) for c in cells[1:] if c and not c.startswith(&quot;http&quot;)]
+                text = max(clean, key=len) if clean else &quot;&quot;
+                key = (m.group(1), text[:80])
+                if key in seen:
+                    continue
+                seen.add(key)
+                add(m.group(1), &quot;timeline&quot;, text[:220], 1, &quot;Study timeline · &quot; + os.path.basename(p)[:-3].replace(&quot;_&quot;, &quot; &quot;).title(), rids=rids, wb_path=rp)
+    # X-save spikes
+    per = defaultdict(Counter)
+    titles = defaultdict(list)
+    for p in glob.glob(os.path.join(VAULT, &quot;01 - Events&quot;, &quot;*.md&quot;)):
+        n = os.path.basename(p)
+        if not re.match(r&quot;\d{4}-\d\d-\d\d&quot;, n):
+            continue
+        t = open(p, encoding=&quot;utf-8&quot;, errors=&quot;ignore&quot;).read(1500)
+        pl = fm(t).get(&quot;primary_plotline&quot;, &quot;&quot;)
+        if not pl or pl == &quot;Other&quot;:
+            continue
+        per[pl][n[:10]] += 1
+        titles[(pl, n[:10])].append(re.sub(r&quot;^\d{4}-\d\d-\d\d-\d{4} - &quot;, &quot;&quot;, n[:-3]))
+    for pl, days in per.items():
+        for d, n in days.items():
+            base = date.fromisoformat(d)
+            prior = [days.get((base - timedelta(days=k)).isoformat(), 0) for k in range(1, 31)]
+            mean = sum(prior) / 30
+            if n &gt;= 4 and n &gt;= 3 * max(mean, 0.5):
+                add(d, &quot;spike&quot;, f&quot;{n} X saves on {pl}&quot;, 3 if n &gt;= 8 else 2, &quot;; &quot;.join(titles[(pl, d)][:3]), plotline=pl, saves=n)
+    return items
+
+
+# ── matching ─────────────────────────────────────────────────────────────────────
+def chapters(events):
+    luns = [e for e in events if e[&quot;kind&quot;] == &quot;lunation&quot;]
+    seasons = [e for e in events if e[&quot;kind&quot;] == &quot;ingress&quot; and e.get(&quot;season&quot;)]
+    return luns, seasons
+
+
+def last_before(seq, d):
+    best = None
+    for e in seq:
+        if e[&quot;date&quot;] &lt;= d:
+            best = e
+        else:
+            break
+    return best
+
+
+def match(events, items, readings):
+    from mundane_sky_events import KEY_CHARTS
+    by_date, by_ingress = readings
+    sky_by_day = defaultdict(list)
+    for e in events:
+        r = by_date.get(e[&quot;date&quot;]) if e[&quot;kind&quot;] in (&quot;lunation&quot;, &quot;eclipse&quot;) else None
+        if e[&quot;kind&quot;] == &quot;ingress&quot; and e.get(&quot;season&quot;):
+            r = by_ingress.get((e[&quot;date&quot;][:4], e[&quot;sign&quot;]))
+        if r:
+            e = {**e, &quot;reading&quot;: r}
+        d0 = date.fromisoformat(e[&quot;date&quot;])
+        for k in range(-NEAR, NEAR + 1):
+            sky_by_day[(d0 + timedelta(days=k)).isoformat()].append({**e, &quot;offset&quot;: k})
+    res_by_day = defaultdict(list)
+    for it in items:
+        res_by_day[it[&quot;date&quot;]].append(it)
+    luns, seasons = chapters(events)
+    days = []
+    for d, its in res_by_day.items():
+        eligible = [it for it in its if it.get(&quot;crossover_eligible&quot;, True)]
+        if not eligible:
+            continue
+        sky = sky_by_day.get(d, [])
+        if not sky:
+            continue
+        text = &quot; &quot;.join(i[&quot;label&quot;] + &quot; &quot; + i.get(&quot;detail&quot;, &quot;&quot;) for i in eligible)
+        scored = []
+        for s in sky:
+            w = s[&quot;weight&quot;] + (1 if s[&quot;offset&quot;] == 0 else 0)
+            if s[&quot;kind&quot;] == &quot;transit&quot;:
+                if re.search(KEY_CHARTS.get(s.get(&quot;chart&quot;), &quot;$^&quot;), text):
+                    w += 2
+                    s = {**s, &quot;resonates&quot;: True}
+                elif s[&quot;chart&quot;] != &quot;United States&quot;:
+                    w -= 1
+            scored.append((w, s))
+        scored.sort(key=lambda x: -x[0])
+        top_sky = scored[0][0]
+        uniq = {}
+        for i in sorted(its, key=lambda i: -i[&quot;weight&quot;]):
+            uniq.setdefault(re.sub(r&quot;\W+&quot;, &quot; &quot;, i[&quot;label&quot;].lower()).strip()[:120], i)
+        its = list(uniq.values())
+        eligible_count = sum(it.get(&quot;crossover_eligible&quot;, True) for it in its)
+        score = top_sky + max(it[&quot;weight&quot;] for it in eligible) + min(2, eligible_count - 1) * 0.5 + min(2, len(scored) - 1) * 0.5
+        ch = last_before(luns, d)
+        se = last_before(seasons, d)
+        days.append({&quot;date&quot;: d, &quot;score&quot;: round(score, 1),
+                     &quot;sky&quot;: [dict(s, strength=w) for w, s in scored[:6]],
+                     &quot;research&quot;: its[:8], &quot;research_count&quot;: len(its),
+                     &quot;chapter&quot;: ch[&quot;label&quot;] + &quot; · &quot; + ch[&quot;date&quot;] if ch else &quot;&quot;, &quot;season&quot;: se[&quot;sign&quot;] + &quot; season · &quot; + se[&quot;date&quot;] if se else &quot;&quot;})
+    days.sort(key=lambda x: x[&quot;date&quot;])
+    return days
+
+
+# ── filed notes ───────────────────────────────────────────────────────────────────
+def md_html(md):
+    out, para, lst = [], [], []
+    def inline(s):
+        s = html.escape(s)
+        s = re.sub(r&quot;\*\*(.+?)\*\*&quot;, r&quot;&lt;b&gt;\1&lt;/b&gt;&quot;, s)
+        s = re.sub(r&quot;\*(.+?)\*&quot;, r&quot;&lt;i&gt;\1&lt;/i&gt;&quot;, s)
+        s = re.sub(r&quot;\[\[([^\]|]+)(?:\|([^\]]+))?\]\]&quot;, lambda m: &quot;&lt;span class=&#x27;wl&#x27;&gt;&quot; + (m.group(2) or m.group(1)) + &quot;&lt;/span&gt;&quot;, s)
+        s = re.sub(r&quot;\[([^\]]+)\]\((https?://[^)]+)\)&quot;, r&#x27;&lt;a href=&quot;\2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;\1&lt;/a&gt;&#x27;, s)
+        return s
+    def flush():
+        if para:
+            out.append(&quot;&lt;p&gt;&quot; + inline(&quot; &quot;.join(para)) + &quot;&lt;/p&gt;&quot;); para.clear()
+        if lst:
+            out.append(&quot;&lt;ul&gt;&quot; + &quot;&quot;.join(&quot;&lt;li&gt;&quot; + inline(x) + &quot;&lt;/li&gt;&quot; for x in lst) + &quot;&lt;/ul&gt;&quot;); lst.clear()
+    for line in md.splitlines():
+        if re.match(r&quot;^#{1,6} &quot;, line):
+            flush(); lvl = min(4, len(line.split(&quot; &quot;)[0]) + 1); out.append(f&quot;&lt;h{lvl}&gt;&quot; + inline(line.split(&quot; &quot;, 1)[1]) + f&quot;&lt;/h{lvl}&gt;&quot;)
+        elif re.match(r&quot;^\s*[-*] &quot;, line):
+            if para: flush()
+            lst.append(re.sub(r&quot;^\s*[-*] &quot;, &quot;&quot;, line))
+        elif line.startswith(&quot;&gt;&quot;):
+            flush(); out.append(&quot;&lt;blockquote&gt;&quot; + inline(line.lstrip(&quot;&gt; &quot;)) + &quot;&lt;/blockquote&gt;&quot;)
+        elif not line.strip():
+            flush()
+        else:
+            if lst: flush()
+            para.append(line.strip())
+    flush()
+    return &quot;\n&quot;.join(out)
+
+
+def filed_notes():
+    notes = []
+    for p in sorted(glob.glob(os.path.join(FILED_DIR, &quot;*.md&quot;))):
+        t = open(p, encoding=&quot;utf-8&quot;).read()
+        f = fm(t)
+        if f.get(&quot;type&quot;) != &quot;mundane_crossover&quot;:
+            continue
+        body = re.sub(r&quot;^---\n.*?\n---\n&quot;, &quot;&quot;, t, flags=re.S)
+        first = next((ln.strip() for ln in body.split(&quot;## The archetypal reading&quot;, 1)[-1].splitlines() if ln.strip() and not ln.startswith(&quot;#&quot;)), &quot;&quot;)
+        cid = os.path.basename(p)[:-3]
+        notes.append({&quot;id&quot;: cid, &quot;title&quot;: f.get(&quot;title&quot;) or h1(body) or cid, &quot;date&quot;: str(f.get(&quot;date&quot;, &quot;&quot;)), &quot;dates&quot;: f.get(&quot;dates&quot;) or [str(f.get(&quot;date&quot;, &quot;&quot;))],
+                      &quot;filed_by&quot;: f.get(&quot;filed_by&quot;, &quot;&quot;), &quot;status&quot;: f.get(&quot;status&quot;, &quot;filed&quot;), &quot;sky&quot;: f.get(&quot;sky&quot;) or [], &quot;research&quot;: f.get(&quot;research&quot;) or [],
+                      &quot;plotlines&quot;: f.get(&quot;plotlines&quot;) or [], &quot;research_ids&quot;: f.get(&quot;research_ids&quot;) or [], &quot;braids&quot;: f.get(&quot;braids&quot;) or [], &quot;summary&quot;: first[:400],
+                      &quot;path&quot;: rel(p), &quot;html&quot;: md_html(body)})
+    return notes
+
+
+def overlap_files():
+    &quot;&quot;&quot;The overlap work that existed before this section (Katie: it moves in here). Files stay where they are.&quot;&quot;&quot;
+    out = []
+    for folder, label in ((&quot;Mundane Story Overlaps&quot;, &quot;Story overlap&quot;), (&quot;Money x Sky&quot;, &quot;Money × Sky&quot;)):
+        for p in sorted(glob.glob(os.path.join(VAULT, &quot;03 - Astrology&quot;, &quot;Astrology Files&quot;, folder, &quot;**&quot;, &quot;*.md&quot;), recursive=True)):
+            t = open(p, encoding=&quot;utf-8&quot;, errors=&quot;ignore&quot;).read()
+            f = fm(t)
+            n = os.path.basename(p)
+            if n.upper().startswith((&quot;README&quot;, &quot;WAVE_&quot;)) or re.match(r&quot;^[A-Z0-9_]+\.md$&quot;, n):
+                continue
+            body = re.sub(r&quot;^---\n.*?\n---\n&quot;, &quot;&quot;, t, flags=re.S)
+            para = next((ln.strip() for ln in body.splitlines() if ln.strip() and not ln.startswith((&quot;#&quot;, &quot;&gt;&quot;, &quot;|&quot;, &quot;-&quot;, &quot;*&quot;))), &quot;&quot;)
+            out.append({&quot;title&quot;: f.get(&quot;title&quot;) or h1(body) or n[:-3], &quot;kind&quot;: label, &quot;path&quot;: rel(p), &quot;summary&quot;: para[:300],
+                        &quot;dates&quot;: [x for x in [f.get(&quot;created&quot;), f.get(&quot;initial_return_gate&quot;), f.get(&quot;chapter_close&quot;), f.get(&quot;extended_return_gate&quot;)] if x],
+                        &quot;gates&quot;: {k: f[k] for k in (&quot;initial_return_gate&quot;, &quot;chapter_close&quot;, &quot;extended_return_gate&quot;) if f.get(k)}})
+    return out
+
+
+# ── story braids (Katie 2026-10-03: &quot;follow a story through its astrological timeline&quot;) ──
+BRAIDS_DIR = os.path.join(MA, &quot;Braids&quot;)
+STORY_ROOMS_DIR = os.path.join(MA, &quot;Story Rooms&quot;)
+REVIEW_HEARINGS_DIR = os.path.join(MA, &quot;Review Hearings&quot;)
+RELATIONSHIP_HISTORY = os.path.join(HERE, &quot;planetary_relationship_history.json&quot;)
+OVERLAP_LEDGER = os.path.join(MA, &quot;Braid Overlap Ledger.jsonl&quot;)
+STRAND_ROLES = {&quot;lead_mechanism&quot;, &quot;co_mechanism&quot;, &quot;supporting_context&quot;, &quot;outcompeted&quot;, &quot;unresolved&quot;}
+STRAND_PRESENCE = {&quot;inherited_substrate&quot;, &quot;active_dialogue&quot;, &quot;seed_echo&quot;}
+
+
+def load_braids():
+    out = []
+    for p in sorted(glob.glob(os.path.join(BRAIDS_DIR, &quot;*.md&quot;))):
+        t = open(p, encoding=&quot;utf-8&quot;).read()
+        f = fm(t)
+        if f.get(&quot;type&quot;) != &quot;story_braid&quot;:
+            continue
+        body = re.sub(r&quot;^---\n.*?\n---\n&quot;, &quot;&quot;, t, flags=re.S)
+        body = re.sub(r&quot;^\s*# [^\n]*\n+(\*[^\n]*\*\n+)?(## The braid so far\n+)?&quot;, &quot;&quot;, body)
+        out.append({&quot;slug&quot;: os.path.basename(p)[:-3], &quot;path&quot;: rel(p), &quot;title&quot;: f.get(&quot;title&quot;, &quot;&quot;), &quot;question&quot;: f.get(&quot;question&quot;, &quot;&quot;),
+                    &quot;subplots&quot;: f.get(&quot;subplots&quot;) or [], &quot;plotlines&quot;: f.get(&quot;plotlines&quot;) or [], &quot;keywords&quot;: f.get(&quot;keywords&quot;) or [],
+                    &quot;research_ids&quot;: f.get(&quot;research_ids&quot;) or [], &quot;executive_orders&quot;: [str(x) for x in (f.get(&quot;executive_orders&quot;) or [])],
+                    &quot;movement_ids&quot;: f.get(&quot;movement_ids&quot;) or [],
+                    &quot;charts&quot;: f.get(&quot;charts&quot;) or [], &quot;status&quot;: f.get(&quot;status&quot;, &quot;active&quot;),
+                    &quot;relationship_strands&quot;: f.get(&quot;relationship_strands&quot;) or [],
+                    &quot;relationship_frame&quot;: f.get(&quot;relationship_frame&quot;, &quot;&quot;),
+                    &quot;relationship_chapter&quot;: f.get(&quot;relationship_chapter&quot;, &quot;&quot;),
+                    &quot;relationship_authored_on&quot;: str(f.get(&quot;relationship_authored_on&quot;, &quot;&quot;)),
+                    &quot;relationship_review_on&quot;: str(f.get(&quot;relationship_review_on&quot;, &quot;&quot;)),
+                    &quot;html&quot;: md_html(body)})
+    return out
+
+
+def load_story_rooms():
+    out = []
+    for p in sorted(glob.glob(os.path.join(STORY_ROOMS_DIR, &quot;*.md&quot;))):
+        t = open(p, encoding=&quot;utf-8&quot;).read()
+        f = fm(t)
+        if f.get(&quot;type&quot;) != &quot;living_story_room&quot;:
+            continue
+        body = re.sub(r&quot;^---\n.*?\n---\n&quot;, &quot;&quot;, t, flags=re.S)
+        body = re.sub(r&quot;^\s*# [^\n]*\n+&quot;, &quot;&quot;, body)
+        out.append({
+            &quot;slug&quot;: f.get(&quot;slug&quot;) or os.path.basename(p)[:-3],
+            &quot;path&quot;: rel(p), &quot;title&quot;: f.get(&quot;title&quot;, &quot;&quot;), &quot;question&quot;: f.get(&quot;question&quot;, &quot;&quot;),
+            &quot;status&quot;: f.get(&quot;status&quot;, &quot;guided&quot;), &quot;lead_braid&quot;: f.get(&quot;lead_braid&quot;, &quot;&quot;),
+            &quot;member_braids&quot;: f.get(&quot;member_braids&quot;) or [], &quot;comparison&quot;: f.get(&quot;comparison&quot;, &quot;&quot;),
+            &quot;tour_order&quot;: int(f.get(&quot;tour_order&quot;) or 999), &quot;html&quot;: md_html(body),
+        })
+    return out
+
+
+def load_review_hearings():
+    out = []
+    for p in sorted(glob.glob(os.path.join(REVIEW_HEARINGS_DIR, &quot;*.md&quot;))):
+        t = open(p, encoding=&quot;utf-8&quot;).read()
+        f = fm(t)
+        if f.get(&quot;type&quot;) != &quot;braid_review_hearing&quot;:
+            continue
+        body = re.sub(r&quot;^---\n.*?\n---\n&quot;, &quot;&quot;, t, flags=re.S)
+        body = re.sub(r&quot;^\s*# [^\n]*\n+&quot;, &quot;&quot;, body)
+        out.append({
+            &quot;id&quot;: str(f.get(&quot;review_date&quot;, &quot;&quot;)), &quot;path&quot;: rel(p),
+            &quot;title&quot;: f.get(&quot;title&quot;, &quot;&quot;), &quot;review_date&quot;: str(f.get(&quot;review_date&quot;, &quot;&quot;)),
+            &quot;status&quot;: f.get(&quot;status&quot;, &quot;scheduled&quot;), &quot;frame&quot;: f.get(&quot;frame&quot;, &quot;&quot;),
+            &quot;closing_chapter&quot;: f.get(&quot;closing_chapter&quot;, &quot;&quot;), &quot;next_chapter&quot;: f.get(&quot;next_chapter&quot;, &quot;&quot;),
+            &quot;owners&quot;: f.get(&quot;owners&quot;) or [], &quot;html&quot;: md_html(body),
+        })
+    return out
+
+
+def build_review_hearings(specs, overlap_ledger, relationship_data, today):
+    current = {row[&quot;owner_slug&quot;]: row for row in overlap_ledger[&quot;records&quot;] if row.get(&quot;status&quot;) == &quot;current&quot;}
+    out = []
+    seen = set()
+    relationship_text = json.dumps(relationship_data, ensure_ascii=False)
+    for spec in specs:
+        if not re.match(r&quot;^20\d\d-\d\d-\d\d$&quot;, spec[&quot;review_date&quot;]):
+            raise RuntimeError(f&quot;review hearing {spec[&#x27;title&#x27;]} needs an exact review date&quot;)
+        if spec[&quot;id&quot;] in seen:
+            raise RuntimeError(f&quot;duplicate review hearing {spec[&#x27;id&#x27;]}&quot;)
+        seen.add(spec[&quot;id&quot;])
+        if spec[&quot;status&quot;] != &quot;scheduled&quot;:
+            raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} may not pre-author a disposition&quot;)
+        if len(spec[&quot;owners&quot;]) != len(set(spec[&quot;owners&quot;])) or set(spec[&quot;owners&quot;]) != set(current):
+            raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} must name every current overlap owner exactly once&quot;)
+        if spec[&quot;next_chapter&quot;] not in relationship_text:
+            raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} next chapter is not in relationship history&quot;)
+        snapshots = []
+        for owner in spec[&quot;owners&quot;]:
+            row = current[owner]
+            if row.get(&quot;frame&quot;) != spec[&quot;frame&quot;] or row.get(&quot;chapter&quot;) != spec[&quot;closing_chapter&quot;]:
+                raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} window differs from {owner}&quot;)
+            if row.get(&quot;review_on&quot;) != spec[&quot;review_date&quot;] or (row.get(&quot;review&quot;) or {}).get(&quot;status&quot;) != &quot;pending&quot;:
+                raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} owner {owner} is not pending on its date&quot;)
+            snapshots.append({
+                &quot;record_type&quot;: row[&quot;record_type&quot;], &quot;owner_slug&quot;: owner,
+                &quot;authored_on&quot;: row[&quot;authored_on&quot;], &quot;review_on&quot;: row[&quot;review_on&quot;],
+                &quot;strand_count&quot;: len(row.get(&quot;strands&quot;) or []), &quot;member_count&quot;: len(row.get(&quot;members&quot;) or []),
+                &quot;review_status&quot;: row[&quot;review&quot;][&quot;status&quot;],
+            })
+        out.append({
+            **spec, &quot;display_status&quot;: &quot;scheduled&quot; if today.isoformat() &lt; spec[&quot;review_date&quot;] else &quot;review_due&quot;,
+            &quot;snapshots&quot;: snapshots,
+            &quot;authority_boundary&quot;: &quot;This packet prepares a human hearing. It may flag the date as due, but it cannot choose a disposition, move a strand, rewrite history or create a Forecast Ledger call.&quot;,
+        })
+    return out
+
+
+def load_braid_comparisons():
+    out = []
+    for p in sorted(glob.glob(os.path.join(BRAIDS_DIR, &quot;*.md&quot;))):
+        t = open(p, encoding=&quot;utf-8&quot;).read()
+        f = fm(t)
+        if f.get(&quot;type&quot;) != &quot;braid_comparison&quot;:
+            continue
+        body = re.sub(r&quot;^---\n.*?\n---\n&quot;, &quot;&quot;, t, flags=re.S)
+        body = re.sub(r&quot;^\s*# [^\n]*\n+&quot;, &quot;&quot;, body)
+        out.append({
+            &quot;slug&quot;: f.get(&quot;slug&quot;) or os.path.basename(p)[:-3],
+            &quot;path&quot;: rel(p), &quot;title&quot;: f.get(&quot;title&quot;, &quot;&quot;), &quot;question&quot;: f.get(&quot;question&quot;, &quot;&quot;),
+            &quot;braids&quot;: f.get(&quot;braids&quot;) or [], &quot;relationship_frame&quot;: f.get(&quot;relationship_frame&quot;, &quot;&quot;),
+            &quot;relationship_chapter&quot;: f.get(&quot;relationship_chapter&quot;, &quot;&quot;),
+            &quot;authored_on&quot;: str(f.get(&quot;authored_on&quot;, &quot;&quot;)), &quot;review_on&quot;: str(f.get(&quot;review_on&quot;, &quot;&quot;)),
+            &quot;status&quot;: f.get(&quot;status&quot;, &quot;active&quot;), &quot;html&quot;: md_html(body),
+        })
+    return out
+
+
+def load_overlap_ledger():
+    if not os.path.isfile(OVERLAP_LEDGER):
+        raise RuntimeError(&quot;missing governed Braid Overlap Ledger&quot;)
+    rows = [json.loads(line) for line in open(OVERLAP_LEDGER, encoding=&quot;utf-8&quot;) if line.strip()]
+    if not rows or rows[0].get(&quot;record_type&quot;) != &quot;meta&quot; or rows[0].get(&quot;schema&quot;) != &quot;f250.mundane-braid-overlap-history/v1&quot;:
+        raise RuntimeError(&quot;unsupported Braid Overlap Ledger schema&quot;)
+    return {&quot;meta&quot;: rows[0], &quot;records&quot;: rows[1:]}
+
+
+def attach_overlap_history(braids, comparisons, ledger, today):
+    braid_by_slug = {row[&quot;slug&quot;]: row for row in braids}
+    comparison_by_slug = {row[&quot;slug&quot;]: row for row in comparisons}
+    records_by_owner = defaultdict(list)
+    current_keys = set()
+    for record in ledger[&quot;records&quot;]:
+        record_type = record.get(&quot;record_type&quot;)
+        owners = braid_by_slug if record_type == &quot;braid&quot; else comparison_by_slug if record_type == &quot;comparison&quot; else None
+        owner_slug = record.get(&quot;owner_slug&quot;, &quot;&quot;)
+        if owners is None or owner_slug not in owners:
+            raise RuntimeError(f&quot;overlap ledger has unknown {record_type} owner {owner_slug!r}&quot;)
+        key = (record_type, owner_slug, record.get(&quot;frame&quot;), record.get(&quot;chapter&quot;), record.get(&quot;authored_on&quot;))
+        if key in current_keys:
+            raise RuntimeError(f&quot;overlap ledger repeats window identity {key}&quot;)
+        current_keys.add(key)
+        if record.get(&quot;status&quot;) not in {&quot;current&quot;, &quot;historical&quot;}:
+            raise RuntimeError(f&quot;overlap ledger {owner_slug} has invalid status&quot;)
+        review = record.get(&quot;review&quot;) or {}
+        if record.get(&quot;status&quot;) == &quot;current&quot; and review.get(&quot;status&quot;) != &quot;pending&quot;:
+            raise RuntimeError(f&quot;current overlap ledger record {owner_slug} must remain pending&quot;)
+        records_by_owner[(record_type, owner_slug)].append(record)
+
+    for slug, braid in braid_by_slug.items():
+        records = sorted(records_by_owner.get((&quot;braid&quot;, slug), []), key=lambda row: (row[&quot;authored_on&quot;], row[&quot;frame&quot;], row[&quot;chapter&quot;]))
+        current = [row for row in records if row[&quot;status&quot;] == &quot;current&quot;]
+        strands = braid.get(&quot;relationship_strands&quot;) or []
+        if strands:
+            if len(current) != 1:
+                raise RuntimeError(f&quot;braid {slug} needs exactly one current overlap ledger record&quot;)
+            record = current[0]
+            expected = {
+                &quot;frame&quot;: braid[&quot;relationship_frame&quot;], &quot;chapter&quot;: braid[&quot;relationship_chapter&quot;],
+                &quot;authored_on&quot;: braid[&quot;relationship_authored_on&quot;], &quot;review_on&quot;: braid[&quot;relationship_review_on&quot;],
+                &quot;strands&quot;: strands,
+            }
+            if any(record.get(key) != value for key, value in expected.items()):
+                raise RuntimeError(f&quot;braid {slug} differs from its current overlap ledger snapshot&quot;)
+        elif current:
+            raise RuntimeError(f&quot;unauthored braid {slug} cannot have a current overlap ledger record&quot;)
+        braid[&quot;overlap_history&quot;] = [{**row, &quot;display_status&quot;: &quot;review_due&quot; if row[&quot;status&quot;] == &quot;current&quot; and today.isoformat() &gt;= row[&quot;review_on&quot;] else row[&quot;status&quot;]} for row in records]
+
+    for slug, comparison in comparison_by_slug.items():
+        records = sorted(records_by_owner.get((&quot;comparison&quot;, slug), []), key=lambda row: (row[&quot;authored_on&quot;], row[&quot;frame&quot;], row[&quot;chapter&quot;]))
+        current = [row for row in records if row[&quot;status&quot;] == &quot;current&quot;]
+        if len(current) != 1:
+            raise RuntimeError(f&quot;braid comparison {slug} needs exactly one current overlap ledger record&quot;)
+        record = current[0]
+        expected = {&quot;frame&quot;: comparison[&quot;relationship_frame&quot;], &quot;chapter&quot;: comparison[&quot;relationship_chapter&quot;],
+                    &quot;authored_on&quot;: comparison[&quot;authored_on&quot;], &quot;review_on&quot;: comparison[&quot;review_on&quot;],
+                    &quot;members&quot;: comparison[&quot;braids&quot;]}
+        if any(record.get(key) != value for key, value in expected.items()):
+            raise RuntimeError(f&quot;braid comparison {slug} differs from its overlap ledger snapshot&quot;)
+        comparison[&quot;overlap_history&quot;] = [{**row, &quot;display_status&quot;: &quot;review_due&quot; if row[&quot;status&quot;] == &quot;current&quot; and today.isoformat() &gt;= row[&quot;review_on&quot;] else row[&quot;status&quot;]} for row in records]
+    return {&quot;schema&quot;: ledger[&quot;meta&quot;][&quot;schema&quot;], &quot;records&quot;: ledger[&quot;records&quot;],
+            &quot;counts&quot;: {&quot;records&quot;: len(ledger[&quot;records&quot;]),
+                       &quot;current&quot;: sum(row.get(&quot;status&quot;) == &quot;current&quot; for row in ledger[&quot;records&quot;]),
+                       &quot;historical&quot;: sum(row.get(&quot;status&quot;) == &quot;historical&quot; for row in ledger[&quot;records&quot;]),
+                       &quot;review_due&quot;: sum(row.get(&quot;status&quot;) == &quot;current&quot; and today.isoformat() &gt;= row.get(&quot;review_on&quot;, &quot;&quot;) for row in ledger[&quot;records&quot;])},
+            &quot;authority_boundary&quot;: ledger[&quot;meta&quot;][&quot;authority_boundary&quot;]}
+
+
+def build_braid_comparisons(comparisons, braids, today):
+    by_slug = {row[&quot;slug&quot;]: row for row in braids}
+    out = []
+    for comparison in comparisons:
+        members = comparison.get(&quot;braids&quot;) or []
+        if len(members) &lt; 2 or len(set(members)) != len(members):
+            raise RuntimeError(f&quot;braid comparison {comparison[&#x27;slug&#x27;]} needs distinct members&quot;)
+        missing = [slug for slug in members if slug not in by_slug]
+        if missing:
+            raise RuntimeError(f&quot;braid comparison {comparison[&#x27;slug&#x27;]} has unknown members: {missing}&quot;)
+        rows = [by_slug[slug] for slug in members]
+        for row in rows:
+            field = row.get(&quot;relationship_field&quot;) or {}
+            if (field.get(&quot;frame&quot;) or {}).get(&quot;chart_id&quot;) != comparison.get(&quot;relationship_frame&quot;):
+                raise RuntimeError(f&quot;braid comparison {comparison[&#x27;slug&#x27;]} frame differs from {row[&#x27;slug&#x27;]}&quot;)
+            if (field.get(&quot;chapter&quot;) or {}).get(&quot;chart_id&quot;) != comparison.get(&quot;relationship_chapter&quot;):
+                raise RuntimeError(f&quot;braid comparison {comparison[&#x27;slug&#x27;]} chapter differs from {row[&#x27;slug&#x27;]}&quot;)
+        relationship_rows = defaultdict(list)
+        pairs = {}
+        for row in rows:
+            for strand in (row.get(&quot;relationship_field&quot;) or {}).get(&quot;strands&quot;, []):
+                relationship_id = strand[&quot;relationship_id&quot;]
+                pairs[relationship_id] = strand.get(&quot;pair&quot;) or []
+                relationship_rows[relationship_id].append({
+                    &quot;braid&quot;: row[&quot;slug&quot;], &quot;title&quot;: row[&quot;title&quot;], &quot;role&quot;: strand[&quot;role&quot;],
+                    &quot;presence&quot;: strand.get(&quot;presence&quot;) or [], &quot;question&quot;: strand[&quot;question&quot;],
+                })
+        shared = [{&quot;relationship_id&quot;: rid, &quot;pair&quot;: pairs[rid], &quot;uses&quot;: uses}
+                  for rid, uses in relationship_rows.items() if len(uses) &gt; 1]
+        shared.sort(key=lambda row: (-len(row[&quot;uses&quot;]), row[&quot;relationship_id&quot;]))
+        out.append({**comparison,
+                    &quot;members&quot;: [{&quot;slug&quot;: row[&quot;slug&quot;], &quot;title&quot;: row[&quot;title&quot;], &quot;question&quot;: row[&quot;question&quot;],
+                                 &quot;readiness&quot;: row.get(&quot;readiness&quot;) or {}} for row in rows],
+                    &quot;shared_relationships&quot;: shared,
+                    &quot;comparison_status&quot;: &quot;current_window&quot; if today.isoformat() &lt; comparison[&quot;review_on&quot;] else &quot;review_due&quot;,
+                    &quot;authority_boundary&quot;: &quot;This comparison owns no factual claim or planetary strand. It displays separately authored roles and never creates a merged verdict, evidence vote or common-command claim.&quot;})
+    return out
+
+
+def _merge_room_objects(rows):
+    &quot;&quot;&quot;Deduplicate projections while preserving every contributing braid.&quot;&quot;&quot;
+    merged = {}
+    for slug, row in rows:
+        key = (row.get(&quot;date&quot;, &quot;&quot;), row.get(&quot;kind&quot;, &quot;&quot;), row.get(&quot;movement_id&quot;, &quot;&quot;), row.get(&quot;label&quot;, &quot;&quot;))
+        if key not in merged:
+            merged[key] = {**row, &quot;source_braids&quot;: [slug]}
+        elif slug not in merged[key][&quot;source_braids&quot;]:
+            merged[key][&quot;source_braids&quot;].append(slug)
+    return sorted(merged.values(), key=lambda row: (row.get(&quot;date&quot;, &quot;&quot;), row.get(&quot;kind&quot;, &quot;&quot;), row.get(&quot;label&quot;, &quot;&quot;)))
+
+
+def _chapter_date(chart_id):
+    match = re.search(r&quot;(20\d\d-\d\d-\d\d)&quot;, chart_id or &quot;&quot;)
+    return match.group(1) if match else &quot;&quot;
+
+
+def build_story_rooms(room_specs, braids, comparisons, today):
+    &quot;&quot;&quot;Project independent braid owners into replayable lunar chapters.
+
+    This function sorts and joins existing governed objects. It does not author
+    a factual conclusion, movement, relationship role or review disposition.
+    &quot;&quot;&quot;
+    by_slug = {row[&quot;slug&quot;]: row for row in braids}
+    comparison_by_slug = {row[&quot;slug&quot;]: row for row in comparisons}
+    out = []
+    seen = set()
+    for spec in room_specs:
+        if spec[&quot;slug&quot;] in seen:
+            raise RuntimeError(f&quot;duplicate Living Story Room {spec[&#x27;slug&#x27;]}&quot;)
+        seen.add(spec[&quot;slug&quot;])
+        if spec[&quot;status&quot;] not in {&quot;flagship&quot;, &quot;replay&quot;, &quot;guided&quot;}:
+            raise RuntimeError(f&quot;Living Story Room {spec[&#x27;slug&#x27;]} has invalid status&quot;)
+        members = spec.get(&quot;member_braids&quot;) or []
+        if len(members) &lt; 2 or len(set(members)) != len(members):
+            raise RuntimeError(f&quot;Living Story Room {spec[&#x27;slug&#x27;]} needs distinct member braids&quot;)
+        missing = [slug for slug in members if slug not in by_slug]
+        if missing:
+            raise RuntimeError(f&quot;Living Story Room {spec[&#x27;slug&#x27;]} has unknown braids: {missing}&quot;)
+        if spec.get(&quot;lead_braid&quot;) not in members:
+            raise RuntimeError(f&quot;Living Story Room {spec[&#x27;slug&#x27;]} lead braid is not a member&quot;)
+        comparison = comparison_by_slug.get(spec.get(&quot;comparison&quot;)) if spec.get(&quot;comparison&quot;) else None
+        if spec.get(&quot;comparison&quot;) and not comparison:
+            raise RuntimeError(f&quot;Living Story Room {spec[&#x27;slug&#x27;]} has unknown comparison&quot;)
+        if comparison and set(row[&quot;slug&quot;] for row in comparison[&quot;members&quot;]) != set(members):
+            raise RuntimeError(f&quot;Living Story Room {spec[&#x27;slug&#x27;]} comparison membership differs&quot;)
+
+        member_rows = [by_slug[slug] for slug in members]
+        chapter_sources = defaultdict(list)
+        for braid in member_rows:
+            for chapter in braid.get(&quot;chapters&quot;, []):
+                chapter_sources[chapter[&quot;date&quot;]].append((braid[&quot;slug&quot;], chapter))
+
+        chapters = []
+        for chapter_date, sources in sorted(chapter_sources.items()):
+            exemplar = sources[0][1]
+            cutoff = min(exemplar[&quot;end&quot;], today.isoformat())
+            beats = _merge_room_objects(
+                [(slug, beat) for slug, chapter in sources for beat in chapter.get(&quot;beats&quot;, []) if beat.get(&quot;date&quot;, &quot;&quot;) &lt;= cutoff]
+            )
+            sky_map = {}
+            sky_map[(chapter_date, &quot;lunation&quot;, exemplar[&quot;label&quot;])] = {
+                &quot;date&quot;: chapter_date, &quot;kind&quot;: &quot;lunation&quot;, &quot;label&quot;: exemplar[&quot;label&quot;]
+            }
+            for _slug, chapter in sources:
+                for sky in chapter.get(&quot;sky&quot;, []):
+                    if sky.get(&quot;date&quot;, &quot;&quot;) &lt;= cutoff:
+                        sky_map[(sky.get(&quot;date&quot;), sky.get(&quot;kind&quot;), sky.get(&quot;label&quot;))] = sky
+            authored = []
+            later_reviews = []
+            for braid in member_rows:
+                for window in braid.get(&quot;overlap_history&quot;, []):
+                    if _chapter_date(window.get(&quot;chapter&quot;)) != chapter_date:
+                        continue
+                    authored.append({
+                        &quot;braid&quot;: braid[&quot;slug&quot;], &quot;title&quot;: braid[&quot;title&quot;],
+                        &quot;authored_on&quot;: window[&quot;authored_on&quot;], &quot;review_on&quot;: window[&quot;review_on&quot;],
+                        &quot;status&quot;: window[&quot;display_status&quot;], &quot;strands&quot;: window.get(&quot;strands&quot;) or [],
+                    })
+                    review = window.get(&quot;review&quot;) or {}
+                    if review.get(&quot;status&quot;) != &quot;pending&quot;:
+                        later_reviews.append({&quot;braid&quot;: braid[&quot;slug&quot;], &quot;title&quot;: braid[&quot;title&quot;], **review})
+
+            lanes = {
+                &quot;factual_record&quot;: [row for row in beats if row.get(&quot;kind&quot;) in {&quot;official&quot;, &quot;timeline&quot;}],
+                &quot;research_knowledge&quot;: [row for row in beats if row.get(&quot;kind&quot;) == &quot;study&quot;],
+                &quot;institutional_movement&quot;: [row for row in beats if row.get(&quot;kind&quot;) == &quot;institutional_movement&quot;],
+                &quot;executive_order_lineage&quot;: [row for row in beats if row.get(&quot;kind&quot;) == &quot;eo_movement&quot;],
+                &quot;attention&quot;: [row for row in beats if row.get(&quot;kind&quot;) == &quot;saves&quot;],
+                &quot;unresolved_gates&quot;: [row for row in beats if row.get(&quot;kind&quot;) in {&quot;deadline&quot;, &quot;return_gate&quot;, &quot;eo_return_gate&quot;, &quot;institutional_return_gate&quot;}],
+                &quot;computed_sky&quot;: sorted(sky_map.values(), key=lambda row: (row.get(&quot;date&quot;, &quot;&quot;), row.get(&quot;label&quot;, &quot;&quot;))),
+                &quot;authored_overlap&quot;: sorted(authored, key=lambda row: (row[&quot;authored_on&quot;], row[&quot;braid&quot;])),
+                &quot;later_review&quot;: sorted(later_reviews, key=lambda row: (row.get(&quot;reviewed_on&quot;, &quot;&quot;), row[&quot;braid&quot;])),
+            }
+            entity_rows = []
+            movement_like = (lanes[&quot;institutional_movement&quot;] + lanes[&quot;executive_order_lineage&quot;] + lanes[&quot;unresolved_gates&quot;])
+            for movement in movement_like:
+                for role in movement.get(&quot;entity_roles&quot;) or []:
+                    entity_rows.append((&quot;|&quot;.join(movement.get(&quot;source_braids&quot;) or []), {
+                        &quot;date&quot;: movement.get(&quot;date&quot;, &quot;&quot;), &quot;kind&quot;: &quot;entity_role&quot;,
+                        &quot;label&quot;: role.get(&quot;entity_path&quot;, &quot;&quot;), &quot;detail&quot;: role.get(&quot;role&quot;, &quot;&quot;).replace(&quot;_&quot;, &quot; &quot;),
+                        &quot;movement_id&quot;: movement.get(&quot;movement_id&quot;, &quot;&quot;),
+                        &quot;source_braids&quot;: movement.get(&quot;source_braids&quot;) or [],
+                    }))
+            entity_merged = {}
+            for _source_key, row in entity_rows:
+                key = (row[&quot;date&quot;], row[&quot;label&quot;], row[&quot;detail&quot;], row[&quot;movement_id&quot;])
+                if key not in entity_merged:
+                    entity_merged[key] = row
+                else:
+                    entity_merged[key][&quot;source_braids&quot;] = sorted(set(entity_merged[key][&quot;source_braids&quot;] + row[&quot;source_braids&quot;]))
+            lanes[&quot;entity_path&quot;] = sorted(entity_merged.values(), key=lambda row: (row[&quot;date&quot;], row[&quot;label&quot;], row[&quot;detail&quot;]))
+            lanes[&quot;court_braid_record&quot;] = [
+                row for row in lanes[&quot;factual_record&quot;]
+                if &quot;courts-and-the-law&quot; in (row.get(&quot;source_braids&quot;) or [])
+            ]
+            lanes[&quot;contest_and_remedy&quot;] = [
+                row for row in (lanes[&quot;institutional_movement&quot;] + lanes[&quot;executive_order_lineage&quot;])
+                if any(ref.get(&quot;relation&quot;) == &quot;contest_or_remedy&quot; for ref in (row.get(&quot;eo_refs&quot;) or []))
+            ]
+            chapters.append({
+                &quot;date&quot;: chapter_date, &quot;end&quot;: exemplar[&quot;end&quot;], &quot;cutoff&quot;: cutoff,
+                &quot;label&quot;: exemplar[&quot;label&quot;], &quot;sign&quot;: exemplar[&quot;sign&quot;], &quot;phase&quot;: exemplar[&quot;phase&quot;],
+                &quot;season&quot;: exemplar[&quot;season&quot;], &quot;eclipse&quot;: exemplar.get(&quot;eclipse&quot;), &quot;lanes&quot;: lanes,
+                &quot;change&quot;: {
+                    &quot;since_chapter&quot;: chapters[-1][&quot;date&quot;] if chapters else &quot;&quot;,
+                    &quot;factual_records&quot;: len(lanes[&quot;factual_record&quot;]),
+                    &quot;research_updates&quot;: len(lanes[&quot;research_knowledge&quot;]),
+                    &quot;institutional_movements&quot;: len(lanes[&quot;institutional_movement&quot;]),
+                    &quot;executive_order_movements&quot;: len(lanes[&quot;executive_order_lineage&quot;]),
+                    &quot;entity_roles&quot;: len(lanes[&quot;entity_path&quot;]),
+                    &quot;court_braid_records&quot;: len(lanes[&quot;court_braid_record&quot;]),
+                    &quot;contest_and_remedy_movements&quot;: len(lanes[&quot;contest_and_remedy&quot;]),
+                    &quot;attention_items&quot;: len(lanes[&quot;attention&quot;]),
+                    &quot;open_gates&quot;: len(lanes[&quot;unresolved_gates&quot;]),
+                    &quot;authored_hearings&quot;: len(lanes[&quot;authored_overlap&quot;]),
+                    &quot;boundary&quot;: &quot;Categorical additions since the previous lunar cutoff; not a score, rank or claim of progress.&quot;,
+                },
+            })
+
+        ahead = _merge_room_objects([
+            (braid[&quot;slug&quot;], row) for braid in member_rows for row in braid.get(&quot;ahead&quot;, [])
+            if row.get(&quot;kind&quot;) in {&quot;deadline&quot;, &quot;return_gate&quot;, &quot;eo_return_gate&quot;, &quot;institutional_return_gate&quot;}
+        ])
+        current_chapter = next((row for row in reversed(chapters) if row[&quot;date&quot;] &lt;= today.isoformat()), None)
+        out.append({
+            **spec,
+            &quot;members&quot;: [{&quot;slug&quot;: row[&quot;slug&quot;], &quot;title&quot;: row[&quot;title&quot;], &quot;question&quot;: row[&quot;question&quot;],
+                         &quot;readiness&quot;: row.get(&quot;readiness&quot;) or {}} for row in member_rows],
+            &quot;comparison_route&quot;: comparison[&quot;slug&quot;] if comparison else &quot;&quot;,
+            &quot;replay_enabled&quot;: spec[&quot;status&quot;] in {&quot;flagship&quot;, &quot;replay&quot;},
+            &quot;chapter_count&quot;: len(chapters),
+            &quot;current_chapter&quot;: current_chapter[&quot;date&quot;] if current_chapter else &quot;&quot;,
+            &quot;chapters&quot;: chapters if spec[&quot;status&quot;] in {&quot;flagship&quot;, &quot;replay&quot;} else [],
+            &quot;what_would_change&quot;: ahead[:16],
+            &quot;authority_boundary&quot;: &quot;This room owns orientation and navigation only. Facts, institutional movements, attention, computed sky, authored overlaps and reviews remain independently owned and meet only on exact dates.&quot;,
+        })
+    return sorted(out, key=lambda row: (row[&quot;tour_order&quot;], row[&quot;title&quot;]))
+
+
+def load_relationship_history():
+    if not os.path.isfile(RELATIONSHIP_HISTORY):
+        raise RuntimeError(&quot;missing governed planetary relationship history&quot;)
+    data = json.load(open(RELATIONSHIP_HISTORY, encoding=&quot;utf-8&quot;))
+    if data.get(&quot;schema&quot;) != &quot;freedom250.planetary-relationships.geometry-history/v1&quot;:
+        raise RuntimeError(&quot;unsupported planetary relationship history schema&quot;)
+    return data
+
+
+def compact_relationship_state(state):
+    if not state:
+        return None
+    geometry = state.get(&quot;geometry&quot;) or {}
+    aspect = state.get(&quot;direct_aspect&quot;)
+    return {
+        &quot;state_id&quot;: state.get(&quot;state_id&quot;, &quot;&quot;),
+        &quot;phase&quot;: geometry.get(&quot;phase_name&quot;),
+        &quot;direction&quot;: geometry.get(&quot;phase_direction&quot;),
+        &quot;aspect&quot;: aspect.get(&quot;aspect_id&quot;) if aspect else None,
+        &quot;orb&quot;: aspect.get(&quot;orb_deg&quot;) if aspect else None,
+        &quot;motion&quot;: aspect.get(&quot;motion_state&quot;) if aspect else None,
+    }
+
+
+def relationship_field_for_braid(braid, relationship_data, today):
+    catalog = {row[&quot;relationship_id&quot;]: row for row in relationship_data.get(&quot;cycle_catalog&quot;) or []}
+    charts = {row[&quot;chart_id&quot;]: row for row in relationship_data.get(&quot;charts&quot;) or []}
+    strands = braid.get(&quot;relationship_strands&quot;) or []
+    if not strands:
+        return {
+            &quot;frame&quot;: None, &quot;chapter&quot;: None, &quot;strands&quot;: [], &quot;status&quot;: &quot;unauthored&quot;,
+            &quot;authored_on&quot;: &quot;&quot;, &quot;review_on&quot;: &quot;&quot;,
+            &quot;authority_boundary&quot;: &quot;No planetary relationship is assigned automatically. Plotlines remain narrative routes; astrology remains a separate interpretive rope.&quot;,
+        }
+    frame_id = braid.get(&quot;relationship_frame&quot;, &quot;&quot;)
+    chapter_id = braid.get(&quot;relationship_chapter&quot;, &quot;&quot;)
+    authored_on = braid.get(&quot;relationship_authored_on&quot;, &quot;&quot;)
+    review_on = braid.get(&quot;relationship_review_on&quot;, &quot;&quot;)
+    if frame_id not in charts or charts[frame_id].get(&quot;chart_type&quot;) != &quot;ingress&quot;:
+        raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} lacks a valid authored relationship ingress&quot;)
+    if chapter_id not in charts or charts[chapter_id].get(&quot;chart_type&quot;) != &quot;lunation&quot;:
+        raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} lacks a valid authored relationship chapter&quot;)
+    if not re.fullmatch(r&quot;\d{4}-\d{2}-\d{2}&quot;, authored_on) or not re.fullmatch(r&quot;\d{4}-\d{2}-\d{2}&quot;, review_on):
+        raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} relationship window lacks valid dates&quot;)
+    frame, chapter = charts[frame_id], charts[chapter_id]
+    if frame[&quot;date&quot;] &gt; authored_on or chapter[&quot;date&quot;] &gt; authored_on or review_on &lt;= chapter[&quot;date&quot;]:
+        raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} has an invalid authored relationship window&quot;)
+    frame_states = {row[&quot;relationship_id&quot;]: row for row in (frame or {}).get(&quot;cycles&quot;, [])}
+    chapter_states = {row[&quot;relationship_id&quot;]: row for row in (chapter or {}).get(&quot;cycles&quot;, [])}
+    projected, seen = [], set()
+    for strand in strands:
+        if not isinstance(strand, dict):
+            raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} has a non-object relationship strand&quot;)
+        relationship_id = strand.get(&quot;relationship_id&quot;, &quot;&quot;)
+        role = strand.get(&quot;role&quot;, &quot;&quot;)
+        presence = strand.get(&quot;presence&quot;) or []
+        if relationship_id not in catalog:
+            raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} has unknown relationship {relationship_id!r}&quot;)
+        if relationship_id in seen:
+            raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} repeats relationship {relationship_id}&quot;)
+        if role not in STRAND_ROLES:
+            raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} has invalid relationship role {role!r}&quot;)
+        if not isinstance(presence, list) or not presence or any(value not in STRAND_PRESENCE for value in presence):
+            raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} has invalid presence for {relationship_id}&quot;)
+        if not strand.get(&quot;question&quot;) or not strand.get(&quot;basis&quot;):
+            raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} relationship {relationship_id} lacks question or basis&quot;)
+        seen.add(relationship_id)
+        frame_state = compact_relationship_state(frame_states.get(relationship_id))
+        chapter_state = compact_relationship_state(chapter_states.get(relationship_id))
+        before = (frame_state or {}).get(&quot;aspect&quot;)
+        after = (chapter_state or {}).get(&quot;aspect&quot;)
+        if &quot;active_dialogue&quot; in presence and not (before or after):
+            raise RuntimeError(f&quot;braid {braid[&#x27;slug&#x27;]} calls {relationship_id} active without an authored-window aspect&quot;)
+        if before and after == before:
+            transition = &quot;continued&quot;
+        elif not before and after:
+            transition = &quot;entered&quot;
+        elif before and not after:
+            transition = &quot;left&quot;
+        elif before != after:
+            transition = &quot;changed&quot;
+        else:
+            transition = &quot;no_direct_dialogue&quot;
+        projected.append({**strand, &quot;pair&quot;: catalog[relationship_id].get(&quot;pair&quot;) or [],
+                          &quot;tier_id&quot;: catalog[relationship_id].get(&quot;tier_id&quot;, &quot;&quot;),
+                          &quot;frame_state&quot;: frame_state, &quot;chapter_state&quot;: chapter_state,
+                          &quot;dialogue_transition&quot;: transition})
+    return {
+        &quot;frame&quot;: {&quot;chart_id&quot;: frame.get(&quot;chart_id&quot;), &quot;date&quot;: frame.get(&quot;date&quot;)} if frame else None,
+        &quot;chapter&quot;: {&quot;chart_id&quot;: chapter.get(&quot;chart_id&quot;), &quot;date&quot;: chapter.get(&quot;date&quot;)} if chapter else None,
+        &quot;strands&quot;: projected, &quot;authored_on&quot;: authored_on, &quot;review_on&quot;: review_on,
+        &quot;status&quot;: &quot;current_window&quot; if today.isoformat() &lt; review_on else &quot;review_due&quot;,
+        &quot;authority_boundary&quot;: &quot;This is a dated rope overlap, not DNA: plotline, factual record and planetary relationship remain independent. Roles are authored interpretations; geometry is computed; strand count is never a score, vote, confidence measure or factual claim.&quot;,
+    }
+
+
+def load_saves():
+    saves = []
+    for p in glob.glob(os.path.join(VAULT, &quot;01 - Events&quot;, &quot;*.md&quot;)):
+        n = os.path.basename(p)
+        if not re.match(r&quot;\d{4}-\d\d-\d\d&quot;, n):
+            continue
+        t = open(p, encoding=&quot;utf-8&quot;, errors=&quot;ignore&quot;).read(1500)
+        f = fm(t)
+        saves.append((n[:10], re.sub(r&quot;^\d{4}-\d\d-\d\d-\d{4} - &quot;, &quot;&quot;, n[:-3]), f.get(&quot;subplot&quot;, &quot;&quot;), f.get(&quot;primary_plotline&quot;, &quot;&quot;)))
+    return saves
+
+
+def build_braids(braids, events, items, saves, notes, cat, rooms_research, today, relationship_data):
+    luns = [e for e in events if e[&quot;kind&quot;] == &quot;lunation&quot;]
+    seasons = [e for e in events if e[&quot;kind&quot;] == &quot;ingress&quot; and e.get(&quot;season&quot;)]
+    t = today.isoformat()
+    out, braided = [], set()
+    for b in braids:
+        rids = set(b[&quot;research_ids&quot;])
+        eo_keys = set(b.get(&quot;executive_orders&quot;) or [])
+        movement_ids = set(b.get(&quot;movement_ids&quot;) or [])
+        braided |= rids
+        rx = re.compile(&quot;|&quot;.join(b[&quot;keywords&quot;]), re.I) if b[&quot;keywords&quot;] else None
+        beats = []
+        per_day = defaultdict(list)
+        for d, title, sub, pl in saves:
+            if sub in b[&quot;subplots&quot;] or pl in b[&quot;plotlines&quot;]:
+                per_day[d].append(title)
+        for d, ts in per_day.items():
+            beats.append({&quot;date&quot;: d, &quot;kind&quot;: &quot;saves&quot;, &quot;n&quot;: len(ts), &quot;label&quot;: f&quot;{len(ts)} X save{&#x27;s&#x27; if len(ts) &gt; 1 else &#x27;&#x27;}&quot;, &quot;titles&quot;: ts[:4]})
+        seen = set()
+        for it in items:
+            if it[&quot;kind&quot;] == &quot;spike&quot;:
+                continue
+            hit = (
+                bool(set(it.get(&quot;rids&quot;) or []) &amp; rids)
+                or bool({str(ref.get(&quot;eo_key&quot;, &quot;&quot;)) for ref in (it.get(&quot;eo_refs&quot;) or [])} &amp; eo_keys)
+                or bool(it.get(&quot;movement_id&quot;) and it.get(&quot;movement_id&quot;) in movement_ids)
+                or (it[&quot;kind&quot;] in {&quot;official&quot;, &quot;eo_movement&quot;, &quot;institutional_movement&quot;} and rx is not None and rx.search(it[&quot;label&quot;]))
+            )
+            key = (it[&quot;date&quot;], it[&quot;label&quot;][:80])
+            if hit and key not in seen:
+                seen.add(key)
+                beats.append({&quot;date&quot;: it[&quot;date&quot;], &quot;kind&quot;: it[&quot;kind&quot;], &quot;label&quot;: it[&quot;label&quot;], &quot;detail&quot;: it.get(&quot;detail&quot;, &quot;&quot;),
+                              &quot;rids&quot;: it.get(&quot;rids&quot;) or [], &quot;path&quot;: it.get(&quot;path&quot;) or it.get(&quot;wb_path&quot;) or &quot;&quot;, &quot;record&quot;: it.get(&quot;record&quot;),
+                              &quot;movement_id&quot;: it.get(&quot;movement_id&quot;, &quot;&quot;), &quot;eo_refs&quot;: it.get(&quot;eo_refs&quot;) or [],
+                              &quot;entity_roles&quot;: it.get(&quot;entity_roles&quot;) or [], &quot;stage_reached&quot;: it.get(&quot;stage_reached&quot;, &quot;&quot;),
+                              &quot;unresolved_stages&quot;: it.get(&quot;unresolved_stages&quot;) or [], &quot;claim_limit&quot;: it.get(&quot;claim_limit&quot;, &quot;&quot;),
+                              &quot;next_receipt&quot;: it.get(&quot;next_receipt&quot;, &quot;&quot;), &quot;clocks&quot;: it.get(&quot;clocks&quot;) or {}})
+        for rid in b[&quot;research_ids&quot;]:
+            p = cat.get(rid)
+            if p and p.get(&quot;evidence_cutoff&quot;):
+                beats.append({&quot;date&quot;: str(p[&quot;evidence_cutoff&quot;])[:10], &quot;kind&quot;: &quot;study&quot;, &quot;label&quot;: &quot;Our research: &quot; + (rooms_research.get(rid, {}).get(&quot;title&quot;) or p[&quot;title&quot;]),
+                              &quot;rids&quot;: [rid], &quot;detail&quot;: &quot;evidence through this date&quot;})
+        beats = [x for x in beats if re.match(r&quot;\d{4}-\d\d-\d\d$&quot;, x[&quot;date&quot;]) and WINDOW[0] &lt;= x[&quot;date&quot;] &lt;= WINDOW[1]]
+        beats.sort(key=lambda x: (x[&quot;date&quot;], x[&quot;kind&quot;], x[&quot;label&quot;]))
+        # sky touching each beat (within a day), strong events only
+        sky_day = defaultdict(list)
+        for e in events:
+            if e[&quot;weight&quot;] &gt;= 3 and (e[&quot;kind&quot;] != &quot;transit&quot; or e.get(&quot;chart&quot;) in b[&quot;charts&quot;]):
+                d0 = date.fromisoformat(e[&quot;date&quot;])
+                for k in (-1, 0, 1):
+                    sky_day[(d0 + timedelta(days=k)).isoformat()].append(e[&quot;label&quot;])
+        for x in beats:
+            x[&quot;sky&quot;] = sorted(set(sky_day.get(x[&quot;date&quot;], [])))[:3]
+        # chapters
+        chapters = []
+        for i, lu in enumerate(luns):
+            if lu[&quot;date&quot;] &gt; t:
+                break
+            end = luns[i + 1][&quot;date&quot;] if i + 1 &lt; len(luns) else &quot;9999&quot;
+            bs = [x for x in beats if lu[&quot;date&quot;] &lt;= x[&quot;date&quot;] &lt; end and x[&quot;date&quot;] &lt;= t]
+            if not bs:
+                continue
+            sky = [e for e in events if lu[&quot;date&quot;] &lt;= e[&quot;date&quot;] &lt; end and e[&quot;kind&quot;] != &quot;lunation&quot; and
+                   ((e[&quot;kind&quot;] != &quot;transit&quot; and e[&quot;weight&quot;] &gt;= 4) or (e[&quot;kind&quot;] == &quot;transit&quot; and e.get(&quot;chart&quot;) in b[&quot;charts&quot;] and e[&quot;weight&quot;] &gt;= 3))]
+            se = last_before(seasons, lu[&quot;date&quot;])
+            chapters.append({&quot;label&quot;: lu[&quot;label&quot;], &quot;date&quot;: lu[&quot;date&quot;], &quot;end&quot;: end, &quot;sign&quot;: lu.get(&quot;sign&quot;), &quot;phase&quot;: lu.get(&quot;phase&quot;),
+                             &quot;eclipse&quot;: lu.get(&quot;eclipse&quot;), &quot;season&quot;: (se[&quot;sign&quot;] + &quot; season&quot;) if se else &quot;&quot;,
+                             &quot;saves&quot;: sum(x.get(&quot;n&quot;, 0) for x in bs), &quot;beats&quot;: bs,
+                             &quot;sky&quot;: [{&quot;date&quot;: e[&quot;date&quot;], &quot;label&quot;: e[&quot;label&quot;], &quot;kind&quot;: e[&quot;kind&quot;]} for e in sky][:8]})
+        # rhythm: where the story gets loud
+        by_sign = defaultdict(lambda: {&quot;new&quot;: 0, &quot;full&quot;: 0})
+        by_season = Counter()
+        for c in chapters:
+            if c[&quot;sign&quot;]:
+                by_sign[c[&quot;sign&quot;]][c[&quot;phase&quot;] or &quot;new&quot;] += c[&quot;saves&quot;]
+            by_season[c[&quot;season&quot;]] += c[&quot;saves&quot;]
+        loud = sorted(chapters, key=lambda c: -c[&quot;saves&quot;])[:5]
+        chart_hits = Counter(s[&quot;label&quot;] for c in chapters for s in c[&quot;sky&quot;] if s[&quot;kind&quot;] == &quot;transit&quot;)
+        months = Counter(x[&quot;date&quot;][:7] for x in beats if x[&quot;kind&quot;] == &quot;saves&quot; for _ in range(x.get(&quot;n&quot;, 1)))
+        ahead = [x for x in beats if x[&quot;date&quot;] &gt; t][:12]
+        sky_ahead = [{&quot;date&quot;: e[&quot;date&quot;], &quot;label&quot;: e[&quot;label&quot;], &quot;kind&quot;: e[&quot;kind&quot;]} for e in events
+                     if t &lt; e[&quot;date&quot;] &lt;= (today + timedelta(days=200)).isoformat() and
+                     ((e[&quot;kind&quot;] in (&quot;eclipse&quot;, &quot;ingress&quot;) or (e[&quot;kind&quot;] in (&quot;aspect&quot;, &quot;conjunction&quot;, &quot;station&quot;) and e[&quot;weight&quot;] &gt;= 4)) or
+                      (e[&quot;kind&quot;] == &quot;transit&quot; and e.get(&quot;chart&quot;) in b[&quot;charts&quot;]))][:16]
+        filed = [n[&quot;id&quot;] for n in notes if b[&quot;slug&quot;] in (n.get(&quot;braids&quot;) or []) or
+                 (set(n.get(&quot;plotlines&quot;) or []) &amp; set(b[&quot;plotlines&quot;])) or (set(n.get(&quot;research_ids&quot;) or []) &amp; rids)]
+        past = [x for x in beats if x[&quot;date&quot;] &lt;= t]
+        relationship_field = relationship_field_for_braid(b, relationship_data, today)
+        factual_beats = [x for x in past if x[&quot;kind&quot;] not in {&quot;saves&quot;, &quot;return_gate&quot;, &quot;eo_return_gate&quot;, &quot;institutional_return_gate&quot;}]
+        institutional_receipts = [x for x in past if x[&quot;kind&quot;] in {&quot;official&quot;, &quot;eo_movement&quot;, &quot;institutional_movement&quot;}]
+        movement_records = [x for x in past if x.get(&quot;movement_id&quot;)]
+        eo_lineage_records = [x for x in movement_records if x.get(&quot;eo_refs&quot;)]
+        readiness = {
+            &quot;factual_timeline&quot;: &quot;present&quot; if factual_beats else &quot;empty&quot;,
+            &quot;research_custody&quot;: &quot;present&quot; if b[&quot;research_ids&quot;] else &quot;empty&quot;,
+            &quot;institutional_receipts&quot;: &quot;present&quot; if institutional_receipts else &quot;none_attached&quot;,
+            &quot;movement_lineage&quot;: &quot;attached&quot; if movement_records else &quot;none_attached&quot;,
+            &quot;eo_lineage&quot;: (
+                &quot;attached&quot; if eo_lineage_records else
+                &quot;awaiting_adjudicated_receipt&quot; if b.get(&quot;executive_orders&quot;) else
+                &quot;not_declared&quot;
+            ),
+            &quot;authored_overlap&quot;: relationship_field[&quot;status&quot;],
+            &quot;factual_beat_count&quot;: len(factual_beats),
+            &quot;institutional_receipt_count&quot;: len(institutional_receipts),
+            &quot;movement_lineage_record_count&quot;: len(movement_records),
+            &quot;eo_lineage_record_count&quot;: len(eo_lineage_records),
+            &quot;review_on&quot;: relationship_field.get(&quot;review_on&quot;, &quot;&quot;),
+            &quot;boundary&quot;: &quot;These are categorical custody states, not a maturity score or comparative grade.&quot;,
+        }
+        out.append({**b, &quot;beats_count&quot;: len(beats), &quot;saves&quot;: sum(x.get(&quot;n&quot;, 0) for x in beats),
+                    &quot;relationship_field&quot;: relationship_field, &quot;readiness&quot;: readiness,
+                    &quot;studies&quot;: [{&quot;rid&quot;: r, &quot;title&quot;: rooms_research.get(r, {}).get(&quot;title&quot;) or (cat.get(r) or {}).get(&quot;title&quot;, r),
+                                 &quot;cutoff&quot;: str((cat.get(r) or {}).get(&quot;evidence_cutoff&quot;) or &quot;&quot;)[:10]} for r in b[&quot;research_ids&quot;] if r in cat],
+                    &quot;first&quot;: past[0][&quot;date&quot;] if past else &quot;&quot;, &quot;last&quot;: past[-1][&quot;date&quot;] if past else &quot;&quot;,
+                    &quot;chapters&quot;: chapters, &quot;rhythm&quot;: {&quot;by_sign&quot;: by_sign, &quot;by_season&quot;: by_season.most_common(),
+                    &quot;loud&quot;: [{&quot;label&quot;: c[&quot;label&quot;], &quot;date&quot;: c[&quot;date&quot;], &quot;saves&quot;: c[&quot;saves&quot;], &quot;eclipse&quot;: c[&quot;eclipse&quot;]} for c in loud],
+                    &quot;chart_hits&quot;: chart_hits.most_common(6)},
+                    &quot;months&quot;: sorted(months.items()), &quot;ahead&quot;: ahead, &quot;sky_ahead&quot;: sky_ahead, &quot;filed&quot;: filed})
+    unbraided = sorted(r for r, e in rooms_research.items() if r not in braided and e.get(&quot;room&quot;) != &quot;thesis&quot;)
+    return out, unbraided
+
+
+# ── now ────────────────────────────────────────────────────────────────────────────
+def now_block(events, today, readings):
+    by_date, by_ingress = readings
+    t = today.isoformat()
+    luns, seasons = chapters(events)
+    se = last_before(seasons, t)
+    ch = last_before(luns, t)
+    nxt = next((e for e in luns if e[&quot;date&quot;] &gt; t), None)
+    ecl_next = next((e for e in events if e[&quot;kind&quot;] == &quot;eclipse&quot; and e[&quot;date&quot;] &gt; t), None)
+    plot = Counter()
+    if ch:
+        for p in glob.glob(os.path.join(VAULT, &quot;01 - Events&quot;, &quot;*.md&quot;)):
+            n = os.path.basename(p)
+            if re.match(r&quot;\d{4}-\d\d-\d\d&quot;, n) and ch[&quot;date&quot;] &lt;= n[:10] &lt;= t:
+                pl = fm(open(p, encoding=&quot;utf-8&quot;, errors=&quot;ignore&quot;).read(1200)).get(&quot;primary_plotline&quot;, &quot;&quot;)
+                if pl and pl != &quot;Other&quot;:
+                    plot[pl] += 1
+    soon = [e for e in events if t &lt;= e[&quot;date&quot;] &lt;= (today + timedelta(days=45)).isoformat() and e[&quot;weight&quot;] &gt;= 3 and e[&quot;kind&quot;] != &quot;transit&quot;]
+    return {&quot;today&quot;: t,
+            &quot;season&quot;: {&quot;label&quot;: se[&quot;sign&quot;] + &quot; ingress&quot;, &quot;date&quot;: se[&quot;date&quot;], &quot;reading&quot;: by_ingress.get((se[&quot;date&quot;][:4], se[&quot;sign&quot;]))} if se else None,
+            &quot;chapter&quot;: {&quot;label&quot;: ch[&quot;label&quot;], &quot;date&quot;: ch[&quot;date&quot;], &quot;reading&quot;: by_date.get(ch[&quot;date&quot;]), &quot;eclipse&quot;: ch.get(&quot;eclipse&quot;)} if ch else None,
+            &quot;next&quot;: {&quot;label&quot;: nxt[&quot;label&quot;], &quot;date&quot;: nxt[&quot;date&quot;], &quot;reading&quot;: by_date.get(nxt[&quot;date&quot;])} if nxt else None,
+            &quot;next_eclipse&quot;: {&quot;label&quot;: ecl_next[&quot;label&quot;], &quot;date&quot;: ecl_next[&quot;date&quot;]} if ecl_next else None,
+            &quot;plotlines&quot;: plot.most_common(8), &quot;sky_soon&quot;: soon[:14]}
+
+
+def build(today=None, refresh_sky=False):
+    today = today or date.today()
+    wb = workbench()
+    events = sky_events(refresh_sky)
+    readings = readings_index()
+    items = research_items(wb, today)
+    days = match(events, items, readings)
+    notes = filed_notes()
+    filed_dates = defaultdict(list)
+    for n in notes:
+        for d in n[&quot;dates&quot;]:
+            filed_dates[d].append(n[&quot;id&quot;])
+    for d in days:
+        d[&quot;filed&quot;] = filed_dates.get(d[&quot;date&quot;], [])
+    cat = {}
+    rooms_research = {}
+    if wb:
+        cat = {p[&quot;research_id&quot;]: p for p in json.load(open(os.path.join(wb, &quot;RESEARCH DESK CATALOG.json&quot;), encoding=&quot;utf-8&quot;))[&quot;packages&quot;]}
+        rooms_research = json.load(open(os.path.join(wb, &quot;RESEARCH ROOMS.json&quot;), encoding=&quot;utf-8&quot;)).get(&quot;research&quot;, {})
+        bf = os.path.join(wb, &quot;RESEARCH BRIEFS.json&quot;)
+        if os.path.isfile(bf):
+            for rid, b in json.load(open(bf, encoding=&quot;utf-8&quot;)).get(&quot;briefs&quot;, {}).items():
+                if rid in rooms_research and b.get(&quot;plain_title&quot;):
+                    rooms_research[rid] = {**rooms_research[rid], &quot;title&quot;: b[&quot;plain_title&quot;]}
+    relationship_data = load_relationship_history()
+    braids, unbraided = build_braids(load_braids(), events, items, load_saves(), notes, cat, rooms_research, today, relationship_data)
+    braid_comparisons = build_braid_comparisons(load_braid_comparisons(), braids, today)
+    overlap_ledger = attach_overlap_history(braids, braid_comparisons, load_overlap_ledger(), today)
+    story_rooms = build_story_rooms(load_story_rooms(), braids, braid_comparisons, today)
+    review_hearings = build_review_hearings(load_review_hearings(), overlap_ledger, relationship_data, today)
+    data = {&quot;schema&quot;: &quot;f250.mundane-crossovers/v1&quot;, &quot;built&quot;: today.isoformat(), &quot;window&quot;: list(WINDOW),
+            &quot;about&quot;: &quot;Where astrology crosses into political analysis. The sky is read archetypally; the research side is facts only.&quot;,
+            &quot;now&quot;: now_block(events, today, readings), &quot;days&quot;: days, &quot;filed&quot;: notes, &quot;overlaps&quot;: overlap_files(),
+            &quot;braids&quot;: braids, &quot;braid_comparisons&quot;: braid_comparisons, &quot;story_rooms&quot;: story_rooms,
+            &quot;review_hearings&quot;: review_hearings, &quot;overlap_ledger&quot;: overlap_ledger, &quot;unbraided&quot;: unbraided,
+            &quot;counts&quot;: {&quot;sky_events&quot;: len(events), &quot;research_dates&quot;: len(items), &quot;crossover_days&quot;: len(days),
+                       &quot;strong_days&quot;: sum(1 for d in days if d[&quot;score&quot;] &gt;= 8), &quot;filed&quot;: len(notes),
+                       &quot;braids&quot;: len(braids), &quot;braid_comparisons&quot;: len(braid_comparisons),
+                       &quot;story_rooms&quot;: len(story_rooms), &quot;review_hearings&quot;: len(review_hearings),
+                       &quot;unbraided&quot;: len(unbraided)}}
+    return data
+
+
+def render(data):
+    tpl = open(TEMPLATE, encoding=&quot;utf-8&quot;).read()
+    lite = dict(data)
+    return tpl.replace(&quot;__DATA__&quot;, json.dumps(lite, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;)).replace(&quot;&lt;/&quot;, &quot;&lt;\\/&quot;))
+
+
+NOTE_TEMPLATE = &quot;&quot;&quot;---
+type: mundane_crossover
+title: &quot;{title}&quot;
+date: {date}
+dates: [{date}]
+filed_by: {who}
+status: filed
+sky: [{sky}]
+research: [{research}]
+plotlines: [{plotlines}]
+research_ids: [{rids}]
+season: &quot;{season}&quot;
+chapter: &quot;{chapter}&quot;
+---
+
+# {title}
+
+## The story (research side — facts only)
+
+{story}
+
+## The sky
+
+{skytext}
+
+## The archetypal reading
+
+(What the sky&#x27;s images say about this story: the archetypes in play, the mood of the chapter,
+what the pairing suggests. Interpretive and playful — this is a reading, not a proof.)
+
+## Threads to follow
+
+- (storylines, dates or charts worth watching next)
+
+## Looking back
+
+(Optional, added later: how the story and the image kept talking to each other.)
+&quot;&quot;&quot;
+
+
+def candidates(data, n, today):
+    lo = (today - timedelta(days=14)).isoformat()
+    hi = (today + timedelta(days=14)).isoformat()
+    pool = [d for d in data[&quot;days&quot;] if lo &lt;= d[&quot;date&quot;] &lt;= hi and not d[&quot;filed&quot;]]
+    pool.sort(key=lambda d: (-d[&quot;score&quot;], d[&quot;date&quot;]))
+    print(f&quot;MUNDANE CROSSOVER CANDIDATES · {today} · window {lo} → {hi} · {len(pool)} unfiled days&quot;)
+    print(&quot;File the meaningful ones as notes in 03 - Astrology/Mundane Astrology/Crossovers/ (see README there).&quot;)
+    for d in pool[:n]:
+        print(&quot;\n&quot; + &quot;=&quot; * 78)
+        print(f&quot;{d[&#x27;date&#x27;]}  score {d[&#x27;score&#x27;]}   {d[&#x27;chapter&#x27;]}   {d[&#x27;season&#x27;]}&quot;)
+        print(&quot;SKY:&quot;)
+        for s in d[&quot;sky&quot;][:4]:
+            print(f&quot;   - {s[&#x27;label&#x27;]}  ({s[&#x27;kind&#x27;]}, {s[&#x27;date&#x27;]}{&#x27;, reading: &#x27; + s[&#x27;reading&#x27;] if s.get(&#x27;reading&#x27;) else &#x27;&#x27;}{&#x27;, resonates&#x27; if s.get(&#x27;resonates&#x27;) else &#x27;&#x27;})&quot;)
+        print(&quot;RESEARCH (facts):&quot;)
+        for r in d[&quot;research&quot;][:5]:
+            where = r.get(&quot;path&quot;) or r.get(&quot;wb_path&quot;) or (&quot;rids: &quot; + &quot;, &quot;.join(r.get(&quot;rids&quot;, [])) if r.get(&quot;rids&quot;) else &quot;&quot;)
+            print(f&quot;   - [{r[&#x27;kind&#x27;]}] {r[&#x27;label&#x27;]}  · {r[&#x27;detail&#x27;][:120]}  · {where}&quot;)
+        slug = re.sub(r&quot;[^a-z0-9]+&quot;, &quot;-&quot;, (d[&quot;sky&quot;][0][&quot;label&quot;] + &quot; &quot; + d[&quot;research&quot;][0][&quot;label&quot;]).lower()).strip(&quot;-&quot;)[:70]
+        print(f&quot;NOTE PATH: 03 - Astrology/Mundane Astrology/Crossovers/{d[&#x27;date&#x27;]} — {slug}.md&quot;)
+
+
+def main():
+    args = sys.argv[1:]
+    today = date.today()
+    data = build(today, refresh_sky=&quot;--sky&quot; in args)
+    if &quot;--candidates&quot; in args:
+        i = args.index(&quot;--candidates&quot;)
+        n = int(args[i + 1]) if i + 1 &lt; len(args) and args[i + 1].isdigit() else 5
+        candidates(data, n, today)
+        return 0
+    js = json.dumps(data, ensure_ascii=False, indent=0) + &quot;\n&quot;
+    page = render(data)
+    check = &quot;--check&quot; in args
+    changed = []
+    for path, content in ((OUT_JSON, js), (OUT_HTML, page)):
+        cur = open(path, encoding=&quot;utf-8&quot;).read() if os.path.isfile(path) else None
+        def strip(t):
+            value = re.sub(r&quot;\s*&lt;!-- F250-DARKMODE-START --&gt;.*?&lt;!-- F250-DARKMODE-END --&gt;\s*&quot;, &quot;\n&quot;, t or &quot;&quot;, flags=re.S)
+            return re.sub(r&quot;\s*&lt;!--F250-INTERP-START--&gt;.*?&lt;!--F250-INTERP-END--&gt;\s*&quot;, &quot;\n&quot;, value, flags=re.S)
+        if strip(cur) != strip(content):
+            changed.append(os.path.basename(path))
+            if not check:
+                fd, tmp = tempfile.mkstemp(dir=os.path.dirname(path), prefix=&quot;.mundane-&quot;, suffix=&quot;.tmp&quot;)
+                with os.fdopen(fd, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+                    f.write(content)
+                os.replace(tmp, path)
+    c = data[&quot;counts&quot;]
+    msg = f&quot;{c[&#x27;crossover_days&#x27;]} crossover days ({c[&#x27;strong_days&#x27;]} strong) · {c[&#x27;filed&#x27;]} filed · {c[&#x27;story_rooms&#x27;]} story rooms · {c[&#x27;review_hearings&#x27;]} review hearing · {c[&#x27;braids&#x27;]} braids ({c[&#x27;unbraided&#x27;]} studies on no braid) · {c[&#x27;sky_events&#x27;]} sky events · {c[&#x27;research_dates&#x27;]} research dates&quot;
+    if check:
+        print(f&quot;Mundane Astrology: {&#x27;would change&#x27; if changed else &#x27;current&#x27;} ({msg})&quot;)
+        return 1 if changed else 0
+    print(f&quot;✓ Mundane Astrology.html ({msg})&quot; if changed else f&quot;Mundane Astrology.html: unchanged ({msg})&quot;)
+    return 0
+
+
+if __name__ == &quot;__main__&quot;:
+    sys.exit(main())
+</pre></main></body></html>

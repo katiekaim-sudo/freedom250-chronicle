@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """build_charter_timeline.py — The Charter Queue (sub-view of The Machines, obs-om).
 
-Copied from build_castration_timeline.py per _Claude-Context/PATTERN — Timeline Machine Build.md.
+Copied from build_castration_timeline.py per _AI-Context/PATTERN — Timeline Machine Build.md.
 
 The legal operating clock of the private monetary stack: who applied, who was approved,
 who was let in — and who is still waiting at the Federal Reserve's door. Third room of the

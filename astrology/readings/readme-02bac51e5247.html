@@ -1,0 +1,111 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/astrology/readings/readme-02bac51e5247.html">
+<title>Mundane Astrology — how crossovers work</title><style>
+:root{--bg:#090c14;--card:#111827;--ink:#edf3ff;--mut:#9aa8bd;--line:#263349;--ac:#d9a7ff;--blue:#73d9ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h2,h3{line-height:1.18}h1{font-size:clamp(2rem,7vw,3.6rem)}
+.eyebrow{color:var(--ac);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.note{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
+</style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">astrology material · active</div><h1>Mundane Astrology — how crossovers work</h1><p class="mut">Portable source: 03 - Astrology/Mundane Astrology/README.md</p><hr />
+<p>title: Mundane Astrology — how crossovers work
+type: method
+status: live
+updated: 2026-10-03
+design_lens: &quot;Braid Constitution — Rope, Not DNA&quot;</p>
+<hr />
+<h1>Mundane Astrology — where the sky meets the story</h1>
+<p>Design lens: Braid Constitution — Rope, Not DNA.</p>
+<p>This is the section where astrology crosses into political analysis (Katie, 2026-10-03; DR-095). In the app it is its own menu group: <strong>Overview</strong>, <strong>Story Braids</strong>, <strong>Crossover Timeline</strong> and <strong>Filed Crossovers</strong>, plus Threads, the Prediction Scorecard and the Sky Watchlist.</p>
+<p><strong>The spirit.</strong> Astrology here is <em>archetypal</em>. The sky offers images and themes for reading what is happening: who is playing which part, what the mood of the chapter is, what a pairing suggests. It is a fun, private think-tank, not a courtroom. Crossover notes are readings, not proofs, and nobody grades them. They can be bold, playful and speculative. (Katie: &quot;astrology is inherently archetypal and that&#x27;s what we&#x27;re focused on… this is a fun private research think-tank.&quot;)</p>
+<p><strong>The one rule that stays.</strong> The research side is facts only and stays astrology-free. A crossover note quotes or summarizes the research, citing the file path, but nothing astrological is ever written into a research file, a Workbench study or the Research Library. The two lanes meet here, on dates.</p>
+<h2>How a crossover is found</h2>
+<p><code>99 - Templates/build_mundane_astrology.py</code> runs every night inside the vault refresh (Grok&#x27;s nightly). It lines up:</p>
+<ul>
+<li><strong>Sky events</strong> (computed with the Swiss Ephemeris): lunations and eclipses; the Sun&#x27;s season ingresses and outer planets changing sign; stations; exact aspects between Mars and the outer planets; conjunctions of any two planets (the conjunction charts); and Jupiter through Pluto hitting the key charts (the U.S. chart and the entity charts for Congress, the Supreme Court, the White House, Treasury, the Fed, the SEC, the CFTC, the OCC, the FDIC, DOJ, the FBI, DHS and Defense).</li>
+<li><strong>Research dates</strong>, facts only: official actions (Official Records, Executive Orders, dated records, studies of one dated official action); deadlines on the clock (hub dates, follow-up return dates); dated rows in study timelines; and spikes in Katie&#x27;s X saves on a storyline.</li>
+</ul>
+<p>Anything within a day of each other becomes a <strong>crossover day</strong>. A day scores higher when the sky event is bigger (eclipse, season ingress, outer-planet aspect, a key chart hit) and the research is weightier. A key-chart hit glows <strong>gold</strong> when the story itself names that institution. The strongest days are marked ✦✦ or ✦✦✦.</p>
+<h2>Filing a crossover</h2>
+<p>Grok files them itself every night (Katie&#x27;s choice). Any chat, or Katie, can file one too. Every day page in the app shows the template, and so does <code>python3 &amp;quot;99 - Templates/build_mundane_astrology.py&amp;quot; --candidates 5</code>.</p>
+<ul>
+<li><strong>Where:</strong> <code>03 - Astrology/Mundane Astrology/Crossovers/</code></li>
+<li><strong>Name:</strong> <code>YYYY-MM-DD — &amp;lt;short title&amp;gt;.md</code></li>
+<li><strong>Frontmatter:</strong> <code>type: mundane_crossover</code>, <code>title</code>, <code>date</code>, <code>braids</code> (optional, the braid slugs it belongs to), <code>dates</code> (all dates the crossover spans), <code>filed_by</code> (grok, claude, codex or katie), <code>status</code> (<code>filed</code>, or <code>looking back</code> once a reflection is added), <code>sky</code>, <code>research</code>, <code>plotlines</code>, <code>research_ids</code>, <code>season</code>, <code>chapter</code>.</li>
+<li><strong>Sections:</strong>
+  1. <strong>The story (research side — facts only):</strong> what happened, with file paths.
+  2. <strong>The sky:</strong> the events, with exact times or degrees where useful.
+  3. <strong>The archetypal reading:</strong> the heart of the note. Use Katie&#x27;s own language and readings where they exist (the season and lunation readings, <code>Saturn-Neptune conjunction in Aries.md</code>, the 2020s Thesis).
+  4. <strong>Threads to follow:</strong> what to watch next.
+  5. <strong>Looking back</strong> (optional, later): how the story and the image kept talking to each other.</li>
+<li><strong>One note per crossover.</strong> If a later date belongs to the same story, add it to <code>dates</code> and extend the note.</li>
+<li><strong>Up to three a night for Grok,</strong> strongest first, favoring days that touch tonight&#x27;s saves. Skip days where the research side is only a follow-up reminder.</li>
+</ul>
+<h2>Story braids — follow a story through its astrological timeline</h2>
+<p>A braid is one storyline followed through time, such as stablecoin law, Iran and Hormuz, or the courts and the law (Katie, 2026-10-03, DR-096). Each braid is a file in <code>Braids/</code>:</p>
+<ul>
+<li><strong>Frontmatter:</strong> <code>type: story_braid</code>, <code>title</code>, <code>question</code>, <code>subplots</code> (the X-feed subplots it follows), <code>plotlines</code> (optional whole plotlines), <code>keywords</code> (regular expressions that pull in official actions), <code>research_ids</code> (its studies), <code>executive_orders</code> (optional exact EO keys whose governed lineage records belong to the story), <code>movement_ids</code> (optional exact adjudicated institutional records that belong to the story without claiming EO descent), <code>charts</code> (the key charts to watch, by their Entity Theory names), and <code>status</code>. An interpreted rope overlap also names <code>relationship_frame</code>, <code>relationship_chapter</code>, <code>relationship_authored_on</code>, <code>relationship_review_on</code> and optional <code>relationship_strands</code>.</li>
+<li><strong>Body:</strong> <code>## The braid so far</code>, the story in a few sentences and then the archetypal reading of its rhythm.</li>
+</ul>
+<p>Each night the builder assembles every braid into a page with these parts:</p>
+<ul>
+<li><strong>Beats:</strong> your saves on its subplots, the official actions, deadlines and timeline rows tied to its studies, and the dates its studies were written.</li>
+<li><strong>Chapters:</strong> the beats grouped by lunar chapter and season, with the strong sky in each chapter.</li>
+<li><strong>Relationship braid:</strong> authored relationship roles joined to the computed governing-ingress and current-lunation states. Roles are <code>lead_mechanism</code>, <code>co_mechanism</code>, <code>supporting_context</code>, <code>outcompeted</code> or <code>unresolved</code>; presence is <code>inherited_substrate</code>, <code>active_dialogue</code> or <code>seed_echo</code>. Several strands may be correct because they do different jobs. Strand count is never a score or vote.</li>
+<li><strong>Attention rhythm:</strong> which lunar chapters and seasons contain more of Katie&#x27;s saved posts. This is an inventory of attention, not evidence, event intensity or institutional change.</li>
+<li><strong>Charts lit up:</strong> the transits to its key charts during its chapters.</li>
+<li><strong>Ahead:</strong> its coming deadlines, plus the sky still to come.</li>
+</ul>
+<p><strong>Keeping braids growing.</strong> Every new study goes on its braid(s) when it is filed (step 7 in the Workbench <code>RESEARCH ROOMS — Filing Guide.md</code>). The Story Braids page lists any study on no braid. A crossover note can name its braids with <code>braids: [slug]</code>. Grok refreshes one braid&#x27;s &quot;The braid so far&quot; each night: the braid with the newest beats, or the one whose summary is oldest.</p>
+<p>An EO key adds no beat by itself. The Workbench Movement Registry must first
+attach a completed, primary-source-adjudicated movement to one exact Chronicle
+EO directive path. The braid then receives that dated movement, its reached
+state and before→after transition. Executive direction, publication,
+implementation, operation and effect remain separate facts.</p>
+<p>A planetary relationship is never assigned by keyword or resemblance. An
+authored strand must name its distinct job in the factual story and its mode of
+presence. The builder supplies factual geometry and ordered state change from
+<code>planetary_relationship_history.json</code>; it does not decide which relationship
+owns a storyline. A braid with no authored strands says so explicitly while
+retaining its factual timeline.</p>
+<p><strong>The braid is rope, not DNA.</strong> The factual plotline, social-attention route and
+planetary relationship remain independent objects. An authored overlap belongs
+to one exact ingress and lunar chapter and carries a review date. When that
+window turns, the reading remains historical and becomes review-due; the same
+relationships are never silently attached to the new chart. User-facing roles
+are lead strand, companion strand, background strand, outcompeted strand or
+unresolved strand. These describe one reading, not permanent plot ownership or
+causal machinery.</p>
+<p><code>Braid Overlap Ledger.jsonl</code> preserves each authored braid window and rope
+comparison as an append-only snapshot. A current record must match its authored
+file exactly. At the lunar review hearing it becomes historical with explicit
+retained, revised, released, outcompeted or unresolved dispositions; a new
+window is authored separately. The ledger creates no factual claim, planetary
+ownership, evidence credit or Forecast Ledger call.</p>
+<h2>Living Story Rooms — watch a story become real</h2>
+<p>Living Story Rooms are guided routes through several independently owned
+braids. They live inside the Mundane Astrology view at <code>#/rooms</code>; they are not a
+new research store, shell tab or super-braid. <code>Living Story Room Contract.md</code>
+owns the replay rules and <code>Story Rooms/*.md</code> owns each tour&#x27;s question,
+membership and authored guide.</p>
+<p>The flagship <strong>Money&#x27;s New Pipes</strong>, <strong>Rebuilding the Federal Machine</strong> and
+<strong>Capacity or Spectacle</strong> rooms each replay one lunar chapter at a time. At each
+historical cutoff they display separate factual-record, Research-knowledge,
+institutional-movement, Executive Order, attention, computed-sky,
+authored-overlap, unresolved-gate and later-review lanes. Its “what changed”
+counts are categorical additions in that chapter, never a score or proof of
+progress. The Federal room also projects exact typed entity roles and
+court/remedy records without inferring either from keywords. Capacity keeps
+plan, funding, delivery, acceptance and operation separate.</p>
+<p>The internal <code>#/tour</code> route gives a three-minute explanation of the three rooms
+without creating a new shell tab. Review packets in <code>Review Hearings/</code> are
+fail-closed. Before their date they remain scheduled with pending snapshots; on
+the date the builder may mark them review-due but cannot choose a disposition or
+author the next overlap.</p>
+<h2>What lives here and what doesn&#x27;t</h2>
+<ul>
+<li>New crossover notes live here.</li>
+<li>The earlier overlap work stays where it is: <code>Astrology Files/Mundane Story Overlaps/</code> and <code>Astrology Files/Money x Sky/</code>. It is shown on the Filed Crossovers page.</li>
+<li>Computed data: <code>99 - Templates/mundane_sky_events.json</code> (the sky; rebuild with <code>--sky</code>) and <code>99 - Templates/mundane_crossovers.json</code> (the matches). The view is <code>04 - Synthesis/Cross-cuts/Mundane Astrology.html</code>.</li>
+</ul></main></body></html>

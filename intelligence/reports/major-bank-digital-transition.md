@@ -67,10 +67,11 @@ watch cohort, not a ranking of size, safety, importance or investment merit.
 4. Wave 3 — comparative bank-transition constitution
 5. Wave 4 — completeness and negative-finding audit
 6. Wave 5 — Fidelity cohort expansion
-7. Fidelity retirement-plan control layer
-8. Retirement fund tokenization and DLT rails
-9. Source and return ledger
-10. Interactive Major Bank Digital Transition map
+7. Wave 6 — bank-wide DLT, crypto and tokenization delta
+8. Fidelity retirement-plan control layer
+9. Retirement fund tokenization and DLT rails
+10. Source and return ledger
+11. Interactive Major Bank Digital Transition map
 
 The governed visual data lives at
 BANK_TRANSITION_COMPARISON_2026-09-26.json
@@ -95,6 +96,13 @@ product, newsroom, filing and transaction surfaces. Wave 5 corrected the
 cohort omission by adding Fidelity as the sixteenth institution with the same
 seven-surface evidence test, then separated Fidelity's workplace retirement
 recordkeeping and trust roles from its digital-asset issuer and custody roles.
+Wave 6 recertified all sixteen institutions through October 3. It records
+Citi's seven-market Token Services expansion and separate Coinbase and Swift
+routes; corrects Bank of America's public construction evidence; moves
+Deutsche Bank's Partior settlement lane to a bounded live receipt; and keeps
+HSBC RedCoin, Anchorpoint/HKDAP, CoinVertible reserve custody and the shared
+stablecoin enterprise on their exact issuer, launch, record and settlement
+clocks.
 The retirement-rails synthesis then separates fund investment exposure, the
 fund-share register, the plan trust's holding, the participant-benefit record
 and the contribution/settlement/distribution cash rails. It records the current

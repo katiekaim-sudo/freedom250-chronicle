@@ -1,5 +1,17 @@
 # FORTRESS America and Military Installation Energy Independence
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did FORTRESS America change, and what authority, scope, financing, construction and operating-test receipts are required before major military installations actually possess independent power?
+
+**Answer:** FORTRESS America makes installation power a central military program, but it does not yet say which sites count, what loads must run, how long they must run or who will pay and operate the systems.
+
+**Evidence checked through:** 2026-09-30T23:59:59-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Status:** `current`
 **Evidence cutoff:** 2026-09-30 ET
 **Research ID:** `fortress-america-installation-energy-independence`

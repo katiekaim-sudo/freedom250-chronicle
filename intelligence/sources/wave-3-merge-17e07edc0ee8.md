@@ -1,5 +1,17 @@
 # Wave 3 merge — what the chart walk added
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What materially changed across official U.S. federal sources from September 4 through September 11, 2026 after the targeted weekly was corrected with a broader publisher walk?
+
+**Answer:** The week brought changes in citizenship rules, tariffs, industrial authority, sanctions, spending transparency, bank exams, courts, energy finance and federal delivery. A broader agency-by-agency review found material items the first pass missed.
+
+**Evidence checked through:** 2026-09-11T16:01:37-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Same frozen window. This file **corrects** the 1A–2E close. That pass was a
 targeted weekly. This pass opened the rest of the separately sweepable
 Federal Group publishers.

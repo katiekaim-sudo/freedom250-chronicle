@@ -1,5 +1,17 @@
 # Russia Country Orientation — 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do Russia's presidential-security system, war economy, nuclear status, alignments, commodity routes and constrained U.S. relationship fit together?
+
+**Answer:** The U.S. and Russia deal with each other through a patchwork: strained diplomacy, nuclear deterrence with no treaty after New START expired, ad hoc Ukraine talks, sanctions run through licenses and waivers, and a few working exceptions like the space station. Russia's trade has moved toward Asia and third countries, not stopped.
+
+**Evidence checked through:** 2026-09-24T23:59:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Research ID:** `russia-country-orientation-2026`  
 **Evidence cutoff:** 2026-09-24  
 **Scope:** Russian Federation, with U.S.–Russia, Ukraine, European-security and principal alignment interfaces where needed to understand U.S. international relations  

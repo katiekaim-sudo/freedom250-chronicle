@@ -1,5 +1,17 @@
 # What the “Petrodollar” Really Is
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What is the 'petrodollar' actually, and does any agreement require oil to be sold only in dollars?
+
+**Answer:** Dollar oil pricing is a set of habits, contracts and banking layers, not a 50-year Saudi promise.
+
+**Evidence checked through:** 2026-09-15
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## A legal, commercial, banking and balance-sheet deep dive, 1945–2026
 
 Status: controlling research answer for this package  

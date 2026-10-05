@@ -1,5 +1,17 @@
 # Wholesale Metals
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do exchange contracts move through clearing, vault, warehouse, custody, title and delivery across the major wholesale-metals centers?
+
+**Answer:** The main U.S. metals market is adding more trading hours, including weekends, while keeping its existing clearing and payment rules. The United Kingdom has opened a legal path from owning a specific gold bar toward using a token as protected collateral, but that path is not operating yet.
+
+**Evidence checked through:** 2026-09-14
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 For the FCA's September 2026 tokenised-gold question, start with
 FCA_TOKENISED_GOLD_LEGAL_COLLATERAL_AND_PERIMETER_DEEP_DIVE_2026-09-14.md.
 It separates token property, physical-gold title and collateral control;

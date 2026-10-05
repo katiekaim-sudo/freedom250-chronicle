@@ -1,5 +1,17 @@
 # CLARITY Act EHF26724 — Structure, Draft Delta and Crypto Hub Overlay
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the September 14, 2026 Senate draft of the CLARITY Act change, and what happened when it reached the floor?
+
+**Answer:** The Senate failed to end debate 49–50 on September 15; the CFTC sent its own crypto rule to the White House two days later.
+
+**Evidence checked through:** 2026-09-14
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Research date:** September 14, 2026  
 **Controlling object for this review:** EHF26724, 635-page sponsors' final draft released September 14, 2026  
 **Comparison objects:** EHF26718, 630 pages, released September 10, 2026; EHF26654, 616 pages, released July 22, 2026  

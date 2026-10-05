@@ -2,6 +2,18 @@
 
 # Japan August 2026 — Controlling State and Monetary Delta
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What changed in Japan's money, banking and payment systems in August 2026, and which announcements still lacked operating proof?
+
+**Answer:** In August 2026 Japan worked several fronts at once: earthquake recovery, a U.S.-coordinated yen purchase, a cautious central bank, staged household relief, signed energy financing and real-money digital settlement tests. None of it shows a new money system or a crisis.
+
+**Evidence checked through:** 2026-08-31T23:10:00+09:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 > **Later BOJ state:** the September 17-18 MPM raised the overnight target to
 > 1.25 percent by a 7-2 vote, effective September 24. The September 28 release
 > of the July 30-31 minutes adds the earlier banking-transmission discussion.

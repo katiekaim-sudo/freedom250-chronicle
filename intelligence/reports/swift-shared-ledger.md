@@ -1,5 +1,17 @@
 # SWIFT ledger — what has actually gone live?
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What has SWIFT's shared-ledger program moved from experiment toward service, and which operator, access, rulebook, corridor and settlement questions remain unresolved?
+
+**Answer:** Banks report live payments moving over SWIFT's shared ledger, and Oracle now offers banks a way to connect their own tokenized-deposit systems. No bank has yet been named as live on the Oracle connection.
+
+**Evidence checked through:** 2026-09-28
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 > September 9 follow-up: Funding, binding commitments, cross-network liquidity and FX is the maintained four-question deepening, with the Siemens sequence, illustrative accounting and public-term gaps. Earlier dated findings retain their original cutoff.
 
 **Answer:** SWIFT's shared ledger has progressed from readiness to bank-reported live transactions in a controlled rollout. The strongest newly located evidence includes named interbank pairings, HKD and USD payments, a dated weekend Singapore–New York payment, identified bank deposit systems, matching/netting, and a report of completed correspondent settlement. General commercial availability, recurring network volume and a publicly inspectable legal-finality constitution remain unestablished by these disclosures.

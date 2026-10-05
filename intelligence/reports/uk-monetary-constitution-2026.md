@@ -1,5 +1,17 @@
 # UK Monetary Constitution 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** At each layer of the sterling system, whose liability is the claim, which ledger records it, what makes it final, and who absorbs loss?
+
+**Answer:** Who owes sterling, which ledger records it, what makes it final and who absorbs loss, from official sources.
+
+**Evidence checked through:** 2026-09-14
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 This is the domestic sterling-system branch of the International Monetary
 Transition investigation. It asks a deliberately concrete question:
 

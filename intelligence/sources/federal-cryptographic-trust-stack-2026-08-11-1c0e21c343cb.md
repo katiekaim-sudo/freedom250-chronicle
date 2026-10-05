@@ -1,5 +1,17 @@
 # The Federal Cryptographic Trust Stack
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do authoritative source records, identity proofing, signed claims, key and issuer trust, authorization, audit and post-quantum migration form a durable federal trust stack?
+
+**Answer:** The National Security Agency now gives government and defense contractors one public place to find the approved post-quantum plan. The real change still depends on tested products, approved installations and proof that named systems actually use them.
+
+**Evidence checked through:** 2026-10-01
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Completed: 2026-08-11  
 Status: current Workbench research; not vault canon  
 Evidence cutoff: 2026-08-11 foundation; dated PQC extensions through

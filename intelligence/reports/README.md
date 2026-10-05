@@ -2,172 +2,173 @@
 
 Use `index.json` for machine routing. Each `.md` file is the portable source-text edition of the report shown in the matching `.html` reader.
 
-- [Credit Approval Standards: Mortgage, Retail and Business](mortgage-credit-score-reform.md) — cutoff 2026-09-07
-- [Mortgage Balance Sheet Trail to the Fed](mortgage-balance-sheet-trail.md) — cutoff 2026-09-07
-- [OCC–FDIC Supervisory Intervention Framework — 2026](occ-fdic-supervisory-intervention-2026-08-27.md) — cutoff 2026-08-27T17:55:00-04:00
-- [Retail Debt](retail-debt.md) — cutoff 2026-07-15
-- [The People's Money](peoples-money.md) — cutoff 2026-07-15
-- [Treasury and IRS](treasury-irs.md) — cutoff 2026-07-16
-- [NARA AI Records and Compute Transition](nara-ai-records-compute-transition.md) — cutoff 2026-08-23
-- [Sovereign Communications](sovereign-communications.md) — cutoff 2026-07-15
-- [Sovereign Compute](sovereign-compute.md) — cutoff 2026-07-15
-- [Election Integrity Release](election-integrity-release.md) — cutoff 2026-07-18
-- [Trump 2028 Constitutional and Election-Ledger Hypothesis](trump-2028-constitutional-election-ledger.md) — cutoff 2026-07-25
-- [Census, USPS, Citizenship and Apportionment — 2026](census-usps-citizenship-apportionment.md) — cutoff 2026-08-11
-- [Congressional Committee Control Plane](congressional-committee-control-plane.md) — cutoff 2026-07-26
-- [Congressional Hearing Source Library](congressional-hearing-source-library.md) — cutoff 2026-07-25
-- [D.V.D. Third-Country Removal Authority — 2025–2026](dvd-third-country-removal-authority-2025-2026.md) — cutoff 2026-09-25
-- [DOJ Judicial Misconduct Complaint Against Minnesota Judges — September 30, 2026](doj-minnesota-judicial-misconduct-complaint-2026-09-30.md) — cutoff 2026-09-30
-- [December 2024 Beneficial Ownership Reporting Perimeter](december-2024-beneficial-ownership-reporting-perimeter.md) — cutoff 2026-09-25
-- [Department of Education Full-Surface Sweep — August 4, 2026](education-full-surface-sweep-2026-08-04.md) — cutoff 2026-08-04
-- [Department of War Research Security Audits — August 17, 2026](dow-research-security-audits-2026-08-17.md) — cutoff 2026-08-17
-- [Disclosure Architecture](disclosure-architecture.md) — cutoff 2026-07-27
-- [Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026](trump-criminal-indictments-primary-source-map-2023-2026.md) — cutoff 2026-10-01T14:00:00-04:00
-- [Education Learning Agenda Playbook](education-learning-agenda-playbook.md) — cutoff 2026-09-09
-- [Education and University Funding](education-university-funding.md) — cutoff 2026-08-17
-- [Emerging Fraud — Identity, Eligibility and the Payment Gate](emerging-fraud-identity-payment-gate.md) — cutoff 2026-07-15
-- [Epstein Interview Statement Accountability](epstein-interview-statement-accountability.md) — cutoff 2026-07-21
-- [Federal Agency AI Plans and Infrastructure](federal-agency-ai-plans-infrastructure.md) — cutoff 2026-10-04
-- [Federal Budget — FY2026 to FY2027](federal-budget-fy2026-fy2027.md) — cutoff 2026-09-11T19:55:13-04:00
-- [Federal Force, Surveillance and Emergency Authority Maps](federal-force-surveillance-and-emergency-authority.md) — cutoff 2026-08-15
-- [Federal Government Deep Website Review — September 16–22, 2026](federal-government-deep-website-review-2026-09-22.md) — cutoff 2026-09-22T11:51:46-04:00
-- [Federal Government Fiscal-Year-Close Delta — September 26–30, 2026](federal-government-fiscal-year-close-delta-2026-09-30.md) — cutoff 2026-09-30T12:21:42-04:00
-- [Federal Government Weekly Delta — September 21–25, 2026](federal-government-weekly-delta-2026-09-25.md) — cutoff 2026-09-25T23:59:59-04:00
-- [Federal Reserve Non-Core Initiative Governance — 2026](federal-reserve-noncore-initiative-governance-2026.md) — cutoff 2026-09-30
-- [Federal Strategic Plans](federal-strategic-plans.md) — cutoff 2026-09-20
-- [Federal Workforce and Agency Control Maps](federal-workforce-and-agency-control.md) — cutoff 2026-08-15
-- [Fraud and Payment Integrity](fraud-payment-integrity.md) — cutoff 2026-09-30
-- [Government Hidden Control Surfaces — 2026](government-hidden-control-surfaces-2026.md) — cutoff 2026-09-28T23:59:59-04:00
-- [Government-Wide Research Hub](federal-government-movement-atlas.md) — cutoff 2026-09-22T11:51:46-04:00
-- [Hawaii Public Corruption — Primary-Source Ledger](hawaii-public-corruption-source-ledger.md) — cutoff 2026-07-27
-- [House Oversight Corpus](house-oversight-corpus.md) — cutoff 2026-07-22
-- [Institutional Signals and Thesis Test — 2025–2026](institutional-signals-thesis-test-2025-2026.md) — cutoff 2026-09-28T23:59:59-04:00
-- [Judicial Money](judicial-money.md) — cutoff 2026-09-03
-- [OBBB — Fraud, Improper-Payment and Error-Rate Legal Map](obbb-fraud-error-rate-legal-map.md) — cutoff 2026-07-16
-- [Office of Personnel Management Structural Change Audit — 2025–2026](opm-structural-change-audit-2025-2026.md) — cutoff 2026-08-29T20:10:53-04:00
-- [PRWORA State Reporting and Eligibility Architecture — 1996–2026](prwora-state-reporting-eligibility-architecture.md) — cutoff 2026-09-02
-- [Pennsylvania CCDBG — State-Edge Transaction Pilot](pa-ccdbg-state-edge-pilot.md) — cutoff 2026-07-27
-- [SEC Credit-Rating Recordkeeping Orders, 2024–2026](sec-credit-rating-recordkeeping-orders-2024-2026.md) — cutoff 2026-09-25
-- [Southeast Fraud Enforcement Partnerships](southeast-fraud-enforcement-partnerships.md) — cutoff 2026-07-31
-- [Stop Secret Spending Act — OTA Transparency and Implementation](stop-secret-spending-act-ota-transparency.md) — cutoff 2026-09-15T18:26:27-04:00
-- [Treasury Do Not Pay — Governmentwide Structural Map](treasury-do-not-pay-governmentwide-map.md) — cutoff 2026-08-29
-- [Trump WHCA Dinner Remarks — July 24, 2026](trump-whca-dinner-remarks-2026-07-24.md) — cutoff 2026-07-24
-- [United States Name and Passport Typography — Legal-Entity Audit](united-states-name-passport-typography-2026-10-04.md) — cutoff 2026-10-04T12:00:00-04:00
-- [University Funding and Programmable Compliance](university-funding-programmable-compliance.md) — cutoff 2026-07-28
-- [White House Ballroom Lawfare 2025-2026](white-house-ballroom-lawfare-2025-2026.md) — cutoff 2026-08-23
-- [White House Cabinet Meeting — July 31, 2026](white-house-cabinet-meeting-2026-07-31.md) — cutoff 2026-07-31T19:50:38-04:00
-- [White House Research Hub](white-house-research-hub.md) — cutoff 2026-07-21
-- [Contested Logistics](contested-logistics.md) — cutoff 2026-09-30
-- [FORTRESS America and Military Installation Energy Independence](fortress-america-installation-energy-independence.md) — cutoff 2026-09-30T23:59:59-04:00
-- [Military Modernization](military-modernization.md) — cutoff 2026-07-15
-- [Office of Religious Affairs — 2026](office-of-religious-affairs.md) — cutoff 2026-09-30T22:00:00-04:00
-- [Authority Through the Adapter — Where Control Actually Moves](authority-through-the-adapter.md) — cutoff 2026-08-31T10:42:24-04:00
-- [Banks and Credit Unions — Federal and Four-State Legal Architecture](bank-credit-union-legal-architecture.md) — cutoff 2026-09-15
-- [Blockchain Settlement Cost — 2026](blockchain-settlement-cost-2026.md) — cutoff 2026-08-02
-- [CFTC Passive Software No-Action Position — 2026](cftc-passive-software-no-action-2026-09-17.md) — cutoff 2026-09-17T11:32:00-04:00
-- [CLARITY Act — September 2026 Senate Draft](clarity-act-senate-draft-2026.md) — cutoff 2026-09-14
-- [Card Networks and Stablecoins — 2026](card-network-stablecoins-2026.md) — cutoff 2026-09-30
-- [Coinbase Clearing DCO Registration — 2026](coinbase-clearing-dco-registration-2026-09-28.md) — cutoff 2026-09-28T22:09:00-04:00
-- [Congressional Monetary Infrastructure](congressional-monetary-infrastructure.md) — cutoff 2026-09-16
-- [Crypto Infrastructure Comparatives](crypto-infrastructure-comparatives.md) — cutoff 2026-09-30
-- [Crypto Infrastructure Hub](tokenization-entity-control-map.md) — cutoff 2026-10-01
-- [DTCC Tokenization and Settlement — 2026](dtcc-tokenization-2026.md) — cutoff 2026-08-21
-- [Energy Asset Management, Atomic Settlement and Iran](energy-atomic-settlement-iran.md) — cutoff 2026-08-09
-- [Federal Monetary and Economic Institutions Delta — September 30 to October 2, 2026](federal-monetary-economic-institutions-delta-2026-10-02.md) — cutoff 2026-10-02T15:39:30-04:00
-- [Federal Reserve, Clearing and Treasury](fed-clearing-treasury.md) — cutoff 2026-09-30
-- [Federal Technology and Monetary Infrastructure Delta — September 17–20, 2026](federal-technology-and-monetary-infrastructure-delta-2026-09-20.md) — cutoff 2026-09-20T16:20:12-04:00
-- [From Atomic Settlement to Continuous Assurance — 2026](atomic-settlement-continuous-assurance.md) — cutoff 2026-09-26
-- [GENIUS Act Implementation — 2026](genius-act-implementation-2026.md) — cutoff 2026-09-30
-- [GENIUS Stablecoin Trust Crosswalk](genius-stablecoin-trust-crosswalk.md) — cutoff 2026-08-17
-- [Major Bank Digital Transition Map](major-bank-digital-transition.md) — cutoff 2026-10-03T10:20:00-04:00
-- [Official Record Authority and Blockchain Crosswalk — 2026](official-record-authority-blockchain.md) — cutoff 2026-09-26
-- [Overall DLT Transition — 2025–2026](overall-dlt-transition.md) — cutoff 2026-09-22T23:59:59-04:00
-- [Payment Transparency and the Hidden Constitution](payment-transparency-hidden-constitution.md) — cutoff 2026-07-31
-- [Private Monetary Stack](private-monetary-stack.md) — cutoff 2026-08-26
-- [Programmable Money and AI-Agent Payments — 2026](programmable-and-agentic-payments-2026-09-22.md) — cutoff 2026-09-22
-- [QNT September 2026 Price Rise — Causal Audit](qnt-september-2026-price-rise.md) — cutoff 2026-09-27T09:44:00-04:00
-- [Ripple, XRP and the Invisible Conversion Layer](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-10-03T09:30:00-04:00
-- [Route–Anchor–Inventory — Private Dollar Rails and Adoption Gates](route-anchor-inventory.md) — cutoff 2026-08-31T14:43:21-04:00
-- [SEC 24-Hour Trading Roundtable — 2026](sec-24-hour-trading-roundtable-2026-09-17.md) — cutoff 2026-09-23
-- [SEC Accredited Investor Credential Notices — CPA Gate, 2026](sec-accredited-investor-credential-notices-2026-09-30.md) — cutoff 2026-09-30T20:55:02-04:00
-- [SEC Crypto Custody Proposal — 2026](sec-crypto-custody-proposal-2026-10-01.md) — cutoff 2026-10-01T17:35:03-04:00
-- [SEC Investor Advisory Committee — 2026 meeting record](sec-investor-advisory-committee.md) — cutoff 2026-09-20T16:20:12-04:00
-- [SEC Tokenized NMS Stock Innovation Exemption — 2026 Order](sec-tokenized-nms-stock-innovation-exemption.md) — cutoff 2026-09-17T09:46:00-04:00
-- [SEC Transfer Agent Modernization — 2026 Proposal](sec-transfer-agent-modernization.md) — cutoff 2026-09-01
-- [SWIFT Shared Ledger](swift-shared-ledger.md) — cutoff 2026-09-28
-- [The Overall Monetary Play — July 2026 Interpretation](overall-monetary-play.md) — cutoff 2026-07-13
-- [Wholesale Metals Infrastructure](wholesale-metals.md) — cutoff 2026-09-14
-- [2020 COVID Authority Spine](covid-2020-authority-spine.md) — cutoff 2026-07-27
-- [COVID Authority and Disclosure Record](covid-authority-disclosures.md) — cutoff 2026-07-29
-- [HHS High-Risk Life Sciences Research Policy — July 2026](hhs-high-risk-life-sciences-policy-2026-07-28.md) — cutoff 2026-07-28
-- [ODNI COVID and Biolab Disclosures — June 2026](odni-covid-biolab-disclosures-2026-06.md) — cutoff 2026-07-27
-- [Rand Paul COVID Origins Reading Room — July 2026](rand-paul-covid-origins-reading-room-2026-07-29.md) — cutoff 2026-07-29
-- [U.S. WHO Membership Exit Legal Map](us-who-membership-exit-legal-map.md) — cutoff 2026-08-15
-- [White House COVID.gov Reactivation — July 2026](white-house-covid-gov-reactivation-2026-07-29.md) — cutoff 2026-07-29T12:00:00-04:00
-- [Emergency Monetary Policy](emergency-monetary-policy.md) — cutoff 2026-07-15
-- [Insurance and Reinsurance](insurance-reinsurance.md) — cutoff 2026-10-01T16:00:00-04:00
-- [International Emergency Monetary Policy](international-emergency-monetary-policy.md) — cutoff 2026-07-13
-- [AI Infrastructure Capital Stack and Risk Transfer](ai-infrastructure-capital-stack-risk-transfer.md) — cutoff 2026-08-10
-- [AI-Enabled Turbine Asset Management and U.S. Power Buildout](ai-turbine-asset-management-power-buildout.md) — cutoff 2026-08-09
-- [Carbon Nanotubes and Battery Sovereignty](carbon-nanotubes-battery-sovereignty.md) — cutoff 2026-08-23
-- [Data Center Federal Legal Spine 2025–2026](data-center-federal-legal-spine.md) — cutoff 2026-08-20
-- [Federal Cryptographic Trust Stack](federal-cryptographic-trust-stack.md) — cutoff 2026-10-01
-- [Federal Fusion Commercialization](federal-fusion-commercialization.md) — cutoff 2026-08-15
-- [Federal Science Operating System](federal-science-operating-system.md) — cutoff 2026-10-04
-- [Genesis Mission](genesis-mission.md) — cutoff 2026-09-09
-- [Industrial Project Finance and Digital Rails](industrial-project-finance-digital-rails.md) — cutoff 2026-07-31
-- [NSSTS Program and Acceptance Economy](nssts-program-acceptance-economy.md) — cutoff 2026-08-19
-- [NSSTS Quantum and Cryptographic Acceptance](nssts-quantum-cryptographic-acceptance.md) — cutoff 2026-08-19
-- [NSSTS Technology-to-Company Map](nssts-technology-company-map.md) — cutoff 2026-08-19
-- [New York Manufacturing and Innovation Map — 2026](new-york-manufacturing-innovation-map-2026.md) — cutoff 2026-09-04
-- [Permanent Magnets](permanent-magnets.md) — cutoff 2026-07-22
-- [Scientific Trust Stack](scientific-trust-stack.md) — cutoff 2026-08-17
-- [U.S. Inbound Investment and Industrial-Capex Funding Map 2025–2026](us-inbound-investment-industrial-capex.md) — cutoff 2026-07-31
-- [Bessent at the IIF — April 2026](bessent-iif-spring-meetings-2026.md) — cutoff 2026-07-30
-- [Canada, transshipment and customs origin records](institutional-regime-waves.md) — cutoff 2026-09-02
-- [China Country Orientation — 2026](china-country-orientation-2026.md) — cutoff 2026-09-24T23:05:00-04:00
-- [Cuba Pressure and Counter-Influence](cuba-pressure-counter-influence.md) — cutoff 2026-07-20
-- [Economic Institution Legitimacy Crisis — 2025–2026](economic-institution-legitimacy-crisis.md) — cutoff 2026-09-30T16:15:00-04:00
-- [G20 Currency Watch](currency-watch.md) — cutoff 2026-07-31
-- [G7 and G20 Coordination Architecture — 2025–2026](g7-g20-coordination-architecture.md) — cutoff 2026-09-03T19:41:23-04:00
-- [Global Oil and Gas Movements 2026](global-oil-gas-movements.md) — cutoff 2026-09-30
-- [Gold Balance of Payments & Currency Adjustment](gold-bop-currency-adjustment.md) — cutoff 2026-08-23
-- [IMF Legal Constitution — 2026](imf-legal-constitution-2026.md) — cutoff 2026-09-21
-- [IMF Legal Department at 80 — Conference 2026](imf-legal-department-at-80-2026.md) — cutoff 2026-09-26
-- [IMF and Currency Pricing — 2026](imf-currency-pricing-2026.md) — cutoff 2026-07-30
-- [International Crypto Map — 2026](international-crypto-map.md) — cutoff 2026-10-03T09:30:00-04:00
-- [International Monetary Initiation — 2026](international-monetary-initiation-2026.md) — cutoff 2026-09-14
-- [International Monetary Next Phase — 2026](international-monetary-next-phase-2026.md) — cutoff 2026-09-07
-- [International Monetary Transition](international-monetary-transition.md) — cutoff 2026-09-28T10:16:00+09:00
-- [International Organizations and U.S. Power Map — 2026](international-organizations-us-power-map-2026.md) — cutoff 2026-10-04
-- [Iran Financial Pressure and Banking-System Isolation](iran-financial-pressure.md) — cutoff 2026-09-03T19:41:23-04:00
-- [Iraq Oil Provenance and Logistics](iraq-oil-logistics.md) — cutoff 2026-07-15
-- [Japan August 2026 — State, Monetary, Industrial and Digital Delta](japan-august-2026-delta.md) — cutoff 2026-08-31T23:10:00+09:00
-- [Japan Monetary Constitution — 2026](japan-monetary-constitution-2026.md) — cutoff 2026-09-28
-- [Japan–Korea Currency Defense — July–August 2026](japan-korea-currency-defense-2026.md) — cutoff 2026-08-01
-- [Japan–Korea FX Shock and Stablecoins — July 2026](japan-korea-stablecoin-fx-overlap-2026.md) — cutoff 2026-07-31
-- [Korea Market Stress and Transmission — July 2026](korea-market-stress-2026.md) — cutoff 2026-07-29
-- [Russia Country Orientation — 2026](russia-country-orientation-2026.md) — cutoff 2026-09-24T23:59:00-04:00
-- [The Petrodollar System — 1945–2026](petrodollar-system-1945-2026.md) — cutoff 2026-09-15
-- [Trump Davos Address — January 21, 2026](trump-davos-address-2026-01-21.md) — cutoff 2026-09-25
-- [U.S.–China Strategic Stability State Visit — September 2026](us-china-strategic-stability-state-visit-2026.md) — cutoff 2026-09-28T10:07:16-04:00
-- [U.S.–UK Transatlantic Markets Taskforce — 2026](us-uk-transatlantic-markets-taskforce-2026.md) — cutoff 2026-08-04
-- [UK Constitutional Order and Self-Determination](uk-constitutional-order-self-determination.md) — cutoff 2026-09-13T17:59:00-04:00
-- [UK Monetary Constitution — 2026](uk-monetary-constitution-2026.md) — cutoff 2026-09-14
-- [USTDA Project Development Pipeline — 2026](ustda-project-development-pipeline-2026.md) — cutoff 2026-09-26T12:45:00-04:00
-- [United Nations General Assembly High-Level Week — 2026](un-general-assembly-high-level-week-2026.md) — cutoff 2026-09-30T04:30:00-04:00
-- [Who Gets Adjusted — IMF Symmetry Audit 2026](imf-symmetry-audit-2026.md) — cutoff 2026-07-30
-- [Federal Government Entity Library Harvest — 2026-08-22](federal-government-entity-library-harvest-2026-08-22.md) — cutoff 2026-08-23
-- [Federal Government Full Freshness Sweep — August 22, 2026](federal-government-full-freshness-sweep-2026-08-22.md) — cutoff 2026-08-23
-- [Federal Government Sweep Control Audit — August 21–29, 2026](federal-government-sweep-control-audit-2026-08-29.md) — cutoff 2026-08-29T21:06:00-04:00
-- [Federal Government Website Sweep — 2026-07-25](federal-government-website-sweep-2026-07-25.md) — cutoff 2026-07-25
-- [Federal Government Weekly Delta — August 13–20, 2026](federal-government-weekly-delta-2026-08-20.md) — cutoff 2026-08-20T12:19:33-04:00
-- [Federal Government Weekly Delta — August 20–21, 2026](federal-government-weekly-delta-2026-08-21.md) — cutoff 2026-08-21T15:00:00-04:00
-- [Federal Government Weekly Delta — August 2–8, 2026](federal-government-weekly-delta-2026-08-08.md) — cutoff 2026-08-08T11:50:27-04:00
-- [Federal Government Weekly Delta — August 31–September 3, 2026](federal-government-weekly-delta-2026-09-03.md) — cutoff 2026-09-03T20:09:34-04:00
-- [Federal Government Weekly Delta — August 8–13, 2026](federal-government-weekly-delta-2026-08-13.md) — cutoff 2026-08-13T21:25:45-04:00
-- [Federal Government Weekly Delta — September 12–16, 2026](federal-government-weekly-delta-2026-09-16.md) — cutoff 2026-09-16T19:10:34-04:00
-- [Federal Government Weekly Delta — September 4–11, 2026](federal-government-weekly-delta-2026-09-11.md) — cutoff 2026-09-11T16:01:37-04:00
-- [Federal Whole-Site Recertification — August 2026](government-wide-recertification-august-2026.md) — cutoff 2026-08-04T17:48:00-04:00
-- [Government-Wide Audit — July 2026](government-wide-audit-july-2026.md) — cutoff 2026-07-18
-- [Transaction-Native Accounting](transaction-native-accounting.md) — cutoff 2026-09-30
+- [Bank examiners now need a clearer reason to act](occ-fdic-supervisory-intervention-2026-08-27.md) — cutoff 2026-08-27T17:55:00-04:00
+- [Banks are moving card debt to firms willing to hold it, not forgiving it](retail-debt.md) — cutoff 2026-07-15
+- [Credit approval rules are shifting, but not all toward easier lending](mortgage-credit-score-reform.md) — cutoff 2026-09-07
+- [Following one mortgage through the books to the Fed](mortgage-balance-sheet-trail.md) — cutoff 2026-09-07
+- [The tax law stays put; who collects it and handles the data is changing](treasury-irs.md) — cutoff 2026-07-16
+- [What big banks are building, and the fine print behind it](peoples-money.md) — cutoff 2026-07-15
+- [Data centers where tribal, state and federal power meet](sovereign-compute.md) — cutoff 2026-10-05
+- [The National Archives sets rules for keeping federal AI records](nara-ai-records-compute-transition.md) — cutoff 2026-08-23
+- [The emergency communications backbone: who owns it and who switches it on](sovereign-communications.md) — cutoff 2026-07-15
+- [Current law bars a third Trump election; any 2028 push would be a fight over process](trump-2028-constitutional-election-ledger.md) — cutoff 2026-07-25
+- [White House election files show real risks, not proof of changed results](election-integrity-release.md) — cutoff 2026-07-18
+- [A catalog of saved hearing memos, testimony and bills, from late 2024 to mid-2026](congressional-hearing-source-library.md) — cutoff 2026-07-25
+- [A working transcript of Trump's July 24 WHCA dinner remarks](trump-whca-dinner-remarks-2026-07-24.md) — cutoff 2026-07-24
+- [Agency strategic plans are a legal cycle, and many still are not out](federal-strategic-plans.md) — cutoff 2026-09-20
+- [Ballroom building goes on while the court fight stays open](white-house-ballroom-lawfare-2025-2026.md) — cutoff 2026-08-23
+- [Capital letters do not create a second United States](united-states-name-passport-typography-2026-10-04.md) — cutoff 2026-10-04T12:00:00-04:00
+- [Congress's push to check identity and risk before federal money goes out](emerging-fraud-identity-payment-gate.md) — cutoff 2026-07-15
+- [Court requires notice before deportations to third countries; DHS asks Supreme Court to pause it](dvd-third-country-removal-authority-2025-2026.md) — cutoff 2026-09-25
+- [DOJ's Southeast fraud push is mostly announcement so far](southeast-fraud-enforcement-partnerships.md) — cutoff 2026-07-31
+- [DOJ's complaint against Minnesota federal judges](doj-minnesota-judicial-misconduct-complaint-2026-09-30.md) — cutoff 2026-09-30
+- [Do Not Pay flags payments, but each program makes the call](treasury-do-not-pay-governmentwide-map.md) — cutoff 2026-08-29
+- [Education Department gives states a voluntary planning guide](education-learning-agenda-playbook.md) — cutoff 2026-09-09
+- [Education's August letter to colleges asks; it does not require](education-full-surface-sweep-2026-08-04.md) — cutoff 2026-08-04
+- [Emptying an agency is not the same as abolishing it](federal-workforce-and-agency-control.md) — cutoff 2026-08-15
+- [Epstein interviews turned answers into records that can be checked](epstein-interview-statement-accountability.md) — cutoff 2026-07-21
+- [Every congressional committee mapped as its own body, not as a branch of an agency](congressional-committee-control-plane.md) — cutoff 2026-07-26
+- [Hawaii bribery case: official records trace the money only part way](hawaii-public-corruption-source-ledger.md) — cutoff 2026-07-27
+- [July 31 Cabinet meeting: many claims, no new orders](white-house-cabinet-meeting-2026-07-31.md) — cutoff 2026-07-31T19:50:38-04:00
+- [Justice Department opinion widens which state offices must report people unlawfully present](prwora-state-reporting-eligibility-architecture.md) — cutoff 2026-09-02
+- [New law puts 'other transaction' deals on USAspending, but slowly](stop-secret-spending-act-ota-transparency.md) — cutoff 2026-09-15T18:26:27-04:00
+- [Next year's budget: proposed growth, big shifts, and a stopgap to December](federal-budget-fy2026-fy2027.md) — cutoff 2026-09-11T19:55:13-04:00
+- [No public record yet follows a federal dollar all the way down](fraud-payment-integrity.md) — cutoff 2026-09-30
+- [Official releases follow a pattern that makes the story sound stronger than the files](disclosure-architecture.md) — cutoff 2026-07-27
+- [One $37 million child-care payment can be traced into Pennsylvania, but not to providers](pa-ccdbg-state-edge-pilot.md) — cutoff 2026-07-27
+- [One map to browse all saved federal research](federal-government-movement-atlas.md) — cutoff 2026-09-22T11:51:46-04:00
+- [Pentagon orders security reviews at 30 unnamed universities](dow-research-security-audits-2026-08-17.md) — cutoff 2026-08-17
+- [Postal workers helped run a Census test; no citizenship database shown](census-usps-citizenship-apportionment.md) — cutoff 2026-08-11
+- [Rating firms paid $49M+ for lost messages; the clean-up is still private](sec-credit-rating-recordkeeping-orders-2024-2026.md) — cutoff 2026-09-25
+- [The House Oversight hearing and transcript library](house-oversight-corpus.md) — cutoff 2026-07-22
+- [The One Big Beautiful Bill makes states pay for SNAP errors; it did not create a fraud rate](obbb-fraud-error-rate-legal-map.md) — cutoff 2026-07-16
+- [The White House's own economists lay out the reasons behind its orders](white-house-research-hub.md) — cutoff 2026-07-21
+- [The court cases deciding who gets inside the money system](judicial-money.md) — cutoff 2026-09-03
+- [The federal personnel office is taking over more hiring, records and checks](opm-structural-change-audit-2025-2026.md) — cutoff 2026-08-29T20:10:53-04:00
+- [The four Trump indictments were four different legal stories](trump-criminal-indictments-primary-source-map-2023-2026.md) — cutoff 2026-10-01T14:00:00-04:00
+- [The government rooms hiding between the boxes](government-hidden-control-surfaces-2026.md) — cutoff 2026-09-28T23:59:59-04:00
+- [The ownership-reporting rule now reaches only foreign companies](december-2024-beneficial-ownership-reporting-perimeter.md) — cutoff 2026-09-25
+- [Trump added a super-intelligence team without taking power from agencies](federal-agency-ai-plans-infrastructure.md) — cutoff 2026-10-04
+- [University money is moving to per-payment checks, not blockchain](university-funding-programmable-compliance.md) — cutoff 2026-07-28
+- [University money now comes with more checks around the payment](education-university-funding.md) — cutoff 2026-08-17
+- [What actually changed at the federal fiscal-year close](federal-government-fiscal-year-close-delta-2026-09-30.md) — cutoff 2026-09-30T12:21:42-04:00
+- [What changed in the federal government, September 21–25](federal-government-weekly-delta-2026-09-25.md) — cutoff 2026-09-25T23:59:59-04:00
+- [What changed on federal websites, September 16–22](federal-government-deep-website-review-2026-09-22.md) — cutoff 2026-09-22T11:51:46-04:00
+- [What the government is building around crypto and the dollar](institutional-signals-thesis-test-2025-2026.md) — cutoff 2026-09-28T23:59:59-04:00
+- [When the Fed is not the expert owner](federal-reserve-noncore-initiative-governance-2026.md) — cutoff 2026-09-30
+- [Who can watch, use force, freeze and spend: a map of the legal levers](federal-force-surveillance-and-emergency-authority.md) — cutoff 2026-08-15
+- [A new religious-affairs office reporting directly to the Secretary](office-of-religious-affairs.md) — cutoff 2026-09-30T22:00:00-04:00
+- [Independent power for major military installations](fortress-america-installation-energy-independence.md) — cutoff 2026-09-30T23:59:59-04:00
+- [The military is reorganizing around shared data, with named vendors at the center](military-modernization.md) — cutoff 2026-07-15
+- [The military moves on commercial ships, rail and fuel, and now aims for off-grid bases](contested-logistics.md) — cutoff 2026-09-30
+- [A CPA license may become a private-market passport](sec-accredited-investor-credential-notices-2026-09-30.md) — cutoff 2026-09-30T20:55:02-04:00
+- [Apps can now sell regulated derivatives without registering](cftc-passive-software-no-action-2026-09-17.md) — cutoff 2026-09-17T11:32:00-04:00
+- [Coinbase gets its own derivatives clearinghouse](coinbase-clearing-dco-registration-2026-09-28.md) — cutoff 2026-09-28T22:09:00-04:00
+- [Could XRP quietly power currency conversions?](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-10-03T09:30:00-04:00
+- [DTCC's tokens: a controlled layer, not a new market](dtcc-tokenization-2026.md) — cutoff 2026-08-21
+- [Federal technology and money systems changed in separate pieces, September 17–20](federal-technology-and-monetary-infrastructure-delta-2026-09-20.md) — cutoff 2026-09-20T16:20:12-04:00
+- [How 16 financial giants are going digital](major-bank-digital-transition.md) — cutoff 2026-10-03T10:20:00-04:00
+- [How Congress is building the new money plumbing](congressional-monetary-infrastructure.md) — cutoff 2026-09-16
+- [How gold moves—and why a gold token is not collateral yet](wholesale-metals.md) — cutoff 2026-09-14
+- [Instant payment can't replace the legal steps in running power plants](energy-atomic-settlement-iran.md) — cutoff 2026-08-09
+- [Is blockchain cheaper? Only for some middlemen](blockchain-settlement-cost-2026.md) — cutoff 2026-08-02
+- [Not a new currency: a fight over the points where money changes form](overall-monetary-play.md) — cutoff 2026-07-13
+- [Real-time books and the future audit](atomic-settlement-continuous-assurance.md) — cutoff 2026-09-26
+- [SEC advisers' tokenization advice versus actual SEC action](sec-investor-advisory-committee.md) — cutoff 2026-09-20T16:20:12-04:00
+- [SEC opens a trial lane for tokenized stocks](sec-tokenized-nms-stock-innovation-exemption.md) — cutoff 2026-09-17T09:46:00-04:00
+- [SEC proposes blockchain-based official shareholder records](sec-transfer-agent-modernization.md) — cutoff 2026-09-01
+- [SWIFT's blockchain ledger is moving real money](swift-shared-ledger.md) — cutoff 2026-09-28
+- [Stablecoins at the checkout: real, but tiny so far](card-network-stablecoins-2026.md) — cutoff 2026-09-30
+- [States still decide much of how banks and credit unions work](bank-credit-union-legal-architecture.md) — cutoff 2026-09-15
+- [The CFTC proposes a federal lane for leveraged retail crypto](cftc-regulation-ctx-cam-anprm-2026-10-05.md) — cutoff 2026-10-05
+- [The Fed is many legal bodies, and its building cost doubled](fed-clearing-treasury.md) — cutoff 2026-09-30
+- [The SEC's crypto custody plan: expensive, and still only a proposal](sec-crypto-custody-proposal-2026-10-01.md) — cutoff 2026-10-01T17:35:03-04:00
+- [The crypto market-structure bill stalled, so the agencies moved](clarity-act-senate-draft-2026.md) — cutoff 2026-09-14
+- [The dollar stays; the rails go private](route-anchor-inventory.md) — cutoff 2026-08-31T14:43:21-04:00
+- [The stablecoin law is passed, but the rules aren't done](genius-act-implementation-2026.md) — cutoff 2026-09-30
+- [What changed at federal financial agencies, September 30–October 2](federal-monetary-economic-institutions-delta-2026-10-02.md) — cutoff 2026-10-02T15:39:30-04:00
+- [What finance has actually moved onto blockchains](overall-dlt-transition.md) — cutoff 2026-09-22T23:59:59-04:00
+- [What makes a legal stablecoin trustworthy](genius-stablecoin-trust-crosswalk.md) — cutoff 2026-08-17
+- [What makes a record official on a blockchain](official-record-authority-blockchain.md) — cutoff 2026-09-26
+- [What stablecoins reveal, and what they still hide](payment-transparency-hidden-constitution.md) — cutoff 2026-07-31
+- [When code or an AI agent moves money, who is on the hook?](programmable-and-agentic-payments-2026-09-22.md) — cutoff 2026-09-22
+- [Which companies actually run the new digital-money system?](crypto-infrastructure-comparatives.md) — cutoff 2026-09-30
+- [Who actually controls the crypto infrastructure](tokenization-entity-control-map.md) — cutoff 2026-10-01
+- [Who really holds power in digital finance](authority-through-the-adapter.md) — cutoff 2026-08-31T10:42:24-04:00
+- [Who's wiring the new private money system](private-monetary-stack.md) — cutoff 2026-08-26
+- [Why the QNT token jumped in September](qnt-september-2026-price-rise.md) — cutoff 2026-09-27T09:44:00-04:00
+- [“24-hour trading” is really 23 hours, five days a week](sec-24-hour-trading-roundtable-2026-09-17.md) — cutoff 2026-09-23
+- [COVID origins files: the paper's wording hardened late, but no proof of a directed cover-up](rand-paul-covid-origins-reading-room-2026-07-29.md) — cutoff 2026-07-29
+- [Five sets of COVID records, kept apart on purpose](covid-authority-disclosures.md) — cutoff 2026-07-29
+- [New federal funding ban on dangerous gain-of-function research](hhs-high-risk-life-sciences-policy-2026-07-28.md) — cutoff 2026-07-28
+- [ODNI's COVID files show funding and contacts, not a proven lab origin](odni-covid-biolab-disclosures-2026-06.md) — cutoff 2026-07-27
+- [The 2020 COVID record: separate emergencies, guidance and approvals, not one switch](covid-2020-authority-spine.md) — cutoff 2026-07-27
+- [The U.S. left the WHO on Jan. 22, 2026, with loose ends](us-who-membership-exit-legal-map.md) — cutoff 2026-08-15
+- [White House re-promoted its COVID lab-leak page during Fauci's hearing](white-house-covid-gov-reactivation-2026-07-29.md) — cutoff 2026-07-29T12:00:00-04:00
+- [How insurers invest trillions, move risk and share losses with government](insurance-reinsurance.md) — cutoff 2026-10-01T16:00:00-04:00
+- [In a crisis, central banks use separate tools, not one switch](international-emergency-monetary-policy.md) — cutoff 2026-07-13
+- [No single emergency switch turns crypto into federal money](emergency-monetary-policy.md) — cutoff 2026-07-15
+- [AI helps run turbines, but people still make the big calls](ai-turbine-asset-management-power-buildout.md) — cutoff 2026-08-09
+- [Fusion has plans and funding, but no U.S. power plant yet](federal-fusion-commercialization.md) — cutoff 2026-08-15
+- [Genesis: a federal AI science platform, mostly still being built](genesis-mission.md) — cutoff 2026-09-09
+- [How Washington plans to turn science strategy into funded work](federal-science-operating-system.md) — cutoff 2026-10-04
+- [NSA published the post-quantum plan; real system use is still unproved](federal-cryptographic-trust-stack.md) — cutoff 2026-10-01
+- [Nanotubes help batteries, but the U.S. lacks a full home supply chain](carbon-nanotubes-battery-sovereignty.md) — cutoff 2026-08-23
+- [New York's factory push is real and spread across the state, not just Micron](new-york-manufacturing-innovation-map-2026.md) — cutoff 2026-09-04
+- [No federal data-center ban, just scattered permits and leases](data-center-federal-legal-spine.md) — cutoff 2026-10-05
+- [No proof yet that tokens fund real industrial projects](industrial-project-finance-digital-rails.md) — cutoff 2026-07-31
+- [No single pass lets federally funded science through](scientific-trust-stack.md) — cutoff 2026-08-17
+- [U.S. is making rare-earth magnets again, but China still runs the chain](permanent-magnets.md) — cutoff 2026-07-22
+- [What it takes for quantum tech and new encryption to win federal approval](nssts-quantum-cryptographic-acceptance.md) — cutoff 2026-08-19
+- [What's really inside the 'trillions coming in' investment claims](us-inbound-investment-industrial-capex.md) — cutoff 2026-07-31
+- [Which companies could build the national-security tech plan, and who signs off](nssts-technology-company-map.md) — cutoff 2026-08-19
+- [Who loses money if AI demand falls depends on each deal](ai-infrastructure-capital-stack-risk-transfer.md) — cutoff 2026-08-10
+- [Winning a federal tech award is not the same as being accepted](nssts-program-acceptance-economy.md) — cutoff 2026-08-19
+- [A U.S.–UK agenda for digital markets, not a shared rulebook](us-uk-transatlantic-markets-taskforce-2026.md) — cutoff 2026-08-04
+- [Crypto around the world: many licenses, no proven cross-border use](international-crypto-map.md) — cutoff 2026-10-03T09:30:00-04:00
+- [Davos speech claims, and the Greenland deal signed in September](trump-davos-address-2026-01-21.md) — cutoff 2026-09-25
+- [G7 and G20 set goals, but other bodies make them happen](g7-g20-coordination-architecture.md) — cutoff 2026-09-03T19:41:23-04:00
+- [Gold can swing a country's trade numbers without moving its currency](gold-bop-currency-adjustment.md) — cutoff 2026-08-23
+- [Grading the system behind each G20 currency, with no overall ranking](currency-watch.md) — cutoff 2026-07-31
+- [How British money actually works, layer by layer](uk-monetary-constitution-2026.md) — cutoff 2026-09-14
+- [How new money could reach government debt, and what would prove it](international-monetary-next-phase-2026.md) — cutoff 2026-09-07
+- [How the United States is wired into the international order](international-organizations-us-power-map-2026.md) — cutoff 2026-10-04
+- [Japan defended the yen; the IMF only classifies](japan-korea-currency-defense-2026.md) — cutoff 2026-08-01
+- [Japan is rewiring its money without replacing it](japan-monetary-constitution-2026.md) — cutoff 2026-09-28
+- [Japan's August: defending the yen, rebuilding after a quake, testing digital money](japan-august-2026-delta.md) — cutoff 2026-08-31T23:10:00+09:00
+- [Korea's July crash hit prices, not the plumbing](korea-market-stress-2026.md) — cutoff 2026-07-29
+- [No region is switching the money system on its own](international-monetary-initiation-2026.md) — cutoff 2026-09-14
+- [Oil and gas tightness is selective, and many deals are not yet flows](global-oil-gas-movements.md) — cutoff 2026-09-30
+- [Scottish, Welsh and Irish party cooperation is not independence](uk-constitutional-order-self-determination.md) — cutoff 2026-09-13T17:59:00-04:00
+- [Stablecoins showed a parallel price, not an escape route](japan-korea-stablecoin-fx-overlap-2026.md) — cutoff 2026-07-31
+- [State's Cuba report builds a case but creates no new power](cuba-pressure-counter-influence.md) — cutoff 2026-07-20
+- [The IMF doesn't set currency prices, but it sets the rules around them](imf-currency-pricing-2026.md) — cutoff 2026-07-30
+- [The IMF lectures everyone but only conditions borrowers](imf-symmetry-audit-2026.md) — cutoff 2026-07-30
+- [The IMF's lawyers describe their own job](imf-legal-department-at-80-2026.md) — cutoff 2026-09-26
+- [The U.S. is steering the IMF from inside, not leaving it](bessent-iif-spring-meetings-2026.md) — cutoff 2026-07-30
+- [The dollar system is being reworked, not replaced](international-monetary-transition.md) — cutoff 2026-09-28T10:16:00+09:00
+- [The working thesis: deep change made from inside the old institutions](economic-institution-legitimacy-crisis.md) — cutoff 2026-09-30T16:15:00-04:00
+- [There is no secret petrodollar contract](petrodollar-system-1945-2026.md) — cutoff 2026-09-15
+- [Tracing Iraqi oil: what is proven and what is only alleged](iraq-oil-logistics.md) — cutoff 2026-07-15
+- [Treasury moves to cut a UAE bank off from U.S. accounts over Iran](iran-financial-pressure.md) — cutoff 2026-09-03T19:41:23-04:00
+- [Trump-Xi visit produced a trade board and product lists, but no signed security pact](us-china-strategic-stability-state-visit-2026.md) — cutoff 2026-09-28T10:07:16-04:00
+- [U.S. trade agency pays for early project studies abroad, before any deals](ustda-project-development-pipeline-2026.md) — cutoff 2026-09-26T12:45:00-04:00
+- [U.S.–China is many separate deals, not one relationship](china-country-orientation-2026.md) — cutoff 2026-09-24T23:05:00-04:00
+- [U.S.–Russia ties run through many thin channels, not one relationship](russia-country-orientation-2026.md) — cutoff 2026-09-24T23:59:00-04:00
+- [UN week 2026: AI took center stage, but no new rules or money](un-general-assembly-high-level-week-2026.md) — cutoff 2026-09-30T04:30:00-04:00
+- [What the IMF can and can't legally do](imf-legal-constitution-2026.md) — cutoff 2026-09-21
+- [White House transshipment report is a claim, not proof against Canada](institutional-regime-waves.md) — cutoff 2026-09-02
+- [Did the federal sweep miss anything, August 21–29?](federal-government-sweep-control-audit-2026-08-29.md) — cutoff 2026-08-29T21:06:00-04:00
+- [What changed across the federal government, July 14–18](government-wide-audit-july-2026.md) — cutoff 2026-07-18
+- [What changed in the federal government, August 13–20](federal-government-weekly-delta-2026-08-20.md) — cutoff 2026-08-20T12:19:33-04:00
+- [What changed in the federal government, August 20–21](federal-government-weekly-delta-2026-08-21.md) — cutoff 2026-08-21T15:00:00-04:00
+- [What changed in the federal government, August 2–8](federal-government-weekly-delta-2026-08-08.md) — cutoff 2026-08-08T11:50:27-04:00
+- [What changed in the federal government, August 31–September 3](federal-government-weekly-delta-2026-09-03.md) — cutoff 2026-09-03T20:09:34-04:00
+- [What changed in the federal government, August 8–13](federal-government-weekly-delta-2026-08-13.md) — cutoff 2026-08-13T21:25:45-04:00
+- [What changed in the federal government, September 12–16](federal-government-weekly-delta-2026-09-16.md) — cutoff 2026-09-16T19:10:34-04:00
+- [What changed in the federal government, September 4–11](federal-government-weekly-delta-2026-09-11.md) — cutoff 2026-09-11T16:01:37-04:00
+- [What changed on federal websites by July 25](federal-government-website-sweep-2026-07-25.md) — cutoff 2026-07-25
+- [What federal agency libraries added on August 22](federal-government-entity-library-harvest-2026-08-22.md) — cutoff 2026-08-23
+- [What the August 22 federal source sweep actually found](federal-government-full-freshness-sweep-2026-08-22.md) — cutoff 2026-08-23
+- [Which federal source pages were actually usable in August 2026](government-wide-recertification-august-2026.md) — cutoff 2026-08-04T17:48:00-04:00
+- [Accounting built from shared business events](transaction-native-accounting.md) — cutoff 2026-10-05

@@ -1,5 +1,17 @@
 # Direct-Website Corrective Merge — August 31–September 3, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What material federal state changed from August 31 through September 3, 2026 when the Federal Register backbone was corrected with direct agency, program, oversight, filing, committee, court, military, data and operating surfaces?
+
+**Answer:** The Federal Register alone missed important changes. Direct agency and program pages added crypto-product certifications, emergency drug action, federal workforce appeals, refinery exemptions, clearing rules and new military, science and infrastructure evidence.
+
+**Evidence checked through:** 2026-09-03T20:09:34-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **State:** closed-provenance; controlling correction to the first weekly merge; human promotion remained unapproved at campaign close
 
 > **Lifecycle note (September 8, 2026):** closed provenance. Historical pending, review, promotion, completion or incorporation language below records the campaign state at its own cutoff; it is not a current queue and does not change any stated Chronicle landing, incorporation boundary or evidence cutoff.

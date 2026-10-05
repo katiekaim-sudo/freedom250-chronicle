@@ -1,5 +1,17 @@
 # NARA AI records layer and buildout
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How does the National Archives keep evidence about federal artificial-intelligence use while moving its own archival systems into a mix of government and commercial cloud services?
+
+**Answer:** On August 21, 2026 the National Archives told agencies when AI prompts, outputs, logs, code and training copies count as federal records that must be kept under approved schedules. At the same time it is building its own AI tools on Google, Microsoft Azure and Amazon cloud services.
+
+**Evidence checked through:** 2026-08-23
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Bottom line
 
 NARA now occupies both sides of the federal AI transition.

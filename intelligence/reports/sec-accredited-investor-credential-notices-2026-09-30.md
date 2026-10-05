@@ -1,5 +1,17 @@
 # SEC Accredited Investor Credential Notices — 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the SEC approve for proposal at its September 30, 2026 open meeting, how does the CPA route fit the wider private-market-access program, what was Peirce's artificial-intelligence point, and which legal and operating gates remain?
+
+**Answer:** The SEC has asked for comment on treating an active U.S. CPA license as an accredited-investor credential; this is a live notice, not a final designation order.
+
+**Evidence checked through:** 2026-09-30T20:55:02-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Status:** five Commission notices issued September 30, 2026; no final
 designation order yet  
 **Lead question:** Did the SEC make CPAs accredited investors, and what would

@@ -1,5 +1,17 @@
 # Congressional Monetary Infrastructure — Research Package
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do committees, hearings, bills and market utilities move digital-asset law, Treasury-market reform and tokenized settlement from proposal toward operation?
+
+**Answer:** A big rebuild of U.S. financial plumbing is under way, but not as one bill: Congress, a dozen agencies and market utilities like DTC are each moving separate pieces that are converging.
+
+**Evidence checked through:** 2026-09-16
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Read first.**
 **Cutoff:** 2026-09-23
 **State:** `current workspace research; no live-vault files changed`

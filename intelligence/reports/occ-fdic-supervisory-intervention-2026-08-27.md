@@ -1,5 +1,17 @@
 # OCC–FDIC Supervisory Intervention Framework — Factual Analysis
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the OCC and FDIC change on August 27, 2026 about when examiners can demand fixes or take enforcement action against a bank?
+
+**Answer:** The OCC and FDIC tied enforcement to material financial harm; the Fed did not join.
+
+**Evidence checked through:** 2026-08-27T17:55:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Short answer
 
 The August 27 package rewrites the escalation ladder used by the OCC and FDIC:

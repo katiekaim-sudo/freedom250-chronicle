@@ -2,6 +2,18 @@
 
 # Super Intelligence Force — authority, membership and report gate
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How is federal agency AI and service-delivery infrastructure moving from fragmented systems into shared access, network and triage layers, and which authority, implementation, operation and effect gates remain open?
+
+**Answer:** The Super Intelligence Force adds White House coordination and a reported 120-day review above existing artificial-intelligence programs. It does not yet have a public charter, budget or power transferred from the agencies.
+
+**Evidence checked through:** 2026-10-04
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Evidence cutoff:** October 4, 2026 at 2:56 p.m. EDT  
 **Mode:** question-led executive-branch and cross-government authority audit  
 **Excluded:** nonpublic charter text, classified activity, an exhaustive private-

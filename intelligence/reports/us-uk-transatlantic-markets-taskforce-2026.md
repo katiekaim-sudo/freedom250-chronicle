@@ -1,5 +1,17 @@
 # Transatlantic Taskforce Recommendations — Factual Map
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the U.S.–UK Transatlantic Markets Taskforce actually recommend on July 14, 2026, and what did it not create?
+
+**Answer:** Ten recommendations and a stablecoin statement; no common rule, passport or collateral permission yet.
+
+**Evidence checked through:** 2026-08-04
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Maintained Workbench answer.** Original evidence cutoff: August 4, 2026 EDT.
 September 7 consolidation checks the saved research and preserved policy PDFs;
 it does not refresh domestic regulations or verify later implementation. The

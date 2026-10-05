@@ -2,6 +2,18 @@
 
 # Wave 10 — merge, adjudication and close
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What materially changed after the September 16 whole-government cursor across the federal technology and monetary-control stack, including changes not labeled crypto, tokenization or stablecoin?
+
+**Answer:** The SEC, Federal Reserve, market utilities and procurement system changed data, software, trading hours, supervision and operating rules on separate clocks. The changes are real, but they do not show one crypto overhaul or one transfer of public power.
+
+**Evidence checked through:** 2026-09-20T16:20:12-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Controlling answer
 
 The September 17–20 delta is a coordinated-looking but not centrally proven

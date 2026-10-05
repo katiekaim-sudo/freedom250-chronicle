@@ -2,6 +2,18 @@
 
 # Japan Monetary Constitution — System-Wide Transaction Walks and Thesis Ruling, September 14, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How does authority in Japan become a yen claim, a balance-sheet position, collateral, final settlement and, when something breaks, a loss?
+
+**Answer:** Who earns interest and holds the bonds is shifting, but the core institutions and final settlement stay put.
+
+**Evidence checked through:** 2026-09-28
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Bottom line
 
 The Japan project supports the Observatory's monetary thesis, but in a narrower

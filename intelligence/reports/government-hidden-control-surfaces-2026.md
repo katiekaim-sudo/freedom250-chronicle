@@ -1,5 +1,17 @@
 # Government Hidden Control Surfaces 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What high-value government information is Freedom 250 likely missing because it lives below or between familiar entity, agency, committee and publisher layers?
+
+**Answer:** Our agency map is strong, but we have not consistently tracked the recurring public rooms where officials hear requests, coordinate methods, choose projects and turn advice into later action.
+
+**Evidence checked through:** 2026-09-28T23:59:59-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Question
 
 What high-value government information is Freedom 250 likely missing because it

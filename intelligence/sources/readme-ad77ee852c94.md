@@ -1,5 +1,17 @@
 # COVID and Biolab Disclosures
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do the five governed COVID evidence families differ in source type, claim, clock and authority?
+
+**Answer:** This is an index holding five separate families of COVID records: the 2020 emergency-powers baseline, June 2026 intelligence releases, a July 2026 HHS research policy, the White House COVID.gov relaunch and Sen. Rand Paul's reading room. It keeps their claims from being merged.
+
+**Evidence checked through:** 2026-07-29
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Workbench research packages for official COVID-origin, intelligence-process,
 research-funding, whistleblower and overseas-laboratory disclosures.
 

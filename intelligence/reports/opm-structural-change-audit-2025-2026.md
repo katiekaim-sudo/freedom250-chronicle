@@ -1,5 +1,17 @@
 # OPM Structural Change — Coverage and Gap Audit
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How has the federal personnel office taken more control over hiring, records and checks, and where have courts or statutes limited that change?
+
+**Answer:** Beyond job cuts, the Office of Personnel Management is taking a larger role in federal hiring, employee ranking, shared personnel systems, digital records and payment checks. Many rules and systems are in place, but their results are not yet proven.
+
+**Evidence checked through:** 2026-08-29T20:10:53-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Bottom line
 
 Katie's hunch was right, with one important qualification: we did not lack the

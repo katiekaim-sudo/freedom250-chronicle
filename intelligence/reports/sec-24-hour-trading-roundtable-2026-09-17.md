@@ -1,5 +1,17 @@
 # SEC 24-Hour Trading Roundtable — Full-Meeting Analysis
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the SEC's September 17, 2026 roundtable show about round-the-clock stock trading, and what will still run on the old clock?
+
+**Answer:** December 6 is a launch target, and the live price feed would skip the busiest overnight hour.
+
+**Evidence checked through:** 2026-09-23
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Meeting:** September 17, 2026  
 **Analysis cutoff:** September 23, 2026  
 **Record reviewed:** both replay parts, the SEC event page, two announcements, Sunshine Act notice, staff supporting-data memorandum, four prepared statements, and File 4-913 comment page  

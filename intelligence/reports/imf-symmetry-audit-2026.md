@@ -1,5 +1,17 @@
 # Who Gets Adjusted? — IMF surveillance, conditionality, and waiver symmetry
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Does the IMF treat powerful non-borrowing countries and borrowing countries differently?
+
+**Answer:** Big economies get candid advice; borrowers get deadlines, conditions and reviews tied to the money.
+
+**Evidence checked through:** 2026-07-30
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Evidence cutoff:** July 30, 2026. Selected published 2025–26 country records.
 September 7 consolidation preserves the source dates and research history;
 it does not refresh the country reports or establish later implementation.

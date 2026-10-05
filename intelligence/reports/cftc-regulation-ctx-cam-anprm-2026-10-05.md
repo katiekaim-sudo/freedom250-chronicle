@@ -1,0 +1,478 @@
+# CFTC Regulation CTX and CAM — ANPRM and OIRA Review
+
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What would the Commodity Futures Trading Commission's two October 5 crypto proposals change, where does the agency think current law reaches, what disputes are already visible, and what would still have to happen before a market could open?
+
+**Answer:** The CFTC is testing a federal venue for leveraged retail crypto, while ordinary unleveraged spot trading still sits outside the proposed lane.
+
+**Evidence checked through:** 2026-10-05
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
+## October 5, 2026 update — the public process begins, but the text is not public yet
+
+### Controlling answer
+
+The CFTC has **not issued final crypto rules**. On October 5 it announced an
+**Advanced Notice of Proposed Rulemaking (ANPRM)** for two contemplated
+regimes: **Regulation Crypto Asset Transactions (`Regulation CTX`)** and
+**Regulation Crypto Asset Markets (`Regulation CAM`)**. An ANPRM asks whether
+and how the agency should write a later proposed rule; it does not amend the
+Code of Federal Regulations, authorize a venue, approve an asset or start a
+compliance clock.
+
+The announcement confirms the legal architecture that was only inferred in
+the September 18 baseline below:
+
+- `CTX` means retail commodity transactions involving crypto assets under
+  Commodity Exchange Act section 2(c)(2)(D)—the existing Dodd-Frank hook for
+  transactions offered to retail on a leveraged, margined or financed basis.
+- `CAM` would be a purpose-built **subcategory of designated contract market
+  registration** for those CTXs.
+- The agency is considering a uniform national regime aimed at abusive
+  practices, crypto-specific contextual guidance and industry best practices.
+- The Commission intends to use the comments to inform **potential future
+  agency action, such as a rulemaking**. The announcement does not promise an
+  NPRM or final rule.
+
+OIRA concluded review of RIN `3038-AF80` on **October 2, 2026** as **Consistent
+with Change**. The CFTC then issued Release 9307-26 and Chairman Selig's
+October 5 op-ed. The release says comments will be due **60 days after Federal
+Register publication**. As of the October 5 EDT cutoff, however, no AF80
+document appears in the Federal Register API or its Public Inspection feed,
+the CFTC's Federal Register search has no AF80 entry, and the CFTC release
+links only to the Regulations.gov entrance rather than a document-specific
+docket. The public record therefore does not yet expose the ANPRM text,
+question list, docket number, CFR parts, exact authority analysis, Commission
+vote record or calendar comment-close date.
+
+**Current state:** `Commission-announced ANPRM; OIRA concluded consistent with
+change; controlling text and docket not yet publicly reachable; no operative
+rule`.
+
+**Background control group:** CFTC CAM Anatomy, DCM Control Stack and Terms
+Baseline — 2026
+maps how DCMs, DCOs, FCMs, IBs, NFA oversight, Part 40 filings, clearing,
+settlement, custody and customer-property rules work today; reads Bitnomial as
+the nearest current analog; and fixes the vocabulary for later text comparison.
+
+**SEC-style proposal audit owners:**
+
+- audit and build plan;
+- source and publication-state manifest; and
+- thirty-dimension ANPRM → NPRM → final → operation baseline.
+
+The page atlas, complete comment-question atlas, exact rule/form crosswalk,
+economics ledger, drafting ledger and claim audit remain text-gated. They will
+be built from the public ANPRM rather than inferred from stakeholder requests.
+
+### What changed from the September baseline
+
+| Clock | September 18 state | October 5 state | Legal or operating effect |
+|---|---|---|---|
+| White House review | Pending OIRA prerule review | Concluded October 2, `Consistent with Change` | Clears the executive-review gate; does not disclose which language changed or make the action effective. |
+| Commission/public process | No public instrument | CFTC announces an ANPRM and a 60-day comment period measured from later Federal Register publication | Opens a preregulatory public-input path; it is not an NPRM or final rule. |
+| Legal design | Leveraged/margined DCM architecture inferred from the chair's roadmap | CFTC confirms section 2(c)(2)(D) `CTXs` plus a purpose-built DCM subcategory called a `CAM` | Establishes the intended lane, not its conditions. |
+| Comprehensive spot authority | Missing | Still missing | Chairman Selig expressly says the agency cannot require crypto assets to trade on CFTC venues without Congress. |
+| Venue/product operation | None established | None established | No CAM designation, application, approved rulebook, listed CTX, customer account, custody chain, trade or volume is public. |
+
+### What Regulation CTX and CAM could do
+
+The proposed architecture could create a voluntary federally regulated island
+for exchanges that want to offer retail leverage, margin or financing in
+non-security crypto commodities. Within that island the Commission is testing
+how DCM duties—market surveillance, anti-manipulation controls, access rules,
+financial integrity, conflicts, records, systems safeguards and emergency
+powers—should be adapted to crypto spot-market mechanics.
+
+The chairman says the option would be available to CFTC registrants and
+crypto exchanges that seek CAM designation. A platform choosing the route
+could gain a federal venue framework and the ability to offer covered retail
+financing. The CFTC cannot use that choice to force every ordinary, fully paid
+spot trade onto a CAM. Fraud and manipulation authority is not the same as
+comprehensive supervisory authority over the ordinary spot venue.
+
+### The real drafting fights hidden behind the short announcement
+
+The October 5 release does not publish the questions, but the official 2025
+comment file identifies the issues a workable ANPRM must resolve. These are
+stakeholder positions and unresolved legal-design questions—not provisions of
+the unpublished ANPRM:
+
+1. **How far an offer of leverage reaches.** Section 2(c)(2)(D) applies when a
+   covered transaction is offered to retail on a leveraged, margined or
+   financed basis, even if not entered into on that basis. Coinbase argued
+   that once a platform offers leverage it can place leveraged and fully paid
+   orders for the same asset in one federally supervised order book. A16z
+   framed the authority more narrowly around covered leveraged-retail spot
+   contracts and acknowledged that broader spot supervision needs Congress.
+2. **DCM/DCO constitution versus atomic settlement.** Bitnomial argued that the
+   existing DCM, DCO, FCM and IB chain can carry leveraged spot crypto with
+   central clearing and customer protections. Coinbase argued that completed
+   spot transfers and bespoke credit do not create the same fungible future
+   obligation as a futures contract and asked the CFTC to exempt CAM trades
+   from DCO clearing. The rule will need to say which risk is being cleared:
+   the asset transfer, the financing claim, or both.
+3. **Vertical integration and conflicts.** Crypto exchanges commonly combine
+   listing, execution, custody, financing and settlement. The question is not
+   whether the software can do all five, but whether one legal entity may own
+   them, what separation or independent oversight is required, and who bears
+   loss when the integrated operator fails.
+4. **Customer property, custody and insolvency.** The regime must identify
+   where keys and assets sit, which customer-property or segregation rules
+   apply, whether limited rehypothecation is allowed, which book is
+   authoritative, and whether Part 190, Bankruptcy Code commodity-broker
+   protections, UCC Article 8 or another arrangement controls recovery.
+5. **Manipulation and surveillance across fragmented markets.** Solidus Labs
+   told the CFTC that the blockchain alone is insufficient because material
+   price formation, identity, fiat flows and centralized-exchange activity can
+   be off-chain. A CAM needs cross-venue and cross-chain data, wash-trading and
+   spoofing detection, oracle and smart-contract incident treatment, and a
+   defensible `not readily susceptible to manipulation` listing analysis.
+6. **Asset perimeter and SEC handoff.** CAM eligibility depends on the asset
+   not being a security in the relevant transaction. The March SEC-CFTC
+   interpretation supplies a taxonomy but does not eliminate facts-and-
+   circumstances questions, investment-contract overlays or security-futures
+   boundaries.
+7. **The cash leg and 24/7 failure layer.** A crypto venue can trade around the
+   clock while banks, payment rails, margin calls, liquidity providers and
+   legal recovery do not. The proposal must separately address prefunding,
+   stablecoin or bank-money settlement, liquidation, outage, fork, oracle,
+   cyber, key-loss and emergency-stop mechanics.
+8. **Federal registration does not erase the rest of the state.** A CAM rule
+   cannot by itself supply a bank charter, stablecoin permission, AML program,
+   lending license, bankruptcy priority, UCC property rule, tax treatment or
+   Federal Reserve account. The chairman's `single federal market-regulatory
+   scheme` is therefore a market-regulation claim, not a one-license monetary
+   constitution.
+
+### What this confirms and changes in the Library
+
+- It **confirms** the September OIRA study's high-confidence inference that
+  AF80 joins the retail-commodity-transaction hook to a DCM-like crypto venue.
+- It **changes** the state from private drafting to a Commission-announced
+  preregulatory process and answers the first half of the saved return: OIRA
+  concluded and the agency disclosed the architecture.
+- It **does not change** the August 26 authority ledger's central boundary:
+  the principal federal gap remains ordinary unleveraged spot trading in
+  non-security digital commodities.
+- It **builds on** the September 17 passive-software position by pairing wider
+  outside distribution with a contemplated registered-market anchor; neither
+  one authorizes DeFi protocols, autonomous agents or wallet custody as a
+  class.
+- It **sits beside**, rather than inside, the September 28 Coinbase Clearing
+  DCO registration. A registered clearing entity is an operative permission;
+  a CAM ANPRM is a proposed constitutional route. Neither proves a first CAM,
+  first CTX or first combined trading-clearing-custody chain.
+
+### Proposal-to-final comparison baseline
+
+This is the comparison frame to fill when the ANPRM text, later NPRM and any
+final rule appear. `Confirmed now` means the October 5 Commission announcement
+or OIRA record establishes it. `Text-pending` means the announcement does not.
+
+| Dimension | October 5 proposal baseline | State | Later comparison question |
+|---|---|---|---|
+| Instrument | Advanced Notice of Proposed Rulemaking | Confirmed now | Does the later object remain an ANPRM, become an NPRM, or split into several rules or interpretations? |
+| RIN | `3038-AF80` | Confirmed by OIRA | Does the Federal Register object use AF80, link AF66, or assign related RINs? |
+| Named regimes | Regulation CTX and Regulation CAM | Confirmed now | Are both carried into proposed regulatory text and, if so, as separate parts or a joined framework? |
+| Transaction hook | CEA section 2(c)(2)(D) retail commodity transactions involving crypto assets | Confirmed now | How does the text define `offered`, leverage, margin, financing, actual delivery and persons acting in concert? |
+| Asset perimeter | Crypto assets that fall within the CFTC's commodity-side authority; chair names bitcoin and ether as examples | Partly confirmed | What eligibility, non-security, network, liquidity, manipulation, disclosure or exclusion tests govern each listed asset? |
+| Venue | Purpose-built subcategory of DCM registration called a crypto asset market | Confirmed now | Is CAM a new registration class, a DCM designation condition, an elective subtype or exemptive framework? |
+| Mandatory versus elective | A purpose-fit option; CFTC says it cannot require all crypto assets to trade on its venues | Confirmed now | Does any transaction or platform become required to register because it offers leverage, and can unleveraged orders share the same book? |
+| Retail leverage permission | CAMs are intended to offer margined, leveraged or financed retail crypto trading | Confirmed now | Who may finance, what leverage limits apply, and are lending and liquidation rules federal, state or dual? |
+| Financing provider | Not disclosed | Text-pending | May credit come from the CAM, FCM, DCO, affiliate, third party or another regulated person, and which capital, licensing, priority and liquidation rules follow? |
+| Product listing | Not disclosed | Text-pending | Self-certification, prior approval, asset certification, SEC consultation, or another Part 40 process? |
+| Clearing | Not disclosed | Text-pending | DCO required, optional, exempted, or limited to the financing obligation? Who becomes counterparty? |
+| Intermediation | Not disclosed | Text-pending | Direct retail access, FCM/IB chain, broker-like CAM affiliate, or multiple routes? |
+| Custody and keys | Not disclosed | Text-pending | Qualified custodian, FCM/DCO custody, exchange custody, customer self-custody, wallet controls and fork/airdrop treatment? |
+| Customer-property law | Consumer protection is announced; legal mechanism is not | Text-pending | CEA section 4d segregation, Part 190 commodity-customer estate, UCC Article 8, trust, bailment or contractual ring-fence? |
+| Rehypothecation | Not disclosed | Text-pending | Prohibited, capped to financed exposure, disclosed opt-in, or permitted through a separately regulated lender? |
+| Vertical integration | Not disclosed | Text-pending | Which listing, trading, lending, custody, settlement, proprietary and affiliate functions may sit together, under what firewalls? |
+| Surveillance | Abuse prevention and best practices are announced | Confirmed at objective level | What on-chain, off-chain, cross-venue, identity, oracle, wallet, beneficial-owner and suspicious-activity data must a CAM collect? |
+| Records | Not disclosed | Text-pending | Which order, trade, wallet, custody, financing, liquidation and correction records are official and who must reproduce them during an outage? |
+| Settlement/finality | Not disclosed | Text-pending | Technical confirmation, transfer of control, legal discharge, bank/stablecoin cash leg, reversal, fork and failed-settlement rules? |
+| 24/7 resilience | Not disclosed | Text-pending | Staffing, bank-hour gaps, collateral calls, liquidity, cyber, key loss, oracle failure, market pause and recovery? |
+| Capital/resources | Not disclosed | Text-pending | CAM minimum capital, liquidity, insurance, guaranty fund, default resources and wind-down plan? |
+| SEC boundary | Chair relies on the March joint interpretation; exact coordination not disclosed | Partly confirmed | Asset classification consultation, mixed security/commodity platforms, security futures, investment-contract overlays and dual registration? |
+| State-law boundary | Chairman says `single federal market-regulatory scheme`; preemption mechanics not disclosed | Text-pending | Which state exchange, money-transmission, lending, trust/custody, UCC, consumer-protection and insolvency rules survive? |
+| AML/sanctions/tax | Not addressed in the announcement | Text-pending | Which FinCEN, OFAC, IRS, Travel Rule and suspicious-activity duties attach to CAM, affiliates and wallets? |
+| Fees and conflicts | Not disclosed | Text-pending | Listing fees, spread/rebate economics, affiliate trading, principal activity, market making, token ownership and governance conflicts? |
+| Enforcement/remedy | Abuse prevention objective announced; mechanisms not disclosed | Text-pending | Examination, SRO/NFA role, CAM discipline, private/customer remedies, restitution, error correction and asset return? |
+| Economic analysis | OIRA says not economically significant; no public cost-benefit record yet | Confirmed only as review classification | What entities, costs, volumes, small-entity effects, alternatives and claimed benefits appear in the NPRM? |
+| Comment clock | 60 days after Federal Register publication | Confirmed, date not yet fixed | Exact publication and closing dates; any extension or reopened record? |
+| Effectiveness | None | Confirmed absence | Final-rule publication, effective date, compliance phases, grandfathering and transition relief? |
+| Operation | None established | Confirmed absence | First CAM application/designation, rulebook, listed CTX, clearing/custody chain, customer, trade, volume, failure or remedy receipt? |
+
+### October 5 source and access ledger
+
+1. [CFTC Release 9307-26 — ANPRM announcement](https://www.cftc.gov/PressRoom/PressReleases/9307-26)
+2. [Chairman Selig, “CFTC's New Rules for Crypto”](https://www.cftc.gov/PressRoom/SpeechesTestimony/seligstatement100526)
+3. [OIRA AF80 conclusion — October 2, Consistent with Change](https://www.reginfo.gov/public/do/eoDetails?rrid=1538411)
+4. [Federal Register CFTC proposed-rule search](https://www.federalregister.gov/documents/search?conditions%5Bagencies%5D%5B%5D=commodity-futures-trading-commission&conditions%5Bsearch_type_id%5D=3&conditions%5Btype%5D%5B%5D=PRORULE&order=newest)
+5. [United States Code, 7 U.S.C. 2(c)(2)(D)](https://uscode.house.gov/view.xhtml?edition=prelim&req=granuleid%3AUSC-prelim-title7-section2)
+6. [CFTC 2020 actual-delivery interpretation](https://www.cftc.gov/sites/default/files/2020/06/2020-11827a.pdf)
+7. [CFTC 2025 listed-spot initiative and comment file](https://comments.cftc.gov/PublicComments/CommentList.aspx?id=7612)
+8. [Coinbase comment](https://comments.cftc.gov/Handlers/PdfHandler.ashx?id=35716)
+9. [Bitnomial comment](https://comments.cftc.gov/Handlers/PdfHandler.ashx?id=35704)
+10. [A16z comment](https://comments.cftc.gov/Handlers/PdfHandler.ashx?id=35712)
+11. [Kraken comment](https://comments.cftc.gov/Handlers/PdfHandler.ashx?id=35708)
+12. [Solidus Labs comment](https://comments.cftc.gov/Handlers/PdfHandler.ashx?id=35715)
+
+**Access limit:** Release 9307-26 describes the ANPRM but does not link to a
+document-specific docket or public text. Regulations.gov was not reachable
+through the retrieved route, and the Federal Register/Public Inspection feeds
+contained no AF80 object by the cutoff. The numbered questions and any precise
+cost, definition, exemption or proposed-CFR claims must wait for the text.
+
+## September 18 baseline — OIRA receipt before publication
+
+## Question and short answer
+
+**Question:** What does the new White House Office of Information and
+Regulatory Affairs record for “Regulation Crypto Asset Transactions and
+Regulation Crypto Asset Markets” establish, how does it connect to the CFTC's
+August 20 roadmap, and what would have to happen before it changes law or
+market operation?
+
+**Answer:** This is the first concrete executive-review receipt for the CFTC's
+post-CLARITY existing-authority market-structure path. OIRA received a CFTC
+draft under new RIN **3038-AF80** on **September 17, 2026**. The record is
+**pending**, classified as a **prerule**, marked **Dodd-Frank: Yes**, and has no
+legal deadline. It is not economically significant under the displayed OIRA
+classification. The RIN has not appeared in a Unified Agenda, so the public
+record supplies no abstract, proposed text, CFR parts, legal-authority list,
+agency contact, Commission vote, publication date or comment deadline.
+
+The strongest bounded inference is that AF80 is the drafting-stage descendant
+of Chairman Michael Selig's August 20 direction to explore a new type of DCM,
+called a “crypto asset market,” for leveraged or margined crypto asset trading
+under existing CFTC authority. The title's separate references to
+**transactions** and **markets**, together with the Dodd-Frank flag, fit a
+possible design joining the retail commodity transaction provision with DCM
+designation and purpose-fit venue rules. That architecture is not yet proven:
+the draft is deliberative and unavailable during OIRA review.
+
+**Then-current state:** `draft prerule at OIRA — no public text and no
+operative change`.
+
+**Mutation boundary:** Workbench research only. No Chronicle promotion,
+canonical watch, app state, publication or legal forecast was changed.
+
+## 1. Exact OIRA receipt
+
+| Field | Public record | What it means |
+|---|---|---|
+| Agency | Commodity Futures Trading Commission | The CFTC submitted the draft action. |
+| RIN | `3038-AF80` | This is a newly tracked regulatory action, not merely a speech title. |
+| Title | Regulation Crypto Asset Transactions and Regulation Crypto Asset Markets | The public title names both transaction treatment and market regulation. It does not disclose the draft's contents. |
+| Received | 2026-09-17 | The OIRA review clock began on this date. |
+| Status | Pending Review | OIRA has not concluded the review. |
+| Stage | Prerule | The object precedes a proposed rule; it may solicit input on whether or how to initiate rulemaking. |
+| Economically Significant | No | OIRA did not display this draft as economically significant. This is a review classification, not a judgment that crypto markets are unimportant. |
+| Legal Deadline | None | No statutory or judicial deadline is displayed for the action. |
+| Dodd-Frank | Yes | The submitting record identifies the action as related to the Dodd-Frank Act. This is the strongest public clue to the contemplated current-law hook. |
+| International Impacts | No | No international-impact flag is displayed. |
+| Unified Agenda | Not published | Reginfo returns “This rule has not been published in a Unified Agenda,” so no public abstract or timetable exists yet. |
+
+Primary receipt: [OIRA pending-review detail, RIN
+3038-AF80](https://www.reginfo.gov/public/do/eoDetails?rrid=1537870) ·
+[Reginfo search history](https://www.reginfo.gov/public/Forward?Image61.x=0&Image61.y=0&SearchTarget=RegReview&textfield=3038) ·
+[empty Unified Agenda record](https://www.reginfo.gov/public/do/eAgendaViewRule?RIN=3038-AF80&pubId=)
+
+## 2. Why “prerule” matters
+
+OIRA defines a pre-rule as an action used to solicit public comment on whether
+or how best to initiate rulemaking, before the proposed-rule stage. A prerule
+can therefore be an advance notice, request for comment, study or other
+preregulatory policy proposal. It is **not** an NPRM and cannot itself amend the
+Code of Federal Regulations.
+
+OIRA also says draft documents under review are deliberative and unavailable
+to the public. The absence of text is therefore expected, not evidence that the
+record is empty. The next public object could be a request for information,
+advance notice of proposed rulemaking or other pre-proposal notice; AF80's
+public metadata does not yet choose among them.
+
+Process source: [Reginfo OIRA FAQ](https://www.reginfo.gov/public/jsp/Utilities/faq.jsp).
+
+## 3. The August 20 → September 17 lineage
+
+| Date | Object | State | What changed |
+|---|---|---|---|
+| 2026-08-20 | Chairman Selig, Innovation Advisory Committee remarks | Chair direction; not Commission action | Said that if CLARITY continued to stall, the CFTC would use existing authority; directed staff to explore rules for a CFTC crypto asset market structure; described a “crypto asset market” as a type of DCM for leveraged or margined crypto asset trading; and separately directed developer engagement. |
+| 2026-09-17 | OIRA receipt for RIN 3038-AF80 | Draft prerule under executive review | Proves that a named CFTC regulatory object reached the White House review system 28 days after the speech. |
+| After OIRA conclusion | Unknown public prerule instrument | Future gate | Requires a conclusion state and agency publication before the public can inspect the contemplated legal theory and comment request. |
+| Later NPRM, if any | Proposed rule | Future and not guaranteed | Would require public proposed text, stated authority and a comment process. |
+| Later final rule, if any | Final rule | Future and not guaranteed | Would require Commission adoption, publication, an effective/compliance clock and survival of judicial review. |
+| Venue/product implementation | Registration, rules, products and operation | Separate future gates | A legal framework would still not prove that any exchange is designated, any product is admitted, customer assets are protected, or trading is live. |
+
+The direct link is unusually strong because the OIRA title repeats the chair's
+own two-part vocabulary: regulation of crypto asset **transactions** and a
+CFTC regime for crypto asset **markets**. Still, the chair expressly disclaimed
+speaking for the Commission, and no public AF80 text confirms that the draft
+adopts every feature described in his remarks.
+
+Primary speech: [CFTC Chairman Selig's August 20 IAC
+remarks](https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig10).
+
+## 4. What the available clues suggest — and do not prove
+
+### High-confidence inference: current-authority Dodd-Frank bridge
+
+The OIRA record's `Dodd-Frank: Yes` flag fits the chair's August 20 explanation
+that Dodd-Frank brought leveraged, margined or financed retail commodity
+transactions within CFTC jurisdiction and generally requires covered
+transactions to trade as futures on a DCM. The existing statutory hook is CEA
+section 2(c)(2)(D), subject to its exceptions and exact terms.
+
+This could let the CFTC build a regulated island for covered **leveraged or
+margined** crypto asset transactions. It does not silently create comprehensive
+authority over every ordinary, fully paid spot trade in a non-security digital
+commodity.
+
+### Medium-confidence inference: a venue constitution as well as a product rule
+
+The title's plural “Markets” and the chair's proposed DCM subtype suggest that
+AF80 may address venue designation, DCM core principles, market rules or
+purpose-fit conditions—not merely approve one product. Possible control
+surfaces include eligibility, execution, custody/segregation, clearing, margin,
+surveillance, conflicts, disclosures, records and customer protections.
+
+None of those elements is verified until the public document identifies its
+CFR parts, legal authorities and proposed questions or provisions.
+
+### Lower-confidence possibility: coordinated bookend to the SEC proposal
+
+The SEC published its separate **Regulation Crypto Assets** proposal in August
+2026 on issuance and covered investment-contract treatment. AF80's similarly
+constructed title could become the CFTC transaction-and-market side of the
+joint Project Crypto architecture: SEC treatment of securities-side issuance
+and transactions, CFTC treatment of commodity-side leveraged/margined
+transactions and venues. Timing and naming support this reading, but no public
+AF80 text or cross-reference yet proves deliberate paired drafting.
+
+## 5. AF80 is not the older AF66 agenda item
+
+The 2026 Unified Agenda already contains a different CFTC action:
+**RIN 3038-AF66, “Blockchain and Digital Assets.”** AF66 is listed at the
+**proposed-rule stage**, describes possible amendments for blockchain-based
+trading systems and digital assets, cites 17 CFR 1 et seq., and identifies the
+Division of Clearing and Risk. Its agenda timetable had an NPRM target of July
+2026.
+
+AF80 has a different RIN, a different title, a prerule stage, a Dodd-Frank flag
+and no Unified Agenda entry. The public record does not say AF80 supersedes,
+implements, narrows or supplements AF66. They must remain separate until the
+CFTC or OIRA supplies a relationship.
+
+Primary agenda record: [RIN 3038-AF66, Blockchain and Digital
+Assets](https://www.reginfo.gov/public/do/eAgendaViewRule?RIN=3038-AF66&operation=OPERATION_PRINT_RULE&pubId=202510).
+
+## 6. What the OIRA filing proves—and what it does not
+
+### It proves
+
+- CFTC staff produced a sufficiently developed draft regulatory action for
+  formal OIRA submission.
+- The White House regulatory-review system is now inside the CFTC crypto
+  market-structure clock.
+- The action is a prerule tied to Dodd-Frank, not yet a proposed or final rule.
+- The August 20 fallback path has moved beyond speech-level exploration.
+
+### It does not prove
+
+- that OIRA has cleared or endorsed the draft;
+- that the Commission has voted on it;
+- that the draft is an ANPRM, RFI or NPRM;
+- the exact statutory authority, CFR parts, scope, definitions or conditions;
+- that “crypto asset market” will be adopted as a legal category;
+- that ordinary unleveraged spot crypto trading will enter a comprehensive
+  CFTC regime;
+- that any current exchange will qualify, any application has been filed, or
+  any product or market is live; or
+- when the draft will be published or take effect.
+
+## 7. OIRA and Commission clocks
+
+The OIRA record has **no legal deadline**. OIRA's general FAQ says review is
+limited to 90 days, with no minimum; OMB may add one 30-day extension, while
+the agency head can extend review further and the agency may withdraw and
+later resubmit. Those are process bounds, not a publication forecast.
+
+Even a favorable OIRA conclusion is not effectiveness. The minimum evidence
+chain to watch is:
+
+1. OIRA conclusion state and any changes;
+2. CFTC public release and the exact instrument type;
+3. public text, legal-authority citations, CFR parts and questions;
+4. Commission vote or other valid agency authorization;
+5. Federal Register publication and comment deadline;
+6. any later NPRM and final rule;
+7. effective and compliance dates; and
+8. venue designation, rule filings, product admission, customer-protection
+   arrangements and observed operation.
+
+Since February 2025, the White House's **Ensuring Accountability for All
+Agencies** order has required independent agencies, including the CFTC, to
+submit proposed and final significant regulatory actions for OIRA review. The
+AF80 receipt therefore also belongs to the larger shift in which White House
+policy coordination is now an explicit gate in independent financial-agency
+rulemaking.
+
+Authority source: [Executive Order 14215, Ensuring Accountability for All
+Agencies](https://www.whitehouse.gov/presidential-actions/2025/02/ensuring-accountability-for-all-agencies/).
+
+## 8. Observatory ruling
+
+AF80 is the first durable drafting-stage object connecting three lines that
+were previously separate:
+
+1. **CLARITY's failure to become the operative market-structure statute;**
+2. **the IAC roadmap to use existing CFTC authority for leveraged or margined
+   crypto trading and a DCM-like “crypto asset market”;** and
+3. **the post-2025 White House review layer for independent financial
+   regulators.**
+
+The important constitutional move is narrower than “the CFTC is regulating all
+spot crypto.” The agency appears to be testing whether it can use Dodd-Frank's
+retail commodity transaction hook and the existing DCM constitution to create
+a supervised crypto market category around transactions already reachable
+under the CEA. That could be a large practical change while leaving the
+ordinary unleveraged spot-market gap intact.
+
+For the Observatory, the correct state is:
+
+> **CFTC crypto market-structure fallback: draft prerule under OIRA review;
+> likely leveraged/margined DCM architecture; public legal design not yet
+> available.**
+
+## 9. Return triggers
+
+Re-open this answer when any of the following occurs:
+
+- OIRA changes the record from pending to concluded or withdrawn;
+- OIRA posts meeting participants or written materials for AF80;
+- the CFTC publishes the prerule, fact sheet, Commission vote or legal analysis;
+- AF80 appears in the Unified Agenda with an abstract, authority or timetable;
+- the CFTC links AF80 to AF66, Regulation Crypto Assets, Project Crypto or a
+  named DCM/crypto exchange; or
+- a later NPRM supplies the actual scope of “crypto asset transactions” and
+  “crypto asset markets.”
+
+## Source spine
+
+1. [OIRA pending-review detail, RIN 3038-AF80](https://www.reginfo.gov/public/do/eoDetails?rrid=1537870)
+2. [Reginfo CFTC EO-review search history](https://www.reginfo.gov/public/Forward?Image61.x=0&Image61.y=0&SearchTarget=RegReview&textfield=3038)
+3. [Reginfo Unified Agenda lookup for AF80](https://www.reginfo.gov/public/do/eAgendaViewRule?RIN=3038-AF80&pubId=)
+4. [CFTC Chairman Selig, August 20 IAC remarks](https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig10)
+5. [Reginfo OIRA FAQ](https://www.reginfo.gov/public/jsp/Utilities/faq.jsp)
+6. [RIN 3038-AF66, Blockchain and Digital Assets](https://www.reginfo.gov/public/do/eAgendaViewRule?RIN=3038-AF66&operation=OPERATION_PRINT_RULE&pubId=202510)
+7. [Executive Order 14215](https://www.whitehouse.gov/presidential-actions/2025/02/ensuring-accountability-for-all-agencies/)
+
+**Disposition:** `promotion_review`. This is a first-class Workbench answer and
+return object. It does not authorize Chronicle promotion, a canonical watch,
+or app shipment.

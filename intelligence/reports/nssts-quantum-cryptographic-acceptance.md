@@ -1,5 +1,17 @@
 # NSSTS Quantum and Cryptographic Acceptance Map
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What calibration, validation, manufacturing, cryptographic-module, product-mapping and authorization evidence makes a quantum or PQC capability acceptable to a federal authority?
+
+**Answer:** A federal agency does not accept a quantum device or post-quantum encryption because a vendor says it works. It needs a chain of separate proofs ending in a named official's sign-off, and most companies are still partway down that chain.
+
+**Evidence checked through:** 2026-08-19
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **As of:** August 19, 2026  
 **State:** current Workbench research; not vault canon  
 **Automatic monitoring:** false  

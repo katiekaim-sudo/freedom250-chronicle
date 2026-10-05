@@ -2,6 +2,18 @@
 
 # Wave 10 — merge
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What materially changed across the federal monetary, prudential, securities, derivatives, systemic-risk and public-credit institutions after the September 30 post-noon close?
+
+**Answer:** The SEC changed one voting rule, DTC proposed better registration messages and audit trails, the Federal Reserve added data connections, CFTC relief was extended and NCUA closed an insolvent credit union. Other announcements remained plans or approvals without public spending records.
+
+**Evidence checked through:** 2026-10-02T15:39:30-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Ruling
 
 The October 2 check finds real movement, but not a single coordinated transfer

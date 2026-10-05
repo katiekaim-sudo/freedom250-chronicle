@@ -2,6 +2,18 @@
 
 # Hawaiʻi Public Corruption Primary-Source Object Ledger
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What do primary records establish across the distinct Hawaii State COVID and campaign, federal procurement, and Medicaid Fraud Control Unit objects?
+
+**Answer:** Official records show a $170.4 million COVID bridge appropriation, an existing testing partnership, campaign contributions and a July 2026 state indictment. They do not yet link a donor, an official act and a payment into one proven chain.
+
+**Evidence checked through:** 2026-07-27
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Control rule
 
 This is the package's controlling factual spine. It admits only:

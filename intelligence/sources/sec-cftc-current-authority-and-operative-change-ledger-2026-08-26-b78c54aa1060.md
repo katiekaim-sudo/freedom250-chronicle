@@ -1,4 +1,4 @@
-> Source cutoff: 2026-09-28
+> Source cutoff: 2026-10-05
 
 # SEC–CFTC Current Authority and Operative Change Ledger
 
@@ -17,11 +17,45 @@ where located. CLARITY is used only to mark the present statutory boundary, not
 as the engine of the analysis. Banking, payment, AML, tax, state commercial law
 and bankruptcy are included only where they delimit SEC or CFTC power.
 
-**Cutoff:** 2026-09-28 EDT. Legal authority, instrument state and operation are
+**Cutoff:** 2026-10-05 EDT. Legal authority, instrument state and operation are
 kept separate.
 
 **Mutation boundary:** Workbench research only. No live-vault event, canonical
 watch, plotline, app state or legislative forecast was changed.
+
+## October 5 addendum — Regulation CTX and CAM ANPRM
+
+OIRA concluded review of RIN `3038-AF80` on October 2 as `Consistent with
+Change`. On October 5 the CFTC announced an **Advanced Notice of Proposed
+Rulemaking**, not a final rule or even an NPRM, for **Regulation Crypto Asset
+Transactions (`Regulation CTX`)** and **Regulation Crypto Asset Markets
+(`Regulation CAM`)**.
+
+The announcement resolves the central design inference in the September 18
+addendum below: CTXs are retail commodity transactions involving crypto assets
+under CEA section 2(c)(2)(D), and a CAM would be a purpose-built subcategory of
+DCM registration. The contemplated route would let qualifying venues operate
+covered leveraged, margined or financed retail crypto markets inside a federal
+market-regulatory framework. It would not require ordinary unleveraged spot
+crypto to trade on CFTC venues; Chairman Selig expressly says that broader
+mandate requires Congress.
+
+This changes the **proposal clock** from private OIRA drafting to a
+Commission-announced preregulatory process. It does not change the operative
+authority allocation. As of the cutoff the AF80 text, numbered questions,
+docket, CFR parts, vote record and exact comment-close date were not yet public
+through the Federal Register or Public Inspection feeds. There is no CAM
+designation, listed CTX, approved rulebook, custody or customer-property
+regime, first trade or operating market.
+
+The first-class proposal map now preserves thirty comparison dimensions,
+including the leverage-offer perimeter, DCM/DCO structure, vertical
+integration, financing, custody, segregation, insolvency, surveillance,
+settlement, 24/7 resilience, SEC/state-law boundaries, enforcement, effective
+dates and first operating receipts. Full reading: [CFTC Regulation CTX and CAM
+— ANPRM and OIRA Review](../sources/cftc-crypto-asset-transactions-and-markets-oira-review-2026-09-17-92cf54943707.html).
+Its control group and fixed vocabulary are in CFTC CAM Anatomy, DCM Control
+Stack and Terms Baseline.
 
 ## September 28 addendum — Coinbase Clearing DCO registration
 
@@ -63,11 +97,12 @@ The March interpretation remains the Commission-level object. Regulation
 Crypto Assets remains proposed, and the FAQs do not close the ordinary
 non-security digital-commodity spot-market gap.
 
-## September 18 addendum — CFTC crypto-market prerule at OIRA
+## September 18 historical baseline — CFTC crypto-market prerule at OIRA
 
-OIRA received a new CFTC action, RIN `3038-AF80`, on September 17 under the
+At the September 18 cutoff, OIRA had received a new CFTC action, RIN
+`3038-AF80`, on September 17 under the
 title **Regulation Crypto Asset Transactions and Regulation Crypto Asset
-Markets**. The record is pending, at the **prerule** stage, marked
+Markets**. The record was pending, at the **prerule** stage, marked
 `Dodd-Frank: Yes`, not economically significant, and has no legal deadline.
 The RIN has not appeared in the Unified Agenda, and the draft remains
 deliberative, so no public text, CFR parts, legal-authority list, Commission
@@ -81,8 +116,8 @@ derivatives and retail-commodity-transaction toolkit after CLARITY stalled,
 but the action does not yet create a rule or close the comprehensive ordinary
 spot-market gap.
 
-Full reading: CFTC Crypto Asset Transactions and Markets — OIRA Prerule
-Review.
+Full reading: [CFTC Crypto Asset Transactions and Markets — OIRA Prerule
+Review](../sources/cftc-crypto-asset-transactions-and-markets-oira-review-2026-09-17-92cf54943707.html).
 
 ## September 17 addendum — passive-software distribution layer
 

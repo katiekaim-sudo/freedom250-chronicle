@@ -1,5 +1,17 @@
 # Banks and Credit Unions — Federal and Four-State Legal Architecture
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What legally distinguishes banks from credit unions, which rules come from the federal government, and how do Florida, Wyoming, New York and Texas use their remaining charter, public-deposit, tax, supervision and digital-asset authority?
+
+**Answer:** The U.S. runs two overlapping federal-and-state charter systems, one for banks and one for credit unions. Federal law sets common floors, but states still control charters, public deposits, taxes and some digital-asset powers, and Florida, Wyoming, New York and Texas each use that power differently.
+
+**Evidence checked through:** 2026-09-15
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Research ID:** `bank-credit-union-legal-architecture`  
 **Artifact role:** foundational orientation / comparative legal architecture  
 **Evidence cutoff:** September 15, 2026  

@@ -1,4 +1,4 @@
-# Iran Financial Pressure and Banking-System Isolation — complete research set
+# Treasury moves to cut a UAE bank off from U.S. accounts over Iran — complete research set
 
 ## Iran Financial Pressure Research Package
 

@@ -1,5 +1,17 @@
 # Coinbase Clearing DCO Registration Order — Authority, Structure and Operating Gates
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Did the CFTC approve Coinbase to clear derivatives, what exactly did the order authorize, and does it establish live in-house clearing, USDC-native settlement or approval of Coinbase's proposed single-stock perpetual futures?
+
+**Answer:** On September 28, 2026 the CFTC registered Coinbase Clearing LLC to clear fully collateralized futures, options on futures and swaps, but no first product, member or trade has yet been established.
+
+**Evidence checked through:** 2026-09-28T22:09:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Question
 
 Did the CFTC approve Coinbase to clear derivatives, what exactly did the order

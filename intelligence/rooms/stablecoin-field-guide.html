@@ -55,7 +55,17 @@ nav.ch a b{font-weight:700;margin-right:4px}
 .more a{text-decoration:none;color:inherit}
 footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:10px;font-size:12px;color:var(--mute)}
 @media (max-width:860px){nav.ch{flex-wrap:nowrap;overflow-x:auto}nav.ch a{white-space:nowrap}.grid2{grid-template-columns:1fr}.sticky{position:static;max-height:none}.kv{grid-template-columns:1fr}.kv b{margin-top:6px}}
-</style><meta name="robots" content="noindex, nofollow">
+</style>
+<!-- plain-english-html-style:start -->
+<style id="plainEnglishEntranceStyle">
+  .plain-english-entrance { margin: .65rem 0 1rem; max-width: 78ch; }
+  .plain-english-kicker { margin: 0 0 .28rem; font: 700 .72rem/1.2 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .72; }
+  .plain-english-title { margin: 0 0 .3rem; font: 750 clamp(1.05rem, 1.8vw, 1.35rem)/1.25 system-ui, sans-serif; letter-spacing: 0; text-transform: none; }
+  .plain-english-summary { margin: 0; font: 500 clamp(.92rem, 1.35vw, 1.08rem)/1.5 system-ui, sans-serif; max-width: 78ch; }
+  body > .plain-english-standalone { box-sizing: border-box; width: min(94vw, 1100px); margin: .8rem auto; padding: .9rem 1rem; border: 1px solid rgba(127,127,127,.35); border-radius: .8rem; background: rgba(127,127,127,.08); color: inherit; }
+</style>
+<!-- plain-english-html-style:end -->
+<meta name="robots" content="noindex, nofollow">
 <style id="f250-share-nav-style">
 body{padding-top:52px!important}
 .f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
@@ -101,7 +111,15 @@ function srcList(a){if(!a||!a.length)return '';return '<div class="src">Sources:
 var CH=DATA.chapters, cur=0, filt='all', term='', sel=null;
 function nav(){document.getElementById('nav').innerHTML='<a href="#start" class="'+(cur===0?'on':'')+'">Start</a>'+CH.map(function(c){return '<a href="#'+c.id+'" class="'+(cur===c.n?'on':'')+'"><b>'+c.n+'</b>'+esc(c.short)+'</a>'}).join('');}
 function start(){var m=document.getElementById('main');
-m.innerHTML='<div class="eyebrow">Freedom 250 · Crypto & Digital Money</div><h1>Stablecoin Field Guide</h1><p class="q">What is a stablecoin now, and who controls each piece of it?</p>'+
+m.innerHTML='<div class="eyebrow">Freedom 250 · Crypto & Digital Money</div><h1>Stablecoin Field Guide</h1>
+<!-- plain-english-html-copy:start -->
+<div class="plain-english-entrance">
+  <p class="plain-english-kicker">In plain English</p>
+  <h2 class="plain-english-title">Stablecoin Field Guide</h2>
+  <p class="plain-english-summary">Laws, coins, companies and the checkout, in six short chapters.</p>
+</div>
+<!-- plain-english-html-copy:end -->
+<p class="q">What is a stablecoin now, and who controls each piece of it?</p>'+
 '<p class="lede">Stablecoins are digital money that runs on crypto networks and aims to hold a steady value, usually one dollar. This guide walks through them in six short chapters, from the laws to the store checkout. Everything here is official research, pulled from seven earlier stablecoin studies; each chapter links back to its original chart.</p>'+
 '<div class="start">'+CH.map(function(c){return '<a class="panel" href="#'+c.id+'"><div class="eyebrow">Chapter '+c.n+' · '+c.cards.length+' entries</div><h2 style="font-size:21px;margin:2px 0 4px">'+esc(c.title)+'</h2><p class="q" style="font-size:16px;margin:0">'+esc(c.q)+'</p></a>'}).join('')+'</div>';}
 function chapter(){var c=CH[cur-1],m=document.getElementById('main');

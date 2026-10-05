@@ -1,5 +1,17 @@
 # Genesis Mission
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What is Genesis building, how do laboratories and researched companies contribute, and what has actually been demonstrated?
+
+**Answer:** Genesis, launched by executive order in November 2025, links national labs, federal data, AI models and tech companies into one science platform run through DOE. A few pieces work now, but most of the big computers, models and awards are still announced, selected or under construction.
+
+**Evidence checked through:** 2026-09-09
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Maintained research guide · evidence checked September 9, 2026.
 
 A national effort to connect scientific data, AI models, advanced computing and laboratories so researchers can tackle challenges in health, energy, industry, discovery and security.

@@ -1,5 +1,17 @@
 # Bessent at IIF — Spring Meetings 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did Treasury Secretary Bessent's April 14, 2026 IIF remarks say about the IMF, the World Bank and who gets to define stability?
+
+**Answer:** Bessent's April 2026 remarks use votes, budgets and conditions to reshape the IMF and World Bank rather than exit them.
+
+**Evidence checked through:** 2026-07-30
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 This proceeding bundle preserves Scott Bessent's April 14, 2026 conversation
 with Bjørn Lomborg, its caption provenance and the July 30 document comparison.
 The Chronicle controls the transcript and the two complementary analyses.

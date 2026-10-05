@@ -2,6 +2,18 @@
 
 # Wave 10 — whole-government merge and adjudication
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What materially changed across official U.S. federal websites after the latest trustworthy per-family cursors, including quiet changes to authority, discretion, records, eligibility, payment, delivery and operation that matter to established Freedom 250 plotlines?
+
+**Answer:** Separate agencies changed who could qualify, access records, receive payments or carry out programs. No single government-wide program appeared, and announcements, payments, delivery and measured effects still require separate proof.
+
+**Evidence checked through:** 2026-09-22T11:51:46-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Controlling answer
 
 The September 16–22 record does not show one government-wide program moving in

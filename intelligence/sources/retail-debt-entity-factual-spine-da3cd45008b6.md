@@ -1,5 +1,17 @@
 # Retail debt — separate entity factual spine
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Who originates, services, buys, regulates and ultimately bears loss in point-of-sale and revolving consumer debt?
+
+**Answer:** Big lenders are selling or buying whole debt books and moving more struggling cardholders into low-rate fixed payment plans. Very little of this is forgiveness: a sale, a charge-off or a new servicer does not wipe out what the borrower owes.
+
+**Evidence checked through:** 2026-07-15
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Original research date: 2026-07-11  
 Status: current Workbench entity study; dated findings below retain their original source periods  
 Consolidation note: 2026-09-07. This review clarifies ownership and existing source support; it does not refresh the portfolio data.  

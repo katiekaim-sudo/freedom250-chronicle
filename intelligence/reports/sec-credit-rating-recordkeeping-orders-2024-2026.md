@@ -1,5 +1,17 @@
 # SEC Credit-Rating Recordkeeping Orders — Maturation Audit, 2024–2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the SEC's September 3, 2024 recordkeeping actions against six credit rating agencies establish, what later remediation did they require, and what could the public verify by March 3, 2026?
+
+**Answer:** In September 2024 six credit-rating firms admitted they failed to keep required work messages and paid more than $49 million. Four had to hire outside consultants to fix it, but those reports are private, so the public cannot confirm the fix is done.
+
+**Evidence checked through:** 2026-09-25
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Bottom line
 
 On September 3, 2024, the SEC entered six settled administrative orders against

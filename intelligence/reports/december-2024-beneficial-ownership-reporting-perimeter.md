@@ -1,5 +1,17 @@
 # December 2024 Beneficial Ownership Reporting Perimeter
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What happened to federal beneficial-ownership reporting after the December 3, 2024 court order, and who still had to report by September 25, 2026?
+
+**Answer:** The December 2024 court order paused the federal ownership-reporting rule, but it was Treasury and FinCEN, not the courts, that shrank it. Since August 14, 2026 the final rule covers mainly foreign companies registered to do business in the U.S., and U.S. owners are exempt.
+
+**Evidence checked through:** 2026-09-25
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Answer first
 
 The December 3, 2024 nationwide preliminary injunction in *Texas Top Cop Shop*

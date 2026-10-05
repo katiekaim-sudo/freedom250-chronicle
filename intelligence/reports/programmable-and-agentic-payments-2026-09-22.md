@@ -1,5 +1,17 @@
 # Programmable and Agentic Payment Stress Constitution
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** When a stablecoin, smart contract or AI agent moves money, what actually happened in law, on the ledger, in bank money, in the books and when something fails?
+
+**Answer:** A smart-contract payment is still several separate legal and accounting events; four accounting treatments of USDC are in use today.
+
+**Evidence checked through:** 2026-09-22
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Answer in one sentence
 
 The next payment transition is not one smart contract replacing a bank: it is

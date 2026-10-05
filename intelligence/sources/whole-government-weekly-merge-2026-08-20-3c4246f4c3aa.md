@@ -2,6 +2,18 @@
 
 # Federal Government Weekly Delta — Full Merge — August 20, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What material federal state changed after August 13 through August 20, 2026 across money, command, justice and physical-infrastructure lanes, and which findings landed only in the authorized financial slice?
+
+**Answer:** The week brought proposed derivatives rules, infrastructure actions, payment screening, public-data changes and agency reorganizations. Only the approved financial portion was added to the maintained research; the other sections remained pending review.
+
+**Evidence checked through:** 2026-08-20T12:19:33-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Controlling ruling
 
 This week is best understood as simultaneous perimeter-building. Market

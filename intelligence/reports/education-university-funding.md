@@ -1,5 +1,17 @@
 # University Funding and Programmable Compliance — Factual and Control Map
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Is university funding moving from annual institutional reporting toward recipient, award and payment controls, and has any ledger technology been selected?
+
+**Answer:** Federal funding for universities is shifting from yearly reports and audits toward checks on each recipient, award and payment before money goes out. Treasury once tested a private grant ledger, but it touched no real grants, and current rules don't require any particular technology.
+
+**Evidence checked through:** 2026-07-28
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Controlling thesis
 
 The university funding system is a multiplex, not a pipeline. A university can

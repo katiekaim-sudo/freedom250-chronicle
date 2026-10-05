@@ -1,5 +1,17 @@
 # Authority Through the Adapter
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Are states and incumbent financial institutions being replaced by new digital machinery, or are they relocating authority into the machinery's legal, record, collateral and emergency layers?
+
+**Answer:** New digital systems spread out who moves money and data, but the power to define the legal claim, keep the controlling record, accept collateral, supply final cash, fix failures and absorb losses stays with states, regulated issuers, central banks, clearinghouses and courts.
+
+**Evidence checked through:** 2026-08-31T10:42:24-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## A comparative deep dive into the old order's new machinery
 
 **Evidence cutoff:** 2026-08-31T10:42:24-04:00 America/New_York  

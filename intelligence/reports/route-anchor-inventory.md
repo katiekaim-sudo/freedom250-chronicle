@@ -1,5 +1,17 @@
 # Route–Anchor–Inventory — Working Thesis
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Are private payment methods expanding while the dollar and public institutions keep control of settlement, emergency liquidity and failure, and what evidence would prove each part?
+
+**Answer:** The likely shift is not crypto replacing the dollar: the dollar stays the anchor, regulated stablecoins and tokenized deposits become its everyday forms, private systems take over routing, and the Fed stays decisive for final settlement and crises.
+
+**Evidence checked through:** 2026-08-31T14:43:21-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Saved thesis
 
 The emerging monetary system is not best understood as crypto replacing fiat,

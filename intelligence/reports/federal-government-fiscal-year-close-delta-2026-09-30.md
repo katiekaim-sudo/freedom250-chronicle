@@ -1,5 +1,17 @@
 # Wave 10 — whole-government merge
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What materially changed across official U.S. federal, committee and adjacent-institution sources after the September 25 close through the September 30 post-noon replay, and what did fiscal-year close actually prove?
+
+**Answer:** September 30 produced sanctions, student-loan, rail-service, financial-oversight, market and agency actions. Later review found three missed items, but nothing showed a single government-wide last-day payment sweep.
+
+**Evidence checked through:** 2026-09-30T12:21:42-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Controlling answer
 
 September 30 did produce a visible fiscal-close surge, but the record does not

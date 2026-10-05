@@ -1,5 +1,17 @@
 # Iran Financial Pressure and Banking System — 2026-08-07
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What legal, licensing, designation and operating states did Operation Economic Outcast change, and which announced financial-institution, branch, SWIFT/dollar, crypto and domestic-banking outcomes remain unproven?
+
+**Answer:** Under Operation Economic Outcast, FinCEN proposed, but has not finalized, a rule that would bar U.S. banks from correspondent accounts for Banque Misr's UAE branches, and OFAC named new sanctions targets. Iran's domestic banking system has not been shown to be shut down.
+
+**Evidence checked through:** 2026-09-03T19:41:23-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Status:** factual package; selectively promoted to the live vault
 **Evidence cutoff:** broad package through 2026-08-24 14:47 America/New_York; targeted Banque Misr UAE delta through 2026-09-03 19:41 EDT
 **Question:** What did Secretary Scott Bessent mean when he said Iran's shadow banking system was buckling, and what would it take to establish that Iran's banking system had actually been stopped?

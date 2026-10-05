@@ -2,6 +2,18 @@
 
 # White House Cabinet Meeting — July 31, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What was said in the public July 31 Cabinet meeting, and which legal, funding, contract or operating states actually changed?
+
+**Answer:** At the July 31, 2026 Cabinet meeting at Camp David, officials made claims on Iran, Ukraine, Hamas, fraud, defense and drug prices. No new signed order, weapons authorization or funding was announced on camera.
+
+**Evidence checked through:** 2026-07-31T19:50:38-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Scope and provenance
 
 - **Event:** President Trump Hosts a Cabinet Meeting, Camp David, Maryland.

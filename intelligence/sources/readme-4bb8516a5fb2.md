@@ -1,5 +1,17 @@
 # Office of Religious Affairs — Research Hub
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How is the Office of Religious Affairs being established, staffed, funded and granted authority, and what do its policies, programs and observed religious-liberty effects show over time?
+
+**Answer:** The September 30 memorandum creates a Secretary-level Office of Religious Affairs with policy, budget-advocacy, research and Armed Forces Chaplains Board powers, but its Director, transferred authorities, budget, staff, programs and practical effects remain separate future receipts.
+
+**Evidence checked through:** 2026-09-30T22:00:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Status:** `current`  
 **Research ID:** `office-of-religious-affairs`  
 **Parent research:** `military-modernization`  

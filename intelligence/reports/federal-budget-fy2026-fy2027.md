@@ -1,5 +1,17 @@
 # Federal budget: FY2026 to FY2027
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How much does FY2027 funding change, which institutions gain or lose, and what is enacted rather than proposed?
+
+**Answer:** The President's April proposal would raise total federal outlays about 7.3% for FY2027, with large defense gains and deep cuts to many civilian agencies. None of that is enacted: FY2027 began under a continuing resolution that runs to Dec 11.
+
+**Evidence checked through:** 2026-09-11T19:55:13-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Evidence cutoff: September 11, 2026, 7:55 p.m. Eastern. Dollar figures are nominal. This answers Katie’s question about the size and direction of the next budget, with the Federal Group entity chart as the navigation map.
 
 ## Research focus and walkthrough

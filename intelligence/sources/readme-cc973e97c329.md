@@ -1,5 +1,17 @@
 # Sovereign Communications
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do public safety, satellite, fiber, spectrum, tribal sovereignty, continuity and government access join into sovereign communications and emergency rails?
+
+**Answer:** Public-safety radio, satellites, fiber, airwaves, tribal rights and continuity plans form one emergency communications layer. The study keeps the assets, the rights, the operators, everyday access and emergency activation as separate things.
+
+**Evidence checked through:** 2026-07-15
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Lifecycle: **active retained Workbench evidence**
 Evidence cutoff: **2026-07-15** — current-state claims require a source refresh
 

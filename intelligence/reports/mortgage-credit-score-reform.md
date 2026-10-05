@@ -1,5 +1,17 @@
 # Credit approval standards: what is changing, and who sets the rules
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do changes in credit models, evidence, underwriting, regulation and administration redistribute judgment and responsibility across mortgage, retail and business lending?
+
+**Answer:** Lenders now have more approved scoring models and more kinds of proof they can use, and some fixed checks are gone, but these changes move judgment and work around rather than plainly lowering the bar. Mortgages run on their own rules, separate from retail and small-business credit.
+
+**Evidence checked through:** 2026-09-07
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Research ID: `mortgage-credit-score-reform`. Evidence checked September 7, 2026, America/New_York. This extends the Pulte score-reform investigation into approval standards, with mortgages as the main case and bounded comparisons to other consumer credit. It is not an individual eligibility determination or a complete review of every lender, state law or mortgage product.
 
 **Finding:** The reforms change accepted models, access to assessment, evidence of repayment behavior and some operating requirements. These are consequential standards changes. They do not all represent a decision to accept greater default risk. Legal duties, program eligibility, automated risk assessment, pricing and lender-specific approval policies remain distinct.

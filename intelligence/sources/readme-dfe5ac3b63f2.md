@@ -4,6 +4,18 @@
 
 # Government-Wide Audit — July 18, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What changed in congressional oversight, financial agencies, market utilities and federal watchdog records from July 14 through July 18, 2026, and which claims remained unproved?
+
+**Answer:** This review checked hearings, agency actions, market utilities and federal watchdog records. It identifies what changed law or operations and what remained testimony, proposal or plan.
+
+**Evidence checked through:** 2026-07-18
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 This package is the July 15–18 delta against the prior congressional monetary
 audit, with the already-flagged July 14 Federal Reserve hearing backfilled.
 It is a factual-first workbench package. It does not replace the live vault's

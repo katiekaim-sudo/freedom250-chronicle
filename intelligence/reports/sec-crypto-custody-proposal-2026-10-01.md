@@ -1,5 +1,17 @@
 # SEC Adviser and Regulated Fund Crypto Custody Proposal — October 1, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What would the SEC's October 1, 2026 crypto-custody proposal for advisers and funds actually require, cost and leave unresolved?
+
+**Answer:** Holding any piece of a private key would count as custody; the SEC puts the cost at $433.7 million a year and the measurable benefit at $176,472.
+
+**Evidence checked through:** 2026-10-01T17:35:03-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Controlling finding
 
 The SEC did **not** adopt operative crypto-custody rules on October 1. It issued a 760-page **proposal**: File No. **S7-2026-35**, Release Nos. **IA-7023 / IC-36353**, RIN **3235-AN46**. The proposal would create two conditional crypto-custody routes for registered investment advisers and regulated funds, modernize the surrounding custody rules, permit qualifying regulatory records to be maintained onchain, and add public reporting. The comment period will run for 60 days after Federal Register publication; at this cutoff the release still contains publication-date placeholders and no Federal Register publication, final rule, effective date, compliance date, or first-use receipt exists.

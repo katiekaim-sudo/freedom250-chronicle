@@ -1,5 +1,17 @@
 # White House Research Hub — corpus and action-coverage audit
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What economic and policy arguments appear in the captured White House and CEA research corpus, and which later instrument would establish action or effect?
+
+**Answer:** The White House Council of Economic Advisers published 26 research papers that give the reasoning behind many actions on tariffs, stablecoins, the CFPB, retirement investing, deregulation and AI. They are arguments and models, not law, and their numbers are estimates, not measured results.
+
+**Evidence checked through:** 2026-07-21
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Evidence cutoff:** 2026-07-21  
 **Status:** incorporated 2026-07-21  
 **Source class:** White House-hosted Council of Economic Advisers research  

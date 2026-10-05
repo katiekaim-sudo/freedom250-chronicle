@@ -1,5 +1,17 @@
 # White House Election Integrity Release — Research Package
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What do the four July 2026 White House election-integrity release packages establish, and where does the evidence chain stop?
+
+**Answer:** The July 16, 2026 White House release (58 PDFs, 269 pages) documents four separate things: foreign collection of voter data, internal intelligence disputes, weak state and local election networks, and questionable voter registrations. As released, none of it proves an ineligible or altered vote changed an outcome.
+
+**Evidence checked through:** 2026-07-18
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Release date:** July 16, 2026  
 **Status:** current Workbench answer  
 **Scope:** four White House download packages; 58 PDFs; 269 pages; 76,918,519 bytes; post-address actions through July 18  

@@ -1,5 +1,17 @@
 # Freedom 250 — Treasury / IRS Research Package
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Which tax, customs, reporting, intake, payment and data functions remain sovereign, and which interfaces have moved outward?
+
+**Answer:** Congress still creates taxes and the IRS still assesses and enforces them. What is moving is the outer layer: border collection, private collection and reporting duties, contractors, electronic payment rails and wider use of tax data by other agencies.
+
+**Evidence checked through:** 2026-07-16
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Completed: 2026-07-14  
 Status: current Workbench answer; landed fact spines remain vault-copy-wins  
 Cutoff: 2026-07-14

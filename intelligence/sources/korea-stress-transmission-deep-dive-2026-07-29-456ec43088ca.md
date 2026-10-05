@@ -1,5 +1,17 @@
 # KOREA MARKET STRESS AND TRANSMISSION — CONSOLIDATED RESEARCH
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Did Korea's July 28–29, 2026 equity crash spread through leverage, funding, collateral, settlement or digital rails?
+
+**Answer:** A severe selloff and exchange controls, but no proven funding failure, failed settlement or flight into crypto.
+
+**Evidence checked through:** 2026-07-29
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Status:** Current maintained Workbench answer; not a Chronicle landing.  
 **Parent event cutoff:** 2026-07-29 after the Seoul close.  
 **Saved updates:** July 31 completed exchange candles and legal-scope clarification;

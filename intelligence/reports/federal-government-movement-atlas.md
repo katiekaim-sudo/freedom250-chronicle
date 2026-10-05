@@ -1,5 +1,17 @@
 # Government-Wide Research Hub
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How can we explore all saved government research, entity relationships, committee records, confirmed changes and evidence gaps in one place without erasing which package owns each claim?
+
+**Answer:** This is a navigation hub, not a finding: it puts Katie's saved government research, a map of federal bodies, congressional committees, confirmed changes and known gaps in one place, while keeping each source's evidence separate.
+
+**Evidence checked through:** 2026-09-22T11:51:46-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 This maintained package is the one human-facing hub for Freedom 250 government
 research. The compatibility identity `federal-government-movement-atlas`, the
 package directory and the generated HTML filename remain stable. The hub keeps

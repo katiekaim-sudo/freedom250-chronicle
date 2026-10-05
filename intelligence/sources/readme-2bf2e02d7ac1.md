@@ -1,5 +1,17 @@
 # House Oversight
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Which House Oversight proceedings and transcript or source objects are available through the cutoff, and what evidence tier does each carry?
+
+**Answer:** This is the source library behind the fraud-control and watchdog research: House Oversight meetings and transcripts through July 22, 2026, sorted by how reliable each record is.
+
+**Evidence checked through:** 2026-07-22
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Start with [HOUSE_OVERSIGHT_MEETING_RESEARCH_PACKAGE.md](../sources/house-oversight-meeting-research-package-8ecb691383a6.html) for the meeting corpus
 and HOUSE_OVERSIGHT_TRANSCRIPT_CORPUS_PACKAGE.md for transcript evidence.
 HOUSE_OVERSIGHT_TRANSCRIPT_MASTER_MANIFEST.md is the controlling transcript

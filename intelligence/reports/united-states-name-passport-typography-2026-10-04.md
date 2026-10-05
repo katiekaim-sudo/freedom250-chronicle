@@ -1,5 +1,17 @@
 # United States Name and Passport Typography — Legal-Entity Audit
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Does changing the capitalization of United States of America create a different legal entity, especially on a U.S. passport?
+
+**Answer:** The passport's authority comes from federal law and State Department issuance, not the capitalization on its cover.
+
+**Evidence checked through:** 2026-10-04T12:00:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Question
 
 Does `United States of America` name a different legal entity from

@@ -1,5 +1,17 @@
 # Contested Logistics — Research Package
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do ports, rail, sealift, airlift, fuel, repair, pre-positioning and private carriers convert industrial capacity into wartime movement?
+
+**Answer:** U.S. wartime movement relies on private carriers, ports, rail and fuel companies held ready by contracts and activation deals. On September 30, 2026 the Department set up FORTRESS America, aiming for independent power at every major base, but which sites, how much power, the funding and the tests are still undefined.
+
+**Evidence checked through:** 2026-09-30
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Status:** `current`  
 **Cutoff:** 2026-07-15 baseline; 2026-09-30 FORTRESS America focused delta
 **Scope:** the physical, commercial, energy, industrial, data and financial machinery that deploys and sustains U.S. forces  

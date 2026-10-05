@@ -2,6 +2,18 @@
 
 # Department of Education Full-Surface Sweep — 2026-08-04
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What material ED and FSA objects did the August 4 corrective entity sweep recover, and what legal or operating state did each reach?
+
+**Answer:** A recheck of the Education Department's sites on Aug. 4, 2026 found three things: a letter asking colleges to publish commitments by year-end, a planned move of Perkins loan servicing to a new company, and a delay in enforcing a student-loan reporting field. None is yet a funding condition, a finished transfer or a waiver.
+
+**Evidence checked through:** 2026-08-04
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Bottom line
 
 The August 2–4 government-wide pass was a rapid delta triage, not a completed

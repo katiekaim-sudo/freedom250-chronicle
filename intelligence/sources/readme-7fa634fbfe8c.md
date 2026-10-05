@@ -1,5 +1,17 @@
 # DOJ Judicial Misconduct Complaint Against Minnesota Judges — September 30, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did DOJ's Eighth Circuit judicial-misconduct complaint actually place in issue, what can the conduct process do, and where do public-comment doctrine, merits review and case-specific recusal remain separate?
+
+**Answer:** DOJ has opened a judicial-conduct process over judges' public comments, but the filing itself changes no ruling, case assignment or judge's status.
+
+**Evidence checked through:** 2026-09-30
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Research ID: `doj-minnesota-judicial-misconduct-complaint-2026-09-30`
 
 Status: current Workbench research; not a judicial finding, recusal order, case disposition or Chronicle conclusion.

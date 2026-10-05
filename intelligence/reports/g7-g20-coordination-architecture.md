@@ -1,5 +1,17 @@
 # G7 and G20 — Coordination Architecture Deep Dive, 2025–2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What can the Group of Seven and Group of Twenty actually decide, and which international bodies or national governments must act before their priorities become real?
+
+**Answer:** The G7 and G20 shape priorities, but they are not legal or operating authorities. Real change happens only when the IMF, FSB, IEA, development banks or national governments act, and so far results lag the goals.
+
+**Evidence checked through:** 2026-09-03T19:41:23-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 > **Targeted outcome refresh — September 3, 2026.** Treasury published the
 > Asheville Finance Ministers and Central Bank Governors Chair's Statement on
 > September 1. It records work on digital assets, cross-border payments, fraud

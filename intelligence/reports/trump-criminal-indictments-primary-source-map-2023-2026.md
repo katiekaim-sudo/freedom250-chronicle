@@ -1,5 +1,17 @@
 # Donald J. Trump Criminal Indictments — Primary-Source Map, 2023–2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the four criminal indictments against Donald J. Trump actually charge, how did the count structures differ, what later rulings changed them, and what was the procedural state of each case by October 1, 2026?
+
+**Answer:** The famous 91-count total was a real peak snapshot, but only New York reached a verdict; the other three cases ended before a jury resolved the allegations.
+
+**Evidence checked through:** 2026-10-01T14:00:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Research ID: `trump-criminal-indictments-primary-source-map-2023-2026`
 
 Status: current Workbench research. This package maps criminal charging instruments and later controlling records; it is not a conclusion about untried factual allegations.

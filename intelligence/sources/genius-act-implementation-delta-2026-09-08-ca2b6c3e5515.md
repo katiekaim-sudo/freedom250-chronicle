@@ -2,6 +2,18 @@
 
 # GENIUS Act Implementation Delta — September 8, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** The GENIUS Act is law: which rules, reports, approvals and dates actually stand between the statute and a working U.S. stablecoin regime?
+
+**Answer:** GENIUS is law but not in force until January 18, 2027; the agencies have proposals, not final rules, and three required reports are missing.
+
+**Evidence checked through:** 2026-09-30
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Prior baseline:** August 17, 2026 implementation-gap package  
 **Evidence cutoff:** September 8, 2026, 23:20 EDT  
 **Scope:** Question-led official-government sweep of the federal implementation

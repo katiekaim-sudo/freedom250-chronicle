@@ -1,4 +1,4 @@
-> Source evidence cutoff: 2026-09-30T18:33:00-04:00
+> Source evidence cutoff: 2026-10-05
 
 # The Accounting Transition
 
@@ -327,6 +327,36 @@ practitioner against defined criteria. The future may include persistent audit
 procedures and more frequently refreshed conclusions, but a protocol receipt,
 management dashboard or model confidence score cannot impersonate an audit
 opinion.
+
+### October 5 professional-constitution extension
+
+The licensure system that produces those accountable practitioners is changing
+too. NASBA's October 1 tracker lists additional CPA pathways enacted in 44
+states plus D.C. and Puerto Rico. The dominant new route retains a bachelor's
+degree with an accounting concentration and the Uniform CPA Examination but
+substitutes a second year of experience for the additional 30 semester hours.
+The common headline does not create one uniform license: accounting and
+business coursework, experience hours and permissible settings, supervisors,
+ethics tests, Exam-credit windows, active status and interstate mobility remain
+state-controlled.
+
+That is part of this story because automation changes the entry-level tasks
+through which new accountants learn judgment. The central competence question
+is therefore whether the substituted experience is governed well enough to
+prepare a new CPA to supervise automated accounting, interrogate system
+evidence, resolve exceptions and make the judgments the event compiler cannot
+make. `STATE_CPA_LICENSURE_EXAM_AND_MOBILITY_TRANSITION_2026-10-05.md` owns the
+legal-state baseline and the remaining fifty-five-jurisdiction research plan.
+
+The deeper result is recorded in
+`ACCOUNTING_PERMISSION_CONSTITUTION_2026-10-05.md`. Accounting credentials,
+classifications, thresholds, control conclusions, audit reports and corrections
+can become inputs to professional authority, market access, operating control,
+report reliance or remedy—but only when a law, contract, regulator, market or
+counterparty gives the qualified object that consequence. The accounting object
+does not appoint itself as permission. The future architecture must preserve
+the underlying authority, decision owner, purpose, cutoff, negative boundary
+and correction or revocation path alongside the number or credential.
 
 ## Act VIII — Government is the same story with more sovereign owners
 

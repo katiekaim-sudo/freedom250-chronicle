@@ -1,5 +1,17 @@
 # Institutional Signals and Thesis Test — 2025–2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the mapped federal committees, councils, boards, research bodies and public-input routes actually say, study, recommend or move—and does that evidence support, contradict or fail to bear on the Observatory's thesis?
+
+**Answer:** The United States is not building one crypto system. Separate rules decide who may issue coins, hold reserves, reach the Federal Reserve, use assets as collateral, record ownership and absorb losses. The dollar and central-bank settlement remain at the center.
+
+**Evidence checked through:** 2026-09-28T23:59:59-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Status:** historical sweep and dated active-buildout map complete through the September 28, 2026 cutoff  
 **Research window:** January 1, 2025 through September 28, 2026  
 **Evidence cutoff:** September 28, 2026  

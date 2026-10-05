@@ -1,5 +1,17 @@
 # One mortgage, several accounting layers
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How does one mortgage generate linked assets, liabilities and income across entities, consolidated groups and the Fed?
+
+**Answer:** One $300,000 mortgage can show up as several real, separate claims on different books (the household's loan, Fannie's mortgage asset, an MBS, and bank reserves and deposits) without the household owing more than $300,000.
+
+**Evidence checked through:** 2026-09-07
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Research ID: `mortgage-balance-sheet-trail`. Accounting extension checked September 7, 2026, America/New_York. Read alongside the process and current Fed endpoint.
 
 The organizing question is: **Which entity debits which asset, credits which liability or asset, and what survives at the next reporting level?** The entries below are constructed examples consistent with the cited reporting policies. They are not recovered internal journals or a traced household mortgage.

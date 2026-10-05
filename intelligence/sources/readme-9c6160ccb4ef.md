@@ -4,6 +4,18 @@
 
 # Federal Government Whole-Site Recertification — 2026-08-01
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Which federal publishing parents and non-news official surfaces were reachable and canonical through August 4, 2026, and what did those surfaces add or correct without treating a domain, directory, sitemap or lastmod as substantive state?
+
+**Answer:** This review checked official federal websites beyond their news pages and recorded which sources worked, failed or lagged. It kept law, funding, payment, implementation and measured results separate.
+
+**Evidence checked through:** 2026-08-04T17:48:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 This package deepens the incorporated July 25 whole-federal sweep. It is not a
 first government sweep and it does not reopen the older, narrower July 18
 Government-Wide Audit as though that were whole-government coverage.

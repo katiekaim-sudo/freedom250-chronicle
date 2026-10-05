@@ -1,5 +1,17 @@
 # GENIUS Act x Scientific Trust Stack Crosswalk
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Which law, issuer, token, chain, key, reserve, distributor, monitoring and remedy receipts determine the exact operating state of a GENIUS payment stablecoin?
+
+**Answer:** Under the GENIUS Act there is no single stamp that makes a stablecoin "trusted": the issuer's approval, the coin's code and keys, its reserves, the platforms selling it and the fixes for mistakes each have to be proven separately.
+
+**Evidence checked through:** 2026-08-17
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Evidence cutoff:** 2026-08-17  
 **State:** active workbench bridge; not vault-canonical  
 **Authority rule:** enacted law outranks proposals; final rules outrank forms,

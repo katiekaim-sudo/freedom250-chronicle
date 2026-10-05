@@ -2,6 +2,18 @@
 
 # Origin Deliberation and Public Representation - Priority 1 Exact-Clock Test
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What does the 14-PDF Senate Reading Room corpus establish after page-level provenance, duplicate and claim testing, and where are the causal bridges missing?
+
+**Answer:** The Senate reading-room records show the Proximal Origin authors' view shifted in stages, a sweeping "no lab scenario is plausible" sentence was added late after peer review, and press messaging overstated certainty. They do not show government direction, a knowing falsehood, a lab origin or destroyed records.
+
+**Evidence checked through:** 2026-07-29
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Outcome
 
 The primary record supports a real and consequential change in the

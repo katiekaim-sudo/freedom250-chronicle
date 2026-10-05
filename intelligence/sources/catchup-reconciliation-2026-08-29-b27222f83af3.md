@@ -1,5 +1,17 @@
 # Catch-up reconciliation — August 29, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What material federal primary-source changes appeared after August 21, which were or were not captured by Government Ted, and did the saved records satisfy the normal evidence, clock, disposition and documentation method?
+
+**Answer:** The audit checked 45 possible changes. Later research saved 37, folded one into existing work, repaired one, rejected five and kept one on watch; nothing remained unfinished.
+
+**Evidence checked through:** 2026-08-29T21:06:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Current disposition
 
 The package's 45-row candidate ledger is a retained audit and decision-input

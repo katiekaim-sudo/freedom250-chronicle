@@ -1,5 +1,17 @@
 # Crypto Infrastructure Hub — 2026-09-01
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Which companies and public bodies control the legal claim, official ownership record, cash payment, correction and loss when an asset is represented by a token?
+
+**Answer:** Of 20 crypto networks and companies we track, only one is used at scale and none is proven under stress; many brands rest on a handful of legal providers.
+
+**Evidence checked through:** 2026-10-01
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 > **2026-10-03 clean-up:** paths marked *(removed 2026-10-03)* were finished working folders deleted with Katie's approval; the list is in the vault file _Holding / DELETED — 2026-10-03.
 
 ## Start here: the Crypto Hub is now six focused graphics (2026-10-01)

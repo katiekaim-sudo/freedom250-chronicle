@@ -1,5 +1,17 @@
 # Big Insurance: Monetary and Government Control Map
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Who writes the rules for insurance, how do insurers move money and risk through markets, and which private or public balance sheet ultimately pays a covered loss?
+
+**Answer:** U.S. insurance runs through many separate regulators, very large insurer balance sheets, reinsurance and public loss programs that together work as one system. Each authority, company, contract and payment still keeps its own legal identity and timing.
+
+**Evidence checked through:** 2026-10-01T16:00:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## The sovereign, supervisory and capital-market machine above the retail policy
 
 **Question:** At system scale, who governs insurance, where do insurer balance sheets sit inside monetary and capital markets, how does risk move across legal entities and borders, and which public balance sheet is actually exposed when private capacity fails or a designated catastrophe occurs?

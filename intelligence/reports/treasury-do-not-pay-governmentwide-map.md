@@ -1,5 +1,17 @@
 # Treasury Do Not Pay — Governmentwide Structural Map
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What does Treasury Do Not Pay screen, how far does it reach, and who owns the actual eligibility or adverse-action decision?
+
+**Answer:** Treasury's Do Not Pay is a shared screening network that checks payees against death, debt, exclusion and other records before money goes out. A match is only a signal; the agency or state program must check it and make its own legal decision.
+
+**Evidence checked through:** 2026-08-29
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Research contract
 
 - **Question:** What is Treasury's Do Not Pay program, how far across federal,

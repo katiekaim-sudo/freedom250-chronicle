@@ -2,6 +2,18 @@
 
 # PRWORA Reinterpretation Campaign and State Reporting Map — 1996–2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How did the September 1, 2026 Justice Department opinion change what states must report and know, and which data links and results remain unproved?
+
+**Answer:** A September 1, 2026 Justice Department legal opinion reads a 1996 welfare-law reporting duty to cover all of a participating state's agencies, not just the welfare office. It also drops the old rule that a final removal order was needed before the state 'knew'. No new procedure or actual report has followed yet.
+
+**Evidence checked through:** 2026-09-02
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Controlling finding
 
 The September 1, 2026 OLC opinion is not an isolated reporting adjustment. It

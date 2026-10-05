@@ -1,5 +1,17 @@
 # Federal Science Operating System
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How does federal science doctrine move through mission selection, capital, security gates, industrial capability and operation without collapsing strategy into delivery?
+
+**Answer:** Seventeen countries endorsed the White House science-reform blueprint in Kyoto, but implementation still belongs to each national system and no shared institution or fund was created.
+
+**Evidence checked through:** 2026-10-04
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Evidence cutoff:** 2026-08-17 for the original system map; targeted extensions through 2026-10-04 include the September 7 Reactor reconciliation, September 9 Genesis update and October 4 Kyoto Vision international-endorsement audit
 **Status:** current research package; the workbench controls these owners except where the Registry identifies a controlling vault landing, including the selectively incorporated NSSTS full reading
 **Scope:** the federal funding, infrastructure, workforce, data, experimental and transaction architecture proposed for an AI-native scientific-industrial economy

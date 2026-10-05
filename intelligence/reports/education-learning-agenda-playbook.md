@@ -1,5 +1,17 @@
 # Learning Agenda Playbook: institutional capacity and the Education overhaul
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How does the Learning Agenda Playbook support state institutional capacity within the Education overhaul?
+
+**Answer:** The Department of Education released a voluntary playbook on September 9 that helps state education agencies tie their goals to evidence and to decisions about programs and money. Pilot states improved their planning, but no student gains or legal transfers are shown.
+
+**Evidence checked through:** 2026-09-09
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Evidence cutoff: September 9, 2026. Official Research; bounded release analysis. Published ambition, demonstrated pilot activity, legal authority and future outcomes are distinguished below.
 
 ## Finding

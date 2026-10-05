@@ -5,7 +5,7 @@ question: "How are the market regulators rewriting crypto from inside their own 
 subplots: ["The SEC & CFTC regulatory turn"]
 plotlines: []
 keywords: ["\\bSEC\\b", "\\bCFTC\\b", "Securities and Exchange"]
-research_ids: ["sec-crypto-custody-proposal-2026-10-01", "cftc-passive-software-no-action-2026-09-17", "coinbase-clearing-dco-registration-2026-09-28", "sec-investor-advisory-committee", "sec-accredited-investor-credential-notices-2026-09-30", "sec-tokenized-nms-stock-innovation-exemption", "sec-transfer-agent-modernization", "sec-24-hour-trading-roundtable-2026-09-17"]
+research_ids: ["sec-crypto-custody-proposal-2026-10-01", "cftc-regulation-ctx-cam-anprm-2026-10-05", "cftc-passive-software-no-action-2026-09-17", "coinbase-clearing-dco-registration-2026-09-28", "sec-investor-advisory-committee", "sec-accredited-investor-credential-notices-2026-09-30", "sec-tokenized-nms-stock-innovation-exemption", "sec-transfer-agent-modernization", "sec-24-hour-trading-roundtable-2026-09-17"]
 charts: ["SEC", "CFTC"]
 relationship_frame: "ingress-2026-libra"
 relationship_chapter: "lun-2026-09-26-fu"
@@ -21,7 +21,7 @@ status: active
 
 ## The braid so far
 
-The market regulators are rewriting crypto from inside their own rulebooks: proposals, staff letters, time-limited exemptions, credential gates, a registered clearinghouse and, on October 1, 2026, a crypto-custody proposal. These objects do not share one maturity. A proposal is not permission; a no-action position is not a rule; registration is not recurring use.
+The market regulators are rewriting crypto from inside their own rulebooks: proposals, staff letters, time-limited exemptions, credential gates, a registered clearinghouse, the October 1 crypto-custody proposal, and on **October 5, 2026** a CFTC Advanced Notice of Proposed Rulemaking for Regulation Crypto Asset Transactions (Regulation CTX) and Regulation Crypto Asset Markets (Regulation CAM). The same night the SEC approved 3x leveraged Bitcoin and ether ETFs, with trading still waiting on an effective registration statement. These objects do not share one maturity. A proposal is not permission; an ANPRM is not a Federal Register text; a product approval is not a live listing; a no-action position is not a rule; registration is not recurring use.
 
 In this Libra-ingress and Aries-Full-Moon window, **Mercury–Mars** is the lead archetypal strand. It moves from no direct major aspect in the ingress to an applying waxing square in the Full Moon. The image is the record pressing into action: text becoming a proposal, exemption, registration, gate or instruction. Constructively, the old rulebook learns to describe the new object precisely enough to govern it. In shadow, urgency lets staff positions and conditional permissions do work that deserves fuller law, public process or tested remedy.
 
@@ -35,4 +35,4 @@ The factual test is downstream: final and effective rules, named relying firms, 
 
 **Attention rhythm, not evidence.** Saved-post clusters show which regulatory stories occupied Katie's field. They do not establish which action was legally strongest or operationally mature.
 
-*Authored for the 2026 Libra ingress and September 26 Aries Full Moon. Review after the October 10 Libra New Moon. Archetypal reading only; no factual evidence or Forecast Ledger call.*
+*Braid so far refreshed by Grok, 2026-10-05, to land the CFTC CTX/CAM ANPRM and the 3x ETF approval. Relationship strands remain the Libra-ingress / Aries-Full-Moon authorship, due for review after the October 10 Libra New Moon. Archetypal reading only; no factual evidence or Forecast Ledger call.*

@@ -1,5 +1,17 @@
 # Federal fusion commercialization bridge, 2020–2035
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How does a U.S. fusion project move from public strategy and capital through machine milestones, licensing, site and grid gates to measured commercial electricity?
+
+**Answer:** Getting from fusion strategy to power on the grid takes separate steps: money, a named company and machine, test results, licenses, a site, a grid hookup and measured delivery. At the August 15, 2026 cutoff the U.S. had a final roadmap, funded research and early licensing steps, but no plant making electricity.
+
+**Evidence checked through:** 2026-08-15
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Evidence cutoff:** 2026-08-15 15:28 EDT
 **Status:** current workbench research; source-first domain bridge
 **Primary Observatory home:** `Energy` → `Energy dominance & the nuclear revival`

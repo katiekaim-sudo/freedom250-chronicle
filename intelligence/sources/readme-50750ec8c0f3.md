@@ -1,6 +1,6 @@
 # Accounting Transition and Open Public Ledger — 2026-07-30
 
-Evidence cutoff: 2026-07-30  
+Baseline evidence cutoff: 2026-07-30; bounded extensions through 2026-10-05
 Method: primary-source, entity-based, claim-audited  
 Status: active research package; the Chronicle synthesis controls the maintained shared answer
 
@@ -118,6 +118,54 @@ operational. The reviewed evidence shows meaningful legal and technical
 convergence; it does not establish a complete named private-company stack at
 recurring scale.
 
+## State CPA licensure, exam and mobility transition — October 5, 2026
+
+Read `STATE_CPA_LICENSURE_EXAM_AND_MOBILITY_TRANSITION_2026-10-05.md` for the
+people, permission and competence layer of the Accounting Transition. NASBA's
+October 1 tracker contains 46 enacted jurisdictions—44 states plus D.C. and
+Puerto Rico—with 38 already effective by this package's October 5 cutoff and
+eight future-dated through January 1, 2027. The Uniform CPA Examination remains
+mandatory, but education, experience, ethics, credit-window, active-status and
+mobility rules are diverging. The extension maps the common national objects,
+state-level outliers, 2027 Exam-platform clock and the exact cross-jurisdiction
+research still needed. It does not treat shorter formal education, longer
+experience or a model UAA provision as proof of competence or operating
+outcomes.
+
+## Accounting Permission Constitution — October 5, 2026
+
+Read `ACCOUNTING_PERMISSION_CONSTITUTION_2026-10-05.md` for the new
+constitutional layer joining accounting to consequence. It maps when a
+credential, classification, financial threshold, control conclusion, audit
+report or correction becomes an input to professional authority, market
+access, operational execution, reliance, restriction or remedy. Its governing
+equation is:
+
+> underlying authority × qualifying accounting or credential object ×
+> accountable decision owner = scoped permission, reliance, restriction or
+> remedy.
+
+The study is executed in five bounded waves under the existing
+`transaction-native-accounting` owner:
+
+- `ACCOUNTING_PERMISSION_CONSTITUTION_RESEARCH_DESIGN_2026-10-05.md`;
+- `ACCOUNTING_PERMISSION_CONSTITUTION_WAVE_0_EXISTING_COVERAGE_AND_ONTOLOGY_2026-10-05.md`;
+- `ACCOUNTING_PERMISSION_CONSTITUTION_WAVE_1_PERSON_AND_CREDENTIAL_2026-10-05.md`;
+- `ACCOUNTING_PERMISSION_CONSTITUTION_WAVE_2_ENTITY_MARKET_AND_REPORT_2026-10-05.md`;
+- `ACCOUNTING_PERMISSION_CONSTITUTION_WAVE_3_ASSET_TRANSACTION_AND_RECORD_2026-10-05.md`; and
+- `ACCOUNTING_PERMISSION_CONSTITUTION_WAVE_4_JUDGMENT_AI_INDEPENDENCE_AND_CORRECTION_2026-10-05.md`.
+
+The machine companion is
+`ACCOUNTING_PERMISSION_CONSTITUTION_MATRIX_2026-10-05.json`; the source and
+return owner is
+`ACCOUNTING_PERMISSION_CONSTITUTION_SOURCE_AND_RETURN_LEDGER_2026-10-05.md`.
+Open `outputs/The Accounting Permission Constitution.html` for the standalone
+six-lens hub. Rebuild it deterministically with
+`build_accounting_permission_constitution_hub.py`; the builder validates the
+governed JSON before writing the output.
+The end-to-end CPA/tokenized-private-company specimen is an architecture and
+proof test, not a claim that one named stack already operates.
+
 ## Read order
 
 1. `04 - Synthesis/Cross-cuts/2026-07-30 - The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer.md`
@@ -147,38 +195,54 @@ recurring scale.
    — investor-permission, tokenized-equity, official-record, books and
    assurance bridge for private operating companies, including the distinction
    among tokenized, listed, tradable and liquid states.
-8. `outputs/The Accounting Transition.html`
+8. `STATE_CPA_LICENSURE_EXAM_AND_MOBILITY_TRANSITION_2026-10-05.md`
+   — state-by-state licensure transition baseline: additional pathways,
+   education and experience variation, ethics tests, Exam credit and delivery
+   clocks, mobility, credential reuse and the competence evidence gaps.
+9. `ACCOUNTING_PERMISSION_CONSTITUTION_2026-10-05.md`
+   — integrated authority-to-consequence constitution across people, entities,
+   assets, transactions, markets, reports, judgment, assurance and remedy.
+10. `ACCOUNTING_PERMISSION_CONSTITUTION_MATRIX_2026-10-05.json`
+   — structured permission records with authority, qualifying object,
+   consequence, negative boundary, verification and revocation fields.
+11. `ACCOUNTING_PERMISSION_CONSTITUTION_SOURCE_AND_RETURN_LEDGER_2026-10-05.md`
+   — official source spine, authority states, exact limitations and return
+   gates.
+12. `outputs/The Accounting Permission Constitution.html`
+   — six selectable lenses for the thesis, permission objects, CPA route,
+   governed matrix, correction stress test and proof/return gates.
+13. `outputs/The Accounting Transition.html`
    — standalone interactive projection used as the Accounting Transition's
    native Systems & Maps page inside the Research Library.
-9. `ACCOUNTING_FUNCTIONS_AND_SMART_CONTRACT_AUTOMATION_MAP_2026-07-30.md`
+14. `ACCOUNTING_FUNCTIONS_AND_SMART_CONTRACT_AUTOMATION_MAP_2026-07-30.md`
    — what accounting actually does: the original 16-function decomposition,
    event object and judgment object.
-10. `CORPORATE_ACCOUNTING_CYCLES_GAAP_AND_AUTOMATION_DEEP_DIVE_2026-07-30.md`
+15. `CORPORATE_ACCOUNTING_CYCLES_GAAP_AND_AUTOMATION_DEEP_DIVE_2026-07-30.md`
    — order-to-cash, procure-to-pay, payroll, inventory, fixed assets,
    treasury, tax, close, reporting and audit mapped function by function.
-11. `MODIFIED_CASH_BASIS_AND_GAAP_BOUNDARY_2026-07-30.md`
+16. `MODIFIED_CASH_BASIS_AND_GAAP_BOUNDARY_2026-07-30.md`
    — why cash plus AR/AP is not GAAP: cash, modified cash, accrual, GASB
    modified accrual and federal budgetary/proprietary accounting kept separate.
-12. `GOVERNMENT_OPEN_LEDGER_DEEP_DIVE_2026-07-30.md`
+17. `GOVERNMENT_OPEN_LEDGER_DEEP_DIVE_2026-07-30.md`
    — primary-source map of authoritative federal record owners from
    appropriation through recovery, the missing joins and a detailed
    education-grant case.
-13. `OPEN_GOVERNMENT_ACCOUNTING_FROM_APPROPRIATION_TO_OUTCOME_2026-07-30.md`
+18. `OPEN_GOVERNMENT_ACCOUNTING_FROM_APPROPRIATION_TO_OUTCOME_2026-07-30.md`
    — what public accountability makes visible: open code, standards, data,
    verifiable records and governance kept distinct.
-14. `EDUCATION_GRANT_ADMINISTRATION_AND_LEDGER_INTERLOCK_2026-07-30.md`
+19. `EDUCATION_GRANT_ADMINISTRATION_AND_LEDGER_INTERLOCK_2026-07-30.md`
    — concrete case study of ED's interagency grant-administration changes,
    award-cohort system migration and the legal/payment/audit joins a public
    transaction record must preserve.
-15. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
+20. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
    — assertion matrix, oracle/key/admin/legal-code/correction/privacy controls,
    migrated accounting games and an auditor work program.
-16. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
+21. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
    — carry, correct, forecast and reject ledger.
-17. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
+22. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
    — one source-question guide for standards, production, the federal
    transaction spine and assurance evidence; it is not a scheduled watch.
-18. `SOURCE_LEDGER_2026-07-30.md`
+23. `SOURCE_LEDGER_2026-07-30.md`
    — official source spine.
 
 ## Boundaries

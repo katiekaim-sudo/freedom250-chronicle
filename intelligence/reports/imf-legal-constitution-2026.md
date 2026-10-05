@@ -1,5 +1,17 @@
 # IMF Legal Constitution, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What can the IMF legally do, what can't it do, and how could its powers change?
+
+**Answer:** The IMF's strongest lever is deciding whether a country gets a loan and on what terms. Changing the IMF's basic powers requires 85% of the voting power.
+
+**Evidence checked through:** 2026-09-21
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## The question
 
 Who can change the IMF, by which legal route, with what threshold and effect;

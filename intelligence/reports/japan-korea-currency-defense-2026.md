@@ -1,5 +1,17 @@
 # Japan–Korea Currency Defense — July and August 2026 evidence
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did Japan, Korea, the U.S. and the IMF actually do during the July 30, 2026 currency defense?
+
+**Answer:** Japan disclosed ¥15.399 trillion of intervention from July 30 to August 26; Korea's amount and the U.S. role remain unconfirmed.
+
+**Evidence checked through:** 2026-08-01
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Read the maintained Chronicle currency-defense answer first. It combines the institutional explanation with the separately dated July reports and saved August official outcomes.
 
 ## Supporting investigations

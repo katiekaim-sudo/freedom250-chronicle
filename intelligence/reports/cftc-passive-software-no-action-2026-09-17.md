@@ -1,5 +1,17 @@
 # CFTC Passive Software No-Action Position — Full Reading and CFTC-Only Technology Impact
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did CFTC Market Participants Division Letter 26-25 change for passive software providers, what remains outside the position, and how does it affect the Observatory's CFTC, crypto, prediction-market, perpetual, agentic-finance and private-rail plotlines?
+
+**Answer:** On September 17, 2026 CFTC staff said any qualifying 'passive' software app (crypto or not) can market regulated derivatives and earn fees without registering as a broker, while the trades stay inside registered firms.
+
+**Evidence checked through:** 2026-09-17T11:32:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Question
 
 What did CFTC Market Participants Division Letter 26-25 actually change for

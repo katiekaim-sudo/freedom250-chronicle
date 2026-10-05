@@ -2,6 +2,28 @@
 
 # Federal Government Freshness — Materiality Closeout
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+### What federal agency libraries added on August 22
+
+**Question:** What did official agency libraries, public-records rooms and uploaded files add beyond the August 21 review, and what remained inaccessible or already known?
+
+**Answer:** This is a preserved historical sweep, not an open work list. Its useful findings were folded into the later August 22 review; unfinished directory searches were not left active.
+
+**Evidence checked through:** 2026-08-23
+
+### What the August 22 federal source sweep actually found
+
+**Question:** Did the reached official record produce a material state change on an established plotline, a necessary correction or an exact future return gate?
+
+**Answer:** The earlier claim that 392 entities had been completely checked was retired. The final review covered 55 distinct items, found 13 worth further review and closed 42 with no material change; it does not claim complete inspection.
+
+**Evidence checked through:** 2026-08-23
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 This is the controlling result of the interrupted August 22–23 freshness work.
 It replaces the attempted 392-entity completeness campaign with the question the
 Observatory actually needs answered: **did the reached official record produce a

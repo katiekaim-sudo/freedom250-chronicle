@@ -2,6 +2,18 @@
 
 # The Overall DLT Transition, 2025–2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Which parts of institutional finance have actually moved onto distributed ledgers, at what level of maturity, and which title, money, collateral, accounting, failure and exit functions remain unresolved?
+
+**Answer:** Institutional finance isn't moving onto one new blockchain system; it is shifting piece by piece onto a patchwork of connected, regulated ledgers, with the hardest legal and money pieces still unsolved.
+
+**Evidence checked through:** 2026-09-22T23:59:59-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Bottom line
 
 The institutional DLT transition has crossed out of the “blockchain pilot” era,

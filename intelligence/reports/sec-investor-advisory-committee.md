@@ -1,5 +1,17 @@
 # SEC Investor Advisory Committee — 2026 analysis
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the SEC Investor Advisory Committee actually say and vote in 2025–2026, which official records exist, and how does that advice sit next to the Commission’s tokenized-NMS, transfer-agent, NMS and disclosure clocks?
+
+**Answer:** The SEC's Investor Advisory Committee told the SEC in March 2026 not to grant a blanket tokenization exemption; the SEC's September 17 order carried several similar limits but never cites the committee.
+
+**Evidence checked through:** 2026-09-20T16:20:12-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Factual result first
 
 The Investor Advisory Committee is a Dodd-Frank §911 advice body. Its 2025–2026

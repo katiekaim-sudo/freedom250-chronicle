@@ -1,5 +1,17 @@
 # The Overall Monetary Play
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What broad change in money and financial markets did the Observatory infer by July 13, 2026, and which maintained studies now hold the current evidence?
+
+**Answer:** As of July 2026, the money system looked less like one coin replacing another and more like a linked, programmable set of national systems. Power sits with whoever controls the points where deposits become collateral, collateral becomes cash, and losses get assigned.
+
+**Evidence checked through:** 2026-07-13
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **As of:** 2026-07-13  
 **Status:** working synthesis built from the Observatory's banking, clearing, judicial, fintech, metals, insurance, international-transition, compute and emergency-policy research  
 **Boundary:** this is an interpretation of documented institutions and transitions. It is not proof of one coordinated plan, one controlling actor or one inevitable outcome.

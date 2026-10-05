@@ -1,5 +1,17 @@
 # AI Infrastructure Capital Stack and Risk Transfer — 2026-08-10
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Who owns the GPUs and other AI-infrastructure assets, who owes the debt, what cash flow services it, and who absorbs loss if utilization or residual value collapses?
+
+**Answer:** AI infrastructure is financed through several separate structures (GPU funds, GPU loan vehicles, cloud companies, data-center property and power plants), so who owns the chips, who owes the debt and who takes the loss has to be traced one deal at a time.
+
+**Evidence checked through:** 2026-08-10
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Governing question
 
 For the emerging AI-infrastructure asset class:

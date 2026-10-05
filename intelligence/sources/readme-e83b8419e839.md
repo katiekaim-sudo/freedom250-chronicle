@@ -1,5 +1,17 @@
 # UK Constitutional Order and Self-Determination
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What has actually moved in the Scottish, Welsh and Irish self-determination coordination, and how are the United Kingdom, London and the City of London legally and institutionally related?
+
+**Answer:** Nothing was declared on September 13, 2026. Cooperation among Scottish, Welsh and Irish nationalist parties is political coordination, not a change in who holds referendum power or in the UK constitution.
+
+**Evidence checked through:** 2026-09-13T17:59:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Current, cutoff-controlled research on the United Kingdom's constitutional structure, its constituent and devolved nations, London and the City of London, and the separate legal routes for Scottish independence, Welsh independence and Irish reunification.
 
 ## Read first

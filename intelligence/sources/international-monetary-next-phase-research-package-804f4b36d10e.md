@@ -1,5 +1,17 @@
 # International Monetary Next Phase — Research Package
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How could changes in funding, public payments, settlement and insurance connect, and what evidence would show they did?
+
+**Answer:** Funding, public payments, finality and insurance would all have to connect; no country shows the whole chain.
+
+**Evidence checked through:** 2026-09-07
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Completed: 2026-07-13  
 Status: completed Workbench mechanism extension; not a Chronicle landing  
 Read alongside: [regional initiation comparison](../sources/international-monetary-initiation-map-e03be4ad2554.html) and bank/state evidence.

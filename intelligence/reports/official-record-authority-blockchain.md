@@ -1,5 +1,17 @@
 # Official Record Authority and Blockchain Crosswalk — 2026-09-26
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What does official record mean across federal records management, CFTC recordkeeping, securities ownership, corporate accounting, audit and public disclosure, and what changes when blockchain or DLT is permitted to hold the record?
+
+**Answer:** A record is not official because it sits on a blockchain; it is official because a law or regulator gives it a specific job, a named institution is responsible for it, and something legally follows from it.
+
+**Evidence checked through:** 2026-09-26
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Question
 
 What does **official record** mean across federal records management, CFTC

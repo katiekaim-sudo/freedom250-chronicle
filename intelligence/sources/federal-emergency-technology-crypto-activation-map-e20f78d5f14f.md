@@ -1,5 +1,17 @@
 # Federal Emergency Technology and Crypto Activation Map
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Under which U.S. federal authorities may private payment and digital-asset rails be contracted, pre-positioned, controlled or protected?
+
+**Answer:** Federal emergency powers can speed up, prioritize, fund or restrict a private payment or crypto service, but only one that is already licensed, contracted and connected. An emergency is usually the last step, not the first.
+
+**Evidence checked through:** 2026-07-15
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **As of:** 2026-07-15  
 **Status:** source-first U.S. federal authority map; pending review and selective vault incorporation  
 **Read first for:** U.S. federal contracting, pre-positioning, activation and control questions

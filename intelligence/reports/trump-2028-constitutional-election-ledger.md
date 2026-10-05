@@ -1,5 +1,17 @@
 # Trump 2028: Constitutional Entity and Argument Map
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What legal and procedural gates could a Trump 2028 third-election bid pressure, and what does current law actually permit?
+
+**Answer:** The 22nd Amendment bars anyone from being elected President more than twice, and Trump was elected in 2016 and 2024. The study maps how a 2028 push could still press on filing, ballot, elector and vote-counting steps, but that pressure would not change the law.
+
+**Evidence checked through:** 2026-07-25
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Evidence cutoff: **2026-07-25 EDT**
 
 ## Executive finding

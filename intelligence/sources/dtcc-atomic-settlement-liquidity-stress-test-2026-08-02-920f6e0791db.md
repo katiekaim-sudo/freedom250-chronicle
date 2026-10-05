@@ -1,5 +1,17 @@
 # DTCC atomic-settlement liquidity stress test
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What has DTCC actually built with tokens, what did the July 15 production event prove, and what would faster settlement do to cash and collateral?
+
+**Answer:** DTC's first tokens move no cash and count for zero in its settlement checks; the old owner of record stays in place.
+
+**Evidence checked through:** 2026-08-21
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Cutoff:** 2026-08-02 ET  
 **Status:** completed factual/analytical research; incorporated in the vault  
 **Question:** what has DTCC actually built with blockchain and tokenization, what did the July 15 production event prove, and what would happen to cash and securities liquidity if DTC, NSCC or FICC moved from netted/deferred settlement toward atomic gross settlement?  

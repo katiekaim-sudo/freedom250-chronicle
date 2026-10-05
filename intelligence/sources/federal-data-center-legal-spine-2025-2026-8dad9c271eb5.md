@@ -2,6 +2,18 @@
 
 # Federal data-center legal spine, 2025–2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Which federal legal objects actually govern U.S. data-center buildout, and which proposed, issued, authorized, constructed and operating states remain separate?
+
+**Answer:** No federal law bans data centers or sets rules for their power queues, water or emissions. The July 2025 executive order to speed them up has produced real leases, selections and permit changes, but no finished project or blanket exemption.
+
+**Evidence checked through:** 2026-08-20
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Short answer
 
 The federal contest is not presently one nationwide legal “war” with two

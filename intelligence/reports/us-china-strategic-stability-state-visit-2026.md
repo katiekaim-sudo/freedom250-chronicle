@@ -1,5 +1,17 @@
 # U.S.–China Strategic Stability State Visit — September 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Did the September 2026 Trump–Xi state visit create a public agreement, and what do the public speeches, meeting readouts and missing instruments actually establish?
+
+**Answer:** The September 2026 state visit did not produce a signed 'strategic stability' agreement; that is still a leader-level political framework from May 2026. On trade, both governments published matching texts for a Board of Trade and two product lists worth about $30 billion each way, but the tariff cuts still need legal instruments, a start date and customs instructions.
+
+**Evidence checked through:** 2026-09-28T10:07:16-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Research ID:** `us-china-strategic-stability-state-visit-2026`  
 **Package evidence cutoff:** 2026-09-28 10:07 EDT  
 **Original meeting-record cutoff:** 2026-09-24 21:36 EDT  

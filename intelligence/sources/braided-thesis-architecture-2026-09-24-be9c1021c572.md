@@ -1,5 +1,17 @@
 # The Braided Thesis
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Are economic institutions entering a legitimacy crisis as technological capability, private operating systems, executive coordination, standards and public-law structures change who can define money, access, records, rules, correction and failure?
+
+**Answer:** This is Katie's working synthesis, not a fact study. It argues the U.S. may be going through a re-founding carried out by lawful steps inside existing institutions, and that it becomes legitimate only if it produces a lasting order with visible benefit to ordinary people and a record that can be corrected.
+
+**Evidence checked through:** 2026-09-30T16:15:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## From 1776 2.0 to material legitimacy
 
 **Status:** current working synthesis; authorized by Katie for construction on

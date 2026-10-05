@@ -1,5 +1,17 @@
 # China Country Orientation — 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How does China's party-state, economy, military, global strategy and issue-by-issue U.S. relationship fit together?
+
+**Answer:** The U.S.–China relationship runs on many separate tracks: leaders, diplomacy, trade, chips, money, Taiwan, the military and people-to-people ties. China's leverage sits mostly in mid-stage processing and production scale, and America's in frontier technology permissions, aerospace and market access.
+
+**Evidence checked through:** 2026-09-24T23:05:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Research ID:** `china-country-orientation-2026`  
 **Baseline evidence cutoff:** 2026-09-24  
 **Current update through:** 2026-09-28 10:07 EDT  

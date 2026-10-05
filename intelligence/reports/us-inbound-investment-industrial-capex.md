@@ -1,5 +1,17 @@
 # U.S. Inbound Investment and Industrial-Capex Funding Map — 2025–2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** When the administration says trillions of dollars are coming into or being invested in the United States, which legal and economic objects are included and who supplies the cash and carries the credit risk for real industrial projects?
+
+**Answer:** The administration's $18–20 trillion investment total is not a pile of construction money. It mixes multi-year company spending plans, foreign-government frameworks, trade and purchase figures and some real projects, and each step from announcement to operation is separate.
+
+**Evidence checked through:** 2026-07-31
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Question
 
 When the administration says trillions of dollars are “coming into” or being invested in the United States, what legal and economic objects are included—and, for the construction and industrial projects that are real, **who supplies the cash and carries the credit risk?**

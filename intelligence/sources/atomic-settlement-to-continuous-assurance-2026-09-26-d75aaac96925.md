@@ -2,6 +2,18 @@
 
 # From Atomic Settlement to Continuous Assurance — Real-Time Books, Financial Statements, and the Changing Audit
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Can atomic settlement, smart contracts, blockchain records and AI make real-time accounting and continuously updated financial statements practical, and how would the external audit change?
+
+**Answer:** Blockchain, smart contracts and AI can make books update nearly in real time, but none of them is an audit, and today's SEC reporting and audit opinions are still tied to fixed periods.
+
+**Evidence checked through:** 2026-09-26
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Question
 
 Can atomic settlement, smart contracts, blockchain records and artificial

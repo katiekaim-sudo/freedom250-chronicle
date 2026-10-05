@@ -2,6 +2,18 @@
 
 # White House Ballroom Lawfare Map — 2025–2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What are the separate construction, review, disclosure, congressional and judicial states in the White House ballroom dispute?
+
+**Answer:** The main court case asks whether the White House needed Congress's express approval to build its new ballroom. An appeals court backed a halt, but Chief Justice Roberts paused that halt on August 21, so building may continue with no final ruling on the merits.
+
+**Evidence checked through:** 2026-08-23
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## The answer
 
 The White House ballroom fight is legally consequential, but the public phrase

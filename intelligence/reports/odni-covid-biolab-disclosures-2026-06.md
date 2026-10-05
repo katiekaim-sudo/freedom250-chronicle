@@ -1,5 +1,17 @@
 # ODNI COVID and Biolab Disclosures — Deep Audit
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What do the June 12 and June 18 ODNI releases directly establish, and where does the public framing outrun the released objects?
+
+**Answer:** The June 12 and June 18, 2026 ODNI releases add real records on NIH funding of EcoHealth work with the Wuhan Institute of Virology (WIV), Fauci's contacts with intelligence analysts, complaint handling and U.S. support for labs in Ukraine. They do not prove a lab origin, that Fauci controlled intelligence findings, or that he lied to Congress.
+
+**Evidence checked through:** 2026-07-27
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Analysis date:** July 27, 2026  
 **Status:** `pending` vault review  
 **Corpus:** June 12 biolab slides plus June 18 index and Parts 1–4  

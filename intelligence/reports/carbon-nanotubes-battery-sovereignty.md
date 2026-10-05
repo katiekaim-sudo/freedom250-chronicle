@@ -1,5 +1,17 @@
 # Carbon Nanotubes, Batteries and U.S. Sovereignty
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Where do carbon nanotubes add battery-performance and sovereignty value, and what domestic production chain is publicly proven at scale?
+
+**Answer:** A tiny amount of carbon nanotubes can make battery electrodes work better, especially silicon anodes and thick electrodes. But the U.S. has only pieces of a supply chain, not a proven mass-scale chain from domestic nanotube production to finished cells.
+
+**Evidence checked through:** 2026-08-23
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Research cutoff: **2026-08-23**  
 State: **current Workbench research; not vault canon**
 

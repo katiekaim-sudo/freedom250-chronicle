@@ -1,5 +1,17 @@
 # Southeast Fraud Enforcement Partnerships — Primary-Source Object Ledger
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did DOJ actually publish about the 17-case roll-up, State data-sharing agreements and three announced task forces?
+
+**Answer:** On July 30, 2026 DOJ announced 17 fraud cases, data-sharing deals with Southern state offices and three new task forces. The public record does not show the deals' terms, any actual data use, or that the deals produced any of the cases.
+
+**Evidence checked through:** 2026-07-31
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Control rule
 
 This is the controlling factual spine for the July 30 announcement. It admits

@@ -1,5 +1,17 @@
 # Open USD (OUSD) × Mastercard × Open Standard — Launch and Control Map
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What have Visa, Mastercard and the new Open USD coin actually launched with stablecoins, and how much money really moves that way?
+
+**Answer:** Visa's stablecoin cards were 0.04% of its volume in 2025; Open USD launched September 30 without an independent reserve attestation.
+
+**Evidence checked through:** 2026-09-30
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Question
 
 What did the September 30 Open USD launch establish, what is Mastercard's

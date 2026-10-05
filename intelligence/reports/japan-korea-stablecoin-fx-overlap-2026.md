@@ -1,5 +1,17 @@
 # Japan–Korea Stablecoin, Crypto and FX Overlap — July 31, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Did stablecoins show capital flight from Korea or Japan during the July 2026 currency defense?
+
+**Answer:** Korea's won-USDT price moved with the won; nothing shows money fleeing through stablecoins.
+
+**Evidence checked through:** 2026-07-31
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Read first:** the maintained Chronicle stablecoin/FX answer.
 It consolidates the event findings and legal objects, with separately dated saved
 Japan corrections. This folder holds the specialist evidence and original history.

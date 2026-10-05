@@ -1,5 +1,17 @@
 # IMF Currency Pricing Control Map — 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What does the IMF actually do to, with and around the price of a national currency?
+
+**Answer:** It classifies regimes, models balances and, for borrowers, can make a new exchange-rate set-up a condition of the loan.
+
+**Evidence checked through:** 2026-07-30
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Core evidence cutoff:** July 30, 2026. The Chronicle answer also retains two
 separately dated July 31 applications. September 7 consolidation compares saved
 research; it does not refresh currency markets or change frozen Currency Watch

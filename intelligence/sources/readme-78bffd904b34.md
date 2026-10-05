@@ -2,6 +2,18 @@
 
 # International Organizations and U.S. Power Map — 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do the major international organizations, treaty regimes, forums and parallel accords involving the United States actually work, and where can membership, money, standards, infrastructure or operating functions migrate without formal institutional replacement?
+
+**Answer:** The international order is changing one job at a time. Countries are leaving some bodies, rebuilding others and creating smaller groups for specific tasks; they are not replacing the whole system at once.
+
+**Evidence checked through:** 2026-10-04
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Observatory hub
 
 Open [`outputs/International Organizations — U.S. Power × Exit × Successor.html`](../rooms/international-organizations-us-power.html)

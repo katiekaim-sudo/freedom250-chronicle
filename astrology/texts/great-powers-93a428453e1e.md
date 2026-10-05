@@ -5,7 +5,7 @@ question: "How are the big relationships being renegotiated: China, Russia and t
 subplots: ["Trump's Beijing visit", "Putin & the peace track", "Zelensky & the war", "Greenland & the Arctic", "India & the outsourcing backlash"]
 plotlines: []
 keywords: ["\\bChina\\b", "\\bXi\\b", "Beijing", "Russia", "Putin", "Ukraine", "Greenland"]
-research_ids: ["china-country-orientation-2026", "us-china-strategic-stability-state-visit-2026", "russia-country-orientation-2026", "trump-davos-address-2026-01-21", "permanent-magnets", "g7-g20-coordination-architecture"]
+research_ids: ["china-country-orientation-2026", "us-china-strategic-stability-state-visit-2026", "russia-country-orientation-2026", "trump-davos-address-2026-01-21", "permanent-magnets", "g7-g20-coordination-architecture", "international-organizations-us-power-map-2026"]
 charts: ["United States", "Dept of Defense"]
 status: active
 ---

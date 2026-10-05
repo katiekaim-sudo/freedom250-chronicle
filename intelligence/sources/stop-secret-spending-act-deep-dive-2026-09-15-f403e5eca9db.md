@@ -2,6 +2,18 @@
 
 # Stop Secret Spending Act — Legal and Implementation Deep Dive
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the Stop Secret Spending Act actually change, what spending problem does it address, and what remains unimplemented after enactment?
+
+**Answer:** Public Law 119-106, signed September 11, 2026, counts 'other transaction agreements' (OTAs) as federal awards that must be reported on USAspending. The legal change is done, but Treasury has until September 11, 2029 to build the reporting system, and nothing new was live at the cutoff.
+
+**Evidence checked through:** 2026-09-15T18:26:27-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Question
 
 What did the Stop Secret Spending Act actually change, what spending problem

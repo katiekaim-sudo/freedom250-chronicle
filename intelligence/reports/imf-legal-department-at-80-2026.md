@@ -1,5 +1,17 @@
 # IMF Legal Department at 80 Conference, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What did the IMF's Legal Department publish and say at its 80th-anniversary conference, and what does it not decide?
+
+**Answer:** A conference on digital money, debt and the IMF mandate; useful evidence, not a decision.
+
+**Evidence checked through:** 2026-09-26
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 Status: current post-event conference record  
 Library state: current  
 Research ID: `international-monetary-transition`  

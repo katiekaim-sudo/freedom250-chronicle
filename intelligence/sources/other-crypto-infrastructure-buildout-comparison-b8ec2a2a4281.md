@@ -1,5 +1,17 @@
 # What the other major crypto networks are building toward
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** How do Ripple and other crypto-network buildouts compare across technology, corporate control, legal access and token value capture?
+
+**Answer:** No single coin is winning. The field is becoming many specialized networks linked through a few companies and regulated middlemen, and the native tokens are mostly fuel, not the money institutions actually move.
+
+**Evidence checked through:** 2026-09-30
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Status:** comparative infrastructure synthesis  
 **Research cutoff:** 2026-09-01 (network baselines retain their cited source dates; September 1 refresh covers the transfer-agent, Securitize/Wormhole and international control-plane synthesis)  
 **Baseline:** Ripple/XRPL/RLUSD compared with Stellar, Hedera, Algorand, XDC, IOTA, Quant, Chainlink, Canton, Ethereum, Solana and Avalanche where the cited regulated-asset architecture requires them  

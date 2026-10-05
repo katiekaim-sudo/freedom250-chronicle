@@ -1,5 +1,17 @@
 # Major Bank Digital Transition Map — 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Where is each major incumbent in the transition from research and roadmap to live money, assets, custody, settlement, collateral and publicly demonstrated recovery, including the quiet migration of retirement fund records and operating rails beneath conventional participant interfaces?
+
+**Answer:** Sixteen financial giants are connecting new digital ledgers to existing bank systems. Citi, Bank of America, Deutsche Bank and HSBC show the broadest work, but none has proved one joined system working at large scale or through a serious failure.
+
+**Evidence checked through:** 2026-10-03T10:20:00-04:00
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## Governing question
 
 How are the largest banks and systemically important incumbent asset managers

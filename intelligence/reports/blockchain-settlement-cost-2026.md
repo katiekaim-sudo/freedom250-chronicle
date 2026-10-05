@@ -1,5 +1,17 @@
 # Blockchain settlement cost and intermediary legitimacy audit
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Is blockchain settlement actually cheaper than today's payment and securities systems, and which middlemen does it really threaten?
+
+**Answer:** Ledgers threaten the record-copying middlemen, not the ones who supply money and liquidity; instant settlement gives up netting.
+
+**Evidence checked through:** 2026-08-02
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 **Cutoff:** 2026-08-02 ET  
 **Status:** complete cross-package claim audit; bounded synthesis incorporated in the live vault  
 **Scope:** Federal Reserve payment services, CHIPS, RTP, ACH, cards,

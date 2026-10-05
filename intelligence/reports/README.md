@@ -139,6 +139,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [International Monetary Initiation — 2026](international-monetary-initiation-2026.md) — cutoff 2026-09-14
 - [International Monetary Next Phase — 2026](international-monetary-next-phase-2026.md) — cutoff 2026-09-07
 - [International Monetary Transition](international-monetary-transition.md) — cutoff 2026-09-28T10:16:00+09:00
+- [International Organizations and U.S. Power Map — 2026](international-organizations-us-power-map-2026.md) — cutoff 2026-10-04
 - [Iran Financial Pressure and Banking-System Isolation](iran-financial-pressure.md) — cutoff 2026-09-03T19:41:23-04:00
 - [Iraq Oil Provenance and Logistics](iraq-oil-logistics.md) — cutoff 2026-07-15
 - [Japan August 2026 — State, Monetary, Industrial and Digital Delta](japan-august-2026-delta.md) — cutoff 2026-08-31T23:10:00+09:00

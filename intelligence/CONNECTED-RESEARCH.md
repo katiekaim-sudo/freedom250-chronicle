@@ -249,6 +249,7 @@ The federal government is rebuilding how it runs. Federal workers and agencies, 
 - [Federal Cryptographic Trust Stack](library/federal-cryptographic-trust-stack.html)
 - [Federal Force, Surveillance and Emergency Authority Maps](library/federal-force-surveillance-and-emergency-authority.html)
 - [House Oversight Corpus](library/house-oversight-corpus.html)
+- [International Organizations and U.S. Power Map — 2026](library/international-organizations-us-power-map-2026.html)
 - [Office of Religious Affairs — 2026](library/office-of-religious-affairs.html)
 - [SEC Accredited Investor Credential Notices — CPA Gate, 2026](library/sec-accredited-investor-credential-notices-2026-09-30.html)
 
@@ -391,6 +392,7 @@ How other countries, currencies and global groups are shifting. The dollar's rol
 
 - [G7 and G20 Coordination Architecture — 2025–2026](library/g7-g20-coordination-architecture.html): The G7/G20 machinery: payments goals, a rare-earth diversification plan and debt machinery, and how far each actually reaches.
 - [United Nations General Assembly High-Level Week — 2026](library/un-general-assembly-high-level-week-2026.html): UN week captured whole: the national addresses, speaker statements, and what the U.S. said and signed.
+- [International Organizations and U.S. Power Map — 2026](library/international-organizations-us-power-map-2026.html): A wave-by-wave entity map of the treaties, votes, money, exit paths and parallel structures linking the United States to the international order.
 - [Bessent at the IIF — April 2026](library/bessent-iif-spring-meetings-2026.html): Bessent's April 2026 remarks use votes, budgets and conditions to reshape the IMF and World Bank rather than exit them.
 - [Who Gets Adjusted — IMF Symmetry Audit 2026](library/imf-symmetry-audit-2026.html): Big economies get candid advice; borrowers get deadlines, conditions and reviews tied to the money.
 - [IMF Legal Department at 80 — Conference 2026](library/imf-legal-department-at-80-2026.html): A conference on digital money, debt and the IMF mandate; useful evidence, not a decision.

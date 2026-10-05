@@ -1,0 +1,187 @@
+> Source evidence cutoff: 2026-10-04
+
+# International Organizations and U.S. Power Map — 2026
+
+## Observatory hub
+
+Open [`outputs/International Organizations — U.S. Power × Exit × Successor.html`](../rooms/international-organizations-us-power.html)
+for the durable visual front door. It provides seven connected lenses:
+
+1. the complete 27-object constellation;
+2. the five places U.S. power actually sits;
+3. funding and vote figures with their denominators preserved;
+4. effective, contested, pending and non-membership exit clocks;
+5. the six-state bypass ladder plus the retained-incumbent baseline;
+6. the Board of Peace authorization-to-field handoff; and
+7. direct routes back to every canonical research owner.
+
+The hub is generated from
+`INTERNATIONAL_ORGANIZATION_US_POWER_FINAL_REGISTRY_2026-10-04.json`.
+Do not hand-edit the HTML. After changing the registry, run:
+
+```bash
+python3 build_international_organizations_hub.py
+python3 build_international_organizations_hub.py --check
+```
+
+### Bot and public-data contract
+
+The final 27-object registry carries the standard public machine profile:
+`schema_version`, `registry_id`, `research_id`, `title`, `as_of`, `status`,
+`purpose` and `scope_boundary`. The Research Desk Catalog positively selects
+that exact registry as `machine_data`; the governed share-site composer exports
+it as complete JSON and labels it `access_state: public_machine_data` with a
+stable `data_url`, checksum and package manifest route.
+
+The public visual remains a generated projection. Bots should use the package
+manifest and structured registry for claims, preserve the registry's distinct
+legal forms, institution-specific denominators and bypass states, and return to
+the human visual only for navigation and comparison.
+
+## Goal
+
+Map the major international organizations, treaty regimes, forums and parallel
+accords through which the United States exercises, shares, limits, funds,
+withdraws or reroutes international power.
+
+The map asks the same questions the Federal Group asks domestically:
+
+- What is the exact legal person or institutional object?
+- What instrument created it?
+- Who is a member, party, shareholder, host, donor or operator?
+- Where does the United States have a vote, veto, permanent seat, weighted
+  share, appointment right, funding lever, facility role or domestic command
+  chain?
+- What is assessed, voluntary, subscribed, appropriated or delivered in kind?
+- Who keeps the authoritative record and who declares a decision final?
+- What are the withdrawal, suspension, arrears, expulsion and amendment paths?
+- If the United States leaves or withholds support, which function returns
+  home, moves bilateral, migrates into a smaller coalition or continues through
+  a private or technical network?
+
+## Wave 0 ruling
+
+There is no single class called `international organization` that answers the
+question. The first denominator already contains several different legal
+grammars:
+
+1. treaty organizations with international legal personality;
+2. the United Nations Charter organization and its principal organs;
+3. autonomous UN specialized agencies;
+4. Assembly-created funds, programmes and subsidiary bodies;
+5. alliances and regional organizations;
+6. shareholder/quota-based financial institutions;
+7. forums and coordination clubs without a separate treaty personality;
+8. technical, standards and police-cooperation organizations;
+9. joint scientific facilities and treaty projects; and
+10. political accords and parallel coalitions that may become successor
+    architecture without yet being organizations.
+
+The United States therefore does not possess one generic `membership` or one
+generic `funding power`. Its legal bundle changes by institution: one General
+Assembly vote, a Security Council veto, a NATO treaty commitment, an IMF quota
+and blocking share, a World Bank capital subscription, a WHO or UNESCO
+membership clock, a voluntary programme contribution, a headquarters-host
+obligation, a technical delegation or an informal G7/G20 seat are not
+interchangeable.
+
+## What already exists in the Library
+
+Wave 0 found four mature owners that will be reused rather than duplicated:
+
+- **United Nations:** `Research Packages/United Nations General Assembly High-Level Week 2026/UN_ENTITY_AUTHORITY_AND_US_ROLE_MAP_2026-09-20.md` and its entity/authority visual.
+- **WHO exit:** vault `02 - Research/Federal Group Control/WHO and IHR — Membership Exit Map.md`.
+- **IMF:** `Research Packages/International Monetary Transition/16 - IMF Legal Constitution 2026/README.md`.
+- **G7/G20:** `Research Packages/G7 and G20 Coordination Architecture 2025-2026/README.md`.
+
+The Charter Library's International Organizations Immunities Act supplies the
+domestic legal-status bridge. Kyoto's incumbent-power audit supplies the first
+explicit parallel-accord/bypass test.
+
+## Controlling files
+
+1. `INTERNATIONAL_ORGANIZATION_MAP_CONSTITUTION_AND_WAVES.md` — scope, schema, evidence gates, waves and stop rules.
+2. `INTERNATIONAL_ORGANIZATION_BASELINE_REGISTRY_2026-10-04.json` — Wave 0 institution denominator, existing owners and research state.
+3. `WAVE_1_UN_CONSTITUTION_US_POWER_AND_WITHDRAWAL_MAP_2026-10-04.md` — UN constitutional continuity, U.S. power, money, targeted participation/funding contraction and bypass ruling.
+4. `WAVE_1_UN_TARGETED_ENTITY_LEDGER_2026-10-04.json` — 34-row core/UNHRC/UNRWA/January-memorandum classification and current-state ledger.
+5. `WAVE_2_ALLIANCE_SECURITY_AND_VERIFICATION_MAP_2026-10-04.md` — NATO, OAS, IAEA, OPCW and INTERPOL legal, voting, money, command/operation, immunity, exit and bypass comparison.
+6. `WAVE_2_ALLIANCE_SECURITY_ENTITY_LEDGER_2026-10-04.json` — structured five-entity Wave 2 power and boundary ledger.
+7. `WAVE_3_WHO_IHR_UNESCO_EXIT_AND_FUNCTION_MIGRATION_MAP_2026-10-04.md` — WHO's unreconciled membership/money books, residual IHR and PAHO routes, bilateral health successor machinery and pending UNESCO exit.
+8. `WAVE_3_WHO_IHR_UNESCO_EXIT_LEDGER_2026-10-04.json` — structured six-object membership, instrument, regional-body, bilateral-route and convention/network ledger.
+9. `WAVE_4_MONEY_DEVELOPMENT_TRADE_AND_COORDINATION_MAP_2026-10-04.md` — IMF, five-entity World Bank Group, WTO, OECD, BIS and G7/G20 legal, funding, operating, exit and handoff comparison.
+10. `WAVE_4_MONEY_TRADE_COORDINATION_ENTITY_LEDGER_2026-10-04.json` — structured seven-record economic-institution and forum ledger.
+11. `WAVE_5_TECHNICAL_STANDARDS_AND_SCIENCE_FACILITIES_MAP_2026-10-04.md` — ICAO, IMO, ITU, WIPO, CERN and ITER legal, standards, treaty-service, funding, access, data/IP, domestic-implementation and exit comparison.
+12. `WAVE_5_TECHNICAL_SCIENCE_ENTITY_LEDGER_2026-10-04.json` — structured six-record standards-and-facility power and bypass ledger.
+13. `WAVE_6_EXIT_WITHHOLDING_AND_SUCCESSOR_ARCHITECTURE_2026-10-04.md` — cross-case adjudication of exit, nonparticipation, defunding, internal refit, parallel doctrine, shared machinery and bounded functional migration.
+14. `WAVE_6_SUCCESSOR_ARCHITECTURE_LEDGER_2026-10-04.json` — structured nine-case bypass ladder with WHO, UNESCO, Paris/UNFCCC, Kyoto, Artemis and Board of Peace rulings.
+15. [`FINAL_RECONCILIATION_AND_ENTITY_MAP_2026-10-04.md`](../sources/final-reconciliation-and-entity-map-2026-10-04-987c73effe21.html) — final constitutional synthesis, U.S. power bundles, money seams, bypass ruling and return gates.
+16. `INTERNATIONAL_ORGANIZATION_US_POWER_FINAL_REGISTRY_2026-10-04.json` — reconciled 27-object machine-readable entity and bypass registry.
+17. `build_international_organizations_hub.py` — fail-closed deterministic hub builder and drift check.
+18. [`outputs/International Organizations — U.S. Power × Exit × Successor.html`](../rooms/international-organizations-us-power.html) — generated seven-lens Observatory hub.
+19. `INTERNATIONAL_ORGANIZATIONS_HUB_BUILD_RECEIPT_2026-10-05.json` — deterministic source/output hash and cardinality receipt.
+
+## Wave plan
+
+| Wave | Family | Core objects | Close condition |
+|---|---|---|---|
+| 0 | Constitution and denominator | classes, schema, existing-owner audit, 25-object baseline | every object has a class, wave, owner/gap and research state |
+| 1 | United Nations constitutional system | UN, principal organs, funding, U.S. Mission, UNHRC, UNRWA and specialized-agency boundary | Charter, U.S. authority, votes, money, host role and exit limits reconciled |
+| 2 | Alliance and collective-security system | NATO, OAS, IAEA, OPCW and INTERPOL | treaty/body identity, command/decision route, contributions, commitments and exit/suspension paths mapped |
+| 3 | Health, culture and contested membership | WHO/IHR, UNESCO and adjacent UN membership/funding exits | notice, effective date, arrears, depositary, programme continuity and replacement route reconciled |
+| 4 | Money, development, trade and coordination | IMF, World Bank Group, WTO, OECD, BIS adjacency, G7 and G20 | quota/share/vote, capital, lending/conditionality, forum-to-institution handoffs and withdrawal paths mapped |
+| 5 | Technical and scientific system | ICAO, IMO, ITU, WIPO, CERN, ITER and international science coalitions | standards/facility authority, U.S. delegation/funding, access, IP/data and operating dependencies mapped |
+| 6 | Exit, withholding and successor architecture | WHO, UNESCO, UNHRC/UNRWA, Paris Agreement, Kyoto Vision, Artemis Accords, Board of Peace and other proved comparators | every case adjudicated as exit, pause, nonparticipation, defunding, parallel accord, functional migration or no movement |
+| 7 | Central reconciliation and entity map | all completed waves | duplicate identities resolved; functions, clocks and money reconciled; final visual and Library filing validated |
+
+## Current wave state
+
+- **Wave 0 — complete.** Denominator, classes, schema and owner/gap routing are frozen.
+- **Wave 1 — complete through October 4, 2026.** The U.S. remains a UN Charter Member and P5; the January 7 memorandum targets 31 differently constituted UN objects through participation/funding contraction, not 31 equivalent membership withdrawals. Funding pressure has reduced incumbent operating capacity, but function migration is unproved.
+- **Wave 2 — complete through October 4, 2026.** The security family is not one hierarchy: NATO combines consensus with national forces; the OAS combines equal votes with exceptional U.S. funding exposure; IAEA and OPCW own treaty-grounded verification machinery; INTERPOL owns a police-data network but no arrest power. NATO roles are being rebalanced and the OAS periphery narrowed, but no cross-family successor architecture is proved.
+- **Wave 3 — complete through October 4, 2026.** Washington says WHO membership ended, while WHO's May 2026 Assembly still applied Member arrears and possible voting-suspension rules to the United States. The IHR and PAHO survive on separate tracks. U.S. bilateral health assistance has reached resource migration and a default-route policy change, but it has not inherited WHO's universal normative book. UNESCO remains a Member until December 31, 2026; its conventions and networks require separate exit tests.
+- **Wave 4 — complete through October 4, 2026.** The U.S. is refitting rather than exiting the economic institutions. IMF and World Bank policy is being steered through shares, boards and appropriations; the OECD tax fork was absorbed into a side-by-side incumbent rule; WTO appellate finality has partially moved into an Article 25 parallel mechanism for non-U.S. participants; BIS participation belongs to the Federal Reserve node; G7/G20 route work but own no downstream authority.
+- **Wave 5 — complete through October 4, 2026.** ICAO and IMO retain standards/treaty and audit machinery implemented through national authorities; ITU retains the binding spectrum/orbit record while its technical Recommendations are generally voluntary; WIPO's fee-funded filing systems remain active and Madrid e-Filing became the U.S. outbound default; the U.S. remains a non-Member CERN project observer but a treaty Member and delivered contributor at ITER. No exit notice or successor transfer was located.
+- **Wave 6 — complete through October 4, 2026.** The restructuring thesis is partly confirmed in modular form. Paris/UNFCCC, UNESCO, UNHRC and UNRWA show exit or contraction without successor; Kyoto reaches parallel doctrine; Artemis reaches shared minilateral machinery; bilateral global health reaches a bounded default-route change; and the Board of Peace is a real mission-specific execution organization beside the UN, but its Gaza field handoff was not complete by September 2026.
+- **Wave 7 — complete through October 4, 2026.** All 27 baseline objects now have a reconciled legal class, U.S. relationship, power bundle, money route, exit state, operating owner and bypass ruling. The final registry, synthesis and interactive entity/bypass map are complete; future change is routed through the watchboard rather than treated as a research gap.
+
+## Final ruling
+
+The theory is **partly confirmed as modular restructuring**. The United States
+is selectively exiting, defunding, internally refitting and building parallel
+machinery. No source proves wholesale replacement of the UN system, NATO, the
+Bretton Woods institutions or the technical/scientific infrastructure. The
+strongest new setup is the Board of Peace; the strongest completed bounded
+function migration is bilateral global-health assistance.
+
+## The bypass hypothesis
+
+The comparison will not ask only whether the United States formally left. It
+will test whether an old institution retained its legal shell while purpose,
+money, admission, standards, infrastructure, execution, finality or remedy
+migrated elsewhere.
+
+The map will use a six-state ladder:
+
+1. **Rhetoric** — criticism or threat only.
+2. **Parallel doctrine** — a new declaration, accord or coalition exists.
+3. **Shared machinery** — governance, operator, fund, standard or access route exists.
+4. **Resource migration** — money, staff, data, infrastructure or programmes move.
+5. **Default-route change** — actors normally use the successor route.
+6. **Residual incumbent** — the old body survives but no longer controls the frontier function.
+
+No organization will be promoted beyond the highest state supported by a
+named official receipt.
+
+## Scope boundaries
+
+- This is a U.S.-relationship and control map, not a complete history of every organization.
+- Organizations, organs, programmes, treaty regimes, forums, technical networks and accords remain separately typed.
+- Membership, voting, funding, operation, immunities, withdrawal and bypass are separate questions.
+- A threat, executive instruction, funding pause, notice, effective exit, depositary record and replacement programme are different clocks.
+- Shared members, similar language or a common meeting do not establish common command.
+- Research and astrology remain separate; the map is factual institutional anatomy only.
+
+## Evidence cutoff
+
+Wave 0 completed October 4, 2026. Institution-specific factual cutoffs remain
+with their existing owners until each new wave recertifies them.

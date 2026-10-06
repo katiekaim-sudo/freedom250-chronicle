@@ -7,9 +7,7 @@
 
 **Answer:** Under Operation Economic Outcast, FinCEN proposed, but has not finalized, a rule that would bar U.S. banks from correspondent accounts for Banque Misr's UAE branches, and OFAC named new sanctions targets. Iran's domestic banking system has not been shown to be shut down.
 
-**Evidence checked through:** 2026-10-05 for the named SWIFT-eligibility,
-Banque Misr UAE disposition and payment-operation returns;
-2026-09-03T19:41:23-04:00 for the broader package.
+**Evidence checked through:** 2026-09-03T19:41:23-04:00
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->

@@ -2,6 +2,18 @@
 
 # Tribal Data Center Return Refresh — October 5, 2026
 
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** Which entities, lands, power systems, tax states and authority clocks govern tribal, state, federal and private data-center projects?
+
+**Answer:** Cherokee Nation's full task-force report now supplies a sovereign policy model: use land status, consultation, power, water and enforceable community benefits to govern each project, while favoring workforce and supplier gains over tax-arbitrage or direct hyperscale investment.
+
+**Evidence checked through:** 2026-10-05
+
+The detailed record below keeps the legal wording, source limits and open questions.
+<!-- plain-english-entry:end -->
+
 ## In plain English
 
 **Question:** What happened to the Cherokee report, the Pocatello/Hoku appeal,

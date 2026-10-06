@@ -1,8 +1,8 @@
-# Other countries' money moves, region by region
+# How countries are changing currencies, payment systems and gold policy
 
 How other countries are rebuilding money, region by region: tokens and stablecoins, payment plumbing, new regulatory walls, central-bank digital money and gold. Written from news reports of official moves.
 
-Home room: Foreign Relations & World Money › World money. 170 dated entries, 2025–2026. Dates and facts only.
+Home room: Foreign Relations & World Money › Exchange rates, reserves & international monetary policy. 170 dated entries, 2025–2026. Dates and facts only.
 
 
 ## 2026

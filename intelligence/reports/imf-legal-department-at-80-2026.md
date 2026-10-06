@@ -12,9 +12,9 @@
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-Status: current post-event conference record  
-Library state: current  
-Research ID: `international-monetary-transition`  
+Status: current post-event conference record
+Library state: current
+Research ID: `international-monetary-transition`
 Evidence cutoff: 2026-09-26 13:00 EDT (America/New_York)
 
 ## The question

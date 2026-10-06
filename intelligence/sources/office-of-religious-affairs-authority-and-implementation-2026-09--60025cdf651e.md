@@ -1,9 +1,9 @@
 # Office of Religious Affairs — Authority, Reporting Line and Implementation Gates
 
-**Status:** `current`  
-**Research ID:** `office-of-religious-affairs`  
-**Parent research:** `military-modernization`  
-**Targeted evidence cutoff:** 2026-09-30, 10:00 p.m. EDT  
+**Status:** `current`
+**Research ID:** `office-of-religious-affairs`
+**Parent research:** `military-modernization`
+**Targeted evidence cutoff:** 2026-09-30, 10:00 p.m. EDT
 **Question:** What did the Department change by establishing an Office of Religious Affairs that reports directly to the Secretary, and what has not yet happened?
 
 ## Answer first

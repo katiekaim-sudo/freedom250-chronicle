@@ -13,10 +13,10 @@ The detailed record below keeps the legal wording, source limits and open questi
 <!-- plain-english-entry:end -->
 
 **Status:** five Commission notices issued September 30, 2026; no final
-designation order yet  
+designation order yet
 **Lead question:** Did the SEC make CPAs accredited investors, and what would
-the proposed CPA route actually do?  
-**Research owner:** `sec-accredited-investor-credential-notices-2026-09-30`  
+the proposed CPA route actually do?
+**Research owner:** `sec-accredited-investor-credential-notices-2026-09-30`
 **Evidence cutoff:** September 30, 2026, 8:55 p.m. EDT
 
 ## Short answer

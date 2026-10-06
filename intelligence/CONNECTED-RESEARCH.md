@@ -14,12 +14,12 @@ Money is moving onto new digital networks. Stablecoins, tokenized money and cryp
 
 **Research hub. In one sentence:** Money is moving onto new digital networks piece by piece, not all at once: the dollar stays in charge, private companies are taking over the pipes, and almost nothing has yet been proven in a crisis.
 
-- **Where is this all heading?** Not onto one blockchain. Finance is moving onto a patchwork of regulated, connected ledgers, and the hardest parts (legal ownership across networks, central-bank money on the ledger, shared accounting) have not moved yet.
+- **How is crypto changing the financial system?** Not onto one blockchain. Finance is moving onto a patchwork of regulated, connected ledgers, and the hardest parts (legal ownership across networks, central-bank money on the ledger, shared accounting) have not moved yet.
 - **What is law, what is proposed, and what stalled?** One crypto law is on the books (the GENIUS Act, for stablecoins) and it is not in force yet. The market-structure bill (CLARITY) stalled in the Senate, so the agencies are moving with proposals, staff letters and time-limited exemptions instead.
-- **Who is actually live?** Very few at scale. Of 20 networks and companies we track, one (Securitize) reaches “used at scale” and none is “proven under stress.”
-- **How does it actually work? (the accountant's view)** A stablecoin transfer changes who holds the IOU, not whose books it sits on, and that one fact drives the accounting, the audit and the risk.
-- **What does the rest of the world look like?** Lots of licensed activity and zero verified cross-border crypto payment routes: across 22 jurisdictions, the pattern is a token on top of an ordinary legal claim and ordinary bank settlement.
-- **Which popular claims did the research rule out?** Several: there is no such thing as an “ISO 20022 coin,” XRP can't become an SDR, and no public Strategic Bitcoin Reserve inventory exists.
+- **Which crypto companies and networks are operating at scale?** Very few at scale. Of 20 networks and companies we track, one (Securitize) reaches “used at scale” and none is “proven under stress.”
+- **How do crypto transactions change legal ownership and accounting records?** A stablecoin transfer changes who holds the IOU, not whose books it sits on, and that one fact drives the accounting, the audit and the risk.
+- **How are 22 jurisdictions regulating and using crypto?** Lots of licensed activity and zero verified cross-border crypto payment routes: across 22 jurisdictions, the pattern is a token on top of an ordinary legal claim and ordinary bank settlement.
+- **Which common crypto claims did the research disprove?** Several: there is no such thing as an “ISO 20022 coin,” XRP can't become an SDR, and no public Strategic Bitcoin Reserve inventory exists.
 
 Dates on the clock: past due: Did DTC's participant tokenization service open on schedule?; past due: Did the Eurosystem's Pontes enter operation?; 2026-10-13: Government response due in Custodia's Supreme Court case (Fed master accounts); 2026-10-19: Comment deadlines: Fed GENIUS proposals and Regulation Crypto Assets; 2026-10-23: ARK's tokenized fund share class; 2026-11: OCC final stablecoin rule target; 2026-12-06: Overnight (23×5) stock trading launch target; 2026-12-31: DTCC Collateral AppChain launch window; Treasury cash-clearing deadline; 2027-01-18: GENIUS Act in force; 2027 H1: Bank consortium stablecoin; The Clearing House's tokenized-deposit network; 2028-07-18: Only approved stablecoins may be offered by U.S. exchanges and wallets
 
@@ -35,8 +35,8 @@ Dates on the clock: past due: Did DTC's participant tokenization service open on
 ### What regulators approved or proposed
 
 - [The SEC's crypto custody plan: expensive, and still only a proposal](library/sec-crypto-custody-proposal-2026-10-01.html): Holding any piece of a private key would count as custody; the SEC puts the cost at $433.7 million a year and the measurable benefit at $176,472.
-- [The CFTC proposes a federal lane for leveraged retail crypto](library/cftc-regulation-ctx-cam-anprm-2026-10-05.html): The CFTC is testing a federal venue for leveraged retail crypto, while ordinary unleveraged spot trading still sits outside the proposed lane.
-- [SEC opens a trial lane for tokenized stocks](library/sec-tokenized-nms-stock-innovation-exemption.html): On September 17, 2026 the SEC issued a live five-year order letting approved participants trade tokenized versions of listed stocks through automated pools on public blockchains. No such venue is running yet, and custody, clearing and settlement are left to others.
+- [CFTC proposes special rules for leveraged retail crypto](library/cftc-regulation-ctx-cam-anprm-2026-10-05.html): The CFTC is testing a federal venue for leveraged retail crypto, while ordinary unleveraged spot trading still sits outside the proposed lane.
+- [SEC allows a limited tokenized-stock exemption through 2031](library/sec-tokenized-nms-stock-innovation-exemption.html): On September 17, 2026 the SEC issued a live five-year order letting approved participants trade tokenized versions of listed stocks through automated pools on public blockchains. No such venue is running yet, and custody, clearing and settlement are left to others.
 - [SEC proposes blockchain-based official shareholder records](library/sec-transfer-agent-modernization.html): On September 1, 2026 the SEC proposed letting a blockchain serve as all or part of a company's official shareholder list, as long as one registered transfer agent stays legally responsible for it.
 - [“24-hour trading” is really 23 hours, five days a week](library/sec-24-hour-trading-roundtable-2026-09-17.html): December 6 is a launch target, and the live price feed would skip the busiest overnight hour.
 - [SEC advisers' tokenization advice versus actual SEC action](library/sec-investor-advisory-committee.html): The SEC's Investor Advisory Committee told the SEC in March 2026 not to grant a blanket tokenization exemption; the SEC's September 17 order carried several similar limits but never cites the committee.
@@ -46,7 +46,7 @@ Dates on the clock: past due: Did DTC's participant tokenization service open on
 ### Who's live: companies, banks & networks
 
 - [Stablecoins at the checkout: real, but tiny so far](library/card-network-stablecoins-2026.html): Visa's stablecoin cards were 0.04% of its volume in 2025; Open USD launched September 30 without an independent reserve attestation.
-- [Who's wiring the new private money system](library/private-monetary-stack.html): No single coin or blockchain is taking over. Banks, crypto firms, card networks and market utilities each control a different step, and the most powerful firms may be the ones connecting those separate systems.
+- [Which companies connect the new private money system](library/private-monetary-stack.html): No single coin or blockchain is taking over. Banks, crypto firms, card networks and market utilities each control a different step, and the most powerful firms may be the ones connecting those separate systems.
 - [How 16 financial giants are going digital](library/major-bank-digital-transition.html): Sixteen financial giants are connecting new digital ledgers to existing bank systems. Citi, Bank of America, Deutsche Bank and HSBC show the broadest work, but none has proved one joined system working at large scale or through a serious failure.
 - [SWIFT's blockchain ledger is moving real money](library/swift-shared-ledger.html): Banks report live payments moving over SWIFT's shared ledger, and Oracle now offers banks a way to connect their own tokenized-deposit systems. No bank has yet been named as live on the Oracle connection.
 - [Which companies actually run the new digital-money system?](library/crypto-infrastructure-comparatives.html): No single coin is winning. The field is becoming many specialized networks linked through a few companies and regulated middlemen, and the native tokens are mostly fuel, not the money institutions actually move.
@@ -59,17 +59,17 @@ Dates on the clock: past due: Did DTC's participant tokenization service open on
 - [Is blockchain cheaper? Only for some middlemen](library/blockchain-settlement-cost-2026.html): Ledgers threaten the record-copying middlemen, not the ones who supply money and liquidity; instant settlement gives up netting.
 - [When code or an AI agent moves money, who is on the hook?](library/programmable-and-agentic-payments-2026-09-22.html): A smart-contract payment is still several separate legal and accounting events; four accounting treatments of USDC are in use today.
 - [What makes a record official on a blockchain](library/official-record-authority-blockchain.html): A record is not official because it sits on a blockchain; it is official because a law or regulator gives it a specific job, a named institution is responsible for it, and something legally follows from it.
-- [Real-time books and the future audit](library/atomic-settlement-continuous-assurance.html): Blockchain, smart contracts and AI can make books update nearly in real time, but none of them is an audit, and today's SEC reporting and audit opinions are still tied to fixed periods.
+- [How real-time shared records could change auditing](library/atomic-settlement-continuous-assurance.html): Blockchain, smart contracts and AI can make books update nearly in real time, but none of them is an audit, and today's SEC reporting and audit opinions are still tied to fixed periods.
 - Dated record: [Tokenization and clearing: dated filings](records/tokenization-clearing.html) — 61 entries ([plain text](records/tokenization-clearing.md))
 
-### Around the world
+### Crypto rules and payment systems in 22 jurisdictions
 
 - [Crypto around the world: many licenses, no proven cross-border use](library/international-crypto-map.html): Across 22 jurisdictions, we found no verified cross-border payment route that depends on crypto from end to end. The token layer still settles through ordinary banks and national payment systems.
 
-### The big picture
+### How digital money is changing and who controls it
 
 - [What finance has actually moved onto blockchains](library/overall-dlt-transition.html): Institutional finance isn't moving onto one new blockchain system; it is shifting piece by piece onto a patchwork of connected, regulated ledgers, with the hardest legal and money pieces still unsolved.
-- [The dollar stays; the rails go private](library/route-anchor-inventory.html): The likely shift is not crypto replacing the dollar: the dollar stays the anchor, regulated stablecoins and tokenized deposits become its everyday forms, private systems take over routing, and the Fed stays decisive for final settlement and crises.
+- [The dollar stays public while private firms build more payment networks](library/route-anchor-inventory.html): The likely shift is not crypto replacing the dollar: the dollar stays the anchor, regulated stablecoins and tokenized deposits become its everyday forms, private systems take over routing, and the Fed stays decisive for final settlement and crises.
 - [Who really holds power in digital finance](library/authority-through-the-adapter.html): New digital systems spread out who moves money and data, but the power to define the legal claim, keep the controlling record, accept collateral, supply final cash, fix failures and absorb losses stays with states, regulated issuers, central banks, clearinghouses and courts.
 - [Who actually controls the crypto infrastructure](library/tokenization-entity-control-map.html): Of 20 crypto networks and companies we track, only one is used at scale and none is proven under stress; many brands rest on a handful of legal providers.
 
@@ -83,7 +83,7 @@ Dates on the clock: past due: Did DTC's participant tokenization service open on
 - [The dollar system is being reworked, not replaced](library/international-monetary-transition.html)
 - [Stablecoins showed a parallel price, not an escape route](library/japan-korea-stablecoin-fx-overlap-2026.html)
 - [Not a new currency: a fight over the points where money changes form](library/overall-monetary-play.html)
-- [A CPA license may become a private-market passport](library/sec-accredited-investor-credential-notices-2026-09-30.html)
+- [SEC may count a CPA license toward accredited-investor status](library/sec-accredited-investor-credential-notices-2026-09-30.html)
 - [University money is moving to per-payment checks, not blockchain](library/university-funding-programmable-compliance.html)
 - [A U.S.–UK agenda for digital markets, not a shared rulebook](library/us-uk-transatlantic-markets-taskforce-2026.html)
 
@@ -113,7 +113,7 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 
 ### Private markets & investor access
 
-- [A CPA license may become a private-market passport](library/sec-accredited-investor-credential-notices-2026-09-30.html): The SEC has asked for comment on treating an active U.S. CPA license as an accredited-investor credential; this is a live notice, not a final designation order.
+- [SEC may count a CPA license toward accredited-investor status](library/sec-accredited-investor-credential-notices-2026-09-30.html): The SEC has asked for comment on treating an active U.S. CPA license as an accredited-investor credential; this is a live notice, not a final designation order.
 
 ### Your money & your debt
 
@@ -128,50 +128,50 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 
 - [How gold moves—and why a gold token is not collateral yet](library/wholesale-metals.html): The main U.S. metals market is adding more trading hours, including weekends, while keeping its existing clearing and payment rules. The United Kingdom has opened a legal path from owning a specific gold bar toward using a token as protected collateral, but that path is not operating yet.
 - [Gold can swing a country's trade numbers without moving its currency](library/gold-bop-currency-adjustment.html): Gold can cause big swings in a country's trade accounts and reserves, but whether it moves the exchange rate depends on who owns the gold, who gets paid, whether that money is converted, and what the central bank does. None of the eight cases studied cleanly isolated a gold-driven currency move.
-- Dated record: [What the states are doing with money](records/state-money.html) — 34 entries ([plain text](records/state-money.md))
+- Dated record: [State gold, crypto and exchange initiatives](records/state-money.html) — 34 entries ([plain text](records/state-money.md))
 
 ### Also in this room
 
 - [Who really holds power in digital finance](library/authority-through-the-adapter.html)
 - [Coinbase gets its own derivatives clearinghouse](library/coinbase-clearing-dco-registration-2026-09-28.html)
-- [The government rooms hiding between the boxes](library/government-hidden-control-surfaces-2026.html)
+- [Federal advisory committees and other public decision forums](library/government-hidden-control-surfaces-2026.html)
 - [What the government is building around crypto and the dollar](library/institutional-signals-thesis-test-2025-2026.html)
 - [The dollar system is being reworked, not replaced](library/international-monetary-transition.html)
 - [Japan's August: defending the yen, rebuilding after a quake, testing digital money](library/japan-august-2026-delta.html)
 - [Japan is rewiring its money without replacing it](library/japan-monetary-constitution-2026.html)
 - [How 16 financial giants are going digital](library/major-bank-digital-transition.html)
 - [What stablecoins reveal, and what they still hide](library/payment-transparency-hidden-constitution.html)
-- [The dollar stays; the rails go private](library/route-anchor-inventory.html)
+- [The dollar stays public while private firms build more payment networks](library/route-anchor-inventory.html)
 - [SWIFT's blockchain ledger is moving real money](library/swift-shared-ledger.html)
 - [The tax law stays put; who collects it and handles the data is changing](library/treasury-irs.html)
 - [How British money actually works, layer by layer](library/uk-monetary-constitution-2026.html)
 
-## Innovation
+## AI, Science & Strategic Technology
 
 New technology and science, and who's building it. AI and national science missions, national-security technology, communications, advanced materials, and the places building them.
 
-[Open the room](research-rooms/innovation.html)
+[Open the room](research-rooms/ai-science-strategic-technology.html)
 
-### AI & big science
+### AI, federal science programs & research security
 
 - [Genesis: a federal AI science platform, mostly still being built](library/genesis-mission.html): Genesis, launched by executive order in November 2025, links national labs, federal data, AI models and tech companies into one science platform run through DOE. A few pieces work now, but most of the big computers, models and awards are still announced, selected or under construction.
 - [How Washington plans to turn science strategy into funded work](library/federal-science-operating-system.html): Seventeen countries endorsed the White House science-reform blueprint in Kyoto, but implementation still belongs to each national system and no shared institution or fund was created.
-- [No single pass lets federally funded science through](library/scientific-trust-stack.html): Federally funded science is routed through many separate checks on identity, disclosure, ownership, access, security, data and investment, each run by its own authority. No single credential, signature, list or score gives blanket permission or proves the science is true.
-- Dated record: [AI, science and new-tech filings](records/tech-ai-science.html) — 36 entries ([plain text](records/tech-ai-science.md))
+- [Federally funded science faces separate identity, security, data and payment checks](library/scientific-trust-stack.html): Federally funded science is routed through many separate checks on identity, disclosure, ownership, access, security, data and investment, each run by its own authority. No single credential, signature, list or score gives blanket permission or proves the science is true.
+- Dated record: [Federal AI, computing, biotech, vehicle and space filings](records/tech-ai-science.html) — 36 entries ([plain text](records/tech-ai-science.md))
 
 ### National-security tech
 
 - [Which companies could build the national-security tech plan, and who signs off](library/nssts-technology-company-map.html): This study maps which exact companies could supply, test, finance or run the projects behind the National Security Science and Technology Strategy across twelve tech sectors. Its main point: the headline supplier often does not make the final call; testers, operators, permit holders and the government's acceptance step decide whether a project moves.
 - [Winning a federal tech award is not the same as being accepted](library/nssts-program-acceptance-economy.html): Across ten federal technology programs, the study finds that awards, production and prototypes still fall short of the government actually accepting a working system. Being near a program is not being in it.
 - [What it takes for quantum tech and new encryption to win federal approval](library/nssts-quantum-cryptographic-acceptance.html): A federal agency does not accept a quantum device or post-quantum encryption because a vendor says it works. It needs a chain of separate proofs ending in a named official's sign-off, and most companies are still partway down that chain.
-- Dated record: [Defense R&D, drones and airspace filings](records/tech-defense-drones.html) — 20 entries ([plain text](records/tech-defense-drones.md))
+- Dated record: [Defense research, drones and airspace filings](records/tech-defense-drones.html) — 20 entries ([plain text](records/tech-defense-drones.md))
 
-### Communications & trust
+### Government communications & cryptographic trust
 
-- [The emergency communications backbone: who owns it and who switches it on](library/sovereign-communications.html): Public-safety radio, satellites, fiber, airwaves, tribal rights and continuity plans form one emergency communications layer. The study keeps the assets, the rights, the operators, everyday access and emergency activation as separate things.
+- [Who owns and activates federal emergency communications](library/sovereign-communications.html): Public-safety radio, satellites, fiber, airwaves, tribal rights and continuity plans form one emergency communications layer. The study keeps the assets, the rights, the operators, everyday access and emergency activation as separate things.
 - [NSA published the post-quantum plan; real system use is still unproved](library/federal-cryptographic-trust-stack.html): The National Security Agency now gives government and defense contractors one public place to find the approved post-quantum plan. The real change still depends on tested products, approved installations and proof that named systems actually use them.
 
-### Materials & places
+### Manufacturing regions & strategic materials
 
 - [New York's factory push is real and spread across the state, not just Micron](library/new-york-manufacturing-innovation-map-2026.html): Yes, New York has a real, spread-out industrial base along the I-90 and CSX rail line, fed by Great Lakes water, hydropower and specialized ports. Micron is the biggest future anchor, but it is still being built, with production targeted for 2030.
 - [U.S. is making rare-earth magnets again, but China still runs the chain](library/permanent-magnets.html): China still controls most steps of the rare-earth magnet chain. The U.S. has restarted real magnet production at a few plants, and Washington is building a protected home market through equity stakes, price floors, loans, tariffs and defense buying rules. Most promised U.S. capacity is still plans.
@@ -183,7 +183,7 @@ New technology and science, and who's building it. AI and national science missi
 - [No federal data-center ban, just scattered permits and leases](library/data-center-federal-legal-spine.html)
 - [Pentagon orders security reviews at 30 unnamed universities](library/dow-research-security-audits-2026-08-17.html)
 - [Trump added a super-intelligence team without taking power from agencies](library/federal-agency-ai-plans-infrastructure.html)
-- [The government rooms hiding between the boxes](library/government-hidden-control-surfaces-2026.html)
+- [Federal advisory committees and other public decision forums](library/government-hidden-control-surfaces-2026.html)
 - [What the government is building around crypto and the dollar](library/institutional-signals-thesis-test-2025-2026.html)
 - [The military is reorganizing around shared data, with named vendors at the center](library/military-modernization.html)
 - [Data centers where tribal, state and federal power meet](library/sovereign-compute.html)
@@ -200,9 +200,9 @@ The federal government is rebuilding how it runs. Federal workers and agencies, 
 - [Emptying an agency is not the same as abolishing it](library/federal-workforce-and-agency-control.html): These maps separate five things that often get blurred: reclassifying career jobs, removing top officials, whether an agency still legally exists, moving or stopping its work, and a proposed replacement. An agency can lose its staff and work while the law that created it still stands.
 - [One map to browse all saved federal research](library/federal-government-movement-atlas.html): This is a navigation hub, not a finding: it puts Katie's saved government research, a map of federal bodies, congressional committees, confirmed changes and known gaps in one place, while keeping each source's evidence separate.
 
-### Hidden decision rooms
+### Federal advisory committees & public decision forums
 
-- [The government rooms hiding between the boxes](library/government-hidden-control-surfaces-2026.html): Our agency map is strong, but we have not consistently tracked the recurring public rooms where officials hear requests, coordinate methods, choose projects and turn advice into later action.
+- [Federal advisory committees and other public decision forums](library/government-hidden-control-surfaces-2026.html): Our agency map is strong, but we have not consistently tracked the recurring public rooms where officials hear requests, coordinate methods, choose projects and turn advice into later action.
 
 ### Courts & judicial administration
 
@@ -250,9 +250,9 @@ The federal government is rebuilding how it runs. Federal workers and agencies, 
 - [NSA published the post-quantum plan; real system use is still unproved](library/federal-cryptographic-trust-stack.html)
 - [Who can watch, use force, freeze and spend: a map of the legal levers](library/federal-force-surveillance-and-emergency-authority.html)
 - [The House Oversight hearing and transcript library](library/house-oversight-corpus.html)
-- [How the United States is wired into the international order](library/international-organizations-us-power-map-2026.html)
+- [How the United States participates in and can leave international organizations](library/international-organizations-us-power-map-2026.html)
 - [A new religious-affairs office reporting directly to the Secretary](library/office-of-religious-affairs.html)
-- [A CPA license may become a private-market passport](library/sec-accredited-investor-credential-notices-2026-09-30.html)
+- [SEC may count a CPA license toward accredited-investor status](library/sec-accredited-investor-credential-notices-2026-09-30.html)
 
 ## Energy, Data Centers & Big Projects
 
@@ -270,7 +270,7 @@ Who pays to build the power plants, data centers and factories. Power and energy
 ### Data centers & compute
 
 - [No federal data-center ban, just scattered permits and leases](library/data-center-federal-legal-spine.html): No federal law bans data centers or sets rules for their power queues, water or emissions. The July 2025 executive order to speed them up has produced real leases, selections and permit changes, but no finished project or blanket exemption.
-- [Data centers where tribal, state and federal power meet](library/sovereign-compute.html): Cherokee Nation's full task-force report now supplies a sovereign policy model: govern each data-center proposal through land status, consultation, power, water and enforceable community benefits, while favoring workforce and supplier gains over tax-arbitrage or direct hyperscale investment.
+- [Data centers where tribal, state and federal power meet](library/sovereign-compute.html): Cherokee Nation's full task-force report now supplies a sovereign policy model: use land status, consultation, power, water and enforceable community benefits to govern each project, while favoring workforce and supplier gains over tax-arbitrage or direct hyperscale investment.
 - [Who loses money if AI demand falls depends on each deal](library/ai-infrastructure-capital-stack-risk-transfer.html): AI infrastructure is financed through several separate structures (GPU funds, GPU loan vehicles, cloud companies, data-center property and power plants), so who owns the chips, who owes the debt and who takes the loss has to be traced one deal at a time.
 
 ### Capital & investment
@@ -288,11 +288,11 @@ Who pays to build the power plants, data centers and factories. Power and energy
 - [U.S. is making rare-earth magnets again, but China still runs the chain](library/permanent-magnets.html)
 - [Davos speech claims, and the Greenland deal signed in September](library/trump-davos-address-2026-01-21.html)
 
-## Education
+## Education Policy & Research Funding
 
 How schools and universities are funded and controlled. University funding and controls, research security reviews, and state education policy.
 
-[Open the room](research-rooms/education.html)
+[Open the room](research-rooms/education-policy-research-funding.html)
 
 ### Universities & research money
 
@@ -323,7 +323,7 @@ Who counts as a citizen, who can vote, and who can stay. The census and citizens
 
 ### Deportation cases
 
-- [Court requires notice before deportations to third countries; DHS asks Supreme Court to pause it](library/dvd-third-country-removal-authority-2025-2026.html): A federal appeals court on September 18, 2026 largely upheld a ruling that DHS's guidance for deporting people to countries not named in their removal orders was unlawful, because it did not give fair notice and a chance to raise fear claims. DHS asked the Supreme Court for a stay on September 24.
+- [Supreme Court stays third-country-removal ruling and takes the case](library/dvd-third-country-removal-authority-2025-2026.html): The Supreme Court on September 29 stayed the February 25 judgment against DHS's third-country-removal guidance and agreed to hear the case in December. The stay suspends the judgment while review continues; it does not decide whether the guidance is lawful.
 
 ### Also in this room
 
@@ -376,7 +376,7 @@ How other countries, currencies and global groups are shifting. The dollar's rol
 
 [Open the room](research-rooms/foreign-relations-world-money.html)
 
-### World money
+### Exchange rates, reserves & international monetary policy
 
 - [The dollar system is being reworked, not replaced](library/international-monetary-transition.html): Countries are spreading reserves, settling some trade in local currencies and testing stablecoins, but these are different moves from actually replacing a currency. The study's deep look at Japan finds its money system being rebuilt through new links and rules, with no sign of replacement or a current crisis.
 - [Grading the system behind each G20 currency, with no overall ranking](library/currency-watch.html): Currency Watch judges the monetary system behind each G20 currency on separate measures (prices, exchange order, external adjustment, usability for payments, resilience), kept apart from its formal IMF legal status. It gives no combined score or league table.
@@ -387,32 +387,32 @@ How other countries, currencies and global groups are shifting. The dollar's rol
 - [Japan defended the yen; the IMF only classifies](library/japan-korea-currency-defense-2026.html): Japan disclosed ¥15.399 trillion of intervention from July 30 to August 26; Korea's amount and the U.S. role remain unconfirmed.
 - [Stablecoins showed a parallel price, not an escape route](library/japan-korea-stablecoin-fx-overlap-2026.html): Korea's won-USDT price moved with the won; nothing shows money fleeing through stablecoins.
 - [There is no secret petrodollar contract](library/petrodollar-system-1945-2026.html): Dollar oil pricing is a set of habits, contracts and banking layers, not a 50-year Saudi promise.
-- Dated record: [Other countries' money moves, region by region](records/world-money-moves.html) — 170 entries ([plain text](records/world-money-moves.md))
+- Dated record: [How countries are changing currencies, payment systems and gold policy](records/world-money-moves.html) — 170 entries ([plain text](records/world-money-moves.md))
 
-### G7, G20 & the UN
+### G7, G20, IMF & United Nations
 
 - [G7 and G20 set goals, but other bodies make them happen](library/g7-g20-coordination-architecture.html): The G7 and G20 shape priorities, but they are not legal or operating authorities. Real change happens only when the IMF, FSB, IEA, development banks or national governments act, and so far results lag the goals.
 - [UN week 2026: AI took center stage, but no new rules or money](library/un-general-assembly-high-level-week-2026.html): At the 2026 UN General Assembly week, AI and tokenization got far more attention and a UN AI-strategy method was launched, but nothing crossed into an adopted rule, a funded program or an operating system.
-- [How the United States is wired into the international order](library/international-organizations-us-power-map-2026.html): The international order is changing one job at a time. Countries are leaving some bodies, rebuilding others and creating smaller groups for specific tasks; they are not replacing the whole system at once.
+- [How the United States participates in and can leave international organizations](library/international-organizations-us-power-map-2026.html): The international order is changing one job at a time. Countries are leaving some bodies, rebuilding others and creating smaller groups for specific tasks; they are not replacing the whole system at once.
 - [The U.S. is steering the IMF from inside, not leaving it](library/bessent-iif-spring-meetings-2026.html): Bessent's April 2026 remarks use votes, budgets and conditions to reshape the IMF and World Bank rather than exit them.
 - [The IMF lectures everyone but only conditions borrowers](library/imf-symmetry-audit-2026.html): Big economies get candid advice; borrowers get deadlines, conditions and reviews tied to the money.
 - [The IMF's lawyers describe their own job](library/imf-legal-department-at-80-2026.html): A conference on digital money, debt and the IMF mandate; useful evidence, not a decision.
 - [What the IMF can and can't legally do](library/imf-legal-constitution-2026.html): The IMF's strongest lever is deciding whether a country gets a loan and on what terms. Changing the IMF's basic powers requires 85% of the voting power.
 
-### The big relationships
+### U.S. relations with China, Russia & the United Kingdom
 
 - [U.S.–China is many separate deals, not one relationship](library/china-country-orientation-2026.html): The U.S.–China relationship runs on many separate tracks: leaders, diplomacy, trade, chips, money, Taiwan, the military and people-to-people ties. China's leverage sits mostly in mid-stage processing and production scale, and America's in frontier technology permissions, aerospace and market access.
 - [Trump-Xi visit produced a trade board and product lists, but no signed security pact](library/us-china-strategic-stability-state-visit-2026.html): The September 2026 state visit did not produce a signed 'strategic stability' agreement; that is still a leader-level political framework from May 2026. On trade, both governments published matching texts for a Board of Trade and two product lists worth about $30 billion each way, but the tariff cuts still need legal instruments, a start date and customs instructions.
 - [U.S.–Russia ties run through many thin channels, not one relationship](library/russia-country-orientation-2026.html): The U.S. and Russia deal with each other through a patchwork: strained diplomacy, nuclear deterrence with no treaty after New START expired, ad hoc Ukraine talks, sanctions run through licenses and waivers, and a few working exceptions like the space station. Russia's trade has moved toward Asia and third countries, not stopped.
 - [A U.S.–UK agenda for digital markets, not a shared rulebook](library/us-uk-transatlantic-markets-taskforce-2026.html): Ten recommendations and a stablecoin statement; no common rule, passport or collateral permission yet.
 
-### Allies & neighbors
+### United Kingdom, Japan, Korea & allied policy changes
 
 - [Scottish, Welsh and Irish party cooperation is not independence](library/uk-constitutional-order-self-determination.html): Nothing was declared on September 13, 2026. Cooperation among Scottish, Welsh and Irish nationalist parties is political coordination, not a change in who holds referendum power or in the UK constitution.
 - [Japan's August: defending the yen, rebuilding after a quake, testing digital money](library/japan-august-2026-delta.html): In August 2026 Japan worked several fronts at once: earthquake recovery, a U.S.-coordinated yen purchase, a cautious central bank, staged household relief, signed energy financing and real-money digital settlement tests. None of it shows a new money system or a crisis.
 - [Davos speech claims, and the Greenland deal signed in September](library/trump-davos-address-2026-01-21.html): At Davos on Jan. 21, 2026, Trump called for immediate talks to acquire Greenland and said he would not use force. By Sept. 22 that became a signed public three-party security agreement, but its text keeps sovereignty and mutual-consent rules, and it is not yet in force.
 - [White House transshipment report is a claim, not proof against Canada](library/institutional-regime-waves.html): The August 13 White House report puts Canada in its highest transshipment-risk group and lays out a plan for customs to track goods, factories, owners and routes. But it proves no Canadian violation, and the tracking system is still being proposed.
-- [Korea's July crash hit prices, not the plumbing](library/korea-market-stress-2026.html): A severe selloff and exchange controls, but no proven funding failure, failed settlement or flight into crypto.
+- [Korea's July selloff did not disrupt funding or settlement](library/korea-market-stress-2026.html): A severe selloff and exchange controls, but no proven funding failure, failed settlement or flight into crypto.
 - [How British money actually works, layer by layer](library/uk-monetary-constitution-2026.html): Who owes sterling, which ledger records it, what makes it final and who absorbs loss, from official sources.
 - [Japan is rewiring its money without replacing it](library/japan-monetary-constitution-2026.html): Who earns interest and holds the bonds is shifting, but the core institutions and final settlement stay put.
 
@@ -422,7 +422,7 @@ How other countries, currencies and global groups are shifting. The dollar's rol
 - [Crypto around the world: many licenses, no proven cross-border use](library/international-crypto-map.html)
 - [Not a new currency: a fight over the points where money changes form](library/overall-monetary-play.html)
 - [U.S. is making rare-earth magnets again, but China still runs the chain](library/permanent-magnets.html)
-- [The dollar stays; the rails go private](library/route-anchor-inventory.html)
+- [The dollar stays public while private firms build more payment networks](library/route-anchor-inventory.html)
 - [SWIFT's blockchain ledger is moving real money](library/swift-shared-ledger.html)
 - [What's really inside the 'trillions coming in' investment claims](library/us-inbound-investment-industrial-capex.html)
 - [The U.S. left the WHO on Jan. 22, 2026, with loose ends](library/us-who-membership-exit-legal-map.html)
@@ -443,7 +443,7 @@ What official records and investigations have brought to light. COVID origins an
 - [New federal funding ban on dangerous gain-of-function research](library/hhs-high-risk-life-sciences-policy-2026-07-28.html): A government-wide policy dated July 20, 2026 and announced July 28 bars federal money for dangerous gain-of-function research and for life-science research involving countries or entities of concern. It does not reach privately funded work, and the review system it requires is not built yet.
 - [The U.S. left the WHO on Jan. 22, 2026, with loose ends](library/us-who-membership-exit-legal-map.html): HHS, State and CDC say U.S. membership in the World Health Organization ended Jan. 22, 2026, after the one-year notice started by a Jan. 20, 2025 executive order. Whether the U.S. paid its required dues, what the WHO's own record shows, and the status of the health regulations and Pandemic Agreement are still open.
 
-### Interviews & hearings
+### Congressional hearings & interview records
 
 - [Epstein interviews turned answers into records that can be checked](library/epstein-interview-statement-accountability.html): In the Leon Black and Doug Band interviews released July 17, House Oversight pinned witnesses to specific denials, "I don't recall" answers and refusals that can later be checked against documents. The packet does not prove a lie, perjury or a cover-up motive.
 - [The House Oversight hearing and transcript library](library/house-oversight-corpus.html): This is the source library behind the fraud-control and watchdog research: House Oversight meetings and transcripts through July 22, 2026, sorted by how reliable each record is.

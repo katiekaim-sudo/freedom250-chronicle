@@ -68,8 +68,8 @@ an undifferentiated company and not Coinbase Derivatives, LLC.
 
 The application supplies this exact chain:
 
-`Coinbase Global, Inc. (Texas)`  
-`→ 100% The Clearing Company of San Francisco, LLC (Delaware)`  
+`Coinbase Global, Inc. (Texas)`
+`→ 100% The Clearing Company of San Francisco, LLC (Delaware)`
 `→ 100% Coinbase Clearing LLC (Delaware)`
 
 The middle company matters. Coinbase announced an agreement in December 2025

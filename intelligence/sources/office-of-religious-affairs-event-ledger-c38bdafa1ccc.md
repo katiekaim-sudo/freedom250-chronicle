@@ -1,8 +1,8 @@
 # Office of Religious Affairs — Event Ledger
 
-**Status:** `current`  
-**Research ID:** `office-of-religious-affairs`  
-**Cutoff:** 2026-09-30, 10:00 p.m. EDT  
+**Status:** `current`
+**Research ID:** `office-of-religious-affairs`
+**Cutoff:** 2026-09-30, 10:00 p.m. EDT
 **Rule:** establishment, appointment, transfer, plan, charter, staffing, requirements, funding, program delivery and observed result are separate clocks
 
 ## Occurred factual spine

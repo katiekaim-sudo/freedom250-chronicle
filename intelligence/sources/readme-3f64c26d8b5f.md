@@ -12,11 +12,11 @@
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-**Research ID:** `federal-reserve-noncore-initiative-governance-2026`  
-**Evidence cutoff:** 2026-09-30 EDT  
-**State:** current Workbench research  
-**Home:** Government Changes → Budgets, plans & spending  
-**Also in:** Banking & the Dollar → The Fed & Treasury  
+**Research ID:** `federal-reserve-noncore-initiative-governance-2026`
+**Evidence cutoff:** 2026-09-30 EDT
+**State:** current Workbench research
+**Home:** Government Changes → Budgets, plans & spending
+**Also in:** Banking & the Dollar → The Fed & Treasury
 **Parent research:** `fed-clearing-treasury`
 
 ## The question

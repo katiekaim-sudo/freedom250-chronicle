@@ -1,7 +1,7 @@
 # Office of Religious Affairs — Source Watchboard
 
-**Status:** `current`  
-**Research ID:** `office-of-religious-affairs`  
+**Status:** `current`
+**Research ID:** `office-of-religious-affairs`
 **Cutoff:** 2026-09-30, 10:00 p.m. EDT
 
 ## Watch purpose

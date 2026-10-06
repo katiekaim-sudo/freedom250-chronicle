@@ -26,4 +26,4 @@ This is Katie's direct-link, read-only mobile copy of the **Freedom 250 mundane 
 
 Included: Freedom 250 mundane methods, workbook atoms, chart materials, readings, Astrology Files packages and technical runtime/data. Excluded: Sentient Sun/private natal or client work, Katie's personal sky page, Q, government Research, and raw architecture archives.
 
-Material count: 891. Catalog packages: 33. Workbook sheets: 25.
+Material count: 892. Catalog packages: 33. Workbook sheets: 25.

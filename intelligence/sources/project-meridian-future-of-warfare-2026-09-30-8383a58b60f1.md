@@ -1,9 +1,9 @@
 # Project Meridian: The Future of Warfare — Authority, State and Return Gates
 
-**Status:** `current`  
-**Research ID:** `military-modernization`  
-**Factual cutoff:** 2026-09-30  
-**Scope:** the signed commissioning memorandum, same-day Department release, the 2026 National Security Science and Technology Strategy it invokes, and the public governance record available on the announcement date  
+**Status:** `current`
+**Research ID:** `military-modernization`
+**Factual cutoff:** 2026-09-30
+**Scope:** the signed commissioning memorandum, same-day Department release, the 2026 National Security Science and Technology Strategy it invokes, and the public governance record available on the announcement date
 **Source priority:** signed memorandum → Department release → cited strategy → governing advisory-committee law and guidance → later implementation receipts
 
 ## Short answer

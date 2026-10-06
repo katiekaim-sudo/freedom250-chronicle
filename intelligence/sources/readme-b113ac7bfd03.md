@@ -12,10 +12,10 @@
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-**Status:** historical sweep and dated active-buildout map complete through the September 28, 2026 cutoff  
-**Research window:** January 1, 2025 through September 28, 2026  
-**Evidence cutoff:** September 28, 2026  
-**Parent census:** `government-hidden-control-surfaces-2026`  
+**Status:** historical sweep and dated active-buildout map complete through the September 28, 2026 cutoff
+**Research window:** January 1, 2025 through September 28, 2026
+**Evidence cutoff:** September 28, 2026
+**Parent census:** `government-hidden-control-surfaces-2026`
 **Interpretive owner:** `economic-institution-legitimacy-crisis`
 
 ## Question

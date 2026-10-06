@@ -7,10 +7,23 @@
 
 **Answer:** The main U.S. metals market is adding more trading hours, including weekends, while keeping its existing clearing and payment rules. The United Kingdom has opened a legal path from owning a specific gold bar toward using a token as protected collateral, but that path is not operating yet.
 
-**Evidence checked through:** 2026-09-14
+**Evidence checked through:** 2026-10-05 for the BMO/CME GCUL and Shandong returns; 2026-09-14 for the broader package
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
+
+For the current BMO/CME cash-production return, start with
+BMO_CME_GCUL_PRODUCTION_RETURN_REFRESH_2026-10-05.md.
+It confirms that CME's official object remains an H2 target pending regulatory
+approval and Google Cloud still labels Universal Ledger Preview; no issuer
+terms, CME acceptance rule, named client or production transaction was located.
+
+For the current Shandong restriction return, read
+SHANDONG_RESTRICTION_RETURN_REFRESH_2026-10-05.md.
+It confirms that the DHS/FLETF listing, LBMA gold/silver suspension and COMEX
+post-August-5 production restriction remain separate and operative. LBMA's
+later report adds a one-year remediation-and-reassurance framework, not a
+reinstatement receipt.
 
 For the FCA's September 2026 tokenised-gold question, start with
 FCA_TOKENISED_GOLD_LEGAL_COLLATERAL_AND_PERIMETER_DEEP_DIVE_2026-09-14.md.

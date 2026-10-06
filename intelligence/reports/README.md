@@ -12,7 +12,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [The National Archives sets rules for keeping federal AI records](nara-ai-records-compute-transition.md) — cutoff 2026-08-23
 - [The emergency communications backbone: who owns it and who switches it on](sovereign-communications.md) — cutoff 2026-07-15
 - [Current law bars a third Trump election; any 2028 push would be a fight over process](trump-2028-constitutional-election-ledger.md) — cutoff 2026-07-25
-- [White House election files show real risks, not proof of changed results](election-integrity-release.md) — cutoff 2026-07-18
+- [White House election files show real risks, not proof of changed results](election-integrity-release.md) — cutoff 2026-10-05
 - [A catalog of saved hearing memos, testimony and bills, from late 2024 to mid-2026](congressional-hearing-source-library.md) — cutoff 2026-07-25
 - [A working transcript of Trump's July 24 WHCA dinner remarks](trump-whca-dinner-remarks-2026-07-24.md) — cutoff 2026-07-24
 - [Agency strategic plans are a legal cycle, and many still are not out](federal-strategic-plans.md) — cutoff 2026-09-20

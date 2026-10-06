@@ -318,7 +318,7 @@ Who counts as a citizen, who can vote, and who can stay. The census and citizens
 
 ### Elections & succession
 
-- [White House election files show real risks, not proof of changed results](library/election-integrity-release.html): The July 16, 2026 White House release (58 PDFs, 269 pages) documents four separate things: foreign collection of voter data, internal intelligence disputes, weak state and local election networks, and questionable voter registrations. As released, none of it proves an ineligible or altered vote changed an outcome.
+- [White House election files show real risks, not proof of changed results](library/election-integrity-release.html): The July files document real risks without proving a changed result. CISA's September bundle turns them into agency-owned reference material for a Regional Director, fusion-center and platform blueprint; the first proposal or instrument citing it is the next real change clock.
 - [Current law bars a third Trump election; any 2028 push would be a fight over process](library/trump-2028-constitutional-election-ledger.html): The 22nd Amendment bars anyone from being elected President more than twice, and Trump was elected in 2016 and 2024. The study maps how a 2028 push could still press on filing, ballot, elector and vote-counting steps, but that pressure would not change the law.
 
 ### Deportation cases

@@ -1,3 +1,5 @@
+> Source evidence cutoff: 2026-10-05
+
 # CISA 2026 Election Infrastructure Security Plan Return — October 5, 2026
 
 ## In plain English

@@ -234,15 +234,19 @@ proof test, not a claim that one named stack already operates.
    — concrete case study of ED's interagency grant-administration changes,
    award-cohort system migration and the legal/payment/audit joins a public
    transaction record must preserve.
-20. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
+20. `SERVICED_EDUCATION_AWARD_RETURN_REFRESH_2026-10-05.md`
+   — current return showing named FY2026 award cohorts under the ED–DOL
+   servicing arrangement while preserving the missing Form 7600B, IPAC,
+   payment, finding, debt and recovery join.
+21. `SMART_CONTRACT_ASSURANCE_DEEP_DIVE_2026-07-30.md`
    — assertion matrix, oracle/key/admin/legal-code/correction/privacy controls,
    migrated accounting games and an auditor work program.
-21. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
+22. `ACCOUNTING_TRANSITION_CLAIM_AUDIT_2026-07-30.md`
    — carry, correct, forecast and reject ledger.
-22. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
+23. `ACCOUNTING_TRANSITION_WATCHBOARD_2026-07-30.md`
    — one source-question guide for standards, production, the federal
    transaction spine and assurance evidence; it is not a scheduled watch.
-23. `SOURCE_LEDGER_2026-07-30.md`
+24. `SOURCE_LEDGER_2026-07-30.md`
    — official source spine.
 
 ## Boundaries

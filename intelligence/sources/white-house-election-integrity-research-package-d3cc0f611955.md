@@ -7,7 +7,8 @@
 
 **Answer:** The July 16, 2026 White House release (58 PDFs, 269 pages) documents four separate things: foreign collection of voter data, internal intelligence disputes, weak state and local election networks, and questionable voter registrations. As released, none of it proves an ineligible or altered vote changed an outcome.
 
-**Evidence checked through:** 2026-07-18
+**Evidence checked through:** 2026-10-05 for the CISA plan return; 2026-07-18
+for the original four-lane package.
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
@@ -45,6 +46,14 @@ It discloses four different evidence lanes:
    large noncitizen and deceased-registration matches. Neither lane, without more,
    proves that an ineligible ballot was cast, counted, or changed an outcome.
 
+The September 24 CISA bundle does not change that outcome boundary. It creates
+an agency-owned predicate record and blueprint for a possible operating change:
+CISA lays out election-security support through its Regional Directors, state-
+owned fusion centers, federal intelligence partners, CISA Central and an
+unnamed near-real-time platform modeled on the 2026 World Cup. The first actual
+proposal or instrument that quotes this bundle is the next authority clock; the
+plan alone does not prove that the architecture is implemented.
+
 The White House landing page and the President's address repeatedly compress
 **capability, source reporting, analytic dissent, database matching, and
 investigative allegations** into more certain occurrence language. The package's
@@ -54,25 +63,30 @@ central control rule is therefore:
 
 ## Read order
 
-1. Second-pass analysis —
+1. [CISA 2026 plan return](../sources/cisa-2026-election-infrastructure-plan-return-2026-10-05-55c6b51eb9a1.html) —
+   the delayed September 24 predicate bundle, its Regional Director/fusion-
+   center/platform blueprint, concrete recommendations and services, and the
+   missing downstream instrument, platform-governance, product-remediation and
+   deployment receipts.
+2. Second-pass analysis —
    the cross-document corroborations, source-quality reversals, presentation
    compressions and ten highest-value missing objects.
-2. Post-address delta —
+3. Post-address delta —
    what actually changed after the speech: DHS letters and state figures,
    federal-state pressure, new CISA clock and missing operative instruments.
-3. Claim audit — what the
+4. Claim audit — what the
    release supports, overstates, leaves unresolved, or contradicts.
-4. Factual timeline —
+5. Factual timeline —
    source, investigation, assessment, declassification, release, litigation and
    announced-action clocks.
-5. Document registry —
+6. Document registry —
    object type, issuer, date, marking, evidentiary role and use limit.
-6. Earlier deep dive — dated
+7. Earlier deep dive — dated
    integrated synthesis preserved as Archive/history; use the maintained answer
    and second pass for the current reading.
-7. Source watchboard —
+8. Source watchboard —
    exact observables that can move a claim or status.
-8. Generated inventory — machine inventory,
+9. Generated inventory — machine inventory,
    hashes, byte counts, page counts and text-extraction state for all 58 PDFs.
 
 For page-level challenge work, use the three evidence-lane annexes:
@@ -152,8 +166,11 @@ For page-level challenge work, use the three evidence-lane annexes:
    date, acquisition mechanism and required mitigation.
 4. The underlying China reports, source-validation records and the coordinated
    2020 ICA/minority annex at a usable level of detail.
-5. CISA's updated election-infrastructure plan announced for approximately August
-   16, plus engagement-level reports and the production-version patch matrix.
+5. CISA's September 24 election-infrastructure bundle is now captured and
+   structurally compared with the 2024 model. The next evidence objects are the
+   unnamed platform's identity, operator and data rules; the current regional
+   adviser roster; engagement-level service receipts; product/version
+   remediation; certification and deployment records; and independent retests.
 6. Michigan case status, complete referral/declination record and any new FBI/DOJ
    matter, charge or declination.
 7. Person-level validation methodology behind the DHS 250,000 / 28,000 / 400,000

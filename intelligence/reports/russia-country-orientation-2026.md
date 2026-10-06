@@ -12,10 +12,10 @@
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-**Research ID:** `russia-country-orientation-2026`  
-**Evidence cutoff:** 2026-09-24  
-**Scope:** Russian Federation, with U.S.–Russia, Ukraine, European-security and principal alignment interfaces where needed to understand U.S. international relations  
-**Status:** country baseline plus three governed deepening waves complete; named return gates remain open  
+**Research ID:** `russia-country-orientation-2026`
+**Evidence cutoff:** 2026-09-24
+**Scope:** Russian Federation, with U.S.–Russia, Ukraine, European-security and principal alignment interfaces where needed to understand U.S. international relations
+**Status:** country baseline plus three governed deepening waves complete; named return gates remain open
 **Custody:** Freedom 250 Research Workbench only. No Chronicle promotion, watch, app shipment, commit or push is implied.
 
 ## Why this exists

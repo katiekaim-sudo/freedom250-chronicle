@@ -20,6 +20,8 @@ decide who may enter and under what conditions. Stablecoin law defines which
 private dollar promises can circulate and what public perimeter remains below
 them. The three stories touch constantly but do different jobs.
 
+**Forward story route:** [2027–2030 forecast route](moneys-new-pipes-2027-30-forecast-route.md) follows the three member braids separately through the lawful annual, lunar and synodic clocks. It is an archetypal working forecast, not a factual owner or a Forecast Ledger call.
+
 ## Tour stops
 
 1. **The object:** What is represented on the ledger, and which old legal or

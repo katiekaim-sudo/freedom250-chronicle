@@ -5,38 +5,34 @@
 
 **Question:** What decision right changed in D.V.D. between the March 2025 third-country-removal TRO and the September 2026 appellate and emergency-relief return?
 
-**Answer:** A federal appeals court on September 18, 2026 largely upheld a ruling that DHS's guidance for deporting people to countries not named in their removal orders was unlawful, because it did not give fair notice and a chance to raise fear claims. DHS asked the Supreme Court for a stay on September 24.
+**Answer:** The Supreme Court on September 29 stayed the February 25 judgment against DHS's third-country-removal guidance and agreed to hear the case in December. The stay suspends the judgment while review continues; it does not decide whether the guidance is lawful.
 
-**Evidence checked through:** 2026-09-25
+**Evidence checked through:** 2026-10-07
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
 ## Answer first
 
-The September 2026 return in *D.V.D. v. U.S. Department of Homeland Security*
-is a real same-object legal maturation, not merely another immigration headline.
 The March 2025 dispute asked whether DHS could remove people to countries not
 named in their removal orders under guidance that did not always provide
 effective destination notice and a meaningful opportunity to raise
-persecution- or torture-based objections. By September 18, 2026, the First
-Circuit had affirmed the district court's final judgment in all material
-respects except two declarations about the order in which DHS must attempt
-countries of removal. The appellate court therefore left standing the judgment
-that set aside the challenged guidance under the Administrative Procedure Act
-because its notice-and-hearing procedure conflicted with governing statutory
-and regulatory protections.
+persecution- or torture-based objections.
 
-The legal state is still moving. On September 23 the First Circuit dissolved
-its March 16 stay pending appeal. On September 24 the government filed Supreme
-Court application **No. 26A406**, seeking both an immediate administrative stay
-and a stay of the February 25 final judgment pending a timely certiorari petition
-and further Supreme Court proceedings. Justice Jackson requested a response by
-4 p.m. EDT on September 28. The application attributes canceled flights, added
-expense and diplomatic consequences to the restored judgment. Those are now
-verified as claims made in an official filing, but they are not independently
-reconciled agency operating records and the Court has not yet granted the
-requested relief.
+On September 18, 2026, the First Circuit affirmed the district court's final
+judgment in all material respects except two declarations about the order in
+which DHS must attempt countries of removal. On September 23 it dissolved its
+stay, making the February 25 judgment operative.
+
+The Supreme Court changed that remedy state on September 29. It stayed the
+February 25 order and judgment, treated application No. 26A406 as a petition for
+certiorari and granted review as case No. 26-426. The Court directed briefing on
+jurisdiction, classwide declaratory relief and APA vacatur, and the legality of
+the guidance. Argument is set for the December 2026 session, and the stay lasts
+until the Court sends down its judgment.
+
+The stay does not decide the merits, validate the government's operating claims
+or establish what procedure DHS used in any later individual removal.
 
 ## Question and scope
 
@@ -46,7 +42,7 @@ September 2026 appellate return?
 
 **Included:** the challenged DHS guidance; the notice and opportunity-to-be-heard
 question; district-court, First Circuit and Supreme Court procedural states;
-and the government's claimed operating consequences as of September 25, 2026.
+and the government's claimed operating consequences through October 7, 2026.
 
 **Excluded:** the legality of every third-country removal, the merits of every
 individual protection claim, the safety of every destination, and any inference
@@ -68,6 +64,7 @@ authority.
 | Sep. 18, 2026 | First Circuit published opinion, No. 26-1212 | Vacated two sequencing declarations for lack of standing but otherwise affirmed the final judgment, including the APA vacatur of the guidance and the requirement for effective notice and a meaningful opportunity to present fear-based claims. | The court did not decide every constitutional question, define every future procedure or hold that DHS can never conduct a third-country removal. |
 | Sep. 23, 2026 | First Circuit order, No. 26-1212, Entry ID 6846356 | Granted the plaintiffs' emergency motion in part and dissolved the March 16 stay pending appeal, making the February 25 judgment operative while the appellate mandate remains on a later clock. | The one-page order supplied no reasoning, did not itself issue the mandate and did not alter the September 18 merits disposition. |
 | Sep. 24, 2026 | Supreme Court stay application, No. 26A406 | DHS asked for an immediate administrative stay and a stay of the February 25 judgment pending a timely certiorari petition and further Supreme Court proceedings. Justice Jackson requested a response by 4 p.m. EDT September 28. | Filing an application did not restore the stay, decide the merits or validate the government's operating assertions. |
+| Sep. 28–29, 2026 | Supreme Court response, reply and disposition, No. 26A406 | The respondents opposed the stay, the government replied, and the Court granted the stay and certiorari as No. 26-426. The February 25 order and judgment are stayed through the Supreme Court's judgment. | The stay and grant of review do not decide the merits or validate any later removal procedure or operating claim. |
 
 ## The decision right that moved
 
@@ -86,14 +83,13 @@ The September appellate result did two things at once:
   governing notice-and-hearing procedure for fear-of-persecution and
   fear-of-torture claims.
 
-That is a partial redistribution of procedural authority. DHS retains statutory
-removal power, but the challenged guidance no longer controls the process if the
-judgment is operative. The affected person must receive effective notice of the
-intended destination and a meaningful opportunity to raise the relevant fear
-claim. Courts retain review authority over whether the agency's procedure
-complies with the governing statutes, regulations and APA.
+That was a partial redistribution of procedural authority at the First Circuit
+stage. DHS retained statutory removal power while the lower-court judgment
+limited the procedure that could govern it. The Supreme Court stay now suspends
+that judgment while the Justices review both the guidance and the district
+court's power to enter classwide relief and APA vacatur.
 
-## Operating and remedy boundary at the cutoff
+## Operating and remedy boundary
 
 The September 24 application supplies an official filing receipt for the
 government's operating account. It says that DHS canceled one flight carrying
@@ -109,15 +105,15 @@ information supplied by DHS; this package has not retrieved flight manifests,
 agency cost records, destination notices, diplomatic instruments or completed
 removal records that would reconcile the quantities and outcomes.
 
-The present maturity ladder is:
+The current maturity ladder is:
 
 `guidance issued → provisionally restrained → stayed → finally set aside →
 appellate judgment mostly affirmed → appellate stay dissolved → Supreme Court
-application docketed and response requested`
+application docketed → stay granted → certiorari granted → December argument`
 
-Do not compress that into “third-country removals ended.” The live question is
-whether the Supreme Court grants another stay, and if not, what replacement
-procedure DHS adopts and actually operates.
+Do not compress that into a merits ruling. The live questions are what judgment
+the Supreme Court enters and what procedure DHS actually operates while the
+stay is in force.
 
 ## Primary sources and retrieval boundary
 
@@ -134,8 +130,8 @@ procedure DHS adopts and actually operates.
    than the Court's merits holding:
    <https://www.supremecourt.gov/opinions/24pdf/24a1153_l5gm.pdf>
 4. **Supreme Court docket, No. 26A406.** This establishes the September 24
-   application, its stay posture and Justice Jackson's September 28 response
-   deadline:
+   application, September 28 response, September 29 reply, stay disposition and
+   certiorari grant as No. 26-426:
    <https://www.supremecourt.gov/docket/docketfiles/html/public/26a406.html>
 5. **Government's September 24 application in No. 26A406.** This is the
    controlling filing for the relief requested and the attributed flight,
@@ -153,20 +149,16 @@ procedure DHS adopts and actually operates.
    no longer carries the filing or operating-claim authority:
    <https://www-cdn.abcnews.com/US/administration-supreme-court-swift-deportations-3rd-countries/story?id=136728772>
 
-## Exact return gates
+## Return gates
 
-Return when any of the following appears:
+Return for:
 
-1. the September 28 response in No. 26A406 and any government reply;
-2. an administrative-stay or stay disposition from the Supreme Court;
-3. the First Circuit mandate or a later order changing the judgment's operative
-   state;
-4. replacement DHS guidance specifying notice, screening, hearing, assurance
-   and review procedures;
-5. a verified operating record showing canceled/resumed flights, destination
-   notices, screenings, removals, costs or diplomatic arrangements under the
-   post-judgment procedure; or
-6. a later merits petition, grant, denial or opinion.
+1. the merits briefs and December 2026 argument in No. 26-426;
+2. the Supreme Court judgment and mandate;
+3. replacement DHS guidance specifying notice, screening, hearing, assurance
+   and review procedures; or
+4. verified operating records showing flights, destination notices, screenings,
+   removals, costs or diplomatic arrangements while the stay is in force.
 
 ## Custody boundary
 

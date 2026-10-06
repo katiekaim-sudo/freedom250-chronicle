@@ -5,20 +5,36 @@
 
 **Question:** What is Genesis building, how do laboratories and researched companies contribute, and what has actually been demonstrated?
 
-**Answer:** Genesis, launched by executive order in November 2025, links national labs, federal data, AI models and tech companies into one science platform run through DOE. A few pieces work now, but most of the big computers, models and awards are still announced, selected or under construction.
+**Answer:** Genesis connects national labs, scientific data, computing and AI tools through a DOE-led platform. The October science summit added project selections, proposed research tools and industry compute credits. The July project graphic is an earlier snapshot; the new selections and commitments do not prove delivered capacity or a fully working platform.
 
-**Evidence checked through:** 2026-09-09
+**Evidence checked through:** 2026-10-09 (summit announcements and posted DOE selection list; earlier system and company profiles retain their own dates)
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-Maintained research guide · evidence checked September 9, 2026.
+Maintained research guide · original system and company pass September 9, 2026; targeted summit check October 9, 2026.
 
 A national effort to connect scientific data, AI models, advanced computing and laboratories so researchers can tackle challenges in health, energy, industry, discovery and security.
 
 Established in November 2025, Genesis is coordinated by the White House across federal agencies. DOE builds the shared scientific platform; Under Secretary for Science Darío Gil directs the mission at DOE. Its aim is to double the productivity and impact of American science and engineering within a decade.
 
 [Executive Order 14363 — Launching the Genesis Mission](https://www.federalregister.gov/documents/2025/11/28/2025-21665/launching-the-genesis-mission) · [White House: More than $5 billion in federal commitments](https://www.whitehouse.gov/releases/2026/07/45502/)
+
+## What changed at the October 8 science summit
+
+The summit moved several **named projects and resources** forward. It did not turn the whole Genesis platform into a demonstrated, shared operating system.
+
+| Object | What the official record says | Evidence boundary |
+| --- | --- | --- |
+| Genesis research projects | DOE announced twelve Phase II projects totaling $159 million and six Phase I selections. Its release says the first-year portfolio is now 297 projects. | The posted October 8 list names all eighteen and states that **selection for award negotiations is not a commitment to issue an award or provide funding**. The July graphic retains its 278-row selection snapshot. The public release's 297 total has not been reconciled row by row with that earlier list; do not add 18 to 278 and silently relabel the graphic. |
+| Scientific compute and AI tools | The White House announced $2.4 billion in tools and compute credits from eleven industry partners for the Genesis consortium. | Partner commitments and credits are not federal outlays, delivered compute, access grants or measured use. The White House's larger “over $6 billion” summit figure mixes federal, industry, academic and philanthropic sources; do not add it to the earlier federal commitment figure. |
+| Data federation | DOE identified 190 priority dataset repositories across fourteen agencies. | Identification is a starting inventory. It does not establish interoperable access, permissions, data quality, model use or an operating cross-agency federation. |
+| Instruments and autonomous labs | DOE and NSF announced more than $100 million for scientific instrumentation and autonomous laboratories; DOE separately identified four lab-led robotics testbed selections for $30 million over three years. | The posted testbed list is selected for award negotiations. Construction, integration, user access and measured science remain later gates. |
+| Quantum and workforce | DOE named eight Quantum Genesis priority applications; the summit announced a Genesis graduate fellowship and a high-school fellowship. | Priority problems and fellowship launches do not establish fault-tolerant quantum operation or completed cohorts. |
+
+The twelve Phase II selections include a Commonwealth Fusion Systems digital twin for SPARC, an RNA-structure project led by UC San Diego, MIT lattice-QCD work and an Argonne scientific-software project. These are named research aims, not completed fusion, biological, particle-physics or computing results.
+
+**Primary records:** [DOE Genesis project release, October 8](https://www.energy.gov/articles/energy-department-announces-new-genesis-mission-awards-advance-super-intelligence-science) · [DOE's eighteen-name selection list and its award-negotiation caveat](https://science.osti.gov/-/media/funding/pdf/Awards-Lists/2026/GM-RFA-Awards-List_09-30-26.pdf) · [DOE summit fact sheet, October 9](https://www.energy.gov/articles/fact-sheet-energy-department-ushering-golden-age-american-science) · [White House summit fact sheet, October 8](https://www.whitehouse.gov/fact-sheets/2026/10/fact-sheet-trump-administration-announces-the-most-ambitious-set-of-science-initiatives-this-century/) · [DOE robotics selection list](https://science.osti.gov/-/media/funding/pdf/Awards-Lists/2026/Awards-List-Spreadsheet-Template---Lab-3601-Robotics.pdf).
 
 ## Read the mission in its own words
 
@@ -28,7 +44,7 @@ The hub opens with the definition in Section 2(a) of Executive Order 14363, foll
 
 Open the interactive hub. Six areas connect the mission, science challenges, platform, organizations, funding and source research. The Library version supports saved-document reading and return.
 
-Coverage: 33 official challenges; all 278 July selection-list rows; 12 detailed project or participation profiles; 30 researched organizations. This is a bounded company selection, not a complete member or executed-award census.
+Coverage in the **existing interactive hub**: 33 official challenges; all 278 July selection-list rows; 12 detailed project or participation profiles; 30 researched organizations. The October update above has not been inserted into that July row set. This is a bounded company selection, not a complete member or executed-award census.
 
 ## What Genesis is doing
 

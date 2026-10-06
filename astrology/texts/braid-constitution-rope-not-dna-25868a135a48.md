@@ -5,7 +5,7 @@ artifact_role: design_lens
 status: active
 canonical_for: mundane-story-braid-architecture
 created: 2026-10-03
-updated: 2026-10-03
+updated: 2026-10-11
 reads_with:
   - 03 - Astrology/Mundane Astrology/README.md
   - 00 - Index/Reading the Charts — START HERE.md
@@ -145,11 +145,13 @@ Families are shelves, not super-braids:
 - **Money and rails** — Tokenization; Stablecoin law; SEC and CFTC; Fed,
   Treasury and gold; Banks and credit; The world's money; XRP and Ripple.
 - **The federal constitution** — Rebuilding the federal machine; Courts and the
-  law; Immigration and who counts; Fraud and missing money.
+  law; Immigration and who counts; Fraud and missing money; Crime and public
+  safety; Government technology and records.
 - **Capacity and production** — AI buildout; Pentagon and industrial base;
-  Tariffs and factories; Universities and science money.
+  Tariffs and factories; Universities and science money; Schools, students
+  and education overhaul.
 - **Force and world order** — Iran and Hormuz; China, Russia and great-power
-  deals.
+  deals; Russia, Ukraine and the settlement test.
 - **Disclosure and legitimacy** — Epstein files; COVID reckoning.
 
 Cross-listing identifies adjacency. It never transfers evidence, factual state
@@ -187,6 +189,7 @@ Automation prepares the hearing. Authorship performs it.
 - `03 - Astrology/Mundane Astrology/README.md` owns the operating method.
 - `03 - Astrology/Mundane Astrology/Braid Overlap Ledger.jsonl` is the
   append-only owner of dated authored overlap and comparison snapshots.
+- `03 - Astrology/Mundane Astrology/Braid Review Ledger.jsonl` is the companion append-only owner of exact, human-authored review dispositions. The projection joins each event to one frozen snapshot; no snapshot row is rewritten.
 - Each file in `Braids/` owns its narrative question and authored windows.
 - `planetary_relationship_history.json` owns computed relationship geometry.
 - The Research Library and Workbench packages own factual claims.

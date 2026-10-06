@@ -14,8 +14,8 @@
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-**Evidence cutoff:** October 4, 2026 at 2:56 p.m. EDT  
-**Mode:** question-led executive-branch and cross-government authority audit  
+**Evidence cutoff:** October 4, 2026 at 2:56 p.m. EDT
+**Mode:** question-led executive-branch and cross-government authority audit
 **Excluded:** nonpublic charter text, classified activity, an exhaustive private-
 company census and any assumption that a named task force already has a staff,
 budget or operating program

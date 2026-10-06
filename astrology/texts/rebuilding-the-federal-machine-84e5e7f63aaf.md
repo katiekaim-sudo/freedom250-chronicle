@@ -5,7 +5,7 @@ title: "Rebuilding the Federal Machine"
 question: "When does executive direction become a durable change in who decides, records, operates, pays and remedies government action?"
 status: replay
 lead_braid: federal-machine-rebuild
-member_braids: ["federal-machine-rebuild", "courts-and-the-law", "immigration-who-counts", "fraud-missing-money"]
+member_braids: ["federal-machine-rebuild", "courts-and-the-law", "immigration-who-counts", "fraud-missing-money", "crime-public-safety", "government-technology-overhaul"]
 tour_order: 2
 ---
 
@@ -18,6 +18,8 @@ after signature. This tour follows directives through agencies, procedural
 changes, contested authority, implementation receipts, courts, missing
 deliverables and remedies without treating presidential direction as completed
 institutional reality.
+
+**Forward story route:** [2027–2030 forecast route](rebuilding-the-federal-machine-2027-30-forecast-route.md) follows command, membership, adjudication and payment correction on separate factual clocks. It is a working archetypal forecast, not a new authority or a Forecast Ledger call.
 
 ## Tour stops
 

@@ -5,7 +5,7 @@ title: "Capacity or Spectacle?"
 question: "Can the new order turn ambition, money and command into accepted physical capacity—or mainly into plans, awards and theater?"
 status: replay
 lead_braid: ai-buildout
-member_braids: ["ai-buildout", "pentagon-industrial-base", "tariffs-reindustrialization", "universities-science-money"]
+member_braids: ["ai-buildout", "pentagon-industrial-base", "tariffs-reindustrialization", "universities-science-money", "education-overhaul"]
 tour_order: 3
 ---
 
@@ -17,6 +17,8 @@ AI, energy, industrial policy, defense procurement and science money all claim
 to be rebuilding American capacity. This tour keeps announcement, funding,
 award, construction, delivery, acceptance, operation and effect on separate
 clocks so the Observatory can see what was actually built.
+
+**Forward story route:** [2027–2030 forecast route](capacity-or-spectacle-2027-30-forecast-route.md) follows the four member braids through funding, physical inputs, acceptance and repair. It is a working archetypal forecast, not a combined research owner or Forecast Ledger call.
 
 ## Tour stops
 

@@ -71,14 +71,55 @@ def ingress_jd(year, sign):
     return (lo+hi)/2
 
 # ---------- chart ----------
-def condition(planet, sgn, combust):
+def condition(planet, sgn, combust, cazimi=False):
     tags=[]
     if RULER.get(sgn)==planet: tags.append("domicile")
     if EXALT.get(planet)==sgn: tags.append("exalted")
     if sgn in DETRI.get(planet, ()): tags.append("detriment")
     if FALL.get(planet)==sgn: tags.append("fall")
-    if combust: tags.append("combust")
+    if cazimi: tags.append("cazimi")
+    elif combust: tags.append("combust")
     return tags
+
+def full_dispositors(pos):
+    """Trace every planet, retaining all final dispositors and complete loops.
+
+    The chart-ruler route is useful but can miss an independent root.  In the
+    2027 Libra ingress, for example, the Sun ends at Venus while Saturn,
+    Neptune, and Pluto end at Mars.  Neither root may be silently discarded.
+    """
+    chains = {}
+    root_members = set()
+    final_dispositors = set()
+    loops = set()
+    for name in PLANETS:
+        path = [name]
+        seen = {name: 0}
+        cur = name
+        while True:
+            nxt = RULER[pos[cur]["sign"]]
+            if nxt == cur:
+                chains[name] = {"path": path, "loop": False}
+                final_dispositors.add(cur)
+                root_members.add(cur)
+                break
+            if nxt in seen:
+                path.append(nxt)
+                members = tuple(path[seen[nxt]:-1])
+                chains[name] = {"path": path, "loop": True}
+                loops.add(tuple(sorted(members)))
+                root_members.update(members)
+                break
+            seen[nxt] = len(path)
+            path.append(nxt)
+            cur = nxt
+    order = {name: i for i, name in enumerate(PLANETS)}
+    return {
+        "chains": chains,
+        "root_members": sorted(root_members, key=order.get),
+        "final_dispositors": sorted(final_dispositors, key=order.get),
+        "loops": [list(members) for members in sorted(loops, key=lambda members: min(order[m] for m in members))],
+    }
 
 def cast_ingress(year, sign):
     jd = ingress_jd(year, sign)
@@ -91,17 +132,18 @@ def cast_ingress(year, sign):
         l = sun_lon if nm=="Sun" else lon(jd,pid)
         sgn=sign_of(l)
         house = ((int(((l%360)+1e-6)//30)-asc_idx)%12)+1
-        combust = (nm!="Sun" and abs((l-sun_lon+180)%360-180) <= ORB["combust"])
+        solar_orb = abs((l-sun_lon+180)%360-180)
+        cazimi = nm!="Sun" and solar_orb <= 17/60
+        combust = nm!="Sun" and not cazimi and solar_orb <= ORB["combust"]
         spd = swe.calc_ut(jd,pid)[0][3]
         pos[nm]={"lon":l,"sign":sgn,"deg":deg_in_sign(l),"house":house,
-                 "retro":spd<0,"combust":combust,"cond":condition(nm,sgn,combust)}
-    # chart ruler + dispositor chain (traditional)
+                 "retro":spd<0,"combust":combust,"cazimi":cazimi,
+                 "cond":condition(nm,sgn,combust,cazimi)}
+    # Chart-ruler route and the full traditional dispositor graph are distinct.
     chart_ruler = RULER[asc_sign]
-    chain=[]; seen=set(); cur=chart_ruler; loop=False
-    while cur and cur not in seen:
-        seen.add(cur); chain.append(cur); nxt=RULER[pos[cur]["sign"]]
-        if nxt in seen: chain.append(nxt); loop=True; break
-        cur=nxt
+    full_roots = full_dispositors(pos)
+    chain = full_roots["chains"][chart_ruler]["path"]
+    loop = full_roots["chains"][chart_ruler]["loop"]
     # Sun-Neptune tracker
     sn_orb = abs((pos["Sun"]["lon"]-pos["Neptune"]["lon"]+180)%360-180)
     sn_asp=None
@@ -123,6 +165,10 @@ def cast_ingress(year, sign):
             "asc":asc,"asc_sign":asc_sign,"asc_modality":MODALITY[SIGNS.index(asc_sign)%3],
             "mc":mc,"mc_sign":sign_of(mc),"pos":pos,"chart_ruler":chart_ruler,
             "dispositor_chain":chain,"dispositor_loop":loop,
+            "all_dispositor_chains":full_roots["chains"],
+            "root_members":full_roots["root_members"],
+            "final_dispositors":full_roots["final_dispositors"],
+            "root_loops":full_roots["loops"],
             "sun_neptune":{"aspect":sn_asp[0] if sn_asp else None,"orb":sn_asp[1] if sn_asp else None},
             "named_aspects":named}
 

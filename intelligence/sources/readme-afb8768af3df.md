@@ -5,14 +5,14 @@
 
 **Question:** How does federal science doctrine move through mission selection, capital, security gates, industrial capability and operation without collapsing strategy into delivery?
 
-**Answer:** Seventeen countries endorsed the White House science-reform blueprint in Kyoto, but implementation still belongs to each national system and no shared institution or fund was created.
+**Answer:** Seventeen countries endorsed the White House science-reform blueprint in Kyoto. At the October 8 U.S. science summit, agencies and partners named new Genesis project selections, compute credits, research instruments and workforce plans. Each still has its own award, access, delivery and operating test.
 
-**Evidence checked through:** 2026-10-04
+**Evidence checked through:** 2026-10-12 (targeted Kyoto implementation return; older components retain their own cutoffs)
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-**Evidence cutoff:** 2026-08-17 for the original system map; targeted extensions through 2026-10-04 include the September 7 Reactor reconciliation, September 9 Genesis update and October 4 Kyoto Vision international-endorsement audit
+**Evidence cutoff:** 2026-08-17 for the original system map; targeted extensions through 2026-10-12 include the September 7 Reactor reconciliation, September 9 Genesis system pass, October 4 Kyoto Vision audit, October 8–9 summit announcement/selection check and October 12 Kyoto implementation return
 **Status:** current research package; the workbench controls these owners except where the Registry identifies a controlling vault landing, including the selectively incorporated NSSTS full reading
 **Scope:** the federal funding, infrastructure, workforce, data, experimental and transaction architecture proposed for an AI-native scientific-industrial economy
 
@@ -30,6 +30,19 @@ access to data/compute/facilities and technical-talent pathways. The declaration
 does not create shared authority or machinery: its implementation clause sends
 the work back into each country's national system, with no common fund,
 secretariat, programme, access right, deadline or reporting mechanism.
+
+The October 8 **Science: A New Golden Age Summit** supplies a U.S. implementation
+signal after Kyoto: named Genesis project selections, industry compute credits,
+dataset-repository identification, autonomous-lab testbed selections and
+workforce initiatives. Read the [dated Genesis summit check](../sources/genesis-mission-f73232130c02.html#what-changed-at-the-october-8-science-summit) before treating the July project graphic as current. DOE's posted October selection list expressly says selection for award negotiations is not a funding commitment; the summit's mixed-source headline amount is not an additive federal appropriation. Delivery, access and scientific outcomes still need separate evidence.
+
+The October 12 Kyoto return
+adds the first shared implementation receipt. NSF and UKRI tied a named
+metascience partnership to Kyoto and said their existing units will support an
+international network. That is real bilateral machinery, but the agencies
+still intend to formalize it and identify concrete joint work; no common fund,
+shared access right, joint award or operating multinational programme is yet
+proved.
 
 The architecture becomes more concrete when four distinct objects are read together:
 
@@ -65,6 +78,24 @@ unknowns when it does not and applies the live one-capital D.C. chart convention
 only in a separate chart-readiness overlay.
 
 ## Read in this order
+
+**Start with the question that brought you here.** These are routes into the
+existing research, not new findings or competing homes:
+
+| Question | First reading | Useful visual |
+| --- | --- | --- |
+| What did Washington propose or direct? | [Federal science factual spine](../sources/federal-science-operating-system-factual-spine-2025-2026-c98d15f74567.html) and the [NSSTS full reading](../sources/national-security-science-and-technology-strategy-2026-e86541703238.html) | The [NSSTS program-to-acceptance overview](../rooms/science-program-to-acceptance.html) separates the strategy, programme and later acceptance steps. |
+| What is Genesis actually building? | [Genesis Mission maintained answer](../sources/genesis-mission-f73232130c02.html) | The [Genesis project hub](../rooms/genesis-mission-hub.html) keeps its 33 challenge and 278 project records under the Genesis owner. |
+| Who might supply a project, and what would prove accepted use? | [NSSTS company and acceptance reading](../sources/readme-814cc85d1bbe.html) | Start with the same program-to-acceptance overview; the five deeper NSSTS views stay under that package. |
+| Who may use scientific data, systems and funding? | [Scientific Trust Stack](../sources/readme-243d6cdfb65e.html) | The source reading separates identity, disclosure, permission, access, payment, continuing eligibility and correction. |
+
+The NSSTS company map, Genesis hub and federal-science package have different
+owners and evidence cutoffs. A named company, approved plan, selected project,
+award, authorized environment and accepted operating system are separate
+states. Physical buildout, materials and site-specific finance route to their
+own Buildout/Energy or industrial packages.
+
+### Full source trail
 
 1. `KYOTO_VISION_INTERNATIONAL_GOLDEN_AGE_OF_SCIENCE_2026-10-04.md` — international-endorsement, U.S.-doctrine comparison and operating-gate audit.
 2. `KYOTO_VISION_INCUMBENT_INSTITUTION_POWER_AUDIT_2026-10-04.md` — treaty, institution, programme-funding and functional-bypass audit.

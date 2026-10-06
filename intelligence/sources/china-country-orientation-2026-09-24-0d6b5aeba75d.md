@@ -1,6 +1,6 @@
 # China Country Orientation — September 2026
 
-**Evidence cutoff:** 2026-09-24 21:49 EDT  
+**Evidence cutoff:** 2026-09-24 21:49 EDT
 **Purpose:** establish a durable first map for understanding the People's Republic of China and U.S.–China relations before opening a narrower research question.
 
 ## One-page orientation

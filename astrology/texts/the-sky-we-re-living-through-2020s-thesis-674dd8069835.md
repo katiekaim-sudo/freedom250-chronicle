@@ -310,8 +310,7 @@ eclipse family).**
   custody or loss allocation.
 - *Against:* rhetoric only.
 - *Clocks:* Sep 26 → Oct 3 → Oct 15, with the chapter closing Oct 10.
-- *Frozen financial-sovereignty test:* [[Money Becomes the Theater of
-  Sovereignty — Mars–Pluto Financial Sovereignty Observation Contract]]
+- *Frozen financial-sovereignty test:* [[Money Becomes the Theater of Sovereignty — Mars–Pluto Financial Sovereignty Observation Contract]]
   preserves Katie's September 28 hypothesis, an initial October 5 return and
   the October 10 chapter-close disposition without creating a Forecast Ledger
   call.

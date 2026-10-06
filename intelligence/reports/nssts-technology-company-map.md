@@ -47,6 +47,25 @@ A project moves through people and records as well as equipment. One company may
 5. What record changes the project's state? — Land control, procurement, acceptance, failure and return-to-service instruments.
 6. How do quantum and cryptographic systems pass? — The separate calibration, validation and authorization paths for quantum capability and cryptographic systems.
 
+### One visual start, five deeper views
+
+Open the Program to Acceptance Overview
+first for the original August 19 sequence from strategy to a proved result.
+It is an orientation, not a new owner or a current award/operation ledger. The
+October 5 corrections above remain in this reading.
+
+The other visuals each answer a narrower question within this same package:
+
+- Science Strategy Structural Map — which federal corridor and decision path applies;
+- Technology to Company Map — which exact entity has a sourced capability or candidate role;
+- Program Acquisition Facility and Contender Explorer — which programme, facility or procurement gate is in view;
+- Cross-Sector Dependency Map — which shared rail or bottleneck is supported rather than inferred from a common name; and
+- Priority Company Dossiers and Bottleneck Monitor — the fuller company-specific evidence and return gates.
+
+These are views of the saved NSSTS registries, not six extra findings. Read the
+exact chapter and source date before treating a candidate, award, installed
+system or accepted operation as reached.
+
 This is a reading guide to the existing studies. Their original evidence dates, candidate states, case registries and limits remain in the chapters. Shared company names do not make their case counts additive.
 
 ---

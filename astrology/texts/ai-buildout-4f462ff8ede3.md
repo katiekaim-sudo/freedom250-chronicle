@@ -30,3 +30,7 @@ In this reading, **Uranus–Neptune** is the lead strand: technological awakenin
 The evidence test is physical and institutional: named power, land, compute, contract, acceptance, recurring agency use, authoritative AI records, correction and failure. Attention peaks are narrative context only.
 
 *Authored for the 2026 Libra ingress and September 26 Aries Full Moon. Review after October 10. Archetypal reading only.*
+
+## October 11 review return
+
+The September 26 authored overlap was reviewed on October 11 and now displays as **historical**. Its original snapshot remains frozen in `../Braid Overlap Ledger.jsonl`; the exact strand or comparison dispositions are appended in `../Braid Review Ledger.jsonl`. [The Libra New Moon working return](../Review%20Hearings/2026-10-11%20%E2%80%94%20Libra%20New%20Moon%20Braid%20Working%20Return.md) explains the whole-chart shift and the distinct factual cutoffs. This file has no new October relationship window: the old frontmatter is preserved as the historical authorship, and a new window will need separate dated strands and a review date.

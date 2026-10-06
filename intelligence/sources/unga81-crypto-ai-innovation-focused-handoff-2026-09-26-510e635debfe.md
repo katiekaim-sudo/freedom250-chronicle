@@ -12,9 +12,9 @@
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-**Research ID:** `un-general-assembly-high-level-week-2026`  
-**Focus reset:** 2026-09-26 17:40 EDT  
-**Primary-source refresh:** official ODET, PGA, UN Journal, eStatements, WebTV and Secretary-General records checked through the 29 September proceedings on 2026-09-30  
+**Research ID:** `un-general-assembly-high-level-week-2026`
+**Focus reset:** 2026-09-26 17:40 EDT
+**Primary-source refresh:** official ODET, PGA, UN Journal, eStatements, WebTV and Secretary-General records checked through the 29 September proceedings on 2026-09-30
 **State:** complete through UNGA81 High-Level Week; four technology-relevant movements and one material AI–nuclear-risk screen were reconciled, but no located UN crypto, AI-finance, sandbox or nuclear-AI implementation instrument crossed into new adoption, capitalization or operation during the week
 
 ## The actual question

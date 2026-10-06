@@ -17,11 +17,14 @@
   #bar h1{font-size:1rem;font-weight:600;margin:0 12px 0 0;
     font-family:"Iowan Old Style",Palatino,Georgia,serif;}
   #bar .grow{flex:1;}
+  .bar-group{display:inline-flex;align-items:center;gap:5px;padding-left:8px;border-left:1px solid var(--line);}
+  .bar-label{font-size:.68rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;}
   .btn{font-size:.82rem;padding:6px 12px;border-radius:7px;cursor:pointer;
     background:var(--card);border:1px solid var(--line2);color:var(--ink2);}
   .btn:hover{border-color:var(--ink3);}
-  #legend{display:flex;flex-wrap:wrap;gap:6px 14px;padding:9px 16px;font-size:.76rem;color:var(--ink2);
-    border-bottom:1px solid var(--line);background:var(--paper);}
+  #legend-wrap{border-bottom:1px solid var(--line);background:var(--paper);}
+  #legend-wrap summary{cursor:pointer;padding:7px 16px;font-size:.76rem;color:var(--ink2);}
+  #legend{display:flex;flex-wrap:wrap;gap:6px 14px;padding:2px 16px 9px;font-size:.76rem;color:var(--ink2);}
   #legend .sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px;border:1px solid rgba(0,0,0,.15);}
   #legend .ring{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px;background:#fff;}
   #workspace{display:flex;width:100%;height:calc(100vh - 148px);min-height:520px;overflow:hidden;}
@@ -71,6 +74,7 @@
   #chart-close{font-size:1.35rem;}
   #chart .csum{font-size:.9rem;color:var(--ink);}
   #chart .cmeta{font-size:.76rem;color:var(--ink3);margin:1px 0 6px;}
+  #chart .dc-path{font-size:.72rem;color:var(--ink3);margin:0 0 7px;overflow-wrap:anywhere;}
   #chart .camerica{font-size:.82rem;color:#1d3f8c;font-weight:500;margin:2px 0;}
   #chart .cnote{font-size:.85rem;color:var(--ink2);}
   #chart .dc-cat{font-size:.72rem;color:var(--ink3);margin-bottom:4px;}
@@ -94,12 +98,13 @@
   #chart .dc-layer ul{margin:5px 0 7px 18px;padding:0;}
   #chart .dc-layer li{font-size:.73rem;line-height:1.35;margin:3px 0;overflow-wrap:anywhere;}
   #chart .dc-layer .dc-route{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.69rem;}
-  #committee-search{width:min(245px,38vw);font-size:.79rem;padding:6px 9px;border:1px solid var(--line2);border-radius:7px;background:var(--card);color:var(--ink);}
-  #committee-search:focus{outline:2px solid #b98b2e;outline-offset:1px;}
-  #committee-find{padding-left:9px;padding-right:9px;}
-  #committee-find-wrap{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
+  #entity-search{width:min(280px,42vw);font-size:.79rem;padding:6px 9px;border:1px solid var(--line2);border-radius:7px;background:var(--card);color:var(--ink);}
+  #entity-search:focus{outline:2px solid #b98b2e;outline-offset:1px;}
+  #entity-find{padding-left:9px;padding-right:9px;}
+  #entity-find-wrap{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
   /* CONGRESSIONAL-COMMITTEE-DRAWER-CSS-END */
-  #chart .dc-chart{border-top:1px solid var(--line);margin-top:4px;padding-top:8px;}
+  #chart .dc-chart{border-top:1px solid var(--line);margin-top:8px;padding-top:7px;}
+  #chart .dc-chart summary{cursor:pointer;font-size:.78rem;color:var(--ink2);font-weight:600;margin-bottom:6px;}
   #chart-wheel{cursor:zoom-in;}
   #chart-wheel svg{width:100%;height:auto;display:block;max-width:330px;margin:2px auto 0;}
   #chart-enlarge-hint{font-size:.68rem;color:var(--ink3);text-align:center;margin-top:2px;}
@@ -114,8 +119,15 @@
   #chart-modal #cm-sum .camerica{color:#1d3f8c;font-weight:500;}
   #chart-modal svg{width:min(84vw,600px);height:auto;display:block;margin:0 auto;}
   @media(max-width:760px){
+    .bar-group{width:100%;padding-left:0;border-left:0;flex-wrap:wrap;}
+    .bar-label{min-width:58px;}
+    #entity-search{width:min(100%,280px);}
     #chart{flex-basis:min(46vw,340px);padding-left:12px;padding-right:12px;}
     #chart-head{margin-left:-12px;margin-right:-12px;padding-left:12px;}
+  }
+  @media(max-width:600px){
+    #chart{position:fixed;inset:0;width:100vw;height:100vh;z-index:40;padding-left:16px;padding-right:16px;}
+    #chart-head{margin-left:-16px;margin-right:-16px;padding-left:16px;}
   }
 </style>
 <meta name="robots" content="noindex, nofollow">
@@ -152,21 +164,27 @@ box-shadow:0 0 18px rgba(86,212,216,.9)}
 </nav>
 <div id="bar">
   <h1>Government Entity Tree &mdash; structure and authority</h1>
-  <button class="btn" id="expand">Expand all</button>
-  <button class="btn" id="collapse">Consolidate to top</button>
-  <button class="btn" id="fit">Fit to screen</button>
-  <button class="btn" id="money">Money lines</button>
-  <button class="btn" id="committees">Congressional committees</button>
-  <span id="committee-find-wrap">
-  <input id="committee-search" list="committee-options" placeholder="Find committee or subcommittee…" aria-label="Find committee or subcommittee">
-  <datalist id="committee-options"></datalist>
-  <button class="btn" id="committee-find">Open</button>
+  <span class="bar-group" aria-label="Structure controls"><span class="bar-label">Structure</span>
+    <button class="btn" id="expand">Expand all</button>
+    <button class="btn" id="collapse">Consolidate to top</button>
+    <button class="btn" id="fit">Fit to screen</button>
+  </span>
+  <span class="bar-group" aria-label="Overlays"><span class="bar-label">Overlays</span>
+    <button class="btn" id="money">Money lines</button>
+    <button class="btn" id="committees">Congressional committees</button>
+  </span>
+  <span class="bar-group" id="entity-find-wrap" aria-label="Entity search"><span class="bar-label">Find</span>
+  <input id="entity-search" list="entity-options" placeholder="Find any entity…" aria-label="Find any entity">
+  <datalist id="entity-options"></datalist>
+  <button class="btn" id="entity-find">Open</button>
   </span>
   <span class="grow"></span>
-  <button class="btn" id="zout">&minus;</button>
-  <button class="btn" id="zin">+</button>
+  <span class="bar-group" aria-label="Zoom controls"><span class="bar-label">Zoom</span>
+    <button class="btn" id="zout" aria-label="Zoom out">&minus;</button>
+    <button class="btn" id="zin" aria-label="Zoom in">+</button>
+  </span>
 </div>
-<div id="legend"></div>
+<details id="legend-wrap"><summary>Entity types and statuses</summary><div id="legend"></div></details>
 <div id="moneykey"></div>
 <div id="workspace">
   <div id="stage"><svg id="svg"><g id="vp"></g></svg></div>
@@ -1156,6 +1174,7 @@ N("The 12 Federal Reserve Banks","fed",{sffas:"disclosure",founded:"1914-11-16",
     var h='<div id="chart-head"><span id="chart-title">'+esc(name)+'</span>'
         +'<button id="chart-enlarge" title="enlarge chart" aria-label="enlarge chart" style="display:none">&#9974;</button>'
         +'<button id="chart-close" aria-label="close">&times;</button></div>'
+        +'<div class="dc-path">'+esc(entityPath(n)).replace(/ &gt; /g,' &rsaquo; ')+'</div>'
         +'<div class="dc-cat">'+esc(cat.label)+'</div>';
     if(d.founded) h+='<div class="dc-born">born: '+esc(d.founded)+'</div>';
     if(d.sffas&&SFFAS[d.sffas]) h+='<span class="tstat" style="background:'+SFFAS[d.sffas].bg+';color:'+SFFAS[d.sffas].tx+'">'+esc(SFFAS[d.sffas].label)+'</span>';
@@ -1566,30 +1585,32 @@ N("The 12 Federal Reserve Banks","fed",{sffas:"disclosure",founded:"1914-11-16",
     reveal(congress);
     congress.children=congress._children;
     render();fit();openChart(congress);
+    document.dispatchEvent(new CustomEvent("f250:federal-group-node",{detail:{path:entityPath(congress),explicitId:congress.data.id||""}}));
   });
-  var committeeSearchIndex=[];
+  var entitySearchIndex=[];
   eachAll(root,function(n){
-    if(!n.data||["committee","subcommittee","temporary_body"].indexOf(n.data.cat)<0||n.data.body_status!=="active")return;
-    var parentName=n.parent&&n.parent.data?n.parent.data.name:"";
-    var label=n.data.name+(parentName?" — "+parentName:"");
-    committeeSearchIndex.push({label:label,node:n});
+    if(!n.data)return;
+    var parts=[],cursor=n.parent;
+    while(cursor){parts.unshift(cursor.data.name);cursor=cursor.parent;}
+    var label=n.data.name+(parts.length?" — "+parts.join(" › "):"");
+    entitySearchIndex.push({label:label,node:n});
   });
-  committeeSearchIndex.sort(function(a,b){return a.label.localeCompare(b.label);});
-  var committeeOptions=document.getElementById("committee-options");
-  committeeSearchIndex.forEach(function(item){
+  entitySearchIndex.sort(function(a,b){return a.label.localeCompare(b.label);});
+  var entityOptions=document.getElementById("entity-options");
+  entitySearchIndex.forEach(function(item){
     var option=document.createElement("option");
     option.value=item.label;
-    committeeOptions.appendChild(option);
+    entityOptions.appendChild(option);
   });
-  function openCommitteeSearch(){
-    var input=document.getElementById("committee-search");
+  function openEntitySearch(){
+    var input=document.getElementById("entity-search");
     var query=input.value.trim().toLowerCase();
     if(!query)return;
-    var matches=committeeSearchIndex.filter(function(item){return item.label.toLowerCase()===query;});
-    if(!matches.length)matches=committeeSearchIndex.filter(function(item){return item.node.data.name.toLowerCase()===query;});
-    if(!matches.length)matches=committeeSearchIndex.filter(function(item){return item.label.toLowerCase().indexOf(query)>=0;});
+    var matches=entitySearchIndex.filter(function(item){return item.label.toLowerCase()===query;});
+    if(!matches.length)matches=entitySearchIndex.filter(function(item){return item.node.data.name.toLowerCase()===query;});
+    if(!matches.length)matches=entitySearchIndex.filter(function(item){return item.label.toLowerCase().indexOf(query)>=0;});
     if(matches.length!==1){
-      input.setCustomValidity(matches.length?"Choose the full committee label from the list.":"No committee or subcommittee matched.");
+      input.setCustomValidity(matches.length?"Choose the full entity label from the list.":"No entity matched.");
       input.reportValidity();
       return;
     }
@@ -1598,10 +1619,12 @@ N("The 12 Federal Reserve Banks","fed",{sffas:"disclosure",founded:"1914-11-16",
     collapseAll();
     reveal(node);
     render();fit();openChart(node);
+    document.dispatchEvent(new CustomEvent("f250:federal-group-node",{detail:{path:entityPath(node),explicitId:node.data.id||""}}));
+    var ix=vis.indexOf(node),g=vp.querySelector('.node[data-i="'+ix+'"]');if(g)g.classList.add("focus");
   }
-  document.getElementById("committee-find").addEventListener("click",openCommitteeSearch);
-  document.getElementById("committee-search").addEventListener("input",function(){this.setCustomValidity("");});
-  document.getElementById("committee-search").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();openCommitteeSearch();}});
+  document.getElementById("entity-find").addEventListener("click",openEntitySearch);
+  document.getElementById("entity-search").addEventListener("input",function(){this.setCustomValidity("");});
+  document.getElementById("entity-search").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();openEntitySearch();}});
 
   document.getElementById("zin").addEventListener("click",function(){zoomBy(1.25);});
   document.getElementById("zout").addEventListener("click",function(){zoomBy(0.8);});
@@ -1609,6 +1632,7 @@ N("The 12 Federal Reserve Banks","fed",{sffas:"disclosure",founded:"1914-11-16",
     var node=findByName(name);if(!node)return;
     moneyOn=false;document.getElementById("money").classList.remove("on");document.getElementById("moneykey").style.display="none";
     collapseAll();reveal(node);render();fit();openChart(node);
+    document.dispatchEvent(new CustomEvent("f250:federal-group-node",{detail:{path:entityPath(node),explicitId:node.data.id||""}}));
     var ix=vis.indexOf(node),g=vp.querySelector('.node[data-i="'+ix+'"]');if(g)g.classList.add("focus");
   }
   function entityPath(node){

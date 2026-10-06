@@ -1,4 +1,4 @@
-# What the states are doing with money
+# State gold, crypto and exchange initiatives
 
 What the states are doing with money on their own: gold as money, bitcoin reserves, state stable tokens, crypto laws and new stock exchanges. Written from news reports; most entries have no source link yet.
 

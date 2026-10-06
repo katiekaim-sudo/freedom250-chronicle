@@ -5,10 +5,10 @@
   "research_id": "treasury-do-not-pay-governmentwide-map",
   "title": "Do Not Pay flags payments, but each program makes the call",
   "question": "What does Treasury Do Not Pay screen, how far does it reach, and who owns the actual eligibility or adverse-action decision?",
-  "bluf": "Treasury's Do Not Pay is a shared screening network that checks payees against death, debt, exclusion and other records before money goes out. A match is only a signal; the agency or state program must check it and make its own legal decision.",
-  "evidence_cutoff": "2026-08-29",
-  "evidence_cutoff_note": "Primary federal law, Treasury, OMB, OPM and Federal Register sources were checked through August 29, 2026. OPM's August 26 notice is published but not operative until September 25; Public Law 119-77 amendments are not effective until December 27; the May 29 Uniform Guidance expansion remains proposed.",
-  "use_note": "Covers the statutory Working System, Treasury products and published datasets, federal and federally funded State-program reach, distributed eligibility judgment, M-25-32 controls, OPM's September 25 activation boundary and proposed/future expansion clocks. Reverify operating, dataset, agreement and rule states after the cutoff; a match is not an eligibility adjudication or fraud finding.",
+  "bluf": "Treasury's Payment Verification system is now an operating government-wide gate: it screens requests before disbursement and can return them to the originating agency. The agency still owns eligibility, notice, contest, appeal and reissue; a match or return is not a final denial, fraud finding or recovered dollar.",
+  "evidence_cutoff": "2026-10-12T18:25:00-04:00",
+  "evidence_cutoff_note": "The structural owner retains its August 29 baseline. The October 12 operating extension adds Treasury/Fiscal Service direct product, payment, help, data and result pages; statute, EO, OMB, OPM, GAO and OIG evidence. OPM's September 25 activation is now operative. Federal Register publication remains only one source family, not the research denominator.",
+  "use_note": "Covers the statutory Working System and current Payment Verification gate from agency request through screen/return, agency adjudication, certification, disbursement, correction and recovery. Reverify agency dispositions, false positives, reissues, bank-account/TIN outcomes and audited savings after the cutoff; a match or returned request is not an eligibility adjudication, ACH return, fraud finding or recovered dollar.",
   "library_state": "current",
   "entities": [
     "Treasury Bureau of the Fiscal Service",
@@ -34,7 +34,9 @@
     "also_in": [
       "Citizenship, Voting & Immigration"
     ],
-    "dated_records": []
+    "dated_records": [
+      "federal-payments"
+    ]
   },
   "relationships": {
     "parent_id": "fraud-payment-integrity",
@@ -48,21 +50,21 @@
     ]
   },
   "material_counts": {
-    "total": 3,
+    "total": 12,
     "public_reading": 1,
     "public_machine_data": 0,
-    "private_library_metadata": 2
+    "private_library_metadata": 11
   },
   "research_layer_counts": {
     "orientation": 0,
     "findings": 2,
-    "evidence": 0,
+    "evidence": 4,
     "monitoring": 0,
-    "methods": 0,
-    "presentation": 0,
-    "supporting": 1
+    "methods": 2,
+    "presentation": 1,
+    "supporting": 3
   },
-  "latest_computer_edit_at": "2026-10-06T01:37:29Z",
+  "latest_computer_edit_at": "2026-10-13T00:19:40Z",
   "public_full_text": true,
   "full_text_url": "readings/packages/treasury-do-not-pay-governmentwide-map.html",
   "routes": {
@@ -107,8 +109,13 @@
       "id": "evidence",
       "label": "Evidence and records",
       "meaning": "Primary-source custody, factual spines, evidence indexes and source ledgers.",
-      "count": 0,
-      "material_ids": []
+      "count": 4,
+      "material_ids": [
+        "250b2a080fe46bd8",
+        "3118ebe242f9fde1",
+        "6a112930ac474117",
+        "939f984582f72f19"
+      ]
     },
     {
       "id": "monitoring",
@@ -121,23 +128,30 @@
       "id": "methods",
       "label": "Methods and production",
       "meaning": "Methods, deterministic builders, validators, tools and workflow receipts.",
-      "count": 0,
-      "material_ids": []
+      "count": 2,
+      "material_ids": [
+        "50ee8baf572db453",
+        "051fbdff5936207a"
+      ]
     },
     {
       "id": "presentation",
       "label": "Presentation and projections",
       "meaning": "Human-facing visuals, generated projections and packaged deliverables.",
-      "count": 0,
-      "material_ids": []
+      "count": 1,
+      "material_ids": [
+        "d59ccf9a71383656"
+      ]
     },
     {
       "id": "supporting",
       "label": "Supporting material",
       "meaning": "Supporting analysis and governed material not assigned to a narrower role.",
-      "count": 1,
+      "count": 3,
       "material_ids": [
-        "5c1a7db2fc1bcd04"
+        "5c1a7db2fc1bcd04",
+        "b62ff6d4113506fd",
+        "437b13bc5cc4197c"
       ]
     }
   ],
@@ -167,7 +181,43 @@
       "availability": "private_library_metadata",
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
-      "modified_at": "2026-09-30T21:40:55Z",
+      "modified_at": "2026-10-13T00:16:41Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
+    },
+    {
+      "material_id": "b62ff6d4113506fd",
+      "title": "README",
+      "artifact_role": "supporting",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-10-13T00:14:06Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
+    },
+    {
+      "material_id": "437b13bc5cc4197c",
+      "title": "TREASURY PAYMENT VERIFICATION OPERATING CONSTITUTION 2026-10-12",
+      "artifact_role": "supporting",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-10-12T22:20:51Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
+    },
+    {
+      "material_id": "d59ccf9a71383656",
+      "title": "How Treasury checks a payment before the money leaves",
+      "artifact_role": "visual",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-10-13T00:19:40Z",
       "access_state": "private_by_design",
       "public_full_text": false
     },
@@ -180,6 +230,78 @@
       "custody_layer": "research_workbench",
       "computer_object_type": "file",
       "modified_at": "2026-10-06T01:37:29Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
+    },
+    {
+      "material_id": "50ee8baf572db453",
+      "title": "build treasury payment gate visual",
+      "artifact_role": "builder",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-10-13T00:19:32Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
+    },
+    {
+      "material_id": "250b2a080fe46bd8",
+      "title": "TREASURY PAYMENT VERIFICATION CONTROL LEDGER 2026-10-12",
+      "artifact_role": "evidence_index",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-10-12T22:20:51Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
+    },
+    {
+      "material_id": "3118ebe242f9fde1",
+      "title": "TREASURY PAYMENT VERIFICATION METRIC AUDIT 2026-10-12",
+      "artifact_role": "evidence_index",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-10-12T22:20:51Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
+    },
+    {
+      "material_id": "6a112930ac474117",
+      "title": "TREASURY PAYMENT GATE VISUAL DATA 2026-10-12",
+      "artifact_role": "factual_spine",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-10-13T00:11:02Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
+    },
+    {
+      "material_id": "939f984582f72f19",
+      "title": "TREASURY PAYMENT VERIFICATION SOURCE LEDGER 2026-10-12",
+      "artifact_role": "source_ledger",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-10-12T22:20:51Z",
+      "access_state": "private_by_design",
+      "public_full_text": false
+    },
+    {
+      "material_id": "051fbdff5936207a",
+      "title": "validate treasury payment gate visual",
+      "artifact_role": "validator",
+      "file_state": "current",
+      "availability": "private_library_metadata",
+      "custody_layer": "research_workbench",
+      "computer_object_type": "file",
+      "modified_at": "2026-10-13T00:14:06Z",
       "access_state": "private_by_design",
       "public_full_text": false
     }

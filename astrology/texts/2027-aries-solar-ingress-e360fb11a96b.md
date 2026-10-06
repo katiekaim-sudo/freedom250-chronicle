@@ -6,12 +6,14 @@ ingress: Aries
 year: 2027
 date: 2027-03-20
 time_utc: "20:24:41"
+time_utc_exact: "20:24:41.721810"
 location: "Washington, D.C."
 house_system: Whole Sign
 rising_sign: Leo
 rising_modality: Fixed
 validity: "Full year (Mar 2027 – Mar 2028)"
 chart_ruler: Sun
+root_members: [Sun, Mars]
 role: governing
 computed_via: "Swiss Ephemeris (pyswisseph) · mundane_engine.py"
 reading: none
@@ -27,7 +29,8 @@ reading: none
 
 ## The Chart
 
-**Date/Time:** March 20, 2027, 20:24:41 UTC (4:24:41 PM EDT)
+**Date/Time:** March 20, 2027, 20:24:41 UTC / March 20, 2027, 4:24:41 PM EDT
+**Exact computed UTC instant:** 2027-03-20T20:24:41.721810+00:00. The whole-second clock above is truncated; an Astro Gold whole-second cast must use the first second after this instant.
 **Location:** Washington, D.C. (38.9072°N, 77.0369°W)
 **House System:** Whole Sign
 **Ascendant:** 25°43' Leo
@@ -53,8 +56,27 @@ reading: none
 | Node | 20°03' Aquarius | Aquarius | 7th | −0.04°/d | — |
 | America | 22°54' Scorpio | Scorpio | 4th | −0.03°/d | — |
 
-### Dispositor chain
+### Chart-ruler dispositor chain
 
 Sun (Ari/9) → Mars (Leo/1) → Sun (Ari/9) ⟲
+
+### Whole-chart roots
+
+**Every root member:** Sun, Mars.
+**Final dispositors:** none.
+**Root loops:** Mars → Sun → Mars.
+
+| Planet | Traditional dispositor route |
+|---|---|
+| Sun | Sun → Mars → Sun ⟲ |
+| Moon | Moon → Mercury → Jupiter → Sun → Mars → Sun ⟲ |
+| Mercury | Mercury → Jupiter → Sun → Mars → Sun ⟲ |
+| Venus | Venus → Saturn → Mars → Sun → Mars ⟲ |
+| Mars | Mars → Sun → Mars ⟲ |
+| Jupiter | Jupiter → Sun → Mars → Sun ⟲ |
+| Saturn | Saturn → Mars → Sun → Mars ⟲ |
+| Uranus | Uranus → Mercury → Jupiter → Sun → Mars → Sun ⟲ |
+| Neptune | Neptune → Mars → Sun → Mars ⟲ |
+| Pluto | Pluto → Saturn → Mars → Sun → Mars ⟲ |
 
 Astro Gold verification is pending. Degrees are engine-computed, never from memory.

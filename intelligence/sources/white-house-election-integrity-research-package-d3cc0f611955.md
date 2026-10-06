@@ -5,10 +5,9 @@
 
 **Question:** What do the four July 2026 White House election-integrity release packages establish, and where does the evidence chain stop?
 
-**Answer:** The July 16, 2026 White House release (58 PDFs, 269 pages) documents four separate things: foreign collection of voter data, internal intelligence disputes, weak state and local election networks, and questionable voter registrations. As released, none of it proves an ineligible or altered vote changed an outcome.
+**Answer:** The July files document real risks without proving a changed result. CISA's September bundle turns them into agency-owned reference material for a Regional Director, fusion-center and platform blueprint; the first proposal or instrument citing it is the next real change clock.
 
-**Evidence checked through:** 2026-10-05 for the CISA plan return; 2026-07-18
-for the original four-lane package.
+**Evidence checked through:** 2026-10-05
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->

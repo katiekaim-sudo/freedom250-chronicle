@@ -6,12 +6,14 @@ ingress: Capricorn
 year: 2028
 date: 2028-12-21
 time_utc: "08:19:39"
+time_utc_exact: "08:19:39.996711"
 location: "Washington, D.C."
 house_system: Whole Sign
 rising_sign: Scorpio
 rising_modality: Fixed
 validity: "Nested cardinal stage — does not replace 2028 Aries"
 chart_ruler: Mars
+root_members: [Venus, Jupiter]
 role: nuance
 governing_chart: "[[2028 Aries Solar Ingress]]"
 computed_via: "Swiss Ephemeris (pyswisseph) · mundane_engine.py"
@@ -28,7 +30,8 @@ reading: none
 
 ## The Chart
 
-**Date/Time:** December 21, 2028, 08:19:39 UTC (3:19:39 AM EST)
+**Date/Time:** December 21, 2028, 08:19:39 UTC / December 21, 2028, 3:19:39 AM EST
+**Exact computed UTC instant:** 2028-12-21T08:19:39.996711+00:00. The whole-second clock above is truncated; an Astro Gold whole-second cast must use the first second after this instant.
 **Location:** Washington, D.C. (38.9072°N, 77.0369°W)
 **House System:** Whole Sign
 **Ascendant:** 8°44' Scorpio
@@ -44,7 +47,7 @@ reading: none
 | Moon | 2°03' Pisces | Pisces | 5th | +12.10°/d | Peregrine |
 | Mercury | 16°44' Capricorn | Capricorn | 3rd | +1.47°/d | Peregrine |
 | Venus | 7°45' Sagittarius | Sagittarius | 2nd | +1.25°/d | Peregrine |
-| Mars | 30°00' Virgo | Virgo | 11th | +0.43°/d | Peregrine |
+| Mars | 29°59' Virgo | Virgo | 11th | +0.43°/d | Peregrine |
 | Jupiter | 23°36' Libra | Libra | 12th | +0.14°/d | Peregrine |
 | Saturn | 4°38' Taurus | Taurus | 7th | −0.03°/d | **RETROGRADE** |
 | Uranus | 11°29' Gemini | Gemini | 8th | −0.04°/d | **RETROGRADE** |
@@ -54,8 +57,27 @@ reading: none
 | Node | 14°02' Capricorn | Capricorn | 3rd | +0.02°/d | — |
 | America | 10°44' Taurus | Taurus | 7th | +0.08°/d | — |
 
-### Dispositor chain
+### Chart-ruler dispositor chain
 
 Mars (Vir/11) → Mercury (Cap/3) → Saturn (Tau/7) → Venus (Sag/2) → Jupiter (Lib/12) → Venus (Sag/2) ⟲
+
+### Whole-chart roots
+
+**Every root member:** Venus, Jupiter.
+**Final dispositors:** none.
+**Root loops:** Jupiter → Venus → Jupiter.
+
+| Planet | Traditional dispositor route |
+|---|---|
+| Sun | Sun → Saturn → Venus → Jupiter → Venus ⟲ |
+| Moon | Moon → Jupiter → Venus → Jupiter ⟲ |
+| Mercury | Mercury → Saturn → Venus → Jupiter → Venus ⟲ |
+| Venus | Venus → Jupiter → Venus ⟲ |
+| Mars | Mars → Mercury → Saturn → Venus → Jupiter → Venus ⟲ |
+| Jupiter | Jupiter → Venus → Jupiter ⟲ |
+| Saturn | Saturn → Venus → Jupiter → Venus ⟲ |
+| Uranus | Uranus → Mercury → Saturn → Venus → Jupiter → Venus ⟲ |
+| Neptune | Neptune → Mars → Mercury → Saturn → Venus → Jupiter → Venus ⟲ |
+| Pluto | Pluto → Saturn → Venus → Jupiter → Venus ⟲ |
 
 Astro Gold verification is pending. Degrees are engine-computed, never from memory.

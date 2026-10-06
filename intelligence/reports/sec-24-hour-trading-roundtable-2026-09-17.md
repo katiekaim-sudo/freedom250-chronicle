@@ -12,9 +12,9 @@
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-**Meeting:** September 17, 2026  
-**Analysis cutoff:** September 23, 2026  
-**Record reviewed:** both replay parts, the SEC event page, two announcements, Sunshine Act notice, staff supporting-data memorandum, four prepared statements, and File 4-913 comment page  
+**Meeting:** September 17, 2026
+**Analysis cutoff:** September 23, 2026
+**Record reviewed:** both replay parts, the SEC event page, two announcements, Sunshine Act notice, staff supporting-data memorandum, four prepared statements, and File 4-913 comment page
 **Research state:** current Workbench answer; replay controls the working captions
 
 ## BLUF

@@ -6,12 +6,14 @@ ingress: Cancer
 year: 2028
 date: 2028-06-20
 time_utc: "20:02:00"
+time_utc_exact: "20:02:00.488074"
 location: "Washington, D.C."
 house_system: Whole Sign
 rising_sign: Scorpio
 rising_modality: Fixed
 validity: "Nested cardinal stage — does not replace 2028 Aries"
 chart_ruler: Mars
+root_members: [Mercury]
 role: nuance
 governing_chart: "[[2028 Aries Solar Ingress]]"
 computed_via: "Swiss Ephemeris (pyswisseph) · mundane_engine.py"
@@ -28,7 +30,8 @@ reading: none
 
 ## The Chart
 
-**Date/Time:** June 20, 2028, 20:02:00 UTC (4:02:00 PM EDT)
+**Date/Time:** June 20, 2028, 20:02:00 UTC / June 20, 2028, 4:02:00 PM EDT
+**Exact computed UTC instant:** 2028-06-20T20:02:00.488074+00:00. The whole-second clock above is truncated; an Astro Gold whole-second cast must use the first second after this instant.
 **Location:** Washington, D.C. (38.9072°N, 77.0369°W)
 **House System:** Whole Sign
 **Ascendant:** 4°31' Scorpio
@@ -54,8 +57,27 @@ reading: none
 | Node | 23°20' Capricorn | Capricorn | 3rd | −0.06°/d | — |
 | America | 15°35' Aries | Aries | 6th | +0.53°/d | — |
 
-### Dispositor chain
+### Chart-ruler dispositor chain
 
-Mars (Gem/8) → Mercury (Gem/8) → Mercury (Gem/8) ⟲
+Mars (Gem/8) → Mercury (Gem/8)
+
+### Whole-chart roots
+
+**Every root member:** Mercury.
+**Final dispositors:** Mercury.
+**Root loops:** none.
+
+| Planet | Traditional dispositor route |
+|---|---|
+| Sun | Sun → Moon → Mercury |
+| Moon | Moon → Mercury |
+| Mercury | Mercury |
+| Venus | Venus → Mercury |
+| Mars | Mars → Mercury |
+| Jupiter | Jupiter → Mercury |
+| Saturn | Saturn → Venus → Mercury |
+| Uranus | Uranus → Mercury |
+| Neptune | Neptune → Mars → Mercury |
+| Pluto | Pluto → Saturn → Venus → Mercury |
 
 Astro Gold verification is pending. Degrees are engine-computed, never from memory.

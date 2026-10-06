@@ -1,7 +1,7 @@
 # UNGA81 High-Level Week — Pre-Meeting Map
 
-**Status:** current as of 2026-09-20 18:06 EDT; designed for post-event returns  
-**Research ID:** `un-general-assembly-high-level-week-2026`  
+**Status:** current as of 2026-09-20 18:06 EDT; designed for post-event returns
+**Research ID:** `un-general-assembly-high-level-week-2026`
 **Role:** pre-meeting answer and source map
 
 > **September 20 document-reading update:** the UN System Data Commons moved

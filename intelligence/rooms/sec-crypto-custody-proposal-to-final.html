@@ -37,17 +37,153 @@ button.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .legend span{font-size:12px;border-radius:6px;padding:3px 8px;color:var(--sText)}
 footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:10px;font-size:12px;color:var(--mute)}
 @media (max-width:860px){.grid2{grid-template-columns:1fr}.sticky{position:static}}
-</style>
-<!-- plain-english-html-style:start -->
-<style id="plainEnglishEntranceStyle">
-  .plain-english-entrance { margin: .65rem 0 1rem; max-width: 78ch; }
-  .plain-english-kicker { margin: 0 0 .28rem; font: 700 .72rem/1.2 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .72; }
-  .plain-english-title { margin: 0 0 .3rem; font: 750 clamp(1.05rem, 1.8vw, 1.35rem)/1.25 system-ui, sans-serif; letter-spacing: 0; text-transform: none; }
-  .plain-english-summary { margin: 0; font: 500 clamp(.92rem, 1.35vw, 1.08rem)/1.5 system-ui, sans-serif; max-width: 78ch; }
-  body > .plain-english-standalone { box-sizing: border-box; width: min(94vw, 1100px); margin: .8rem auto; padding: .9rem 1rem; border: 1px solid rgba(127,127,127,.35); border-radius: .8rem; background: rgba(127,127,127,.08); color: inherit; }
-</style>
-<!-- plain-english-html-style:end -->
-<meta name="robots" content="noindex, nofollow">
+</style><style id="f250-graphic-style">:root {
+  color-scheme: dark;
+  --f250-bg: #0b111c;
+  --f250-sheet: #111a28;
+  --f250-wash: #172234;
+  --f250-nav: #070c15;
+  --f250-ink: #eef1f5;
+  --f250-text: #cbd3de;
+  --f250-muted: #9da9bb;
+  --f250-line: #2b3c56;
+  --f250-strong: #eef1f5;
+  --f250-link: #9ec2f0;
+  --f250-focus: #9ec2f0;
+  --f250-gold: #d6b474;
+  --f250-warn: #f5a878;
+  --f250-good: #80c9a8;
+  --f250-display: "Times New Roman", Times, serif;
+  --f250-ui: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --f250-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --f250-bg: #f7f7f5;
+  --f250-sheet: #ffffff;
+  --f250-wash: #eceef0;
+  --f250-nav: #0e1a2b;
+  --f250-ink: #111418;
+  --f250-text: #30353d;
+  --f250-muted: #5a606a;
+  --f250-line: #cbd1da;
+  --f250-strong: #111418;
+  --f250-link: #1b4f8a;
+  --f250-focus: #1b4f8a;
+  --f250-gold: #8e622a;
+  --f250-warn: #9a3412;
+  --f250-good: #14664a;
+}
+@media (prefers-color-scheme: light) {
+  :root[data-theme="system"] {
+    color-scheme: light;
+    --f250-bg: #f7f7f5; --f250-sheet: #ffffff; --f250-wash: #eceef0;
+    --f250-nav: #0e1a2b; --f250-ink: #111418; --f250-text: #30353d;
+    --f250-muted: #5a606a; --f250-line: #cbd1da; --f250-strong: #111418;
+    --f250-link: #1b4f8a; --f250-focus: #1b4f8a; --f250-gold: #8e622a;
+    --f250-warn: #9a3412; --f250-good: #14664a;
+  }
+}
+.f250-graphic-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  min-height: 54px;
+  margin: 0;
+  padding: 7px clamp(16px, 4vw, 54px);
+  border-bottom: 1px solid #2b3c56;
+  background: var(--f250-nav);
+  color: #eef1f5;
+  font: 13px/1.35 var(--f250-ui);
+}
+.f250-graphic-bar a { color: #c8dcf7; text-decoration: none; }
+.f250-graphic-bar a:hover { color: #fff; text-decoration: underline; }
+.f250-graphic-bar .f250-graphic-brand { color: #fff; font: 600 17px/1.2 var(--f250-display); }
+.f250-graphic-bar .f250-graphic-name { color: #a9b5c6; font-size: 12px; }
+.f250-graphic-bar .f250-graphic-spacer { flex: 1 1 auto; }
+:root[data-f250-embedded] .f250-graphic-bar { display: none; }
+.f250-theme-switch { display: inline-flex; border: 1px solid #34445e; }
+.f250-theme-switch button {
+  min-width: 50px;
+  min-height: 36px;
+  padding: 6px 9px;
+  border: 0;
+  border-right: 1px solid #34445e;
+  border-radius: 0;
+  background: transparent;
+  color: #a9b5c6;
+  font: 12px var(--f250-ui);
+  cursor: pointer;
+}
+.f250-theme-switch button:last-child { border-right: 0; }
+.f250-theme-switch button[aria-pressed="true"] { background: #eef1f5; color: #0b111c; font-weight: 650; }
+/* Editorial typography and restrained geometry across the varied native diagrams. */
+h1, h2, h3 { font-family: var(--f250-display) !important; }
+:where(button, input, select, .card, .panel, .chip, .badge, .tag, .stat, .clock,
+  .jump, .filter, .search, .toolbar, .detail, .route-card, .issuer-card,
+  .queue-card, .world-place, .world-subject, .dimension, .supplement,
+  .tab, .lens, .node, .mapwrap, .masthead) {
+  border-radius: 2px !important;
+}
+:where(.card, .panel, .stat, .clock, .route-card, .issuer-card, .queue-card,
+  .mapwrap, .masthead) {
+  box-shadow: none !important;
+}
+:where(.f250-graphic-bar a, .f250-theme-switch button):focus-visible {
+  outline: 3px solid #c8dcf7;
+  outline-offset: 2px;
+}
+@media (max-width: 650px) {
+  .f250-graphic-bar { gap: 6px 10px; padding: 8px 14px; }
+  .f250-graphic-bar .f250-graphic-name { display: none; }
+  .f250-graphic-bar .f250-graphic-spacer { display: none; }
+  .f250-theme-switch { margin-left: auto; }
+}
+
+
+:root{--bg:var(--f250-bg);--paper:var(--f250-sheet);--ink:var(--f250-ink);--ink2:var(--f250-text);--mute:var(--f250-muted);--rule:var(--f250-line);--chip:var(--f250-wash);--accent:var(--f250-link);--warn:var(--f250-warn)}
+body{font-family:var(--f250-ui)}h1,h2,h3,.q{font-family:var(--f250-display)}
+.wrap{max-width:1200px}.panel{border-radius:2px}.chip{border-radius:2px}
+.top{border-bottom:1px solid var(--f250-line);padding-bottom:10px}.eyebrow{letter-spacing:.07em}
+.detail h2{font-family:var(--f250-display);font-weight:500}
+:where(a,button,input,select,summary):focus-visible{outline:3px solid var(--f250-focus);outline-offset:2px}
+</style><script id="f250-graphic-theme">(function () {
+  if (window.parent !== window) document.documentElement.setAttribute('data-f250-embedded', '');
+  const key = 'f250-library-theme';
+  const accepted = new Set(['dark', 'light', 'system']);
+  function chosen() {
+    try {
+      const query = new URLSearchParams(location.search).get('theme');
+      if (accepted.has(query)) return query;
+      const saved = localStorage.getItem(key);
+      if (accepted.has(saved)) return saved;
+    } catch (error) {}
+    return 'dark';
+  }
+  function setTheme(value, save) {
+    if (!accepted.has(value)) return;
+    document.documentElement.setAttribute('data-theme', value);
+    if (save) try { localStorage.setItem(key, value); } catch (error) {}
+    document.querySelectorAll('[data-f250-theme]').forEach(button =>
+      button.setAttribute('aria-pressed', String(button.dataset.f250Theme === value)));
+  }
+  setTheme(chosen(), false);
+  document.addEventListener('click', event => {
+    const button = event.target.closest('[data-f250-theme]');
+    if (button) setTheme(button.dataset.f250Theme, true);
+  });
+  window.addEventListener('message', event => {
+    const data = event.data;
+    if (data && (data.action === 'setTheme' || data.type === 'theme') && accepted.has(data.theme))
+      setTheme(data.theme, false);
+  });
+  document.addEventListener('DOMContentLoaded', () => setTheme(chosen(), false));
+})();
+</script><meta name="robots" content="noindex, nofollow">
 <style id="f250-share-nav-style">
 body{padding-top:52px!important}
 .f250-share-nav{position:fixed;z-index:2147483000;top:0;left:0;right:0;height:52px;
@@ -78,16 +214,8 @@ box-shadow:0 0 18px rgba(86,212,216,.9)}
 <a id="f250-universal-back" class="f250-universal-back" href="../index.html" aria-label="Go back" onclick="const r=document.referrer;if(r&amp;&amp;new URL(r).origin===location.origin){event.preventDefault();history.back();}"><span aria-hidden="true">←</span> Back</a><nav class="f250-share-nav" aria-label="Shared site">
 <a class="f250-room-home" href="../index.html">Intelligence Rooms</a>
 <span class="f250-nav-links"><a href="government-entity-tree.html">Gov Entity Tree</a><a href="../library/index.html">Reading Room</a><a href="../../index.html">The Chronicle</a><a href="../../latest.html">Latest paper</a></span>
-</nav><div class="wrap"><div class="top"><a href="../research-rooms/crypto-digital-money.html">← Crypto Hub</a><span>Evidence through Oct 1, 2026</span></div>
-<div class="eyebrow">Crypto Hub · Graphic 6</div><h1>SEC Crypto Custody — Proposal to Final</h1>
-<!-- plain-english-html-copy:start -->
-<div class="plain-english-entrance">
-  <p class="plain-english-kicker">In plain English</p>
-  <h2 class="plain-english-title">SEC Crypto Custody — Proposal to Final</h2>
-  <p class="plain-english-summary">Thirty-six stable proposal provisions and seven Observatory maps, ready for future final-rule redlining.</p>
-</div>
-<!-- plain-english-html-copy:end -->
-<p class="q">When the final custody rule arrives, exactly what changed from the 760-page proposal?</p><p class="lede">A clause-level proposal baseline built for future final-rule redlining. Filter the frozen provisions or open the seven cross-Observatory maps.</p>
+</nav><div class="f250-graphic-bar" role="navigation" aria-label="Research Library graphic"><a class="f250-graphic-brand" href="#">Research Library</a><span class="f250-graphic-name">SEC Crypto Custody — Proposal to Final</span><span class="f250-graphic-spacer"></span><a href="#">All graphics</a><div class="f250-theme-switch" role="group" aria-label="Colour theme"><button type="button" data-f250-theme="dark" aria-pressed="true">Dark</button><button type="button" data-f250-theme="light" aria-pressed="false">Light</button><button type="button" data-f250-theme="system" aria-pressed="false">System</button></div></div><div class="wrap"><div class="top"><a href="../research-rooms/crypto-digital-money.html">← Crypto Hub</a><span>Evidence through Oct 1, 2026</span></div>
+<div class="eyebrow">Crypto Hub · Graphic 6</div><h1>SEC Crypto Custody — Proposal to Final</h1><p class="q">When the final custody rule arrives, exactly what changed from the 760-page proposal?</p><p class="lede">A clause-level proposal baseline built for future final-rule redlining. Filter the frozen provisions or open the seven cross-Observatory maps.</p>
 <div class="chips"><span class="chip">36 stable provisions</span><span class="chip">8 constitutional layers</span><span class="chip">7 Observatory maps</span><span class="chip">Final rule: not issued</span></div>
 
 <div class="panel" style="margin-bottom:14px"><b>Frozen proposal baseline.</b> Every provision has a permanent ID and an empty final-rule slot. A pending slot means no final rule exists; it does not mean the proposal will survive.</div>

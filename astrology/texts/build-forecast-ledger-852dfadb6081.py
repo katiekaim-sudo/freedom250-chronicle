@@ -302,9 +302,46 @@ def score_literals(idx: dict, packages: list, watches: list, data_end: str):
     except (OSError, json.JSONDecodeError):
         return []
     out = []
+    seen_ids = set()
     for call in calls:
+        call_id = call.get("id")
+        if not call_id or call_id in seen_ids:
+            raise ValueError(f"Forecast Ledger call needs a unique id: {call_id!r}")
+        seen_ids.add(call_id)
         center = call.get("window_center")
         if not center:
+            continue
+        if call.get("scoring_mode") == "named_event_manual":
+            required = ("made_on", "window_start", "window_end", "actor", "event_test", "negative_test", "resolution_sources", "basis")
+            missing = [key for key in required if not call.get(key)]
+            if missing:
+                raise ValueError(f"named event call {call_id} lacks {missing}")
+            made = Date.fromisoformat(call["made_on"])
+            start_day = Date.fromisoformat(call["window_start"])
+            end_day = Date.fromisoformat(call["window_end"])
+            if not made < start_day <= end_day or not start_day <= Date.fromisoformat(center) <= end_day:
+                raise ValueError(f"named event call {call_id} must be registered before its bounded window")
+            if not isinstance(call["resolution_sources"], list) or not all(isinstance(x, str) and x for x in call["resolution_sources"]):
+                raise ValueError(f"named event call {call_id} needs explicit resolution sources")
+            resolution = call.get("resolution") or {}
+            if resolution:
+                if resolution.get("status") not in {"lines_up", "miss", "partial", "unresolved"} or not resolution.get("evidence") or not resolution.get("adjudicated_on"):
+                    raise ValueError(f"named event call {call_id} has an incomplete human resolution")
+                if Date.fromisoformat(resolution["adjudicated_on"]) < start_day:
+                    raise ValueError(f"named event call {call_id} was adjudicated before its window")
+                status = resolution["status"]
+            else:
+                status = "pending" if end_day > today_local() else "unresolved"
+            row = dict(call)
+            row.update({
+                "status": status,
+                "window_start": call["window_start"],
+                "window_end": call["window_end"],
+                "call_class": "literal",
+                "score_mode": "named_event_manual",
+                "authority_boundary": "Attention, subplot presence and research-title matches never resolve this call; adjudicate its named event against the registered sources.",
+            })
+            out.append(row)
             continue
         span = int(call.get("span") or 3)
         start = (Date.fromisoformat(center) - timedelta(days=span)).isoformat()
@@ -505,13 +542,22 @@ th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#9a8f7e}
         )
     lit_rows = []
     for call in sorted(literals, key=lambda c: c.get("window_center") or ""):
+        detail = esc(call.get("basis"))
+        if call.get("score_mode") == "named_event_manual":
+            sources = "; ".join(call.get("resolution_sources") or [])
+            detail += (
+                f'<br><strong>Event test:</strong> {esc(call.get("event_test"))}'
+                f'<br><strong>Miss:</strong> {esc(call.get("negative_test"))}'
+                f'<br><strong>Window:</strong> {esc(call.get("window_start"))} → {esc(call.get("window_end"))}'
+                f'<br><strong>Resolve from:</strong> {esc(sources)}'
+            )
         lit_rows.append(
             f'<tr class="literal-row" data-date="{esc(call.get("window_center"))}" data-call-id="{esc(call.get("id"))}">'
             f'<td>{esc(call.get("window_center"))}</td>'
             f'<td><span class="badge {esc(call.get("status"))}">{esc(LABEL.get(call.get("status"), call.get("status")))}</span></td>'
             f'<td>{esc(call.get("framework"))}</td>'
             f'<td>{esc(call.get("predicted_sub") or call.get("id"))}</td>'
-            f'<td class="muted">{esc(call.get("basis"))}</td></tr>'
+            f'<td class="muted">{detail}</td></tr>'
         )
     presence = pct(sc.get("presence_rate"))
     both = pct(sc.get("present_or_partial_rate"))

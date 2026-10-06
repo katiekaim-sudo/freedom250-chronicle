@@ -36,7 +36,7 @@ This resembles the communications emergency-rails layer. The government does not
 5. `CONTESTED_LOGISTICS_CLAIM_AUDIT.md` — overclaims, corrections and negative findings.
 6. `CONTESTED_LOGISTICS_VAULT_INTEGRATION_MAP.md` — plotline routing and promotion rules.
 7. `CONTESTED_LOGISTICS_SOURCE_WATCHBOARD.md` — sources that can move each state.
-8. `FORTRESS_AMERICA_INSTALLATION_ENERGY_INDEPENDENCE_GATE_2026-09-30.md` — bridge to the dedicated `FORTRESS America and Military Installation Energy Independence 2026-09-30` package.
+8. FORTRESS America installation-energy bridge — the local handoff to the dedicated [installation-power research package](../sources/readme-19120282f0ac.html), which owns the full program and project evidence.
 
 ## Strongest findings
 

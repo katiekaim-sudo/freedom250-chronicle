@@ -9,7 +9,7 @@ main{max-width:980px;margin:auto;padding:28px 20px 80px}a{color:var(--blue)}h1,h
 pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#070a10;border:1px solid var(--line);padding:16px;border-radius:12px}
 table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--ac);margin-left:0;padding-left:16px;color:#cbd5e1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{display:block;border:1px solid var(--line);background:var(--card);padding:16px;border-radius:14px;text-decoration:none}.mut{color:var(--mut)}img{max-width:100%;height:auto}
 </style></head><body><main><p><a href="../for-katies-bot.html">← Astrology bot instructions</a> · <a href="../bot-index.html">All astrology materials</a></p><div class="eyebrow">technical runtime · active</div><h1>extend_ingress_charts</h1><p class="mut">Portable source: 99 - Templates/extend_ingress_charts.py</p><pre>#!/usr/bin/env python3
-&quot;&quot;&quot;Cast 2027–2028 cardinal ingresses and project them into Ingress Charts.
+&quot;&quot;&quot;Cast 2027–2030 cardinal ingresses and project them into Ingress Charts.
 
 Method: Reading the Charts / Mundane Engine spec. Washington D.C., Whole Sign,
 exact Sun at 0° of the cardinal sign, traditional rulers, 916 America, Greer
@@ -29,6 +29,7 @@ from zoneinfo import ZoneInfo
 import swisseph as swe
 
 import mundane_engine as ME
+import swiss_ephemeris as EPH
 from chart_conventions import DC_LAT, DC_LON, DC_TZ, clock_label
 from minor_points import all_points
 
@@ -40,7 +41,7 @@ ASTRO = VAULT / &quot;03 - Astrology&quot;
 HISTORY = HERE / &quot;mundane_history.json&quot;
 
 CARDINAL = (&quot;Aries&quot;, &quot;Cancer&quot;, &quot;Libra&quot;, &quot;Capricorn&quot;)
-YEARS = (2027, 2028)
+YEARS = (2027, 2028, 2029, 2030)
 PLANET_ORDER = (&quot;Sun&quot;, &quot;Moon&quot;, &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;, &quot;Pluto&quot;)
 GLYPH = {
     &quot;Sun&quot;: &quot;☉&quot;, &quot;Moon&quot;: &quot;☽&quot;, &quot;Mercury&quot;: &quot;☿&quot;, &quot;Venus&quot;: &quot;♀&quot;, &quot;Mars&quot;: &quot;♂&quot;,
@@ -98,8 +99,10 @@ def fmt_dms(lon: float, *, force_sign: str | None = None) -&gt; tuple[str, str, 
     deg = int(d)
     minute = int(round((d - deg) * 60))
     if minute == 60:
-        deg += 1
-        minute = 0
+        # The body has not crossed the sign boundary. A rounded 30° in the
+        # prior sign is not a valid position, so retain a conservative minute.
+        deg = 29
+        minute = 59
     return f&quot;{deg}°{minute:02d}&#x27; {sign}&quot;, sign, lon
 
 
@@ -121,7 +124,18 @@ def fmt_speed(spd: float) -&gt; str:
 
 def standing_for(year: int, sign: str, history: dict[str, dict]) -&gt; str:
     row = history.get(f&quot;ingress-{year}-{sign.lower()}&quot;)
-    return (row or {}).get(&quot;standing&quot;) or &quot;nested_cardinal_stage&quot;
+    if row and row.get(&quot;standing&quot;):
+        return row[&quot;standing&quot;]
+    # Greer standing: Aries always resets. A mutable-rising chart yields at
+    # the next cardinal, cardinal after two quarters, fixed after four.
+    index = CARDINAL.index(sign)
+    governor_index = 0
+    for prior_index in range(1, index + 1):
+        governor = ME.cast_ingress(year, CARDINAL[governor_index])
+        quarters = ME.validity_months(governor[&quot;asc_modality&quot;]) // 3
+        if prior_index - governor_index &gt;= quarters:
+            governor_index = prior_index
+    return &quot;governing&quot; if governor_index == index else &quot;nested_cardinal_stage&quot;
 
 
 def year_king(year: int) -&gt; str:
@@ -129,21 +143,28 @@ def year_king(year: int) -&gt; str:
 
 
 def validity_line(year: int, sign: str, modality: str, standing: str) -&gt; str:
-    if standing == &quot;governing&quot; and sign == &quot;Aries&quot;:
-        return f&quot;Full year (Mar {year} – Mar {year + 1})&quot;
-    if standing == &quot;governing&quot;:
-        months = ME.validity_months(modality)
-        if months == 12:
-            return f&quot;Full year ({year})&quot;
-        if months == 6:
-            return f&quot;Six months (does not yield to the next cardinal)&quot;
-        return &quot;Three months, then the next cardinal takes over&quot;
-    return f&quot;Nested cardinal stage — does not replace {year_king(year)}&quot;
+    if standing != &quot;governing&quot;:
+        return f&quot;Nested cardinal stage — does not replace {year_king(year)}&quot;
+    if sign == &quot;Aries&quot;:
+        if modality == &quot;fixed&quot;:
+            return f&quot;Full year (Mar {year} – Mar {year + 1})&quot;
+        if modality == &quot;cardinal&quot;:
+            return f&quot;Six months (Mar–Sep {year}); Cancer is nested, Libra succeeds&quot;
+        return f&quot;Three months (Mar–Jun {year}); Cancer succeeds&quot;
+    if sign == &quot;Capricorn&quot;:
+        return f&quot;Governs until the {year + 1} Aries reset&quot;
+    months = ME.validity_months(modality)
+    if months == 12:
+        return f&quot;Governs until the {year + 1} Aries reset&quot;
+    if months == 6:
+        return &quot;Six months; the next cardinal is nested&quot;
+    return &quot;Three months; the next cardinal succeeds&quot;
 
 
 def compute_chart(year: int, sign: str, history: dict[str, dict]) -&gt; dict:
     ch = ME.cast_ingress(year, sign)
     jd = ch[&quot;jd&quot;]
+    EPH.require_swiss(jd)
     utc = utc_from_jd(jd)
     local = utc.astimezone(DC_TZ)
     extras = all_points(jd)
@@ -161,18 +182,20 @@ def compute_chart(year: int, sign: str, history: dict[str, dict]) -&gt; dict:
         pos_s, sgn, _ = fmt_dms(lon, force_sign=sign if name == &quot;Sun&quot; else None)
         xx = swe.calc_ut(jd, ME.PLANETS[name])[0]
         eq = swe.calc_ut(jd, ME.PLANETS[name], swe.FLG_SWIEPH | swe.FLG_EQUATORIAL)[0]
-        combust_label = None
+        solar_label = None
         if name != &quot;Sun&quot;:
             orb = abs((lon - sun_lon + 180) % 360 - 180)
-            if orb &lt;= 8.5:
-                combust_label = f&quot;COMBUST ({orb:.1f}°)&quot;
+            if orb &lt;= 17 / 60:
+                solar_label = f&quot;CAZIMI ({orb * 60:.1f}′)&quot;
+            elif orb &lt;= 8.5:
+                solar_label = f&quot;COMBUST ({orb:.1f}°)&quot;
         conds = []
         for tag in pl.get(&quot;cond&quot;) or []:
-            if tag == &quot;combust&quot;:
+            if tag in (&quot;combust&quot;, &quot;cazimi&quot;):
                 continue
             conds.append(tag.upper() if tag != &quot;peregrine&quot; else &quot;Peregrine&quot;)
-        if combust_label:
-            conds.append(combust_label)
+        if solar_label:
+            conds.append(solar_label)
         if pl.get(&quot;retro&quot;) and &quot;RETROGRADE&quot; not in conds:
             conds.append(&quot;RETROGRADE&quot;)
         if not conds:
@@ -230,17 +253,18 @@ def compute_chart(year: int, sign: str, history: dict[str, dict]) -&gt; dict:
     asc_s, _, _ = fmt_dms(ch[&quot;asc&quot;])
     mc_s, _, _ = fmt_dms(ch[&quot;mc&quot;])
     date_label = f&quot;{MONTHS[local.month - 1]} {local.day}, {local.year}&quot;
-    time_label = f&quot;{utc.strftime(&#x27;%H:%M:%S&#x27;)} UTC ({clock_label(local, seconds=True)})&quot;
+    time_label = f&quot;{clock_label(local, seconds=True)} ({utc.strftime(&#x27;%Y-%m-%d %H:%M:%S&#x27;)} UTC)&quot;
     rising = ch[&quot;asc_sign&quot;]
     role = &quot;governing&quot; if standing == &quot;governing&quot; else &quot;nuance&quot;
     summary = (
         f&quot;{rising} rising, {modality.title()}. &quot;
-        + (&quot;Governs the year.&quot; if role == &quot;governing&quot; else f&quot;Nested under {year_king(year)}.&quot;)
+        + (&quot;Governs the year.&quot; if role == &quot;governing&quot; and sign == &quot;Aries&quot; and modality == &quot;fixed&quot; else &quot;Governs for its stated span.&quot; if role == &quot;governing&quot; else f&quot;Nested under {year_king(year)}.&quot;)
         + &quot; Bones only — no reading.&quot;
     )
     verdict = (
         f&quot;Bones only. No reading yet. Chart ruler {ch[&#x27;chart_ruler&#x27;]}. &quot;
-        f&quot;Dispositor: {dispositor}. &quot;
+        f&quot;Chart-ruler route: {dispositor}. &quot;
+        f&quot;Whole-chart roots: {&#x27;, &#x27;.join(ch[&#x27;root_members&#x27;])}. &quot;
         f&quot;Greer standing: {standing.replace(&#x27;_&#x27;, &#x27; &#x27;)}.&quot;
     )
     card = {
@@ -263,6 +287,10 @@ def compute_chart(year: int, sign: str, history: dict[str, dict]) -&gt; dict:
         &quot;planets&quot;: planets + extra_rows,
         &quot;aspects&quot;: aspects[:12],
         &quot;dispositorText&quot;: dispositor,
+        &quot;rootMembers&quot;: ch[&quot;root_members&quot;],
+        &quot;rootFinals&quot;: ch[&quot;final_dispositors&quot;],
+        &quot;rootLoops&quot;: ch[&quot;root_loops&quot;],
+        &quot;allDispositorChains&quot;: ch[&quot;all_dispositor_chains&quot;],
         &quot;verdict&quot;: verdict,
         &quot;astroGold&quot;: False,
         &quot;standing&quot;: standing,
@@ -325,21 +353,42 @@ def patch_ing_data(html: str, overlays: list[dict]) -&gt; str:
     if not match:
         raise SystemExit(&quot;ING_DATA missing&quot;)
     data = json.loads(match.group(1))
-    data = [row for row in data if not re.match(r&quot;202[78]-&quot;, row[&quot;id&quot;])]
+    data = [row for row in data if not re.match(r&quot;20(?:27|28|29|30)-&quot;, row[&quot;id&quot;])]
     data.extend(overlays)
     compact = json.dumps(data, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;))
     return html[: match.start(1)] + compact + html[match.end(1) :]
 
 
 def patch_decl(html: str, decls: dict[str, dict[str, str]]) -&gt; str:
+    for earlier_comment in (
+        &quot;// Declination data from Astro Gold (Katie&#x27;s authoritative calculations)&quot;,
+        &quot;// Declination data: earlier charts from Astro Gold; 2027–28 computed with DE441, Astro Gold review pending&quot;,
+    ):
+        html = html.replace(
+            earlier_comment,
+            &quot;// Declination data: earlier charts from Astro Gold; 2027–30 computed with DE441, Astro Gold review pending&quot;,
+        )
     body = &quot;,\n&quot;.join(
         f&#x27;  &quot;{cid}&quot;: {json.dumps(rows, ensure_ascii=False)}&#x27;
         for cid, rows in decls.items()
     )
     block = f&quot;{DECL_START}\n{body}\n{DECL_END}&quot;
     if DECL_START in html:
-        return replace_marked(html, DECL_START, DECL_END, body)
-    close = html.rfind(&quot;};&quot;, html.find(&quot;const DECL_DATA = {&quot;))
+        decl_start = html.find(&quot;const DECL_DATA = {&quot;)
+        decl_close = html.find(&quot;\n};&quot;, decl_start)
+        marker = html.find(DECL_START)
+        if decl_start &lt; marker &lt; decl_close:
+            return replace_marked(html, DECL_START, DECL_END, body)
+        # Older runs put this block into the last JavaScript object in the
+        # file. Remove that misplaced block before inserting it at DECL_DATA.
+        html = re.sub(
+            r&quot;,\s*&quot; + re.escape(DECL_START) + r&quot;[\s\S]*?&quot; + re.escape(DECL_END),
+            &quot;&quot;,
+            html,
+            count=1,
+        )
+    decl_start = html.find(&quot;const DECL_DATA = {&quot;)
+    close = html.find(&quot;\n};&quot;, decl_start)
     if close &lt; 0:
         raise SystemExit(&quot;DECL_DATA close missing&quot;)
     return html[:close] + &quot;,\n&quot; + block + &quot;\n&quot; + html[close:]
@@ -368,7 +417,9 @@ def write_bones_note(card: dict) -&gt; Path:
     rising = card[&quot;rising&quot;]
     modality = card[&quot;risingModality&quot;]
     utc = datetime.fromisoformat(card[&quot;utc&quot;])
+    local = utc.astimezone(DC_TZ)
     time_utc = utc.strftime(&quot;%H:%M:%S&quot;)
+    time_utc_exact = utc.strftime(&quot;%H:%M:%S.%f&quot;)
     role = &quot;governing&quot; if standing == &quot;governing&quot; else &quot;nuance&quot;
     links = &quot;&quot;
     if role == &quot;nuance&quot;:
@@ -382,12 +433,14 @@ def write_bones_note(card: dict) -&gt; Path:
         f&quot;year: {year}&quot;,
         f&quot;date: {card[&#x27;iso_date&#x27;]}&quot;,
         f&#x27;time_utc: &quot;{time_utc}&quot;&#x27;,
+        f&#x27;time_utc_exact: &quot;{time_utc_exact}&quot;&#x27;,
         &#x27;location: &quot;Washington, D.C.&quot;&#x27;,
         &quot;house_system: Whole Sign&quot;,
         f&quot;rising_sign: {rising}&quot;,
         f&quot;rising_modality: {modality}&quot;,
         f&#x27;validity: &quot;{card[&quot;validity&quot;]}&quot;&#x27;,
         f&quot;chart_ruler: {card[&#x27;chartRuler&#x27;]}&quot;,
+        f&quot;root_members: [{&#x27;, &#x27;.join(card[&#x27;rootMembers&#x27;])}]&quot;,
         f&quot;role: {role}&quot;,
         f&quot;{links}computed_via: \&quot;Swiss Ephemeris (pyswisseph) · mundane_engine.py\&quot;&quot;,
         &quot;reading: none&quot;,
@@ -398,13 +451,14 @@ def write_bones_note(card: dict) -&gt; Path:
         &quot;&gt; **Bones only.** Computed positions and conditions. No reading yet.&quot;,
         &quot;&gt;&quot;,
         f&quot;&gt; {card[&#x27;validity&#x27;]}. Chart ruler {card[&#x27;chartRuler&#x27;]}. &quot;
-        f&quot;{&#x27;Governs the year.&#x27; if role == &#x27;governing&#x27; else f&#x27;Nested under {year} Aries.&#x27;}&quot;,
+        f&quot;{&#x27;Governs the year.&#x27; if role == &#x27;governing&#x27; and sign == &#x27;Aries&#x27; and modality == &#x27;Fixed&#x27; else &#x27;Governs for its stated span.&#x27; if role == &#x27;governing&#x27; else f&#x27;Nested under {year} Aries.&#x27;}&quot;,
         &quot;&quot;,
         &quot;---&quot;,
         &quot;&quot;,
         &quot;## The Chart&quot;,
         &quot;&quot;,
-        f&quot;**Date/Time:** {card[&#x27;date&#x27;]}, {card[&#x27;time&#x27;]}&quot;,
+        f&quot;**Date/Time:** {MONTHS[utc.month - 1]} {utc.day}, {utc.year}, {time_utc} UTC / {MONTHS[local.month - 1]} {local.day}, {local.year}, {clock_label(local, seconds=True)}&quot;,
+        f&quot;**Exact computed UTC instant:** {card[&#x27;utc&#x27;]}. The whole-second clock above is truncated; an Astro Gold whole-second cast must use the first second after this instant.&quot;,
         &quot;**Location:** Washington, D.C. (38.9072°N, 77.0369°W)&quot;,
         &quot;**House System:** Whole Sign&quot;,
         f&quot;**Ascendant:** {card[&#x27;asc&#x27;]}&quot;,
@@ -428,9 +482,23 @@ def write_bones_note(card: dict) -&gt; Path:
         )
     lines += [
         &quot;&quot;,
-        &quot;### Dispositor chain&quot;,
+        &quot;### Chart-ruler dispositor chain&quot;,
         &quot;&quot;,
         card[&quot;dispositorText&quot;],
+        &quot;&quot;,
+        &quot;### Whole-chart roots&quot;,
+        &quot;&quot;,
+        f&quot;**Every root member:** {&#x27;, &#x27;.join(card[&#x27;rootMembers&#x27;])}.&quot;,
+        f&quot;**Final dispositors:** {&#x27;, &#x27;.join(card[&#x27;rootFinals&#x27;]) or &#x27;none&#x27;}.&quot;,
+        f&quot;**Root loops:** {&#x27;; &#x27;.join(&#x27; → &#x27;.join(loop + [loop[0]]) for loop in card[&#x27;rootLoops&#x27;]) or &#x27;none&#x27;}.&quot;,
+        &quot;&quot;,
+        &quot;| Planet | Traditional dispositor route |&quot;,
+        &quot;|---|---|&quot;,
+    ]
+    for name in PLANET_ORDER:
+        route = card[&quot;allDispositorChains&quot;][name]
+        lines.append(f&quot;| {name} | {&#x27; → &#x27;.join(route[&#x27;path&#x27;])}{&#x27; ⟲&#x27; if route[&#x27;loop&#x27;] else &#x27;&#x27;} |&quot;)
+    lines += [
         &quot;&quot;,
         &quot;Astro Gold verification is pending. Degrees are engine-computed, never from memory.&quot;,
         &quot;&quot;,
@@ -460,12 +528,12 @@ def main() -&gt; None:
     TARGET.write_text(html, encoding=&quot;utf-8&quot;)
 
     ing = json.loads(ING_JSON.read_text(encoding=&quot;utf-8&quot;))
-    ing = [row for row in ing if not re.match(r&quot;202[78]-&quot;, row[&quot;id&quot;])]
+    ing = [row for row in ing if not re.match(r&quot;20(?:27|28|29|30)-&quot;, row[&quot;id&quot;])]
     ing.extend(overlays)
     ING_JSON.write_text(json.dumps(ing, ensure_ascii=False) + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
 
     notes = [write_bones_note(card) for card in cards]
-    print(f&quot;✓ Ingress Charts: added {len(cards)} bones-only 2027–2028 charts&quot;)
+    print(f&quot;✓ Ingress Charts: added {len(cards)} bones-only 2027–2030 charts&quot;)
     print(f&quot;✓ ing_data.json: {len(ing)} overlay frames&quot;)
     for path in notes:
         print(f&quot;  {path.relative_to(VAULT)}&quot;)

@@ -7,7 +7,7 @@
 
 **Answer:** The main U.S. metals market is adding more trading hours, including weekends, while keeping its existing clearing and payment rules. The United Kingdom has opened a legal path from owning a specific gold bar toward using a token as protected collateral, but that path is not operating yet.
 
-**Evidence checked through:** 2026-10-05 for the BMO/CME GCUL and Shandong returns; 2026-09-14 for the broader package
+**Evidence checked through:** 2026-09-14
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->

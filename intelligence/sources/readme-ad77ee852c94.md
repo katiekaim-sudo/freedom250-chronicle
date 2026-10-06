@@ -15,28 +15,25 @@ The detailed record below keeps the legal wording, source limits and open questi
 Workbench research packages for official COVID-origin, intelligence-process,
 research-funding, whistleblower and overseas-laboratory disclosures.
 
-## Packages
+## Choose the record you need
 
-- [Rand Paul COVID Origins Reading Room — corpus and wave audit](../sources/readme-a95b431c7e6b.html)
-  — source-preserved 14-PDF/3,887-page Senate corpus with hashes,
-  page-addressable extraction, targeted OCR, completeness audit and bounded
-  diary, Slack, testimony, enforcement and historical-architecture waves.
-- [White House COVID.gov Reactivation — 2026-07-29](../sources/readme-ed5e63d0afaf.html)
-  — primary-source orientation for the exact White House post, pre-existing
-  COVID.gov page, July 29 Fauci hearing, open contempt procedure, majority /
-  minority report boundary and bounded watch triggers.
-- [HHS High-Risk Life Sciences Research Policy — 2026-07-28](../sources/readme-9f4c86d6cd56.html)
-  — post-July 25 source-first delta for the July 20-dated / July 28-released
-  government-wide DGOF and international-research policy, its federal-funding
-  reach, implementation clocks, private-funding gap and vault-promotion map.
-- [2020 COVID Authority Spine](../sources/readme-43ee1c9646aa.html)
-  — bounded 20-object primary-source baseline for emergency authorities,
-  guidance changes, origins/funding records, countermeasures and vaccine
-  authorization chains; preserves distinct date, time, timezone and place
-  clocks for later comparison.
-- [ODNI COVID and Biolab Disclosures — 2026-06-12 to 2026-06-18](../sources/readme-310715b96f91.html)
-  — source-preserved audit of the June 12 biolab slides and June 18
-  67-item/391-page COVID-origin release.
+This is the one start for five COVID evidence families. Each study has its own
+cutoff and source authority. A release date is not the date of an underlying
+event, and a new release does not update an earlier finding by itself.
+
+| Question | Owning study and evidence cutoff | Boundary |
+| --- | --- | --- |
+| Which 2020 authority or decision could support a later claim? | [2020 COVID Authority Spine](../sources/readme-43ee1c9646aa.html) · `covid-2020-authority-spine` · July 27, 2026 | Twenty official records keep emergency powers, guidance, funding, countermeasures and vaccine approvals separate. |
+| What do the June intelligence releases actually show? | [ODNI COVID and Biolab Disclosures](../sources/readme-310715b96f91.html) · `odni-covid-biolab-disclosures-2026-06` · July 27, 2026 | The preserved slides and release files support bounded funding, contact and complaint findings; they do not prove a laboratory origin or control of intelligence judgments. |
+| What changed in federal research funding? | [HHS High-Risk Life Sciences Research Policy](../sources/readme-9f4c86d6cd56.html) · `hhs-high-risk-life-sciences-policy-2026-07-28` · July 28, 2026 | A federal-funding policy with its own implementation clocks; it does not reach all privately funded work. |
+| Did the White House's July 29 COVID.gov post add a new finding or rule? | [White House COVID.gov Reactivation](../sources/readme-ed5e63d0afaf.html) · `white-house-covid-gov-reactivation-2026-07-29` · July 29, 2026, noon EDT | The post pointed to an existing page and repackaged prior congressional claims; it was not a new scientific finding or legal act. |
+| What can be checked in the Senate's newly released papers? | [Rand Paul COVID Origins Reading Room](../sources/readme-a95b431c7e6b.html) · `rand-paul-covid-origins-reading-room-2026-07-29` · July 29, 2026 | The fourteen saved PDFs have page-addressable routes and bounded audits. Wording changes and public framing are testable; government direction, knowing falsity and laboratory causation remain unproved. |
+
+The [U.S. WHO membership-exit study](../sources/who-and-ihr-membership-exit-map-66037e156b95.html)
+is a separate legal and international-institution question on the same Research
+Room shelf, with an August 15 cutoff. It is related to COVID policy but is not
+a sixth origin-release family. [House Oversight's Epstein interview study](../sources/2026-07-21-the-epstein-statement-trap-18181c6edae9.html)
+belongs on the Room's congressional-records shelf and has its own owner.
 
 ## Handling rule
 

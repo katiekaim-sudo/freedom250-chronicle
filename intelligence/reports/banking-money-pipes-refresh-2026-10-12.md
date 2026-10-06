@@ -1,0 +1,169 @@
+# What changed in banking and the money pipes after the Site build
+
+<!-- plain-english-entry:start -->
+## In plain English
+
+**Question:** What changed in banks, payment rails, clearing and tokenized
+settlement after the current Library baselines—and what actually happens when
+an ordinary payment or tokenized stock trade moves?
+
+**Answer:** The pipes did not flip into one new system. ACH still settles bank
+obligations in Reserve Bank accounts and sends customer errors back through
+the account-holding bank. DTC still has not published the receipt needed to
+prove its broad October tokenization service opened. Securitize did launch a
+different product: a broker-held stock entitlement trades on Solana for USDC,
+while the underlying issuer's shareholder register and the dollar redemption
+route remain outside the token transfer.
+
+**Evidence checked through:** 2026-10-12T18:25:00-04:00
+
+The October 8 Nacha fraud paper is a request for evidence and a proposed
+recredit clarification, not an operative rule. The exact Securitize customer
+agreement, clearing/custody entity, first completed trade and failure
+waterfall were not public in the sources reached.
+
+The completed Securitize-versus-DTC deep dive adds the incumbent comparison:
+Securitize has the stronger launch receipt, while DTC has the stronger public
+record, reconciliation and correction constitution. The private Settlement
+Language Lab turns those distinctions into a source-bearing three-route,
+eight-term teaching surface.
+<!-- plain-english-entry:end -->
+
+## What this builds on
+
+The Library already owns the old system and the transition pieces:
+
+- the July bank-site portraits and maintained customer-agreement map;
+- the Federal Reserve, Treasury and clearing constitution;
+- DTCC's August and September legal, liquidity and October-watch maps;
+- the Crypto Infrastructure Hub's issuer, network, custody, transfer-agent and
+  redemption edges; and
+- the October 2 monetary-institutions delta.
+
+This package does not replace them. It supplies a bounded restart, closes the
+four-map language return, and adds two transaction traces with the current
+October direct-site evidence.
+
+## What changed
+
+### 1. Securitize opened an entitlement product, not issuer-native shares
+
+On October 8, Securitize said eligible investors could trade twelve U.S.-stock
+entitlements through Securitize Markets on Solana, using USDC, with Jump
+Trading as launch market maker. The entitlement is held through Securitize
+Markets. The holder is not on Apple's, Microsoft's or another issuer's stock
+register unless a supported conversion later occurs. NYSE ATS, OKXICE, 24/7
+trading, Aave use and Ripple Prime support remain future routes.
+
+That is a real product launch. It is not proof of the first completed trade,
+recurring volume, the exact clearing/custody legal person, a reconciled failure
+case or issuer-sponsored direct ownership.
+
+Read: tokenized transaction trace.
+
+### 2. Nacha opened the loss-allocation question; it did not change the rule
+
+Nacha's October 8 request asks how often a customer falsely labels an
+authorized ACH debit unauthorized and proposes to clarify when an RDFI must
+recredit during an investigation. Responses are due December 11. Existing
+Regulation E duties and current ACH rules continue to govern until a later
+adopted rule changes them.
+
+This matters because an ACH return, consumer recredit and final allocation of
+fraud loss are three different events.
+
+Read: ordinary ACH transaction trace.
+
+### 3. DTC's broad October service still lacks its opening receipt
+
+DTCC's public legal page showed ordinary DTC/FICC notices through October 9,
+including a new FICC GSD participant, but no launch Important Notice, operative
+service terms, enrolled-wallet list, fee schedule or post-opening transaction
+for the broader participant-facing tokenization service. The July controlled
+production trades remain real and bounded; they do not silently mature into a
+general opening because the calendar entered October.
+
+The October 31 return remains open.
+
+### 4. The operating system still has several kinds of finality
+
+For a FedACH credit, Reserve Bank settlement becomes final at the scheduled
+settlement time, while the RDFI separately posts money to the receiver's
+deposit account and must meet availability rules. A return or consumer error
+process is a new correcting transaction; it does not mean the original
+settlement never occurred.
+
+For Securitize Stocks, the product calls the USDC-for-entitlement exchange
+settlement, but that one onchain event does not put the holder on the issuer's
+stock register or redeem USDC into bank dollars. The legal entitlement, token
+state, underlying share record and USDC claim each have a different owner.
+
+## The two traces
+
+| Trace | Claim owner | System record | Cash settlement | Correction | Loss boundary |
+|---|---|---|---|---|---|
+| consumer ACH credit | receiver's deposit claim against RDFI | ODFI/RDFI books plus ACH operator files | debit/credit to bank settlement accounts at Reserve Banks | reversal/return plus Regulation E investigation where applicable | bank/network indemnities and customer-liability law are separate |
+| Securitize Stock bought with USDC | Article 8 security entitlement through Securitize Markets | broker entitlement record plus approved Solana token; issuer register remains separate | USDC token transfer; later Circle redemption/bank payment is another leg | broker/record correction is distinct from irreversible USDC transfer | security, broker failure, market loss and USDC loss do not share one public waterfall |
+
+## Four language maps
+
+The four-map return now locks:
+
+1. capture, comparison, clearing, settlement and finality clocks;
+2. collateral value versus reserve backing or 1:1 product backing;
+3. the four different things called tokenized stock; and
+4. exchange, ATS, trading-center, TSV, dealer and software roles.
+
+The maps close the missing-format question. They do not close later operating
+receipts for DTC, TSVs or Securitize.
+
+## Settlement Language Lab
+
+The governed
+Settlement Language Lab compares the same
+eight words across ACH, Securitize Stocks/USDC and DTC tokenized entitlements.
+Its data owner holds twenty-four rulings with actor, record, state, boundary,
+correction, loss, evidence state and direct sources. The generated HTML is a
+private deterministic projection; it adds no factual claims of its own.
+
+## Direct-site evidence and limits
+
+The coverage ledger records regulator, operator,
+bank, network, broker, issuer and stablecoin routes. Material October sources
+were reached directly at Federal Reserve, OCC, NCUA, FRFS, DTCC, Nacha,
+Securitize, FINRA, SEC and Circle pages. The Federal Register was used only as
+a legal-publication fallback where needed; it did not define the search.
+
+No public route reached by the cutoff established:
+
+- a general DTC tokenization opening;
+- a Securitize Stocks first-trade identifier or recurring volume;
+- the exact Securitize Stock customer agreement and failure waterfall;
+- the exact clearing and custody legal persons behind every entitlement;
+- a final Nacha first-party-fraud rule; or
+- a common cash-finality rule across ACH, Fedwire, cards, DTC and public-chain
+  transactions.
+
+## Return gates
+
+- **2026-10-31:** DTC launch notice, service terms, fees, participants, wallets,
+  assets and first post-opening transaction.
+- **2026-12-11 or later disposition:** Nacha first-party-fraud RFI/RFC result and
+  any adopted recredit rule.
+- **Source-triggered:** Securitize first trade/volume, customer agreement,
+  exact custody/clearing disclosure, reconciliation incident or failed-trade
+  disposition.
+- Existing October 20 Bessent-QFR and October 24 NSCC-LEI gates remain future.
+
+## Read order
+
+1. This answer.
+2. Direct bank and infrastructure delta.
+3. Ordinary ACH transaction trace.
+4. Securitize Stocks transaction trace.
+5. Securitize Stocks versus DTC constitution.
+6. Four money-language maps.
+7. Settlement Language Lab.
+8. Primary-object ledger.
+9. Source-coverage ledger.
+10. Package manifest.

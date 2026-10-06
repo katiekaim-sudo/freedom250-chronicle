@@ -1,9 +1,9 @@
 # Project Meridian — Subterranean Domain Innovation Map
 
-**Status:** `current analytical forecast`  
-**Research ID:** `military-modernization`  
-**Factual cutoff:** 2026-09-30  
-**Forecast rule:** confirmed program or demonstrated capability → strong architectural inference → longer-horizon possibility; no forecast is treated as a Meridian recommendation or fielded capability  
+**Status:** `current analytical forecast`
+**Research ID:** `military-modernization`
+**Factual cutoff:** 2026-09-30
+**Forecast rule:** confirmed program or demonstrated capability → strong architectural inference → longer-horizon possibility; no forecast is treated as a Meridian recommendation or fielded capability
 **Companion:** [Project Meridian: The Future of Warfare — Authority, State and Return Gates](../sources/project-meridian-future-of-warfare-2026-09-30-8383a58b60f1.html)
 
 ## Bottom line

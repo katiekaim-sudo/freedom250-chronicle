@@ -5,7 +5,7 @@ question: "How are the courts drawing the lines on presidential power, money and
 subplots: ["Supreme Court rulings & orders", "FBI & DOJ accountability"]
 plotlines: []
 keywords: ["Supreme Court", "SCOTUS", "\\bruling\\b", "injunction"]
-research_ids: ["judicial-money", "white-house-ballroom-lawfare-2025-2026", "doj-minnesota-judicial-misconduct-complaint-2026-09-30", "trump-criminal-indictments-primary-source-map-2023-2026", "dvd-third-country-removal-authority-2025-2026", "federal-workforce-and-agency-control", "united-states-name-passport-typography-2026-10-04"]
+research_ids: ["judicial-money", "white-house-ballroom-lawfare-2025-2026", "doj-minnesota-judicial-misconduct-complaint-2026-09-30", "trump-criminal-indictments-primary-source-map-2023-2026", "dvd-third-country-removal-authority-2025-2026", "federal-workforce-and-agency-control", "united-states-name-passport-typography-2026-10-04", "syracuse-onondaga-legal-layers-2026"]
 executive_orders: ["14215"]
 charts: ["Supreme Court", "Dept of Justice"]
 status: active

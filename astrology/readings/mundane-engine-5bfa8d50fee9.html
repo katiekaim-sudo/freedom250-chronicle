@@ -81,14 +81,55 @@ def ingress_jd(year, sign):
     return (lo+hi)/2
 
 # ---------- chart ----------
-def condition(planet, sgn, combust):
+def condition(planet, sgn, combust, cazimi=False):
     tags=[]
     if RULER.get(sgn)==planet: tags.append(&quot;domicile&quot;)
     if EXALT.get(planet)==sgn: tags.append(&quot;exalted&quot;)
     if sgn in DETRI.get(planet, ()): tags.append(&quot;detriment&quot;)
     if FALL.get(planet)==sgn: tags.append(&quot;fall&quot;)
-    if combust: tags.append(&quot;combust&quot;)
+    if cazimi: tags.append(&quot;cazimi&quot;)
+    elif combust: tags.append(&quot;combust&quot;)
     return tags
+
+def full_dispositors(pos):
+    &quot;&quot;&quot;Trace every planet, retaining all final dispositors and complete loops.
+
+    The chart-ruler route is useful but can miss an independent root.  In the
+    2027 Libra ingress, for example, the Sun ends at Venus while Saturn,
+    Neptune, and Pluto end at Mars.  Neither root may be silently discarded.
+    &quot;&quot;&quot;
+    chains = {}
+    root_members = set()
+    final_dispositors = set()
+    loops = set()
+    for name in PLANETS:
+        path = [name]
+        seen = {name: 0}
+        cur = name
+        while True:
+            nxt = RULER[pos[cur][&quot;sign&quot;]]
+            if nxt == cur:
+                chains[name] = {&quot;path&quot;: path, &quot;loop&quot;: False}
+                final_dispositors.add(cur)
+                root_members.add(cur)
+                break
+            if nxt in seen:
+                path.append(nxt)
+                members = tuple(path[seen[nxt]:-1])
+                chains[name] = {&quot;path&quot;: path, &quot;loop&quot;: True}
+                loops.add(tuple(sorted(members)))
+                root_members.update(members)
+                break
+            seen[nxt] = len(path)
+            path.append(nxt)
+            cur = nxt
+    order = {name: i for i, name in enumerate(PLANETS)}
+    return {
+        &quot;chains&quot;: chains,
+        &quot;root_members&quot;: sorted(root_members, key=order.get),
+        &quot;final_dispositors&quot;: sorted(final_dispositors, key=order.get),
+        &quot;loops&quot;: [list(members) for members in sorted(loops, key=lambda members: min(order[m] for m in members))],
+    }
 
 def cast_ingress(year, sign):
     jd = ingress_jd(year, sign)
@@ -101,17 +142,18 @@ def cast_ingress(year, sign):
         l = sun_lon if nm==&quot;Sun&quot; else lon(jd,pid)
         sgn=sign_of(l)
         house = ((int(((l%360)+1e-6)//30)-asc_idx)%12)+1
-        combust = (nm!=&quot;Sun&quot; and abs((l-sun_lon+180)%360-180) &lt;= ORB[&quot;combust&quot;])
+        solar_orb = abs((l-sun_lon+180)%360-180)
+        cazimi = nm!=&quot;Sun&quot; and solar_orb &lt;= 17/60
+        combust = nm!=&quot;Sun&quot; and not cazimi and solar_orb &lt;= ORB[&quot;combust&quot;]
         spd = swe.calc_ut(jd,pid)[0][3]
         pos[nm]={&quot;lon&quot;:l,&quot;sign&quot;:sgn,&quot;deg&quot;:deg_in_sign(l),&quot;house&quot;:house,
-                 &quot;retro&quot;:spd&lt;0,&quot;combust&quot;:combust,&quot;cond&quot;:condition(nm,sgn,combust)}
-    # chart ruler + dispositor chain (traditional)
+                 &quot;retro&quot;:spd&lt;0,&quot;combust&quot;:combust,&quot;cazimi&quot;:cazimi,
+                 &quot;cond&quot;:condition(nm,sgn,combust,cazimi)}
+    # Chart-ruler route and the full traditional dispositor graph are distinct.
     chart_ruler = RULER[asc_sign]
-    chain=[]; seen=set(); cur=chart_ruler; loop=False
-    while cur and cur not in seen:
-        seen.add(cur); chain.append(cur); nxt=RULER[pos[cur][&quot;sign&quot;]]
-        if nxt in seen: chain.append(nxt); loop=True; break
-        cur=nxt
+    full_roots = full_dispositors(pos)
+    chain = full_roots[&quot;chains&quot;][chart_ruler][&quot;path&quot;]
+    loop = full_roots[&quot;chains&quot;][chart_ruler][&quot;loop&quot;]
     # Sun-Neptune tracker
     sn_orb = abs((pos[&quot;Sun&quot;][&quot;lon&quot;]-pos[&quot;Neptune&quot;][&quot;lon&quot;]+180)%360-180)
     sn_asp=None
@@ -133,6 +175,10 @@ def cast_ingress(year, sign):
             &quot;asc&quot;:asc,&quot;asc_sign&quot;:asc_sign,&quot;asc_modality&quot;:MODALITY[SIGNS.index(asc_sign)%3],
             &quot;mc&quot;:mc,&quot;mc_sign&quot;:sign_of(mc),&quot;pos&quot;:pos,&quot;chart_ruler&quot;:chart_ruler,
             &quot;dispositor_chain&quot;:chain,&quot;dispositor_loop&quot;:loop,
+            &quot;all_dispositor_chains&quot;:full_roots[&quot;chains&quot;],
+            &quot;root_members&quot;:full_roots[&quot;root_members&quot;],
+            &quot;final_dispositors&quot;:full_roots[&quot;final_dispositors&quot;],
+            &quot;root_loops&quot;:full_roots[&quot;loops&quot;],
             &quot;sun_neptune&quot;:{&quot;aspect&quot;:sn_asp[0] if sn_asp else None,&quot;orb&quot;:sn_asp[1] if sn_asp else None},
             &quot;named_aspects&quot;:named}
 

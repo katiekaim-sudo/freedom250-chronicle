@@ -88,3 +88,7 @@ forward automatically.
 *This comparison owns no factual claim and no astrological strand. It shows how
 three separately governed ropes overlap in one dated reading window.*
 
+
+## October 11 review return
+
+The September 26 authored overlap was reviewed on October 11 and now displays as **historical**. Its original snapshot remains frozen in `../Braid Overlap Ledger.jsonl`; the exact strand or comparison dispositions are appended in `../Braid Review Ledger.jsonl`. [The Libra New Moon working return](../Review%20Hearings/2026-10-11%20%E2%80%94%20Libra%20New%20Moon%20Braid%20Working%20Return.md) explains the whole-chart shift and the distinct factual cutoffs. This file has no new October relationship window: the old frontmatter is preserved as the historical authorship, and a new window will need separate dated strands and a review date.

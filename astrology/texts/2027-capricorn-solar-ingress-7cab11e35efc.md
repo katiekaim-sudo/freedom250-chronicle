@@ -6,12 +6,14 @@ ingress: Capricorn
 year: 2027
 date: 2027-12-22
 time_utc: "02:42:09"
+time_utc_exact: "02:42:09.945856"
 location: "Washington, D.C."
 house_system: Whole Sign
 rising_sign: Virgo
 rising_modality: Mutable
 validity: "Nested cardinal stage — does not replace 2027 Aries"
 chart_ruler: Mercury
+root_members: [Mars, Saturn]
 role: nuance
 governing_chart: "[[2027 Aries Solar Ingress]]"
 computed_via: "Swiss Ephemeris (pyswisseph) · mundane_engine.py"
@@ -28,7 +30,8 @@ reading: none
 
 ## The Chart
 
-**Date/Time:** December 21, 2027, 02:42:09 UTC (9:42:09 PM EST)
+**Date/Time:** December 22, 2027, 02:42:09 UTC / December 21, 2027, 9:42:09 PM EST
+**Exact computed UTC instant:** 2027-12-22T02:42:09.945856+00:00. The whole-second clock above is truncated; an Astro Gold whole-second cast must use the first second after this instant.
 **Location:** Washington, D.C. (38.9072°N, 77.0369°W)
 **House System:** Whole Sign
 **Ascendant:** 1°01' Virgo
@@ -54,8 +57,27 @@ reading: none
 | Node | 2°51' Aquarius | Aquarius | 6th | −0.05°/d | — |
 | America | 6°04' Capricorn | Capricorn | 5th | +0.51°/d | — |
 
-### Dispositor chain
+### Chart-ruler dispositor chain
 
 Mercury (Cap/5) → Saturn (Ari/8) → Mars (Cap/5) → Saturn (Ari/8) ⟲
+
+### Whole-chart roots
+
+**Every root member:** Mars, Saturn.
+**Final dispositors:** none.
+**Root loops:** Mars → Saturn → Mars.
+
+| Planet | Traditional dispositor route |
+|---|---|
+| Sun | Sun → Saturn → Mars → Saturn ⟲ |
+| Moon | Moon → Venus → Saturn → Mars → Saturn ⟲ |
+| Mercury | Mercury → Saturn → Mars → Saturn ⟲ |
+| Venus | Venus → Saturn → Mars → Saturn ⟲ |
+| Mars | Mars → Saturn → Mars ⟲ |
+| Jupiter | Jupiter → Mercury → Saturn → Mars → Saturn ⟲ |
+| Saturn | Saturn → Mars → Saturn ⟲ |
+| Uranus | Uranus → Mercury → Saturn → Mars → Saturn ⟲ |
+| Neptune | Neptune → Mars → Saturn → Mars ⟲ |
+| Pluto | Pluto → Saturn → Mars → Saturn ⟲ |
 
 Astro Gold verification is pending. Degrees are engine-computed, never from memory.

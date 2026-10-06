@@ -6,12 +6,14 @@ ingress: Cancer
 year: 2027
 date: 2027-06-21
 time_utc: "14:10:50"
+time_utc_exact: "14:10:50.418252"
 location: "Washington, D.C."
 house_system: Whole Sign
 rising_sign: Leo
 rising_modality: Fixed
 validity: "Nested cardinal stage — does not replace 2027 Aries"
 chart_ruler: Sun
+root_members: [Moon, Mercury, Mars, Saturn]
 role: nuance
 governing_chart: "[[2027 Aries Solar Ingress]]"
 computed_via: "Swiss Ephemeris (pyswisseph) · mundane_engine.py"
@@ -28,7 +30,8 @@ reading: none
 
 ## The Chart
 
-**Date/Time:** June 21, 2027, 14:10:50 UTC (10:10:50 AM EDT)
+**Date/Time:** June 21, 2027, 14:10:50 UTC / June 21, 2027, 10:10:50 AM EDT
+**Exact computed UTC instant:** 2027-06-21T14:10:50.418252+00:00. The whole-second clock above is truncated; an Astro Gold whole-second cast must use the first second after this instant.
 **Location:** Washington, D.C. (38.9072°N, 77.0369°W)
 **House System:** Whole Sign
 **Ascendant:** 24°05' Leo
@@ -54,8 +57,27 @@ reading: none
 | Node | 12°01' Aquarius | Aquarius | 7th | −0.03°/d | — |
 | America | 6°28' Scorpio | Scorpio | 4th | −0.05°/d | — |
 
-### Dispositor chain
+### Chart-ruler dispositor chain
 
 Sun (Can/12) → Moon (Cap/6) → Saturn (Ari/9) → Mars (Vir/2) → Mercury (Can/12) → Moon (Cap/6) ⟲
+
+### Whole-chart roots
+
+**Every root member:** Moon, Mercury, Mars, Saturn.
+**Final dispositors:** none.
+**Root loops:** Mars → Mercury → Moon → Saturn → Mars.
+
+| Planet | Traditional dispositor route |
+|---|---|
+| Sun | Sun → Moon → Saturn → Mars → Mercury → Moon ⟲ |
+| Moon | Moon → Saturn → Mars → Mercury → Moon ⟲ |
+| Mercury | Mercury → Moon → Saturn → Mars → Mercury ⟲ |
+| Venus | Venus → Mercury → Moon → Saturn → Mars → Mercury ⟲ |
+| Mars | Mars → Mercury → Moon → Saturn → Mars ⟲ |
+| Jupiter | Jupiter → Sun → Moon → Saturn → Mars → Mercury → Moon ⟲ |
+| Saturn | Saturn → Mars → Mercury → Moon → Saturn ⟲ |
+| Uranus | Uranus → Mercury → Moon → Saturn → Mars → Mercury ⟲ |
+| Neptune | Neptune → Mars → Mercury → Moon → Saturn → Mars ⟲ |
+| Pluto | Pluto → Saturn → Mars → Mercury → Moon → Saturn ⟲ |
 
 Astro Gold verification is pending. Degrees are engine-computed, never from memory.

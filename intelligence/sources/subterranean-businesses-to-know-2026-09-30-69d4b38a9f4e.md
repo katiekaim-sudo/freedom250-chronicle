@@ -1,9 +1,9 @@
 # Subterranean Businesses to Know — 2026
 
-**Status:** `current workbench research`  
-**Research ID:** `military-modernization`  
-**Evidence cutoff:** 2026-09-30 ET  
-**Company field:** 20 companies across five enabling lanes  
+**Status:** `current workbench research`
+**Research ID:** `military-modernization`
+**Evidence cutoff:** 2026-09-30 ET
+**Company field:** 20 companies across five enabling lanes
 **Companion forecast:** [Project Meridian — Subterranean Domain Innovation Map](../sources/project-meridian-subterranean-domain-innovation-map-2026-09-30-dc79863029e4.html)
 
 ## Short answer

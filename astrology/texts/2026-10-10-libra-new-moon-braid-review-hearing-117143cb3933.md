@@ -2,7 +2,7 @@
 type: braid_review_hearing
 title: "Libra New Moon Braid Review Hearing"
 review_date: 2026-10-10
-status: scheduled
+status: completed
 frame: ingress-2026-libra
 closing_chapter: lun-2026-09-26-fu
 next_chapter: lun-2026-10-10-ne
@@ -11,9 +11,11 @@ owners: ["ai-buildout", "iran-hormuz", "pentagon-industrial-base", "sec-cftc-tur
 
 # Libra New Moon Braid Review Hearing
 
-This packet prepares the first governed return to the September 26 Aries Full
-Moon overlaps. It contains no review outcome. Before October 10 every owner
-remains **scheduled** and every existing snapshot remains **current**.
+This packet was the scheduled return to the September 26 Aries Full Moon overlaps. The October 11 authored review is now recorded as seven exact events in `Braid Review Ledger.jsonl`. The September snapshots in `Braid Overlap Ledger.jsonl` remain frozen; the generated view joins their review events and displays them as historical. No October strand migrates automatically.
+
+## October 11 outcome
+
+The [working return](2026-10-11%20%E2%80%94%20Libra%20New%20Moon%20Braid%20Working%20Return.md) re-heard the whole October chart and the seven owners. The companion Review Ledger gives every one of the six braids an explicit retain, revise or unresolved disposition for each old strand, and revises the monetary comparison. Uranus–Pluto and Uranus–Neptune remain active where their old questions still earn a job; Jupiter–Saturn has left direct dialogue; Venus–Pluto applies; Mars–Pluto and Mercury–Mars separate. These are changes in the sky-side reading, not factual upgrades. Each factual owner and cutoff is cited in the review event. No new October overlap or Forecast Ledger result was silently authored by this review.
 
 ## The hearing order
 
@@ -51,6 +53,4 @@ For each braid or comparison:
 
 ## Fail-closed rule
 
-The builder may change this packet from `scheduled` to `review due` when the
-date arrives. It may not choose a disposition, author a new strand, rewrite the
-historical ledger or register a Forecast Ledger call.
+The builder may flag a pending scheduled packet as `review due`. It may show `completed` only when the exact human-authored review events cover every frozen owner and strand. It may not choose a disposition, author a new strand, rewrite a frozen snapshot or register a Forecast Ledger call.

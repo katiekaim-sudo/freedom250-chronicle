@@ -1,6 +1,6 @@
 # Russia Country Orientation — September 2026
 
-**Evidence cutoff:** 2026-09-24  
+**Evidence cutoff:** 2026-09-24
 **Purpose:** establish a durable first map for understanding the Russian Federation and U.S.–Russia relations before opening a narrower research question.
 
 ## One-page orientation

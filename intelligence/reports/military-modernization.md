@@ -50,6 +50,13 @@ This is a real Freedom 250 crosscut. It is **not** grounds for a new top-level p
 11. `MILITARY_MODERNIZATION_VAULT_INTEGRATION_MAP.md` — what belongs in the live vault.
 12. `MILITARY_MODERNIZATION_SOURCE_WATCHBOARD.md` — sources and promotion triggers.
 
+For the separate supply and energy branch, continue through
+Contested Logistics. It owns prepared
+commercial lift, ports, rail, fuel, production and sustainment; its FORTRESS
+America child owns installation-power scope, funding, construction and tested
+resilience. Those routes complement this command/data and acquisition baseline
+without changing its July 15 cutoff.
+
 ## Strongest findings
 
 ### 1. The data layer is becoming an acquisition object

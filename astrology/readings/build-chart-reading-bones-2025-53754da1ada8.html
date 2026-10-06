@@ -125,7 +125,8 @@ def cast(jd, meta, sun_override=None):
     for p in PL:
         l,la,sp,de = raw[p]; sg=sign(l)
         el = abs(sd(l,sun))
-        combust = p!=&quot;Sun&quot; and el&lt;=8.5; cazimi = p!=&quot;Sun&quot; and el&lt;=17/60
+        cazimi = p!=&quot;Sun&quot; and el&lt;=17/60
+        combust = p!=&quot;Sun&quot; and not cazimi and el&lt;=8.5
         ex = EXALT.get(p)==sg
         pos[p]={&quot;lon&quot;:l,&quot;lon_dms&quot;:dms(l),&quot;lat&quot;:la,&quot;spd&quot;:sp,&quot;dec&quot;:de,&quot;sign&quot;:sg,&quot;deg_in_sign&quot;:l%30,
                 &quot;house&quot;:whole_house(l,asc),&quot;house_meaning&quot;:HOUSE[whole_house(l,asc)],&quot;retro&quot;:sp&lt;0,
@@ -160,9 +161,12 @@ def cast(jd, meta, sun_override=None):
     for i,a in enumerate(PL):
         for b in PL[i+1:]:
             da,db=pos[a][&quot;dec&quot;],pos[b][&quot;dec&quot;]
-            po,co=abs(da-db),abs(da+db)
-            for kind,orb in ((&quot;parallel&quot;,po),(&quot;contra-parallel&quot;,co)):
-                if orb&lt;=1.0: par.append({&quot;a&quot;:a,&quot;b&quot;:b,&quot;kind&quot;:kind,&quot;orb&quot;:round(orb,3),&quot;dec_a&quot;:round(da,3),&quot;dec_b&quot;:round(db,3)})
+            # Near the equator both absolute differences can be &lt;1 degree.
+            # Hemisphere, not only orb, decides whether the link is a
+            # parallel or contra-parallel; one pair cannot be both.
+            kind = &quot;parallel&quot; if da*db&gt;=0 else &quot;contra-parallel&quot;
+            orb = abs(da-db) if kind==&quot;parallel&quot; else abs(da+db)
+            if orb&lt;=1.0: par.append({&quot;a&quot;:a,&quot;b&quot;:b,&quot;kind&quot;:kind,&quot;orb&quot;:round(orb,3),&quot;dec_a&quot;:round(da,3),&quot;dec_b&quot;:round(db,3)})
     par.sort(key=lambda r:r[&quot;orb&quot;])
     chains,finals,loops,root = dispositors(pos)
     pts={p:pos[p][&quot;lon&quot;] for p in PL}; pts.update({&quot;Node&quot;:node,&quot;SN&quot;:(node+180)%360,&quot;ASC&quot;:asc,&quot;MC&quot;:mc})

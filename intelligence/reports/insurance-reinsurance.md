@@ -7,10 +7,20 @@
 
 **Answer:** U.S. insurance runs through many separate regulators, very large insurer balance sheets, reinsurance and public loss programs that together work as one system. Each authority, company, contract and payment still keeps its own legal identity and timing.
 
-**Evidence checked through:** 2026-10-01T16:00:00-04:00
+**Evidence checked through:** 2026-10-12T17:30:00-04:00 (targeted system-control return; the main map remains an October 1 system baseline)
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
+
+## October 12 system-control return
+
+The targeted return refresh
+finds that the machinery advanced without yet producing a named company
+consequence. NAIC exposed a revised rating-provider due-diligence framework,
+published a $1.608 trillion 2025 insurer ABS inventory for future RBC work and
+met on an interconnectedness work plan. No reviewed object yet changes a named
+insurer's designation, capital, liquidity, affiliate transaction, pension
+obligation, claim, resolution or public payment.
 
 ## The sovereign, supervisory and capital-market machine above the retail policy
 

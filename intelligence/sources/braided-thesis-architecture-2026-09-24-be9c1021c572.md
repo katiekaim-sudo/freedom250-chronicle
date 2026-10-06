@@ -15,10 +15,10 @@ The detailed record below keeps the legal wording, source limits and open questi
 ## From 1776 2.0 to material legitimacy
 
 **Status:** current working synthesis; authorized by Katie for construction on
-2026-09-24 21:40 EDT and semantically corrected at 22:31 EDT  
-**Research ID:** `economic-institution-legitimacy-crisis`  
+2026-09-24 21:40 EDT and semantically corrected at 22:31 EDT
+**Research ID:** `economic-institution-legitimacy-crisis`
 **Role:** cross-thesis comparison and relationship owner; not a new factual
-source, proof of coordination, or replacement for any parent thesis  
+source, proof of coordination, or replacement for any parent thesis
 **Authority boundary:** the Chronicle owns *A Contested Re-Founding* and its
 narrative-selection caveat. Each Workbench package owns its factual and legal
 claims. This file owns only the explicit comparison among them.

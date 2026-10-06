@@ -37,3 +37,7 @@ The evidence test is not another announcement. It is final and effective rules, 
 **Attention rhythm, not evidence.** The Virgo New Moon chapter held the most saved material around drafting and the failed Senate vote. Virgo is a lovely image for classification and fine print. The save count does not make Virgo the cause or the chapter institutionally strongest.
 
 *Authored for the 2026 Libra ingress and September 26 Aries Full Moon. Review after the October 10 Libra New Moon. Archetypal reading only; no factual evidence or Forecast Ledger call.*
+
+## October 11 review return
+
+The September 26 authored overlap was reviewed on October 11 and now displays as **historical**. Its original snapshot remains frozen in `../Braid Overlap Ledger.jsonl`; the exact strand or comparison dispositions are appended in `../Braid Review Ledger.jsonl`. [The Libra New Moon working return](../Review%20Hearings/2026-10-11%20%E2%80%94%20Libra%20New%20Moon%20Braid%20Working%20Return.md) explains the whole-chart shift and the distinct factual cutoffs. This file has no new October relationship window: the old frontmatter is preserved as the historical authorship, and a new window will need separate dated strands and a review date.

@@ -6,12 +6,14 @@ ingress: Libra
 year: 2028
 date: 2028-09-22
 time_utc: "11:45:18"
+time_utc_exact: "11:45:18.576497"
 location: "Washington, D.C."
 house_system: Whole Sign
 rising_sign: Libra
 rising_modality: Cardinal
 validity: "Nested cardinal stage — does not replace 2028 Aries"
 chart_ruler: Venus
+root_members: [Sun, Venus]
 role: nuance
 governing_chart: "[[2028 Aries Solar Ingress]]"
 computed_via: "Swiss Ephemeris (pyswisseph) · mundane_engine.py"
@@ -28,7 +30,8 @@ reading: none
 
 ## The Chart
 
-**Date/Time:** September 22, 2028, 11:45:18 UTC (7:45:18 AM EDT)
+**Date/Time:** September 22, 2028, 11:45:18 UTC / September 22, 2028, 7:45:18 AM EDT
+**Exact computed UTC instant:** 2028-09-22T11:45:18.576497+00:00. The whole-second clock above is truncated; an Astro Gold whole-second cast must use the first second after this instant.
 **Location:** Washington, D.C. (38.9072°N, 77.0369°W)
 **House System:** Whole Sign
 **Ascendant:** 9°00' Libra
@@ -54,8 +57,27 @@ reading: none
 | Node | 20°27' Capricorn | Capricorn | 4th | −0.10°/d | — |
 | America | 21°01' Taurus | Taurus | 8th | +0.09°/d | — |
 
-### Dispositor chain
+### Chart-ruler dispositor chain
 
 Venus (Leo/11) → Sun (Lib/1) → Venus (Leo/11) ⟲
+
+### Whole-chart roots
+
+**Every root member:** Sun, Venus.
+**Final dispositors:** none.
+**Root loops:** Sun → Venus → Sun.
+
+| Planet | Traditional dispositor route |
+|---|---|
+| Sun | Sun → Venus → Sun ⟲ |
+| Moon | Moon → Mars → Sun → Venus → Sun ⟲ |
+| Mercury | Mercury → Venus → Sun → Venus ⟲ |
+| Venus | Venus → Sun → Venus ⟲ |
+| Mars | Mars → Sun → Venus → Sun ⟲ |
+| Jupiter | Jupiter → Venus → Sun → Venus ⟲ |
+| Saturn | Saturn → Venus → Sun → Venus ⟲ |
+| Uranus | Uranus → Mercury → Venus → Sun → Venus ⟲ |
+| Neptune | Neptune → Mars → Sun → Venus → Sun ⟲ |
+| Pluto | Pluto → Saturn → Venus → Sun → Venus ⟲ |
 
 Astro Gold verification is pending. Degrees are engine-computed, never from memory.

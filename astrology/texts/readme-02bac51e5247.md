@@ -43,6 +43,10 @@ Grok files them itself every night (Katie's choice). Any chat, or Katie, can fil
 
 ## Story braids — follow a story through its astrological timeline
 
+**Current project plan:** [[Plotline Braid Forecast Plan 2026 to 2030]] maps the existing plotline braids against the completed sky readings and stages the next authored forecast windows.
+
+**Current storyline synthesis:** [[Plotline Braids — 2026 Libra to 2030 Thesis Map]] reads the four separate forecast routes together, with factual owners and sky clocks kept apart. It is a working archetypal map, not a Research Desk finding.
+
 A braid is one storyline followed through time, such as stablecoin law, Iran and Hormuz, or the courts and the law (Katie, 2026-10-03, DR-096). Each braid is a file in `Braids/`:
 
 - **Frontmatter:** `type: story_braid`, `title`, `question`, `subplots` (the X-feed subplots it follows), `plotlines` (optional whole plotlines), `keywords` (regular expressions that pull in official actions), `research_ids` (its studies), `executive_orders` (optional exact EO keys whose governed lineage records belong to the story), `movement_ids` (optional exact adjudicated institutional records that belong to the story without claiming EO descent), `charts` (the key charts to watch, by their Entity Theory names), and `status`. An interpreted rope overlap also names `relationship_frame`, `relationship_chapter`, `relationship_authored_on`, `relationship_review_on` and optional `relationship_strands`.
@@ -81,12 +85,7 @@ are lead strand, companion strand, background strand, outcompeted strand or
 unresolved strand. These describe one reading, not permanent plot ownership or
 causal machinery.
 
-`Braid Overlap Ledger.jsonl` preserves each authored braid window and rope
-comparison as an append-only snapshot. A current record must match its authored
-file exactly. At the lunar review hearing it becomes historical with explicit
-retained, revised, released, outcompeted or unresolved dispositions; a new
-window is authored separately. The ledger creates no factual claim, planetary
-ownership, evidence credit or Forecast Ledger call.
+`Braid Overlap Ledger.jsonl` preserves each authored braid window and rope comparison as an append-only snapshot. A current record must match its authored file exactly. `Braid Review Ledger.jsonl` preserves a separate append-only review event keyed to that frozen identity; the builder displays the snapshot as historical only when every strand receives a valid disposition. A new lunar window is authored separately. Neither ledger creates a factual claim, planetary ownership, evidence credit or Forecast Ledger call.
 
 ## Living Story Rooms — watch a story become real
 

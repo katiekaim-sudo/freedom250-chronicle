@@ -431,6 +431,8 @@ STORY_ROOMS_DIR = os.path.join(MA, &quot;Story Rooms&quot;)
 REVIEW_HEARINGS_DIR = os.path.join(MA, &quot;Review Hearings&quot;)
 RELATIONSHIP_HISTORY = os.path.join(HERE, &quot;planetary_relationship_history.json&quot;)
 OVERLAP_LEDGER = os.path.join(MA, &quot;Braid Overlap Ledger.jsonl&quot;)
+BRAID_REVIEW_LEDGER = os.path.join(MA, &quot;Braid Review Ledger.jsonl&quot;)
+REVIEW_DISPOSITIONS = {&quot;retain&quot;, &quot;revise&quot;, &quot;release&quot;, &quot;outcompete&quot;, &quot;unresolved&quot;}
 STRAND_ROLES = {&quot;lead_mechanism&quot;, &quot;co_mechanism&quot;, &quot;supporting_context&quot;, &quot;outcompeted&quot;, &quot;unresolved&quot;}
 STRAND_PRESENCE = {&quot;inherited_substrate&quot;, &quot;active_dialogue&quot;, &quot;seed_echo&quot;}
 
@@ -497,7 +499,6 @@ def load_review_hearings():
 
 
 def build_review_hearings(specs, overlap_ledger, relationship_data, today):
-    current = {row[&quot;owner_slug&quot;]: row for row in overlap_ledger[&quot;records&quot;] if row.get(&quot;status&quot;) == &quot;current&quot;}
     out = []
     seen = set()
     relationship_text = json.dumps(relationship_data, ensure_ascii=False)
@@ -507,29 +508,37 @@ def build_review_hearings(specs, overlap_ledger, relationship_data, today):
         if spec[&quot;id&quot;] in seen:
             raise RuntimeError(f&quot;duplicate review hearing {spec[&#x27;id&#x27;]}&quot;)
         seen.add(spec[&quot;id&quot;])
-        if spec[&quot;status&quot;] != &quot;scheduled&quot;:
-            raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} may not pre-author a disposition&quot;)
-        if len(spec[&quot;owners&quot;]) != len(set(spec[&quot;owners&quot;])) or set(spec[&quot;owners&quot;]) != set(current):
-            raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} must name every current overlap owner exactly once&quot;)
+        if spec[&quot;status&quot;] not in {&quot;scheduled&quot;, &quot;completed&quot;}:
+            raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} has invalid authored status&quot;)
+        if len(spec[&quot;owners&quot;]) != len(set(spec[&quot;owners&quot;])):
+            raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} repeats an owner&quot;)
         if spec[&quot;next_chapter&quot;] not in relationship_text:
             raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} next chapter is not in relationship history&quot;)
+        matches = [row for row in overlap_ledger[&quot;records&quot;] if row[&quot;frame&quot;] == spec[&quot;frame&quot;]
+                   and row[&quot;chapter&quot;] == spec[&quot;closing_chapter&quot;] and row[&quot;review_on&quot;] == spec[&quot;review_date&quot;]]
+        by_owner = {row[&quot;owner_slug&quot;]: row for row in matches}
+        if len(matches) != len(by_owner) or set(spec[&quot;owners&quot;]) != set(by_owner):
+            raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} must name its exact frozen owners once&quot;)
         snapshots = []
         for owner in spec[&quot;owners&quot;]:
-            row = current[owner]
-            if row.get(&quot;frame&quot;) != spec[&quot;frame&quot;] or row.get(&quot;chapter&quot;) != spec[&quot;closing_chapter&quot;]:
-                raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} window differs from {owner}&quot;)
-            if row.get(&quot;review_on&quot;) != spec[&quot;review_date&quot;] or (row.get(&quot;review&quot;) or {}).get(&quot;status&quot;) != &quot;pending&quot;:
-                raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} owner {owner} is not pending on its date&quot;)
+            row = by_owner[owner]
+            review_status = (row.get(&quot;review&quot;) or {}).get(&quot;status&quot;)
+            if review_status not in {&quot;pending&quot;, &quot;completed&quot;}:
+                raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} owner {owner} has invalid review status&quot;)
             snapshots.append({
                 &quot;record_type&quot;: row[&quot;record_type&quot;], &quot;owner_slug&quot;: owner,
                 &quot;authored_on&quot;: row[&quot;authored_on&quot;], &quot;review_on&quot;: row[&quot;review_on&quot;],
                 &quot;strand_count&quot;: len(row.get(&quot;strands&quot;) or []), &quot;member_count&quot;: len(row.get(&quot;members&quot;) or []),
-                &quot;review_status&quot;: row[&quot;review&quot;][&quot;status&quot;],
+                &quot;review_status&quot;: review_status,
+                &quot;dispositions&quot;: (row.get(&quot;review&quot;) or {}).get(&quot;dispositions&quot;) or [],
             })
+        complete = all(row[&quot;review_status&quot;] == &quot;completed&quot; for row in snapshots)
+        if (spec[&quot;status&quot;] == &quot;completed&quot;) != complete:
+            raise RuntimeError(f&quot;review hearing {spec[&#x27;id&#x27;]} authored status differs from exact review events&quot;)
         out.append({
-            **spec, &quot;display_status&quot;: &quot;scheduled&quot; if today.isoformat() &lt; spec[&quot;review_date&quot;] else &quot;review_due&quot;,
+            **spec, &quot;display_status&quot;: &quot;completed&quot; if complete else &quot;scheduled&quot; if today.isoformat() &lt; spec[&quot;review_date&quot;] else &quot;review_due&quot;,
             &quot;snapshots&quot;: snapshots,
-            &quot;authority_boundary&quot;: &quot;This packet prepares a human hearing. It may flag the date as due, but it cannot choose a disposition, move a strand, rewrite history or create a Forecast Ledger call.&quot;,
+            &quot;authority_boundary&quot;: &quot;The hearing displays exact authored review events. Automation can flag a pending date but cannot choose a disposition, move a strand or register a Forecast Ledger call.&quot;,
         })
     return out
 
@@ -554,13 +563,54 @@ def load_braid_comparisons():
     return out
 
 
+def load_braid_reviews():
+    if not os.path.isfile(BRAID_REVIEW_LEDGER):
+        return []
+    rows = [json.loads(line) for line in open(BRAID_REVIEW_LEDGER, encoding=&quot;utf-8&quot;) if line.strip()]
+    if not rows or rows[0].get(&quot;record_type&quot;) != &quot;meta&quot; or rows[0].get(&quot;schema&quot;) != &quot;f250.mundane-braid-review/v1&quot;:
+        raise RuntimeError(&quot;unsupported Braid Review Ledger schema&quot;)
+    return rows[1:]
+
+
 def load_overlap_ledger():
     if not os.path.isfile(OVERLAP_LEDGER):
         raise RuntimeError(&quot;missing governed Braid Overlap Ledger&quot;)
     rows = [json.loads(line) for line in open(OVERLAP_LEDGER, encoding=&quot;utf-8&quot;) if line.strip()]
     if not rows or rows[0].get(&quot;record_type&quot;) != &quot;meta&quot; or rows[0].get(&quot;schema&quot;) != &quot;f250.mundane-braid-overlap-history/v1&quot;:
         raise RuntimeError(&quot;unsupported Braid Overlap Ledger schema&quot;)
-    return {&quot;meta&quot;: rows[0], &quot;records&quot;: rows[1:]}
+    snapshots = rows[1:]
+    by_identity = {(row[&quot;record_type&quot;], row[&quot;owner_slug&quot;], row[&quot;frame&quot;], row[&quot;chapter&quot;], row[&quot;authored_on&quot;]): row for row in snapshots}
+    if len(by_identity) != len(snapshots):
+        raise RuntimeError(&quot;Braid Overlap Ledger repeats a snapshot identity&quot;)
+    reviews = load_braid_reviews()
+    seen = set()
+    for event in reviews:
+        if event.get(&quot;record_type&quot;) != &quot;review&quot;:
+            raise RuntimeError(&quot;Braid Review Ledger contains a non-review event&quot;)
+        key = (event.get(&quot;owner_type&quot;), event.get(&quot;owner_slug&quot;), event.get(&quot;frame&quot;), event.get(&quot;chapter&quot;), event.get(&quot;authored_on&quot;))
+        if key in seen or key not in by_identity:
+            raise RuntimeError(f&quot;Braid Review Ledger repeats or cannot find snapshot {key}&quot;)
+        seen.add(key)
+        target = by_identity[key]
+        if target[&quot;review_on&quot;] != event.get(&quot;review_on&quot;) or event.get(&quot;reviewed_on&quot;, &quot;&quot;) &lt; target[&quot;review_on&quot;]:
+            raise RuntimeError(f&quot;Braid review date does not match frozen snapshot {key}&quot;)
+        dispositions = event.get(&quot;dispositions&quot;) or []
+        expected = {x[&quot;relationship_id&quot;] for x in target.get(&quot;strands&quot;) or []} if target[&quot;record_type&quot;] == &quot;braid&quot; else {&quot;comparison&quot;}
+        actual = [x.get(&quot;object&quot;) for x in dispositions]
+        if len(actual) != len(set(actual)) or set(actual) != expected or any(x.get(&quot;disposition&quot;) not in REVIEW_DISPOSITIONS or not x.get(&quot;reason&quot;) for x in dispositions):
+            raise RuntimeError(f&quot;Braid review dispositions do not cover snapshot {key}&quot;)
+        if not event.get(&quot;source_note&quot;) or not event.get(&quot;factual_sources&quot;):
+            raise RuntimeError(f&quot;Braid review {key} lacks source routes&quot;)
+    effective = []
+    events_by_key = {(x[&quot;owner_type&quot;], x[&quot;owner_slug&quot;], x[&quot;frame&quot;], x[&quot;chapter&quot;], x[&quot;authored_on&quot;]): x for x in reviews}
+    for row in snapshots:
+        key = (row[&quot;record_type&quot;], row[&quot;owner_slug&quot;], row[&quot;frame&quot;], row[&quot;chapter&quot;], row[&quot;authored_on&quot;])
+        event = events_by_key.get(key)
+        if event:
+            effective.append({**row, &quot;status&quot;: &quot;historical&quot;, &quot;review&quot;: {&quot;status&quot;: &quot;completed&quot;, &quot;reviewed_on&quot;: event[&quot;reviewed_on&quot;], &quot;dispositions&quot;: event[&quot;dispositions&quot;], &quot;source_note&quot;: event[&quot;source_note&quot;], &quot;factual_sources&quot;: event[&quot;factual_sources&quot;]}})
+        else:
+            effective.append(row)
+    return {&quot;meta&quot;: rows[0], &quot;records&quot;: effective, &quot;review_events&quot;: reviews}
 
 
 def attach_overlap_history(braids, comparisons, ledger, today):
@@ -579,27 +629,35 @@ def attach_overlap_history(braids, comparisons, ledger, today):
             raise RuntimeError(f&quot;overlap ledger repeats window identity {key}&quot;)
         current_keys.add(key)
         if record.get(&quot;status&quot;) not in {&quot;current&quot;, &quot;historical&quot;}:
-            raise RuntimeError(f&quot;overlap ledger {owner_slug} has invalid status&quot;)
+            raise RuntimeError(f&quot;overlap ledger {owner_slug} has invalid effective status&quot;)
         review = record.get(&quot;review&quot;) or {}
-        if record.get(&quot;status&quot;) == &quot;current&quot; and review.get(&quot;status&quot;) != &quot;pending&quot;:
+        if record[&quot;status&quot;] == &quot;current&quot; and review.get(&quot;status&quot;) != &quot;pending&quot;:
             raise RuntimeError(f&quot;current overlap ledger record {owner_slug} must remain pending&quot;)
+        if record[&quot;status&quot;] == &quot;historical&quot; and review.get(&quot;status&quot;) != &quot;completed&quot;:
+            raise RuntimeError(f&quot;historical overlap ledger record {owner_slug} needs an exact completed review&quot;)
         records_by_owner[(record_type, owner_slug)].append(record)
 
     for slug, braid in braid_by_slug.items():
         records = sorted(records_by_owner.get((&quot;braid&quot;, slug), []), key=lambda row: (row[&quot;authored_on&quot;], row[&quot;frame&quot;], row[&quot;chapter&quot;]))
         current = [row for row in records if row[&quot;status&quot;] == &quot;current&quot;]
         strands = braid.get(&quot;relationship_strands&quot;) or []
+        if len(current) &gt; 1:
+            raise RuntimeError(f&quot;braid {slug} has more than one current overlap&quot;)
         if strands:
-            if len(current) != 1:
-                raise RuntimeError(f&quot;braid {slug} needs exactly one current overlap ledger record&quot;)
-            record = current[0]
+            record = current[0] if current else records[-1] if records else None
+            if not record:
+                raise RuntimeError(f&quot;braid {slug} has strands but no overlap snapshot&quot;)
             expected = {
                 &quot;frame&quot;: braid[&quot;relationship_frame&quot;], &quot;chapter&quot;: braid[&quot;relationship_chapter&quot;],
                 &quot;authored_on&quot;: braid[&quot;relationship_authored_on&quot;], &quot;review_on&quot;: braid[&quot;relationship_review_on&quot;],
                 &quot;strands&quot;: strands,
             }
             if any(record.get(key) != value for key, value in expected.items()):
-                raise RuntimeError(f&quot;braid {slug} differs from its current overlap ledger snapshot&quot;)
+                raise RuntimeError(f&quot;braid {slug} differs from its latest overlap ledger snapshot&quot;)
+            if not current:
+                braid[&quot;relationship_field&quot;][&quot;status&quot;] = &quot;historical&quot;
+                braid[&quot;relationship_field&quot;][&quot;authority_boundary&quot;] = &quot;This authored overlap has completed review and remains visible only as a historical reading. No strand migrates into the next lunar chapter without new authorship.&quot;
+                braid[&quot;readiness&quot;][&quot;authored_overlap&quot;] = &quot;historical&quot;
         elif current:
             raise RuntimeError(f&quot;unauthored braid {slug} cannot have a current overlap ledger record&quot;)
         braid[&quot;overlap_history&quot;] = [{**row, &quot;display_status&quot;: &quot;review_due&quot; if row[&quot;status&quot;] == &quot;current&quot; and today.isoformat() &gt;= row[&quot;review_on&quot;] else row[&quot;status&quot;]} for row in records]
@@ -607,24 +665,29 @@ def attach_overlap_history(braids, comparisons, ledger, today):
     for slug, comparison in comparison_by_slug.items():
         records = sorted(records_by_owner.get((&quot;comparison&quot;, slug), []), key=lambda row: (row[&quot;authored_on&quot;], row[&quot;frame&quot;], row[&quot;chapter&quot;]))
         current = [row for row in records if row[&quot;status&quot;] == &quot;current&quot;]
-        if len(current) != 1:
-            raise RuntimeError(f&quot;braid comparison {slug} needs exactly one current overlap ledger record&quot;)
-        record = current[0]
+        if len(current) &gt; 1 or not records:
+            raise RuntimeError(f&quot;braid comparison {slug} needs one or zero current overlap records&quot;)
+        record = current[0] if current else records[-1]
         expected = {&quot;frame&quot;: comparison[&quot;relationship_frame&quot;], &quot;chapter&quot;: comparison[&quot;relationship_chapter&quot;],
                     &quot;authored_on&quot;: comparison[&quot;authored_on&quot;], &quot;review_on&quot;: comparison[&quot;review_on&quot;],
                     &quot;members&quot;: comparison[&quot;braids&quot;]}
         if any(record.get(key) != value for key, value in expected.items()):
             raise RuntimeError(f&quot;braid comparison {slug} differs from its overlap ledger snapshot&quot;)
+        if not current:
+            comparison[&quot;comparison_status&quot;] = &quot;historical&quot;
+            comparison[&quot;authority_boundary&quot;] = &quot;This comparison has completed review and is a historical reading. No member strand moves into a new chart automatically.&quot;
         comparison[&quot;overlap_history&quot;] = [{**row, &quot;display_status&quot;: &quot;review_due&quot; if row[&quot;status&quot;] == &quot;current&quot; and today.isoformat() &gt;= row[&quot;review_on&quot;] else row[&quot;status&quot;]} for row in records]
-    return {&quot;schema&quot;: ledger[&quot;meta&quot;][&quot;schema&quot;], &quot;records&quot;: ledger[&quot;records&quot;],
+    return {&quot;schema&quot;: ledger[&quot;meta&quot;][&quot;schema&quot;], &quot;records&quot;: ledger[&quot;records&quot;], &quot;review_events&quot;: ledger[&quot;review_events&quot;],
             &quot;counts&quot;: {&quot;records&quot;: len(ledger[&quot;records&quot;]),
-                       &quot;current&quot;: sum(row.get(&quot;status&quot;) == &quot;current&quot; for row in ledger[&quot;records&quot;]),
-                       &quot;historical&quot;: sum(row.get(&quot;status&quot;) == &quot;historical&quot; for row in ledger[&quot;records&quot;]),
-                       &quot;review_due&quot;: sum(row.get(&quot;status&quot;) == &quot;current&quot; and today.isoformat() &gt;= row.get(&quot;review_on&quot;, &quot;&quot;) for row in ledger[&quot;records&quot;])},
+                       &quot;current&quot;: sum(row[&quot;status&quot;] == &quot;current&quot; for row in ledger[&quot;records&quot;]),
+                       &quot;historical&quot;: sum(row[&quot;status&quot;] == &quot;historical&quot; for row in ledger[&quot;records&quot;]),
+                       &quot;review_due&quot;: sum(row[&quot;status&quot;] == &quot;current&quot; and today.isoformat() &gt;= row.get(&quot;review_on&quot;, &quot;&quot;) for row in ledger[&quot;records&quot;]),
+                       &quot;reviewed&quot;: len(ledger[&quot;review_events&quot;])},
             &quot;authority_boundary&quot;: ledger[&quot;meta&quot;][&quot;authority_boundary&quot;]}
 
 
-def build_braid_comparisons(comparisons, braids, today):
+def build_braid_comparisons(comparisons, braids, today, historical_comparisons=None):
+    historical_comparisons = historical_comparisons or set()
     by_slug = {row[&quot;slug&quot;]: row for row in braids}
     out = []
     for comparison in comparisons:
@@ -635,6 +698,30 @@ def build_braid_comparisons(comparisons, braids, today):
         if missing:
             raise RuntimeError(f&quot;braid comparison {comparison[&#x27;slug&#x27;]} has unknown members: {missing}&quot;)
         rows = [by_slug[slug] for slug in members]
+        if comparison[&quot;slug&quot;] in historical_comparisons:
+            snapshots = historical_comparisons[comparison[&quot;slug&quot;]]
+            if {x[&quot;owner_slug&quot;] for x in snapshots} != set(members) or len(snapshots) != len(members):
+                raise RuntimeError(f&quot;historical comparison {comparison[&#x27;slug&#x27;]} lacks exact member snapshots&quot;)
+            shared_rows = defaultdict(list)
+            pair_names = {}
+            for snapshot in snapshots:
+                member = by_slug[snapshot[&quot;owner_slug&quot;]]
+                for strand in snapshot[&quot;strands&quot;]:
+                    rid = strand[&quot;relationship_id&quot;]
+                    current_match = next((s for s in (member.get(&quot;relationship_field&quot;) or {}).get(&quot;strands&quot;, []) if s[&quot;relationship_id&quot;] == rid), None)
+                    pair_names[rid] = (current_match or {}).get(&quot;pair&quot;) or [name.title() for name in rid.split(&quot;-&quot;)]
+                    shared_rows[rid].append({&quot;braid&quot;: member[&quot;slug&quot;], &quot;title&quot;: member[&quot;title&quot;],
+                                             &quot;role&quot;: strand[&quot;role&quot;], &quot;presence&quot;: strand.get(&quot;presence&quot;) or [],
+                                             &quot;question&quot;: strand[&quot;question&quot;]})
+            shared = [{&quot;relationship_id&quot;: rid, &quot;pair&quot;: pair_names[rid], &quot;uses&quot;: uses}
+                      for rid, uses in shared_rows.items() if len(uses) &gt; 1]
+            shared.sort(key=lambda row: (-len(row[&quot;uses&quot;]), row[&quot;relationship_id&quot;]))
+            out.append({**comparison,
+                        &quot;members&quot;: [{&quot;slug&quot;: row[&quot;slug&quot;], &quot;title&quot;: row[&quot;title&quot;], &quot;question&quot;: row[&quot;question&quot;],
+                                     &quot;readiness&quot;: row.get(&quot;readiness&quot;) or {}} for row in rows],
+                        &quot;shared_relationships&quot;: shared, &quot;comparison_status&quot;: &quot;historical&quot;,
+                        &quot;authority_boundary&quot;: &quot;These shared roles come from the exact historical member snapshots, not from their later windows. The reviewed comparison creates no merged evidence or new strand.&quot;})
+            continue
         for row in rows:
             field = row.get(&quot;relationship_field&quot;) or {}
             if (field.get(&quot;frame&quot;) or {}).get(&quot;chart_id&quot;) != comparison.get(&quot;relationship_frame&quot;):
@@ -1039,7 +1126,7 @@ def build_braids(braids, events, items, saves, notes, cat, rooms_research, today
             &quot;movement_lineage_record_count&quot;: len(movement_records),
             &quot;eo_lineage_record_count&quot;: len(eo_lineage_records),
             &quot;review_on&quot;: relationship_field.get(&quot;review_on&quot;, &quot;&quot;),
-            &quot;boundary&quot;: &quot;These are categorical custody states, not a maturity score or comparative grade.&quot;,
+            &quot;boundary&quot;: &quot;An official record here is a dated document, not proof of implementation or effect. Movement and EO lineages need exact adjudicated records. These are custody states, not a maturity grade.&quot;,
         }
         out.append({**b, &quot;beats_count&quot;: len(beats), &quot;saves&quot;: sum(x.get(&quot;n&quot;, 0) for x in beats),
                     &quot;relationship_field&quot;: relationship_field, &quot;readiness&quot;: readiness,
@@ -1106,8 +1193,19 @@ def build(today=None, refresh_sky=False):
                     rooms_research[rid] = {**rooms_research[rid], &quot;title&quot;: b[&quot;plain_title&quot;]}
     relationship_data = load_relationship_history()
     braids, unbraided = build_braids(load_braids(), events, items, load_saves(), notes, cat, rooms_research, today, relationship_data)
-    braid_comparisons = build_braid_comparisons(load_braid_comparisons(), braids, today)
-    overlap_ledger = attach_overlap_history(braids, braid_comparisons, load_overlap_ledger(), today)
+    ledger_source = load_overlap_ledger()
+    historical_comparisons = {}
+    for comp in ledger_source[&quot;records&quot;]:
+        if comp[&quot;record_type&quot;] != &quot;comparison&quot; or comp[&quot;status&quot;] != &quot;historical&quot;:
+            continue
+        historical_comparisons[comp[&quot;owner_slug&quot;]] = [row for row in ledger_source[&quot;records&quot;]
+            if row[&quot;record_type&quot;] == &quot;braid&quot; and row[&quot;owner_slug&quot;] in comp[&quot;members&quot;]
+            and row[&quot;frame&quot;] == comp[&quot;frame&quot;] and row[&quot;chapter&quot;] == comp[&quot;chapter&quot;]]
+    for comp in ledger_source[&quot;records&quot;]:
+        if comp[&quot;record_type&quot;] == &quot;comparison&quot; and comp[&quot;status&quot;] == &quot;current&quot;:
+            historical_comparisons.pop(comp[&quot;owner_slug&quot;], None)
+    braid_comparisons = build_braid_comparisons(load_braid_comparisons(), braids, today, historical_comparisons)
+    overlap_ledger = attach_overlap_history(braids, braid_comparisons, ledger_source, today)
     story_rooms = build_story_rooms(load_story_rooms(), braids, braid_comparisons, today)
     review_hearings = build_review_hearings(load_review_hearings(), overlap_ledger, relationship_data, today)
     data = {&quot;schema&quot;: &quot;f250.mundane-crossovers/v1&quot;, &quot;built&quot;: today.isoformat(), &quot;window&quot;: list(WINDOW),

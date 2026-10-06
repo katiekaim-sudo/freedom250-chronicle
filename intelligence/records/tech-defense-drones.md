@@ -1,8 +1,8 @@
-# Defense R&D, drones and airspace filings
+# Defense research, drones and airspace filings
 
 Dated federal filings on defense research and procurement reform, drones, air taxis and the airspace.
 
-Home room: Innovation › National-security tech. 20 dated entries, 2024–2026. Dates and facts only.
+Home room: AI, Science & Strategic Technology › National-security tech. 20 dated entries, 2024–2026. Dates and facts only.
 
 
 ## 2026

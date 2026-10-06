@@ -6,12 +6,14 @@ ingress: Libra
 year: 2027
 date: 2027-09-23
 time_utc: "06:01:43"
+time_utc_exact: "06:01:43.517765"
 location: "Washington, D.C."
 house_system: Whole Sign
 rising_sign: Leo
 rising_modality: Fixed
 validity: "Nested cardinal stage — does not replace 2027 Aries"
 chart_ruler: Sun
+root_members: [Venus, Mars]
 role: nuance
 governing_chart: "[[2027 Aries Solar Ingress]]"
 computed_via: "Swiss Ephemeris (pyswisseph) · mundane_engine.py"
@@ -28,7 +30,8 @@ reading: none
 
 ## The Chart
 
-**Date/Time:** September 23, 2027, 06:01:43 UTC (2:01:43 AM EDT)
+**Date/Time:** September 23, 2027, 06:01:43 UTC / September 23, 2027, 2:01:43 AM EDT
+**Exact computed UTC instant:** 2027-09-23T06:01:43.517765+00:00. The whole-second clock above is truncated; an Astro Gold whole-second cast must use the first second after this instant.
 **Location:** Washington, D.C. (38.9072°N, 77.0369°W)
 **House System:** Whole Sign
 **Ascendant:** 0°15' Leo
@@ -54,8 +57,27 @@ reading: none
 | Node | 10°14' Aquarius | Aquarius | 7th | −0.00°/d | — |
 | America | 25°27' Scorpio | Scorpio | 4th | +0.37°/d | — |
 
-### Dispositor chain
+### Chart-ruler dispositor chain
 
-Sun (Lib/3) → Venus (Lib/3) → Venus (Lib/3) ⟲
+Sun (Lib/3) → Venus (Lib/3)
+
+### Whole-chart roots
+
+**Every root member:** Venus, Mars.
+**Final dispositors:** Venus, Mars.
+**Root loops:** none.
+
+| Planet | Traditional dispositor route |
+|---|---|
+| Sun | Sun → Venus |
+| Moon | Moon → Mercury → Venus |
+| Mercury | Mercury → Venus |
+| Venus | Venus |
+| Mars | Mars |
+| Jupiter | Jupiter → Mercury → Venus |
+| Saturn | Saturn → Mars |
+| Uranus | Uranus → Mercury → Venus |
+| Neptune | Neptune → Mars |
+| Pluto | Pluto → Saturn → Mars |
 
 Astro Gold verification is pending. Degrees are engine-computed, never from memory.

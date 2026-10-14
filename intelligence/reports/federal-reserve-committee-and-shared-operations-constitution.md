@@ -1,0 +1,250 @@
+# Federal Reserve committee and shared-operations constitution — reconciliation refresh
+
+**Wave:** 4 of the Federal Reserve Structure Research Campaign
+**Evidence cutoff:** September 20, 2026
+**Status:** current Workbench answer; reconciles rather than replaces the prior committee maps
+**Scope:** FOMC, Board committees, PSPAC, Reserve Bank conferences and committees, FRFS, National IT, local Bank boards and assurance bodies
+**Claim rule:** “Committee” is only a label. Legal effect depends on the body’s source of authority, membership, delegated powers, operative instrument and the decision at issue.
+
+## Where this research was already saved
+
+The earlier research was not missing. Its strongest operating map was filed inside the whole-government recertification package rather than the direct Federal Reserve package:
+
+1. Twelve-Bank / FRFS Operating Constitution and RACI — Conference of Presidents, Payments Committee, AFRC, CPE/FRFS, ITOC, National IT, Board/RBOPS, Bank boards and service-specific decision rights.
+2. Public-Only Board / Twelve-Bank Governance-Layer Sweep — Board committees, PSPAC, local Bank committees, released board minutes and the Richmond/National IT chain.
+3. Federal Reserve Actual Job and Operating Story and System Entity, Transaction and Software Map — the Board/FOMC/Reserve-Bank/New York Desk and product-office joins.
+4. Richmond National IT Governance and Control RACI — the specialized Richmond board, National IT Committee, System CIO, ITOC and Board/RBOPS chain.
+5. Chronicle Federal Reserve Financial Constitution — Source Document — canonical for incorporated financial and accounting results, but it did not absorb the full committee RACI.
+
+The discovery failure was therefore a **custody problem**, not an evidence gap. This refresh preserves those owners, adds the legal-effect classification they need, and records only current deltas and still-missing instruments.
+
+## Bottom line
+
+The Federal Reserve does not have one ladder of committees. It has several constitutions layered on top of one another:
+
+1. **Statutory decision bodies:** the Board of Governors, the FOMC and each Reserve Bank’s board exercise powers Congress assigned by law.
+2. **Board routing and oversight committees:** standing committees of Governors organize the Board’s work and advise or oversee staff. They are not separate agencies or substitutes for action by the Board unless a statute, regulation or Board delegation gives a named member or committee a specific power.
+3. **System policy advisory body:** PSPAC joins Governors, Reserve Bank presidents and the CPE to coordinate System payments work and advise the Board. Its advice does not itself amend a regulation, operating circular or Bank contract.
+4. **Reserve-Bank enterprise governance:** the Conference of Presidents and its Payments Committee and ITOC coordinate the twelve separate Banks. The Payments Committee performs board-like strategy and oversight for FRFS under Bank-approved enterprise principles; ITOC directs national Bank technology policy. Neither is Congress, the Board of Governors, the FOMC or the corporate board of a thirteenth Bank.
+5. **Delegated management and execution:** the CPE and FRFS manage financial services; Richmond-hosted National IT supplies shared infrastructure; the appropriate Reserve Banks remain the legal service providers, account holders, operating-circular parties and corporate actors.
+6. **Assurance and supervision:** local audit committees and general auditors, COGA/CGA, the Board and RBOPS, outside auditors, the OIG and GAO inspect different objects and have different escalation or remedy powers.
+
+This architecture is federated. A presidents’ committee can set enterprise strategy within delegated authority, but it cannot amend the Federal Reserve Act, make an FOMC vote, dissolve a Reserve Bank, displace a Bank board’s statutory responsibility or turn FRFS into a new legal corporation. A Board committee can route and supervise work, but the committee’s discussion is not automatically final Board action.
+
+## 1. Legal-effect map: what each “committee” actually is
+
+| Body | Source and membership | Legal effect | What it can be shown to do | What it cannot be presumed to do |
+|---|---|---|---|---|
+| **Board of Governors** | Federal Reserve Act §§10–11; seven Senate-confirmed Governors | Federal agency and statutory decision body | Rules, supervision, Bank budgets, prices, major initiatives, statutory approvals and delegations | The Chair or a committee does not automatically replace the collective Board |
+| **FOMC** | Federal Reserve Act §12A; seven Governors plus five annually selected Bank representatives | Separate statutory monetary-policy committee and APA/FOIA agency | Direct open-market operations; select its chair, vice chair, officers and SOMA managers; issue monetary-policy directives | It is not the parent corporation of the Banks, owner of FRFS or general operator of payment services |
+| **Each Reserve Bank board** | Federal Reserve Act §4; nine directors | Statutory corporate board of one separately incorporated Bank | Supervise and control that Bank; approve broad strategy and material interests; approve Bank participation in the FRFS enterprise structure | It cannot legislate for the United States or unilaterally bind the other eleven corporations |
+| **Board standing committees** | Board organizational practice; current assignments published by the Board | Internal advisory, routing and oversight bodies unless a specific delegation says otherwise | Review proposals, oversee assigned divisions, develop recommendations and exercise any expressly delegated power | Committee discussion or recommendation is not automatically final Board action |
+| **Committee on Federal Reserve Bank Affairs (BAC)** | Board standing committee; current chair is Governor Waller, with Governor Cook as member | Board-internal Bank-oversight route; some specific powers are delegated to its chair | Review Bank operations, budgets, strategic plans, financial-service provision/pricing; chair may decide Bank requests for exceptions to director policies under 12 C.F.R. §265.4(c) | It is not a Reserve Bank corporate board and does not own FRFS or National IT |
+| **Committee on Payments, Clearing, and Settlement (PCSC)** | Board standing committee; Waller, Bowman and Barr on the May 28 assignment page | Board-internal advice and oversight for payments, clearing and settlement matters | Inform and advise on supervisory and regulatory matters; its members participate in PSPAC | It is not the presidents’ Payments Committee and does not by itself operate a rail |
+| **PSPAC** | Board-created in 1986; three Governors, four Bank presidents and the CPE | System coordination and Board policy/strategy advice | Advise on risk, financial stability, safety, efficiency, accessibility, innovation, international work and intraday credit policy | It does not itself promulgate a Board rule, revise an operating circular or exercise the COP Payments Committee’s FRFS management oversight |
+| **Conference of Presidents (COP)** | Twelve Reserve Bank presidents; inter-Bank governance practice and Bank-approved enterprise arrangements | Presidents-led coordination layer among separate Banks | Coordinate common System issues; perform FMI-board-like FRFS functions and delegate many to Payments Committee | It is not created as a federal agency by §12A and cannot erase the twelve boards’ legal accountability |
+| **COP Payments Committee** | Presidents and first vice presidents representing all twelve Banks; members/chair selected through the COP process | Delegated FRFS strategy and oversight body | Set FRFS strategic direction; oversee risk, compliance, operational performance, CPE, PFMI adherence and financial reporting; approve specified routine/nonmaterial Fedwire proposals through the disclosed delegation chain | It is not PCSC or PSPAC; its publicly described Fedwire delegation cannot be generalized to every rail without a service-specific instrument |
+| **Audit, Finance, and Risk Committee (AFRC)** | Subcommittee of Payments Committee | Delegated assurance, finance and risk support | Review business/financial plans, key risks, audit progress, frameworks and PFMI alignment | It does not replace the twelve Bank audit committees or outside/statutory auditors |
+| **Information Technology and Operations Committee (ITOC)** | COP committee; public charter and roster not located | System Bank-technology direction and performance oversight | Set national Bank IT direction and policy; approve national IT and security standards; evaluate National IT | Hosting and standards do not establish legal payment liability, software ownership, contract signature or final Board policy authority |
+| **Conference of First Vice Presidents (CFVP)** | First vice presidents of the twelve Banks, with disclosed liaison relationships | Coordination forum for shared operational matters | Discuss operational matters of common interest; one of the bodies to which Richmond/National IT is responsive | No public source located gives it a general power to override boards, COP, ITOC or FRFS |
+| **CPE / FRFS** | Management organization authorized by Bank-approved FRFS Enterprise Principles and delegated committee authority | Enterprise management and execution, not a separate legal person | Manage, operate, support and develop Reserve Bank financial services; define wholesale business requirements; escalate risk; lead product and operations work | FRFS is not a thirteenth Reserve Bank, federal agency or universal contractual counterparty |
+| **Richmond board / National IT Committee / System CIO / National IT** | Richmond corporate governance, inter-Bank agreements and System committee direction | Host-Bank corporate and shared-service execution chain | Approve Richmond/National IT budgets and personnel controls; deliver national infrastructure and hosting; report performance, risk and controls | Richmond hosting does not give Richmond unilateral authority over the other Banks’ legal powers or over FOMC policy |
+| **Local Bank audit/operations/risk committees** | Bank bylaws and board charters | Corporate-board oversight for the particular Bank | Receive national-service reports, review effects on the Bank, oversee audit/risk/budgets and preserve general-auditor independence | No one local committee is the national FRFS board or System technology principal |
+
+## 2. The FOMC belongs on the map—but not in the same committee family
+
+The FOMC is the clearest reason not to infer authority from the word “committee.” Congress created it in 12 U.S.C. §263, prescribed its voting composition and directed it to govern open-market operations. The Committee selects its own chair and vice chair annually, selects staff officers and SOMA managers, and directs the New York Fed’s market-execution function.
+
+The FOMC therefore sits **beside**, not above, the Board and Reserve Banks:
+
+> Congress -> statutory powers -> Board / FOMC / twelve Reserve Banks
+> FOMC -> monetary-policy directive -> New York Desk / SOMA execution
+> twelve Bank boards -> enterprise compact -> COP / Payments Committee / ITOC
+> Board -> general supervision and approval gates -> BAC / PCSC / RBOPS
+> Payments Committee -> delegated management -> CPE / FRFS -> National IT and Bank operations
+
+An FOMC decision can change monetary conditions and direct open-market operations. It does not, without another legal instrument, approve FRFS budgets, select the CPE, amend FedNow’s operating circular, set National IT standards or replace a Bank board.
+
+As of September 16, 2026, the official FOMC page lists Kevin Warsh as chair and John Williams as vice chair, with the current Governor and rotating Bank membership. That current roster should not be used to update a different committee’s membership by inference.
+
+## 3. Board committee layer
+
+### Current published assignments
+
+The Board’s assignment page, last updated May 28, 2026, lists:
+
+| Board committee | Published members and oversight connection |
+|---|---|
+| Board Affairs | Jefferson, chair and oversight Governor for the Office of the COO; Barr; Cook |
+| Consumer and Community Affairs | Barr, chair and oversight Governor for DCCA; Bowman; Cook |
+| Economic and Monetary Affairs | Jefferson, chair and oversight Governor for Research and Statistics, Monetary Affairs and International Finance; Waller |
+| Financial Stability | Cook, chair and oversight Governor for Financial Stability; Barr |
+| Federal Reserve Bank Affairs | Waller, chair and oversight Governor for RBOPS; Cook |
+| Supervision and Regulation | Bowman, chair and oversight Governor for Supervision and Regulation; Jefferson; Waller |
+| Smaller Regional and Community Banking subcommittee | Bowman, chair; Cook |
+| Payments, Clearing, and Settlement | Waller, chair; Bowman; Barr |
+
+The page is a current official assignment object, but it does not publish the committees’ complete charters, quorum rules, voting method, reserved matters, appointment instrument or minutes.
+
+### Advisory default; delegated-power exception
+
+The Board’s records schedule describes internal advisory committees as informal bodies that review division proposals requiring Board action. It says they are not decision-making bodies, prepare no formal minutes and record no formal actions. That is the correct default classification for standing Board committees.
+
+But default is not absolute. A regulation or Board action can delegate a specific power. Current 12 C.F.R. §265.4(c), for example, authorizes the BAC chair to grant or deny Reserve Bank requests for exceptions to Board director policies. The right question is therefore never merely “Was a committee involved?” It is:
+
+1. Was the committee advising or acting?
+2. If acting, what exact delegation authorized the act?
+3. Was the decision reported to, ratified by or appealable to the full Board?
+4. Which record memorializes the final act?
+
+## 4. Three different payments committees must not be collapsed
+
+| Body | Home | Membership | Principal role | Final-authority boundary |
+|---|---|---|---|---|
+| **PCSC** | Board | Governors | Board-internal payments supervision/regulation advice and oversight | Full Board, statutes, regulations and valid delegations control federal agency action |
+| **PSPAC** | Cross-System advisory body created by Board | Three Governors, four Bank presidents, CPE | Coordinate System work and advise Board on payments policy and strategy | Advice is not itself Board rulemaking, Reserve Bank contract action or FRFS execution |
+| **Payments Committee** | COP / Reserve Banks | Bank presidents and first vice presidents with all-twelve representation | FRFS strategy, oversight, risk, performance and delegated service approvals | Twelve boards retain legal accountability; Board review/approval gates remain; delegation scope is instrument- and service-specific |
+
+The official PSPAC page still displays a named roster last updated June 13, 2025. Its description and membership formula remain official, but the names should not be treated as a verified September 2026 roster. The page includes former Atlanta president Raphael Bostic and therefore visibly lags the current officeholder record. A current designation instrument or refreshed official page remains missing.
+
+The May 28, 2026 CPE retirement announcement identifies Richmond president Thomas Barkin as chair of the **Payments Committee**. It says Mark Gould remains CPE while the national successor search proceeds and will remain at the Federal Reserve through the end of 2026. That announcement does not update PSPAC’s named roster or publish the COP committee charter.
+
+## 5. How the presidents’ enterprise committees are constituted
+
+The 2025 Fedwire PFMI disclosure supplies the strongest public selection chain located:
+
+- the COP chair appoints Payments Committee members and selects its chair, with advice from the COP Governance and Risk Committee;
+- membership is reviewed annually;
+- a president and first vice president from the same Bank ordinarily do not serve concurrently;
+- the Payments Committee chair selects AFRC members and the AFRC chair;
+- committee members may appoint expert liaisons, including the System CIO;
+- liaisons may participate but do not vote; and
+- the Payments Committee reviews its charter and assesses its own performance annually.
+
+The same disclosure says the Payments Committee includes presidents and first vice presidents with representation from all twelve Banks. It does not publish the current full roster, vote rule, quorum, dissent procedure, recusal rule, reserved-matters schedule or Governance and Risk Committee advice record.
+
+ITOC remains more opaque. The disclosure assigns it national IT strategy, policy, standards, security policy and National IT evaluation, but no complete current charter, named roster, voting rule, exception authority or minutes were located. Richmond’s public National IT Committee charter proves a separate host-Bank governance chain and requires coordination with ITOC; it does not disclose ITOC’s own constitution.
+
+## 6. Change-control RACI: who must act when the system changes
+
+| Proposed change | Initiating / managing layer | Required governing gate shown publicly | Legal or operating output | Remaining proof gap |
+|---|---|---|---|---|
+| Change federal statute, abolish/restructure System or change legal mandate | Congress; President through presentment | Enacted federal law | U.S. Code / amended Federal Reserve Act | Political path, not an internal-committee decision |
+| Change Board regulation | Board and staff | Board action plus APA notice/comment unless exception applies | Final rule / Federal Register | Committee recommendation and staff drafting records may be internal |
+| Change monetary-policy stance or open-market directive | FOMC | FOMC vote under §263 and its rules | Directive, statement and implementation note | Desk execution records are a separate layer |
+| Material or nonroutine Fedwire service/risk change | FRFS / Banks / Payments Committee | Board review under disclosed policy | Approved service/risk change and any rule/circular amendments | Materiality test and complete submission manual not public |
+| Routine, nonmaterial Fedwire proposal | CPE / FRFS | Public disclosure describes Board delegation to Payments Committee and further delegation to CPE; committee informed | Management approval within delegation | Operative delegation text and thresholds not public; do not generalize beyond disclosed Fedwire scope |
+| New service, major enhancement or service withdrawal | FRFS / Banks | Board public-interest, cost-recovery and market-failure criteria; public-comment guidelines; Board and Bank corporate gates | Policy, price, operating circular and implementation | Exact internal vote and reserved-matter schedule varies by service |
+| Set priced-service fees | FRFS/Bank planning and presidents’ governance | Board approval and publication; Monetary Control Act cost-recovery discipline | Published fee schedule | Internal proposal and allocation workpapers not public |
+| Approve Bank/National IT operating budgets | Bank management and boards; National IT Committee for host-Bank layer | BAC review; BAC chair transmits; full Board final action | Approved annual budgets | Committee packets, conditions and Bank-level allocations not public |
+| Commit conditionally approved capital project funds | Bank / National IT management | Board budget designation and applicable RBOPS delegated approval | Project commitment authorization | Current project-by-project delegation instrument and thresholds not compiled publicly |
+| Change national Bank IT standard/security policy | National IT / Bank stakeholders | ITOC approval; Richmond corporate and Board/RBOPS gates as applicable | National standard/policy and host implementation | ITOC charter, vote, exceptions and enforcement/remedies not public |
+| Change wholesale product business requirement/software | FRFS product and technology management | CPE/FRFS governance, Payments Committee strategy and applicable Board/materiality gates | Requirement, release and operating change | Application owner, release signer, rollback and decommission RACI not public |
+| Change operating circular | Applicable Reserve Banks through authorized corporate route | Service-specific Bank and Board policy/rule constraints | Revised operating circular / customer contract | Exact all-Bank approval and signatory route is not uniform in public sources |
+| Change one Bank’s broad strategy or material interest | Bank president/management | President must act consistently with that Bank board’s approvals and broad strategies | Bank board/management action | Board packets and inter-Bank compact effects not public |
+
+Two boundaries matter:
+
+1. The current codified public delegation to the RBOPS director in 12 C.F.R. §265.11 names designated-FMU, Regulation II and Regulation HH actions. The 2025 PFMI disclosure also says the director has delegated authority over certain Reserve Bank proposals and expenditures, and annual budget reports show delegated conditional-capital approvals. Those statements can coexist if the latter authority comes from Board resolutions, budget approvals or other instruments, but the operative current instrument and thresholds were not located. The PFMI sentence should not be cited as if §265.11 itself contains a general Bank-expenditure delegation.
+2. A disclosed Fedwire change route is not automatically the change route for FedNow, FedACH, Check, NSS, FedLine, Cash or Treasury fiscal-agent systems. Each service needs its own rule, circular, contract, enterprise delegation and materiality test.
+
+## 7. Management, hosting and assurance are different control rights
+
+The 2025 PFMI disclosure separates these roles:
+
+- **FRFS** defines wholesale business requirements and manages or oversees software development.
+- **National IT** supplies hosting environments and runs relevant infrastructure.
+- **Richmond** is the corporate host for National IT and maintains inter-Bank service agreements.
+- **ITOC** sets national Bank IT direction, standards and security policy and evaluates National IT.
+- **Payments Committee** sets FRFS strategy and assesses FRFS and the CPE.
+- **each Bank board** retains ultimate accountability for that Bank’s activities.
+- **Board/RBOPS** supervises and examines Bank payment operations and applies approval gates.
+- **general auditors and the coordinating general auditor** provide independent assurance to Bank audit committees.
+
+That separation blocks four recurring errors:
+
+| Shortcut | Correct rule |
+|---|---|
+| “Richmond hosts it, so Richmond owns the policy.” | Hosting proves a technology and corporate-service role, not policy supremacy or legal payment liability. |
+| “FRFS manages it, so FRFS is the legal operator.” | FRFS is a delegated national business line; the twelve Banks remain the legal service providers and corporate actors. |
+| “ITOC approved the standard, so it approved the product.” | Technology standards, product strategy, legal terms, price, risk acceptance and Board policy are distinct gates. |
+| “Audit reviewed it, so the change was authorized.” | Assurance tests controls; it is not ordinarily the business, Board, FOMC or statutory approval act. |
+
+## 8. Records and congressional oversight implications
+
+Committee type changes the records route:
+
+- **FOMC records** are governed by the FOMC’s own FOIA rule and can include records held by Board or Bank personnel acting for the Committee.
+- **Board standing-committee records** fall within Board custody rules. The Board schedule describes internal advisory committee files as temporary, ordinarily retained three years and then destroyed when no longer administratively needed.
+- **PSPAC records** are classified by the Board schedule as special-issue policy committee files; the record copy is permanent and transfers to NARA after thirty years.
+- **COP, Payments Committee, AFRC, ITOC and local Bank committee records** begin as Reserve Bank or shared-enterprise records unless the Board or FOMC controls them or a delegated Board function brings them into the current Board-record definition.
+- **Congress** is not confined to FOIA. It can legislate production, subpoena records through authorized committees, demand testimony, condition statutory authority and require new disclosures, subject to constitutional and institutional disputes.
+
+This means a hearing reference to “the Fed committee” is not enough for a legal filing or records demand. The request must identify the body, function, date, actor, decision, custody route and instrument.
+
+## 9. What changed—or did not—since the August maps
+
+### Confirmed current deltas
+
+1. The May 28, 2026 Board page supplies current published Governor committee assignments and includes Kevin Warsh in the Board roster, but Warsh is not listed on a standing Board committee.
+2. The September 16 FOMC page confirms Warsh as FOMC chair and the current 2026 FOMC/alternate roster. This does not change the shared-operations constitution.
+3. The May 28 FRFS announcement confirms Thomas Barkin as Payments Committee chair and Mark Gould’s planned retirement, with Gould remaining CPE during the successor search and through year-end.
+4. Asha Sharma’s July 9 role is as an external leader of the Chair’s **Productivity and Jobs task force**, alongside Marc Andreessen and Charles Jones. It is not appointment as a Governor, Board employee, CPE, FOMC officer, PSPAC member, Payments Committee member or National IT executive.
+
+### No displacement found
+
+No public instrument located through the cutoff:
+
+- repeals or supersedes the 2022 FRFS Enterprise Principles;
+- merges the twelve Reserve Banks or converts FRFS into a separate corporation;
+- transfers FOMC power to a Board or presidents’ committee;
+- eliminates COP, Payments Committee, AFRC or ITOC;
+- publishes the missing enterprise charters, reserved-matter schedules or application RACI; or
+- changes the basic Board-supervision / Bank-accountability / presidents’ governance / delegated-management / host-technology division already mapped in August.
+
+## 10. Exact missing constitution
+
+The public map is strong enough to identify the actors but not to reproduce the enforceable enterprise constitution. The decisive missing objects are:
+
+1. FRFS Enterprise Principles, all twelve Bank-board approval resolutions and amendment history;
+2. current COP, Governance and Risk Committee, Payments Committee and AFRC charters, rosters, appointment records, votes, recusals and self-assessments;
+3. current ITOC charter, roster, name-change record, votes, standards, exceptions and National IT evaluations;
+4. current PSPAC designation instrument and roster;
+5. CPE employing/host Bank, appointment and removal instrument, succession rule, authority schedule and successor-selection record;
+6. Board, BAC, PCSC and RBOPS memoranda specifying reserved matters, delegations, reporting, ratification and appeal;
+7. service-by-service materiality tests and delegated-change schedules for Fedwire, FedNow, FedACH, Check, NSS, FedLine, Cash and Treasury systems;
+8. application RACI naming business controller, software controller, developer, infrastructure host, contract signer, accounting owner, incident commander, recovery site and decommission authority;
+9. National IT inter-Bank agreements, service catalog, chargebacks, SLAs, credits, remedies, step-in and termination rights;
+10. committee packets and board minutes showing actual use of the disclosed gates.
+
+## Wave 4 ruling
+
+The prior committee research holds. What this reconciliation adds is the hierarchy of legal effect:
+
+> **statute creates the legal decision bodies; Board and Bank boards retain their own powers; committees route, advise or exercise only delegated authority; management executes; hosts supply infrastructure; auditors assure; and no label collapses those roles.**
+
+The practical control test is therefore instrument-first. To prove that a committee “controls the Federal Reserve,” identify the exact decision, source of authority, membership, vote, delegation, reserved matter, final signature, legal actor, record owner and available override. Without that chain, a committee title proves participation—not sovereignty.
+
+## Primary authorities
+
+- [Federal Reserve Act §4 — Reserve Banks and boards](https://www.federalreserve.gov/aboutthefed/section4.htm)
+- [Federal Reserve Act §11 — Board powers and general supervision](https://www.federalreserve.gov/aboutthefed/section11.htm)
+- [Federal Reserve Act §12A — FOMC](https://www.federalreserve.gov/aboutthefed/section12a.htm)
+- [Current Board members and committee assignments](https://www.federalreserve.gov/aboutthefed/bios/board/)
+- [Board organization chart](https://www.federalreserve.gov/aboutthefed/board-of-governors-org-chart-accessible.htm)
+- [FOMC current membership](https://www.federalreserve.gov/fomc/)
+- [FOMC Rules and Authorizations, January 27, 2026](https://www.federalreserve.gov/monetarypolicy/files/FOMC_RulesAuthPamphlet_202601.pdf)
+- [Payments System Policy Advisory Committee](https://www.federalreserve.gov/paymentsystems/pspa_committee.htm)
+- [12 C.F.R. §265.4 — specific Board-member delegations](https://www.federalreserve.gov/frrs/rules/section-2654-functions-delegated-to-board-members-or-staff-within-the-division-of-board-members.htm)
+- [12 C.F.R. §265.11 — current RBOPS director delegations](https://www.federalreserve.gov/frrs/rules/section-26511-functions-delegated-to-the-director-of-the-division-of-reserve-bank-operations-and-payment-systems.htm)
+- [Board records schedule — internal and special-issue policy committees](https://www.federalreserve.gov/foia/rr_supervision.htm)
+- [2025 Fedwire Securities PFMI disclosure](https://www.frbservices.org/binaries/content/assets/crsocms/financial-services/securities/securities-service-disclosure.pdf)
+- [2025 Fedwire Funds PFMI disclosure](https://www.frbservices.org/binaries/content/assets/crsocms/financial-services/wires/funds-service-disclosure.pdf)
+- [FRFS CPE retirement announcement](https://www.frbservices.org/news/press-releases/052826-mark-gould-retirement)
+- [Federal Reserve Banks combined quarterly financial report, March 31, 2026](https://www.federalreserve.gov/aboutthefed/files/quarterly-report-20260515.pdf)
+- [Richmond National IT Committee charter](https://www.richmondfed.org/-/media/RichmondFedOrg/about_us/our_governance/charters_memberships/pdf/it.pdf)
+- [Chair’s Productivity and Jobs task force](https://www.federalreserve.gov/monetarypolicy/productivity-and-jobs-task-force.htm)
+
+## Non-claims
+
+This report does not conclude that every committee act is legally binding; that the FOMC governs payment operations; that PSPAC, PCSC and the Payments Committee are the same body; that COP is a federal agency; that FRFS or National IT is a separate corporation; that Richmond owns national payment policy; that the Board’s standing committees lack every delegated power; that the published PSPAC names are current through September 2026; that the CPE successor has been selected; or that unpublished charters contain any particular voting, veto, removal or emergency rule.

@@ -23,23 +23,23 @@ These notes sit beside [MONEY — READ FIRST](../sources/money-read-first-cb185a
 4. [Citizenship Operating Clock — Barbara and EO 14418](../sources/citizenship-operating-clock-barbara-and-eo-14418-635122ac1943.html) — who is a person. *CASA* was the remedy. *Barbara* was the Clause. EO 14418 is the documentary machine after the merits loss.
 
 **Wave 2 — force, the buying book, emptying without repeal**
-5. Title 10 Guard and the Insurrection Act — Force Authorization Map — § 12406 is the call-up. Chapter 13 is the unused door. 25A443 denied the stay.
+5. [Title 10 Guard and the Insurrection Act — Force Authorization Map](../sources/title-10-guard-and-the-insurrection-act-force-authorization-map-c22fce4635e3.html) — § 12406 is the call-up. Chapter 13 is the unused door. 25A443 denied the stay.
 6. [Revolutionary FAR Overhaul — Procurement Control Map](../sources/revolutionary-far-overhaul-procurement-control-map-df1a8c3272f5.html) — class deviation now, Companion is not a rule, proposed FAR is not a final FAR.
 7. Department of Education — Consummation Map — § 3411 still names the Department. The IAA collects; it does not take title.
 8. USAID — Statutory Person and Operating Death — § 6563 still names the person. State emptied the body. P.L. 119-28 ¶15 is money, not a charter.
 
 **Wave 3 — look, leave, eligibility, force authority (written 2026-08-15)**
-9. FISA 702 — Split Clock Map — Title VII repealed June 12, 2026. Leftover paper is a different object. 2026 FISC cert not retrieved.
+9. [FISA 702 — Split Clock Map](../sources/fisa-702-split-clock-map-01be1ca24143.html) — Title VII repealed June 12, 2026. Leftover paper is a different object. 2026 FISC cert not retrieved.
 10. [WHO and IHR — Membership Exit Map](../sources/who-and-ihr-membership-exit-map-66037e156b95.html) — notice is not membership end. HHS/State say January 22, 2026. Depositary receipt not retrieved.
 11. [OBBB — Eligibility and Fiscal-Federalism Companion](../sources/obbb-eligibility-and-fiscal-federalism-companion-35a40a201a22.html) — work conditions and State financing. Do not rewrite the fraud map.
-12. Iran War Powers — Authority Map — no enacted AUMF. H. Con. Res. 86 is concurrent, not a law. 60-day clock not computed. Keep it off the strike shelf.
+12. [Iran War Powers — Authority Map](../sources/iran-war-powers-authority-map-57dfefbc2e8c.html) — no enacted AUMF. H. Con. Res. 86 is concurrent, not a law. 60-day clock not computed. Keep it off the strike shelf.
 
 **Wave 4 — identity rails (written 2026-08-15)**
 13. [Identity Rails — Travel, Benefit, Vote, Count](../sources/identity-rails-travel-benefit-vote-count-306194cc785a.html) — REAL ID is not citizenship. USCIS SAVE is not the SAVE Act. H.R. 22 is not law. A 2026 Census Test is not the 2030 form. Two district courts split on the 2025 SAVE overhaul.
 
 **Wave 5 — officer leash + emergency purse (written 2026-08-15)**
 14. Independent-Agency Officer Removal — Slaughter and Cook — FTC for-cause falls. Fed Governor for-cause stands on the stay. Career staff is the Policy/Career map. Do not rewrite JM-01 / JM-02.
-15. IEEPA — Tariff Dead, Block Live — IEEPA does not authorize tariffs. Blocking remains. EO 14389 ends the duties, not the emergencies. Proc. 11012 is Trade Act § 122, a different statute. Do not rewrite JM-15.
+15. [IEEPA — Tariff Dead, Block Live](../sources/ieepa-tariff-dead-block-live-48d8e15eb378.html) — IEEPA does not authorize tariffs. Blocking remains. EO 14389 ends the duties, not the emergencies. Proc. 11012 is Trade Act § 122, a different statute. Do not rewrite JM-15.
 
 **Wave 6 — third emptying (written 2026-08-15)**
 16. [HHS and AHA — Proposed Person and Statutory Remainder](../sources/hhs-and-aha-proposed-person-and-statutory-remainder-6720d5018d4d.html) — HHS and SAMHSA still exist. AHA is a request. P.L. 119-75 still funds HRSA and SAMHSA. *Kennedy* is a PI, not a merits repeal. MAHA Commission is a different object.

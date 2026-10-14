@@ -25,3 +25,11 @@ The [OPM structural audit](<Research-Workbench/Research Packages/Office of Perso
 The forward question is whether a named agency tool moves from authority and procurement to accepted use with an authoritative record, human decision right, accuracy test, privacy/retention rule and correction after an error. Constructively, shared technology makes public service faster and more legible without losing agency accountability. In shadow, a fluent interface becomes the public's only view while the underlying record, model and decision maker are hard to find. Ordinary IT modernization, piecemeal by agency, remains a strong rival to one federal technology constitution.
 
 This braid begins **without authored planetary strands**. [Rebuilding the Federal Machine's 2027–30 route](../Story%20Rooms/rebuilding-the-federal-machine-2027-30-forecast-route.md) hears its lawful work/record questions; [Capacity or Spectacle](../Story%20Rooms/capacity-or-spectacle-2027-30-forecast-route.md) cross-examines physical compute and private suppliers. A future chart relationship is earned only by a dated agency authorization, accepted system, consequential decision or correction, not by the word *AI*.
+
+## October 15 ingress-period return
+
+A working connector, an awarded HR system, a deployed EHR, a maintained public record and an integrated operating platform are different achievements. The return adds care/service evidence and operating failures alongside modernization plans. The receiving institution’s ability to use, correct and maintain a system matters as much as the announced architecture.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-aries]([local-path-removed]), [2025-libra]([local-path-removed]), [2026-aries]([local-path-removed]), [2026-cancer]([local-path-removed]), [2026-libra]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.

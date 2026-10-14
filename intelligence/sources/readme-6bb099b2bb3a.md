@@ -57,17 +57,17 @@ Each lane has different actors, instruments and evidence of success. A leaders' 
 2. `US_CHINA_INSTRUMENT_STACK_SOURCE_LEDGER_2026-09-24.md` — exact source custody and retrieval gaps for wave 1.
 3. `US_CHINA_BILATERAL_OPERATING_MACHINE_2026-09-24.md` — the owners, functions, public operating receipts and current evidence state of the leader, diplomatic, economic, military, AI, counternarcotics, climate, science, agriculture, aviation and exchange channels.
 4. `US_CHINA_BILATERAL_MECHANISM_SOURCE_LEDGER_2026-09-24.md` — source custody, institutional relationship gaps and exact return gates for wave 2.
-5. `US_CHINA_RECIPROCAL_DEPENDENCY_AND_SUBSTITUTION_MAP_2026-09-24.md` — stage-specific choke points, permissions, qualified alternatives and substitution clocks across eleven industrial and trade systems.
+5. [`US_CHINA_RECIPROCAL_DEPENDENCY_AND_SUBSTITUTION_MAP_2026-09-24.md`](../sources/us-china-reciprocal-dependency-and-substitution-map-2026-09-24-e2a920470b5a.html) — stage-specific choke points, permissions, qualified alternatives and substitution clocks across eleven industrial and trade systems.
 6. `US_CHINA_RECIPROCAL_DEPENDENCY_SOURCE_LEDGER_2026-09-24.md` — source custody, evidence limits and product-level return gates for wave 3.
 7. `TAIWAN_LEGAL_POLICY_AND_ESCALATION_BASELINE_2026-09-24.md` — PRC, U.S. and Taiwan legal/policy columns; arms-transfer clock; military/coercion states; economic pressure; and crisis-channel baseline.
 8. `TAIWAN_BASELINE_SOURCE_LEDGER_2026-09-24.md` — source custody, escalation proof rules and exact retrieval gaps for wave 4.
-9. `CHINA_DOMESTIC_ECONOMY_FOREIGN_POLICY_TRANSMISSION_MAP_2026-09-24.md` — property, debt, households, prices, demography, industrial policy and the evidenced routes through which they reach external trade and policy.
+9. [`CHINA_DOMESTIC_ECONOMY_FOREIGN_POLICY_TRANSMISSION_MAP_2026-09-24.md`](../sources/china-domestic-economy-foreign-policy-transmission-map-2026-09-24-56079f4981fe.html) — property, debt, households, prices, demography, industrial policy and the evidenced routes through which they reach external trade and policy.
 10. `CHINA_DOMESTIC_ECONOMY_TRANSMISSION_SOURCE_LEDGER_2026-09-24.md` — source custody, data-perimeter rules, balance-sheet proof gaps and return grammar for wave 5.
-11. `US_CHINA_TECHNOLOGY_AND_AI_PERMISSIONS_CONSTITUTION_2026-09-24.md` — object-by-object U.S. and Chinese permission gates for chips, equipment, software, model weights, cloud training, inference, talent, capital, data, public AI services and standards.
+11. [`US_CHINA_TECHNOLOGY_AND_AI_PERMISSIONS_CONSTITUTION_2026-09-24.md`](../sources/us-china-technology-and-ai-permissions-constitution-2026-09-24-c240008b6bd4.html) — object-by-object U.S. and Chinese permission gates for chips, equipment, software, model weights, cloud training, inference, talent, capital, data, public AI services and standards.
 12. `US_CHINA_TECHNOLOGY_AND_AI_PERMISSIONS_SOURCE_LEDGER_2026-09-24.md` — current-rule custody, evidence-state controls and transaction-level return gates for wave 6.
-13. `CHINA_GLOBAL_GOVERNANCE_OPERATING_MAP_2026-09-24.md` — the distinct machinery and evidenced operating objects of the Belt and Road Initiative and the development, security, civilization and governance initiatives.
+13. [`CHINA_GLOBAL_GOVERNANCE_OPERATING_MAP_2026-09-24.md`](../sources/china-global-governance-operating-map-2026-09-24-ae411b5ff04a.html) — the distinct machinery and evidenced operating objects of the Belt and Road Initiative and the development, security, civilization and governance initiatives.
 14. `CHINA_GLOBAL_GOVERNANCE_SOURCE_LEDGER_2026-09-24.md` — initiative attribution, host/multilateral custody and project-lifecycle proof fields for wave 7.
-15. `US_CHINA_PEOPLE_TO_PEOPLE_INFRASTRUCTURE_2026-09-24.md` — travel, air service, education, youth, science, journalism and subnational ties separated from permission through participation and durable output.
+15. [`US_CHINA_PEOPLE_TO_PEOPLE_INFRASTRUCTURE_2026-09-24.md`](../sources/us-china-people-to-people-infrastructure-2026-09-24-6a721f6388ad.html) — travel, air service, education, youth, science, journalism and subnational ties separated from permission through participation and durable output.
 16. `US_CHINA_PEOPLE_TO_PEOPLE_SOURCE_LEDGER_2026-09-24.md` — source custody, evidence-state rules and cohort/operation return gates for wave 8.
 
 ## Existing Workbench joins

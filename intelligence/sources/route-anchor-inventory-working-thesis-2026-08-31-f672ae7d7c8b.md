@@ -14,6 +14,10 @@
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
+## October 14 collateral and credit extension
+
+The dated Observatory connections add worked examples from Treasury collateral, CIL and Ripple Prime funding. XRP as a potentially monetizable parent resource is distinct from required XRP payment inventory. The extension preserves this original thesis and its August source clock.
+
 ## Saved thesis
 
 The emerging monetary system is not best understood as crypto replacing fiat,

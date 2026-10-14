@@ -1,0 +1,140 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><meta name="f250:page-type" content="plain_full_text_reading"><link rel="canonical" href="https://katiekaim-sudo.github.io/freedom250-chronicle/intelligence/readings/5a4b189615f9e67e.html"><link rel="sitemap" type="application/xml" href="../../sitemap.xml"><title>Exchange Tokenized-Trading Rule Crosswalk</title></head><body><p><a href="../bot-instructions.html">For Katie's Bot</a> · <a href="../bot-index.html">Bot Index</a></p><h1>Exchange Tokenized-Trading Rule Crosswalk</h1><p>Crawler-friendly static reading edition. For an interactive or generated object, this page preserves its visible text and appends the public package research needed to interpret it.</p><ul><li><a href="../sources/exchange-tokenized-trading-rule-crosswalk-2026-08-02-5a4b189615f9.html">Original public view</a></li><li><a href="packages/dtcc-tokenization-2026.html">Package full-text reading — dtcc-tokenization-2026</a></li><li><a href="packages/exchange-tokenized-trading-adapter-rules.html">Package full-text reading — exchange-tokenized-trading-adapter-rules</a></li><li><a href="packages/fed-clearing-treasury.html">Package full-text reading — fed-clearing-treasury</a></li></ul><h2>Full text</h2><pre style="white-space:pre-wrap;overflow-wrap:anywhere">PUBLIC OBJECT — VISIBLE TEXT
+
+Exchange Tokenized-Trading Rule Crosswalk · Freedom 250
+Exchange Tokenized-Trading Rule Crosswalk
+Evidence cutoff: 2026-08-02 ET
+Status: official SEC/SRO factual lane
+Scope: national-securities-exchange rules that connect exchange order entry to DTC&#x27;s three-year tokenization pilot; trading, clearing, settlement, fungibility, eligibility, fallback, disclosure and operational-start clocks.
+Evidence grammar: F official fact · D derived arithmetic/status crosswalk · I architecture inference · NR not resolved publicly.
+Executive ruling
+The exchange layer is substantially further along legally than the product pages alone suggest. The Commission approved Nasdaq&#x27;s DTC-pilot tokenized-trading rules on March 18, 2026. Five NYSE-family exchanges and 24X subsequently filed substantially similar immediately effective rules. F
+But these rules do not create a separate blockchain exchange, token price, atomic settlement cycle or crypto-style market. They make tokenization a post-trade settlement-form preference attached to an order in the existing national market system:
+tokenized and traditional shares use the same CUSIP, symbol, order book and execution priority;
+exchange market data does not distinguish their forms;
+the same exchange order types, routing, fees, surveillance, short-sale, risk and clearly-erroneous rules apply;
+trades handled by DTC continue to settle T+1;
+the exchange transmits a tokenization flag to DTC after execution;
+DTC, not the exchange, determines whether the Participant, security, blockchain, wallet and instruction are eligible; and
+an ineligible or unexecutable tokenization request falls back to traditional DTC settlement. F
+The exchange rules are therefore an adapter constitution around DTC&#x27;s controlled entitlement record. They preserve a single price-discovery pool and move the token-versus-book-entry choice downstream into settlement processing. I
+1. Filing/status map
+Venue
+File
+SEC procedural state by cutoff
+Operative-start condition
+Nasdaq
+SR-NASDAQ-2025-072
+Commission approval order 34-105047, March 18, 2026
+DTC infrastructure and post-trade services established; Equity Trader Alert at least 30 days before trading begins
+NYSE
+SR-NYSE-2026-17
+notice of immediately effective filing, release 34-105260, April 17, 2026
+DTC infrastructure/post-trade services established; Trader Update at least 30 days before start
+NYSE Texas
+SR-NYSETEX-2026-13
+notice of immediately effective filing, release 34-105338, April 30, 2026
+same DTC and advance-notice conditions
+NYSE Arca
+SR-NYSEARCA-2026-45
+notice of immediately effective filing, release 34-105347, May 1, 2026
+same DTC and advance-notice conditions
+NYSE National
+SR-NYSENAT-2026-09
+notice of immediately effective filing, release 34-105456, May 12, 2026
+same DTC and advance-notice conditions
+NYSE American
+SR-NYSEAMER-2026-36
+notice of immediately effective filing, release 34-105458, May 12, 2026
+same DTC and advance-notice conditions
+24X National Exchange
+SR-24X-2026-20
+notice of immediately effective filing, release 34-105697, June 16, 2026
+DTC infrastructure/post-trade services established; member communication at least 30 days before start
+NR: no operative Trader Alert/Trader Update/member communication commencing tokenized trading was located in the public record reviewed through the cutoff. DTC still described October 2026 as its expected service launch. The rule state and production-operating state therefore remain separate. F/NR
+Primary dockets: Nasdaq · NYSE · NYSE Arca · NYSE American · NYSE National · NYSE Texas · 24X
+2. What the tokenization flag actually does
+member enters ordinary exchange order
++ optional tokenization preference flag
+-&gt; exchange matches/routs in existing NMS order book
+-&gt; execution occurs without token preference changing priority
+-&gt; exchange sends preference/instructions to DTC post-trade
+-&gt; DTC tests Participant + security + chain + wallet + controls
+-&gt; if executable: DTC carries out tokenization settlement-form instruction
+-&gt; if not executable: traditional DTC settlement
+-&gt; T+1 settlement remains
+The flag can also carry the Participant&#x27;s chain selection and registered-wallet address once the exchange requires those fields. The exchange says it acts as the Participant&#x27;s agent or designee when transmitting the preference. F
+At initial implementation, the exchange itself does not determine at order entry:
+whether the member is a DTC Eligible Participant;
+whether the security is DTC eligible for tokenization;
+whether the chosen blockchain is supported;
+whether the wallet is registered;
+whether DTC risk/compliance controls allow the instruction; or
+whether the instruction would breach the Participant&#x27;s Net Debit Cap. F
+The Participant bears responsibility for those determinations. DTC is the execution and eligibility gate. Exchanges state that any future order-entry eligibility check would require another rule filing. F
+The no-action facts also excluded Participants for which DTC had specified U.S. tax-withholding/reporting or Treasury International Capital reporting obligations. The 24X filing states that this represented approximately 11% of DTC Participants as of October 31, 2025, pending resolution of those compliance questions. Exchange membership and DTC participation therefore do not automatically equal token-service eligibility. F
+3. What remains one market
+Object
+Traditional and tokenized form under exchange rules
+issuer security
+same class; tokenized form must be fungible
+identifier
+same CUSIP and trading symbol
+economic/corporate rights
+same equity, dividend, voting and liquidation rights required
+order book
+same book
+price/time priority
+same priority
+order types/routing
+same
+exchange fee
+same
+market-data display
+not differentiated
+surveillance/CAT
+same underlying surveillance data; tokenization data subject to Commission CAT requirements
+settlement cycle
+T+1
+proxy process
+not expected to change; DTC may detokenize/force-convert for corporate actions
+If a tokenized instrument is not fungible, does not share the identifier, or does not confer equivalent rights, the rules treat it as a distinct product rather than the same share. A future exchange path for that product would require another filing. F
+4. The strongest architectural consequence
+The rule set deliberately avoids fragmenting price discovery by token form. It creates one security and one order book, with multiple post-trade representations. I
+That has four consequences:
+Tokenization is not visible market segmentation. Public market data does not show whether the buyer requested token settlement.
+DTC receives the decisive downstream instruction. The exchange matches; DTC validates and implements form.
+Fallback protects ordinary settlement. A bad wallet, chain or eligibility selection does not necessarily fail the trade; DTC settles it traditionally.
+Atomicity is not introduced. T+1, existing trading controls, existing proxy distribution and DTC post-trade processing remain.
+This is a hybrid conversion architecture, not an on-chain exchange replacement. I
+5. 24X — longer trading hours do not change the settlement constitution
+24X says tokenized orders may trade during its 24X Market Session once that session commences under its rules and to the extent the DTC pilot permits. It simultaneously states that DTC-handled tokenized trades remain T+1 and that the market-data, fee, surveillance, proxy and post-trade structure remains the same. F
+The result is another clock split:
+continuous or extended trade execution does not create continuous DTC settlement, Federal Reserve cash finality, corporate-action processing or token-redemption availability. I
+Source: 24X SEC notice.
+6. Nasdaq approval boundary
+The Commission approved Nasdaq&#x27;s exchange-rule change. It did not thereby approve DTC&#x27;s token service as a Commission rule, resolve issuer-consent disputes, authorize non-DTC token models, give DTC tokens collateral value, or approve an atomic cash rail. The order repeatedly ties the exchange rules to the narrow DTC pilot and says alternative tokenization/clearance methods require future filings. F
+The Commission relied on:
+equivalent rights and identifiers;
+one order book and one priority system;
+existing exchange and federal securities rules;
+the DTC no-action packet&#x27;s post-trade design;
+unchanged T+1 settlement and surveillance; and
+DTC fallback to traditional form. F
+Source: Nasdaq approval order.
+7. Promotion gates
+P0 — operational start
+DTC formal Preliminary Base Version launch notice;
+public DTC Technology Standards, approved-chain list and service fees required by the no-action conditions;
+exchange 30-day Trader Alerts/Updates/member communications;
+exchange technical specifications for the tokenization flag and CAT reporting; and
+DTC supplemental Participant terms and registered-wallet procedures.
+P1 — measured use
+tokenization-flag order/execution counts by venue;
+fraction executed as requested versus traditional fallback;
+chain and wallet rejection reasons;
+T+1 fails and corporate-action forced conversions;
+Participant/customer allocation and disclosure practices; and
+any price, routing or liquidity difference not visible in the consolidated market-data feed.
+Final ruling
+The exchange layer has already chosen the near-term constitutional model: preserve the national-market-system security, price, order book, surveillance and T+1 settlement cycle; attach an optional post-trade form instruction; and let DTC decide whether the resulting entitlement is represented on an approved chain.
+The most important word is not “tokenized.” It is fungible. Fungibility lets the token inherit the existing market rather than build a new one. DTC&#x27;s record, wallet and reversal controls are the price of that inheritance. I</pre></body></html>

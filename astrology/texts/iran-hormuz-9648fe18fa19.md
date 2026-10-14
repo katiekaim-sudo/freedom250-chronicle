@@ -34,3 +34,11 @@ The constructive pole is a legible route constitution with clear authority, prop
 ## October 11 review return
 
 The September 26 authored overlap was reviewed on October 11 and now displays as **historical**. Its original snapshot remains frozen in `../Braid Overlap Ledger.jsonl`; the exact strand or comparison dispositions are appended in `../Braid Review Ledger.jsonl`. [The Libra New Moon working return](../Review%20Hearings/2026-10-11%20%E2%80%94%20Libra%20New%20Moon%20Braid%20Working%20Return.md) explains the whole-chart shift and the distinct factual cutoffs. This file has no new October relationship window: the old frontmatter is preserved as the historical authorship, and a new window will need separate dated strands and a review date.
+
+## October 15 ingress-period return
+
+The military pilot keeps the June 2025 Washington/next-day Iran clock distinct, while the February 2026 strike bookmarks and later Iran attention are inherited context rather than an Aries-created war. Current designations and claims of a neutralized fleet still require vessel, cargo, payment, seizure or route-use evidence. No new country target geometry or operation forecast is inferred here.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-cancer]([local-path-removed]), [2025-capricorn]([local-path-removed]), [2026-aries]([local-path-removed]), [2026-libra]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.

@@ -39,35 +39,35 @@ footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:10px;font-si
 @media (max-width:860px){.grid2{grid-template-columns:1fr}.sticky{position:static}}
 </style><style id="f250-graphic-style">:root {
   color-scheme: dark;
-  --f250-bg: #0b111c;
-  --f250-sheet: #111a28;
-  --f250-wash: #172234;
-  --f250-nav: #070c15;
-  --f250-ink: #eef1f5;
-  --f250-text: #cbd3de;
-  --f250-muted: #9da9bb;
-  --f250-line: #2b3c56;
-  --f250-strong: #eef1f5;
-  --f250-link: #9ec2f0;
-  --f250-focus: #9ec2f0;
+  --f250-bg: #0b1220;
+  --f250-sheet: #121c2e;
+  --f250-wash: #17233a;
+  --f250-nav: #070d18;
+  --f250-ink: #e9edf3;
+  --f250-text: #c5cdd9;
+  --f250-muted: #96a3b6;
+  --f250-line: #24324b;
+  --f250-strong: #e9edf3;
+  --f250-link: #9fc6f5;
+  --f250-focus: #9fc6f5;
   --f250-gold: #d6b474;
   --f250-warn: #f5a878;
   --f250-good: #80c9a8;
   --f250-display: "Times New Roman", Times, serif;
-  --f250-ui: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --f250-ui: "Times New Roman", Times, serif;
   --f250-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 :root[data-theme="light"] {
   color-scheme: light;
-  --f250-bg: #f7f7f5;
+  --f250-bg: #f7f7f4;
   --f250-sheet: #ffffff;
-  --f250-wash: #eceef0;
+  --f250-wash: #f2f3f1;
   --f250-nav: #0e1a2b;
-  --f250-ink: #111418;
-  --f250-text: #30353d;
-  --f250-muted: #5a606a;
-  --f250-line: #cbd1da;
-  --f250-strong: #111418;
+  --f250-ink: #12161d;
+  --f250-text: #353b45;
+  --f250-muted: #5b616b;
+  --f250-line: #d8dbe0;
+  --f250-strong: #12161d;
   --f250-link: #1b4f8a;
   --f250-focus: #1b4f8a;
   --f250-gold: #8e622a;
@@ -77,9 +77,9 @@ footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:10px;font-si
 @media (prefers-color-scheme: light) {
   :root[data-theme="system"] {
     color-scheme: light;
-    --f250-bg: #f7f7f5; --f250-sheet: #ffffff; --f250-wash: #eceef0;
-    --f250-nav: #0e1a2b; --f250-ink: #111418; --f250-text: #30353d;
-    --f250-muted: #5a606a; --f250-line: #cbd1da; --f250-strong: #111418;
+    --f250-bg: #f7f7f4; --f250-sheet: #ffffff; --f250-wash: #f2f3f1;
+    --f250-nav: #0e1a2b; --f250-ink: #12161d; --f250-text: #353b45;
+    --f250-muted: #5b616b; --f250-line: #d8dbe0; --f250-strong: #12161d;
     --f250-link: #1b4f8a; --f250-focus: #1b4f8a; --f250-gold: #8e622a;
     --f250-warn: #9a3412; --f250-good: #14664a;
   }
@@ -95,9 +95,9 @@ footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:10px;font-si
   min-height: 54px;
   margin: 0;
   padding: 7px clamp(16px, 4vw, 54px);
-  border-bottom: 1px solid #2b3c56;
+  border-bottom: 1px solid #24324b;
   background: var(--f250-nav);
-  color: #eef1f5;
+  color: #e9edf3;
   font: 13px/1.35 var(--f250-ui);
 }
 .f250-graphic-bar a { color: #c8dcf7; text-decoration: none; }
@@ -120,14 +120,14 @@ footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:10px;font-si
   cursor: pointer;
 }
 .f250-theme-switch button:last-child { border-right: 0; }
-.f250-theme-switch button[aria-pressed="true"] { background: #eef1f5; color: #0b111c; font-weight: 650; }
+.f250-theme-switch button[aria-pressed="true"] { background: #e9edf3; color: #0b1220; font-weight: 650; }
 /* Editorial typography and restrained geometry across the varied native diagrams. */
 h1, h2, h3 { font-family: var(--f250-display) !important; }
 :where(button, input, select, .card, .panel, .chip, .badge, .tag, .stat, .clock,
   .jump, .filter, .search, .toolbar, .detail, .route-card, .issuer-card,
   .queue-card, .world-place, .world-subject, .dimension, .supplement,
   .tab, .lens, .node, .mapwrap, .masthead) {
-  border-radius: 2px !important;
+  border-radius: 0 !important;
 }
 :where(.card, .panel, .stat, .clock, .route-card, .issuer-card, .queue-card,
   .mapwrap, .masthead) {

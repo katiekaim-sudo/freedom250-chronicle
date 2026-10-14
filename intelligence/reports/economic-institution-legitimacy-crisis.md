@@ -23,5 +23,4 @@ productive and correctable. Not every change will succeed or deserve support,
 but the larger transition is the future being built around us through the
 ordinary rules, systems, agreements and records that make power real.
 
-Freedom 250 reads this period in mundane astrology as a necessary season of
-restructuring: **as above, so below**.
+A separate Chronicle-owned mundane-astrology companion reads this thesis beside the sky; it supplies no factual evidence for the research.

@@ -23,3 +23,17 @@ The big relationships are still being repriced in public. China has a May framew
 **The rhythm.** This remains a **Scorpio** braid: deals, leverage, shared resources and what is hidden in the pipe. Its loudest older chapters are still the Scorpio Full Moon of May 1, 2026 (magnets, who holds the supply) and the Virgo New Moon of September 11, 2026 (the fine print of the China visit). Libra's New Moon of October 10, 2026 is the new peak of attention: a public hang-up that is also a price. Libra is the courtesy and the bargain; Scorpio is the refinery and the strike. The charts it lights up are **Defense** (Saturn opposite that chart's Mercury on October 11 — the briefing that has to name the contradiction) and the **United States** Venus (alliances, what the country is willing to value), still under Neptune and Saturn.
 
 *Written by Grok, 2026-10-10, from the braid's data and tonight's saves.*
+
+## October 15 ingress-period return
+
+The autumn China bargain is a dated successor to spring’s tariff object. September’s Qatar direction and October 9 Argentina support precede the October 21 seed and cannot be shifted into its later result. Accommodation, sovereign assertion and pooled exposure remain separate concerns; the terms of a public instrument are stronger evidence than a presumed secret mechanism.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-aries]([local-path-removed]), [2025-libra]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.
+
+## October 15 culture care and belonging return
+
+The June travel saves offer a cultural counterview of foreign encounter: visitors meeting a country through food, roadside shops, ordinary help and a sporting trip, alongside a publication’s account of suburban wealth. These are editorial accounts, not visitor-outcome measurements or a new diplomatic deal. They are context beside this braid, not new facts owned by its great-power instruments. The June 14 Washington seed’s fifth/sixth Mercury–Moon exchange is especially useful for hearing how public pleasure needs a working body. The earlier June 13 accounts precede that seed; June 20 remains under Aries before Cancer inherits the month.
+
+[Open the full cultural hearing]([local-path-removed]) and [the attributed social sources]([local-path-removed]). This dated return creates no current planetary strand, factual upgrade or Forecast Ledger call.

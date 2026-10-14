@@ -5,14 +5,14 @@
 
 **Question:** What is Genesis building, how do laboratories and researched companies contribute, and what has actually been demonstrated?
 
-**Answer:** Genesis connects national labs, scientific data, computing and AI tools through a DOE-led platform. The October science summit added project selections, proposed research tools and industry compute credits. The July project graphic is an earlier snapshot; the new selections and commitments do not prove delivered capacity or a fully working platform.
+**Answer:** Genesis connects national labs, scientific data, computing and AI tools through a DOE-led platform. The October science summit added project selections, proposed research tools, industry compute credits and a real graduate-fellowship funding opportunity. DOE also reports several lab-level systems already working, but the July project graphic is an earlier snapshot and the shared platform is not yet shown working end to end.
 
-**Evidence checked through:** 2026-10-09 (summit announcements and posted DOE selection list; earlier system and company profiles retain their own dates)
+**Evidence checked through:** 2026-10-13 (targeted official-source return after the summit; earlier system and company profiles retain their own dates)
 
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
 
-Maintained research guide · original system and company pass September 9, 2026; targeted summit check October 9, 2026.
+Maintained research guide · original system and company pass September 9, 2026; summit check October 9 and targeted return October 13, 2026.
 
 A national effort to connect scientific data, AI models, advanced computing and laboratories so researchers can tackle challenges in health, energy, industry, discovery and security.
 
@@ -35,6 +35,17 @@ The summit moved several **named projects and resources** forward. It did not tu
 The twelve Phase II selections include a Commonwealth Fusion Systems digital twin for SPARC, an RNA-structure project led by UC San Diego, MIT lattice-QCD work and an Argonne scientific-software project. These are named research aims, not completed fusion, biological, particle-physics or computing results.
 
 **Primary records:** [DOE Genesis project release, October 8](https://www.energy.gov/articles/energy-department-announces-new-genesis-mission-awards-advance-super-intelligence-science) · [DOE's eighteen-name selection list and its award-negotiation caveat](https://science.osti.gov/-/media/funding/pdf/Awards-Lists/2026/GM-RFA-Awards-List_09-30-26.pdf) · [DOE summit fact sheet, October 9](https://www.energy.gov/articles/fact-sheet-energy-department-ushering-golden-age-american-science) · [White House summit fact sheet, October 8](https://www.whitehouse.gov/fact-sheets/2026/10/fact-sheet-trump-administration-announces-the-most-ambitious-set-of-science-initiatives-this-century/) · [DOE robotics selection list](https://science.osti.gov/-/media/funding/pdf/Awards-Lists/2026/Awards-List-Spreadsheet-Template---Lab-3601-Robotics.pdf).
+
+## What the October 13 return added
+
+No later dated Genesis release was located on the reached official surfaces after October 9. The return did find details in the summit material that this answer had not yet captured:
+
+- **Graduate fellowship:** DOE opened `DE-FOA-0003673`, with $100 million expected across current and future years, about four to eight institutional awards and an initial target of roughly 100 fellows. The November 9 letter-of-intent and January 12, 2027 application clocks are real; no institution or fellow has been selected.
+- **Quantum user facility:** DOE now describes a planned National Quantum Supercomputing User Facility. No site, appropriation, procurement, award, construction or operating-access receipt was located.
+- **More working pieces:** DOE reports Osprey installed at eight accelerator facilities; Jefferson Lab's HAIDIS inverse solver; two Brookhaven biomolecules that capture terbium; bounded SLAC accelerator-AI speedups; and ORBIT water forecasts. These are component claims, not proof of one completed Genesis platform.
+- **More visible collaborators:** the standalone Genesis site displays OpenAI for Government and Google. It does not disclose an exact legal entity, agreement, assigned work, value or accepted result for either.
+
+Read the dated October 13 return for amounts, clocks, source links and evidence limits.
 
 ## Read the mission in its own words
 
@@ -190,9 +201,11 @@ Next evidence: Executed assistance agreement and project milestones.
 
 [DOE Genesis project selections, July 22](https://www.energy.gov/sites/default/files/2026-07/GM-RFA-Awards-List.pdf)
 
-## Companies we have researched
+## Companies and organizations we have researched
 
-The hub joins the prior NSSTS company work to named Genesis contributions. Entity names retained from those dossiers do not independently establish a new legal signatory. Roster capability descriptions remain attributed membership statements.
+The October 13 company return expands the hub to **63 researched organizations**: all **46 private-sector entries on the current public consortium roster**, five additional pledge-only companies and the existing named project collaborators. It also keeps the **eleven October commitments** in their own layer, with the announced value, form and evidence limit. Read the company return for the full roster and pledge table.
+
+The table below preserves the earlier companies with deeper named project or dossier roles. Entity names retained from those dossiers do not independently establish a new legal signatory. Roster capability descriptions remain attributed membership statements. Membership is not a pledge; a pledge is not an award; an award is not delivery; and delivery is not accepted use.
 
 | Organization | Contribution and evidence state |
 |---|---|
@@ -241,12 +254,14 @@ Federal commitments, agency components, private in-kind contributions, selected 
 - Follow system delivery and acceptance, including Lux and Argonne’s new systems.
 - Identify executed awards and results beyond original project selection.
 
-September 24 brings a fellowship-pilot consultation, not fellowship awards. Model releases, system commissioning, and execution of selected awards require their own later evidence.
+The September consultation has now become an open fellowship funding opportunity, not fellowship awards. Model releases, system commissioning, fellowship selections and execution of selected project awards require their own later evidence.
 
-[DOE Genesis graduate fellowship pilot town hall invitation](https://content.govdelivery.com/accounts/USDOES4/bulletins/427f5d5) · [DOE launches Genesis Open Models Initiative](https://www.energy.gov/undersecretaryforscience/articles/us-department-energy-launches-genesis-open-models-initiative)
+[DOE Genesis graduate fellowship funding opportunity](https://science.osti.gov/-/media/grants/pdf/foas/2027/DE-FOA-0003673.pdf) · [DOE launches Genesis Open Models Initiative](https://www.energy.gov/undersecretaryforscience/articles/us-department-energy-launches-genesis-open-models-initiative)
 
 ## Existing research and custody
 
+- October 13 company return — Current 46-member private-sector roster, eleven October commitments and company-specific evidence limits.
+- October 13 targeted return — Fellowship funding, quantum user-facility plan, additional working lab components and post-summit no-new-release check.
 - September 9 research update — The targeted refresh that opened this hub investigation.
 - [Genesis identity and provenance](../sources/genesis-identity-provenance-pqc-bridge-2026-08-11-0051de7f91ee.html) — Earlier platform anatomy, with later corrections clearly dated.
 - [Company dossiers](../sources/nssts-priority-company-dossiers-2026-08-18-0ca28473b611.html) — Our deeper research on AWS, Oracle, GE Vernova, Palantir and other companies.

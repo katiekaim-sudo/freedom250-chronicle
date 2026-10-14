@@ -47,3 +47,7 @@ a valid result.
 ## Open record
 
 No findings exist yet. They will be written from dated evidence after it enters the Chronicle, not drafted in advance as empty boxes waiting to be filled.
+
+## October 15 ingress-period return
+
+[The October 15 interim return]([local-path-removed]) now supplies source-bounded early observations beside the unchanged August baseline. The opening “no findings yet” paragraph above records the August state. The six-month comparison remains open through Aries 2027. Washington September 22 and UTC September 23 name the same ingress; October 26 and later gates are not disposed early.

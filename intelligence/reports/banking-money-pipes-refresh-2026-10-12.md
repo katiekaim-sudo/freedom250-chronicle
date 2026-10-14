@@ -27,6 +27,12 @@ Securitize has the stronger launch receipt, while DTC has the stronger public
 record, reconciliation and correction constitution. The private Settlement
 Language Lab turns those distinctions into a source-bearing three-route,
 eight-term teaching surface.
+
+The October 18 Bank Control Collision
+adds the live fair-access, American Express and Bank of America control story.
+It is a separate five-view graphic under this owner, not a new root research
+object. It keeps the nine-bank policy review, two enforcement packages,
+penalty-credit math, remediation clocks and digital-money dependency separate.
 <!-- plain-english-entry:end -->
 
 ## What this builds on
@@ -167,3 +173,4 @@ No public route reached by the cutoff established:
 8. Primary-object ledger.
 9. Source-coverage ledger.
 10. Package manifest.
+11. Bank Control Collision.

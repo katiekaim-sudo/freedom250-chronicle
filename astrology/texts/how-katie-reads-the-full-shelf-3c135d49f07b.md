@@ -6,6 +6,7 @@ updated: 2026-08-30
 purpose: Grok boot for chart work. The Aries 2026 test showed the engine and old notes skip layers she already built. This file names the shelf. It does not replace Reading the Charts.
 reads_with:
   - 00 - Index/Reading the Charts — START HERE.md
+  - 00 - Index/Mundane Reading Production Plan — Full Method.md
   - 00 - Index/Mundane Astrology Reference — Katie's Method.xlsx
   - _AI-Context/BOOT — Chart Reading.md
   - 99 - Templates/Chart reading authoring template.md
@@ -14,6 +15,12 @@ reads_with:
 # How Katie reads — the full shelf
 
 The on-ramp is still [[Reading the Charts — START HERE]]. The **atomic lookups** live in `00 - Index/Mundane Astrology Reference — Katie's Method.xlsx`. That workbook was built on purpose. A reading that only uses `mundane_dossier.py` output is a thin slice.
+
+The binding production order is [[Mundane Reading Production Plan — Full
+Method]]. Every available layer must receive a visible dependency hearing.
+“Calculated” is not “heard,” and “screened” is not enough unless the hearing
+records why the layer does not change the whole. The public prose remains a
+reading of the organism, not a list of everything computed.
 
 Pass 1 is the chart. Pass 2 is the record. Pass 3 is the rhyme. Do not mix them.
 

@@ -1,0 +1,314 @@
+# Twelve Reserve Bank foundation register
+
+**Wave:** 7 of the Federal Reserve structure research campaign
+**Evidence cutoff:** September 20, 2026
+**Status:** complete for the public and catalogued archival layer; exact record-copy work remains identified below
+**Question:** What legally created each Federal Reserve Bank, what current instruments govern it, and which founding, ownership and amendment records remain outside the ordinary public web surface?
+
+## Bottom line
+
+The twelve Federal Reserve Banks are not twelve agencies informally “licensed” by the Board, and they are not subsidiaries created by a private holding company. Congress supplied the corporate form and powers in the Federal Reserve Act. In 1914, five designated subscribing banks in each district executed an **organization certificate**; filing that certificate with the Comptroller of the Currency made the named Reserve Bank a **body corporate**. A separate Comptroller authorization allowed it to **commence business**. The Bank's board later adopted bylaws for the exercise of those statutory powers.
+
+Those are four different instruments:
+
+1. **Federal Reserve Act:** congressional charter and source of powers, limits, supervision and termination routes.
+2. **Organization certificate:** district-specific constitutive filing that perfected the particular corporation.
+3. **Authority-to-commence-business certificate:** operating authorization after organization requirements were satisfied.
+4. **Bylaws:** amendable internal governance rules subordinate to the Act, Board rules and other applicable law.
+
+The public record proves the common statutory formation chain, the continued legal identity of all twelve corporations, the current posted bylaws of all twelve, their twenty-four current branches, the director-selection system and the accounting existence of Bank and Branch premises. It does **not** yet supply a single public docket containing certified copies of all twelve original organization certificates, all twelve commence-business certificates, every historical bylaw amendment, every deed/title chain, every corporate-seal specimen, or every director and officer selection packet.
+
+That gap is a custody problem, not evidence that the corporations were never formed. The Act ordered the Comptroller to “file, record and carefully preserve” the organization certificates; NARA Record Group 82 describes the 1913–14 organization, director-election and member-stock files; and FRASER carries a direct NARA scan of the St. Louis organization certificate.
+
+## Evidence-state key
+
+| Code | Meaning |
+|---|---|
+| **D** | Direct public primary object recovered. |
+| **A** | Archive or official series describes the object, but the exact Bank-specific item was not recovered in the public-web pass. |
+| **P** | Public evidence proves part of the chain; the complete underlying record set remains missing. |
+| **NR** | Not recovered from the public or catalogued archival surfaces reviewed. This is not a claim of nonexistence. |
+
+## The legal formation chain
+
+| Gate | Actor and instrument | Legal effect | What would prove the exact Bank-specific event |
+|---|---|---|---|
+| **1. National design** | Congress enacts the Federal Reserve Act; Reserve Bank Organization Committee fixes districts and Federal Reserve cities. | Supplies the federal corporate architecture and district plan. | Act, Organization Committee decision, April 2, 1914 district/city certificate and maps. |
+| **2. Subscription** | Eligible banks subscribe to the district Bank's capital stock. | Satisfies the minimum-capital precondition for organization. | Member applications, resolutions, allotment ledger and capital computation. |
+| **3. Incorporation filing** | Organization Committee designates five subscribing banks; they execute the §4 organization certificate under seal; it is acknowledged and transmitted to the Comptroller. | **Filing makes the named Reserve Bank a body corporate.** | Certified filed organization certificate, acknowledgment, transmittal and Comptroller filing/record entry. |
+| **4. Initial governance** | Member banks elect Class A and B directors; the federal Board appoints Class C directors; directors organize the Bank. | Installs the mixed public/member-bank board required by Congress. | Nomination circulars, voter authorization, ballots, count, result notice, Class C appointment and first-board minutes. |
+| **5. Operating authorization** | Comptroller authorizes the Bank to commence business. | Ends the restriction to organization-preliminary activity; it is not the incorporation filing. | Comptroller's authority-to-commence-business certificate and effective notice. |
+| **6. Internal constitution** | Bank board adopts bylaws not inconsistent with law. | Regulates meetings, committees, officers, delegations, seal/stock evidence and other internal business. | Adopted bylaws, board resolution and amendment history. |
+| **7. Continuing legal life** | Congress amended the succession clause in 1927. | Replaced the original twenty-year life with succession until congressional dissolution or franchise forfeiture for violation of law. | 1927 Act, codified 12 U.S.C. §341 and any later termination legislation or forfeiture proceeding. |
+
+Primary rule: [Federal Reserve Act §4](https://www.federalreserve.gov/aboutthefed/section4.htm). The official 1915 Federal Reserve Bulletin reports that the twelve Banks filed organization certificates during May 18–20, 1914 and received authority to commence business on November 14, 1914. [Federal Reserve Bulletin, December 1915](https://fraser.stlouisfed.org/files/docs/publications/FRB/1910s/frb_121915.pdf).
+
+## The twelve-corporation register
+
+The original organization certificate column asks whether the exact district-specific constitutive instrument was recovered in this public pass. It does not question the historical fact of filing. “Election surface” means a current public governance or election route exists; it does not mean every ballot and historical packet is posted.
+
+| District / corporation | Current posted bylaws | Current Branches | Original organization certificate | Director-election / appointment surface | Premises and title evidence |
+|---|---|---|---|---|---|
+| **1 — Federal Reserve Bank of Boston** | **D — approved November 30, 2023.** [Bylaws](https://www.bostonfed.org/about-the-boston-fed/board-of-directors/bylaws-of-the-federal-reserve-bank-of-boston.aspx) | None | **A/P.** Common 1914 filing history and RG 82 series located; exact certified instrument not recovered. | **P.** Current board/bylaw/minute surfaces exist; complete annual election packets and Class C appointment files not assembled. | **P.** Bank premises are publicly accounted for; exact deeds, title reports and encumbrances not assembled. |
+| **2 — Federal Reserve Bank of New York** | **D — approved December 18, 2014**, the current-posted instrument found. [Bylaws](https://www.newyorkfed.org/aboutthefed/ny_bylaws_141218.html) | None; Buffalo is not one of the current twenty-four statutory Branches. | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **P.** Current board and governance records exist; complete election and federal-appointment packets not assembled. | **P.** Premises are on FRBNY's books; exact title/deed chain not assembled. |
+| **3 — Federal Reserve Bank of Philadelphia** | **D — March 2026.** [Bylaws](https://www.philadelphiafed.org/-/media/frbp/assets/institutional/about-us/governance/frbp-bylaws.pdf) | None | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **D/P.** Current governance hub and election circulars are public; the full historical sequence is not. [Governance](https://www.philadelphiafed.org/about-us/governance-and-transparency) | **P.** Audited premises balance exists; exact title/deed chain not assembled. |
+| **4 — Federal Reserve Bank of Cleveland** | **D — 2024.** [Bylaws](https://www.clevelandfed.org/-/media/project/clevelandfedtenant/clevelandfedsite/about-us/corporate-governance/cleveland-bylaws-2024.pdf) | Cincinnati; Pittsburgh | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **P.** Current governance, director and minutes surfaces exist; complete selection files are not posted. | **P.** Bank and Branch premises are accounted for; exact title/deed chains not assembled. |
+| **5 — Federal Reserve Bank of Richmond** | **D — amended July 23, 2026.** [Bylaws](https://www.richmondfed.org/-/media/richmondfedorg/about_us/our_governance/bylaws/pdf/bylaws_rich.pdf) | Baltimore; Charlotte | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **P.** Current governance, committee and minute surfaces exist; complete election/appointment files are not posted. | **P.** Bank and Branch premises are accounted for; exact title/deed chains not assembled. |
+| **6 — Federal Reserve Bank of Atlanta** | **D — December 12, 2024.** [Bylaws](https://www.atlantafed.org/who-we-are/people/boards-of-directors/atlanta-by-laws) | Birmingham; Jacksonville; Miami; Nashville; New Orleans | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **P.** Current directors and governance records are public; complete selection files are not. | **P.** Bank and Branch premises are accounted for; exact title/deed chains not assembled. |
+| **7 — Federal Reserve Bank of Chicago** | **D — amended January 18, 2024.** [Bylaws](https://www.chicagofed.org/-/media/others/utilities/about-us/board-bylaws-pdf.pdf) | Detroit | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **P.** Current board/bylaw/minute surfaces exist; complete selection files are not posted. | **P.** Bank and Branch premises are accounted for; exact title/deed chains not assembled. |
+| **8 — Federal Reserve Bank of St. Louis** | **D — amended effective July 16, 2026.** [Bylaws](https://www.stlouisfed.org/about-us/leadership-governance/bank-bylaws) | Little Rock; Louisville; Memphis | **D.** NARA/FRASER scan includes a Comptroller certification and the subscriber/share schedule. [Organization certificate](https://fraser.stlouisfed.org/files/docs/historical/nara/nara_rg082_e01_b0660_district08.pdf) | **P.** Current governance surfaces exist and RG 82 describes the founding election records; a full modern/historical packet set is not assembled. | **P.** Bank and Branch premises are accounted for; exact title/deed chains not assembled. |
+| **9 — Federal Reserve Bank of Minneapolis** | **D — amended December 4, 2025.** [Bylaws](https://www.minneapolisfed.org/about-us/board-of-directors/governance-information/bylaws-of-the-federal-reserve-bank-of-minneapolis) | Helena | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **D/P.** Nomination, balloting and result circulars are available on the election page; a complete historical set is not. [Director elections](https://www.minneapolisfed.org/about-us/board-of-directors/director-elections) | **P.** Bank and Branch premises are accounted for; exact title/deed chains not assembled. |
+| **10 — Federal Reserve Bank of Kansas City** | **D — December 12, 2024.** [Head-office bylaws](https://www.kansascityfed.org/documents/10641/Head_Office_Bylaws_Final.pdf) | Denver; Oklahoma City; Omaha. **Branch bylaws dated January 16, 2025.** [Branch bylaws](https://www.kansascityfed.org/documents/10665/Branch_Bylaws_Final_2025.pdf) | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **P.** Current directors, bylaws and released minutes exist; complete election/appointment files are not posted. | **P.** Bank and Branch premises are accounted for; exact title/deed chains not assembled. |
+| **11 — Federal Reserve Bank of Dallas** | **D — adopted October 29, 1914; last amended October 31, 2024.** [Bylaws](https://www.dallasfed.org/-/media/Documents/fed/bod/bylawsdal.pdf?la=en) | El Paso; Houston; San Antonio | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **P.** Current board/governance surface exists; complete selection files are not posted. | **P.** Bank and Branch premises are accounted for; exact title/deed chains not assembled. |
+| **12 — Federal Reserve Bank of San Francisco** | **D — amended and approved March 7, 2024.** [Bylaws](https://www.frbsf.org/wp-content/uploads/FRBSF_Bylaws_Amended_and-Approved_03072024.pdf) | Los Angeles; Portland; Salt Lake City; Seattle | **A/P.** Common filing history and archival series located; exact certified instrument not recovered. | **P.** Current board/governance surface exists; complete selection files are not posted. | **P.** Bank and Branch premises are accounted for; exact title/deed chains not assembled. |
+
+The Board currently describes the twelve Banks and **twenty-four Branches** as the System's operating arms. [The Fed Explained](https://www.federalreserve.gov/aboutthefed/fedexplained/who-we-are.htm). Boston, New York and Philadelphia have no current Branch. An office, operations center or leased facility is not automatically a §3 Branch.
+
+## What the organization certificate does—and does not do
+
+Federal Reserve Act §4 specifies the certificate's required contents:
+
+- corporate name;
+- district territory;
+- Federal Reserve city and state;
+- capital and shares;
+- five executing banks;
+- all initial subscribing banks and their subscribed shares; and
+- the statement that the subscribers seek the Act's advantages.
+
+Upon filing, the named Reserve Bank becomes a body corporate with capacity to use a seal, make contracts, sue and be sued, appoint officers, adopt bylaws and exercise granted and incidental banking powers. The corporation therefore arises under federal statute through a district-specific filed instrument.
+
+The certificate does **not**:
+
+- delegate Congress's constitutional monetary powers by private contract;
+- make the subscribers ordinary residual owners of federal monetary policy;
+- itself authorize every later power, product, branch, facility or committee;
+- merge the twelve Banks into one corporation; or
+- replace the later authority-to-commence-business gate.
+
+### Organization certificate versus commence-business certificate
+
+The distinction is exact:
+
+| Instrument | Trigger | Legal consequence |
+|---|---|---|
+| **Organization certificate** | Executed by five designated subscribing banks and filed with the Comptroller. | Creates the particular Reserve Bank as a body corporate. |
+| **Authority to commence business** | Issued by the Comptroller after organization requirements are met. | Allows the already organized corporation to transact business beyond necessarily preliminary activity. |
+
+The New York Bank's anniversary publication reproduces an authority-to-commence-business certificate. That is important evidence of the operating gate, but it should not be mislabeled as the §4 organization certificate. [FRBNY 50th-anniversary history](https://fraser.stlouisfed.org/files/docs/publications/frbny/frbny_50anniversary.pdf).
+
+## Bylaws are governance instruments, not the federal charter
+
+Section 4 authorizes each Bank's board to adopt bylaws “not inconsistent with law.” Across the twelve current-posted instruments, the recurring functions are:
+
+- board and executive-committee meetings, quorum, voting and minutes;
+- committee creation and delegation;
+- officer appointment, duties, succession, suspension and dismissal;
+- general auditor independence and reporting;
+- discount-rate action and credit delegations;
+- custody and use of the corporate seal;
+- evidence of member-bank stock holdings;
+- Branch oversight where applicable; and
+- amendment procedures.
+
+Bylaws can change the Bank's internal operating constitution within the statutory envelope. They cannot repeal the Federal Reserve Act, displace Board authority vested by Congress, alter the FOMC's statutory composition, convert a Branch into a thirteenth Bank, or immunize the Bank from congressional dissolution or lawful forfeiture.
+
+### Who changes the bylaws?
+
+The recurring rule is board action, commonly by majority vote of the full board after notice, with some instruments permitting unanimous action without ordinary notice. Exact notice, review and voting language varies by Bank. The current Kansas City instrument, for example, requires review at least every three years and permits amendment by a majority of the entire board after ten days' availability, or unanimously without notice when all directors are present.
+
+That is an internal amendment right. Congress can amend the superior statute. The Board can exercise powers Congress assigned to it, including supervision, director appointments, compensation approvals, certain officer approvals/removals and Branch authority. A Bank board cannot use a bylaw amendment to outrank either source.
+
+## Directors: election is real, but it is not ordinary shareholder control
+
+Each head-office board has nine directors:
+
+- **Class A:** elected by member banks to represent the member banks;
+- **Class B:** elected by member banks to represent the public; and
+- **Class C:** appointed by the Board of Governors to represent the public.
+
+Member banks are divided into three size groups. Each group participates in filling one Class A and one Class B seat under the statutory nomination and preferential-ballot system. The Board appoints all three Class C directors and designates the chair and deputy chair. Federal law and Board policy impose occupation and affiliation restrictions. [Federal Reserve Act §4](https://www.federalreserve.gov/aboutthefed/section4.htm); [Board director policy](https://www.federalreserve.gov/aboutthefed/directors/policy-governing-directors.htm).
+
+This creates a mixed selection system—not a member-bank power to select every director, and not a presidential power to select the local board. It also means the record set is split:
+
+| Selection object | Likely record owner |
+|---|---|
+| Member-bank grouping, nominations, circulars, ballots, tally and result | Reserve Bank; founding records also in Organization Committee/NARA series |
+| Member-bank board resolution authorizing the voting officer | Voting member bank, with certification sent to Reserve Bank |
+| Class C appointment; chair/deputy-chair designation | Board of Governors |
+| Eligibility/conflict review | Board and/or Reserve Bank depending on the seat and review |
+| Branch-director appointment | Head-office Bank board and Board of Governors in the statutory split |
+
+The NARA guide for Record Group 82 expressly describes records concerning Bank organization, director elections and member-bank stock applications for 1913–14. [NARA RG 82](https://www.archives.gov/research/guide-fed-records/groups/082.html).
+
+## Officers: selection, approval and the missing record layer
+
+The president and first vice president are chosen by the eligible Class B and Class C directors, subject to Board approval, for five-year terms. Class A directors and certain bank-affiliated Class B directors are excluded from that choice. Other officers are appointed under §4, the Bank's bylaws and board delegations; the general auditor normally has a distinct board/audit-committee line and a Board-concurrence safeguard.
+
+Public sources can show the selected person, Board approval, term, public search description, board minutes and financial disclosures. They usually do not show the complete candidate pool, interview notes, scorecards, conflicts analysis, vote-by-vote record, Board staff recommendation or conditions attached to approval. Those are the exact records needed to test whether a formal local selection was substantively controlled elsewhere.
+
+The complete actor-by-actor chain is in [Federal Reserve Appointment, Removal and Succession Chain](../sources/federal-reserve-appointment-removal-and-succession-chain-2026-09--c657d00873e0.html).
+
+## Member-bank stock is a statutory membership instrument, not ordinary equity
+
+The initial subscriber/share schedule was an express part of each organization certificate. Current capital, however, changes as member banks enter, leave or alter their own capital and surplus under Federal Reserve Act §§5–6 and Regulation I.
+
+The stock is therefore unusual:
+
+- subscription is tied to membership;
+- the stock is not freely transferable;
+- the statutory dividend and redemption rules replace ordinary market return and sale rights;
+- Class A/B election rights are bounded by the Act's grouping and eligibility rules;
+- the shareholder does not own the Board, FOMC, dollar unit, SOMA or national payment policy; and
+- liquidation distributions are controlled by federal statute rather than a normal residual-equity bargain.
+
+Many modern bylaws refer to an **advice of holding** rather than a negotiable-looking paper certificate. Kansas City's current bylaws do so expressly. The current stock ledger is therefore not the same object as the 1914 subscriber schedule.
+
+## Corporate seal and documentary execution
+
+Section 4 gives every Bank power to adopt and use a corporate seal. Current bylaws commonly place custody with the secretary and authorize the secretary to affix it when required. That proves a controlled execution device; it does not prove that every contract, payment, officer act or electronic record requires sealing.
+
+The public-web pass did not assemble:
+
+- a current certified specimen for all twelve seals;
+- every historical seal change;
+- resolutions delegating seal custody and electronic-signature authority; or
+- a register of sealed instruments.
+
+The St. Louis centennial archive displays both its organization certificate and a historical Bank seal, making that Bank the clearest public example. [St. Louis centennial timeline](https://fraser.stlouisfed.org/timeline/st-louis-fed-centennial).
+
+## Premises, title and the accounting boundary
+
+Reserve Bank and Branch premises appear on the relevant Bank's books and in the combined Reserve Bank financial statements. The Board's annual report separately tabulates acquisition cost and net book value for Bank and Branch premises. [2024 Board annual report, table G.13](https://www.federalreserve.gov/publications/files/2024-annual-report.pdf).
+
+That accounting evidence supports four propositions:
+
+1. Reserve Bank premises are not the Board's Washington campus merely because the Board supervises Bank budgets or capital projects.
+2. A Branch building is accounted for through its head-office Bank; the Branch is not a separate corporation.
+3. Combining the twelve Bank statements does not merge legal title or erase entity-level books.
+4. Net book value is not a land-record title opinion.
+
+To prove legal ownership of a specific parcel, the evidence chain must move beyond the financial statement to the deed, recorder index, title report, easement/encumbrance record, lease or sale instrument, board approval, Board approval where required, and the general-ledger/fixed-asset entry. That title-level chain was not assembled here.
+
+The detailed purse and real-estate boundary is in [Federal Reserve Self-Funding and Real-Estate Control Map](../sources/federal-reserve-self-funding-and-real-estate-control-map-088ff1d8502b.html).
+
+## Branches are subordinate operating units, not extra Reserve Banks
+
+Federal Reserve Act §3 allows the Board to permit or require a Reserve Bank to establish Branches. Branch boards contain both head-office-Bank and Board appointees and operate subject to Board rules and head-office control. [Federal Reserve Act §3](https://www.federalreserve.gov/aboutthefed/section3.htm).
+
+The Kansas City Branch bylaws make the hierarchy unusually explicit:
+
+- Branch operations are under head-office-board direction and control;
+- the head-office board can change territory and operating scope;
+- a Branch may be closed only with prior Board approval;
+- four of seven Branch directors are appointed by the head-office board and three by the Board; and
+- the head-office board, not each Branch board, amends the Branch bylaws.
+
+A Branch can have directors, bylaws, premises, an executive and meaningful regional functions without becoming a separate §4 corporation.
+
+## Amendment and termination control
+
+| Object to change | Ordinary change-maker | Hard limit |
+|---|---|---|
+| Federal Reserve Act / Reserve Bank powers | Congress and President through legislation, subject to the Constitution | Neither Bank bylaws nor Board regulation can repeal the statute. |
+| District boundaries / Reserve city / Branch structure | Actors and procedures Congress specified, principally the Board for current administration | Must remain within statutory authority and applicable procedure. |
+| Bank bylaws | Bank board under the bylaw amendment article | Must remain consistent with federal law and superior Board authority. |
+| Head-office directors | Member-bank elections for A/B; Board appointments for C | Statutory class, eligibility, term and vacancy rules. |
+| President / first vice president | Eligible B/C directors select; Board approves | Five-year statutory structure and Board removal/approval powers. |
+| Member stock ledger | Changes with statutory membership and member capital/surplus | Nontransferability, subscription, dividend and cancellation rules. |
+| Corporate existence | Congress may dissolve by Act; franchise may be forfeited for violation of law | No automatic sunset after the 1927 amendment; a bylaw vote cannot dissolve the statutory corporation. |
+
+For the separate violation-enforcement route and why §248(h) is not ordinary business continuity, read [Federal Reserve Crisis Command and Continuity Map](../sources/federal-reserve-crisis-command-and-continuity-map-2026-09-20-ad8bdeef1cd5.html).
+
+## Exact archival objects still needed
+
+### Priority 1 — the constitutive docket
+
+For each of the eleven Banks other than the directly recovered St. Louis example:
+
+1. certified copy of the original organization certificate and acknowledgment;
+2. transmittal to and filing/record entry by the Comptroller;
+3. exact filing date;
+4. original subscriber/share schedule and any corrected pages;
+5. authority-to-commence-business certificate;
+6. first board organization minutes;
+7. first adopted bylaws and resolution; and
+8. original seal adoption/specimen.
+
+**Custody route:** NARA RG 82 Reserve Bank Organization Committee files; OCC/Comptroller historical records; Board central subject files and minutes; Bank archives; FRASER digitization index. The statutory custody clause points first to the Comptroller record, while the Organization Committee working files moved into the federal archival series.
+
+### Priority 2 — the amendment chain
+
+For each Bank:
+
+1. complete bylaw version history;
+2. board resolutions adopting each amendment;
+3. any required or requested Board review/approval;
+4. reserved-matter and delegated-authority schedules;
+5. current seal and signature-control resolution;
+6. current stock-ledger control procedure; and
+7. Branch establishment, territory-change, relocation and closure approvals.
+
+### Priority 3 — property and ownership proof
+
+For each material owned or leased site:
+
+1. deed or lease and local recording reference;
+2. title-holding entity and any nominee/trustee;
+3. liens, easements, encumbrances and sale restrictions;
+4. acquisition/disposition board action and Board approval;
+5. capital-project authorization and final cost; and
+6. tie-out to the Bank's fixed-asset ledger and audited premises balance.
+
+### Priority 4 — democratic and managerial selection proof
+
+For each election or appointment cycle:
+
+1. member-bank group roster;
+2. nomination and ballot circulars;
+3. eligible-voter certification;
+4. vote count and result declaration;
+5. Class C appointment/designation instrument;
+6. president/FVP search mandate, candidate pool, recusals, vote and Board approval; and
+7. Branch-director and officer appointment resolutions.
+
+## What would falsify or materially revise this register?
+
+The register should be revised if a primary object shows any of the following:
+
+- a Bank-specific organization certificate was never filed, was superseded, or names a materially different surviving corporate object;
+- Congress or a court dissolved, merged or forfeited a Reserve Bank franchise;
+- a current Branch is separately incorporated rather than operated as part of its head-office Bank;
+- the publicly posted bylaw is not the operative version;
+- title to a reported Reserve Bank premise is held by a different legal entity without the disclosed lease/accounting relationship;
+- a member-bank stock instrument is transferable or supplies ordinary residual equity rights contrary to the statutory scheme; or
+- an unpublished superior instrument reserves bylaw, officer, property or seal authority to a different actor.
+
+## Structural ruling
+
+The twelve-Bank foundation is a **federal statutory incorporation system with district-specific corporate filings and mixed public/member-bank governance**. Its unusual appearance comes from joining:
+
+- congressional charter and termination power;
+- Comptroller filing and operating authorization;
+- separate Reserve Bank corporations and books;
+- member-bank capital subscriptions and limited director elections;
+- federal appointment and approval powers;
+- local bylaws and officers;
+- Board supervision; and
+- national FOMC and shared-service coordination.
+
+No one layer tells the whole ownership or control story. The founding subscribers did not receive U.S. monetary sovereignty; the Board did not become the sole corporate owner; combined accounting did not erase the twelve corporations; and current bylaws did not become the federal charter. Control must be proved object by object: statute, certificate, appointment, vote, delegation, book, title, contract and remedy.
+
+## Connected library
+
+- Federal Reserve Structure Research Campaign
+- [Federal Reserve Congressional Change History and Dollar Definition](../sources/federal-reserve-congressional-change-history-and-dollar-definitio-dfba6d5fd486.html)
+- [Federal Reserve Legal-Status and Records-Routing Matrix](../sources/federal-reserve-legal-status-and-records-routing-matrix-2026-09-2-5b5c13c62e6a.html)
+- [Federal Reserve Appointment, Removal and Succession Chain](../sources/federal-reserve-appointment-removal-and-succession-chain-2026-09--c657d00873e0.html)
+- [Federal Reserve Committee and Shared-Operations Constitution](../sources/federal-reserve-committee-and-shared-operations-constitution-refr-9d9e4336cfde.html)
+- [Federal Reserve Purse, Audit and Stopping-Power Map](../sources/federal-reserve-purse-audit-and-stopping-power-map-2026-09-20-3b7f8c63f5dc.html)
+- [Federal Reserve Crisis Command and Continuity Map](../sources/federal-reserve-crisis-command-and-continuity-map-2026-09-20-ad8bdeef1cd5.html)
+- [Twelve Reserve Banks Whole-Site Recertification](../sources/twelve-reserve-banks-whole-site-recertification-2026-09-08-85ce18d82e99.html)
+- Public-Only Board/Twelve-Bank Governance Layer Sweep
+
+No Chronicle file, watch, Return Ledger entry or app state was changed by this wave.

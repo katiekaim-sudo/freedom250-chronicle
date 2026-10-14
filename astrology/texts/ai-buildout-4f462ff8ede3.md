@@ -21,16 +21,30 @@ status: active
 
 ## The braid so far
 
-The AI future is being built by labs, data centers, power systems, archives, agencies and vendors. Federal plans increasingly define access, records, mission use and infrastructure, but they do not merge agency decision rights or prove that announced capacity is operating.
+The AI future is still being built by labs, data centers, power systems, archives, agencies and vendors. Federal plans define access, records, mission use and infrastructure; they do not merge agency decision rights or prove that announced capacity is operating. This week's saves add a public demo, not a delivery: Tesla's Roadster looping off a ramp on SpaceX-style thrusters, a claimed 0–60 in 0.81 seconds, a G7 plan to simulate AI-powered attacks on financial systems, a Google quantum headline, and OpenAI's statement that an employee hid a recording device and that the FBI made an arrest. Those are posts and a staged night. They are not certified flight, a scoped drill, a paper, or a completed trial.
 
-In this reading, **Uranus–Neptune** is the lead strand: technological awakening in active conversation with image, ideal and simulation. Constructively, shared compute and records can make science and public service more capable. In shadow, a persuasive model of reality becomes easier to operate than reality itself. **Uranus–Pluto** is the companion strand asking whether the network disperses control or gives its owners a deeper switch.
+**The rhythm.** Libra season is still **crown → record → contest**. The Roadster is a crown: the machine leaves the road. The G7 drill is a promised record. Neither is the contest over who may fly, who may test the pipes, or who owns the switch. The loudest lunar chapter right now is the **Libra New Moon** of October 10, whose constructive Mars–Saturn trine is hardware that actually lands, inside a Mars–Pluto opposition that has not gone away. **Pluto stationing direct in Aquarius** on October 16 is this braid's sky this week: the underworld of the network facing the room. The Defense and Executive Office charts remain the ones the braid watches; tonight's spectacle does not light them by itself.
 
-**Saturn–Neptune** remains background: the institutional premise is still being seeded, not completed in this chapter. **Jupiter–Pluto** stays unresolved. Capital and scale are enormous themes, but the authored charts supply no direct major dialogue and the factual record has not settled whether buildout produces broad capacity or concentrated exposure.
+In the inherited Libra-ingress reading, **Uranus–Neptune** was the lead strand (image and simulation) and **Uranus–Pluto** the companion (whether the network disperses control or deepens the switch). That window is now historical. The facts of this week still fit the question. A flying car is Uranus. A simulated attack on finance is Pluto on the pipes. Saturn is the procedure that has not been written yet.
 
-The evidence test is physical and institutional: named power, land, compute, contract, acceptance, recurring agency use, authoritative AI records, correction and failure. Attention peaks are narrative context only.
+The evidence test is unchanged: named power, land, compute, contract, acceptance, recurring agency use, authoritative records, correction and failure. Attention peaks are narrative context only.
 
-*Authored for the 2026 Libra ingress and September 26 Aries Full Moon. Review after October 10. Archetypal reading only.*
+*Written by Grok, 2026-10-16, from the braid's data and tonight's saves. Archetypal reading only.*
 
 ## October 11 review return
 
 The September 26 authored overlap was reviewed on October 11 and now displays as **historical**. Its original snapshot remains frozen in `../Braid Overlap Ledger.jsonl`; the exact strand or comparison dispositions are appended in `../Braid Review Ledger.jsonl`. [The Libra New Moon working return](../Review%20Hearings/2026-10-11%20%E2%80%94%20Libra%20New%20Moon%20Braid%20Working%20Return.md) explains the whole-chart shift and the distinct factual cutoffs. This file has no new October relationship window: the old frontmatter is preserved as the historical authorship, and a new window will need separate dated strands and a review date.
+
+## October 15 ingress-period return
+
+Genesis supplies a same-mission history from November 2025 commission to inventories, commitments and October selections/components. That is substantive work with an unfinished integrated platform. The September Full’s coalition/creative range and October’s revised public accord can be heard beside it without converting credits or award negotiations into delivered science.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-libra]([local-path-removed]), [2026-libra]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.
+
+## October 15 culture care and belonging return
+
+The March-to-April saved voices add three experiences to the technology story: anxiety about a young person’s route into skilled work, admiration of an engineered object’s beauty, and a global hobbyist’s hope for friendship through translation. These are attributed commentary, not verified labor-market outcomes, launch dates or a platform rollout. The career post precedes the March 20 Aries ingress; the later friendship essay belongs in the April Libra Full’s month. Venus final in the counterpart seventh gives the encounter a different want from a regulator’s compact: a relation people would enjoy having. The work/hidden-life polarity and larger ninth-house principle still complicate it. This return gives creativity, companionship and apprenticeship room beside command, capital and supplier power.
+
+[Open the full cultural hearing]([local-path-removed]) and [the attributed social sources]([local-path-removed]). This dated return creates no current planetary strand, factual upgrade or Forecast Ledger call.

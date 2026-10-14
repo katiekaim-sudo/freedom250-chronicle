@@ -639,10 +639,10 @@ No document request is authorized or transmitted by this artifact.
 ## 15. Controlling parent research
 
 - [Federal Reserve Financial Constitution — vault source document](../sources/federal-reserve-financial-constitution-source-document-203118d0ec33.html)
-- Federal Reserve System entity, transaction and software map
+- [Federal Reserve System entity, transaction and software map](../sources/federal-reserve-system-entity-transaction-and-software-map-96576802c3e4.html)
 - Phase V shared services and reporting perimeters
 - Phase VI National IT financial/asset bridge
-- Richmond National IT governance/control RACI
+- [Richmond National IT governance/control RACI](../sources/richmond-national-it-governance-and-control-raci-2026-08-15-c1fc308bb01b.html)
 
 ## 16. Completion gate
 

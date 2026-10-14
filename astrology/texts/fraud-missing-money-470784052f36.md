@@ -22,3 +22,17 @@ The government is chasing money that went to the wrong place through payment che
 **The rhythm.** One chapter still dominates: the **Cancer Full Moon of January 3, 2026** (67 saves), the peak of the Minnesota fraud story. Cancer is the archetype of care itself — child care, food, housing, the benefit programs. Libra season is the scales: who was authorized, what was written down, whether the expected return is ever collected. Saturn square Treasury's Mars tonight is that scale landing on the payment pipe. The charts that light up remain the FBI's, DOJ's, and now Treasury's — the watcher, the prosecutor, and the last barrier before the money leaves.
 
 *Written by Grok, 2026-10-06, from the braid's data and tonight's saves.*
+
+## October 15 ingress-period return
+
+Screening, error, suspected billing, blocked payment, adjudicated fraud and recovered cash retain separate meanings. Treasury’s September 30 operation claim advances the older payment-control object without turning annual screening totals into same-day savings. OBBB fiscal-federalism clocks and the new spending-reporting duty still require implementation and outcome evidence.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-aries]([local-path-removed]), [2025-cancer]([local-path-removed]), [2025-capricorn]([local-path-removed]), [2026-cancer]([local-path-removed]), [2026-libra]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.
+
+## October 15 culture care and belonging return
+
+The December student-aid posts turn enforcement into a Christmas story with gifts, antagonists and an invited taxpayer public. That rhetorical act is visible even when the claimed amount or recovery has not been established by the save. It adds a question to the fraud braid: whose care and pleasure are being restored in the telling, and who is placed outside the circle receiving the gift? The December 11/12 posts belong to the Gemini Full’s service/hidden-experience month; they do not move into the later Sagittarius seed or Capricorn solstice. Ordinary care and a moralized public account can coexist without their facts becoming interchangeable.
+
+[Open the full cultural hearing]([local-path-removed]) and [the attributed social sources]([local-path-removed]). This dated return creates no current planetary strand, factual upgrade or Forecast Ledger call.

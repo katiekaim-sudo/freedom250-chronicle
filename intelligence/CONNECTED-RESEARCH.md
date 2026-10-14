@@ -42,6 +42,7 @@ Dates on the clock: past due: Did DTC's participant tokenization service open on
 - [SEC advisers' tokenization advice versus actual SEC action](library/sec-investor-advisory-committee.html): The SEC's Investor Advisory Committee told the SEC in March 2026 not to grant a blanket tokenization exemption; the SEC's September 17 order carried several similar limits but never cites the committee.
 - [Apps can now sell regulated derivatives without registering](library/cftc-passive-software-no-action-2026-09-17.html): On September 17, 2026 CFTC staff said any qualifying 'passive' software app (crypto or not) can market regulated derivatives and earn fees without registering as a broker, while the trades stay inside registered firms.
 - [Coinbase gets its own derivatives clearinghouse](library/coinbase-clearing-dco-registration-2026-09-28.html): On September 28, 2026 the CFTC registered Coinbase Clearing LLC to clear fully collateralized futures, options on futures and swaps, but no first product, member or trade has yet been established.
+- [SEC approves Cboe options on company performance figures](library/sec-cboe-binary-kpi-options-2026-10-14.html): The SEC approved Cboe options that pay $1 or $0 on reported company performance figures; clearing approval and first trading remain separate.
 
 ### Who's live: companies, banks & networks
 
@@ -60,6 +61,7 @@ Dates on the clock: past due: Did DTC's participant tokenization service open on
 - [When code or an AI agent moves money, who is on the hook?](library/programmable-and-agentic-payments-2026-09-22.html): A smart-contract payment is still several separate legal and accounting events; four accounting treatments of USDC are in use today.
 - [What makes a record official on a blockchain](library/official-record-authority-blockchain.html): A record is not official because it sits on a blockchain; it is official because a law or regulator gives it a specific job, a named institution is responsible for it, and something legally follows from it.
 - [How real-time shared records could change auditing](library/atomic-settlement-continuous-assurance.html): Blockchain, smart contracts and AI can make books update nearly in real time, but none of them is an audit, and today's SEC reporting and audit opinions are still tied to fixed periods.
+- [Accounting built from shared business events](library/transaction-native-accounting.html): Accounting is moving from piecing together scattered records after the fact to building the books from shared business events. Licenses, accounting labels, audit reports and corrections are also being used to decide who may act, invest or rely on the result.
 - Dated record: [Tokenization and clearing: dated filings](records/tokenization-clearing.html) — 61 entries ([plain text](records/tokenization-clearing.md))
 
 ### Crypto rules and payment systems in 22 jurisdictions
@@ -80,10 +82,12 @@ Dates on the clock: past due: Did DTC's participant tokenization service open on
 - [No single emergency switch turns crypto into federal money](library/emergency-monetary-policy.html)
 - [Instant payment can't replace the legal steps in running power plants](library/energy-atomic-settlement-iran.html)
 - [The Fed is many legal bodies, and its building cost doubled](library/fed-clearing-treasury.html)
+- [The FSB ties Basel, market infrastructure and digital finance together](library/fsb-financial-system-transition-2009-2026.html)
 - [No proof yet that tokens fund real industrial projects](library/industrial-project-finance-digital-rails.html)
 - [What the government is building around crypto and the dollar](library/institutional-signals-thesis-test-2025-2026.html)
 - [The dollar system is being reworked, not replaced](library/international-monetary-transition.html)
 - [Stablecoins showed a parallel price, not an escape route](library/japan-korea-stablecoin-fx-overlap-2026.html)
+- [The OCC opened a federal trust-bank lane for crypto, but most applicants are still outside the door](library/occ-crypto-charters-national-trust-banks-2026-10-13.html)
 - [Not a new currency: a fight over the points where money changes form](library/overall-monetary-play.html)
 - [SEC may count a CPA license toward accredited-investor status](library/sec-accredited-investor-credential-notices-2026-09-30.html)
 - [University money is moving to per-payment checks, not blockchain](library/university-funding-programmable-compliance.html)
@@ -97,7 +101,6 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 
 ### The Fed & Treasury
 
-- [When the Fed is not the expert owner](library/federal-reserve-noncore-initiative-governance-2026.html): The Fed OIG turned one construction failure into an agency-wide rule: for major work outside its core expertise, the Board needs imported delivery skill, independent challenge and controls that survive into the next project.
 - [The Fed is many legal bodies, and its building cost doubled](library/fed-clearing-treasury.html): The Federal Reserve has no single public-or-private status: the Board, the FOMC and twelve separately chartered Reserve Banks each have their own legal footing, records and bosses, and only Congress can rewrite the setup. Separately, the Fed's inspector general found on Sept. 29 that the Board badly managed its headquarters project, whose construction budget rose from $921 million to $2.018 billion.
 - [What changed in banking and the money pipes after the Site build](library/banking-money-pipes-refresh-2026-10-12.html): ACH settles banks at the Fed; Securitize trades a broker entitlement for USDC; DTC moves an incumbent participant entitlement without cash. Securitize has the stronger launch receipt, DTC the stronger correction constitution, and the Lab shows why capture, clearing, settlement, finality, availability, redemption, correction and loss are not one event.
 - [No single emergency switch turns crypto into federal money](library/emergency-monetary-policy.html): Federal emergency powers can speed up, prioritize, fund or restrict a private payment or crypto service, but only one that is already licensed, contracted and connected. An emergency is usually the last step, not the first.
@@ -111,7 +114,9 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 - [Rating firms paid $49M+ for lost messages; the clean-up is still private](library/sec-credit-rating-recordkeeping-orders-2024-2026.html): In September 2024 six credit-rating firms admitted they failed to keep required work messages and paid more than $49 million. Four had to hire outside consultants to fix it, but those reports are private, so the public cannot confirm the fix is done.
 - [The ownership-reporting rule now reaches only foreign companies](library/december-2024-beneficial-ownership-reporting-perimeter.html): The December 2024 court order paused the federal ownership-reporting rule, but it was Treasury and FinCEN, not the courts, that shrank it. Since August 14, 2026 the final rule covers mainly foreign companies registered to do business in the U.S., and U.S. owners are exempt.
 - [Bank examiners now need a clearer reason to act](library/occ-fdic-supervisory-intervention-2026-08-27.html): The OCC and FDIC tied enforcement to material financial harm; the Fed did not join.
+- [The OCC opened a federal trust-bank lane for crypto, but most applicants are still outside the door](library/occ-crypto-charters-national-trust-banks-2026-10-13.html): Five plainly crypto-facing national trust banks are active; Circle's bank opened July 24 as a custody bank, while most of the wider crypto cohort is still conditionally approved or pending and none gets Fed access merely from an OCC charter.
 - [Who actually owns and controls the companies in the October restart](library/company-subsidiary-control-refresh-2026-10-12.html): American Express was reached through three companies and two regulators; Evernorth closed without Ripple becoming its parent; Securitize's stock product runs through regulated subsidiaries; and Isabella, Vistra and the SPR deals still have later legal-entity receipts.
+- [The FSB ties Basel, market infrastructure and digital finance together](library/fsb-financial-system-transition-2009-2026.html): The FSB joins bank capital, failure, clearing, non-bank risk and digital finance; it is now carrying the same accountability into cloud, cyber, AI and shared providers, while implementation and real stress performance remain uneven.
 - Dated record: [Fed accounts and bank access: dated filings](records/fed-account-access.html) — 21 entries ([plain text](records/fed-account-access.md))
 - Dated record: [Who's in line for a bank charter or Fed account](records/charter-queue.html) — 59 entries ([plain text](records/charter-queue.md))
 
@@ -139,6 +144,7 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 - [Who really holds power in digital finance](library/authority-through-the-adapter.html)
 - [Coinbase gets its own derivatives clearinghouse](library/coinbase-clearing-dco-registration-2026-09-28.html)
 - [What changed in the federal government, October 3–12](library/federal-government-weekly-delta-2026-10-12.html)
+- [When the Fed is not the expert owner](library/federal-reserve-noncore-initiative-governance-2026.html)
 - [Federal advisory committees and other public decision forums](library/government-hidden-control-surfaces-2026.html)
 - [What the government is building around crypto and the dollar](library/institutional-signals-thesis-test-2025-2026.html)
 - [The dollar system is being reworked, not replaced](library/international-monetary-transition.html)
@@ -148,6 +154,7 @@ The old money system is being audited and rewired. The Fed, Treasury and clearin
 - [What stablecoins reveal, and what they still hide](library/payment-transparency-hidden-constitution.html)
 - [The dollar stays public while private firms build more payment networks](library/route-anchor-inventory.html)
 - [SWIFT's blockchain ledger is moving real money](library/swift-shared-ledger.html)
+- [Accounting built from shared business events](library/transaction-native-accounting.html)
 - [The tax law stays put; who collects it and handles the data is changing](library/treasury-irs.html)
 - [How British money actually works, layer by layer](library/uk-monetary-constitution-2026.html)
 
@@ -159,7 +166,7 @@ New technology and science, and who's building it. AI and national science missi
 
 ### AI, federal science programs & research security
 
-- [Genesis: a federal AI science platform, mostly still being built](library/genesis-mission.html): DOE-led AI science platform; the October summit named new project selections and compute credits, while awards, access and delivered capability need separate proof.
+- [Genesis: a federal AI science platform, mostly still being built](library/genesis-mission.html): Genesis now has 46 public private-sector roster members and eleven companies promising $2.4 billion in tools, credits and support, while allocation, project awards and accepted operation remain later tests.
 - [How Washington plans to turn science strategy into funded work](library/federal-science-operating-system.html): Kyoto endorsed the science blueprint; the October U.S. summit named projects and tools whose funding and operating steps still have to be proved.
 - [Federally funded science faces separate identity, security, data and payment checks](library/scientific-trust-stack.html): Federally funded science is routed through many separate checks on identity, disclosure, ownership, access, security, data and investment, each run by its own authority. No single credential, signature, list or score gives blanket permission or proves the science is true.
 - Dated record: [Federal AI, computing, biotech, vehicle and space filings](records/tech-ai-science.html) — 36 entries ([plain text](records/tech-ai-science.md))
@@ -205,10 +212,12 @@ The federal government is rebuilding how it runs. City, county, state and federa
 - [Emptying an agency is not the same as abolishing it](library/federal-workforce-and-agency-control.html): These maps separate five things that often get blurred: reclassifying career jobs, removing top officials, whether an agency still legally exists, moving or stopping its work, and a proposed replacement. An agency can lose its staff and work while the law that created it still stands.
 - [One map to browse all saved federal research](library/federal-government-movement-atlas.html): This is a navigation hub, not a finding: it puts Katie's saved government research, a map of federal bodies, congressional committees, confirmed changes and known gaps in one place, while keeping each source's evidence separate.
 - [What changed in the federal government, October 3–12](library/federal-government-weekly-delta-2026-10-12.html): From October 3 through 12, Treasury put a government-wide payment check into operation, bank regulators reached three separate American Express companies, GAO found two unlawful impoundments and the President opened a formal Federal Reserve removal inquiry. Large energy and sanctions actions still have later payment, delivery and effect gates.
+- [Saved government website checks and source captures](library/government-source-check-captures.html): Dated website captures, normalized text and candidate packets preserve what the source monitor actually saw. Candidate changes and suggested review routes are unreviewed source leads unless a completed research package separately adopts them. A changed listing is not a legal or operating change.
 
 ### Federal advisory committees & public decision forums
 
 - [Federal advisory committees and other public decision forums](library/government-hidden-control-surfaces-2026.html): Our agency map is strong, but we have not consistently tracked the recurring public rooms where officials hear requests, coordinate methods, choose projects and turn advice into later action.
+- [What the government is building around crypto and the dollar](library/institutional-signals-thesis-test-2025-2026.html): The United States is not building one crypto system. Separate rules decide who may issue coins, hold reserves, reach the Federal Reserve, use assets as collateral, record ownership and absorb losses. The dollar and central-bank settlement remain at the center.
 
 ### State and local power
 
@@ -250,6 +259,7 @@ The federal government is rebuilding how it runs. City, county, state and federa
 - [Ballroom building goes on while the court fight stays open](library/white-house-ballroom-lawfare-2025-2026.html): The main court case asks whether the White House needed Congress's express approval to build its new ballroom. An appeals court backed a halt, but Chief Justice Roberts paused that halt on August 21, so building may continue with no final ruling on the merits.
 - [A working transcript of Trump's July 24 WHCA dinner remarks](library/trump-whca-dinner-remarks-2026-07-24.html): This is a source package, not an analysis. It confirms the July 24, 2026 event, points to the official White House replay and supplies a timestamped working transcript, but exact quotes must be checked against the video first.
 - [Every congressional committee mapped as its own body, not as a branch of an agency](library/congressional-committee-control-plane.html): All 226 current committees and subcommittees of the 119th Congress are mapped as their own nodes. Each gets only as much detail as its public record supports, and nothing is filled in to make the chart look even.
+- [Executive orders: full texts and saved research notes](library/executive-order-source-library.html): Saved executive-order records keep signature, publication and later implementation as separate dates. Full legal text and official source links remain available. A signed order does not establish funding, implementation or measured effect.
 
 ### Also in this room
 
@@ -264,6 +274,7 @@ The federal government is rebuilding how it runs. City, county, state and federa
 - [The military gained border-land arrest power, not control of civilian courts](library/national-defense-areas-military-arrest-authority-2025-2026.html)
 - [A new religious-affairs office reporting directly to the Secretary](library/office-of-religious-affairs.html)
 - [SEC may count a CPA license toward accredited-investor status](library/sec-accredited-investor-credential-notices-2026-09-30.html)
+- [Accounting built from shared business events](library/transaction-native-accounting.html)
 
 ## Energy, Data Centers & Big Projects
 
@@ -434,6 +445,7 @@ How other countries, currencies and global groups are shifting. The dollar's rol
 ### Also in this room
 
 - [What changed in the federal government, October 3–12](library/federal-government-weekly-delta-2026-10-12.html)
+- [The FSB ties Basel, market infrastructure and digital finance together](library/fsb-financial-system-transition-2009-2026.html)
 - [Oil and gas tightness is selective, and many deals are not yet flows](library/global-oil-gas-movements.html)
 - [Crypto around the world: many licenses, no proven cross-border use](library/international-crypto-map.html)
 - [Not a new currency: a fight over the points where money changes form](library/overall-monetary-play.html)
@@ -464,6 +476,7 @@ What official records and investigations have brought to light. COVID origins an
 - [Epstein interviews turned answers into records that can be checked](library/epstein-interview-statement-accountability.html): In the Leon Black and Doug Band interviews released July 17, House Oversight pinned witnesses to specific denials, "I don't recall" answers and refusals that can later be checked against documents. The packet does not prove a lie, perjury or a cover-up motive.
 - [The House Oversight hearing and transcript library](library/house-oversight-corpus.html): This is the source library behind the fraud-control and watchdog research: House Oversight meetings and transcripts through July 22, 2026, sorted by how reliable each record is.
 - [A catalog of saved hearing memos, testimony and bills, from late 2024 to mid-2026](library/congressional-hearing-source-library.html): Katie's vault keeps a wide shelf of congressional hearing documents beyond the House Oversight set. The study keeps each source type's limits attached: a committee memo, prepared testimony and a bill text are different kinds of evidence, not transcripts of what was said.
+- [Saved official filings and hearing records](library/official-records-source-library.html): A source library of saved agency filings, congressional hearings and other official records. Each record keeps its date, issuer, source type and limits. These are records, not proof that a proposal became law or an announcement became delivery.
 
 ### How official releases are built
 
@@ -480,7 +493,6 @@ What official records and investigations have brought to light. COVID origins an
 
 Dated federal sweeps and similar records that feed the rooms.
 
-- [Accounting built from shared business events](library/transaction-native-accounting.html)
 - [What changed across the federal government, July 14–18](library/government-wide-audit-july-2026.html)
 - [Which federal source pages were actually usable in August 2026](library/government-wide-recertification-august-2026.html)
 - [What federal agency libraries added on August 22](library/federal-government-entity-library-harvest-2026-08-22.html)
@@ -495,6 +507,7 @@ Dated federal sweeps and similar records that feed the rooms.
 - [What changed in the federal government, September 4–11](library/federal-government-weekly-delta-2026-09-11.html)
 - [What changed in the federal government, September 12–16](library/federal-government-weekly-delta-2026-09-16.html)
 - [Federal technology and money systems changed in separate pieces, September 17–20](library/federal-technology-and-monetary-infrastructure-delta-2026-09-20.html)
+- [The North Star thesis: an operational refounding is happening inch by inch](library/economic-institution-legitimacy-crisis.html)
 - [What changed on federal websites, September 16–22](library/federal-government-deep-website-review-2026-09-22.html)
 - [What changed in the federal government, September 21–25](library/federal-government-weekly-delta-2026-09-25.html)
 - [What actually changed at the federal fiscal-year close](library/federal-government-fiscal-year-close-delta-2026-09-30.html)

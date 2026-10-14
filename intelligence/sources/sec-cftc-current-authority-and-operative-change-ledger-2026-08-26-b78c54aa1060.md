@@ -17,11 +17,44 @@ where located. CLARITY is used only to mark the present statutory boundary, not
 as the engine of the analysis. Banking, payment, AML, tax, state commercial law
 and bankruptcy are included only where they delimit SEC or CFTC power.
 
-**Cutoff:** 2026-10-05 EDT. Legal authority, instrument state and operation are
-kept separate.
+**Cutoff:** 2026-10-14 EDT for the bounded Cboe KPI-option addendum below;
+2026-10-05 for the prior whole-ledger review. Legal authority, instrument state
+and operation are kept separate.
 
 **Mutation boundary:** Workbench research only. No live-vault event, canonical
 watch, plotline, app state or legislative forecast was changed.
+
+## October 14 bounded addendum — Cboe company-KPI options
+
+On October 13 the SEC approved Cboe Exchange's amended rule to list binary
+options on named issuer-reported company performance indicators and designated
+the contracts standardized options under Rule 9b-1. The SEC's jurisdiction
+finding is specific to Cboe's put/call structure, listed-stock issuer KPIs,
+securities exchange, and securities-options framework. It expressly leaves
+open CFTC jurisdiction for differently structured contracts on the **same
+KPIs**. This is an operative exchange-rule approval, not a general
+prediction-market jurisdiction ruling or a change to ordinary spot-crypto law.
+
+First use remains behind **CCUS's separate Section 17A clearing-agency
+registration and related filings**. CCUS, already a CFTC DCO, also requests
+Rule 15c3-3 customer-margin reserve treatment comparable to OCC's. Its
+October 1 application amendment changed governance, access and Regulation SCI
+relief requests. No SEC clearing registration order, 4-930 exemption order,
+first Cboe series or executed trade was located at the October 14 cutoff.
+The company SEC filing will supply the KPI settlement value; missing fields,
+late reporting and restatements have separate consequences. See the full
+[Cboe binary KPI-option reading](../sources/sec-cboe-binary-kpi-options-approval-2026-10-14-18b31b68527a.html)
+and [SEC approval order](https://www.sec.gov/files/rules/sro/cboe/2026/34-106659.pdf).
+
+This is also a clearing-market design test. OCC received SEC approval in May
+to adapt its model for binary options, while Cboe plans initial clearing at
+its affiliate CCUS. PTG argues a permanent exchange-owned clearer could split
+fungible liquidity and margin offsets; that is a commenter's claim, not an
+observed effect or Commission finding. MEMX's paired yes/no event-contract
+filing and NYSE American's KPI-options filing remain separate proposals. Cboe
+has also mentioned possible future tokenized binary securities options; the
+October order does not authorize them. The deep reading keeps these branches
+and their source links separate.
 
 ## October 5 addendum — Regulation CTX and CAM ANPRM
 

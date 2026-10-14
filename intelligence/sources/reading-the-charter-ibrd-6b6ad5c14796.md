@@ -4,6 +4,20 @@
 
 Source text: `2012 - Articles of Agreement (verbatim).md` in this folder — all eleven Articles (I–XI) and both Schedules (A, B), current text as amended effective June 27, 2012, fetched per-article from worldbank.org. Every claim below cites the exact Article/Section.
 
+## What Article I says the Bank is for — October 14, 2026 addition
+
+The current [IBRD Article I](https://www.worldbank.org/en/about/articles-of-agreement/ibrd-articles-of-agreement/article-I) gives the Bank five purposes. This is the front door for the legal machinery below:
+
+1. Help reconstruct and develop members by investing capital for productive purposes, including war recovery, peacetime reconversion and productive facilities and resources in less-developed countries.
+2. Promote private foreign investment through guarantees and loan participation; supplement it with Bank finance for productive purposes when private capital is unavailable on reasonable terms.
+3. Promote long-range balanced trade and balance-of-payments equilibrium **through investment in productive resources**, raising productivity, living standards and labor conditions.
+4. Arrange its loans and guarantees with other international lending so useful and urgent projects, large and small, receive priority.
+5. Weigh the effect of international investment on members' business conditions and, for the immediate postwar period, support the transition to peacetime economies.
+
+Article I directs the Bank to be guided by these purposes in **all** decisions. It does not list a 45% climate-finance target, a nuclear ban, an automatic income cutoff for graduation or the later phrase “end poverty on a livable planet.” Those are later policy and strategy questions, to be tested against the Article I purposes and the Article III lending conditions. Article III §4(vii) makes specific reconstruction or development projects the ordinary loan purpose, with an express **special-circumstances** exception; the Bank's [legal account of development-policy lending](https://documents.worldbank.org/curated/en/713951468349810804/pdf/326020REVISED00egalAspects2011Final.pdf) identifies that exception as the route for non-earmarked policy lending. Article IV §10 requires impartial economic considerations and bars political-character judgments. A U.S. shareholder request is therefore an agenda or vote, while a Bank policy or country-financing decision needs its own competent act.
+
+The comparison with the IMF is sharp: both founding instruments mention trade and external balances, but IBRD acts principally through long-run productive investment and guarantees, while the IMF's Article I and IV–V routes center monetary cooperation, exchange surveillance and temporary balance-of-payments finance. See the Workbench's October 14 charter-purpose comparison for the separate IDA, IFC, MIGA and ICSID purposes. This addition does not revise the original charter capture or the later policy cutoffs below.
+
 ## 1. Immunities & liability shields
 
 Art. VII is the whole game, and it stacks in layers:

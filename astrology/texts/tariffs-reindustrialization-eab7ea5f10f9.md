@@ -21,3 +21,11 @@ Tariffs, trade rules and investment pledges are trying to bring production home.
 **The rhythm.** Both big moments arrive on eclipse chapters and Aries energy. The reciprocal tariffs landed in the **partial solar eclipse in Aries** chapter (March 29, 2025), Aries being the first strike and the declaration. The loudest chapter is the **total solar eclipse in Leo** (August 12, 2026), the sovereign's stage. The ruling came on the Saturn–Neptune conjunction at 0° Aries, the old ideal dissolving through the law. The chart it keeps lighting up is the **Supreme Court's**: Pluto squaring the Court's Venus (Venus is trade itself) and Neptune opposing its Sun and Ascendant.
 
 *Written by Claude, 2026-10-03, from the braid's data. Grok refreshes one braid a night.*
+
+## October 15 ingress-period return
+
+One tariff instrument now carries a visible history across charts: April 2025 assertion and revisions, November China terms, February 2026 IEEPA limit and a different §122 collection basis. Later Canadian scope and procurement directions have separate effective and implementing clocks. Changed tariffs and funding announcements do not yet establish domestic capacity or measured gains.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-aries]([local-path-removed]), [2025-cancer]([local-path-removed]), [2025-libra]([local-path-removed]), [2025-capricorn]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.

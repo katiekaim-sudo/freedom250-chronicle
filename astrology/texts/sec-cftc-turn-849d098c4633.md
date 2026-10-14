@@ -5,7 +5,7 @@ question: "How are the market regulators rewriting crypto from inside their own 
 subplots: ["The SEC & CFTC regulatory turn"]
 plotlines: []
 keywords: ["\\bSEC\\b", "\\bCFTC\\b", "Securities and Exchange"]
-research_ids: ["sec-crypto-custody-proposal-2026-10-01", "cftc-regulation-ctx-cam-anprm-2026-10-05", "cftc-passive-software-no-action-2026-09-17", "coinbase-clearing-dco-registration-2026-09-28", "sec-investor-advisory-committee", "sec-accredited-investor-credential-notices-2026-09-30", "sec-tokenized-nms-stock-innovation-exemption", "sec-transfer-agent-modernization", "sec-24-hour-trading-roundtable-2026-09-17"]
+research_ids: ["sec-crypto-custody-proposal-2026-10-01", "cftc-regulation-ctx-cam-anprm-2026-10-05", "cftc-passive-software-no-action-2026-09-17", "coinbase-clearing-dco-registration-2026-09-28", "sec-investor-advisory-committee", "sec-accredited-investor-credential-notices-2026-09-30", "sec-tokenized-nms-stock-innovation-exemption", "sec-transfer-agent-modernization", "sec-24-hour-trading-roundtable-2026-09-17", "sec-cboe-binary-kpi-options-2026-10-14"]
 charts: ["SEC", "CFTC"]
 relationship_frame: "ingress-2026-libra"
 relationship_chapter: "lun-2026-10-10-ne"
@@ -52,3 +52,11 @@ The October New Moon's Libra lights gather in the eleventh while retrograde Venu
 **Constructive:** the public process specifies a lawful, bounded venue where access, clearing, financing, custody, records, customer-property priority and appeal can be inspected before first use. **Shadow:** a federal label and private market integration become usable faster than the customer can see who owes the asset or bears a failure. **Ordinary rival:** this is only a familiar DCM regulatory adaptation for one leveraged retail niche, while ordinary spot and securities markets stay on other rails. No outcome follows merely from the astrology.
 
 At the October 26 Full Moon, read a new whole chart and inspect the CFTC publication and docket state, exact transaction class, designation/registration path, clearing, customer property and first-use receipts. If only the short announcement remains, the factual gate is still preregulatory. [October money pilot](<../Review%20Hearings/2026-10-11%20%E2%80%94%20Money%20New%20Pipes%20October%20Pilot.md>); [Braid Constitution](<../Braid%20Constitution%20%E2%80%94%20Rope%2C%20Not%20DNA.md>); `99 - Templates/planetary_relationship_history.json` for computed pair states. This is an archetypal reading, not a literal Forecast Ledger call.
+
+## October 15 ingress-period return
+
+April 2026 cross-margin permission, later operation, staff relief and temporary registration are distinct regulatory acts. October’s matter-specific SEC quorum rule changes decision continuity under stated conditions rather than transferring all Commission power to one person. The current October overlap and its October 26 review gate retain their existing authority.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2026-aries]([local-path-removed]), [2026-libra]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.

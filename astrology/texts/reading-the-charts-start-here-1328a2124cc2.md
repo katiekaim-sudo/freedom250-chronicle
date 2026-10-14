@@ -8,6 +8,7 @@ created: 2026-06-18
 updated: 2026-09-24
 reads_with:
   - 00 - Index/Mundane Astrology Reference — Katie's Method.xlsx
+  - 00 - Index/Mundane Reading Production Plan — Full Method.md
   - _Grok/How Katie reads — the full shelf.md
   - 00 - Index/Mundane Astrology — Master Reference.md
   - 99 - Templates/Chart reading authoring template.md
@@ -18,6 +19,12 @@ reads_with:
 > **If you are about to do anything interpretive with astrology in this vault, read this first.** It is the on-ramp: what this astrology *is*, what its pieces mean, how it works inside the Chronicle, how to read a chart — and only then, the four ways people get it wrong. The **atomic drawer** is `Mundane Astrology Reference — Katie's Method.xlsx` (tab map: `_Grok/How Katie reads — the full shelf.md`). The **dictionary** is [[Mundane Astrology — Master Reference]]. The dossier/engine print **facts**, not slogans. This is the *understanding*.
 >
 > *Restructured 2026-07-12 at Katie's instruction: it used to open with a list of prohibitions. You cannot learn a craft from its fence. Learn the field first.*
+
+> **Production workflow:** after learning the method here, use [[Mundane
+> Reading Production Plan — Full Method]]. It binds every ingress reading to a
+> complete method shelf, dependency hearing, whole-to-part-to-whole public
+> reading, completeness audit and plain-English review. Governance determines
+> authority, not whether Cancer, Libra or Capricorn receives a reading.
 
 ---
 

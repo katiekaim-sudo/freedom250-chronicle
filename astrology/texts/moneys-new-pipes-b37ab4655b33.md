@@ -45,3 +45,9 @@ A named operating route that joins permission, authoritative record, cash,
 finality, reconciliation, failure and remedy at repeated scale would move this
 story beyond promising fragments. A stress event with public recovery evidence
 would be stronger still.
+
+## October 15 ingress-period return
+
+The dated return now follows DTC from relief to limited production, the Circle charter from conditional approval to opening, and NSCC from extended operation into a rollover and still-open loss/remedy questions. Use the period notes to compare those acts with each whole chart, then return to the member braids for their independent records. This room has no combined success verdict.
+
+[Open the seven-wave record return]([local-path-removed]) retains the roots, lunar sequence, version boundaries, misses, counterevidence and exact sources. The existing room membership and replay authorities remain unchanged.

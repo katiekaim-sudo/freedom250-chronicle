@@ -5,7 +5,7 @@ question: "How does the dollar's new digital form get written into law, and who 
 subplots: ["Stablecoin law (GENIUS & Clarity Acts)"]
 plotlines: []
 keywords: ["GENIUS", "CLARITY", "stablecoin"]
-research_ids: ["genius-act-implementation-2026", "clarity-act-senate-draft-2026", "genius-stablecoin-trust-crosswalk", "congressional-monetary-infrastructure", "card-network-stablecoins-2026", "private-monetary-stack", "payment-transparency-hidden-constitution", "route-anchor-inventory", "programmable-and-agentic-payments-2026-09-22"]
+research_ids: ["genius-act-implementation-2026", "clarity-act-senate-draft-2026", "genius-stablecoin-trust-crosswalk", "congressional-monetary-infrastructure", "card-network-stablecoins-2026", "private-monetary-stack", "occ-crypto-charters-national-trust-banks-2026-10-13", "payment-transparency-hidden-constitution", "route-anchor-inventory", "programmable-and-agentic-payments-2026-09-22"]
 executive_orders: ["14178"]
 charts: ["Dept of the Treasury", "The Federal Reserve System", "Congress", "OCC"]
 relationship_frame: "ingress-2026-libra"
@@ -41,3 +41,11 @@ The evidence test is not another announcement. It is final and effective rules, 
 ## October 11 review return
 
 The September 26 authored overlap was reviewed on October 11 and now displays as **historical**. Its original snapshot remains frozen in `../Braid Overlap Ledger.jsonl`; the exact strand or comparison dispositions are appended in `../Braid Review Ledger.jsonl`. [The Libra New Moon working return](../Review%20Hearings/2026-10-11%20%E2%80%94%20Libra%20New%20Moon%20Braid%20Working%20Return.md) explains the whole-chart shift and the distinct factual cutoffs. This file has no new October relationship window: the old frontmatter is preserved as the historical authorship, and a new window will need separate dated strands and a review date.
+
+## October 15 ingress-period return
+
+July 2025 enactment is followed by distinct agency proposals, comment clocks, issuer launches and charter gates. Cancer 2026 does not become a completed stablecoin regime because implementation work is extensive. Circle’s July bank opening is a narrow custody event; it does not establish that the bank issues USDC, that reserves migrated or that every issuer has Fed access.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-cancer]([local-path-removed]), [2025-libra]([local-path-removed]), [2025-capricorn]([local-path-removed]), [2026-aries]([local-path-removed]), [2026-cancer]([local-path-removed]), [2026-libra]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.

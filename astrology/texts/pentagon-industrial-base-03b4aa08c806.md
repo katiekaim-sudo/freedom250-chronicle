@@ -43,3 +43,11 @@ The governing Libra ingress still asks for terms across a table. The October New
 **Constructive:** an Army unit receives and accepts a named configuration, the government can inspect interfaces and data rights, a cyber authority names the operating boundary, and vendors can be changed without losing the mission record. **Shadow:** “ready to scale” becomes a durable public image while configuration, supplier dependency, repair and legal responsibility remain hidden behind the stack. **Ordinary rival:** tailored formations and incomplete public technical documents may be normal acquisition practice; capability could improve unevenly without a new command constitution.
 
 At the October 26 return, inspect the new Full Moon as its own whole chart and look for an I Corps receipt, acceptance test, configuration, rights, authorization and recurring use. Another study or vendor announcement does not settle those gates. No literal fielding-by-date call is made. [October pilot](<../Review%20Hearings/2026-10-11%20%E2%80%94%20Capacity%20October%20Pilot.md>); [Braid Constitution](<../Braid%20Constitution%20%E2%80%94%20Rope%2C%20Not%20DNA.md>); `99 - Templates/planetary_relationship_history.json` for the computed pair states.
+
+## October 15 ingress-period return
+
+The library now places contract and production steps beside independent readiness evidence and actual operating-use receipts. GAO’s in-period publication describes accumulated Navy losses over an older decade, not failures born on its release date. Award, delivery, fielding, readiness and remedy remain different rungs. The current October 26 review is still pending.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-aries]([local-path-removed]), [2025-cancer]([local-path-removed]), [2026-cancer]([local-path-removed]), [2026-libra]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.

@@ -1,6 +1,6 @@
 # Accounting Transition and Open Public Ledger — 2026-07-30
 
-Baseline evidence cutoff: 2026-07-30; bounded extensions through 2026-10-05
+Baseline evidence cutoff: 2026-07-30; bounded extensions through 2026-10-14
 Method: primary-source, entity-based, claim-audited  
 Status: active research package; the Chronicle synthesis controls the maintained shared answer
 
@@ -166,6 +166,22 @@ governed JSON before writing the output.
 The end-to-end CPA/tokenized-private-company specimen is an architecture and
 proof test, not a claim that one named stack already operates.
 
+## FSB and Japan shared-granular-evidence return — October 14, 2026
+
+Read `FSB_JAPAN_SHARED_GRANULAR_EVIDENCE_RETURN_2026-10-14.md` for the bounded
+operating example joining the FSB's October 14 policy-process review to Japan's
+quarterly common regulatory-loan platform and its first published analytical
+uses. The return shows that shared granular evidence can support distinct
+legitimate views when identity, population, transformations, validation and
+correction are controlled. Conditional replacement of prior submissions is a
+real workflow change while the FSA and BOJ retain separate legal powers.
+
+The extension does not claim blockchain, real-time journals, a common general
+ledger, GAAP or tax deployment, perfect borrower/loan classification or
+platform-specific burden savings. It also keeps the FSB Plenary as decision
+maker and treats the modernisation principles as a consultation, not a final
+standard.
+
 ## Read order
 
 1. `04 - Synthesis/Cross-cuts/2026-07-30 - The Accounting Transition — Shared Events, Executable Rules, and the Judgment Layer.md`
@@ -248,6 +264,10 @@ proof test, not a claim that one named stack already operates.
    transaction spine and assurance evidence; it is not a scheduled watch.
 24. `SOURCE_LEDGER_2026-07-30.md`
    — official source spine.
+25. `FSB_JAPAN_SHARED_GRANULAR_EVIDENCE_RETURN_2026-10-14.md`
+   — October 14 evidence return on FSB monitorability-by-design, Japan's
+   quarterly common loan-data workflow, two valid views of one bounded exposure
+   population, derived loan classification and the exact negative boundaries.
 
 ## Boundaries
 

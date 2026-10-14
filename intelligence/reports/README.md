@@ -6,13 +6,13 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Banks are moving card debt to firms willing to hold it, not forgiving it](retail-debt.md) — cutoff 2026-07-15
 - [Credit approval rules are shifting, but not all toward easier lending](mortgage-credit-score-reform.md) — cutoff 2026-09-07
 - [Following one mortgage through the books to the Fed](mortgage-balance-sheet-trail.md) — cutoff 2026-09-07
-- [The tax law stays put; who collects it and handles the data is changing](treasury-irs.md) — cutoff 2026-07-16
+- [The tax law stays put; who collects it and handles the data is changing](treasury-irs.md) — cutoff 2026-10-15T16:42:00-04:00
 - [What big banks are building, and the fine print behind it](peoples-money.md) — cutoff 2026-07-15
 - [Data centers where tribal, state and federal power meet](sovereign-compute.md) — cutoff 2026-10-05
 - [The National Archives sets rules for keeping federal AI records](nara-ai-records-compute-transition.md) — cutoff 2026-08-23
 - [Who owns and activates federal emergency communications](sovereign-communications.md) — cutoff 2026-07-15
 - [Current law bars a third Trump election; any 2028 push would be a fight over process](trump-2028-constitutional-election-ledger.md) — cutoff 2026-07-25
-- [White House election files show real risks, not proof of changed results](election-integrity-release.md) — cutoff 2026-10-05
+- [White House election files show real risks, not proof of changed results](election-integrity-release.md) — cutoff 2026-10-15T16:14:50-04:00
 - [A catalog of saved hearing memos, testimony and bills, from late 2024 to mid-2026](congressional-hearing-source-library.md) — cutoff 2026-07-25
 - [A working transcript of Trump's July 24 WHCA dinner remarks](trump-whca-dinner-remarks-2026-07-24.md) — cutoff 2026-07-24
 - [Agency strategic plans are a legal cycle, and many still are not out](federal-strategic-plans.md) — cutoff 2026-09-20
@@ -27,25 +27,28 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Emptying an agency is not the same as abolishing it](federal-workforce-and-agency-control.md) — cutoff 2026-08-15
 - [Epstein interviews turned answers into records that can be checked](epstein-interview-statement-accountability.md) — cutoff 2026-07-21
 - [Every congressional committee mapped as its own body, not as a branch of an agency](congressional-committee-control-plane.md) — cutoff 2026-07-26
+- [Executive orders: full texts and saved research notes](executive-order-source-library.md) — cutoff 2026-10-14
 - [Federal advisory committees and other public decision forums](government-hidden-control-surfaces-2026.md) — cutoff 2026-09-28T23:59:59-04:00
 - [Hawaii bribery case: official records trace the money only part way](hawaii-public-corruption-source-ledger.md) — cutoff 2026-07-27
 - [July 31 Cabinet meeting: many claims, no new orders](white-house-cabinet-meeting-2026-07-31.md) — cutoff 2026-07-31T19:50:38-04:00
 - [Justice Department opinion widens which state offices must report people unlawfully present](prwora-state-reporting-eligibility-architecture.md) — cutoff 2026-09-02
 - [New law puts 'other transaction' deals on USAspending, but slowly](stop-secret-spending-act-ota-transparency.md) — cutoff 2026-09-15T18:26:27-04:00
 - [Next year's budget: proposed growth, big shifts, and a stopgap to December](federal-budget-fy2026-fy2027.md) — cutoff 2026-09-11T19:55:13-04:00
-- [No public record yet follows a federal dollar all the way down](fraud-payment-integrity.md) — cutoff 2026-10-10
+- [No public record yet follows a federal dollar all the way down](fraud-payment-integrity.md) — cutoff 2026-10-15T16:14:50-04:00
 - [Official releases follow a pattern that makes the story sound stronger than the files](disclosure-architecture.md) — cutoff 2026-07-27
 - [One $37 million child-care payment can be traced into Pennsylvania, but not to providers](pa-ccdbg-state-edge-pilot.md) — cutoff 2026-07-27
-- [One map to browse all saved federal research](federal-government-movement-atlas.md) — cutoff 2026-09-22T11:51:46-04:00
+- [One map to browse all saved federal research](federal-government-movement-atlas.md) — cutoff 2026-10-12T17:10:00-04:00
 - [Pentagon orders security reviews at 30 unnamed universities](dow-research-security-audits-2026-08-17.md) — cutoff 2026-08-17
 - [Postal workers helped run a Census test; no citizenship database shown](census-usps-citizenship-apportionment.md) — cutoff 2026-08-11
 - [Rating firms paid $49M+ for lost messages; the clean-up is still private](sec-credit-rating-recordkeeping-orders-2024-2026.md) — cutoff 2026-09-25
+- [Saved government website checks and source captures](government-source-check-captures.md) — cutoff 2026-10-14
+- [Saved official filings and hearing records](official-records-source-library.md) — cutoff 2026-10-14
 - [Supreme Court stays third-country-removal ruling and takes the case](dvd-third-country-removal-authority-2025-2026.md) — cutoff 2026-10-07
 - [Syracuse housing uses grants, tax credits and nonprofit developers](syracuse-onondaga-legal-layers-2026.md) — cutoff 2026-10-10
 - [The House Oversight hearing and transcript library](house-oversight-corpus.md) — cutoff 2026-07-22
 - [The One Big Beautiful Bill makes states pay for SNAP errors; it did not create a fraud rate](obbb-fraud-error-rate-legal-map.md) — cutoff 2026-07-16
 - [The White House's own economists lay out the reasons behind its orders](white-house-research-hub.md) — cutoff 2026-07-21
-- [The court cases deciding who gets inside the money system](judicial-money.md) — cutoff 2026-09-03
+- [The court cases deciding who gets inside the money system](judicial-money.md) — cutoff 2026-10-13T20:30:00-04:00
 - [The federal personnel office is taking over more hiring, records and checks](opm-structural-change-audit-2025-2026.md) — cutoff 2026-08-29T20:10:53-04:00
 - [The four Trump indictments were four different legal stories](trump-criminal-indictments-primary-source-map-2023-2026.md) — cutoff 2026-10-01T14:00:00-04:00
 - [The military gained border-land arrest power, not control of civilian courts](national-defense-areas-military-arrest-authority-2025-2026.md) — cutoff 2026-10-12
@@ -65,13 +68,14 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Independent power for major military installations](fortress-america-installation-energy-independence.md) — cutoff 2026-09-30T23:59:59-04:00
 - [The military is reorganizing around shared data, with named vendors at the center](military-modernization.md) — cutoff 2026-07-15
 - [The military moves on commercial ships, rail and fuel, and now aims for off-grid bases](contested-logistics.md) — cutoff 2026-09-30
+- [Accounting built from shared business events](transaction-native-accounting.md) — cutoff 2026-10-14
 - [Apps can now sell regulated derivatives without registering](cftc-passive-software-no-action-2026-09-17.md) — cutoff 2026-09-17T11:32:00-04:00
 - [CFTC proposes special rules for leveraged retail crypto](cftc-regulation-ctx-cam-anprm-2026-10-05.md) — cutoff 2026-10-05
 - [Coinbase gets its own derivatives clearinghouse](coinbase-clearing-dco-registration-2026-09-28.md) — cutoff 2026-09-28T22:09:00-04:00
-- [Could XRP quietly power currency conversions?](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-10-03T09:30:00-04:00
-- [DTCC's tokens: a controlled layer, not a new market](dtcc-tokenization-2026.md) — cutoff 2026-08-21
+- [Could XRP quietly power currency conversions?](ripple-xrp-invisible-conversion-layer.md) — cutoff 2026-10-14T22:13:18-04:00
+- [DTCC's tokens: a controlled layer, not a new market](dtcc-tokenization-2026.md) — cutoff 2026-10-14T21:02:44-04:00
 - [Federal technology and money systems changed in separate pieces, September 17–20](federal-technology-and-monetary-infrastructure-delta-2026-09-20.md) — cutoff 2026-09-20T16:20:12-04:00
-- [How 16 financial giants are going digital](major-bank-digital-transition.md) — cutoff 2026-10-03T10:20:00-04:00
+- [How 16 financial giants are going digital](major-bank-digital-transition.md) — cutoff 2026-10-14T21:02:44-04:00
 - [How Congress is building the new money plumbing](congressional-monetary-infrastructure.md) — cutoff 2026-09-16
 - [How gold moves—and why a gold token is not collateral yet](wholesale-metals.md) — cutoff 2026-09-14
 - [How real-time shared records could change auditing](atomic-settlement-continuous-assurance.md) — cutoff 2026-09-26
@@ -80,19 +84,22 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Not a new currency: a fight over the points where money changes form](overall-monetary-play.md) — cutoff 2026-07-13
 - [SEC advisers' tokenization advice versus actual SEC action](sec-investor-advisory-committee.md) — cutoff 2026-09-20T16:20:12-04:00
 - [SEC allows a limited tokenized-stock exemption through 2031](sec-tokenized-nms-stock-innovation-exemption.md) — cutoff 2026-09-17T09:46:00-04:00
+- [SEC approves Cboe options on company performance figures](sec-cboe-binary-kpi-options-2026-10-14.md) — cutoff 2026-10-14
 - [SEC may count a CPA license toward accredited-investor status](sec-accredited-investor-credential-notices-2026-09-30.md) — cutoff 2026-09-30T20:55:02-04:00
 - [SEC proposes blockchain-based official shareholder records](sec-transfer-agent-modernization.md) — cutoff 2026-09-01
 - [SWIFT's blockchain ledger is moving real money](swift-shared-ledger.md) — cutoff 2026-09-28
 - [Stablecoins at the checkout: real, but tiny so far](card-network-stablecoins-2026.md) — cutoff 2026-09-30
 - [States still decide much of how banks and credit unions work](bank-credit-union-legal-architecture.md) — cutoff 2026-09-15
-- [The Fed is many legal bodies, and its building cost doubled](fed-clearing-treasury.md) — cutoff 2026-10-12T18:25:00-04:00
+- [The FSB ties Basel, market infrastructure and digital finance together](fsb-financial-system-transition-2009-2026.md) — cutoff 2026-10-14
+- [The Fed is many legal bodies, and its building cost doubled](fed-clearing-treasury.md) — cutoff 2026-10-14T22:13:18-04:00
+- [The OCC opened a federal trust-bank lane for crypto, but most applicants are still outside the door](occ-crypto-charters-national-trust-banks-2026-10-13.md) — cutoff 2026-10-13T18:10:00-04:00
 - [The SEC's crypto custody plan: expensive, and still only a proposal](sec-crypto-custody-proposal-2026-10-01.md) — cutoff 2026-10-01T17:35:03-04:00
 - [The crypto market-structure bill stalled, so the agencies moved](clarity-act-senate-draft-2026.md) — cutoff 2026-09-14
-- [The dollar stays public while private firms build more payment networks](route-anchor-inventory.md) — cutoff 2026-08-31T14:43:21-04:00
+- [The dollar stays public while private firms build more payment networks](route-anchor-inventory.md) — cutoff 2026-10-14T22:13:18-04:00
 - [The stablecoin law is passed, but the rules aren't done](genius-act-implementation-2026.md) — cutoff 2026-09-30
 - [What changed at federal financial agencies, September 30–October 2](federal-monetary-economic-institutions-delta-2026-10-02.md) — cutoff 2026-10-02T15:39:30-04:00
 - [What changed in banking and the money pipes after the Site build](banking-money-pipes-refresh-2026-10-12.md) — cutoff 2026-10-12T18:25:00-04:00
-- [What finance has actually moved onto blockchains](overall-dlt-transition.md) — cutoff 2026-09-22T23:59:59-04:00
+- [What finance has actually moved onto blockchains](overall-dlt-transition.md) — cutoff 2026-10-14T22:13:18-04:00
 - [What makes a legal stablecoin trustworthy](genius-stablecoin-trust-crosswalk.md) — cutoff 2026-08-17
 - [What makes a record official on a blockchain](official-record-authority-blockchain.md) — cutoff 2026-09-26
 - [What stablecoins reveal, and what they still hide](payment-transparency-hidden-constitution.md) — cutoff 2026-07-31
@@ -116,7 +123,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [AI helps run turbines, but people still make the big calls](ai-turbine-asset-management-power-buildout.md) — cutoff 2026-08-09
 - [Federally funded science faces separate identity, security, data and payment checks](scientific-trust-stack.md) — cutoff 2026-08-17
 - [Fusion has plans and funding, but no U.S. power plant yet](federal-fusion-commercialization.md) — cutoff 2026-08-15
-- [Genesis: a federal AI science platform, mostly still being built](genesis-mission.md) — cutoff 2026-10-09
+- [Genesis: a federal AI science platform, mostly still being built](genesis-mission.md) — cutoff 2026-10-13
 - [How Washington plans to turn science strategy into funded work](federal-science-operating-system.md) — cutoff 2026-10-12
 - [NSA published the post-quantum plan; real system use is still unproved](federal-cryptographic-trust-stack.md) — cutoff 2026-10-01
 - [Nanotubes help batteries, but the U.S. lacks a full home supply chain](carbon-nanotubes-battery-sovereignty.md) — cutoff 2026-08-23
@@ -130,6 +137,7 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Who loses money if AI demand falls depends on each deal](ai-infrastructure-capital-stack-risk-transfer.md) — cutoff 2026-08-10
 - [Winning a federal tech award is not the same as being accepted](nssts-program-acceptance-economy.md) — cutoff 2026-08-19
 - [A U.S.–UK agenda for digital markets, not a shared rulebook](us-uk-transatlantic-markets-taskforce-2026.md) — cutoff 2026-08-04
+- [Bessent asks the IMF to narrow its work and sharpen its scrutiny](bessent-imf-core-mandate-2026-10-14.md) — cutoff 2026-10-14T17:20:00-04:00
 - [Crypto around the world: many licenses, no proven cross-border use](international-crypto-map.md) — cutoff 2026-10-03T09:30:00-04:00
 - [Davos speech claims, and the Greenland deal signed in September](trump-davos-address-2026-01-21.md) — cutoff 2026-09-25
 - [G7 and G20 set goals, but other bodies make them happen](g7-g20-coordination-architecture.md) — cutoff 2026-09-03T19:41:23-04:00
@@ -137,13 +145,13 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [Grading the system behind each G20 currency, with no overall ranking](currency-watch.md) — cutoff 2026-07-31
 - [How British money actually works, layer by layer](uk-monetary-constitution-2026.md) — cutoff 2026-09-14
 - [How new money could reach government debt, and what would prove it](international-monetary-next-phase-2026.md) — cutoff 2026-09-07
-- [How the United States participates in and can leave international organizations](international-organizations-us-power-map-2026.md) — cutoff 2026-10-04
+- [How the United States participates in and can leave international organizations](international-organizations-us-power-map-2026.md) — cutoff 2026-10-15T16:14:50-04:00
 - [Japan defended the yen; the IMF only classifies](japan-korea-currency-defense-2026.md) — cutoff 2026-08-01
 - [Japan is rewiring its money without replacing it](japan-monetary-constitution-2026.md) — cutoff 2026-09-28
 - [Japan's August: defending the yen, rebuilding after a quake, testing digital money](japan-august-2026-delta.md) — cutoff 2026-08-31T23:10:00+09:00
 - [Korea's July selloff did not disrupt funding or settlement](korea-market-stress-2026.md) — cutoff 2026-07-29
 - [No region is switching the money system on its own](international-monetary-initiation-2026.md) — cutoff 2026-09-14
-- [Oil and gas tightness is selective, and many deals are not yet flows](global-oil-gas-movements.md) — cutoff 2026-09-30
+- [Oil and gas tightness is selective, and many deals are not yet flows](global-oil-gas-movements.md) — cutoff 2026-10-15T16:14:50-04:00
 - [Scottish, Welsh and Irish party cooperation is not independence](uk-constitutional-order-self-determination.md) — cutoff 2026-09-13T17:59:00-04:00
 - [Stablecoins showed a parallel price, not an escape route](japan-korea-stablecoin-fx-overlap-2026.md) — cutoff 2026-07-31
 - [State's Cuba report builds a case but creates no new power](cuba-pressure-counter-influence.md) — cutoff 2026-07-20
@@ -176,4 +184,3 @@ Use `index.json` for machine routing. Each `.md` file is the portable source-tex
 - [What federal agency libraries added on August 22](federal-government-entity-library-harvest-2026-08-22.md) — cutoff 2026-08-23
 - [What the August 22 federal source sweep actually found](federal-government-full-freshness-sweep-2026-08-22.md) — cutoff 2026-08-23
 - [Which federal source pages were actually usable in August 2026](government-wide-recertification-august-2026.md) — cutoff 2026-08-04T17:48:00-04:00
-- [Accounting built from shared business events](transaction-native-accounting.md) — cutoff 2026-10-05

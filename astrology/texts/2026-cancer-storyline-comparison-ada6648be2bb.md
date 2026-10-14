@@ -45,3 +45,7 @@ rather than searching for a headline that merely sounds like the chart.
 ## Open record
 
 The Cancer record census is the live inventory through the current cutoff. New evidence belongs there first. This page remains a watch shell until the season closes; it does not contain advance findings waiting to be confirmed.
+
+## October 15 ingress-period return
+
+The Cancer climate ended at the September 22 Washington Libra ingress. The older open label and August 15 interim census above retain their historical meaning. [The October 15 completed-period return]([local-path-removed]) supplies the later record and separately re-hears the two August-frozen prospective leaves; it does not silently close the registry, change old findings or confer Katie’s acceptance.

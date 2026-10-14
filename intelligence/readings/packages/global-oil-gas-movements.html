@@ -19,6 +19,10 @@ Evidence cutoff: 2026-09-30 for the Alaska LNG–Korea selection note;
 2026-09-15 for the broader package baseline, America/New_York
 Research ID: `global-oil-gas-movements`
 
+## October 15 Russian diesel addition
+
+Russia diesel: permission, deal and flow distinguishes GL 135 from the four announced supply stages and missing commercial/cargo/payment records. The globe adds origin-point permission and target records; older observations retain their dates.
+
 ## The question
 
 How are oil and gas physically moving, who owns and permits each movement, how

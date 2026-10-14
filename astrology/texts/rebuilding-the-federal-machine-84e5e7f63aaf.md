@@ -33,3 +33,15 @@ institutional reality.
 
 Many changes may be ordinary administration, litigation response or local
 process repair rather than one joined constitutional refounding.
+
+## October 15 ingress-period return
+
+The return links payment direction to later agency-reported operation, while keeping office, statute, appeal route, service and cash separate. The old August force-direction miss remains visible. The richer service and care record makes the comparison broader than an executive-control story, with actual outcomes still requiring their own receipts.
+
+[Open the seven-wave record return]([local-path-removed]) retains the roots, lunar sequence, version boundaries, misses, counterevidence and exact sources. The existing room membership and replay authorities remain unchanged.
+
+## October 15 culture care and belonging return
+
+The fresh cultural hearing adds grief, family care, holiday rhetoric and contested public memory to the question of whom government serves. The same public act can offer reassurance to one audience and estrangement to another. Its source dates, attributed voices and chart roots stay visible beside the room’s independent legal and operating lanes.
+
+[Open the full cultural hearing]([local-path-removed]) and [the attributed social sources]([local-path-removed]). This dated return creates no current planetary strand, factual upgrade or Forecast Ledger call.

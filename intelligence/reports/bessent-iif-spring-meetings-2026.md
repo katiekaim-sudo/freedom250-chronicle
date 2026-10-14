@@ -1,5 +1,7 @@
 # Bessent at IIF — Spring Meetings 2026
 
+**October 14 Annual Meetings companion:** Bessent's IMF core-mandate test compares his new Treasury statement with the IMF charter, completed 2026 reviews and the still-open implementation and RST questions. It is a separate dated study; the April conversation and July 30 source audits retain their original cutoff.
+
 <!-- plain-english-entry:start -->
 ## In plain English
 

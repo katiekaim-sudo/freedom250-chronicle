@@ -116,3 +116,13 @@ author the next overlap.
 - New crossover notes live here.
 - The earlier overlap work stays where it is: `Astrology Files/Mundane Story Overlaps/` and `Astrology Files/Money x Sky/`. It is shown on the Filed Crossovers page.
 - Computed data: `99 - Templates/mundane_sky_events.json` (the sky; rebuild with `--sky`) and `99 - Templates/mundane_crossovers.json` (the matches). The view is `04 - Synthesis/Cross-cuts/Mundane Astrology.html`.
+
+## October 15 ingress-period return
+
+[Ingress periods beside the record]([local-path-removed]) opens seven dated waves: six completed stages from Aries 2025 through Cancer 2026 and an interim Libra 2026 return. Each holds the whole chart and motion through time beside independently dated research, with older misses and narrow frozen prospective tests visible. Existing braids and three Story Rooms carry dated return paragraphs. This adds no new permanent relationship ownership, public release or automatic forecast verdict.
+
+## October 15 culture care and belonging return
+
+A second October 15 return hears culture, pleasure, care and belonging through the saved Chronicle and X voices. Ten dated cases recover family duty, mourning, holidays, friendship, hospitality and public memory; an aurora vignette remains unassigned to a specific chart. The original posts, personal and foreign scope, thin captures and disputed claims retain their limits. The first seven-period factual return and all frozen readings remain unchanged.
+
+[Open the full cultural hearing]([local-path-removed]) and [the attributed social sources]([local-path-removed]). This dated return creates no current planetary strand, factual upgrade or Forecast Ledger call.

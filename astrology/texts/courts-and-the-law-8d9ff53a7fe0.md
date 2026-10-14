@@ -22,3 +22,11 @@ The courts are drawing the lines on presidential power, money and enforcement. T
 **The rhythm.** The loudest chapter is the **Capricorn Full Moon of June 29, 2026**, at the end of the Court's term when the big opinions land. Capricorn is law, authority and the final word, and a Full Moon is the verdict. Gemini (arguments) and Scorpio (hidden power) follow. The Supreme Court's chart takes Saturn oppositions to its Sun and Ascendant and a Pluto square to its Venus: the Court's identity and public face held to account, and its sense of fairness pressured from below.
 
 *Written by Claude, 2026-10-03, from the braid's data. Grok refreshes one braid a night.*
+
+## October 15 ingress-period return
+
+The comparison now follows bounded holdings and procedural states through time: the May 2025 removal stay, February 2026 tariff limit, separate Slaughter/Cook dispositions and later impoundment/removal procedures. A stay, judgment, agency legal finding, hearing route and restored payment are different things. The court can change an instrument’s footing while much of the institution continues.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-capricorn]([local-path-removed]), [2026-cancer]([local-path-removed]), [2026-libra]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.

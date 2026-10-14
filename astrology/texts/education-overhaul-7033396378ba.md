@@ -23,3 +23,17 @@ The [State Learning Agenda Playbook study](<Research-Workbench/Research Packages
 The forward question is whether a State or local decision maker actually receives power, staff, records and money to act, uses credible evidence to change a school or aid programme, and shows a student result that survives the next leadership change. The constructive route is plural State capacity with visible reasons and remedy; the shadow is a hollow federal shell and many new plans while students, teachers and borrowers cannot tell who is accountable. Ordinary decentralization and uneven local improvement remain strong rivals to a single national overhaul.
 
 This braid begins **without authored planetary strands**. The 2027 authority/action bridge, 2028 care/record split, 2029 price and 2030 working-bargain sky are forward questions in [Capacity or Spectacle](../Story%20Rooms/capacity-or-spectacle-2027-30-forecast-route.md), not an automatic education forecast. An exact school, aid or State-capacity receipt must first name its actor, instrument, student consequence and review gate; then the lawful chart may earn a bounded overlap. Social posts about campuses or classroom politics remain attention, not a measured education result.
+
+## October 15 ingress-period return
+
+The September Learning Agenda Playbook adds receiving-side judgment: pilot planning changed questions and shared frameworks, while no student gain or legal transfer is established. Children, ordinary care and the practical working body keep a place in the readings beside institutional control. The chart’s full range is not exhausted by an agency-reorganization headline.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-aries]([local-path-removed]), [2025-cancer]([local-path-removed]), [2026-cancer]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.
+
+## October 15 culture care and belonging return
+
+The cultural hearing brings the tired and affectionate work around school into view: a January family essay moves among bills, children’s activities, strained pleasure, gratitude and gendered resentment. Winter’s treasury/service/hidden-need circuit has that ordinary life as one possible human object. December’s official-account student-aid posts also use Christmas gifts, the naughty list and the Grinch to make an administrative account emotionally familiar. The rhetoric does not establish a recovered sum. Later arguments about public memory ask what children and a public are invited to admire. The relevant charts and dates remain distinct; these are social and cultural additions, not new student-outcome findings.
+
+[Open the full cultural hearing]([local-path-removed]) and [the attributed social sources]([local-path-removed]). This dated return creates no current planetary strand, factual upgrade or Forecast Ledger call.

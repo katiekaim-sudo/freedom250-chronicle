@@ -8,6 +8,7 @@ updated: 2026-09-24
 canonical_for: chart-reading-output-shape
 reads_with:
   - 00 - Index/Reading the Charts — START HERE.md
+  - 00 - Index/Mundane Reading Production Plan — Full Method.md
   - _AI-Context/BOOT — Chart Reading.md
   - _Grok/How Katie reads — the full shelf.md
 ---
@@ -18,6 +19,13 @@ Use this after the chart facts have been computed and verified. This is a
 **voice and judgment template**, not a placement checklist. The chart must be
 heard as one living whole before it is asked to illuminate a Freedom 250 state
 transition.
+
+The complete four-pass workflow and mandatory method shelf are governed by
+[[Mundane Reading Production Plan — Full Method]]. Do not mark this template's
+hearing complete merely because the facts exist. The dependency hearing must
+show how shape, figures, aspects and silences, all house rulers, roots,
+conditions, declination, specialist layers, national overlays and continuous
+clocks support, complicate or change the whole.
 
 ## The order is binding
 

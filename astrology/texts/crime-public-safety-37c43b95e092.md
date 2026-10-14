@@ -22,3 +22,17 @@ This is distinct from [payment fraud](fraud-missing-money.md) and [immigration m
 The broader public-safety question remains open. A city police department, Federal law-enforcement agency, court, jail or foreign border authority has a different legal seat. Crime reports, arrests, charges, convictions, repeat offending, injury and public safety are not interchangeable outcomes. A criminal-history match may be useful and still be wrong or stale. The constructive route is lawful data access and accountable force that lowers harm while giving affected people a correction path; the shadow is a broad security claim that spreads a bad record or shifts responsibility across agencies. Ordinary local policing variation may explain results without one national crime programme.
 
 This braid begins **without authored planetary strands**. The 2027 action bridge and 2028 Moon/Mercury care/record split are candidate *questions* in the [Federal Machine forecast route](../Story%20Rooms/rebuilding-the-federal-machine-2027-30-forecast-route.md), not a predicted crime wave or a fixed Mars signature. A new window requires a dated primary instrument or measured operation, the lawful whole chart and an exact return date. Saved crime posts remain attention until their own police, court or statistical owner can verify them.
+
+## October 15 ingress-period return
+
+The summer 2025 return preserves the direction of the D.C. authority claim: executive action toward policing on the ground. That does not fulfill the older August reading’s ground-to-government claim, which remains a Miss. A direction under a defined legal power and an attributed crime outcome require separate receipts.
+
+Read the [cross-period hearing]([local-path-removed]) and the relevant dated returns: [2025-cancer]([local-path-removed]).
+
+This is a fresh historical/interim comparison. Original braid prose, authored relationship windows and ledger dispositions are preserved; no new current strand or Forecast Ledger call is created.
+
+## October 15 culture care and belonging return
+
+The saved September prayer and widow’s address add grief, family and collective support beside the police/investigation story. The exact owners distinguish immediate reaction, later confirmation, public address, amplification and investigative claims. September’s eclipse has the Virgo government account facing a Pisces foundation, with Mercury final separate from the Moon–Jupiter bond. That can make exact work and compassion answer one another, while grief can also become a test of loyalty to a cause. This is a retrospective hearing of reception, not a claim that the eclipse predicted the killing or supplied motive or responsibility.
+
+[Open the full cultural hearing]([local-path-removed]) and [the attributed social sources]([local-path-removed]). This dated return creates no current planetary strand, factual upgrade or Forecast Ledger call.

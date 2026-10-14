@@ -11,8 +11,38 @@
 
 **Evidence checked through:** 2026-10-03T10:20:00-04:00
 
+**Which answer is current?** The sixteen-bank comparison below was checked through **October 3, 10:20 EDT**. For the later Citi, BNY, FICC, AppChain and Ripple collateral work, start with the **October 14 reading path immediately below**, whose latest bounded source pass ended at **22:13 EDT**. Each linked supplement states its own cutoff; those supplements do not update every bank in the comparison.
+
 The detailed record below keeps the legal wording, source limits and open questions.
 <!-- plain-english-entry:end -->
+
+## October 14 reading path — Citi, BNY, FICC, AppChain and Ripple
+
+**Start here when returning to the October 14 collateral research.** Evidence was checked through **22:13 EDT** in the latest bounded source pass. The eleven connected readings, their source PDFs and the unresolved questions are saved under the existing bank, DLT and clearing-house studies.
+
+| Read in this order | What is saved |
+|---|---|
+| 1. Citi's collateral strategy | Full five-page report reading: one inventory across conventional/digital rails; scenarios, forecasts and yield claims kept distinct from operating evidence. |
+| 2. BNY and Citadel's Treasury repo | The named purchase → private-ledger settlement → overnight financing workflow, with the unspecified cash mechanism and clearing route preserved. |
+| 3. BNY's 2027 operating plan | Full twelve-page plan reading: longer conventional hours, additional digital cash, Treasury clearing/financing aims, and the separate CCP and Fedwire clocks. |
+| 4. FICC Collateral-in-Lieu and the missing token link | Worked repo, lender-side relief, BNY custody, FICC lien/default powers, official-source search and the changes needed for different token designs. |
+| 5. DTCC AppChain and the connections actually demonstrated | Agreement execution, valuation and controlled movement; documented BNY experiment participation and July CCP-margin evidence; the unproved Citadel/CIL joins. |
+| 6. Evernorth and Ripple in the collateral system | Today's named execution partners, XRP capital supply, Ripple Prime, BNY reserve/deposit roles and the distinction between XRP lending and Treasury repo. |
+| 7. Ripple Prime XRP collateral and the FICC funding bridge | Current FICC membership, audited operating Treasury repo, client collateral versus CCP eligibility, and the unproved XRP-backed allocation. |
+| 8. Which way Ripple's $100 million repo cash flowed | Ripple lent cash to Prime US against Treasuries; the funding channel differs from equity injections and later outside debt. |
+| 9. Full KBRA report and the senior notes | Secured funding, BNY/BMO facilities, parent capital and XRP capacity, structural subordination and the missing guarantee/covenant contract. |
+| 10. How Prime compares with other financial groups | Marex and StoneX funding analogues; Coinbase and JPMorgan guarantee examples; familiar legal layering versus distinct parent resources and creditor contracts. |
+| 11. How this fits the Observatory | Cross-study interpretation: Treasury collateral, bank dependencies, crypto-parent resources, CIL rights, insurance liquidity and accounting; component clocks and missing joins retained. |
+
+Before choosing the next dig, consult the prior-research check: BNY/RLUSD architecture, the Securitize stock/cash route and a Sunday failure tabletop are already saved; remaining work should target the named gaps.
+
+The supporting source-coverage ledger records the missing-link search and its access limits. Each reading links its original reports, rules or official transaction source. Ten original source PDFs from this research are preserved locally across the existing packages.
+
+**What we established:** Citi supplies a collateral-service strategy; BNY reports a bounded tokenized Treasury financing workflow; CIL supplies a live legal/collateral mechanism; AppChain supplies a potential coordination layer, with bounded CCP-margin production evidence and a documented BNY experiment connection. No explicit public FICC/BNY tokenized-CIL admission or transaction was located in the bounded search. A representation-only interface over the same eligible custody account could require fewer changes than an operative transferable token; that is our conditional implementation analysis.
+
+**What remains open:** the Research Return Ledger carries `ret-bny-2027-treasury-hours-cash-and-financing` and `ret-ficc-cil-tokenized-treasury-admission`. These are research returns, not scheduled monitors. Look for actual service terms, asset/account identity, cash finality, FICC acceptance/control and named out-of-hours or tokenized-CIL transactions.
+
+The Citadel source supersedes the missing-named-obligation finding for that BNY collateral route. The sixteen-bank matrix below remains dated October 3; these targeted supplements do not recertify the whole cohort. Publication, reported transactions, future service aims and demonstrated recovery retain separate evidence states.
 
 ## Governing question
 

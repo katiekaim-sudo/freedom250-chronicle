@@ -20,3 +20,8 @@ Fast machine routes:
 - [Human bot doorway](intelligence/for-katies-bot.html)
 
 Every package record declares `public_full_text` and a crawler-friendly `full_text_url`. A public reading provides a static HTML `reading_url`; `access_state: public_machine_data` provides complete structured JSON at `data_url`; private metadata declares `public_full_text: false` and `access_state: private_by_design`. A failed declared public URL is an access or crawler problem, not a privacy signal. Research pages carry a compact `f250-machine-header` JSON block naming their page type, package IDs, clocks and exact API routes. Package interiors separate orientation, findings, evidence, monitoring, methods, presentation and supporting materials. Treat modification times as computer recency signals, not proof that findings changed. Preserve evidence cutoffs, cutoff notes, structured-data as-of dates and evidence vocabularies; distinguish authority from operation; cite exact pages or data objects; and freshly verify claims that must be current today.
+
+
+## Current research graphics
+
+[Picture graphics and comparisons](library/index.html) · [Small current graphics directory](library/bot/current-graphics/index.json). Graphics mirror the main Library; complete study/source destinations remain explicit canonical links. Evidence dates and unresolved readings stay with each record.

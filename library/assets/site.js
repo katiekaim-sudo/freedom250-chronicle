@@ -3,4 +3,19 @@
 
 (()=>{const n=document.querySelector(".site-library-nav");if(n&&!n.querySelector("[data-comparison-link]")){const a=document.createElement("a");a.href="/freedom250-chronicle/library/compare/index.html";a.textContent="Compare research";a.dataset.comparisonLink="1";n.prepend(a)}})();
 /* DR107 compact graphic navigation */
-(()=>{if(!document.querySelector('#f-data,#g-data,.gfx-tiles'))return;const nav=document.querySelector('.site-library-nav');if(!nav||nav.closest('details'))return;const box=document.createElement('details'),label=document.createElement('summary');box.className='site-nav-drawer';label.textContent='Library navigation';nav.before(box);box.append(label,nav);const media=matchMedia('(min-width:761px)');box.open=media.matches;media.addEventListener('change',()=>box.open=media.matches)})();
+(()=>{const nav=document.querySelector('.site-library-nav');if(!nav||nav.closest('details'))return;const box=document.createElement('details'),label=document.createElement('summary');box.className='site-nav-drawer';label.textContent='Library navigation';nav.before(box);box.append(label,nav);const media=matchMedia('(min-width:761px)');box.open=media.matches;media.addEventListener('change',()=>box.open=media.matches)})();
+/* Reader goal cleanup */
+(()=>{
+ const here=new URL(location.href),appearance=here.searchParams.get('appearance');
+ if(['dark','light','system'].includes(appearance)){const d=document.documentElement;d.dataset.themeChoice=appearance;d.dataset.theme=appearance==='system'?(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'):appearance;document.querySelectorAll('[name=site-theme]').forEach(x=>x.checked=x.value===appearance)}
+ document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a)return;const u=new URL(a.href,location.href);if(location.hostname==='katiekaim-sudo.github.io'&&u.hostname==='freedom-250-observatory.katiekaim.chatgpt.site'&&/^\/library\/(readings|studies|explorers|records)\//.test(u.pathname)){const t=document.documentElement.dataset.themeChoice;if(['dark','light','system'].includes(t))u.searchParams.set('appearance',t);a.href=u.href}});
+ const trail=document.querySelector('.reader-research'),pic=document.querySelector('#sections .pic');if(trail&&pic)pic.after(trail)
+ if(document.body.classList.contains('reader-ny')){
+  const stage=document.querySelector('#stage'),directory=document.querySelector('#directory'),info=document.querySelector('#info'),list=document.querySelector('#nodeList');if(!stage||!directory||!info)return;
+  const dp=directory.parentElement,dn=directory.nextSibling,ip=info.parentElement,insideNext=info.nextSibling,media=matchMedia('(max-width:640px)');
+  function qualify(){const title=info.querySelector('h2')?.textContent||'',body=info.querySelector('.body');if(body&&/chobani/i.test(title)&&/rome/i.test(title)&&!body.querySelector('.reader-claim-boundary')){const p=document.createElement('p');p.className='reader-claim-boundary';p.textContent="Evidence boundary: the saved registry classifies this project as construction/commissioning at its September 4, 2026 cutoff. The card’s direct April 22, 2025 source is an investment announcement; that link alone does not prove later construction.";body.prepend(p)}}
+  function arrange(){if(media.matches){stage.before(directory);directory.after(info);info.setAttribute('aria-label','Selected site: full evidence record')}else{ip.insertBefore(info,insideNext&&insideNext.parentElement===ip?insideNext:null);dp.insertBefore(directory,dn&&dn.parentElement===dp?dn:null)}qualify()}
+  media.addEventListener('change',arrange);arrange();new MutationObserver(qualify).observe(info,{childList:true,subtree:true});
+  list?.addEventListener('click',e=>{if(media.matches&&e.target.closest('[data-node-id]'))requestAnimationFrame(()=>{qualify();const h=info.querySelector('h2');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}info.scrollIntoView({block:'start',behavior:'auto'})})});
+ }
+})();

@@ -19,3 +19,12 @@
   list?.addEventListener('click',e=>{if(media.matches&&e.target.closest('[data-node-id]'))requestAnimationFrame(()=>{qualify();const h=info.querySelector('h2');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}info.scrollIntoView({block:'start',behavior:'auto'})})});
  }
 })();
+/* r29 blind-reader fixes */
+(()=>{
+ const nav=document.querySelector('.site-library-nav');
+ if(nav&&!nav.querySelector('[data-recent-link]')){const a=document.createElement('a');a.href='https://freedom-250-observatory.katiekaim.chatgpt.site/library/recent.html';a.textContent='Recent research';a.dataset.recentLink='1';const compare=nav.querySelector('[data-comparison-link]');compare?compare.after(a):nav.prepend(a)}
+ const subjects=document.querySelector('.gfx-subjects');if(subjects){subjects.id=subjects.id||'subjects';subjects.open=true;const s=subjects.querySelector('summary');if(s)s.textContent='Browse subjects'}
+ if(location.hostname==='katiekaim-sudo.github.io')document.querySelectorAll('a[href]').forEach(a=>{const u=new URL(a.href,location.href);if(u.hostname==='freedom-250-observatory.katiekaim.chatgpt.site'&&/^\/(?:library\/(?:readings|studies|entities|records)|research)\//.test(u.pathname)){a.classList.add('main-library-link');if(!a.getAttribute('aria-label'))a.setAttribute('aria-label',a.textContent.trim()+' — opens the main Research Library')}});
+ function cues(){document.querySelectorAll('.pic-scroll,.table-scroll,.cmp-table-wrap,.s3-grid-scroll').forEach(el=>{const wide=el.scrollWidth>el.clientWidth+4,prior=el.previousElementSibling;if(wide&&!(prior&&prior.classList.contains('horizontal-scroll-cue'))){const p=document.createElement('p');p.className='horizontal-scroll-cue';p.textContent='Swipe or scroll sideways to see the full picture →';el.before(p)}})}
+ requestAnimationFrame(cues);addEventListener('load',cues,{once:true});addEventListener('resize',cues);
+})();
